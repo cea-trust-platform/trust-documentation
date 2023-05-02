@@ -1,6 +1,6 @@
 # TRUST documentation on GitHub pages !
 
-<img src="https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true" style="width:9cm;">
+<img src="https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true" style="width:12cm;">
 
 Hi there 👋 and welcome to the TRUST documentation page on GitHub !
 
