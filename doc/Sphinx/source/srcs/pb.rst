@@ -49,7 +49,7 @@ In your data file, you will have:
 
 .. code-block:: bash
 
-   Pb_Thermohydraulique_Concentration_Turbulent my_problem
+   Pb_Thermohydraulique_Concentration my_problem
    ...
    Read my_problem
    {
