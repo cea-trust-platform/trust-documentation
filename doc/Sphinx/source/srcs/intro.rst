@@ -96,7 +96,7 @@ To launch a calculation with **TRUST**, you need to write a "data file" which is
 
 -  lines between ``# ... #`` and ``/* ... */`` are comments,
 
--  in that document, words in **bold** are **TRUST** keywords, you can highlight them in your file editor with the command line:
+- **TRUST** keywords can be highlighted with your file editor via the command line:
    
    .. code-block:: bash
 
@@ -545,16 +545,16 @@ We will explain here how to do such work:
 
       > trust Calculation procs_number
 
-   This will read your ``DOM_000n*.Zones`` files. You can see the documentation of the **scatter** keyword in Reference Manual which is available `here <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+   This will read your ``DOM_000n*.Zones`` files. You can see the documentation of the **scatter** keyword in Reference Manual which is available `here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#scatter>`__.
 
-   .. https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf
+   .. https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#scatter
 
 
-   For more information, have a look on the first exercise of the `TRUST Tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__; Flow around an Obstacle, Parallel calculation section !
+   For more information, have a look on the first exercise of the `TRUST Tutorial <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#exo_para_1>`__; Flow around an Obstacle, Parallel calculation section !
 
-   .. https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf
+   .. https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#exo_para_1
 
 Interactive Evolution
 ---------------------
 
-To learn how to use the "**-evol**" option, you can see the first exercise of the **TRUST** tutorial: Flow around an obstacle available on `this link <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__.
+To learn how to use the "**-evol**" option, you can see the first exercise of the **TRUST** tutorial: Flow around an obstacle available on `this link <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#exo1>`__.

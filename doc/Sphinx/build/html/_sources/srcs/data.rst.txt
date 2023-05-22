@@ -98,7 +98,7 @@ If your mesh was generated with an external tool like `SALOME <http://www.salome
 
 -  for another format, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
 
-If you want to learn how to build a mesh with SALOME or Gmsh and read it with **TRUST**, you can look at the exercises of the `TRUST Tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__.
+If you want to learn how to build a mesh with SALOME or Gmsh and read it with **TRUST**, you can look at the exercises of the TRUST Tutorial; `Exo Salome <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#salome>`__ and `Exo Gmsh <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#gmsh>`__.
 
 You can have a look too at the `Pre-Processing <https://cea-trust-platform.github.io/classes/pre-processing>`__ section of the TRUST's website.
 
@@ -148,23 +148,23 @@ Transform mesh within the data file
 
 You can also make transformations on your mesh after the **"Mailler"** or **"Read_"** command, using the following keywords:
 
--  **Trianguler** to triangulate your 2D cells and create an unstructured mesh.
+-  **Trianguler** to triangulate your 2D cells and create an unstructured mesh (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#triangulate>`__).
 
--  **Tetraedriser** to tetrahedralise 3D cells and create an unstructured mesh.
+-  **Tetraedriser** to tetrahedralise 3D cells and create an unstructured mesh (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#tetraedriser>`__).
 
--  **Raffiner_anisotrope** or **Raffiner_isotrope** to triangulate/tetrahedralise elements of an untructured mesh.
+-  **Raffiner_anisotrope** or **Raffiner_isotrope** to triangulate/tetrahedralise elements of an untructured mesh (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#raffineranisotrope>`__).
 
--  **ExtrudeBord** to generate an extruded mesh from a boundary of a tetrahedral or an hexahedral mesh. 
+-  **ExtrudeBord** to generate an extruded mesh from a boundary of a tetrahedral or an hexahedral mesh (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#extrudebord>`__).
 
    .. note::
 
       ExtrudeBord in VEF generates 3 or 14 tetrahedra from extruded prisms.
 
--  **RegroupeBord** to build a new boundary with several boundaries of the domain.
+-  **RegroupeBord** to build a new boundary with several boundaries of the domain (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#regroupebord>`__).
 
--  **Transformer** to transform the coordinates of the geometry.
+-  **Transformer** to transform the coordinates of the geometry (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#transformer>`__).
 
-For other commands, see the section ``interprete`` of the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+For other commands, see the section ``interprete`` of the TRUST Reference Manual `available here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#interprete>`__.
 
 .. note::
 
@@ -173,7 +173,7 @@ For other commands, see the section ``interprete`` of the `TRUST Reference Manua
 Test your mesh
 ~~~~~~~~~~~~~~
 
-The keyword **Discretiser_domaine** is useful to discretize the domain (faces will be created) without defining a problem. Indeed, you can create a minimal data file, post-process your mesh in lata format (for example) and visualize it with VisIt.
+The keyword **Discretiser_domaine** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretiserdomaine>`__) is useful to discretize the domain (faces will be created) without defining a problem. Indeed, you can create a minimal data file, post-process your mesh in lata format (for example) and visualize it with VisIt.
 
 .. note::
 
@@ -220,7 +220,7 @@ To use it, launch in a bash terminal:
    > trust my_data_file
    > visit -o file.lata &
 
-To see how to use VisIt, look at the first `TRUST Tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__ exercise; Flow around an Obstacle.
+To see how to use VisIt, look at the first `TRUST Tutorial <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#exo1>`__ exercise; Flow around an Obstacle.
 
 Spatial Discretization
 ----------------------
@@ -248,17 +248,19 @@ The time schemes available in the TRUST platform are summarized on the TRUST's w
 
 Here are some available types of explicit schemes:
 
--  **Scheme_Euler_explicit**
+-  **Scheme_Euler_explicit** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#eulerscheme>`__).
 
--  **Schema_Adams_Bashforth_order_2**
+-  **Schema_Adams_Bashforth_order_2** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaadamsbashforthorder2>`__).
 
--  **Runge_Kutta_ordre_3**
+-  **Runge_Kutta_ordre_3** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#rungekuttaordre3>`__).
 
 And also some available types of implicit schemes:
 
--  **Scheme_Euler_implicit**
+-  **Scheme_Euler_implicit** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaeulerimplicite>`__).
 
--  **Schema_Adams_Moulton_order_3**
+-  **Schema_Adams_Moulton_order_3** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaadamsmoultonorder3>`__).
+
+For other schemes, see `doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schematempsbase>`__ of the Reference Manual.
 
 .. note::
 
@@ -300,20 +302,20 @@ To specify the medium or fluid, you must add the following block.
 
 **Fluid_type** can be one of the following:
 
--  **Fluide_incompressible**
+-  **Fluide_incompressible** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluideincompressible>`__).
 
--  **Fluide_Quasi_compressible**
+-  **Fluide_Quasi_compressible** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluidequasicompressible>`__).
 
--  **Fluide_Weakly_Compressible**
+-  **Fluide_Weakly_Compressible** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluideweaklycompressible>`__).
 
--  **Solide**
+-  **Solide** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#solide>`__).
 
-- **Constituant**
+- **Constituant** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#constituant>`__).
 
 - **Milieu_Composite** (for Multi-Phase problems)
 
 
-For other types and more information see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+For other types and more information see the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#milieubase>`__.
 
 .. note::
 
@@ -338,7 +340,7 @@ Objects association and discretization
 Association
 ~~~~~~~~~~~
 
-Until now, we have created some objects, now we must associate them together. For this, we must use the **Associate** interpretor:
+Until now, we have created some objects, now we must associate them together. For this, we must use the **Associate** interpretor (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#associate>`__):
 
 .. code-block:: bash
 
@@ -351,7 +353,7 @@ Until now, we have created some objects, now we must associate them together. Fo
 Discretization
 ~~~~~~~~~~~~~~
 
-Then you must discretize your domain using the **Discretize** interpretor:
+Then you must discretize your domain using the **Discretize** interpretor (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretize>`__):
 
 .. code-block:: bash
    

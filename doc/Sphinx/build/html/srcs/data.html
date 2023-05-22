@@ -305,7 +305,7 @@
 <li><p><strong>Read_File</strong> for a binary mesh file from ICEM.</p></li>
 <li><p>for another format, see the <a class="reference external" href="https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf">TRUST Reference Manual</a>.</p></li>
 </ul>
-<p>If you want to learn how to build a mesh with SALOME or Gmsh and read it with <strong>TRUST</strong>, you can look at the exercises of the <a class="reference external" href="https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf">TRUST Tutorial</a>.</p>
+<p>If you want to learn how to build a mesh with SALOME or Gmsh and read it with <strong>TRUST</strong>, you can look at the exercises of the TRUST Tutorial; <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#salome">Exo Salome</a> and <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#gmsh">Exo Gmsh</a>.</p>
 <p>You can have a look too at the <a class="reference external" href="https://cea-trust-platform.github.io/classes/pre-processing">Pre-Processing</a> section of the TRUST’s website.</p>
 </section>
 <section id="quickly-create-a-mesh">
@@ -349,19 +349,19 @@
 <h3 id="transform-mesh-within-the-data-file">Transform mesh within the data file<a class="headerlink" href="#transform-mesh-within-the-data-file" title="Permalink to this heading">¶</a></h3>
 <p>You can also make transformations on your mesh after the <strong>“Mailler”</strong> or <strong>“Read_”</strong> command, using the following keywords:</p>
 <ul>
-<li><p><strong>Trianguler</strong> to triangulate your 2D cells and create an unstructured mesh.</p></li>
-<li><p><strong>Tetraedriser</strong> to tetrahedralise 3D cells and create an unstructured mesh.</p></li>
-<li><p><strong>Raffiner_anisotrope</strong> or <strong>Raffiner_isotrope</strong> to triangulate/tetrahedralise elements of an untructured mesh.</p></li>
-<li><p><strong>ExtrudeBord</strong> to generate an extruded mesh from a boundary of a tetrahedral or an hexahedral mesh.</p>
+<li><p><strong>Trianguler</strong> to triangulate your 2D cells and create an unstructured mesh (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#triangulate">doc here</a>).</p></li>
+<li><p><strong>Tetraedriser</strong> to tetrahedralise 3D cells and create an unstructured mesh (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#tetraedriser">doc here</a>).</p></li>
+<li><p><strong>Raffiner_anisotrope</strong> or <strong>Raffiner_isotrope</strong> to triangulate/tetrahedralise elements of an untructured mesh (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#raffineranisotrope">doc here</a>).</p></li>
+<li><p><strong>ExtrudeBord</strong> to generate an extruded mesh from a boundary of a tetrahedral or an hexahedral mesh (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#extrudebord">doc here</a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>ExtrudeBord in VEF generates 3 or 14 tetrahedra from extruded prisms.</p>
 </div>
 </li>
-<li><p><strong>RegroupeBord</strong> to build a new boundary with several boundaries of the domain.</p></li>
-<li><p><strong>Transformer</strong> to transform the coordinates of the geometry.</p></li>
+<li><p><strong>RegroupeBord</strong> to build a new boundary with several boundaries of the domain (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#regroupebord">doc here</a>).</p></li>
+<li><p><strong>Transformer</strong> to transform the coordinates of the geometry (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#transformer">doc here</a>).</p></li>
 </ul>
-<p>For other commands, see the section <code class="docutils literal notranslate"><span class="pre">interprete</span></code> of the <a class="reference external" href="https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf">TRUST Reference Manual</a>.</p>
+<p>For other commands, see the section <code class="docutils literal notranslate"><span class="pre">interprete</span></code> of the TRUST Reference Manual <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#interprete">available here</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>All theses keywords work on all mesh file formats (i.e. also for <strong>*.geo</strong> or <strong>*.bin</strong> or <strong>*.med</strong> files).</p>
@@ -369,7 +369,7 @@
 </section>
 <section id="test-your-mesh">
 <h3 id="test-your-mesh">Test your mesh<a class="headerlink" href="#test-your-mesh" title="Permalink to this heading">¶</a></h3>
-<p>The keyword <strong>Discretiser_domaine</strong> is useful to discretize the domain (faces will be created) without defining a problem. Indeed, you can create a minimal data file, post-process your mesh in lata format (for example) and visualize it with VisIt.</p>
+<p>The keyword <strong>Discretiser_domaine</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretiserdomaine">doc here</a>) is useful to discretize the domain (faces will be created) without defining a problem. Indeed, you can create a minimal data file, post-process your mesh in lata format (for example) and visualize it with VisIt.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You must name all the boundaries to descretize!</p>
@@ -411,7 +411,7 @@ End
 &gt; visit -o file.lata &amp;
 </pre></div>
 </div>
-<p>To see how to use VisIt, look at the first <a class="reference external" href="https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf">TRUST Tutorial</a> exercise; Flow around an Obstacle.</p>
+<p>To see how to use VisIt, look at the first <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_tutorial.pdf#exo1">TRUST Tutorial</a> exercise; Flow around an Obstacle.</p>
 </section>
 </section>
 <section id="spatial-discretization">
@@ -430,15 +430,16 @@ Read<span class="w"> </span>my_time_scheme<span class="w"> </span><span class="o
 <p>The time schemes available in the TRUST platform are summarized on the TRUST’s website in the <a class="reference external" href="https://cea-trust-platform.github.io/classes/temporal-schemes">Temporal schemes</a> section.</p>
 <p>Here are some available types of explicit schemes:</p>
 <ul class="simple">
-<li><p><strong>Scheme_Euler_explicit</strong></p></li>
-<li><p><strong>Schema_Adams_Bashforth_order_2</strong></p></li>
-<li><p><strong>Runge_Kutta_ordre_3</strong></p></li>
+<li><p><strong>Scheme_Euler_explicit</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#eulerscheme">doc here</a>).</p></li>
+<li><p><strong>Schema_Adams_Bashforth_order_2</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaadamsbashforthorder2">doc here</a>).</p></li>
+<li><p><strong>Runge_Kutta_ordre_3</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#rungekuttaordre3">doc here</a>).</p></li>
 </ul>
 <p>And also some available types of implicit schemes:</p>
 <ul class="simple">
-<li><p><strong>Scheme_Euler_implicit</strong></p></li>
-<li><p><strong>Schema_Adams_Moulton_order_3</strong></p></li>
+<li><p><strong>Scheme_Euler_implicit</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaeulerimplicite">doc here</a>).</p></li>
+<li><p><strong>Schema_Adams_Moulton_order_3</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schemaadamsmoultonorder3">doc here</a>).</p></li>
 </ul>
+<p>For other schemes, see <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#schematempsbase">doc here</a> of the Reference Manual.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You can treat implicitly the diffusion/viscous operators in a TRUST calculation. For that, you should activate the <strong>diffusion_implicite</strong> keyword in your explicit time scheme.</p>
@@ -471,14 +472,14 @@ Read<span class="w"> </span>my_time_scheme<span class="w"> </span><span class="o
 </div>
 <p><strong>Fluid_type</strong> can be one of the following:</p>
 <ul class="simple">
-<li><p><strong>Fluide_incompressible</strong></p></li>
-<li><p><strong>Fluide_Quasi_compressible</strong></p></li>
-<li><p><strong>Fluide_Weakly_Compressible</strong></p></li>
-<li><p><strong>Solide</strong></p></li>
-<li><p><strong>Constituant</strong></p></li>
+<li><p><strong>Fluide_incompressible</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluideincompressible">doc here</a>).</p></li>
+<li><p><strong>Fluide_Quasi_compressible</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluidequasicompressible">doc here</a>).</p></li>
+<li><p><strong>Fluide_Weakly_Compressible</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fluideweaklycompressible">doc here</a>).</p></li>
+<li><p><strong>Solide</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#solide">doc here</a>).</p></li>
+<li><p><strong>Constituant</strong> (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#constituant">doc here</a>).</p></li>
 <li><p><strong>Milieu_Composite</strong> (for Multi-Phase problems)</p></li>
 </ul>
-<p>For other types and more information see the <a class="reference external" href="https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf">TRUST Reference Manual</a>.</p>
+<p>For other types and more information see the <a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#milieubase">TRUST Reference Manual</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Since TRUST v1.9.1, the medium should be read in the begining of the problem definition (before equations).</p>
@@ -497,7 +498,7 @@ Read<span class="w"> </span>my_time_scheme<span class="w"> </span><span class="o
 <h2 id="objects-association-and-discretization">Objects association and discretization<a class="headerlink" href="#objects-association-and-discretization" title="Permalink to this heading">¶</a></h2>
 <section id="association">
 <h3 id="association">Association<a class="headerlink" href="#association" title="Permalink to this heading">¶</a></h3>
-<p>Until now, we have created some objects, now we must associate them together. For this, we must use the <strong>Associate</strong> interpretor:</p>
+<p>Until now, we have created some objects, now we must associate them together. For this, we must use the <strong>Associate</strong> interpretor (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#associate">doc here</a>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Association between the different objects #</span>
 Associate<span class="w"> </span>my_problem<span class="w"> </span>my_domain
 Associate<span class="w"> </span>my_problem<span class="w"> </span>my_time_scheme
@@ -506,7 +507,7 @@ Associate<span class="w"> </span>my_problem<span class="w"> </span>my_time_schem
 </section>
 <section id="discretization">
 <span id="disc"></span><h3 id="discretization">Discretization<a class="headerlink" href="#discretization" title="Permalink to this heading">¶</a></h3>
-<p>Then you must discretize your domain using the <strong>Discretize</strong> interpretor:</p>
+<p>Then you must discretize your domain using the <strong>Discretize</strong> interpretor (<a class="reference external" href="https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretize">doc here</a>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Discretize<span class="w"> </span>my_problem<span class="w"> </span>my_discretization
 </pre></div>
 </div>
