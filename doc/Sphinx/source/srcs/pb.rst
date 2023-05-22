@@ -324,7 +324,7 @@ Then we discretize and solve everything:
    Solve my_coupled_problem
    End
 
-You can see the documentation of this kind of problem in the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+You can see the documentation of this kind of problem in the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#coupledproblem>`__.
 
 Pressure Solvers
 ----------------
@@ -337,15 +337,15 @@ Then you may indicate the choice of pressure solver using the following syntax (
 
 The *my_solver* may be:
 
--  **GCP**
+-  **GCP** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#solvgcp>`__).
 
--  **PETSc PETSc_solver_name**
+-  **PETSc PETSc_solver_name** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#petsc>`__).
 
--  **Cholesky**
+-  **Cholesky** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#cholesky>`__).
 
--  **Gmres**
+-  **Gmres** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#gmres>`__).
 
--  **Gen**
+-  **Gen** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#gen>`__).
 
 Reminder: in CFD, a separate solver is used to solve the pressure. For more details, you can have a look at the section **Time and space schemes** of the **TRUST**\ & **TrioCFD** user slides.
 
@@ -362,11 +362,11 @@ Have a look at the `Spatial Schemes <https://cea-trust-platform.github.io/classe
 
 In short, you can use the following convective scheme, following the recommendations of the user training session (see section **Time and space schemes** of the **TRUST**\ & **TrioCFD** user slides and the section **Recommendations for schemes**) following your discretization type:
 
--  **Amont**
+-  **Amont** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#convectionamont>`__).
 
--  **Muscl**
+-  **Muscl** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#convectionmuscl>`__).
 
--  **EF_stab**
+-  **EF_stab** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#convectionefstab>`__).
 
 .. note::
 
@@ -402,7 +402,7 @@ For each equation, you **must** set initial conditions:
 
    initial_conditions { ... }
 
-See the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__ to see the syntax of each available initial condition. Here are the most used initial conditions:
+See the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#condinits>`__ to see the syntax of each available initial condition. Here are the most used initial conditions:
 
 -  **Vitesse** field_type *bloc_lecture_champ*
 
@@ -410,15 +410,15 @@ See the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-cod
 
 We list here some "field_type":
 
--  **Uniform_Field** for a uniform field,
+-  **Uniform_Field** for a uniform field (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#uniformfield>`__).
 
--  **Champ_Fonc_Med** to read a data field in a MED-format file .med at a specified time,
+-  **Champ_Fonc_Med** to read a data field in a MED-format file .med at a specified time (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#champfoncmed>`__).
 
--  **Champ_Fonc_txyz** for a field which depends on time and space,
+-  **Champ_Fonc_txyz** for a field which depends on time and space (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#fieldfunctxyz>`__).
 
--  **Champ_Fonc_Fonction_txyz** for a field which is a function of another field and time and/or space coordinates,
+-  **Champ_Fonc_Fonction_txyz** for a field which is a function of another field and time and/or space coordinates (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#champfoncfonctiontxyz>`__).
 
--  **Champ_Fonc_Reprise** to read a data field in a saved file (.xyz or .sauv) at a specified time.
+-  **Champ_Fonc_Reprise** to read a data field in a saved file (.xyz or .sauv) at a specified time (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#champfoncreprise>`__).
 
 Boundary Conditions
 -------------------
@@ -435,25 +435,25 @@ You can find help for boundary conditions in the `Boundary Conditions <https://c
 
 Here is a list of the most used boundary conditions:
 
--  Bord **Frontiere_ouverte_vitesse_imposee** boundary_field_type *bloc_lecture_champ*
+-  Bord **Frontiere_ouverte_vitesse_imposee** boundary_field_type *bloc_lecture_champ* (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#frontiereouvertevitesseimposee>`__).
 
--  Bord **Frontiere_ouverte_pression_imposee** boundary_field_type *bloc_lecture_champ*
+-  Bord **Frontiere_ouverte_pression_imposee** boundary_field_type *bloc_lecture_champ* (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#frontiereouvertepressionimposee>`__).
 
--  Bord **Paroi_fixe**
+-  Bord **Paroi_fixe** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#paroifixe>`__).
 
--  Bord **Symetrie**
+-  Bord **Symetrie** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#symetrie>`__).
 
--  Bord **Periodique**
+-  Bord **Periodique** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#periodic>`__).
 
--  Bord **Frontiere_ouverte_temperature_imposee** boundary_field_type *bloc_lecture_champ*
+-  Bord **Frontiere_ouverte_temperature_imposee** boundary_field_type *bloc_lecture_champ* (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#frontiereouvertetemperatureimposee>`__).
 
--  Bord **Frontiere_ouverte T_ext** boundary_field_type *bloc_lecture_champ*
+-  Bord **Frontiere_ouverte T_ext** boundary_field_type *bloc_lecture_champ* (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#frontiereouverte>`__).
 
--  Bord **Paroi_adiabatique**
+-  Bord **Paroi_adiabatique** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#paroiadiabatique>`__).
 
--  Bord **Paroi_flux_impose** boundary_field_type *bloc_lecture_champ*
+-  Bord **Paroi_flux_impose** boundary_field_type *bloc_lecture_champ* (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#paroifluximpose>`__).
 
-To choose your *boundary_field_type* parameters, refer to the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+To choose your *boundary_field_type* parameters, refer to the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#condlimbase>`__.
 
 Source Terms
 ------------
@@ -470,23 +470,23 @@ To introduce several source terms into the same equation, the blocks correspondi
 
    Sources { source_keyword1 , source_keyword2 , ... }
 
-Here are some available source terms. For a complete list, refer to the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+Here are some available source terms. For a complete list, refer to the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#sourcebase>`__.
 
--  **Perte_Charge_Reguliere** type_perte_charge bloc_definition_pertes_charges
+-  **Perte_Charge_Reguliere** type_perte_charge bloc_definition_pertes_charges (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#pertechargereguliere>`__).
 
--  **Perte_Charge_Singuliere** **KX \| KY \| KZ** coefficient_value { ... }
+-  **Perte_Charge_Singuliere** **KX \| KY \| KZ** coefficient_value { ... } (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#pertechargesinguliere>`__).
 
--  **Canal_perio** { ... }
+-  **Canal_perio** { ... } (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#canalperio>`__).
 
--  **Boussinesq_temperature** { ... }
+-  **Boussinesq_temperature** { ... } (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#boussinesqtemperature>`__).
 
    .. note::
 
       Defined as :math:`\rho(T)=\rho(T_0)(1-\beta_{th}(T-T_0))`
 
--  **Boussinesq_concentration** { ... }
+-  **Boussinesq_concentration** { ... } (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#boussinesqconcentration>`__).
 
--  **Puissance_thermique** field_type bloc_lecture_champ
+-  **Puissance_thermique** field_type bloc_lecture_champ (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#puissancethermique>`__).
 
 Post-Processings
 ----------------
@@ -655,13 +655,13 @@ Field names
 
    *field_name_post* is the name of the new created field and **field_type** is one of the following possible type:
 
-   -  **refChamp**
+   -  **refChamp** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#refchamp>`__).
 
-   -  **Reduction_0D** using for example the **min**, **max** or **somme** methods.
+   -  **Reduction_0D** using for example the **min**, **max** or **somme** methods (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#reduction0d>`__).
 
-   -  **Transformation**
+   -  **Transformation** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#transformation>`__).
 
-  Refer to the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__ for more information.
+  Refer to the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#definitionchamps>`__ for more information.
 
    .. note::
 
@@ -736,7 +736,7 @@ There are three methods to post-process in **TRUST**: using probes, fields or ma
 
    where the use of *loc* option allow to specify the wanted location of the probes. The available values are **grav** for gravity center of the element, **nodes** for faces and **som** for vertices. There is not default location. If the point does not coincide with a alculation node, the value is extrapolated linearly according to neighbouring node values.
 
-   For complete syntax, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+   For complete syntax, see the `TRUST Reference Manual <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#corpspostraitement>`__.
 
 -  **Fields**
 
