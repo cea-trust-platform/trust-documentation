@@ -72,8 +72,8 @@ exclude_patterns = []
 #html_theme = 'press'
 # html_theme = 'alabaster'
 #html_theme = 'sphinx_rtd_theme'
-# html_theme = 'default'
-html_theme = 'sphinx_material'
+html_theme = 'default'
+# html_theme = 'sphinx_material'
 #html_theme = 'pydata_sphinx_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
