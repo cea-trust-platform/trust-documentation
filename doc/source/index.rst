@@ -6,15 +6,19 @@ TRUST Documentation
    :width: 600px
    :align: center
 
-Hi there 👋 and welcome to the **TRUST documentation** !
+Hi there 👋 and welcome to the **TRUST documentation** page !
 
-This document provides:
+This page provides:
 
-**TRUST Generic guide** can be found there: :ref:`TRUST Generic Guide`
+- **TRUST Generic Guide** can be found there: :ref:`TRUST Generic Guide`
 
-**TRUST Keyword Reference manual** can be found there: :ref:`TRUST Keyword Reference Manual`
+- **TRUST Keyword Reference Manual** can be found there: :ref:`TRUST Keyword Reference Manual`
 
-Here are some useful links:
+- **TRUST Tools Documentation** can be found there: :ref:`TRUST Tools Documentation`
+
+----
+
+Here are some useful links that you can visit too:
 
 - :TRUST Code: https://github.com/cea-trust-platform/trust-code
 
@@ -24,6 +28,8 @@ Here are some useful links:
 
 - :TRUST Support: trust@cea.fr
 
+----
+
 Table Of Contents
 -----------------
 
@@ -32,4 +38,4 @@ Table Of Contents
 
    srcs/generic/index
    srcs/reference/index
- 
+   srcs/trustutils/index
