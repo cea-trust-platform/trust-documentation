@@ -12,7 +12,7 @@ This document provides:
 
 **TRUST Generic guide** can be found there: :ref:`TRUST Generic Guide`
 
-**TRUST reference manual** can be found there: :ref:`TRUST Reference Manual`
+**TRUST Keyword Reference manual** can be found there: :ref:`TRUST Keyword Reference Manual`
 
 Here are some useful links:
 
