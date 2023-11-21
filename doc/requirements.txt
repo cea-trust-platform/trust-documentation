@@ -1,9 +1,0 @@
-# Extra Python package needed
-sphinx-material
-numpy
-matplotlib
-scipy
-pandas
-ipywidgets
-graphviz
-

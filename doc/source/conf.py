@@ -82,7 +82,7 @@ html_theme = 'sphinx_material'
 html_static_path = ['_static']
 
 
-# Try generating doxygen from here to
+# Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
 
 print("@@@ About to generate doxygen!!")
@@ -94,3 +94,4 @@ sp.call(f"mkdir -p {rtd}/html", shell=True)
 print(f"@@@ Copying doxygen result to proper directory ...")
 sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
 print("@@@ Done generating doxygen!!")
+

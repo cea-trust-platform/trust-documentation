@@ -1,0 +1,13 @@
+name: rtd38
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - sphinx-material
+  - numpy
+  - matplotlib
+  - scipy
+  - pandas
+  - ipywidgets
+  - graphviz
+
