@@ -6,7 +6,9 @@ TRUST Generic Guide
    :width: 600px
    :align: center
 
-This is the TRUST generic guide, giving you a brief overview on how to use TRUST.
+You will find here the TRUST generic guide, giving you a brief overview on how to use TRUST (working principles, brief syntax and tools overview).
+
+**Do not forget that you can use the research bar located on the top right of your screen to quickly lookup a precise element or keyword.**
 
 Table Of Contents
 -----------------
