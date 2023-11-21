@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ ! -d "${TRUST_ROOT}" ]; then
+	echo "TRUST env is not initialized !"
+	exit -1
+fi
+
+rm -rf src
+cp -a $TRUST_ROOT/src .
+
+cp $TRUST_ROOT/bin/KSH/Doxyfile .
+

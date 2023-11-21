@@ -16,6 +16,8 @@ This page provides:
 
 - **TRUST Tools Documentation** can be found there: :ref:`TRUST Tools Documentation`
 
+- **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__ 
+
 ----
 
 Here are some useful links that you can visit too:
@@ -28,14 +30,4 @@ Here are some useful links that you can visit too:
 
 - :TRUST Support: trust@cea.fr
 
-----
 
-Table Of Contents
------------------
-
-.. toctree::
-   :maxdepth: 1
-
-   srcs/generic/index
-   srcs/reference/index
-   srcs/trustutils/index

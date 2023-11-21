@@ -81,3 +81,16 @@ html_theme = 'sphinx_material'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+
+# Try generating doxygen from here to
+import subprocess as sp
+
+print("@@@ About to generate doxygen!!")
+sp.call("cd srcs/doxy; doxygen", shell=True)
+rtd = os.environ.get("READTHEDOCS_OUTPUT", "build")
+# Output directory must be created since this will run before Sphinx ...
+print(f"@@@ Creating output directory: {rtd}/html ...")
+sp.call(f"mkdir -p {rtd}/html", shell=True)
+print(f"@@@ Copying doxygen result to proper directory ...")
+sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
+print("@@@ Done generating doxygen!!")
