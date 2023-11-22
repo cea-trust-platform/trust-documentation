@@ -81,6 +81,8 @@ html_theme = 'sphinx_material'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# Nice little icon in tab header
+html_favicon = 'favicon.ico'
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
