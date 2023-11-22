@@ -10,3 +10,4 @@ cp -a $TRUST_ROOT/src .
 
 cp $TRUST_ROOT/bin/KSH/Doxyfile .
 
+sed -i 's/PROJECT_NAME           =/PROJECT_NAME           = TRUST Code/g' Doxyfile
