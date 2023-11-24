@@ -8,8 +8,8 @@ fi
 rm -rf src
 cp -a $TRUST_ROOT/src .
 
-cp $TRUST_ROOT/bin/KSH/Doxyfile .
+#cp $TRUST_ROOT/bin/KSH/Doxyfile .
 
-sed -i 's/PROJECT_NAME           =/PROJECT_NAME           = CEA TRUST Platform/g' Doxyfile
-sed -i 's/PROJECT_LOGO           =/PROJECT_LOGO           = logo.png/g' Doxyfile
-sed -i 's/PROJECT_BRIEF          =/PROJECT_BRIEF          = Thermohydraulic software package for CFD simulations./g' Doxyfile
+#sed -i 's/PROJECT_NAME           =/PROJECT_NAME           = CEA TRUST Platform/g' Doxyfile
+#sed -i 's/PROJECT_LOGO           =/PROJECT_LOGO           = logo.png/g' Doxyfile
+#sed -i 's/PROJECT_BRIEF          =/PROJECT_BRIEF          = Thermohydraulic software package for CFD simulations./g' Doxyfile
