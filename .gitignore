@@ -7,3 +7,5 @@ html/
 .settings/
 CMakeLists.txt
 instancie_src_*
+make.include
+instancie_appel*

@@ -16,10 +16,7 @@
 #include <MAIN.h>
 #include <mon_main.h>
 
-/*! \mainpage TRUST C++ API Documentation
-*
-* Welcome to the doxygen documentation of TRUST C++ sources.
-*
+/*! \mainpage Welcome to the TRUST C++ API Doxygen Documentation !
 *
 *
 * TRUST is a thermalhydraulic software package for CFD simulations.
@@ -29,11 +26,11 @@
 * The software is OpenSource (BSD license).
 *
 *
+* To visit the CEA TRUST Platform's organization on Github, see: https://github.com/cea-trust-platform
 *
-* To visit CEA TRUST Platform's organization on Github, see: https://github.com/cea-trust-platform
+* Have a look at the platform's website available here : https://cea-trust-platform.github.io
 *
-* To visit the platform's website, see : https://cea-trust-platform.github.io
-*
+* To go back to the main page of the TRUST Documentation project, click here : https://cea-trust-platform.readthedocs.io
 */
 
 True_int main(True_int argc, char** argv)
