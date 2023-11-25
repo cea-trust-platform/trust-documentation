@@ -95,5 +95,6 @@ print(f"@@@ Creating output directory: {rtd}/html ...")
 sp.call(f"mkdir -p {rtd}/html", shell=True)
 print(f"@@@ Copying doxygen result to proper directory ...")
 sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
+sp.call(f"cp -a srcs/doxy/favicon.ico {rtd}/html/doxy", shell=True)
 print("@@@ Done generating doxygen!!")
 
