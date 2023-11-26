@@ -2,20 +2,17 @@
 
 <img src="https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true" style="width:12cm;">
 
-Hi there 👋 and welcome to the TRUST documentation page !
-
-For a good start with the TRUST code, go and have a look at the **TRUST Documentation** available **[here](https://cea-trust-platform.readthedocs.io/en/latest/)**.
+Hi there 👋 and welcome to the **[TRUST Documentation](https://cea-trust-platform.readthedocs.io/en/latest/)** page !
 
 The page provides links towards:
 
-    - TRUST Generic Guide
+- **[TRUST Generic Guide](https://cea-trust-platform.readthedocs.io/en/latest/srcs/generic/index.html#trust-generic-guide)**
+- **[TRUST Keyword Reference Manual](https://cea-trust-platform.readthedocs.io/en/latest/srcs/reference/index.html#trust-keyword-reference-manual)**
+- **[TRUST Tools Documentation](https://cea-trust-platform.readthedocs.io/en/latest/srcs/trustutils/index.html#trust-tools-documentation)**
+- **[TRUST C++ API Documentation](https://cea-trust-platform.readthedocs.io/en/latest/doxy/index.html)**
 
-    - TRUST Keyword Reference Manual
+The documentation is built with the the open source **[Sphinx](https://www.sphinx-doc.org/en/master/)** and **[Doxygen](https://www.doxygen.nl/)** projects. 
 
-    - TRUST Tools Documentation
+Credits for the open-source **[Sphinx Material Theme](https://github.com/bashtage/sphinx-material/blob/main/LICENSE.md)**, **[Doxygen Awesome Theme](https://jothepro.github.io/doxygen-awesome-css/)** and **[Read The Docs](https://blog.readthedocs.com/website-migration/)** projects.
 
-    - TRUST C++ API Documentation
-
-The documentation is built with the the open source **[Sphinx](https://github.com/sphinx-doc/sphinx/blob/master/LICENSE)** and **[Doxygen](https://www.doxygen.nl/)** projects. Credits for the open-source **[Sphinx Material Theme](https://github.com/bashtage/sphinx-material/blob/main/LICENSE.md)**, **[Doxygen Awesome Theme](https://jothepro.github.io/doxygen-awesome-css/)** and **[Read The Docs](https://about.readthedocs.com/?ref=readthedocs.com)** projects.
-
-Enjoy TRUST 🍻🍻
+Enjoy TRUST 🍻🍻 !!
