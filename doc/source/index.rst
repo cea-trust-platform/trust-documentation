@@ -30,4 +30,12 @@ Here are some useful links that you can visit too:
 
 - :TRUST Support: trust@cea.fr
 
+-----
+Table Of Contents
+-----------------
 
+.. toctree::
+   :maxdepth: 1
+
+   srcs/generic/index
+   srcs/reference/index
