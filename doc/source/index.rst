@@ -26,8 +26,6 @@ Here are some useful links that you can visit too:
 
 - :TRUST Website: https://cea-trust-platform.github.io
 
-- :TRUST Doxygen: https://cea-trust-platform.github.io/TRUST_Doxygen.github.io/html/index.html
-
 - :TRUST Support: trust@cea.fr
 
 -----
