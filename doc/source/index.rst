@@ -18,6 +18,8 @@ This page provides:
 
 - **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__ 
 
+**You can use the search bar located on the top right of your screen to lookup any keyword, or item in the generic guide. Use the dedicated Doxygen search box for C++ classes.**
+
 ----
 
 Here are some useful links that you can visit too:
