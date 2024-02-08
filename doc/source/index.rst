@@ -12,6 +12,8 @@ This page provides:
 
 - **TRUST Generic Guide** can be found there: :ref:`TRUST Generic Guide`
 
+- **TRUST Numerical Methods Documentation** can be found there: :ref:`TRUST Numerical Methods`
+
 - **TRUST Keyword Reference Manual** can be found there: :ref:`TRUST Keyword Reference Manual`
 
 - **TRUST Tools Documentation** can be found there: :ref:`TRUST Tools Documentation`
@@ -31,8 +33,12 @@ Here are some useful links that you can visit too:
 - :TRUST Support: trust@cea.fr
 
 -----
+
+
 Table Of Contents
 -----------------
+
+(please take a look at the links above - the below is just used for PDF generation, and does not list everything)
 
 .. toctree::
    :maxdepth: 1
