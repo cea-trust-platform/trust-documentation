@@ -45,7 +45,7 @@ extensions = [
 
 htmlhelp_basename = 'TRUST Documentation'
 
-# To show or not private members 
+# To show or not private members
 autodoc_default_options = {     "members": True,     "undoc-members": True,     "private-members": False  }
 
 
@@ -87,14 +87,15 @@ html_favicon = 'favicon.ico'
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
 
-print("@@@ About to generate doxygen!!")
-sp.call("cd srcs/doxy; doxygen", shell=True)
-rtd = os.environ.get("READTHEDOCS_OUTPUT", "build")
-# Output directory must be created since this will run before Sphinx ...
-print(f"@@@ Creating output directory: {rtd}/html ...")
-sp.call(f"mkdir -p {rtd}/html", shell=True)
-print(f"@@@ Copying doxygen result to proper directory ...")
-sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
-sp.call(f"cp -a srcs/doxy/favicon.ico {rtd}/html/doxy", shell=True)
-print("@@@ Done generating doxygen!!")
+if 0:
+  print("@@@ About to generate doxygen!!")
+  sp.call("cd srcs/doxy; doxygen", shell=True)
+  rtd = os.environ.get("READTHEDOCS_OUTPUT", "build")
+  # Output directory must be created since this will run before Sphinx ...
+  print(f"@@@ Creating output directory: {rtd}/html ...")
+  sp.call(f"mkdir -p {rtd}/html", shell=True)
+  print(f"@@@ Copying doxygen result to proper directory ...")
+  sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
+  sp.call(f"cp -a srcs/doxy/favicon.ico {rtd}/html/doxy", shell=True)
+  print("@@@ Done generating doxygen!!")
 
