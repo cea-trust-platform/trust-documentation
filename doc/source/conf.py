@@ -22,7 +22,7 @@ sys.path.insert(0, os.path.abspath('./srcs/trustutils/python_cloned_srcs/'))
 # -- Project information -----------------------------------------------------
 
 project = 'TRUST Documentation'
-author = 'TRUST'
+author = 'TRUST team'
 
 # -- General configuration ---------------------------------------------------
 
