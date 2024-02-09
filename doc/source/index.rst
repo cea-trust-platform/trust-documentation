@@ -18,7 +18,9 @@ This page provides:
 
 - **TRUST Tools Documentation** can be found there: :ref:`TRUST Tools Documentation`
 
-- **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__ 
+- **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__
+
+- **TRUST Coding Guidelines** can be found there: :ref:`TRUST Coding Guidelines`
 
 **You can use the search bar located on the top right of your screen to lookup any keyword, or item in the generic guide. Use the dedicated Doxygen search box for C++ classes.**
 
