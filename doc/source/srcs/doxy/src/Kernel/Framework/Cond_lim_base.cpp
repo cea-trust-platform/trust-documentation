@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,7 @@
 #include <Equation_base.h>
 
 Implemente_base(Cond_lim_base, "Cond_lim_base", Objet_U);
+// XD condlim_base objet_u condlim_base 0 Basic class of boundary conditions.
 
 Sortie& Cond_lim_base::printOn(Sortie& s) const { return s << le_champ_front; }
 
@@ -92,6 +93,15 @@ int Cond_lim_base::initialiser(double temps)
 void Cond_lim_base::mettre_a_jour(double temps)
 {
   le_champ_front.mettre_a_jour(temps);
+}
+
+/* @brief Reset current time for the boundary condition.
+ *
+ * A BC is regarded as an input, so here this is equivalent to a 'mettre_a_jour'
+ */
+void Cond_lim_base::resetTime(double time)
+{
+  mettre_a_jour(time);
 }
 
 /*! @brief Cette methode indique si cette condition aux limites doit etre mise a jour dans des sous pas de temps d'un schema en temps tel que RK

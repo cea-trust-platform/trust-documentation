@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -172,7 +172,7 @@ void Debog_Pb::goto_msg(const char *const message)
 
 void Debog_Pb::write_geometry_data()
 {
-  if (Process::nproc() > 1)
+  if (Process::is_parallel())
     {
       Cerr << "Error in Debog.cpp: cannot write geometry data in parallel." << finl;
       Process::exit();
@@ -221,7 +221,7 @@ void Debog_Pb::add_renum_item(const DoubleTab& coord_ref, const DoubleTab& coord
   // Add a new renum array:
   renum_array_.add(IntVect());
   IntVect& renum = renum_array_[renum_array_.size()-1];
-  MD_Vector_tools::creer_tableau_distribue(md, renum, Array_base::NOCOPY_NOINIT);
+  MD_Vector_tools::creer_tableau_distribue(md, renum, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
   if (renum.size_totale() != coord_par.dimension_tot(0))
     {
@@ -231,7 +231,7 @@ void Debog_Pb::add_renum_item(const DoubleTab& coord_ref, const DoubleTab& coord
   const int dim = coord_par.dimension(1);
   ArrOfDouble center(dim);
   ArrOfInt elements;
-  elements.set_smart_resize(1);
+
   const int n = renum.size_totale();
   for (int i = 0; i < n; i++)
     {

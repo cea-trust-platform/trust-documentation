@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,11 +22,14 @@
 #include <Domaine_Poly_base.h>
 #include <Pb_Multiphase.h>
 #include <Matrix_tools.h>
+#include <Statistiques.h>
 #include <Array_tools.h>
 #include <TRUSTLists.h>
 #include <Dirichlet.h>
 #include <Param.h>
 #include <cmath>
+
+extern Stat_Counter_Id convection_counter_;
 
 Implemente_instanciable( Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face, "Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face", Op_Conv_EF_Stab_PolyMAC_Face );
 Implemente_instanciable( Op_Conv_Amont_PolyMAC_P0P1NC_Face, "Op_Conv_Amont_PolyMAC_P0P1NC_Face", Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face );
@@ -74,7 +77,7 @@ double Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face::calculer_dt_stab() const
               vol(n) = std::min(vol(n), pf(f) * vf(f) * vf(f) / vfd(f, e != f_e(f, 0))); //prise en compte de la contribution aux faces
           }
       for (n = 0; n < N; n++)
-        if ((!alp || (*alp)(e, n) > 1e-3) && std::abs(flux(n)) > 1e-12 /* eviter les valeurs “tres proches de 0 mais pas completement nulles” */)
+        if ((!alp || (*alp)(e, n) > 1e-3) && std::abs(flux(n)) > 1e-12 /* eviter les valeurs 'tres proches de 0 mais pas completement nulles' */)
           dt = std::min(dt, vol(n) / flux(n));
     }
 
@@ -101,7 +104,7 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face::dimensionner_blocs(matrices_t matrices
   int i, j, k, l, e, eb, f, fb, fc, m, n, N = equation().inconnue().valeurs().line_size();
 
   IntTab stencil(0, 2);
-  stencil.set_smart_resize(1);
+
 
   /* agit uniquement aux elements; diagonale omise */
   for (f = 0; f < domaine.nb_faces_tot(); f++)
@@ -134,6 +137,7 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face::dimensionner_blocs(matrices_t matrices
 // renvoie resu
 void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
+  statistiques().begin_count(convection_counter_);
   const Domaine_Poly_base& domaine = le_dom_poly_.valeur();
   const Champ_Face_PolyMAC_P0P1NC& ch = ref_cast(Champ_Face_PolyMAC_P0P1NC, equation().inconnue().valeur());
   const Conds_lim& cls = la_zcl_poly_.valeur().les_conditions_limites();
@@ -233,4 +237,5 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face::ajouter_blocs(matrices_t matrices, Dou
                 }
           }
       }
+  statistiques().end_count(convection_counter_);
 }

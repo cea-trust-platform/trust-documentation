@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,46 +14,32 @@
 *****************************************************************************/
 
 #include <Op_Dift_Multiphase_VDF_Face.h>
-#include <Viscosite_turbulente_base.h>
 #include <VDF_discretisation.h>
 #include <Pb_Multiphase.h>
 
-Implemente_instanciable_sans_constructeur(Op_Dift_Multiphase_VDF_Face,"Op_Diff_VDFTURBULENTE_Face",Op_Dift_VDF_Face_base);
+Implemente_instanciable_sans_constructeur(Op_Dift_Multiphase_VDF_Face,"Op_Diff_VDFTURBULENTE_Face|Op_Diff_VDFTURBULENT_Face",Op_Dift_VDF_Face_base);
 
 Sortie& Op_Dift_Multiphase_VDF_Face::printOn(Sortie& s ) const { return s << que_suis_je() ; }
 Entree& Op_Dift_Multiphase_VDF_Face::readOn(Entree& is)
 {
   //lecture de la correlation de viscosite turbulente
   corr_.typer_lire(equation().probleme(), "viscosite_turbulente", is);
-
   associer_corr_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(corr_);
-
-  const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, equation().probleme());
-  noms_nu_t_post_.dimensionner(pb.nb_phases()), nu_t_post_.resize(pb.nb_phases());
-  for (int i = 0; i < pb.nb_phases(); i++)
-    champs_compris_.ajoute_nom_compris(noms_nu_t_post_[i] = Nom("viscosite_turbulente_") + pb.nom_phase(i));
-
+  associer_proto(ref_cast(Pb_Multiphase, equation().probleme()), champs_compris_);
+  ajout_champs_proto_face();
   return is;
 }
 
-Op_Dift_Multiphase_VDF_Face::Op_Dift_Multiphase_VDF_Face() : Op_Dift_VDF_Face_base(Iterateur_VDF_Face<Eval_Dift_Multiphase_VDF_Face>())
+void Op_Dift_Multiphase_VDF_Face::get_noms_champs_postraitables(Noms& noms,Option opt) const
 {
-  // declare_support_masse_volumique(1); // poubelle
+  Op_Dift_VDF_Face_base::get_noms_champs_postraitables(noms,opt);
+  get_noms_champs_postraitables_proto(que_suis_je(), noms, opt);
 }
 
 void Op_Dift_Multiphase_VDF_Face::creer_champ(const Motcle& motlu)
 {
   Op_Dift_VDF_Face_base::creer_champ(motlu);
-  int i = noms_nu_t_post_.rang(motlu);
-  if (i >= 0 && nu_t_post_[i].est_nul())
-    {
-      const VDF_discretisation dis = ref_cast(VDF_discretisation, equation().discretisation());
-      Noms noms(1), unites(1);
-      noms[0] = noms_nu_t_post_[i];
-      Motcle typeChamp = "champ_elem" ;
-      dis.discretiser_champ(typeChamp, equation().domaine_dis(), scalaire, noms , unites, 1, 0, nu_t_post_[0]);
-      champs_compris_.ajoute_champ(nu_t_post_[i]);
-    }
+  creer_champ_proto_face(motlu);
 }
 
 void Op_Dift_Multiphase_VDF_Face::completer()
@@ -62,34 +48,24 @@ void Op_Dift_Multiphase_VDF_Face::completer()
   completer_Op_Dift_VDF_base();
   associer_pb<Eval_Dift_Multiphase_VDF_Face>(equation().probleme());
 
-  //si la correlation a besoin du gradient de u, on doit le creer maintenant
-  if (ref_cast(Viscosite_turbulente_base, corr_.valeur()).gradu_required())
-    equation().probleme().creer_champ("gradient_vitesse");
+  completer_proto_face(*this);
 
-  // on initialise nu_t_ a 0 avec la bonne structure //
-  nu_t_ = ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue()->valeurs();
-  nu_t_ = 0.;
-  set_nut_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(nu_t_);
-  ref_cast(Viscosite_turbulente_base, corr_.valeur()).eddy_viscosity(nu_t_); //remplissage par la correlation
+  set_nut_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(nu_ou_lambda_turb_);
+}
+
+void Op_Dift_Multiphase_VDF_Face::preparer_calcul()
+{
+  Op_Dift_VDF_Face_base::preparer_calcul();
+  call_compute_nu_turb();
 }
 
 void Op_Dift_Multiphase_VDF_Face::mettre_a_jour(double temps)
 {
   // MAJ nu_t
-  nu_t_ = 0.;
-  ref_cast(Viscosite_turbulente_base, corr_.valeur()).eddy_viscosity(nu_t_); //remplissage par la correlation
-  set_nut_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(nu_t_);
-
-  int N = ref_cast(Pb_Multiphase, equation().probleme()).nb_phases();
-  for (int n = 0; n < N; n++)
-    if (nu_t_post_[n].non_nul()) //viscosite turbulente : toujours scalaire
-      {
-        const DoubleTab& rho = equation().milieu().masse_volumique().passe() ;
-        DoubleTab& val = nu_t_post_[n]->valeurs();
-        int nl = val.dimension(0), cR = (rho.dimension(0) == 1);
-        for (int i = 0; i < nl; i++) val(i, 0) = rho(!cR * i, n) * nu_t_(i, n);
-        nu_t_post_[n].mettre_a_jour(temps);
-      }
+  nu_ou_lambda_turb_ = 0.;
+  call_compute_nu_turb();
+  set_nut_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(nu_ou_lambda_turb_);
+  mettre_a_jour_proto_face(temps);
 }
 
 double Op_Dift_Multiphase_VDF_Face::calculer_dt_stab() const
@@ -112,7 +88,7 @@ double Op_Dift_Multiphase_VDF_Face::calculer_dt_stab() const
 
       // TODO : FIXME : pt etre alp > 1 e-3 pour eviter dt <<<< ??
       double mu_physique = diffu(!cM * elem, 0), alpha_mu_physique = alp(elem, 0) * diffu(!cM * elem, 0),
-             alpha_mu_turbulent = alp(elem, 0) * rho(!cR * elem, 0) * nu_t_(elem, 0), nu_physique = diffu_dt(!cN * elem, 0);
+             alpha_mu_turbulent = alp(elem, 0) * rho(!cR * elem, 0) * nu_ou_lambda_turb_(elem, 0), nu_physique = diffu_dt(!cN * elem, 0);
 
       for (int ncomp = 1; ncomp < diffu.line_size(); ncomp++)
         {
@@ -120,8 +96,8 @@ double Op_Dift_Multiphase_VDF_Face::calculer_dt_stab() const
           alpha_mu_physique = std::max(alpha_mu_physique, alp(elem, ncomp) * diffu(!cM * elem, ncomp));
         }
 
-      for (int ncomp = 1; ncomp < nu_t_.line_size(); ncomp++)
-        alpha_mu_turbulent = std::max(alpha_mu_turbulent, alp(elem, 0) * rho(!cR * elem, ncomp) * nu_t_(elem, ncomp));
+      for (int ncomp = 1; ncomp < nu_ou_lambda_turb_.line_size(); ncomp++)
+        alpha_mu_turbulent = std::max(alpha_mu_turbulent, alp(elem, 0) * rho(!cR * elem, ncomp) * nu_ou_lambda_turb_(elem, ncomp));
 
       for (int ncomp = 1; ncomp < diffu_dt.line_size(); ncomp++)
         nu_physique = std::max(nu_physique, diffu_dt(!cN * elem, ncomp));

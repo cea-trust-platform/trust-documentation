@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -88,7 +88,7 @@ int Champ_Inc_base::fixer_nb_valeurs_nodales(int nb_noeuds)
   return nb_noeuds;
 }
 
-void Champ_Inc_base::creer_tableau_distribue(const MD_Vector& md, Array_base::Resize_Options opt)
+void Champ_Inc_base::creer_tableau_distribue(const MD_Vector& md, RESIZE_OPTIONS opt)
 {
   const int n = nb_valeurs_temporelles();
   for (int i = 0; i < n; i++)
@@ -431,8 +431,7 @@ int Champ_Inc_base::sauvegarder(Sortie& fich) const
       // fich << flush ; Ne flushe pas en binaire !
       fich.flush();
     }
-  if (Process::je_suis_maitre())
-    Cerr << "Backup of the field " << nom_ << " performed on time : " << Nom(temps_, "%e") << finl;
+  Cerr << "Backup of the field " << nom_ << " performed on time : " << Nom(temps_, "%e") << finl;
   if (!est_egal(temps_, equation().probleme().schema_temps().temps_courant()))
     {
       Cerr.precision(12);
@@ -490,7 +489,7 @@ DoubleTab& Champ_Inc_base::valeur_aux(const DoubleTab& positions, DoubleTab& tab
 {
   const Domaine& domaine = domaine_dis_base().domaine();
   IntVect les_polys;
-  les_polys.resize(tab_valeurs.dimension_tot(0), Array_base::NOCOPY_NOINIT);
+  les_polys.resize(tab_valeurs.dimension_tot(0), RESIZE_OPTIONS::NOCOPY_NOINIT);
 
   domaine.chercher_elements(positions, les_polys);
 
@@ -660,6 +659,15 @@ double Champ_Inc_base::changer_temps(const double t)
   return temps_ = t;
 }
 
+/*!
+ * See comments in Probleme_base_interface_proto::resetTime_impl().
+ * Here we force a new time value.
+ */
+void Champ_Inc_base::resetTime(double time)
+{
+  changer_temps(time);
+}
+
 /*! @brief Associe le champ a l'equation dont il represente une inconnue.
  *
  * Simple appel a MorEqn::associer_eqn(const Equation_base&)
@@ -752,6 +760,10 @@ DoubleTab Champ_Inc_base::valeur_aux_bords() const
               for (s = f_s(f, k), n = 0; n < N; n++)
                 result(fb, n) += valeurs()(s, n) / n_som;
           }
+      else if (que_suis_je() == "Champ_P1NC")
+        for (j = 0; j < fr.nb_faces_tot(); j++)
+          for (f = fr.num_face(j), fb = domaine.fbord(f), n = 0; n < N; n++)
+            result(fb, n) = valeurs()(f, n);
       else
         Process::exit("Champ_Inc_base::valeur_aux_bords() : must code something!");
     }

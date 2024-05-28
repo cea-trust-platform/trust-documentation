@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,14 +14,16 @@
 *****************************************************************************/
 
 #include <Boundary_Conditions.h>
-#include <IJK_Splitting.h>
+#include <IJK_Shear_Periodic_helpler.h>
 #include <Param.h>
 
 Implemente_instanciable_sans_constructeur(Boundary_Conditions,"Boundary_Conditions",Objet_U);
-double IJK_Splitting::shear_x_time_=0.;
-double IJK_Splitting::shear_x_DT_=0.;
-double IJK_Splitting::Lx_for_shear_perio=0.;
-int IJK_Splitting::defilement_=0;
+double IJK_Shear_Periodic_helpler::shear_x_time_=0.;
+double IJK_Shear_Periodic_helpler::Lx_for_shear_perio=0.;
+int IJK_Shear_Periodic_helpler::defilement_=0;
+int IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_=0;
+double IJK_Shear_Periodic_helpler::rho_vap_ref_for_poisson_=0;
+double IJK_Shear_Periodic_helpler::rho_liq_ref_for_poisson_=0;
 
 Boundary_Conditions::Boundary_Conditions()
 {
@@ -32,7 +34,9 @@ Boundary_Conditions::Boundary_Conditions()
   dU_perio_ = 0.;
   t0_shear_=0.;
   defilement_=0;
+  order_interpolation_poisson_solver_=0;
   interp_monofluide_=0;
+  conserv_qdm_=0;
   resolution_u_prime_=0;
 }
 
@@ -48,7 +52,9 @@ Entree& Boundary_Conditions::readOn(Entree& is)
   param.ajouter("dU_perio", &dU_perio_);
   param.ajouter("t0_shear", &t0_shear_);
   param.ajouter("defilement", &defilement_);
+  param.ajouter("order_interpolation_poisson_solver", &order_interpolation_poisson_solver_);
   param.ajouter("interp_monofluide", &interp_monofluide_);
+  param.ajouter("conserv_qdm", &conserv_qdm_);
   param.ajouter("resolution_u_prime", &resolution_u_prime_);
   param.ajouter("bctype_kmin", &bctype_kmin_, Param::REQUIRED);
   param.dictionnaire("Paroi", Paroi);
@@ -63,8 +69,9 @@ Entree& Boundary_Conditions::readOn(Entree& is)
   param.dictionnaire("Mixte_shear", Mixte_shear);
 
   param.lire_avec_accolades(is);
-  IJK_Splitting::shear_x_time_=dU_perio_*t0_shear_;
-  IJK_Splitting::defilement_=defilement_;
+  IJK_Shear_Periodic_helpler::shear_x_time_=dU_perio_*t0_shear_;
+  IJK_Shear_Periodic_helpler::defilement_=defilement_;
+  IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_=order_interpolation_poisson_solver_;
 
   return is;
 }

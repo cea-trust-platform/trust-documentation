@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,38 +31,38 @@ class Equation;
 class Motcle;
 class Param;
 
-/*! @brief classe Schema_Temps_base
+/*! @brief class Schema_Temps_base
  *
+ * Cette classe represente un schema en temps, c'est-a-dire un
+ * algorithme de resolution particulier qui sera associe a un
+ * Probleme_base (un probleme simple et non un couplage).
+ * Schema_Temps_base est la classe abstraite qui est a la base de
+ * la hierarchie des schemas en temps.
+ *
+ * On note n le temps present, et n+1 le temps a l'issue du pas de temps.
+ * Un schema en temps permet de calculer u(n+1) connaissant u jusqu'a u(n).
+ * Il utilise u(n), mais peut aussi avoir besoin  de valeurs passees de u,
+ * telles que u(n-1), ...
+ * Il peut aussi en cours de calcul utiliser des valeurs de u a des temps
+ * intermediaires entre n et n+1, par exemple n+1/2.
+ * nb_valeurs_temporelles compte toutes les valeurs allouees :
+ * n, n+1, les valeurs passees retenues etles valeurs intermediaires
+ * entre n et n+1.
+ * nb_valeurs_futures compte n+1 et les valeurs intermediaires entre n et n+1.
+ * C'est donc le nombre de crans dont tournent les roues en avancant d'un pas de temps.
+ * temps_futur(i) renvoie la i-eme valeur future du temps.
+ * Enfin temps_defaut est le temps que doivent rendre les champs a
+ * l'appel de valeurs() - donc notamment dans les operateurs.
+ * Pour le moment n'est respecte que par les Champ_Front des CLs.
+ *
+ * @sa Equation Equation_base Probleme_base Algo_MG_base
+ *
+ * Classe abstraite dont tous les schemas en temps doivent deriver.
+ *
+ * Methodes abstraites:
+ *   int faire_un_pas_de_temps_eqn_base(Equation_base&)
  */
 
-//     Cette classe represente un schema en temps, c'est-a-dire un
-//     algorithme de resolution particulier qui sera associe a un
-//     Probleme_base (un probleme simple et non un couplage).
-//     Schema_Temps_base est la classe abstraite qui est a la base de
-//     la hierarchie des schemas en temps.
-//
-//     On note n le temps present, et n+1 le temps a l'issue du pas de temps.
-//     Un schema en temps permet de calculer u(n+1) connaissant u jusqu'a u(n).
-//     Il utilise u(n), mais peut aussi avoir besoin  de valeurs passees de u,
-//     telles que u(n-1), ...
-//     Il peut aussi en cours de calcul utiliser des valeurs de u a des temps
-//     intermediaires entre n et n+1, par exemple n+1/2.
-//     nb_valeurs_temporelles compte toutes les valeurs allouees :
-//     n, n+1, les valeurs passees retenues etles valeurs intermediaires
-//     entre n et n+1.
-//     nb_valeurs_futures compte n+1 et les valeurs intermediaires entre n et n+1.
-//     C'est donc le nombre de crans dont tournent les roues en avancant d'un pas de temps.
-//     temps_futur(i) renvoie la i-eme valeur future du temps.
-//     Enfin temps_defaut est le temps que doivent rendre les champs a
-//     l'appel de valeurs() - donc notamment dans les operateurs.
-//     Pour le moment n'est respecte que par les Champ_Front des CLs.
-//
-// .SECTION voir aussi
-//     Equation Equation_base Probleme_base Algo_MG_base
-//     Classe abstraite dont tous les schemas en temps doivent deriver.
-//     Methodes abstraites:
-//       int faire_un_pas_de_temps_eqn_base(Equation_base&)
-//////////////////////////////////////////////////////////////////////////////
 class Schema_Temps_base : public Objet_U
 {
   Declare_base_sans_constructeur(Schema_Temps_base);
@@ -75,6 +75,7 @@ public :
   virtual void validateTimeStep();
   virtual bool isStationary() const;
   virtual void abortTimeStep();
+  virtual void resetTime(double time);
 
   virtual bool iterateTimeStep(bool& converged);
   int limpr() const;
@@ -145,6 +146,7 @@ public :
     assert(stationnaire_atteint_!=-1);
     return stationnaire_atteint_;
   };
+  inline int stationnaire_atteint_safe() const { return stationnaire_atteint_; }
   int stop_lu() const;
   inline int diffusion_implicite() const;
   inline double seuil_diffusion_implicite() const
@@ -176,7 +178,8 @@ public :
   virtual Entree& lire_nb_pas_dt_max(Entree&);
   virtual Entree& lire_periode_sauvegarde_securite_en_heures(Entree&);
   virtual Entree& lire_temps_cpu_max(Entree&);
-  Entree& lire_residuals(Entree&);
+  virtual Entree& lire_residuals(Entree&);
+  virtual Entree& lire_facsec(Entree&);
 
   virtual void completer() =0;
 
@@ -264,12 +267,15 @@ public :
   {
     return disable_progress_ ;
   };
+  void write_dt_ev(bool init);
+  void write_progress(bool init);
   // Flag to disable the writing of the .dt_ev file
   inline int disable_dt_ev() const
   {
     return disable_dt_ev_ ;
   };
   void finir() const;
+
 protected :
   REF(Probleme_base) mon_probleme;
   Nom nom_;
@@ -291,7 +297,7 @@ protected :
   Nom dt_max_str_;                       //reglage de dt_max comme une fonction du temps
   mutable Parser_U dt_max_fn_;           //Parser_U associe
   double dt_stab_=-100.;                // Pas de temps de stabilite
-  double facsec_;
+  mutable double facsec_;
   double seuil_statio_;
   int seuil_statio_relatif_deconseille_;                // Drapeau pour specifier si seuil_statio_ est une valeur absolue (defaut) ou relative
   Nom norm_residu_;

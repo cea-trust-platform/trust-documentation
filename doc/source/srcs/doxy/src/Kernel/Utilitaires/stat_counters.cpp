@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -93,6 +93,7 @@ Stat_Counter_Id gpu_kernel_counter_;
 //       le compteur (quelles operations) et quelle est la signification
 //       de la quantite sommee (quand elle n'est pas nulle).
 //
+
 
 void declare_stat_counters()
 {
@@ -323,9 +324,10 @@ void print_statistics_analyse(const char * message, int mode_append)
   if (Process::je_suis_maitre())
     {
       // Ouverture du fichier principal (pour tous les processeurs)
-      SFichier stat_file(TU,
-                         mode_append ? (ios::out | ios::app) : (ios::out));
-
+      std::string root=Sortie_Fichier_base::root;
+      Sortie_Fichier_base::root = "";
+      SFichier stat_file(TU, mode_append ? (ios::out | ios::app) : (ios::out));
+      Sortie_Fichier_base::root = root;
       stat_file << message << "\n\n";
       stat_file << "Temps total                       "
                 << temps_total.max_time << "\n";
@@ -481,7 +483,10 @@ void print_statistics_analyse(const char * message, int mode_append)
 
       if (Process::je_suis_maitre())
         {
+          std::string root=Sortie_Fichier_base::root;
+          Sortie_Fichier_base::root = "";
           SFichier stat_file(TU, mode_append ? (ios::out | ios::app) : (ios::out));
+          Sortie_Fichier_base::root = root;
           write_stat_file("probleme thermohydraulique  ", pb_fluide, temps_total, stat_file);
           write_stat_file("probleme combustible        ", pb_combustible, temps_total, stat_file);
           stat_file << "\n";
@@ -562,7 +567,7 @@ void print_statistics_analyse(const char * message, int mode_append)
               ratio_copy += write_gpu_stat_file("Copy D2H :", gpu_copyfromdevice, pas_de_temps, stat_file);
               double ratio_comm = 100. * (comm_sendrecv.avg_time + comm_allreduce.avg_time) / pas_de_temps.max_time;
               double ratio_cpu = 100 - ratio_gpu - ratio_copy - ratio_comm;
-              stat_file << "GPU: " << 0.1*int(10*ratio_gpu) << "% Copy H<->D: " << 0.1*int(10*ratio_copy) << "% Comm: " << 0.1*int(10*ratio_comm) << "% CPU & I/O: " << 0.1*int(10*ratio_cpu) << "%" << finl;
+              stat_file << "GPU: " << 0.1*int(10*ratio_gpu) << "% Copy H<->D: " << 0.1*int(10*ratio_copy) << "% Comm: " << 0.1*int(10*ratio_comm) << "% CPU & Others: " << 0.1*int(10*ratio_cpu) << "%" << finl;
               if (0.1*int(10*ratio_gpu)<50)
                 {
                   Cerr << "==============================================================================================" << finl;
@@ -671,4 +676,3 @@ void print_statistics_analyse(const char * message, int mode_append)
   // Restart counters
   statistiques().restart_counters();
 }
-

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,9 +35,10 @@ Navier_Stokes_Fluide_Dilatable_Proto::Navier_Stokes_Fluide_Dilatable_Proto() : c
 DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse_impl(const DoubleTab& tab_rho,const DoubleTab& vit,DoubleTab& rhovitesse) const
 {
   const int n = vit.dimension(0), ncomp = vit.line_size();
-
+// ToDo OpenMP or Kokkos
   for (int i=0 ; i<n ; i++)
-    for (int j=0 ; j<ncomp ; j++) rhovitesse(i,j) = tab_rho(i,0)*vit(i,j);
+    for (int j=0 ; j<ncomp ; j++)
+      rhovitesse(i,j) = tab_rho(i,0)*vit(i,j);
 
   rhovitesse.echange_espace_virtuel();
   Debog::verifier("Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse : ", rhovitesse);
@@ -52,7 +53,7 @@ int Navier_Stokes_Fluide_Dilatable_Proto::impr_impl(const Navier_Stokes_std& eqn
   rho_vitesse_impl(rho,vit,mass_flux);
 
   DoubleTab array;
-  array.copy(eqn.div().valeurs(), Array_base::NOCOPY_NOINIT); // init structure uniquement
+  array.copy(eqn.div().valeurs(), RESIZE_OPTIONS::NOCOPY_NOINIT); // init structure uniquement
   if (tab_W.get_md_vector().non_nul())
     {
       operator_egal(array, tab_W ); //, VECT_REAL_ITEMS); // initialise
@@ -116,13 +117,13 @@ DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::derivee_en_temps_inco_impl(Navi
 
   if (!tab_W.get_md_vector().non_nul())
     {
-      tab_W.copy(secmem, Array_base::NOCOPY_NOINIT); // copie la structure
+      tab_W.copy(secmem, RESIZE_OPTIONS::NOCOPY_NOINIT); // copie la structure
       // initialisation sinon plantage assert lors du remplissage dans EDO_Pression_th_VEF::secmembre_divU_Z_VEFP1B
       tab_W = 0.;
     }
 
   DoubleTab rhoU;
-  rhoU.copy(vit, Array_base::NOCOPY_NOINIT); // copie la structure
+  rhoU.copy(vit, RESIZE_OPTIONS::NOCOPY_NOINIT); // copie la structure
 
   // Get champ gradP
   REF(Champ_base) gradient_pression;
@@ -242,7 +243,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::assembler_blocs_avec_inertie(const Na
 {
   statistiques().begin_count(assemblage_sys_counter_);
   const std::string& nom_inco = eqn.inconnue().le_nom().getString();
-  Matrice_Morse *mat = matrices.count(nom_inco)?matrices.at(nom_inco):NULL;
+  Matrice_Morse *mat = matrices.count(nom_inco)?matrices.at(nom_inco):nullptr;
   const DoubleTab& present = eqn.inconnue()->valeurs();
 
   // ******   avant inertie   ******
@@ -394,7 +395,9 @@ void Navier_Stokes_Fluide_Dilatable_Proto::prepare_and_solve_u_star(Navier_Stoke
       eqn.solv_masse()->set_name_of_coefficient_temporel("rho_comme_v");
       eqn.solv_masse().appliquer(secmemV);
       DoubleTrav dr(tab_rho_face_n);
-      for (int i=0; i<dr.size_totale(); i++) dr(i)=(tab_rho_face_n(i)/tab_rho_face_np1(i)-1.)/dt;
+      // ToDo OpenMP or Kokkos
+      for (int i=0; i<dr.size_totale(); i++)
+        dr(i)=(tab_rho_face_n(i)/tab_rho_face_np1(i)-1.)/dt;
 
       // on sert de vpoint pour calculer
       rho_vitesse_impl(dr,vit,vpoint);

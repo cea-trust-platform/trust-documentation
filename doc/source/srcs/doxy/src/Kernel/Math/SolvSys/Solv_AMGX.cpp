@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -64,7 +64,7 @@ void Solv_AMGX::Create_objects(const Matrice_Morse& mat_morse, int blocksize)
       Process::exit();
     }
   // Creation de la matrice Petsc (CSR pointeurs dessus)
-  if (MatricePetsc_ != NULL) MatDestroy(&MatricePetsc_);
+  if (MatricePetsc_ != nullptr) MatDestroy(&MatricePetsc_);
 
   Create_MatricePetsc(MatricePetsc_, mataij_, mat_morse);
   double start = Statistiques::get_time_now();
@@ -100,7 +100,7 @@ void Solv_AMGX::Update_vectors(const DoubleVect& secmem, DoubleVect& solution)
   const double* secmem_addr = mapToDevice(secmem, "secmem");
   double* lhs_amgx_addr = computeOnTheDevice(lhs_amgx_, "lhs_amgx_");
   double* rhs_amgx_addr = computeOnTheDevice(rhs_amgx_, "rhs_amgx_");
-  start_timer();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
   for (int i=0; i<size; i++)
     if (index_addr[i]!=-1)
@@ -108,7 +108,7 @@ void Solv_AMGX::Update_vectors(const DoubleVect& secmem, DoubleVect& solution)
         lhs_amgx_addr[index_addr[i]] = solution_addr[i];
         rhs_amgx_addr[index_addr[i]] = secmem_addr[i];
       }
-  end_timer(Objet_U::computeOnDevice, "Solv_AMGX::Update_vectors");
+  end_gpu_timer(Objet_U::computeOnDevice, "Solv_AMGX::Update_vectors");
   if (reorder_matrix_) Process::exit("Option not supported yet for AmgX.");
 }
 
@@ -118,12 +118,12 @@ void Solv_AMGX::Update_solution(DoubleVect& solution)
   const int* index_addr = mapToDevice(index_);
   const double* lhs_amgx_addr = mapToDevice(lhs_amgx_, "lhs_amgx_");
   double* solution_addr = computeOnTheDevice(solution, "solution");
-  start_timer();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
   for (int i=0; i<size; i++)
     if (index_addr[i]!=-1)
       solution_addr[i] = lhs_amgx_addr[index_addr[i]];
-  end_timer(Objet_U::computeOnDevice, "Solv_AMGX::Update_solution");
+  end_gpu_timer(Objet_U::computeOnDevice, "Solv_AMGX::Update_solution");
 }
 
 // Fonction de conversion Petsc ->CSR
@@ -146,13 +146,13 @@ PetscErrorCode Solv_AMGX::petscToCSR(Mat& A, Vec& lhs_petsc, Vec& rhs_petsc)
   else if (std::strcmp(type, MATMPIAIJ) == 0)
     {
       // Get local matrix from redistributed matrix
-      if (localA!=NULL) MatDestroy(&localA); // Suite accroissement memoire !
+      if (localA!=nullptr) MatDestroy(&localA); // Suite accroissement memoire !
       ierr = MatMPIAIJGetLocalMat(A, MAT_INITIAL_MATRIX, &localA);
       CHKERRQ(ierr);
     }
   else
     {
-      SETERRQ1(PETSC_COMM_WORLD, PETSC_ERR_ARG_WRONG,"Mat type %s is not supported!\n", type);
+      SETERRQ(PETSC_COMM_WORLD, PETSC_ERR_ARG_WRONG,"Mat type %s is not supported!\n", type);
     }
 
   // Get row and column indices in compressed row format
@@ -261,23 +261,20 @@ bool Solv_AMGX::check_stencil(const Matrice_Morse& mat_morse)
 // Resolution
 int Solv_AMGX::solve(ArrOfDouble& residu)
 {
-  const double* rhs_amgx_addr = computeOnDevice ? mapToDevice(rhs_amgx_) : rhs_amgx_.addr();
-  double* lhs_amgx_addr = computeOnDevice ? computeOnTheDevice(lhs_amgx_) : lhs_amgx_.addr();
-  statistiques().begin_count(gpu_library_counter_);
   if (computeOnDevice)
     {
-      #pragma omp target data use_device_ptr(lhs_amgx_addr, rhs_amgx_addr)
-      {
-        // Offer device pointers to AmgX if OpenMP:
-        SolveurAmgX_.solve(lhs_amgx_addr, rhs_amgx_addr, nRowsLocal, seuil_);
-      }
+      mapToDevice(rhs_amgx_);
+      computeOnTheDevice(lhs_amgx_);
+      statistiques().begin_count(gpu_library_counter_);
+      // Offer device pointers to AmgX:
+      SolveurAmgX_.solve(addrOnDevice(lhs_amgx_), addrOnDevice(rhs_amgx_), nRowsLocal, seuil_);
+      statistiques().end_count(gpu_library_counter_);
     }
   else
     {
       // Offer host pointers to AmgX:
-      SolveurAmgX_.solve(lhs_amgx_addr, rhs_amgx_addr, nRowsLocal, seuil_);
+      SolveurAmgX_.solve(lhs_amgx_.addr(), rhs_amgx_.addr(), nRowsLocal, seuil_);
     }
-  statistiques().end_count(gpu_library_counter_);
   Cout << "[AmgX] Time to solve system on GPU: " << statistiques().last_time(gpu_library_counter_) << finl;
   return nbiter(residu);
 }

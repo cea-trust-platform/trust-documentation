@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -155,8 +155,7 @@ void Domaine_VEF::swap(int fac1, int fac2, int nb_som_faces)
  */
 void Domaine_VEF::reordonner(Faces& les_faces)
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Domaine_VEF::reordonner les_faces " << finl;
+  Cerr << "Domaine_VEF::reordonner les_faces " << finl;
 
   // Construction de rang_elem_non_std_ :
   //  C'est un vecteur indexe par les elements du domaine.
@@ -171,7 +170,7 @@ void Domaine_VEF::reordonner(Faces& les_faces)
   // Un element est non standard s'il est voisin d'une face frontiere.
   {
     const int nb_faces_front = domaine().nb_faces_frontiere();
-    domaine().creer_tableau_elements(rang_elem_non_std_, ArrOfInt::NOCOPY_NOINIT);
+    domaine().creer_tableau_elements(rang_elem_non_std_, RESIZE_OPTIONS::NOCOPY_NOINIT);
     rang_elem_non_std_ = -1;
     // D'abord on marque les elements non standards avec rang_elem_non_std_[i] = 0
     for (int i_face = 0; i_face < nb_faces_front; i_face++)
@@ -276,7 +275,7 @@ void Domaine_VEF::discretiser()
   {
     const int n = nb_faces();
     face_normales_.resize(n, dimension);
-    creer_tableau_faces(face_normales_, Array_base::NOCOPY_NOINIT);
+    creer_tableau_faces(face_normales_, RESIZE_OPTIONS::NOCOPY_NOINIT);
     const IntTab& face_som = face_sommets();
     const IntTab& face_vois = face_voisins();
     const IntTab& elem_face = elem_faces();
@@ -295,7 +294,7 @@ void Domaine_VEF::discretiser()
 
   calculer_h_carre();
 
-  domaine().creer_tableau_sommets(volumes_som, Array_base::NOCOPY_NOINIT);
+  domaine().creer_tableau_sommets(volumes_som, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
   double coeff=1./3.;
   if (dimension==3)
@@ -417,7 +416,7 @@ void Domaine_VEF::discretiser_arete()
   const DoubleTab& coord = dom.les_sommets();
   const int dim = coord.dimension(1);
   xa_.resize(0, dim);
-  creer_tableau_aretes(xa_, ArrOfDouble::NOCOPY_NOINIT);
+  creer_tableau_aretes(xa_, RESIZE_OPTIONS::NOCOPY_NOINIT);
   for (int i = 0; i < nb_aretes; i++)
     {
       const int s0 = aretes_som(i, 0);
@@ -472,7 +471,7 @@ void Domaine_VEF::construire_ok_arete()
     // Creation d'un tableau d'aretes ou les sommets sont remplaces par le sommet
     //  periodique associe et sans les aretes periodiques opposees
     IntTab aretes_som2;
-    aretes_som2.copy(aretes_som, Array_base::NOCOPY_NOINIT);
+    aretes_som2.copy(aretes_som, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
     for (int i = 0; i < nb_aretes; i++)
       {
@@ -622,7 +621,7 @@ void Domaine_VEF::construire_ok_arete()
   for (int i = 0; i < n; i++)
     {
       if (marqueurs_aretes[i])
-        fic_ok_arete_ << xa_(i,0) << space << xa_(i,1) << space << xa_(i,2) << space << ok_arete(i) << finl;
+        fic_ok_arete_ << xa_(i,0) << tspace << xa_(i,1) << tspace << xa_(i,2) << tspace << ok_arete(i) << finl;
     }
   fic_ok_arete_.syncfile();
   fic_ok_arete_.close();
@@ -752,7 +751,7 @@ void Domaine_VEF::construire_renum_arete_perio(const Conds_lim& conds_lim)
   if (Debog::active())
     {
       IntVect tmp;
-      creer_tableau_aretes(tmp, Array_base::NOCOPY_NOINIT);
+      creer_tableau_aretes(tmp, RESIZE_OPTIONS::NOCOPY_NOINIT);
       const int n = tmp.size_array();
       for (int i=0; i<n; i++)
         tmp[i] = renum_arete_perio[i];
@@ -866,19 +865,16 @@ void Domaine_VEF::verifie_ok_arete(int nombre_aretes_superflues_prevues_sur_le_d
   // Cerr << "Nombre d'aretes superflues periodiques      =  " << nb_aretes_perio_superflues << finl;
   // Cerr << "Nombre d'aretes non superflues periodiques  =  " << nb_aretes_periodiques-nb_aretes_perio_superflues << finl;
 
-  if (Process::nproc()==1) // On se limite au sequentiel car il y'a un soucis pour le calcul de total_nombre_aretes_superflues (les items communs pour les aretes n'est pas construit!)
+  if (Process::is_sequential()) // On se limite au sequentiel car il y'a un soucis pour le calcul de total_nombre_aretes_superflues (les items communs pour les aretes n'est pas construit!)
     if (!est_egal(somme_nombre_aretes_superflues_prevues_par_domaine,total_nombre_aretes_superflues) && je_suis_maitre())
       {
         Cerr << "La somme des aretes superflues prevues par domaine n'est pas egale au nombre d'aretes superflues trouvees sur le domaine." << finl;
         Cerr << somme_nombre_aretes_superflues_prevues_par_domaine << " != " << total_nombre_aretes_superflues << finl;
         Process::exit();
       }
-  if (Process::je_suis_maitre())
-    {
-      Cerr << "Nombre total d'aretes superflues: " << somme_nombre_aretes_superflues_prevues_par_domaine << finl;
-      Cerr << "Nombre total de sommets non periodiques = " << total_nb_sommets_non_periodiques << finl;
-      Cerr << "Verification de l'egalite du nombre total d'aretes superflues et du nombre total de sommets: ";
-    }
+  Cerr << "Nombre total d'aretes superflues: " << somme_nombre_aretes_superflues_prevues_par_domaine << finl;
+  Cerr << "Nombre total de sommets non periodiques = " << total_nb_sommets_non_periodiques << finl;
+  Cerr << "Verification de l'egalite du nombre total d'aretes superflues et du nombre total de sommets: ";
   // Verification que le nombre d'aretes superflues et egal au nombre de sommets
   if (!est_egal(somme_nombre_aretes_superflues_prevues_par_domaine,total_nb_sommets_non_periodiques) && je_suis_maitre())
     {
@@ -919,7 +915,7 @@ int Domaine_VEF::lecture_ok_arete()
   octree.build_nodes(xa_, 1 /* include virtual nodes */);
   const double eps = precision_geom;
   ArrOfInt liste_aretes;
-  liste_aretes.set_smart_resize(1);
+
 
   IntVect marqueurs;
   creer_tableau_aretes(marqueurs); // initialise a zero par defaut
@@ -963,7 +959,7 @@ int Domaine_VEF::lecture_ok_arete()
   return 1;
 }
 
-void Domaine_VEF::creer_tableau_p1bulle(Array_base& x, Array_base::Resize_Options opt) const
+void Domaine_VEF::creer_tableau_p1bulle(Array_base& x, RESIZE_OPTIONS opt) const
 {
   const MD_Vector& md = md_vector_p1b();
   MD_Vector_tools::creer_tableau_distribue(md, x, opt);
@@ -1017,7 +1013,7 @@ void Domaine_VEF::calculer_volumes_entrelaces()
   if (!(volumes_entrelaces_.get_md_vector() == md_vector_faces()))
     {
       volumes_entrelaces_.reset();
-      creer_tableau_faces(volumes_entrelaces_, Array_base::NOCOPY_NOINIT);
+      creer_tableau_faces(volumes_entrelaces_, RESIZE_OPTIONS::NOCOPY_NOINIT);
     }
   int nb_faces_elem = domaine().nb_faces_elem();
   int num_face;
@@ -1149,7 +1145,7 @@ void Domaine_VEF::modifier_pour_Cl(const Conds_lim& conds_lim)
     {
       IntVect tmp;
       const Domaine& dom = domaine();
-      dom.creer_tableau_sommets(tmp, Array_base::NOCOPY_NOINIT);
+      dom.creer_tableau_sommets(tmp, RESIZE_OPTIONS::NOCOPY_NOINIT);
       const int n = tmp.size_array();
       for (int i=0; i<n; i++)
         tmp[i] = dom.get_renum_som_perio(i);
@@ -1162,7 +1158,7 @@ void Domaine_VEF::modifier_pour_Cl(const Conds_lim& conds_lim)
       construire_renum_arete_perio(conds_lim);
 
       // Creation d'un tableau distribue pour ok_arete
-      creer_tableau_aretes(ok_arete, ArrOfInt::NOCOPY_NOINIT);
+      creer_tableau_aretes(ok_arete, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
       // Si P1 alors on doit trouver les aretes superflues:
       if (get_alphaS())

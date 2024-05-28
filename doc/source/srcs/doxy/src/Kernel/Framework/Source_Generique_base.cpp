@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,9 +19,10 @@
 #include <Postraitement.h>
 
 Implemente_base(Source_Generique_base,"Source_Generique_base",Source_base);
+// XD source_generique source_base source_generique 0 to define a source term depending on some discrete fields of the problem and (or) analytic expression. It is expressed by the way of a generic field usually used for post-processing.
+// XD  attr champ champ_generique_base champ 0 the source field
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  *     Imprime la source sur un flot de sortie.
  *
@@ -33,8 +34,7 @@ Sortie& Source_Generique_base::printOn(Sortie& os) const
   return os;
 }
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  *     Lecture d'un terme source sur un flot d'entree.
  *
@@ -66,13 +66,13 @@ void Source_Generique_base::completer()
   post_bidon.associer_nom_et_pb_base("", equation().probleme());
   ch_source_->completer(post_bidon);
   Entity loc = ch_source_->get_localisation();
-  if (((loc == ELEMENT) && (localisation_source() != "elem"))
-      || ((loc == FACE) && (localisation_source() != "faces")))
+  if (((loc == Entity::ELEMENT) && (localisation_source() != "elem"))
+      || ((loc == Entity::FACE) && (localisation_source() != "faces")))
     {
       Nom nom_loc;
-      if (loc == ELEMENT)
+      if (loc == Entity::ELEMENT)
         nom_loc = "elem";
-      else if (loc == FACE)
+      else if (loc == Entity::FACE)
         nom_loc = "faces";
       Cerr << "----------------------------------------------------------------" << finl;
       Cerr << "Error during TRUST calculation :" << finl;

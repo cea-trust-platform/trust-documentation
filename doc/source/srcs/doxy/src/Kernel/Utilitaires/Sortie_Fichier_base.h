@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,7 @@
 #include <Objet_U.h>
 #include <Sortie.h>
 #include <Nom.h>
+#include <memory>
 
 using std::ifstream;
 using std::ofstream;
@@ -40,9 +41,15 @@ public:
   virtual int ouvrir(const char* name,IOS_OPEN_MODE mode=ios::out);
 
   Sortie& flush() override;
+  static void set_root(const std::string dirname);
+  static std::string root;
 
 protected:
-  ofstream* ofstream_;
+  /*! This pointer is just a (typed) view on the smart ptr hold by the base class (Sortie).
+   * The base class is managing the memory.
+   */
+  ofstream * ofstream_ = nullptr;
+
   Sortie_Fichier_base& operator=(const Sortie_Fichier_base& f)
   {
     if (&f != this) Process::exit("Assignement operator not allowed in Sortie_Fichier_base !");
@@ -50,7 +57,7 @@ protected:
   }
 
 private:
-  char* internalBuff_;
+  char* internalBuff_ = nullptr;  // TODO - could be smart too
   int toFlush_;
   void set_buffer();
   void set_toFlush();

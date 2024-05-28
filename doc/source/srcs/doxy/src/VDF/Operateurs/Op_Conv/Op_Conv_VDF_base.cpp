@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,9 +41,9 @@ Entree& Op_Conv_VDF_base::readOn(Entree& s)
       noms_x_phases_.dimensionner(pb.nb_phases()), x_phases_.resize(pb.nb_phases());
       for (int i = 0; i < pb.nb_phases(); i++)
         {
-          champs_compris_.ajoute_nom_compris(noms_cc_phases_[i] = Nom("debit_") + pb.nom_phase(i));
-          champs_compris_.ajoute_nom_compris(noms_vd_phases_[i] = Nom("vitesse_debitante_") + pb.nom_phase(i));
-          champs_compris_.ajoute_nom_compris(noms_x_phases_[i] = Nom("titre_") + pb.nom_phase(i));
+          noms_cc_phases_[i] = Nom("debit_") + pb.nom_phase(i);
+          noms_vd_phases_[i] = Nom("vitesse_debitante_") + pb.nom_phase(i);
+          noms_x_phases_[i] = Nom("titre_") + pb.nom_phase(i);
         }
     }
   return s;
@@ -107,8 +107,8 @@ void Op_Conv_VDF_base::dimensionner_blocs_elem(matrices_t mats, const tabs_t& se
     if (i_m.first == "vitesse" || (!hcc && i_m.first == cc.le_nom()) || (cc.derivees().count(i_m.first) && !semi_impl.count(cc.le_nom().getString())))
       {
         Matrice_Morse mat;
-        IntTrav stencil(0, 2);
-        stencil.set_smart_resize(1);
+        IntTab stencil(0, 2);
+
         int m, M = equation().probleme().get_champ(i_m.first.c_str()).valeurs().line_size();
         if (i_m.first == "vitesse") /* vitesse */
           {
@@ -144,15 +144,15 @@ void Op_Conv_VDF_base::dimensionner_blocs_face(matrices_t matrices, const tabs_t
 
   const std::string& nom_inco = ch.le_nom().getString();
   if (!matrices.count(nom_inco) || semi_impl.count(nom_inco)) return; //pas de bloc diagonal ou semi-implicite -> rien a faire
-  const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()) : NULL;
-  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee").valeur()) : NULL;
+  const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()) : nullptr;
+  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee").valeur()) : nullptr;
   Matrice_Morse& mat = *matrices.at(nom_inco), mat2;
 
   //int e, eb, fb,  N = equation().inconnue().valeurs().line_size();
   // eb never used ? Warning Error on clang...
   int e, fb,  N = equation().inconnue().valeurs().line_size();
   IntTab stencil(0, 2);
-  stencil.set_smart_resize(1);
+
 
   /* agit uniquement aux elements; diagonale omise */
   for (int f = 0; f < domaine.nb_faces_tot(); f++)
@@ -191,7 +191,7 @@ double Op_Conv_VDF_base::calculer_dt_stab() const
   const DoubleTab& vit_associe = vitesse().valeurs();
   const DoubleTab& vit= (vitesse_pour_pas_de_temps_.non_nul()?vitesse_pour_pas_de_temps_.valeur().valeurs(): vit_associe);
   const int N = std::min(vit.line_size(), equation().inconnue().valeurs().line_size());
-  const DoubleTab* alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : NULL;
+  const DoubleTab* alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : nullptr;
   if (!fluent_.get_md_vector().non_nul())
     {
       fluent_.resize(0, N);
@@ -428,6 +428,27 @@ Motcle Op_Conv_VDF_base::get_localisation_pour_post(const Nom& option) const
   return loc;
 }
 
+void Op_Conv_VDF_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+{
+  Operateur_Conv_base::get_noms_champs_postraitables(nom,opt);
+  Noms noms_compris;
+
+  if (sub_type(Masse_Multiphase, equation()))
+    {
+      const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, equation().probleme());
+
+      for (int i = 0; i < pb.nb_phases(); i++)
+        {
+          noms_compris.add(noms_cc_phases_[i]);
+          noms_compris.add(noms_vd_phases_[i]);
+          noms_compris.add(noms_x_phases_[i]);
+        }
+    }
+  if (opt==DESCRIPTION)
+    Cerr<<" Op_Conv_VDF_base : "<< noms_compris <<finl;
+  else
+    nom.add(noms_compris);
+}
 void Op_Conv_VDF_base::creer_champ(const Motcle& motlu)
 {
   Operateur_Conv_base::creer_champ(motlu); // Do nothing mais bon :-) Maybe some day it will

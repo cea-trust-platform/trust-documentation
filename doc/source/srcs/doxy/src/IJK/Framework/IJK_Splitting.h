@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,10 +34,6 @@ protected:
   typedef FixedVector<Int3,3> Int33;
   typedef FixedVector<Int3,2> Int23;
 public:
-  static double shear_x_time_ ;
-  static double shear_x_DT_ ;
-  static double Lx_for_shear_perio ;
-  static int defilement_ ;
   enum Localisation { ELEM, NODES, FACES_I, FACES_J, FACES_K };
   static Localisation FacesDirToLocalisation(int dir)
   {

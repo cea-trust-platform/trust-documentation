@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -89,8 +89,9 @@ Entree& Multigrille_base::readOn(Entree& is)
 
 
 #ifdef DUMP_X_B_AND_RESIDUE_IN_FILE
-void dump_x_b_residue_in_file(const IJK_Field_float& x, const IJK_Field_float& b, IJK_Field_float& residu,
-                              int grid_level, int step_number, Nom comment)
+void dump_x_b_residue_in_file(const IJK_Field_float& x, const IJK_Field_float& b,
+                              IJK_Field_float& residu, int grid_level, int step_number,
+                              Nom comment)
 {
 
   if (Process::je_suis_maitre())
@@ -196,7 +197,11 @@ void Multigrille_base::solve_ijk_in_storage_template<float>()
   IJK_Field_float& ijk_residu = get_storage_float(STORAGE_RESIDUE, 0);
 
   prepare_secmem(ijk_b);
-  ijk_b.echange_espace_virtuel(ijk_b.ghost());
+  //pas sur de devoir echanger espace virtuel pour le second membre dans le cas du shear_perio...
+  if (IJK_Shear_Periodic_helpler::defilement_==0)
+    {
+      ijk_b.echange_espace_virtuel(ijk_b.ghost());
+    }
 
   double norm_residue;
   norm_residue = multigrille(ijk_x, ijk_b, ijk_residu);
@@ -216,8 +221,11 @@ void Multigrille_base::solve_ijk_in_storage_template<double>()
   IJK_Field_double& ijk_residu = get_storage_double(STORAGE_RESIDUE, 0);
 
   prepare_secmem(ijk_b);
-  ijk_b.echange_espace_virtuel(ijk_b.ghost());
-
+  //pas sur de devoir echanger espace virtuel pour le second membre dans le cas du shear_perio...
+  if (IJK_Shear_Periodic_helpler::defilement_==0)
+    {
+      ijk_b.echange_espace_virtuel(ijk_b.ghost());
+    }
   if (solver_precision_ == precision_double_)
     {
       if (max_iter_gcp_ > 0)
@@ -261,36 +269,41 @@ void Multigrille_base::solve_ijk_in_storage_template<double>()
       IJK_Field_float& float_residue = get_storage_float(STORAGE_RESIDUE, 0);
       float_b.data() = 0.;
 
-      int i, j, k;
       const int ni = ijk_x.ni();
       const int nj = ijk_x.nj();
       const int nk = ijk_x.nk();
-      for (k = 0; k < nk; k++)
-        for (j = 0; j < nj; j++)
-          for (i = 0; i < ni; i++)
-            float_b(i,j,k) = (float)ijk_b(i,j,k);
+
+      for (int k = 0; k < nk; k++)
+        for (int j = 0; j < nj; j++)
+          for (int i = 0; i < ni; i++)
+            float_b(i, j, k) = (float)ijk_b(i, j, k);
+
       int iteration = 0;
       do
         {
           if (iteration > 0)
-            for (k = 0; k < nk; k++)
-              for (j = 0; j < nj; j++)
-                for (i = 0; i < ni; i++)
-                  float_b(i,j,k) = (float)(-ijk_residu(i,j,k));
+            for (int k = 0; k < nk; k++)
+              for (int j = 0; j < nj; j++)
+                for (int i = 0; i < ni; i++)
+                  float_b(i, j, k) = (float)(-ijk_residu(i, j, k));
 
 
           // Launch multigrid solver in single precision:
           float_x.data() = 0.;
           prepare_secmem(float_b);
-          float_b.echange_espace_virtuel(float_b.ghost());
+          //pas sur de devoir echanger espace virtuel pour le second membre dans le cas du shear_perio...
+          if (IJK_Shear_Periodic_helpler::defilement_==0)
+            {
+              float_b.echange_espace_virtuel(float_b.ghost());
+            }
           float_x.shift_k_origin(needed_kshift_for_jacobi(0) - float_x.k_shift());
           double single_precision_residue = multigrille(float_x, float_b, float_residue);
 
           // Update x:
-          for (k = 0; k < nk; k++)
-            for (j = 0; j < nj; j++)
-              for (i = 0; i < ni; i++)
-                ijk_x(i,j,k) += float_x(i,j,k);
+          for (int k = 0; k < nk; k++)
+            for (int j = 0; j < nj; j++)
+              for (int i = 0; i < ni; i++)
+                ijk_x(i, j, k) += float_x(i, j, k);
 
           if (single_precision_residue < seuil_)
             break;
@@ -306,12 +319,17 @@ void Multigrille_base::solve_ijk_in_storage_template<double>()
           iteration++;
           if (iteration > max_iter_mixed_solver_)
             {
-              Cerr << "Error in Multigrille_base: mixed precision solver did not converge in "
-                   << max_iter_mixed_solver_ << " iterations." << finl;
-              Process::exit();
+              // Try to solve system on original grid with other solver
+              nr = multigrille_failure();
+              if (nr < seuil_)
+                break;
+              else
+                {
+                  Cerr << "Error in Multigrille_base: mixed precision solver did not converge in "
+                       << max_iter_mixed_solver_ << " iterations." << finl;
+                }
             }
         }
       while (1);
     }
 }
-

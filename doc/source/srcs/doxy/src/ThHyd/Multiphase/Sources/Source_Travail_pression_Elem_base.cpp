@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,7 +22,7 @@
 #include <cfloat>
 
 Implemente_base(Source_Travail_pression_Elem_base, "Source_Travail_pression_Elem_base", Sources_Multiphase_base);
-// XD Source_Travail_pression_Elem_base source_base Source_Travail_pression_Elem_base 0 Source term which corresponds to the additional pressure work term that appears when dealing with compressible multiphase fluids
+// XD travail_pression source_base travail_pression 0 Source term which corresponds to the additional pressure work term that appears when dealing with compressible multiphase fluids
 
 Sortie& Source_Travail_pression_Elem_base::printOn(Sortie& os) const { return os; }
 Entree& Source_Travail_pression_Elem_base::readOn(Entree& is) { return is; }
@@ -40,7 +40,7 @@ void Source_Travail_pression_Elem_base::dimensionner_blocs(matrices_t matrices, 
       {
         Matrice_Morse& mat = *n_m.second, mat2;
         IntTrav sten(0, 2);
-        sten.set_smart_resize(1);
+
         if (n_m.first == "pression") /* pression : dependance locale, implicite */
           for (e = 0; e < ne; e++)
             for (n = 0, m = 0; n < N; n++, m += (M > 1)) sten.append_line(N * e + n, M * e + m);
@@ -73,9 +73,9 @@ void Source_Travail_pression_Elem_base::ajouter_blocs(matrices_t matrices, Doubl
   const DoubleTab& alpha = ch_a.valeurs(), &c_alpha = semi_impl.count("alpha") ? semi_impl.at("alpha") : alpha, &p_alpha = ch_a.passe(), &press = ch_p.valeurs(), &vit = ch_v.valeurs();
   const IntTab& fcl = ref_cast(Champ_Inc_P0_base, ch_a).fcl(), &f_e = domaine.face_voisins();
   DoubleTab b_alpha = ch_a.valeur_aux_bords();
-  Matrice_Morse *Mp = matrices.count("pression") ? matrices.at("pression") : NULL,
-                 *Ma = matrices.count("alpha") && !semi_impl.count("alpha") ? matrices.at("alpha") : NULL,
-                  *Mv = matrices.count("vitesse") ? matrices.at("vitesse") : NULL;
+  Matrice_Morse *Mp = matrices.count("pression") ? matrices.at("pression") : nullptr,
+                 *Ma = matrices.count("alpha") && !semi_impl.count("alpha") ? matrices.at("alpha") : nullptr,
+                  *Mv = matrices.count("vitesse") ? matrices.at("vitesse") : nullptr;
 
   int i, j, e, eb, f, n, N = alpha.line_size(), m, M = press.line_size();
   double dt = equation().schema_temps().pas_de_temps();

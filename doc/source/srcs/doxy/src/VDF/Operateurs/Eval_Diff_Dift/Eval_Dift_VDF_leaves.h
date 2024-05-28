@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -62,14 +62,12 @@ private:
 
 class Eval_Dift_Multiphase_VDF_Elem : public Eval_Diff_VDF_Elem_Gen<Eval_Dift_Multiphase_VDF_Elem>, public Eval_Dift_Multiphase_VDF
 {
-public:
-  static constexpr bool IS_MODIF_DEQ = true;
 };
 
 class Eval_Dift_VDF_Multi_inco_Elem_Axi : public Eval_Diff_VDF_Elem_Gen<Eval_Dift_VDF_Multi_inco_Elem_Axi>, public Eval_Dift_VDF
 {
 public:
-  static constexpr bool IS_MULTD = false, IS_DEQUIV = true, IS_AXI = true;
+  static constexpr bool IS_DEQUIV = true, IS_AXI = true;
   inline void mettre_a_jour() override { update_equivalent_distance(); }
 };
 
@@ -82,7 +80,7 @@ public:
 class Eval_Dift_VDF_Multi_inco_Elem : public Eval_Diff_VDF_Elem_Gen<Eval_Dift_VDF_Multi_inco_Elem>, public Eval_Dift_VDF
 {
 public:
-  static constexpr bool IS_MULTD = false, IS_DEQUIV = true;
+  static constexpr bool IS_DEQUIV = true;
   inline void mettre_a_jour() override { update_equivalent_distance(); }
 };
 

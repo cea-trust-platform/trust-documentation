@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,6 +15,7 @@
 
 #include <mon_main.h>
 #include <LecFicDiffuse_JDD.h>
+#include <TClearable.h> // To clear caches before exiting, notably Domaine_dis_cache
 #include <instancie_appel.h>
 #include <SFichier.h>
 #include <Comm_Group_MPI.h>
@@ -30,6 +31,9 @@
 #ifndef __CYGWIN__
 #include <catch_and_trace.h>
 #endif
+
+#include <kokkos++.h>
+
 
 // Initialisation des compteurs, dans stat_counters.cpp
 extern void declare_stat_counters();
@@ -87,13 +91,13 @@ static int init_petsc(True_int argc, char **argv, int with_mpi,int& trio_began_m
         }
     }
   // Equivalent de -abort_on_error (aucune erreur PETSc n'est tolere):
-  PetscPushErrorHandler(PetscAbortErrorHandler,PETSC_NULL);
+  PetscPushErrorHandler(PetscAbortErrorHandler, PETSC_NULLPTR);
   // Desactive le signal handler en optimise pour eviter d'etre trop bavard
   // et de "masquer" les messages d'erreur TRUST:
   PetscPopSignalHandler();
 
   char* theValue = getenv("TRUST_ENABLE_ERROR_HANDLERS");
-  if (theValue != NULL) error_handlers = true;
+  if (theValue != nullptr) error_handlers = true;
   if (error_handlers)
     {
       Cerr << "Enabling error handlers catching SIGFPE and SIGABORT and giving a trace of where the fault happened." << finl;
@@ -139,14 +143,20 @@ static int init_parallel_mpi(DERIV(Comm_Group) & groupe_trio)
 //////////////////////////////////////////////////////////
 void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int check_enabled, int with_petsc)
 {
+  // Kokkos initialisation
+  True_int argc2 = argc;
+  Kokkos::initialize( argc2, argv );
+
+  Nom arguments_info="";
+  arguments_info +="Kokkos initialized!\n";
+
 #ifdef TRUST_USE_CUDA
   //init_cuda(); Desactive car crash crash sur topaze ToDo OpenMP
 #endif
   // Variable pour desactiver le calcul sur GPU et ainsi facilement comparer avec le meme binaire
   // les performances sur CPU et sur GPU. Utilisee par rocALUTION et les kernels OpenMP:
-  Objet_U::computeOnDevice = getenv("TRUST_DISABLE_DEVICE") == NULL ? true : false;
+  Objet_U::computeOnDevice = getenv("TRUST_DISABLE_DEVICE") == nullptr ? true : false;
 
-  Nom arguments_info="";
   int must_mpi_initialize = 1;
   if (with_petsc != 0)
     {
@@ -196,10 +206,15 @@ void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int chec
 
   if (Process::je_suis_maitre())
     Cerr << arguments_info;
+
 }
 
 void mon_main::finalize()
 {
+  // Clear all things that were registered by Register_clearable() method (typically the Domaine_dis_cache instance
+  // to make sure all Kokkos views are freed before doing Kokkos finalize):
+  TClearable::Clear_all();
+
 #ifdef MPI_
   // MPI_Group_free before MPI_Finalize
   if (sub_type(Comm_Group_MPI,groupe_trio_.valeur()))
@@ -233,6 +248,7 @@ void mon_main::finalize()
         }
     }
 #endif
+  Kokkos::finalize();
 }
 
 void mon_main::dowork(const Nom& nom_du_cas)
@@ -330,7 +346,7 @@ void mon_main::dowork(const Nom& nom_du_cas)
   Cout<< " *     | |    | ) \\ \\__ | (___) | /\\____) |    | |     *  " << finl;
   Cout<< " *     )_(    |/   \\__/ (_______) \\_______)    )_(     *   " << finl;
   Cout<< " *                                                     *     " << finl;
-  Cout<< " *                  version : 1.9.3_beta               *     "  << finl;
+  Cout<< " *                  version : " << TRUST_VERSION << "               *     "  << finl;
   Cout<< " *                       CEA - DES                     *     " << finl;
   Cout<< " *                                                     *     " << finl;
   Cout<< " * * * * * * * * * * * * * * * * * * * * * * * * * * * * " << finl;
@@ -384,7 +400,7 @@ void mon_main::dowork(const Nom& nom_du_cas)
   if (!Objet_U::disable_TU)
     {
       if(GET_COMM_DETAILS)
-        statistiques().print_communciation_tracking_details("Statistiques de post resolution", 1);               // Into _comm.TU file
+        statistiques().print_communciation_tracking_details("Statistiques de post resolution", 1);               // Into _csv.TU file
 
       statistiques().dump("Statistiques de post resolution", mode_append);
       print_statistics_analyse("Statistiques de post resolution", 1);

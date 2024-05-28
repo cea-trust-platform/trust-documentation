@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,6 +31,8 @@ static const char directory_separator = '\\';
 #else
 static const char directory_separator = '/';
 #endif
+
+#include <TRUSTTravPool.h>
 
 extern void desalloue_pwd();
 void usage()
@@ -215,7 +217,7 @@ int main_TRUST(int argc, char** argv,mon_main*& main_process,int force_mpi)
       else if (i == 2)
         {
           errno = 0;
-          int nprocs = (int) strtol(argv[2], (char **)NULL, 10);
+          int nprocs = (int) strtol(argv[2], (char **)nullptr, 10);
           if (!errno && nprocs)
             {
               nproc = nprocs;
@@ -280,7 +282,7 @@ int main_TRUST(int argc, char** argv,mon_main*& main_process,int force_mpi)
     if ( ieee == 1 )
       {
         char* theValue = getenv("TRUST_DISABLE_FP_EXCEPT");
-        if (theValue == NULL || atoi(theValue) == 0)
+        if (theValue == nullptr || atoi(theValue) == 0)
           {
             arguments_info += "feenableexcept enabled.\n";
 #ifdef linux
@@ -385,7 +387,7 @@ int main_TRUST(int argc, char** argv,mon_main*& main_process,int force_mpi)
         Cerr<<"Localisation etude: " << ::pwd() << finl;
         Cerr<<"Nom du cas " << data_file << finl;
         Cerr<<" code : "<< argv[0] << finl;
-        Cerr<<" version : 1.9.3_beta " << finl;
+        Cerr<<" version : " << TRUST_VERSION << " " << finl;
       }
 
     main_process->dowork(data_file);
@@ -393,6 +395,14 @@ int main_TRUST(int argc, char** argv,mon_main*& main_process,int force_mpi)
     if (master)
       {
         Cerr << "Arret des processes." << finl;
+#ifndef NDEBUG
+        Cerr << finl;
+        Cerr << "DEBUG: Statistics for Trav arrays (int): " << finl;
+        TRUSTTravPool<int>::PrintStats();
+        Cerr << finl;
+        Cerr << "DEBUG: Statistics for Trav arrays (double): " << finl;
+        TRUSTTravPool<double>::PrintStats();
+#endif
       }
   }
 

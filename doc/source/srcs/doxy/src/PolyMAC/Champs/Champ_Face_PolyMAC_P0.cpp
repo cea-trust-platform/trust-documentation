@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,6 +33,7 @@
 #include <Champ_Fonc_reprise.h>
 #include <array>
 #include <cmath>
+#include <Pb_Multiphase.h>
 
 Implemente_instanciable(Champ_Face_PolyMAC_P0,"Champ_Face_PolyMAC_P0",Champ_Face_PolyMAC_P0P1NC) ;
 
@@ -70,32 +71,64 @@ void Champ_Face_PolyMAC_P0::init_auxiliary_variables()
     }
 }
 
+int Champ_Face_PolyMAC_P0::reprendre(Entree& fich)
+{
+  if (! via_ch_fonc_reprise()) return Champ_Inc_base::reprendre(fich); /* ie: resume last time ! */
+
+  const Pb_Multiphase * pbm = mon_equation_non_nul() ? (sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()) : nullptr) : nullptr;
+  if (pbm) return Champ_Inc_base::reprendre(fich);
+
+  // sinon on fait ca ...
+  const Domaine_PolyMAC_P0* domaine = le_dom_VF.non_nul() ? &ref_cast( Domaine_PolyMAC_P0,le_dom_VF.valeur()) : nullptr;
+  valeurs().set_md_vector(MD_Vector()); //on enleve le MD_Vector...
+  valeurs().resize(0);
+  int ret = Champ_Inc_base::reprendre(fich);
+  //et on remet le bon si on peut
+  if (domaine) valeurs().set_md_vector(valeurs().dimension_tot(0) > domaine->nb_faces_tot() ? domaine->mdv_faces_aretes : domaine->md_vector_faces());
+  return ret;
+}
+
 Champ_base& Champ_Face_PolyMAC_P0::affecter_(const Champ_base& ch)
 {
-  const Domaine_PolyMAC_P0& domaine = domaine_PolyMAC_P0();
-  const DoubleVect& fs = domaine.face_surfaces();
-  const DoubleTab& nf = domaine.face_normales(), &xv = domaine.xv();
-  DoubleTab& val = valeurs(), eval;
+  const DoubleTab& ch_val = ch.valeurs();
+  DoubleTab& val = valeurs();
+  const int N = val.line_size(), D = Objet_U::dimension;
 
   if (sub_type(Champ_Fonc_reprise, ch))
     {
-      for (int num_face=0; num_face<domaine.nb_faces(); num_face++)
-        val(num_face) = ch.valeurs()[num_face];
+      if (val.dimension_tot(0) == ch_val.dimension_tot(0) && val.line_size() == ch_val.line_size())
+        val = ch_val;
+      else
+        {
+          init_auxiliary_variables();
+          for (int i = 0; i < ch_val.dimension_tot(0); i++)
+            for (int j = 0; j < ch_val.line_size(); j++)
+              val(i,j) = ch_val(i,j);
+        }
     }
   else
     {
-      int f, n, N = val.line_size(), d, D = dimension, unif = sub_type(Champ_Uniforme, ch);
+      const Domaine_PolyMAC_P0& domaine = domaine_PolyMAC_P0();
+      const DoubleVect& fs = domaine.face_surfaces();
+      const DoubleTab& nf = domaine.face_normales(), &xv = domaine.xv();
+      const int unif = sub_type(Champ_Uniforme, ch);
+      DoubleTab eval;
 
-      if (unif) eval = ch.valeurs();
-      else eval.resize(val.dimension_tot(0), N * D), ch.valeur_aux(xv,eval);
-      for (f = 0; f < domaine.nb_faces_tot(); f++)
-        for (d = 0; d < D; d++)
-          for (n = 0; n < N; n++)
+      if (unif)
+        eval = ch_val;
+      else
+        eval.resize(val.dimension_tot(0), N * D), ch.valeur_aux(xv, eval);
+
+      for (int f = 0; f < domaine.nb_faces_tot(); f++)
+        for (int d = 0; d < D; d++)
+          for (int n = 0; n < N; n++)
             val(f, n) += eval(unif ? 0 : f, N * d + n) * nf(f, d) / fs(f);
+
       update_ve(val);
       //copie dans toutes les cases
-      valeurs().echange_espace_virtuel();
-      for(int i=1; i<les_valeurs->nb_cases(); i++) les_valeurs[i].valeurs() = valeurs();
+      val.echange_espace_virtuel();
+      for (int i = 1; i < les_valeurs->nb_cases(); i++)
+        les_valeurs[i].valeurs() = val;
     }
   return *this;
 }
@@ -105,7 +138,7 @@ void Champ_Face_PolyMAC_P0::update_ve(DoubleTab& val) const
 {
   const Domaine_PolyMAC_P0& domaine = domaine_PolyMAC_P0();
   if (valeurs().get_md_vector() != domaine.mdv_ch_face) return; //pas de variables auxiliaires -> rien a faire
-  const DoubleVect& fs = domaine.face_surfaces(), &ve = domaine.volumes(), *pf = mon_equation_non_nul() ? &equation().milieu().porosite_face() : NULL , *pe = pf ? &equation().milieu().porosite_elem() : NULL;
+  const DoubleVect& fs = domaine.face_surfaces(), &ve = domaine.volumes(), *pf = mon_equation_non_nul() ? &equation().milieu().porosite_face() : nullptr , *pe = pf ? &equation().milieu().porosite_elem() : nullptr;
   const DoubleTab& xp = domaine.xp(), &xv = domaine.xv();
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins();
   int e, f, j, d, D = dimension, n, N = val.line_size(), ne_tot = domaine.nb_elem_tot(), nf_tot = domaine.nb_faces_tot();
@@ -139,7 +172,6 @@ void Champ_Face_PolyMAC_P0::init_ve2() const
   //position des points aux faces de bord : CG si interne ou Dirichlet, projection si Neumann
   DoubleTrav xfb(domaine.nb_faces_tot(), D), ve2, ve2i, A, B, P, W(1);
   IntTrav pvt;
-  ve2.set_smart_resize(1), A.set_smart_resize(1), B.set_smart_resize(1), P.set_smart_resize(1), W.set_smart_resize(1), pvt.set_smart_resize(1);
   for (f = 0; f < domaine.nb_faces_tot(); f++)
     if (fcl_(f, 0) == 1 || fcl_(f, 0) == 2) //Neumann / Symetrie
       {
@@ -158,8 +190,8 @@ void Champ_Face_PolyMAC_P0::init_ve2() const
     for (i = 0; i < e_s.dimension(1) && (s = e_s(e, i)) >= 0; i++)
       for (auto &&fa : s_f[s]) e_s_f[e].insert(fa);
 
-  ve2d.resize(1, 2), ve2d.set_smart_resize(1), ve2j.set_smart_resize(1), ve2bj.resize(0, 2), ve2bj.set_smart_resize(1);
-  ve2c.set_smart_resize(1), ve2bc.set_smart_resize(1);
+  ve2d.resize(1, 2);
+  ve2bj.resize(0, 2);
   std::map<std::array<int, 2>, int> v_i; // v_i[{f, -1 (interne) ou composante }] = indice
   std::vector<std::array<int, 2>> i_v; // v_i[i_v[f]] = f
   for (e = 0; e < domaine.nb_elem(); e++, v_i.clear(), i_v.clear())
@@ -292,7 +324,7 @@ DoubleVect& Champ_Face_PolyMAC_P0::valeur_aux_elems_compo(const DoubleTab& posit
 {
   if (valeurs().get_md_vector() != domaine_PolyMAC_P0().mdv_ch_face) return Champ_Face_PolyMAC_P0P1NC::valeur_aux_elems_compo(positions, polys, val, ncomp);
   int nf_tot = domaine_PolyMAC_P0().nb_faces_tot(), D = dimension, N = valeurs().line_size();
-  assert(val.size() == polys.size());
+  assert(val.size_totale() >= polys.size());
 
   DoubleTab vfe(valeurs());
   update_ve(vfe);

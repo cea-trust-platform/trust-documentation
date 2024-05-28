@@ -38,9 +38,9 @@ Sortie& MD_Vector_composite::printOn(Sortie& os) const
 
   os << "{" << finl;
   os << "global_md" << finl << global_md_ << finl;
-  os << "parts_offsets" << space << parts_offsets_ << finl;
-  os << "shapes" << space << shapes_ << finl;
-  os << "names" << space << names_ << finl;
+  os << "parts_offsets" << tspace << parts_offsets_ << finl;
+  os << "shapes" << tspace << shapes_ << finl;
+  os << "names" << tspace << names_ << finl;
   os << "}" << finl;
   return os;
 }
@@ -123,20 +123,20 @@ static void append_global_md(MD_Vector_std& dest, const MD_Vector_std& src, int 
   // Data of these lists:
   ArrOfInt x_data, y_data, z_data;
   ArrOfInt new_blocs_items_count, new_nb_items_to_items;
-  x_sz.set_smart_resize(1);
-  y_sz.set_smart_resize(1);
-  z_sz.set_smart_resize(1);
-  x_data.set_smart_resize(1);
-  y_data.set_smart_resize(1);
-  z_data.set_smart_resize(1);
-  new_blocs_items_count.set_smart_resize(1);
-  new_nb_items_to_items.set_smart_resize(1);
+
+
+
+
+
+
+
+
 
   ArrOfInt tmp;
-  tmp.set_smart_resize(1);
+
 
   ArrOfInt pe_list(dest.pe_voisins_);
-  pe_list.set_smart_resize(1);
+
   append_blocs(pe_list, src.pe_voisins_);
   array_trier_retirer_doublons(pe_list);
   const int np = pe_list.size_array();
@@ -302,9 +302,9 @@ void MD_Vector_composite::add_part(const MD_Vector& part, int shape, Nom name)
   const int multiplier = (shape == 0) ? 1 : shape;
   data_.add(part);
   const int offset = nb_items_tot_;
-  parts_offsets_.set_smart_resize(1);
+
   parts_offsets_.append_array(offset);
-  shapes_.set_smart_resize(1);
+
   shapes_.append_array(shape);
   names_.add(name);
 

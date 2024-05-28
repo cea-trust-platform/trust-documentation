@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,25 +21,25 @@
 template <typename _TYPE_, typename _TYPE_ARRAY_>
 void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY_>&   coeffs_face)
 {
+  shear_x_time_=IJK_Shear_Periodic_helpler::shear_x_time_;
+  defilement_=IJK_Shear_Periodic_helpler::defilement_;
+  order_interpolation_poisson_solver_=IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_;
   const IJK_Splitting& splitting = coeffs_face.get_splitting();
 
   int i, j, k;
   const int ni = splitting.get_nb_elem_local(DIRECTION_I);
   const int nj = splitting.get_nb_elem_local(DIRECTION_J);
   const int nk = splitting.get_nb_elem_local(DIRECTION_K);
+
   {
-    renum_.resize(nk+2, nj+2, ni+2, Array_base::NOCOPY_NOINIT);
+    renum_.resize(nk+2, nj+2, ni+2, RESIZE_OPTIONS::NOCOPY_NOINIT);
     renum_ = -1; // init a -1
     // plusieur vecteur renum pour le cas shear periodic ou une case peut renvoyer vers plusieurs
     // + 4 autres vecteur contenant les ponderation associee pour interpolation 4th order
-    renum_m1_.resize(nk+2, nj+2, ni+2, Array_base::NOCOPY_NOINIT);
-    renum_p1_.resize(nk+2, nj+2, ni+2, Array_base::NOCOPY_NOINIT);
-    renum_m1_ = -1; // init a -1
-    renum_p1_ = -1; // init a -1
-    ponderation_shear_m1_scal_ = 0.;
-    ponderation_shear_0_scal_ = 0.;
-    ponderation_shear_p1_scal_ = 0.;
-
+    ponderation_shear_p_.resize_array(IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_+1);
+    ponderation_shear_m_.resize_array(IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_+1);
+    ii_p_.resize_array(IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_+1);
+    ii_m_.resize_array(IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_+1);
 
     int count = 0;
     for (k = 0; k < nk; k++)
@@ -48,19 +48,16 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
           {
             int index = count++;
             renum(i,j,k) = index;
-            renum_p1(i,j,k) = -1;
-            renum_m1(i,j,k) = -1;
           }
 
 
     // initialisation du tableau d'indice
 
     ArrOfInt pe_voisins(6);
-    pe_voisins.set_smart_resize(1);
+
     VECT(ArrOfInt) items_to_send(6);
     VECT(ArrOfInt) items_to_recv(6);
     VECT(ArrOfInt) blocs_to_recv(6);
-
     int npe = 0;
 
     const int pe_imin = splitting.get_neighbour_processor(0 /* left */, DIRECTION_I);
@@ -69,71 +66,24 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     const int pe_imax = splitting.get_neighbour_processor(1 /* right */, DIRECTION_I);
     const int pe_jmax = splitting.get_neighbour_processor(1 /* right */, DIRECTION_J);
     const int pe_kmax = splitting.get_neighbour_processor(1 /* right */, DIRECTION_K);
-    int z_index = splitting.get_local_slice_index(2);
-    int z_index_min = 0;
-    int z_index_max = splitting.get_nprocessor_per_direction(2) - 1;
-
-    // duCluzeau
-    // Ici, on doit permuter les indices du vecteur solution de pression pour rendre compte des
-    // conditions de periodicites (ou de shear-periodicité)
 
     int pe = pe_kmin;
-    if (pe >= 0) // si voisin du bas existe
+    if (pe >= 0)
       {
         pe_voisins[npe] = pe;
-        if (pe != pe_kmax) // On a au moins 3 proc sur z || pekmin || pe || pe_kmax ||
+        if (pe != pe_kmax)
           {
-            add_virt_bloc(pe, count, 0,0,-1, ni,nj,0, blocs_to_recv[npe], splitting);
-
-            if( z_index == z_index_min && IJK_Splitting::defilement_==1)
-              {
-                add_dist_bloc(pe, 0,0,0, ni,nj,1,items_to_send[npe],splitting, -1.);
-              }
-            else
-              {
-                add_dist_bloc(pe, 0,0,0, ni,nj,1,items_to_send[npe], splitting);
-              }
+            add_virt_bloc(pe, count, 0,0,-1, ni,nj,0, blocs_to_recv[npe]);
+            add_dist_bloc(pe, 0,0,0, ni,nj,1, items_to_send[npe]);
           }
         else
           {
-            // le meme processeur voisin a gauche et a droite  (par periodicite), soit 1 soit 2 proc sur z
-            // attention a l'ordre des blocs : bug pour le decoupage a deux procs --> a corriger ici ?
-            // ce dessous ne fonctionne que pour 1 proc sur z ?
-
-            if(z_index == z_index_max && IJK_Splitting::defilement_==1)
-              {
-                add_virt_bloc(pe, count, 0,0,-1, ni,nj,0, blocs_to_recv[npe],splitting, 1.);
-              }
-            else
-              {
-                add_virt_bloc(pe, count, 0,0,-1, ni,nj,0, blocs_to_recv[npe], splitting);
-              }
-            if(z_index == z_index_min && IJK_Splitting::defilement_==1)
-              {
-                add_virt_bloc(pe, count, 0,0,nk, ni,nj,nk+1, blocs_to_recv[npe], splitting, -1.);
-              }
-            else
-              {
-                add_virt_bloc(pe, count, 0,0,nk, ni,nj,nk+1, blocs_to_recv[npe], splitting);
-              }
-
-            if( z_index == z_index_max && IJK_Splitting::defilement_==1)
-              {
-                add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk,items_to_send[npe],splitting, 1.);
-              }
-            else
-              {
-                add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk,items_to_send[npe],splitting);
-              }
-            if( z_index == z_index_min && IJK_Splitting::defilement_==1)
-              {
-                add_dist_bloc(pe, 0,0,0, ni,nj,1,items_to_send[npe], splitting, -1.);
-              }
-            else
-              {
-                add_dist_bloc(pe, 0,0,0, ni,nj,1,items_to_send[npe], splitting);
-              }
-
+            // un processeur voisin a gauche et a droite  (par periodicite)
+            // attention a l'ordre des blocs:
+            add_virt_bloc(pe, count, 0,0,-1, ni,nj,0, blocs_to_recv[npe]);
+            add_virt_bloc(pe, count, 0,0,nk, ni,nj,nk+1, blocs_to_recv[npe]);
+            add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk, items_to_send[npe]);
+            add_dist_bloc(pe, 0,0,0, ni,nj,1, items_to_send[npe]);
           }
         npe++;
       }
@@ -144,20 +94,17 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
         pe_voisins[npe] = pe;
         if (pe != pe_jmax)
           {
-            add_virt_bloc(pe, count, 0,-1,0, ni,0,nk, blocs_to_recv[npe], splitting);
-            add_dist_bloc(pe, 0,0,0, ni,1,nk,items_to_send[npe],
-                          splitting);
+            add_virt_bloc(pe, count, 0,-1,0, ni,0,nk, blocs_to_recv[npe]);
+            add_dist_bloc(pe, 0,0,0, ni,1,nk, items_to_send[npe]);
           }
         else
           {
             // un processeur voisin a gauche et a droite  (par periodicite)
             // attention a l'ordre des blocs:
-            add_virt_bloc(pe, count, 0,-1,0, ni,0,nk, blocs_to_recv[npe], splitting);
-            add_virt_bloc(pe, count, 0,nj,0, ni,nj+1,nk, blocs_to_recv[npe], splitting);
-            add_dist_bloc(pe, 0,nj-1,0, ni,nj,nk,items_to_send[npe],
-                          splitting);
-            add_dist_bloc(pe, 0,0,0, ni,1,nk,items_to_send[npe],
-                          splitting);
+            add_virt_bloc(pe, count, 0,-1,0, ni,0,nk, blocs_to_recv[npe]);
+            add_virt_bloc(pe, count, 0,nj,0, ni,nj+1,nk, blocs_to_recv[npe]);
+            add_dist_bloc(pe, 0,nj-1,0, ni,nj,nk, items_to_send[npe]);
+            add_dist_bloc(pe, 0,0,0, ni,1,nk, items_to_send[npe]);
           }
         npe++;
       }
@@ -168,19 +115,17 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
         pe_voisins[npe] = pe;
         if (pe != pe_imax)
           {
-            add_virt_bloc(pe, count, -1,0,0, 0,nj,nk, blocs_to_recv[npe], splitting);
-            add_dist_bloc(pe, 0,0,0, 1,nj,nk,items_to_send[npe],
-                          splitting);
+            add_virt_bloc(pe, count, -1,0,0, 0,nj,nk, blocs_to_recv[npe]);
+            add_dist_bloc(pe, 0,0,0, 1,nj,nk, items_to_send[npe]);
           }
         else
           {
             // un processeur voisin a gauche et a droite  (par periodicite)
             // attention a l'ordre des blocs:
-            add_virt_bloc(pe, count, -1,0,0, 0,nj,nk, blocs_to_recv[npe], splitting);
-            add_virt_bloc(pe, count, ni,0,0, ni+1,nj,nk, blocs_to_recv[npe], splitting);
-            add_dist_bloc(pe, ni-1,0,0, ni,nj,nk,items_to_send[npe],
-                          splitting);
-            add_dist_bloc(pe, 0,0,0, 1,nj,nk,items_to_send[npe], splitting);
+            add_virt_bloc(pe, count, -1,0,0, 0,nj,nk, blocs_to_recv[npe]);
+            add_virt_bloc(pe, count, ni,0,0, ni+1,nj,nk, blocs_to_recv[npe]);
+            add_dist_bloc(pe, ni-1,0,0, ni,nj,nk, items_to_send[npe]);
+            add_dist_bloc(pe, 0,0,0, 1,nj,nk, items_to_send[npe]);
           }
         npe++;
       }
@@ -189,8 +134,8 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     if (pe >= 0 && pe != pe_imin)
       {
         pe_voisins[npe] = pe;
-        add_virt_bloc(pe, count, ni,0,0, ni+1,nj,nk, blocs_to_recv[npe], splitting);
-        add_dist_bloc(pe, ni-1,0,0, ni,nj,nk,items_to_send[npe], splitting);
+        add_virt_bloc(pe, count, ni,0,0, ni+1,nj,nk, blocs_to_recv[npe]);
+        add_dist_bloc(pe, ni-1,0,0, ni,nj,nk, items_to_send[npe]);
         npe++;
       }
 
@@ -198,8 +143,8 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     if (pe >= 0 && pe != pe_jmin)
       {
         pe_voisins[npe] = pe;
-        add_virt_bloc(pe, count, 0,nj,0, ni,nj+1,nk, blocs_to_recv[npe], splitting);
-        add_dist_bloc(pe, 0,nj-1,0, ni,nj,nk,items_to_send[npe], splitting);
+        add_virt_bloc(pe, count, 0,nj,0, ni,nj+1,nk, blocs_to_recv[npe]);
+        add_dist_bloc(pe, 0,nj-1,0, ni,nj,nk, items_to_send[npe]);
         npe++;
       }
 
@@ -207,17 +152,8 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     if (pe >= 0 && pe != pe_kmin)
       {
         pe_voisins[npe] = pe;
-        add_virt_bloc(pe, count, 0,0,nk, ni,nj,nk+1, blocs_to_recv[npe], splitting);
-        // autre test pour le proc pe_kmax, bloc stocke pour assurer la shear periodicite.
-        if( z_index == z_index_max && IJK_Splitting::defilement_==1)
-          {
-            add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk,items_to_send[npe], splitting, 1.);
-          }
-        else
-          {
-            add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk,items_to_send[npe], splitting);
-          }
-
+        add_virt_bloc(pe, count, 0,0,nk, ni,nj,nk+1, blocs_to_recv[npe]);
+        add_dist_bloc(pe, 0,0,nk-1, ni,nj,nk, items_to_send[npe]);
         npe++;
       }
 
@@ -238,19 +174,46 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     coeff_diag_.resize(n_reels);
     voisins_virt_.dimensionner(n_reels);
     coeffs_virt_.dimensionner(n_reels);
+    int z_index_min = 0;
+    int z_index = splitting.get_local_slice_index(2);
+    int z_index_max = splitting.get_nprocessor_per_direction(2) - 1;
 
-    for (k = 0; k < nk; k++)
+    for (i = 0; i < ni; i++)
       {
-        for (j = 0; j < nj; j++)
+
+        double DX = splitting.get_grid_geometry().get_constant_delta(0);
+        double istmp = shear_x_time_ /DX;
+        int offset2 = (int) round(istmp);
+        interpolation_for_shear_periodicity(i , offset2, istmp, ni, 1.);
+        istmp = -shear_x_time_ /DX;
+        offset2 = (int) round(istmp);
+        interpolation_for_shear_periodicity(i , offset2, istmp, ni, -1.);
+
+
+        for (k = 0; k < nk; k++)
           {
-            for (i = 0; i < ni; i++)
+            for (j = 0; j < nj; j++)
               {
-                ajoute_coeff(i,j,k,i,j,k-1,coeffs_face(i,j,k,2), -1);
-                ajoute_coeff(i,j,k,i,j-1,k,coeffs_face(i,j,k,1));
-                ajoute_coeff(i,j,k,i-1,j,k,coeffs_face(i,j,k,0));
-                ajoute_coeff(i,j,k,i+1,j,k,coeffs_face(i+1,j,k,0));
-                ajoute_coeff(i,j,k,i,j+1,k,coeffs_face(i,j+1,k,1));
-                ajoute_coeff(i,j,k,i,j,k+1,coeffs_face(i,j,k+1,2), 1);
+                if (z_index==z_index_min && defilement_==1 && k==0)
+                  {
+                    ajoute_coeff(i,j,k,i,j,k-1,coeffs_face(i,j,k,2), splitting, 1.);
+                  }
+                else
+                  {
+                    ajoute_coeff(i,j,k,i,j,k-1,coeffs_face(i,j,k,2), splitting);
+                  }
+                ajoute_coeff(i,j,k,i,j-1,k,coeffs_face(i,j,k,1), splitting);
+                ajoute_coeff(i,j,k,i-1,j,k,coeffs_face(i,j,k,0), splitting);
+                ajoute_coeff(i,j,k,i+1,j,k,coeffs_face(i+1,j,k,0), splitting);
+                ajoute_coeff(i,j,k,i,j+1,k,coeffs_face(i,j+1,k,1), splitting);
+                if (z_index==z_index_max && defilement_==1 && k==nk-1)
+                  {
+                    ajoute_coeff(i,j,k,i,j,k+1,coeffs_face(i,j,k+1,2), splitting, -1.);
+                  }
+                else
+                  {
+                    ajoute_coeff(i,j,k,i,j,k+1,coeffs_face(i,j,k+1,2), splitting);
+                  }
               }
           }
       }
@@ -287,8 +250,8 @@ void Matrice_Grossiere::build_matrix(const IJK_Field_template<_TYPE_,_TYPE_ARRAY
     voisins_virt_ = IntLists();
     coeffs_virt_ = DoubleLists();
     // pour voir la matrice lisiblement
-    //    carre.imprimer_formatte(Cout);
-    //    rect.imprimer_formatte(Cout);
+    // carre.imprimer_formatte(Cout);
+    // rect.imprimer_formatte(Cout);
   }
 
 }

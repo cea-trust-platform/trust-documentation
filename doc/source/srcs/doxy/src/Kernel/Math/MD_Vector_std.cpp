@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,8 +53,8 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
   // selection: liste des indices des pe a conserver dans pe_voisins
   //  (procs avec qui on echange effectivement des donnees)
   ArrOfInt tmp, selection;
-  tmp.set_smart_resize(1);
-  selection.set_smart_resize(1);
+
+
   int i;
   for (i = 0; i < nb_voisins; i++)
     if (items_to_send[i].size_array() > 0 || items_to_recv[i].size_array() > 0 || blocs_to_recv[i].size_array() > 0)
@@ -84,8 +84,8 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
 
   // Calcul de nb_items_to_items_
   {
-    nb_items_to_items_.resize_array(nb_voisins2, Array_base::NOCOPY_NOINIT);
-    tmp.resize_array(nproc(), Array_base::NOCOPY_NOINIT);
+    nb_items_to_items_.resize_array(nb_voisins2, RESIZE_OPTIONS::NOCOPY_NOINIT);
+    tmp.resize_array(nproc(), RESIZE_OPTIONS::NOCOPY_NOINIT);
     tmp = 0;
     for (i = 0; i < nb_voisins2; i++)
       tmp[pe_voisins_[i]] = items_to_recv[selection[i]].size_array();
@@ -100,7 +100,7 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
   }
   // Calcul de blocs_items_count_
   {
-    blocs_items_count_.resize_array(nb_voisins2, Array_base::NOCOPY_NOINIT);
+    blocs_items_count_.resize_array(nb_voisins2, RESIZE_OPTIONS::NOCOPY_NOINIT);
     for (i = 0; i < nb_voisins2; i++)
       {
         const int nblocs = blocs_to_recv_.get_list_size(i) / 2;
@@ -116,7 +116,7 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
       }
   }
   // Calcul des blocs d'items sequentiels (items non recus d'un autre proc)
-  tmp.resize_array(nb_items_tot, Array_base::NOCOPY_NOINIT);
+  tmp.resize_array(nb_items_tot, RESIZE_OPTIONS::NOCOPY_NOINIT);
   {
     // Marquage des items recus a zero
     tmp = 1;
@@ -143,7 +143,7 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
 
     // Construction d'une liste de blocs d'items sequentiels (ceux qui sont restes a 1)
     ArrOfInt blocs;
-    blocs.set_smart_resize(1);
+
     int nb_seq = 0;
     for (i = 0; i < nb_items_tot; i++)
       {
@@ -170,14 +170,14 @@ MD_Vector_std::MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfIn
   if (nb_items_reels_ >= 0)
     {
       // Les operateurs sur les tableaux calculent tous les items reels
-      blocs_items_to_compute_.resize(2, Array_base::NOCOPY_NOINIT);
+      blocs_items_to_compute_.resize(2, RESIZE_OPTIONS::NOCOPY_NOINIT);
       blocs_items_to_compute_[0] = 0;
       blocs_items_to_compute_[1] = nb_items_reels_;
     }
   else
     {
       // Les operateurs sur les tableaux calculent tout
-      blocs_items_to_compute_.resize(2, Array_base::NOCOPY_NOINIT);
+      blocs_items_to_compute_.resize(2, RESIZE_OPTIONS::NOCOPY_NOINIT);
       blocs_items_to_compute_[0] = 0;
       blocs_items_to_compute_[1] = nb_items_tot_;
     }
@@ -221,15 +221,15 @@ Sortie& MD_Vector_std::printOn(Sortie& os) const
 {
   MD_Vector_base2::printOn(os);
   os << "{" << finl;
-  os << "pe_voisins" << space << pe_voisins_ << finl;
-  os << "items_to_send_index" << space << items_to_send_.get_index() << finl;
-  os << "items_to_send_data" << space << items_to_send_.get_data() << finl;
-  os << "nb_items_to_items" << space << nb_items_to_items_ << finl;
-  os << "items_to_recv_index" << space << items_to_recv_.get_index();
-  os << "items_to_recv_data" << space << items_to_recv_.get_data();
-  os << "blocs_to_recv_index" << space << blocs_to_recv_.get_index() << finl;
-  os << "blocs_to_recv_data" << space << blocs_to_recv_.get_data();
-  os << "blocs_items_count" << space << blocs_items_count_ << finl;
+  os << "pe_voisins" << tspace << pe_voisins_ << finl;
+  os << "items_to_send_index" << tspace << items_to_send_.get_index() << finl;
+  os << "items_to_send_data" << tspace << items_to_send_.get_data() << finl;
+  os << "nb_items_to_items" << tspace << nb_items_to_items_ << finl;
+  os << "items_to_recv_index" << tspace << items_to_recv_.get_index();
+  os << "items_to_recv_data" << tspace << items_to_recv_.get_data();
+  os << "blocs_to_recv_index" << tspace << blocs_to_recv_.get_index() << finl;
+  os << "blocs_to_recv_data" << tspace << blocs_to_recv_.get_data();
+  os << "blocs_items_count" << tspace << blocs_items_count_ << finl;
   os << "}" << finl;
   return os;
 }

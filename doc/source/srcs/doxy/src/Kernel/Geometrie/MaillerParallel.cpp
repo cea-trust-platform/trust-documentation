@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,6 +34,7 @@
 #include <Joint.h>
 
 Implemente_instanciable(MaillerParallel, "MaillerParallel", Interprete);
+// XD maillerparallel interprete maillerparallel 1 creates a parallel distributed hexaedral mesh of a parallelipipedic box. It is equivalent to creating a mesh with a single Pave, splitting it with Decouper and reloading it in parallel with Scatter. It only works in 3D at this time. It can also be used for a sequential computation (with all NPARTS=1)}
 
 Entree& MaillerParallel::readOn(Entree& is)
 {
@@ -264,7 +265,7 @@ void find_matching_coordinates(const DoubleTab& coords,
   }
   // Exchange boundary nodes coordinates with other processors
   ArrOfInt all_pe;
-  all_pe.set_smart_resize(1);
+
   for (i = 0; i < nproc; i++)
     if (i != moi && bbox_intersection(bounding_boxes, moi, i, epsilon))
       all_pe.append_array(i);
@@ -278,7 +279,7 @@ void find_matching_coordinates(const DoubleTab& coords,
   // Send nodes coordinates to processors with non empty intersection
   // temporary array for octree functions:
   ArrOfInt nodes_list;
-  nodes_list.set_smart_resize(1);
+
   int ipe;
   for (ipe = 0; ipe < all_pe.size_array(); ipe++)
     {
@@ -313,7 +314,7 @@ void find_matching_coordinates(const DoubleTab& coords,
       const int pe = all_pe[ipe]; // processor number
       Entree& buffer = schema.recv_buffer(pe);
       ArrOfInt& resu = match[pe];
-      resu.set_smart_resize(1);
+
       resu.resize_array(0);
       while(1)
         {
@@ -355,7 +356,7 @@ static void find_joint_faces(const Domaine& domaine, IntTab& faces)
   construire_connectivite_som_elem(nb_som, elements, som_elem, 0 /* do not include virtual elements */);
   const int nb_som_faces = domaine.type_elem().valeur().nb_som_face();
   faces.resize(0, nb_som_faces);
-  faces.set_smart_resize(1);
+
   IntTab faces_element_reference;
   domaine.type_elem().valeur().get_tab_faces_sommets_locaux(faces_element_reference);
   const int nb_faces_elem = faces_element_reference.dimension(0);
@@ -365,7 +366,7 @@ static void find_joint_faces(const Domaine& domaine, IntTab& faces)
   boundary_faces = 0;
   ArrOfInt une_face(nb_som_faces);
   ArrOfInt liste_elements;
-  liste_elements.set_smart_resize(1);
+
   const int nb_boundaries = domaine.nb_front_Cl();
   for (int i_boundary = 0; i_boundary < nb_boundaries; i_boundary++)
     {
@@ -432,7 +433,7 @@ static void auto_build_joints(Domaine& domaine, const int epaisseur_joint)
     const int ncoord = boundary_nodes_index.size_array();
     // Fill nodes coordinates and bounding boxes
     DoubleTab coord;
-    coord.resize(ncoord, dim, Array_base::NOCOPY_NOINIT);
+    coord.resize(ncoord, dim, RESIZE_OPTIONS::NOCOPY_NOINIT);
     for (i = 0; i < ncoord; i++)
       {
         const int som = boundary_nodes_index[i];
@@ -455,7 +456,7 @@ static void auto_build_joints(Domaine& domaine, const int epaisseur_joint)
             joint.affecte_PEvoisin(pe);
             joint.faces().typer(domaine.type_elem().valeur().type_face());
             ArrOfInt& sommets_joint = joint.set_joint_item(Joint::SOMMET).set_items_communs();
-            sommets_joint.resize_array(n, Array_base::NOCOPY_NOINIT);
+            sommets_joint.resize_array(n, RESIZE_OPTIONS::NOCOPY_NOINIT);
             for (i = 0; i < n; i++)
               sommets_joint[i] = boundary_nodes_index[list[i]];
             sommets_joint.ordonne_array();
@@ -553,25 +554,25 @@ Entree& MaillerParallel::interpreter(Entree& is)
   IntTab mapping;
   {
     Param param(que_suis_je());
-    param.ajouter("domain", &nom_domaine, Param::REQUIRED);
-    param.ajouter("nb_nodes", &nb_noeuds, Param::REQUIRED);
-    param.ajouter("splitting", &decoupage, Param::REQUIRED);
-    param.ajouter("ghost_thickness", &epaisseur_joint, Param::REQUIRED);
-    param.ajouter_flag("perio_x", &perio[0]);
-    param.ajouter_flag("perio_y", &perio[1]);
-    param.ajouter_flag("perio_z", &perio[2]);
-    param.ajouter("function_coord_x", &fonctions_coord[0]);
-    param.ajouter("function_coord_y", &fonctions_coord[1]);
-    param.ajouter("function_coord_z", &fonctions_coord[2]);
-    param.ajouter("file_coord_x", &fichier_coord[0]);
-    param.ajouter("file_coord_y", &fichier_coord[1]);
-    param.ajouter("file_coord_z", &fichier_coord[2]);
-    param.ajouter("boundary_xmin", &nom_bords_min[0]);
-    param.ajouter("boundary_xmax", &nom_bords_max[0]);
-    param.ajouter("boundary_ymin", &nom_bords_min[1]);
-    param.ajouter("boundary_ymax", &nom_bords_max[1]);
-    param.ajouter("boundary_zmin", &nom_bords_min[2]);
-    param.ajouter("boundary_zmax", &nom_bords_max[2]);
+    param.ajouter("domain", &nom_domaine, Param::REQUIRED); // XD_ADD_P ref_domaine the name of the domain to mesh (it must be an empty domain object).
+    param.ajouter("nb_nodes", &nb_noeuds, Param::REQUIRED); // XD_ADD_P listentier dimension defines the spatial dimension (currently only dimension=3 is supported), and nX, nY and nZ defines the total number of nodes in the mesh in each direction.
+    param.ajouter("splitting", &decoupage, Param::REQUIRED); // XD_ADD_P listentier dimension is the spatial dimension and npartsX, npartsY and npartsZ are the number of parts created. The product of the number of parts must be equal to the number of processors used for the computation.
+    param.ajouter("ghost_thickness", &epaisseur_joint, Param::REQUIRED); // XD_ADD_P entier the number of ghost cells (equivalent to the epaisseur_joint parameter of Decouper.
+    param.ajouter_flag("perio_x", &perio[0]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+    param.ajouter_flag("perio_y", &perio[1]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+    param.ajouter_flag("perio_z", &perio[2]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+    param.ajouter("function_coord_x", &fonctions_coord[0]); // XD_ADD_P chaine By default, the meshing algorithm creates nX nY nZ coordinates ranging between 0 and 1 (eg a unity size box). If function_coord_x} is specified, it is used to transform the [0,1] segment to the coordinates of the nodes. funcX must be a function of the x variable only.
+    param.ajouter("function_coord_y", &fonctions_coord[1]); // XD_ADD_P chaine like function_coord_x for y
+    param.ajouter("function_coord_z", &fonctions_coord[2]); // XD_ADD_P chaine like function_coord_x for z
+    param.ajouter("file_coord_x", &fichier_coord[0]); // XD_ADD_P chaine Keyword to read the Nx floating point values used as nodes coordinates in the file.
+    param.ajouter("file_coord_y", &fichier_coord[1]); // XD_ADD_P chaine idem file_coord_x for y
+    param.ajouter("file_coord_z", &fichier_coord[2]); // XD_ADD_P chaine idem file_coord_x for z
+    param.ajouter("boundary_xmin", &nom_bords_min[0]); // XD_ADD_P chaine the name of the boundary at the minimum X direction. If it not provided, the default boundary names are xmin, xmax, ymin, ymax, zmin and zmax. If the mesh is periodic in a given direction, only the MIN boundary name is used, for both sides of the box.
+    param.ajouter("boundary_xmax", &nom_bords_max[0]); // XD_ADD_P chaine not_set
+    param.ajouter("boundary_ymin", &nom_bords_min[1]); // XD_ADD_P chaine not_set
+    param.ajouter("boundary_ymax", &nom_bords_max[1]); // XD_ADD_P chaine not_set
+    param.ajouter("boundary_zmin", &nom_bords_min[2]); // XD_ADD_P chaine not_set
+    param.ajouter("boundary_zmax", &nom_bords_max[2]); // XD_ADD_P chaine not_set
     param.ajouter("mapping", &mapping);
     param.lire_avec_accolades(is);
   }

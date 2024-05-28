@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,9 +25,9 @@
 
 /*! @brief classe SETS (semi-implicite + etapes de stabilisation, a la TRACE)
  *
- * SETS (“Stability-Enhancing Two-Step”)
+ * SETS ("Stability-Enhancing Two-Step")
  *
- *  Ref : J. H. MAHAFFY, “A stability-enhancing two-step method for fluid flow calculations,” Journal of Computational Physics, 46, 3, 329 (1982).
+ *  Ref : J. H. MAHAFFY, "A stability-enhancing two-step method for fluid flow calculations," Journal of Computational Physics, 46, 3, 329 (1982).
  *
  * @sa Simpler Piso
  */
@@ -98,7 +98,7 @@ public :
   };
   DoubleVect norm, residu; //chaque ligne vaut norm * sum alpha, espace pour le residu
   ArrOfInt ix; //indices pour recuperer le residu
-  cv_test_t *cv_ctx = NULL;
+  cv_test_t *cv_ctx = nullptr;
   void init_cv_ctx(const DoubleTab& secmem, const DoubleVect& norm);
 #endif
 

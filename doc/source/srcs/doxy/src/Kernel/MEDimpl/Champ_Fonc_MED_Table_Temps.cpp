@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -92,6 +92,11 @@ void Champ_Fonc_MED_Table_Temps::lire_donnees_champ(const std::string& fileName,
   int first_iter  = tst[0].first;
   int first_order = tst[0].second;
   temps_sauv[0] = tps[0];
+  if (last_time_only_)
+    {
+      Cerr << "last_time not possible. Champ_Fonc_MED_Table_Temps can be used only with the first time " << tps[0] << " in the file." << finl;
+      Process::exit();
+    }
 
   // Only one MCAuto below to avoid double deletion:
   MCAuto<MEDCouplingField> ffield = ReadField(field_type, fileName, meshName, 0, fieldName,
@@ -148,6 +153,10 @@ void Champ_Fonc_MED_Table_Temps::lire(double t, int given_it)
   if (domainebidon_inst.nb_elem() > 0)
     {
       double frac = la_table.val(t);
+      if (frac_==DMAXFLOAT)
+        frac_ = frac;
+      else if (frac!=frac_)
+        set_instationnaire(true); // table non constante
       const DoubleTab& vals0 = le_champ0().valeurs();
       DoubleTab& vals = le_champ().valeurs();
 

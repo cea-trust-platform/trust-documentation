@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -118,7 +118,7 @@ void Domain_Graph::construire_graph_from_segment(const Domaine& dom,
 
   // on construit connectivite item item
   IntTab stencyl(0,2);
-  stencyl.set_smart_resize(1);
+
   int size=0;
   int nbl=liaisons.dimension(0);
   for (int i=0; i<nbl; i++)
@@ -188,7 +188,7 @@ void Domain_Graph::construire_graph_elem_elem(const Domaine& dom,
   int my_offset = offsets[Process::me()];
 
   Cerr << " Construction of the som_elem connectivity" << finl;
-  if(Process::nproc() > 1)
+  if(Process::is_parallel())
     {
       //what we're doing here is not equivalent to construire_connectivite_som_elem with virtual elements set to 1
       //in the latter, we also build the connectivity for virtual nodes
@@ -248,11 +248,11 @@ void Domain_Graph::construire_graph_elem_elem(const Domaine& dom,
   edgegsttab.resize_array(nb_edges+nb_faces_bord);
   edgegsttab = -1;
 
-  vwgts.resize_array(0); //NULL
+  vwgts.resize_array(0); //nullptr
   if (! use_weights)
     {
       weightflag = 0;
-      ewgts.resize_array(0); //NULL
+      ewgts.resize_array(0); //nullptr
     }
   else
     {
@@ -275,7 +275,7 @@ void Domain_Graph::construire_graph_elem_elem(const Domaine& dom,
   // Deux tableaux de travail:
   ArrOfInt une_face(nb_sommets_par_face); // Les sommets de la face en cours
   ArrOfInt voisins; // Les elements voisins d'une_face
-  voisins.set_smart_resize(1);
+
 
   int error = 0;
   int edge_count = 0;
@@ -407,7 +407,7 @@ void Domain_Graph::construire_graph_elem_elem(const Domaine& dom,
         }
       else if (use_weights)
         {
-          if(Process::nproc() == 1)
+          if(Process::is_sequential())
             {
               Cerr << "Warning: You specify use_weights option with Metis but you didn't use Periodique keyword" << finl;
               Cerr << "to define the boundary where periodicity apply." << finl;

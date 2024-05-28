@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,11 +26,14 @@
 #include <Synonyme_info.h>
 #include <Pb_Multiphase.h>
 #include <Probleme_base.h>
+#include <Statistiques.h>
 #include <Matrix_tools.h>
 #include <Array_tools.h>
 #include <TRUSTLists.h>
 #include <Dirichlet.h>
 #include <Symetrie.h>
+
+extern Stat_Counter_Id diffusion_counter_;
 
 Implemente_instanciable( Op_Diff_PolyMAC_P0_Face, "Op_Diff_PolyMAC_P0_Face|Op_Dift_PolyMAC_P0_Face_PolyMAC_P0", Op_Diff_PolyMAC_P0_base );
 Add_synonym(Op_Diff_PolyMAC_P0_Face, "Op_Diff_PolyMAC_P0_var_Face");
@@ -103,8 +106,8 @@ void Op_Diff_PolyMAC_P0_Face::dimensionner_blocs(matrices_t matrices, const tabs
 
   int i, j, k, i_f, e, e_s, f, fb, fc, f_s, n, N = ch.valeurs().line_size(), ne_tot = domaine.nb_elem_tot(), nf_tot = domaine.nb_faces_tot(), d, D = dimension, c;
 
-  IntTrav stencil(0, 2), tpfa(0, N);
-  stencil.set_smart_resize(1), domaine.creer_tableau_faces(tpfa);
+  IntTab stencil(0, 2), tpfa(0, N);
+  domaine.creer_tableau_faces(tpfa);
 
   /* stencils du flux : ceux (reduits) de update_nu si nu constant ou scalaire, ceux (complets) du domaine sinon */
   update_phif(!nu_constant_); //si nu variable, stencil complet
@@ -157,7 +160,7 @@ void Op_Diff_PolyMAC_P0_Face::dimensionner_blocs(matrices_t matrices, const tabs
             tpfa(f, n) = 0;
 
   tableau_trier_retirer_doublons(stencil);
-  Cerr << "width " << Process::mp_sum(stencil.dimension(0)) * 1. / (N * (nf_tot + D * ne_tot)) << " " << mp_somme_vect(tpfa) * 100. / (N * domaine.md_vector_faces().valeur().nb_items_seq_tot())
+  Cerr << "width " << Process::mp_sum(stencil.dimension(0)) * 1. / (N * (domaine.md_vector_faces().valeur().nb_items_seq_tot() + D * domaine.domaine().md_vector_elements().valeur().nb_items_seq_tot())) << " " << mp_somme_vect(tpfa) * 100. / (N * domaine.md_vector_faces().valeur().nb_items_seq_tot())
        << "% TPFA " << finl;
   Matrix_tools::allocate_morse_matrix(N * (nf_tot + ne_tot * D), N * (nf_tot + ne_tot * D), stencil, mat2);
   mat.nb_colonnes() ? mat += mat2 : mat = mat2;
@@ -165,6 +168,7 @@ void Op_Diff_PolyMAC_P0_Face::dimensionner_blocs(matrices_t matrices, const tabs
 
 void Op_Diff_PolyMAC_P0_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
+  statistiques().begin_count(diffusion_counter_);
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse *mat = matrices.count(nom_inco) && !semi_impl.count(nom_inco) ? matrices[nom_inco] : nullptr; //facultatif
   const DoubleTab& inco = semi_impl.count(nom_inco) ? semi_impl.at(nom_inco) : le_champ_inco.non_nul() ? le_champ_inco->valeurs() : equation().inconnue().valeurs();
@@ -261,4 +265,5 @@ void Op_Diff_PolyMAC_P0_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secm
               for (n = 0; n < N; n++)
                 secmem(nf_tot + D * e + d, n) -= coeff(n) * ref_cast(Dirichlet, cls[fcl(f_s, 1)].valeur()).val_imp(fcl(f_s, 2), N * d + n);
         }
+  statistiques().end_count(diffusion_counter_);
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #include <Milieu_MUSIG.h>
 
 Implemente_instanciable( Milieu_MUSIG, "Milieu_MUSIG", Milieu_composite ) ;
-// XD liste_mil listobj liste_mil -1 milieu_base 0 MUSIG medium made of several sub mediums.
+// XD Milieu_MUSIG listobj Milieu_MUSIG -1 milieu_base 0 MUSIG medium made of several sub mediums.
 
 Sortie& Milieu_MUSIG::printOn(Sortie& os) const { return Objet_U::printOn(os); }
 
@@ -167,7 +167,7 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
             {
               Cerr << "Interface between fluid " << n << " : " << fluides[n]->le_nom() << " and " << m << " : " << fluides[m]->le_nom() << finl;
               inter.push_back(&ref_cast(Interface_base, has_saturation_ ? sat_lu.valeur() : inter_lu.valeur()));
-              const Saturation_base *sat = sub_type(Saturation_base, *inter.back()) ? &ref_cast(Saturation_base, *inter.back()) : NULL;
+              const Saturation_base *sat = sub_type(Saturation_base, *inter.back()) ? &ref_cast(Saturation_base, *inter.back()) : nullptr;
               if (sat && sat->get_Pref() > 0) // pour loi en e = e0 + cp * (T - T0)
                 {
                   const double hn = pn ? sat->Hvs(sat->get_Pref()) : sat->Hls(sat->get_Pref()),
@@ -176,7 +176,7 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
                   fluides[n]->set_h0_T0(hn, T0), fluides[m]->set_h0_T0(hm, T0);
                 }
             }
-          else inter.push_back(NULL);
+          else inter.push_back(nullptr);
         }
       tab_interface.push_back(inter);
     }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,6 +26,7 @@
 #include <Option_PolyMAC_P0.h>
 #include <Pb_Multiphase.h>
 #include <Probleme_base.h>
+#include <Statistiques.h>
 #include <Matrix_tools.h>
 #include <Milieu_base.h>
 #include <Array_tools.h>
@@ -36,6 +37,8 @@
 #include <cfloat>
 #include <vector>
 #include <cmath>
+
+extern Stat_Counter_Id convection_counter_;
 
 Implemente_instanciable(Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem, "Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem|Op_Conv_EF_Stab_PolyMAC_P0_Elem", Op_Conv_PolyMAC_base);
 Implemente_instanciable_sans_constructeur(Op_Conv_Amont_PolyMAC_P0P1NC_Elem, "Op_Conv_Amont_PolyMAC_P0P1NC_Elem|Op_Conv_Amont_PolyMAC_P0_Elem", Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem);
@@ -69,12 +72,11 @@ Entree& Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::readOn(Entree& is)
       noms_x_phases_.dimensionner(pb.nb_phases()), x_phases_.resize(pb.nb_phases());
       for (int i = 0; i < pb.nb_phases(); i++)
         {
-          champs_compris_.ajoute_nom_compris(noms_cc_phases_[i] = Nom("debit_") + pb.nom_phase(i));
-          champs_compris_.ajoute_nom_compris(noms_vd_phases_[i] = Nom("vitesse_debitante_") + pb.nom_phase(i));
-          champs_compris_.ajoute_nom_compris(noms_x_phases_[i] = Nom("titre_") + pb.nom_phase(i));
+          noms_cc_phases_[i] = Nom("debit_") + pb.nom_phase(i);
+          noms_vd_phases_[i] = Nom("vitesse_debitante_") + pb.nom_phase(i);
+          noms_x_phases_[i] = Nom("titre_") + pb.nom_phase(i);
         }
     }
-
   return is;
 }
 
@@ -100,7 +102,8 @@ double Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::calculer_dt_stab() const
   const Domaine_Poly_base& domaine = le_dom_poly_.valeur();
   const DoubleVect& fs = domaine.face_surfaces(), &pf = equation().milieu().porosite_face(), &ve = domaine.volumes(), &pe = equation().milieu().porosite_elem();
   const DoubleTab& vit = vitesse_->valeurs(),
-                   *alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : NULL;
+                   *alp = sub_type(Pb_Multiphase, equation().probleme()) ?
+                          &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : nullptr;
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins(), &fcl = ref_cast(Champ_Elem_PolyMAC, equation().inconnue().valeur()).fcl();
   int i, e, f, n, N = std::min(vit.line_size(), equation().inconnue().valeurs().line_size());
   DoubleTrav flux(N); //somme des flux pf * |f| * vf
@@ -113,7 +116,7 @@ double Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::calculer_dt_stab() const
             flux(n) += pf(f) * fs(f) * std::max((e == f_e(f, 1) ? 1 : -1) * vit(f, n), 0.); //seul le flux entrant dans e compte
 
       for (n = 0; n < N; n++)
-        if ((!alp || (*alp)(e, n) > 1e-3) && std::abs(flux(n)) > 1e-12 /* eviter les valeurs “tres proches de 0 mais pas completement nulles” */)
+        if ((!alp || (*alp)(e, n) > 1e-3) && std::abs(flux(n)) > 1e-12 /* eviter les valeurs 'tres proches de 0 mais pas completement nulles' */)
           dt = std::min(dt, pe(e) * ve(e) / flux(n));
     }
 
@@ -131,8 +134,8 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::dimensionner_blocs(matrices_t mats, co
     if (i_m.first == "vitesse" || (cc.derivees().count(i_m.first) && !semi_impl.count(cc.le_nom().getString())))
       {
         Matrice_Morse mat;
-        IntTrav stencil(0, 2);
-        stencil.set_smart_resize(1);
+        IntTab stencil(0, 2);
+
         int m, M = equation().probleme().get_champ(i_m.first.c_str()).valeurs().line_size();
         if (i_m.first == "vitesse") /* vitesse */
           {
@@ -162,6 +165,7 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::dimensionner_blocs(matrices_t mats, co
 // renvoie resu
 void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::ajouter_blocs(matrices_t mats, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
+  statistiques().begin_count(convection_counter_);
   const Domaine_Poly_base& domaine = le_dom_poly_.valeur();
   const IntTab& f_e = domaine.face_voisins(), &fcl = ref_cast(Champ_Inc_P0_base, equation().inconnue().valeur()).fcl(), &fcl_v = ref_cast(Champ_Face_base, vitesse_.valeur()).fcl();
   const DoubleVect& fs = domaine.face_surfaces(), &pf = equation().milieu().porosite_face();
@@ -210,6 +214,29 @@ void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::ajouter_blocs(matrices_t mats, DoubleT
                 for (n = 0, m = 0, M = std::get<2>(d_m_i); n < N; n++, m += (M > 1))
                   (*std::get<1>(d_m_i))(N * e + n, M * eb + m) += (i ? -1 : 1) * dc_flux(j, n) * (*std::get<0>(d_m_i))(eb, m);
       }
+  statistiques().end_count(convection_counter_);
+}
+
+void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::get_noms_champs_postraitables(Noms& nom,Option opt) const
+{
+  Op_Conv_PolyMAC_base::get_noms_champs_postraitables(nom,opt);
+  Noms noms_compris;
+
+  if (sub_type(Masse_Multiphase, equation()))
+    {
+      const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, equation().probleme());
+
+      for (int i = 0; i < pb.nb_phases(); i++)
+        {
+          noms_compris.add(noms_cc_phases_[i]);
+          noms_compris.add(noms_vd_phases_[i]);
+          noms_compris.add(noms_x_phases_[i]);
+        }
+    }
+  if (opt==DESCRIPTION)
+    Cerr<<" Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem : "<< noms_compris <<finl;
+  else
+    nom.add(noms_compris);
 }
 
 void Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::creer_champ(const Motcle& motlu)

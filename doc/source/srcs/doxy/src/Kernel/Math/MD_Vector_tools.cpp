@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -46,7 +46,7 @@ public:
 
 
 template <class VECT, class TAB>
-static void creer_tableau_distribue_(const MD_Vector& md, VECT& v, Array_base::Resize_Options opt)
+static void creer_tableau_distribue_(const MD_Vector& md, VECT& v, RESIZE_OPTIONS opt)
 {
   if (v.get_md_vector().non_nul())
     {
@@ -102,7 +102,7 @@ static void creer_tableau_distribue_(const MD_Vector& md, VECT& v, Array_base::R
  *   Les cases virtuelles ne sont pas initialisees...
  *
  */
-void MD_Vector_tools::creer_tableau_distribue(const MD_Vector& md, Array_base& v, Array_base::Resize_Options opt)
+void MD_Vector_tools::creer_tableau_distribue(const MD_Vector& md, Array_base& v, RESIZE_OPTIONS opt)
 {
   if (!md.non_nul())
     {
@@ -143,7 +143,7 @@ void echange_espace_virtuel_(const MD_Vector& md, TRUSTVect<_TYPE_>& v, const Ec
       mdv.initialize_comm(opt, comm, v);
       comm.end_init();
     }
-  bool bufferOnDevice = Process::nproc()>1 && v.isDataOnDevice() && Objet_U::computeOnDevice;
+  bool bufferOnDevice = Process::is_parallel() && v.isDataOnDevice() && Objet_U::computeOnDevice;
   comm.begin_comm(bufferOnDevice);     // buffer allocated on device
   mdv.prepare_send_data(opt, comm, v); // pack buffer on device (read_from_vect_items)
   comm.exchange(bufferOnDevice);       // buffer d2h + MPI + buffer h2d
@@ -255,7 +255,7 @@ int MD_Vector_tools::get_sequential_items_flags(const MD_Vector& md, ArrOfInt& f
 {
   const MD_Vector_base& mdv = md.valeur();
   const int sz = mdv.get_nb_items_tot() * line_size;
-  flags.resize_array(sz, Array_base::NOCOPY_NOINIT);
+  flags.resize_array(sz, RESIZE_OPTIONS::NOCOPY_NOINIT);
   return get_seq_flags(mdv, flags, 0, line_size);
 }
 
@@ -271,7 +271,7 @@ void MD_Vector_tools::compute_sequential_items_index(const MD_Vector&, MD_Vector
 static int extract_blocs(const ArrOfInt src, const ArrOfInt& renum, ArrOfInt& dest)
 {
   const int nblocs_src = src.size_array() / 2;
-  dest.set_smart_resize(1);
+
   dest.resize_array(0);
   int end_last_bloc = -1;
   int count = 0;
@@ -359,20 +359,20 @@ static void creer_md_vect_renum(const IntVect& renum, const MD_Vector_std& src, 
   ArrOfInt dest_blocs_recv_data;
 
   ArrOfInt tmp;
-  tmp.set_smart_resize(1);
+
   {
-    dest_items_recv_index.resize_array(nb_pe_voisins + 1, Array_base::NOCOPY_NOINIT);
+    dest_items_recv_index.resize_array(nb_pe_voisins + 1, RESIZE_OPTIONS::NOCOPY_NOINIT);
     dest_items_recv_index[0] = 0;
-    dest_blocs_recv_index.resize_array(nb_pe_voisins + 1, Array_base::NOCOPY_NOINIT);
+    dest_blocs_recv_index.resize_array(nb_pe_voisins + 1, RESIZE_OPTIONS::NOCOPY_NOINIT);
     dest_blocs_recv_index[0] = 0;
-    dest.blocs_items_count_.resize_array(nb_pe_voisins, Array_base::NOCOPY_NOINIT);
-    dest.nb_items_to_items_.resize_array(nb_pe_voisins, Array_base::NOCOPY_NOINIT);
+    dest.blocs_items_count_.resize_array(nb_pe_voisins, RESIZE_OPTIONS::NOCOPY_NOINIT);
+    dest.nb_items_to_items_.resize_array(nb_pe_voisins, RESIZE_OPTIONS::NOCOPY_NOINIT);
     // Preallocation de la taille maxi
-    dest_items_recv_data.resize_array(src.items_to_recv_.get_data().size_array(), Array_base::NOCOPY_NOINIT);
-    dest_items_recv_data.set_smart_resize(1);
+    dest_items_recv_data.resize_array(src.items_to_recv_.get_data().size_array(), RESIZE_OPTIONS::NOCOPY_NOINIT);
+
     dest_items_recv_data.resize_array(0);
     // On ne peut pas prevoir le nombre de blocs, il peut y en avoir plus que dans la source
-    dest_blocs_recv_data.set_smart_resize(1);
+
     for (int i_pe = 0; i_pe < nb_pe_voisins; i_pe++)
       {
         tmp.resize_array(0);
@@ -456,12 +456,12 @@ static void creer_md_vect_renum(const IntVect& renum, const MD_Vector_std& src, 
   // Construction de dest.items_to_send avec les infos recues
   //
   ArrOfInt dest_items_send_index;
-  dest_items_send_index.resize_array(nb_pe_voisins + 1, Array_base::NOCOPY_NOINIT);
+  dest_items_send_index.resize_array(nb_pe_voisins + 1, RESIZE_OPTIONS::NOCOPY_NOINIT);
   ArrOfInt dest_items_send_data;
   ArrOfInt nb_items_to_items(nb_pe_voisins); // Initialise a zero
 
   // Allocation d'une taille par borne superieure:
-  dest_items_send_data.resize_array(src.items_to_send_.get_data().size_array(), Array_base::NOCOPY_NOINIT);
+  dest_items_send_data.resize_array(src.items_to_send_.get_data().size_array(), RESIZE_OPTIONS::NOCOPY_NOINIT);
   dest_items_send_index[0] = 0;
   {
     int count = 0;
@@ -496,7 +496,7 @@ static void creer_md_vect_renum(const IntVect& renum, const MD_Vector_std& src, 
         Process::exit();
       }
     // On ajuste a la taille definitive
-    dest_items_send_data.set_smart_resize(1);
+
     dest_items_send_data.resize_array(count);
   }
   schema_comm.end_comm();
@@ -516,7 +516,7 @@ static void creer_md_vect_renum(const IntVect& renum, const MD_Vector_std& src, 
   //  processeurs supprimes.
   {
     int pe_count = 0;
-    dest.pe_voisins_.resize_array(nb_pe_voisins, Array_base::NOCOPY_NOINIT);
+    dest.pe_voisins_.resize_array(nb_pe_voisins, RESIZE_OPTIONS::NOCOPY_NOINIT);
     for (int i_pe = 0; i_pe < nb_pe_voisins; i_pe++)
       {
         int flag = 0;
@@ -538,17 +538,17 @@ static void creer_md_vect_renum(const IntVect& renum, const MD_Vector_std& src, 
             pe_count++;
           }
       }
-    dest_items_recv_index.set_smart_resize(1);
+
     dest_items_recv_index.resize_array(pe_count+1);
-    dest_blocs_recv_index.set_smart_resize(1);
+
     dest_blocs_recv_index.resize_array(pe_count+1);
-    dest_items_send_index.set_smart_resize(1);
+
     dest_items_send_index.resize_array(pe_count+1);
-    dest.pe_voisins_.set_smart_resize(1);
+
     dest.pe_voisins_.resize_array(pe_count);
-    dest.blocs_items_count_.set_smart_resize(1);
+
     dest.blocs_items_count_.resize_array(pe_count);
-    dest.nb_items_to_items_.set_smart_resize(1);
+
     dest.nb_items_to_items_.resize_array(pe_count);
   }
   dest.items_to_send_.set_index_data(dest_items_send_index, dest_items_send_data);
@@ -636,7 +636,7 @@ void MD_Vector_tools::dump_vector_with_md(const DoubleVect& v, Sortie& os)
   const MD_Vector_base& md = v.get_md_vector().valeur();
   os << md.que_suis_je() << finl;
   os << md << finl;
-  os << "line_size" << space << v.line_size() << finl;
+  os << "line_size" << tspace << v.line_size() << finl;
 
   os << v.size_array() << finl;
   os.put(v.addr(), v.size_array(), v.line_size());
@@ -672,7 +672,7 @@ void MD_Vector_tools::restore_vector_with_md(DoubleVect& v, Entree& is)
 
   // Astuce pour restaurer le line_size:
   DoubleTab toto;
-  toto.resize(md_ptr.valeur().get_nb_items_tot(), line_size, Array_base::NOCOPY_NOINIT);
+  toto.resize(md_ptr.valeur().get_nb_items_tot(), line_size, RESIZE_OPTIONS::NOCOPY_NOINIT);
   int size_tot;
   is >> size_tot;
   is.get(toto.addr(), size_tot);
@@ -689,13 +689,13 @@ MD_Vector MD_Vector_tools::extend(const MD_Vector& src, extra_item_t& items)
   /* remplissage de : recep[p] -> liste des items qu'on veut recevoir du processeur p
                       items[{p, i}] -> ou on va placer chaque item dans le MD_Vector elargi */
   int i, j, p, nb_items_tot = src.valeur().get_nb_items_tot(), idx = nb_items_tot;
-  const MD_Vector_std *mds = NULL;
+  const MD_Vector_std *mds = nullptr;
   if (sub_type(MD_Vector_std, src.valeur())) mds = &ref_cast(MD_Vector_std, src.valeur());
   else if (sub_type(MD_Vector_composite, src.valeur())) mds = &ref_cast(MD_Vector_composite, src.valeur()).global_md_;
 
   /* recv[p] : items qu'on veut recevoir du processeur p : taille nrecv[p]. On en profite pour les numeroter dans items */
   ArrsOfInt recv(Process::nproc());
-  for (p = 0; p < Process::nproc(); p++) recv[p].set_smart_resize(1);
+
   std::vector<int> nrecv(Process::nproc());
   for (auto &kv : items) recv[kv.first[0]].append_array(kv.first[1]), kv.second = idx, nrecv[kv.first[0]]++, idx++;
 

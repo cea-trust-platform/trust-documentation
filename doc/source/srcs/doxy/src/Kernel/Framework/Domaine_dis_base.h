@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,11 +19,15 @@
 #include <Sous_domaines_dis.h>
 #include <TRUST_Ref.h>
 #include <Domaine.h>
+#include <Champ_Fonc.h>
+#include <Champs_compris_interface.h>
+#include <Champs_compris.h>
 
 class Domaine_Cl_dis_base;
 class Frontiere_dis_base;
 class Domaine_dis;
 class Conds_lim;
+class Probleme_base;
 
 /*! @brief classe Domaine_dis_base Cette classe est la base de la hierarchie des domaines discretisees.
  *
@@ -31,7 +35,7 @@ class Conds_lim;
  *      A chaque discretisation spatiale (VDF, VEF, PolyMAC_P0P1NC, ...)  de TRUST correspond une classe derivant
  *      de Domaine_dis_base implementant les outils necessaires a la methode.
  */
-class Domaine_dis_base : public Objet_U
+class Domaine_dis_base : public Champs_compris_interface, public Objet_U
 {
   Declare_base(Domaine_dis_base);
 
@@ -97,12 +101,23 @@ public :
     Process::exit();
   }
 
+  // Post processing de champs:
+  const Champ_Fonc& volume_maille() const { return volume_maille_; }
+  const Champ_Fonc& mesh_numbering() const { return mesh_numbering_; }
+  void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
+  void creer_champ(const Motcle& motlu) override { Process::exit("No, call creer_champ(const Motcle&, const Probleme_base&)"); };
+  void creer_champ(const Motcle&, const Probleme_base&);
+  const Champ_base& get_champ(const Motcle&) const override;
+
 protected :
   REF(Domaine) le_dom;
 
   Sous_domaines_dis les_sous_domaines_dis;
   int dist_paroi_initialisee_ = 0;
   DoubleTab y_elem_, y_faces_;
+  Champs_compris champs_compris_;
+  Champ_Fonc volume_maille_;
+  Champ_Fonc mesh_numbering_;
 };
 
 #endif /* Domaine_dis_base_included */

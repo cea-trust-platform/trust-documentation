@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,7 +18,7 @@
 #include <TRUSTTab.h>
 
 Implemente_base(Frontiere,"Frontiere",Objet_U);
-
+// XD bord_base objet_lecture bord_base -1 Basic class for block sides. Block sides that are neither edges nor connectors are not specified. The duplicate nodes of two blocks in contact are automatically recognized and deleted.
 
 /*! @brief Lit les specification d'une frontiere a partir d'un flot d'entree.
  *
@@ -181,7 +181,7 @@ void Frontiere::add(const Frontiere& front)
 /*! @brief Cree un tableau ayant une "ligne" par face de cette frontiere Voir MD_Vector_tools::creer_tableau_distribue()
  *
  */
-void Frontiere::creer_tableau_faces(Array_base& v, Array_base::Resize_Options opt) const
+void Frontiere::creer_tableau_faces(Array_base& v, RESIZE_OPTIONS opt) const
 {
   const MD_Vector& md = les_faces.les_sommets().get_md_vector();
   MD_Vector_tools::creer_tableau_distribue(md, v, opt);

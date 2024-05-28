@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,6 +16,12 @@
 #ifndef Process_included
 #define Process_included
 
+#include <TRUST_Version.h>  // so that it is accessible from everywhere in TRUST
+
+#ifdef LATATOOLS
+#include <string>
+#include <stdlib.h>
+#endif
 
 class Objet_U;
 class Nom;
@@ -38,33 +44,51 @@ void change_disable_stop(int new_stop);
 class Process
 {
 public:
-  Process();
-  virtual ~Process();
+  virtual ~Process() { }
 
-  static int je_suis_maitre();
+  // Simplified dummy API for lata_tools
+#ifdef LATATOOLS
+  static int me() { return 0; }
+  static int nproc()  { return 1; }
+  static bool is_parallel()  { return false; }
+  static void exit(int exit_code = -1) { ::exit(exit_code); }
+  static void exit(const std::string& s) { ::exit(-1); }
+
+  static double mp_sum(double) { return 0; }
+  static double mp_max(double) { return 0; }
+  static int mp_max(int) { return 0; }
+  static double mp_min(double) { return 0; }
+  static int mp_min(int) { return 0; }
+  static int mp_sum(int) { return 0; }
+
+#else
+  static int me(); /* mon rang dans le groupe courant */
   static int nproc();
-  static void   barrier();
+  static bool is_parallel();
+  static void exit(int exit_code = -1);
+
   static double mp_sum(double);
   static double mp_max(double);
   static int mp_max(int);
   static double mp_min(double);
   static int mp_min(int);
   static int mp_sum(int);
-  static bool mp_and(bool);
 
-  static int me();                        /* mon rang dans le groupe courant */
-  static void   exit(int exit_code = -1);
-  static void   exit(const Nom& message, int exit_code = -1);
-  static void   abort();
+  static int je_suis_maitre();
+  static void exit(const Nom& message, int exit_code = -1);
+  static bool is_sequential(); // serial ?
+  static void barrier();
+  static bool mp_and(bool);
+  static void abort();
 
   static Sortie& Journal(int message_level = 0);
   static double ram_processeur();
-  static void imprimer_ram_totale(int all_process=0);
+  static void imprimer_ram_totale(int all_process = 0);
   static int exception_sur_exit;
   static int multiple_files;
   static bool force_single_file(const int ranks, const Nom& filename);
-private:
+#endif
 };
 
-#endif
+#endif /* Process_included */
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <EFichier.h>
 #include <EChaine.h>
 #include <medcoupling++.h>
-#include <trust_med_utils.h>
+#include <TRUST_2_MED.h>
 #include <Comm_Group_MPI.h>
 #ifdef MEDCOUPLING_
 #include <MEDLoader.hxx>
@@ -127,7 +127,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
   int multiple_med = 0;
   Nom tmp(nom_fichier_med_);
   tmp.prefix("0001.med");
-  if (tmp!=nom_fichier_med_ && Process::nproc()>1)
+  if (tmp!=nom_fichier_med_ && Process::is_parallel())
     {
       multiple_med = 1;
       /*
@@ -156,7 +156,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
         {
           // use_existing_domain utilisable en parallele uniquement si le process 0 gere tout le domaine ou si decoup specifie:
           const Domaine& le_domaine=ref_cast(Domaine, interprete().objet(nom_dom_));
-          if (Process::nproc()>1 && mp_max((int)(le_domaine.nb_som()>0)) != 0 && !nom_decoup_lu)
+          if (Process::is_parallel() && mp_max((int)(le_domaine.nb_som()>0)) != 0 && !nom_decoup_lu)
             {
               Cerr << "Warning, you can't use use_existing_domain on a partitionned domain like " << nom_dom_ << finl;
               Cerr << "It is not parallelized yet... So we use MED mesh, which is not optimal." << finl;
@@ -183,13 +183,16 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
           liremed.associer_domaine(dom_med_);
           liremed.retrieve_MC_objects();
           const MEDCouplingUMesh* new_um = liremed.get_mc_mesh();
-          if (le_domaine.get_mc_mesh() == nullptr)
-            le_domaine.build_mc_mesh();
           const MEDCouplingUMesh* root_um = le_domaine.get_mc_mesh();
           try
             {
               DataArrayIdType *dnup1=nullptr, *dnup2=nullptr;
-              root_um->checkGeoEquivalWith(new_um, /* levOfCheck=  */ 2, Objet_U::precision_geom, dnup1, dnup2);
+              // Less strict checkGeoEquivalWith (levOfCheck = 12 instead of 2). we use now "nodal" comparison.
+              // Two cells are considered equal if they are based on same nodes and have the same type.
+              // This is the weakest policy, it can be used by users not sensitive to cell orientation.
+              // if levOfCheck set to 2, some F5 and G3 tests fail
+
+              root_um->checkGeoEquivalWith(new_um, /* levOfCheck=  */ 12, Objet_U::precision_geom, dnup1, dnup2);
               //MCAuto<DataArrayIdType> dnu1(dnup1), dnu2(dnup2);
             }
           catch(INTERP_KERNEL::Exception& e)
@@ -224,7 +227,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
               if (est_different(BB1(i,j), BB2(i,j)))
                 {
                   Cerr << "Error, Champ_Fonc_MED can't read the partitionned MED files." << finl;
-                  Cerr << "Cause if seems the MED partition is different than the " << dom_calcul.le_nom() << " domain partition." << finl;
+                  Cerr << "=> it seems that the MED partition is different than the '" << dom_calcul.le_nom() << "' domain partition." << finl;
                   Process::exit();
                 }
           Cerr << "Ok MED partition matches the domain partition so reading multiple MED files..." << finl;
@@ -240,7 +243,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
     }
   // FIN MODIF ELI LAUCOIN (06/03/2012)
   /* si on est en parallele : creation du filtre */
-  if (Process::nproc() > 1 && field_size != le_champ().valeurs().dimension(0))
+  if (Process::is_parallel() && field_size != le_champ().valeurs().dimension(0))
     {
       EFichier fdec;
       fdec.ouvrir(nom_decoup_);
@@ -299,13 +302,13 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
       Cerr << "Creating a filter to access efficiently values in " << nom_fichier_med_ << finl;
       if ((int) filter.size() != le_champ().valeurs().dimension(0))
         {
-          Cerr << "Champ_Fonc_MED on parallel domain : inconsistency between filter and domain!" << finl;
+          Cerr << "Champ_Fonc_MED on parallel domain : inconsistency between filter and domain (not the same number of entities)!" << finl;
           Process::exit();
         }
     }
   else if (field_size != le_champ().valeurs().dimension(0))
     {
-      Cerr << "Champ_Fonc_MED on existing domain : inconsistency between domain file and field!" << finl;
+      Cerr << "Champ_Fonc_MED on existing domain : inconsistency between domain file and field (not the same number of entities)!" << finl;
       Process::exit();
     }
   le_champ().nommer(nom_champ_);
@@ -490,8 +493,10 @@ int Champ_Fonc_MED::creer(const Nom& nom_fic, const Domaine& un_dom, const Motcl
     }
   if (!ok)
     {
-      Cerr << "Unable to find into file " << fileName << " a field named like :" << finl;
-      Cerr << fieldNamesGuess << finl;
+      Cerr << "Unable to find into file '" << fileName << "' a field named like :" << finl;
+      Cerr << "  " << fieldNamesGuess << finl;
+      Cerr << "supported by mesh '" << meshName << "'" << finl;
+      Cerr << finl;
       Cerr << "This file contains the field(s) named:" << finl;
       for (unsigned i=0; i<fieldNames.size(); i++)
         Cerr << fieldNames[i] << finl;
@@ -542,7 +547,7 @@ MCAuto<MEDCouplingField> Champ_Fonc_MED::lire_champ(const std::string& fileName,
                                                     const std::string& fieldName, const int iteration, const int order)
 {
   // Flag pour lecture plus rapide du field sans lecture du mesh si le maillage MED est deja disponible:
-  bool fast = meshName == domaine().le_nom() && domaine().get_mc_mesh() != nullptr;
+  bool fast = meshName == domaine().le_nom() && domaine().is_mc_mesh_ready();
   Cerr << "Reading" << (fast ? " (fast)" : "") << " the field " << fieldName << " on the " << meshName << " mesh into " << fileName << " file";
   MCAuto<MEDCouplingField> ffield;
   Cerr << "meshName " << meshName << " " << domaine().le_nom()  << " " << (int)(domaine().get_mc_mesh() != nullptr) << finl;

@@ -35,22 +35,6 @@ public:
   {
     return renum_(k+1, j+1, i+1);
   }
-  const int& renum_m2(int i, int j, int k) const
-  {
-    return renum_m2_(k+1, j+1, i+1);
-  }
-  const int& renum_m1(int i, int j, int k) const
-  {
-    return renum_m1_(k+1, j+1, i+1);
-  }
-  const int& renum_p1(int i, int j, int k) const
-  {
-    return renum_p1_(k+1, j+1, i+1);
-  }
-  const int& renum_p2(int i, int j, int k) const
-  {
-    return renum_p2_(k+1, j+1, i+1);
-  }
 
   const Matrice_Base& matrice() const
   {
@@ -64,59 +48,44 @@ public:
 protected:
   void ajoute_coeff(int i, int j, int k,
                     int i_voisin, int j_voisin, int k_voisin,
-                    const double coeff, const int shear_perio = 0);
+                    const double coeff, IJK_Splitting splitting, const double shear_perio);
+  void ajoute_coeff(int i, int j, int k,
+                    int i_voisin, int j_voisin, int k_voisin,
+                    const double coeff, IJK_Splitting splitting);
 
   int& renum(int i, int j, int k)
   {
     return renum_(k+1, j+1, i+1);
   }
-  int& renum_m2(int i, int j, int k)
-  {
-    return renum_m2_(k+1, j+1, i+1);
-  }
-  int& renum_m1(int i, int j, int k)
-  {
-    return renum_m1_(k+1, j+1, i+1);
-  }
-  int& renum_p1(int i, int j, int k)
-  {
-    return renum_p1_(k+1, j+1, i+1);
-  }
-  int& renum_p2(int i, int j, int k)
-  {
-    return renum_p2_(k+1, j+1, i+1);
-  }
-
 
 
   void add_virt_bloc(int pe, int& count, int imin, int jmin, int kmin,
-                     int imax, int jmax, int kmax,ArrOfInt& virt_blocs,
-                     IJK_Splitting splitting, double offset = 0.);
+                     int imax, int jmax, int kmax,
+                     ArrOfInt& virt_blocs);
+
   void add_dist_bloc(int pe, int imin, int jmin, int kmin,
                      int imax, int jmax, int kmax,
-                     ArrOfInt& items_to_send,
-                     IJK_Splitting splitting, double offset = 0.);
+                     ArrOfInt& items_to_send);
+
+
+  void interpolation_for_shear_periodicity(const int i, const int send_i /*offset2*/, const double istmp/*istmp*/,
+                                           const int real_size_i /*ni*/, const double shear_perio);
+
 
   Matrice_Bloc mat_;
 
-  MD_Vector md_p1_;
   MD_Vector md_;
-  MD_Vector md_m1_;
 
   // renum_(k+1,j+1,i+1) = indice de l'inconnue dans le vecteur inconnue de la matrice
-
-  int interpolation_order_ = 2;
+  double shear_x_time_;
+  int defilement_;
+  int order_interpolation_poisson_solver_;
   IntTab renum_;
-  IntTab renum_m2_;
-  IntTab renum_m1_;
-  IntTab renum_p1_;
-  IntTab renum_p2_;
+  ArrOfInt ii_p_;
+  ArrOfInt ii_m_;
+  ArrOfDouble ponderation_shear_p_;
+  ArrOfDouble ponderation_shear_m_;
 
-  double ponderation_shear_m2_scal_;
-  double ponderation_shear_m1_scal_;
-  double ponderation_shear_0_scal_;
-  double ponderation_shear_p1_scal_;
-  double ponderation_shear_p2_scal_;
 
   IntLists voisins_;
   DoubleLists coeffs_;

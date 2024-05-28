@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,33 +16,43 @@
 #include <TRUSTArray.h>
 #include <string.h>
 
+// Ajout d'un flag par appel a end_gpu_timer peut etre couteux (creation d'une string)
+#ifdef _OPENMP
+static bool timer=true;
+#else
+static bool timer=false;
+#endif
+
 // TRUSTArray kernels for device moved in .cpp file to avoid multiple definition during link
 template <typename _TYPE_>
 Sortie&  TRUSTArray<_TYPE_>::printOn(Sortie& os) const
 {
+#ifndef LATATOOLS
   this->checkDataOnHost();
   int sz = size_array();
   os << sz << finl;
   if (sz > 0)
     {
-      const _TYPE_* v = data_;
+      const _TYPE_* v = span_.data();
       os.put(v,sz,sz);
     }
+#endif
   return os;
 }
 
 template <typename _TYPE_>
 Entree&  TRUSTArray<_TYPE_>::readOn(Entree& is)
 {
+#ifndef LATATOOLS
   int sz;
   is >> sz;
   if (sz >= 0)
     {
-// Appel a la methode sans precondition sur le type derive (car readOn est virtuelle, les autres proprietes seront initialisees correctement)
+      // Appel a la methode sans precondition sur le type derive (car readOn est virtuelle, les autres proprietes seront initialisees correctement)
       resize_array_(sz);
       if (sz > 0)
         {
-          _TYPE_* v = data_;
+          _TYPE_* v = span_.data();
           is.get(v,sz);
         }
     }
@@ -51,26 +61,124 @@ Entree&  TRUSTArray<_TYPE_>::readOn(Entree& is)
       Cerr << "Error in TRUSTArray:readOn : size = " << sz << finl;
       Process::exit();
     }
+#endif
   return is;
 }
 
-//  Copie les elements source[first_element_source + i] dans les elements  (*this)[first_element_dest + i] pour 0 <= i < nb_elements
-//    Les autres elements de (*this) sont inchanges.
-// Precondition:
-// Parametre:       const ArrOfDouble& m
-//  Signification:   le tableau a utiliser, doit etre different de *this !
-// Parametre:       int nb_elements
-//  Signification:   nombre d'elements a copier, nb_elements >= -1. Si nb_elements==-1, on copie tout le tableau m.
-//  Valeurs par defaut: -1
-// Parametre:       int first_element_dest
-//  Valeurs par defaut: 0
-// Parametre:       int first_element_source
-//  Valeurs par defaut: 0
-// Retour: ArrOfDouble&
-//    Signification: *this
-// Exception: Sort en erreur si la taille du tableau m est plus grande que la taille de tableau this.
+
+/** Protected method for resize. Used by derived classes.
+ * Same as resize_array() with less checks.
+ *
+ * This is also where we deal with the STORAGE::TEMP_STORAGE capability, i.e. the Trav arrays.
+ * There memory is taken from a shared pool (TRUSTTravPool)
+ */
 template <typename _TYPE_>
-inline TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& source, int nb_elements, int first_element_dest, int first_element_source)
+void TRUSTArray<_TYPE_>::resize_array_(int new_size, RESIZE_OPTIONS opt)
+{
+  assert(new_size >= 0);
+
+  if (mem_ == nullptr)
+    {
+      if (!span_.empty()) // ref_data! We may pass here if just changing the shape of a tab
+        {
+          assert(size_array() == new_size);
+          return;  // Nothing to do ...
+        }
+      // We avoid allocating for empty arrays ... those are typically situations where we will resize (with a non
+      // null size) just after, so the real allocation will be made at that point.
+      if(new_size == 0) return;
+
+      // First allocation - memory space should really be malloc'd:
+      if(storage_type_ == STORAGE::TEMP_STORAGE)
+        mem_ = TRUSTTravPool<_TYPE_>::GetFreeBlock(new_size);
+      else
+        mem_ = std::make_shared<Vector_>(Vector_(new_size));
+
+      if(opt == RESIZE_OPTIONS::COPY_INIT)
+        std::fill(mem_->begin(), mem_->end(), (_TYPE_) 0);
+
+      // We should never have to worry about device allocation here:
+      assert(get_data_location() == DataLocation::HostOnly);
+      span_ = Span_(*mem_);
+      data_location_ = std::make_shared<DataLocation>(DataLocation::HostOnly);
+    }
+  else
+    {
+      // Array is already allocated, we want to resize:
+      // array must not be shared! (also checked in resize_array()) ... but, still, we allow passing here (i.e. no assert)
+      // only if we keep the same size_array(). This is for example invoked by TRUSTTab when just changing the overall shape of
+      // the array without modifying the total number of elems ...
+      int sz_arr = size_array();
+      if(new_size != sz_arr) // Yes, we compare to the span's size
+        {
+          assert(ref_count() == 1);  // from here on, we *really* should not be shared
+
+          if (storage_type_ == STORAGE::TEMP_STORAGE)
+            {
+              // Resize of a Trav: if the underlying mem_ is already big enough, just update the span, and possibly fill with 0
+              // else, really increase memory allocation using the TRUSTTravPool.
+              int mem_sz = (int)mem_->size();
+              if (new_size <= mem_sz)
+                {
+                  // Cheat, simply update the span (up or down)
+                  span_ = Span_(span_.begin(), span_.begin()+new_size);
+                  // Possibly set to 0 extended part:
+                  if (new_size > sz_arr && opt == RESIZE_OPTIONS::COPY_INIT)
+                    std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
+                }
+              else  // Real size increase of the underlying std::vector
+                {
+                  // No Trav resize (from non null size!) on GPU for now:
+                  assert(get_data_location() == DataLocation::HostOnly);
+
+                  // ResizeBlock
+                  mem_ = TRUSTTravPool<_TYPE_>::ResizeBlock(mem_, new_size);
+                  span_ = Span_(*mem_);
+                  if (opt == RESIZE_OPTIONS::COPY_INIT)
+                    std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
+                }
+            }
+          else  // Normal (non Trav) arrays
+            {
+              _TYPE_ * prev_ad = span_.data(); // before resize!
+              Span_ prev_span = span_;
+              mem_->resize(new_size);
+              span_ = Span_(*mem_);
+              // Possibly set to 0 extended part, since we have a custom Vector allocator not doing it by default (TVAlloc):
+              if (new_size > sz_arr && opt == RESIZE_OPTIONS::COPY_INIT && get_data_location() == DataLocation::HostOnly)
+                std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
+              if(get_data_location() != DataLocation::HostOnly && new_size > sz_arr)
+                if (prev_ad != span_.begin())
+                  // hiiiic, when sizing up and down an array we might end up not changing the block at all!
+                  // TODO find a nicer way to spot this ... TODO device allocation should be based on real underlying block
+                  // size, not size_array() as it is now ...
+                  {
+                    // Allocate new (bigger) block on device:
+                    allocateOnDevice(*this);
+                    // Copy data (use a dummy TRUSTArray just because of inject_array API)
+                    TRUSTArray<_TYPE_> dummy_src;
+                    dummy_src.span_ = prev_span;
+                    inject_array(dummy_src, sz_arr);
+                    // Delete former block
+                    deleteOnDevice(prev_ad, sz_arr);
+                  }
+            }
+        }
+    }
+}
+
+/**  Copie les elements source[first_element_source + i] dans les elements  (*this)[first_element_dest + i] pour 0 <= i < nb_elements
+*    Les autres elements de (*this) sont inchanges.
+
+* @param  const ArrOfDouble& m: le tableau a utiliser, doit etre different de *this !
+* @param int nb_elements: nombre d'elements a copier, nb_elements >= -1. Si nb_elements==-1, on copie tout le tableau m. Valeurs par defaut: -1
+* @param int first_element_dest. Valeurs par defaut: 0
+* @param int first_element_source. Valeurs par defaut: 0
+* @return ArrOfDouble& : *this
+* @throw Sort en erreur si la taille du tableau m est plus grande que la taille de tableau this.
+*/
+template <typename _TYPE_>
+TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& source, int nb_elements, int first_element_dest, int first_element_source)
 {
   assert(&source != this && nb_elements >= -1);
   assert(first_element_dest >= 0 && first_element_source >= 0);
@@ -82,16 +190,16 @@ inline TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& so
 
   if (nb_elements > 0)
     {
-      _TYPE_ * addr_dest = data_ + first_element_dest;
-      bool kernelOnDevice = checkDataOnDevice(*this, source);
+      _TYPE_ * addr_dest = span_.data() + first_element_dest;
+      bool kernelOnDevice = checkDataOnDevice(source);
       const _TYPE_ * addr_source = (mapToDevice(source, "", kernelOnDevice)) + first_element_source;
       if (kernelOnDevice)
         {
-          start_timer();
+          start_gpu_timer();
           #pragma omp target teams distribute parallel for if (computeOnDevice)
           for (int i = 0; i < nb_elements; i++)
             addr_dest[i] = addr_source[i];
-          end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::inject_array");
+          if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::inject_array");
         }
       else
         {
@@ -102,101 +210,108 @@ inline TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& so
   return *this;
 }
 
-// Remplit le tableau avec la x en parametre (x est affecte a toutes les cases du tableau)
+/** Remplit le tableau avec la x en parametre (x est affecte a toutes les cases du tableau)
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator=(_TYPE_ x)
 {
-  const int n = size_array_;
-  _TYPE_ *data = data_;
-  bool kernelOnDevice = checkDataOnDevice(*this);
-  start_timer();
+  const int n = size_array();
+  _TYPE_ *data = span_.data();
+  bool kernelOnDevice = checkDataOnDevice();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for (int i = 0; i < n; i++) data[i] = x;
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator=(_TYPE_ x)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator=(_TYPE_ x)");
   return *this;
 }
 
-// Addition case a case sur toutes les cases du tableau : la taille de y doit etre au moins egale a la taille de this
+/** Addition case a case sur toutes les cases du tableau : la taille de y doit etre au moins egale a la taille de this
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator+=(const TRUSTArray& y)
 {
   assert(size_array()==y.size_array());
-  _TYPE_* dx = data_;
-  const _TYPE_* dy = y.data_;
-  bool kernelOnDevice = checkDataOnDevice(*this, y);
-  start_timer();
+  _TYPE_* dx = span_.data();
+  const _TYPE_* dy = y.span_.data();
+  bool kernelOnDevice = checkDataOnDevice(y);
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for (int i = 0; i < size_array(); i++) dx[i] += dy[i];
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const TRUSTArray& y)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const TRUSTArray& y)");
   return *this;
 }
 
-// ajoute la meme valeur a toutes les cases du tableau
+/** Ajoute la meme valeur a toutes les cases du tableau
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator+=(const _TYPE_ dy)
 {
-  _TYPE_ * data = data_;
-  bool kernelOnDevice = checkDataOnDevice(*this);
-  start_timer();
+  _TYPE_ * data = span_.data();
+  bool kernelOnDevice = checkDataOnDevice();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for(int i = 0; i < size_array(); i++) data[i] += dy;
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const _TYPE_ dy)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const _TYPE_ dy)");
   return *this;
 }
 
-// Soustraction case a case sur toutes les cases du tableau : tableau de meme taille que *this
+/** Soustraction case a case sur toutes les cases du tableau : tableau de meme taille que *this
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator-=(const TRUSTArray& y)
 {
   assert(size_array() == y.size_array());
-  _TYPE_ * data = data_;
-  const _TYPE_ * data_y = y.data_;
-  bool kernelOnDevice = checkDataOnDevice(*this, y);
-  start_timer();
+  _TYPE_ * data = span_.data();
+  const _TYPE_ * data_y = y.span_.data();
+  bool kernelOnDevice = checkDataOnDevice(y);
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for (int i = 0; i < size_array(); i++) data[i] -= data_y[i];
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const TRUSTArray& y)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const TRUSTArray& y)");
   return *this;
 }
 
-// soustrait la meme valeur a toutes les cases
+/** soustrait la meme valeur a toutes les cases
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator-=(const _TYPE_ dy)
 {
-  _TYPE_ * data = data_;
-  bool kernelOnDevice = checkDataOnDevice(*this);
-  start_timer();
+  _TYPE_ * data = span_.data();
+  bool kernelOnDevice = checkDataOnDevice();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for(int i = 0; i < size_array(); i++) data[i] -= dy;
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const _TYPE_ dy)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const _TYPE_ dy)");
   return *this;
 }
 
-// muliplie toutes les cases par dy
+/** muliplie toutes les cases par dy
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator*= (const _TYPE_ dy)
 {
-  _TYPE_ * data = data_;
-  bool kernelOnDevice = checkDataOnDevice(*this);
-  start_timer();
+  _TYPE_ * data = span_.data();
+  bool kernelOnDevice = checkDataOnDevice();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for(int i=0; i < size_array(); i++) data[i] *= dy;
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator*= (const _TYPE_ dy)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator*= (const _TYPE_ dy)");
   return *this;
 }
 
-// divise toutes les cases par dy (pas pour TRUSTArray<int>)
+/** divise toutes les cases par dy (pas pour TRUSTArray<int>)
+ */
 template <typename _TYPE_>
 TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator/= (const _TYPE_ dy)
 {
   if (std::is_same<_TYPE_,int>::value) throw;
   const _TYPE_ i_dy = 1 / dy;
-  _TYPE_ * data = data_;
-  bool kernelOnDevice = checkDataOnDevice(*this);
-  start_timer();
+  _TYPE_ * data = span_.data();
+  bool kernelOnDevice = checkDataOnDevice();
+  start_gpu_timer();
   #pragma omp target teams distribute parallel for if (kernelOnDevice)
   for(int i=0; i < size_array(); i++) data[i] *= i_dy;
-  end_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator/= (const _TYPE_ dy)");
+  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator/= (const _TYPE_ dy)");
   return *this;
 }
 

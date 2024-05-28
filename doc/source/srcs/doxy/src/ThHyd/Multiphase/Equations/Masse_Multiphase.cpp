@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,8 +41,6 @@ Entree& Masse_Multiphase::readOn(Entree& is)
 
   terme_convectif.set_fichier("Debit");
   terme_convectif.set_description((Nom)"Mass flow rate=Integral(-alpha*rho*u*ndS) [kg/s] if SI units used");
-
-  champs_compris_.ajoute_champ(l_inco_ch);
 
   // Special treatment for Pb_Multiphase_HEM
   // We enforce the presence of a source term related to the interfacial flux automatically.
@@ -168,9 +166,10 @@ void Masse_Multiphase::discretiser()
   const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, probleme());
   dis.discretiser_champ("temperature",domaine_dis(),"alpha","sans_dimension", pb.nb_phases(),nb_valeurs_temp,temps,l_inco_ch);
   l_inco_ch.valeur().fixer_nature_du_champ(pb.nb_phases() == 1 ? scalaire : pb.nb_phases() == dimension ? vectoriel : multi_scalaire); //pfft
-  Equation_base::discretiser();
   for (int i = 0; i < pb.nb_phases(); i++)
     l_inco_ch.valeur().fixer_nom_compo(i, Nom("alpha_") + pb.nom_phase(i));
+  champs_compris_.ajoute_champ(l_inco_ch);
+  Equation_base::discretiser();
 
   Cerr << "Masse_Multiphase::discretiser() ok" << finl;
 }
@@ -255,7 +254,7 @@ void Masse_Multiphase::calculer_alpha_rho(const Objet_U& obj, DoubleTab& val, Do
 {
   const Equation_base& eqn = ref_cast(Equation_base, obj);
   const Champ_base& ch_rho = eqn.milieu().masse_volumique().valeur();
-  const Champ_Inc_base& ch_alpha = eqn.inconnue(), *pch_rho = sub_type(Champ_Inc_base, ch_rho) ? &ref_cast(Champ_Inc_base, ch_rho) : NULL;
+  const Champ_Inc_base& ch_alpha = eqn.inconnue(), *pch_rho = sub_type(Champ_Inc_base, ch_rho) ? &ref_cast(Champ_Inc_base, ch_rho) : nullptr;
   const DoubleTab& alpha = ch_alpha.valeurs(), &rho = ch_rho.valeurs();
   int i, nl = val.dimension_tot(0), n, N = val.line_size(), cR = sub_type(Champ_Uniforme, ch_rho);
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -96,8 +96,8 @@ void Octree_Int::build(const int dimension, const IntTab& elements_boxes)
   const int nb_elems = elements_boxes.dimension(0);
   nb_elements_ = nb_elems;
 
-  octree_structure_.set_smart_resize(1);
-  floor_elements_.set_smart_resize(1);
+
+
   floor_elements_.resize_array(0);
   const int nb_octrees = 1 << dimension;
   octree_structure_.resize(0, nb_octrees);
@@ -109,11 +109,11 @@ void Octree_Int::build(const int dimension, const IntTab& elements_boxes)
   ArrsOfInt tmp_elem_list(max_levels_);
   for (int i = 0; i < max_levels_; i++)
     {
-      tmp_elem_flags[i].set_smart_resize(1);
-      tmp_elem_list[i].set_smart_resize(1);
+
+
     }
   ArrOfInt& elements_list = tmp_elem_list[0];
-  elements_list.resize_array(nb_elems, ArrOfInt::NOCOPY_NOINIT);
+  elements_list.resize_array(nb_elems, RESIZE_OPTIONS::NOCOPY_NOINIT);
   for (int i = 0; i < nb_elems; i++)
     elements_list[i] = i;
 
@@ -171,11 +171,9 @@ struct IntBoxData
   ArrOfBit *markers_;
 };
 
-/*! @brief cherche les elements ayant potentiellement une intersection non vide avec la boite xmin.
- *
- * .zmax. Le tableau elements doit etre de type smart_resize(1).
+/*! @brief cherche les elements ayant potentiellement une intersection non vide
+ * avec la boite xmin..zmax.
  *   Les elements peuvent apparaitre plusieurs fois dans le tableau "elements"
- *
  */
 int Octree_Int::search_elements_box(int xmin, int ymin, int zmin,
                                     int xmax, int ymax, int zmax,
@@ -314,7 +312,7 @@ int Octree_Int::build_octree_floor(const ArrOfInt& elements_list)
 {
   const int nb_elems = elements_list.size_array();
   const int index = floor_elements_.size_array();
-  floor_elements_.resize_array(index + nb_elems + 1, ArrOfInt::COPY_NOINIT);
+  floor_elements_.resize_array(index + nb_elems + 1, RESIZE_OPTIONS::COPY_NOINIT);
   floor_elements_[index] = nb_elems;
   for (int i = 0; i < nb_elems; i++)
     floor_elements_[index + 1 + i] = elements_list[i];
@@ -357,7 +355,7 @@ int Octree_Int::build_octree_recursively(const int octree_center_x,
     }
 
   ArrOfInt& elem_flags = tmp_elem_flags[level];
-  elem_flags.resize_array(nb_elems, ArrOfInt::NOCOPY_NOINIT);
+  elem_flags.resize_array(nb_elems, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
   const int nb_octrees = octree_structure_.dimension(1);
   assert(nb_octrees == 2 || nb_octrees == 4 || nb_octrees == 8);
@@ -415,7 +413,7 @@ int Octree_Int::build_octree_recursively(const int octree_center_x,
 
   // On reserve une case a la fin de octree_structure pour stocker cet octree:
   const int index_octree = octree_structure_.dimension(0);
-  octree_structure_.resize_dim0(index_octree + 1, ArrOfInt::COPY_NOINIT);
+  octree_structure_.resize_dim0(index_octree + 1, RESIZE_OPTIONS::COPY_NOINIT);
   ArrOfInt& new_liste_elems = vect_elements_list[level+1];
   new_liste_elems.resize_array(0);
   const int width = octree_half_width >> 1;
@@ -425,7 +423,7 @@ int Octree_Int::build_octree_recursively(const int octree_center_x,
   for (i_cube = 0; i_cube < nb_octrees; i_cube++)
     {
       const int octree_flag = 1 << i_cube;
-      new_liste_elems.resize_array(nb_elems, ArrOfInt::NOCOPY_NOINIT);
+      new_liste_elems.resize_array(nb_elems, RESIZE_OPTIONS::NOCOPY_NOINIT);
       int count = 0;
       // Liste des elements inclus dans le sous-cube:
       for (int i_elem = 0; i_elem < nb_elems; i_elem++)

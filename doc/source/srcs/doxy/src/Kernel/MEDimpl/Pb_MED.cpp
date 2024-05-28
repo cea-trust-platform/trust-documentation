@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,10 +19,20 @@
 #include <Postraitement.h>
 #include <Interprete_bloc.h>
 #include <Domaine_dis_cache.h>
-#include <trust_med_utils.h>
+#include <TRUST_2_MED.h>
 
 Implemente_instanciable(Pb_MED,"Pb_MED",Probleme_base);
 Implemente_instanciable(Pbc_MED,"Pbc_MED",Probleme_Couple);
+// XD pbc_med pb_gen_base pbc_med 0 Allows to read med files and post-process them.
+// XD  attr list_info_med list_info_med list_info_med 0 not_set
+
+// XD pb_post Pb_base nul -1 not_set
+// XD info_med objet_lecture nul 0 not_set
+// XD   attr file_med chaine file_med 0 Name of the MED file.
+// XD   attr domaine chaine domaine 0 Name of domain.
+// XD   attr pb_post pb_post pb_post 0 not_set
+// XD list_info_med listobj nul -1 info_med 1 not_set
+
 
 Sortie& Pb_MED::printOn(Sortie& s ) const { return s; }
 Sortie& Pbc_MED::printOn(Sortie& s ) const { return s; }
@@ -98,11 +108,6 @@ Entree& Pbc_MED::readOn(Entree& is )
       postraiter();
     }
 
-  if (nbpasdetemps==1)
-    {
-      //pour eviter bug meshtv
-      //  postraiter();
-    }
   for (int i=0; i<nb_problemes(); i++)
     ref_cast(Probleme_base,probleme(i)).finir();
   delete [] listob;
@@ -117,7 +122,7 @@ Entree& Pbc_MED::readOn(Entree& is )
 Entree& Pb_MED::readOn(Entree& is )
 {
   dis_bidon.typer("VF_inst");
-  la_discretisation=dis_bidon.valeur();
+  la_discretisation_=dis_bidon.valeur();
   is >> nom_fic;
   Nom nom_dom;
   is >> nom_dom;
@@ -135,7 +140,7 @@ Entree& Pb_MED::readOn(Entree& is )
   dom.reordonner();
 
   Nom typ = "NO_FACE_Domaine_VF_inst";
-  le_domaine_dis = Domaine_dis_cache::Build_or_get(typ, dom);
+  le_domaine_dis_ = Domaine_dis_cache::Build_or_get(typ, dom);
 
   Cerr<<"Reading the name of existing fields in "<<nom_fic<<finl;
   read_med_field_names(nom_fic, nomschampmed, temps_sauv_);

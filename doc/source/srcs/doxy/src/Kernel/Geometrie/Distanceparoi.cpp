@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,7 +35,7 @@ Entree& Distanceparoi::readOn(Entree& is)
 
 Entree& Distanceparoi::interpreter_(Entree& is)
 {
-  if(Process::nproc()>1)
+  if(Process::is_parallel())
     {
       Cerr << " Distance_paroi : the calculation of the distance to the wall is made in sequential mode !! " << finl;
       exit();
@@ -63,8 +63,7 @@ Entree& Distanceparoi::interpreter_(Entree& is)
   Nom fichier = dom.le_nom();
   fichier += "_Wall_length.xyz";
 
-  if (Process::je_suis_maitre())
-    Cerr << "In Distanceparoi::interpreter : Generate faces" << finl;
+  Cerr << "In Distanceparoi::interpreter : Generate faces" << finl;
   Faces* les_faces_ptr=new(Faces);
   Faces& les_faces= *les_faces_ptr;
 
@@ -92,8 +91,7 @@ Entree& Distanceparoi::interpreter_(Entree& is)
                                      les_faces,
                                      elem_faces);
   }
-  if (Process::je_suis_maitre())
-    Cerr << "In Distanceparoi::interpreter : Generate faces finished" << finl;
+  Cerr << "In Distanceparoi::interpreter : Generate faces finished" << finl;
 
   DoubleTab xp;                                     // centres de gravite des elements
   DoubleTab xv;                                     // centres de gravite des faces
@@ -117,8 +115,7 @@ Entree& Distanceparoi::interpreter_(Entree& is)
     }
   else
     {
-      if (Process::je_suis_maitre())
-        Cerr << " Generation of the external file named : " << fichier << finl;
+      Cerr << " Generation of the external file named : " << fichier << finl;
 
       for (int b=0; b<nb_paroi; b++)
         {

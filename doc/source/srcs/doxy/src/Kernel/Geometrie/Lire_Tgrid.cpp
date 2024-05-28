@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -38,6 +38,9 @@ inline void decompression(Nom& nom_fichier)
     }
 }
 Implemente_instanciable(Lire_Tgrid,"Lire_Tgrid",Interprete_geometrique_base);
+// XD read_tgrid interprete lire_tgrid -1 Keyword to reaf Tgrid/Gambit mesh files. 2D (triangles or quadrangles) and 3D (tetra or hexa elements) meshes, may be read by TRUST.
+// XD  attr dom ref_domaine dom 0 Name of domaine.
+// XD  attr filename chaine filename 0 Name of file containing the mesh.
 
 Sortie& Lire_Tgrid::printOn(Sortie& os) const { return Interprete::printOn(os); }
 
@@ -57,7 +60,7 @@ int htoi(const char * szChaine)
   int lResult = 0;
   int iLength = 0;
   // Pointeur null, on renvoi -1
-  if (szChaine == NULL)
+  if (szChaine == nullptr)
     return -1;
   // On calcule la longueur de la chaine
   iLength = (int)strlen(szChaine);
@@ -705,7 +708,7 @@ Entree& Lire_Tgrid::interpreter_(Entree& is)
   // Mettre une methode a Domaine::nettoie
   // Attention: les lignes suivantes pas compatibles avec TRUST < v1.4.6
 
-  if ( (Process::nproc()==1) && (NettoieNoeuds::NettoiePasNoeuds==0) )
+  if (Process::is_sequential() && (NettoieNoeuds::NettoiePasNoeuds==0) )
     NettoieNoeuds::nettoie(dom);
 
   return is;

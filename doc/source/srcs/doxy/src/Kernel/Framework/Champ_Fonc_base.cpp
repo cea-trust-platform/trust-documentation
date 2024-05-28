@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -58,7 +58,7 @@ int Champ_Fonc_base::fixer_nb_valeurs_nodales(int nb_noeuds)
   return nb_noeuds;
 }
 
-void Champ_Fonc_base::creer_tableau_distribue(const MD_Vector& md, Array_base::Resize_Options opt)
+void Champ_Fonc_base::creer_tableau_distribue(const MD_Vector& md, RESIZE_OPTIONS opt)
 {
   // Note B.M.: pour etre symetrique avec Champ_Inc_base, il faudrait tester si le
   // champ est scalaire ou multi-scalaire (voir Champ_Inc_base::creer_tableau_distribue())
@@ -114,8 +114,7 @@ int Champ_Fonc_base::sauvegarder(Sortie& fich) const
       //fich << flush ; Ne marche pas en binaire, preferer:
       fich.flush();
     }
-  if (Process::je_suis_maitre())
-    Cerr << "Backup of the field " << nom_ << " performed on time : " << Nom(temps_, "%e") << finl;
+  Cerr << "Backup of the field " << nom_ << " performed on time : " << Nom(temps_, "%e") << finl;
 
   return bytes;
 }

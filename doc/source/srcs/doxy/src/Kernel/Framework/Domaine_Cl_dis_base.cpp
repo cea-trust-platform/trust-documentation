@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,8 +17,6 @@
 #include <Equation_base.h>
 #include <Frontiere_dis_base.h>
 #include <Schema_Temps_base.h>
-#include <Champ_front_var_instationnaire.h>
-#include <Champ_front_instationnaire_base.h>
 #include <Cond_lim_utilisateur_base.h>
 #include <Probleme_base.h>
 
@@ -124,7 +122,7 @@ Entree& Domaine_Cl_dis_base::readOn(Entree& is)
 
       //Test pour empecher l utilisation de 'Raccord_distant_homogene' en calcul sequentiel
       const Frontiere& frontiere=ledomaine.frontiere(rang);
-      if ((frontiere.que_suis_je()=="Raccord_distant_homogene") && (Process::nproc()==1))
+      if ((frontiere.que_suis_je()=="Raccord_distant_homogene") && Process::is_sequential())
         {
           Cerr<<"At least one connection (adjacent boundary on two domains) is of type 'Raccord distant homogene'." << finl;
           Cerr<<"Use 'Raccord local homogene' to define the connections in sequential computing"<<finl;
@@ -246,6 +244,12 @@ void Domaine_Cl_dis_base::mettre_a_jour(double temps)
   les_conditions_limites_.mettre_a_jour(temps);
 }
 
+/* @brief See ICoCo::ProblemTrio::resetTime()
+ */
+void Domaine_Cl_dis_base::resetTime(double temps)
+{
+  les_conditions_limites_.resetTime(temps);
+}
 
 /*! @brief Effectue une mise a jour pour des sous pas de temps d'un schema en temps (par exemple dans RungeKutta)
  *
@@ -384,24 +388,12 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_frontiere(Nom f
 /*! @brief Calcule le taux d'accroissement des CLs instationnaires entre t1 et t2.
  *
  */
-void Domaine_Cl_dis_base::Gpoint(double t1, double t2)
+void Domaine_Cl_dis_base::calculer_derivee_en_temps(double t1, double t2)
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
       Champ_front_base& champ=les_conditions_limites(i)->champ_front().valeur();
-
-      if (sub_type(Champ_front_var_instationnaire,champ))
-        {
-          Champ_front_var_instationnaire& champ_insta=ref_cast(Champ_front_var_instationnaire,champ);
-          champ_insta.Gpoint(t1,t2);
-        }
-
-      if (sub_type(Champ_front_instationnaire_base,champ))
-        {
-          Champ_front_instationnaire_base& champ_insta=ref_cast(Champ_front_instationnaire_base,champ);
-          champ_insta.Gpoint(t1,t2);
-        }
-
+      if (champ.instationnaire()) champ.calculer_derivee_en_temps(t1,t2);
     }
 }
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -195,7 +195,7 @@ Sortie& Matrice_Morse::imprimer_image(Sortie& s, int symetrie) const
 
 void Matrice_Morse::WriteFileMTX(const Nom& name) const
 {
-  if (Process::nproc() > 1)
+  if (Process::is_parallel())
     {
       Cerr << "Warning, matrix market format is not available yet in parallel." << finl;
       return;
@@ -1062,7 +1062,7 @@ int Matrice_Morse::inverse(const DoubleVect& secmem, DoubleVect& solution,
   // B.Mat: au 20/4/2005, DoubleVect::norme() est bugge, donc la methode n'a
   // sans doute jamais ete validee en parallele. Je retire norme() et je mets
   // ceci:
-  if (Process::nproc() > 1)
+  if (Process::is_parallel())
     {
       Cerr << "Matrice_Morse::inverse(const DoubleVect& secmem, DoubleVect& solution, "
            << "coeff_seuil double) const \n has never been tested in parallel" << finl;
@@ -1262,7 +1262,7 @@ int Matrice_Morse::inverse(const DoubleVect& secmem, DoubleVect& solution,
   // B.Mat: au 20/4/2005, DoubleVect::norme() est bugge, donc la methode n'a
   // sans doute jamais ete validee en parallele. Je retire norme() et je mets
   // ceci:
-  if (Process::nproc() > 1)
+  if (Process::is_parallel())
     {
       Cerr << "Matrice_Morse::inverse(const DoubleVect& secmem, DoubleVect& solution, "
            << "double coeff_seuil) const \n has never been tested in parallel" << finl;
@@ -1746,10 +1746,10 @@ void Matrice_Morse::get_stencil( IntTab& stencil ) const
 
   stencil.resize( 0, 2 );
   stencil.resize(tab2_.size_array(), 2);
-  stencil.set_smart_resize( 1 );
+
 
   ArrOfInt tmp;
-  tmp.set_smart_resize( 1 );
+
 
   int compteur = 0;
 
@@ -1778,7 +1778,7 @@ void Matrice_Morse::get_stencil( IntTab& stencil ) const
       compteur += size;
     }
 
-  stencil.set_smart_resize( 0 );
+
 }
 
 // Local template method : copy either value or ptr to value!
@@ -1804,10 +1804,10 @@ inline void Matrice_Morse::get_stencil_coeff_templ( IntTab& stencil, _TAB_T_& co
 
   stencil.resize( 0, 2 );
   stencil.resize(tab2_.size_array(), 2);
-  stencil.set_smart_resize( 1 );
+
 
   IntTab tmp1(0);
-  tmp1.set_smart_resize( 1 );
+
 
   std::vector<_VALUE_T_> tmp2;
 
@@ -1845,7 +1845,7 @@ inline void Matrice_Morse::get_stencil_coeff_templ( IntTab& stencil, _TAB_T_& co
       compteur += size;
     }
 
-  stencil.set_smart_resize( 0 );
+
 }
 
 
@@ -1885,7 +1885,7 @@ void Matrice_Morse::get_stencil_and_coefficients( IntTab&      stencil,
       return;
     }
 
-  coefficients.set_smart_resize( 1 );
+
 
   get_stencil_coeff_templ<ArrOfDouble, double>(stencil, coefficients);
   assert( coefficients.size_array( ) == stencil.dimension( 0 ));
@@ -2313,4 +2313,29 @@ void Matrice_Morse::sort_stencil()
   for (int i = 0; i + 1 < tab1_.size(); i++) //indice de ligne
     std::sort(tab2_.addr() + tab1_(i) - 1, tab2_.addr() + tab1_(i + 1) - 1);
   morse_matrix_structure_has_changed_ = sorted_ = 1;
+}
+
+// Check the matrix is diagonal:
+// Faster than using:
+// IntTab stencil;
+// A.get_stencil(stencil);
+// Matrix_tools::is_diagonal_stencil(A.nb_lignes(), A.nb_colonnes(), stencil);
+bool Matrice_Morse::is_diagonal()
+{
+  bool is_diagonal = true;
+  const int n = nb_lignes();
+  for (int i = 0; i < n; i++)
+    {
+      const int k1 = get_tab1()(i) - 1;
+      const int k2 = get_tab1()(i + 1) - 1;
+      for (int k = k1; k < k2; k++)
+        {
+          if (k2-k1>1 || get_tab2()(k)-1!=i)
+            {
+              is_diagonal = false;
+              break;
+            }
+        }
+    }
+  return is_diagonal;
 }

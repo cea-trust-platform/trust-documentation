@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -145,6 +145,20 @@ void Probleme_U::abortTimeStep()
 {
 }
 
+/*! @brief Reset the current time of the Problem to a given value.
+ *
+ * Particularly useful for the initialization of complex transients: the starting point of the transient
+ * of interest is computed first, the time is reset to 0, and then the actual transient of interest starts with proper
+ * initial conditions, and global time 0.
+ *
+ * @param[in] time the new current time.
+ * @throws ICoCo::WrongContext exception if called before initialize() or after terminate().
+ * @throws ICoCo::WrongContext exception if called inside the TIME_STEP_DEFINED context (see Problem documentation)
+ */
+void Probleme_U::resetTime(double time)
+{
+}
+
 /*! @brief In the case solveTimeStep uses an iterative process, this method executes a single iteration.
  *
  *  It is thus possible to modify the given fields between iterations.
@@ -249,7 +263,7 @@ bool Probleme_U::run()
   if (!disable_TU)
     {
       if(GET_COMM_DETAILS)
-        statistiques().print_communciation_tracking_details("Statistiques d'initialisation du calcul", 0);               // Into _comm.TU file
+        statistiques().print_communciation_tracking_details("Statistiques d'initialisation du calcul", 0);               // Into _csv.TU file
 
       statistiques().dump("Statistiques d'initialisation du calcul", 0);
       print_statistics_analyse("Statistiques d'initialisation du calcul", 0);
@@ -307,8 +321,21 @@ bool Probleme_U::run()
           stop=true;
           setStationary(stop);
         }
-      // Post process task (Force the post processing/prints at the end of the run (stop=1))
-      postraiter(stop);
+
+      std::string newDirectory = stop ? newCompute() : "";
+      if (!newDirectory.empty())
+        {
+          // Keep on the resolution if parametric variation in a new directory:
+          stop = false;
+          setStationary(stop);
+          setInputStringValue("SORTIE_ROOT_DIRECTORY", newDirectory);
+          resetTime(0.);
+        }
+      else
+        {
+          // Post process task (Force the post processing/prints at the end of the run (stop=1))
+          postraiter(stop);
+        }
 
       // Stop the CPU measure of the time step and print:
       statistiques().end_count(timestep_counter_);
@@ -346,9 +373,9 @@ bool Probleme_U::run()
   if (!disable_TU)
     {
       if(GET_COMM_DETAILS)
-        statistiques().print_communciation_tracking_details("Statistiques de resolution du probleme", 1);               // Into _comm.TU file
+        statistiques().print_communciation_tracking_details("Statistiques de resolution du probleme", 1);               // Into _csv.TU file
 
-      statistiques().dump("Statistiques de resolution du probleme", 1);      // Into _detail.TU file
+      statistiques().dump("Statistiques de resolution du probleme", 1);      // Into _csv.TU file
       print_statistics_analyse("Statistiques de resolution du probleme", 1); // Into        .TU file
     }
 
@@ -574,6 +601,17 @@ void Probleme_U::setInputDoubleValue(const Nom& name, const double val)
     throw WrongArgument(le_nom().getChar(),"setInputField",name.getString(),"field of this name is not an input field");
   chip->setDoubleValue(val);
 }
+
+
+std::string Probleme_U::getOutputStringValue(const std::string& name)
+{
+  if(str_params_.count(name) == 0)
+    {
+      WrongArgument(name,"getOutputStringValue",name,"no string parameter with that name");
+    }
+  return str_params_[name];
+}
+
 
 void Probleme_U::setInputIntValue(const Nom& name, const int& val)
 {

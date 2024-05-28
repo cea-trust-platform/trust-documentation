@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,7 +45,7 @@ public:
   //ecriture d'une partition elem_part donnee
   //som_raccord (optionnel) : som_raccord[s] -> process auxquels est raccorde le sommet
   //                                            s par un raccord a un autre domaine
-  void ecrire(IntVect& elem_part, const Static_Int_Lists *som_raccord = NULL);
+  void ecrire(IntVect& elem_part, const Static_Int_Lists *som_raccord = nullptr);
 
   Nom nom_domaine;
   DERIV(Partitionneur_base) deriv_partitionneur;
@@ -63,6 +63,7 @@ private:
   Nom nom_fichier_decoupage = "?";
   Nom nom_fichier_decoupage_sommets = "?";
   Nom nom_fichier_lata = "?";
+  Nom nom_fichier_med = "?";
   int format_binaire = 1;
   int format_hdf = 0;
   int reorder = 0;

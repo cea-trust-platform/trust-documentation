@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,9 +24,9 @@
 #include <map>
 
 Implemente_base(Source_base,"Source_base",Objet_U);
+// XD source_base objet_u source_base -1 Basic class of source terms introduced in the equation.
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  *     Imprime la source sur un flot de sortie.
  *
@@ -38,8 +38,7 @@ Sortie& Source_base::printOn(Sortie& os) const
   return os;
 }
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  *     Lecture d'un terme source sur un flot d'entree.
  *
@@ -51,22 +50,33 @@ Entree& Source_base::readOn(Entree& is)
   return is;
 }
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
- *     Mise a jour en temps du terme source.
- *
+ * Mise a jour en temps du terme source.
  * @param (double) le pas de temps de mise a jour
  */
 void Source_base::mettre_a_jour(double )
 {
   Cerr << finl;
-  Cerr << "You must to overload the method Source_base::mettre_a_jour() because there's big" << finl;
-  Cerr << "chances that the source term " <<  que_suis_je() << " must be updated," << finl;
+  Cerr << "You must to overload the method Source_base::mettre_a_jour() because there's a big" << finl;
+  Cerr << "chance that the source term " <<  que_suis_je() << " must be updated," << finl;
   Cerr << "especially if your source has a field, you must update it..." << finl << finl;
   exit();
 }
 
+/*! @brief DOES NOTHING - to override in derived classes.
+ *
+ * Reset current time.
+ * @param (double) new current time to be set.
+ */
+void Source_base::resetTime(double t)
+{
+  Cerr << finl;
+  Cerr << "You must to overload the method Source_base::resetTime() because there's big" << finl;
+  Cerr << "chance that the source term " <<  que_suis_je() << " must be reset," << finl;
+  Cerr << "especially if your source has a field, you must reset its current time..." << finl << finl;
+  exit();
+}
 
 /*! @brief Met a jour les references internes a l'objet Source_base.
  *
@@ -145,8 +155,7 @@ void Source_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
     nom.add(champs_compris_.liste_noms_compris());
 }
 
-
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  *     Mise a jour en temps du terme source.
  *
@@ -324,3 +333,4 @@ void Source_base::set_fichier(const Nom& nom)
   out_+="_";
   out_+=equation().probleme().le_nom()+"_"+nom;
 }
+

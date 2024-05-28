@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #define Domaine_dis_cache_included
 
 #include <Nom.h>
+#include <TClearable.h>
 #include <memory>
 #include <map>
 
@@ -28,21 +29,28 @@ class Domaine_dis;
  *
  * This is a singleton class.
  */
-class Domaine_dis_cache
+class Domaine_dis_cache : public TClearable
 {
 public:
   static Domaine_dis_cache& Get_instance();
+  static void Clear();
 
   static Domaine_dis& Build_or_get(const Nom& type, const Domaine& dom);
+  static Domaine_dis& Build_or_get_poly_post(const Nom& type, const Domaine& dom);
+
   Domaine_dis& build_or_get(const Nom& type, const Domaine& dom);
+  Domaine_dis& build_or_get_poly_post(const Nom& type, const Domaine& dom);
+
+  void clear() override { cache_.clear(); }
 
 private:
   Domaine_dis_cache() {}
 
-  // The actual cache hodling the true Domaine_dis objects.
-  // Store them as shared_ptr since we need easy duplication, notably for NO_FACE_ discretisations.
-  // See build_or_get() method.
   using Shared_Dom_dis = std::shared_ptr<Domaine_dis>;
+  /*! The actual cache hodling the true Domaine_dis objects.
+  * Store them as shared_ptr since we need easy duplication, notably for NO_FACE_ discretisations.
+  * See build_or_get() method.
+  */
   std::map<std::string, Shared_Dom_dis> cache_;
 };
 

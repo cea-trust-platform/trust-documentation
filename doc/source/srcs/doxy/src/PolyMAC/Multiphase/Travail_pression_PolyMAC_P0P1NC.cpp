@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,6 @@
 #include <Travail_pression_PolyMAC_P0P1NC.h>
 
 Implemente_instanciable(Travail_pression_PolyMAC_P0P1NC, "Travail_pression_Elem_PolyMAC_P0P1NC|Travail_pression_Elem_PolyMAC_P0", Source_Travail_pression_Elem_base);
-// XD travail_pression source_base travail_pression 0 Source term which corresponds to the additional pressure work term that appears when dealing with compressible multiphase fluids
 
 Sortie& Travail_pression_PolyMAC_P0P1NC::printOn(Sortie& os) const { return Source_Travail_pression_Elem_base::printOn(os); }
 Entree& Travail_pression_PolyMAC_P0P1NC::readOn(Entree& is) { return Source_Travail_pression_Elem_base::readOn(is); }
@@ -25,6 +24,7 @@ Entree& Travail_pression_PolyMAC_P0P1NC::readOn(Entree& is) { return Source_Trav
 void Travail_pression_PolyMAC_P0P1NC::completer()
 {
   Source_Travail_pression_Elem_base::completer();
-  const Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem *op_conv = sub_type(Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem, equation().operateur(1).l_op_base()) ? &ref_cast(Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem, equation().operateur(1).l_op_base()) : NULL;
+  const Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem *op_conv = sub_type(Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem, equation().operateur(1).l_op_base()) ?
+                                                       &ref_cast(Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem, equation().operateur(1).l_op_base()) : nullptr;
   alp = op_conv ? op_conv->alpha : 1; /* meme decentrement que l'operateur de convection si il existe, amont sinon */
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -42,6 +42,11 @@
 using MEDCoupling::MEDCouplingRemapper;
 using MEDCoupling::MEDCouplingUMesh;
 using MEDCoupling::MCAuto;
+using MEDCoupling::MEDCouplingFieldDouble;
+#ifdef MPI_
+#include <OverlapDEC.hxx>
+using MEDCoupling::OverlapDEC;
+#endif
 #endif
 
 #include <list>
@@ -85,7 +90,7 @@ public:
   DoubleTab getBoundingBox() const;
   void ajouter(const DoubleTab&);
   void ajouter(const DoubleTab&, IntVect&);
-  virtual void creer_tableau_sommets(Array_base&, Array_base::Resize_Options opt = Array_base::COPY_INIT) const;
+  virtual void creer_tableau_sommets(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
   virtual const MD_Vector& md_vector_sommets() const { return sommets_.get_md_vector(); }
   int nb_som() const ;
   int nb_som_tot() const ;
@@ -289,13 +294,13 @@ public:
   ///
   /// Various
   ///
-  void clear();
+  virtual void clear();
   void fill_from_list(std::list<Domaine*>& lst);
   void merge_wo_vertices_with(Domaine& z);
   inline bool axi1d() const {  return axi1d_;  }
   inline void fixer_epsilon(double eps)  { epsilon_=eps; }
-  inline int deformable() const  {   return deformable_;  }
-  inline int& deformable() {   return deformable_;  }
+  inline bool deformable() const  {   return deformable_;  }
+  inline bool& deformable() {   return deformable_;  }
   inline void set_fichier_lu(Nom& nom)  {    fichier_lu_=nom;   }
   inline const Nom& get_fichier_lu() const  {   return fichier_lu_;  }
   void imprimer() const;
@@ -312,14 +317,21 @@ public:
   /// MEDCoupling:
   ///
 #ifdef MEDCOUPLING_
-  inline const MEDCouplingUMesh* get_mc_mesh() const         {   return mc_mesh_;   };
-  inline const MEDCouplingUMesh* get_mc_face_mesh() const    {   return mc_face_mesh_;   };
+  inline const MEDCouplingUMesh* get_mc_mesh() const;
+  inline const MEDCouplingUMesh* get_mc_face_mesh() const;
   inline void set_mc_mesh(MCAuto<MEDCouplingUMesh> m) const  {   mc_mesh_ = m;   };
   // remapper with other domains
-  MEDCouplingRemapper* get_remapper(Domaine&);
+  MEDCouplingRemapper* get_remapper(const Domaine& other_dom);
+  // DEC with other domains
+#ifdef MPI_
+  OverlapDEC* get_dec(const Domaine& other_dom, MEDCouplingFieldDouble *dist, MEDCouplingFieldDouble *loc);
+#endif
 #endif
   void build_mc_mesh() const;
   void build_mc_face_mesh(const Domaine_dis_base& domaine_dis_base) const;
+  bool is_mc_mesh_ready() const { return mc_mesh_ready_; }
+  // Used in Interprete_geometrique_base for example - method is const, because mc_mesh_ready_ is mutable:
+  void set_mc_mesh_ready(bool flag) const { mc_mesh_ready_ = flag; }
 
   ///
   /// Parallelism and virtual items management
@@ -328,7 +340,7 @@ public:
   void construire_elem_virt_pe_num();
   void construire_elem_virt_pe_num(IntTab& elem_virt_pe_num_cpy) const;
   const IntTab& elem_virt_pe_num() const;
-  virtual void creer_tableau_elements(Array_base&, Array_base::Resize_Options opt = Array_base::COPY_INIT) const;
+  virtual void creer_tableau_elements(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
   virtual const MD_Vector& md_vector_elements() const;
   static int identifie_item_unique(IntList& item_possible, DoubleTab& coord_possible, const DoubleVect& coord_ref);
 
@@ -381,7 +393,7 @@ protected:
 
   int axi1d_;
   double epsilon_;
-  int deformable_;
+  bool deformable_;
   Nom fichier_lu_;
 
 #ifdef MEDCOUPLING_
@@ -389,13 +401,20 @@ protected:
   mutable MCAuto<MEDCouplingUMesh> mc_mesh_;
   ///! MEDCoupling version of the face domain:
   mutable MCAuto<MEDCouplingUMesh> mc_face_mesh_;
+  // One remapper per distant domain...
   std::map<const Domaine*, MEDCoupling::MEDCouplingRemapper> rmps;
+#ifdef MPI_
+  // ... but one DEC per (distant domain, field nature)
+  std::map<std::pair<const Domaine*, MEDCoupling::NatureOfField>, OverlapDEC> decs;
+#endif
+  mutable bool mc_mesh_ready_ = false;
 #endif
 
   void duplique_bords_internes();
 
 private:
-  void prepare_rmp_with(Domaine& );
+  void prepare_rmp_with(const Domaine& other_dom);
+  void prepare_dec_with(const Domaine& other_dom, MEDCouplingFieldDouble *dist, MEDCouplingFieldDouble *loc);
   // Volume total du domaine (somme sur tous les processeurs)
   double volume_total_;
   // Cached infos to accelerate Domaine::chercher_elements():
@@ -888,5 +907,22 @@ inline IntTab& Domaine::set_aretes_som() {  return aretes_som_; }
  */
 inline const IntTab& Domaine::elem_aretes() const {   return elem_aretes_; }
 inline IntTab& Domaine::set_elem_aretes() {   return elem_aretes_; }
+
+#ifdef MEDCOUPLING_
+inline const MEDCouplingUMesh* Domaine::get_mc_mesh() const
+{
+  if (!mc_mesh_ready_)
+    build_mc_mesh();
+  return mc_mesh_;
+}
+
+inline const MEDCouplingUMesh* Domaine::get_mc_face_mesh() const
+{
+//  if (!mc_face_mesh_ready_)
+//    build_mc_face_mesh();
+  return mc_face_mesh_;
+}
+
+#endif
 
 #endif

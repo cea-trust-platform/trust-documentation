@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -118,8 +118,7 @@ Entree& Domaine_Poly_base::readOn(Entree& is)
  */
 void Domaine_Poly_base::reordonner(Faces& les_faces)
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Domaine_Poly_base::reordonner faces " << finl;
+  Cerr << "Domaine_Poly_base::reordonner faces " << finl;
 
   // Construction de rang_elem_non_std_ :
   //  C'est un vecteur indexe par les elements du domaine.
@@ -452,7 +451,7 @@ void Domaine_Poly_base::orthocentrer()
   const DoubleVect& fs = face_surfaces();
   int i, j, e, f, s, np;
   DoubleTab M(0, dimension + 1), X(dimension + 1, 1), S(0, 1), vp; //pour les systemes lineaires
-  M.set_smart_resize(1), S.set_smart_resize(1), vp.set_smart_resize(1);
+
   IntTrav b_f_ortho, b_e_ortho; // b_{f,e}_ortho(f/e) = 1 si la face / l'element est orthocentre
   creer_tableau_faces(b_f_ortho), domaine().creer_tableau_elements(b_e_ortho);
 
@@ -473,7 +472,7 @@ void Domaine_Poly_base::orthocentrer()
           for (j = 0, S(i, 0) = 0, M(i, 3) = 1; j < 3; j++)
             S(i, 0) += 0.5 * std::pow(M(i, j) = xs(f_s(f, i), j) - xv_(f, j), 2);
         for (j = 0, S(np, 0) = M(np, 3) = 0; j < 3; j++) M(np, j) = nf(f, j) / fs(f);
-        if (kersol(M, S, 1e-12, NULL, X, vp) > 1e-8) continue; //la face n'a pas d'orthocentre
+        if (kersol(M, S, 1e-12, nullptr, X, vp) > 1e-8) continue; //la face n'a pas d'orthocentre
 
         //contrainte : ne pas diminuer la distance entre xv et chaque arete de plus de 50%
         double r2min = DBL_MAX;
@@ -510,7 +509,7 @@ void Domaine_Poly_base::orthocentrer()
       for (i = 0; i < np; i++)
         for (j = 0, S(i, 0) = 0, M(i, dimension) = 1; j < dimension; j++)
           S(i, 0) += 0.5 * std::pow(M(i, j) = xs(e_s(e, i), j) - xp_(e, j), 2);
-      if (kersol(M, S, 1e-12, NULL, X, vp) > 1e-8) continue; //l'element n'a pas d'orthocentre
+      if (kersol(M, S, 1e-12, nullptr, X, vp) > 1e-8) continue; //l'element n'a pas d'orthocentre
 
       //contrainte : ne pas diminuer la distance entre xp et chaque face de plus de 50%
       double rmin = DBL_MAX;

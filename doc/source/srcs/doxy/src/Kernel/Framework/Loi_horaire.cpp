@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -238,15 +238,12 @@ void Loi_horaire::verifier_derivee(const double t)
           double seuil=std::fabs(seuil_t[i]);
           if (!est_egal(seuil,0) && std::fabs(err_t(i))>seuil)
             {
-              if (Process::je_suis_maitre())
-                {
-                  Cerr << "At time " << t << ", inconsistency in the schedule law " << le_nom() << finl;
-                  Cerr << "The expression of the component " << i << " of velocity does not appear" << finl;
-                  Cerr << "to be the time derivative of the position expression." << finl;
-                  Cerr << "Verify the expressions of this schedule law in your data set." << finl;
-                  Cerr << "If the expressions are correct after all, add the option 'verification_derivee 0'" << finl;
-                  Cerr << "in the law to not to make this verification." << finl;
-                }
+              Cerr << "At time " << t << ", inconsistency in the schedule law " << le_nom() << finl;
+              Cerr << "The expression of the component " << i << " of velocity does not appear" << finl;
+              Cerr << "to be the time derivative of the position expression." << finl;
+              Cerr << "Verify the expressions of this schedule law in your data set." << finl;
+              Cerr << "If the expressions are correct after all, add the option 'verification_derivee 0'" << finl;
+              Cerr << "in the law to not to make this verification." << finl;
               Process::exit();
             }
         }
@@ -272,14 +269,11 @@ void Loi_horaire::verifier_derivee(const double t)
             double seuil=std::fabs(seuil_r(i,j));
             if (!est_egal(seuil,0) && std::fabs(err_r(i,j))>seuil)
               {
-                if (Process::je_suis_maitre())
-                  {
-                    Cerr << "At time " << t << ", inconsistency in the schedule law " << le_nom() << finl;
-                    Cerr << "The expression of the component " << i*ni+j << " of derivee_rotation does not appear" << finl;
-                    Cerr << "to be the time derivative of the rotation expression." << finl;
-                    Cerr << "Verify the expressions of this schedule law in your data set" << finl;
-                    Cerr << "or add the option 'verification_derivee 0' in this law." << finl;
-                  }
+                Cerr << "At time " << t << ", inconsistency in the schedule law " << le_nom() << finl;
+                Cerr << "The expression of the component " << i*ni+j << " of derivee_rotation does not appear" << finl;
+                Cerr << "to be the time derivative of the rotation expression." << finl;
+                Cerr << "Verify the expressions of this schedule law in your data set" << finl;
+                Cerr << "or add the option 'verification_derivee 0' in this law." << finl;
                 Process::exit();
               }
           }
@@ -295,7 +289,7 @@ void Loi_horaire::imprimer(const Schema_Temps_base& sch, const ArrOfDouble& coor
       nom_fichier+="_loi_horaire_";
       nom_fichier+=le_nom();
       nom_fichier+=".out";
-      SFichier fic; // * os=NULL;
+      SFichier fic; // * os=nullptr;
       struct stat f;
       // On cree le fichier a la premiere impression avec l'en tete ou si le fichier n'existe pas
       if (stat(nom_fichier,&f) || (sch.nb_impr()==1 && !sch.pb_base().reprise_effectuee()))

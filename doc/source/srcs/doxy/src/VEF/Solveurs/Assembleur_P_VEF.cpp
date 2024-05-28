@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,11 +18,8 @@
 #include <Domaine_VEF.h>
 #include <Periodique.h>
 #include <Neumann_sortie_libre.h>
-#include <Champ_front_instationnaire_base.h>
-#include <Champ_front_var_instationnaire.h>
 #include <Matrice_Bloc.h>
 #include <Milieu_base.h>
-#include <Scatter.h>
 
 Implemente_instanciable(Assembleur_P_VEF,"Assembleur_P_VEF",Assembleur_base);
 
@@ -591,6 +588,7 @@ int Assembleur_P_VEF::modifier_secmem(DoubleTab& secmem)
     {
       const Cond_lim_base& la_cl_base = le_dom_cl.les_conditions_limites(i).valeur();
       const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl_base.frontiere_dis());
+      const Champ_front_base& champ_front = la_cl_base.champ_front().valeur();
       int ndeb = la_front_dis.num_premiere_face();
       int nfin = ndeb + la_front_dis.nb_faces();
 
@@ -610,39 +608,18 @@ int Assembleur_P_VEF::modifier_secmem(DoubleTab& secmem)
               secmem[face_voisins(num_face,0)] += coef;
             }
         }
-      else if (sub_type(Champ_front_instationnaire_base,
-                        la_cl_base.champ_front().valeur())&&(get_resoudre_en_u()))
+      else if ( champ_front.instationnaire() && get_resoudre_en_u() )
         {
-          // Cas Dirichlet variable dans le temps
-          // N'est utile que pour des champs front. variables dans le temps
-          const Champ_front_instationnaire_base& le_ch_front =
-            ref_cast( Champ_front_instationnaire_base,
-                      la_cl_base.champ_front().valeur());
-          const DoubleTab& Gpt = le_ch_front.Gpoint();
-
-          for (int num_face=ndeb; num_face<nfin; num_face++)
-            {
-              //for num_face
-              double Stt = 0.;
-              for (int k=0; k<dimension; k++)
-                Stt -= Gpt(k) * le_dom.face_normales(num_face, k);
-              secmem(face_voisins(num_face,0)) += Stt;
-            }
-        }
-      else if (sub_type(Champ_front_var_instationnaire,
-                        la_cl_base.champ_front().valeur())&&(get_resoudre_en_u()))
-        {
-          //cas instationaire et variable
-          const Champ_front_var_instationnaire& le_ch_front =
-            ref_cast( Champ_front_var_instationnaire, la_cl_base.champ_front().valeur());
-          const DoubleTab& Gpt = le_ch_front.Gpoint();
-
+          const DoubleTab& Gpt = champ_front.derivee_en_temps();
+          bool ch_unif = (Gpt.nb_dim()==1);
           for (int num_face=ndeb; num_face<nfin; num_face++)
             {
               double Stt = 0.;
               for (int k=0; k<dimension; k++)
-                Stt -= Gpt(num_face - ndeb, k) *
-                       le_dom.face_normales(num_face, k);
+                {
+                  double Gpoint = ch_unif ? Gpt(k) : Gpt(num_face - ndeb, k);
+                  Stt -= Gpoint * le_dom.face_normales(num_face, k);
+                }
               secmem(face_voisins(num_face,0)) += Stt;
             }
         }
@@ -687,7 +664,8 @@ int Assembleur_P_VEF::modifier_matrice(Matrice& matrice)
   Matrice_Bloc& mat_bloc = ref_cast(Matrice_Bloc, matrice.valeur());
   Matrice_Morse_Sym& A00RR = ref_cast(Matrice_Morse_Sym,mat_bloc.get_bloc(0,0).valeur());
   // Recherche de l'element sur lequel on impose la pression de reference
-  if (Process::je_suis_maitre() && !A00RR.get_est_definie())
+  const bool is_first_proc_with_real_elems = Process::me() == Process::mp_min(le_dom_VEF->nb_elem() ? Process::me() : 1e8);
+  if (is_first_proc_with_real_elems && !A00RR.get_est_definie())
     {
       int element_referent=0;
       double distance=DMAXFLOAT;

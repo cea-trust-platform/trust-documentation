@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -175,6 +175,45 @@ void Probleme_base_interface_proto::abortTimeStep_impl(Probleme_base& pb)
   pb.milieu().abortTimeStep();
   dt_defined = false;
 }
+
+void Probleme_base_interface_proto::resetTimeWithDir_impl(Probleme_base& pb, double time, const std::string dirname)
+{
+  if (dt_defined)
+    throw WrongContext(pb.le_nom().getChar(), "resetTime", "resetTime can not be called inside a time step computation");
+  if (!initialized || terminated)
+    throw WrongContext(pb.le_nom().getChar(), "resetTime", "resetTime can not be called before initialize or after terminate");
+
+  // We postreat once before reseting:
+  pb.postraiter(true);
+
+  // Possible to create a new directory:
+  if (!dirname.empty())
+    {
+      pb.terminate(); // Close properly the problem and the output files
+      terminated = false;
+      Sortie_Fichier_base::set_root(dirname); // Create a new directory
+      pb.schema_temps().initialize(); // Initialize the time scheme (.dt_ev file)
+    }
+
+  // [ABN] Warning: when dealing with input data (like Champ_Don), resetTime() can be mapped to 'mettre_a_jour()' (we really
+  // want the input data at the given time)
+  // But when dealing with unknown fields, or computation variables, we must force the time to take the imposed value.
+  // See the various child impl. of resetTime() in the various objects below:
+  pb.schema_temps().resetTime(time);
+  pb.milieu().resetTime(time);
+
+  for (int i = 0; i < pb.nombre_d_equations(); i++)
+    pb.equation(i).resetTime(time);  // will also reset fields there
+
+  // Trigger the change of basename for the output files, and the reinit of the post:
+  pb.postraitements().resetTime(time, dirname);
+  pb.init_postraitements();
+
+  // We postreat after reset:
+  pb.postraiter(true);
+
+}
+
 
 bool Probleme_base_interface_proto::updateGivenFields_impl(Probleme_base& pb)
 {

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,10 @@
 #include <MD_Vector_base.h>
 #include <TRUSTVect.h>
 #include <math.h>
+
+#ifndef LATATOOLS  // Lata tools without Kokkos
+#include <View_Types.h>  // Kokkos stuff
+#endif
 
 /*! @brief : Tableau a n entrees pour n<= 4.
  *
@@ -47,6 +51,7 @@ protected:
    */
   Sortie& printOn(Sortie& os) const override
   {
+#ifndef LATATOOLS
     assert(verifie_LINE_SIZE());
     if (TRUSTVect<_TYPE_>::nproc() > 1 && TRUSTVect<_TYPE_>::get_md_vector().non_nul())
       {
@@ -63,6 +68,7 @@ protected:
     const _TYPE_ *data = TRUSTVect<_TYPE_>::addr();
 
     if (sz > 0)  os.put(data, sz, l_size);
+#endif
     return os;
   }
 
@@ -71,6 +77,7 @@ protected:
    */
   Entree& readOn(Entree& is) override
   {
+#ifndef LATATOOLS
     if (TRUSTVect<_TYPE_>::get_md_vector().non_nul())
       {
         // Que veut-on faire si on lit dans un vecteur ayant deja une structure parallele ?
@@ -109,6 +116,7 @@ protected:
         Process::exit();
       }
     assert(verifie_LINE_SIZE());
+#endif
     return is;
   }
 
@@ -192,13 +200,13 @@ public:
     TRUSTVect<_TYPE_>::set_line_size_(n2*n3*n4);
   }
 
-  inline void resize_dim0(int n, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void resize(int n, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void resize(int n1, int n2, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void resize(int n1, int n2, int n3, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void resize(int n1, int n2, int n3, int n4, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void resize(const TRUSTArray<int>& tailles, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void copy(const TRUSTTab&, Array_base::Resize_Options opt = Array_base::COPY_INIT);
+  inline void resize_dim0(int n, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(int n, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(int n1, int n2, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(int n1, int n2, int n3, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(int n1, int n2, int n3, int n4, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(const TRUSTArray<int>& tailles, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
+  inline void copy(const TRUSTTab&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT);
   inline void append_line(_TYPE_);
   inline void append_line(_TYPE_, _TYPE_);
   inline void append_line(_TYPE_, _TYPE_, _TYPE_);
@@ -247,7 +255,39 @@ public:
   inline void ref_data(_TYPE_* ptr, int size) override;
   inline void ref_array(TRUSTArray<_TYPE_>&, int start = 0, int sz = -1) override;
   inline void reset() override;
-  inline void resize_tab(int n, Array_base::Resize_Options opt = Array_base::COPY_INIT) override;
+  inline void resize_tab(int n, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) override;
+
+protected:
+  inline void init_view_tab2() const;
+  inline void init_view_tab3() const;
+  inline void init_view_tab4() const;
+
+public:
+#ifndef LATATOOLS
+  // Kokkos view accessors:
+  inline ConstViewTab<_TYPE_> view_ro() const;  // Read-only
+  inline ViewTab<_TYPE_> view_wo();             // Write-only
+  inline ViewTab<_TYPE_> view_rw();             // Read-write
+
+  inline void sync_to_host() const;             // Synchronize back to host
+  inline void modified_on_host() const;         // Mark data as being modified on host side
+
+  // For 3D arrays:
+  inline ConstViewTab3<_TYPE_> view3_ro() const;  // Read-only
+  inline ViewTab3<_TYPE_> view3_wo();             // Write-only
+  inline ViewTab3<_TYPE_> view3_rw();             // Read-write
+
+  inline void sync_to_host3() const;             // Synchronize back to host
+  inline void modified_on_host3() const;         // Mark data as being modified on host side
+
+  // For 4D arrays:
+  inline ConstViewTab4<_TYPE_> view4_ro() const;  // Read-only
+  inline ViewTab4<_TYPE_> view4_wo();             // Write-only
+  inline ViewTab4<_TYPE_> view4_rw();             // Read-write
+
+  inline void sync_to_host4() const;             // Synchronize back to host
+  inline void modified_on_host4() const;         // Mark data as being modified on host side
+#endif
 
 private:
   static constexpr int MAXDIM_TAB = 4;
@@ -260,6 +300,13 @@ private:
   // Dimension totale (nombre de lignes du tableau) = nb lignes reeles + nb lignes virtuelles
   // Les dimensions dimension_tot(i>=1) sont implicitement egales a dimension(i)
   int dimension_tot_0_;
+
+#ifndef LATATOOLS
+  // Kokkos members
+  mutable DualViewTab<_TYPE_> dual_view_tab2_;      // For 2D case : A(i,j)
+  mutable DualViewTab3<_TYPE_> dual_view_tab3_;      // For 3D case : A(i,j,k)
+  mutable DualViewTab4<_TYPE_> dual_view_tab4_;      // For 4D case : A(i,j,k,l)
+#endif
 
   inline void verifie_MAXDIM_TAB() const
   {
@@ -298,6 +345,10 @@ using IntTab = TRUSTTab<int>;
  * FONCTIONS MEMBRES DE TRUSTTab *
  * ***************************** */
 
-#include <TRUSTTab.tpp> // templates specializations ici ;)
+#ifndef LATATOOLS  // Lata tools without Kokkos
+#include <TRUSTTab_kokkos.tpp> // Kokkos stuff
+#endif
+
+#include <TRUSTTab.tpp> // The rest here!
 
 #endif /* TRUSTTab_included */

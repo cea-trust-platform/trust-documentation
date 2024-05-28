@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,40 +20,29 @@
 
 Implemente_instanciable(Champ_Fonc_Tabule,"Champ_Fonc_Tabule",Champ_Fonc_base);
 // XD champ_fonc_tabule champ_don_base champ_fonc_tabule 0 Field that is tabulated as a function of another field.
-// XD  attr inco chaine inco 0 Name of the field (for example: temperature).
-// XD  attr dim int dim 0 Number of field components.
+// XD  attr pb_field bloc_lecture pb_field 0 block similar to { pb1 field1 } or { pb1 field1 ... pbN fieldN }
+// XD  attr dim entier dim 0 Number of field components.
 // XD  attr bloc bloc_lecture bloc 0 Values (the table (the value of the field at any time is calculated by linear interpolation from this table) or the analytical expression (with keyword expression to use an analytical expression)).
 
-void Champ_Fonc_Tabule::Warn_old_chp_fonc_syntax(const char *nom_class, const Nom& val1, const Nom& val2, int& dim, Nom& param)
+void Champ_Fonc_Tabule::Warn_old_chp_fonc_syntax_V_184(const char *nom_class, const Nom& val1, const Nom& val2)
 {
-  const bool isNum = Check_if_int(val1);
-  if (!isNum) // val1 is not a num - this is the correct new syntax
-    {
-      param = val1;
-      dim = atoi(val2);
-      return;
-    }
-  else   // Detect old syntax and inform user
-    {
-      Cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << finl;
-      Cerr << "Error in call to " << nom_class << ":" << finl;
-      Cerr << "The syntax has changed in version 1.8.2." << finl;
-      Cerr << "You should now pass the dimension/number of components AFTER the field/parameter name." << finl;
-      Cerr << "Please update your dataset or contact TRUST support team." << finl;
-      Process::exit();
-    }
-}
-
-void Champ_Fonc_Tabule::Warn_old_chp_fonc_syntax_V_184(const char *nom_class, const Nom& val, int& dim, int& old_synt)
-{
-  const bool isNum = Check_if_int(val);
-  if (isNum) // old syntax
+  bool isNum = Check_if_int(val1);
+  if (isNum)
     {
       Cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << finl;
-      Cerr << "Attention : you are using an old syntax for the class " << nom_class << " :" << finl;
-      Cerr << "We are trying to fix this ..." << finl;
-      dim = atoi(val);
-      old_synt = 1;
+      Cerr << "Error: you are using an obsolete syntax for the keyword " << nom_class << " :" << finl;
+      Cerr << "Your should specify the problem name first instead of " << val1 << finl;
+      Cerr << "New syntax is: " << nom_class << " problem_name field_name ncomp expression" << finl;
+      Process::exit();
+    }
+  isNum = Check_if_int(val2);
+  if (isNum)
+    {
+      Cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << finl;
+      Cerr << "Error: you are using an obsolete syntax for the keyword " << nom_class << " :" << finl;
+      Cerr << "Your should specify the field name instead of " << val2 << finl;
+      Cerr << "New syntax is: " << nom_class << " problem_name field_name ncomp expression" << finl;
+      Process::exit();
     }
 }
 
@@ -75,7 +64,7 @@ Sortie& Champ_Fonc_Tabule::printOn(Sortie& os) const
  *
  * )
  *      exemple:
- *      Champ_Fonc_Tabule { probleme ch }
+ *      Champ_Fonc_Tabule { probleme ch }
  *      1 (nombre de composantes)
  *      {
  *      2
@@ -89,18 +78,18 @@ Sortie& Champ_Fonc_Tabule::printOn(Sortie& os) const
  */
 Entree& Champ_Fonc_Tabule::readOn(Entree& is)
 {
-  int nbcomp, old_table_syntax_ = 0;
+  int nbcomp;
   Nom motlu;
   const Motcle accolade_ouverte("{"), accolade_fermee("}");
   is >> motlu;
   if (motlu != accolade_ouverte)
     {
-      noms_champs_parametre_.add(motlu);
-      old_table_syntax_ = 1;
+      Cerr << "You are using an old syntaxe, you should now use:"<< finl;
+      Cerr << "Champ_Fonc_Tabule { problem_name field_name } ncomp { table }" << finl;
+      exit();
     }
   else
     {
-      assert(old_table_syntax_ == 0);
       while (true)
         {
           is >> motlu;
@@ -112,12 +101,6 @@ Entree& Champ_Fonc_Tabule::readOn(Entree& is)
         }
     }
   const int nb_param = noms_champs_parametre_.size();
-
-  if (old_table_syntax_ && noms_pbs_.size() != 0 && nb_param != 1)
-    {
-      Cerr << "What ??? Big problem in Champ_Fonc_Tabule::readOn !!!" << finl;
-      throw;
-    }
 
   is >> nbcomp;
   fixer_nb_comp(nbcomp);
@@ -158,10 +141,8 @@ Entree& Champ_Fonc_Tabule::readOn(Entree& is)
   else if (motlu == "fonction")
     {
       Cerr << "The syntax has changed..." << finl;
-      Cerr << "The syntax is now Champ_Fonc_fonction 1 field_expression" << finl;
+      Cerr << "The syntax is now Champ_Fonc_fonction problem field 1 field_expression" << finl;
       exit();
-      Cerr << "We read the analytic function " << finl;
-      la_table.lire_f(is, 0);
     }
   else
     {

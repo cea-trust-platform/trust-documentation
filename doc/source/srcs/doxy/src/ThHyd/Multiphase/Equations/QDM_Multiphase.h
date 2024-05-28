@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -69,6 +69,7 @@ public :
   const Champ_base& vitesse_pour_transport() const override;
   void assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) override;
   void creer_champ(const Motcle& motlu) override;
+  void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
 
   void update_y_plus(const DoubleTab& tab) ;
   double alpha_res() const ;

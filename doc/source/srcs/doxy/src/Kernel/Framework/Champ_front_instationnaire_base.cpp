@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,6 @@
 
 Implemente_base(Champ_front_instationnaire_base,"Champ_front_instationnaire_base",Champ_front_base);
 
-
 /*! @brief Lit le temps du champ instationnaire sur un flot d'entree.
  *
  * @param (Entree& is) un flot d'entree
@@ -27,7 +26,6 @@ Entree& Champ_front_instationnaire_base::readOn(Entree& is)
 {
   return is;
 }
-
 
 /*! @brief Ecrit le temps du champ instationnaire sur un flot de sortie.
  *
@@ -51,10 +49,7 @@ int Champ_front_instationnaire_base::initialiser(double temps, const Champ_Inc_b
     {
       les_valeurs[i].valeurs().resize(1,nb_comp());
     }
-
-  Gpoint_=valeurs(); // pour dimensionner
-  Gpoint_=0.;
-
+  set_instationnaire(true);
   return 1;
 }
 
@@ -123,7 +118,6 @@ const DoubleTab& Champ_front_instationnaire_base::valeurs_au_temps(double temps)
  */
 int Champ_front_instationnaire_base::avancer(double temps)
 {
-
   // S"agit-il bien d'une avance en temps ?
   assert(temps>les_valeurs->temps());
 
@@ -166,20 +160,6 @@ int Champ_front_instationnaire_base::reculer(double temps)
   print(les_valeurs);
   exit();
   return 0;
-}
-
-/*! @brief Calcule le taux d'accroissement du champ entre t1 et t2 et le stocke dans Gpoint_
- *
- */
-void Champ_front_instationnaire_base::Gpoint(double t1, double t2)
-{
-  DoubleTab& v1=valeurs_au_temps(t1);
-  DoubleTab& v2=valeurs_au_temps(t2);
-  int dim=v1.dimension(1);
-
-  Gpoint_.resize(dim);
-  for (int i=0; i<dim; i++)
-    Gpoint_(i) = (v2(0,i)-v1(0,i)) / (t2-t1);
 }
 
 void Champ_front_instationnaire_base::valeurs_face(int face,DoubleVect& var) const

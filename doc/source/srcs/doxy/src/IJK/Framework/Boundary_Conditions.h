@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,6 +36,7 @@ public:
   double get_t0_shear() { return t0_shear_; }
   int get_defilement() { return defilement_; }
   int get_correction_interp_monofluide() { return interp_monofluide_; }
+  int get_correction_conserv_qdm() { return conserv_qdm_; }
   int get_resolution_u_prime_() { return resolution_u_prime_; }
 
 protected:
@@ -44,7 +45,9 @@ protected:
   double dU_perio_;
   double t0_shear_;
   int defilement_;
+  int order_interpolation_poisson_solver_;
   int interp_monofluide_;
+  int conserv_qdm_;
   int resolution_u_prime_;
 };
 

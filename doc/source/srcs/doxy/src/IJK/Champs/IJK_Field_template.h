@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #ifndef IJK_Field_template_included
 #define IJK_Field_template_included
 
-#include <IJK_Field_local_template.h>
+#include <IJK_Shear_Periodic_helpler.h>
 #include <communications.h>
 #include <IJK_Splitting.h>
 #include <stat_counters.h>
@@ -41,11 +41,7 @@ protected:
   int duplique() const override
   {
     IJK_Field_template *xxx = new IJK_Field_template(*this);
-    if (!xxx)
-      {
-        Cerr << "Not enough memory " << finl;
-        Process::exit();
-      }
+    if (!xxx) Process::exit("Not enough memory !");
     return xxx->numero();
   }
 
@@ -58,31 +54,23 @@ public:
     IJK_Field_local_template<_TYPE_,_TYPE_ARRAY_>(),
     localisation_(IJK_Splitting::Localisation::ELEM)
   { }
-  void allocate(const IJK_Splitting&, IJK_Splitting::Localisation, int ghost_size, int additional_k_layers = 0, int nb_compo = 1, bool external_storage = false, int monofluide=0, double rov=0., double rol=0.);
-
+  void allocate(const IJK_Splitting&, IJK_Splitting::Localisation, int ghost_size, int additional_k_layers = 0, int nb_compo = 1, bool external_storage = false, int monofluide=0, double rov=0., double rol=0., int use_inv_rho_in_pressure_solver=0);
   const IJK_Splitting& get_splitting() const { return splitting_ref_.valeur(); }
-
   IJK_Splitting::Localisation get_localisation() const { return localisation_; }
-  void echange_espace_virtuel(int ghost, double Shear_DU=0.);
-  void change_to_sheared_reference_frame(double sens, int loc, int time=1);
+  void echange_espace_virtuel(int ghost);
+  //_TYPE_ interpolation_for_shear_periodicity(const int phase, const int send_j, const int send_k);
+  _TYPE_ interpolation_for_shear_periodicity_IJK_Field(const int send_j, const int send_k);
+  void interpolation_for_shear_periodicity_I_sig_kappa(const int send_j, const int send_k_zmin, const int send_k_zmax, _TYPE_ Isigkappazmin, _TYPE_ Isigkappazmax);
+  void redistribute_with_shear_domain_ft(const IJK_Field_double& input, double DU_perio, const int ft_extension);
   void ajouter_second_membre_shear_perio(IJK_Field_double& resu);
-  void redistribute_with_shear_domain_ft(const IJK_Field_double& input_field, double DU_perio, int dir=-1);
-  void update_I_sigma_kappa(const IJK_Field_double& indic_ft, const IJK_Field_double& courbure_ft, const int ft_extension, const double sigma);
-  void relever_I_sigma_kappa_ns(IJK_Field_double& field_ns);
-  _TYPE_ interpolation_for_shear_periodicity(const int phase, const int send_i, const int send_j, const int send_k, const _TYPE_ istmp, const int real_size_i);
 
-  int monofluide_variable_ ;
-  int order_interpolation_ ;
-  IJK_Field_local_template<_TYPE_,_TYPE_ARRAY_> indicatrice_ghost_zmin_ ;
-  IJK_Field_local_template<_TYPE_,_TYPE_ARRAY_> indicatrice_ghost_zmax_ ;
-  IJK_Field_local_template<_TYPE_,_TYPE_ARRAY_> I_sigma_kappa_ghost_zmin_ ;
-  IJK_Field_local_template<_TYPE_,_TYPE_ARRAY_> I_sigma_kappa_ghost_zmax_ ;
-  double rho_v_;
-  double rho_l_;
+  inline IJK_Shear_Periodic_helpler& get_shear_BC_helpler() { return shear_BC_helpler_; }
+  inline const IJK_Shear_Periodic_helpler& get_shear_BC_helpler() const { return shear_BC_helpler_; }
 
 protected:
   REF(IJK_Splitting) splitting_ref_;
   IJK_Splitting::Localisation localisation_;
+  IJK_Shear_Periodic_helpler shear_BC_helpler_;
 
   void exchange_data(int pe_imin_, /* processor to send to */
                      int is, int js, int ks, /* ijk coordinates of first data to send */

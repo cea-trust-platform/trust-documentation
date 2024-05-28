@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,11 +33,14 @@
 #include <Synonyme_info.h>
 #include <Matrix_tools.h>
 #include <EOS_to_TRUST.h>
+#include <Statistiques.h>
 #include <Array_tools.h>
 #include <TRUSTLists.h>
 #include <Dirichlet.h>
 #include <functional>
 #include <cmath>
+
+extern Stat_Counter_Id diffusion_counter_;
 
 Implemente_instanciable_sans_constructeur(Op_Diff_PolyMAC_P0_Elem, "Op_Diff_PolyMAC_P0_Elem|Op_Diff_PolyMAC_P0_var_Elem", Op_Diff_PolyMAC_P0_base);
 Implemente_instanciable(Op_Dift_PolyMAC_P0_Elem, "Op_Dift_PolyMAC_P0_Elem_PolyMAC_P0|Op_Dift_PolyMAC_P0_var_Elem_PolyMAC_P0", Op_Diff_PolyMAC_P0_Elem);
@@ -132,8 +135,9 @@ void Op_Diff_PolyMAC_P0_Elem::init_op_ext() const
     }
 
   /* construction de som_ext_{d, e, f} */
-  som_ext.set_smart_resize(1), som_ext_d.resize(0, 2), som_ext_d.set_smart_resize(1), som_ext_d.append_line(0, 0);
-  som_ext_pe.resize(0, 2), som_ext_pf.resize(0, 4), som_ext_pe.set_smart_resize(1), som_ext_pf.set_smart_resize(1);
+  som_ext_d.resize(0, 2);
+  som_ext_d.append_line(0, 0);
+  som_ext_pe.resize(0, 2), som_ext_pf.resize(0, 4);
   std::set<std::array<int, 2>> s_pe; // (pb, el)
   std::set<std::array<int, 4>> s_pf; // (pb1, f1, pb2, f2)
   std::vector<std::reference_wrapper<const Domaine_PolyMAC_P0>> domaines;
@@ -201,8 +205,9 @@ double Op_Diff_PolyMAC_P0_Elem::calculer_dt_stab() const
   const Champ_Elem_PolyMAC_P0& 	ch	= ref_cast(Champ_Elem_PolyMAC_P0, equation().inconnue().valeur());
   const IntTab& e_f = domaine.elem_faces(), &fcl = ch.fcl();
   const DoubleTab& nf = domaine.face_normales(),
-                   *alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : (has_champ_masse_volumique() ? &get_champ_masse_volumique().valeurs() : NULL),
-                    &diffu = diffusivite_pour_pas_de_temps().valeurs(), &lambda = diffusivite().valeurs();
+                   *alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() :
+                          (has_champ_masse_volumique() ? &get_champ_masse_volumique().valeurs() : nullptr),
+                          &diffu = diffusivite_pour_pas_de_temps().valeurs(), &lambda = diffusivite().valeurs();
   const DoubleVect& pe = equation().milieu().porosite_elem(), &vf = domaine.volumes_entrelaces(), &ve = domaine.volumes();
   update_nu();
 
@@ -242,7 +247,10 @@ void Op_Diff_PolyMAC_P0_Elem::dimensionner_blocs(matrices_t matrices, const tabs
   std::vector<int> N(op_ext.size()); //nombre de composantes par probleme de op_ext
   std::vector<IntTrav> stencil(op_ext.size()); //stencils par matrice
   for (i = 0; i < (int) op_ext.size(); i++)
-    stencil[i].resize(0, 2), stencil[i].set_smart_resize(1), N[i] = op_ext[i]->equation().inconnue().valeurs().line_size();
+    {
+      stencil[i].resize(0, 2);
+      N[i] = op_ext[i]->equation().inconnue().valeurs().line_size();
+    }
 
   IntTrav tpfa(0, N[0]); //pour suivre quels flux sont a deux points
   domaine.creer_tableau_faces(tpfa), tpfa = 1;
@@ -287,6 +295,7 @@ void Op_Diff_PolyMAC_P0_Elem::ajouter_blocs(matrices_t matrices, DoubleTab& secm
   Cerr << "Internal error with nvc++: Internal error: read_memory_region: not all expected entries were read." << finl;
   Process::exit();
 #else
+  statistiques().begin_count(diffusion_counter_);
   init_op_ext(), update_phif();
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   int i, i_eq, i_s, il, j, k, k1, k2, kb, l, e, eb, f, fb, s, sb, sp, m, n, M, n_ext = (int) op_ext.size(), p, pb, n_e, n_ef, nc, nl, n_m, d, db, D = dimension, sgn, sgn_l, nw, un = 1, rk, infoo, it,
@@ -364,11 +373,7 @@ void Op_Diff_PolyMAC_P0_Elem::ajouter_blocs(matrices_t matrices, DoubleTab& secm
   IntTrav i_efs, i_e, i_eq_flux, i_eq_cont, i_eq_pbm, piv(1); //indices dans les matrices : i_efs(i, j, n) -> composante n de la face j de l'elem i dans s_pe, i_e(i, n) -> indice de la phase n de l'elem i de s_pe
   //i_eq_{flux,cont}(i, n) -> n-ieme equation de flux/de continuite a la face i de s_pf
   //i_eq_pbm(i_efs(i, j, n)) -> n-ieme equation "flux = correlation" a la face j de l'elem i de s_pe (seulement si Pb_Multiphase)
-  DoubleTrav A, B, mA, mB, Ff, Fec, Qf, Qec, Tefs, C, X, Y, W(1), S, x_fs;
-  i_efs.set_smart_resize(1), i_e.set_smart_resize(1), i_eq_flux.set_smart_resize(1), i_eq_cont.set_smart_resize(1), i_eq_pbm.set_smart_resize(1);
-  A.set_smart_resize(1), B.set_smart_resize(1), Ff.set_smart_resize(1), Fec.set_smart_resize(1), C.set_smart_resize(1), X.set_smart_resize(1);
-  Y.set_smart_resize(1), piv.set_smart_resize(1), W.set_smart_resize(1), x_fs.set_smart_resize(1), Tefs.set_smart_resize(1), S.set_smart_resize(1);
-  mA.set_smart_resize(1), mB.set_smart_resize(1), Qf.set_smart_resize(1), Qec.set_smart_resize(1);
+  DoubleTrav A, B, Ff, Fec, Qf, Qec, Tefs, C, X, Y, W(1), S, x_fs;
 
   // Et pour les methodes span de la classe Saturation pour le flux parietal
   std::vector<DoubleTrav> Ts_tab(n_ext), Sigma_tab(n_ext), Lvap_tab(n_ext);
@@ -775,6 +780,7 @@ void Op_Diff_PolyMAC_P0_Elem::ajouter_blocs(matrices_t matrices, DoubleTab& secm
   if (pqpi)
     (*pqpi).echange_espace_virtuel();
 
+  statistiques().end_count(diffusion_counter_);
 #endif
 }
 

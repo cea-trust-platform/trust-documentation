@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,7 +37,9 @@
 #include <Conds_lim.h>
 #include <NettoieNoeuds.h>
 #include <Polyedre.h>
-#include <trust_med_utils.h>
+#include <TRUST_2_MED.h>
+#include <Comm_Group_MPI.h>
+#include <Option_Interpolation.h>
 
 #ifdef MEDCOUPLING_
 using MEDCoupling::DataArrayInt;
@@ -46,28 +48,48 @@ using MEDCoupling::DataArrayDouble;
 
 Implemente_instanciable_sans_constructeur(Domaine,"Domaine",Objet_U);
 
-Domaine::Domaine() :
-  moments_a_imprimer_(0),
-  axi1d_(0),
-  epsilon_(Objet_U::precision_geom),
-  deformable_(0),
-  volume_total_(-1)
-{ }
+Domaine::Domaine()
+{
+  clear();
+}
 
 /*! @brief Reset the Domaine completely except for its name.
  */
 void Domaine::clear()
 {
-  Nom n = nom_;
-  // Erase MD structures to authorize copy of a (void) array afterwards
   sommets_.reset();
+  renum_som_perio_.reset();
+  elem_ = Elem_geom();
   mes_elems_.reset();
   aretes_som_.reset();
   elem_aretes_.reset();
+  mes_faces_bord_.vide();
+  mes_faces_raccord_.vide();
+  mes_bords_int_.vide();
+  mes_groupes_faces_.vide();
+  mes_faces_joint_.vide();
+  ind_faces_virt_bord_.reset();
+  cg_moments_.reset();
   elem_virt_pe_num_.reset();
-  // Now we can safely do:
-  *this = Domaine();
-  nom_= n;
+  domaines_frontieres_.vide();
+  les_ss_domaines_.vide();
+
+  moments_a_imprimer_ = 0;
+  bords_a_imprimer_.vide();
+  bords_a_imprimer_sum_.vide();
+
+  axi1d_ = 0;
+  epsilon_ = Objet_U::precision_geom;
+  deformable_ = false;
+  fichier_lu_ = Nom();
+
+#ifdef MEDCOUPLING_
+  mc_mesh_.nullify();
+  mc_face_mesh_.nullify();
+  rmps.clear();
+#endif
+
+  volume_total_ = -1;
 }
 
 /*! @brief Ecrit la Domaine sur un flot de sortie.
@@ -197,7 +219,7 @@ Entree& Domaine::readOn(Entree& s)
   read_former_domaine(s);
   check_domaine();
 
-  if ( (Process::nproc()==1) && (NettoieNoeuds::NettoiePasNoeuds==0) )
+  if (Process::is_sequential() && (NettoieNoeuds::NettoiePasNoeuds==0) )
     {
       NettoieNoeuds::nettoie(*this);
       nbsom = mp_sum(sommets_.dimension(0));
@@ -255,7 +277,7 @@ void Domaine::check_domaine()
       corriger_type(frontiere(i).faces(), type_elem().valeur());
   }
 
-  if (mes_faces_bord_.size() == 0 && mes_faces_raccord_.size() == 0 && Process::nproc() == 1)
+  if (mes_faces_bord_.size() == 0 && mes_faces_raccord_.size() == 0 && Process::is_sequential())
     Cerr << "Warning, the reread domaine " << nom_ << " has no defined boundaries (none boundary or connector)." << finl;
 
   mes_faces_bord_.associer_domaine(*this);
@@ -384,16 +406,16 @@ ArrOfInt& Domaine::chercher_elements(const DoubleTab& positions, ArrOfInt& eleme
         for (int i = 0; i < cached_positions_.size(); i++)
           if (sameDoubleTab(positions, cached_positions_[i]))
             {
-              elements.resize_tab(cached_positions_[i].dimension(0), ArrOfInt::NOCOPY_NOINIT);
+              elements.resize_tab(cached_positions_[i].dimension(0), RESIZE_OPTIONS::NOCOPY_NOINIT);
               elements = cached_elements_[i];
               /*
                //Cerr << "Reuse " << i << "th array cached in memory for Domaine::chercher_elements(...): " << finl;
                if (i!=0)
                {
                // Permute pour avoir le tableau en premier
-               cached_elements_[i].resize_tab(cached_positions_[0].dimension(0), ArrOfInt::NOCOPY_NOINIT);
+               cached_elements_[i].resize_tab(cached_positions_[0].dimension(0), RESIZE_OPTIONS::NOCOPY_NOINIT);
                cached_elements_[i] = cached_elements_[0];
-               cached_elements_[0].resize_tab(cached_positions_[i].dimension(0), ArrOfInt::NOCOPY_NOINIT);
+               cached_elements_[0].resize_tab(cached_positions_[i].dimension(0), RESIZE_OPTIONS::NOCOPY_NOINIT);
                cached_elements_[0] = elements;
                DoubleTab tmp(cached_positions_[i]);
                cached_positions_[i] = cached_positions_[0];
@@ -408,11 +430,11 @@ ArrOfInt& Domaine::chercher_elements(const DoubleTab& positions, ArrOfInt& eleme
   const int dim = positions.dimension(1);
   // resize_tab est virtuelle, si c'est un Vect ou un Tab elle appelle le
   // resize de la classe derivee:
-  elements.resize_tab(sz, ArrOfInt::NOCOPY_NOINIT);
-  double x, y = 0, z = 0;
+  elements.resize_tab(sz, RESIZE_OPTIONS::NOCOPY_NOINIT);
+  double y = 0, z = 0;
   for (int i = 0; i < sz; i++)
     {
-      x = positions(i, 0);
+      double x = positions(i, 0);
       if (dim > 1)
         y = positions(i, 1);
       if (dim > 2)
@@ -423,24 +445,26 @@ ArrOfInt& Domaine::chercher_elements(const DoubleTab& positions, ArrOfInt& eleme
     {
       // Securite car vu sur un calcul FT (cache qui augmente indefiniment, nombre de particules variables...)
       if (cached_memory>1e8) // 100Mo/proc
-        // Vide le cache
-        cached_elements_.reset();
-      cached_positions_.reset();
-    }
-  else
-    {
-      // Met en cache
-      cached_positions_.add(positions);
-      cached_elements_.add(elements);
-      cached_memory += positions.size_array() * (int) sizeof(double);
-      cached_memory += elements.size_array() * (int) sizeof(int);
-      if (cached_memory > 1e7)   // 10Mo
         {
-          Cerr << 2 * cached_positions_.size() << " arrays cached in memory for Zone::chercher_elements(...): ";
-          if (cached_memory < 1e6)
-            Cerr << int(cached_memory / 1024) << " KBytes" << finl;
-          else
-            Cerr << int(cached_memory / 1024 / 1024) << " MBytes" << finl;
+          // Vide le cache
+          cached_elements_.reset();
+          cached_positions_.reset();
+        }
+      else
+        {
+          // Met en cache
+          cached_positions_.add(positions);
+          cached_elements_.add(elements);
+          cached_memory += positions.size_array() * (int) sizeof(double);
+          cached_memory += elements.size_array() * (int) sizeof(int);
+          if (cached_memory > 1e7)   // 10Mo
+            {
+              Cerr << 2 * cached_positions_.size() << " arrays cached in memory for Zone::chercher_elements(...): ";
+              if (cached_memory < 1e6)
+                Cerr << int(cached_memory / 1024) << " KBytes" << finl;
+              else
+                Cerr << int(cached_memory / 1024 / 1024) << " MBytes" << finl;
+            }
         }
     }
   return elements;
@@ -963,7 +987,7 @@ void Domaine::merge_wo_vertices_with(Domaine& dom2)
 void Domaine::fill_from_list(std::list<Domaine*>& lst)
 {
   Cerr << "Filling domain from list of domains in progress... " << finl;
-  if (Process::nproc() > 1)
+  if (Process::is_parallel())
     Process::exit("Error in Domaine::fill_from_list() : compression prohibited in parallel mode");
   if (lst.size() == 0)
     Process::exit("Error in Domaine::fill_from_list() : compression prohibited in parallel mode");
@@ -1287,11 +1311,11 @@ void Domaine::calculer_mon_centre_de_gravite(ArrOfDouble& c)
 void Domaine::calculer_volumes(DoubleVect& volumes, DoubleVect& inverse_volumes) const
 {
   if (!volumes.get_md_vector().non_nul())
-    creer_tableau_elements(volumes, Array_base::NOCOPY_NOINIT);
+    creer_tableau_elements(volumes, RESIZE_OPTIONS::NOCOPY_NOINIT);
   elem_.calculer_volumes(volumes); // Dimensionne et calcule le DoubleVect volumes
   // Check and fill inverse_volumes
   if (!inverse_volumes.get_md_vector().non_nul())
-    creer_tableau_elements(inverse_volumes, Array_base::NOCOPY_NOINIT);
+    creer_tableau_elements(inverse_volumes, RESIZE_OPTIONS::NOCOPY_NOINIT);
   int size = volumes.size_totale();
   for (int i = 0; i < size; i++)
     {
@@ -1367,7 +1391,7 @@ const OctreeRoot& Domaine::construit_octree(int& reel) const
  * Voir MD_Vector_tools::creer_tableau_distribue()
  *
  */
-void Domaine::creer_tableau_elements(Array_base& x, Array_base::Resize_Options opt) const
+void Domaine::creer_tableau_elements(Array_base& x, RESIZE_OPTIONS opt) const
 {
   const MD_Vector& md = md_vector_elements();
   MD_Vector_tools::creer_tableau_distribue(md, x, opt);
@@ -1453,7 +1477,7 @@ int Domaine::identifie_item_unique(IntList& item_possible, DoubleTab& coord_poss
               for (int ind = ind_it_suppr; ind < size_actuelle; ind++)
                 for (int dir = 0; dir < dimension; dir++)
                   coord_possible(ind, dir) = coord_possible(ind + 1, dir);
-              coord_possible.resize(size_actuelle, dimension, Array_base::COPY_NOINIT);
+              coord_possible.resize(size_actuelle, dimension, RESIZE_OPTIONS::COPY_NOINIT);
               nb_it_suppr++;
             }
           ind_it++;
@@ -1490,7 +1514,7 @@ void Domaine::init_faces_virt_bord(const MD_Vector& md_vect_faces, MD_Vector& md
   const int nb_faces_fr = nb_faces_frontiere();
   //  Marquage des faces de bord (-1=>pas une face de bord, 0=>face de bord)
   IntVect vect_renum;
-  MD_Vector_tools::creer_tableau_distribue(md_vect_faces, vect_renum, Array_base::NOCOPY_NOINIT);
+  MD_Vector_tools::creer_tableau_distribue(md_vect_faces, vect_renum, RESIZE_OPTIONS::NOCOPY_NOINIT);
   vect_renum = -1;
   for (int i = 0; i < nb_faces_fr; i++)
     vect_renum[i] = 0;
@@ -1505,7 +1529,7 @@ void Domaine::init_faces_virt_bord(const MD_Vector& md_vect_faces, MD_Vector& md
   const int nb_faces = vect_renum.size();
   const int nb_faces_tot = vect_renum.size_totale();
   const int nb_faces_virt = nb_faces_tot - nb_faces;
-  ind_faces_virt_bord_.resize_array(nb_faces_virt, Array_base::NOCOPY_NOINIT);
+  ind_faces_virt_bord_.resize_array(nb_faces_virt, RESIZE_OPTIONS::NOCOPY_NOINIT);
   for (int i = 0; i < nb_faces_virt; i++)
     ind_faces_virt_bord_[i] = vect_renum[nb_faces + i];
 
@@ -1635,7 +1659,7 @@ void echanger_tableau_aretes(const IntTab& elem_aretes, int nb_aretes_reelles, A
   // Dans ce cas, pe_arete est maintenant correctement rempli pour les aretes reelles.
 
   IntTab tmp;
-  tmp.copy(elem_aretes, Array_base::NOCOPY_NOINIT); // copier uniquement la structure
+  tmp.copy(elem_aretes, RESIZE_OPTIONS::NOCOPY_NOINIT); // copier uniquement la structure
 
   // Copier tab_aretes dans la structure tmp (on sait echanger tmp, pas tab_aretes)
   for (i = 0; i < nb_elem; i++)
@@ -1684,7 +1708,7 @@ void Domaine::creer_aretes()
   // Les elements virtuels sont deja construits:
   const int nbelem_tot = elem_som.dimension_tot(0);
 
-  aretes_som_.set_smart_resize(1);
+
   aretes_som_.resize(0, 2);
   bool is_poly = sub_type(Poly_geom_base, type_elem().valeur());
 
@@ -1696,7 +1720,7 @@ void Domaine::creer_aretes()
     // chaine_aretes_sommets[i] contient l'indice de la prochaine arete attachee au
     // meme sommet ou -1 si c'est la derniere
     ArrOfInt chaine_aretes_sommets;
-    chaine_aretes_sommets.set_smart_resize(1);
+
     // Indice de la premiere arete attachee a chaque sommet dans chaine_aretes_sommets
     ArrOfInt premiere_arete_som(nb_som_tot());
     premiere_arete_som = -1;
@@ -1760,7 +1784,7 @@ void Domaine::creer_aretes()
     nb_aretes_elem = std::max(nb_aretes_elem, (int) v_e_a[i].size());
   nb_aretes_elem = mp_max(nb_aretes_elem);
   elem_aretes_.resize(0, nb_aretes_elem);
-  creer_tableau_elements(elem_aretes_, Array_base::NOCOPY_NOINIT);
+  creer_tableau_elements(elem_aretes_, RESIZE_OPTIONS::NOCOPY_NOINIT);
   for (i = 0, elem_aretes_ = -1; i < nbelem_tot; i++)
     for (j = 0; j < (int) v_e_a[i].size(); j++)
       elem_aretes_(i, j) = v_e_a[i][j];
@@ -1768,7 +1792,7 @@ void Domaine::creer_aretes()
   // Ajuste la taille du tableau Aretes_som
   const int n_aretes_tot = aretes_som_.dimension(0); // attention, nb_aretes_tot est une methode !
   aretes_som_.append_line(-1, -1); // car le resize suivant ne fait quelque chose que si on change de taille
-  aretes_som_.set_smart_resize(0);
+
   aretes_som_.resize(n_aretes_tot, 2);
 
   Journal() << "Domaine " << le_nom() << " nb_aretes=" << nb_aretes_reelles << " nb_aretes_tot=" << n_aretes_tot << finl;
@@ -1783,20 +1807,20 @@ void Domaine::creer_aretes()
 
     // Pour chaque arete, indice de l'arete sur le processeur proprietaire
     ArrOfInt indice_aretes_owner;
-    indice_aretes_owner.resize_array(n_aretes_tot, Array_base::NOCOPY_NOINIT);
+    indice_aretes_owner.resize_array(n_aretes_tot, RESIZE_OPTIONS::NOCOPY_NOINIT);
     for (i = 0; i < nb_aretes_reelles; i++)
       indice_aretes_owner[i] = i;
     echanger_tableau_aretes(elem_aretes_, nb_aretes_reelles, indice_aretes_owner);
 
     // Construction de pe_voisins
     ArrOfInt pe_voisins;
-    pe_voisins.set_smart_resize(1);
+
     for (i = 0; i < n_aretes_tot; i++)
       if (pe_aretes[i] != moi)
         pe_voisins.append_array(pe_aretes[i]);
 
     ArrOfInt liste_pe;
-    liste_pe.set_smart_resize(1);
+
     reverse_send_recv_pe_list(pe_voisins, liste_pe);
 
     // On concatene les deux listes.
@@ -1815,9 +1839,9 @@ void Domaine::creer_aretes()
     ArrsOfInt aretes_to_send(nb_voisins);
     for (i = 0; i < nb_voisins; i++)
       {
-        aretes_communes_to_recv[i].set_smart_resize(1);
-        blocs_aretes_virt[i].set_smart_resize(1);
-        aretes_to_send[i].set_smart_resize(1);
+
+
+
       }
     // Parcours des aretes: recherche des aretes a recevoir d'un autre processeur.
     // Aretes reeles (items communs)
@@ -1896,6 +1920,7 @@ void Domaine::creer_mes_domaines_frontieres(const Domaine_VF& domaine_vf)
   const Nom expr_faces("1");
   int nb_frontieres = nb_front_Cl();
   domaines_frontieres_.vide();
+
   for (int i=0; i<nb_frontieres; i++)
     {
       // Nom de la frontiere
@@ -2020,7 +2045,7 @@ void Domaine::ajouter(const DoubleTab& soms, IntVect& nums)
       int compteur=0;
       ArrOfDouble tab_coord(dim);
       ArrOfInt liste_sommets;
-      liste_sommets.set_smart_resize(1);
+
       for( i=0; i< ajoutsz; i++)
         {
           for (int j = 0; j < dim; j++)
@@ -2090,7 +2115,7 @@ void Domaine::construire_renum_som_perio(const Conds_lim& les_cl,
  *
  * Voir MD_Vector_tools::creer_tableau_distribue()
  */
-void Domaine::creer_tableau_sommets(Array_base& v, Array_base::Resize_Options opt) const
+void Domaine::creer_tableau_sommets(Array_base& v, RESIZE_OPTIONS opt) const
 {
   const MD_Vector& md = md_vector_sommets();
   MD_Vector_tools::creer_tableau_distribue(md, v, opt);
@@ -2158,14 +2183,11 @@ void Domaine::imprimer() const
 }
 
 /*! @brief Build the MEDCoupling mesh corresponding to the TRUST mesh.
- *
- * Not necessary when the domain was read from a MED file
  */
 void Domaine::build_mc_mesh() const
 {
 #ifdef MEDCOUPLING_
-  // This method should not be called if MC mesh was already filled when reading domain from MED
-  assert(mc_mesh_.isNull());
+  Cerr << "   Domaine: Creating a MEDCouplingUMesh object for the domain '" << le_nom() << "'" << finl;
 
   // Initialize mesh
   Nom type_ele = elem_->que_suis_je();
@@ -2241,6 +2263,8 @@ void Domaine::build_mc_mesh() const
         }
     }
 
+  mc_mesh_ready_ = true;
+
 #endif
 }
 
@@ -2306,7 +2330,7 @@ void Domaine::build_mc_face_mesh(const Domaine_dis_base& domaine_dis_base) const
   mc_face_mesh_->checkConsistency();
 #endif
   mP->decrRef();
-#endif
+#endif // MEDCOUPLING_
 }
 
 /*! @brief Initialize the renumerotation array for periodicity
@@ -2320,24 +2344,62 @@ void Domaine::init_renum_perio()
   set_renum_som_perio(renum);
 }
 
-void Domaine::prepare_rmp_with(Domaine& other_domain)
+void Domaine::prepare_rmp_with(const Domaine& other_domain)
 {
 #ifdef MEDCOUPLING_
-  if (get_mc_mesh() == nullptr) build_mc_mesh();
-  if (other_domain.get_mc_mesh() == nullptr) other_domain.build_mc_mesh();
+  using namespace MEDCoupling;
 
-  Cerr << "Building remapper between " << le_nom() << " (" << (int)mc_mesh_->getSpaceDimension() << "D) mesh with " << (int)mc_mesh_->getNumberOfCells() << " cells and " << other_domain.le_nom() << " (" << (int)other_domain.get_mc_mesh()->getSpaceDimension() << "D) mesh with " << (int)other_domain.get_mc_mesh()->getNumberOfCells() << " cells" << finl;
-  rmps[&other_domain].prepare(other_domain.get_mc_mesh(), get_mc_mesh(), "P0P0");
+  // Retrieve mesh upfront to possibly build them if they were not already:
+  get_mc_mesh();
+  const MEDCouplingUMesh* oth_msh = other_domain.get_mc_mesh();
+
+  Cerr << "Building remapper between " << le_nom() << " (" << (int)mc_mesh_->getSpaceDimension() << "D) mesh with " << (int)mc_mesh_->getNumberOfCells()
+       << " cells and " << other_domain.le_nom() << " (" << (int)other_domain.get_mc_mesh()->getSpaceDimension() << "D) mesh with "
+       << (int)other_domain.get_mc_mesh()->getNumberOfCells() << " cells" << finl;
+  rmps[&other_domain].prepare(oth_msh, mc_mesh_, "P0P0");
   Cerr << "remapper prepared with " << rmps.at(&other_domain).getNumberOfColsOfMatrix() << " columns in matrix, with max value = " << rmps.at(&other_domain).getMaxValueInCrudeMatrix() << finl;
 #else
   Process::exit("Domaine::prepare_rmp_with should not be called since it requires a TRUST version compiled with MEDCoupling !");
 #endif
 }
 
-#ifdef MEDCOUPLING_
-MEDCoupling::MEDCouplingRemapper* Domaine::get_remapper(Domaine& other_domain)
+void Domaine::prepare_dec_with(const Domaine& other_domain, MEDCouplingFieldDouble *dist, MEDCouplingFieldDouble *loc)
 {
-  if (!rmps.count(&other_domain)) prepare_rmp_with(other_domain);
+#if defined(MEDCOUPLING_) && defined(MPI_)
+  using namespace MEDCoupling;
+
+  Cerr << "Building DEC of nature " << (int)dist->getNature() << " between " << le_nom() << " and " << other_domain.le_nom() << " : ";
+  std::set<True_int> pcs;
+  for (True_int i=0; i<Process::nproc(); i++) pcs.insert(i);
+  /* a bit technical */
+  decs.emplace(std::piecewise_construct,
+               std::forward_as_tuple(&other_domain, dist->getNature()),
+               std::forward_as_tuple(pcs, ref_cast(Comm_Group_MPI,PE_Groups::current_group()).get_trio_u_world()));
+  OverlapDEC& dec = decs.at({ &other_domain, dist->getNature()});
+  dec.setWorkSharingAlgo(Option_Interpolation::SHARING_ALGO);
+  dec.attachSourceLocalField(dist);
+  dec.attachTargetLocalField(loc);
+  dec.synchronize();
+
+  Cerr << "OK" << finl;
+#else
+  Process::exit("Domaine::prepare_dec_with() should not be called since it requires a TRUST version compiled with MEDCoupling and MPI!");
+#endif
+}
+
+#ifdef MEDCOUPLING_
+MEDCoupling::MEDCouplingRemapper* Domaine::get_remapper(const Domaine& other_domain)
+{
+  if (!rmps.count(&other_domain))
+    prepare_rmp_with(other_domain);
   return &rmps.at(&other_domain);
 }
+#ifdef MPI_
+MEDCoupling::OverlapDEC* Domaine::get_dec(const Domaine& other_domain, MEDCouplingFieldDouble *dist, MEDCouplingFieldDouble *loc)
+{
+  if (!decs.count({ &other_domain, dist->getNature() } ))
+    prepare_dec_with(other_domain, dist, loc);
+  return &decs.at({ &other_domain, dist->getNature() });
+}
+#endif
 #endif

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,8 @@
 #include <Sous_Domaine.h>
 #include <Sous_domaine_dis.h>
 #include <Sous_domaines_dis.h>
+#include <Probleme_base.h>
+#include <Discretisation_base.h>
 
 Implemente_base(Domaine_dis_base,"Domaine_dis_base",Objet_U);
 
@@ -180,3 +182,41 @@ void Domaine_dis_base::discretiser_root(const Nom& typ)
         typer_discretiser_ss_domaine(i);
     }
 }
+
+void Domaine_dis_base::creer_champ(const Motcle& motlu, const Probleme_base& pb)
+{
+  if (motlu == "VOLUME_MAILLE" && volume_maille().est_nul())
+    {
+      pb.discretisation().volume_maille(pb.schema_temps(), pb.domaine_dis(), const_cast<Champ_Fonc&>(volume_maille()));
+      champs_compris_.ajoute_champ(volume_maille().valeur());
+    }
+  else if (motlu == "MESH_NUMBERING" && mesh_numbering().est_nul())
+    {
+      pb.discretisation().mesh_numbering(pb.schema_temps(), pb.domaine_dis(), const_cast<Champ_Fonc&>(mesh_numbering()));
+      champs_compris_.ajoute_champ(mesh_numbering().valeur());
+    }
+}
+const Champ_base& Domaine_dis_base::get_champ(const Motcle& un_nom) const
+{
+  if (un_nom=="VOLUME_MAILLE")
+    {
+      return volume_maille().valeur();
+    }
+  else if (un_nom=="MESH_NUMBERING")
+    {
+      return mesh_numbering().valeur();
+    }
+  throw Champs_compris_erreur();
+}
+
+void Domaine_dis_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+{
+  Noms noms_compris = champs_compris_.liste_noms_compris();
+  noms_compris.add("VOLUME_MAILLE");
+  noms_compris.add("MESH_NUMBERING");
+  if (opt==DESCRIPTION)
+    Cerr<<que_suis_je()<<" : "<< noms_compris <<finl;
+  else
+    nom.add(noms_compris);
+}
+

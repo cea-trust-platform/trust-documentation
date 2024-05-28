@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -69,6 +69,7 @@ public :
   bool getStationaryMode() const override; // new in V2
   bool isStationary() const override;
   void abortTimeStep() override;
+  void resetTime(double time) override;  // new in ICoCo V2
 
   // interface IterativeUnsteadyProblem
 
@@ -106,6 +107,10 @@ public :
   int getOutputIntValue(const std::string& name) const override;
   double getOutputDoubleValue(const std::string& name) const override;
   void setInputDoubleValue(const std::string& name, const double& val) override;
+
+  // I/O for strings:
+  void setInputStringValue(const std::string& name, const std::string& val) override;
+  std::string getOutputStringValue(const std::string& name) const override;
 
   ////////////////////////////////////////////////////////////////////////////////////
   // Specific to TRUST, and outside the ICoCo standard

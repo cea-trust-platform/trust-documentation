@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,24 +16,31 @@
 #ifndef Device_included
 #define Device_included
 
-#include <Array_base.h>
+#include <TRUSTTabs_forward.h>
 #include <Nom.h>
 #include <stat_counters.h>
+
+#ifndef LATATOOLS
+#include <kokkos++.h>
+#endif
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
 
-extern void self_test();
+// TODO - scope all this, global vars are bad.
 extern bool init_openmp_, clock_on;
-extern int copy_before_exit, size_copy_before_exit;
 extern double clock_start;
-extern void exit_on_copy_condition(int size);
-extern void set_exit_on_copy_condition(int size);
-extern void init_openmp();
-extern void init_cuda();
-extern std::string toString(const void* adr);
-// Timers GPU avec OpenMP (renommer?)
-inline void start_timer(int bytes=-1)
+
+void self_test();
+void exit_on_copy_condition(int size);
+void set_exit_on_copy_condition(int size);
+void init_openmp();
+void init_cuda();
+std::string ptrToString(const void* adr);
+
+// Timers GPU avec OpenMP
+inline void start_gpu_timer(int bytes=-1)
 {
 #ifdef _OPENMP
   if (init_openmp_)
@@ -43,15 +50,22 @@ inline void start_timer(int bytes=-1)
     }
 #endif
 }
-inline void end_timer(int onDevice, const std::string& str, int bytes=-1) // Return in [ms]
+
+inline void end_gpu_timer(int onDevice, const std::string& str, int bytes=-1) // Return in [ms]
 {
+#ifndef LATATOOLS
+  Kokkos::fence();
+#endif
+#ifdef TRUST_USE_UVM
+  cudaDeviceSynchronize();
+#endif
 #ifdef _OPENMP
   if (init_openmp_)
     {
       if (bytes == -1) statistiques().end_count(gpu_kernel_counter_, 0, onDevice);
       if (clock_on) // Affichage
         {
-          std::string clock(Process::nproc() > 1 ? "[clock]#" + std::to_string(Process::me()) : "[clock]  ");
+          std::string clock(Process::is_parallel() ? "[clock]#" + std::to_string(Process::me()) : "[clock]  ");
           double ms = 1000 * (Statistiques::get_time_now() - clock_start);
           if (bytes == -1)
             if (onDevice)
@@ -75,6 +89,15 @@ inline void end_timer(int onDevice, const std::string& str, int bytes=-1) // Ret
 }
 
 template <typename _TYPE_>
+extern _TYPE_* addrOnDevice(TRUSTArray<_TYPE_>& tab);
+
+template <typename _TYPE_>
+inline const _TYPE_* addrOnDevice(const TRUSTArray<_TYPE_>& tab)
+{
+  return addrOnDevice(const_cast<TRUSTArray<_TYPE_>&>(tab));
+}
+
+template <typename _TYPE_>
 extern _TYPE_* allocateOnDevice(TRUSTArray<_TYPE_>& tab, std::string arrayName="??");
 
 template <typename _TYPE_>
@@ -82,6 +105,7 @@ inline const _TYPE_* allocateOnDevice(const TRUSTArray<_TYPE_>& tab, std::string
 {
   return allocateOnDevice(const_cast<TRUSTArray<_TYPE_>&>(tab), arrayName);
 }
+
 template <typename _TYPE_>
 void allocateOnDevice(const TRUSTArray<_TYPE_>& tab, std::string arrayName="??")
 {
@@ -107,10 +131,10 @@ bool isAllocatedOnDevice(TRUSTArray<_TYPE_>& tab)
 {
 #ifdef _OPENMP
   if (omp_get_default_device()==0)
-    return isAllocatedOnDevice(tab.addrForDevice());
+    return isAllocatedOnDevice(tab.data());
   else
 #endif
-    return tab.get_dataLocation()!=HostOnly;
+    return tab.get_data_location() != DataLocation::HostOnly;
 }
 
 template <typename _TYPE_>

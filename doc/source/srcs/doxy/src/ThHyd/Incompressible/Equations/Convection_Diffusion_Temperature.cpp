@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #include <Convection_Diffusion_Temperature.h>
 #include <Navier_Stokes_std.h>
 #include <Probleme_base.h>
-#include <Fluide_Ostwald.h>
+#include <Fluide_reel_base.h>
 #include <Discret_Thyd.h>
 #include <Frontiere_dis_base.h>
 #include <Param.h>
@@ -35,10 +35,6 @@ Implemente_instanciable_sans_constructeur(Convection_Diffusion_Temperature,"Conv
 
 Convection_Diffusion_Temperature::Convection_Diffusion_Temperature()
 {
-//  champs_compris_.ajoute_nom_compris("temperature_paroi");
-  champs_compris_.ajoute_nom_compris("gradient_temperature");
-  champs_compris_.ajoute_nom_compris("h_echange_");
-  champs_compris_.ajoute_nom_compris("temperature_residu");
   eta = 1.0;
   is_penalized = 0;
   tag_indic_pena_global = -1;
@@ -141,10 +137,10 @@ int Convection_Diffusion_Temperature::lire_motcle_non_standard(const Motcle& un_
   return 1;
 }
 
-/*! @brief Associe un milieu physique a l'equation, le milieu est en fait caste en Fluide_base ou en Fluide_Ostwald.
+/*! @brief Associe un milieu physique a l'equation, le milieu est en fait caste en Fluide_base.
  *
  * @param (Milieu_base& un_milieu)
- * @throws les proprietes physiques du fluide ne sont pas toutes specifiees
+ * @throws le milieu n'est pas un Fluide_base
  */
 void Convection_Diffusion_Temperature::associer_milieu_base(const Milieu_base& un_milieu)
 {
@@ -158,32 +154,29 @@ void Convection_Diffusion_Temperature::associer_milieu_base(const Milieu_base& u
  */
 void Convection_Diffusion_Temperature::discretiser()
 {
-
+  if (!sub_type(Fluide_reel_base,le_fluide.valeur()))
+    if  (le_fluide->conductivite().est_nul() || le_fluide->capacite_calorifique().est_nul() || le_fluide->beta_t().est_nul())
+      {
+        Cerr << "You have not defined the following physical properties of the fluid " << finl;
+        Cerr << "needed to solve energy equation: " << que_suis_je() << finl;
+        if  (le_fluide->conductivite().est_nul()) Cerr << "  Thermal conductivity (lambda)"<< finl;
+        if  (le_fluide->capacite_calorifique().est_nul()) Cerr << "  Specific heat capacity (Cp)"<< finl;
+        if  (le_fluide->beta_t().est_nul()) Cerr << "  Thermal expansion coefficient (beta_th)"<< finl;
+        exit();
+      }
 
   const Discret_Thyd& dis=ref_cast(Discret_Thyd, discretisation());
-  if (Process::je_suis_maitre())
-    Cerr << "Energy equation discretization" << finl;
+  Cerr << "Energy equation discretization" << finl;
   dis.temperature(schema_temps(), domaine_dis(), la_temperature);
   champs_compris_.ajoute_champ(la_temperature);
 
   Equation_base::discretiser();
 
-  if (Process::je_suis_maitre())
-    Cerr << "Convection_Diffusion_Temperature::discretiser() ok" << finl;
+  Cerr << "Convection_Diffusion_Temperature::discretiser() ok" << finl;
 }
 
 int Convection_Diffusion_Temperature::preparer_calcul()
 {
-  /* derniere chance pour faire ceci : */
-  if  (le_fluide->conductivite().est_nul() || le_fluide->capacite_calorifique().est_nul() || le_fluide->beta_t().est_nul())
-    {
-      Cerr << "Vous n'avez pas defini toutes les proprietes physiques du fluide " << finl;
-      Cerr << "necessaires pour resoudre l'equation d'energie " << finl;
-      Cerr << "Verifier que vous avez defini: la conductivite (lambda)"<< finl;
-      Cerr << "                                  la capacite calorifique (Cp)"<< finl;
-      Cerr << "                                  le coefficient de dilatation thermique (beta_th)"<< finl;
-      exit();
-    }
   return Equation_base::preparer_calcul();
 }
 
@@ -241,6 +234,20 @@ inline int string2int(const char* digit, int& result)
 
   return 1;
 }
+
+void Convection_Diffusion_Temperature::get_noms_champs_postraitables(Noms& nom,Option opt) const
+{
+  Convection_Diffusion_std::get_noms_champs_postraitables(nom,opt);
+
+  Noms noms_compris = champs_compris_.liste_noms_compris();
+  noms_compris.add("gradient_temperature");
+  noms_compris.add("h_echange_");
+  if (opt==DESCRIPTION)
+    Cerr<<" Convection_Diffusion_Temperature : "<< noms_compris <<finl;
+  else
+    nom.add(noms_compris);
+}
+
 
 void Convection_Diffusion_Temperature::creer_champ(const Motcle& motlu)
 {
@@ -371,7 +378,7 @@ DoubleTab& Convection_Diffusion_Temperature::derivee_en_temps_inco(DoubleTab& de
       secmem -= secmem_conv_vr;
 
       DoubleTab derivee_conv;
-      derivee_conv.copy(secmem, Array_base::COPY_INIT);
+      derivee_conv.copy(secmem, RESIZE_OPTIONS::COPY_INIT);
 
       les_sources.ajouter(secmem);
 
@@ -397,7 +404,7 @@ DoubleTab& Convection_Diffusion_Temperature::derivee_en_temps_inco(DoubleTab& de
 
 double Convection_Diffusion_Temperature::get_time_factor() const
 {
-  return milieu().capacite_calorifique().valeurs()(0, 0) * milieu().masse_volumique().valeurs()(0, 0);
+  return domaine_dis()->nb_elem() ? milieu().capacite_calorifique().valeurs()(0, 0) * milieu().masse_volumique().valeurs()(0, 0) : 1.0;
 }
 
 // ajoute les contributions des operateurs et des sources
@@ -538,7 +545,7 @@ void Convection_Diffusion_Temperature::assembler_blocs(matrices_t matrices, Doub
   statistiques().begin_count(assemblage_sys_counter_);
 
   const std::string& nom_inco = inconnue().le_nom().getString();
-  Matrice_Morse *mat = matrices.count(nom_inco)?matrices.at(nom_inco):NULL;
+  Matrice_Morse *mat = matrices.count(nom_inco)?matrices.at(nom_inco):nullptr;
   if(mat) mat->ajouter_multvect(inconnue().valeurs(), secmem);
 
   for (auto &&i_m : mats2)

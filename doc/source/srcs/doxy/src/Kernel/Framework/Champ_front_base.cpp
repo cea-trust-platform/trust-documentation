@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,7 +27,7 @@ Champ_front_base::Champ_front_base() { temps_defaut = -1.; }
  */
 Sortie& Champ_front_base::printOn(Sortie& s ) const { return s << que_suis_je() << " " << le_nom(); }
 
-/*! @brief NE FAIT RIEN A surcharger dans les classes derivees.
+/*! @brief DOES NOTHING - to override in derived classes.
  *
  * @param (Entree& s) un flot d'entree
  * @return (Entree&) le flot d'entree
@@ -160,3 +160,36 @@ void Champ_front_base::changer_temps_futur(double temps,int i)
 {
   les_valeurs->futur(i).changer_temps(temps);
 }
+
+/*! @brief Calcule le taux d'accroissement du champ entre t1 et t2 et le stocke dans Gpoint_
+ *
+ */
+void Champ_front_base::calculer_derivee_en_temps(double t1, double t2)
+{
+  if (std::abs(t2-t1) < DMINFLOAT)
+    {
+      Gpoint_ = 0;
+    }
+  else
+    {
+      const DoubleTab& v1 = valeurs_au_temps(t1);
+      const DoubleTab& v2 = valeurs_au_temps(t2);
+      if (!Gpoint_.get_md_vector().non_nul() && v1.dimension(0) == 1)
+        {
+          // Champ instationnaire uniforme
+          int dim = v1.dimension(1);
+          Gpoint_.resize(dim);
+          for (int i = 0; i < dim; i++)
+            Gpoint_(i) = (v2(0, i) - v1(0, i)) / (t2 - t1);
+        }
+      else
+        {
+          // Champs instationnaire variable
+          Gpoint_ = v1;
+          Gpoint_ *= -1;
+          Gpoint_ += v2;
+          Gpoint_ /= (t2 - t1);
+        }
+    }
+}
+

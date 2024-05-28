@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -63,7 +63,7 @@ int Process::multiple_files=5120; // Valeur modifiable avec la variable d'enviro
 bool Process::force_single_file(const int ranks, const Nom& filename)
 {
   char* theValue = getenv("TRUST_MultipleFiles");
-  if (theValue != NULL) multiple_files=atoi(theValue);
+  if (theValue != nullptr) multiple_files=atoi(theValue);
   if (ranks>multiple_files)
     {
       if (Process::je_suis_maitre())   // Attention, necessaire, car appel possible tres tot dans main.cpp alors que Cerr par defini completement sur les processes
@@ -92,13 +92,6 @@ int Process::je_suis_maitre()
   return r == 0;
 }
 
-/*! @brief Constructeur par defaut
- *
- */
-Process::Process()
-{
-}
-
 /*! @brief renvoie le nombre de processeurs dans le groupe courant Voir Comm_Group::nproc() et PE_Groups::current_group()
  *
  */
@@ -106,6 +99,16 @@ int Process::nproc()
 {
   const int n = PE_Groups::current_group().nproc();
   return n;
+}
+
+bool Process::is_parallel()
+{
+  return Process::nproc() > 1;
+}
+
+bool Process::is_sequential()
+{
+  return Process::nproc() == 1;
 }
 
 /*! @brief renvoie mon rang dans le groupe de communication courant.
@@ -127,13 +130,6 @@ int Process::me()
 void Process::barrier()
 {
   PE_Groups::current_group().barrier(0);
-}
-
-/*! @brief Destructeur Ne fait rien
- *
- */
-Process::~Process()
-{
 }
 
 /*! @brief Calcule le max de x sur tous les processeurs du groupe courant.
@@ -162,7 +158,7 @@ int Process::mp_max(int x)
 
 /*! @brief Calcule le min de x sur tous les processeurs du groupe courant.
  *
- * Voir aussi mp_max()
+ * @sa mp_max()
  *
  */
 double Process::mp_min(double x)
@@ -183,7 +179,7 @@ int Process::mp_min(int x)
 
 /*! @brief Calcule la somme de x sur tous les processeurs du groupe courant.
  *
- * Voir aussi mp_max()
+ * @sa mp_max()
  *
  */
 double Process::mp_sum(double x)
@@ -196,7 +192,7 @@ double Process::mp_sum(double x)
 
 /*! @brief Calcule la somme de x sur tous les processeurs du groupe courant.
  *
- * Voir aussi mp_max()
+ * @sa mp_max()
  *
  */
 int Process::mp_sum(int x)
@@ -243,7 +239,7 @@ void Process::exit(const Nom& message ,int i)
       Cerr << message << finl;
       Cerr.flush();
       // Utile pour XData et la creation de syno.py
-      if (getenv("TRUST_USE_XDATA")!=NULL)
+      if (getenv("TRUST_USE_XDATA")!=nullptr)
         {
           SFichier hier("hierarchie.dump");
           hier << "\n             KEYWORDS\n";
@@ -280,7 +276,7 @@ void Process::exit(const Nom& message ,int i)
 #else
 #define MPI_ENTIER MPI_INT
 #endif
-      if (Process::nproc()>1)
+      if (Process::is_parallel())
         {
           const MPI_Comm& mpi_comm=ref_cast(Comm_Group_MPI,PE_Groups::groupe_TRUST()).get_mpi_comm();
           int tag = 666;
@@ -497,7 +493,7 @@ Sortie& get_Cerr()
 
 /*! @brief Si on est sur le maitre, on renvoie cout ou le fichier journal sinon journal_zero_.
  *
- *   Voir aussi cerr_to_journal_
+ *   @sa cerr_to_journal_
  *
  */
 Sortie& get_Cout()

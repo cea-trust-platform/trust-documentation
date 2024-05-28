@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,7 @@
  */
 int check_espace_virtuel_vect(const DoubleVect& v)
 {
-  if (Process::nproc()==1) return 1; // ToDo Provisoire on ne verifie pas en sequentiel
+  if (Process::is_sequential()) return 1; // ToDo Provisoire on ne verifie pas en sequentiel
   // On fait une copie:
   DoubleVect w(v);
   // On echange
@@ -84,7 +84,7 @@ void remplir_items_non_calcules_(TRUSTVect<_TYPE_>& v, _TYPE_ valeur)
       // Ne pas passer par operator[], sinon plantage si la valeur actuelle est invalide
       bool kernelOnDevice = v.checkDataOnDevice();
       _TYPE_ *ptr = computeOnTheDevice(v, "", kernelOnDevice);
-      start_timer();
+      start_gpu_timer();
       for (int i = 0; i < sz; i++)
         {
           // remplir les elements jusqu'au debut du bloc:
@@ -101,7 +101,7 @@ void remplir_items_non_calcules_(TRUSTVect<_TYPE_>& v, _TYPE_ valeur)
       #pragma omp target teams distribute parallel for if (kernelOnDevice)
       for (int k=j; k < j_fin; k++)
         ptr[k] = valeur;
-      end_timer(kernelOnDevice, "remplir_items_non_calcules_(x)");
+      end_gpu_timer(kernelOnDevice, "remplir_items_non_calcules_(x)");
     }
 }
 // Explicit instanciation

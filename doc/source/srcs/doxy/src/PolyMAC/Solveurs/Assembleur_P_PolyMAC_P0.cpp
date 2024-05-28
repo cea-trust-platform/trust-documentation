@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,8 +13,6 @@
 *
 *****************************************************************************/
 
-#include <Champ_front_instationnaire_base.h>
-#include <Champ_front_var_instationnaire.h>
 #include <Assembleur_P_PolyMAC_P0.h>
 #include <Op_Grad_PolyMAC_P0_Face.h>
 #include <Neumann_sortie_libre.h>
@@ -30,11 +28,14 @@
 #include <Static_Int_Lists.h>
 #include <Operateur_Grad.h>
 #include <Pb_Multiphase.h>
+#include <Statistiques.h>
 #include <Matrix_tools.h>
 #include <Array_tools.h>
 #include <Dirichlet.h>
 #include <Debog.h>
 #include <Piso.h>
+
+extern Stat_Counter_Id assemblage_sys_counter_;
 
 Implemente_instanciable(Assembleur_P_PolyMAC_P0, "Assembleur_P_PolyMAC_P0", Assembleur_P_PolyMAC_P0P1NC);
 
@@ -46,6 +47,8 @@ int  Assembleur_P_PolyMAC_P0::assembler_mat(Matrice& la_matrice,const DoubleVect
 {
   set_resoudre_increment_pression(incr_pression);
   set_resoudre_en_u(resoudre_en_u);
+  Cerr << "Assemblage de la matrice de pression ... ";
+  statistiques().begin_count(assemblage_sys_counter_);
   la_matrice.typer("Matrice_Morse");
   Matrice_Morse& mat = ref_cast(Matrice_Morse, la_matrice.valeur());
 
@@ -66,8 +69,8 @@ int  Assembleur_P_PolyMAC_P0::assembler_mat(Matrice& la_matrice,const DoubleVect
   /* 1. stencil de la matrice en pression : seulement au premier passage */
   if (!stencil_done)
     {
-      IntTrav stencil(0, 2);
-      stencil.set_smart_resize(1);
+      IntTab stencil(0, 2);
+
       for (f = 0; f < domaine.nb_faces(); f++)
         for (i = 0; i < 2 && (e = f_e(f, i)) >= 0; i++)
           if (e < ne)
@@ -96,8 +99,10 @@ int  Assembleur_P_PolyMAC_P0::assembler_mat(Matrice& la_matrice,const DoubleVect
           if ((eb = fgrad_e(j)) < ne_tot)
             mat(e, eb) += (i ? 1 : -1) * pf(f) * fs(f) * fgrad_c(j, 0);
 
-  if (!has_P_ref && !Process::me()) mat(0, 0) *= 2;
+  const bool is_first_proc_with_real_elems = Process::me() == Process::mp_min(domaine.nb_elem() ? Process::me() : 1e8);
+  if (!has_P_ref && is_first_proc_with_real_elems) mat(0, 0) *= 2;
 
+  statistiques().end_count(assemblage_sys_counter_);
   return 1;
 }
 
@@ -106,8 +111,8 @@ void Assembleur_P_PolyMAC_P0::dimensionner_continuite(matrices_t matrices, int a
 {
   if (aux_only) return; //rien a faire
   int e, n, N = ref_cast(Pb_Multiphase, equation().probleme()).nb_phases(), ne_tot = le_dom_PolyMAC->nb_elem_tot();
-  IntTrav stencil(0, 2);
-  stencil.set_smart_resize(1);
+  IntTab stencil(0, 2);
+
   for (e = 0; e < le_dom_PolyMAC->nb_elem(); e++)
     for (n = 0; n < N; n++) stencil.append_line(e, N * e + n);
   Matrix_tools::allocate_morse_matrix(ne_tot, N * ne_tot, stencil, *matrices.at("alpha"));

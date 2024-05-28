@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,6 +20,7 @@
 #include <Process.h>
 #include <Interprete_bloc.h>
 #include <Comm_Group.h>
+#include <list>
 
 /*! @brief Classe creee et executee par main() et lors d'une execution TRUST a travers Python.
  *
@@ -38,11 +39,12 @@ class mon_main
 {
 public:
   mon_main(int verbose_level = 9, int journal_master = 0, int journal_shared = 0, Nom log_directory = "",  bool apply_verification=true, int disable_stop = 0);
+  ~mon_main();
   void init_parallel(const int argc, char **argv,
                      int with_mpi, int check_enabled = 0, int with_petsc = 1);
   void finalize();
   void dowork(const Nom& nom_du_cas);
-  ~mon_main();
+
 private:
   int verbose_level_;
   int journal_master_;

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -84,15 +84,14 @@ extern "C" Problem* getProblem()
  * @throws WrongContext
  */
 
-ProblemTrio::ProblemTrio()
+ProblemTrio::ProblemTrio() :
+  pb(nullptr), p(nullptr)
 {
   my_params=new Init_Params;
   (*my_params).problem_name="default_vvvvv";
   (*my_params).problem_name="pb";
   //my_params.comm=MPI_COMM_WORLD;
   (*my_params).is_mpi=0;
-  pb=NULL;
-  p=NULL;
 }
 
 
@@ -145,7 +144,7 @@ bool ProblemTrio::initialize()
   strcpy(argv[1],(*my_params).data_file.c_str());
   // pour salome
   if (p) delete p;
-  p=NULL;
+  p=nullptr;
   int res;
   // on lance avec ou sans mpi
   res=main_TRUST(argc,argv,p,(*my_params).is_mpi);
@@ -193,7 +192,7 @@ bool ProblemTrio::initialize()
 }
 bool ProblemTrio::initialize_pb(Probleme_U& pb_to_solve)
 {
-  if (pb==NULL)
+  if (pb==nullptr)
     pb=&pb_to_solve;
   pb_to_solve.initialize();
   pb_to_solve.postraiter(1);
@@ -208,8 +207,11 @@ bool ProblemTrio::initialize_pb(Probleme_U& pb_to_solve)
  */
 void ProblemTrio::terminate()
 {
-  pb->postraiter(1);
-  pb->terminate();
+  if (pb)
+    {
+      pb->postraiter(1);
+      pb->terminate();
+    }
   int mode_append=1;
   if (!Objet_U::disable_TU)
     {
@@ -354,6 +356,24 @@ void ProblemTrio::abortTimeStep()
   pb->abortTimeStep();
 }
 
+/*! @brief Reset the current time of the Problem to a given value.
+ *
+ * New in version 2 of ICoCo.
+ * Particularly useful for the initialization of complex transients: the starting point of the transient
+ * of interest is computed first, the time is reset to 0, and then the actual transient of interest starts with proper
+ * initial conditions, and global time 0.
+ *
+ * Can be called outside the TIME_STEP_DEFINED context (see Problem documentation).
+ *
+ * @param[in] time the new current time.
+ * @throws ICoCo::WrongContext exception if called before initialize() or after terminate().
+ * @throws ICoCo::WrongContext exception if called inside the TIME_STEP_DEFINED context (see Problem documentation)
+ */
+void ProblemTrio::resetTime(double time)
+{
+  pb->resetTime(time);
+}
+
 /////////////////////////////////////////////
 //                                         //
 //   interface IterativeUnsteadyProblem    //
@@ -416,6 +436,16 @@ void ProblemTrio::setInputDoubleValue(const std::string& name, const double& val
   pb->setInputDoubleValue(mot,val);
 }
 
+void ProblemTrio::setInputStringValue(const std::string& name, const std::string& val)
+{
+  pb->setInputStringValue(name, val);
+}
+
+std::string ProblemTrio::getOutputStringValue(const std::string& name) const
+{
+  return pb->getOutputStringValue(name);
+}
+
 double ProblemTrio::getOutputDoubleValue(const std::string& name) const
 {
   TrioField f;
@@ -441,13 +471,13 @@ double ProblemTrio::getOutputDoubleValue(const std::string& name) const
 void ProblemTrio::setInputIntValue(const std::string& name, const int& val)
 {
   // add value in ICoCoScalarRegister
-  const Nom nom(name.c_str());
+  const Nom nom(name);
   pb->setInputIntValue(nom, val);
 }
 
 int ProblemTrio::getOutputIntValue(const std::string& name) const
 {
-  const Nom nom(name.c_str());
+  const Nom nom(name);
   // [ABN] A bit ugly: we force cast to int to handle the 64b situation.
   // In 64b the ScalarRegister will become long, but the final ICoCo interface will be int.
   // Hopefully soon we will have a clean 64-bits version...
@@ -482,7 +512,7 @@ ICoCo::ValueType ProblemTrio::getFieldType(const std::string& name) const
 
 void ProblemTrio::getOutputField(const std::string& name_, TrioField& afield) const
 {
-  Motcle name(name_);
+  const Nom name(name_);
   pb->getOutputField(name,afield);
 }
 

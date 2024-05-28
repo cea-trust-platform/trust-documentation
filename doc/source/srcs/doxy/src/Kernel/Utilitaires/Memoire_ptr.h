@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -38,98 +38,6 @@ public :
 private :
   Objet_U* o_ptr;
 };
-
-/*! @brief Une zone de travail de la Memoire TRUST composee d'elements de type int/double/float
- *
- * @sa Memoire Int_ptr_trav Double_ptr_trav
- */
-template<typename _TYPE_>
-class TRUST_ptr_trav
-{
-public :
-  typedef _TYPE_ value_type;
-
-  inline TRUST_ptr_trav() : sz(-1), data(0), lock_(0), next(0) { }
-
-  // Supprime les donnees attachees a la zone de travail
-  ~TRUST_ptr_trav()
-  {
-    if(sz!=-1)
-      {
-        if (next) delete next;
-        delete[] data;
-      }
-  }
-
-  inline int unlock() { return lock_ = 0; } // Deverrouille la zone de travail
-  inline _TYPE_* ptr_() const { return data ; } // Retourne un pointeur sur les donnees de la zone de travail
-  inline TRUST_ptr_trav* add(int n);
-
-private :
-  int        sz;
-  _TYPE_*    data;
-  int        lock_;
-  TRUST_ptr_trav*         next;
-} ;
-
-using Double_ptr_trav = TRUST_ptr_trav<double>;
-using Float_ptr_trav = TRUST_ptr_trav<float>;
-using Int_ptr_trav = TRUST_ptr_trav<int>;
-
-/*! @brief Ajout d'elements dans la zone de travail
- *
- * @param (int n) le nombre d'element a creer dans la zone de travail
- * @return (Double_ptr_trav*) pointeur sur la zone de travail contenant les elements crees
- */
-template<typename _TYPE_>
-inline TRUST_ptr_trav<_TYPE_>* TRUST_ptr_trav<_TYPE_>::add(int n)
-{
-  if(sz==-1)
-    {
-      sz=n;
-      data=new _TYPE_[sz];
-      if(!data)
-        {
-          Cerr << "Not enough memory " << finl;
-          Process::exit();
-        }
-      lock_=1;
-      next=0;
-      return this;
-    }
-  if ( (!lock_) && (sz==n))
-    {
-      lock_=1;
-      return this;
-    }
-  TRUST_ptr_trav* curseur=this;
-  while(curseur->next)
-    {
-      curseur=curseur->next;
-      if ( (!curseur->lock_) && (curseur->sz==n))
-        {
-          curseur->lock_=1;
-          return curseur;
-        }
-    }
-  curseur->next= new TRUST_ptr_trav();
-  if(!curseur->next)
-    {
-      Cerr << "Not enough memory " << finl;
-      Process::exit();
-    }
-  curseur=curseur->next;
-  curseur->sz=n;
-  curseur->data=new _TYPE_[n];
-  if(!data)
-    {
-      Cerr << "Not enough memory " << finl;
-      Process::exit();
-    }
-  curseur->lock_=1;
-  curseur->next=0;
-  return curseur;
-}
 
 /*! @brief Indique si le pointeur memoire est libre, c'est-a-dire s'il pointe sur un Objet_U non nul
  *
@@ -171,6 +79,5 @@ inline Memoire_ptr& Memoire_ptr::operator=(const Memoire_ptr& mptr)
   next=mptr.next;
   return *this;
 }
-
 
 #endif

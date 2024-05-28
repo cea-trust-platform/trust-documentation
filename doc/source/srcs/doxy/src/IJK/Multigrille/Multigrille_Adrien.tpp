@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,8 +26,6 @@ template <typename _TYPE_, typename _TYPE_ARRAY_>
 void Multigrille_Adrien::prepare_secmem_(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x) const
 {
   double moyenne = somme_ijk(x);
-  // if (Process::je_suis_maitre())
-  //  Cout << "prepare secmem: somme initiale " << moyenne << finl;
   double nb_elem_tot = (double) x.get_splitting().get_nb_items_global(IJK_Splitting::ELEM, DIRECTION_I)
                        * (double) x.get_splitting().get_nb_items_global(IJK_Splitting::ELEM, DIRECTION_J)
                        * (double) x.get_splitting().get_nb_items_global(IJK_Splitting::ELEM, DIRECTION_K);
@@ -100,6 +98,14 @@ void Multigrille_Adrien::set_rho_template(const IJK_Field_template<_TYPE_,_TYPE_
             for (j = 0; j < nj; j++)
               for (i = 0; i < ni; i++)
                 r(i,j,k) = (_TYPE_FUNC_)rho(i,j,k);
+
+          // echange espace virtuel sur rho sans passer par IJK_Field --> mauvais remplissage des coeffs de la matrice pour le shear periodique
+          // modif pour shear-periodicite, que lechange_espace_virtuel soit bien fait pour rho ou inv_rho dans le solveur de Pousson
+          if (IJK_Shear_Periodic_helpler::defilement_==1)
+            {
+              set_grid_data<_TYPE_FUNC_>(l).get_update_rho().get_shear_BC_helpler().set_indicatrice_ghost_zmin_(rho.get_shear_BC_helpler().get_indicatrice_ghost_zmin_());
+              set_grid_data<_TYPE_FUNC_>(l).get_update_rho().get_shear_BC_helpler().set_indicatrice_ghost_zmax_(rho.get_shear_BC_helpler().get_indicatrice_ghost_zmax_());
+            }
         }
       else
         coarsen_operators_[l-1].valeur().coarsen(set_grid_data<_TYPE_FUNC_>(l-1).get_rho(),
@@ -153,11 +159,20 @@ void Multigrille_Adrien::set_inv_rho_template(const IJK_Field_template<_TYPE_,_T
             for (j = 0; j < nj; j++)
               for (i2 = 0; i2 < ni; i2++)
                 r(i2,j,k) = (_TYPE_FUNC_)rho(i2,j,k);
+          // modif pour shear-periodicite, que lechange_espace_virtuel soit bien fait pour rho ou inv_rho dans le solveur de Poisson
+          // on ajoute ca pour le shear perio, uniquement sur le premier niveau de multigrille pour l'instant
+          if (IJK_Shear_Periodic_helpler::defilement_==1)
+            {
+              set_grid_data<_TYPE_FUNC_>(i).get_update_rho().get_shear_BC_helpler().set_indicatrice_ghost_zmin_(rho.get_shear_BC_helpler().get_indicatrice_ghost_zmin_());
+              set_grid_data<_TYPE_FUNC_>(i).get_update_rho().get_shear_BC_helpler().set_indicatrice_ghost_zmax_(rho.get_shear_BC_helpler().get_indicatrice_ghost_zmax_());
+            }
         }
       else
-        coarsen_operators_[i-1].valeur().coarsen(set_grid_data<_TYPE_FUNC_>(i-1).get_rho(),
-                                                 set_grid_data<_TYPE_FUNC_>(i).get_update_rho(),
-                                                 1 /* compute average, not sum */);
+        {
+          coarsen_operators_[i-1].valeur().coarsen(set_grid_data<_TYPE_FUNC_>(i-1).get_rho(),
+                                                   set_grid_data<_TYPE_FUNC_>(i).get_update_rho(),
+                                                   1 /* compute average, not sum */);
+        }
 
       set_grid_data<_TYPE_FUNC_>(i).get_update_rho().echange_espace_virtuel(ghost);
 

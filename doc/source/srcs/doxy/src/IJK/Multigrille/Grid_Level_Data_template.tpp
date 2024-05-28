@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,7 +35,14 @@ void Grid_Level_Data_template<_TYPE_>::initialize(const IJK_Splitting& splitting
   grid_splitting_ = splitting;
   perio_k_= splitting.get_grid_geometry().get_periodic_flag(DIRECTION_K);
   ghost_size_ = ghost;
-  ijk_rho_.allocate(grid_splitting_, IJK_Splitting::ELEM, ghost);
+  if (IJK_Shear_Periodic_helpler::defilement_==1)
+    {
+      ijk_rho_.allocate(grid_splitting_, IJK_Splitting::ELEM, ghost, 0 ,1, false, 2, IJK_Shear_Periodic_helpler::rho_vap_ref_for_poisson_, IJK_Shear_Periodic_helpler::rho_liq_ref_for_poisson_);
+    }
+  else
+    {
+      ijk_rho_.allocate(grid_splitting_, IJK_Splitting::ELEM, ghost);
+    }
   ijk_rho_.data() = 1.;
   // Allocate the array of coefficients at faces with size "elements".
   // Therefore, if the domain is not periodic, at the right end of the domain,

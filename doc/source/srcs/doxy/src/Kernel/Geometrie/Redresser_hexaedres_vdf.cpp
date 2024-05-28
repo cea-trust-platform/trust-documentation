@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,7 +20,10 @@
 #include <Hexaedre.h>
 #include <Quadrangle_VEF.h>
 #include <Hexaedre_VEF.h>
+
 Implemente_instanciable(Redresser_hexaedres_vdf,"Redresser_hexaedres_vdf",Interprete_geometrique_base);
+// XD redresser_hexaedres_vdf interprete redresser_hexaedres_vdf -1 Keyword to convert a domain (named domain_name) with quadrilaterals/VEF hexaedras which looks like rectangles/VDF hexaedras into a domain with real rectangles/VDF hexaedras.
+// XD  attr domain_name ref_domaine domain_name 0 Name of domain to resequence.
 
 Sortie& Redresser_hexaedres_vdf::printOn(Sortie& os) const
 {
@@ -34,7 +37,7 @@ Entree& Redresser_hexaedres_vdf::readOn(Entree& is)
 
 Entree& Redresser_hexaedres_vdf::interpreter_(Entree& is)
 {
-  if (Process::nproc()>1)
+  if (Process::is_parallel())
     {
       Cerr << "Redresser_hexaedres_vdf can't be used during a parallel calculation." << finl;
       exit();
@@ -69,7 +72,7 @@ Entree& Redresser_hexaedres_vdf::interpreter_(Entree& is)
         {
           ArrOfInt marqueurs(nb_sommets); // initialise a zero
           ArrOfInt liste_sommets;
-          liste_sommets.set_smart_resize(1);
+
           int prochain_sommet = 0;
           while (prochain_sommet < nb_sommets)
             {

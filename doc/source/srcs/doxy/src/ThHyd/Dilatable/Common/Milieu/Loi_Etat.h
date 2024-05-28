@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,7 +25,6 @@
 class Loi_Etat : public DERIV(Loi_Etat_base)
 {
   Declare_instanciable(Loi_Etat);
-
 public:
   void typer(const Nom&);
 };

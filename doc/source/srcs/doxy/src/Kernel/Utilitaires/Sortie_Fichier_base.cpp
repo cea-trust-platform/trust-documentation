@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,9 @@
 #include <Process.h>
 #include <Nom.h>
 #include <map>
+#include <string>
+#include <stdlib.h>
+#include <sys/stat.h>
 
 Implemente_base_sans_constructeur_ni_destructeur(Sortie_Fichier_base,"Sortie_Fichier_base",Objet_U);
 
@@ -30,40 +33,20 @@ Sortie& Sortie_Fichier_base::printOn(Sortie& s) const
 {
   throw;
 }
-Sortie_Fichier_base::Sortie_Fichier_base()
+
+Sortie_Fichier_base::Sortie_Fichier_base() : Sortie()
 {
-  bin_=0;
-  ofstream_=0;
-  set_ostream(ofstream_);
-  internalBuff_=0;
   set_toFlush();
 }
 
-Sortie_Fichier_base::Sortie_Fichier_base(const char* name, IOS_OPEN_MODE mode)
+Sortie_Fichier_base::Sortie_Fichier_base(const char* name, IOS_OPEN_MODE mode) : Sortie()
 {
-  bin_=0;
-  internalBuff_=0;
-  ofstream_ = 0;
   ouvrir(name,mode);
-  /*
-  new ofstream(name,mode);
-  set_toFlush();
-  set_buffer();
-  set_ostream(ofstream_);
-  #ifdef ver_file
-  if (Process::me()!=0)
-    {
-      Cerr<<Process::me()<<name<<" :"<<__FILE__<<(int)__LINE__<<finl;
-      ::abort();
-    }
-  #endif
-  */
 }
 
 Sortie_Fichier_base::~Sortie_Fichier_base()
 {
-  // il est important de ne pas detruire ofstream_
-  Sortie_Fichier_base::close();
+  close();
 }
 
 void Sortie_Fichier_base::set_toFlush()
@@ -82,7 +65,7 @@ void Sortie_Fichier_base::set_toFlush()
   // sinon les sondes pas ecrites...
   // Si lent, mettre export TRIOU_FLUSHFILES=0 dans son sub_file
   toFlush_ = 1;
-  if (theValue != NULL)
+  if (theValue != nullptr)
     {
       toFlush_=atoi(theValue);
     }
@@ -96,7 +79,7 @@ void Sortie_Fichier_base::set_buffer()
       // On fixe une valeur a 3000000 par defaut pour buffSize
       // Elle peut etre changee par la variable d'environnement
       int buffSize = 3000000;
-      if (theValue != NULL)
+      if (theValue != nullptr)
         {
           buffSize = atoi(theValue);
         }
@@ -121,14 +104,11 @@ void Sortie_Fichier_base::close()
     {
       ofstream_->flush();
       ofstream_->close();
-      //  Destruction faite dans ~Sortie :
-      //  delete ofstream_;
-      //  ofstream_=0;
     }
   if (internalBuff_)
     {
       delete[] internalBuff_;
-      internalBuff_=0;
+      internalBuff_ = nullptr;
     }
 }
 
@@ -149,70 +129,45 @@ void Sortie_Fichier_base::setf(IOS_FORMAT code)
     ofstream_->setf(code);
 }
 
+std::string Sortie_Fichier_base::root = "";
 static std::map<std::string, int> counters;
 int Sortie_Fichier_base::ouvrir(const char* name,IOS_OPEN_MODE mode)
 {
-#ifdef ver_file
-  if (Process::me()!=0)
+  struct stat sb;
+  // Create the root directory if it doesn't exit by the master process:
+  if (!root.empty() && stat(root.c_str(), &sb) && Process::je_suis_maitre())
     {
-
-      char* marq=strrchr(name,'_');
-      int error=0;
-      if (!marq)
-        error=1;
-      else
+      std::string cmd="mkdir -p ";
+      cmd+=root;
+      int err = system(cmd.c_str());
+      if (err)
         {
-          Nom test(name);
-          test.prefix(marq);
-          Nom suf(name);
-          marq=strrchr(name,'.');
-          if (!marq)
-            error=1;
-          else
-            {
-              int l=strlen(name);
-              int deb=l-strlen(marq)+1;
-              suf=suf.substr(deb,l);
-              test+=suf;
-              test=test.nom_me(Process::me());
-              if (test!=name) error=1;
-            }
-
-
+          Cerr << "Sortie_Fichier_base::ouvrir: Error while creating " << root << " folder!" << finl;
+          Process::exit();
         }
-      if (error)
-        {
-          Cerr<<Process::me()<<name<<" strange :"<<__FILE__<<(int)__LINE__<<finl;
-          Cerr<<name<<finl;
-          ::abort();
-        }
-
-
     }
-#endif
-  if (++counters[name]%100==0) Cerr << "Warning, file " << name << " has been opened/closed " << counters[name] << " times..." << finl;
-  if(ofstream_)
-    delete ofstream_;
+  std::string pathname = root;
+  if (!pathname.empty()) pathname+="/";
+  pathname += name;
+  if (++counters[pathname]%100==0) Cerr << "Warning, file " << pathname << " has been opened/closed " << counters[pathname] << " times..." << finl;
   IOS_OPEN_MODE ios_mod=mode;
   int new_bin=0;
   if (bin_)
     {
 
       if (ios_mod==ios::out)
-        {
-          new_bin=1;
-        }
+        new_bin=1;
       else
         assert((ios_mod==ios::app)||(ios_mod==(ios::app|ios::out)));
       ios_mod=ios_mod|ios::binary;
     }
-  ofstream_ = new ofstream(name,ios_mod);
+  ostream_ = std::make_unique<ofstream>(pathname,ios_mod); // will delete any existing ostream_ member
+  ofstream_ = static_cast<ofstream *>(ostream_.get()); // the typed version of the pointer for this class.
   set_toFlush();
   set_buffer();
-  set_ostream(ofstream_);
   if (!ofstream_->good())
     {
-      Cerr << "Error when opening the file " << name << ". File was opened " << counters[name] << " time(s) ..." << finl;
+      Cerr << "Error when opening the file " << pathname << ". File was opened " << counters[pathname] << " time(s) ..." << finl;
       Cerr << "Either:\n you don't have write rights,\n or your filesystem is very slow and multiple file open/close." << finl;
       Cerr << "Contact TRUST support team." << finl;
       Process::exception_sur_exit=2;
@@ -238,10 +193,14 @@ Sortie& Sortie_Fichier_base::flush()
   if (toFlush()) ofstream_->flush();
   return *this;
 }
+
 bool Sortie_Fichier_base::is_open()
 {
-
   return (ofstream_&&get_ofstream().is_open()) ;
 }
 
-
+void Sortie_Fichier_base::set_root(const std::string dirname)
+{
+  root=dirname;
+  Cerr << "[IO] Setting output directory to: " << root << finl;
+}

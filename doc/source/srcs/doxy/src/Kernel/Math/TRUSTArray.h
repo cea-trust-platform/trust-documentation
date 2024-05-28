@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,29 +16,45 @@
 #ifndef TRUSTArray_included
 #define TRUSTArray_included
 
-#include <TRUSTIterator.h>
-#include <VTRUSTdata.h>
 #include <Array_base.h>
+#include <TVAlloc.h>     // Custom allocator
 #include <Double.h>
 #include <span.hpp>
+#include <memory>
 #include <climits>
+#include <vector>
+
 #include <Device.h>
 
-/*! @brief Represente un tableau d'elements de type int/double/float.
+#ifndef LATATOOLS  // Lata tools without Kokkos
+#include <View_Types.h>  // Kokkos stuff
+#endif
+
+/*! @brief Represents a an array of int/int64/double/... values.
  *
- * L'etat du tableau est caracterise par la valeur de p_ et de data_ :
- *   * detache : on a alors p_==0, data_==0, size_array_==0 (etat obtenu par le constructeur par defaut, detach_array() et resize_array(0) dans certains cas)
- *   * normal : alors p pointe vers une structure VTRUSTdata, data_==p->data_ et size_array_ <= p->size_.
- *     A la destruction du tableau, si p->ref_count_ est nul on libere la memoire. data_ n'est pas nul.
- *     L'espace memoire du tableau peut etre partage entre plusieurs TRUSTArray (le pointeur "p" pointe alors sur une meme structure).
- *     Ce type de tableau est produit par ref_array().
- *     Le dernier TRUSTArray a utiliser une zone de memoire la detruit lorsqu'il a fini (voir detach_array())
- *     Si smart_resize_==0, alors on a toujours size_array_==p->size_.
- *   * ref_data : p_==0, data_ pointe vers un tableau existant, la memoire n'est pas liberee a la destruction du TRUSTArray.
- *     Ces tableaux sont obtenus par appel a ref_data(...) et peuvent servir pour importer un tableau fourni par une routine exterieure (C ou fortran)
+ * The two main members are mem_ and span_:
+ * - 'mem_' is the (shared) pointer to the actual underlying data. The block of data itself is a std::vector. This
+ *    block of data can be shared among several arrays (see below) or can be null if we reference external data (ref_data)
+ * - 'span_' is a view on the actual data, and can point to a sub-part of *mem_.
  *
- *   Valeur initiale par defaut : voir "fill_default_value". Priere de supposer desormais que les tableaux ne sont pas initialises par defaut.
+ * We can have 3 states for the array:
+ *   - "detached": meaning mem_==nullptr, span_.empty() == true (state obtained with the default ctor and detach_array())
+ *   - "normal" : in this case mem_ is a non-null shared pointer to a std::vector holding the data. 'span_' then typically represents the entire span of the vector.
+ *    The array is always initialised with 0.
+ *    When the array is destroyed, the shared_ptr 'mem_' is destroyed too, and if this was the last reference to the underlying data, the std::vector itself
+ *    is freed.
+ *    The memory space of the array can be shared among several TRUSTArray ('mem_' has the same underlying value in several instances).
+ *    This is typically produced by ref_array().
+ *    Note that when this happens, we have two instances pointing to the same underlying block of data, but *none* of them has precedence over the other one (none
+ *    of them is 'the' owner of the data). Ownership is shared, and when the last owner is destroyed, memory is released.
+ *   - "ref_data" : this is used to point to an exterior existing memory zone (not managed by TRUSTArray - for example data provided by an external Fortran func)
+ *    In this case, mem_ remains nullptr, just the span_ is correctly filled, and no memory is released when the array is destroyed.
  *
+ * Finally, in case of a "XXTrav" array, the memory allocation is special:
+ *  - a Trav array is allocated once, but when released, memory is kept in a pool so that another request for a new Trav might re-use it without having
+ *  to perform the allocation again.
+ *  - a Trav may not be ref_data or ref_array.
+ *  - see implementation details of this mechanism in the TRUSTTravPool class.
  */
 template <typename _TYPE_>
 class TRUSTArray : public Array_base
@@ -61,74 +77,65 @@ protected:
   Entree& readOn(Entree& is) override;
 
 public:
-  using value_type = _TYPE_; // return int, double ou float
-  using Iterator = TRUSTIterator<TRUSTArray<_TYPE_>>;
+  using Value_type_ = _TYPE_;
+  using Iterator = typename tcb::span<_TYPE_>::iterator;
+  using Vector_ = std::vector<_TYPE_, TVAlloc<_TYPE_> >;
   using Span_ = tcb::span<_TYPE_>;
 
+  // Tests can inspect whatever they want:
+  friend class TestTRUSTArray;
+
   // Iterators
-  inline Iterator begin() { return Iterator(data_); }
-  inline Iterator end() { return Iterator(data_ + size_array_); }
+  inline Iterator begin() { return span_.begin(); }
+  inline Iterator end() { return span_.end(); }
 
-  virtual ~TRUSTArray()
-  {
-    detach_array();
-    size_array_ = -1; // Paranoia: si size_array_==-1, c'est un zombie
-  }
+  inline virtual ~TRUSTArray();
 
-  TRUSTArray() : p_(0), data_(0), size_array_(0), memory_size_(0), smart_resize_(0), storage_type_(STANDARD) { }
+  TRUSTArray() : TRUSTArray(0) { }
 
-  TRUSTArray(int n): p_(0), data_(0), size_array_(n), memory_size_(n), smart_resize_(0), storage_type_(STANDARD)
+  TRUSTArray(int n) : storage_type_(STORAGE::STANDARD)
   {
     if (n)
       {
-        p_ = new VTRUSTdata<_TYPE_>(n, STANDARD);
-        data_ = p_->get_data();
-        fill_default_value(COPY_INIT, 0, n);
+        // Initialize underlying std::vector<> with 0:
+        mem_ = std::make_shared<Vector_>(Vector_(n, (_TYPE_)0));
+        span_ = Span_(*mem_);
+        data_location_ = std::make_shared<DataLocation>(DataLocation::HostOnly);
       }
   }
 
-  // Constructeur par copie : deep copy (on duplique les donnees)
-  TRUSTArray(const TRUSTArray& A) : Array_base()
+  /**
+   * Copy ctor. Performs a deep copy.
+   *
+   * It is forbidden to deep copy a ref_data.
+   */
+  TRUSTArray(const TRUSTArray& A) :
+    Array_base(), storage_type_(A.storage_type_)
   {
+    assert(A.mem_ != nullptr || A.span_.empty());
     const int size = A.size_array();
     if (size > 0)
       {
-        // Creation d'un tableau "normal"
-        storage_type_ = STANDARD;
-        p_ = new VTRUSTdata<_TYPE_>(size, STANDARD);
-        data_ = p_->get_data();
-        size_array_ = size;
-        memory_size_ = size;
-        smart_resize_ = A.smart_resize_;
-        if (A.isDataOnDevice()) allocateOnDevice(*this);
+        // storage_type_ must be set properly before invoking this! So that Trav mechanism works:
+        resize_array_(size, RESIZE_OPTIONS::NOCOPY_NOINIT);
+
+        data_location_ = std::make_shared<DataLocation>(A.get_data_location());
+        if (get_data_location() != DataLocation::HostOnly)   // Only allocate on device what has been at least once on device
+          // Not a Trav already allocated on device (avoid double alloc on device for Trav)
+          if(!(storage_type_ == STORAGE::TEMP_STORAGE && isAllocatedOnDevice(mem_->data())))
+            allocateOnDevice(*this);
         inject_array(A);
-      }
-    else
-      {
-        // Creation d'un tableau "detache"
-        p_ = 0;
-        data_ = 0;
-        size_array_ = 0;
-        memory_size_ = 0;
-        smart_resize_ = 0;
-        storage_type_ = STANDARD;
       }
   }
 
-  // Methodes de construction tardive (on cree un tableau vide avec TRUSTArray() puis on appelle ces methodes
-  // pour modifier les caracteristiques du tableau : Change le nombre d'elements du tableau
-  inline void resize(int new_size, Array_base::Resize_Options opt = COPY_INIT) { resize_array(new_size, opt); }
-  inline void resize_array(int new_size, Array_base::Resize_Options opt = COPY_INIT);
+  // Resizing methods
+  inline void resize(int new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT) { resize_array(new_size, opt); }
+  inline void resize_array(int new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
 
-  // Methodes de gestion de l'allocation memoire :
-  // Assigne une valeur au drapeau "smart_resize" (reallocation uniquement si la taille augmente)
-  inline void set_smart_resize(int flag);
+  /*! Memory allocation type - TEMP arrays (i.e. Trav) have a different allocation mechanism - see TRUSTTravPool.h) */
+  inline void set_mem_storage(const STORAGE storage);
+  inline STORAGE get_mem_storage() const { return storage_type_; }
 
-  // Gestion du type de memoire alouee (standard ou pool de memoire Trio-U)
-  inline void set_mem_storage(const Storage storage);
-  inline Storage get_mem_storage() const { return storage_type_; }
-
-  // Operateur copie
   inline TRUSTArray& operator=(const TRUSTArray&);
 
   inline _TYPE_& operator[](int i);
@@ -141,40 +148,41 @@ public:
   inline _TYPE_ * addr();
   inline const _TYPE_ * addr() const;
   // Les memes methodes pour une utilisation sur le device
-  inline _TYPE_ * addrForDevice();
-  inline const _TYPE_ * addrForDevice() const;
+  inline _TYPE_ *data();
 
-  // Renvoie le nombre d'elements du tableau (et non la taille allouee)
+  inline const _TYPE_ *data() const;
+
+  /*! Return the size of the span on the data (not the full underlying allocated size)   */
   inline int size_array() const;
 
-  // Renvoie le nombre de tableaux qui pointent vers la stucture "*p_"
+  /*! Returns the number of owners of the data, i.e. the number of Arrays pointing to the same underlying data */
   inline int ref_count() const;
 
-  // Ajoute une case en fin de tableau et y stocke la "valeur"
+  /*! Add a slot at the end of the array and store it valeur -> similar to vector<>::push_back */
   inline void append_array(_TYPE_ valeur);
 
-  // Remplit le tableau avec la x en parametre (x est affecte a toutes les cases du tableau)
+  /*! Assign 'x' to all slots in the array */
   TRUSTArray& operator=(_TYPE_ x);
 
-  // Addition case a case sur toutes les cases du tableau : la taille de y doit etre au moins egale a la taille de this
+  /*! Addition case a case sur toutes les cases du tableau : la taille de y doit etre au moins egale a la taille de this */
   TRUSTArray& operator+=(const TRUSTArray& y);
 
-  // ajoute la meme valeur a toutes les cases du tableau
+  /*! ajoute la meme valeur a toutes les cases du tableau */
   TRUSTArray& operator+=(const _TYPE_ dy);
 
-  // Soustraction case a case sur toutes les cases du tableau : tableau de meme taille que *this
+  /*! Soustraction case a case sur toutes les cases du tableau : tableau de meme taille que *this */
   TRUSTArray& operator-=(const TRUSTArray& y);
 
-  // soustrait la meme valeur a toutes les cases
+  /*! soustrait la meme valeur a toutes les cases */
   TRUSTArray& operator-=(const _TYPE_ dy);
 
-  // muliplie toutes les cases par dy
+  /*! muliplie toutes les cases par dy */
   TRUSTArray& operator*= (const _TYPE_ dy);
 
-  // divise toutes les cases par dy (pas pour TRUSTArray<int>)
+  /*! divise toutes les cases par dy (pas pour TRUSTArray<int>) */
   TRUSTArray& operator/= (const _TYPE_ dy);
 
-  TRUSTArray& inject_array(const TRUSTArray& source, int nb_elements = -1,  int first_element_dest = 0, int first_element_source = 0);
+  TRUSTArray& inject_array(const TRUSTArray& source, int nb_elements=-1,  int first_element_dest=0, int first_element_source=0);
 
   inline TRUSTArray& copy_array(const TRUSTArray& a)
   {
@@ -187,140 +195,81 @@ public:
 
   // methodes virtuelles
 
-  // Construction de tableaux qui pointent vers des donnees existantes !!! Utiliser ref_data avec precaution (attention a size_array_)
+  /*! Construction de tableaux qui pointent vers des donnees existantes !!! Utiliser ref_data avec precaution */
   inline virtual void ref_data(_TYPE_* ptr, int size);
-  // Remet le tableau dans l'etat obtenu avec le constructeur par defaut (libere la memoire mais conserve le mode d'allocation memoire actuel)
+  /*! Remet le tableau dans l'etat obtenu avec le constructeur par defaut (libere la memoire mais conserve le mode d'allocation memoire actuel) */
   inline virtual void reset() { detach_array(); }
-  inline virtual void ref_array(TRUSTArray&, int start = 0, int sz = -1);
-  inline virtual void resize_tab(int n, Array_base::Resize_Options opt = COPY_INIT);
+  inline virtual void ref_array(TRUSTArray&, int start=0, int sz=-1);
+  inline virtual void resize_tab(int n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
 
   // Host/Device methods:
-  inline DataLocation get_dataLocation() { return p_==NULL ? HostOnly : p_->get_dataLocation(); }
-  inline DataLocation get_dataLocation() const { return p_==NULL ? HostOnly : p_->get_dataLocation(); }
-  inline void set_dataLocation(DataLocation flag) { if (p_!=NULL) p_->set_dataLocation(flag); }
-  inline void set_dataLocation(DataLocation flag) const { if (p_!=NULL) p_->set_dataLocation(flag); }
-  inline void checkDataOnHost() { checkDataOnHost(*this); }
-  inline void checkDataOnHost() const { checkDataOnHost(*this); }
-  inline bool isDataOnDevice() const { return isDataOnDevice(*this); }
-  inline bool checkDataOnDevice(std::string kernel_name="??") { return checkDataOnDevice(*this, kernel_name); }
-  inline bool checkDataOnDevice(std::string kernel_name="??") const { return checkDataOnDevice(*this, kernel_name); }
-  inline bool checkDataOnDevice(const TRUSTArray& arr, std::string kernel_name="??") { return checkDataOnDevice(*this, arr, kernel_name); }
+  inline DataLocation get_data_location() {  return data_location_ == nullptr ? DataLocation::HostOnly : *data_location_;   }
+  inline DataLocation get_data_location() const { return data_location_ == nullptr ? DataLocation::HostOnly : *data_location_; }
+  inline void set_data_location(DataLocation flag) { if (data_location_ != nullptr) *data_location_ = flag; }
+  inline void set_data_location(DataLocation flag) const { if (data_location_ != nullptr) *data_location_ = flag; }
 
-  inline virtual Span_ get_span() { return Span_(data_,size_array_); }
-  inline virtual Span_ get_span_tot() { return Span_(data_,size_array_); }
-  inline virtual const Span_ get_span() const { return Span_((_TYPE_*)data_, size_array_); }
-  inline virtual const Span_ get_span_tot() const { return Span_((_TYPE_*)data_, size_array_); }
+  inline void checkDataOnHost();
+  inline void checkDataOnHost() const;
+  inline bool isDataOnDevice() const;
+  inline bool checkDataOnDevice(std::string kernel_name="??");
+  inline bool checkDataOnDevice(std::string kernel_name="??") const;
+  inline bool checkDataOnDevice(const TRUSTArray& arr, std::string kernel_name="??");
+
+  inline virtual Span_ get_span() { return span_; }
+  inline virtual Span_ get_span_tot() { return span_; }
+  inline virtual const Span_ get_span() const { return span_; }
+  inline virtual const Span_ get_span_tot() const { return span_; }
+
+#ifndef LATATOOLS   // Lata tools without Kokkos
+  // Kokkos accessors
+  inline ConstViewArr<_TYPE_> view_ro() const;  // Read-only
+  inline ViewArr<_TYPE_> view_wo();             // Write-only
+  inline ViewArr<_TYPE_> view_rw();             // Read-write
+#endif
+
+  inline void sync_to_host() const;              // Synchronize back to host
+  inline void modified_on_host() const;         // Mark data as being modified on host side
+
 protected:
-  inline void attach_array(const TRUSTArray& a, int start = 0, int size = -1);
-  inline void fill_default_value(Array_base::Resize_Options opt, int first, int nb);
-  inline void resize_array_(int n, Array_base::Resize_Options opt = COPY_INIT);
-  inline int detach_array();
+  inline void attach_array(const TRUSTArray& a, int start=0, int size=-1);
+  inline bool detach_array();
+
+  void resize_array_(int n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+
+  // Kokkos members
+  inline void init_view_arr() const;
+
+  mutable bool dual_view_init_ = false;
+#ifndef LATATOOLS  // Lata tools without Kokkos
+  mutable DualViewArr<_TYPE_> dual_view_arr_;
+#endif
 
 private:
-  // B. Mathieu 22/06/2004 : je mets ces membres "private" pour forcer le passage par les accesseurs dans les classes derivees,
-  // au cas ou on voudrait modifier l'implementation.
+  /*! Shared pointer to the actual underlying memory block:
+   *   - shared_ptr because data can be shared between several owners -> see ref_array()
+   *   - std::vector<> because we want contiguous data, with a smart allocation mechanism
+   * WARNING: allocation mechanism for a Trav array is special.
+   */
+  std::shared_ptr<Vector_> mem_;
 
-  inline void memory_resize(int new_size, Array_base::Resize_Options opt = COPY_INIT);
+  /*! Actual view on the data. See comments at the top of the class */
+  Span_ span_;
 
-  // Zone de memoire contenant les valeurs du tableau. Pointeur nul => le tableau est "detache" ou "ref_data", Pointeur non nul => le tableau est "normal"
-  VTRUSTdata<_TYPE_>* p_;
+  /*! Drapeau indiquant si l'allocation memoire a lieu avec un new classique ou dans le pool de memoire temporaire de TRUST */
+  STORAGE storage_type_;
 
-  // Pointeur vers le premier element du tableau= Pointeur nul => le tableau est "detache". Pointeur non nul => le tableau est "normal" ou "ref_data"
-  // Si p_ est non nul, data_ pointe quelque part a l'interieur de la zone allouee (en general au debut, sauf si le tableau a ete initialise avec ref() ou attach_array() avec start > 0)
-  _TYPE_* data_;
+  // Drapeau du statut du data sur le Device:
+  // HostOnly  : Non alloue sur le device encore
+  // Host      : A jour sur le host pas sur le device
+  // Device    : A jour sur le device pas sur le host
+  // HostDevice: A jour sur le host et le device
+  // PartialHostDevice : Etat temporaire: certaines valeurs sont plus a jour sur le host que le device (ex: faces frontieres ou items distants)
+  // In a shared_ptr because this state has the same status as mem_ (same sharing properties)
+  mutable std::shared_ptr<DataLocation> data_location_;
 
-  // Nombre d'elements du tableau (inferieur ou egal a memory_size_). Si le tableau est "detache", alors size_array_=0
-  int size_array_;
-
-  // Taille memoire reellement allouee pour le tableau (pour le mecanisme smart_resize_). memory_size_ est nul si le tableau est de type "ref_data". Sinon memory_size_ est egal a p_->size_.
-  int memory_size_;
-
-  // Drapeau indiquant si on applique une strategie d'allocation preventive (la memoire alouee augmente d'un facteur constant si la taille devient insuffisante).
-  // Si smart_resize_ == 0, alors on a toujours p_->size_ == size
-  int smart_resize_;
-
-  // Drapeau indiquant si l'allocation memoire a lieu avec un new classique ou dans le pool de memoire temporaire de Trio
-  Storage storage_type_;
-
-  // Methodes de verification que le tableau est a jour sur le host:
-  // ToDo OpenMP :Appels couteux (car non inlines?) depuis operator()[int] mais comment faire mieux ?
-  inline void checkDataOnHost(const TRUSTArray& tab) const
-  {
-#ifdef _OPENMP
-    if (tab.get_dataLocation()==Device)
-      {
-        copyFromDevice(tab, "const detected with checkDataOnHost()");
-        exit_on_copy_condition(tab.size_array());
-      }
-#endif
-  }
-  inline void checkDataOnHost(TRUSTArray& tab)
-  {
-#ifdef _OPENMP
-    const DataLocation& loc = tab.get_dataLocation();
-    if (loc==Host || loc==HostOnly || loc==PartialHostDevice) return;
-    else if (loc==Device)
-      {
-        copyFromDevice(tab, "non-const detected with checkDataOnHost()");
-        exit_on_copy_condition(tab.size_array());
-      }
-    // On va modifier le tableau (non const) sur le host:
-    tab.set_dataLocation(Host);
-#endif
-  }
-
-  // Fonction pour connaitre la localisation du tableau
-  inline bool isDataOnDevice(const TRUSTArray& tab) const
-  {
-    return tab.get_dataLocation() == Device || tab.get_dataLocation() == HostDevice;
-  }
-  inline void printKernel(bool flag, const TRUSTArray& tab, std::string kernel_name) const
-  {
-    if (kernel_name!="??" && tab.size_array()>100 && getenv ("TRUST_CLOCK_ON")!=NULL)
-      {
-        std::string clock(Process::nproc()>1 ? "[clock]#"+std::to_string(Process::me()) : "[clock]  ");
-        std::cout << clock << "            [" << (flag ? "Kernel] " : "Host]   ") << kernel_name
-                  << " with a loop on array [" << toString(tab.addrForDevice()).c_str() << "] of " << tab.size_array()
-                  << " elements" << std::endl ;
-      }
-  }
-  // Fonctions checkDataOnDevice pour lancement conditionnel de kernels sur le device:
-  // -Si les tableaux passes en parametre sont sur a jour sur le device
-  // -Si ce n'est pas le cas, les tableaux sont copies sur le host via checkDataOnHost
-  inline bool checkDataOnDevice(const TRUSTArray& tab, std::string kernel_name) const
-  {
-    bool flag = tab.isDataOnDevice() && computeOnDevice;
-    if (!flag)
-      checkDataOnHost(tab);
-    //else
-    //  tab.set_dataLocation(Device); // non const array will be computed on device
-    printKernel(flag, tab, kernel_name);
-    return flag;
-  }
-  inline bool checkDataOnDevice(TRUSTArray& tab, std::string kernel_name)
-  {
-    bool flag = tab.isDataOnDevice() && computeOnDevice;
-    if (!flag)
-      checkDataOnHost(tab);
-    else
-      tab.set_dataLocation(Device); // non const array will be computed on device
-    printKernel(flag, tab, kernel_name);
-    return flag;
-  }
-  inline bool checkDataOnDevice(TRUSTArray& tab, const TRUSTArray& tab_const, std::string kernel_name="??")
-  {
-    bool flag = tab.isDataOnDevice() && tab_const.isDataOnDevice() && computeOnDevice;
-    // Si un des deux tableaux n'est pas a jour sur le device alors l'operation se fera sur le host:
-    if (!flag)
-      {
-        checkDataOnHost(tab);
-        checkDataOnHost(tab_const);
-      }
-    else
-      tab.set_dataLocation(Device); // non const array will be computed on device
-    printKernel(flag, tab, kernel_name);
-    return flag;
-  }
+private:
+  /*! Debug */
+  inline void printKernel(bool flag, const TRUSTArray& tab, std::string kernel_name) const;
 };
 
 using ArrOfDouble = TRUSTArray<double>;
@@ -337,6 +286,12 @@ using ArrOfInt = TRUSTArray<int>;
  * FONCTIONS MEMBRES DE TRUSTArray *
  * ******************************* */
 
-#include <TRUSTArray.tpp> // templates specializations ici ;)
+#include <TRUSTArray_device.tpp> // OMP stuff
+
+#ifndef LATATOOLS
+#include <TRUSTArray_kokkos.tpp> // Kokkos stuff
+#endif
+
+#include <TRUSTArray.tpp> // The rest here!
 
 #endif /* TRUSTArray_included */

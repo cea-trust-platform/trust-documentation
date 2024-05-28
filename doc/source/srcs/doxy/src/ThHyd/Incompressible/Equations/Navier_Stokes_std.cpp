@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -50,16 +50,6 @@ Navier_Stokes_std::Navier_Stokes_std():methode_calcul_pression_initiale_(0),div_
   seuil_divU = 100.;
   cumulative_=0;
   raison_seuil_divU=-100;
-  champs_compris_.ajoute_nom_compris("vorticite");
-  champs_compris_.ajoute_nom_compris("critere_Q");
-  champs_compris_.ajoute_nom_compris("porosite_volumique");
-  champs_compris_.ajoute_nom_compris("y_plus");
-  champs_compris_.ajoute_nom_compris("reynolds_maille");
-  champs_compris_.ajoute_nom_compris("courant_maille");
-  champs_compris_.ajoute_nom_compris("taux_cisaillement");
-  champs_compris_.ajoute_nom_compris("pression_hydrostatique");
-  champs_compris_.ajoute_nom_compris("gradient_vitesse");
-  champs_compris_.ajoute_nom_compris("vitesse_residu");
 }
 
 /*! @brief Simple appel a:  Equation_base::printOn(Sortie&) Ecrit l'equation sur un flot de sortie.
@@ -368,17 +358,17 @@ void Navier_Stokes_std::discretiser()
   const Discret_Thyd& dis=ref_cast(Discret_Thyd, discretisation());
 
   discretiser_vitesse();
-  champs_compris_.ajoute_champ(la_vitesse);
   la_vitesse.valeur().add_synonymous(Nom("velocity"));
+  champs_compris_.ajoute_champ(la_vitesse);
 
   dis.pression(schema_temps(), domaine_dis(), la_pression);
-  champs_compris_.ajoute_champ(la_pression);
   la_pression.valeur().add_synonymous(Nom("P_star"));
+  champs_compris_.ajoute_champ(la_pression);
 
   dis.pression_en_pa(schema_temps(), domaine_dis(), la_pression_en_pa);
+  la_pression_en_pa.valeur().add_synonymous(Nom("Pressure"));
   champs_compris_.ajoute_champ(la_pression_en_pa);
 
-  la_pression_en_pa.valeur().add_synonymous(Nom("Pressure"));
 
   dis.divergence_U(schema_temps(), domaine_dis(), divergence_U);
   discretiser_grad_p();
@@ -1101,7 +1091,10 @@ void Navier_Stokes_std::mettre_a_jour(double temps)
   Debog::verifier("Navier_Stokes_std::mettre_a_jour : vitesse", la_vitesse.valeurs());
 
   if (la_vorticite.non_nul()) la_vorticite.mettre_a_jour(temps);
-
+  if (critere_Q.non_nul()) critere_Q.mettre_a_jour(temps);
+  if (Reynolds_maille.non_nul()) Reynolds_maille.mettre_a_jour(temps);
+  if (Taux_cisaillement.non_nul()) Taux_cisaillement.mettre_a_jour(temps);
+  if (grad_u.non_nul()) grad_u.mettre_a_jour(temps);
 }
 
 double Navier_Stokes_std::LocalFlowRateRelativeError() const
@@ -1120,6 +1113,14 @@ void Navier_Stokes_std::abortTimeStep()
   pression()->valeurs()=P_n;
   //pression()->valeurs()=0;
   Equation_base::abortTimeStep();
+}
+
+/* @brief Override. Reset pression too !
+ */
+void Navier_Stokes_std::resetTime(double time)
+{
+  pression()->resetTime(time);
+  Equation_base::resetTime(time);
 }
 
 bool Navier_Stokes_std::initTimeStep(double dt)
@@ -1205,9 +1206,8 @@ void Navier_Stokes_std::calculer_la_pression_en_pa()
   else
     {
       ConstDoubleTab_parts ppart(tab_pression);
-      if (Pa.get_md_vector() == ppart[0].get_md_vector())
-        Pa = ppart[0]; //tab_pression a un morceau en plus
-      else abort(); //euh...
+      assert(Pa.get_md_vector() == ppart[0].get_md_vector());
+      Pa = ppart[0]; //tab_pression a un morceau en plus
     }
   // On multiplie par rho si uniforme sinon deja en Pa...
   if (sub_type(Champ_Uniforme,rho))
@@ -1401,7 +1401,6 @@ void Navier_Stokes_std::creer_champ(const Motcle& motlu)
 
 void  Navier_Stokes_std::calculer_pression_hydrostatique(Champ_base& pression_hydro) const
 {
-  //  abort();
   DoubleTab& val= pression_hydro.valeurs();
   const DoubleTab& coords = domaine_dis().domaine().les_sommets();
   if (!milieu().a_gravite())
@@ -1446,7 +1445,7 @@ const Champ_base& Navier_Stokes_std::get_champ(const Motcle& nom) const
     {
       if (critere_Q.est_nul())  throw Champs_compris_erreur();
       Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,critere_Q.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
@@ -1471,7 +1470,7 @@ const Champ_base& Navier_Stokes_std::get_champ(const Motcle& nom) const
     {
       if (Reynolds_maille.est_nul())  throw Champs_compris_erreur();
       Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,Reynolds_maille.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
@@ -1487,7 +1486,7 @@ const Champ_base& Navier_Stokes_std::get_champ(const Motcle& nom) const
     {
       if (Taux_cisaillement.est_nul())  throw Champs_compris_erreur();
       Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,Taux_cisaillement.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
@@ -1495,7 +1494,7 @@ const Champ_base& Navier_Stokes_std::get_champ(const Motcle& nom) const
     {
       if (grad_u.est_nul())  throw Champs_compris_erreur();
       Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base, grad_u.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
@@ -1535,6 +1534,21 @@ void Navier_Stokes_std::get_noms_champs_postraitables(Noms& nom,Option opt) cons
 
   if (le_traitement_particulier.non_nul())
     le_traitement_particulier->get_noms_champs_postraitables(nom,opt);
+
+  Noms noms_compris = champs_compris_.liste_noms_compris();
+  noms_compris.add("vorticite");
+  noms_compris.add("critere_Q");
+  noms_compris.add("porosite_volumique");
+  noms_compris.add("y_plus");
+  noms_compris.add("reynolds_maille");
+  noms_compris.add("courant_maille");
+  noms_compris.add("taux_cisaillement");
+  noms_compris.add("pression_hydrostatique");
+  noms_compris.add("gradient_vitesse");
+  if (opt==DESCRIPTION)
+    Cerr<<" Navier_Stokes_std : "<< noms_compris <<finl;
+  else
+    nom.add(noms_compris);
 }
 
 /*! @brief Effectue quelques impressions sur un flot de sortie: - maximum de div U

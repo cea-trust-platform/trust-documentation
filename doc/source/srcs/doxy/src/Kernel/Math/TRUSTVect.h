@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,12 +19,15 @@
 #include <type_traits>
 #include <MD_Vector_tools.h>
 #include <MD_Vector_base.h>
-#include <communications.h>
 #include <DescStructure.h>
 #include <TRUSTArray.h>
-#include <MD_Vector.h>
 #include <limits.h>
 #include <math.h>
+
+#include <MD_Vector.h>
+#ifndef LATATOOLS   // Lata tools does not use parallelism
+#include <communications.h>
+#endif
 
 template<typename _TYPE_>
 class TRUSTVect : public TRUSTArray<_TYPE_>
@@ -45,12 +48,14 @@ protected:
 
   Sortie& printOn(Sortie& os) const override
   {
+#ifndef LATATOOLS
     if (TRUSTArray<_TYPE_>::nproc() > 1 && md_vector_.non_nul())
       {
         Cerr << "Error in TRUSTVect::printOn: try to print a parallel vector" << finl;
         Process::exit();
       }
     TRUSTArray<_TYPE_>::printOn(os);
+#endif
     return os;
   }
 
@@ -61,6 +66,7 @@ protected:
    */
   Entree& readOn(Entree& is) override
   {
+#ifndef LATATOOLS
     if (md_vector_.non_nul())
       {
         // Que veut-on faire si on lit dans un vecteur ayant deja une structure parallele ?
@@ -70,6 +76,7 @@ protected:
     TRUSTArray<_TYPE_>::readOn(is);
     size_reelle_ = TRUSTArray<_TYPE_>::size_array();
     line_size_ = 1;
+#endif
     return is;
   }
 
@@ -84,7 +91,7 @@ public:
   /*! @brief construction d'un vecteur de taille n.
    *
    * Les elements du vecteur sont initialises a zero par defaut. Pour ne pas initialiser les valeurs, utiliser ceci: DoubleVect toto;
-   *    toto.resize(n, NOCOPY_NOINIT);
+   *    toto.resize(n, RESIZE_OPTIONS::NOCOPY_NOINIT);
    *
    */
   TRUSTVect(int n) :   TRUSTArray<_TYPE_>(n), size_reelle_(n), line_size_(1) { }
@@ -106,9 +113,9 @@ public:
   inline int size_reelle() const;
   inline int size_reelle_ok() const;
   inline int line_size() const;
-  inline void resize(int, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void copy(const TRUSTArray<_TYPE_>&, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void copy(const TRUSTVect&, Array_base::Resize_Options opt = Array_base::COPY_INIT);
+  inline void resize(int, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  inline void copy(const TRUSTArray<_TYPE_>&, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  inline void copy(const TRUSTVect&, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
   inline void operator+=(const TRUSTVect& v) { operator_add(*this, v); }
   inline void operator+=(const _TYPE_ x) { operator_add(*this, x); }
   inline void operator-=(const TRUSTVect& v) { operator_sub(*this, v); }
@@ -121,6 +128,9 @@ public:
 
   inline void operator/=(const TRUSTVect<int>& v) = delete; // forbidden
   inline void operator/= (const _TYPE_ x) { operator_divide(*this, x); }
+
+  inline virtual const MD_Vector& get_md_vector() const { return md_vector_; }
+  inline void resize_tab(int n, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) override;
 
   // Options par defaut choisies pour compatibilite avec la version precedente. Attention: il y avait un echange_espace_virtuel avant, ce n'est pas strictement equivalent
   inline void abs(Mp_vect_options opt = VECT_ALL_ITEMS) { operator_abs(*this, opt); }
@@ -145,6 +155,11 @@ public:
 
   inline void ajoute_carre(int alpha, const TRUSTVect<int>& y, Mp_vect_options opt = VECT_ALL_ITEMS) = delete; // forbidden ... a voir si besoin
 
+#ifndef LATATOOLS
+  //
+  //    All the methods below involve parallelism or are not used in lata_tools
+  //
+
   // par defaut: min et max sur items reels (compat. 1.5.6):
   inline _TYPE_ local_max_vect(Mp_vect_options opt = VECT_REAL_ITEMS) const { return local_max_vect_(*this, opt); }
   inline _TYPE_ local_min_vect(Mp_vect_options opt = VECT_REAL_ITEMS) const { return local_min_vect_(*this, opt); }
@@ -155,6 +170,7 @@ public:
   inline _TYPE_ mp_max_abs_vect(Mp_vect_options opt = VECT_REAL_ITEMS) const { return mp_max_abs_vect_(*this, opt); }
   inline _TYPE_ mp_min_abs_vect(Mp_vect_options opt = VECT_REAL_ITEMS) const { return mp_min_abs_vect_(*this, opt); }
   inline _TYPE_ mp_norme_vect() const { return mp_norme_vect_(*this); }
+#endif  // LATATOOLS
 
   // methodes virtuelles
 
@@ -165,8 +181,7 @@ public:
   inline virtual void lit(Entree&, int resize_and_read=1);
   inline virtual void ecrit(Sortie&) const;
   inline virtual void detach_vect() { md_vector_.detach(); }
-  inline virtual const MD_Vector& get_md_vector() const { return md_vector_; }
-  inline void resize_tab(int n, Array_base::Resize_Options opt = Array_base::COPY_INIT) override;
+
   inline void ref_data(_TYPE_* ptr, int new_size) override;
   inline void ref_array(TRUSTArray<_TYPE_>&, int start = 0, int sz = -1) override;
 
@@ -188,8 +203,8 @@ public:
 
 protected:
   inline void set_line_size_(int n);
-  inline void resize_vect_(int n, Array_base::Resize_Options opt = Array_base::COPY_INIT);
-  inline void copy_(const TRUSTVect& v, Array_base::Resize_Options opt = Array_base::COPY_INIT);
+  inline void resize_vect_(int n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  inline void copy_(const TRUSTVect& v, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
 
 private:
   // Un DoubleVect est un ArrOfDouble qui possede eventuellement une structure de tableau distribue. Ce pointeur peut etre nul.

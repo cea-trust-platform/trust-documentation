@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,43 +31,20 @@
 Implemente_base_sans_constructeur(Schema_Temps_base,"Schema_Temps_base",Objet_U);
 // XD schema_temps_base objet_u schema_temps_base -1 Basic class for time schemes. This scheme will be associated with a problem and the equations of this problem.
 
-static SFichier dt_ev_;
 void Schema_Temps_base::initialize()
 {
+  nb_impr_= 0;
+  nb_pas_dt_ = 0;
+
   // GF je remets le calculer_pas_de_temps car des schemas en temps implicites s'en servent pour dimensionner (en particulier ovap)
   pb_base().calculer_pas_de_temps();
   // je le mets une deuxieme fois pour alternant....
   pb_base().calculer_pas_de_temps();
-  if (je_suis_maitre())
-    {
-      if (!disable_dt_ev())
-        {
-          Nom fichier(nom_du_cas()+".dt_ev");
-          struct stat f;
-          // On initialise le fichier .dt_ev s'il n'existe pas ou si c'est un demarrage de calcul sans reprise
-          if ((nb_pas_dt_==0) && ((stat(fichier,&f)) || !(pb_base().reprise_effectuee()==1)))
-            {
-              if (schema_impr())
-                {
-                  dt_ev_.ouvrir(fichier, ios::out);
-                  dt_ev_.setf(ios::scientific);
-                  dt_ev_ << "# temps\t\t dt\t\t facsec\t\t residu=max|Ri|\t dt_stab\t ";
-                }
-              for (int i=0; i<pb_base().nombre_d_equations(); i++)
-                dt_ev_ << pb_base().equation(i).expression_residu();
-            }
-          else
-            {
-              if (schema_impr())
-                {
-                  dt_ev_.ouvrir(fichier, ios::app);
-                  dt_ev_.setf(ios::scientific);
-                }
-            }
-        }
-      if (!disable_progress() && !progress_.is_open())
-        progress_.ouvrir(nom_du_cas()+".progress");
-    }
+
+  // Ecritures:
+  bool init = true;
+  write_dt_ev(init);
+  write_progress(init);
 
   if ((nb_pas_dt_==0) && ( ((mode_dt_start_==0) && est_egal(tinit_,0.)) || (mode_dt_start_==-1)) )
     {
@@ -87,14 +64,6 @@ void Schema_Temps_base::initialize()
   dt_stab_=dt_;
   dt_failed_ = DBL_MAX;
 }
-void Schema_Temps_base::finir() const
-{
-  if (je_suis_maitre() && dt_ev_.is_open())
-    {
-      dt_ev_ << finl;
-      dt_ev_.close();
-    }
-}
 
 double Schema_Temps_base::computeTimeStep(bool& is_stop) const
 {
@@ -104,7 +73,6 @@ double Schema_Temps_base::computeTimeStep(bool& is_stop) const
       dt_max_fn_.setVar(0, temps_courant());
       dt_max_ = dt_max_fn_.eval();
     }
-
   is_stop=false;
   // Correction en premier du pas de temps
   double dt = dt_stab_;
@@ -123,7 +91,8 @@ double Schema_Temps_base::computeTimeStep(bool& is_stop) const
   if (this->stop())
     {
       is_stop=true;
-      return 0;
+      //return 0; Why ?
+      return dt;
     }
   else
     return dt;
@@ -207,66 +176,12 @@ void Schema_Temps_base::validateTimeStep()
   // Update the problem:
   Probleme_base& problem=pb_base();
   problem.mettre_a_jour(temps_courant_+dt_);
-  if (je_suis_maitre())
-    {
-      if (!disable_dt_ev())
-        {
-          if (schema_impr())
-            dt_ev_ << finl << temps_courant_ << "\t " << dt_ << "\t " << facsec_ <<"\t " << residu_ << "\t " << dt_stab_ << "\t ";
-          for (int i=0; i<pb_base().nombre_d_equations(); i++)
-            pb_base().equation(i).imprime_residu(dt_ev_);
-        }
 
-      // Impression du temps CPU estime restant
-      if (schema_impr())
-        {
-          if ((residu_>0)&&(residu_old_slope_>0))
-            cumul_slope_+=(log(residu_)-log(residu_old_slope_))/dt_;
-          residu_old_slope_=residu_;
-        }
-      if (schema_impr()&&(nb_pas_dt()>0 && pas_de_temps()>0))
-        {
-          // On calcule le temps CPU moyen par pas de temps, inconvenient il peut varier fortement au cours du temps si divergence du calcul ou au contraire acceleration
-          // Mais Statistiques ne permet pas d'avoir le temps CPU du dernier pas de temps (last_time appele ici renverrait le temps CPU depuis le debut du pas de temps)
-          //double cpu_per_timestep           = statistiques().last_time(temps_total_execution_counter_) / nb_pas_dt();
-          double nb_pas_selon_tmax          = (temps_max()-temps_courant()) / pas_de_temps();
-          double nb_pas_selon_nb_pas_dt_max = nb_pas_dt_max() - nb_pas_dt();
-          double nb_pas_avant_fin= std::min(nb_pas_selon_tmax,nb_pas_selon_nb_pas_dt_max);
-          //double seconds_to_finish  = nb_pas_avant_fin * cpu_per_timestep;
-          double dpercent=(1.-nb_pas_avant_fin/(nb_pas_avant_fin+ nb_pas_dt()));    // marche meme si c'est ltemps max qui limite
-          // si la pente est >0 on diverge ....
-          if ((seuil_statio_>0)&&(cumul_slope_<-1e-20) && seuil_statio_ < residu_) // dans un pb_couple on peut avoir (seuil_statio_ > residu) pour un des problemes
-            {
-              double distance= (-log(residu_+1e-20)+log(seuil_statio_))/(cumul_slope_)* nb_pas_dt();
+  // Ecritures
+  bool init=false;
+  write_dt_ev(init);
+  write_progress(init);
 
-              //Cerr<<distance<<" DDDDDD"<<finl;
-              double dpercent2=temps_courant()/(temps_courant()+distance);
-              dpercent=std::max(dpercent,dpercent2);
-            }
-          int percent=int(dpercent*100);
-
-          if (limpr() )
-            {
-              double seconds_to_finish  =  statistiques().last_time(temps_total_execution_counter_)*(1.-dpercent)/dpercent;
-              int integer_limit=(int)(pow(2.0,(double)((sizeof(True_int)*8)-1))-1);
-              if (seconds_to_finish<integer_limit)
-                {
-                  int h  = int(seconds_to_finish/3600);
-                  int mn = int((seconds_to_finish-3600*h)/60);
-                  int s  = int(seconds_to_finish-3600*h-60*mn);
-                  Cout << finl << "Estimated CPU time to finish the run (according to " << (nb_pas_selon_tmax<nb_pas_selon_nb_pas_dt_max?"tmax":"nb_pas_dt_max") << " value) : ";
-                  if (seconds_to_finish<1)
-                    Cout << seconds_to_finish << " s";
-                  else
-                    Cout << h << "h" << mn << "mn" << s << "s";
-
-                  Cout << ". Progress: "<<(percent)<< finl;
-                }
-            }
-          if (!disable_progress() && Process::je_suis_maitre())
-            progress_<< (percent)<< finl;
-        }
-    }
   // Update time scheme:
   mettre_a_jour();
   statistiques().end_count(mettre_a_jour_counter_);
@@ -306,6 +221,14 @@ void Schema_Temps_base::abortTimeStep()
   dt_ = prob.calculer_pas_de_temps();
 }
 
+void Schema_Temps_base::resetTime(double time)
+{
+  //
+  // It happens here: -)
+  //
+  temps_courant_ = time;
+}
+
 void Schema_Temps_base::associer_pb(const Probleme_base& un_probleme)
 {
   //assert(!mon_probleme.non_nul());
@@ -323,31 +246,32 @@ void Schema_Temps_base::set_param(Param& param)
   param.ajouter( "dt_max",&dt_max_str_); // XD_ADD_P chaine Maximum calculation time step as function of time (1e30s by default).
   param.ajouter( "dt_sauv",&dt_sauv_); // XD_ADD_P double Save time step value (1e30s by default). Every dt_sauv, fields are saved in the .sauv file. The file contains all the information saved over time. If this instruction is not entered, results are saved only upon calculation completion. To disable the writing of the .sauv files, you must specify 0. Note that dt_sauv is in terms of physical time (not cpu time).
   param.ajouter( "dt_impr",&dt_impr_); // XD_ADD_P double Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of processed domains) into the .out file.
-  param.ajouter( "facsec",&facsec_); // XD_ADD_P double Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time scheme is to reduce the facsec to 0.5. NL2 Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example Schema_Adams_Bashforth_order_3.
+  param.ajouter_non_std( "facsec",(this)); // XD_ADD_P chaine Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time scheme is to reduce the facsec to 0.5. NL2 Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example Schema_Adams_Bashforth_order_3.
   param.ajouter( "seuil_statio",&seuil_statio_); // XD_ADD_P double Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1 of all the unknown transported values Gi have a combined absolute value less than this value. This is the keyword used to set the permanent rating threshold.
   param.ajouter_non_std("residuals", (this));    // XD_ADD_P residuals To specify how the residuals will be computed (default max norm, possible to choose L2-norm instead).
-  param.ajouter( "diffusion_implicite",&ind_diff_impl_); // XD_ADD_P int Keyword to make the diffusive term in the Navier-Stokes equations implicit (in this case, it should be set to 1). The stability time step is then only based on the convection time step (dt=facsec*dt_convection). Thus, in some circumstances, an important gain is achieved with respect to the time step (large diffusion with respect to convection on tightened meshes). Caution: It is however recommended that the user avoids exceeding the convection time step by selecting a too large facsec value. Start with a facsec value of 1 and then increase it gradually if you wish to accelerate calculation. In addition, for a natural convection calculation with a zero initial velocity, in the first time step, the convection time is infinite and therefore dt=facsec*dt_max.
+  param.ajouter( "diffusion_implicite",&ind_diff_impl_); // XD_ADD_P entier Keyword to make the diffusive term in the Navier-Stokes equations implicit (in this case, it should be set to 1). The stability time step is then only based on the convection time step (dt=facsec*dt_convection). Thus, in some circumstances, an important gain is achieved with respect to the time step (large diffusion with respect to convection on tightened meshes). Caution: It is however recommended that the user avoids exceeding the convection time step by selecting a too large facsec value. Start with a facsec value of 1 and then increase it gradually if you wish to accelerate calculation. In addition, for a natural convection calculation with a zero initial velocity, in the first time step, the convection time is infinite and therefore dt=facsec*dt_max.
   param.ajouter( "seuil_diffusion_implicite",&seuil_diff_impl_); // XD_ADD_P double This keyword changes the default value (1e-6) of convergency criteria for the resolution by conjugate gradient used for implicit diffusion.
-  param.ajouter( "impr_diffusion_implicite",&impr_diff_impl_); // XD_ADD_P int Unactivate (default) or not the printing of the convergence during the resolution of the conjugate gradient.
-  param.ajouter( "impr_extremums",&impr_extremums_); // XD_ADD_P int Print unknowns extremas
-  param.ajouter( "no_error_if_not_converged_diffusion_implicite",&no_error_if_not_converged_diff_impl_); // XD_ADD_P int not_set
-  param.ajouter( "no_conv_subiteration_diffusion_implicite",&no_conv_subiteration_diff_impl_); // XD_ADD_P int not_set
+  param.ajouter( "impr_diffusion_implicite",&impr_diff_impl_); // XD_ADD_P entier Unactivate (default) or not the printing of the convergence during the resolution of the conjugate gradient.
+  param.ajouter( "impr_extremums",&impr_extremums_); // XD_ADD_P entier Print unknowns extremas
+  param.ajouter( "no_error_if_not_converged_diffusion_implicite",&no_error_if_not_converged_diff_impl_); // XD_ADD_P entier not_set
+  param.ajouter( "no_conv_subiteration_diffusion_implicite",&no_conv_subiteration_diff_impl_); // XD_ADD_P entier not_set
   param.ajouter_non_std( "dt_start",(this)); // XD attr dt_start dt_start dt_start 1 dt_start dt_min : the first iteration is based on dt_min. NL2 dt_start dt_calc : the time step at first iteration is calculated in agreement with CFL condition. NL2 dt_start dt_fixe value : the first time step is fixed by the user (recommended when resuming calculation with Crank Nicholson temporal scheme to ensure continuity). NL2 By default, the first iteration is based on dt_calc.
   // param.ajouter( "nb_pas_dt_max",&nb_pas_dt_max_);
   // nb_pas_dt_max non standard pour valgrind
-  param.ajouter_non_std( "nb_pas_dt_max",(this)); // XD_ADD_P int Maximum number of calculation time steps (1e9 by default).
-  param.ajouter( "niter_max_diffusion_implicite",&niter_max_diff_impl_); // XD_ADD_P int This keyword changes the default value (number of unknowns) of the maximal iterations number in the conjugate gradient method used for implicit diffusion.
-  param.ajouter( "precision_impr",&precision_impr_); // XD_ADD_P int Optional keyword to define the digit number for flux values printed into .out files (by default 3).
+  param.ajouter_non_std( "nb_pas_dt_max",(this)); // XD_ADD_P entier Maximum number of calculation time steps (1e9 by default).
+  param.ajouter( "niter_max_diffusion_implicite",&niter_max_diff_impl_); // XD_ADD_P entier This keyword changes the default value (number of unknowns) of the maximal iterations number in the conjugate gradient method used for implicit diffusion.
+  param.ajouter( "precision_impr",&precision_impr_); // XD_ADD_P entier Optional keyword to define the digit number for flux values printed into .out files (by default 3).
   param.ajouter_non_std( "periode_sauvegarde_securite_en_heures",(this)); // XD_ADD_P double To change the default period (23 hours) between the save of the fields in .sauv file.
   param.ajouter_non_std( "no_check_disk_space",(this)); // XD_ADD_P flag To disable the check of the available amount of disk space during the calculation.
   param.ajouter_flag( "disable_progress",&disable_progress_); // XD_ADD_P flag To disable the writing of the .progress file.
   param.ajouter_flag( "disable_dt_ev",&disable_dt_ev_); // XD_ADD_P flag To disable the writing of the .dt_ev file.
-  param.ajouter( "gnuplot_header",&gnuplot_header_); // XD_ADD_P int Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
+  param.ajouter( "gnuplot_header",&gnuplot_header_); // XD_ADD_P entier Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
   // XD  residuals interprete nul 1 To specify how the residuals will be computed.
   // XD attr norm chaine(into=["L2","max"]) norm 1 allows to choose the norm we want to use (max norm by default). Possible to specify L2-norm.
   // XD attr relative chaine(into=["0","1","2"]) relative 1 This is the old keyword seuil_statio_relatif_deconseille. If it is set to 1, it will normalize the residuals with the residuals of the first 5 timesteps (default is 0). if set to 2, residual will be computed as R/(max-min).
 }
+
 /*! @brief Surcharge Objet_U::printOn(Sortie&) Imprime le schema en temps sur un flot de sortie.
  *
  *     !! Attention n'est pas symetrique de la lecture !!
@@ -431,8 +355,6 @@ Entree& Schema_Temps_base::readOn(Entree& is)
       dt_max_fn_.parseString();
       dt_max_ = dt_max_fn_.eval();
     }
-
-
   return is ;
 }
 
@@ -482,6 +404,8 @@ int Schema_Temps_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     file_allocation_=0;
   else if (mot == "residuals")
     lire_residuals(is);
+  else if(mot == "facsec")
+    lire_facsec(is);
   else
     retval = -1;
 
@@ -493,16 +417,14 @@ int Schema_Temps_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
  */
 Entree& Schema_Temps_base::lire_nb_pas_dt_max(Entree& is)
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Reading of the maximum number of time steps"  << finl;
+  Cerr << "Reading of the maximum number of time steps"  << finl;
   is >> nb_pas_dt_max_;
   return is;
 }
 
 Entree& Schema_Temps_base::lire_periode_sauvegarde_securite_en_heures(Entree& is)
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Reading of the safety backup period in hours"  << finl;
+  Cerr << "Reading of the safety backup period in hours"  << finl;
   is >> periode_cpu_sans_sauvegarde_;
   periode_cpu_sans_sauvegarde_*=3600; // Conversion en secondes
   limite_cpu_sans_sauvegarde_ = periode_cpu_sans_sauvegarde_;
@@ -511,10 +433,49 @@ Entree& Schema_Temps_base::lire_periode_sauvegarde_securite_en_heures(Entree& is
 
 Entree& Schema_Temps_base::lire_temps_cpu_max(Entree& is)
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Reading the max cpu time allowed"  << finl;
+  Cerr << "Reading the max cpu time allowed"  << finl;
   is >> tcpumax_;
   tcpumax_*=3600; // Conversion en secondes
+  return is;
+}
+
+
+Entree& Schema_Temps_base::lire_residuals(Entree& is)
+{
+  Motcle m;
+  is >> m;
+  assert (m == "{");
+  is >> m;
+  while (m != "}")
+    {
+      Motcles residuals_mots(2);
+      residuals_mots[0]="relative";
+      residuals_mots[1]="norm";
+      int res_rang=residuals_mots.search(m);
+      switch(res_rang)
+        {
+        case 0:
+          is >> seuil_statio_relatif_deconseille_;
+          break;
+        case 1:
+          is >> norm_residu_;
+          break;
+        default :
+          {
+            Cerr<<" We do not understand "<<m <<"in Schema_Temps_base::lire_motcle_non_standard"<<finl;
+            Cerr<<" keywords understood "<<residuals_mots<<finl;
+            exit();
+          }
+        }
+      is >> m;
+    }
+  return is;
+}
+
+
+Entree& Schema_Temps_base::lire_facsec(Entree& is)
+{
+  is >> facsec_;
   return is;
 }
 
@@ -555,7 +516,7 @@ Schema_Temps_base::Schema_Temps_base()
   no_conv_subiteration_diff_impl_=0;
   no_error_if_not_converged_diff_impl_=0;
   niter_max_diff_impl_ = 1000; // Above 100 iterations, diffusion implicit algorithm is may be diverging
-  schema_impr_=1;
+  schema_impr_=-1;
   file_allocation_=0; // Desactive car pose probleme sur platine sur les gros maillages
   residu_old_slope_=-1000;
   cumul_slope_=1e-20;
@@ -565,37 +526,6 @@ Schema_Temps_base::Schema_Temps_base()
   dt_gf_ = DMAXFLOAT;
 }
 
-Entree& Schema_Temps_base::lire_residuals(Entree& is)
-{
-  Motcle m;
-  is >> m;
-  assert (m == "{");
-  is >> m;
-  while (m != "}")
-    {
-      Motcles residuals_mots(2);
-      residuals_mots[0]="relative";
-      residuals_mots[1]="norm";
-      int res_rang=residuals_mots.search(m);
-      switch(res_rang)
-        {
-        case 0:
-          is >> seuil_statio_relatif_deconseille_;
-          break;
-        case 1:
-          is >> norm_residu_;
-          break;
-        default :
-          {
-            Cerr<<" We do not understand "<<m <<"in Schema_Temps_base::lire_motcle_non_standard"<<finl;
-            Cerr<<" keywords understood "<<residuals_mots<<finl;
-            exit();
-          }
-        }
-      is >> m;
-    }
-  return is;
-}
 
 /*! @brief Impression du numero du pas de temps, la valeur du pas de temps.
  *
@@ -1040,4 +970,145 @@ void Schema_Temps_base::imprimer_temps_courant(SFichier& os) const
   os.precision(precision_temps);
   os << temps_courant();
   os.precision(precision_actuelle);
+}
+
+/*! @brief Ecriture du fichier .progress (temps CPU estime restant)
+ *
+ */
+void Schema_Temps_base::write_progress(bool init)
+{
+  if (je_suis_maitre() && !disable_progress())
+    {
+      if (init)
+        {
+          if (!progress_.is_open())
+            progress_.ouvrir(nom_du_cas() + ".progress");
+        }
+      else
+        {
+          if (schema_impr())
+            {
+              if ((residu_ > 0) && (residu_old_slope_ > 0))
+                cumul_slope_ += (log(residu_) - log(residu_old_slope_)) / dt_;
+              residu_old_slope_ = residu_;
+            }
+          if (schema_impr() && (nb_pas_dt() > 0 && pas_de_temps() > 0))
+            {
+              // On calcule le temps CPU moyen par pas de temps, inconvenient il peut varier fortement au cours du temps si divergence du calcul ou au contraire acceleration
+              // Mais Statistiques ne permet pas d'avoir le temps CPU du dernier pas de temps (last_time appele ici renverrait le temps CPU depuis le debut du pas de temps)
+              //double cpu_per_timestep           = statistiques().last_time(temps_total_execution_counter_) / nb_pas_dt();
+              double nb_pas_selon_tmax = (temps_max() - temps_courant()) / pas_de_temps();
+              double nb_pas_selon_nb_pas_dt_max = nb_pas_dt_max() - nb_pas_dt();
+              double nb_pas_avant_fin = std::min(nb_pas_selon_tmax, nb_pas_selon_nb_pas_dt_max);
+              //double seconds_to_finish  = nb_pas_avant_fin * cpu_per_timestep;
+              double dpercent = (1. - nb_pas_avant_fin /
+                                 (nb_pas_avant_fin +
+                                  nb_pas_dt()));    // marche meme si c'est ltemps max qui limite
+              // si la pente est >0 on diverge ....
+              if ((seuil_statio_ > 0) && (cumul_slope_ < -1e-20) &&
+                  seuil_statio_ <
+                  residu_) // dans un pb_couple on peut avoir (seuil_statio_ > residu) pour un des problemes
+                {
+                  double distance = (-log(residu_ + 1e-20) + log(seuil_statio_)) / (cumul_slope_) * nb_pas_dt();
+
+                  //Cerr<<distance<<" DDDDDD"<<finl;
+                  double dpercent2 = temps_courant() / (temps_courant() + distance);
+                  dpercent = std::max(dpercent, dpercent2);
+                }
+              int percent = int(dpercent * 100);
+
+              if (limpr())
+                {
+                  double seconds_to_finish =
+                    statistiques().last_time(temps_total_execution_counter_) * (1. - dpercent) / dpercent;
+                  int integer_limit = (int) (pow(2.0, (double) ((sizeof(True_int) * 8) - 1)) - 1);
+                  if (seconds_to_finish < integer_limit)
+                    {
+                      int h = int(seconds_to_finish / 3600);
+                      int mn = int((seconds_to_finish - 3600 * h) / 60);
+                      int s = int(seconds_to_finish - 3600 * h - 60 * mn);
+                      Cout << finl << "Estimated CPU time to finish the run (according to "
+                           << (nb_pas_selon_tmax < nb_pas_selon_nb_pas_dt_max ? "tmax" : "nb_pas_dt_max")
+                           << " value) : ";
+                      if (seconds_to_finish < 1)
+                        Cout << seconds_to_finish << " s";
+                      else
+                        Cout << h << "h" << mn << "mn" << s << "s";
+
+                      Cout << ". Progress: " << (percent) << finl;
+                    }
+                }
+              if (!disable_progress() && Process::je_suis_maitre())
+                progress_ << (percent) << finl;
+            }
+        }
+    }
+}
+
+/*! @brief Ecriture du fichier .dt_ev
+ *
+ */
+static SFichier dt_ev_;
+static bool header_complete = false;
+void open_dt_ev(IOS_OPEN_MODE mode)
+{
+  if (!dt_ev_.is_open())
+    {
+      Nom fichier(Objet_U::nom_du_cas() + ".dt_ev");
+      dt_ev_.ouvrir(fichier, mode);
+      dt_ev_.setf(ios::scientific);
+    }
+}
+void Schema_Temps_base::write_dt_ev(bool init)
+{
+  if (je_suis_maitre() && !disable_dt_ev())
+    {
+      if (init)
+        {
+          Nom fichier(nom_du_cas() + ".dt_ev");
+          struct stat f;
+          // On initialise le fichier .dt_ev s'il n'existe pas ou si c'est un demarrage de calcul sans reprise
+          if ((nb_pas_dt_ == 0) && ((stat(fichier, &f)) || !(pb_base().reprise_effectuee() == 1)))
+            {
+              if (schema_impr())
+                {
+                  open_dt_ev(ios::out);
+                  dt_ev_ << "# temps\t\t dt\t\t facsec\t\t residu=max|Ri|\t dt_stab\t ";
+                }
+              open_dt_ev(ios::app);
+              for (int i = 0; i < pb_base().nombre_d_equations(); i++)
+                dt_ev_ << pb_base().equation(i).expression_residu();
+            }
+          else
+            {
+              if (schema_impr())
+                open_dt_ev(ios::app);
+            }
+        }
+      else
+        {
+          open_dt_ev(ios::app);
+          if (schema_impr())
+            {
+              dt_ev_ << finl << temps_courant_ << "\t " << dt_ << "\t " << facsec_ << "\t " << residu_ << "\t "
+                     << dt_stab_ << "\t ";
+              header_complete = true;
+            }
+          for (int i = 0; i < pb_base().nombre_d_equations(); i++)
+            pb_base().equation(i).imprime_residu(dt_ev_);
+        }
+    }
+}
+
+/*! @brief Fermeture du fichier .dt_ev
+ *
+ */
+void Schema_Temps_base::finir() const
+{
+  if (je_suis_maitre() && dt_ev_.is_open())
+    {
+      if (header_complete) dt_ev_ << finl;
+      dt_ev_.close();
+      header_complete = false;
+    }
 }

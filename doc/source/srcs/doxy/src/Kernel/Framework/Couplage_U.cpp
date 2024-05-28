@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -80,6 +80,17 @@ bool Couplage_U::isStationary() const
   return stat;
 }
 
+std::string Couplage_U::newCompute()
+{
+  for(int i=0; i<nb_problemes(); i++)
+    {
+      std::string dir = ref_cast(Probleme_base, probleme(i)).newCompute();
+      if (!dir.empty()) return dir;
+    }
+  //if (compute && !isStationary()) Process::exit("Unexpected case. Stationary not reached and Champ_parametrique used.");
+  return "";
+}
+
 void Couplage_U::setStationary(bool flag)
 {
   for(int i=0; i<nb_problemes(); i++)
@@ -92,6 +103,21 @@ void Couplage_U::abortTimeStep()
     probleme(i).abortTimeStep();
 }
 
+void Couplage_U::resetTime(double t)
+{
+  const std::string current_dirname = Sortie_Fichier_base::root;
+  for(int i=0; i<nb_problemes(); i++)
+    {
+      if (str_params_.count("SORTIE_ROOT_DIRECTORY") != 0)
+        {
+          // We transmit the SORTIE_ROOT_DIRECTORY to each problem:
+          probleme(i).setInputStringValue("SORTIE_ROOT_DIRECTORY", getOutputStringValue("SORTIE_ROOT_DIRECTORY"));
+          // We reset the IO directory to the current dirname before post-processing
+          Sortie_Fichier_base::set_root(current_dirname);
+        }
+      probleme(i).resetTime(t);
+    }
+}
 
 bool Couplage_U::iterateTimeStep(bool& converged)
 {

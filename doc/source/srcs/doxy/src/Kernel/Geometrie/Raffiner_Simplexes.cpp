@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -583,7 +583,7 @@ static void build_edges(const IntTab& nodes_of_cells,
 
   edges_of_cells.resize(nb_cells, nb_edges_per_cell);
   nodes_of_edges.resize(0, nb_nodes_per_edge_max);
-  nodes_of_edges.set_smart_resize(1);
+
 
   ArrOfInt& edges_of_cells_array = edges_of_cells;
   int node_0,node_1,edges_counter;
@@ -610,7 +610,7 @@ static void build_edges(const IntTab& nodes_of_cells,
     }
 
   nodes_of_edges.resize(edges_counter+2, nb_nodes_per_edge_max);
-  nodes_of_edges.set_smart_resize(0);
+
   nodes_of_edges.resize(edges_counter+1, nb_nodes_per_edge_max);
 }
 
@@ -736,7 +736,7 @@ static void build_frontier(const Frontiere&         src,
   ArrOfInt nodes_of_current_face(nb_nodes_per_face);
   ArrOfInt incident_cells;
   bool is_internal_faces = (sub_type(Groupe_Faces, src) || sub_type(Joint, src) || sub_type(Bord_Interne, src)) ;
-  incident_cells.set_smart_resize(1);
+
 
   for (int face=0; face<nb_faces_src; ++face)
     {
@@ -782,7 +782,6 @@ static void build_frontier(const Frontiere&         src,
 void Raffiner_Simplexes::refine_domain(const Domaine& src,
                                        Domaine&        dest)
 {
-
   const Nom&        cell_type          = src.type_elem().valeur().que_suis_je();
   const IntTab&     nodes_of_cells_src = src.les_elems();
   const DoubleTab& nodes_src          = src.les_sommets();
@@ -812,6 +811,27 @@ void Raffiner_Simplexes::refine_domain(const Domaine& src,
 
   IntTab& nodes_of_cells_dest = dest.les_elems();
   build_cells(nodes_of_cells_src,edges_of_cells_src,cell_refinement_pattern,nodes_src.dimension(0),nodes_of_cells_dest);
+
+  // Rebuild sub-domains:
+  const int nb_refined_cells_per_cell = cell_refinement_pattern.dimension(0);
+  for (int i=0; i<dest.nb_ss_domaines(); i++)
+    {
+      Sous_Domaine& ssz = dest.ss_domaine(i);
+      Cerr << "Refining sub-domain " << ssz.le_nom() << finl;
+      IntVect  old_polys = ssz.les_polys();
+      IntVect& les_polys = ssz.les_polys();
+      int old_size = old_polys.size_array();
+      les_polys.resize(old_size * nb_refined_cells_per_cell);
+      int new_poly=0;
+      for (auto& old_poly : old_polys)
+        {
+          for (int refined_cell = 0; refined_cell < nb_refined_cells_per_cell; ++refined_cell)
+            {
+              les_polys(new_poly) = old_poly * nb_refined_cells_per_cell + refined_cell;
+              new_poly++;
+            }
+        }
+    }
 
   {
     const Bords& boundaries_src  = src.faces_bord();
@@ -925,7 +945,7 @@ void Raffiner_Simplexes::refine_domain(const Domaine& src,
 
         // creation des SOMMETS communs
         ArrOfInt& liste_sommets = joint_dest.set_joint_item(Joint::SOMMET).set_items_communs();
-        liste_sommets.set_smart_resize(1);
+
         // On prend tous les sommets des faces de joint:
         const IntTab& som_faces = joint_dest.faces().les_sommets();
         liste_sommets = som_faces;
@@ -949,7 +969,7 @@ void Raffiner_Simplexes::refine_domain(const Domaine& src,
 
           ArrOfInt sommets_to_find(2);
           ArrOfInt incident_cells;
-          incident_cells.set_smart_resize(1);
+
 
           // on doit trouver tous les sommets oublies, c'est ceux en plus.
           ArrOfInt oublie;// (n1-n0);

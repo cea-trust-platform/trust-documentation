@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -38,7 +38,7 @@ public:
   Champ_front_base& affecter_(const Champ_front_base& ch) override;
   int initialiser(double temps, const Champ_Inc_base& inco) override;
   void mettre_a_jour(double temps) override;
-
+  Table& getTable() { return la_table; };
 protected:
 
   Table la_table;

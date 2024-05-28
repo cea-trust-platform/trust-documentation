@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -141,9 +141,9 @@ public :
   void construire_face_virt_pe_num();
   const IntTab& face_virt_pe_num() const;
 
-  virtual void creer_tableau_faces(Array_base&, Array_base::Resize_Options opt = Array_base::COPY_INIT) const;
-  virtual void creer_tableau_aretes(Array_base&, Array_base::Resize_Options opt = Array_base::COPY_INIT) const;
-  virtual void creer_tableau_faces_bord(Array_base&, Array_base::Resize_Options opt = Array_base::COPY_INIT) const;
+  virtual void creer_tableau_faces(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
+  virtual void creer_tableau_aretes(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
+  virtual void creer_tableau_faces_bord(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
   virtual const MD_Vector& md_vector_faces_bord() const { return md_vector_faces_front_; }
   virtual const MD_Vector& md_vector_faces() const { return md_vector_faces_; }
   // Attention, si les aretes ne sont pas remplies, le md_vector_ est nul
@@ -156,7 +156,7 @@ public :
   inline double dot (const double *a, const double *b, const double *ma = nullptr, const double *mb = nullptr) const;
 
   //produit vectoriel
-  inline std::array<double, 3> cross(int dima, int dimb, const double *a, const double *b, const double *ma = NULL, const double *mb = NULL) const;
+  inline std::array<double, 3> cross(int dima, int dimb, const double *a, const double *b, const double *ma = nullptr, const double *mb = nullptr) const;
 
   inline virtual double dist_norm(int ) const { Cerr << __func__ << " method should be overrided in a derived class !! " << finl; throw; }
   inline virtual double dist_norm_bord(int ) const { Cerr << __func__ << " method should be overrided in a derived class !! " << finl; throw; }

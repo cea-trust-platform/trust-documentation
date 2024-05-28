@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,7 +27,8 @@ class Domaine;
 /*! @brief Classe outil permettant de generer des sous-domaines pour un calcul parallele a partir d'un domaine de depart (domaine_global) et d'un tableau de decoupage
  *
  *   des elements de ce domaine (elem_part).
- *   Voir aussi Partitionneur_base.
+ *
+ *   @sa Partitionneur_base.
  *
  */
 class DomaineCutter: public Objet_U
@@ -38,14 +39,14 @@ public:
 
   void reset();
 
-  void construire_sous_domaine(const int part, DomaineCutter_Correspondance& correspondance_, Domaine& sous_domaine_, const Static_Int_Lists *som_raccord = NULL) const;
+  void construire_sous_domaine(const int part, DomaineCutter_Correspondance& correspondance_, Domaine& sous_domaine_, const Static_Int_Lists *som_raccord = nullptr) const;
   void construire_sous_domaine(const int part, Domaine& sous_domaine_) const
   {
     DomaineCutter_Correspondance correspondance;
     construire_sous_domaine(part, correspondance, sous_domaine_);
   }
 
-  void ecrire_domaines(const Nom& basename, const Decouper::DomainesFileOutputType format, IntVect& elem_part, const int reorder, const Static_Int_Lists *som_raccord = NULL);
+  void ecrire_domaines(const Nom& basename, const Decouper::DomainesFileOutputType format, IntVect& elem_part, const int reorder, const Static_Int_Lists *som_raccord = nullptr);
   inline const Noms& bords_internes() const { return bords_a_pb_; }
 
 private:

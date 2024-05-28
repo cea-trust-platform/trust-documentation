@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,6 +45,9 @@ public:
   double presentTime_impl(const Probleme_base& pb) const;
   double computeTimeStep_impl(const Probleme_base& pb,bool& stop) const;
   double futureTime_impl(const Probleme_base& pb) const;
+
+  // Not the same signature as ICoCo:
+  void resetTimeWithDir_impl(Probleme_base& pb, double time, std::string direname);
 
   REF(Field_base) findInputField_impl(const Probleme_base& pb,const Nom& name) const;
   REF(Champ_Generique_base) findOutputField_impl(const Probleme_base& pb,const Nom& name) const;

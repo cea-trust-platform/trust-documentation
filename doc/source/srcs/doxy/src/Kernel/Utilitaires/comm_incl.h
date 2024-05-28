@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,11 +26,8 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
 
-#if __GNUC__ > 5
-#pragma GCC diagnostic ignored "-Wsuggest-override"
-#endif
-
-#ifdef __APPLE__
+// Portability for mpich which do not honour -Wsuggest-override
+#if __GNUC__ > 5 || __clang_major__ > 10
 #pragma GCC diagnostic ignored "-Wsuggest-override"
 #endif
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,10 +23,13 @@
 #include <Pb_Multiphase.h>
 #include <Probleme_base.h>
 #include <Matrix_tools.h>
+#include <Statistiques.h>
 #include <Array_tools.h>
 #include <Milieu_base.h>
 #include <Periodique.h>
 #include <TRUSTTrav.h>
+
+extern Stat_Counter_Id gradient_counter_;
 
 Implemente_instanciable(Op_Grad_PolyMAC_P0_Face, "Op_Grad_PolyMAC_P0_Face", Op_Grad_PolyMAC_P0P1NC_Face);
 
@@ -44,7 +47,7 @@ void Op_Grad_PolyMAC_P0_Face::completer()
       Cerr << "Op_Grad_PolyMAC_P0_Face : largeur de joint insuffisante (minimum 1)!" << finl;
       Process::exit();
     }
-  if (ref_cast(Navier_Stokes_std, equation()).grad_P().non_nul())
+  if (sub_type(Navier_Stokes_std, equation()) && ref_cast(Navier_Stokes_std, equation()).grad_P().non_nul())
     {
       Champ_Face_PolyMAC_P0& gradp = ref_cast(Champ_Face_PolyMAC_P0, ref_cast(Navier_Stokes_std, equation()).grad_P().valeur());
       gradp.init_auxiliary_variables();
@@ -79,7 +82,7 @@ void Op_Grad_PolyMAC_P0_Face::dimensionner_blocs(matrices_t matrices, const tabs
   update_grad(sub_type(Pb_Multiphase, equation().probleme())); //provoque le calcul du gradient
 
   IntTrav sten_p(0, 2), sten_v(0, 2); //stencils (NS, pression), (NS, vitesse)
-  sten_p.set_smart_resize(1), sten_v.set_smart_resize(1);
+
 
   const std::string& nom_inc = ch.le_nom().getString();
   Matrice_Morse *mat_p = matrices["pression"], *mat_v = !semi_impl.count(nom_inc) && matrices.count(nom_inc) ? matrices.at(nom_inc) : nullptr, mat2_p, mat2_v;
@@ -150,6 +153,7 @@ void Op_Grad_PolyMAC_P0_Face::dimensionner_blocs(matrices_t matrices, const tabs
 
 void Op_Grad_PolyMAC_P0_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
+  statistiques().begin_count(gradient_counter_);
   const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, ref_domaine.valeur());
   const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue().valeur());
   const Conds_lim& cls = ref_zcl->les_conditions_limites();
@@ -242,4 +246,6 @@ void Op_Grad_PolyMAC_P0_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secm
         if (dgb_v.count(j_c.first))
           for (auto &k_d : dgb_v.at(j_c.first))
             (*mat_v)(i_jc.first, k_d.first) += j_c.second * k_d.second;
+
+  statistiques().end_count(gradient_counter_);
 }

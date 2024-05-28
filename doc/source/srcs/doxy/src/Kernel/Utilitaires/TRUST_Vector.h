@@ -21,6 +21,7 @@
 #include <vector>
 #include <memory> // pour std::shared_ptr
 #include <Nom.h>
+#include <Separateur.h>
 
 class MD_Vector;
 
@@ -92,6 +93,7 @@ private:
   std::enable_if_t< !(std::is_same<_TYPE_,MD_Vector>::value), Entree&>
   readOn_(Entree& s)
   {
+#ifndef LATATOOLS
     int i;
     s >> i;
     clear();
@@ -101,6 +103,7 @@ private:
         s >> obj;
         add(std::move(obj));
       }
+#endif
     return s;
   }
 
@@ -108,9 +111,12 @@ private:
   std::enable_if_t< !(std::is_same<_TYPE_,MD_Vector>::value), Sortie&>
   printOn_(Sortie& s) const
   {
-    s << (int) z_vect_.size() << space;
-    for (auto &itr : z_vect_) s << *itr << space;
-    return s << finl;
+#ifndef LATATOOLS
+    s << (int) z_vect_.size() << tspace;
+    for (auto &itr : z_vect_) s << *itr << tspace;
+    s << finl;
+#endif
+    return s;
   }
 
   // MD_Vector class does not derive from Objet_U => no readOn & printOn
@@ -184,7 +190,8 @@ public:
       }
 
     z_vect_.resize(i);
-    for (int j = old_size; j < i; j++) z_vect_[j] = std::make_shared<_CLASSE_>();
+    for (int j = old_size; j < i; j++)
+      z_vect_[j] = std::make_shared<_CLASSE_>();
   }
 
   void dimensionner_force(int i)

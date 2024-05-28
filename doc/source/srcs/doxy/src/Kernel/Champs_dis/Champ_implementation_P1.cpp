@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -98,7 +98,7 @@ double Champ_implementation_P1::form_function(const ArrOfDouble& position, const
 void Champ_implementation_P1::value_interpolation(const DoubleTab& positions, const ArrOfInt& cells, const DoubleTab& values, DoubleTab& resu, int ncomp) const
 {
   const Domaine& domaine = get_domaine_geom();
-  const Domaine_Poly_base *zpoly = sub_type(Domaine_Poly_base, get_domaine_dis()) ? &ref_cast(Domaine_Poly_base, get_domaine_dis()) : NULL;
+  const Domaine_Poly_base *zpoly = sub_type(Domaine_Poly_base, get_domaine_dis()) ? &ref_cast(Domaine_Poly_base, get_domaine_dis()) : nullptr;
   const IntTab& les_elems = domaine.les_elems();
   const DoubleTab& nodes = domaine.les_sommets();
   const int nb_nodes_per_cell = domaine.nb_som_elem(), N = resu.line_size();
@@ -177,7 +177,7 @@ void Champ_implementation_P1::value_interpolation(const DoubleTab& positions, co
 void Champ_implementation_P1::init_from_file(DoubleTab& val, const Domaine& dom, int nb_comp, double tolerance, Entree& input)
 {
   val.resize(0, nb_comp);
-  dom.creer_tableau_sommets(val, Array_base::NOCOPY_NOINIT);
+  dom.creer_tableau_sommets(val, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
   // Construction d'un octree avec les sommets du domaine:
   const DoubleTab& coord = dom.coord_sommets();
@@ -193,7 +193,7 @@ void Champ_implementation_P1::init_from_file(DoubleTab& val, const Domaine& dom,
   ArrOfDouble node_coord; // points to the dim first elements of "tmp" (coordinates of the node)
   node_coord.ref_array(tmp, 0 /* start index */, dim /* size */);
   ArrOfInt node_list;
-  node_list.set_smart_resize(1);
+
 
   ArrOfInt count(dom.nb_som()); // number of times this coordinate has been found
 

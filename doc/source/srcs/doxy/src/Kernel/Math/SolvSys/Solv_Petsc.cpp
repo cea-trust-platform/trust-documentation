@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,9 @@
 #include <petscis.h>
 #include <petscdmshell.h>
 #include <petscsection.h>
+#ifdef PETSC_HAVE_HYPRE
+#include <HYPRE_config.h>
+#endif
 #include <tuple>
 #include <Matrice_Morse_Sym.h>
 #include <stat_counters.h>
@@ -141,14 +144,14 @@ void Solv_Petsc::create_solver(Entree& entree)
   KSPGetPC(SolveurPetsc_, &PreconditionneurPetsc_);
 
   // Add options if PETSc solver is used:
-  if (PE_Groups::get_nb_groups()==1 && !disable_TU )
+  if (PE_Groups::get_nb_groups()==1 && !disable_TU)
     {
       // _petsc.TU is only printed if one group calculation (e.g. Execute_parallel failed)
       Nom petsc_TU(":");
       petsc_TU+=nom_du_cas();
       petsc_TU+="_petsc.TU";
       add_option("log_view",petsc_TU); 	// Monitor performances at the end of the calculation
-      PetscLogAllBegin(); 		// Necessary cause if not Event logs not printed in petsc_TU file ... I don't know why...
+      PetscLogDefaultBegin(); 		// Necessary cause if not Event logs not printed in petsc_TU file ... I don't know why...
     }
 #ifdef NDEBUG
   // PETSc 3.14 active par defaut les exceptions, on desactive en production ?
@@ -160,7 +163,7 @@ void Solv_Petsc::create_solver(Entree& entree)
   // mais egalement pouvoir appeler les options Petsc avec une chaine { -ksp_type cg -pc_type sor ... }
   // Les options non reconnues doivent arreter le code
   // Reprendre le formalisme de GCP { precond ssor { omega val } seuil val }
-  Motcles les_solveurs(20);
+  Motcles les_solveurs(21);
   {
     les_solveurs[0] = "CLI";
     les_solveurs[1] = "GCP";
@@ -182,6 +185,7 @@ void Solv_Petsc::create_solver(Entree& entree)
     les_solveurs[17] = "CHOLESKY_CHOLMOD";
     les_solveurs[18] = "PIPECG2";
     les_solveurs[19] = "FGMRES";
+    les_solveurs[20] = "LU_STRUMPACK";
   }
   int solver_supported_on_gpu_by_petsc=0;
   int solver_supported_on_gpu_by_amgx=0;
@@ -362,6 +366,15 @@ void Solv_Petsc::create_solver(Entree& entree)
         KSPSetType(SolveurPetsc_, KSPPREONLY);
         break;
       }
+    case 20:
+      {
+        solveur_direct_ = strumpack;
+        // ToDo add BLR option
+        KSPSetType(SolveurPetsc_, KSPPREONLY);
+        solver_supported_on_gpu_by_petsc=1;
+        if (gpu_) add_option("mat_strumpack_gpu", "1");
+        break;
+      }
     case 5:
       {
         KSPSetType(SolveurPetsc_, KSPBCGS);
@@ -392,7 +405,7 @@ void Solv_Petsc::create_solver(Entree& entree)
       }
     case 11:
       {
-        if (Process::nproc()>1) Process::exit("Cholesky_lapack can't be used for parallel calculation.");
+        if (Process::is_parallel()) Process::exit("Cholesky_lapack can't be used for parallel calculation.");
         solveur_direct_=petsc;
         // Lapack, old and slow (non pas vrai sur petites matrices d'ordre 100 - 10000 !)
         add_option("pc_factor_nonzeros_along_diagonal", ""); // Moins robuste que MUMPS pour un pivot nul donc on reordonne pour eviter
@@ -401,7 +414,7 @@ void Solv_Petsc::create_solver(Entree& entree)
       }
     case 12:
       {
-        if (Process::nproc()>1) Process::exit("Cholesky_umfpack can't be used for parallel calculation.");
+        if (Process::is_parallel()) Process::exit("Cholesky_umfpack can't be used for parallel calculation.");
         solveur_direct_=umfpack;
         // Umfpack, sequential only but fast...
         KSPSetType(SolveurPetsc_, KSPPREONLY);
@@ -418,7 +431,7 @@ void Solv_Petsc::create_solver(Entree& entree)
       }
     case 17:
       {
-        if (Process::nproc()>1) Process::exit("Cholesky_cholmod can't be used for parallel calculation.");
+        if (Process::is_parallel()) Process::exit("Cholesky_cholmod can't be used for parallel calculation.");
         solveur_direct_=cholmod;
         // Cholmod Cholesky (pas LU), sequentiel, supporte multi-GPU
         if (!matrice_symetrique_)
@@ -545,6 +558,8 @@ void Solv_Petsc::create_solver(Entree& entree)
                   add_option("mat_pastix_verbose","2");
                 else if (solveur_direct_==cholmod)
                   add_option("mat_cholmod_print","3");
+                else if (solveur_direct_==strumpack)
+                  add_option("mat_strumpack_verbose", "1");
                 else if (solveur_direct_)
                   {
                     Cerr << "impr not coded yet for this direct solver." << finl;
@@ -685,7 +700,7 @@ void Solv_Petsc::create_solver(Entree& entree)
               }
             case 6:
               {
-                if (Process::nproc()>1)
+                if (Process::is_parallel())
                   {
                     Cerr << "factored_matrix option is not available for parallel calculation." << finl;
                     exit();
@@ -780,7 +795,7 @@ void Solv_Petsc::create_solver(Entree& entree)
                   }
                 else if (rang_mumps==1 || rang_mumps==2)
                   {
-                    if (Process::nproc()==1)
+                    if (Process::is_sequential())
                       {
                         Cerr << "You can't use the parallel ordering " << motlu << " during a sequential calculation." << finl;
                         Process::exit();
@@ -928,7 +943,7 @@ void Solv_Petsc::create_solver(Entree& entree)
 
       int pc_supported_on_gpu_by_petsc=0;
       int pc_supported_on_gpu_by_amgx=0;
-      Motcles les_precond(15);
+      Motcles les_precond(18);
       {
         les_precond[0] = "NULL";               // Pas de preconditionnement
         les_precond[1] = "ILU";                // Incomplete LU
@@ -941,10 +956,13 @@ void Solv_Petsc::create_solver(Entree& entree)
         les_precond[8] = "BLOCK_JACOBI_ICC";   // Block Jacobi ICC preconditioner (code dans PETSc, optimise)
         les_precond[9] = "BLOCK_JACOBI_ILU";   // Block Jacobi ILU preconditioner (code dans PETSc, optimise)
         les_precond[10] = "C-AMG";    // Classical AMG
-        les_precond[11] = "SA-AMG";   // Aggregated AMG
+        les_precond[11] = "SA-AMG";   // Smooth Aggregated AMG
         les_precond[12] = "GS";   // Gauss-Seidel
         les_precond[13] = "PCSHELL"; // user defined preconditionner
         les_precond[14] = "LU|MUMPS";   // MUMPS LU
+        les_precond[15] = "UA-AMG";   // Unsmoothed Aggregated AMG
+        les_precond[16] = "ILU_MUMPS";      // Incomplete ILU with a Block Low Ranking from MUMPS
+        les_precond[17] = "ILU_STRUMPACK";  // Incomplete ILU with a Block Low Ranking from STRUMPACK
       }
 
       if (pc!="")
@@ -1116,6 +1134,7 @@ void Solv_Petsc::create_solver(Entree& entree)
               }
             case 14:
               {
+                // LU|MUMPS { ordering XXX }
                 //preconditionnement_non_symetrique_ = 1;
                 add_option("sub_pc_type", "lu");
                 add_option("sub_pc_factor_mat_solver_type","mumps");
@@ -1129,12 +1148,17 @@ void Solv_Petsc::create_solver(Entree& entree)
               }
             case 7:
               {
+#ifdef HYPRE_USING_GPU
+                // GPU build of Hypre provides only gpu preconditionner now. No runtime switch to CPU or GPU versions yet...
+                gpu_ = 1;
+#endif
                 PCSetType(PreconditionneurPetsc_, PCHYPRE);
                 PCHYPRESetType(PreconditionneurPetsc_, "boomeramg"); // Classical C-AMG
+                pc_supported_on_gpu_by_petsc=1;
                 // Changement pc_hypre_boomeramg_relax_type_all pour PETSc 3.10, la matrice de
                 // preconditionnement etant seqaij, symetric-SOR/jacobi (defaut) provoque KSP_DIVERGED_INDEFINITE_PC
                 // Voir: https://lists.mcs.anl.gov/mailman/htdig/petsc-users/2012-December/015922.html
-                add_option("pc_hypre_boomeramg_relax_type_all", "Jacobi");
+                if (!gpu_) add_option("pc_hypre_boomeramg_relax_type_all", "Jacobi");
                 // Voir https://mooseframework.inl.gov/releases/moose/2021-05-18/application_development/hypre.html
                 //if (dimension==3) Cerr << "Warning, on massive parallel calculation for best performance, consider playing with -pc_hypre_boomeramg_strong_threshold 0.7 or 0.8 or 0.9" << finl;
                 if (dimension==3) add_option("pc_hypre_boomeramg_strong_threshold", "0.7");
@@ -1158,7 +1182,8 @@ void Solv_Petsc::create_solver(Entree& entree)
                 break;
               }
             case 10: // Classical AMG
-            case 11: // Aggregated AMG
+            case 11: // Smooth Aggregated AMG
+            case 15: // Unsmoothed Aggregated AMG
               {
                 pc_supported_on_gpu_by_amgx=1;
                 pc_supported_on_gpu_by_petsc=1;
@@ -1188,12 +1213,16 @@ void Solv_Petsc::create_solver(Entree& entree)
                         add_amgx_option("p:strength",strength,"Choose the strength of connection metric to use. Allowable options are AHAT and ALL");
                         if (strength=="AHAT") add_amgx_option("p:strength_threshold","0.25","All edges with strength below this threshold will be discarded. Higher: faster setup, lower memory but lower convergence");
                       }
-                    else // SA-AMG
+                    else if (rang==11) // SA-AMG
                       {
                         add_amgx_option("p:algorithm","AGGREGATION");
                         add_amgx_option("p:selector","SIZE_2");
                         add_amgx_option("p:max_matching_iterations","100000");
                         add_amgx_option("p:max_unassigned_percentage","0.0");
+                      }
+                    else
+                      {
+                        Process::exit("Not supported for AmgX");
                       }
                     add_amgx_option("smoother:relaxation_factor","0.8");
                   }
@@ -1201,15 +1230,29 @@ void Solv_Petsc::create_solver(Entree& entree)
                   {
                     // ToDo : trouver des parametres pour PETSc afin d'avoir une comparaison possible CPU vs GPU (meme its par exemple):
                     add_option("pc_type","gamg");
+                    // Ajout pour retrouver la convergence de PETSc 3.14:
+                    //add_option("mg_levels_pc_type","sor");
+                    //add_option("pc_gamg_threshold","0.");
                     if (rang==10) // C-AMG
                       {
+                        // Convergence fortement degradee 3.14 -> 3.20 malgre les options precedentes...
                         add_option("pc_gamg_type","classical");
                       }
-                    else // SA-AMG
+                    else if (rang==11) // SA-AMG
+                      {
+                        add_option("pc_gamg_type","agg");
+                        add_option("pc_gamg_agg_nsmooths","1");
+                        //add_option("pc_gamg_aggressive_square_graph","1");
+                      }
+                    else if (rang==15) // UA-AMG
                       {
                         add_option("pc_gamg_type","agg");
                         add_option("pc_gamg_agg_nsmooths","0");
-//                        add_option("pc_gamg_agg_nsmooths","1"); //Crash
+                        //add_option("pc_gamg_aggressive_square_graph","1");
+                      }
+                    else
+                      {
+                        Process::exit("Usupported precond for PETSc.");
                       }
                   }
                 break;
@@ -1263,6 +1306,33 @@ void Solv_Petsc::create_solver(Entree& entree)
                 PCShellSetContext(PreconditionneurPetsc_, &pc_user_);
                 PCShellSetDestroy(PreconditionneurPetsc_, PCShellUserDestroy);
 
+                break;
+              }
+            case 16:
+              {
+                // ILU_MUMPS:
+                add_option("pc_type", "cholesky"); // Attention, si on met LU en sequentiel il n'utilise pas MUMPS...
+                add_option("pc_factor_mat_solver_type", "mumps");
+                add_option("mat_mumps_icntl_35", "1"); // BLR enabled
+                //add_option("mat_mumps_icntl_36", "??"); controls the choice of BLR factorization variant
+                //add_option("mat_mumps_icntl_38", "??"); sets the estimated compression rate of LU factors with BLR
+                add_option("mat_mumps_cntl_7", (double)epsilon.value()); // Droping parameter
+                //if (limpr()) add_option("mat_mumps_icntl_4","3"); // verobose
+                check_not_defined(level);
+                break;
+              }
+            case 17:
+              {
+                // ILU_STRUMPACK:
+                add_option("pc_type", "ilu");
+                add_option("mat_type", "aij");
+                add_option("pc_factor_mat_solver_type", "strumpack");
+                add_option("mat_strumpack_compression","BLR"); // Type of rank-structured compression in sparse LU factors (choose one of) NONE HSS BLR HODLR BLR_HODLR ZFP_BLR_HODLR LOSSLESS LOSSY
+                add_option("mat_strumpack_compression_rel_tol", (double)epsilon.value()); // Compression parameter
+                //add_option("mat_strumpack_compression_abs_tol", (Nom)epsilon.value()); // Compression parameter
+                //add_option("mat_strumpack_compression_lossy_precision,"1-64"); // Precision when using lossy compression [1-64],
+                //if (limpr()) add_option("mat_strumpack_verbose", "1"); // Provisoire
+                check_not_defined(level);
                 break;
               }
             default:
@@ -1353,6 +1423,11 @@ void Solv_Petsc::create_solver(Entree& entree)
   PCGetType(PreconditionneurPetsc_, &type_pc);
   type_pc_=(Nom)type_pc;
 
+  // Pas de version CPU de Hypre si PETSc active le support GPU:
+#ifdef PETSC_HAVE_CUDA
+  if (type_pc_=="hypre") gpu_ = true;
+#endif
+
 // Creation du fichier de config .amgx (NB: les objets PETSc sont crees mais ne seront pas utilises)
   if (amgx_ && Process::je_suis_maitre())
     {
@@ -1395,6 +1470,7 @@ const Nom Solv_Petsc::config()
 int Solv_Petsc::instance=-1;
 int Solv_Petsc::numero_solveur=0;
 #ifdef PETSCKSP_H
+// Attention, bug apres PETSc 3.14 le logging avec PetscLogStage est tres cher pour MatSetValues (appel MPI meme en sequentiel!). Vu sur Flica5 avec appel frequents a Update_matrix
 PetscLogStage Solv_Petsc::KSPSolve_Stage_=0;
 
 // Sortie Maple d'une matrice morse
@@ -1444,7 +1520,7 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
       PetscViewerBinaryOpen(PETSC_COMM_WORLD,filename,FILE_MODE_WRITE,&viewer);
       MatView(MatricePetsc_, viewer);
       // Save also the RHS if on the host:
-      if (SecondMembrePetsc_!=NULL)
+      if (SecondMembrePetsc_!=nullptr)
         {
           Cerr << "Writing also the RHS in the file " << filename << finl;
           VecView(SecondMembrePetsc_, viewer);
@@ -1462,7 +1538,7 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
   else if (save_matrix_==2)
     {
       // Format matrix market ToDo : method
-      if (Process::nproc() > 1) Process::exit("Error, matrix market format is not available yet in parallel.");
+      if (Process::is_parallel()) Process::exit("Error, matrix market format is not available yet in parallel.");
       Nom filename(Objet_U::nom_du_cas());
       filename += "_matrix";
       filename += (Nom) instance;
@@ -1510,7 +1586,7 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
       for (int row=0; row<rows; row++)
         rhs_mtx << secmem(row) << finl;
       // Provisoire: sauve un vector Petsc au format ASCII pour le RHS
-      if (SecondMembrePetsc_!=NULL)
+      if (SecondMembrePetsc_!=nullptr)
         {
           PetscViewer viewer;
           Nom rhs_filename(Objet_U::nom_du_cas());
@@ -1586,7 +1662,7 @@ bool Solv_Petsc::enable_ksp_view( void )
   Nom empty="                                                                                                 ";
   char *option_value = strdup( empty );
   PetscBool enable; // enable this option ?
-  PetscOptionsGetString( PETSC_NULL, PETSC_NULL, option, option_value, empty.longueur( ), &enable );
+  PetscOptionsGetString( PETSC_NULLPTR, PETSC_NULLPTR, option, option_value, empty.longueur( ), &enable );
   //Nom actual_value( option_value );
   free( option_value );
   return enable ;
@@ -1626,7 +1702,9 @@ int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
       astring.debute_par("pc_") ||
       astring.debute_par("sub_pc_") ||
       astring.debute_par("mat_") ||
-      astring.debute_par("vec_") || cli)
+      astring.debute_par("vec_") ||
+      astring.debute_par("mg_") ||
+      cli)
     option+=option_prefix_;
 
   option+=astring;
@@ -1637,19 +1715,19 @@ int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
   PetscBool flg;
   Nom vide="                                                                                                 ";
   char* tmp=strdup(vide);
-  PetscOptionsGetString(PETSC_NULL,PETSC_NULL,option,tmp,vide.longueur(),&flg);
+  PetscOptionsGetString(PETSC_NULLPTR,PETSC_NULLPTR,option,tmp,vide.longueur(),&flg);
   Nom actual_value(tmp);
   free(tmp);
   if (actual_value==vide)
     {
       if (value=="")
         {
-          PetscOptionsSetValue(PETSC_NULL, option, PETSC_NULL);
+          PetscOptionsSetValue(PETSC_NULLPTR, option, PETSC_NULLPTR);
           if (limpr() >= 0) Cerr << "Option Petsc: " << option << finl;
         }
       else
         {
-          PetscOptionsSetValue(PETSC_NULL, option, value);
+          PetscOptionsSetValue(PETSC_NULLPTR, option, value);
           if (limpr() >= 0) Cerr << "Option Petsc: " << option << " " << value << finl;
         }
       return 1;
@@ -1663,7 +1741,7 @@ int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
 
 #ifndef PETSC_HAVE_HYPRE
 // Pour que le code puisse compiler/tourner si on prend PETSc sans aucun autre package externe:
-int PCHYPRESetType(PC,const char[])
+PetscErrorCode PCHYPRESetType(PC,const char[])
 {
   Cerr << "HYPRE preconditioners are not available in this TRUST version." << finl;
   Cerr << "May be, HYPRE library has been deactivated during the PETSc build process." << finl;
@@ -1698,33 +1776,33 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
     {
       // Changement de la taille de matrice, on detruit les objets dont la taille change:
       int hasChanged = mp_max((int)(secmem_sz_!=secmem.size_array()));
-      if (MatricePetsc_!=NULL && hasChanged != 0)
+      if (MatricePetsc_!=nullptr && hasChanged != 0)
         {
           // Destruction de la matrice de preconditionnement:
-          KSPSetOperators(SolveurPetsc_, MatricePetsc_, NULL);
+          KSPSetOperators(SolveurPetsc_, MatricePetsc_, PETSC_NULLPTR);
           // Destruction des vecteurs
           VecDestroy(&SecondMembrePetsc_);
-          SecondMembrePetsc_ = NULL;
+          SecondMembrePetsc_ = nullptr;
           VecDestroy(&SolutionPetsc_);
-          SolutionPetsc_ = NULL;
-          if (LocalSolutionPetsc_!=NULL)
+          SolutionPetsc_ = nullptr;
+          if (LocalSolutionPetsc_!=nullptr)
             {
               VecDestroy(&LocalSolutionPetsc_);
-              LocalSolutionPetsc_ = NULL;
+              LocalSolutionPetsc_ = nullptr;
               VecScatterDestroy(&VecScatter_);
             }
           // Destruction matrice
           MatDestroy(&MatricePetsc_);
-          MatricePetsc_ = NULL;
+          MatricePetsc_ = nullptr;
           // Destruction DM
-          if (dm_!=NULL)
+          if (dm_!=nullptr)
             DMDestroy(&dm_);
         }
 
       matrice_symetrique_ = 1;      // On suppose que la matrice est symetrique
 
       // Construction de la numerotation globale:
-      if (MatricePetsc_==NULL)
+      if (MatricePetsc_==nullptr)
         construit_renum(secmem);
 
       // Matrice morse intermedaire de conversion
@@ -1753,7 +1831,7 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
                                            : matrice_morse_intermediaire;
 
       // Verification stencil de la matrice
-      nouveau_stencil_ = (MatricePetsc_ == NULL ? true : check_stencil(matrice_morse));
+      nouveau_stencil_ = (MatricePetsc_ == nullptr ? true : check_stencil(matrice_morse));
 
       // Build x and b if necessary
       Create_vectors(secmem);
@@ -1783,7 +1861,6 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
   //////////////////////////
   // Solve the linear system
   //////////////////////////
-  PetscLogStagePush(KSPSolve_Stage_);
   int size_residu = nb_it_max_ + 1;
   //DoubleTrav residu(size_residu); // bad_alloc sur gros cas, curie pourquoi ?
   ArrOfDouble residu(size_residu);
@@ -1829,15 +1906,67 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
 }
 
 #ifdef PETSCKSP_H
+#include <signal.h>
+
+// Function to handle signals
+void handleSignal(True_int signum)
+{
+  if (signum==8)
+    {
+      Cerr << "SIGFPE from PETSc KSPSolve() !" << finl;
+      throw signum;
+    }
+  else if (signum==11)
+    {
+      Cerr << "SIGSEGV from PETSc KSPSolve() !" << finl;
+      throw signum;
+    }
+  else
+    {
+      fprintf(stderr, "Signal %d received from PETSc. Exiting...\n", signum);
+      Process::exit();
+    }
+}
+// Function where signal handlers are set up
+void setupSignalHandlers(bool on)
+{
+  // Configure the sigaction structure for SIGFPE
+  struct sigaction sa_fpe;
+  sa_fpe.sa_handler = on ? handleSignal : SIG_DFL;
+  sigemptyset(&sa_fpe.sa_mask);
+  sa_fpe.sa_flags = 0;
+
+  // Install the signal handler for SIGFPE
+  if (sigaction(SIGFPE, &sa_fpe, nullptr) == -1)
+    {
+      fprintf(stderr, "Error installing signal handler for SIGFPE.\n");
+      Process::exit(EXIT_FAILURE);
+    }
+
+  // Configure the sigaction structure for SIGSEGV
+  struct sigaction sa_segv;
+  sa_segv.sa_handler = on ? handleSignal : SIG_DFL;
+  sigemptyset(&sa_segv.sa_mask);
+  sa_segv.sa_flags = 0;
+
+  // Install the signal handler for SIGSEGV
+  if (sigaction(SIGSEGV, &sa_segv, nullptr) == -1)
+    {
+      fprintf(stderr, "Error installing signal handler for SIGSEGV.\n");
+      Process::exit(EXIT_FAILURE);
+    }
+}
+
 int Solv_Petsc::solve(ArrOfDouble& residu)
 {
+  PetscLogStagePush(KSPSolve_Stage_);
   double start = Statistiques::get_time_now();
   // Affichage par MyKSPMonitor
   if (!solveur_direct_)
     {
       if (limpr() == 1)
         {
-          KSPMonitorSet(SolveurPetsc_, MyKSPMonitor, PETSC_NULL, PETSC_NULL);
+          KSPMonitorSet(SolveurPetsc_, MyKSPMonitor, PETSC_NULLPTR, PETSC_NULLPTR);
         }
       else
         KSPMonitorCancel(SolveurPetsc_);
@@ -1852,7 +1981,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
     {
       set_reuse_preconditioner(false); // Par defaut, precond est refait
       PetscBool flg;
-      PetscOptionsHasName(PETSC_NULL,option_prefix_,"-ksp_reuse_preconditioner",&flg);
+      PetscOptionsHasName(PETSC_NULLPTR,option_prefix_,"-ksp_reuse_preconditioner",&flg);
       if (flg)
         set_reuse_preconditioner(true);
       else if (reuse_preconditioner_nb_it_max_>0)
@@ -1871,14 +2000,16 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
         KSPSetReusePreconditioner(SolveurPetsc_, (PetscBool) reuse_preconditioner()); // Default PETSC_FALSE
     }
   // Solve
+  setupSignalHandlers(true);
   if (gpu_) statistiques().begin_count(gpu_library_counter_);
   KSPSolve(SolveurPetsc_, SecondMembrePetsc_, SolutionPetsc_);
   if (gpu_) statistiques().end_count(gpu_library_counter_);
+  setupSignalHandlers(false);
   // Analyse de la convergence par Petsc
   KSPConvergedReason Reason;
   KSPGetConvergedReason(SolveurPetsc_, &Reason);
   if (Reason==KSP_DIVERGED_ITS && (convergence_with_nb_it_max_ || ignore_nb_it_max_)) Reason = KSP_CONVERGED_ITS;
-  if (Reason<0 && limpr()>-1)
+  if (Reason<0)
     {
       Cerr << "No convergence on the resolution with the Petsc solver." << finl;
       Cerr << "Reason given by Petsc: ";
@@ -1890,6 +2021,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
       else if (Reason==KSP_DIVERGED_INDEFINITE_PC)       Cerr << "KSP_DIVERGED_INDEFINITE_PC" << finl;
       else if (Reason==KSP_DIVERGED_NANORINF)            Cerr << "KSP_DIVERGED_NANORINF" << finl;
       else if (Reason==KSP_DIVERGED_INDEFINITE_MAT)      Cerr << "KSP_DIVERGED_INDEFINITE_MAT" << finl;
+      else if (Reason==KSP_DIVERGED_PC_FAILED)           Cerr << "KSP_DIVERGED_PC_FAILED" << finl;
       else if (Reason==KSP_DIVERGED_ITS)
         {
           Cerr << "KSP_DIVERGED_ITS" << finl;
@@ -1897,6 +2029,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
           Cerr << "You can change the maximal number of iterations with the -ksp_max_it option." << finl;
         }
       else Cerr << (int)Reason << finl;
+      throw Reason;
     }
   if (Reason<0 && !return_on_error_) exit();
   PetscInt nbiter=-1;
@@ -1922,6 +2055,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
         }
     }
   if (verbose) Cout << finl << "[Petsc] Time to solve system:    \t" << Statistiques::get_time_now() - start << finl;
+  PetscLogStagePop();
   return Reason < 0 ? (int)Reason : nbiter;
 }
 #endif
@@ -2009,6 +2143,8 @@ void Solv_Petsc::check_aij(const Matrice_Morse& mat)
   if (solveur_direct_==superlu_dist) mataij_=1;
   // IDEM pour UMFPACK qui ne supporte que le format AIJ:
   if (solveur_direct_==umfpack) mataij_=1;
+  // IDEM pour UMFPACK qui ne supporte que le format AIJ:
+  if (solveur_direct_==strumpack) mataij_=1;
 
   // Dans le cas GPU, seul le format AIJ est supporte pour le moment:
   if (gpu_ || amgx_) mataij_=1;
@@ -2021,7 +2157,7 @@ void Solv_Petsc::check_aij(const Matrice_Morse& mat)
 
   // Dans le cas de save_matrix_ en parallele
   // Sinon, cela bloque avec sbaij:
-  if (save_matrix_==1 && Process::nproc()>1) mataij_=1;
+  if (save_matrix_==1 && Process::is_parallel()) mataij_=1;
 
   // Error in PETSc when read/save the factored matrix if matrix is sbaij
   // so aij is selected instead:
@@ -2059,7 +2195,7 @@ void Solv_Petsc::check_aij(const Matrice_Morse& mat)
               if (!matrices_identiques)
                 {
                   Cerr << "Error: matrix PETSc are different according to the symmetric storage or not." << finl;
-                  if (Process::nproc() > 1) Cerr << "Check if the matrix is correct in parallel." << finl;
+                  if (Process::is_parallel()) Cerr << "Check if the matrix is correct in parallel." << finl;
                   Cerr << "Contact TRUST support team." << finl;
                   if (nb_rows_ < 10)
                     {
@@ -2093,7 +2229,7 @@ void Solv_Petsc::Create_objects(const Matrice_Morse& mat, int blocksize)
   // Creation de la matrice Petsc si necessaire
   if (!read_matrix_)
     {
-      if (MatricePetsc_!=NULL) MatDestroy(&MatricePetsc_);
+      if (MatricePetsc_!=nullptr) MatDestroy(&MatricePetsc_);
       Create_MatricePetsc(MatricePetsc_, mataij_, mat);
     }
   MatSetBlockSize(MatricePetsc_, blocksize);
@@ -2168,7 +2304,7 @@ void Solv_Petsc::Create_objects(const Matrice_Morse& mat, int blocksize)
           // et le calcul parallele (voir peut etre une separation entre plus et moins de 16 processeurs...)
           // Peut etre equiper le script trust d'une detection des erreurs INFO(1)=-9 ...
           // On passe de 35 a 40 pour faire passer le cas cavite_entrainee_2D_jdd2 (suite passage a MUMPS 5.2.0)
-          if (Process::nproc() == 1)
+          if (Process::is_sequential())
             add_option("mat_mumps_icntl_14", "40");
           else
             add_option("mat_mumps_icntl_14", "90");
@@ -2203,6 +2339,12 @@ void Solv_Petsc::Create_objects(const Matrice_Morse& mat, int blocksize)
       if (message_affi)
         Cout << "Cholesky from Cholmod may take several minutes, please wait...";
       PCFactorSetMatSolverType(PreconditionneurPetsc_, MATSOLVERCHOLMOD);
+    }
+  else if (solveur_direct_ == strumpack)
+    {
+      if (message_affi)
+        Cout << "Cholesky from Strumpack may take several minutes, please wait...";
+      PCFactorSetMatSolverType(PreconditionneurPetsc_, MATSOLVERSTRUMPACK);
     }
   else if (solveur_direct_ == cli)
     {
@@ -2340,7 +2482,7 @@ void Solv_Petsc::Create_objects(const Matrice_Morse& mat, int blocksize)
 
 void Solv_Petsc::Create_vectors(const DoubleVect& b)
 {
-  if (SecondMembrePetsc_!=NULL) return; // Deja construit
+  if (SecondMembrePetsc_!=nullptr) return; // Deja construit
   // Build x
   VecCreate(PETSC_COMM_WORLD,&SecondMembrePetsc_);
   // Set sizes:
@@ -2355,7 +2497,7 @@ void Solv_Petsc::Create_vectors(const DoubleVect& b)
     VecSetSizes(SecondMembrePetsc_, nb_rows_, PETSC_DECIDE);
 
   // Set type:
-  if (Process::nproc()>1)
+  if (Process::is_parallel())
     VecSetType(SecondMembrePetsc_, gpu_ ? VECMPICUDA : VECMPI);
   else
     VecSetType(SecondMembrePetsc_, gpu_ ? VECSEQCUDA : VECSEQ);
@@ -2380,7 +2522,7 @@ void Solv_Petsc::Create_vectors(const DoubleVect& b)
         from[i]=decalage_local_global_+i; // Global indices in SolutionPetsc_
       IS fromis;
       ISCreateGeneral(PETSC_COMM_WORLD, from.size_array(), (PetscInt*)from.addr(), PETSC_COPY_VALUES, &fromis);
-      VecScatterCreate(SolutionPetsc_, fromis, LocalSolutionPetsc_, NULL, &VecScatter_);
+      VecScatterCreate(SolutionPetsc_, fromis, LocalSolutionPetsc_, PETSC_NULLPTR, &VecScatter_);
       ISDestroy(&fromis);
       // Will permit later with VecScatterBegin/VecScatterEnd something like:
       // LocalSolutionPetsc_[tois[i]]=SolutionPetsc_[fromis[i]]
@@ -2389,7 +2531,7 @@ void Solv_Petsc::Create_vectors(const DoubleVect& b)
 
 void Solv_Petsc::Create_DM(const DoubleVect& b)
 {
-  if (dm_!=NULL) return; // Deja construit
+  if (dm_!=nullptr) return; // Deja construit
   /* creation de champs Petsc si des MD_Vector_Composite sont trouves dans b, avec recursion! */
   if (sub_type(MD_Vector_composite, b.get_md_vector().valeur()))
     {
@@ -2558,17 +2700,17 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
   if (mataij == 0)
     {
       // On utilise SBAIJ pour une matrice symetrique (plus rapide que AIJ)
-      MatSetType(MatricePetsc, (Process::nproc() == 1 ? MATSEQSBAIJ : MATMPISBAIJ));
+      MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQSBAIJ : MATMPISBAIJ));
     }
   else
     {
       // On utilise AIJ car je n'arrive pas a faire marcher avec BAIJ
 #ifdef PETSC_HAVE_CUDA
       if (gpu_)
-        MatSetType(MatricePetsc, (Process::nproc()==1?MATSEQAIJCUSPARSE:MATMPIAIJCUSPARSE));
+        MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJCUSPARSE : MATMPIAIJCUSPARSE));
       else
 #endif
-        MatSetType(MatricePetsc, (Process::nproc() == 1 ? MATSEQAIJ : MATMPIAIJ));
+        MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJ : MATMPIAIJ));
     }
   // Surcharge eventuelle par ligne de commande avec -mat_type:
   // Example: now possible to change aijcusparse to aijviennacl via CLI
@@ -2590,8 +2732,8 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
           // If partition of TRUST and PETSc differs, difficult to preallocate the matrix finely so:
           // ToDo, try to optimize:
           PetscInt nz = (int) mp_max((nnz.size_array() == 0 ? 0 : max_array(nnz)));
-          MatSeqSBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULL);
-          MatMPISBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULL, nz, PETSC_NULL);
+          MatSeqSBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULLPTR);
+          MatMPISBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULLPTR, nz, PETSC_NULLPTR);
         }
       else
         {
@@ -2608,8 +2750,8 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
           // If partition of TRUST and PETSc differs, difficult to preallocate the matrix finely so:
           // ToDo, try to optimize:
           PetscInt nz = (int) mp_max((nnz.size_array() == 0 ? 0 : max_array(nnz)));
-          MatSeqAIJSetPreallocation(MatricePetsc, nz, PETSC_NULL);
-          MatMPIAIJSetPreallocation(MatricePetsc, nz, PETSC_NULL, nz, PETSC_NULL);
+          MatSeqAIJSetPreallocation(MatricePetsc, nz, PETSC_NULLPTR);
+          MatMPIAIJSetPreallocation(MatricePetsc, nz, PETSC_NULLPTR, nz, PETSC_NULLPTR);
         }
       else
         {
@@ -2722,6 +2864,7 @@ void Solv_Petsc::Update_matrix(Mat& MatricePetsc, const Matrice_Morse& mat_morse
             }
           catch(...)
             {
+              // ToDo: changer car PETSc est en C: pas d'exception lancee
               Cerr << "We detect that the PETSc matrix coefficients are changed without pre-allocation." << finl;
               Cerr << "Try one of the following option:" << finl;
               Cerr << "- Rebuild the matrix each time instead of updating the coefficients (slower)." << finl;
@@ -2733,7 +2876,6 @@ void Solv_Petsc::Update_matrix(Mat& MatricePetsc, const Matrice_Morse& mat_morse
           cpt++;
         }
     }
-
   /****************************/
   /* Assemblage de la matrice */
   /****************************/
@@ -2777,7 +2919,7 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
       Mat localA;
       PetscInt nRowsLocal;
       const PetscInt *colIndices = nullptr, *rowOffsets = nullptr;
-      if (Process::nproc()==1) // sequential AIJ
+      if (Process::is_sequential()) // sequential AIJ
         {
           // Make localA point to the same memory space as A does
           localA = MatricePetsc_;
@@ -2839,7 +2981,7 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
               RowLocal++;
             }
         }
-      if (Process::nproc()>1) MatDestroy(&localA);
+      if (Process::is_parallel()) MatDestroy(&localA);
       new_stencil = mp_max(new_stencil);
     }
   if (verbose) Cout << "[Petsc] Time to check stencil:   \t" << Statistiques::get_time_now() - start << finl;

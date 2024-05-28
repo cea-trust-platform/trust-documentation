@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -81,10 +81,7 @@ Schema_Comm_Vecteurs_Static_Data::~Schema_Comm_Vecteurs_Static_Data()
 Schema_Comm_Vecteurs::Schema_Comm_Vecteurs()
 {
   status_ = RESET;
-  send_buf_sizes_.set_smart_resize(1);
-  recv_buf_sizes_.set_smart_resize(1);
-  send_procs_.set_smart_resize(1);
-  recv_procs_.set_smart_resize(1);
+  use_gpu_aware_mpi_ = getenv("TRUST_USE_GPU_AWARE_MPI") != nullptr;
 }
 
 Schema_Comm_Vecteurs::~Schema_Comm_Vecteurs()
@@ -103,15 +100,14 @@ void Schema_Comm_Vecteurs::begin_init()
   assert(status_ == END_INIT || status_ == RESET);
   // Reset des tableaux sizes_
   const int np = Process::nproc();
-  send_buf_sizes_.resize_array(np, ArrOfInt::NOCOPY_NOINIT);
+  send_buf_sizes_.resize_array(np, RESIZE_OPTIONS::NOCOPY_NOINIT);
   send_buf_sizes_ = 0;
-  recv_buf_sizes_.resize_array(np, ArrOfInt::NOCOPY_NOINIT);
+  recv_buf_sizes_.resize_array(np, RESIZE_OPTIONS::NOCOPY_NOINIT);
   recv_buf_sizes_ = 0;
   send_procs_.resize_array(0);
   recv_procs_.resize_array(0);
   sorted_ = 1;
   status_ = BEGIN_INIT;
-  use_gpu_aware_mpi_ = getenv("TRUST_USE_GPU_AWARE_MPI") != NULL;
   if (use_gpu_aware_mpi_)
     {
 #if defined(TRUST_USE_CUDA) && !defined(MPIX_CUDA_AWARE_SUPPORT)

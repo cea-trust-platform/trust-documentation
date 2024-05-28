@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -62,6 +62,7 @@ public:
   int reprendre(Entree&) override;
   int sauvegarder(Sortie&) const override;
   Champ_base& affecter_compo(const Champ_base&, int compo) override;
+  void resetTime(double time) override;
 
   // Methodes viruelles pures implementees ici
   Champ_base& affecter_(const Champ_base&) override;
@@ -138,9 +139,12 @@ public:
   // Obsolete method: signature changed in order to generate a compiler error if old code is not removed
   virtual void creer_espace_distant(int dummy) { }
 
+  void set_via_ch_fonc_reprise() { via_ch_fonc_reprise_ = true; }
+  bool via_ch_fonc_reprise() const { return via_ch_fonc_reprise_; }
+
 protected:
   // Par defaut on initialise les valeurs a zero
-  virtual void creer_tableau_distribue(const MD_Vector&, Array_base::Resize_Options = Array_base::COPY_INIT);
+  virtual void creer_tableau_distribue(const MD_Vector&, RESIZE_OPTIONS = RESIZE_OPTIONS::COPY_INIT);
 
   Roue_ptr les_valeurs;
   REF(Domaine_Cl_dis) mon_dom_cl_dis;
@@ -152,7 +156,7 @@ protected:
   RefObjU obj_calc_; //un objet a passer en argument
   DoubleTab val_bord_;   //valeurs aux bords au temps courant
   tabs_t deriv_;        //derivees au temps courant
-  bool bord_fluide_multiphase_ = false;
+  bool bord_fluide_multiphase_ = false, via_ch_fonc_reprise_ = false;
 };
 
 #endif /* Champ_Inc_base_included */

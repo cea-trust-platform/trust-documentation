@@ -232,6 +232,14 @@ void Fluide_Dilatable_base::set_Cp(double Cp_)
 
 void Fluide_Dilatable_base::update_rho_cp(double temps)
 {
+  // Si l'inconnue est sur le device, on copie les donnees aussi:
+  if (equation_.size() && (*(equation_.begin()->second)).inconnue().valeurs().isDataOnDevice())
+    {
+      // ToDo OpenMP or Kokkos deplacer tout cela dans Milieu_base::initialiser ?
+      mapToDevice(rho.valeurs(), "rho");
+      mapToDevice(rho_cp_elem_.valeurs(), "rho_cp_elem_");
+      mapToDevice(rho_cp_comme_T_.valeurs(), "rho_cp_comme_T_");
+    }
   rho_cp_comme_T_.changer_temps(temps);
   rho_cp_comme_T_.valeur().changer_temps(temps);
   DoubleTab& rho_cp = rho_cp_comme_T_.valeurs();
@@ -359,6 +367,13 @@ int Fluide_Dilatable_base::initialiser(const double temps)
   if (coeff_absorption_.non_nul() && indice_refraction_.non_nul())
     initialiser_radiatives(temps);
 
+  if (equation_.size() && (*(equation_.begin()->second)).inconnue().valeurs().isDataOnDevice())
+    {
+      // ToDo OpenMP or Kokkos deplacer tout cela dans Milieu_base::initialiser ?
+      mapToDevice(rho.valeurs(), "rho");
+      mapToDevice(rho_cp_elem_.valeurs(), "rho_cp_elem_");
+      mapToDevice(rho_cp_comme_T_.valeurs(), "rho_cp_comme_T_");
+    }
   return 1;
 }
 
@@ -445,7 +460,7 @@ void Fluide_Dilatable_base::mettre_a_jour(double temps)
 void Fluide_Dilatable_base::preparer_calcul()
 {
   Cerr << "Fluide_Dilatable_base::preparer_calcul()" << finl;
-  Milieu_base::preparer_calcul();
+  //Milieu_base::preparer_calcul(); // Ne fait rien!!
   Fluide_Dilatable_base::update_pressure_fields(le_probleme_->schema_temps().temps_courant()); // Child can have an overload
   loi_etat_->preparer_calcul();
   prepare_pressure_edo(); // si besoin (i.e. QC)

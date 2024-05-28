@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -90,6 +90,13 @@ Entree& Milieu_base::readOn(Entree& is)
   param.lire_avec_accolades_depuis(is);
   check_gravity_vector();
   creer_champs_non_lus();
+  champs_don_.add(g);
+  champs_don_.add(alpha);
+  champs_don_.add(lambda);
+  champs_don_.add(Cp);
+  champs_don_.add(beta_th);
+  champs_don_.add(porosites_champ);
+  champs_don_.add(diametre_hyd_champ);
   return is;
 }
 
@@ -222,7 +229,7 @@ void Milieu_base::discretiser_porosite(const Probleme_base& pb, const Discretisa
   const MD_Vector& md = ref_cast(Domaine_VF, zdb_.valeur()).md_vector_faces();
   if (!porosite_face_.get_md_vector().non_nul())
     {
-      MD_Vector_tools::creer_tableau_distribue(md, porosite_face_, Array_base::NOCOPY_NOINIT);
+      MD_Vector_tools::creer_tableau_distribue(md, porosite_face_, RESIZE_OPTIONS::NOCOPY_NOINIT);
       assert (ref_cast(Domaine_VF, zdb_.valeur()).nb_faces_tot() == porosite_face_.size_totale());
     }
   porosite_face_ = 1.;
@@ -322,7 +329,7 @@ void Milieu_base::discretiser_diametre_hydro(const Probleme_base& pb, const Disc
   const MD_Vector& md = ref_cast(Domaine_VF, zdb_.valeur()).md_vector_faces();
   if (!diametre_hydraulique_face_.get_md_vector().non_nul())
     {
-      MD_Vector_tools::creer_tableau_distribue(md, diametre_hydraulique_face_, Array_base::NOCOPY_NOINIT);
+      MD_Vector_tools::creer_tableau_distribue(md, diametre_hydraulique_face_, RESIZE_OPTIONS::NOCOPY_NOINIT);
       assert (ref_cast(Domaine_VF, zdb_.valeur()).nb_faces_tot() == diametre_hydraulique_face_.size_totale());
     }
   diametre_hydraulique_face_ = 0.; /* les diametres hydrauliques valent 0 */
@@ -440,9 +447,7 @@ void Milieu_base::verifier_coherence_champs(int& err,Nom& msg)
 
 void Milieu_base::preparer_calcul()
 {
-  int err=0;
-  Nom msg;
-  verifier_coherence_champs(err,msg);
+  // ne fait rien!!!
 }
 
 void Milieu_base::check_gravity_vector() const
@@ -663,20 +668,32 @@ void Milieu_base::update_rho_cp(double temps)
     }
 }
 
-void Milieu_base::abortTimeStep()
-{
-  if (rho.non_nul()) rho->abortTimeStep();
-}
-
 bool Milieu_base::initTimeStep(double dt)
 {
   return true;
 }
 
+void Milieu_base::abortTimeStep()
+{
+  if (rho.non_nul()) rho->abortTimeStep();
+}
+
+void Milieu_base::resetTime(double time)
+{
+  if (rho.non_nul())
+    {
+      if (sub_type(Champ_Don_base, rho.valeur()))
+        rho->mettre_a_jour(time);
+      else if (sub_type(Champ_Inc_base, rho.valeur()))
+        rho->resetTime(time);
+      else
+        throw;
+    }
+}
+
 void Milieu_base::creer_alpha()
 {
-  if (Process::je_suis_maitre())
-    Cerr << "Milieu_base::creer_alpha (champ non lu)" << finl;
+  Cerr << "Milieu_base::creer_alpha (champ non lu)" << finl;
   assert(lambda.non_nul());
   assert(rho.non_nul());
   assert(Cp.non_nul());
@@ -739,6 +756,11 @@ int Milieu_base::initialiser(const double temps)
     }
 
   if (rho_cp_comme_T_.non_nul()) update_rho_cp(temps);
+
+
+  int err=0;
+  Nom msg;
+  verifier_coherence_champs(err,msg);
 
   return initialiser_porosite(temps);
 }
@@ -941,3 +963,4 @@ const Nom& Milieu_base::le_nom() const
 {
   return nom_;
 }
+

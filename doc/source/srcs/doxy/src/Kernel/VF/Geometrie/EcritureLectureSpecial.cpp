@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -77,7 +77,7 @@ Entree& EcritureLectureSpecial::interpreter(Entree& is)
       Input=option;
       Cerr << "EcritureLectureSpecial::Input set to " << option << finl;
     }
-  else if (option=="EcrFicPartageMPIIO" || option=="EcrFicPartageBin")
+  else if (option=="EcrFicPartageMPIIO" || option=="EcrFicPartageBin" || option=="EcrFicPartage")
     {
       Active=1;
       Output=option;
@@ -196,7 +196,7 @@ int ecrit(Sortie& fich, const ArrOfBit& items_to_write, const DoubleTab& pos, co
                   fich.put(tmp.addr(), j, dim + nb_comp /* nb colonnes en ascii */);
                   // On flushe regulierement en sequentiel car sur certains tres gros maillages
                   // stack overflow possible...
-                  if (Process::nproc()==1) fich.syncfile();
+                  if (Process::is_sequential()) fich.syncfile();
                   j = 0;
                 }
             }
@@ -220,7 +220,7 @@ static int ecriture_special_part2(const Domaine_VF& zvf, Sortie& fich, const Dou
     {
       // Champs p1bulles et autres: appel recursif pour les differents sous-tableaux:
       ConstDoubleTab_parts parts(val);
-      int n = zvf.que_suis_je() == "Domaine_PolyMAC_P0P1NC" || zvf.que_suis_je() == "Domaine_PolyMAC_P0" ? 1 : parts.size();//on saute les variables auxiliaires de Champ_{P0,Face}_PolyMAC_P0P1NC
+      int n = zvf.que_suis_je() == "Domaine_PolyMAC_P0" ? 1 : parts.size();//on saute les variables auxiliaires de Champ_{P0,Face}_PolyMAC_P0
       for (int i = 0; i < n; i++)
         bytes += ecriture_special_part2(zvf, fich, parts[i]);
     }
@@ -335,7 +335,7 @@ static int lire_special(Entree& fich, const DoubleTab& coords, DoubleTab& val, c
   DoubleTab buffer(buflines_max, dim + nb_comp);
   int bufptr = buflines_max;
   ArrOfInt items;
-  items.set_smart_resize(1);
+
 
   double max_epsilon_needed = epsilon;
   // Combien de fois on a trouve plusieurs candidats a moins de epsilon ?
@@ -370,7 +370,7 @@ static int lire_special(Entree& fich, const DoubleTab& coords, DoubleTab& val, c
       int nb_items_proches = octree.search_elements(x, y, z, index);
       if (nb_items_proches > 0)
         {
-          items.resize_array(nb_items_proches, ArrOfInt::NOCOPY_NOINIT);
+          items.resize_array(nb_items_proches, RESIZE_OPTIONS::NOCOPY_NOINIT);
           // Voir doc de Octree_Double::search_elements: on copie les indices des items proches dans items:
           for (int j = 0; j < nb_items_proches; j++)
             items[j] = floor_elements[index++];
@@ -544,11 +544,11 @@ Nom& EcritureLectureSpecial::get_Output()
   static Nom option=Output;
 
   // disable MPIIO in sequential mode
-  if (Output=="EcrFicPartageMPIIO" && Process::nproc()==1) option="EcrFicPartageBin";
+  if (Output=="EcrFicPartageMPIIO" && Process::is_sequential()) option="EcrFicPartageBin";
 
   // disable MPIIO if TRUST_DISABLE_MPIIO=1
   char* theValue = getenv("TRUST_DISABLE_MPIIO");
-  if (theValue != NULL)
+  if (theValue != nullptr)
     {
       if (option=="EcrFicPartageMPIIO" && strcmp(theValue,"1")==0) option="EcrFicPartageBin";
     }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -132,14 +132,8 @@ double Multigrille_base::multigrille_(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x
       copy_x_for_post.data() = x.data();
 #endif
 
-      if (IJK_Splitting::defilement_ == 1)
-        {
-          norme_residu_final = norme_ijk_moins_bord(residu);
-        }
-      else
-        {
-          norme_residu_final = norme_ijk(residu);
-        }
+      norme_residu_final = norme_ijk(residu);
+
       if (impr_)
         Cout << "level=" << grid_level << " residu(pre)=" << norme_residu_final << finl;
 
@@ -172,7 +166,11 @@ double Multigrille_base::multigrille_(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x
           prepare_secmem(coarse_b);
 
           // We need one less layer on b than on x to compute jacobi or residue
-          coarse_b.echange_espace_virtuel(b.ghost()-1);
+          if (IJK_Shear_Periodic_helpler::defilement_==0)
+            {
+              //pas sur de devoir echanger espace virtuel pour le second membre dans le cas du shear_perio...
+              coarse_b.echange_espace_virtuel(b.ghost()-1);
+            }
           // Solve for coarse_x
           coarse_x.shift_k_origin(needed_kshift - coarse_x.k_shift());
           coarse_x.data() = 0.;
@@ -244,14 +242,7 @@ double Multigrille_base::multigrille_(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x
           }
 #endif
 
-          if (IJK_Splitting::defilement_ == 1)
-            {
-              norme_residu_final = norme_ijk_moins_bord(residu);
-            }
-          else
-            {
-              norme_residu_final = norme_ijk(residu);
-            }
+          norme_residu_final = norme_ijk(residu);
           if (impr_)
             Cout << "level=" << grid_level << " residu=" << norme_residu_final << finl;
           // use threshold criteria only if pure multigrid (not gcp with mg preconditionning)
@@ -279,14 +270,8 @@ double Multigrille_base::multigrille_(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x
 #endif
 
 
-      if (IJK_Splitting::defilement_ == 1)
-        {
-          norme_residu_final = norme_ijk_moins_bord(residu);
-        }
-      else
-        {
-          norme_residu_final = norme_ijk(residu);
-        }
+      norme_residu_final = norme_ijk(residu);
+
       if (impr_)
         Cout << finl << "level=" << grid_level << " residu=" << norme_residu_final
              << " (coarse solver)" << finl;
@@ -338,7 +323,11 @@ void Multigrille_base::coarse_solver(IJK_Field_template<_TYPE_,_TYPE_ARRAY_>& x,
       for (i = 0; i < ni; i++)
         secmem[mat.renum(i,j,k)] = b(i,j,k);
 
-  secmem.echange_espace_virtuel();
+  //pas sur de devoir echanger espace virtuel pour le second membre dans le cas du shear_perio...
+  if (IJK_Shear_Periodic_helpler::defilement_==0)
+    {
+      secmem.echange_espace_virtuel();
+    }
   solveur_grossier_.resoudre_systeme(mat.matrice(), secmem, inco);
 
   for (k = 0; k < nk; k++)

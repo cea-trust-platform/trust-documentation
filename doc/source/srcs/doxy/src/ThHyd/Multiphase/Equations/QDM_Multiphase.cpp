@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -98,11 +98,11 @@ Entree& QDM_Multiphase::readOn(Entree& is)
   /* champs de vitesse par phase pour le postpro */
   noms_vit_phases_.dimensionner(pb.nb_phases()), vit_phases_.resize(pb.nb_phases());
   for (int i = 0; i < pb.nb_phases(); i++)
-    champs_compris_.ajoute_nom_compris(noms_vit_phases_[i] = Nom("vitesse_") + pb.nom_phase(i));
+    noms_vit_phases_[i] = Nom("vitesse_") + pb.nom_phase(i);
 
   noms_grad_vit_phases_.dimensionner(pb.nb_phases()), grad_vit_phases_.resize(pb.nb_phases());
   for (int i = 0; i < pb.nb_phases(); i++)
-    champs_compris_.ajoute_nom_compris(noms_grad_vit_phases_[i] = Nom("gradient_vitesse_") + pb.nom_phase(i));
+    noms_grad_vit_phases_[i] = Nom("gradient_vitesse_") + pb.nom_phase(i);
 
   return is;
 }
@@ -283,6 +283,23 @@ void QDM_Multiphase::completer()
   for (auto mor : morceaux) mor->check_multiphase_compatibility();
 }
 
+void QDM_Multiphase::get_noms_champs_postraitables(Noms& noms,Option opt) const
+{
+  Navier_Stokes_std::get_noms_champs_postraitables(noms,opt);
+
+  Noms noms_compris;
+  const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, probleme());
+  for (int i = 0; i < pb.nb_phases(); i++)
+    {
+      noms_compris.add(noms_grad_vit_phases_[i]);
+      noms_compris.add(noms_vit_phases_[i]);
+    }
+  if (opt==DESCRIPTION)
+    Cerr<<" QDM_Multiphase : "<< noms_compris <<finl;
+  else
+    noms.add(noms_compris);
+}
+
 void QDM_Multiphase::creer_champ(const Motcle& motlu)
 {
   Navier_Stokes_std::creer_champ(motlu);
@@ -388,7 +405,14 @@ Entree& QDM_Multiphase::lire_cond_init(Entree& is)
 
 int QDM_Multiphase::preparer_calcul()
 {
-  return Equation_base::preparer_calcul(); //pour eviter Navier_Stokes_std::preparer_calcul() !
+  Equation_base::preparer_calcul(); //pour eviter Navier_Stokes_std::preparer_calcul() !
+
+  // XXX Elie Saikali : utile pour cas reprise !
+  const double temps = schema_temps().temps_courant();
+  pression().changer_temps(temps);
+  pression_pa().changer_temps(temps);
+
+  return 1;
 }
 
 void QDM_Multiphase::update_y_plus(const DoubleTab& tab)

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -70,6 +70,8 @@ void Champ_Fonc_MED_Tabule::mettre_a_jour(double le_temps)
           tab2_ = tab1_;
           temps2_ = DMAXFLOAT;
         }
+      else
+        set_instationnaire(true);
     }
 
   if ((le_temps >= temps1_) && (le_temps < temps2_))

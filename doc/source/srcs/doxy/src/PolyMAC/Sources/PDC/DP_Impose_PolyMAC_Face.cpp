@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -39,7 +39,7 @@ Entree& DP_Impose_PolyMAC_Face::readOn(Entree& s)
     }
   //fichier de sortie
   set_fichier(Nom("DP_") + identifiant_);
-  set_description(Nom("DP impose sur la surface ") + identifiant_ + "\nt DP dDP/dQ Q Q0");
+  set_description(Nom("DP impose sur la surface ") + identifiant_);
   Noms col_names;
   if (regul_)
     {
@@ -96,7 +96,7 @@ void DP_Impose_PolyMAC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secme
   const DoubleVect& pf = equation().milieu().porosite_face(), &fs = domaine_poly.face_surfaces();
   const DoubleTab& vit = equation().inconnue().valeurs();
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
-  Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : NULL;
+  Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
 
   double rho = equation().milieu().masse_volumique()(0, 0),
          fac_rho = (equation().probleme().is_dilatable() || sub_type(Pb_Multiphase, equation().probleme())) ? 1.0 : 1.0 / rho;

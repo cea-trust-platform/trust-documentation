@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #include <Domaine_dis.h>
 #include <Domaine.h>
 #include <Interprete_bloc.h>
+#include <TClearable.h>
 #include <sstream>
 
 /*! @brief Get the unique instance of the cache.
@@ -24,7 +25,22 @@
 Domaine_dis_cache& Domaine_dis_cache::Get_instance()
 {
   static Domaine_dis_cache instance_;
+  static bool is_first_time = true; // will remain true only once!
+
+  // Register unique instance for clearing when TRUST will exit:
+  if (is_first_time)
+    TClearable::Register_clearable(&instance_);
+
+  is_first_time = false;
   return instance_;
+}
+
+/*! @brief Clear the content of the cache. Useful to exit nicely making sure everything is deallocated.
+ */
+void Domaine_dis_cache::Clear()
+{
+  Domaine_dis_cache& ddc = Get_instance();
+  ddc.cache_.clear();
 }
 
 /*! @brief Get a discretized domain from the cache, building it and recording it if not
@@ -85,7 +101,22 @@ Domaine_dis& Domaine_dis_cache::build_or_get(const Nom& type, const Domaine& dom
   return *cache_[key];
 }
 
+Domaine_dis& Domaine_dis_cache::build_or_get_poly_post(const Nom& type, const Domaine& dom)
+{
+  std::string new_type = dom.le_nom().getString() + "_" + type.getString();
+  for (auto &itr : cache_)
+    if (itr.first.find(new_type) != std::string::npos)
+      return *cache_[itr.first];
+
+  return build_or_get(type, dom);
+}
+
 Domaine_dis& Domaine_dis_cache::Build_or_get(const Nom& type, const Domaine& dom)
 {
   return Get_instance().build_or_get(type, dom);
+}
+
+Domaine_dis& Domaine_dis_cache::Build_or_get_poly_post(const Nom& type, const Domaine& dom)
+{
+  return Get_instance().build_or_get_poly_post(type, dom);
 }

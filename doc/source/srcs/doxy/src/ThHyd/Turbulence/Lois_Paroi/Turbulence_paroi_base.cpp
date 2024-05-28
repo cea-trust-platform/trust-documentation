@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,11 +26,14 @@
 #include <Noms.h>
 
 Implemente_base_sans_constructeur(Turbulence_paroi_base, "Turbulence_paroi_base", Objet_U);
+
+// XD negligeable turbulence_paroi_base negligeable 0 Keyword to suppress the calculation of a law of the wall with a turbulence model. The wall stress is directly calculated with the derivative of the velocity, in the direction perpendicular to the wall (tau_tan /rho= nu dU/dy). NL2 Warning: This keyword is not available for k-epsilon models. In that case you must choose a wall law.
+// XD negligeable_scalaire turbulence_paroi_scalaire_base negligeable_scalaire 0 Keyword to suppress the calculation of a law of the wall with a turbulence model for thermohydraulic problems. The wall stress is directly calculated with the derivative of the velocity, in the direction perpendicular to the wall.
+
 Turbulence_paroi_base::Turbulence_paroi_base()
 {
   nb_impr0_ = 0;
   nb_impr_ = 0;
-  champs_compris_.ajoute_nom_compris("u_star");
 }
 
 Sortie& Turbulence_paroi_base::printOn(Sortie& s) const
@@ -107,12 +110,14 @@ const Champ_base& Turbulence_paroi_base::get_champ(const Motcle& nom) const
 
 void Turbulence_paroi_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
+  Noms noms_compris = champs_compris_.liste_noms_compris();
+  noms_compris.add("u_star");
   if (opt == DESCRIPTION)
-    Cerr << que_suis_je() << " : " << champs_compris_.liste_noms_compris() << finl;
+    Cerr << que_suis_je() << " : " << noms_compris << finl;
   else
-    nom.add(champs_compris_.liste_noms_compris());
-
+    nom.add(noms_compris);
 }
+
 /*! @brief Ouverture/creation d'un fichier d'impression de Face, uplus_, dplus_, tab_u_star, Cisaillement_paroi_
  *
  */

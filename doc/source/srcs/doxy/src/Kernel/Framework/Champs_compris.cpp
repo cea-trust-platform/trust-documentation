@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,160 +24,60 @@ Entree& Champs_compris::readOn(Entree& is) { return is; }
 
 const Champ_base& Champs_compris::get_champ(const Motcle& motcle) const
 {
-  REF(Champ_base) ref_champ;
-  if (has_champ(motcle, ref_champ)) return ref_champ;
+  assert(motcle!="??");
+  auto item = liste_champs_.find(motcle.getString());
+  if (item != liste_champs_.end()) return item->second;
   throw Champs_compris_erreur();
 }
 
 bool Champs_compris::has_champ(const Motcle& motcle, REF(Champ_base)& ref_champ) const
 {
-  if (motcle=="??")
+  assert(motcle!="??");
+  auto item = liste_champs_.find(motcle.getString());
+  if (item != liste_champs_.end())
     {
-      Cerr<<"Champs_compris::get_champ()"<<finl;
-      Cerr<<"No field can be requested using the identifier \'??\'"<<finl;
-      Process::exit();
-    }
-
-  for (const auto& itr : liste_champs_)
-    {
-      ref_champ = itr.valeur();
-      if (ref_champ->le_nom() == motcle)  // case insensitive test
-        return true;
-      else
-        {
-          const Noms& syno = ref_champ->get_synonyms();
-          int nb_syno = syno.size();
-          for (int s = 0; s < nb_syno; s++)
-            {
-              if (syno[s] == motcle)  // case insensitive test
-                return true;
-            }
-          int nb_composantes = ref_champ->nb_comp();
-          for (int i = 0; i < nb_composantes; i++)
-            {
-              if (motcle == ref_champ->nom_compo(i)) // case insensitive test
-                return true;
-            }
-        }
+      ref_champ = item->second;
+      return true;
     }
   return false;
 }
 
-int new_liste_add_if_not(LIST(Nom)& new_list,const Nom& nom_champ)
+const Noms Champs_compris::liste_noms_compris() const
 {
-  Motcle mot(nom_champ);
-  for (const auto& itr : new_list)
-    {
-      if (mot == itr)
-        return 0;
-    }
-  new_list.add(nom_champ);
-  return 1;
+  Noms nom_compris;
+  for (auto const& champ : liste_champs_)
+    nom_compris.add(champ.first);
+  return nom_compris;
 }
-
-void rebuild_liste_noms(const LIST(REF(Champ_base))& liste_champs_, const Noms& liste_noms_, Noms& liste_noms_construits_,int info=0)
-{
-  if (liste_noms_construits_.size()<liste_noms_.size())
-    liste_noms_construits_=liste_noms_;
-  LIST(Nom) new_liste;
-  int size = liste_noms_.size();
-  for (int i=0; i<size; i++)
-    new_liste.add(liste_noms_[i]);
-
-  Nom nom_champ;
-  for (const auto &itr : liste_champs_)
-    {
-      const Champ_base& ch = itr.valeur();
-      nom_champ = ch.le_nom();
-      //Cerr<<" ok "<<nom_champ<<finl;
-      if (nom_champ != Nom())
-        new_liste_add_if_not(new_liste, nom_champ);
-
-      const Noms& syno = ch.get_synonyms();
-      int nb_syno = syno.size();
-      for (int s = 0; s < nb_syno; s++)
-        {
-          if (syno[s] != Nom())
-            new_liste_add_if_not(new_liste, syno[s]);
-        }
-      int nb_composantes = ch.nb_comp();
-      for (int i = 0; i < nb_composantes; i++)
-        {
-          nom_champ = (ch.nom_compo(i));
-          if (nom_champ != Nom())
-            new_liste_add_if_not(new_liste, nom_champ);
-        }
-    }
-
-  int size_new_liste=new_liste.size();
-  int prem=1;
-  if (size_new_liste!=liste_noms_construits_.size())
-    {
-      if (info)
-        if (prem)
-          {
-            prem=0;
-          }
-      Noms nn_liste_noms_construits_(size_new_liste);
-      for (int i=0; i<liste_noms_construits_.size(); i++)
-        if (i<size_new_liste)
-          nn_liste_noms_construits_[i]=liste_noms_construits_[i];
-      liste_noms_construits_ =nn_liste_noms_construits_;
-    }
-
-  for (int i=0; i<size_new_liste; i++)
-    if (liste_noms_construits_[i]!=new_liste(i))
-      {
-        if (info)
-          {
-            if (prem)
-              {
-                prem=0;
-              }
-            //Cout<<liste_noms_construits_[i] << " va etre remplace par "<< new_liste(i)<<finl;
-          }
-        liste_noms_construits_[i]=new_liste(i);
-      }
-  //if ((prem==0) && (info))
-  // Cout<<"liste apres modif "<<liste_noms_construits_<<finl;
-  // Cerr<<" ici2 "<<finl;
-}
-
-
-
 
 void Champs_compris::ajoute_champ(const Champ_base& champ)
 {
-
-  Motcle nom_champ_add = champ.le_nom();
-  for (const auto &itr : liste_champs_)
-    {
-      const Champ_base& ch = itr.valeur();
-      const Nom& nom_champ = ch.le_nom();
-      if (nom_champ == nom_champ_add) return;
-    }
-
-  //liste_champs_.add(champ_ref);
-  liste_champs_.add(champ);
-  Cerr<<"Champs_compris::ajoute_champ " <<champ.le_nom()<<finl;
-  rebuild_liste_noms(liste_champs_,liste_noms_,liste_noms_construits_);
-
-}
-
-void Champs_compris::ajoute_nom_compris( const Nom& mot)
-{
-  liste_noms_.add(mot);
-  rebuild_liste_noms(liste_champs_,liste_noms_,liste_noms_construits_);
-}
-const Noms Champs_compris::liste_noms_compris() const
-{
-  Noms liste_noms_prov(liste_noms_construits_);
-  rebuild_liste_noms(liste_champs_,liste_noms_,liste_noms_prov,1);
-  return liste_noms_prov;
-}
-/*Noms& Champs_compris::liste_noms_compris()
+  // Adding a field name referring to champ inside liste_champs_ dictionnary
+  auto add_key = [&](const Nom& n)
   {
-  abort();
-  return liste_noms_;
-  }
-*/
+    std::string nom_champ = n.getString();
+    std::string upperCase = nom_champ, lowerCase = nom_champ;
+    std::transform(nom_champ.begin(), nom_champ.end(), upperCase.begin(), ::toupper);
+    std::transform(nom_champ.begin(), nom_champ.end(), lowerCase.begin(), ::tolower);
+    liste_champs_[upperCase] = champ;
+    liste_champs_[lowerCase] = champ;
+  };
+
+  // Adding field with its name...
+  add_key(champ.le_nom());
+
+  // ...its synonyms...
+  const Noms& syno = champ.get_synonyms();
+  int nb_syno = syno.size();
+  for (int s = 0; s < nb_syno; s++)
+    add_key(syno[s]);
+
+  // ...and its components
+  int nb_composantes = champ.nb_comp();
+  for (int i = 0; i < nb_composantes; i++)
+    if(champ.nom_compo(i) != "??")
+      add_key(champ.nom_compo(i));
+
+  Cerr<<"Champs_compris::ajoute_champ " << champ.le_nom() <<finl;
+}
+

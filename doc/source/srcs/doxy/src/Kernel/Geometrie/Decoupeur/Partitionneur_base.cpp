@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -141,7 +141,7 @@ int Partitionneur_base::calculer_graphe_connexions_periodiques(const Domaine& do
   // Liste de correspondances element0 <=> element1
   // entre l'element voisin d'une face et l'element voisin de la face periodique opposee
   IntTab correspondances(0,2);
-  correspondances.set_smart_resize(1);
+
 
   // Premiere etape: remplissage de nb_faces_perio et correspondances
   // Parcours des bords periodiques
@@ -312,9 +312,9 @@ int Partitionneur_base::corriger_sommets_bord(const Domaine& domaine,
   int count = 0;
   {
     ArrOfInt parties_autorisees;
-    parties_autorisees.set_smart_resize(1);
+
     ArrOfInt tmp;
-    tmp.set_smart_resize(1);
+
     const IntTab& elements = domaine.les_elems();
     const int nb_som_elem = elements.dimension(1);
     for (int elem = 0; elem < nb_elem; elem++)
@@ -645,7 +645,7 @@ int Partitionneur_base::corriger_bords_avec_graphe(const Static_Int_Lists& graph
   // Initialisation du tableau renum_som_perio
   for (int i = 0; i < nb_sommets_reels; i++)
     renum_som_perio[i] = i;
-  int parallel_algo = Process::nproc() > 1;
+  int parallel_algo = Process::is_parallel();
   Reordonner_faces_periodiques::renum_som_perio(domaine, liste_bords_perio, renum_som_perio,
                                                 parallel_algo /* pas d'espace virtuel en sequentiel */);
 

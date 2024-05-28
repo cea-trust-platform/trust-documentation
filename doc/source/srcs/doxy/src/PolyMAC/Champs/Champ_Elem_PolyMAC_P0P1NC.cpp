@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,7 @@
 #include <Domaine_Cl_PolyMAC.h>
 #include <MD_Vector_base.h>
 #include <Domaine_Cl_dis.h>
+#include <Pb_Multiphase.h>
 
 Implemente_instanciable(Champ_Elem_PolyMAC_P0P1NC,"Champ_Elem_PolyMAC_P0P1NC",Champ_Elem_PolyMAC);
 
@@ -64,19 +65,20 @@ void Champ_Elem_PolyMAC_P0P1NC::init_auxiliary_variables()
 
 int Champ_Elem_PolyMAC_P0P1NC::reprendre(Entree& fich)
 {
-  const Domaine_PolyMAC_P0P1NC* domaine = le_dom_VF.non_nul() ? &ref_cast( Domaine_PolyMAC_P0P1NC,le_dom_VF.valeur()) : NULL;
-  valeurs().set_md_vector(MD_Vector()); //on enleve le MD_Vector...
-  valeurs().resize(0);
-  int ret = Champ_Inc_base::reprendre(fich);
-  //et on remet le bon si on peut
-  if (domaine) valeurs().set_md_vector(valeurs().dimension_tot(0) > domaine->nb_elem_tot() ? domaine->mdv_elems_faces : domaine->domaine().md_vector_elements());
-  return ret;
+  if (! via_ch_fonc_reprise()) return Champ_Inc_base::reprendre(fich); /* ie: resume last time ! */
+
+  const Pb_Multiphase * pbm = mon_equation_non_nul() ? (sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()) : nullptr) : nullptr;
+  if (pbm) return Champ_Inc_base::reprendre(fich);
+
+  // sinon on fait ca ...
+  init_auxiliary_variables();
+  return Champ_Inc_base::reprendre(fich);
 }
 
 Champ_base& Champ_Elem_PolyMAC_P0P1NC::affecter_(const Champ_base& ch)
 {
   const Domaine_PolyMAC_P0P1NC& domaine = domaine_PolyMAC_P0P1NC();
-  if (ch.valeurs().dimension_tot(0) > domaine.nb_elem_tot())
+  if (domaine.nb_elem_tot() > 0 && ch.valeurs().dimension_tot(0) > domaine.nb_elem_tot())
     init_auxiliary_variables(), valeurs() = ch.valeurs();
   else
     {

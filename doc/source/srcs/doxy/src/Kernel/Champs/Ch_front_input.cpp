@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,6 +23,12 @@
 #include <Convert_ICoCoTrioField.h>
 
 Implemente_instanciable(Ch_front_input,"Ch_front_input",Ch_front_var_instationnaire_dep);
+// XD ch_front_input front_field_base ch_front_input 1 not_set
+// XD  attr nb_comp entier nb_comp 0 not_set
+// XD  attr nom chaine nom 0 not_set
+// XD  attr initial_value list initial_value 1 not_set
+// XD  attr probleme chaine probleme 0 not_set
+// XD  attr sous_zone ref_sous_zone sous_zone 1 not_set
 
 
 Entree& Ch_front_input::readOn(Entree& is)
@@ -101,7 +107,7 @@ void Ch_front_input::buildSommetsFaces() const
   const DoubleTab& sommets_org=(mon_pb->domaine().les_sommets());
   DoubleTab& sommets=sommets_;
   sommets.resize(sommets_org.dimension_tot(0),sommets_org.dimension(1));
-  sommets.set_smart_resize(1);
+
 
   IntTab& faces=faces_;
   const IntTab& faces_org=(frontiere_dis().frontiere().faces().les_sommets());
@@ -143,7 +149,7 @@ void Ch_front_input::setValue(const TrioField& afield)
 {
   for (int i=1; i<les_valeurs->nb_cases(); i++)
     Champ_Input_Proto::setValueOnTab(afield,les_valeurs[i].valeurs());
-  Gpoint(afield._time1,afield._time2);
+  calculer_derivee_en_temps(afield._time1,afield._time2);
 }
 
 int  Ch_front_input::initialiser(double temps, const Champ_Inc_base& inco)

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -39,7 +39,7 @@
 #include <errno.h>
 #endif
 
-Implemente_base_sans_constructeur_ni_destructeur(Probleme_base,"Probleme_base",Probleme_U);
+Implemente_base_sans_destructeur(Probleme_base,"Probleme_base",Probleme_U);
 
 // XD Pb_base pb_gen_base Pb_base -3 Resolution of equations on a domain. A problem is defined by creating an object and assigning the problem type that the user wishes to resolve. To enter values for the problem objects created, the Lire (Read) interpretor is used with a data block.
 // XD  attr milieu milieu_base milieu 1 The medium associated with the problem.
@@ -75,12 +75,6 @@ Probleme_base::~Probleme_base()
   glob_derniers_posts.vide();
 }
 
-// B.Math. 21/09/2004: quelques initialisations, ca fait pas de mal...
-Probleme_base::Probleme_base() : osauv_hdf_(0), reprise_effectuee_(0), reprise_version_(155), restart_file(0)
-{
-  resuming_in_progress_=0;
-}
-
 /*! @brief Surcharge Objet_U::printOn(Sortie&) Ecriture d'un probleme sur un flot de sortie.
  *
  *     !! Attention n'est pas symetrique de la lecture !!
@@ -94,8 +88,8 @@ Sortie& Probleme_base::printOn(Sortie& os) const
 {
   for (int i = 0; i < nombre_d_equations(); i++)
     os << equation(i).que_suis_je() << " " << equation(i) << finl;
-  os << les_postraitements;
-  os << le_domaine_dis.valeur();
+  os << les_postraitements_;
+  os << le_domaine_dis_.valeur();
   return os;
 }
 
@@ -141,7 +135,7 @@ Entree& Probleme_base::readOn(Entree& is)
 
   /* 3 : Les postraitements */
   // Si le postraitement comprend le mot, on en lit un autre...
-  while (les_postraitements.lire_postraitements(is, motlu, *this))
+  while (les_postraitements_.lire_postraitements(is, motlu, *this))
     {
       is >> motlu;
     }
@@ -194,15 +188,15 @@ void Probleme_base::typer_lire_milieu(Entree& is)
     {
       assert (nombre_d_equations() > 1);
       if (nombre_d_equations() == 2)
-        for (int i = 0; i < nombre_d_equations(); i++) equation(i).milieu().discretiser((*this), la_discretisation.valeur());
+        for (int i = 0; i < nombre_d_equations(); i++) equation(i).milieu().discretiser((*this), la_discretisation_.valeur());
       else if (nombre_d_equations() == 3)
         {
           // On a 2 Cas :
           // - Pb_Thermohydraulique_Concentration (NS, Thermique, Conc)
           // - Pb_Hydraulique_Concentration_Scalaires_Passifs (NS, Conc + Equations_Scalaires_Passifs (la lise) !)
           conc_eq = is_scal_pass ? 1 /* conc_eq */ : 2;
-          equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation.valeur()); // NS
-          equation(conc_eq).milieu().discretiser((*this), la_discretisation.valeur()); // Conc
+          equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation_.valeur()); // NS
+          equation(conc_eq).milieu().discretiser((*this), la_discretisation_.valeur()); // Conc
         }
       else
         {
@@ -210,12 +204,12 @@ void Probleme_base::typer_lire_milieu(Entree& is)
           // Ici on a NS, Thermique, Conc + Equations_Scalaires_Passifs (la lise) !
           assert (nombre_d_equations() == 4);
           conc_eq = 2;
-          equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation.valeur()); // NS
-          equation(conc_eq).milieu().discretiser((*this), la_discretisation.valeur()); // Conc
+          equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation_.valeur()); // NS
+          equation(conc_eq).milieu().discretiser((*this), la_discretisation_.valeur()); // Conc
         }
     }
   else /* On discretise le milieu de l'eq 1 et c'est tout :-) :-) */
-    equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation.valeur());
+    equation(ns_ou_cond_eq).milieu().discretiser((*this), la_discretisation_.valeur());
 }
 
 /*! @brief Lecture des equations du probleme.
@@ -319,7 +313,7 @@ void Probleme_base::completer()
       loi.completer();
     }
 
-  les_postraitements.completer();
+  les_postraitements_.completer();
 }
 
 /*! @brief Verifie que l'objet est complet, coherent, .
@@ -365,7 +359,7 @@ void Probleme_base::discretiser_equations()
 void Probleme_base::discretiser(Discretisation_base& une_discretisation)
 {
   associer();
-  la_discretisation = une_discretisation;
+  la_discretisation_ = une_discretisation;
   Cerr << "Discretization of the domain associated with the problem " << le_nom() << finl;
 
   if (!le_domaine_.non_nul())
@@ -375,9 +369,9 @@ void Probleme_base::discretiser(Discretisation_base& une_discretisation)
   le_domaine_->init_renum_perio();
 
   une_discretisation.associer_domaine(le_domaine_.valeur());
-  une_discretisation.discretiser(le_domaine_dis);
+  une_discretisation.discretiser(le_domaine_dis_);
   // Can not do this before, since the Domaine_dis is not typed yet:
-  le_domaine_dis->associer_domaine(le_domaine_);
+  le_domaine_dis_->associer_domaine(le_domaine_);
 
   if (milieu_via_associer_ || is_pb_FT())
     {
@@ -407,7 +401,7 @@ void Probleme_base::discretiser(Discretisation_base& une_discretisation)
  */
 void Probleme_base::init_postraitements()
 {
-  for (auto& itr : les_postraitements) // Pour chaque postraitement
+  for (auto& itr : les_postraitements_) // Pour chaque postraitement
     {
       DERIV(Postraitement_base) &der_post = itr;
 
@@ -417,7 +411,8 @@ void Probleme_base::init_postraitements()
 
           Postraitement& post = ref_cast(Postraitement, der_post.valeur());
 
-          Nom nom_fichier = post.nom_fich();
+          Nom nom_fichier = Sortie_Fichier_base::root;
+          nom_fichier+=post.nom_fich();
           int rg = glob_noms_fichiers.rang(nom_fichier);
           if (rg == -1)   // C'est la premiere fois qu'on rencontre ce nom
             {
@@ -437,7 +432,7 @@ void Probleme_base::init_postraitements()
               // fichier  .
               if (post.champs_demande() && autre_post.dt_post_ch() != post.dt_post_ch())
                 {
-                  Cerr << "Error, the values of dt_post (" << autre_post.dt_post_ch() << " and " << post.dt_post_ch() << ") of two postprocessing blocks writing in the same file" << post.nom_fich()
+                  Cerr << "Error, the values of dt_post (" << autre_post.dt_post_ch() << " and " << post.dt_post_ch() << ") of two postprocessing blocks writing in the same file" << nom_fichier
                        << " are different!" << finl;
                   Cerr << "Specify the same dt_post, or use two different files for postprocessing." << finl;
                   exit();
@@ -446,7 +441,7 @@ void Probleme_base::init_postraitements()
           post.est_le_dernier_postraitement_pour_nom_fich() = 1;
         }
     }
-  les_postraitements.init();
+  les_postraitements_.init();
 }
 
 int Probleme_base::expression_predefini(const Motcle& motlu, Nom& expression)
@@ -473,7 +468,7 @@ int Probleme_base::sauvegarder(Sortie& os) const
       bytes += equation(i).sauvegarder(os);
       assert(bytes % 4 == 0);
     }
-  bytes += les_postraitements.sauvegarder(os);
+  bytes += les_postraitements_.sauvegarder(os);
   assert(bytes % 4 == 0); // To detect a sauvegarder() method which returns 1 instead of the number of bytes saved.
   return bytes;
 }
@@ -491,7 +486,7 @@ int Probleme_base::reprendre(Entree& is)
   Cerr << "Resuming the problem " << le_nom() << finl;
   for(int i=0; i<nombre_d_equations(); i++)
     equation(i).reprendre(is);
-  les_postraitements.reprendre(is);
+  les_postraitements_.reprendre(is);
   statistiques().end_count(temporary_counter_);
   Cerr << "End of resuming the problem " << le_nom() << " after " << statistiques().last_time(temporary_counter_) << " s" << finl;
   return 1;
@@ -534,14 +529,14 @@ void Probleme_base::imprimer(Sortie& os) const
  */
 void Probleme_base::associer_sch_tps_base(const Schema_Temps_base& un_schema_en_temps)
 {
-  if (le_schema_en_temps.non_nul())
+  if (le_schema_en_temps_.non_nul())
     {
       Cerr << finl;
-      Cerr<<"Error: Problem "<<le_nom()<<" was already associated with the scheme "<< le_schema_en_temps.valeur().le_nom()<<" and we try to associate it with "<<un_schema_en_temps.le_nom() << "." <<finl;
+      Cerr<<"Error: Problem "<<le_nom()<<" was already associated with the scheme "<< le_schema_en_temps_.valeur().le_nom()<<" and we try to associate it with "<<un_schema_en_temps.le_nom() << "." <<finl;
       exit();
     }
-  le_schema_en_temps=un_schema_en_temps;
-  le_schema_en_temps->associer_pb(*this);
+  le_schema_en_temps_=un_schema_en_temps;
+  le_schema_en_temps_->associer_pb(*this);
   for(int i=0; i<nombre_d_equations(); i++)
     equation(i).associer_sch_tps_base(un_schema_en_temps);
 }
@@ -555,12 +550,12 @@ void Probleme_base::associer_sch_tps_base(const Schema_Temps_base& un_schema_en_
  */
 const Schema_Temps_base& Probleme_base::schema_temps() const
 {
-  if(!le_schema_en_temps.non_nul())
+  if(!le_schema_en_temps_.non_nul())
     {
       Cerr << le_nom() << " has not been associated to a time scheme !" << finl;
       exit();
     }
-  return le_schema_en_temps.valeur();
+  return le_schema_en_temps_.valeur();
 }
 
 
@@ -573,12 +568,12 @@ const Schema_Temps_base& Probleme_base::schema_temps() const
  */
 Schema_Temps_base& Probleme_base::schema_temps()
 {
-  if(!le_schema_en_temps.non_nul())
+  if(!le_schema_en_temps_.non_nul())
     {
       Cerr << le_nom() << " has not been associated to a time scheme !" << finl;
       exit();
     }
-  return le_schema_en_temps.valeur();
+  return le_schema_en_temps_.valeur();
 }
 
 
@@ -610,7 +605,7 @@ Domaine& Probleme_base::domaine()
  */
 const Domaine_dis& Probleme_base::domaine_dis() const
 {
-  return le_domaine_dis.valeur();
+  return le_domaine_dis_.valeur();
 }
 
 /*! @brief Renvoie le domaine discretise associe au probleme.
@@ -619,7 +614,7 @@ const Domaine_dis& Probleme_base::domaine_dis() const
  */
 Domaine_dis& Probleme_base::domaine_dis()
 {
-  return le_domaine_dis.valeur();
+  return le_domaine_dis_.valeur();
 }
 
 /*! @brief Associe un milieu physique aux equations du probleme.
@@ -747,6 +742,7 @@ Equation_base& Probleme_base::equation(const Nom& type)
 
 void Probleme_base::creer_champ(const Motcle& motlu)
 {
+  domaine_dis()->creer_champ(motlu, *this);
   milieu().creer_champ(motlu);
   int nb_eq = nombre_d_equations();
   for (int i=0; i<nb_eq; i++)
@@ -761,14 +757,22 @@ void Probleme_base::creer_champ(const Motcle& motlu)
 
 bool Probleme_base::has_champ(const Motcle& un_nom) const
 {
-  Champ_base const * champ = NULL ;
-
+  Champ_base const * champ = nullptr ;
+  try
+    {
+      champ = &domaine_dis()->get_champ(un_nom);
+      if (champ) return true ;
+    }
+  catch (Champs_compris_erreur&)
+    {
+    }
   int nb_eq = nombre_d_equations();
   for (int i=0; i<nb_eq; i++)
     {
       try
         {
           champ = &equation(i).get_champ(un_nom);
+          if (champ) return true ;
         }
       catch (Champs_compris_erreur&)
         {
@@ -776,6 +780,7 @@ bool Probleme_base::has_champ(const Motcle& un_nom) const
       try
         {
           champ = &equation(i).milieu().get_champ(un_nom);
+          if (champ) return true ;
         }
       catch (Champs_compris_erreur&)
         {
@@ -788,18 +793,24 @@ bool Probleme_base::has_champ(const Motcle& un_nom) const
       try
         {
           champ = &loi.get_champ(un_nom);
+          if (champ) return true ;
         }
       catch(Champs_compris_erreur&)
         {
         }
     }
-
-  if (champ) return true ;
   return false;
 }
 
 const Champ_base& Probleme_base::get_champ(const Motcle& un_nom) const
 {
+  try
+    {
+      return domaine_dis()->get_champ(un_nom);
+    }
+  catch (Champs_compris_erreur&)
+    {
+    }
   int nb_eq = nombre_d_equations();
   for (int i=0; i<nb_eq; i++)
     {
@@ -854,6 +865,7 @@ const Champ_base& Probleme_base::get_champ(const Motcle& un_nom) const
 
 void Probleme_base::get_noms_champs_postraitables(Noms& noms,Option opt) const
 {
+  domaine_dis()->get_noms_champs_postraitables(noms, opt);
   milieu().get_noms_champs_postraitables(noms,opt);
   int nb_eq = nombre_d_equations();
   for (int i=0; i<nb_eq; i++)
@@ -934,7 +946,7 @@ void Probleme_base::mettre_a_jour(double temps)
     equation(i).mettre_a_jour_champs_conserves(temps);
 
   // Update the post-processing:
-  les_postraitements.mettre_a_jour(temps);
+  les_postraitements_.mettre_a_jour(temps);
 
   for (auto& itr : liste_loi_fermeture_)
     {
@@ -1010,10 +1022,10 @@ int Probleme_base::is_dilatable() const
 /*! @brief Initialisation de file_size, bad_allocate, nb_pb_total, num_pb
  *
  */
-long int Probleme_base::file_size=0;        // file_size est l'espace disque en octet necessaire pour ecrire les fichiers XYZ
-int Probleme_base::bad_allocate=1;        // bad_allocate est un int qui permet de savoir si l'allocation a deja eut lieu
-int Probleme_base::nb_pb_total=0;        // nb_pb_total est le nombre total de probleme
-int Probleme_base::num_pb=1;                // num_pb est le numero du probleme courant
+long int Probleme_base::File_size_=0;        // file_size est l'espace disque en octet necessaire pour ecrire les fichiers XYZ
+int Probleme_base::Bad_allocate_=1;        // bad_allocate est un int qui permet de savoir si l'allocation a deja eut lieu
+int Probleme_base::Nb_pb_total_=0;        // nb_pb_total est le nombre total de probleme
+int Probleme_base::Num_pb_=1;                // num_pb est le numero du probleme courant
 
 /*! @brief Verifie que la place necessaire existe sur le disque dur.
  *
@@ -1022,33 +1034,33 @@ void Probleme_base::allocation() const
 {
   if(schema_temps().file_allocation() && EcritureLectureSpecial::Active)        // Permet de tester l'allocation d'espace disque
     {
-      if (bad_allocate==1)                                        // Si l'allocation n'a pas eut lieu
+      if (Bad_allocate_==1)                                        // Si l'allocation n'a pas eut lieu
         if (Process::je_suis_maitre())                                // Qu'avec le proc maitre
           {
-            if (num_pb==1)                                                // Si le probleme est le premier
-              if (!allocate_file_size(file_size))                        // je tente une allocation d'espace disque de taille 2*file_size
-                bad_allocate=0;                                        // Si cela echoue, j'indique au code que l'allocation a deja eut lieu et n'a pas fonctionner
+            if (Num_pb_==1)                                                // Si le probleme est le premier
+              if (!allocate_file_size(File_size_))                        // je tente une allocation d'espace disque de taille 2*file_size
+                Bad_allocate_=0;                                        // Si cela echoue, j'indique au code que l'allocation a deja eut lieu et n'a pas fonctionner
               else
-                num_pb=nb_pb_total;                                        // Si OK, je modifie num_pb pour que les autres pb ne tentent pas d'allocation
+                Num_pb_=Nb_pb_total_;                                        // Si OK, je modifie num_pb pour que les autres pb ne tentent pas d'allocation
             else
-              num_pb-=1;                                                // Si le probleme n'est pas le premier, je decremente le numero de probleme
+              Num_pb_-=1;                                                // Si le probleme n'est pas le premier, je decremente le numero de probleme
           }
       const int canal = 2007;
       if (Process::je_suis_maitre())                                // le processeur maitre envoi bad_allocate a tout le monde
         for (int p=1; p<Process::nproc(); p++)
-          envoyer(bad_allocate,p,canal);
+          envoyer(Bad_allocate_,p,canal);
       else
-        recevoir(bad_allocate,0,canal);
+        recevoir(Bad_allocate_,0,canal);
 
-      if (bad_allocate==0)                                        // Si l'allocation a echoue
+      if (Bad_allocate_==0)                                        // Si l'allocation a echoue
         {
           sauver_xyz(1);
-          if (num_pb==nb_pb_total)                                        // Si le numero de probleme correspond au nombre total de probleme
+          if (Num_pb_==Nb_pb_total_)                                        // Si le numero de probleme correspond au nombre total de probleme
             {
               if (Process::je_suis_maitre())
                 {
                   Cerr << finl;                                                // j'arrete le code de facon claire
-                  Cerr << "***Error*** " << error << finl;                // et je sort l'erreur du code
+                  Cerr << "***Error*** " << error_ << finl;                // et je sort l'erreur du code
                   Cerr << "A xyz backup was made because you do not have enough disk space" << finl;
                   Cerr << "to continue the current calculation. Free up disk space and" << finl;
                   Cerr << "restart the calculation thanks to the backup just made." << finl;
@@ -1057,7 +1069,7 @@ void Probleme_base::allocation() const
               barrier();
               exit();
             }
-          num_pb+=1;                                                // j'incremente le numero de probleme
+          Num_pb_+=1;                                                // j'incremente le numero de probleme
         }
     }
 }
@@ -1083,10 +1095,10 @@ int Probleme_base::allocate_file_size(long int& size) const
   int fichier = open(file, O_WRONLY | O_CREAT, 0666);        // Ouverture du fichier File_size
   if (fichier == -1)                                        // Erreur d'ouverture
     {
-      error="Open of ";
-      error+=file;
-      error+=" : ";
-      error+=strerror(errno);                                // Erreur sur l'ouverture
+      error_="Open of ";
+      error_+=file;
+      error_+=" : ";
+      error_+=strerror(errno);                                // Erreur sur l'ouverture
       close(fichier);                                        // fermeture du fichier
       remove(file);                                        // Destruction du fichier File_size
       return 0;                                                // Echec d'allocation car fichier pas ouvert
@@ -1094,10 +1106,10 @@ int Probleme_base::allocate_file_size(long int& size) const
 
   if (posix_fallocate(fichier, 0, taille) != 0)                // Erreur d'allocation de l'espace disque
     {
-      error="Allocation of ";
-      error+=file;
-      error+=" : ";
-      error+=strerror(errno);                                // Erreur sur l'allocation
+      error_="Allocation of ";
+      error_+=file;
+      error_+=" : ";
+      error_+=strerror(errno);                                // Erreur sur l'allocation
       close(fichier);                                        // fermeture du fichier
       remove(file);                                        // Destruction du fichier File_size
       return 0;                                                // Echec d'allocation car pas assez de place
@@ -1111,9 +1123,7 @@ int Probleme_base::allocate_file_size(long int& size) const
   return 1;
 }
 
-/*! @brief Ecrit le probleme dans un fichier *.
- *
- * calcul_xyz et calcul la place disque prise par ce fichier
+/*! @brief Ecrit le probleme dans un fichier *.calcul_xyz et calcule la place disque prise par ce fichier
  *
  * @return (int) retourne toujours 1
  */
@@ -1126,11 +1136,11 @@ int Probleme_base::file_size_xyz() const
     {
       ifstream fichier(nom_fich_xyz); // Calcul de l'espace disque pris par le fichier XYZ du probleme courant
       fichier.seekg(0, std::ios_base::end);
-      file_size += fichier.tellg(); // Incremente l'espace disque deja necessaire
+      File_size_ += fichier.tellg(); // Incremente l'espace disque deja necessaire
       fichier.close();
       remove(nom_fich_xyz);
     }
-  nb_pb_total += 1; // Permet de connaitre le nombre de probleme total a la fin du preparer_calcul
+  Nb_pb_total_ += 1; // Permet de connaitre le nombre de probleme total a la fin du preparer_calcul
 #endif
   return 1;
 }
@@ -1145,8 +1155,7 @@ void Probleme_base::sauver_xyz(int verbose) const
       nom_fich_xyz += "_";
       nom_fich_xyz += le_nom();
       nom_fich_xyz += ".xyz";
-      if (Process::je_suis_maitre())
-        Cerr << "Creation of " << nom_fich_xyz << " (" << EcritureLectureSpecial::get_Output() << ") for resumption of a calculation with a different number of processors." << finl;
+      Cerr << "Creation of " << nom_fich_xyz << " (" << EcritureLectureSpecial::get_Output() << ") for resumption of a calculation with a different number of processors." << finl;
     }
   else
     {
@@ -1207,8 +1216,8 @@ int Probleme_base::postraiter(int force)
           for (int i = 0; i < nombre_d_equations(); i++)
             equation(i).sources().mettre_a_jour(schema_temps().temps_courant());
 
-          les_postraitements.mettre_a_jour(schema_temps().temps_courant());
-          les_postraitements.postraiter();
+          les_postraitements_.mettre_a_jour(schema_temps().temps_courant());
+          les_postraitements_.postraiter();
           if (nb_pas_dt_max == 0)
             indice_nb_pas_dt = 1;
           if (est_egal(t_init, t_max))
@@ -1217,17 +1226,17 @@ int Probleme_base::postraiter(int force)
     }
   else
     {
-      les_postraitements.traiter_postraitement();
+      les_postraitements_.traiter_postraitement();
     }
   statistiques().end_count(postraitement_counter_);
 
   //Start specific postraitements for mobile domain (like ALE)
-  if(!resuming_in_progress_)  //no projection during the iteration of resumption of computation
+  if(!restart_in_progress_)  //no projection during the iteration of resumption of computation
     {
-      double temps = le_schema_en_temps->temps_courant();
-      le_domaine_dis->domaine().update_after_post(temps);
+      double temps = le_schema_en_temps_->temps_courant();
+      le_domaine_dis_->domaine().update_after_post(temps);
     }
-  resuming_in_progress_=0; //reset to false in order to make the following projections
+  restart_in_progress_=0; //reset to false in order to make the following projections
   // end specific postraitements for mobile domain (like ALE)
 
   return 1;
@@ -1235,12 +1244,18 @@ int Probleme_base::postraiter(int force)
 
 void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
 {
-  format_sauv = "binaire";
-  nom_fich = Objet_U::nom_du_cas();
+  // XXX Elie Saikali : for PolyMAC_P0 => No xyz for the moment
+  if (la_discretisation_->is_polymac_p0())
+    {
+      Cerr << "Problem "  << le_nom() << " with the discretization " << la_discretisation_->que_suis_je() <<  " => EcritureLectureSpecial = 0 !" << finl;
+      EcritureLectureSpecial::Active = 0;
+    }
+  restart_format_ = "binaire";
+  restart_file_name_ = Objet_U::nom_du_cas();
   // Desormais les fichiers de sauvegarde sont nommes par defaut nomducas_nomdupb.sauv
-  nom_fich += "_";
-  nom_fich += le_nom();
-  nom_fich += ".sauv";
+  restart_file_name_ += "_";
+  restart_file_name_ += le_nom();
+  restart_file_name_ += ".sauv";
   Motcle accolade_fermee("}");
   int resume_last_time = 0;
   while (1)
@@ -1258,8 +1273,18 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
           if ((format_rep != "formatte") && (format_rep != "binaire") && (format_rep != "xyz") && (format_rep != "single_hdf"))
             {
               Cerr << "Restarting calculation... : keyword " << format_rep << " not understood. Waiting for:" << finl << motlu << " formatte|binaire|xyz|single_hdf Filename" << finl;
-              exit();
+              Process::exit();
             }
+
+          // XXX Elie Saikali : for polymac => only .sauv files are possible
+          if (la_discretisation_->is_polymac_p0() && format_rep != "binaire")
+            {
+              Cerr << "Error in Probleme_base::" << __func__ << " !! " << finl;
+              Cerr << "Only the binary format is currently supported to resume a simulation with the discretization " << la_discretisation_->que_suis_je() << " ! " << finl;
+              Cerr << "Please update your data file and use a .sauv file !" << finl;
+              Process::exit();
+            }
+
           // Read the filename:
           Nom nomfic;
           is >> nomfic;
@@ -1372,7 +1397,7 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
                   // We close and re-open the file:
                   fic->close();
                   fic->ouvrir(nomfic);
-                  reprise_version_ = 151;
+                  restart_version_ = 151;
                 }
               else
                 {
@@ -1392,28 +1417,28 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
             {
               // Lecture du format de Lsauvegarde
               if (format_rep != "single_hdf")
-                fic.valeur() >> reprise_version_;
+                fic.valeur() >> restart_version_;
               else
                 {
 #ifdef MPI_
-                  input_data >> reprise_version_;
+                  input_data >> restart_version_;
 #endif
                 }
-              if (mp_min(reprise_version_) != mp_max(reprise_version_))
+              if (mp_min(restart_version_) != mp_max(restart_version_))
                 {
                   Cerr << "The version of the format backup/resumption is not the same in the resumption files " << nomfic << finl;
                   exit();
                 }
-              if (reprise_version_ > version_format_sauvegarde())
+              if (restart_version_ > version_format_sauvegarde())
                 {
-                  Cerr << "The format " << reprise_version_ << " of the resumption file " << nomfic << " is posterior" << finl;
+                  Cerr << "The format " << restart_version_ << " of the resumption file " << nomfic << " is posterior" << finl;
                   Cerr << "to the format " << version_format_sauvegarde() << " recognized by this version of TRUST." << finl;
                   Cerr << "Please use a more recent version." << finl;
                   exit();
                 }
             }
           // Ecriture du format de reprise
-          Cerr << "The version of the resumption format of file " << nomfic << " is " << reprise_version_ << finl;
+          Cerr << "The version of the resumption format of file " << nomfic << " is " << restart_version_ << finl;
           if (format_rep != "single_hdf")
             reprendre(fic.valeur());
           else
@@ -1423,8 +1448,8 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
               fic_hdf.close();
 #endif
             }
-          reprise_effectuee_ = 1;
-          resuming_in_progress_=1;
+          restart_done_ = true;
+          restart_in_progress_ = true;
         }
       ////////////////////////////////////////////////
       // Lecture des options de sauvegarde d'un calcul
@@ -1433,15 +1458,15 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
         {
           // restart_file=1: le fichier est ecrasee a chaque sauvegarde (et ne donc contient qu'un seul instant)
           if (motlu == "sauvegarde_simple")
-            restart_file = 1;
-          is >> format_sauv;
-          if ((Motcle(format_sauv) != "binaire") && (Motcle(format_sauv) != "formatte") && (Motcle(format_sauv) != "xyz") && (Motcle(format_sauv) != "single_hdf"))
+            simple_restart_ = true;
+          is >> restart_format_;
+          if ((Motcle(restart_format_) != "binaire") && (Motcle(restart_format_) != "formatte") && (Motcle(restart_format_) != "xyz") && (Motcle(restart_format_) != "single_hdf"))
             {
-              nom_fich = format_sauv;
-              format_sauv = "binaire";
+              restart_file_name_ = restart_format_;
+              restart_format_ = "binaire";
             }
           else
-            is >> nom_fich;
+            is >> restart_file_name_;
         }
       else if (motlu == accolade_fermee)
         break;
@@ -1455,10 +1480,10 @@ void Probleme_base::lire_sauvegarde_reprise(Entree& is, Motcle& motlu)
     }
   ficsauv_.detach();
   // Force sauvegarde hdf au dela d'un certain nombre de rangs MPI:
-  if (format_sauv != "xyz" && Process::force_single_file(Process::nproc(), nom_fich))
-    format_sauv = "single_hdf";
+  if (restart_format_ != "xyz" && Process::force_single_file(Process::nproc(), restart_file_name_))
+    restart_format_ = "single_hdf";
 
-  if ((Motcle(format_sauv) != "binaire") && (Motcle(format_sauv) != "formatte") && (Motcle(format_sauv) != "xyz") && (Motcle(format_sauv) != "single_hdf"))
+  if ((Motcle(restart_format_) != "binaire") && (Motcle(restart_format_) != "formatte") && (Motcle(restart_format_) != "xyz") && (Motcle(restart_format_) != "single_hdf"))
     {
       Cerr << "Error of backup format" << finl;
       Cerr << "We expected formatte, binaire, xyz, or single_hdf." << finl;
@@ -1492,38 +1517,38 @@ void Probleme_base::sauver() const
   // Si le fichier de sauvegarde n'a pas ete ouvert alors on cree le fichier de sauvegarde:
   if (!ficsauv_.non_nul() && !osauv_hdf_)
     {
-      if (Motcle(format_sauv) == "formatte")
+      if (Motcle(restart_format_) == "formatte")
         {
           ficsauv_.typer("EcrFicCollecte");
-          ficsauv_->ouvrir(nom_fich);
+          ficsauv_->ouvrir(restart_file_name_);
           ficsauv_->setf(ios::scientific);
         }
-      else if (Motcle(format_sauv) == "binaire")
+      else if (Motcle(restart_format_) == "binaire")
         {
           ficsauv_.typer("EcrFicCollecteBin");
-          ficsauv_->ouvrir(nom_fich);
+          ficsauv_->ouvrir(restart_file_name_);
         }
-      else if (Motcle(format_sauv) == "xyz")
+      else if (Motcle(restart_format_) == "xyz")
         {
           ficsauv_.typer(EcritureLectureSpecial::get_Output());
-          ficsauv_->ouvrir(nom_fich);
+          ficsauv_->ouvrir(restart_file_name_);
         }
-      else if (Motcle(format_sauv) == "single_hdf")
+      else if (Motcle(restart_format_) == "single_hdf")
         osauv_hdf_ = new Sortie_Brute;
       else
         {
           Cerr << "Error in Probleme_base::sauver() " << finl;
           Cerr << "The format for the backup file must be either binary or formatted" << finl;
-          Cerr << "But it is :" << format_sauv << finl;
+          Cerr << "But it is :" << restart_format_ << finl;
           exit();
         }
       // Si c'est la premiere sauvegarde, on note en en-tete le format de sauvegarde
-      if (Motcle(format_sauv) == "xyz")
+      if (Motcle(restart_format_) == "xyz")
         {
           if (Process::je_suis_maitre())
             ficsauv_.valeur() << "format_sauvegarde:" << finl << version_format_sauvegarde() << finl;
         }
-      else if ((Motcle(format_sauv) == "single_hdf"))
+      else if ((Motcle(restart_format_) == "single_hdf"))
         *osauv_hdf_ << "format_sauvegarde:" << finl << version_format_sauvegarde() << finl;
       else
         ficsauv_.valeur() << "format_sauvegarde:" << finl << version_format_sauvegarde() << finl;
@@ -1531,8 +1556,8 @@ void Probleme_base::sauver() const
 
   // On realise l'ecriture de la sauvegarde
   int bytes;
-  EcritureLectureSpecial::mode_ecr = (Motcle(format_sauv) == "xyz");
-  if (Motcle(format_sauv) != "single_hdf")
+  EcritureLectureSpecial::mode_ecr = (Motcle(restart_format_) == "xyz");
+  if (Motcle(restart_format_) != "single_hdf")
     bytes = sauvegarder(ficsauv_.valeur());
   else
     bytes = sauvegarder(*osauv_hdf_);
@@ -1540,20 +1565,20 @@ void Probleme_base::sauver() const
   EcritureLectureSpecial::mode_ecr = -1;
 
   // Si c'est une sauvegarde simple, on referme immediatement et proprement le fichier
-  if (restart_file == 1)
+  if (simple_restart_)
     {
-      if (Motcle(format_sauv) == "xyz")
+      if (Motcle(restart_format_) == "xyz")
         {
           if (Process::je_suis_maitre())
             ficsauv_.valeur() << Nom("fin");
           (ficsauv_.valeur()).flush();
           (ficsauv_.valeur()).syncfile();
         }
-      else if (Motcle(format_sauv) == "single_hdf")
+      else if (Motcle(restart_format_) == "single_hdf")
         {
           *osauv_hdf_ << Nom("fin");
           FichierHDFPar fic_hdf;
-          fic_hdf.create(nom_fich);
+          fic_hdf.create(restart_file_name_);
           fic_hdf.create_and_fill_dataset_MW("/sauv", *osauv_hdf_);
           fic_hdf.close();
           delete osauv_hdf_;
@@ -1580,26 +1605,26 @@ void Probleme_base::finir()
 {
   Debog::set_nom_pb_actuel(le_nom());
   schema_temps().finir();
-  les_postraitements.finir();
+  les_postraitements_.finir();
   if (schema_temps().temps_sauv() > 0.0)
     sauver();
 
   // On ferme proprement le fichier de sauvegarde
   // Si c'est une sauvegarde_simple, le fin a ete mis a chaque appel a ::sauver()
-  if (restart_file != 1 && (ficsauv_.non_nul() || osauv_hdf_))
+  if (!simple_restart_ && (ficsauv_.non_nul() || osauv_hdf_))
     {
-      if (Motcle(format_sauv) == "xyz")
+      if (Motcle(restart_format_) == "xyz")
         {
           if (Process::je_suis_maitre())
             ficsauv_.valeur() << Nom("fin");
           (ficsauv_.valeur()).flush();
           (ficsauv_.valeur()).syncfile();
         }
-      else if (Motcle(format_sauv) == "single_hdf")
+      else if (Motcle(restart_format_) == "single_hdf")
         {
           *osauv_hdf_ << Nom("fin");
           FichierHDFPar fic_hdf;
-          fic_hdf.create(nom_fich);
+          fic_hdf.create(restart_file_name_);
           fic_hdf.create_and_fill_dataset_MW("/sauv", *osauv_hdf_);
           fic_hdf.close();
           delete osauv_hdf_;
@@ -1615,6 +1640,73 @@ void Probleme_base::finir()
     }
   // Si la sauvegarde est classique et que l'utilisateur n'a pas desactive la sauvegarde finale xyz
   // alors on effectue la sauvegarde finale xyz
-  if (Motcle(format_sauv) != "xyz" && (EcritureLectureSpecial::Active))
+  if (Motcle(restart_format_) != "xyz" && (EcritureLectureSpecial::Active))
     sauver_xyz(1);
 }
+
+
+void Probleme_base::resetTime(double time)
+{
+  static const std::string param_name = "SORTIE_ROOT_DIRECTORY";
+  std::string new_root_dir = (str_params_.count(param_name) == 0) ? "" : getOutputStringValue(param_name);
+
+  resetTimeWithDir_impl(*this, time, new_root_dir);
+}
+
+/*! @brief Recherche des champs parametriques, et pour chacun, passage au parametre suivant
+ *
+ */
+std::string Probleme_base::newCompute()
+{
+  // Boucle sur les champs des conditions limites:
+  for (int i = 0; i < nombre_d_equations(); i++)
+    {
+      const Equation_base& eq = equation(i);
+      const Conds_lim& condsLim = eq.domaine_Cl_dis().les_conditions_limites();
+      for (auto const &condLim : condsLim)
+        {
+          const Cond_lim_base& la_cl_base = condLim.valeur();
+          if (sub_type(Champ_front_Parametrique, la_cl_base.champ_front().valeur()))
+            {
+              const Champ_front_Parametrique& champ_front = ref_cast(Champ_front_Parametrique, la_cl_base.champ_front().valeur());
+              std::string dir = champ_front.newCompute();
+              if (!dir.empty()) return dir;
+            }
+        }
+    }
+  // Boucles sur les champs des sources:
+  if(Champ_Parametrique::enabled)
+    {
+      for (int i = 0; i < nombre_d_equations(); i++)
+        {
+          const Equation_base& eq = equation(i);
+          const Sources& sources = eq.sources();
+          for (auto &source: sources)
+            {
+              for (auto const &champ_don: source.valeur().champs_don())
+                {
+                  if (champ_don->non_nul() && sub_type(Champ_Parametrique, champ_don->valeur()))
+                    {
+                      const Champ_Parametrique& champ = ref_cast(Champ_Parametrique, champ_don->valeur());
+                      std::string dir = champ.newCompute();
+                      if (!dir.empty()) return dir;
+                    }
+                }
+            }
+        }
+      // Boucle sur les champs du Milieu:
+      for (auto const &champ_don: milieu().champs_don())
+        {
+          if (champ_don->non_nul() && sub_type(Champ_Parametrique, champ_don->valeur()))
+            {
+              const Champ_Parametrique& champ = ref_cast(Champ_Parametrique, champ_don->valeur());
+              std::string dir = champ.newCompute();
+              if (!dir.empty()) return dir;
+            }
+        }
+    }
+  return "";
+}
+
+
+

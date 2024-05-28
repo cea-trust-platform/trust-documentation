@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,10 @@
 #include <Champ_Fonc_Tabule.h>
 
 Implemente_instanciable(Champ_Fonc_Fonction_txyz_Morceaux,"Champ_Fonc_Fonction_txyz_Morceaux",TRUSTChamp_Morceaux_generique<Champ_Morceaux_Type::FONC_TXYZ>);
-// XD champ_fonc_fonction_txyz_morceaux champ_don_base champ_fonc_fonction_txyz_morceaux 0 Field defined by analytical functions in each sub-domaine. It makes possible the definition of a field that depends on the time and the space.
+// XD champ_fonc_fonction_txyz_morceaux champ_don_base champ_fonc_fonction_txyz_morceaux 0 Field defined by analytical functions in each sub-domaine. On each zone, the value is defined as a function of x,y,z,t and of scalar value taken from a parameter field. This values is associated to the variable ’val’ in the expression.
 // XD   attr problem_name ref_Pb_base problem_name 0 Name of the problem.
 // XD   attr inco chaine inco 0 Name of the field (for example: temperature).
-// XD   attr nb_comp int nb_comp 0 Number of field components.
+// XD   attr nb_comp entier nb_comp 0 Number of field components.
 // XD   attr data bloc_lecture data 0 { Defaut val_def sous_domaine_1 val_1 ... sous_domaine_i val_i } By default, the value val_def is assigned to the field. It takes the sous_domaine_i identifier Sous_Domaine (sub_area) type object function, val_i. Sous_Domaine (sub_area) type objects must have been previously defined if the operator wishes to use a champ_fonc_fonction_txyz_morceaux type object.
 
 Sortie& Champ_Fonc_Fonction_txyz_Morceaux::printOn(Sortie& os) const { return os << valeurs(); }
@@ -40,12 +40,19 @@ Entree& Champ_Fonc_Fonction_txyz_Morceaux::readOn(Entree& is)
   is >> nom;
   interprete_get_domaine(nom);
 
-  Nom val1, val2;
-  is >> val1;
-  is >> val2;
-  Champ_Fonc_Tabule::Warn_old_chp_fonc_syntax("Champ_Fonc_Fonction_txyz_Morceaux", val1, val2, dim, nom_champ_parametre_);
+  is >> nom_champ_parametre_;
+  bool isNum = Champ_Fonc_Tabule::Check_if_int(nom_champ_parametre_);
+  if (isNum)
+    {
+      Cerr << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << finl;
+      Cerr << "Error in call to " << que_suis_je() << ":" << finl;
+      Cerr << "The syntax has changed in version 1.8.2." << finl;
+      Cerr << "You should now pass the dimension/number of components AFTER the field/parameter name." << finl;
+      Cerr << "Please update your dataset or contact TRUST support team." << finl;
+      Process::exit();
+    }
+  is >> dim;
 
-  dim = lire_dimension(dim, que_suis_je());
   creer_tabs(dim);
   is >> nom;
 

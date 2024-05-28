@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -49,19 +49,15 @@ Implemente_base_sans_constructeur(Equation_base,"Equation_base",Objet_U);
 
 Equation_base::Equation_base()
 {
-  nombre_champ_xyz=0;
-  ecrit_champ_xyz_bin=0;
   sys_invariant_=1;
   implicite_=-1;
   has_time_factor_= false;
-  champs_compris_.ajoute_nom_compris("volume_maille");
   Nom expr_equation_non_resolue="0";
   equation_non_resolue_.setNbVar(1);
   equation_non_resolue_.setString(expr_equation_non_resolue); // Valeur par defaut, equation resolue
   equation_non_resolue_.addVar("t");
   equation_non_resolue_.parseString();
   set_calculate_time_derivative(0);
-
 }
 
 int Equation_base::equation_non_resolue() const
@@ -260,9 +256,7 @@ void Equation_base::set_param(Param& param)
   param.ajouter_non_std("conditions_limites|boundary_conditions",(this),Param::REQUIRED);  // XD attr conditions_limites|boundary_conditions condlims conditions_limites 1 Boundary conditions.
   param.ajouter_non_std("conditions_initiales|initial_conditions",(this),Param::REQUIRED); // XD attr conditions_initiales|initial_conditions condinits conditions_initiales 1 Initial conditions.
   param.ajouter_non_std("sources",(this)); // XD attr sources sources sources 1 To introduce a source term into an equation (in case of several source terms into the same equation, the blocks corresponding to the various terms need to be separated by a comma)
-  param.ajouter_non_std("ecrire_fichier_xyz_valeur_bin",(this)); // XD attr ecrire_fichier_xyz_valeur_bin ecrire_fichier_xyz_valeur_param ecrire_fichier_xyz_valeur_bin 1 This keyword is used to write the values of a field only for some boundaries in a binary file with the following format: n_valeur NL2 x_1 y_1 [z_1] val_1 NL2 ... NL2 x_n y_n [z_n] val_n NL2 The created files are named : pbname_fieldname_[boundaryname]_time.dat
-  param.ajouter_non_std("ecrire_fichier_xyz_valeur",(this)); // XD attr ecrire_fichier_xyz_valeur ecrire_fichier_xyz_valeur_param ecrire_fichier_xyz_valeur 1 This keyword is used to write the values of a field only for some boundaries in a text file with the following format: n_valeur NL2 x_1 y_1 [z_1] val_1 NL2 ... NL2 x_n y_n [z_n] val_n NL2 The created files are named : pbname_fieldname_[boundaryname]_time.dat
-  param.ajouter_non_std("bords",(this));
+  param.ajouter_non_std("ecrire_fichier_xyz_valeur",(this)); // XD attr ecrire_fichier_xyz_valeur ecrire_fichier_xyz_valeur ecrire_fichier_xyz_valeur 1 This keyword is used to write the values of a field only for some boundaries in a text file
   param.ajouter("parametre_equation",&parametre_equation_); // XD attr parametre_equation parametre_equation_base parametre_equation 1 Keyword used to specify additional parameters for the equation
   param.ajouter_non_std("equation_non_resolue",(this)); // XD attr equation_non_resolue chaine equation_non_resolue 1 The equation will not be solved while condition(t) is verified if equation_non_resolue keyword is used. Exemple: The Navier-Stokes equations are not solved between time t0 and t1. NL2 Navier_Sokes_Standard NL2 { equation_non_resolue (t>t0)*(t<t1) }
 }
@@ -285,42 +279,10 @@ int Equation_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
       lire_cond_init(is);
       return 1;
     }
-  else if ((mot=="ecrire_fichier_xyz_valeur") || (mot=="ecrire_fichier_xyz_valeur_bin"))
+  else if (mot=="ecrire_fichier_xyz_valeur")
     {
-      if (mot=="ecrire_fichier_xyz_valeur_bin")
-        ecrit_champ_xyz_bin=1;
-      dt_ecrire_fic_xyz.resize_array(nombre_champ_xyz+1);
-      nb_bords_post_xyz.resize(nombre_champ_xyz+1);
-      nb_bords_post_xyz[nombre_champ_xyz]=0;
-      Motcle nom_champ;
-      is >> nom_champ;
-      // il faut creer les champs associes au mot clef ecrire_fichier_xyz_valeur ICI
-      // car dans methode ecrire_fichier_xyz()
-      //seuls les champs definis via equation ou post-traiment sont creer
-      mon_probleme.valeur().creer_champ(nom_champ);
-
-      nom_champ_xyz.add(nom_champ);
-      is >> dt_ecrire_fic_xyz[nombre_champ_xyz];
-      nombre_champ_xyz++;
-      return 1;
-    }
-  else if (mot=="bords")
-    {
-      int nb_bords_post;
-      is >> nb_bords_post;
-      nb_bords_post_xyz[nombre_champ_xyz-1] = nb_bords_post;
-      if (nb_bords_post<=0)
-        {
-          Cerr << " ecrire_fichier_xyz_valeur - bords : the number of boundary on which you want to postprocess must be positive !! " << finl;
-          exit();
-        }
-      Noms noms_bord;
-      noms_bord.dimensionner(nb_bords_post);
-      for (int i=0; i<nb_bords_post; i++)
-        {
-          is >> noms_bord[i];
-        }
-      noms_bord_xyz.add(noms_bord);
+      xyz_field_values_file_.associer_eqn(*this);
+      is >> xyz_field_values_file_;
       return 1;
     }
   else if (mot=="equation_non_resolue")
@@ -338,166 +300,6 @@ int Equation_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     }
   return -1;
 }
-
-/*! @brief Ecrit dans un fichier les valeurs du champ specifie par le mot cle "ecrire_fichier_xyz_valeur"
- *
- * @return le flot d'entree modifie
- */
-void Equation_base::ecrire_fichier_xyz() const
-{
-  for (int numero_champ_xyz=0; numero_champ_xyz<nombre_champ_xyz; numero_champ_xyz++)
-    {
-      Noms vide;
-      const double dt_ecrire_fic = dt_ecrire_fic_xyz[numero_champ_xyz];
-      const Motcle& nom_champ = nom_champ_xyz[numero_champ_xyz];
-      const int nb_bords_post = nb_bords_post_xyz[numero_champ_xyz];
-      const Noms& noms_bord = (nb_bords_post?noms_bord_xyz[numero_champ_xyz]:vide);
-
-      REF(Champ_base) champ_a_ecrire;
-      const double temps_courant = le_schema_en_temps->temps_courant();
-      const double dt = le_schema_en_temps->pas_de_temps();
-      const double tmax = le_schema_en_temps->temps_max();
-      const int nb_pas_dt_max = le_schema_en_temps->nb_pas_dt_max();
-      const int nb_pas_dt = le_schema_en_temps->nb_pas_dt();
-      const int stationnaire_atteint = le_schema_en_temps->stationnaire_atteint();
-      int ok;
-      if (dt_ecrire_fic<=dt || tmax<=temps_courant || nb_pas_dt_max<=nb_pas_dt || nb_pas_dt<=1 || stationnaire_atteint || le_schema_en_temps.valeur().stop_lu())
-        ok=1;
-      else
-        {
-          // Voir Schema_Temps_base::limpr pour information sur epsilon et modf
-          double i, j, epsilon = 1.e-8;
-          modf(temps_courant/dt_ecrire_fic + epsilon, &i);
-          modf((temps_courant-dt)/dt_ecrire_fic + epsilon, &j);
-          ok = (i>j);
-        }
-      int champ_ok = 0;
-      int champ_stat = 0;
-      REF(Operateur_Statistique_tps_base) op_stat;
-      if (ok && dt_ecrire_fic>0)
-        {
-          // On recherche le champ dans le probleme contenant l'equation, et les postraitements
-          // dans les postraitements ?
-          for (auto &itr :  mon_probleme->postraitements())
-            if (!champ_ok)
-              if (sub_type(Postraitement, itr.valeur()))
-                {
-                  const Postraitement& post = ref_cast(Postraitement, itr.valeur());
-                  if (champ_ok == 0)
-                    {
-                      Motcle nom_test = nom_champ;
-                      //La recherche est faite sur les champs statistiques a partir d un identifiant
-                      //Si le nom indique dans le jeux de donnes est celui d un champ statistiques
-                      //il doit correspondre au nom du champ de postraitement
-
-                      post.champ_fonc(nom_test, champ_a_ecrire, op_stat);
-                      if (champ_a_ecrire.non_nul())
-                        {
-                          champ_stat = 1;
-                          champ_ok = 1;
-                        }
-                    }
-                }
-
-          if (champ_ok==0)
-            //L identifiant correspond ici a un Champ_base
-            champ_a_ecrire = mon_probleme.valeur().get_champ(nom_champ);
-
-          int nb_compo = champ_a_ecrire->nb_comp();
-          if (nb_bords_post>0) // on ne souhaite postraiter que sur certains bords
-            {
-              int nb_cl = le_dom_Cl_dis->nb_cond_lim();
-              for (int j=0; j<nb_bords_post; j++)
-                {
-                  int count = 0 ; // int servant a tester si le nom du bord correspond bien au nom d'une frontiere
-                  for (int i=0; i<nb_cl; i++)
-                    {
-                      const Cond_lim_base& la_cl = le_dom_Cl_dis.valeur().les_conditions_limites(i);
-                      const Frontiere& la_frontiere = la_cl.frontiere_dis().frontiere();
-                      if (la_frontiere.le_nom() == noms_bord[j])
-                        {
-                          // Construction du nom du fichier
-                          Nom nom_fic(probleme().le_nom());
-                          nom_fic+="_";
-                          nom_fic+=nom_champ;
-                          nom_fic+="_";
-                          nom_fic+=noms_bord[j];
-                          nom_fic+="_";
-                          nom_fic+=Nom(temps_courant);
-                          nom_fic+=".dat";
-                          EcrFicPartage fic;
-                          fic.set_bin(ecrit_champ_xyz_bin);
-                          fic.ouvrir(nom_fic);
-                          fic.setf(ios::scientific);
-                          fic.precision(format_precision_geom);
-
-                          // Construction du tableau pos contenant les centres des faces frontiere
-                          const int nb_val = la_frontiere.nb_faces();
-                          DoubleTab pos;
-                          la_frontiere.faces().calculer_centres_gravite(pos);
-
-                          // Construction du tableau val contenant les valeurs aux centres des faces
-                          DoubleTab val(nb_val,nb_compo);
-                          val = 0.;
-                          if (champ_stat == 1)
-                            {
-                              DoubleTab copie(champ_a_ecrire->valeurs());
-                              champ_a_ecrire->valeurs() = op_stat->calculer_valeurs();
-                              champ_a_ecrire->valeur_aux(pos, val);
-                              champ_a_ecrire->valeurs() = copie;
-                            }
-                          else
-                            champ_a_ecrire->valeur_aux(pos, val);
-
-                          // Ecriture du fichier
-                          int nb_val_tot = Process::mp_sum(nb_val);
-                          if (Process::je_suis_maitre())
-                            {
-                              if(ecrit_champ_xyz_bin)
-                                fic << "binary" << finl;
-                              fic  << nb_val_tot << finl;
-                            }
-                          barrier();
-                          fic.lockfile();
-                          for (int i2=0; i2<nb_val; i2++)
-                            {
-                              // Ecriture des coordonees
-                              for (int j2=0; j2<dimension; j2++)
-                                fic << pos(i2,j2) << " ";
-                              // Ecriture des valeurs
-                              for (int nb=0; nb<nb_compo; nb++)
-                                fic << val(i2,nb) << " " ;
-                              fic << finl;
-                            }
-                          fic.unlockfile();
-                          barrier();
-                          fic.syncfile();
-                          fic.close();
-                        }
-                      else
-                        {
-                          count++;
-                        }
-                    }
-                  if (count==nb_cl)
-                    {
-                      Cerr << "You try to use the method Ecrire_fichier_xyz_valeur with an unknow name boundary" << finl;
-                      Cerr << "The boundary named " << noms_bord[j] << " is not recognized"<< finl;
-                      exit();
-                    }
-
-                }
-            }
-          else // on souhaite postraiter sur tout le domaine
-            {
-
-              Cerr << "The option of post processing the entire domain with Ecrire_fichier_xyz_valeur is now obsolete." <<finl;
-              exit();
-            }
-        }
-    }
-}
-
 
 
 /*! @brief Lecture des termes sources dans un flot d'entree.
@@ -674,7 +476,7 @@ int Equation_base::impr(Sortie& os) const
  */
 void Equation_base::imprimer(Sortie& os) const
 {
-  ecrire_fichier_xyz();
+  xyz_field_values_file_.write_fields();
   if (limpr() )
     impr(os);
 }
@@ -1040,6 +842,22 @@ void Equation_base::abortTimeStep()
   if (champ_convecte_.non_nul()) champ_convecte_->abortTimeStep();
 }
 
+/*! @brief Reset current time of the equation. Used from ICoCo.
+ * See documentation of Problem_base::resetTime()
+ */
+void Equation_base::resetTime(double time)
+{
+  if(solveur_masse.non_nul()) solveur_masse->resetTime(time);
+  les_sources.resetTime(time);
+  le_dom_Cl_dis->resetTime(time);
+  for (int i=0; i<nombre_d_operateurs(); i++)
+    operateur(i).l_op_base().resetTime(time);
+  inconnue()->resetTime(time);
+  if (champ_conserve_.non_nul()) champ_conserve_->resetTime(time);
+  if (champ_convecte_.non_nul()) champ_convecte_->resetTime(time);
+}
+
+
 /*! @brief methode virtuelle permettant de corriger l'onconnue lors d'iterations implicites par exemple K-eps doivent rester positifs
  *
  *  les fractions massqiues entre 0 et 1
@@ -1151,7 +969,7 @@ bool Equation_base::updateGivenFields()
       domaine_Cl_dis().mettre_a_jour(tps);
     }
   // Calcul du taux d'accroissement des CLs entre les temps present et futur.
-  domaine_Cl_dis()->Gpoint(temps_present,temps_futur);
+  domaine_Cl_dis()->calculer_derivee_en_temps(temps_present,temps_futur);
 
   //MaJ des operateurs
   for (int i = 0; i < nombre_d_operateurs(); i++)
@@ -1183,14 +1001,6 @@ const Discretisation_base& Equation_base::discretisation() const
 
 void Equation_base::creer_champ(const Motcle& motlu)
 {
-  if (motlu == "volume_maille")
-    {
-      if (!volume_maille.non_nul())
-        {
-          discretisation().volume_maille(schema_temps(),domaine_dis(),volume_maille);
-          champs_compris_.ajoute_champ(volume_maille);
-        }
-    }
 // pour recuperer une equation const !!!!!
 
   const Equation_base& me_const =(*this);
@@ -1222,13 +1032,7 @@ const Champ_base& Equation_base::get_champ(const Motcle& nom) const
 {
   Nom inco_residu (inconnue()->le_nom());
   inco_residu += "_residu";
-  if (nom=="volume_maille")
-    {
-      Champ_Fonc_base& ch_vol_maille=ref_cast_non_const(Champ_Fonc_base,volume_maille.valeur());
-      if (est_different(ch_vol_maille.temps(),inconnue()->temps()))
-        ch_vol_maille.mettre_a_jour(inconnue()->temps());
-    }
-  else if(nom == Motcle(inco_residu))
+  if(nom == Motcle(inco_residu))
     {
       Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,field_residu_.valeur());
       double temps_init = schema_temps().temps_init();
@@ -1529,7 +1333,7 @@ DoubleTab& Equation_base::derivee_en_temps_conv(DoubleTab& secmem, const DoubleT
       secmem = 0;
       DoubleTab solution_loc(solution) ;
       DoubleTab derivee;
-      derivee.copy(secmem, Array_base::NOCOPY_NOINIT);
+      derivee.copy(secmem, RESIZE_OPTIONS::NOCOPY_NOINIT);
       for (int i=0; i<nstep; i++)
         {
           derivee = 0. ;
@@ -1676,7 +1480,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
             aCKN = 0.5;
           precond_diag = param.precoditionnement_diag();
           // Bug fixed : Diagonal preconditionning is fixed with periodic BC (it is OK for a parallel calculation)
-          //if (precond_diag==1 && Process::nproc()>1)
+          //if (precond_diag==1 && Process::is_parallel())
           //  {
           //    Cerr << "Error with the value of preconditionnement_diag option which is set to " << precond_diag << "." << finl;
           //    Cerr << "The diagonal preconditionning is unavailable for a parallel calculation." << finl;
@@ -1698,6 +1502,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
       Matrice_Morse_Diag diag;
       if (precond_diag)
         {
+          // ToDo OpenMP or Kokkos precond_diag
           statistiques().begin_count(assemblage_sys_counter_);
           const int nb_case = inconnue().valeurs().dimension_tot(0);
           const int nb_comp = inconnue().valeurs().line_size();
@@ -2160,7 +1965,7 @@ void Equation_base::assembler_blocs(matrices_t matrices, DoubleTab& secmem, cons
   if (!(discretisation().is_polymac_family() || probleme().que_suis_je() == "Pb_Multiphase"))
     {
       const std::string& nom_inco = inconnue().le_nom().getString();
-      Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : NULL;
+      Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
       if(mat) mat->ajouter_multvect(inconnue().valeurs(), secmem);
     }
 }
@@ -2175,7 +1980,7 @@ void Equation_base::assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab&
   if (!discretisation().is_polymac_family())
     {
       const std::string& nom_inco = inconnue().le_nom().getString();
-      Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : NULL;
+      Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
       modifier_pour_Cl(*mat,secmem);
     }
   statistiques().end_count(assemblage_sys_counter_);
@@ -2198,7 +2003,7 @@ void Equation_base::init_champ_conserve() const
 void Equation_base::calculer_champ_conserve(const Objet_U& obj, DoubleTab& val, DoubleTab& bval, tabs_t& deriv)
 {
   const Equation_base& eqn = ref_cast(Equation_base, obj);
-  const Champ_base *coeff = eqn.solv_masse().valeur().has_coefficient_temporel() ? &eqn.get_champ(eqn.solv_masse().valeur().get_name_of_coefficient_temporel()) : NULL; //coeff temporel
+  const Champ_base *coeff = eqn.solv_masse().valeur().has_coefficient_temporel() ? &eqn.get_champ(eqn.solv_masse().valeur().get_name_of_coefficient_temporel()) : nullptr; //coeff temporel
   const Champ_Inc_base& inco = eqn.inconnue();
   ConstDoubleTab_parts part(inco.valeurs());
   //valeur du champ lui-meme
