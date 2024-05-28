@@ -1,6 +1,3 @@
-
-.. |nbsp| unicode:: 0xA0 
-   :trim:
 **Keywords derived from bloc_comment**
 ======================================
 
@@ -13,10 +10,6 @@
 
 
 bloc of Comment in a data file.
-
-Usage:
-
-**bloc_comment** **comm**  
 
 Parameters are:
 
@@ -36,13 +29,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **champ_generique_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _champ_post_de_champs_post:
@@ -54,17 +40,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-| **champ_post_de_champs_post** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -90,17 +65,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **champ_post_operateur_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -128,22 +92,6 @@ Parameters are:
 
 
 Post-process equation operators/sources
-
-Usage:
-
-| **champ_post_operateur_eqn** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[numero_source]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[numero_op]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[numero_masse]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sans_solveur_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[compo]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -180,19 +128,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **champ_post_statistiques_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_deb**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_fin**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
-
 Parameters are:
 
 - **t_deb**  (*type:* double) Start of integration time
@@ -223,19 +158,6 @@ Parameters are:
 
 
 to calculate the correlation between the two fields.
-
-Usage:
-
-| **correlation** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_deb**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_fin**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -268,17 +190,6 @@ Parameters are:
 
 To calculate divergency of a given field.
 
-Usage:
-
-| **divergence** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
-
 Parameters are:
 
 - **[source]**  (*type:* :ref:`champ_generique_base`) the source field.
@@ -305,19 +216,6 @@ Parameters are:
 
 
 to calculate the standard deviation (statistic rms) of the field nom_champ.
-
-Usage:
-
-| **ecart_type** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_deb**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_fin**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -349,20 +247,6 @@ Parameters are:
 
 
 To create a surface field (values at the boundary) of a volume field
-
-Usage:
-
-| **extraction** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_frontiere**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode]**  string into ["trace", "champ_frontiere"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -397,17 +281,6 @@ Parameters are:
 
 To calculate gradient of a given field.
 
-Usage:
-
-| **gradient** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
-
 Parameters are:
 
 - **[source]**  (*type:* :ref:`champ_generique_base`) the source field.
@@ -434,21 +307,6 @@ Parameters are:
 
 
 To create a field which is an interpolation of the field given by the keyword source.
-
-Usage:
-
-| **interpolation** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **localisation**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[optimisation_sous_maillage]**  string into ["default", "yes", "no",]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -489,26 +347,13 @@ operator equation.
 The problem name and the unknown of the equation should be given by Source refChamp 
 { Pb_Champ problem_name unknown_field_of_equation }
 
-Usage:
-
-| **morceau_equation** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **type**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[numero]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **option**  string into ["stabilite", "flux_bords", "flux_surfacique_bords"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[compo]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
-
 Parameters are:
 
 - **type**  (*type:* string) can only be operateur for equation operators.
 
 - **[numero]**  (*type:* int) numero will be 0 (diffusive operator) or 1 (convective operator) or 2 (gradient  operator) or 3 (divergence operator).
+
+- **[unite]**  (*type:* string) will specify the field unit
 
 - **option**  (*type:* string into ["stabilite", "flux_bords", "flux_surfacique_bords"])  option is stability  for time steps or flux_bords for boundary fluxes or flux_surfacique_bords for boundary  surfacic fluxes
 
@@ -538,20 +383,6 @@ Parameters are:
 
 
 to calculate the average of the field over time
-
-Usage:
-
-| **moyenne** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[moyenne_convergee]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_deb**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t_fin**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -584,13 +415,6 @@ Parameters are:
 
 This keyword is used to post process predefined postprocessing fields.
 
-Usage:
-
-| **predefini** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **pb_champ**  :ref:`deuxmots`
-| }
-
 Parameters are:
 
 - **pb_champ**  (*type:* :ref:`deuxmots`) { Pb_champ nom_pb nom_champ } : nom_pb is the problem name and nom_champ  is the selected field name. The available keywords for the field name are: energie_cinetique_totale, energie_cinetique_elem,  viscosite_turbulente, viscous_force_x, viscous_force_y, viscous_force_z, pressure_force_x,  pressure_force_y, pressure_force_z, total_force_x, total_force_y, total_force_z, viscous_force,  pressure_force, total_force
@@ -611,18 +435,6 @@ Parameters are:
 To calculate the min, max, sum, average, weighted sum, weighted average, weighted 
 sum by porosity, weighted average by porosity, euclidian norm, normalized euclidian 
 norm, L1 norm, L2 norm of a field.
-
-Usage:
-
-| **reduction_0d** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **methode**  string into ["min", "max", "moyenne", "average", "moyenne_ponderee", "weighted_average", "somme", "sum", "somme_ponderee", "weighted_sum", "somme_ponderee_porosite", "weighted_sum_porosity", "euclidian_norm", "normalized_euclidian_norm", "l1_norm", "l2_norm", "valeur_a_gauche", "left_value"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
 
 Parameters are:
 
@@ -653,14 +465,6 @@ Parameters are:
 
 Field of prolem
 
-Usage:
-
-| **refchamp** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **pb_champ**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| }
-
 Parameters are:
 
 - **pb_champ**  (*type:* :ref:`deuxmots`) { Pb_champ nom_pb nom_champ } : nom_pb is the problem name and nom_champ  is the selected field name.
@@ -687,17 +491,6 @@ nom_pb is the problem name and field_name is the selected field name.
 A keyword (temperature_physique) is available to post process this field without 
 using Definition_champs.
 
-Usage:
-
-| **tparoi_vef** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
-
 Parameters are:
 
 - **[source]**  (*type:* :ref:`champ_generique_base`) the source field.
@@ -723,32 +516,25 @@ Parameters are:
 **Inherits from:** :ref:`champ_generique_base` 
 
 
-To create a field with a transformation.
-
-Usage:
-
-| **transformation** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **methode**  string into ["produit_scalaire", "norme", "vecteur", "formule", "composante"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[expression]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[numero]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[localisation]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source]**  :ref:`champ_generique_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_source]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[source_reference]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources_reference]**  :ref:`list_nom_virgule`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`listchamp_generique`
-| }
+To create a field with a transformation using source fields and x, y, z, t.
+If you use in your datafile source refChamp { Pb_champ pb pression }, the field pression 
+may be used in the expression with the name pression_natif_dom; this latter is the 
+same as pression.
+If you specify nom_source in refChamp bloc, you should use the alias given to pressure 
+field.
+This is avail for all equations unknowns in transformation.
 
 Parameters are:
 
-- **methode**  (*type:* string into ["produit_scalaire", "norme", "vecteur", "formule", "composante"])  methode  norme : will calculate the norm of a vector given by a source field  methode produit_scalaire : will calculate the dot product of two vectors given by  two sources fields  methode composante numero integer : will create a field by extracting the integer  component of a field given by a source field  methode formule expression 1 : will create a scalar field located to elements using  expressions with x,y,z,t parameters and field names given by a source field or several  sources fields.  methode vecteur expression N f1(x,y,z,t) fN(x,y,z,t) : will create a vector field  located to elements by defining its N components with N expressions with x,y,z,t parameters  and field names given by a source field or several sources fields.
+- **methode**  (*type:* string into ["produit_scalaire", "norme", "vecteur", "formule", "composante"])  methode  0 methode norme : will calculate the norm of a vector given by a source field  methode produit_scalaire : will calculate the dot product of two vectors given by  two sources fields  methode composante numero integer : will create a field by extracting the integer  component of a field given by a source field  methode formule expression 1 : will create a scalar field located to elements using  expressions with x,y,z,t parameters and field names given by a source field or several  sources fields.  methode vecteur expression N f1(x,y,z,t) fN(x,y,z,t) : will create a vector field  located to elements by defining its N components with N expressions with x,y,z,t parameters  and field names given by a source field or several sources fields.
 
-- **[expression]**  (*type:* string list) see methodes formule and vecteur
+- **[unite]**  (*type:* string) will specify the field unit
 
-- **[numero]**  (*type:* int) see methode composante
+- **[expression]**  (*type:* string list) expression 1 see methodes formule and vecteur
 
-- **[localisation]**  (*type:* string) type_loc indicate where is done the interpolation (elem for element or som  for node). The optional keyword methode is limited to calculer_champ_post for the moment
+- **[numero]**  (*type:* int) numero 1 see methode composante
+
+- **[localisation]**  (*type:* string) localisation 1 type_loc indicate where is done the interpolation (elem for  element or som for node). The optional keyword methode is limited to calculer_champ_post for the moment
 
 - **[source]**  (*type:* :ref:`champ_generique_base`) the source field.
 
@@ -774,7 +560,6 @@ Parameters are:
 
 Fields to be post-processed.
 
-
 ----
 
 **Keywords derived from chimie**
@@ -787,16 +572,6 @@ Fields to be post-processed.
 
 
 Keyword to describe the chmical reactions
-
-Usage:
-
-| **chimie** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **reactions**  :ref:`reactions`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_micro_melange]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constante_modele_micro_melange]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[espece_en_competition_micro_melange]**  string
-| }
 
 Parameters are:
 
@@ -824,10 +599,6 @@ Parameters are:
 
 Solver via AmgX API
 
-Usage:
-
-**amgx** **solveur** **option_solveur** **[atol]** **[rtol]**  
-
 Parameters are:
 
 - **solveur**  (*type:* string) not_set
@@ -851,14 +622,6 @@ Parameters are:
 
 Cholesky direct method.
 
-Usage:
-
-| **cholesky** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| }
-
 Parameters are:
 
 - **[impr]**  (*type:* flag) Keyword which may be used to print the resolution time.
@@ -876,13 +639,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **class_generic** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _dt_calc_dt_calc:
@@ -896,11 +652,6 @@ Usage:
 
 
 The time step at first iteration is calculated in agreement with CFL condition.
-
-Usage:
-
-**dt_calc_dt_calc**  
-
 
 ----
 
@@ -916,10 +667,6 @@ Usage:
 
 The first time step is fixed by the user (recommended when resuming calculation with 
 Crank Nicholson temporal scheme to ensure continuity).
-
-Usage:
-
-**dt_calc_dt_fixe** **value**  
 
 Parameters are:
 
@@ -940,11 +687,6 @@ Parameters are:
 
 The first iteration is based on dt_min.
 
-Usage:
-
-**dt_calc_dt_min**  
-
-
 ----
 
 .. _dt_start:
@@ -957,11 +699,6 @@ Usage:
 
 not_set
 
-Usage:
-
-**dt_start**  
-
-
 ----
 
 .. _gcp_ns:
@@ -973,22 +710,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-| **gcp_ns** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur0**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur1**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond]**  :ref:`precond_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond_nul]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **seuil**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[save_matrice | save_matrix]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[optimized]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| }
 
 Parameters are:
 
@@ -1025,20 +746,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **gen** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solv_elem**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **precond**  :ref:`precond_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[save_matrice | save_matrix]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[force]**  flag
-| }
-
 Parameters are:
 
 - **solv_elem**  (*type:* string) To specify a solver among gmres or bicgstab.
@@ -1069,20 +776,6 @@ Parameters are:
 
 
 Gmres method (for non symetric matrix).
-
-Usage:
-
-| **gmres** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diag]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  int into ["0", "1"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[save_matrice | save_matrix]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dim_espace_krilov]**  int
-| }
 
 Parameters are:
 
@@ -1116,19 +809,6 @@ Parameters are:
 Optimal is a solver which tests several solvers of the previous list to choose the 
 fastest one for the considered linear system.
 
-Usage:
-
-| **optimal** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **seuil**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[save_matrice | save_matrix]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[frequence_recalc]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_fichier_solveur]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_solveur_non_recree]**  flag
-| }
-
 Parameters are:
 
 - **seuil**  (*type:* double) Convergence threshold
@@ -1158,11 +838,21 @@ Parameters are:
 
 Solver via Petsc API
 
-\input{{solvpetsc}}
+Dummy test with math!
 
-Usage:
 
-**petsc** **solveur** **option_solveur** **[atol]** **[rtol]**  
+Quand :math:`a > 0` alors il y a deux solutions:
+
+.. math:: ax^2 + bx + c = 0
+
+et elles sont exactement
+
+.. math::
+
+x = {-b \pm \sqrt{b^2 - 4ac} \over 2a}.
+
+
+
 
 Parameters are:
 
@@ -1186,10 +876,6 @@ Parameters are:
 
 
 Solver via rocALUTION API
-
-Usage:
-
-**rocalution** **solveur** **option_solveur** **[atol]** **[rtol]**  
 
 Parameters are:
 
@@ -1215,20 +901,6 @@ Parameters are:
 
 
 Preconditioned conjugated gradient.
-
-Usage:
-
-| **solv_gcp** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond]**  :ref:`precond_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond_nul]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **seuil**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[quiet]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[save_matrice | save_matrix]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[optimized]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| }
 
 Parameters are:
 
@@ -1261,13 +933,6 @@ Parameters are:
 
 Basic class to solve the linear system.
 
-Usage:
-
-| **solveur_sys_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 **Keywords derived from coarsen_operators**
@@ -1280,7 +945,6 @@ Usage:
 
 
 not_set
-
 
 ----
 
@@ -1296,10 +960,6 @@ not_set
 
 
 Comments in a data file.
-
-Usage:
-
-**comment** **comm**  
 
 Parameters are:
 
@@ -1319,7 +979,6 @@ Parameters are:
 
 Initial conditions.
 
-
 ----
 
 **Keywords derived from condlim_base**
@@ -1332,11 +991,6 @@ Initial conditions.
 
 
 Basic class of boundary conditions.
-
-Usage:
-
-**condlim_base**  
-
 
 ----
 
@@ -1352,11 +1006,6 @@ Dirichlet condition at the boundary called bord (edge) : 1).
 For Navier-Stokes equations, velocity imposed at the boundary; 2).
 For scalar transport equation, scalar imposed at the boundary.
 
-Usage:
-
-**dirichlet**  
-
-
 ----
 
 .. _echange_couplage_thermique:
@@ -1368,14 +1017,6 @@ Usage:
 
 
 Thermal coupling boundary condition
-
-Usage:
-
-| **echange_couplage_thermique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[temperature_paroi]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[flux_paroi]**  :ref:`field_base`
-| }
 
 Parameters are:
 
@@ -1398,10 +1039,6 @@ Parameters are:
 
 Internal heat exchange boundary condition with global exchange coefficient.
 
-Usage:
-
-**echange_interne_global_impose** **h_imp** **ch**  
-
 Parameters are:
 
 - **h_imp**  (*type:* string) Global exchange coefficient value. The global exchange coefficient value is expressed in W.m-2.K-1.
@@ -1423,11 +1060,6 @@ Parameters are:
 
 Internal heat exchange boundary condition with perfect (infinite) exchange coefficient.
 
-Usage:
-
-**echange_interne_global_parfait**  
-
-
 ----
 
 .. _echange_interne_impose:
@@ -1441,10 +1073,6 @@ Usage:
 
 
 Internal heat exchange boundary condition with exchange coefficient.
-
-Usage:
-
-**echange_interne_impose** **h_imp** **ch**  
 
 Parameters are:
 
@@ -1467,11 +1095,6 @@ Parameters are:
 
 Internal heat exchange boundary condition with perfect (infinite) exchange coefficient.
 
-Usage:
-
-**echange_interne_parfait**  
-
-
 ----
 
 .. _entree_temperature_imposee_h:
@@ -1483,10 +1106,6 @@ Usage:
 
 
 Particular case of class frontiere_ouverte_temperature_imposee for enthalpy equation.
-
-Usage:
-
-**entree_temperature_imposee_h** **ch**  
 
 Parameters are:
 
@@ -1505,10 +1124,6 @@ Parameters are:
 
 Boundary outlet condition on the boundary called bord (edge) (diffusion flux zero).
 This condition must be associated with a boundary outlet hydraulic condition.
-
-Usage:
-
-**frontiere_ouverte** **var_name** **ch**  
 
 Parameters are:
 
@@ -1531,10 +1146,6 @@ Imposed concentration condition at an open boundary called bord (edge) (situatio
 corresponding to a fluid inlet).
 This condition must be associated with an imposed inlet velocity condition.
 
-Usage:
-
-**frontiere_ouverte_concentration_imposee** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
@@ -1551,10 +1162,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**frontiere_ouverte_fraction_massique_imposee** **ch**  
 
 Parameters are:
 
@@ -1575,10 +1182,6 @@ Normal imposed pressure gradient condition on the open boundary called bord (edg
 This boundary condition may be only used in VDF discretization.
 The imposed $\partial P/\partial n$ value is expressed in Pa.m-1.
 
-Usage:
-
-**frontiere_ouverte_gradient_pression_impose** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
@@ -1595,10 +1198,6 @@ Parameters are:
 
 
 Keyword for an outlet boundary condition in VEF P1B/P1NC on the gradient of the pressure.
-
-Usage:
-
-**frontiere_ouverte_gradient_pression_impose_vefprep1b** **ch**  
 
 Parameters are:
 
@@ -1620,11 +1219,6 @@ There is no reference for pressure for theses boundary conditions so it is bette
 to add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two 
 cells (for symmetry in a channel) of the boundary where Orlansky conditions are imposed.
 
-Usage:
-
-**frontiere_ouverte_gradient_pression_libre_vef**  
-
-
 ----
 
 .. _frontiere_ouverte_gradient_pression_libre_vefprep1b:
@@ -1636,11 +1230,6 @@ Usage:
 
 
 Class for outlet boundary condition in VEF P1B/P1NC like Orlansky.
-
-Usage:
-
-**frontiere_ouverte_gradient_pression_libre_vefprep1b**  
-
 
 ----
 
@@ -1654,10 +1243,6 @@ Usage:
 
 Imposed pressure condition at the open boundary called bord (edge).
 The imposed pressure field is expressed in Pa.
-
-Usage:
-
-**frontiere_ouverte_pression_imposee** **ch**  
 
 Parameters are:
 
@@ -1679,11 +1264,6 @@ There is no reference for pressure for this boundary condition so it is better t
 add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two cells 
 (for symetry in a channel) of the boundary where Orlansky conditions are imposed.
 
-Usage:
-
-**frontiere_ouverte_pression_imposee_orlansky**  
-
-
 ----
 
 .. _frontiere_ouverte_pression_moyenne_imposee:
@@ -1695,10 +1275,6 @@ Usage:
 
 
 Class for open boundary with pressure mean level imposed.
-
-Usage:
-
-**frontiere_ouverte_pression_moyenne_imposee** **pext**  
 
 Parameters are:
 
@@ -1721,10 +1297,6 @@ The imposed mass rate field at the inlet is vectorial and the imposed velocity v
 are expressed in kg.s-1.
 This boundary condition can be used only with the Quasi compressible model.
 
-Usage:
-
-**frontiere_ouverte_rho_u_impose** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
@@ -1745,10 +1317,6 @@ of fluid inlet).
 This condition must be associated with an imposed inlet velocity condition.
 The imposed temperature value is expressed in oC or K.
 
-Usage:
-
-**frontiere_ouverte_temperature_imposee** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
@@ -1767,10 +1335,6 @@ Parameters are:
 Class for velocity-inlet boundary condition.
 The imposed velocity field at the inlet is vectorial and the imposed velocity values 
 are expressed in m.s-1.
-
-Usage:
-
-**frontiere_ouverte_vitesse_imposee** **ch**  
 
 Parameters are:
 
@@ -1791,10 +1355,6 @@ Sub-class for velocity boundary condition.
 The imposed velocity field at the open boundary is vectorial and the imposed velocity 
 values are expressed in m.s-1.
 
-Usage:
-
-**frontiere_ouverte_vitesse_imposee_sortie** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
@@ -1814,11 +1374,6 @@ Neumann condition at the boundary called bord (edge) : 1).
 For Navier-Stokes equations, constraint imposed at the boundary; 2).
 For scalar transport equation, flux imposed at the boundary.
 
-Usage:
-
-**neumann**  
-
-
 ----
 
 .. _neumann_homogene:
@@ -1830,11 +1385,6 @@ Usage:
 
 
 Homogeneous neumann boundary condition
-
-Usage:
-
-**neumann_homogene**  
-
 
 ----
 
@@ -1848,9 +1398,9 @@ Usage:
 
 Neumann boundary condition for mass equation (multiphase problem)
 
-Usage:
+Parameters are:
 
-**neumann_paroi**  
+- **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
 
 
 ----
@@ -1865,11 +1415,6 @@ Usage:
 
 Adiabatic wall neumann boundary condition
 
-Usage:
-
-**neumann_paroi_adiabatique**  
-
-
 ----
 
 .. _paroi:
@@ -1883,11 +1428,6 @@ Usage:
 Impermeability condition at a wall called bord (edge) (standard flux zero).
 This condition must be associated with a wall type hydraulic condition.
 
-Usage:
-
-**paroi**  
-
-
 ----
 
 .. _paroi_adiabatique:
@@ -1899,11 +1439,6 @@ Usage:
 
 
 Normal zero flux condition at the wall called bord (edge).
-
-Usage:
-
-**paroi_adiabatique**  
-
 
 ----
 
@@ -1956,10 +1491,6 @@ NL2 2-2 \\; \\; 2-2-2
 
 NOT OK
 
-Usage:
-
-**paroi_contact** **autrepb** **nameb**  
-
 Parameters are:
 
 - **autrepb**  (*type:* :ref:`pb_base`) Name of other problem.
@@ -1982,10 +1513,6 @@ coupled fluid/solid/fluid problem in case of thin material.
 Thanks to this option, solid is considered as a fictitious media (no mesh, no domain 
 associated), and coupling is performed by considering instantaneous thermal equilibrium 
 in it (for the moment).
-
-Usage:
-
-**paroi_contact_fictif** **autrepb** **nameb** **conduct_fictif** **ep_fictive**  
 
 Parameters are:
 
@@ -2015,13 +1542,6 @@ boundary condition is applied) and the fictious wall.
 This boundary condition needs the definition of the dedicated source terms (Source_Robin 
 or Source_Robin_Scalaire) according the equations used.
 
-Usage:
-
-| **paroi_decalee_robin** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **delta**  double
-| }
-
 Parameters are:
 
 - **delta**  (*type:* double) not_set
@@ -2040,10 +1560,6 @@ Parameters are:
 Keyword to designate a condition where tangential velocity is imposed on the wall 
 called bord (edge).
 If the velocity components set by the user is not tangential, projection is used.
-
-Usage:
-
-**paroi_defilante** **ch**  
 
 Parameters are:
 
@@ -2066,50 +1582,31 @@ Class to define a thermohydraulic 1D model which will apply to a boundary of 2D 
 Warning : For parallel calculation, the only possible partition will be according 
 the axis of the model with the keyword Tranche.
 
-Usage:
-
-| **paroi_echange_contact_correlation_vdf** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dir**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **tinf**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **tsup**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **rho**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dt_impr**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **debit**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dh**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **volume**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nu**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise_correlation]**  flag
-| }
-
 Parameters are:
 
-- **dir**  (*type:* int) Direction (0 : axis X, 1 : axis Y, 2 : axis Z) of the 1D model.
+- **[dir]**  (*type:* int) Direction (0 : axis X, 1 : axis Y, 2 : axis Z) of the 1D model.
 
-- **tinf**  (*type:* double) Inlet fluid temperature of the 1D model (oC or K).
+- **[tinf]**  (*type:* double) Inlet fluid temperature of the 1D model (oC or K).
 
-- **tsup**  (*type:* double) Outlet fluid temperature of the 1D model (oC or K).
+- **[tsup]**  (*type:* double) Outlet fluid temperature of the 1D model (oC or K).
 
-- **Lambda | lambda_u**  (*type:* string) Thermal conductivity of the fluid (W.m-1.K-1).
+- **[Lambda]**  (*type:* string) Thermal conductivity of the fluid (W.m-1.K-1).
 
-- **rho**  (*type:* string) Mass density of the fluid (kg.m-3) which may be a function of the temperature  T.
+- **[rho]**  (*type:* string) Mass density of the fluid (kg.m-3) which may be a function of the temperature  T.
 
-- **cp**  (*type:* double) Calorific capacity value at a constant pressure of the fluid (J.kg-1.K-1).
+- **[dt_impr]**  (*type:* double) Printing period in name_of_data_file_time.dat files of the 1D model results.
 
-- **dt_impr**  (*type:* double) Printing period in name_of_data_file_time.dat files of the 1D model results.
+- **[cp]**  (*type:* double) Calorific capacity value at a constant pressure of the fluid (J.kg-1.K-1).
 
-- **mu**  (*type:* string) Dynamic viscosity of the fluid (kg.m-1.s-1) which may be a function of thetemperature  T.
+- **[mu]**  (*type:* string) Dynamic viscosity of the fluid (kg.m-1.s-1) which may be a function of thetemperature  T.
 
-- **debit**  (*type:* double) Surface flow rate (kg.s-1.m-2) of the fluid into the channel.
+- **[debit]**  (*type:* double) Surface flow rate (kg.s-1.m-2) of the fluid into the channel.
 
-- **dh**  (*type:* double) Hydraulic diameter may be a function f(x) with x position along the 1D  axis (xinf <= x <= xsup)
+- **[dh]**  (*type:* double) Hydraulic diameter may be a function f(x) with x position along the 1D  axis (xinf <= x <= xsup)
 
-- **volume**  (*type:* string) Exact volume of the 1D domain (m3) which may be a function of the hydraulic  diameter (Dh) and the lateral surface (S) of the meshed boundary.
+- **[volume]**  (*type:* string) Exact volume of the 1D domain (m3) which may be a function of the hydraulic  diameter (Dh) and the lateral surface (S) of the meshed boundary.
 
-- **nu**  (*type:* string) Nusselt number which may be a function of the Reynolds number (Re) and the  Prandtl number (Pr).
+- **[nu]**  (*type:* string) Nusselt number which may be a function of the Reynolds number (Re) and the  Prandtl number (Pr).
 
 - **[reprise_correlation]**  (*type:* flag) Keyword in the case of a resuming calculation with this correlation.
 
@@ -2130,60 +1627,37 @@ Class to define a thermohydraulic 1D model which will apply to a boundary of 2D 
 Warning : For parallel calculation, the only possible partition will be according 
 the axis of the model with the keyword Tranche_geom.
 
-Usage:
-
-| **paroi_echange_contact_correlation_vef** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dir**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **tinf**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **tsup**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **rho**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dt_impr**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **debit**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dh**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **n**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **surface**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nu**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **xinf**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **xsup**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[emissivite_pour_rayonnement_entre_deux_plaques_quasi_infinies]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise_correlation]**  flag
-| }
-
 Parameters are:
 
-- **dir**  (*type:* int) Direction (0 : axis X, 1 : axis Y, 2 : axis Z) of the 1D model.
+- **[dir]**  (*type:* int) Direction (0 : axis X, 1 : axis Y, 2 : axis Z) of the 1D model.
 
-- **tinf**  (*type:* double) Inlet fluid temperature of the 1D model (oC or K).
+- **[tinf]**  (*type:* double) Inlet fluid temperature of the 1D model (oC or K).
 
-- **tsup**  (*type:* double) Outlet fluid temperature of the 1D model (oC or K).
+- **[tsup]**  (*type:* double) Outlet fluid temperature of the 1D model (oC or K).
 
-- **Lambda | lambda_u**  (*type:* string) Thermal conductivity of the fluid (W.m-1.K-1).
+- **[Lambda]**  (*type:* string) Thermal conductivity of the fluid (W.m-1.K-1).
 
-- **rho**  (*type:* string) Mass density of the fluid (kg.m-3) which may be a function of the temperature  T.
+- **[rho]**  (*type:* string) Mass density of the fluid (kg.m-3) which may be a function of the temperature  T.
 
-- **cp**  (*type:* double) Calorific capacity value at a constant pressure of the fluid (J.kg-1.K-1).
+- **[dt_impr]**  (*type:* double) Printing period in name_of_data_file_time.dat files of the 1D model results.
 
-- **dt_impr**  (*type:* double) Printing period in name_of_data_file_time.dat files of the 1D model results.
+- **[cp]**  (*type:* double) Calorific capacity value at a constant pressure of the fluid (J.kg-1.K-1).
 
-- **mu**  (*type:* string) Dynamic viscosity of the fluid (kg.m-1.s-1) which may be a function of thetemperature  T.
+- **[mu]**  (*type:* string) Dynamic viscosity of the fluid (kg.m-1.s-1) which may be a function of thetemperature  T.
 
-- **debit**  (*type:* double) Surface flow rate (kg.s-1.m-2) of the fluid into the channel.
+- **[debit]**  (*type:* double) Surface flow rate (kg.s-1.m-2) of the fluid into the channel.
 
-- **dh**  (*type:* string) Hydraulic diameter may be a function f(x) with x position along the 1D axis  (xinf <= x <= xsup)
+- **[n]**  (*type:* int) Number of 1D cells of the 1D mesh.
 
-- **n**  (*type:* int) Number of 1D cells of the 1D mesh.
+- **[dh]**  (*type:* string) Hydraulic diameter may be a function f(x) with x position along the 1D axis  (xinf <= x <= xsup)
 
-- **surface**  (*type:* string) Section surface of the channel which may be function f(Dh,x) of the hydraulic  diameter (Dh) and x position along the 1D axis (xinf <= x <= xsup)
+- **[surface]**  (*type:* string) Section surface of the channel which may be function f(Dh,x) of the hydraulic  diameter (Dh) and x position along the 1D axis (xinf <= x <= xsup)
 
-- **nu**  (*type:* string) Nusselt number which may be a function of the Reynolds number (Re) and the  Prandtl number (Pr).
+- **[xinf]**  (*type:* double) Position of the inlet of the 1D mesh on the axis direction.
 
-- **xinf**  (*type:* double) Position of the inlet of the 1D mesh on the axis direction.
+- **[xsup]**  (*type:* double) Position of the outlet of the 1D mesh on the axis direction.
 
-- **xsup**  (*type:* double) Position of the outlet of the 1D mesh on the axis direction.
+- **[nu]**  (*type:* string) Nusselt number which may be a function of the Reynolds number (Re) and the  Prandtl number (Pr).
 
 - **[emissivite_pour_rayonnement_entre_deux_plaques_quasi_infinies]**  (*type:* double) Coefficient of emissivity for radiation between two quasi infinite plates.
 
@@ -2202,10 +1676,6 @@ Parameters are:
 
 Boundary condition type to model the heat flux between two problems.
 Important: the name of the boundaries in the two problems should be the same.
-
-Usage:
-
-**paroi_echange_contact_vdf** **autrepb** **nameb** **temp** **h**  
 
 Parameters are:
 
@@ -2231,10 +1701,6 @@ Parameters are:
 External type exchange condition with a heat exchange coefficient and an imposed external 
 temperature.
 
-Usage:
-
-**paroi_echange_externe_impose** **h_imp** **himpc** **text** **ch**  
-
 Parameters are:
 
 - **h_imp**  (*type:* string) Heat exchange coefficient value (expressed in W.m-2.K-1).
@@ -2257,10 +1723,6 @@ Parameters are:
 
 
 Particular case of class paroi_echange_externe_impose for enthalpy equation.
-
-Usage:
-
-**paroi_echange_externe_impose_h** **h_imp** **himpc** **text** **ch**  
 
 Parameters are:
 
@@ -2286,10 +1748,6 @@ Parameters are:
 Global type exchange condition (internal) that is to say that diffusion on the first 
 fluid mesh is not taken into consideration.
 
-Usage:
-
-**paroi_echange_global_impose** **h_imp** **himpc** **text** **ch**  
-
 Parameters are:
 
 - **h_imp**  (*type:* string) Global exchange coefficient value. The global exchange coefficient value is expressed in W.m-2.K-1.
@@ -2314,11 +1772,6 @@ Parameters are:
 Keyword to designate a situation of adherence to the wall called bord (edge) (normal 
 and tangential velocity at the edge is zero).
 
-Usage:
-
-**paroi_fixe**  
-
-
 ----
 
 .. _paroi_fixe_iso_genepi2_sans_contribution_aux_vitesses_sommets:
@@ -2330,11 +1783,6 @@ Usage:
 
 
 Boundary condition to obtain iso Geneppi2, without interest
-
-Usage:
-
-**paroi_fixe_iso_genepi2_sans_contribution_aux_vitesses_sommets**  
-
 
 ----
 
@@ -2350,10 +1798,6 @@ Normal flux condition at the wall called bord (edge).
 The surface area of the flux (W.m-1 in 2D or W.m-2 in 3D) is imposed at the boundary 
 according to the following convention: a positive flux is a flux that enters into 
 the domain according to convention.
-
-Usage:
-
-**paroi_flux_impose** **ch**  
 
 Parameters are:
 
@@ -2389,10 +1833,6 @@ s=1 seems a good value.
 
 Warning : The keyword is available for VDF calculation only for the moment.
 
-Usage:
-
-**paroi_knudsen_non_negligeable** **name_champ_1** **champ_1** **name_champ_2** **champ_2**  
-
 Parameters are:
 
 - **name_champ_1**  (*type:* string into ["vitesse_paroi", "k"])  Field name.
@@ -2415,10 +1855,6 @@ Parameters are:
 
 
 Imposed temperature condition at the wall called bord (edge).
-
-Usage:
-
-**paroi_temperature_imposee** **ch**  
 
 Parameters are:
 
@@ -2445,11 +1881,6 @@ For scalar transport equation, this keyword is used to set a periodic condition 
 scalar.
 The two edges dealing with this periodic condition bear the same name.
 
-Usage:
-
-**periodic**  
-
-
 ----
 
 .. _scalaire_impose_paroi:
@@ -2461,10 +1892,6 @@ Usage:
 
 
 Imposed temperature condition at the wall called bord (edge).
-
-Usage:
-
-**scalaire_impose_paroi** **ch**  
 
 Parameters are:
 
@@ -2482,10 +1909,6 @@ Parameters are:
 
 
 Open boundary for heat equation with enthalpy as unknown.
-
-Usage:
-
-**sortie_libre_temperature_imposee_h** **ch**  
 
 Parameters are:
 
@@ -2509,11 +1932,6 @@ edge equal to zero and tangential velocity gradient at the edge equal to zero); 
 For scalar transport equation, this keyword is used to set a symmetry condition on 
 scalar on the boundary named bord (edge).
 
-Usage:
-
-**symetrie**  
-
-
 ----
 
 .. _temperature_imposee_paroi:
@@ -2525,10 +1943,6 @@ Usage:
 
 
 Imposed temperature condition at the wall called bord (edge).
-
-Usage:
-
-**temperature_imposee_paroi** **ch**  
 
 Parameters are:
 
@@ -2548,7 +1962,6 @@ Parameters are:
 
 Boundary conditions.
 
-
 ----
 
 **Keywords derived from definition_champs**
@@ -2561,7 +1974,6 @@ Boundary conditions.
 
 
 List of definition champ
-
 
 ----
 
@@ -2576,13 +1988,6 @@ List of definition champ
 
 Basic class for space discretization of thermohydraulic turbulent problems.
 
-Usage:
-
-| **discretisation_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _ef:
@@ -2594,13 +1999,6 @@ Usage:
 
 
 Element Finite discretization.
-
-Usage:
-
-| **ef** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -2614,13 +2012,6 @@ Usage:
 
 polymac discretization (polymac discretization that is not compatible with pb_multi).
 
-Usage:
-
-| **polymac** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _polymac_p0:
@@ -2632,13 +2023,6 @@ Usage:
 
 
 polymac_p0 discretization (previously covimac discretization compatible with pb_multi).
-
-Usage:
-
-| **polymac_p0** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -2652,13 +2036,6 @@ Usage:
 
 polymac_P0P1NC discretization (previously polymac discretization compatible with pb_multi).
 
-Usage:
-
-| **polymac_p0p1nc** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _vdf:
@@ -2670,13 +2047,6 @@ Usage:
 
 
 Finite difference volume discretization.
-
-Usage:
-
-| **vdf** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -2700,19 +2070,9 @@ to VEFPreP1B but the convergence is slower.
 VEFPreP1B dis is equivalent to VEFPreP1B dis Read dis { P0 P1 Changement_de_base_P1Bulle 
 1 Cl_pression_sommet_faible 0 }
 
-Usage:
-
-| **vef** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p0]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p1]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pa]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[changement_de_base_p1bulle]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cl_pression_sommet_faible]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modif_div_face_dirichlet]**  int into [0,1]
-| }
-
 Parameters are:
+
+- **[changement_de_base_p1bulle]**  (*type:* int into [0,1])  changement_de_base_p1bulle 1 This option may be used to have  the P1NC/P0P1 formulation (value set to 0) or the P1NC/P1Bulle formulation (value  set to 1, the default).
 
 - **[p0]**  (*type:* flag) Pressure nodes are added on element centres
 
@@ -2720,11 +2080,11 @@ Parameters are:
 
 - **[pa]**  (*type:* flag) Only available in 3D, pressure nodes are added on bones
 
-- **[changement_de_base_p1bulle]**  (*type:* int into [0,1])  This option may be used to have the P1NC/P0P1 formulation (value  set to 0) or the P1NC/P1Bulle formulation (value set to 1, the default).
-
-- **[cl_pression_sommet_faible]**  (*type:* int into [0,1])  This option is used to specify a strong formulation (value set  to 0, the default) or a weak formulation (value set to 1) for an imposed pressure  boundary condition. The first formulation converges quicker and is stable in general cases. The second formulation should be used if there are several outlet boundaries with  Neumann condition (see Ecoulement_Neumann test case for example).
+- **[rt]**  (*type:* flag) For P1NCP1B (in TrioCFD)
 
 - **[modif_div_face_dirichlet]**  (*type:* int into [0,1])  This option (by default 0) is used to extend control volumes  for the momentum equation.
+
+- **[cl_pression_sommet_faible]**  (*type:* int into [0,1])  This option is used to specify a strong formulation (value set  to 0, the default) or a weak formulation (value set to 1) for an imposed pressure  boundary condition. The first formulation converges quicker and is stable in general cases. The second formulation should be used if there are several outlet boundaries with  Neumann condition (see Ecoulement_Neumann test case for example).
 
 
 ----
@@ -2740,13 +2100,6 @@ Parameters are:
 
 Keyword to create a domain.
 
-Usage:
-
-| **domaine** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _domaineaxi1d:
@@ -2758,13 +2111,6 @@ Usage:
 
 
 1D domain
-
-Usage:
-
-| **domaineaxi1d** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -2778,24 +2124,6 @@ Usage:
 
 Object to define the grid that will represent the domain of the simulation in IJK 
 discretization
-
-Usage:
-
-| **ijk_grid_geometry** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_i]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_j]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_k]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nbelem_i]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nbelem_j]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nbelem_k]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[uniform_domain_size_i]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[uniform_domain_size_j]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[uniform_domain_size_k]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[origin_i]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[origin_j]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[origin_k]**  double
-| }
 
 Parameters are:
 
@@ -2840,10 +2168,6 @@ Parameters are:
 Composite field.
 Used in multiphase problems to associate data to each phase.
 
-Usage:
-
-**champ_composite** **dim** **bloc**  
-
 Parameters are:
 
 - **dim**  (*type:* int) Number of field components.
@@ -2864,13 +2188,6 @@ Parameters are:
 Basic class for data fields (not calculated), p.e.
 physics properties.
 
-Usage:
-
-| **champ_don_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _champ_don_lu:
@@ -2882,10 +2199,6 @@ Usage:
 
 
 Field to read a data field (values located at the center of the cells) in a file.
-
-Usage:
-
-**champ_don_lu** **dom** **nb_comp** **file**  
 
 Parameters are:
 
@@ -2908,10 +2221,6 @@ Parameters are:
 
 Field that is a function of another field.
 
-Usage:
-
-**champ_fonc_fonction** **problem_name** **inco** **expression**  
-
 Parameters are:
 
 - **problem_name**  (*type:* :ref:`pb_base`) Name of problem.
@@ -2933,10 +2242,6 @@ Parameters are:
 
 this refers to a field that is a function of another field and time and/or space coordinates
 
-Usage:
-
-**champ_fonc_fonction_txyz** **problem_name** **inco** **expression**  
-
 Parameters are:
 
 - **problem_name**  (*type:* :ref:`pb_base`) Name of problem.
@@ -2957,11 +2262,9 @@ Parameters are:
 
 
 Field defined by analytical functions in each sub-domaine.
-It makes possible the definition of a field that depends on the time and the space.
-
-Usage:
-
-**champ_fonc_fonction_txyz_morceaux** **problem_name** **inco** **nb_comp** **data**  
+On each zone, the value is defined as a function of x,y,z,t and of scalar value taken 
+from a parameter field.
+This values is associated to the variable ’val’ in the expression.
 
 Parameters are:
 
@@ -2986,19 +2289,6 @@ Parameters are:
 
 Field that is interpolated from a distant domain via MEDCoupling (remapper).
 
-Usage:
-
-| **champ_fonc_interp** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_champ**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **pb_loc**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **pb_dist**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dom_loc]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dom_dist]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[default_value]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nature**  string
-| }
-
 Parameters are:
 
 - **nom_champ**  (*type:* string) Name of the field (for example: temperature).
@@ -3015,6 +2305,8 @@ Parameters are:
 
 - **nature**  (*type:* string) Nature of the field (knowledge from MEDCoupling is required; IntensiveMaximum,  IntensiveConservation, ...).
 
+- **[use_overlapdec]**  (*type:* string) Nature of the field (knowledge from MEDCoupling is required; IntensiveMaximum,  IntensiveConservation, ...).
+
 
 ----
 
@@ -3030,21 +2322,6 @@ Field to read a data field in a MED-format file .med at a specified time.
 It is very useful, for example, to resume a calculation with a new or refined geometry.
 The field post-processed on the new geometry at med format is used as initial condition 
 for the resume.
-
-Usage:
-
-| **champ_fonc_med** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_existing_domain]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[last_time]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[decoup]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mesh]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domain**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **file**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **field**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[loc]**  string into ["som", "elem"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[time]**  double
-| }
 
 Parameters are:
 
@@ -3078,23 +2355,6 @@ Parameters are:
 
 
 Field defined as a fixed spatial shape scaled by a temporal coefficient
-
-Usage:
-
-| **champ_fonc_med_table_temps** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[table_temps]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[table_temps_lue]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_existing_domain]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[last_time]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[decoup]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mesh]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domain**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **file**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **field**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[loc]**  string into ["som", "elem"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[time]**  double
-| }
 
 Parameters are:
 
@@ -3133,21 +2393,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **champ_fonc_med_tabule** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_existing_domain]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[last_time]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[decoup]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mesh]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domain**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **file**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **field**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[loc]**  string into ["som", "elem"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[time]**  double
-| }
-
 Parameters are:
 
 - **[use_existing_domain]**  (*type:* flag) whether to optimize the field loading by indicating that the field is supported  by the same mesh that was initially loaded as the domain
@@ -3184,10 +2429,6 @@ time.
 It is very useful, for example, to run a thermohydraulic calculation with velocity 
 initial condition read into a save file from a previous hydraulic calculation.
 
-Usage:
-
-**champ_fonc_reprise** **[format]** **filename** **pb_name** **champ** **[fonction]** **temps | time**  
-
 Parameters are:
 
 - **[format]**  (*type:* string into ["binaire", "formatte", "xyz", "single_hdf"])  Type of file (the file format). If xyz format is activated, the .xyz file from the previous calculation will be given  for filename, and if formatte or binaire is choosen, the .sauv file of the previous  calculation will be specified for filename. In the case of a parallel calculation, if the mesh partition does not changed between  the previous calculation and the next one, the binaire format should be preferred,  because is faster than the xyz format. If single_hdf is used, the same constraints/advantages as binaire apply, but a single  (HDF5) file is produced on the filesystem instead of having one file per processor.
@@ -3215,10 +2456,6 @@ Parameters are:
 
 Field that is constant in space and is a function of time.
 
-Usage:
-
-**champ_fonc_t** **val**  
-
 Parameters are:
 
 - **val**  (*type:* string list) Values of field components (time dependant functions).
@@ -3236,13 +2473,9 @@ Parameters are:
 
 Field that is tabulated as a function of another field.
 
-Usage:
-
-**champ_fonc_tabule** **inco** **dim** **bloc**  
-
 Parameters are:
 
-- **inco**  (*type:* string) Name of the field (for example: temperature).
+- **pb_field**  (*type:* :ref:`bloc_lecture`) block similar to { pb1 field1 } or { pb1 field1 ... pbN fieldN }
 
 - **dim**  (*type:* int) Number of field components.
 
@@ -3263,10 +2496,6 @@ Parameters are:
 
 Field defined by tabulated data in each sub-domaine.
 It makes possible the definition of a field which is a function of other fields.
-
-Usage:
-
-**champ_fonc_tabule_morceaux** **domain_name** **nb_comp** **data**  
 
 Parameters are:
 
@@ -3291,10 +2520,6 @@ Field defined by tabulated data in each sub-domaine.
 It makes possible the definition of a field which is a function of other fields.
 Here we use MEDCoupling to interpolate fields between the two domains.
 
-Usage:
-
-**champ_fonc_tabule_morceaux_interp** **problem_name** **nb_comp** **data**  
-
 Parameters are:
 
 - **problem_name**  (*type:* :ref:`pb_base`) Name of the problem.
@@ -3317,10 +2542,6 @@ Parameters are:
 For a parabolic profile on U velocity with an unpredictable disturbance on V and W 
 and a sinusoidal disturbance on V velocity.
 
-Usage:
-
-**champ_init_canal_sinal** **dim** **bloc**  
-
 Parameters are:
 
 - **dim**  (*type:* int) Number of field components.
@@ -3339,17 +2560,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **champ_input_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_comp**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_value]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
 
 Parameters are:
 
@@ -3376,17 +2586,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **champ_input_p0** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_comp**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_value]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
-
 Parameters are:
 
 - **nb_comp**  (*type:* int) not_set
@@ -3412,19 +2611,6 @@ Parameters are:
 
 Field used to define a classical champ input p0 field (for ICoCo), but with a predefined 
 field for the initial state.
-
-Usage:
-
-| **champ_input_p0_composite** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_field]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[input_field]**  :ref:`champ_input_p0`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_comp**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_value]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
 
 Parameters are:
 
@@ -3456,10 +2642,6 @@ Parameters are:
 MUSIG field.
 Used in multiphase problems to associate data to each phase.
 
-Usage:
-
-**champ_musig** **bloc**  
-
 Parameters are:
 
 - **bloc**  (*type:* :ref:`bloc_lecture`) Not set
@@ -3479,11 +2661,6 @@ This keyword is used to define the viscosity variation law:
 
 Mu(T)= K(T)*(D:D/2)**((n-1)/2)
 
-Usage:
-
-**champ_ostwald**  
-
-
 ----
 
 .. _champ_som_lu_vdf:
@@ -3495,10 +2672,6 @@ Usage:
 
 
 Keyword to read in a file values located at the nodes of a mesh in VDF discretization.
-
-Usage:
-
-**champ_som_lu_vdf** **domain_name** **dim** **tolerance** **file**  
 
 Parameters are:
 
@@ -3523,10 +2696,6 @@ Parameters are:
 
 Keyword to read in a file values located at the nodes of a mesh in VEF discretization.
 
-Usage:
-
-**champ_som_lu_vef** **domain_name** **dim** **tolerance** **file**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of the domain.
@@ -3550,10 +2719,6 @@ Parameters are:
 
 Field that is constant in space and tabulated as a function of time.
 
-Usage:
-
-**champ_tabule_temps** **dim** **bloc**  
-
 Parameters are:
 
 - **dim**  (*type:* int) Number of field components.
@@ -3572,10 +2737,6 @@ Parameters are:
 
 
 Field which is partly constant in space and stationary.
-
-Usage:
-
-**champ_uniforme_morceaux** **nom_dom** **nb_comp** **data**  
 
 Parameters are:
 
@@ -3599,10 +2760,6 @@ Parameters are:
 this type of field is constant in space on one or several sub_zones and tabulated 
 as a function of time.
 
-Usage:
-
-**champ_uniforme_morceaux_tabule_temps** **nom_dom** **nb_comp** **data**  
-
 Parameters are:
 
 - **nom_dom**  (*type:* :ref:`domaine`) Name of the domain to which the sub-areas belong.
@@ -3624,13 +2781,6 @@ Parameters are:
 
 Basic class of fields.
 
-Usage:
-
-| **field_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _field_func_txyz:
@@ -3645,10 +2795,6 @@ Usage:
 
 Field defined by analytical functions.
 It makes it possible the definition of a field that depends on the time and the space.
-
-Usage:
-
-**field_func_txyz** **dom** **val**  
 
 Parameters are:
 
@@ -3672,10 +2818,6 @@ Parameters are:
 Field defined by analytical functions.
 It makes it possible the definition of a field that depends on (x,y,z).
 
-Usage:
-
-**field_func_xyz** **dom** **val**  
-
 Parameters are:
 
 - **dom**  (*type:* :ref:`domaine`) Name of domain of calculation.
@@ -3694,10 +2836,6 @@ Parameters are:
 
 
 ne marche que pour n_comp=1
-
-Usage:
-
-**init_par_partie** **n_comp** **val1** **val2** **val3**  
 
 Parameters are:
 
@@ -3722,10 +2860,6 @@ Parameters are:
 
 Class Tayl_green.
 
-Usage:
-
-**tayl_green** **dim**  
-
 Parameters are:
 
 - **dim**  (*type:* int) Dimension.
@@ -3745,10 +2879,6 @@ Parameters are:
 
 Field that is constant in space and stationary.
 
-Usage:
-
-**uniform_field** **val**  
-
 Parameters are:
 
 - **val**  (*type:* list) Values of field components.
@@ -3767,10 +2897,6 @@ Parameters are:
 Similar as Champ_Uniforme_Morceaux with the same syntax.
 Used for source terms when we want to specify a source term with a value given for 
 the volume (eg: heat in Watts) and not a value per volume unit (eg: heat in Watts/m3).
-
-Usage:
-
-**valeur_totale_sur_volume** **nom_dom** **nb_comp** **data**  
 
 Parameters are:
 
@@ -3797,13 +2923,6 @@ Parameters are:
 this field is used to define the normal vector field standard at the boundary in VDF 
 or VEF discretization.
 
-Usage:
-
-| **boundary_field_inward** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **normal_value**  string
-| }
-
 Parameters are:
 
 - **normal_value**  (*type:* string) normal vector value (positive value for a vector oriented outside to inside)  which can depend of the time.
@@ -3820,17 +2939,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **ch_front_input** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_comp**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_value]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
 
 Parameters are:
 
@@ -3859,17 +2967,6 @@ for coupling, you can use ch_front_input_uniforme which is a champ_front_uniform
 which use an external value.
 It must be used with Problem.setInputField.
 
-Usage:
-
-| **ch_front_input_uniforme** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_comp**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[initial_value]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
-
 Parameters are:
 
 - **nb_comp**  (*type:* int) not_set
@@ -3895,10 +2992,6 @@ Parameters are:
 
 Field which is variable in time and space in a random manner.
 
-Usage:
-
-**champ_front_bruite** **nb_comp** **bloc**  
-
 Parameters are:
 
 - **nb_comp**  (*type:* int) Number of field components.
@@ -3923,10 +3016,6 @@ It is used in the condition block at the limits of equation which itself refers 
 a problem called pb1.
 We are working under the supposition that pb1 is coupled to another problem.
 
-Usage:
-
-**champ_front_calc** **problem_name** **bord** **field_name**  
-
 Parameters are:
 
 - **problem_name**  (*type:* :ref:`pb_base`) Name of the other problem to which pb1 is coupled.
@@ -3949,10 +3038,6 @@ Parameters are:
 Composite front field.
 Used in multiphase problems to associate data to each phase.
 
-Usage:
-
-**champ_front_composite** **dim** **bloc**  
-
 Parameters are:
 
 - **dim**  (*type:* int) Number of field components.
@@ -3973,10 +3058,6 @@ Parameters are:
 This field is used on a boundary between a solid and fluid domain to exchange a calculated 
 temperature at the contact face of the two domains according to the flux of the two 
 problems.
-
-Usage:
-
-**champ_front_contact_vef** **local_pb** **local_boundary** **remote_pb** **remote_boundary**  
 
 Parameters are:
 
@@ -4002,10 +3083,6 @@ Parameters are:
 This field is used to define a flow rate field instead of a velocity field for a Dirichlet 
 boundary condition on Navier-Stokes equations.
 
-Usage:
-
-**champ_front_debit** **ch**  
-
 Parameters are:
 
 - **ch**  (*type:* :ref:`front_field_base`) uniform field in space to define the flow rate. It could be, for example, champ_front_uniforme, ch_front_input_uniform or champ_front_fonc_txyz  that depends only on time.
@@ -4022,10 +3099,6 @@ Parameters are:
 
 
 This field is used to define a flow rate field using the density
-
-Usage:
-
-**champ_front_debit_massique** **ch**  
 
 Parameters are:
 
@@ -4045,10 +3118,6 @@ Parameters are:
 This keyword is used to define a flow rate field for quasi-compressible fluids in 
 VDF discretization.
 The flow rate is kept constant during a transient.
-
-Usage:
-
-**champ_front_debit_qc_vdf** **dimension | dim** **liste** **[moyen]** **pb_name**  
 
 Parameters are:
 
@@ -4075,10 +3144,6 @@ This keyword is used to define a flow rate field for quasi-compressible fluids i
 VDF discretization.
 The flow rate could be constant or time-dependent.
 
-Usage:
-
-**champ_front_debit_qc_vdf_fonc_t** **dimension | dim** **liste** **[moyen]** **pb_name**  
-
 Parameters are:
 
 - **dimension | dim**  (*type:* int) Problem dimension
@@ -4102,10 +3167,6 @@ Parameters are:
 
 Boundary field champ_front_fonc_pois_ipsn.
 
-Usage:
-
-**champ_front_fonc_pois_ipsn** **r_tube** **umoy** **r_loc**  
-
 Parameters are:
 
 - **r_tube**  (*type:* double) not_set
@@ -4126,10 +3187,6 @@ Parameters are:
 
 
 Boundary field champ_front_fonc_pois_tube.
-
-Usage:
-
-**champ_front_fonc_pois_tube** **r_tube** **umoy** **r_loc** **r_loc_mult**  
 
 Parameters are:
 
@@ -4154,10 +3211,6 @@ Parameters are:
 
 Boundary field that depends only on time.
 
-Usage:
-
-**champ_front_fonc_t** **val**  
-
 Parameters are:
 
 - **val**  (*type:* string list) Values of field components (mathematical expressions).
@@ -4174,10 +3227,6 @@ Parameters are:
 
 
 Boundary field which is not constant in space and in time.
-
-Usage:
-
-**champ_front_fonc_txyz** **val**  
 
 Parameters are:
 
@@ -4196,10 +3245,6 @@ Parameters are:
 
 Boundary field which is not constant in space.
 
-Usage:
-
-**champ_front_fonc_xyz** **val**  
-
 Parameters are:
 
 - **val**  (*type:* string list) Values of field components (mathematical expressions).
@@ -4216,10 +3261,6 @@ Parameters are:
 
 
 boundary field that is function of another field
-
-Usage:
-
-**champ_front_fonction** **dim** **inco** **expression**  
 
 Parameters are:
 
@@ -4246,10 +3287,6 @@ The format of this file has to be the same that the one generated by Ecrire_fich
 Example for K and epsilon quantities to be defined for inlet condition in a boundary 
 named 'entree': NL2entree frontiere_ouverte_K_Eps_impose Champ_Front_lu dom 2pb_K_EPS_PERIO_1006.306198.dat
 
-Usage:
-
-**champ_front_lu** **domaine | domain** **dim** **file**  
-
 Parameters are:
 
 - **domaine | domain**  (*type:* :ref:`domaine`) Name of domain
@@ -4271,10 +3308,6 @@ Parameters are:
 
 Field allowing the loading of a boundary condition from a MED file using Champ_fonc_med
 
-Usage:
-
-**champ_front_med** **champ_fonc_med**  
-
 Parameters are:
 
 - **champ_fonc_med**  (*type:* :ref:`field_base`) a champ_fonc_med loading the values of the unknown on a domain boundary
@@ -4293,10 +3326,6 @@ Parameters are:
 MUSIG front field.
 Used in multiphase problems to associate data to each phase.
 
-Usage:
-
-**champ_front_musig** **bloc**  
-
 Parameters are:
 
 - **bloc**  (*type:* :ref:`bloc_lecture`) Not set
@@ -4313,10 +3342,6 @@ Parameters are:
 
 
 Field to define the normal vector field standard at the boundary in VEF discretization.
-
-Usage:
-
-**champ_front_normal_vef** **mot** **vit_tan**  
 
 Parameters are:
 
@@ -4337,10 +3362,6 @@ Parameters are:
 
 this field is used to define a pressure field depending of a velocity field.
 
-Usage:
-
-**champ_front_pression_from_u** **expression**  
-
 Parameters are:
 
 - **expression**  (*type:* string) value depending of a velocity (like $2*u_moy^2$).
@@ -4356,11 +3377,7 @@ Parameters are:
 **Inherits from:** :ref:`front_field_base` 
 
 
-\input{{champfrontrecyclage}}
 
-Usage:
-
-**champ_front_recyclage** **bloc**  
 
 Parameters are:
 
@@ -4378,10 +3395,6 @@ Parameters are:
 
 
 Constant field on the boundary, tabulated as a function of time.
-
-Usage:
-
-**champ_front_tabule** **nb_comp** **bloc**  
 
 Parameters are:
 
@@ -4403,10 +3416,6 @@ Parameters are:
 Constant field on the boundary, tabulated from a specified column file.
 Lines starting with # are ignored.
 
-Usage:
-
-**champ_front_tabule_lu** **nb_comp** **column_file**  
-
 Parameters are:
 
 - **nb_comp**  (*type:* int) Number of field components.
@@ -4427,10 +3436,6 @@ Parameters are:
 Field to define the tangential velocity vector field standard at the boundary in VEF 
 discretization.
 
-Usage:
-
-**champ_front_tangentiel_vef** **mot** **vit_tan**  
-
 Parameters are:
 
 - **mot**  (*type:* string into ["vitesse_tangentielle"])  Name of vector field.
@@ -4450,10 +3455,6 @@ Parameters are:
 
 Boundary field which is constant in space and stationary.
 
-Usage:
-
-**champ_front_uniforme** **val**  
-
 Parameters are:
 
 - **val**  (*type:* list) Values of field components.
@@ -4471,14 +3472,6 @@ Parameters are:
 
 This field is used to define a flow rate field with a velocity profil which will be 
 normalized to match the flow rate chosen.
-
-Usage:
-
-| **champ_front_xyz_debit** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[velocity_profil]**  :ref:`front_field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **flow_rate**  :ref:`front_field_base`
-| }
 
 Parameters are:
 
@@ -4499,10 +3492,6 @@ Parameters are:
 
 Space dependent field on the boundary, tabulated as a function of time.
 
-Usage:
-
-**champ_front_xyz_tabule** **val** **bloc**  
-
 Parameters are:
 
 - **val**  (*type:* string list) Values of field components (mathematical expressions).
@@ -4522,13 +3511,6 @@ Parameters are:
 
 Basic class for fields at domain boundaries.
 
-Usage:
-
-| **front_field_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 **Keywords derived from ijk_splitting**
@@ -4542,16 +3524,6 @@ Usage:
 
 Object to specify how the domain will be divided between processors in IJK discretization
 
-Usage:
-
-| **ijk_splitting** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **ijk_grid_geometry**  :ref:`ijk_grid_geometry`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nproc_i**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nproc_j**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nproc_k**  int
-| }
-
 Parameters are:
 
 - **ijk_grid_geometry**  (*type:* :ref:`ijk_grid_geometry`) the grid that will be splitted
@@ -4561,6 +3533,114 @@ Parameters are:
 - **nproc_j**  (*type:* int) the number of processors into which we will divide the grid following the  J direction
 
 - **nproc_k**  (*type:* int) the number of processors into which we will divide the grid following the  K direction
+
+
+----
+
+**Keywords derived from interface_base**
+========================================
+
+.. _interface_base:
+
+**interface_base**
+------------------
+
+
+Basic class for a liquid-gas interface (used in pb_multiphase)
+
+Parameters are:
+
+- **[tension_superficielle | surface_tension]**  (*type:* double) surface tension
+
+
+----
+
+.. _interface_sigma_constant:
+
+**interface_sigma_constant**
+----------------------------
+
+**Inherits from:** :ref:`interface_base` 
+
+
+Liquid-gas interface with a constant surface tension sigma
+
+Parameters are:
+
+- **[tension_superficielle | surface_tension]**  (*type:* double) surface tension
+
+
+----
+
+.. _saturation_base:
+
+**saturation_base**
+-------------------
+
+**Inherits from:** :ref:`interface_base` 
+
+
+fluide-gas interface with phase change (used in pb_multiphase)
+
+Parameters are:
+
+- **[p_ref]**  (*type:* double) not_set
+
+- **[t_ref]**  (*type:* double) not_set
+
+- **[tension_superficielle | surface_tension]**  (*type:* double) surface tension
+
+
+----
+
+.. _saturation_constant:
+
+**saturation_constant**
+-----------------------
+
+**Inherits from:** :ref:`interface_base` 
+
+
+Class for saturation constant
+
+Parameters are:
+
+- **[p_sat]**  (*type:* double) Define the saturation pressure value (this is a required parameter)
+
+- **[t_sat]**  (*type:* double) Define the saturation temperature value (this is a required parameter)
+
+- **[lvap]**  (*type:* double) Latent heat of vaporization
+
+- **[hlsat]**  (*type:* double) Liquid saturation enthalpy
+
+- **[hvsat]**  (*type:* double) Vapor saturation enthalpy
+
+- **[p_ref]**  (*type:* double) not_set
+
+- **[t_ref]**  (*type:* double) not_set
+
+- **[tension_superficielle | surface_tension]**  (*type:* double) surface tension
+
+
+----
+
+.. _saturation_sodium:
+
+**saturation_sodium**
+---------------------
+
+**Inherits from:** :ref:`interface_base` 
+
+
+Class for saturation sodium
+
+Parameters are:
+
+- **[p_ref]**  (*type:* double) Use to fix the pressure value in the closure law. If not specified, the value of the pressure unknown will be used
+
+- **[t_ref]**  (*type:* double) Use to fix the temperature value in the closure law. If not specified, the value of the temperature unknown will be used
+
+- **[tension_superficielle | surface_tension]**  (*type:* double) surface tension
 
 
 ----
@@ -4580,10 +3660,6 @@ Parameters are:
 
 Immersed Boundary Method (IBM): no interpolation.
 
-Usage:
-
-**interpolation_ibm_aucune** **[impr]** **[nb_histo_boxes_impr]**  
-
 Parameters are:
 
 - **[impr]**  (*type:* flag) To print IBM-related data
@@ -4602,10 +3678,6 @@ Parameters are:
 Base class for all the interpolation methods available in the Immersed Boundary Method 
 (IBM).
 
-Usage:
-
-**interpolation_ibm_base** **[impr]** **[nb_histo_boxes_impr]**  
-
 Parameters are:
 
 - **[impr]**  (*type:* flag) To print IBM-related data
@@ -4620,24 +3692,12 @@ Parameters are:
 **interpolation_ibm_elem_fluid**
 --------------------------------
 
-**Synonyms:** ibm_element_fluide, interpolation_ibm_element_fluide
+**Synonyms:** interpolation_ibm_element_fluide, ibm_element_fluide
 
 **Inherits from:** :ref:`interpolation_ibm_base` 
 
 
 Immersed Boundary Method (IBM): fluid element interpolation.
-
-Usage:
-
-| **interpolation_ibm_elem_fluid** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **correspondance_elements**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_histo_boxes_impr]**  int
-| }
 
 Parameters are:
 
@@ -4667,20 +3727,6 @@ Parameters are:
 
 
 Immersed Boundary Method (IBM): hybrid (fluid/mean gradient) interpolation.
-
-Usage:
-
-| **interpolation_ibm_hybride** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **est_dirichlet**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **correspondance_elements**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_histo_boxes_impr]**  int
-| }
 
 Parameters are:
 
@@ -4715,18 +3761,6 @@ Parameters are:
 
 Immersed Boundary Method (IBM): mean gradient interpolation.
 
-Usage:
-
-| **interpolation_ibm_mean_gradient** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **est_dirichlet**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **correspondance_elements**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_histo_boxes_impr]**  int
-| }
-
 Parameters are:
 
 - **points_solides**  (*type:* :ref:`field_base`) Node field giving the projection of the node on the immersed boundary
@@ -4755,19 +3789,6 @@ Parameters are:
 
 
 Immersed Boundary Method (IBM): power law interpolation.
-
-Usage:
-
-| **interpolation_ibm_power_law_tbl** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[formulation_linear_pwl]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_fluides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **correspondance_elements**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_histo_boxes_impr]**  int
-| }
 
 Parameters are:
 
@@ -4800,18 +3821,6 @@ Parameters are:
 
 Immersed Boundary Method (IBM): law u star.
 
-Usage:
-
-| **interpolation_ibm_power_law_tbl_u_star** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **points_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **est_dirichlet**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **correspondance_elements**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **elements_solides**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_histo_boxes_impr]**  int
-| }
-
 Parameters are:
 
 - **points_solides**  (*type:* :ref:`field_base`) Node field giving the projection of the node on the immersed boundary
@@ -4843,11 +3852,6 @@ is a child of 'interprete_Tru'
 So force its definition here, and hence avoid its automatic generation from the
 TRAD2 file.
 
-Usage:
-
-**interprete**  
-
-
 ----
 
 .. _analyse_angle:
@@ -4863,10 +3867,6 @@ of the domain named name_domain.
 nb_histo is the histogram number of bins.
 It is called by default during the domain discretization with nb_histo set to 18.
 Useful to check the number of elements with angles above 90 degrees.
-
-Usage:
-
-**analyse_angle** **domain_name** **nb_histo**  
 
 Parameters are:
 
@@ -4899,10 +3899,6 @@ object for time discretization, a discretization type object (VDF or VEF) and a 
 type object which will contain the water properties.
 These objects must then all be associated with the problem.
 
-Usage:
-
-**associate** **objet_1** **objet_2**  
-
 Parameters are:
 
 - **objet_1**  (*type:* string) Objet_1
@@ -4925,11 +3921,6 @@ This keyword allows a 3D calculation to be executed using cylindrical coordinate
 If this instruction is not included, calculations are carried out using Cartesian 
 coordinates.
 
-Usage:
-
-**axi**  
-
-
 ----
 
 .. _bidim_axi:
@@ -4945,11 +3936,6 @@ Z).
 If this instruction is not included, calculations are carried out using Cartesian 
 coordinates.
 
-Usage:
-
-**bidim_axi**  
-
-
 ----
 
 .. _calculer_moments:
@@ -4962,10 +3948,6 @@ Usage:
 
 Calculates and prints the torque (moment of force) exerted by the fluid on each boundary 
 in output files (.out) of the domain nom_dom.
-
-Usage:
-
-**calculer_moments** **nom_dom** **mot**  
 
 Parameters are:
 
@@ -4990,16 +3972,6 @@ Faces on one side of the periodic domain are put first, then the faces on the op
 side, in the same order.
 It must be run in sequential before mesh splitting.
 
-Usage:
-
-| **corriger_frontiere_periodique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **bord**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[direction]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_post]**  string
-| }
-
 Parameters are:
 
 - **domaine**  (*type:* string) Name of domain.
@@ -5018,22 +3990,13 @@ Parameters are:
 **create_domain_from_sous_zone**
 --------------------------------
 
-**Synonyms:** create_domain_from_sub_domains, create_domain_from_sub_domain
+**Synonyms:** create_domain_from_sub_domain, create_domain_from_sub_domains
 
 **Inherits from:** :ref:`interprete` 
 
 
 kept for backward compatibility.
 please use Create_domain_from_sub_domain
-
-Usage:
-
-| **create_domain_from_sous_zone** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine_final]**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[par_sous_zone]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine_init**  :ref:`domaine`
-| }
 
 Parameters are:
 
@@ -5051,7 +4014,7 @@ Parameters are:
 **create_domain_from_sub_domain**
 ---------------------------------
 
-**Synonyms:** create_domain_from_sub_domains, create_domain_from_sous_zone
+**Synonyms:** create_domain_from_sous_zone, create_domain_from_sub_domains
 
 **Inherits from:** :ref:`interprete` 
 
@@ -5064,15 +4027,6 @@ A MED mesh file will be saved from Gmsh and read with Lire_Med keyword by the TR
 data file.
 And with this keyword, a domain will be created for each medium in the TRUST data 
 file.
-
-Usage:
-
-| **create_domain_from_sub_domain** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine_final]**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[par_sous_zone]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine_init**  :ref:`domaine`
-| }
 
 Parameters are:
 
@@ -5094,10 +4048,6 @@ Parameters are:
 
 
 convergence criteria
-
-Usage:
-
-**criteres_convergence** **aco** **[inco]** **[val]** **acof**  
 
 Parameters are:
 
@@ -5136,10 +4086,6 @@ than in the DEBOG file and checks if the differences between results from both c
 are less than a given value (error).
 If not, it prints Ok else show the differences and the lines where it occured.
 
-Usage:
-
-**debog** **pb** **fichier1 | file1** **fichier2 | file2** **seuil** **mode**  
-
 Parameters are:
 
 - **pb**  (*type:* :ref:`pb_gen_base`) Name of the problem to debug.
@@ -5166,11 +4112,6 @@ Parameters are:
 
 
 Block's beginning.
-
-Usage:
-
-**debut_bloc**  
-
 
 ----
 
@@ -5206,20 +4147,6 @@ newgeom will be used to calculate view factors with geom2ansys script whereas on
 the boundary_name_xv files will be necessary for the radiation calculation.
 The file listb will contain the list of the boundaries boundary_name%I.
 
-Usage:
-
-| **decoupebord_pour_rayonnement** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine_grossier]**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts_naif]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts_geom]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **bords_a_decouper**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_fichier_sortie]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[condition_geometrique]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[binaire]**  int
-| }
-
 Parameters are:
 
 - **domaine**  (*type:* :ref:`domaine`) not_set
@@ -5230,11 +4157,11 @@ Parameters are:
 
 - **[nb_parts_geom]**  (*type:* int list) not_set
 
+- **[condition_geometrique]**  (*type:* string list) not_set
+
 - **bords_a_decouper**  (*type:* string list) not_set
 
 - **[nom_fichier_sortie]**  (*type:* string) not_set
-
-- **[condition_geometrique]**  (*type:* string list) not_set
 
 - **[binaire]**  (*type:* int) not_set
 
@@ -5255,10 +4182,6 @@ and connectivity_failed_pb_name.med).
 In 2D, the keyword Decouper_bord_coincident associated to the connectivity_failed_boundary_name 
 file allows to generate a new coincident mesh.
 
-Usage:
-
-**decouper_bord_coincident** **domain_name** **bord**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -5277,10 +4200,6 @@ Parameters are:
 
 
 Keyword to multiply the whole coordinates of the geometry.
-
-Usage:
-
-**dilate** **domain_name** **alpha**  
 
 Parameters are:
 
@@ -5303,10 +4222,6 @@ Keyword allowing calculation dimensions to be set (2D or 3D), where dim is an in
 set to 2 or 3.
 This instruction is mandatory.
 
-Usage:
-
-**dimension** **dim**  
-
 Parameters are:
 
 - **dim**  (*type:* int into [2,3])  Number of dimensions.
@@ -5324,11 +4239,6 @@ Parameters are:
 
 Flag to disable the writing of the .TU files
 
-Usage:
-
-**disable_tu**  
-
-
 ----
 
 .. _discretiser_domaine:
@@ -5341,10 +4251,6 @@ Usage:
 
 Useful to discretize the domain domain_name (faces will be created) without defining 
 a problem.
-
-Usage:
-
-**discretiser_domaine** **domain_name**  
 
 Parameters are:
 
@@ -5368,10 +4274,6 @@ Keyword to discretise a problem problem_name according to the discretization dis
 IMPORTANT: A number of objects must be already associated (a domain, time scheme, 
 central object) prior to invoking the Discretize (Discretiser) keyword.
 The physical properties of this central object must also have been read.
-
-Usage:
-
-**discretize** **problem_name** **dis**  
 
 Parameters are:
 
@@ -5397,10 +4299,6 @@ domain and minimum distance between this point and boundaries (specified bords) 
 user specifies in data file (typically, those associated to walls).
 A field Distance_paroi is available to post process the distance to the wall.
 
-Usage:
-
-**distance_paroi** **dom** **bords** **format**  
-
 Parameters are:
 
 - **dom**  (*type:* :ref:`domaine`) Name of domain.
@@ -5421,10 +4319,6 @@ Parameters are:
 
 
 Keyword to write a field to MED format into a file.
-
-Usage:
-
-**ecrire_champ_med** **nom_dom** **nom_chp** **file**  
 
 Parameters are:
 
@@ -5447,15 +4341,43 @@ Parameters are:
 
 Keyword to write the object of name name_obj to a file filename in ASCII format.
 
-Usage:
-
-**ecrire_fichier_formatte** **name_obj** **filename**  
-
 Parameters are:
 
 - **name_obj**  (*type:* string) Name of the object to be written.
 
 - **filename**  (*type:* string) Name of the file.
+
+
+----
+
+.. _ecrire_fichier_xyz_valeur:
+
+**ecrire_fichier_xyz_valeur**
+-----------------------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+This keyword is used to write the values of a field only for some boundaries in a 
+text file with the following format: n_valeur
+
+x_1 y_1 [z_1] val_1
+
+...
+
+x_n y_n [z_n] val_n
+
+The created files are named : pbname_fieldname_[boundaryname]_time.dat
+
+Parameters are:
+
+- **[binary_file]**  (*type:* flag) To write file in binary format
+
+- **[dt]**  (*type:* double) File writing frequency
+
+- **[fields]**  (*type:* string list) Names of the fields we want to write
+
+- **[boundaries]**  (*type:* string list) Names of the boundaries on which to write fields
 
 
 ----
@@ -5471,10 +4393,6 @@ Parameters are:
 
 
 Write a domain to MED format into a file.
-
-Usage:
-
-**ecrire_med** **nom_dom** **file**  
 
 Parameters are:
 
@@ -5495,10 +4413,6 @@ Parameters are:
 
 Class to write or not to write a .xyz file on the disk at the end of the calculation.
 
-Usage:
-
-**ecriturelecturespecial** **type**  
-
 Parameters are:
 
 - **type**  (*type:* string) If set to 0, no xyz file is created. If set to EFichierBin, it uses prior 1.7.0 way of reading xyz files (now LecFicDiffuseBin). If set to EcrFicPartageBin, it uses prior 1.7.0 way of writing xyz files (now EcrFicPartageMPIIO).
@@ -5515,15 +4429,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **espece** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **masse_molaire**  double
-| }
 
 Parameters are:
 
@@ -5551,14 +4456,6 @@ a different data file.
 Error messages usualy written to stderr and stdout are redirected to .log files (journaling 
 must be activated).
 
-Usage:
-
-| **execute_parallel** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **liste_cas**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_procs]**  int list
-| }
-
 Parameters are:
 
 - **liste_cas**  (*type:* string list) N datafile1 ... datafileN. datafileX the name of a TRUST data file without the .data extension.
@@ -5579,11 +4476,6 @@ Parameters are:
 Class to make the object have a global range, if not its range will apply to the block 
 only (the associated object will be destroyed on exiting the block).
 
-Usage:
-
-**export**  
-
-
 ----
 
 .. _extract_2d_from_3d:
@@ -5596,10 +4488,6 @@ Usage:
 
 Keyword to extract a 2D mesh by selecting a boundary of the 3D mesh.
 To generate a 2D axisymmetric mesh prefer Extract_2Daxi_from_3D keyword.
-
-Usage:
-
-**extract_2d_from_3d** **dom3d** **bord** **dom2d**  
 
 Parameters are:
 
@@ -5621,10 +4509,6 @@ Parameters are:
 
 
 Keyword to extract a 2D axisymetric mesh by selecting a boundary of the 3D mesh.
-
-Usage:
-
-**extract_2daxi_from_3d** **dom3d** **bord** **dom2d**  
 
 Parameters are:
 
@@ -5649,16 +4533,6 @@ Keyword to create a new domain built with the domain elements of the pb_name pro
 verifying the two conditions given by Condition_elements.
 The problem pb_name should have been discretized.
 
-Usage:
-
-| **extraire_domaine** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  :ref:`pb_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[condition_elements]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| }
-
 Parameters are:
 
 - **domaine**  (*type:* :ref:`domaine`) Domain in which faces are saved
@@ -5667,7 +4541,7 @@ Parameters are:
 
 - **[condition_elements]**  (*type:* string) not_set
 
-- **[sous_zone]**  (*type:* :ref:`sous_zone`) not_set
+- **[sous_domaine | sous_zone]**  (*type:* :ref:`sous_zone`) not_set
 
 
 ----
@@ -5692,30 +4566,11 @@ Inverse_condition_element keyword then will be used in the case where the plane 
 a boundary not well oriented, and avec_certains_bords_pour_extraire_surface is the 
 option related to the Extraire_surface option named avec_certains_bords.
 
-Usage:
-
-| **extraire_plan** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  :ref:`pb_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **epaisseur**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **origine**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **point1**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **point2**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[point3]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[triangle]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[via_extraire_surface]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[inverse_condition_element]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[avec_certains_bords_pour_extraire_surface]**  string list
-| }
-
 Parameters are:
 
-- **domaine**  (*type:* :ref:`domaine`) domain_namme
+- **domaine**  (*type:* :ref:`domaine`) domain name
 
 - **probleme**  (*type:* :ref:`pb_base`) pb_name
-
-- **epaisseur**  (*type:* double) not_set
 
 - **origine**  (*type:* list) not_set
 
@@ -5727,11 +4582,13 @@ Parameters are:
 
 - **[triangle]**  (*type:* flag) not_set
 
+- **epaisseur**  (*type:* double) thickness
+
 - **[via_extraire_surface]**  (*type:* flag) not_set
 
 - **[inverse_condition_element]**  (*type:* flag) not_set
 
-- **[avec_certains_bords_pour_extraire_surface]**  (*type:* string list) not_set
+- **[avec_certains_bords_pour_extraire_surface]**  (*type:* string list) name of boundaries to include when extracting plan
 
 
 ----
@@ -5757,25 +4614,13 @@ the faces from the boundaries are not added to the surface mesh excepted if opti
 avec_les_bords is given (all the boundaries are added), or if the option avec_certains_bords 
 is used to add only some boundaries.
 
-Usage:
-
-| **extraire_surface** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **probleme**  :ref:`pb_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[condition_elements]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[condition_faces]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[avec_les_bords]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[avec_certains_bords]**  string list
-| }
-
 Parameters are:
 
 - **domaine**  (*type:* :ref:`domaine`) Domain in which faces are saved
 
 - **probleme**  (*type:* :ref:`pb_base`) Problem from which faces should be extracted
 
-- **[condition_elements]**  (*type:* string) not_set
+- **[condition_elements]**  (*type:* string) condition on center of elements
 
 - **[condition_faces]**  (*type:* string) not_set
 
@@ -5800,29 +4645,14 @@ mesh.
 Warning: If the initial domain is a tetrahedral mesh, the boundary will be moved 
 in the XY plane then extrusion will be applied (you should maybe use the Transformer 
 keyword on the final domain to have the domain you really want).
-You can use the keyword Ecrire_Fichier_Meshtv to generate a meshtv file to visualize 
-your initial and final meshes.
+You can use the keyword Postraiter_domaine to generate a lata|med|...
+file to visualize your initial and final meshes.
 
 This keyword can be used for example to create a periodic box extracted from a boundary 
 of a tetrahedral or a hexaedral mesh.
 This periodic box may be used then to engender turbulent inlet flow condition for 
 the main domain.NL2 Note that ExtrudeBord in VEF generates 3 or 14 tetrahedra from 
 extruded prisms.
-
-Usage:
-
-| **extrudebord** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine_init**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  double list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_tranches**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine_final**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_bord**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[hexa_old]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[trois_tetra]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[vingt_tetra]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sans_passer_par_le2d]**  int
-| }
 
 Parameters are:
 
@@ -5858,20 +4688,9 @@ Parameters are:
 Keyword dedicated in 3D (VEF) to create prismatic layer at wall.
 Each prism is cut into 3 tetraedra.
 
-Usage:
-
-| **extrudeparoi** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine | domain_name**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_bord**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[epaisseur]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[critere_absolu]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_normale_bord]**  flag
-| }
-
 Parameters are:
 
-- **domaine | domain_name**  (*type:* :ref:`domaine`) Name of the domain.
+- **domaine**  (*type:* :ref:`domaine`) Name of the domain.
 
 - **nom_bord**  (*type:* string) Name of the (no-slip) boundary for creation of prismatic layers.
 
@@ -5894,15 +4713,6 @@ Parameters are:
 
 Class to create a 3D tetrahedral/hexahedral mesh (a prism is cut in 14) from a 2D 
 triangular/quadrangular mesh.
-
-Usage:
-
-| **extruder** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine | domain_name**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  :ref:`troisf`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_tranches**  int
-| }
 
 Parameters are:
 
@@ -5927,15 +4737,6 @@ It does the same task as Extruder except that a prism is cut into 20 tetraedra i
 of 3.
 The name of the boundaries will be devant (front) and derriere (back).
 But you can change these names with the keyword RegroupeBord.
-
-Usage:
-
-| **extruder_en20** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine | domain_name**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[direction]**  :ref:`troisf`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_tranches**  int
-| }
 
 Parameters are:
 
@@ -5965,17 +4766,6 @@ If NULL is written for nom_cl, then no boundary condition is generated at this p
 Recommendation : to ensure conformity between meshes (in case of fluid/solid coupling) 
 it is recommended to extrude all the domains at the same time.
 
-Usage:
-
-| **extruder_en3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine | domain_name**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_cl_devant]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_cl_derriere]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  :ref:`troisf`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_tranches**  int
-| }
-
 Parameters are:
 
 - **domaine | domain_name**  (*type:* string list) List of the domains
@@ -5987,6 +4777,29 @@ Parameters are:
 - **direction**  (*type:* :ref:`troisf`) Direction of the extrude operation.
 
 - **nb_tranches**  (*type:* int) Number of elements in the extrusion direction.
+
+
+----
+
+.. _facsec:
+
+**facsec**
+----------
+
+**Inherits from:** :ref:`interprete` 
+
+
+To parameter the safety factor for the time step during the simulation.
+
+Parameters are:
+
+- **[facsec_ini]**  (*type:* double) Initial facsec taken into account at the beginning of the simulation.
+
+- **[facsec_max]**  (*type:* double) Maximum ratio allowed between time step and stability time returned by  CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
+
+- **[rapport_residus]**  (*type:* double) Ratio between the residual at time n and the residual at time n+1 above  which the facsec is increased by multiplying by sqrt(rapport_residus) (1.2 by default).
+
+- **[nb_ite_sans_accel_max]**  (*type:* int) Maximum number of iterations without facsec increases (20000 by default):  if facsec does not increase with the previous condition (ration between 2 consecutive  residuals too high), we increase it by force after nb_ite_sans_accel_max iterations.
 
 
 ----
@@ -6003,11 +4816,6 @@ Parameters are:
 
 Block's end.
 
-Usage:
-
-**fin_bloc**  
-
-
 ----
 
 .. _imprimer_flux:
@@ -6023,10 +4831,6 @@ set.
 The fluxes are written to the .face files at a frequency defined by dt_impr, the 
 evaluation printing frequency (refer to time scheme keywords).
 By default, fluxes are incorporated onto the edges before being displayed.
-
-Usage:
-
-**imprimer_flux** **domain_name** **noms_bord**  
 
 Parameters are:
 
@@ -6049,10 +4853,6 @@ This keyword prints the sum of the flux per face at the domain boundaries define
 by the user in the data set.
 The fluxes are written into the .out files at a frequency defined by dt_impr, the 
 evaluation printing frequency (refer to time scheme keywords).
-
-Usage:
-
-**imprimer_flux_sum** **domain_name** **noms_bord**  
 
 Parameters are:
 
@@ -6081,18 +4881,6 @@ flow rate.
 For the debit_total method, only one tranche is considered.NL2 file :z Sum(u.dS)/Sum(dS) 
 Sum(dS) Sum(u.dS)
 
-Usage:
-
-| **integrer_champ_med** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **champ_med**  :ref:`champ_fonc_med`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **methode**  string into ["integrale_en_z", "debit_total"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[zmin]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[zmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_tranche]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_sortie]**  string
-| }
-
 Parameters are:
 
 - **champ_med**  (*type:* :ref:`champ_fonc_med`) not_set
@@ -6120,11 +4908,6 @@ Parameters are:
 
 Class for interpreting a data file
 
-Usage:
-
-**interprete_geometrique_base**  
-
-
 ----
 
 .. _lata_to_med:
@@ -6132,15 +4915,13 @@ Usage:
 **lata_to_med**
 ---------------
 
+**Synonyms:** lata_2_med
+
 **Inherits from:** :ref:`interprete` 
 
 
 To convert results file written with LATA format to MED file.
 Warning: Fields located on faces are not supported yet.
-
-Usage:
-
-**lata_to_med** **[format]** **file** **file_med**  
 
 Parameters are:
 
@@ -6158,15 +4939,13 @@ Parameters are:
 **lata_to_other**
 -----------------
 
+**Synonyms:** lata_2_other
+
 **Inherits from:** :ref:`interprete` 
 
 
 To convert results file written with LATA format to MED or LML format.
 Warning: Fields located at faces are not supported yet.
-
-Usage:
-
-**lata_to_other** **[format]** **file** **file_post**  
 
 Parameters are:
 
@@ -6175,6 +4954,26 @@ Parameters are:
 - **file**  (*type:* string) LATA file to convert to the new format.
 
 - **file_post**  (*type:* string) Name of file post.
+
+
+----
+
+.. _link_cgns_files:
+
+**link_cgns_files**
+-------------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+Creates a single CGNS xxxx.cgns file that links to a xxxx.grid.cgns and xxxx.solution.*.cgns 
+files
+
+Parameters are:
+
+- **base_name**  (*type:* string) Base name of the gid/solution cgns files.
+
+- **output_name**  (*type:* string) Name of the output cgns file.
 
 
 ----
@@ -6190,10 +4989,6 @@ Parameters are:
 Read a geom in a unv file.
 3D tetra mesh elements only may be read by TRUST.
 
-Usage:
-
-**lire_ideas** **nom_dom** **file**  
-
 Parameters are:
 
 - **nom_dom**  (*type:* :ref:`domaine`) Name of domain.
@@ -6208,14 +5003,12 @@ Parameters are:
 **lml_to_lata**
 ---------------
 
+**Synonyms:** lml_2_lata
+
 **Inherits from:** :ref:`interprete` 
 
 
 To convert results file written with LML format to a single LATA file.
-
-Usage:
-
-**lml_to_lata** **file_lml** **file_lata**  
 
 Parameters are:
 
@@ -6236,10 +5029,6 @@ Parameters are:
 
 The Mailler (Mesh) interpretor allows a Domain type object domaine to be meshed with 
 objects objet_1, objet_2, etc...
-
-Usage:
-
-**mailler** **domaine** **bloc**  
 
 Parameters are:
 
@@ -6264,31 +5053,6 @@ and reloading it in parallel with Scatter.
 It only works in 3D at this time.
 It can also be used for a sequential computation (with all NPARTS=1)}
 
-Usage:
-
-| **maillerparallel** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domain**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nb_nodes**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **splitting**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **ghost_thickness**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_x]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_y]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[perio_z]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[function_coord_x]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[function_coord_y]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[function_coord_z]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[file_coord_x]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[file_coord_y]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[file_coord_z]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_xmin]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_xmax]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_ymin]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_ymax]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_zmin]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundary_zmax]**  string
-| }
-
 Parameters are:
 
 - **domain**  (*type:* :ref:`domaine`) the name of the domain to mesh (it must be an empty domain object).
@@ -6297,7 +5061,7 @@ Parameters are:
 
 - **splitting**  (*type:* int list) dimension is the spatial dimension and npartsX, npartsY and npartsZ are  the number of parts created. The product of the number of parts must be equal to the number of processors used  for the computation.
 
-- **ghost_thickness**  (*type:* int) he number of ghost cells (equivalent to the epaisseur_joint parameter of  Decouper.
+- **ghost_thickness**  (*type:* int) the number of ghost cells (equivalent to the epaisseur_joint parameter of  Decouper.
 
 - **[perio_x]**  (*type:* flag) change the splitting method to provide a valid mesh for periodic boundary conditions.
 
@@ -6343,10 +5107,6 @@ Parameters are:
 This keyword allows to merge multiple MED files produced during a parallel computation 
 into a single MED file.
 
-Usage:
-
-**merge_med** **med_files_base_name** **time_iterations**  
-
 Parameters are:
 
 - **med_files_base_name**  (*type:* string) Base name of multiple med files that should appear as base_name_xxxxx.med,  where xxxxx denotes the MPI rank number. If you specify NOM_DU_CAS, it will automatically take the basename from your datafile's  name.
@@ -6369,10 +5129,6 @@ kind Raccord (named boundary_name).
 It is useful when using meshes with boundaries of kind Bord defined and to run a 
 coupled calculation.
 
-Usage:
-
-**modif_bord_to_raccord** **domaine | domain** **nom_bord**  
-
 Parameters are:
 
 - **domaine | domain**  (*type:* :ref:`domaine`) Name of domain
@@ -6393,10 +5149,6 @@ Parameters are:
 
 
 Convert a 1D mesh to 1D axisymmetric mesh
-
-Usage:
-
-**modifydomaineaxi1d** **dom** **bloc**  
 
 Parameters are:
 
@@ -6419,19 +5171,6 @@ This keyword should be used after Resoudre keyword.
 It computes the convolution product of one or more fields with a given filtering 
 function.
 
-Usage:
-
-| **moyenne_volumique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_pb**  :ref:`pb_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **nom_domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **noms_champs**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_fichier_post]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[format_post]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[localisation]**  string into ["elem", "som"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fonction_filtre**  :ref:`bloc_lecture`
-| }
-
 Parameters are:
 
 - **nom_pb**  (*type:* :ref:`pb_base`) name of the problem where the source fields will be searched.
@@ -6440,13 +5179,13 @@ Parameters are:
 
 - **noms_champs**  (*type:* string list) name of the source fields (these fields must be accessible from the postraitement)  N source_field1 source_field2 ... source_fieldN
 
-- **[nom_fichier_post]**  (*type:* string) indicates the filename where the result is written
-
 - **[format_post]**  (*type:* string) gives the fileformat for the result (by default : lata)
 
-- **[localisation]**  (*type:* string into ["elem", "som"])  indicates where the convolution product should be computed:  either on the elements or on the nodes of the destination domain.
+- **[nom_fichier_post]**  (*type:* string) indicates the filename where the result is written
 
 - **fonction_filtre**  (*type:* :ref:`bloc_lecture`) to specify the given filter  Fonction_filtre {NL2 type filter_typeNL2 demie-largeur lNL2 [ omega w ]  [ expression string ]NL2 }  NL2 type filter_type : This parameter specifies the filtering function. Valid filter_type are:NL2 Boite is a box filter, $f(x,y,z)=(abs(x)<l)*(abs(y) <l)*(abs(z)  <l) / (8 l^3)$NL2 Chapeau is a hat filter (product of hat filters in each direction)  centered on the origin, the half-width of the filter being l and its integral being  1.NL2 Quadra is a 2nd order filter.NL2 Gaussienne is a normalized gaussian filter  of standard deviation sigma in each direction (all field elements outside a cubic  box defined by clipping_half_width are ignored, hence, taking clipping_half_width=2.5*sigma  yields an integral of 0.99 for a uniform unity field).NL2 Parser allows a user defined  function of the x,y,z variables. All elements outside a cubic box defined by clipping_half_width are ignored. The parser is much slower than the equivalent c++ coded function...NL2  demie-largeur l : This parameter specifies the half width of the filterNL2 [ omega  w ] : This parameter must be given for the gaussienne filter. It defines the standard deviation of the gaussian filter.NL2 [ expression string]  : This parameter must be given for the parser filter type. This expression will be interpreted by the math parser with the predefined variables  x, y and z.
+
+- **[localisation]**  (*type:* string into ["elem", "som"])  indicates where the convolution product should be computed:  either on the elements or on the nodes of the destination domain.
 
 
 ----
@@ -6460,23 +5199,6 @@ Parameters are:
 
 
 Object defining a multigrid solver in IJK discretization
-
-Usage:
-
-| **multigrid_solver** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coarsen_operators]**  :ref:`coarsen_operators`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ghost_size]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[relax_jacobi]**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pre_smooth_steps]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[smooth_steps]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_full_mg_steps]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_grossier]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solver_precision]**  string into ["mixed", "double"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[iterations_mixed_solver]**  int
-| }
 
 Parameters are:
 
@@ -6515,10 +5237,6 @@ Parameters are:
 
 Change MPI rank limit for multiple files during I/O
 
-Usage:
-
-**multiplefiles** **type**  
-
 Parameters are:
 
 - **type**  (*type:* int) New MPI rank limit
@@ -6537,10 +5255,6 @@ Parameters are:
 Keyword NettoiePasNoeuds does not delete useless nodes (nodes without elements) from 
 a domain.
 
-Usage:
-
-**nettoiepasnoeuds** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -6557,13 +5271,6 @@ Parameters are:
 
 
 Class Op_Conv_EF_Stab_PolyMAC_Face_PolyMAC
-
-Usage:
-
-| **op_conv_ef_stab_polymac_face** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha]**  double
-| }
 
 Parameters are:
 
@@ -6582,13 +5289,6 @@ Parameters are:
 
 Class Op_Conv_EF_Stab_PolyMAC_P0_Face
 
-Usage:
-
-| **op_conv_ef_stab_polymac_p0_face** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _op_conv_ef_stab_polymac_p0p1nc_elem:
@@ -6602,13 +5302,6 @@ Usage:
 
 
 Class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem
-
-Usage:
-
-| **op_conv_ef_stab_polymac_p0p1nc_elem** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha]**  double
-| }
 
 Parameters are:
 
@@ -6627,11 +5320,46 @@ Parameters are:
 
 Class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face
 
-Usage:
+----
 
-| **op_conv_ef_stab_polymac_p0p1nc_face** *str*
-| **Read** *str* {
-| }
+.. _option_cgns:
+
+**option_cgns**
+---------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+Class for CGNS options.
+
+Parameters are:
+
+- **[single_precision]**  (*type:* flag) If used, data will be written with a single_precision format inside the CGNS  file (it concerns both mesh coordinates and field values).
+
+- **[multiple_files]**  (*type:* flag) If used, data will be written in separate files (ie: one file per processor).
+
+- **[parallel_over_zone]**  (*type:* flag) If used, data will be written in separate zones (ie: one zone per processor). This is not so performant but easier to read later ...
+
+- **[use_links]**  (*type:* flag) If used, data will be written in separate files; one file for mesh, and then  one file for solution time. Links will be used.
+
+
+----
+
+.. _option_interpolation:
+
+**option_interpolation**
+------------------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+Class for interpolation fields using MEDCoupling.
+
+Parameters are:
+
+- **[sans_dec | without_dec]**  (*type:* flag) Use remapper even for a parallel calculation
+
+- **[sharing_algo]**  (*type:* int) Setting the DEC sharing algo : 0,1,2
 
 
 ----
@@ -6645,13 +5373,6 @@ Usage:
 
 
 Class of PolyMAC options.
-
-Usage:
-
-| **option_polymac** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_osqp]**  flag
-| }
 
 Parameters are:
 
@@ -6669,14 +5390,6 @@ Parameters are:
 
 
 Class of PolyMAC_P0 options.
-
-Usage:
-
-| **option_polymac_p0** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[interp_ve1]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_axi]**  flag
-| }
 
 Parameters are:
 
@@ -6696,16 +5409,6 @@ Parameters are:
 
 
 Class of VDF options.
-
-Usage:
-
-| **option_vdf** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_coins]**  string into ["oui", "non"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_gradients]**  string into ["oui", "non"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p_imposee_aux_faces]**  string into ["oui", "non"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[all_options | toutes_les_options]**  flag
-| }
 
 Parameters are:
 
@@ -6731,10 +5434,6 @@ Parameters are:
 Keyword to modify the order of the boundary vertices included in a domain, such that 
 the surface normals are outer pointing.
 
-Usage:
-
-**orientefacesbord** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -6751,17 +5450,6 @@ Parameters are:
 
 
 Object to handle parallel files in IJK discretization
-
-Usage:
-
-| **parallel_io_parameters** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[block_size_bytes]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[block_size_megabytes]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[writing_processes]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[bench_ijk_splitting_write]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[bench_ijk_splitting_read]**  string
-| }
 
 Parameters are:
 
@@ -6791,10 +5479,6 @@ Parameters are:
 Class for parallel calculation to cut a domain for each processor.
 By default, this keyword is commented in the reference test cases.
 
-Usage:
-
-**partition** **domaine** **bloc_decouper**  
-
 Parameters are:
 
 - **domaine**  (*type:* :ref:`domaine`) Name of the domain to be cut.
@@ -6818,10 +5502,6 @@ allows to partition multiple domains in contact with each other in parallel: nec
 for resolution monolithique in implicit schemes and for all coupled problems using 
 PolyMAC_P0P1NC.
 By default, this keyword is commented in the reference test cases.
-
-Usage:
-
-**partition_multi** **aco** **domaine1** **dom** **blocdecoupdom1** **domaine2** **dom2** **blocdecoupdom2** **acof**  
 
 Parameters are:
 
@@ -6854,14 +5534,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **pilote_icoco** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **pb_name**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **main**  string
-| }
-
 Parameters are:
 
 - **pb_name**  (*type:* string) not_set
@@ -6884,10 +5556,6 @@ with PolyMAC_P0P1NC discretization.
 Must be used in PolyMAC_P0P1NC discretization if a hexahedral mesh has been produced 
 with TRUST's internal mesh generator.
 
-Usage:
-
-**polyedriser** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -6903,39 +5571,23 @@ Parameters are:
 **Inherits from:** :ref:`interprete` 
 
 
-To write one or more domains in a file with a specified format (MED,LML,LATA,SINGLE_LATA).
-
-Usage:
-
-| **postraiter_domaine** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **format**  string into ["lml", "lata", "single_lata", "lata_v2", "med"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier | file]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine | domain]**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  :ref:`sous_zone`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaines]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[joints_non_postraites]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[binaire]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_frontiere]**  int into [0,1]
-| }
+To write one or more domains in a file with a specified format (MED,LML,LATA,SINGLE_LATA,CGNS).
 
 Parameters are:
 
-- **format**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med"])  File format.
-
-- **[fichier | file]**  (*type:* string) The file name can be changed with the fichier option.
-
-- **[domaine | domain]**  (*type:* :ref:`domaine`) Name of domain
-
-- **[sous_zone]**  (*type:* :ref:`sous_zone`) Name of the sub_zone
-
-- **[domaines]**  (*type:* :ref:`bloc_lecture`) Names of domains : { name1 name2 }
-
-- **[joints_non_postraites]**  (*type:* int into [0,1])  The joints_non_postraites (1 by default) will not write the boundaries  between the partitioned mesh.
+- **format**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med", "cgns"])  File format.
 
 - **[binaire]**  (*type:* int into [0,1])  Binary (binaire 1) or ASCII (binaire 0) may be used. By default, it is 0 for LATA and only ASCII is available for LML and only binary  is available for MED.
 
 - **[ecrire_frontiere]**  (*type:* int into [0,1])  This option will write (if set to 1, the default) or not (if  set to 0) the boundaries as fields into the file (it is useful to not add the boundaries  when writing a domain extracted from another domain)
+
+- **[fichier | file]**  (*type:* string) The file name can be changed with the fichier option.
+
+- **[joints_non_postraites]**  (*type:* int into [0,1])  The joints_non_postraites (1 by default) will not write the boundaries  between the partitioned mesh.
+
+- **[domaine | domain]**  (*type:* :ref:`domaine`) Name of domain
+
+- **[domaines]**  (*type:* :ref:`bloc_lecture`) Names of domains : { name1 name2 }
 
 
 ----
@@ -6952,10 +5604,6 @@ Class to change the way floating-point number comparison is done.
 By default, two numbers are equal if their absolute difference is smaller than 1e-10.
 The keyword is useful to modify this value.
 Moreover, nodes coordinates will be written in .geom files with this same precision.
-
-Usage:
-
-**precisiongeom** **precision**  
 
 Parameters are:
 
@@ -6977,10 +5625,6 @@ in 4 parts, by defining a new summit located at the center of the element: \incl
 \includepng{{raffineranisotetra.jpeg}}{{6}}
 
 Note that such a cut creates flat elements (anisotropic).
-
-Usage:
-
-**raffiner_anisotrope** **domain_name**  
 
 Parameters are:
 
@@ -7006,10 +5650,6 @@ Such a cut preserves the shape of original elements (isotropic).
 For 2D elements: \includetabfig{{raffinerisotri.pdf}}{{4}}{{raffinerisorect.pdf}}{{4}} 
 For 3D elements: \includetabfig{{raffinerisotetra.jpeg}}{{6}}{{raffinerisohexa.jpeg}}{{5}}.
 
-Usage:
-
-**raffiner_isotrope** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7026,16 +5666,6 @@ Parameters are:
 
 
 Refine parallel mesh in parallel
-
-Usage:
-
-| **raffiner_isotrope_parallele** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **name_of_initial_domaines | name_of_initial_zones**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **name_of_new_domaines | name_of_new_zones**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ascii]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[single_hdf]**  flag
-| }
 
 Parameters are:
 
@@ -7061,10 +5691,6 @@ Parameters are:
 
 
 Interpretor to read the a_object objet defined between the braces.
-
-Usage:
-
-**read** **a_object** **bloc**  
 
 Parameters are:
 
@@ -7094,10 +5720,6 @@ the name of the meshed domain).
 If the filename is ;, is to execute a data set given in the file of name name_obj 
 (a space must be entered between the semi-colon and the file name).
 
-Usage:
-
-**read_file** **name_obj** **filename**  
-
 Parameters are:
 
 - **name_obj**  (*type:* string) Name of the object to be read.
@@ -7118,10 +5740,6 @@ Parameters are:
 
 
 Keyword to read an object name_obj in the unformatted type file filename.
-
-Usage:
-
-**read_file_bin** **name_obj** **filename**  
 
 Parameters are:
 
@@ -7170,18 +5788,6 @@ Scatter { ...
 
 Read_file domain_name_ssz_par.geo ;
 
-Usage:
-
-| **read_med** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convertalltopoly]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domain | domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **file | fichier**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mesh | maillage]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[exclude_groups | exclure_groupes]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[include_additional_face_groups | inclure_groupes_faces_additionnels]**  string list
-| }
-
 Parameters are:
 
 - **[convertalltopoly]**  (*type:* flag) Option to convert mesh with mixed cells into polyhedral/polygonal cells
@@ -7213,10 +5819,6 @@ Keyword to reaf Tgrid/Gambit mesh files.
 2D (triangles or quadrangles) and 3D (tetra or hexa elements) meshes, may be read 
 by TRUST.
 
-Usage:
-
-**read_tgrid** **dom** **filename**  
-
 Parameters are:
 
 - **dom**  (*type:* :ref:`domaine`) Name of domaine.
@@ -7235,10 +5837,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**read_unsupported_ascii_file_from_icem** **name_obj** **filename**  
 
 Parameters are:
 
@@ -7261,10 +5859,6 @@ Parameters are:
 
 Keyword to raffine a mesh
 
-Usage:
-
-**rectify_mesh** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7283,10 +5877,6 @@ Parameters are:
 Keyword to convert a domain (named domain_name) with quadrilaterals/VEF hexaedras 
 which looks like rectangles/VDF hexaedras into a domain with real rectangles/VDF hexaedras.
 
-Usage:
-
-**redresser_hexaedres_vdf** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain to resequence.
@@ -7303,10 +5893,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**refine_mesh** **domaine**  
 
 Parameters are:
 
@@ -7325,10 +5911,6 @@ Parameters are:
 
 Keyword to build one boundary new_bord with several boundaries of the domain named 
 domaine.
-
-Usage:
-
-**regroupebord** **domaine | domain** **new_bord** **bords**  
 
 Parameters are:
 
@@ -7362,10 +5944,6 @@ Remove_elem dom { fonction $0.2*0.2-(x-0.5)^2-(y-0.5)^2>0$ }
 Warning : the thickness of removed zone has to be large enough to avoid singular 
 nodes as decribed below : \includepng{{removeelem.png}}{{11.234}}
 
-Usage:
-
-**remove_elem** **domaine | domain** **bloc**  
-
 Parameters are:
 
 - **domaine | domain**  (*type:* :ref:`domaine`) Name of domain
@@ -7387,10 +5965,6 @@ Keyword to suppress an internal boundary of the domain_name domain.
 Indeed, some mesh tools may define internal boundaries (eg: for post processing task 
 after the calculation) but TRUST does not support it yet.
 
-Usage:
-
-**remove_invalid_internal_boundaries** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7411,10 +5985,6 @@ For each tetrahedral element of the domain, it checks if it has a positive volum
 If the volume (determinant of the three vectors) is negative, it swaps two nodes 
 to reverse the orientation of this tetrahedron.
 
-Usage:
-
-**reorienter_tetraedres** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7431,10 +6001,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**reorienter_triangles** **domain_name**  
 
 Parameters are:
 
@@ -7467,10 +6033,6 @@ This significant mesh operation may take some time...
 The message returned by TRUST is not explicit when the Reordonner (Resequencing) 
 keyword is required but not included in the data set...
 
-Usage:
-
-**resequencing** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain to resequence.
@@ -7487,14 +6049,6 @@ Parameters are:
 
 
 To specify how the residuals will be computed.
-
-Usage:
-
-| **residuals** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[norm]**  string into ["l2", "max"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[relative]**  string into ["0", "1", "2"]
-| }
 
 Parameters are:
 
@@ -7515,10 +6069,6 @@ Parameters are:
 
 Keyword to rotate the geometry of an arbitrary angle around an axis aligned with Ox, 
 Oy or Oz axis.
-
-Usage:
-
-**rotation** **domain_name** **dir** **coord1** **coord2** **angle**  
 
 Parameters are:
 
@@ -7543,12 +6093,8 @@ Parameters are:
 **Inherits from:** :ref:`interprete` 
 
 
-Class to read a partionned mesh in the files during a parallel calculation.
+Class to read a partionned mesh from the files during a parallel calculation.
 The files are in binary format.
-
-Usage:
-
-**scatter** **file** **domaine**  
 
 Parameters are:
 
@@ -7569,10 +6115,6 @@ Parameters are:
 
 This keyword will read the partition of the domain_name domain into a the MED format 
 files file.med created by Medsplitter.
-
-Usage:
-
-**scattermed** **file** **domaine**  
 
 Parameters are:
 
@@ -7595,13 +6137,27 @@ Parameters are:
 
 Interpretor to start calculation with TRUST.
 
-Usage:
-
-**solve** **pb**  
-
 Parameters are:
 
 - **pb**  (*type:* :ref:`pb_gen_base`) Name of problem to be solved.
+
+
+----
+
+.. _stat_per_proc_perf_log:
+
+**stat_per_proc_perf_log**
+--------------------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+Keyword allowing to activate the detailed statistics per processor (by default this 
+is false, and only the master proc will produce stats).
+
+Parameters are:
+
+- **flg**  (*type:* int) A flag that can be either 0 or 1 to turn off (default) or on the detailed  stats.
 
 
 ----
@@ -7616,10 +6172,6 @@ Parameters are:
 
 Keyword to remove boundaries (named Boundary_name1 Boundary_name2 ) of the domain 
 named domain_name.
-
-Usage:
-
-**supprime_bord** **domaine | domain** **bords**  
 
 Parameters are:
 
@@ -7641,10 +6193,6 @@ Parameters are:
 To run Unix commands from the data file.
 Example: System 'echo The End | mail trust@cea.fr'
 
-Usage:
-
-**system** **cmd**  
-
 Parameters are:
 
 - **cmd**  (*type:* string) command to execute.
@@ -7661,23 +6209,6 @@ Parameters are:
 
 
 To test several solvers
-
-Usage:
-
-| **test_solveur** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_secmem]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_matrice]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_solution]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_test]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier_solveur]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[genere_fichier_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pas_de_solution_initiale]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ascii]**  flag
-| }
 
 Parameters are:
 
@@ -7716,13 +6247,6 @@ Parameters are:
 
 Object to test the different kernel methods used in the multigrid solver in IJK discretization
 
-Usage:
-
-| **test_sse_kernels** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nmax]**  int
-| }
-
 Parameters are:
 
 - **[nmax]**  (*type:* int) Number of tests we want to perform
@@ -7740,10 +6264,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**testeur** **data**  
-
 Parameters are:
 
 - **data**  (*type:* :ref:`bloc_lecture`) not_set
@@ -7760,10 +6280,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**testeur_medcoupling** **pb_name** **field_name | filed_name**  
 
 Parameters are:
 
@@ -7785,10 +6301,6 @@ Parameters are:
 To achieve a tetrahedral mesh based on a mesh comprising blocks, the Tetraedriser 
 (Tetrahedralise) interpretor is used in VEF discretization.
 Initial block is divided in 6 tetrahedra: \includepng{{tetraedriser.jpeg}}{{5}}
-
-Usage:
-
-**tetraedriser** **domain_name**  
 
 Parameters are:
 
@@ -7815,10 +6327,6 @@ This also allows problems in the mesh corners with the P1NC/P1iso/P1bulle or P1/
 discretization items to be avoided.
 Initial block is divided in 40 tetrahedra: \includepng{{tetraedriserhomogene.jpeg}}{{5}}
 
-Usage:
-
-**tetraedriser_homogene** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7841,10 +6349,6 @@ So, in comparison with tetra_homogene, less elements (*24 instead of*40) with mo
 homogeneous volumes are generated.
 Moreover, this process is done in a faster way.
 Initial block is divided in 24 tetrahedra: \includepng{{tetraedriserhomogenecompact.jpeg}}{{5}}
-
-Usage:
-
-**tetraedriser_homogene_compact** **domain_name**  
 
 Parameters are:
 
@@ -7876,10 +6380,6 @@ thickness and ii/ by the way, a 3D cartesian grid based on summits can be engend
 and used to realise spectral analysis in HIT for instance).
 Initial block is divided in 48 tetrahedra: \includepng{{tetraedriserhomogenefin.jpeg}}{{5}}
 
-Usage:
-
-**tetraedriser_homogene_fin** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7903,10 +6403,6 @@ alignment of the points).
 \includetabfig{{tetraedriserparprisme.jpeg}}{{5}}{{tetraedriserparprisme2.jpeg}}{{5}} 
 Initial block is divided in 6 prismes.
 
-Usage:
-
-**tetraedriser_par_prisme** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -7926,10 +6422,6 @@ Keyword to transform the coordinates of the geometry.
 
 Exemple to rotate your mesh by a 90o rotation and to scale the z coordinates by a 
 factor 2: Transformer domain_name -y -x 2*z
-
-Usage:
-
-**transformer** **domain_name** **formule**  
 
 Parameters are:
 
@@ -7955,10 +6447,6 @@ Should be used in VEF discretization.
 Principle:
 
 \includepng{{trianguler.pdf}}{{10}}
-
-Usage:
-
-**triangulate** **domain_name**  
 
 Parameters are:
 
@@ -7993,10 +6481,6 @@ Principle:
 
 \includepng{{triangulerfin.pdf}}{{10}}
 
-Usage:
-
-**trianguler_fin** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -8018,10 +6502,6 @@ Principle:
 
 \includepng{{triangulerh.pdf}}{{10}}
 
-Usage:
-
-**trianguler_h** **domain_name**  
-
 Parameters are:
 
 - **domain_name**  (*type:* :ref:`domaine`) Name of domain.
@@ -8039,10 +6519,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**verifier_qualite_raffinements** **domain_names**  
-
 Parameters are:
 
 - **domain_names**  (*type:* :ref:`vect_nom`) not_set
@@ -8059,10 +6535,6 @@ Parameters are:
 
 
 Keyword to raffine a simplexes
-
-Usage:
-
-**verifier_simplexes** **domain_name**  
 
 Parameters are:
 
@@ -8090,10 +6562,6 @@ In 3D, the option has no effect.
 The expert_only option deactivates, into the VEFPreP1B divergence operator, the test 
 of inconsistent cells.
 
-Usage:
-
-**verifiercoin** **domain_name | dom** **bloc**  
-
 Parameters are:
 
 - **domain_name | dom**  (*type:* :ref:`domaine`) Name of the domaine
@@ -8115,10 +6583,6 @@ Parameters are:
 
 Keyword to write the object of name name_obj to a standard outlet.
 
-Usage:
-
-**write** **name_obj**  
-
 Parameters are:
 
 - **name_obj**  (*type:* string) Name of the object to be written.
@@ -8131,17 +6595,13 @@ Parameters are:
 **write_file**
 --------------
 
-**Synonyms:** ecrire_fichier, ecrire_fichier_bin
+**Synonyms:** ecrire_fichier_bin, ecrire_fichier
 
 **Inherits from:** :ref:`interprete` 
 
 
 Keyword to write the object of name name_obj to a file filename.
 Since the v1.6.3, the default format is now binary format file.
-
-Usage:
-
-**write_file** **name_obj** **filename**  
 
 Parameters are:
 
@@ -8163,7 +6623,6 @@ Parameters are:
 
 List of block mesh.
 
-
 ----
 
 **Keywords derived from list_bord**
@@ -8176,7 +6635,6 @@ List of block mesh.
 
 
 The block sides.
-
 
 ----
 
@@ -8191,7 +6649,6 @@ The block sides.
 
 not_set
 
-
 ----
 
 **Keywords derived from list_list_nom**
@@ -8204,7 +6661,6 @@ not_set
 
 
 pour les groupes
-
 
 ----
 
@@ -8219,7 +6675,6 @@ pour les groupes
 
 List of name.
 
-
 ----
 
 **Keywords derived from list_nom_virgule**
@@ -8232,7 +6687,6 @@ List of name.
 
 
 List of name.
-
 
 ----
 
@@ -8247,7 +6701,6 @@ List of name.
 
 Post-processing for statistics
 
-
 ----
 
 **Keywords derived from list_un_pb**
@@ -8260,7 +6713,6 @@ Post-processing for statistics
 
 
 pour les groupes
-
 
 ----
 
@@ -8275,7 +6727,6 @@ pour les groupes
 
 XXX
 
-
 ----
 
 **Keywords derived from listdeuxmots_sacc**
@@ -8288,21 +6739,6 @@ XXX
 
 
 List of groups of two words (without curly brackets).
-
-
-----
-
-**Keywords derived from liste_mil**
-===================================
-
-.. _liste_mil:
-
-**liste_mil**
--------------
-
-
-MUSIG medium made of several sub mediums.
-
 
 ----
 
@@ -8318,7 +6754,6 @@ MUSIG medium made of several sub mediums.
 Keyword to use several results files.
 List of objects of post-processing (with name)
 
-
 ----
 
 **Keywords derived from liste_post_ok**
@@ -8333,7 +6768,6 @@ List of objects of post-processing (with name)
 Keyword to use several results files.
 List of objects of post-processing (with name)
 
-
 ----
 
 **Keywords derived from liste_sonde_tble**
@@ -8346,7 +6780,6 @@ List of objects of post-processing (with name)
 
 
 not_set
-
 
 ----
 
@@ -8361,7 +6794,6 @@ not_set
 
 List of equations.
 
-
 ----
 
 **Keywords derived from listobj**
@@ -8374,13 +6806,6 @@ List of equations.
 
 
 List of objects.
-
-Usage:
-
-| **listobj** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -8395,7 +6820,6 @@ Usage:
 
 Points.
 
-
 ----
 
 **Keywords derived from listsous_zone_valeur**
@@ -8408,7 +6832,6 @@ Points.
 
 
 List of groups of two words.
-
 
 ----
 
@@ -8425,18 +6848,6 @@ List of groups of two words.
 
 Class for perfect gas binary mixtures state law used with a quasi-compressible fluid 
 under the iso-thermal and iso-bar assumptions.
-
-Usage:
-
-| **binaire_gaz_parfait_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **molar_mass1**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **molar_mass2**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu1**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu2**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **temperature**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diffusion_coeff**  double
-| }
 
 Parameters are:
 
@@ -8466,18 +6877,6 @@ Parameters are:
 Class for perfect gas binary mixtures state law used with a weakly-compressible fluid 
 under the iso-thermal and iso-bar assumptions.
 
-Usage:
-
-| **binaire_gaz_parfait_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **molar_mass1**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **molar_mass2**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu1**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu2**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **temperature**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diffusion_coeff**  double
-| }
-
 Parameters are:
 
 - **molar_mass1**  (*type:* double) Molar mass of species 1 (in kg/mol).
@@ -8495,6 +6894,90 @@ Parameters are:
 
 ----
 
+.. _coolprop_qc:
+
+**coolprop_qc**
+---------------
+
+**Inherits from:** :ref:`loi_etat_base` 
+
+
+Class for using CoolProp with QC problem
+
+Parameters are:
+
+- **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
+
+- **fluid**  (*type:* string) Fluid name in the CoolProp model
+
+- **model**  (*type:* string) CoolProp model name
+
+
+----
+
+.. _coolprop_wc:
+
+**coolprop_wc**
+---------------
+
+**Inherits from:** :ref:`loi_etat_base` 
+
+
+Class for using CoolProp with WC problem
+
+Parameters are:
+
+- **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
+
+- **fluid**  (*type:* string) Fluid name in the CoolProp model
+
+- **model**  (*type:* string) CoolProp model name
+
+
+----
+
+.. _eos_qc:
+
+**eos_qc**
+----------
+
+**Inherits from:** :ref:`loi_etat_base` 
+
+
+Class for using EOS with QC problem
+
+Parameters are:
+
+- **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
+
+- **fluid**  (*type:* string) Fluid name in the EOS model
+
+- **model**  (*type:* string) EOS model name
+
+
+----
+
+.. _eos_wc:
+
+**eos_wc**
+----------
+
+**Inherits from:** :ref:`loi_etat_base` 
+
+
+Class for using EOS with WC problem
+
+Parameters are:
+
+- **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
+
+- **fluid**  (*type:* string) Fluid name in the EOS model
+
+- **model**  (*type:* string) EOS model name
+
+
+----
+
 .. _loi_etat_base:
 
 **loi_etat_base**
@@ -8502,13 +6985,6 @@ Parameters are:
 
 
 Basic class for state laws used with a dilatable fluid.
-
-Usage:
-
-| **loi_etat_base** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -8522,13 +6998,6 @@ Usage:
 
 Basic class for perfect gases state laws used with a dilatable fluid.
 
-Usage:
-
-| **loi_etat_gaz_parfait_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _loi_etat_gaz_reel_base:
@@ -8541,12 +7010,17 @@ Usage:
 
 Basic class for real gases state laws used with a dilatable fluid.
 
-Usage:
+----
 
-| **loi_etat_gaz_reel_base** *str*
-| **Read** *str* {
-| }
+.. _loi_etat_tppi_base:
 
+**loi_etat_tppi_base**
+----------------------
+
+**Inherits from:** :ref:`loi_etat_base` 
+
+
+Basic class for thermo-physical properties interface (TPPI) used for dilatable problems
 
 ----
 
@@ -8560,18 +7034,6 @@ Usage:
 
 Class for perfect gas multi-species mixtures state law used with a quasi-compressible 
 fluid.
-
-Usage:
-
-| **multi_gaz_parfait_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **sc**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **prandtl**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cp]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dtol_fraction]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_fraction]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ignore_check_fraction]**  flag
-| }
 
 Parameters are:
 
@@ -8600,18 +7062,6 @@ Parameters are:
 
 Class for perfect gas multi-species mixtures state law used with a weakly-compressible 
 fluid.
-
-Usage:
-
-| **multi_gaz_parfait_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **species_number**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diffusion_coeff**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **molar_mass**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **mu**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **prandtl**  double
-| }
 
 Parameters are:
 
@@ -8642,17 +7092,6 @@ Parameters are:
 
 Class for perfect gas state law used with a quasi-compressible fluid.
 
-Usage:
-
-| **perfect_gaz_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gamma]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **prandtl**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho_constant_pour_debug]**  :ref:`field_base`
-| }
-
 Parameters are:
 
 - **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
@@ -8680,16 +7119,6 @@ Parameters are:
 
 Class for perfect gas state law used with a weakly-compressible fluid.
 
-Usage:
-
-| **perfect_gaz_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gamma]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **prandtl**  double
-| }
-
 Parameters are:
 
 - **cp**  (*type:* double) Specific heat at constant pressure (J/kg/K).
@@ -8713,17 +7142,6 @@ Parameters are:
 
 Class for perfect gas used with a quasi-compressible fluid where the state equation 
 is defined as rho = f(T).
-
-Usage:
-
-| **rhot_gaz_parfait_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **cp**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[prandtl]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho_xyz]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho_t]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[t_min]**  double
-| }
 
 Parameters are:
 
@@ -8750,10 +7168,6 @@ Parameters are:
 
 Class for real gas state law used with a quasi-compressible fluid.
 
-Usage:
-
-**rhot_gaz_reel_qc** **bloc**  
-
 Parameters are:
 
 - **bloc**  (*type:* :ref:`bloc_lecture`) Description.
@@ -8772,13 +7186,6 @@ Parameters are:
 
 Class for appends fermeture to problem
 
-Usage:
-
-| **loi_fermeture_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _loi_fermeture_test:
@@ -8790,13 +7197,6 @@ Usage:
 
 
 Loi for test only
-
-Usage:
-
-| **loi_fermeture_test** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coef]**  double
-| }
 
 Parameters are:
 
@@ -8815,16 +7215,6 @@ Parameters are:
 
 
 to define the movement with a time-dependant law for the solid interface.
-
-Usage:
-
-| **loi_horaire** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **position**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **vitesse**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rotation]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[derivee_rotation]**  string list
-| }
 
 Parameters are:
 
@@ -8851,20 +7241,6 @@ Parameters are:
 
 
 Constituent.
-
-Usage:
-
-| **constituant** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cp]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coefficient_diffusion]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
 
 Parameters are:
 
@@ -8897,18 +7273,6 @@ Parameters are:
 
 Basic class for fluids.
 
-Usage:
-
-| **fluide_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[indice]**  (*type:* :ref:`field_base`) Refractivity of fluid.
@@ -8936,18 +7300,6 @@ Parameters are:
 
 Basic class for dilatable fluids.
 
-Usage:
-
-| **fluide_dilatable_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[indice]**  (*type:* :ref:`field_base`) Refractivity of fluid.
@@ -8974,24 +7326,6 @@ Parameters are:
 
 
 Class for non-compressible fluids.
-
-Usage:
-
-| **fluide_incompressible** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta_th]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mu]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta_co]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cp]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| }
 
 Parameters are:
 
@@ -9042,26 +7376,6 @@ K refers to fluid consistency (may be a function of the temperature T)
 n refers to the fluid structure index n=1 for a Newtonian fluid, n<1 for a rheofluidifier 
 fluid, n>1 for a rheothickening fluid.
 
-Usage:
-
-| **fluide_ostwald** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[k]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[n]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta_th]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mu]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta_co]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cp]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| }
-
 Parameters are:
 
 - **[k]**  (*type:* :ref:`field_base`) Fluid consistency.
@@ -9105,27 +7419,6 @@ Parameters are:
 
 Quasi-compressible flow with a low mach number assumption; this means that the thermo-dynamic 
 pressure (used in state law) is uniform in space.
-
-Usage:
-
-| **fluide_quasi_compressible** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sutherland]**  :ref:`bloc_sutherland`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pression]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[loi_etat]**  :ref:`loi_etat_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_pth]**  string into ["edo", "constant", "conservation_masse"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_rho_gravite]**  string into ["standard", "moins_rho_moyen"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[temps_debut_prise_en_compte_drho_dt]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[omega_relaxation_drho_dt]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mu]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
 
 Parameters are:
 
@@ -9172,18 +7465,6 @@ Parameters are:
 
 Class for real fluids.
 
-Usage:
-
-| **fluide_reel_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[indice]**  (*type:* :ref:`field_base`) Refractivity of fluid.
@@ -9210,20 +7491,6 @@ Parameters are:
 
 
 Class for Fluide_sodium_liquide
-
-Usage:
-
-| **fluide_sodium_gaz** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p_ref]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[t_ref]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
 
 Parameters are:
 
@@ -9256,20 +7523,6 @@ Parameters are:
 
 Class for Fluide_sodium_liquide
 
-Usage:
-
-| **fluide_sodium_liquide** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p_ref]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[t_ref]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[p_ref]**  (*type:* double) Use to set the pressure value in the closure law. If not specified, the value of the pressure unknown will be used
@@ -9300,25 +7553,6 @@ Parameters are:
 
 
 Class for Stiffened Gas
-
-Usage:
-
-| **fluide_stiffened_gas** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gamma]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pinf]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mu]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[q]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[q_prim]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
 
 Parameters are:
 
@@ -9361,29 +7595,6 @@ Parameters are:
 
 Weakly-compressible flow with a low mach number assumption; this means that the thermo-dynamic 
 pressure (used in state law) can vary in space.
-
-Usage:
-
-| **fluide_weakly_compressible** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[loi_etat]**  :ref:`loi_etat_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sutherland]**  :ref:`bloc_sutherland`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_pth]**  string into ["constant"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mu]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pression_thermo]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pression_xyz]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_total_pressure]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_hydrostatic_pressure]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_grad_pression_eos]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[time_activate_ptot]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[indice]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kappa]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
 
 Parameters are:
 
@@ -9432,16 +7643,6 @@ Parameters are:
 
 Basic class for medium (physics properties of medium).
 
-Usage:
-
-| **milieu_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
@@ -9465,20 +7666,6 @@ Parameters are:
 
 Solid with cp and/or rho non-uniform.
 
-Usage:
-
-| **solide** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rho]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[cp]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[Lambda | lambda_u]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[user_field]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gravite]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diametre_hyd_champ]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[porosites]**  :ref:`porosites`
-| }
-
 Parameters are:
 
 - **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
@@ -9500,6 +7687,32 @@ Parameters are:
 
 ----
 
+**Keywords derived from milieu_composite**
+==========================================
+
+.. _milieu_composite:
+
+**milieu_composite**
+--------------------
+
+
+Composite medium made of several sub mediums.
+
+----
+
+**Keywords derived from milieu_musig**
+======================================
+
+.. _milieu_musig:
+
+**milieu_musig**
+----------------
+
+
+MUSIG medium made of several sub mediums.
+
+----
+
 **Keywords derived from modele_turbulence_scal_base**
 =====================================================
 
@@ -9511,19 +7724,11 @@ Parameters are:
 
 Basic class for turbulence model for energy equation.
 
-Usage:
-
-| **modele_turbulence_scal_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **turbulence_paroi**  :ref:`turbulence_paroi_scalaire_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_nusselt]**  double
-| }
-
 Parameters are:
 
-- **turbulence_paroi**  (*type:* :ref:`turbulence_paroi_scalaire_base`) Keyword to set the wall law.
-
 - **[dt_impr_nusselt]**  (*type:* double) Keyword to print local values of Nusselt number and temperature near a  wall during a turbulent calculation. The values will be printed in the _Nusselt.face file each dt_impr_nusselt time period. The local Nusselt expression is as follows : Nu = ((lambda+lambda_t)/lambda)*d_wall/d_eq  where d_wall is the distance from the first mesh to the wall and d_eq is given by  the wall law. This option also gives the value of d_eq and h = (lambda+lambda_t)/d_eq and the fluid  temperature of the first mesh near the wall.  For the Neumann boundary conditions (flux_impose), the <<equivalent>> wall temperature  given by the wall law is also printed (Tparoi equiv.) preceded for VEF calculation  by the edge temperature <<T face de bord>>.
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_scalaire_base`) Keyword to set the wall law.
 
 
 ----
@@ -9541,16 +7746,61 @@ Parameters are:
 Nul scalar turbulence model (turbulent diffusivity = 0) which can be used with a turbulent 
 problem.
 
-Usage:
-
-| **modele_turbulence_scal_nul** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_nusselt]**  double
-| }
-
 Parameters are:
 
 - **[dt_impr_nusselt]**  (*type:* double) Keyword to print local values of Nusselt number and temperature near a  wall during a turbulent calculation. The values will be printed in the _Nusselt.face file each dt_impr_nusselt time period. The local Nusselt expression is as follows : Nu = ((lambda+lambda_t)/lambda)*d_wall/d_eq  where d_wall is the distance from the first mesh to the wall and d_eq is given by  the wall law. This option also gives the value of d_eq and h = (lambda+lambda_t)/d_eq and the fluid  temperature of the first mesh near the wall.  For the Neumann boundary conditions (flux_impose), the <<equivalent>> wall temperature  given by the wall law is also printed (Tparoi equiv.) preceded for VEF calculation  by the edge temperature <<T face de bord>>.
+
+
+----
+
+.. _prandtl:
+
+**prandtl**
+-----------
+
+**Inherits from:** :ref:`modele_turbulence_scal_base` 
+
+
+The Prandtl model.
+For the scalar equations, only the model based on Reynolds analogy is available.
+If K_Epsilon was selected in the hydraulic equation, Prandtl must be selected for 
+the convection-diffusion temperature equation coupled to the hydraulic equation and 
+Schmidt for the concentration equations.
+
+Parameters are:
+
+- **[prdt]**  (*type:* string) Keyword to modify the constant (Prdt) of Prandtl model : Alphat=Nut/Prdt  Default value is 0.9
+
+- **[prandt_turbulent_fonction_nu_t_alpha]**  (*type:* string) Optional keyword to specify turbulent diffusivity (by default, alpha_t=nu_t/Prt)  with another formulae, for example: alpha_t=nu_t2/(0,7*alpha+0,85*nu_tt) with the  string nu_t*nu_t/(0,7*alpha+0,85*nu_t) where alpha is the thermal diffusivity.
+
+- **[dt_impr_nusselt]**  (*type:* double) Keyword to print local values of Nusselt number and temperature near a  wall during a turbulent calculation. The values will be printed in the _Nusselt.face file each dt_impr_nusselt time period. The local Nusselt expression is as follows : Nu = ((lambda+lambda_t)/lambda)*d_wall/d_eq  where d_wall is the distance from the first mesh to the wall and d_eq is given by  the wall law. This option also gives the value of d_eq and h = (lambda+lambda_t)/d_eq and the fluid  temperature of the first mesh near the wall.  For the Neumann boundary conditions (flux_impose), the <<equivalent>> wall temperature  given by the wall law is also printed (Tparoi equiv.) preceded for VEF calculation  by the edge temperature <<T face de bord>>.
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_scalaire_base`) Keyword to set the wall law.
+
+
+----
+
+.. _schmidt:
+
+**schmidt**
+-----------
+
+**Inherits from:** :ref:`modele_turbulence_scal_base` 
+
+
+The Schmidt model.
+For the scalar equations, only the model based on Reynolds analogy is available.
+If K_Epsilon was selected in the hydraulic equation, Schmidt must be selected for 
+the convection-diffusion temperature equation coupled to the hydraulic equation and 
+Schmidt for the concentration equations.
+
+Parameters are:
+
+- **[scturb]**  (*type:* double) Keyword to modify the constant (Sct) of Schmlidt model : Dt=Nut/Sct Default  value is 0.7.
+
+- **[dt_impr_nusselt]**  (*type:* double) Keyword to print local values of Nusselt number and temperature near a  wall during a turbulent calculation. The values will be printed in the _Nusselt.face file each dt_impr_nusselt time period. The local Nusselt expression is as follows : Nu = ((lambda+lambda_t)/lambda)*d_wall/d_eq  where d_wall is the distance from the first mesh to the wall and d_eq is given by  the wall law. This option also gives the value of d_eq and h = (lambda+lambda_t)/d_eq and the fluid  temperature of the first mesh near the wall.  For the Neumann boundary conditions (flux_impose), the <<equivalent>> wall temperature  given by the wall law is also printed (Tparoi equiv.) preceded for VEF calculation  by the edge temperature <<T face de bord>>.
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_scalaire_base`) Keyword to set the wall law.
 
 
 ----
@@ -9568,22 +7818,6 @@ Parameters are:
 
 Heat equation.
 
-Usage:
-
-| **conduction** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -9598,9 +7832,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9619,23 +7851,6 @@ Parameters are:
 
 Temperature equation for a quasi-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_chaleur_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mode_calcul_convection]**  string into ["ancien", "divut_moins_tdivu", "divrhout_moins_tdivrhou"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[mode_calcul_convection]**  (*type:* string into ["ancien", "divut_moins_tdivu", "divrhout_moins_tdivrhou"])  Option to  set the form of the convective operatorNL2 divrhouT_moins_Tdivrhou (the default since  1.6.8): rho.u.gradT = div(rho.u.T )- Tdiv(rho.u.1) NL2ancien: u.gradT = div(u.T) -  T.div(u)  divuT_moins_Tdivu : u.gradT = div(u.T) - Tdiv(u.1)
@@ -9652,9 +7867,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9674,24 +7887,6 @@ Parameters are:
 Temperature equation for a quasi-compressible fluid as well as the associated turbulence 
 model equations.
 
-Usage:
-
-| **convection_diffusion_chaleur_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_scal_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[mode_calcul_convection]**  string into ["ancien", "divut_moins_tdivu", "divrhout_moins_tdivrhou"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the temperature (energy) conservation  equation.
@@ -9710,9 +7905,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9731,22 +7924,6 @@ Parameters are:
 
 Temperature equation for a weakly-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_chaleur_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -9761,9 +7938,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9782,32 +7957,13 @@ Parameters are:
 
 Constituent transport vectorial equation (concentration diffusion convection).
 
-Usage:
-
-| **convection_diffusion_concentration** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_inconnue]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[masse_molaire]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alias]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[nom_inconnue]**  (*type:* string) Keyword Nom_inconnue will rename the unknown of this equation with the given  name. In the postprocessing part, the concentration field will be accessible with this  name. This is usefull if you want to track more than one concentration (otherwise, only  the concentration field in the first concentration equation can be accessed).
 
-- **[masse_molaire]**  (*type:* double) not_set
-
 - **[alias]**  (*type:* string) not_set
+
+- **[masse_molaire]**  (*type:* double) not_set
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
 
@@ -9821,9 +7977,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9843,35 +7997,15 @@ Parameters are:
 Constituent transport equations (concentration diffusion convection) as well as the 
 associated turbulence model equations.
 
-Usage:
-
-| **convection_diffusion_concentration_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_scal_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_inconnue]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[masse_molaire]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alias]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model to be used in the constituent transport  equations. The only model currently available is Schmidt.
 
 - **[nom_inconnue]**  (*type:* string) Keyword Nom_inconnue will rename the unknown of this equation with the given  name. In the postprocessing part, the concentration field will be accessible with this  name. This is usefull if you want to track more than one concentration (otherwise, only  the concentration field in the first concentration equation can be accessed).
 
-- **[masse_molaire]**  (*type:* double) not_set
-
 - **[alias]**  (*type:* string) not_set
+
+- **[masse_molaire]**  (*type:* double) not_set
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
 
@@ -9885,9 +8019,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9906,22 +8038,6 @@ Parameters are:
 
 Species conservation equation for a binary quasi-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_espece_binaire_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -9936,9 +8052,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -9958,23 +8072,6 @@ Parameters are:
 Species conservation equation for a binary quasi-compressible fluid as well as the 
 associated turbulence model equations.
 
-Usage:
-
-| **convection_diffusion_espece_binaire_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_scal_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the species conservation equation.
@@ -9991,9 +8088,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10012,22 +8107,6 @@ Parameters are:
 
 Species conservation equation for a binary weakly-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_espece_binaire_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10042,9 +8121,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10063,23 +8140,6 @@ Parameters are:
 
 Species conservation equation for a multi-species quasi-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_espece_multi_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[espece]**  :ref:`espece`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[espece]**  (*type:* :ref:`espece`) Assosciate a species (with its properties) to the equation
@@ -10096,9 +8156,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10116,24 +8174,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **convection_diffusion_espece_multi_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_scal_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **espece**  :ref:`espece`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
 
 Parameters are:
 
@@ -10153,9 +8193,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10174,22 +8212,6 @@ Parameters are:
 
 Species conservation equation for a multi-species weakly-compressible fluid.
 
-Usage:
-
-| **convection_diffusion_espece_multi_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10204,9 +8226,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10225,23 +8245,6 @@ Parameters are:
 
 Energy equation (temperature diffusion convection).
 
-Usage:
-
-| **convection_diffusion_temperature** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[penalisation_l2_ftd]**  :ref:`penalisation_l2_ftd`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[penalisation_l2_ftd]**  (*type:* :ref:`penalisation_l2_ftd`) to activate or not (the default is Direct Forcing method) the  Penalized Direct Forcing method to impose the specified temperature on the solid-fluid  interface.
@@ -10258,9 +8261,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10280,23 +8281,6 @@ Parameters are:
 Energy equation (temperature diffusion convection) as well as the associated turbulence 
 model equations.
 
-Usage:
-
-| **convection_diffusion_temperature_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_scal_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the energy equation.
@@ -10313,9 +8297,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10335,22 +8317,6 @@ Parameters are:
 Turbulent Dissipation time scale equation for a turbulent mono/multi-phase problem 
 (available in TrioCFD)
 
-Usage:
-
-| **echelle_temporelle_turbulente** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10365,9 +8331,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10387,22 +8351,6 @@ Parameters are:
 Turbulent kinetic Energy conservation equation for a turbulent mono/multi-phase problem 
 (available in TrioCFD)
 
-Usage:
-
-| **energie_cinetique_turbulente** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10417,9 +8365,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10439,22 +8385,6 @@ Parameters are:
 Bubble Induced Turbulent kinetic Energy equation for a turbulent multi-phase problem 
 (available in TrioCFD)
 
-Usage:
-
-| **energie_cinetique_turbulente_wit** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10469,9 +8399,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10491,22 +8419,6 @@ Parameters are:
 Internal energy conservation equation for a multi-phase problem where the unknown 
 is the temperature
 
-Usage:
-
-| **energie_multiphase** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10521,9 +8433,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10542,22 +8452,6 @@ Parameters are:
 
 Basic class for equations.
 
-Usage:
-
-| **eqn_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10572,9 +8466,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10594,22 +8486,6 @@ Parameters are:
 Mass consevation equation for a multi-phase problem where the unknown is the alpha 
 (void fraction)
 
-Usage:
-
-| **masse_multiphase** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -10624,9 +8500,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10643,13 +8517,6 @@ Parameters are:
 
 Class of equation pieces (morceaux d'equation).
 
-Usage:
-
-| **mor_eqn** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _navier_stokes_qc:
@@ -10661,37 +8528,6 @@ Usage:
 
 
 Navier-Stokes equation for a quasi-compressible fluid.
-
-Usage:
-
-| **navier_stokes_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode_calcul_pression_initiale]**  string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_bar]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_projection]**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_divu]**  :ref:`floatfloat`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_particulier]**  :ref:`traitement_particulier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_calcul_pression_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_pression]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gradient_pression_qdm_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_pression_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraiter_gradient_pression_sans_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
 
 Parameters are:
 
@@ -10737,9 +8573,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10758,37 +8592,6 @@ Parameters are:
 
 Navier-Stokes equations.
 
-Usage:
-
-| **navier_stokes_standard** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode_calcul_pression_initiale]**  string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_bar]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_projection]**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_divu]**  :ref:`floatfloat`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_particulier]**  :ref:`traitement_particulier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_calcul_pression_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_pression]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gradient_pression_qdm_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_pression_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraiter_gradient_pression_sans_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"])   Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions  on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions  and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs  (lapP=f is solved as with the previous option avec_sources but f integrating also  some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited  when using an implicit time scheme to solve the Navier-Stokes equations.
@@ -10833,9 +8636,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10853,38 +8654,6 @@ Parameters are:
 
 
 Navier-Stokes equations as well as the associated turbulence model equations.
-
-Usage:
-
-| **navier_stokes_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_hyd_deriv`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode_calcul_pression_initiale]**  string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_bar]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_projection]**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_divu]**  :ref:`floatfloat`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_particulier]**  :ref:`traitement_particulier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_calcul_pression_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_pression]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gradient_pression_qdm_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_pression_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraiter_gradient_pression_sans_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
 
 Parameters are:
 
@@ -10932,9 +8701,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -10954,38 +8721,6 @@ Parameters are:
 Navier-Stokes equations under low Mach number as well as the associated turbulence 
 model equations.
 
-Usage:
-
-| **navier_stokes_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[modele_turbulence]**  :ref:`modele_turbulence_hyd_deriv`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode_calcul_pression_initiale]**  string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_bar]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_projection]**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_divu]**  :ref:`floatfloat`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_particulier]**  :ref:`traitement_particulier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_calcul_pression_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_pression]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gradient_pression_qdm_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_pression_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraiter_gradient_pression_sans_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_hyd_deriv`) Turbulence model for Navier-Stokes equations.
@@ -11032,9 +8767,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -11052,37 +8785,6 @@ Parameters are:
 
 
 Navier-Stokes equation for a weakly-compressible fluid.
-
-Usage:
-
-| **navier_stokes_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[methode_calcul_pression_initiale]**  string into ["avec_les_cl", "avec_sources", "avec_sources_et_operateurs", "sans_rien"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_bar]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_projection]**  :ref:`deuxmots`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_divu]**  :ref:`floatfloat`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[traitement_particulier]**  :ref:`traitement_particulier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_calcul_pression_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_projection_initiale]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_matrice_pression]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_vitesse_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gradient_pression_qdm_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_pression_modifie]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraiter_gradient_pression_sans_masse]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
 
 Parameters are:
 
@@ -11128,9 +8830,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -11150,24 +8850,6 @@ Parameters are:
 Momentum conservation equation for a multi-phase problem where the unknown is the 
 velocity
 
-Usage:
-
-| **qdm_multiphase** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur_pression]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[evanescence]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[solveur_pression]**  (*type:* :ref:`solveur_sys_base`) Linear pressure system resolution method.
@@ -11186,9 +8868,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -11208,22 +8888,6 @@ Parameters are:
 Turbulent Dissipation frequency equation for a turbulent mono/multi-phase problem 
 (available in TrioCFD)
 
-Usage:
-
-| **taux_dissipation_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_equation_residual]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection]**  :ref:`bloc_convection`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion]**  :ref:`bloc_diffusion`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_limites | boundary_conditions]**  :ref:`condlims`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conditions_initiales | initial_conditions]**  :ref:`condinits`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sources]**  :ref:`sources`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur_bin]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_fichier_xyz_valeur]**  :ref:`ecrire_fichier_xyz_valeur_param`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parametre_equation]**  :ref:`parametre_equation_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  string
-| }
-
 Parameters are:
 
 - **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when  checking time convergence or computing dynamic time-step
@@ -11238,9 +8902,7 @@ Parameters are:
 
 - **[sources]**  (*type:* :ref:`sources`) To introduce a source term into an equation (in case of several source terms  into the same equation, the blocks corresponding to the various terms need to be separated  by a comma)
 
-- **[ecrire_fichier_xyz_valeur_bin]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a binary file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
-
-- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur_param`) This keyword is used to write the values of a field  only for some boundaries in a text file with the following format: n_valeur  x_1 y_1 [z_1] val_1  ...  x_n y_n [z_n] val_n  The created files are named : pbname_fieldname_[boundaryname]_time.dat
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only  for some boundaries in a text file
 
 - **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
 
@@ -11260,10 +8922,6 @@ Parameters are:
 
 Class to name the TRUST objects.
 
-Usage:
-
-**nom** **[mot]**  
-
 Parameters are:
 
 - **[mot]**  (*type:* string) Chain of characters.
@@ -11280,10 +8938,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**nom_anonyme** **[mot]**  
 
 Parameters are:
 
@@ -11305,10 +8959,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**bloc_convection** **aco** **operateur** **acof**  
-
 Parameters are:
 
 - **aco**  (*type:* string into ["{"])  Opening curly bracket.
@@ -11329,10 +8979,6 @@ Parameters are:
 
 
 Class to create a couronne (2D).
-
-Usage:
-
-**bloc_couronne** **name** **origin | origine** **name3** **ri** **name4** **re**  
 
 Parameters are:
 
@@ -11361,10 +9007,6 @@ Parameters are:
 
 Not set
 
-Usage:
-
-**bloc_criteres_convergence** **bloc_lecture**  
-
 Parameters are:
 
 - **bloc_lecture**  (*type:* string) not_set
@@ -11382,22 +9024,6 @@ Parameters are:
 
 Auxiliary class to cut a domain.
 
-Usage:
-
-| **bloc_decouper** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[partitionneur | partition_tool]**  :ref:`partitionneur_deriv`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[larg_joint]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nom_zones | zones_name]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_decoupage]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ecrire_lata]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts_tot]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periodique]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reorder]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[single_hdf]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[print_more_infos]**  int
-| }
-
 Parameters are:
 
 - **[partitionneur | partition_tool]**  (*type:* :ref:`partitionneur_deriv`) Defines the partitionning algorithm (the effective C++ object  used is 'Partitionneur_ALGORITHM_NAME').
@@ -11408,7 +9034,9 @@ Parameters are:
 
 - **[ecrire_decoupage]**  (*type:* string) After having called the partitionning algorithm, the resulting partition  is written on disk in the specified filename. See also partitionneur Fichier_Decoupage. This keyword is useful to change the partition numbers: first, you write the partition  into a file with the option ecrire_decoupage. This file contains the domaine number for each element's mesh. Then you can easily permute domaine numbers in this file. Then read the new partition to create the .Zones files with the Fichier_Decoupage  keyword.
 
-- **[ecrire_lata]**  (*type:* string) not_set
+- **[ecrire_lata]**  (*type:* string) Save the partition field in a LATA format file for visualization
+
+- **[ecrire_med]**  (*type:* string) Save the partition field in a MED format file for visualization
 
 - **[nb_parts_tot]**  (*type:* int) Keyword to generates N .Domaine files, instead of the default number M obtained  after the partitionning algorithm. N must be greater or equal to M. This option might be used to perform coupled parallel computations. Supplemental empty domaines from M to N-1 are created. This keyword is used when you want to run a parallel calculation on several domains  with for example, 2 processors on a first domain and 10 on the second domain because  the first domain is very small compare to second one. You will write Nb_parts 2 and Nb_parts_tot 10 for the first domain and Nb_parts 10  for the second domain.
 
@@ -11432,10 +9060,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**bloc_diffusion** **aco** **[operateur]** **[op_implicite]** **acof**  
 
 Parameters are:
 
@@ -11465,10 +9089,6 @@ into account in the velocity gradient part of the diffusion expression.
 nu_transp 1 (respectively nut_transp 1) takes the molecular viscosity (eddy viscosity) 
 into account according in the TRANSPOSED velocity gradient part of the diffusion expression.NL2 
 filtrer_resu 1 allows to filter the resulting diffusive fluxes contribution.
-
-Usage:
-
-**bloc_diffusion_standard** **mot1** **val1** **mot2** **val2** **mot3** **val3** **mot4** **val4** **mot5** **val5** **mot6** **val6**  
 
 Parameters are:
 
@@ -11508,10 +9128,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**bloc_ef** **mot1** **val1** **mot2** **val2** **mot3** **val3** **mot4** **val4**  
 
 Parameters are:
 
@@ -11562,21 +9178,6 @@ W=ampli_bruit*rand2
 
 rand1 and rand2: unpredictables values between -1 and 1.
 
-Usage:
-
-| **bloc_lec_champ_init_canal_sinal** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **ucent**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **h**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **ampli_bruit**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ampli_sin]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **omega**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dir_flow]**  int into [0,1,2]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dir_wall]**  int into [0,1,2]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[min_dir_flow]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[min_dir_wall]**  double
-| }
-
 Parameters are:
 
 - **ucent**  (*type:* double) Velocity value at the center of the channel.
@@ -11610,10 +9211,6 @@ Parameters are:
 
 to read between two braces
 
-Usage:
-
-**bloc_lecture** **bloc_lecture**  
-
 Parameters are:
 
 - **bloc_lecture**  (*type:* string) not_set
@@ -11630,14 +9227,6 @@ Parameters are:
 
 
 Surface and volume porosity values.
-
-Usage:
-
-| **bloc_lecture_poro** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **volumique**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **surfacique**  list
-| }
 
 Parameters are:
 
@@ -11657,10 +9246,6 @@ Parameters are:
 
 
 Class to create a rectangle (or a box).
-
-Usage:
-
-**bloc_origine_cotes** **name** **origin | origine** **name2** **cotes**  
 
 Parameters are:
 
@@ -11684,28 +9269,6 @@ Parameters are:
 
 
 Class to create a pave.
-
-Usage:
-
-| **bloc_pave** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[origine]**  double list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[longueurs]**  double list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nombre_de_noeuds]**  int list - size is dimension
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facteurs]**  double list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[symx]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[symy]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[symz]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[xtanh]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[xtanh_dilatation]**  int into [-1,0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[xtanh_taille_premiere_maille]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ytanh]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ytanh_dilatation]**  int into [-1,0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ytanh_taille_premiere_maille]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ztanh]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ztanh_dilatation]**  int into [-1,0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ztanh_taille_premiere_maille]**  double
-| }
 
 Parameters are:
 
@@ -11754,18 +9317,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **bloc_pdf_model** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **eta**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[temps_relaxation_coefficient_pdf]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[echelle_relaxation_coefficient_pdf]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[local]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[vitesse_imposee_data]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[vitesse_imposee_fonction]**  :ref:`troismots`
-| }
-
 Parameters are:
 
 - **eta**  (*type:* double) penalization coefficient
@@ -11774,7 +9325,7 @@ Parameters are:
 
 - **[echelle_relaxation_coefficient_pdf]**  (*type:* double) time relaxation on the forcing term to help convergence
 
-- **[local]**  (*type:* flag) rien whether the prescribed velocity is expressed in the global or local basis
+- **[local]**  (*type:* flag) whether the prescribed velocity is expressed in the global or local basis
 
 - **[vitesse_imposee_data]**  (*type:* :ref:`field_base`) Prescribed velocity as a field
 
@@ -11793,10 +9344,6 @@ Parameters are:
 
 Sutherland law for viscosity mu(T)=mu0*((T0+C)/(T+C))*(T/T0)**1.5 and (optional) for 
 conductivity lambda(T)=mu0*Cp/Prandtl*((T0+Slambda)/(T+Slambda))*(T/T0)**1.5
-
-Usage:
-
-**bloc_sutherland** **problem_name** **mu0** **mu0_val** **t0** **t0_val** **[slambda]** **[s]** **c** **c_val**  
 
 Parameters are:
 
@@ -11830,10 +9377,6 @@ Parameters are:
 
 
 Class to create a tube (3D).
-
-Usage:
-
-**bloc_tube** **name** **origin | origine** **name2** **direction** **name3** **ri** **name4** **re** **name5** **h**  
 
 Parameters are:
 
@@ -11871,10 +9414,6 @@ Parameters are:
 The block side is not in contact with another block and boundary conditions are applied 
 to it.
 
-Usage:
-
-**bord** **nom** **defbord**  
-
 Parameters are:
 
 - **nom**  (*type:* string) Name of block side.
@@ -11896,13 +9435,6 @@ Basic class for block sides.
 Block sides that are neither edges nor connectors are not specified.
 The duplicate nodes of two blocks in contact are automatically recognized and deleted.
 
-Usage:
-
-| **bord_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _bords_ecrire:
@@ -11914,10 +9446,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**bords_ecrire** **chaine** **bords**  
 
 Parameters are:
 
@@ -11938,11 +9466,6 @@ Parameters are:
 
 The centre of gravity will be calculated.
 
-Usage:
-
-**calcul**  
-
-
 ----
 
 .. _canal:
@@ -11954,19 +9477,6 @@ Usage:
 
 
 Keyword for statistics on a periodic plane channel.
-
-Usage:
-
-| **canal** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_moy_spat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_moy_temp]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[debut_stat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fin_stat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pulsation_w]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_points_par_phase]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  string
-| }
 
 Parameters are:
 
@@ -11997,10 +9507,6 @@ Parameters are:
 
 To specify the centre of gravity.
 
-Usage:
-
-**centre_de_gravite** **point**  
-
 Parameters are:
 
 - **point**  (*type:* :ref:`un_point`) A centre of gravity.
@@ -12017,10 +9523,6 @@ Parameters are:
 
 
 Field to be post-processed.
-
-Usage:
-
-**champ_a_post** **champ** **[localisation]**  
 
 Parameters are:
 
@@ -12041,10 +9543,6 @@ Parameters are:
 
 Field's write mode.
 
-Usage:
-
-**champs_posts** **[format]** **mot** **period** **champs | fields**  
-
 Parameters are:
 
 - **[format]**  (*type:* string into ["binaire", "formatte"])  Type of file.
@@ -12058,6 +9556,29 @@ Parameters are:
 
 ----
 
+.. _champs_posts_fichier:
+
+**champs_posts_fichier**
+------------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Field's write mode.
+
+Parameters are:
+
+- **[format]**  (*type:* string into ["binaire", "formatte"])  Type of file.
+
+- **mot**  (*type:* string into ["dt_post", "nb_pas_dt_post"])  Keyword to set the kind of the field's  write frequency. Either a time period or a time step period.
+
+- **period**  (*type:* string) Value of the period which can be like (2.*t).
+
+- **fichier | file**  (*type:* string) name of file
+
+
+----
+
 .. _chmoy_faceperio:
 
 **chmoy_faceperio**
@@ -12067,10 +9588,6 @@ Parameters are:
 
 
 non documente
-
-Usage:
-
-**chmoy_faceperio** **bloc**  
 
 Parameters are:
 
@@ -12088,10 +9605,6 @@ Parameters are:
 
 
 Keyword to define several probes located on a circle (in 3-D space).
-
-Usage:
-
-**circle_3** **nbr** **point_deb** **direction** **radius** **theta1** **theta2**  
 
 Parameters are:
 
@@ -12120,10 +9633,6 @@ Parameters are:
 
 Keyword to define several probes located on a circle.
 
-Usage:
-
-**circle** **nbr** **point_deb** **[direction]** **radius** **theta1** **theta2**  
-
 Parameters are:
 
 - **nbr**  (*type:* int) Number of probes between teta1 and teta2 (angles given in degrees).
@@ -12150,10 +9659,6 @@ Parameters are:
 
 
 Object defining the uniform coarsening process of the given grid in IJK discretization
-
-Usage:
-
-**coarsen_operator_uniform** **[coarsen_operator_uniform]** **aco** **[coarsen_i]** **[coarsen_i_val]** **[coarsen_j]** **[coarsen_j_val]** **[coarsen_k]** **[coarsen_k_val]** **acof**  
 
 Parameters are:
 
@@ -12188,10 +9693,6 @@ Parameters are:
 
 Initial condition.
 
-Usage:
-
-**condinit** **nom** **ch**  
-
 Parameters are:
 
 - **nom**  (*type:* string) Name of initial condition field.
@@ -12210,10 +9711,6 @@ Parameters are:
 
 
 Boundary condition specified.
-
-Usage:
-
-**condlimlu** **bord** **cl**  
 
 Parameters are:
 
@@ -12236,10 +9733,6 @@ Parameters are:
 
 A convective scheme for ALE (Arbitrary Lagrangian-Eulerian) framework.
 
-Usage:
-
-**convection_ale** **opconv**  
-
 Parameters are:
 
 - **opconv**  (*type:* :ref:`bloc_convection`) Choice between: amont and muscl  Example: convection { ALE { amont } }
@@ -12261,11 +9754,6 @@ Keyword for upwind scheme for VDF or VEF discretizations.
 In VEF discretization equivalent to generic amont for TRUST version 1.5 or later.
 The previous upwind scheme can be used with the obsolete in future amont_old keyword.
 
-Usage:
-
-**convection_amont**  
-
-
 ----
 
 .. _convection_amont_old:
@@ -12280,11 +9768,6 @@ Usage:
 
 Only for VEF discretization, obsolete keyword, see amont.
 
-Usage:
-
-**convection_amont_old**  
-
-
 ----
 
 .. _convection_btd:
@@ -12298,14 +9781,6 @@ Usage:
 
 
 Only for EF discretization.
-
-Usage:
-
-| **convection_btd** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **btd**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **facteur**  double
-| }
 
 Parameters are:
 
@@ -12328,11 +9803,6 @@ Parameters are:
 
 For VDF and VEF discretizations.
 
-Usage:
-
-**convection_centre4**  
-
-
 ----
 
 .. _convection_centre:
@@ -12346,11 +9816,6 @@ Usage:
 
 
 For VDF and VEF discretizations.
-
-Usage:
-
-**convection_centre**  
-
 
 ----
 
@@ -12366,11 +9831,6 @@ Usage:
 
 Only for VEF discretization.
 
-Usage:
-
-**convection_centre_old**  
-
-
 ----
 
 .. _convection_deriv:
@@ -12382,11 +9842,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**convection_deriv**  
-
 
 ----
 
@@ -12401,11 +9856,6 @@ Usage:
 
 
 Only for VEF discretization.
-
-Usage:
-
-**convection_di_l2**  
-
 
 ----
 
@@ -12435,10 +9885,6 @@ grad vb, ub)), where vb corresponds to the filtered reference test functions.NL2
 
 Remark:NL2 This class requires to define a filtering operator : see solveur_bar
 
-Usage:
-
-**convection_ef** **[mot1]** **[bloc_ef]**  
-
 Parameters are:
 
 - **[mot1]**  (*type:* string into ["defaut_bar"])  equivalent to transportant_bar 0 transporte_bar 1 filtrer_resu  1 antisym 1
@@ -12459,20 +9905,6 @@ Parameters are:
 
 
 Keyword for a VEF convective scheme.
-
-Usage:
-
-| **convection_ef_stab** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[test]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tdivu]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[old]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[volumes_etendus]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[volumes_non_etendus]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[amont_sous_zone]**  :ref:`sous_zone`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha_sous_zone]**  :ref:`listsous_zone_valeur`
-| }
 
 Parameters are:
 
@@ -12522,10 +9954,6 @@ In case of results out of physical limits with muscl scheme (due for instance to
 strong non-conformal velocity flow field), user can redefine in data file a lower 
 order and a smoother limiter, as : convection { generic muscl minmod 1 }
 
-Usage:
-
-**convection_generic** **type** **[limiteur]** **[ordre]** **[alpha]**  
-
 Parameters are:
 
 - **type**  (*type:* string into ["amont", "muscl", "centre"])  type of scheme
@@ -12551,11 +9979,6 @@ Parameters are:
 
 Only for VEF discretization.
 
-Usage:
-
-**convection_kquick**  
-
-
 ----
 
 .. _convection_muscl3:
@@ -12569,13 +9992,6 @@ Usage:
 
 
 Keyword for a scheme using a ponderation between muscl and center schemes in VEF.
-
-Usage:
-
-| **convection_muscl3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha]**  double
-| }
 
 Parameters are:
 
@@ -12598,11 +10014,6 @@ Keyword for muscl scheme in VEF discretization equivalent to generic muscl vanle
 2 for the 1.5 version or later.
 The previous muscl scheme can be used with the obsolete in future muscl_old keyword.
 
-Usage:
-
-**convection_muscl**  
-
-
 ----
 
 .. _convection_muscl_new:
@@ -12617,11 +10028,6 @@ Usage:
 
 Only for VEF discretization.
 
-Usage:
-
-**convection_muscl_new**  
-
-
 ----
 
 .. _convection_muscl_old:
@@ -12635,11 +10041,6 @@ Usage:
 
 
 Only for VEF discretization.
-
-Usage:
-
-**convection_muscl_old**  
-
 
 ----
 
@@ -12656,11 +10057,6 @@ Usage:
 For VDF and VEF discretizations.
 Suppresses the convection operator.
 
-Usage:
-
-**convection_negligeable**  
-
-
 ----
 
 .. _convection_quick:
@@ -12675,11 +10071,6 @@ Usage:
 
 Only for VDF discretization.
 
-Usage:
-
-**convection_quick**  
-
-
 ----
 
 .. _convection_supg:
@@ -12693,13 +10084,6 @@ Usage:
 
 
 Only for EF discretization.
-
-Usage:
-
-| **convection_supg** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **facteur**  double
-| }
 
 Parameters are:
 
@@ -12718,31 +10102,11 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **corps_postraitement** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[format]**  string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_domaine | sous_zone]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parallele]**  string into ["simple", "multiple", "mpi-io"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[definition_champs]**  :ref:`definition_champs`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[definition_champs_fichier | definition_champs_file]**  :ref:`definition_champs_fichier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes | probes]**  :ref:`sondes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes_mobiles | mobile_probes]**  :ref:`sondes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes_fichier | probes_file]**  :ref:`sondes_fichier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[deprecatedkeepduplicatedprobes]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[champs | fields]**  :ref:`champs_posts`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[statistiques]**  :ref:`stats_posts`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[statistiques_en_serie]**  :ref:`stats_serie_posts`
-| }
-
 Parameters are:
 
 - **[fichier]**  (*type:* string) Name of file.
 
-- **[format]**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major"])  This optional  parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml. single_lata is not compatible with 64 bits integer version.
+- **[format]**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major", "cgns"])  This  optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
 
 - **[domaine]**  (*type:* string) This optional parameter specifies the domain on which the data should be  interpolated before it is written in the output file. The default is to write the data on the domain of the current problem (no interpolation).
 
@@ -12756,17 +10120,27 @@ Parameters are:
 
 - **[sondes | probes]**  (*type:* :ref:`sondes`) Probe.
 
+- **[sondes_fichier | probes_file]**  (*type:* :ref:`sondes_fichier`) Probe read from a file.
+
 - **[sondes_mobiles | mobile_probes]**  (*type:* :ref:`sondes`) Mobile probes useful for ALE, their positions will be updated in the mesh.
 
-- **[sondes_fichier | probes_file]**  (*type:* :ref:`sondes_fichier`) Probe read in a file.
+- **[sondes_mobiles_fichier | mobile_probes_file]**  (*type:* :ref:`sondes_fichier`) Mobile probes read in a file
 
 - **[deprecatedkeepduplicatedprobes]**  (*type:* int) Flag to not remove duplicated probes in .son files (1: keep duplicate probes,  0: remove duplicate probes)
 
 - **[champs | fields]**  (*type:* :ref:`champs_posts`) Field's write mode.
 
-- **[statistiques]**  (*type:* :ref:`stats_posts`) Statistics between two points fixed : start of integration time and  end of integration time.
+- **[champs_fichier | fields_file]**  (*type:* :ref:`champs_posts_fichier`) Fields read from file.
 
-- **[statistiques_en_serie]**  (*type:* :ref:`stats_serie_posts`) Statistics between two points not fixed : on period of integration.
+- **[statistiques | statistics]**  (*type:* :ref:`stats_posts`) Statistics between two points fixed : start of integration time and  end of integration time.
+
+- **[statistiques_fichier | statistics_file]**  (*type:* :ref:`stats_posts_fichier`) Statistics read from file.
+
+- **[statistiques_en_serie | serial_statistics]**  (*type:* :ref:`stats_serie_posts`) Statistics between two points not fixed : on period of integration.
+
+- **[statistiques_en_serie_fichier | serial_statistics_file]**  (*type:* :ref:`stats_serie_posts_fichier`) Serial_statistics read from a file
+
+- **[suffix_for_reset]**  (*type:* string) Suffix used to modify the postprocessing file name if the ICoCo resetTime()  method is invoked.
 
 
 ----
@@ -12780,10 +10154,6 @@ Parameters are:
 
 
 2-D edge (plane) in the 3-D space.
-
-Usage:
-
-**defbord_3** **dir** **eq** **pos** **pos2_min** **inf1** **dir2** **inf2** **pos2_max** **pos3_min** **inf3** **dir3** **inf4** **pos3_max**  
 
 Parameters are:
 
@@ -12826,11 +10196,6 @@ Parameters are:
 
 Class to define an edge.
 
-Usage:
-
-**defbord**  
-
-
 ----
 
 .. _definition_champ:
@@ -12842,10 +10207,6 @@ Usage:
 
 
 Keyword to create new complex field for advanced postprocessing.
-
-Usage:
-
-**definition_champ** **name** **champ_generique**  
 
 Parameters are:
 
@@ -12866,16 +10227,9 @@ Parameters are:
 
 Keyword to read definition_champs from a file
 
-Usage:
-
-| **definition_champs_fichier** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fichier | file**  string
-| }
-
 Parameters are:
 
-- **fichier | file**  (*type:* string) name of file containing the definition of advanced fields
+- **fichier | file**  (*type:* string) name of file
 
 
 ----
@@ -12889,10 +10243,6 @@ Parameters are:
 
 
 Two integers.
-
-Usage:
-
-**deuxentiers** **int1** **int2**  
 
 Parameters are:
 
@@ -12913,10 +10263,6 @@ Parameters are:
 
 Two words.
 
-Usage:
-
-**deuxmots** **mot_1** **mot_2**  
-
 Parameters are:
 
 - **mot_1**  (*type:* string) First word.
@@ -12936,11 +10282,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**diffusion_deriv**  
-
-
 ----
 
 .. _diffusion_negligeable:
@@ -12955,11 +10296,6 @@ Usage:
 
 the diffusivity will not taken in count
 
-Usage:
-
-**diffusion_negligeable**  
-
-
 ----
 
 .. _diffusion_option:
@@ -12973,10 +10309,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**diffusion_option** **bloc_lecture**  
 
 Parameters are:
 
@@ -12997,13 +10329,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **diffusion_p1ncp1b** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _diffusion_stab:
@@ -13017,19 +10342,6 @@ Usage:
 
 
 keyword allowing consistent and stable calculations even in case of obtuse angle meshes.
-
-Usage:
-
-| **diffusion_stab** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[standard]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[info]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[new_jacobian]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nu]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nut]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nu_transp]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nut_transp]**  int
-| }
 
 Parameters are:
 
@@ -13071,10 +10383,6 @@ diffusion operator- can be recovered by using the following parameters in the ne
 class :NL2 diffusion { standard grad_Ubar 0 nu 1 nut 1 nu_transp 0 nut_transp 1 filtrer_resu 
 0}.
 
-Usage:
-
-**diffusion_standard** **[mot1]** **[bloc_diffusion_standard]**  
-
 Parameters are:
 
 - **[mot1]**  (*type:* string into ["defaut_bar"])  equivalent to grad_Ubar 1 nu 1 nut 1 nu_transp 1 nut_transp  1 filtrer_resu 1
@@ -13096,10 +10404,6 @@ Parameters are:
 
 Turbulent diffusion operator for multiphase problem
 
-Usage:
-
-**diffusion_turbulente_multiphase** **[type]**  
-
 Parameters are:
 
 - **[type]**  (*type:* :ref:`type_diffusion_turbulente_multiphase_deriv`) Turbulence model for multiphase problem
@@ -13119,11 +10423,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**difusion_p1b**  
-
-
 ----
 
 .. _domain:
@@ -13135,10 +10434,6 @@ Usage:
 
 
 Class to reuse a domain.
-
-Usage:
-
-**domain** **domain_name**  
 
 Parameters are:
 
@@ -13156,14 +10451,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **dt_impr_ustar_mean_only** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dt_impr**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boundaries]**  string list
-| }
 
 Parameters are:
 
@@ -13188,15 +10475,6 @@ In the case where the domain is moving into a Galilean referential, the keyword 
 will print total kinetic energy in the Galilean referential whereas Ec will print 
 the value calculated into the moving referential linked to the domain
 
-Usage:
-
-| **ec** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ec]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ec_dans_repere_fixe]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode]**  double
-| }
-
 Parameters are:
 
 - **[ec]**  (*type:* flag) not_set
@@ -13204,37 +10482,6 @@ Parameters are:
 - **[ec_dans_repere_fixe]**  (*type:* flag) not_set
 
 - **[periode]**  (*type:* double) periode is the keyword to set the period of printing into the file datafile_Ec.son  or datafile_Ec_dans_repere_fixe.son.
-
-
-----
-
-.. _ecrire_fichier_xyz_valeur_param:
-
-**ecrire_fichier_xyz_valeur_param**
------------------------------------
-
-**Inherits from:** :ref:`objet_lecture` 
-
-
-To write the values of a field for some boundaries in a text file.
-
-The name of the files is pb_name_field_name_time.dat
-
-Several Ecrire_fichier_xyz_valeur keywords may be written into an equation to write 
-several fields.
-This kind of files may be read by Champ_don_lu or Champ_front_lu for example.
-
-Usage:
-
-**ecrire_fichier_xyz_valeur_param** **name** **dt_ecrire_fic** **[bords]**  
-
-Parameters are:
-
-- **name**  (*type:* string) Name of the field to write (Champ_Inc, Champ_Fonc or a post_processed field).
-
-- **dt_ecrire_fic**  (*type:* double) Time period for printing in the file.
-
-- **[bords]**  (*type:* :ref:`bords_ecrire`) to post-process only on some boundaries
 
 
 ----
@@ -13248,10 +10495,6 @@ Parameters are:
 
 
 An integer and a real.
-
-Usage:
-
-**entierfloat** **the_int** **the_float**  
 
 Parameters are:
 
@@ -13274,10 +10517,6 @@ Two points will be confused if the distance between them is less than eps.
 By default, eps is set to 1e-12.
 The keyword Epsilon allows an alternative value to be assigned to eps.
 
-Usage:
-
-**epsilon** **eps**  
-
 Parameters are:
 
 - **eps**  (*type:* double) New value of precision.
@@ -13294,10 +10533,6 @@ Parameters are:
 
 
 Two reals.
-
-Usage:
-
-**floatfloat** **a** **b**  
 
 Parameters are:
 
@@ -13317,10 +10552,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**fonction_champ_reprise** **mot** **fonction**  
 
 Parameters are:
 
@@ -13343,10 +10574,6 @@ The structure fonction is calculated on nb points and we should add the 2 direct
 (0:OX, 1:OY, 2:OZ) constituting the homegeneity planes.
 Example for channel flows, planes parallel to the walls.
 
-Usage:
-
-**form_a_nb_points** **nb** **dir1** **dir2**  
-
 Parameters are:
 
 - **nb**  (*type:* int into [4])  Number of points.
@@ -13368,10 +10595,6 @@ Parameters are:
 
 File formatted.
 
-Usage:
-
-**format_file** **[format]** **name_file**  
-
 Parameters are:
 
 - **[format]**  (*type:* string into ["binaire", "formatte", "xyz", "single_hdf"])  Type of file (the file format).
@@ -13391,10 +10614,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**format_lata_to_med** **mot** **[format]**  
-
 Parameters are:
 
 - **mot**  (*type:* string into ["format_post_sup"])  not_set
@@ -13413,10 +10632,6 @@ Parameters are:
 
 
 Four reals.
-
-Usage:
-
-**fourfloat** **a** **b** **c** **d**  
 
 Parameters are:
 
@@ -13440,10 +10655,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**info_med** **file_med** **domaine** **pb_post**  
 
 Parameters are:
 
@@ -13473,10 +10684,6 @@ or not they belong to the same block).
 The keyword Internes (Internal) must be used to execute a calculation with plates, 
 followed by the equation of the surface area covered by the plates.
 
-Usage:
-
-**internes** **nom** **defbord**  
-
 Parameters are:
 
 - **nom**  (*type:* string) Name of block side.
@@ -13496,11 +10703,6 @@ Parameters are:
 
 Auxiliary class to compute and print the moments.
 
-Usage:
-
-**lecture_bloc_moment_base**  
-
-
 ----
 
 .. _longitudinale:
@@ -13512,10 +10714,6 @@ Usage:
 
 
 Class to define the pressure loss in the direction of the tube bundle.
-
-Usage:
-
-**longitudinale** **dir** **dd** **ch_a** **a** **[ch_b]** **[b]**  
 
 Parameters are:
 
@@ -13534,6 +10732,59 @@ Parameters are:
 
 ----
 
+.. _longueur_melange:
+
+**longueur_melange**
+--------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+This model is based on mixing length modelling.
+For a non academic configuration, formulation used in the code can be expressed basically 
+as :
+
+$nu_t=(Kappa.y)^2$.dU/dy
+
+Till a maximum distance (dmax) set by the user in the data file, y is set equal to 
+the distance from the wall (dist_w) calculated previously and saved in file Wall_length.xyz.
+[see Distance_paroi keyword]
+
+Then (from y=dmax), y decreases as an exponential function : y=dmax*exp[-2.*(dist_w-dmax)/dmax]
+
+Parameters are:
+
+- **[canalx]**  (*type:* double) [height] : plane channel according to Ox direction (for the moment, formulation  in the code relies on fixed heigh : H=2).
+
+- **[tuyauz]**  (*type:* double) [diameter] : pipe according to Oz direction (for the moment, formulation  in the code relies on fixed diameter : D=2).
+
+- **[verif_dparoi]**  (*type:* string) not_set
+
+- **[dmax]**  (*type:* double) Maximum distance.
+
+- **[fichier]**  (*type:* string) not_set
+
+- **[fichier_ecriture_k_eps]**  (*type:* string) When a resume with k-epsilon model is envisaged, this keyword allows to generate  external MED-format file with evaluation of k and epsilon quantities (based on eddy  turbulent viscosity and turbulent characteristic length returned by mixing length  model). The frequency of the MED file print is set equal to dt_impr_ustar. Moreover, k-eps MED field is automatically saved at the last time step. MED file is then used for resuming a K-Epsilon calculation with the Champ_Fonc_Med  keyword.
+
+- **[formulation_a_nb_points]**  (*type:* :ref:`form_a_nb_points`) The structure fonction is calculated on nb points and we should  add the 2 directions (0:OX, 1:OY, 2:OZ) constituting the homegeneity planes. Example for channel flows, planes parallel to the walls.
+
+- **[longueur_maille]**  (*type:* string into ["volume", "volume_sans_lissage", "scotti", "arrete"])  Different ways to  calculate the characteristic length may be specified :  volume : It is the default option. Characteristic length is based on the cubic root of the volume cells. A smoothing procedure is applied to avoid discontinuities of this quantity in VEF  from a cell to another.  volume_sans_lissage : For VEF only. Characteristic length is based on the cubic root of the volume cells (without smoothing  procedure).NL2 scotti : Characteristic length is based on the cubic root of the volume  cells and the Scotti correction is applied to take into account the stretching of  the cell in the case of anisotropic meshes.  arete : For VEF only. Characteristic length relies on the max edge (+ smoothing procedure) is taken into  account.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* double) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective  time-step is higher or equal to the given value [0-1]
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
+
+- **[dt_impr_ustar]**  (*type:* double) This keyword is used to print the values (U +, d+, u$\star$) obtained  with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers  to the printing period, this value is expressed in seconds.
+
+- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained  with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don't use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on  which you want to calculate the mean values of u*, then you have to specify their  names.
+
+- **[nut_max]**  (*type:* double) Upper limitation of turbulent viscosity (default value 1.e8).
+
+
+----
+
 .. _mailler_base:
 
 **mailler_base**
@@ -13543,13 +10794,6 @@ Parameters are:
 
 
 Basic class to mesh.
-
-Usage:
-
-| **mailler_base** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -13564,10 +10808,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**methode_loi_horaire** **nom_loi**  
 
 Parameters are:
 
@@ -13586,9 +10826,66 @@ Parameters are:
 
 Basic class for method of transport of interface.
 
-Usage:
+----
 
-**methode_transport_deriv**  
+.. _mod_turb_hyd_rans:
+
+**mod_turb_hyd_rans**
+---------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Class for RANS turbulence model for Navier-Stokes equations.
+
+Parameters are:
+
+- **[k_min]**  (*type:* double) Lower limitation of k (default value 1.e-10).
+
+- **[quiet]**  (*type:* flag) To disable printing of information about K and Epsilon/Omega.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* double) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective  time-step is higher or equal to the given value [0-1]
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
+
+- **[dt_impr_ustar]**  (*type:* double) This keyword is used to print the values (U +, d+, u$\star$) obtained  with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers  to the printing period, this value is expressed in seconds.
+
+- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained  with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don't use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on  which you want to calculate the mean values of u*, then you have to specify their  names.
+
+- **[nut_max]**  (*type:* double) Upper limitation of turbulent viscosity (default value 1.e8).
+
+
+----
+
+.. _mod_turb_hyd_ss_maille:
+
+**mod_turb_hyd_ss_maille**
+--------------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Class for sub-grid turbulence model for Navier-Stokes equations.
+
+Parameters are:
+
+- **[formulation_a_nb_points]**  (*type:* :ref:`form_a_nb_points`) The structure fonction is calculated on nb points and we should  add the 2 directions (0:OX, 1:OY, 2:OZ) constituting the homegeneity planes. Example for channel flows, planes parallel to the walls.
+
+- **[longueur_maille]**  (*type:* string into ["volume", "volume_sans_lissage", "scotti", "arrete"])  Different ways to  calculate the characteristic length may be specified :  volume : It is the default option. Characteristic length is based on the cubic root of the volume cells. A smoothing procedure is applied to avoid discontinuities of this quantity in VEF  from a cell to another.  volume_sans_lissage : For VEF only. Characteristic length is based on the cubic root of the volume cells (without smoothing  procedure).NL2 scotti : Characteristic length is based on the cubic root of the volume  cells and the Scotti correction is applied to take into account the stretching of  the cell in the case of anisotropic meshes.  arete : For VEF only. Characteristic length relies on the max edge (+ smoothing procedure) is taken into  account.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* double) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective  time-step is higher or equal to the given value [0-1]
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
+
+- **[dt_impr_ustar]**  (*type:* double) This keyword is used to print the values (U +, d+, u$\star$) obtained  with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers  to the printing period, this value is expressed in seconds.
+
+- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained  with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don't use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on  which you want to calculate the mean values of u*, then you have to specify their  names.
+
+- **[nut_max]**  (*type:* double) Upper limitation of turbulent viscosity (default value 1.e8).
 
 
 ----
@@ -13602,18 +10899,6 @@ Usage:
 
 
 Basic class for turbulence model for Navier-Stokes equations.
-
-Usage:
-
-| **modele_turbulence_hyd_deriv** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_visco_turb_pour_controle_pas_de_temps]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[turbulence_paroi]**  :ref:`turbulence_paroi_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_ustar]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_ustar_mean_only]**  :ref:`dt_impr_ustar_mean_only`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nut_max]**  double
-| }
 
 Parameters are:
 
@@ -13645,18 +10930,6 @@ Parameters are:
 Nul turbulence model (turbulent viscosity = 0) which can be used with a turbulent 
 problem.
 
-Usage:
-
-| **modele_turbulence_hyd_nul** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_visco_turb_pour_controle_pas_de_temps]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[turbulence_paroi]**  :ref:`turbulence_paroi_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_ustar]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr_ustar_mean_only]**  :ref:`dt_impr_ustar_mean_only`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nut_max]**  double
-| }
-
 Parameters are:
 
 - **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
@@ -13684,10 +10957,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**nom_postraitement** **nom** **post**  
-
 Parameters are:
 
 - **nom**  (*type:* string) Name of the post-processing.
@@ -13708,10 +10977,6 @@ Parameters are:
 Keyword to define a probe at the special element.
 Useful for min/max sonde.
 
-Usage:
-
-**numero_elem_sur_maitre** **numero**  
-
 Parameters are:
 
 - **numero**  (*type:* int) element number
@@ -13727,13 +10992,6 @@ Parameters are:
 
 Auxiliary class for reading.
 
-Usage:
-
-| **objet_lecture** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _op_implicite:
@@ -13745,10 +11003,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**op_implicite** **implicite** **mot** **solveur**  
 
 Parameters are:
 
@@ -13770,17 +11024,6 @@ Parameters are:
 
 
 To specify additional parameters for the equation when using impliciting diffusion
-
-Usage:
-
-| **parametre_diffusion_implicite** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[crank]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[preconditionnement_diag]**  int into [0,1]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| }
 
 Parameters are:
 
@@ -13807,13 +11050,6 @@ Parameters are:
 
 Basic class for parametre_equation
 
-Usage:
-
-| **parametre_equation_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _parametre_implicite:
@@ -13826,18 +11062,6 @@ Usage:
 
 Keyword to change for this equation only the parameter of the implicit scheme used 
 to solve the problem.
-
-Usage:
-
-| **parametre_implicite** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resolution_explicite]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_non_resolue]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[equation_frequence_resolue]**  string
-| }
 
 Parameters are:
 
@@ -13866,10 +11090,6 @@ Parameters are:
 
 Class to create a pave (block) with boundaries.
 
-Usage:
-
-**pave** **name** **bloc** **list_bord**  
-
 Parameters are:
 
 - **name**  (*type:* string) Name of the pave (block).
@@ -13890,10 +11110,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**penalisation_l2_ftd_lec** **[postraiter_gradient_pression_sans_masse]** **[correction_matrice_projection_initiale]** **[correction_calcul_pression_initiale]** **[correction_vitesse_projection_initiale]** **[correction_matrice_pression]** **[matrice_pression_penalisee_h1]** **[correction_vitesse_modifie]** **[correction_pression_modifie]** **[gradient_pression_qdm_modifie]** **bord** **val**  
 
 Parameters are:
 
@@ -13933,10 +11149,6 @@ Parameters are:
 Keyword to set the number of probe layout points.
 The file format is type .lml
 
-Usage:
-
-**plan** **nbr** **nbr2** **point_deb** **point_fin** **point_fin_2**  
-
 Parameters are:
 
 - **nbr**  (*type:* int) Number of probes in the first direction.
@@ -13962,10 +11174,6 @@ Parameters are:
 
 Point as class-daughter of Points.
 
-Usage:
-
-**point** **points**  
-
 Parameters are:
 
 - **points**  (*type:* :ref:`listpoints`) Probe points.
@@ -13984,10 +11192,6 @@ Parameters are:
 Keyword to define the number of probe points.
 The file is arranged in columns.
 
-Usage:
-
-**points** **points**  
-
 Parameters are:
 
 - **points**  (*type:* :ref:`listpoints`) Probe points.
@@ -14004,10 +11208,6 @@ Parameters are:
 
 
 Keyword to define a probe at the same position of another probe named autre_sonde.
-
-Usage:
-
-**position_like** **autre_sonde**  
 
 Parameters are:
 
@@ -14028,31 +11228,11 @@ Parameters are:
 
 An object of post-processing (without name).
 
-Usage:
-
-| **postraitement** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[format]**  string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaine]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_domaine | sous_zone]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[parallele]**  string into ["simple", "multiple", "mpi-io"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[definition_champs]**  :ref:`definition_champs`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[definition_champs_fichier | definition_champs_file]**  :ref:`definition_champs_fichier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes | probes]**  :ref:`sondes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes_mobiles | mobile_probes]**  :ref:`sondes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sondes_fichier | probes_file]**  :ref:`sondes_fichier`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[deprecatedkeepduplicatedprobes]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[champs | fields]**  :ref:`champs_posts`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[statistiques]**  :ref:`stats_posts`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[statistiques_en_serie]**  :ref:`stats_serie_posts`
-| }
-
 Parameters are:
 
 - **[fichier]**  (*type:* string) Name of file.
 
-- **[format]**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major"])  This optional  parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml. single_lata is not compatible with 64 bits integer version.
+- **[format]**  (*type:* string into ["lml", "lata", "single_lata", "lata_v2", "med", "med_major", "cgns"])  This  optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
 
 - **[domaine]**  (*type:* string) This optional parameter specifies the domain on which the data should be  interpolated before it is written in the output file. The default is to write the data on the domain of the current problem (no interpolation).
 
@@ -14066,17 +11246,27 @@ Parameters are:
 
 - **[sondes | probes]**  (*type:* :ref:`sondes`) Probe.
 
+- **[sondes_fichier | probes_file]**  (*type:* :ref:`sondes_fichier`) Probe read from a file.
+
 - **[sondes_mobiles | mobile_probes]**  (*type:* :ref:`sondes`) Mobile probes useful for ALE, their positions will be updated in the mesh.
 
-- **[sondes_fichier | probes_file]**  (*type:* :ref:`sondes_fichier`) Probe read in a file.
+- **[sondes_mobiles_fichier | mobile_probes_file]**  (*type:* :ref:`sondes_fichier`) Mobile probes read in a file
 
 - **[deprecatedkeepduplicatedprobes]**  (*type:* int) Flag to not remove duplicated probes in .son files (1: keep duplicate probes,  0: remove duplicate probes)
 
 - **[champs | fields]**  (*type:* :ref:`champs_posts`) Field's write mode.
 
-- **[statistiques]**  (*type:* :ref:`stats_posts`) Statistics between two points fixed : start of integration time and  end of integration time.
+- **[champs_fichier | fields_file]**  (*type:* :ref:`champs_posts_fichier`) Fields read from file.
 
-- **[statistiques_en_serie]**  (*type:* :ref:`stats_serie_posts`) Statistics between two points not fixed : on period of integration.
+- **[statistiques | statistics]**  (*type:* :ref:`stats_posts`) Statistics between two points fixed : start of integration time and  end of integration time.
+
+- **[statistiques_fichier | statistics_file]**  (*type:* :ref:`stats_posts_fichier`) Statistics read from file.
+
+- **[statistiques_en_serie | serial_statistics]**  (*type:* :ref:`stats_serie_posts`) Statistics between two points not fixed : on period of integration.
+
+- **[statistiques_en_serie_fichier | serial_statistics_file]**  (*type:* :ref:`stats_serie_posts_fichier`) Serial_statistics read from a file
+
+- **[suffix_for_reset]**  (*type:* string) Suffix used to modify the postprocessing file name if the ICoCo resetTime()  method is invoked.
 
 
 ----
@@ -14091,11 +11281,21 @@ Parameters are:
 
 not_set
 
-Usage:
+----
 
-| **postraitement_base** *str*
-| **Read** *str* {
-| }
+.. _profils_thermo:
+
+**profils_thermo**
+------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+non documente
+
+Parameters are:
+
+- **bloc**  (*type:* :ref:`bloc_lecture`) not_set
 
 
 ----
@@ -14110,10 +11310,6 @@ Usage:
 
 The block side is in contact with the block of another domain (case of two coupled 
 problems).
-
-Usage:
-
-**raccord** **type1** **type2** **nom** **defbord**  
 
 Parameters are:
 
@@ -14137,10 +11333,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-**radius** **nbr** **point_deb** **radius** **teta1** **teta2**  
 
 Parameters are:
 
@@ -14173,21 +11365,6 @@ If K_inv >0,
 
 w= K pow(T,beta) exp(-Ea/( R T)) ( $\Pi$ pow(Reactif_i,activitivity_i) - Kinv/exp(-c_r_Ea/(R 
 T)) $\Pi$ pow(Produit_i,activitivity_i ))
-
-Usage:
-
-| **reaction** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **reactifs**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **produits**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constante_taux_reaction]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coefficients_activites]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **enthalpie_reaction**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **energie_activation**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **exposant_beta**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[contre_reaction]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[contre_energie_activation]**  double
-| }
 
 Parameters are:
 
@@ -14222,14 +11399,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **remove_elem_bloc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fonction]**  string
-| }
-
 Parameters are:
 
 - **[liste]**  (*type:* int list) not_set
@@ -14249,10 +11418,6 @@ Parameters are:
 
 Keyword to define the number of probe segment points.
 The file is arranged in columns.
-
-Usage:
-
-**segment** **nbr** **point_deb** **point_fin**  
 
 Parameters are:
 
@@ -14275,10 +11440,6 @@ Parameters are:
 
 Segment probe where points are moved to the nearest x faces
 
-Usage:
-
-**segmentfacesx** **nbr** **point_deb** **point_fin**  
-
 Parameters are:
 
 - **nbr**  (*type:* int) Number of probe points of the segment, evenly distributed.
@@ -14300,10 +11461,6 @@ Parameters are:
 
 Segment probe where points are moved to the nearest y faces
 
-Usage:
-
-**segmentfacesy** **nbr** **point_deb** **point_fin**  
-
 Parameters are:
 
 - **nbr**  (*type:* int) Number of probe points of the segment, evenly distributed.
@@ -14324,10 +11481,6 @@ Parameters are:
 
 
 Segment probe where points are moved to the nearest z faces
-
-Usage:
-
-**segmentfacesz** **nbr** **point_deb** **point_fin**  
 
 Parameters are:
 
@@ -14351,10 +11504,6 @@ Parameters are:
 This keyword is used to define a probe segment from specifics points.
 The nom_champ field is sampled at ns specifics points.
 
-Usage:
-
-**segmentpoints** **points**  
-
 Parameters are:
 
 - **points**  (*type:* :ref:`listpoints`) Probe points.
@@ -14373,10 +11522,6 @@ Parameters are:
 Keyword is used to define the probes.
 Observations: the probe coordinates should be given in Cartesian coordinates (X, 
 Y, Z), including axisymmetric.
-
-Usage:
-
-**sonde** **nom_sonde** **[special]** **nom_inco** **mperiode** **prd** **type**  
 
 Parameters are:
 
@@ -14412,11 +11557,6 @@ to a layout (keyword Plan) or according to a parallelepiped (keyword Volume).
 The fields allow all the values of a physical value on the domain to be known at 
 several moments in time.
 
-Usage:
-
-**sonde_base**  
-
-
 ----
 
 .. _sonde_tble:
@@ -14428,10 +11568,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**sonde_tble** **name** **point**  
 
 Parameters are:
 
@@ -14450,18 +11586,90 @@ Parameters are:
 **Inherits from:** :ref:`objet_lecture` 
 
 
-not_set
-
-Usage:
-
-| **sondes_fichier** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fichier | file**  string
-| }
+Keyword to read probes from a file
 
 Parameters are:
 
 - **fichier | file**  (*type:* string) name of file
+
+
+----
+
+.. _sous_maille_smago:
+
+**sous_maille_smago**
+---------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Smagorinsky sub-grid turbulence model.
+
+Nut=Cs1*Cs1*l*l*sqrt(2*S*S)
+
+K=Cs2*Cs2*l*l*2*S
+
+Parameters are:
+
+- **[cs]**  (*type:* double) This is an optional keyword and the value is used to set the constant  used in the Smagorinsky model (This is currently only valid for Smagorinsky models  and it is set to 0.18 by default) .
+
+- **[formulation_a_nb_points]**  (*type:* :ref:`form_a_nb_points`) The structure fonction is calculated on nb points and we should  add the 2 directions (0:OX, 1:OY, 2:OZ) constituting the homegeneity planes. Example for channel flows, planes parallel to the walls.
+
+- **[longueur_maille]**  (*type:* string into ["volume", "volume_sans_lissage", "scotti", "arrete"])  Different ways to  calculate the characteristic length may be specified :  volume : It is the default option. Characteristic length is based on the cubic root of the volume cells. A smoothing procedure is applied to avoid discontinuities of this quantity in VEF  from a cell to another.  volume_sans_lissage : For VEF only. Characteristic length is based on the cubic root of the volume cells (without smoothing  procedure).NL2 scotti : Characteristic length is based on the cubic root of the volume  cells and the Scotti correction is applied to take into account the stretching of  the cell in the case of anisotropic meshes.  arete : For VEF only. Characteristic length relies on the max edge (+ smoothing procedure) is taken into  account.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* double) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective  time-step is higher or equal to the given value [0-1]
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
+
+- **[dt_impr_ustar]**  (*type:* double) This keyword is used to print the values (U +, d+, u$\star$) obtained  with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers  to the printing period, this value is expressed in seconds.
+
+- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained  with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don't use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on  which you want to calculate the mean values of u*, then you have to specify their  names.
+
+- **[nut_max]**  (*type:* double) Upper limitation of turbulent viscosity (default value 1.e8).
+
+
+----
+
+.. _sous_maille_wale:
+
+**sous_maille_wale**
+--------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+This is the WALE-model.
+It is a new sub-grid scale model for eddy-viscosity in LES that has the following 
+properties :
+
+- it goes naturally to 0 at the wall (it doesn't need any information on the wall 
+position or geometry)
+
+- it has the proper wall scaling in o(y3) in the vicinity of the wall
+
+- it reproduces correctly the laminar to turbulent transition.
+
+Parameters are:
+
+- **[cw]**  (*type:* double) The unique parameter (constant) of the WALE-model (by default value 0.5).
+
+- **[formulation_a_nb_points]**  (*type:* :ref:`form_a_nb_points`) The structure fonction is calculated on nb points and we should  add the 2 directions (0:OX, 1:OY, 2:OZ) constituting the homegeneity planes. Example for channel flows, planes parallel to the walls.
+
+- **[longueur_maille]**  (*type:* string into ["volume", "volume_sans_lissage", "scotti", "arrete"])  Different ways to  calculate the characteristic length may be specified :  volume : It is the default option. Characteristic length is based on the cubic root of the volume cells. A smoothing procedure is applied to avoid discontinuities of this quantity in VEF  from a cell to another.  volume_sans_lissage : For VEF only. Characteristic length is based on the cubic root of the volume cells (without smoothing  procedure).NL2 scotti : Characteristic length is based on the cubic root of the volume  cells and the Scotti correction is applied to take into account the stretching of  the cell in the case of anisotropic meshes.  arete : For VEF only. Characteristic length relies on the max edge (+ smoothing procedure) is taken into  account.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal  or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during  the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction  of turbulent viscosity: it should be 1. on the whole domain.
+
+- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* double) Keyword to set a limitation to low time steps due to high values of turbulent  viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective  time-step is higher or equal to the given value [0-1]
+
+- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
+
+- **[dt_impr_ustar]**  (*type:* double) This keyword is used to print the values (U +, d+, u$\star$) obtained  with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers  to the printing period, this value is expressed in seconds.
+
+- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained  with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don't use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on  which you want to calculate the mean values of u*, then you have to specify their  names.
+
+- **[nut_max]**  (*type:* double) Upper limitation of turbulent viscosity (default value 1.e8).
 
 
 ----
@@ -14475,10 +11683,6 @@ Parameters are:
 
 
 Two words.
-
-Usage:
-
-**sous_zone_valeur** **sous_zone** **valeur**  
 
 Parameters are:
 
@@ -14500,10 +11704,6 @@ Parameters are:
 Class to read the source term modelling the presence of a bundle of tubes in a flow.
 Cf=A Re-B.
 
-Usage:
-
-**spec_pdcr_base** **ch_a** **a** **[ch_b]** **[b]**  
-
 Parameters are:
 
 - **ch_a**  (*type:* string into ["a", "cf"])  Keyword to be used to set law coefficient values for the  coefficient of regular pressure losses.
@@ -14522,16 +11722,12 @@ Parameters are:
 **stat_post_correlation**
 -------------------------
 
-**Synonyms:** champ_post_statistiques_correlation, correlation
+**Synonyms:** correlation, champ_post_statistiques_correlation
 
 **Inherits from:** :ref:`objet_lecture` 
 
 
 not_set
-
-Usage:
-
-**stat_post_correlation** **first_field** **second_field** **[localisation]**  
 
 Parameters are:
 
@@ -14554,11 +11750,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**stat_post_deriv**  
-
-
 ----
 
 .. _stat_post_ecart_type:
@@ -14572,10 +11763,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**stat_post_ecart_type** **field** **[localisation]**  
 
 Parameters are:
 
@@ -14591,16 +11778,12 @@ Parameters are:
 **stat_post_moyenne**
 ---------------------
 
-**Synonyms:** champ_post_statistiques_moyenne, moyenne
+**Synonyms:** moyenne, champ_post_statistiques_moyenne
 
 **Inherits from:** :ref:`objet_lecture` 
 
 
 not_set
-
-Usage:
-
-**stat_post_moyenne** **field** **[localisation]**  
 
 Parameters are:
 
@@ -14623,10 +11806,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**stat_post_t_deb** **val**  
-
 Parameters are:
 
 - **val**  (*type:* double) not_set
@@ -14646,10 +11825,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**stat_post_t_fin** **val**  
-
 Parameters are:
 
 - **val**  (*type:* double) not_set
@@ -14666,11 +11841,7 @@ Parameters are:
 
 
 Field's write mode.
-\input{{statistiques}}
 
-Usage:
-
-**stats_posts** **mot** **period** **champs | fields**  
 
 Parameters are:
 
@@ -14679,6 +11850,28 @@ Parameters are:
 - **period**  (*type:* string) Value of the period which can be like (2.*t).
 
 - **champs | fields**  (*type:* :ref:`list_stat_post`) Post-processed fields.
+
+
+----
+
+.. _stats_posts_fichier:
+
+**stats_posts_fichier**
+-----------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Field's write mode.
+
+
+Parameters are:
+
+- **mot**  (*type:* string into ["dt_post", "nb_pas_dt_post"])  Keyword to set the kind of the field's  write frequency. Either a time period or a time step period.
+
+- **period**  (*type:* string) Value of the period which can be like (2.*t).
+
+- **fichier | file**  (*type:* string) name of file
 
 
 ----
@@ -14692,11 +11885,7 @@ Parameters are:
 
 
 Post-processing for statistics.
-\input{{statistiquesseries}}
 
-Usage:
-
-**stats_serie_posts** **mot** **dt_integr** **stat**  
 
 Parameters are:
 
@@ -14705,6 +11894,28 @@ Parameters are:
 - **dt_integr**  (*type:* double) Average on dt_integr time interval is post-processed every dt_integr seconds.
 
 - **stat**  (*type:* :ref:`list_stat_post`) not_set
+
+
+----
+
+.. _stats_serie_posts_fichier:
+
+**stats_serie_posts_fichier**
+-----------------------------
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Post-processing for statistics.
+
+
+Parameters are:
+
+- **mot**  (*type:* string into ["dt_integr"])  Keyword is used to set the statistics period of integration  and write period.
+
+- **dt_integr**  (*type:* double) Average on dt_integr time interval is post-processed every dt_integr seconds.
+
+- **fichier | file**  (*type:* string) name of file
 
 
 ----
@@ -14718,14 +11929,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **temperature** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **bord**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  int
-| }
 
 Parameters are:
 
@@ -14745,21 +11948,6 @@ Parameters are:
 
 
 Keyword for a THI (Homogeneous Isotropic Turbulence) calculation.
-
-Usage:
-
-| **thi** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **init_ec**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[val_ec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facon_init]**  int into ["0", "1"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[calc_spectre]**  int into ["0", "1"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_calc_spectre]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[spectre_3d]**  int into ["0", "1"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[spectre_1d]**  int into ["0", "1"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conservation_ec]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[longueur_boite]**  double
-| }
 
 Parameters are:
 
@@ -14794,10 +11982,6 @@ Parameters are:
 
 Auxiliary class to post-process particular values.
 
-Usage:
-
-**traitement_particulier** **aco** **trait_part** **acof**  
-
 Parameters are:
 
 - **aco**  (*type:* string into ["{"])  Opening curly bracket.
@@ -14819,13 +12003,6 @@ Parameters are:
 
 Basic class to post-process particular values.
 
-Usage:
-
-| **traitement_particulier_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _transversale:
@@ -14837,10 +12014,6 @@ Usage:
 
 
 Class to define the pressure loss in the direction perpendicular to the tube bundle.
-
-Usage:
-
-**transversale** **dir** **dd** **chaine_d** **d** **ch_a** **a** **[ch_b]** **[b]**  
 
 Parameters are:
 
@@ -14873,10 +12046,6 @@ Parameters are:
 
 Auxiliary class to extrude.
 
-Usage:
-
-**troisf** **lx** **ly** **lz**  
-
 Parameters are:
 
 - **lx**  (*type:* double) X direction of the extrude operation.
@@ -14897,10 +12066,6 @@ Parameters are:
 
 
 Three words.
-
-Usage:
-
-**troismots** **mot_1** **mot_2** **mot_3**  
 
 Parameters are:
 
@@ -14923,10 +12088,6 @@ Parameters are:
 
 two reals.
 
-Usage:
-
-**twofloat** **a** **b**  
-
 Parameters are:
 
 - **a**  (*type:* double) First real.
@@ -14946,13 +12107,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **type_diffusion_turbulente_multiphase_deriv** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _type_diffusion_turbulente_multiphase_l_melange:
@@ -14967,16 +12121,28 @@ Usage:
 
 not_set
 
-Usage:
+Parameters are:
 
-| **type_diffusion_turbulente_multiphase_l_melange** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[l_melange]**  double
-| }
+- **l_melange**  (*type:* double) not_set
+
+
+----
+
+.. _type_diffusion_turbulente_multiphase_prandtl:
+
+**type_diffusion_turbulente_multiphase_prandtl**
+------------------------------------------------
+
+**Synonyms:** prandtl
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+Scalar Prandtl model.
 
 Parameters are:
 
-- **[l_melange]**  (*type:* double) not_set
+- **[pr_t | prandtl_turbulent]**  (*type:* double) Prandtl's model constant. By default it is se to 0.9.
 
 
 ----
@@ -14993,16 +12159,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **type_diffusion_turbulente_multiphase_sgdh** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pr_t | prandtl_turbulent]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sigma | sigma_turbulent]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_alpha]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gas_turb]**  flag
-| }
-
 Parameters are:
 
 - **[pr_t | prandtl_turbulent]**  (*type:* double) not_set
@@ -15012,6 +12168,44 @@ Parameters are:
 - **[no_alpha]**  (*type:* flag) not_set
 
 - **[gas_turb]**  (*type:* flag) not_set
+
+
+----
+
+.. _type_diffusion_turbulente_multiphase_smago:
+
+**type_diffusion_turbulente_multiphase_smago**
+----------------------------------------------
+
+**Synonyms:** smago
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+LES Smagorinsky type.
+
+Parameters are:
+
+- **[cs]**  (*type:* double) Smagorinsky's model constant. By default it is se to 0.18.
+
+
+----
+
+.. _type_diffusion_turbulente_multiphase_wale:
+
+**type_diffusion_turbulente_multiphase_wale**
+---------------------------------------------
+
+**Synonyms:** wale
+
+**Inherits from:** :ref:`objet_lecture` 
+
+
+LES WALE type.
+
+Parameters are:
+
+- **[cw]**  (*type:* double) WALE's model constant. By default it is se to 0.5.
 
 
 ----
@@ -15026,13 +12220,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **type_perte_charge_deriv** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _type_perte_charge_dp:
@@ -15046,10 +12233,6 @@ Usage:
 
 
 DP field should have 3 components defining dp, dDP/dQ, Q0
-
-Usage:
-
-**type_perte_charge_dp** **dp_field**  
 
 Parameters are:
 
@@ -15070,15 +12253,6 @@ Parameters are:
 
 Keyword used to regulate the DP value in order to match a target flow rate.
 Syntax : dp_regul { DP0 d deb d eps e }
-
-Usage:
-
-| **type_perte_charge_dp_regul** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dp0**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **deb**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **eps**  string
-| }
 
 Parameters are:
 
@@ -15101,10 +12275,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**type_postraitement_ft_lata** **type** **nom** **bloc**  
-
 Parameters are:
 
 - **type**  (*type:* string into ["postraitement_ft_lata", "postraitement_lata"])  not_set
@@ -15126,10 +12296,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-**type_un_post** **type** **post**  
-
 Parameters are:
 
 - **type**  (*type:* string into ["postraitement", "post_processing"])  not_set
@@ -15149,10 +12315,6 @@ Parameters are:
 
 pour les groupes
 
-Usage:
-
-**un_pb** **mot**  
-
 Parameters are:
 
 - **mot**  (*type:* :ref:`pb_base`) the string
@@ -15170,10 +12332,6 @@ Parameters are:
 
 A point.
 
-Usage:
-
-**un_point** **pos**  
-
 Parameters are:
 
 - **pos**  (*type:* double list) Point coordinates.
@@ -15190,10 +12348,6 @@ Parameters are:
 
 
 An object of post-processing (with name).
-
-Usage:
-
-**un_postraitement** **nom** **post**  
 
 Parameters are:
 
@@ -15214,10 +12368,6 @@ Parameters are:
 
 An object of post-processing (with type +name).
 
-Usage:
-
-**un_postraitement_spec** **[type_un_post]** **[type_postraitement_ft_lata]**  
-
 Parameters are:
 
 - **[type_un_post]**  (*type:* :ref:`type_un_post`) not_set
@@ -15236,14 +12386,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **verifiercoin_bloc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[read_file | filename | lire_fichier]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[expert_only]**  flag
-| }
 
 Parameters are:
 
@@ -15264,10 +12406,6 @@ Parameters are:
 
 Keyword to define the probe volume in a parallelepiped passing through 4 points and 
 the number of probes in each direction.
-
-Usage:
-
-**volume** **nbr** **nbr2** **nbr3** **point_deb** **point_fin** **point_fin_2** **point_fin_3**  
 
 Parameters are:
 
@@ -15298,13 +12436,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **partitionneur_deriv** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
 
 Parameters are:
 
@@ -15343,15 +12474,6 @@ the partition (eg.
 element 0 on processor 0 and corrections for periodic boundaries).
 If 'corriger_partition' is specified, these corrections are applied.
 
-Usage:
-
-| **partitionneur_fichier_decoupage** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fichier**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[corriger_partition]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
-
 Parameters are:
 
 - **fichier**  (*type:* string) FILENAME
@@ -15376,20 +12498,11 @@ Parameters are:
 Partitioning a domain using a MED file containing an integer field providing for each 
 element the processor number on which the element should be located.
 
-Usage:
-
-| **partitionneur_fichier_med** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **file**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **field**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
-
 Parameters are:
 
 - **file**  (*type:* string) file name of the MED file to load
 
-- **field**  (*type:* string) field name of the integer field to load
+- **[field]**  (*type:* string) field name of the integer (or double) field to load
 
 - **[nb_parts]**  (*type:* int) The number of non empty parts that must be generated (generally equal to  the number of processors in the parallel run).
 
@@ -15409,15 +12522,6 @@ Parameters are:
 Metis is an external partitionning library.
 It is a general algorithm that will generate a partition of the domain.
 
-Usage:
-
-| **partitionneur_metis** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[kmetis]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[use_weights]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
-
 Parameters are:
 
 - **[kmetis]**  (*type:* flag) The default values are pmetis, default parameters are automatically chosen  by Metis. 'kmetis' is faster than pmetis option but the last option produces better partitioning  quality. In both cases, the partitioning quality may be slightly improved by increasing the  nb_essais option (by default N=1). It will compute N partitions and will keep the best one (smallest edge cut number). But this option is CPU expensive, taking N=10 will multiply the CPU cost of partitioning  by 10.  Experiments show that only marginal improvements can be obtained with non default  parameters.
@@ -15434,7 +12538,7 @@ Parameters are:
 **partitionneur_partition**
 ---------------------------
 
-**Synonyms:** decouper, partition
+**Synonyms:** partition, decouper
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -15442,14 +12546,6 @@ Parameters are:
 This algorithm re-use the partition of the domain named DOMAINE_NAME.
 It is useful to partition for example a post processing domain.
 The partition should match with the calculation domain.
-
-Usage:
-
-| **partitionneur_partition** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **domaine**  :ref:`domaine`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
 
 Parameters are:
 
@@ -15473,15 +12569,6 @@ Parameters are:
 Given a global partition of a global domain, 'sous-domaine' allows to produce a conform 
 partition of a sub-domain generated from the bigger one using the keyword create_domain_from_sous_domaine.
 The sub-domain will be partitionned in a conform fashion with the global domain.
-
-Usage:
-
-| **partitionneur_sous_dom** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fichier**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fichier_ssz**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
 
 Parameters are:
 
@@ -15516,15 +12603,6 @@ elements.
 If no subdomaine is specified, all subdomaines defined in the domain are used to 
 split the mesh.
 
-Usage:
-
-| **partitionneur_sous_domaines** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zones]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domaines]**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
-
 Parameters are:
 
 - **[sous_zones]**  (*type:* string list) N SUBZONE_NAME_1 SUBZONE_NAME_2 ...
@@ -15541,7 +12619,7 @@ Parameters are:
 **partitionneur_sous_zones**
 ----------------------------
 
-**Synonyms:** sous_zones, partitionneur_sous_domaines
+**Synonyms:** partitionneur_sous_domaines, sous_zones
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -15555,14 +12633,6 @@ are created, otherwise, a supplemental part is created with the remaining elemen
 
 If no subzone is specified, all subzones defined in the domain are used to split 
 the mesh.
-
-Usage:
-
-| **partitionneur_sous_zones** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **sous_zones**  string list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
 
 Parameters are:
 
@@ -15596,14 +12666,6 @@ If one particular direction has been declared periodic, the default slicing (0, 
 2, ..., n-1)is replaced by (0, 1, 2, ...
 n-1, 0), each of the two '0' slices having twice less elements than the other slices.
 
-Usage:
-
-| **partitionneur_tranche** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tranches]**  int list - size is dimension
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_parts]**  int
-| }
-
 Parameters are:
 
 - **[tranches]**  (*type:* int list - size is dimension) Partitioned by nx in the X direction, ny in the Y direction, nz in the  Z direction. Works only for structured meshes. No warranty for unstructured meshes.
@@ -15627,10 +12689,6 @@ Let several local domains be generated from a bigger one using the keyword creat
 and let their partitions be generated in the usual way.
 Provided the list of partition files for each small domain, the keyword 'union' will 
 partition the global domain in a conform fashion with the smaller domains.
-
-Usage:
-
-**partitionneur_union** **liste** **[nb_parts]**  
 
 Parameters are:
 
@@ -15680,16 +12738,46 @@ Warning : Presently, coupling requires coincident meshes.
 In case of non-coincident meshes, boundary condition 'paroi_contact' in VEF returns 
 error message (see paroi_contact for correcting procedure).
 
-Usage:
-
-| **coupled_problem** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[groupes]**  :ref:`list_list_nom`
-| }
-
 Parameters are:
 
 - **[groupes]**  (*type:* :ref:`list_list_nom`) { groupes { { pb1 , pb2 } , { pb3 , pb4 } } }
+
+
+----
+
+.. _pb_avec_liste_conc:
+
+**pb_avec_liste_conc**
+----------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Class to create a classical problem with a list of scalar concentration equations.
+
+Parameters are:
+
+- **liste_equations | list_equations**  (*type:* :ref:`listeqn`) convection_diffusion_concentration equations. The unknown of the concentration equation number N is named concentrationN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituent.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
 
 
 ----
@@ -15705,23 +12793,6 @@ Parameters are:
 Class to create a classical problem with a scalar transport equation (e.g: temperature 
 or concentration) and an additional set of passive scalars (e.g: temperature or concentration) 
 equations.
-
-Usage:
-
-| **pb_avec_passif** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -15764,22 +12835,6 @@ user wishes to resolve.
 To enter values for the problem objects created, the Lire (Read) interpretor is used 
 with a data block.
 
-Usage:
-
-| **pb_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
@@ -15814,24 +12869,6 @@ Parameters are:
 
 
 Resolution of the heat equation.
-
-Usage:
-
-| **pb_conduction** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solide]**  :ref:`solide`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[conduction]**  :ref:`conduction`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -15870,13 +12907,6 @@ Parameters are:
 
 Basic class for problems.
 
-Usage:
-
-| **pb_gen_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _pb_hydraulique:
@@ -15888,24 +12918,6 @@ Usage:
 
 
 Resolution of the Navier-Stokes equations.
-
-Usage:
-
-| **pb_hydraulique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_standard**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -15936,6 +12948,89 @@ Parameters are:
 
 ----
 
+.. _pb_hydraulique_cloned_concentration:
+
+**pb_hydraulique_cloned_concentration**
+---------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/multiple constituent transport equations.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_standard]**  (*type:* :ref:`navier_stokes_standard`) Navier-Stokes equations.
+
+- **[convection_diffusion_concentration]**  (*type:* :ref:`convection_diffusion_concentration`) Constituent transport vectorial equation (concentration  diffusion convection).
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_hydraulique_cloned_concentration_turbulent:
+
+**pb_hydraulique_cloned_concentration_turbulent**
+-------------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence 
+modelling.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_turbulent]**  (*type:* :ref:`navier_stokes_turbulent`) Navier-Stokes equations as well as the associated turbulence  model equations.
+
+- **[convection_diffusion_concentration_turbulent]**  (*type:* :ref:`convection_diffusion_concentration_turbulent`) Constituent transport equations (concentration  diffusion convection) as well as the associated turbulence model equations.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
 .. _pb_hydraulique_concentration:
 
 **pb_hydraulique_concentration**
@@ -15945,25 +13040,6 @@ Parameters are:
 
 
 Resolution of Navier-Stokes/multiple constituent transport equations.
-
-Usage:
-
-| **pb_hydraulique_concentration** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration]**  :ref:`convection_diffusion_concentration`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16006,26 +13082,6 @@ Parameters are:
 
 Resolution of Navier-Stokes/multiple constituent transport equations with the additional 
 passive scalar equations.
-
-Usage:
-
-| **pb_hydraulique_concentration_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration]**  :ref:`convection_diffusion_concentration`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16071,25 +13127,6 @@ Parameters are:
 Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence 
 modelling.
 
-Usage:
-
-| **pb_hydraulique_concentration_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_turbulent]**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration_turbulent]**  :ref:`convection_diffusion_concentration_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
@@ -16132,26 +13169,6 @@ Parameters are:
 Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence 
 modelling and with the additional passive scalar equations.
 
-Usage:
-
-| **pb_hydraulique_concentration_turbulent_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_turbulent]**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration_turbulent]**  :ref:`convection_diffusion_concentration_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
@@ -16163,6 +13180,89 @@ Parameters are:
 - **[convection_diffusion_concentration_turbulent]**  (*type:* :ref:`convection_diffusion_concentration_turbulent`) Constituent transport equations (concentration  diffusion convection) as well as the associated turbulence model equations.
 
 - **equations_scalaires_passifs**  (*type:* :ref:`listeqn`) Passive scalar equations. The unknowns of the passive scalar equation number N are named temperatureN or concentrationN  or fraction_massiqueN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_hydraulique_list_concentration:
+
+**pb_hydraulique_list_concentration**
+-------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/multiple constituent transport equations.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_standard]**  (*type:* :ref:`navier_stokes_standard`) Navier-Stokes equations.
+
+- **liste_equations | list_equations**  (*type:* :ref:`listeqn`) convection_diffusion_concentration equations. The unknown of the concentration equation number N is named concentrationN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_hydraulique_list_concentration_turbulent:
+
+**pb_hydraulique_list_concentration_turbulent**
+-----------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence 
+modelling.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_turbulent]**  (*type:* :ref:`navier_stokes_turbulent`) Navier-Stokes equations as well as the associated turbulence  model equations.
+
+- **liste_equations | list_equations**  (*type:* :ref:`listeqn`) convection_diffusion_concentration equations. The unknown of the concentration equation number N is named concentrationN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
 
 - **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
 
@@ -16203,25 +13303,6 @@ masse_volumique : density
 pression : reduced pressure
 
 pression_tot : total pressure.
-
-Usage:
-
-| **pb_hydraulique_melange_binaire_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_qc**  :ref:`navier_stokes_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_espece_binaire_qc**  :ref:`convection_diffusion_espece_binaire_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16264,25 +13345,6 @@ Parameters are:
 
 Resolution of a turbulent binary mixture problem for a quasi-compressible fluid with 
 an iso-thermal condition.
-
-Usage:
-
-| **pb_hydraulique_melange_binaire_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_turbulent_qc**  :ref:`navier_stokes_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_espece_binaire_turbulent_qc**  :ref:`convection_diffusion_espece_binaire_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16338,25 +13400,6 @@ pression_hydro : hydro-static pressure
 
 pression_eos : pressure used in state equation.
 
-Usage:
-
-| **pb_hydraulique_melange_binaire_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_weakly_compressible**  :ref:`fluide_weakly_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_wc**  :ref:`navier_stokes_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_espece_binaire_wc**  :ref:`convection_diffusion_espece_binaire_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_weakly_compressible**  (*type:* :ref:`fluide_weakly_compressible`) The fluid medium associated with the problem.
@@ -16398,24 +13441,6 @@ Parameters are:
 
 Resolution of Navier-Stokes equations with turbulence modelling.
 
-Usage:
-
-| **pb_hydraulique_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_turbulent**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
@@ -16455,32 +13480,6 @@ Parameters are:
 
 A problem that allows the resolution of N-phases with 3*N equations
 
-Usage:
-
-| **pb_multiphase** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu_composite]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu_musig]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correlations]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **qdm_multiphase**  :ref:`qdm_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **masse_multiphase**  :ref:`masse_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **energie_multiphase**  :ref:`energie_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[energie_cinetique_turbulente]**  :ref:`energie_cinetique_turbulente`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[echelle_temporelle_turbulente]**  :ref:`echelle_temporelle_turbulente`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[energie_cinetique_turbulente_wit]**  :ref:`energie_cinetique_turbulente_wit`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[taux_dissipation_turbulent]**  :ref:`taux_dissipation_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **[milieu_composite]**  (*type:* :ref:`bloc_lecture`) The composite medium associated with the problem.
@@ -16495,9 +13494,9 @@ Parameters are:
 
 - **energie_multiphase**  (*type:* :ref:`energie_multiphase`) Internal energy conservation equation for a multi-phase problem  where the unknown is the temperature
 
-- **[energie_cinetique_turbulente]**  (*type:* :ref:`energie_cinetique_turbulente`) Turbulent kinetic Energy conservation equation for  a turbulent mono/multi-phase problem (available in TrioCFD)
-
 - **[echelle_temporelle_turbulente]**  (*type:* :ref:`echelle_temporelle_turbulente`) Turbulent Dissipation time scale equation for a turbulent  mono/multi-phase problem (available in TrioCFD)
+
+- **[energie_cinetique_turbulente]**  (*type:* :ref:`energie_cinetique_turbulente`) Turbulent kinetic Energy conservation equation for  a turbulent mono/multi-phase problem (available in TrioCFD)
 
 - **[energie_cinetique_turbulente_wit]**  (*type:* :ref:`energie_cinetique_turbulente_wit`) Bubble Induced Turbulent kinetic Energy equation  for a turbulent multi-phase problem (available in TrioCFD)
 
@@ -16539,32 +13538,6 @@ Parameters are:
 A problem that allows the resolution of 2-phases mechanicaly and thermally coupled 
 with 3 equations
 
-Usage:
-
-| **pb_multiphase_hem** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu_composite]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu_musig]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[correlations]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **qdm_multiphase**  :ref:`qdm_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **masse_multiphase**  :ref:`masse_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **energie_multiphase**  :ref:`energie_multiphase`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[energie_cinetique_turbulente]**  :ref:`energie_cinetique_turbulente`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[echelle_temporelle_turbulente]**  :ref:`echelle_temporelle_turbulente`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[energie_cinetique_turbulente_wit]**  :ref:`energie_cinetique_turbulente_wit`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[taux_dissipation_turbulent]**  :ref:`taux_dissipation_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **[milieu_composite]**  (*type:* :ref:`bloc_lecture`) The composite medium associated with the problem.
@@ -16579,9 +13552,9 @@ Parameters are:
 
 - **energie_multiphase**  (*type:* :ref:`energie_multiphase`) Internal energy conservation equation for a multi-phase problem  where the unknown is the temperature
 
-- **[energie_cinetique_turbulente]**  (*type:* :ref:`energie_cinetique_turbulente`) Turbulent kinetic Energy conservation equation for  a turbulent mono/multi-phase problem (available in TrioCFD)
-
 - **[echelle_temporelle_turbulente]**  (*type:* :ref:`echelle_temporelle_turbulente`) Turbulent Dissipation time scale equation for a turbulent  mono/multi-phase problem (available in TrioCFD)
+
+- **[energie_cinetique_turbulente]**  (*type:* :ref:`energie_cinetique_turbulente`) Turbulent kinetic Energy conservation equation for  a turbulent mono/multi-phase problem (available in TrioCFD)
 
 - **[energie_cinetique_turbulente_wit]**  (*type:* :ref:`energie_cinetique_turbulente_wit`) Bubble Induced Turbulent kinetic Energy equation  for a turbulent multi-phase problem (available in TrioCFD)
 
@@ -16620,22 +13593,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **pb_post** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
@@ -16670,28 +13627,6 @@ Parameters are:
 
 
 Resolution of thermohydraulic problem.
-
-Usage:
-
-| **pb_thermohydraulique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fluide_incompressible]**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fluide_ostwald]**  :ref:`fluide_ostwald`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fluide_sodium_liquide]**  :ref:`fluide_sodium_liquide`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fluide_sodium_gaz]**  :ref:`fluide_sodium_gaz`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature]**  :ref:`convection_diffusion_temperature`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16730,6 +13665,93 @@ Parameters are:
 
 ----
 
+.. _pb_thermohydraulique_cloned_concentration:
+
+**pb_thermohydraulique_cloned_concentration**
+---------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/energy/multiple constituent transport equations.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_standard]**  (*type:* :ref:`navier_stokes_standard`) Navier-Stokes equations.
+
+- **[convection_diffusion_concentration]**  (*type:* :ref:`convection_diffusion_concentration`) Constituent transport equations (concentration  diffusion convection).
+
+- **[convection_diffusion_temperature]**  (*type:* :ref:`convection_diffusion_temperature`) Energy equation (temperature diffusion convection).
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_thermohydraulique_cloned_concentration_turbulent:
+
+**pb_thermohydraulique_cloned_concentration_turbulent**
+-------------------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/energy/multiple constituent transport equations, with 
+turbulence modelling.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_turbulent]**  (*type:* :ref:`navier_stokes_turbulent`) Navier-Stokes equations as well as the associated turbulence  model equations.
+
+- **[convection_diffusion_concentration_turbulent]**  (*type:* :ref:`convection_diffusion_concentration_turbulent`) Constituent transport equations (concentration  diffusion convection) as well as the associated turbulence model equations.
+
+- **[convection_diffusion_temperature_turbulent]**  (*type:* :ref:`convection_diffusion_temperature_turbulent`) Energy equation (temperature diffusion  convection) as well as the associated turbulence model equations.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
 .. _pb_thermohydraulique_concentration:
 
 **pb_thermohydraulique_concentration**
@@ -16739,26 +13761,6 @@ Parameters are:
 
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations.
-
-Usage:
-
-| **pb_thermohydraulique_concentration** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration]**  :ref:`convection_diffusion_concentration`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature]**  :ref:`convection_diffusion_temperature`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16803,27 +13805,6 @@ Parameters are:
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with 
 the additional passive scalar equations.
-
-Usage:
-
-| **pb_thermohydraulique_concentration_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration]**  :ref:`convection_diffusion_concentration`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature]**  :ref:`convection_diffusion_temperature`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -16871,26 +13852,6 @@ Parameters are:
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with 
 turbulence modelling.
 
-Usage:
-
-| **pb_thermohydraulique_concentration_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_turbulent]**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration_turbulent]**  :ref:`convection_diffusion_concentration_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature_turbulent]**  :ref:`convection_diffusion_temperature_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
@@ -16934,27 +13895,6 @@ Parameters are:
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with 
 turbulence modelling and with the additional passive scalar equations.
-
-Usage:
-
-| **pb_thermohydraulique_concentration_turbulent_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_turbulent]**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_concentration_turbulent]**  :ref:`convection_diffusion_concentration_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature_turbulent]**  :ref:`convection_diffusion_temperature_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -17001,26 +13941,6 @@ Parameters are:
 
 Resolution of thermo-hydraulic problem for a multi-species quasi-compressible fluid.
 
-Usage:
-
-| **pb_thermohydraulique_especes_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_qc**  :ref:`navier_stokes_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_qc**  :ref:`convection_diffusion_chaleur_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_quasi_compressible**  (*type:* :ref:`fluide_quasi_compressible`) The fluid medium associated with the problem.
@@ -17065,26 +13985,6 @@ Parameters are:
 Resolution of turbulent thermohydraulic problem under low Mach number with passive 
 scalar equations.
 
-Usage:
-
-| **pb_thermohydraulique_especes_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_turbulent_qc**  :ref:`navier_stokes_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_turbulent_qc**  :ref:`convection_diffusion_chaleur_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_quasi_compressible**  (*type:* :ref:`fluide_quasi_compressible`) The fluid medium associated with the problem.
@@ -17128,26 +14028,6 @@ Parameters are:
 
 Resolution of thermo-hydraulic problem for a multi-species weakly-compressible fluid.
 
-Usage:
-
-| **pb_thermohydraulique_especes_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_weakly_compressible**  :ref:`fluide_weakly_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_wc**  :ref:`navier_stokes_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_wc**  :ref:`convection_diffusion_chaleur_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_weakly_compressible**  (*type:* :ref:`fluide_weakly_compressible`) The fluid medium associated with the problem.
@@ -17161,6 +14041,93 @@ Parameters are:
 - **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
 
 - **[constituant]**  (*type:* :ref:`constituant`) Constituent.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_thermohydraulique_list_concentration:
+
+**pb_thermohydraulique_list_concentration**
+-------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/energy/multiple constituent transport equations.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_standard]**  (*type:* :ref:`navier_stokes_standard`) Navier-Stokes equations.
+
+- **[convection_diffusion_temperature]**  (*type:* :ref:`convection_diffusion_temperature`) Energy equation (temperature diffusion convection).
+
+- **liste_equations | list_equations**  (*type:* :ref:`listeqn`) convection_diffusion_concentration equations. The unknown of the concentration equation number N is named concentrationN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* :ref:`postraitements`) List of Postraitement objects (with name).
+
+- **[liste_de_postraitements]**  (*type:* :ref:`liste_post_ok`) This
+
+- **[liste_postraitements]**  (*type:* :ref:`liste_post`) This block defines the output files to be written during the computation. The output format is lata in order to use OpenDX to draw the results. This block can be divided in one or several sub-blocks that can be written at different  frequencies and in different directories. Attention. The directory lata used in this example should be created before running the computation  or the lata files will be lost.
+
+- **[sauvegarde]**  (*type:* :ref:`format_file`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified  for each problem. In this case, you must save to different files and correctly specify these files  when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file`) The same keyword than Sauvegarde except, the last time step only is  saved.
+
+- **[reprise]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file (see the  class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the  previous calculation. With this file, it is possible to resume a parallel calculation on P processors,  whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time  fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in  error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file`) Keyword to resume a calculation based on the name_file file, resume  the calculation at the last time found in the file (tinit is set to last time of saved  files).
+
+
+----
+
+.. _pb_thermohydraulique_list_concentration_turbulent:
+
+**pb_thermohydraulique_list_concentration_turbulent**
+-----------------------------------------------------
+
+**Inherits from:** :ref:`pb_gen_base` 
+
+
+Resolution of Navier-Stokes/energy/multiple constituent transport equations, with 
+turbulence modelling.
+
+Parameters are:
+
+- **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituents.
+
+- **[navier_stokes_turbulent]**  (*type:* :ref:`navier_stokes_turbulent`) Navier-Stokes equations as well as the associated turbulence  model equations.
+
+- **[convection_diffusion_temperature_turbulent]**  (*type:* :ref:`convection_diffusion_temperature_turbulent`) Energy equation (temperature diffusion  convection) as well as the associated turbulence model equations.
+
+- **liste_equations | list_equations**  (*type:* :ref:`listeqn`) convection_diffusion_concentration equations. The unknown of the concentration equation number N is named concentrationN. This keyword is used to define initial conditions and the post processing fields. This kind of problem is very useful to test in only one data file (and then only  one calculation) different schemes or different boundary conditions for the scalar  transport equation.
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
 
 - **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
 
@@ -17200,25 +14167,6 @@ enthalpie : enthalpy
 pression : reduced pressure
 
 pression_tot : total pressure.
-
-Usage:
-
-| **pb_thermohydraulique_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_qc**  :ref:`navier_stokes_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_qc**  :ref:`convection_diffusion_chaleur_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -17260,26 +14208,6 @@ Parameters are:
 
 
 Resolution of thermohydraulic problem, with the additional passive scalar equations.
-
-Usage:
-
-| **pb_thermohydraulique_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_standard]**  :ref:`navier_stokes_standard`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature]**  :ref:`convection_diffusion_temperature`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -17324,25 +14252,6 @@ Parameters are:
 
 Resolution of thermohydraulic problem, with turbulence modelling.
 
-Usage:
-
-| **pb_thermohydraulique_turbulent** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_turbulent**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_temperature_turbulent**  :ref:`convection_diffusion_temperature_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_incompressible**  (*type:* :ref:`fluide_incompressible`) The fluid medium associated with the problem.
@@ -17386,25 +14295,6 @@ Resolution of turbulent thermohydraulic problem under low Mach number.
 
 Warning : Available for VDF and VEF P0/P1NC discretization only.
 
-Usage:
-
-| **pb_thermohydraulique_turbulent_qc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_quasi_compressible**  :ref:`fluide_quasi_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_turbulent_qc**  :ref:`navier_stokes_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_turbulent_qc**  :ref:`convection_diffusion_chaleur_turbulent_qc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_quasi_compressible**  (*type:* :ref:`fluide_quasi_compressible`) The fluid medium associated with the problem.
@@ -17446,26 +14336,6 @@ Parameters are:
 
 Resolution of thermohydraulic problem, with turbulence modelling and with the additional 
 passive scalar equations.
-
-Usage:
-
-| **pb_thermohydraulique_turbulent_scalaires_passifs** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_incompressible**  :ref:`fluide_incompressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[navier_stokes_turbulent]**  :ref:`navier_stokes_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[convection_diffusion_temperature_turbulent]**  :ref:`convection_diffusion_temperature_turbulent`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **equations_scalaires_passifs**  :ref:`listeqn`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -17522,25 +14392,6 @@ pression_hydro : hydro-static pressure
 
 pression_eos : pressure used in state equation.
 
-Usage:
-
-| **pb_thermohydraulique_wc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **fluide_weakly_compressible**  :ref:`fluide_weakly_compressible`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **navier_stokes_wc**  :ref:`navier_stokes_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **convection_diffusion_chaleur_wc**  :ref:`convection_diffusion_chaleur_wc`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
-
 Parameters are:
 
 - **fluide_weakly_compressible**  (*type:* :ref:`fluide_weakly_compressible`) The fluid medium associated with the problem.
@@ -17582,10 +14433,6 @@ Parameters are:
 
 Allows to read med files and post-process them.
 
-Usage:
-
-**pbc_med** **list_info_med**  
-
 Parameters are:
 
 - **list_info_med**  (*type:* :ref:`list_info_med`) not_set
@@ -17606,22 +14453,6 @@ not state the number of equations that are enclosed in the problem.
 As the list of equations to be solved in the generic read problem is declared in 
 the data file and not pre-defined in the structure of the problem, each equation has 
 to be distinctively associated with the problem with the Associate keyword.
-
-Usage:
-
-| **problem_read_generic** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[milieu]**  :ref:`milieu_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[constituant]**  :ref:`constituant`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitement | post_processing]**  :ref:`corps_postraitement`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[postraitements | post_processings]**  :ref:`postraitements`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_de_postraitements]**  :ref:`liste_post_ok`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste_postraitements]**  :ref:`liste_post`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sauvegarde_simple]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reprise]**  :ref:`format_file`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resume_last_time]**  :ref:`format_file`
-| }
 
 Parameters are:
 
@@ -17661,7 +14492,6 @@ Parameters are:
 
 not_set
 
-
 ----
 
 **Keywords derived from porosites**
@@ -17685,10 +14515,6 @@ to 1 if there is no porosity),
 
 - Prior to defining porosity, the problem must have been discretized.NL2 Can 't be 
 used in VEF discretization, use Porosites_champ instead.
-
-Usage:
-
-**porosites** **aco** **sous_zone | sous_zone1** **bloc** **[sous_zone2]** **[bloc2]** **acof**  
 
 Parameters are:
 
@@ -17721,7 +14547,6 @@ Parameters are:
 Keyword to use several results files.
 List of objects of post-processing (with name).
 
-
 ----
 
 **Keywords derived from precond_base**
@@ -17736,14 +14561,6 @@ List of objects of post-processing (with name).
 
 
 This preconditionner can be only used with the generic GEN solver.
-
-Usage:
-
-| **ilu** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[type]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[filling]**  int
-| }
 
 Parameters are:
 
@@ -17762,13 +14579,6 @@ Parameters are:
 
 Basic class for preconditioning.
 
-Usage:
-
-| **precond_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _precondsolv:
@@ -17780,10 +14590,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-**precondsolv** **solveur**  
 
 Parameters are:
 
@@ -17802,13 +14608,6 @@ Parameters are:
 
 Symmetric successive over-relaxation algorithm.
 
-Usage:
-
-| **ssor** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[omega]**  double
-| }
-
 Parameters are:
 
 - **[omega]**  (*type:* double) Over-relaxation facteur (between 1 and 2, default value 1.6).
@@ -17825,18 +14624,6 @@ Parameters are:
 
 
 not_set
-
-Usage:
-
-| **ssor_bloc** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha_0]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond0]**  :ref:`precond_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha_1]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precond1]**  :ref:`precond_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[alpha_a]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[preconda]**  :ref:`precond_base`
-| }
 
 Parameters are:
 
@@ -17866,90 +14653,6 @@ Parameters are:
 
 list of reactions
 
-
-----
-
-**Keywords derived from saturation_base**
-=========================================
-
-.. _saturation_base:
-
-**saturation_base**
--------------------
-
-
-Basic class for a liquid-gas interface (used in pb_multiphase)
-
-Usage:
-
-| **saturation_base** *str*
-| **Read** *str* {
-| }
-
-
-----
-
-.. _saturation_constant:
-
-**saturation_constant**
------------------------
-
-**Inherits from:** :ref:`saturation_base` 
-
-
-Class for saturation constant
-
-Usage:
-
-| **saturation_constant** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p_sat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[t_sat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[lvap]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[hlsat]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[hvsat]**  double
-| }
-
-Parameters are:
-
-- **[p_sat]**  (*type:* double) Define the saturation pressure value (this is a required parameter)
-
-- **[t_sat]**  (*type:* double) Define the saturation temperature value (this is a required parameter)
-
-- **[lvap]**  (*type:* double) Latent heat of vaporization
-
-- **[hlsat]**  (*type:* double) Liquid saturation enthalpy
-
-- **[hvsat]**  (*type:* double) Vapor saturation enthalpy
-
-
-----
-
-.. _saturation_sodium:
-
-**saturation_sodium**
----------------------
-
-**Inherits from:** :ref:`saturation_base` 
-
-
-Class for saturation sodium
-
-Usage:
-
-| **saturation_sodium** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[p_ref]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[t_ref]**  double
-| }
-
-Parameters are:
-
-- **[p_ref]**  (*type:* double) Use to fix the pressure value in the closure law. If not specified, the value of the pressure unknown will be used
-
-- **[t_ref]**  (*type:* double) Use to fix the temperature value in the closure law. If not specified, the value of the temperature unknown will be used
-
-
 ----
 
 **Keywords derived from schema_temps_base**
@@ -17967,37 +14670,6 @@ Parameters are:
 
 This is the Euler explicit scheme.
 
-Usage:
-
-| **euler_scheme** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18014,7 +14686,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18063,37 +14735,6 @@ Parameters are:
 
 This is the leap-frog scheme.
 
-Usage:
-
-| **leap_frog** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18110,7 +14751,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18160,37 +14801,6 @@ Parameters are:
 This is a low-storage Runge-Kutta scheme of second order that uses 2 integration points.
 The method is presented by Williamson (case 1) in https://www.sciencedirect.com/science/article/pii/0021999180900339
 
-Usage:
-
-| **runge_kutta_ordre_2** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18207,7 +14817,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18256,37 +14866,6 @@ Parameters are:
 
 This is a classical Runge-Kutta scheme of second order that uses 2 integration points.
 
-Usage:
-
-| **runge_kutta_ordre_2_classique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18303,7 +14882,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18353,37 +14932,6 @@ Parameters are:
 This is a low-storage Runge-Kutta scheme of third order that uses 3 integration points.
 The method is presented by Williamson (case 7) in https://www.sciencedirect.com/science/article/pii/0021999180900339
 
-Usage:
-
-| **runge_kutta_ordre_3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18400,7 +14948,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18449,37 +14997,6 @@ Parameters are:
 
 This is a classical Runge-Kutta scheme of third order that uses 3 integration points.
 
-Usage:
-
-| **runge_kutta_ordre_3_classique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18496,7 +15013,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18548,37 +15065,6 @@ Parameters are:
 This is a low-storage Runge-Kutta scheme of fourth order that uses 3 integration points.
 The method is presented by Williamson (case 17) in https://www.sciencedirect.com/science/article/pii/0021999180900339
 
-Usage:
-
-| **runge_kutta_ordre_4** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18595,7 +15081,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18645,37 +15131,6 @@ Parameters are:
 This is a classical Runge-Kutta scheme of fourth order that uses 4 integration points 
 and the 3/8 rule.
 
-Usage:
-
-| **runge_kutta_ordre_4_classique_3_8** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18692,7 +15147,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18741,37 +15196,6 @@ Parameters are:
 
 This is a classical Runge-Kutta scheme of fourth order that uses 4 integration points.
 
-Usage:
-
-| **runge_kutta_ordre_4_classique** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18788,7 +15212,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18843,37 +15267,6 @@ can have some other properties, such as a stable behaviour with explicitness, wh
 make them preferable.
 The CFD application of this RRK2 scheme is described in the note: https://link.springer.com/content/pdf/10.1007\%2F3-540-13917-6_112.pdf.
 
-Usage:
-
-| **runge_kutta_rationnel_ordre_2** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -18890,7 +15283,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -18946,43 +15339,6 @@ Parameters are the sames (but default values may change) compare to the Sch_CN_i
 scheme plus a relaxation keyword: niter_min (2 by default), niter_max (6 by default), 
 niter_avg (3 by default), facsec_max (20 by default), seuil (0.05 by default)
 
-Usage:
-
-| **sch_cn_ex_iteratif** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[omega]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_min]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_avg]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[omega]**  (*type:* double) relaxation factor (0.1 by default)
@@ -19011,7 +15367,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19074,42 +15430,6 @@ step through high value of facsec_max parameter (for instance : facsec_max 1000)
 In counterpart, for LES calculations, high values of facsec_max may engender numerical 
 instabilities.
 
-Usage:
-
-| **sch_cn_iteratif** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_min]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_avg]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[niter_min]**  (*type:* int) minimal number of p-iterations to satisfy convergence criteria (2 by default)
@@ -19136,7 +15456,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19185,37 +15505,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_adams_bashforth_order_2** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -19232,7 +15521,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19281,37 +15570,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_adams_bashforth_order_3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -19328,7 +15586,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19377,40 +15635,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_adams_moulton_order_2** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[facsec_max]**  (*type:* double) Maximum ratio allowed between time step and stability time returned by  CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
@@ -19433,7 +15657,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19482,40 +15706,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_adams_moulton_order_3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[facsec_max]**  (*type:* double) Maximum ratio allowed between time step and stability time returned by  CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
@@ -19538,7 +15728,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19587,40 +15777,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_backward_differentiation_order_2** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[facsec_max]**  (*type:* double) Maximum ratio allowed between time step and stability time returned by  CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
@@ -19643,7 +15799,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19692,40 +15848,6 @@ Parameters are:
 
 not_set
 
-Usage:
-
-| **schema_backward_differentiation_order_3** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[facsec_max]**  (*type:* double) Maximum ratio allowed between time step and stability time returned by  CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
@@ -19748,7 +15870,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19799,44 +15921,9 @@ Parameters are:
 
 This is the Euler implicit scheme.
 
-Usage:
-
-| **schema_euler_implicite** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[resolution_monolithique]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
-- **[facsec_max]**  (*type:* double) 1 Maximum ratio allowed between time step and stability time returned  by CFL condition. The initial ratio given by facsec keyword is changed during the calculation with  the implicit scheme but it couldn't be higher than facsec_max value.NL2 Warning: Some  implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3  needs facsec=facsec_max=1.  Advice:NL2 The calculation may start with a facsec specified by the user and increased  by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set  to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic  only or thermal hydraulic with forced convection and low coupling between velocity  and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic  with forced convection and strong coupling between velocity and temperature (Boussinesq  value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection,  facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8)  as if the scheme was unconditionally stableNL2These values can also be used as rule  of thumb for initial facsec with a facsec_max limit higher.
+- **[facsec_max]**  (*type:* double) For old syntax, see the complete parameters of facsec for details
 
 - **[resolution_monolithique]**  (*type:* :ref:`bloc_lecture`) Activate monolithic resolution for coupled problems. Solves together the equations corresponding to the application domains in the given  order. All aplication domains of the coupled equations must be given to determine the order  of resolution. If the monolithic solving is not wanted for a specific application domain, an underscore  can be added as prefix. For example, resolution_monolithique { dom1 { dom2 dom3 } _dom4 } will solve in a  single matrix the equations having dom1 as application domain, then the equations  having dom2 or dom3 as application domain in a single matrix, then the equations having  dom4 as application domain in a sequential way (not in a single matrix).
 
@@ -19858,7 +15945,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -19907,39 +15994,6 @@ Parameters are:
 
 Basic class for implicite time scheme.
 
-Usage:
-
-| **schema_implicite_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[max_iter_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **solveur**  :ref:`solveur_implicite_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[max_iter_implicite]**  (*type:* int) Maximum number of iterations allowed for the solver (by default 200).
@@ -19960,7 +16014,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -20011,37 +16065,6 @@ This is the predictor-corrector scheme (second order).
 It is more accurate and economic than MacCormack scheme.
 It gives best results with a second ordre convective scheme like quick, centre (VDF).
 
-Usage:
-
-| **schema_predictor_corrector** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -20058,7 +16081,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -20106,37 +16129,6 @@ Parameters are:
 Basic class for time schemes.
 This scheme will be associated with a problem and the equations of this problem.
 
-Usage:
-
-| **schema_temps_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tinit]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tmax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tcpumax]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_max]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_sauv]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_impr]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_statio]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[residuals]**  :ref:`residuals`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_diffusion_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[impr_extremums]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_error_if_not_converged_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_conv_subiteration_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dt_start]**  :ref:`dt_start`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_pas_dt_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[niter_max_diffusion_implicite]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[precision_impr]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[periode_sauvegarde_securite_en_heures]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_check_disk_space]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_progress]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[disable_dt_ev]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[gnuplot_header]**  int
-| }
-
 Parameters are:
 
 - **[tinit]**  (*type:* double) Value of initial calculation time (0 by default).
@@ -20153,7 +16145,7 @@ Parameters are:
 
 - **[dt_impr]**  (*type:* double) Scheme parameter printing time step in time (1e30s by default). The time steps and the flux balances are printed (incorporated onto every side of  processed domains) into the .out file.
 
-- **[facsec]**  (*type:* double) Value assigned to the safety factor for the time step (1. by default). The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
+- **[facsec]**  (*type:* string) Value assigned to the safety factor for the time step (1. by default). It can also be a function of time. The time step calculated is multiplied by the safety factor. The first thing to try when a calculation does not converge with an explicit time  scheme is to reduce the facsec to 0.5.  Warning: Some schemes needs a facsec lower than 1 (0.5 is a good start), for example  Schema_Adams_Bashforth_order_3.
 
 - **[seuil_statio]**  (*type:* double) Value of the convergence threshold (1e-12 by default). Problems using this type of time scheme converge when the derivatives dGi/dt NL1  of all the unknown transported values Gi have a combined absolute value less than  this value. This is the keyword used to set the permanent rating threshold.
 
@@ -20206,27 +16198,6 @@ Parameters are:
 Implicit Continuous-fluid Eulerian solver which is useful for a multiphase problem.
 Robust pressure reduction resolution.
 
-Usage:
-
-| **ice** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pression_degeneree]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[reduction_pression | pressure_reduction]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[criteres_convergence]**  :ref:`bloc_criteres_convergence`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[iter_min]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_diffusion_for_sets]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
-
 Parameters are:
 
 - **[pression_degeneree]**  (*type:* int) Set to 1 if the pressure field is degenerate (ex. : incompressible fluid with no imposed-pressure BCs). Default: autodetected
@@ -20274,22 +16245,6 @@ similar to PISO, but as it looks like a simplified solver, it will use fewer tim
 But it may run faster because the pressure matrix is not re-assembled and thus provides 
 CPU gains.
 
-Usage:
-
-| **implicite** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
-
 Parameters are:
 
 - **[seuil_convergence_implicite]**  (*type:* double) Convergence criteria.
@@ -20324,22 +16279,6 @@ Parameters are:
 
 
 Piso (Pressure Implicit with Split Operator) - method to solve N_S.
-
-Usage:
-
-| **piso** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
 
 Parameters are:
 
@@ -20379,25 +16318,6 @@ Ref : J.
 H.
 MAHAFFY, A stability-enhancing two-step method for fluid flow calculations, Journal 
 of Computational Physics, 46, 3, 329 (1982).
-
-Usage:
-
-| **sets** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[criteres_convergence]**  :ref:`bloc_criteres_convergence`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[iter_min]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[facsec_diffusion_for_sets]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
 
 Parameters are:
 
@@ -20440,23 +16360,6 @@ Parameters are:
 
 SIMPLE type algorithm
 
-Usage:
-
-| **simple** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[relax_pression]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
-
 Parameters are:
 
 - **[relax_pression]**  (*type:* double) Value between 0 and 1 (by default 1), this keyword is used only by the  SIMPLE algorithm for relaxing the increment of pressure.
@@ -20494,21 +16397,6 @@ Parameters are:
 
 Simpler method for incompressible systems.
 
-Usage:
-
-| **simpler** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **seuil_convergence_implicite**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
-
 Parameters are:
 
 - **seuil_convergence_implicite**  (*type:* double) Keyword to set the value of the convergence criteria for the resolution  of the implicit system build to solve either the Navier_Stokes equation (only for  Simple and Simpler algorithms) or a scalar equation. It is adviced to use the default value (1e6) to solve the implicit system only once  by time step. This value must be decreased when a coupling between problems is considered.
@@ -20541,13 +16429,6 @@ Parameters are:
 Class for solver in the situation where the time scheme is the implicit scheme.
 Solver allows equation diffusion and convection operators to be set as implicit terms.
 
-Usage:
-
-| **solveur_implicite_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _solveur_lineaire_std:
@@ -20559,13 +16440,6 @@ Usage:
 
 
 not_set
-
-Usage:
-
-| **solveur_lineaire_std** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| }
 
 Parameters are:
 
@@ -20583,23 +16457,6 @@ Parameters are:
 
 
 similar to simple.
-
-Usage:
-
-| **solveur_u_p** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[relax_pression]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_implicite]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_corrections_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_convergence_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_generation_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_verification_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[seuil_test_preliminaire_solveur]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[solveur]**  :ref:`solveur_sys_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[no_qdm]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[nb_it_max]**  int
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[controle_residu]**  flag
-| }
 
 Parameters are:
 
@@ -20636,9 +16493,10 @@ Parameters are:
 **sondes**
 ----------
 
+**Synonyms:** probes
+
 
 List of probes.
-
 
 ----
 
@@ -20656,18 +16514,6 @@ List of probes.
 Momentum source term to take in account the forces due to rotation or translation 
 of a non Galilean referential R' (centre 0') into the Galilean referential R (centre 
 0).
-
-Usage:
-
-| **acceleration** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[vitesse]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[acceleration]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[omega]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[domegadt]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[centre_rotation]**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[option]**  string into ["terme_complet", "coriolis_seul", "entrainement_seul"]
-| }
 
 Parameters are:
 
@@ -20697,14 +16543,6 @@ Parameters are:
 Class to describe a source term that couples the movement quantity equation and constituent 
 transport equation with the Boussinesq hypothesis.
 
-Usage:
-
-| **boussinesq_concentration** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **c0**  list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[verif_boussinesq]**  int
-| }
-
 Parameters are:
 
 - **c0**  (*type:* list) Reference concentration field type. The only field type currently available is Champ_Uniforme (Uniform field).
@@ -20724,14 +16562,6 @@ Parameters are:
 
 Class to describe a source term that couples the movement quantity equation and energy 
 equation with the Boussinesq hypothesis.
-
-Usage:
-
-| **boussinesq_temperature** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **t0**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[verif_boussinesq]**  int
-| }
 
 Parameters are:
 
@@ -20776,16 +16606,6 @@ stopped calculation, and the last one contains the pressure gradient evolution:
 
 -DataFile_Pressure_Gradient_ProblemName_BoundaryName
 
-Usage:
-
-| **canal_perio** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **bord**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[h]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coeff]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[debit_impose]**  double
-| }
-
 Parameters are:
 
 - **bord**  (*type:* string) The name of the (periodic) boundary normal to the flow direction.
@@ -20810,10 +16630,6 @@ Parameters are:
 Keyword for a Coriolis term in hydraulic equation.
 Warning: Only available in VDF.
 
-Usage:
-
-**coriolis** **omega**  
-
 Parameters are:
 
 - **omega**  (*type:* string) Value of omega.
@@ -20831,13 +16647,6 @@ Parameters are:
 
 Antal correction source term for multiphase problem
 
-Usage:
-
-| **correction_antal** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _darcy:
@@ -20853,10 +16662,6 @@ This keyword must be used with a permeability model.
 For the moment there are two models : permeability constant or Ergun's law.
 Darcy source term is available for quasi compressible calculation.
 A new keyword is aded for porosity (porosite).
-
-Usage:
-
-**darcy** **bloc**  
 
 Parameters are:
 
@@ -20875,10 +16680,6 @@ Parameters are:
 
 Class to define a source term corresponding to a volume power release in the energy 
 equation.
-
-Usage:
-
-**dirac** **position** **ch**  
 
 Parameters are:
 
@@ -20899,13 +16700,6 @@ Parameters are:
 
 Base class for source terms of bubble dispersion in momentum equation.
 
-Usage:
-
-| **dispersion_bulles** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta]**  double
-| }
-
 Parameters are:
 
 - **[beta]**  (*type:* double) Mutliplying factor for the output of the bubble dispersion source term.
@@ -20923,10 +16717,6 @@ Parameters are:
 
 Source term to impose a pressure difference according to the formula : DP = dp + dDP/dQ 
 * (Q - Q0)
-
-Usage:
-
-**dp_impose** **aco** **dp_type** **surface** **bloc_surface** **acof**  
 
 Parameters are:
 
@@ -20954,11 +16744,6 @@ Parameters are:
 Source term of mass transfer between phases connected by the saturation object defined 
 in saturation_xxxx
 
-Usage:
-
-**flux_interfacial**  
-
-
 ----
 
 .. _forchheimer:
@@ -20974,10 +16759,6 @@ We must precise a permeability model : constant or Ergun's law.
 Moreover we can give the constant Cf : by default its value is 1.
 Forchheimer source term is available also for quasi compressible calculation.
 A new keyword is aded for porosity (porosite).
-
-Usage:
-
-**forchheimer** **bloc**  
 
 Parameters are:
 
@@ -20995,15 +16776,6 @@ Parameters are:
 
 
 Source term which corresponds to the phases friction at the interface
-
-Usage:
-
-| **frottement_interfacial** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[a_res]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[dv_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[exp_res]**  int
-| }
 
 Parameters are:
 
@@ -21025,17 +16797,6 @@ Parameters are:
 
 
 Anisotropic pressure loss.
-
-Usage:
-
-| **perte_charge_anisotrope** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **lambda_ortho**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diam_hydr**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  string
-| }
 
 Parameters are:
 
@@ -21061,18 +16822,6 @@ Parameters are:
 
 
 New pressure loss.
-
-Usage:
-
-| **perte_charge_circulaire** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **lambda_ortho**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diam_hydr**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diam_hydr_ortho**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  string
-| }
 
 Parameters are:
 
@@ -21101,16 +16850,6 @@ Parameters are:
 
 Directional pressure loss.
 
-Usage:
-
-| **perte_charge_directionnelle** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diam_hydr**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **direction**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  string
-| }
-
 Parameters are:
 
 - **Lambda | lambda_u**  (*type:* string) Function for loss coefficient which may be Reynolds dependant (Ex: 64/Re).
@@ -21134,15 +16873,6 @@ Parameters are:
 
 Isotropic pressure loss.
 
-Usage:
-
-| **perte_charge_isotrope** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **diam_hydr**  :ref:`champ_don_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[sous_zone]**  string
-| }
-
 Parameters are:
 
 - **Lambda | lambda_u**  (*type:* string) Function for loss coefficient which may be Reynolds dependant (Ex: 64/Re).
@@ -21163,10 +16893,6 @@ Parameters are:
 
 
 Source term modelling the presence of a bundle of tubes in a flow.
-
-Usage:
-
-**perte_charge_reguliere** **spec** **zone_name | name_of_zone**  
 
 Parameters are:
 
@@ -21189,16 +16915,6 @@ Source term that is used to model a pressure loss over a surface area (transitio
 through a grid, sudden enlargement) defined by the faces of elements located on the 
 intersection of a subzone named subzone_name and a X,Y, or Z plane located at X,Y 
 or Z = location.
-
-Usage:
-
-| **perte_charge_singuliere** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **dir**  string into ["kx", "ky", "kz", "k"]
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[coeff]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[regul]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **surface**  :ref:`bloc_lecture`
-| }
 
 Parameters are:
 
@@ -21223,13 +16939,6 @@ Parameters are:
 
 Base class for source term of lift force in momentum equation.
 
-Usage:
-
-| **portance_interfaciale** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[beta]**  double
-| }
-
 Parameters are:
 
 - **[beta]**  (*type:* double) Multiplying factor for the bubble lift force source term.
@@ -21247,10 +16956,6 @@ Parameters are:
 
 Class to define a source term corresponding to a volume power release in the energy 
 equation.
-
-Usage:
-
-**puissance_thermique** **ch**  
 
 Parameters are:
 
@@ -21271,10 +16976,6 @@ Radioactive decay source term of the form $-\lambda_i c_i$, where $0 \leq i \leq
 N is the number of component of the constituent, $c_i$ and $\lambda_i$ are the concentration 
 and the decay constant of the i-th component of the constituant.
 
-Usage:
-
-**radioactive_decay** **val**  
-
 Parameters are:
 
 - **val**  (*type:* list) n is the number of decay constants to read (int), and val1, val2... are the decay constants (double)
@@ -21290,13 +16991,6 @@ Parameters are:
 
 Basic class of source terms introduced in the equation.
 
-Usage:
-
-| **source_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 .. _source_constituant:
@@ -21309,10 +17003,6 @@ Usage:
 
 Keyword to specify source rates, in [[C]/s], for each one of the nb constituents.
 [C] is the concentration unit.
-
-Usage:
-
-**source_constituant** **ch**  
 
 Parameters are:
 
@@ -21333,10 +17023,6 @@ to define a source term depending on some discrete fields of the problem and (or
 analytic expression.
 It is expressed by the way of a generic field usually used for post-processing.
 
-Usage:
-
-**source_generique** **champ**  
-
 Parameters are:
 
 - **champ**  (*type:* :ref:`champ_generique_base`) the source field
@@ -21353,17 +17039,6 @@ Parameters are:
 
 
 Source term for Penalised Direct Forcing (PDF) method.
-
-Usage:
-
-| **source_pdf** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **aire**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **rotation**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[transpose_rotation]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **modele**  :ref:`bloc_pdf_model`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[interpolation]**  :ref:`interpolation_ibm_base`
-| }
 
 Parameters are:
 
@@ -21391,17 +17066,6 @@ Parameters are:
 Base class of the source term for the Immersed Boundary Penalized Direct Forcing method 
 (PDF)
 
-Usage:
-
-| **source_pdf_base** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **aire**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **rotation**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[transpose_rotation]**  flag
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **modele**  :ref:`bloc_pdf_model`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[interpolation]**  :ref:`interpolation_ibm_base`
-| }
-
 Parameters are:
 
 - **aire**  (*type:* :ref:`field_base`) volumic field: a boolean for the cell (0 or 1) indicating if the obstacle  is in the cell
@@ -21427,10 +17091,6 @@ Parameters are:
 
 Momentum source term in the Navier-Stokes equations.
 
-Usage:
-
-**source_qdm** **ch | champ**  
-
 Parameters are:
 
 - **ch | champ**  (*type:* :ref:`field_base`) Field type.
@@ -21454,16 +17114,6 @@ u' represents the dissipative term, with lambda = a/Delta t For Crank-Nicholson 
 scheme, recommended value for a is 2.
 
 Remark : This method requires to define a filtering operator.
-
-Usage:
-
-| **source_qdm_lambdaup** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **Lambda | lambda_u**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[lambda_min]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[lambda_max]**  double
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[ubar_umprim_cible]**  double
-| }
 
 Parameters are:
 
@@ -21493,10 +17143,6 @@ To post-process the values of tauw, u_tau and Reynolds_tau into the files tauw_r
 reynolds_tau_robin.dat and u_tau_robin.dat, you must add a block Traitement_particulier 
 { canal { } }
 
-Usage:
-
-**source_robin** **bords**  
-
 Parameters are:
 
 - **bords**  (*type:* :ref:`vect_nom`) not_set
@@ -21518,10 +17164,6 @@ The source term will be applied on the N specified boundaries.
 The values temp_wall_valueI are the temperature specified on the Ith boundary.
 The last value dt_impr is a printing period which is mandatory to specify in the 
 data file but has no effect yet.
-
-Usage:
-
-**source_robin_scalaire** **bords**  
 
 Parameters are:
 
@@ -21545,29 +17187,6 @@ when divergence free is badly resolved, to stay in a better way in the physical 
 
 Warning: Only available in VEF discretization.
 
-Usage:
-
-**source_th_tdivu**  
-
-
-----
-
-.. _source_travail_pression_elem_base:
-
-**source_travail_pression_elem_base**
--------------------------------------
-
-**Inherits from:** :ref:`source_base` 
-
-
-Source term which corresponds to the additional pressure work term that appears when 
-dealing with compressible multiphase fluids
-
-Usage:
-
-**source_travail_pression_elem_base**  
-
-
 ----
 
 .. _terme_puissance_thermique_echange_impose:
@@ -21581,15 +17200,6 @@ Usage:
 Source term to impose thermal power according to formula : P = himp * (T - Text).
 Where T is the Trust temperature, Text is the outside temperature with which energy 
 is exchanged via an exchange coefficient himp
-
-Usage:
-
-| **terme_puissance_thermique_echange_impose** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **himp**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **text**  :ref:`field_base`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[pid_controler_on_targer_power]**  :ref:`bloc_lecture`
-| }
 
 Parameters are:
 
@@ -21613,11 +17223,6 @@ Parameters are:
 Source term which corresponds to the additional pressure work term that appears when 
 dealing with compressible multiphase fluids
 
-Usage:
-
-**travail_pression**  
-
-
 ----
 
 .. _vitesse_derive_base:
@@ -21629,11 +17234,6 @@ Usage:
 
 
 Source term which corresponds to the drift-velocity between a liquid and a gas phase
-
-Usage:
-
-**vitesse_derive_base**  
-
 
 ----
 
@@ -21647,11 +17247,6 @@ Usage:
 
 Basic class for drift-velocity source term between a liquid and a gas phase
 
-Usage:
-
-**vitesse_relative_base**  
-
-
 ----
 
 **Keywords derived from sources**
@@ -21664,7 +17259,6 @@ Usage:
 
 
 The sources.
-
 
 ----
 
@@ -21687,24 +17281,6 @@ The Read (Lire) interpretor is used to define the items comprising the sub-area.
 Caution: The Domain type object nom_domaine must have been meshed (and triangulated 
 or tetrahedralised in VEF) prior to carrying out the Associate (Associer) nom_sous_zone 
 nom_domaine instruction; this instruction must always be preceded by the read instruction.
-
-Usage:
-
-| **sous_zone** *str*
-| **Read** *str* {
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[restriction]**  :ref:`sous_zone`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[rectangle]**  :ref:`bloc_origine_cotes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[segment]**  :ref:`bloc_origine_cotes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[boite | box]**  :ref:`bloc_origine_cotes`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[liste]**  int list
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fichier | filename]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[intervalle]**  :ref:`deuxentiers`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[polynomes]**  :ref:`bloc_lecture`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[couronne]**  :ref:`bloc_couronne`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[tube]**  :ref:`bloc_tube`
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[fonction_sous_zone | fonction_sous_domaine]**  string
-| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| |nbsp| **[union | union_with]**  :ref:`sous_zone`
-| }
 
 Parameters are:
 
@@ -21738,6 +17314,23 @@ Parameters are:
 **Keywords derived from turbulence_paroi_base**
 ===============================================
 
+.. _negligeable:
+
+**negligeable**
+---------------
+
+**Inherits from:** :ref:`turbulence_paroi_base` 
+
+
+Keyword to suppress the calculation of a law of the wall with a turbulence model.
+The wall stress is directly calculated with the derivative of the velocity, in the 
+direction perpendicular to the wall (tau_tan /rho= nu dU/dy).
+
+Warning: This keyword is not available for k-epsilon models.
+In that case you must choose a wall law.
+
+----
+
 .. _turbulence_paroi_base:
 
 **turbulence_paroi_base**
@@ -21746,17 +17339,25 @@ Parameters are:
 
 Basic class for wall laws for Navier-Stokes equations.
 
-Usage:
-
-| **turbulence_paroi_base** *str*
-| **Read** *str* {
-| }
-
-
 ----
 
 **Keywords derived from turbulence_paroi_scalaire_base**
 ========================================================
+
+.. _negligeable_scalaire:
+
+**negligeable_scalaire**
+------------------------
+
+**Inherits from:** :ref:`turbulence_paroi_scalaire_base` 
+
+
+Keyword to suppress the calculation of a law of the wall with a turbulence model for 
+thermohydraulic problems.
+The wall stress is directly calculated with the derivative of the velocity, in the 
+direction perpendicular to the wall.
+
+----
 
 .. _turbulence_paroi_scalaire_base:
 
@@ -21765,13 +17366,6 @@ Usage:
 
 
 Basic class for wall laws for energy equation.
-
-Usage:
-
-| **turbulence_paroi_scalaire_base** *str*
-| **Read** *str* {
-| }
-
 
 ----
 
@@ -21785,4 +17379,3 @@ Usage:
 
 
 Vect of name.
-
