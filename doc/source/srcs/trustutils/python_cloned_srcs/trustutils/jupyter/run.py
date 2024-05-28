@@ -55,7 +55,8 @@ def useMEDCoupling():
     import sys
 
     mcr = os.environ["TRUST_MEDCOUPLING_ROOT"]
-    sub = "lib/python%d.%d/site-packages" % (sys.version_info.major, sys.version_info.minor)
+    arch = os.environ["TRUST_ARCH"]
+    sub = "%s_opt/lib/python%d.%d/site-packages" % (arch, sys.version_info.major, sys.version_info.minor)
     sys.path.append(os.path.join(mcr, sub))
     sys.path.append(os.path.join(mcr, "bin"))
     try:
@@ -89,7 +90,8 @@ def _runCommand(cmd, verbose):
     if it fails.
     """
     # Run by redirecting stderr to stdout
-    complProc = subprocess.run(cmd, shell=True, executable="/bin/bash", stderr=subprocess.STDOUT)
+    # add universal_newlines as in https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    complProc = subprocess.run(cmd, shell=True, executable="/bin/bash", stdout=subprocess.PIPE, stderr=subprocess.STDOUT,universal_newlines = True)
     if verbose:
         print(cmd)
         print(complProc.stdout)
@@ -318,7 +320,7 @@ class TRUSTCase(object):
         """
 
         f = open(self._fullPath(), "r").read()
-        displayMD( "```" + f + "```" )
+        displayMD( "```\n" + f + "\n```" )
 
     def _runScript(self, scriptName, verbose=False):
         """ Internal. Run a shell script if it exists.
@@ -412,14 +414,16 @@ class TRUSTCase(object):
             err = getLastLines_(err_file)
 
         os.chdir(path)
-        
+
         baseName = os.path.join(self.dir_, self.dataFileName_)
-        
+
         saveFileAccumulator(f"{baseName}.dt_ev")
         saveFileAccumulator(f"{baseName}.data")
         saveFileAccumulator(f"{baseName}.out")
         saveFileAccumulator(f"{baseName}.err")
         saveFileAccumulator(f"{baseName}_*.son")
+        saveFileAccumulator(f"{baseName}.TU")
+        saveFileAccumulator(f"{baseName}_csv.TU")
 
         return ok
 
@@ -445,7 +449,10 @@ class TRUSTCase(object):
         ### Run Case ###
         err_file = self.dataFileName_ + ".err"
         out_file = self.dataFileName_ + ".out"
-        cmd = "trust %s %s %s 2>%s 1>%s" % (self.dataFileName_, str(self.nbProcs_), self.execOptions, err_file, out_file)
+        para = ""
+        if self.nbProcs_ != 1:
+            para = str(self.nbProcs_)
+        cmd = "trust %s %s %s 2>%s 1>%s" % (self.dataFileName_, para, self.execOptions, err_file, out_file)
         output = subprocess.run(cmd, shell=True, executable="/bin/bash", stderr=subprocess.STDOUT)
         if verbose:
             print(cmd)
@@ -468,7 +475,7 @@ class TRUSTCase(object):
             passed in parameter.
         """
         os.chdir(self._fullDir())
- 
+
         opt = os.environ.get("JUPYTER_RUN_OPTIONS", None)
         # Very specific to the validation process - we need to keep build there:
         if not opt is None and "-not_run" in opt:
@@ -488,9 +495,9 @@ class TRUSTCase(object):
                 row_arrange[4] += "-" + str(row[5])
             row = row_arrange
 
-        zeTable.addLine([row], self.dir_ + "/" + self.dataFileName_)
+        zeTable.addLine([row[:5]], self.dir_ + "/" + self.dataFileName_)
         os.chdir(ORIGIN_DIRECTORY)
-        
+
         ## Save the file
         saveFileAccumulator(self.dir_ + "/" + self.dataFileName_ + ".perf")
 
@@ -523,18 +530,18 @@ class TRUSTSuite(object):
         for image in image_files:
             saveFileAccumulator(str(image))
 
-        
-
     def addCase(self, case):
         self.cases_.append(case)
-        
+
         baseName = os.path.join(case.dir_, case.name_)
-        
+
         saveFileAccumulator(f"{baseName}.dt_ev")
         saveFileAccumulator(f"{baseName}.data")
         saveFileAccumulator(f"{baseName}.out")
         saveFileAccumulator(f"{baseName}.err")
         saveFileAccumulator(f"{baseName}_*.son")
+        saveFileAccumulator(f"{baseName}.TU")
+        saveFileAccumulator(f"{baseName}_csv.TU")
 
     def getCases(self):
         return self.cases_
@@ -570,7 +577,7 @@ class TRUSTSuite(object):
         ## Hence, s.o. who runs the Sserver on its machine will benefit from it directly, and on the other hand
         ## the validation process can control this finely.
         if "-parallel_run" in opt:
-            runParallel = True
+            runParallel = not preventConcurrent
         else:
             runParallel = not preventConcurrent and ((opt == "" or "-parallel_sjob" in opt.split(" ")) and self.detectSserver())
             extra = {True: "**with Sserver**", False: ""}[runParallel]
@@ -635,6 +642,8 @@ class TRUSTSuite(object):
                     if not allOK:
                         print(err_msg % (case.dir_, case.name_))
                         print(case.last_run_err_)
+                        raise ValueError ("at least one case has failed ! open notebook to get more information ")
+
                 except Exception as e:
                     os.chdir(ORIGIN_DIRECTORY)  # Restore initial directory
                     raise e
@@ -699,7 +708,7 @@ class TRUSTSuite(object):
         """
         text = "### Test cases \n"
         for c in self.getCases():
-            text += "* " + c.dir_ + "/" + c.dataFileName_ + ".data " 
+            text += "* " + c.dir_ + "/" + c.dataFileName_ + ".data "
             if (int(c.nbProcs_) > 1):
                 text += "with " + str(c.nbProcs_)  + " procs"
             text += "\n"
@@ -711,11 +720,11 @@ def readFile(data):
     """
     path = os.getcwd()
     os.chdir(BUILD_DIRECTORY)
-    
+
     f = open(data,"r")
     print(f.read())
     f.close()
-    
+
     os.chdir(path)
 
     saveFileAccumulator(data)
@@ -767,18 +776,6 @@ def introduction(auteur, creationDate=None):
             print("This is the incorrect date string format. It should be DD/MM/YYYY")
         displayMD("\n Report created : " + creationDate + "\n")
     displayMD("\n Report generated " + dat)
-
-
-def description(text):
-    """ 
-    Function that creates a Description cell Mardown
-
-    Parameters
-    ---------
-    text: str 
-        Description test.
-    """
-    displayMD("### Description \n" + text)
 
 
 def TRUST_parameters(version="", param=[]):
@@ -1069,5 +1066,5 @@ def tablePerf():
 def initBuildDirectory():
     """ triggers build directory creation and copy src stuff into it
     """
-    global defaultSuite_ 
+    global defaultSuite_
     defaultSuite_ = TRUSTSuite()

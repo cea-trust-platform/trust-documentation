@@ -22,7 +22,7 @@ from trustutils.jupyter.run import BUILD_DIRECTORY, saveFileAccumulator
 pd.set_option("display.notebook_repr_html", True)
 pd.set_option("display.max_rows", None)
 
-def loadText(data, index_column=0, nb_column=-1, transpose=True, dtype="float", skiprows=0):
+def loadText(data, index_column=0, nb_column=-1, transpose=True, dtype="float", skiprows=0, **kwargs):
     """
     Method for loading and saving files.
         
@@ -40,6 +40,8 @@ def loadText(data, index_column=0, nb_column=-1, transpose=True, dtype="float", 
         type of the data (default="float")
     skiprows : int
         initial lines skip when reading (default=0)
+    kwargs : dictionary
+        additional properties available in numpy.loadtxt() options
 
     Returns
     ------- 
@@ -56,7 +58,7 @@ def loadText(data, index_column=0, nb_column=-1, transpose=True, dtype="float", 
 
     try:
         if transpose:
-            matrix = np.loadtxt(data, dtype=dtype, skiprows=skiprows).T[index_column:nb]
+            matrix = np.loadtxt(data, dtype=dtype, skiprows=skiprows, **kwargs).T[index_column:nb]
         else:
             matrix = np.loadtxt(data, dtype=dtype, skiprows=skiprows)[index_column:nb]
     except:
@@ -67,7 +69,7 @@ def loadText(data, index_column=0, nb_column=-1, transpose=True, dtype="float", 
 
     return matrix
 
-def read_csv(data, comment="#", delim_whitespace=True,**kwargs):
+def read_csv(data, **kwargs):
     """
     Method for loading files (wrap pandas.read_csv() function).
         
@@ -89,7 +91,7 @@ def read_csv(data, comment="#", delim_whitespace=True,**kwargs):
     origin = os.getcwd()
     os.chdir(BUILD_DIRECTORY)
 
-    df = pd.read_csv(data, comment=comment, delim_whitespace=delim_whitespace,**kwargs)
+    df = pd.read_csv(data, **kwargs)
 
     saveFileAccumulator(data)
     os.chdir(origin)
@@ -283,7 +285,10 @@ class Graph:
         if not yIndice is None:
             self.yIndice = yIndice
 
-        self.addPlot(self.coordonee(), title)
+        if self.title is None:
+            self.addPlot(self.coordonee(), title)
+        else:
+            self.addPlot(self.coordonee())
 
         ### On plot les données ###
         self.subplot.plot(x, y, marker, label=label, **kwargs)
@@ -294,7 +299,7 @@ class Graph:
         ## On ajoute des titres
         self.subplot.set(xlabel=self.x_label, ylabel=self.y_label)
 
-    def addPlot(self, coordonee, title=""):
+    def addPlot(self, coordonee, title=None):
         """
         
         Method to add a plot/subplot.
@@ -324,7 +329,8 @@ class Graph:
 
         self.subplot.axis("on")
         self.subplot.grid(visible=True)
-        self.subplot.set_title(self.subtitle)
+        if not self.subtitle is None:
+            self.subplot.set_title(self.subtitle)
 
     def addPoint(self, data, marker="-", compo=0, label="", func=None, **kwargs):
         """
@@ -616,7 +622,7 @@ class Table:  # ancien tableau
         
         """
         dftmp = pd.DataFrame(ligne, columns=self.columns, index=[name])
-        self.df = self.df.append(dftmp)
+        self.df = pd.concat([self.df, dftmp])
 
     def setTitle(self,title):
         """
