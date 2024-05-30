@@ -4024,7 +4024,7 @@ Parameters are:
 **create_domain_from_sous_zone**
 --------------------------------
 
-**Synonyms:** create_domain_from_sub_domain, create_domain_from_sub_domains
+**Synonyms:** create_domain_from_sub_domains, create_domain_from_sub_domain
 
 **Inherits from:** :ref:`interprete` 
 
@@ -5768,7 +5768,7 @@ Parameters are:
 **read_file_bin**
 -----------------
 
-**Synonyms:** lire_fichier_bin, read_file_binary
+**Synonyms:** read_file_binary, lire_fichier_bin
 
 **Inherits from:** :ref:`interprete` 
 
@@ -11756,7 +11756,7 @@ Parameters are:
 **stat_post_correlation**
 -------------------------
 
-**Synonyms:** champ_post_statistiques_correlation, correlation
+**Synonyms:** correlation, champ_post_statistiques_correlation
 
 **Inherits from:** :ref:`objet_lecture` 
 
@@ -12572,7 +12572,7 @@ Parameters are:
 **partitionneur_partition**
 ---------------------------
 
-**Synonyms:** decouper, partition
+**Synonyms:** partition, decouper
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -12653,7 +12653,7 @@ Parameters are:
 **partitionneur_sous_zones**
 ----------------------------
 
-**Synonyms:** sous_zones, partitionneur_sous_domaines
+**Synonyms:** partitionneur_sous_domaines, sous_zones
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -14697,7 +14697,7 @@ list of reactions
 **euler_scheme**
 ----------------
 
-**Synonyms:** schema_euler_explicite, scheme_euler_explicit
+**Synonyms:** scheme_euler_explicit, schema_euler_explicite
 
 **Inherits from:** :ref:`schema_temps_base` 
 
