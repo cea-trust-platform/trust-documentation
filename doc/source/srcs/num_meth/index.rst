@@ -14,11 +14,11 @@ that have driven the implementation, as well as the main places in the code wher
 .. toctree::
     :maxdepth: 2
 
-    discret
+    discretisation/discret
     proj/index
     time_schemes/index
     bc/index
     solvers/index
     post/index
-    academic_refs
+    global_reference
 

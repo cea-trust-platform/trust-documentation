@@ -40,14 +40,13 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.ifconfig',
     'sphinx.ext.autosectionlabel',
-    'sphinx.ext.napoleon'
-]
+    'sphinx.ext.napoleon' ]
+ # ]
 
 htmlhelp_basename = 'TRUST Documentation'
 
 # To show or not private members
 autodoc_default_options = {     "members": True,     "undoc-members": True,     "private-members": False  }
-
 
 # generate autosummary even if no references
 numpydoc_show_class_members = False
@@ -80,6 +79,7 @@ html_theme = 'sphinx_material'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+html_css_files = ['custom.css']
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'

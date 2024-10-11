@@ -6,9 +6,12 @@ TRUST provides several spatial discretisations.
 .. toctree::
     :maxdepth: 2
 
+    intro_disc
     vdf/index
     vef/index
     polymac/index
     ijk/index
+    academic_refs
+    
 
 

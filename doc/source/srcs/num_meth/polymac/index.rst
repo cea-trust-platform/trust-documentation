@@ -1,6 +1,0 @@
-PolyMAC discretisations
-=======================
-
-Blabla PolyMAC
-
-

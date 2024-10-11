@@ -1,5 +1,5 @@
-Solvers
-=======
+Algebric Solvers
+===============
 
 Blabla solvers
 
