@@ -15,10 +15,10 @@ that have driven the implementation, as well as the main places in the code wher
     :maxdepth: 2
 
     discretisation/discret
-    proj/index
-    time_schemes/index
-    bc/index
-    solvers/index
-    post/index
-    global_reference
+..    proj/index
+..    time_schemes/index
+..    bc/index
+..    solvers/index
+..    post/index
+..    global_reference
 

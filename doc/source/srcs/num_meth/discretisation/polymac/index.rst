@@ -1,20 +1,20 @@
 PolyMAC
 =======
 
-The first PolyMAC version introduce the vorticity :math:`\omega = \nabla \wedge u`. Then the incompressible Navier-Stokes equation can be rewritten as:
+The first PolyMAC version introduces the vorticity :math:`\omega = \nabla \wedge u`. Then the incompressible Navier-Stokes equation can be rewritten as:
 
 .. math::
    :label: Pold_Navier_stokes
    
    \begin{aligned}
-   & \partial _t u + \nabla \cdot \left( u \otimes u \right) + \nabla p - \mu \nabla \wedge \omega = \mathcal{S} \ , \label{Pold_QDM} \\
-   & \nabla \cdot u = 0 \ , \label{Pold_masse}\\
-   & \omega - \nabla \wedge u = 0 \ \label{Pold_vorticity} .\end{aligned}
+   & \partial _t u + \nabla \cdot \left( u \otimes u \right) + \nabla p - \mu \nabla \wedge \omega = \mathcal{S} \ , \\
+   & \nabla \cdot u = 0 \ , \\
+   & \omega - \nabla \wedge u = 0 \ .\end{aligned}
 
 Dual Mesh
 ---------
 
-PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of each control volume :math:`cv \in \{e,f,\sigma \}`, called :math:`x_{cv}` has to be introduce. Then we introduce (see Figure :ref:`dual_mesh_polymacold`):
+PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of each control volume :math:`cv \in \{e,f,\sigma \}`, called :math:`x_{cv}` has to be introduced. Then we introduce (see Figure :ref:`dual_mesh_polymacold`):
 
 -  | The dual cell :math:`\tilde{e}` is located at the center of gravity of the cell : :math:`x_{e}`.
 
@@ -28,7 +28,7 @@ PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of e
 	:align: center
 	:alt: Dual mesh of PolyMAC
 	
-	Figure A: Dual mesh of PolyMAC
+	Figure C: Dual mesh of PolyMAC
 
 Location of the unknowns
 ------------------------
@@ -63,7 +63,7 @@ Exact discrete operators
       
       [\nabla \cdot u]_e = \frac{|f|}{|e|} \sum _{F_e} [u]_f 
 
--  Eventually, using the Green-Stokes theorem, one gets:
+-  Finally, using the Green-Stokes theorem, one gets:
 
    .. math::
       :label: Pold_R_u
@@ -112,7 +112,7 @@ Other defintions of Hodge operators exist in the literature, see **[B14]**.
 Projections between control volumes when using CDO
 --------------------------------------------------
 
-Figure :ref:`_projection_CDO` summerized the different projection between control volumes in CDO. It is usefull to keep it in mind when one want to discretised an equation on a specific control volume.
+Figure :ref:`projection_CDO` summerized the different projection between control volumes in CDO. It is usefull to keep it in mind when one want to discretised an equation on a specific control volume.
 
 .. _projection_CDO:
 .. figure:: ./FIGURES/CDO.png
@@ -120,15 +120,15 @@ Figure :ref:`_projection_CDO` summerized the different projection between contro
 	:align: center
 	:alt: Projection scheme using CDO approach 
 	
-	Figure B: Projections between control volumes in CDO
+	Figure D: Projections between control volumes in CDO
 	
 
 Incompressible Navier-Stokes
 ----------------------------
 
-We discretised the incompressible Navier-Stokes equation as follow:
+We discretised the incompressible Navier-Stokes equation as follows:
 
--  The momentum equation :eq:`Pold_QDM` is discretised at the dual faces :
+-  The momentum equation is discretised at the dual faces :
 
    -  Use the Hodge :eq:`Pold_H_u` operator to project the time derivative term to the dual face.
 
@@ -144,21 +144,17 @@ We discretised the incompressible Navier-Stokes equation as follow:
 
       with :math:`\beta \in [0,1]` and :math:`\gamma \in \{0,1\}` such that :math:`\gamma =1` if :math:`[u_f]\geq 0` and :math:`0` otherwise.
 
-   -  Project convective terms to the face:
+   -  Project convective terms to the dual face using the Hodge operator :eq:`Pold_I_u`.
 
-      .. math:: [\nabla \cdot (u\otimes u)]_{\tilde{f}} = \lambda_{e,f} [\nabla \cdot (u \otimes u)]_{e} + \lambda_{e',f} [\nabla \cdot (u \otimes u)]_{e'}
-
-      with the penalty coefficient :math:`\lambda_{e,f} = \frac{ |\vec{x}_{e' \rightarrow f}|}{|\vec{x}_{e' \rightarrow f}| + |\vec{x}_{e \rightarrow f}|}` and :math:`e'` the neighbouring cell of :math:`e` sharing the face :math:`f`.
-
-   -  The diffusion term :math:`[\mu \nabla \wedge \omega]_{\tilde{f}}` is obtain by using the Hodge operator :eq:`Pold_H_o` on the discrete curl :eq:`Pold_R_o`.
+   -  The diffusion term :math:`[\mu \nabla \wedge \omega]_{\tilde{f}}` is obtained by using the Hodge operator :eq:`Pold_H_o` on the discrete curl :eq:`Pold_R_o`.
 
    -  The pressure gradient is constructed with :eq:`Pold_G_p`.
 
--  The mass equation is discretised at the cell using :eq:`PoldD_u`.
+-  The mass equation is discretised at the cell using :eq:`Pold_D_u`.
 
 -  The vorticity equation is discretised at the dual edges :math:`\tilde{\sigma}`:
 
-   -  The curl of the velocity is obtain using :eq:`Pold_R_u`.
+   -  The curl of the velocity is obtained using :eq:`Pold_R_u`.
 
    -  The vorticity is projected at the dual edge using :eq:`Pold_H_o`.
 
@@ -175,7 +171,7 @@ described in :ref:`location_unknowns_p0`.
 	:align: center
 	:alt: Unknowns location in PolyMAC_P0
 	
-	Figure C : Location of the unknowns when using PolyMAC_P0
+	Figure E : Location of the unknowns when using PolyMAC_P0
 
 PolyMAC_P0 is based on Multi Point Flux Approximation (MPFA) method.
 
@@ -190,11 +186,11 @@ Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
 
 -  The MPFA-symm method presented in **[lP05a]**, **[lP05b]**, **[lP17]**
 
-The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. It can be seen on Figure :ref:`scheme_mpfa` in the case of a triangular mesh. The primal mesh vertexes are represented by in :ref:`scheme_mpfa`. The procedure to build the dual mesh is:
+The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :ref:`scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :ref:`scheme_mpfa` is as follows:
 
--  Link each cell’s (:math:`e`) gravity center ( in :ref:`scheme_mpfa`) to the gravity center of each cell’s face :math:`f \subset e` ( in :ref:`scheme_mpfa`). Doing so, the face of the mesh are cut into two sub-faces called :math:`\hat{f}_1` and :math:`\hat{f}_2`. Each cell can then be subdivided into :math:`N_i` quadrilaterals, called :math:`(S_{e,i})_{i\in\{ 1,\dots, N_i \} }` in :ref:`scheme_mpfa`.
+-  Link each cell’s (:math:`e`) gravity center (in purple) to the gravity center of each cell’s face :math:`f \subset e` ( in blue). Doing so, the face of the mesh are cut into two sub-faces called :math:`\hat{f}_1` and :math:`\hat{f}_2`. Each cell can then be subdivided into :math:`N_i` quadrilaterals (in orange), called :math:`(S_{e,i})_{i\in\{ 1,\dots, N_i \} }`.
 
--  Introduce for each sub-face :math:`\hat{f} \subset f`, an auxiliary quantity ( in :ref:`scheme_mpfa`). For the MPFA-symmetric method, those auxiliary quantities are set at one third and two third of the face :math:`f`. For the MPFA-O method, they are put at the center of the face, however, the value of the auxiliary unknowns at the center is not continuous. The MPFA-O(:math:`\eta`) method can be seen as in between the previous two, as it try to compute the optimum location of the auxiliary unknown.
+-  Introduce for each sub-face :math:`\hat{f} \subset f`, an auxiliary quantity ( in green). For the MPFA-symmetric method, those auxiliary quantities are set at one third and two third of the face :math:`f`. For the MPFA-O method, they are put at the center of the face, however, the value of the auxiliary unknowns at the center is not continuous. The MPFA-O(:math:`\eta`) method can be seen as an in between, as it try compute the optimum location of the auxiliary unknown.
 
 .. _scheme_mpfa:
 .. figure:: ./FIGURES/MPFA.png
@@ -202,7 +198,7 @@ The choice of the method is based on a coercivity condition. Let’s briefly int
 	:align: center
 	:alt: Construction of a gradient using MPFA
 	
-	Figure D : Construction of a gradient using MPFA method
+	Figure F : Construction of a gradient using MPFA method
 
 On :math:`S_1` in :ref:`scheme_mpfa` for example, the gradient of a potential p, :math:`G_{S_{e,i}}([p]_e)` is computed as:
 
@@ -226,15 +222,15 @@ The incompressible Navier-Stokes equation reads:
    :label: P0_Navier_Stokes
    
    \begin{aligned}
-   & \partial_{t} \left( u \right) + \nabla \cdot \left( u \otimes u \right) + \nabla p - \mu \Delta u = f \ , \label{P0_QDM} \\
-   & \nabla \cdot u = 0 \ \label{P0_masse} .\end{aligned}
+   & \partial_{t} \left( u \right) + \nabla \cdot \left( u \otimes u \right) + \nabla p - \mu \Delta u = f \ , \\
+   & \nabla \cdot u = 0 \ .\end{aligned}
 
-The mass equation :eq:`P0_masse` is discretised at the cell using the Green-Ostrogradski theorem:
+The mass equation is discretised at the cell using the Green-Ostrogradski theorem:
 
 .. math:: 
    |e|[\nabla \cdot u]_e = |f| \sum _{F_e} [u]_f
 
-The momentum equation :eq:`P0_QDM` is discretised at the face:
+The momentum equation is discretised at the face:
 
 -  For the convective term:
 
@@ -274,10 +270,10 @@ The momentum equation :eq:`P0_QDM` is discretised at the face:
 
       [\nabla \cdot ( \mu _e \left((\nabla u) + (\nabla u)^{\intercal}\right)) ]_e = \sum_{f} |f|  (G^{\text{MPFA}} ([u]_e) \\ + \left(G^{\text{MPFA}} ([u]_e))\right) ^{\intercal} \cdot \vec{n}_f.
 
--  Eventually, we interpolate the diffusion term at the face in the same fashion as for the convective term. The main difference is that a second order interpolator has to be used when projecting the velocity to the center.
+-  Finally, we interpolate the diffusion term at the face in the same fashion as for the convective term. The main difference is that a second order interpolator has to be used when projecting the velocity to the center.
 
 
-Some details regarding the discretisation of a two-phase flow model of the ishii familly **[I75]** are given in **[GG22]**.
+Some details regarding the discretisation of a two-phase flow model of the Ishii familly **[I75]** are given in **[GG22]**.
 
 PolyMAC_P0_P1_NC
 ================
