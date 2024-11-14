@@ -46,4 +46,5 @@ Table Of Contents
    :maxdepth: 1
 
    srcs/generic/index
+   srcs/num_meth/index
    srcs/reference/index

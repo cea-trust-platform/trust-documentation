@@ -14,7 +14,7 @@ The first PolyMAC version introduces the vorticity :math:`\omega = \nabla \wedge
 Dual Mesh
 ---------
 
-PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of each control volume :math:`cv \in \{e,f,\sigma \}`, called :math:`x_{cv}` has to be introduced. Then we introduce (see Figure :ref:`dual_mesh_polymacold`):
+PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of each control volume :math:`cv \in \{e,f,\sigma \}`, called :math:`x_{cv}` has to be introduced. Then we introduce (see Figure :numref:`fig:dual_mesh_polymacold`):
 
 -  | The dual cell :math:`\tilde{e}` is located at the center of gravity of the cell : :math:`x_{e}`.
 
@@ -22,13 +22,14 @@ PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of e
 
 -  The dual edge :math:`\tilde{\sigma}` is the surface that links the gravity center of all of the neighbouring cells :math:`x_{e}`, the gravity center of all of the neighbouring faces :math:`x_{f}` and the gravity center of the edge :math:`x_{\sigma}`.
 
-.. _dual_mesh_polymacold:   
 .. figure:: ./FIGURES/Dual_mesh_PolyMAC.png
-	:width: 400
-	:align: center
-	:alt: Dual mesh of PolyMAC
+  :name: fig:dual_mesh_polymacold
+  :width: 400
+  :align: center
+  :alt: Dual mesh of PolyMAC
+  
+  Dual mesh of PolyMAC.
 	
-	Figure C: Dual mesh of PolyMAC
 
 Location of the unknowns
 ------------------------

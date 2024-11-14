@@ -6,8 +6,9 @@ Academic references
    :width: 600px
    :align: center
 
-.. _hw65:
-**[HW65]** Harlow Francis H, Welch J Eddie and others. - "Numerical calculation of time-dependent viscous incompressible flow of fluid with free surface." - *Physics of Fluids* - (1965) - Vol 8, no. 12.
+
+
+.. [hw65] Harlow Francis H, Welch J Eddie and others. - "Numerical calculation of time-dependent viscous incompressible flow of fluid with free surface." - *Physics of Fluids* - (1965) - Vol 8, no. 12.
 
 .. _h68:
 **[HA68]** Harlow Francis H and Amsden Anthony. - "Numerical Calculation of Almost Incompressible Flow" - *Journal of Computational Physics* - (1968) - Vol 3 - 80--93 - Elsevier.

@@ -43,6 +43,8 @@ extensions = [
     'sphinx.ext.napoleon' ]
  # ]
 
+numfig = True
+
 htmlhelp_basename = 'TRUST Documentation'
 
 # To show or not private members
