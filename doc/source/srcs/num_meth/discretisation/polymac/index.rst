@@ -34,7 +34,7 @@ PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of e
 Location of the unknowns
 ------------------------
 
-In PolyMAC, unknowns are discretised according to their "physical" properties, see **[B14]**. A circulation is discretised over an edge, a flux over a face, a potential over the dual cell. Therefore we have:
+In PolyMAC, unknowns are discretised according to their "physical" properties, see [B14]_. A circulation is discretised over an edge, a flux over a face, a potential over the dual cell. Therefore we have:
 
 -  The pressure :math:`p` is stored at the dual cell:
    :math:`[p]_{\tilde{e}} = p(x_{e},t)`.
@@ -81,7 +81,7 @@ Exact discrete operators
 Interpolation
 -------------
 
-According to **[P00]**, on can write the following first order interpolations:
+According to [P00]_, on can write the following first order interpolations:
 
 .. math:: 
    :label: Pold_I_u
@@ -108,20 +108,20 @@ We then choose the following definition for the Hodge operators, that project un
    
    [\omega]_{\tilde{\sigma}} = |\tilde{\sigma}| \left( [\omega]_{e_{up}} \left( x_{\sigma} - x_{e_{up}} \right) + [\omega]_{e_{down}} \left( x_{\sigma} - x_{e_{down}}\right) \right)  
 
-Other defintions of Hodge operators exist in the literature, see **[B14]**.
+Other defintions of Hodge operators exist in the literature, see [B14]_.
   
 Projections between control volumes when using CDO
 --------------------------------------------------
 
-Figure :ref:`projection_CDO` summerized the different projection between control volumes in CDO. It is usefull to keep it in mind when one want to discretised an equation on a specific control volume.
+:numref:`fig:projection_CDO` summerized the different projection between control volumes in CDO. It is usefull to keep it in mind when one want to discretised an equation on a specific control volume.
 
-.. _projection_CDO:
 .. figure:: ./FIGURES/CDO.png
+        :name: fig:projection_CDO
 	:width: 600
 	:align: center
 	:alt: Projection scheme using CDO approach 
 	
-	Figure D: Projections between control volumes in CDO
+	Projections between control volumes in CDO
 	
 
 Incompressible Navier-Stokes
@@ -164,15 +164,15 @@ PolyMAC_P0
 
 Unlike PolyMAC, PolyMACP0 does not introduce the vorticity. Moreover, no
 complex dual mesh is explicitly needed. The location of the unknowns is
-described in :ref:`location_unknowns_p0`.
+described in :numref:`fig:location_unknowns_p0`.
 
-.. _location_unknowns_p0:
 .. figure:: ./FIGURES/PolyMAC_unknowns.png
+        :name: fig:location_unknowns_p0
 	:width: 300
 	:align: center
 	:alt: Unknowns location in PolyMAC_P0
 	
-	Figure E : Location of the unknowns when using PolyMAC_P0
+	Location of the unknowns when using PolyMAC_P0
 
 PolyMAC_P0 is based on Multi Point Flux Approximation (MPFA) method.
 
@@ -181,27 +181,27 @@ MPFA methods
 
 Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
 
--  The MPFA-O method presented in **[A02]**, **[AM08]**, **[D14]**
+-  The MPFA-O method presented in [A02]_, [AM08]_, [D14]_
 
--  The MPFA-O(:math:`\eta`) method presented in **[ER98]**
+-  The MPFA-O(:math:`\eta`) method presented in [ER98]_
 
--  The MPFA-symm method presented in **[lP05a]**, **[lP05b]**, **[lP17]**
+-  The MPFA-symm method presented in [lP05a]_, [lP05b]_, [lP17]_
 
-The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :ref:`scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :ref:`scheme_mpfa` is as follows:
+The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :numref:`fig:scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :numref:`fig:scheme_mpfa` is as follows:
 
 -  Link each cell’s (:math:`e`) gravity center (in purple) to the gravity center of each cell’s face :math:`f \subset e` ( in blue). Doing so, the face of the mesh are cut into two sub-faces called :math:`\hat{f}_1` and :math:`\hat{f}_2`. Each cell can then be subdivided into :math:`N_i` quadrilaterals (in orange), called :math:`(S_{e,i})_{i\in\{ 1,\dots, N_i \} }`.
 
 -  Introduce for each sub-face :math:`\hat{f} \subset f`, an auxiliary quantity ( in green). For the MPFA-symmetric method, those auxiliary quantities are set at one third and two third of the face :math:`f`. For the MPFA-O method, they are put at the center of the face, however, the value of the auxiliary unknowns at the center is not continuous. The MPFA-O(:math:`\eta`) method can be seen as an in between, as it try compute the optimum location of the auxiliary unknown.
 
-.. _scheme_mpfa:
 .. figure:: ./FIGURES/MPFA.png
+        :name: fig:scheme_mpfa
 	:width: 700
 	:align: center
 	:alt: Construction of a gradient using MPFA
 	
-	Figure F : Construction of a gradient using MPFA method
+        Construction of a gradient using MPFA method
 
-On :math:`S_1` in :ref:`scheme_mpfa` for example, the gradient of a potential p, :math:`G_{S_{e,i}}([p]_e)` is computed as:
+On :math:`S_1` in :numref:`fig:scheme_mpfa` for example, the gradient of a potential p, :math:`G_{S_{e,i}}([p]_e)` is computed as:
 
 .. math:: G_{S_{e,i}}([p]_e) = \frac{1}{|S_{e,i}|} ( (p_{S_{e,1},1} -p_e)  \vec{n_1} + (p_{S_{e,1},2} -p_e)  \vec{n_2} ),
 
@@ -274,10 +274,10 @@ The momentum equation is discretised at the face:
 -  Finally, we interpolate the diffusion term at the face in the same fashion as for the convective term. The main difference is that a second order interpolator has to be used when projecting the velocity to the center.
 
 
-Some details regarding the discretisation of a two-phase flow model of the Ishii familly **[I75]** are given in **[GG22]**.
+Some details regarding the discretisation of a two-phase flow model of the Ishii familly [I75]_ are given in [GG22]_.
 
 PolyMAC_P0_P1_NC
 ================
 
 
-PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in **[EGH07]** and **[EGH10]**. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see **[DEG10]**.
+PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in [EGH07]_ and [EGH10]_. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see [DEG10]_.

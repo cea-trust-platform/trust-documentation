@@ -10,7 +10,6 @@ TRUST provides several spatial discretisations.
     vdf/index
     vef/index
     polymac/index
-    academic_refs
 ..    ijk/index
 
     

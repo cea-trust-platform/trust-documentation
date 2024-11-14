@@ -3,17 +3,17 @@ Introduction
 
 In the TRUST code, different numerical schemes are availabe to the user : VDF, VEF and the PolyMAC family.
 
--  The VDF discretisation is based on the Marker and Cell scheme presented in **[HW65]**.
+-  The VDF discretisation is based on the Marker and Cell scheme presented in [HW65]_.
 
 -  The VEF discretisation is based on the Crouzeix-Raviart element method.
 
-The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in TRUST. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in **[HW65]** to complex grids:
+The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in TRUST. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in [HW65]_ to complex grids:
 
--  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in **[B14]** and **[M20]**. 
+-  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in [B14]_ and [M20]_. 
 
--  PolyMACP0 : based on MPFA approach, such as the one presented in **[AM08]**, **[D14]** and **[lP17]**.
+-  PolyMACP0 : based on MPFA approach, such as the one presented in [AM08]_, [D14]_ and [lP17]_.
 
--  PolyMACP0P1NC : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in **[EGH07]** and **[EGH10]**.
+-  PolyMACP0P1NC : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in [EGH07]_ and [EGH10]_.
 
 Thereafter, for each method the core ideas and the main steps for the discretisation of the incompressible Navier-Stokes equation are presented. For now, the PolyMAC and PolyMAC_P0 parts are completed, the others are a work in progress.
 
