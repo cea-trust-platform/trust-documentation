@@ -27,9 +27,13 @@ Spatial Discretisation References
 
 .. [A02] Aavatsmark Ivar. - "An introduction to multipoint flux approximations for quadrilateral grids." - *Computational Geosciences* - (2002) - Vol 6 - 405--432 - Springer.
 
+.. [H03] Heib, Sébastien - *Nouvelles discrétisations non structurées pour des écoulements de fluides à incompressibilité renforcée* - Thèse de doctorat, Université Paris 6 - (2003).
+
 .. [lP05a] Le Potier Christophe. - "Finite volume monotone scheme for highly anisotropic diffusion operators on unstructured triangular meshes." - *Comptes Rendus de l'Académie des Sciences* - (2005) - Vol 341.
 
 .. [lP05b] Le Potier Christophe - "Schéma volumes finis pour des opérateurs de diffusion fortement anisotropes sur des maillages non structurés." - *Comptes Rendus Mathematique Acad. Sci. Paris* - (2005).
+
+.. [LM05] Liu, C. and McCormick, S. - *The finite volume-element method (FVE) for planar cavity flow*. Dans *11th International Conference on Numerical Methods in Fluid Dynamics*, pp. 374–378. Springer.
 
 .. [EGH07] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "A new finite volume scheme for anisotropic diffusion problems on general grids: convergence analysis." - *Comptes rendus. Mathematique* - (2007) - Vol 344, no. 6 - 403--406.
 
