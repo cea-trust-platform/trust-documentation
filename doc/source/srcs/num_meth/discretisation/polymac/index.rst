@@ -160,7 +160,7 @@ We discretised the incompressible Navier-Stokes equation as follows:
    -  The vorticity is projected at the dual edge using :eq:`Pold_H_o`.
 
 PolyMAC_P0
-=========
+==========
 
 Unlike PolyMAC, PolyMACP0 does not introduce the vorticity. Moreover, no
 complex dual mesh is explicitly needed. The location of the unknowns is

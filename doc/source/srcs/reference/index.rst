@@ -13,23 +13,21 @@ This is the TRUST keyword reference manual, listing all the available TRUST keyw
 For each keyword:
 
 - its **synonyms** are given;
-
 - its **parent class** is indicated;
-
 - the **list of attributes** is provided. For each attribute in turn:
-
   - its name and synonyms are given
-
   - its type is given parenthesis
-
   - when the attribute is surrounded by square brackets, it is optional.
 
+You will also find here the available syntax for all the mathematical expressions that you can use in TRUST: :ref:`**Syntax to define a mathematical function**`
 
-Table Of Contents
------------------
+
+**Table Of Contents**
+
 
 .. toctree::
     :maxdepth: 1
 
+    parser
     all
  

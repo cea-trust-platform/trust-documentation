@@ -10,8 +10,8 @@ You will find here the TRUST generic guide, giving you a brief overview on how t
 
 **Do not forget that you can use the research bar located on the top right of your screen to quickly lookup a precise element or keyword.**
 
-Table Of Contents
------------------
+**Table Of Contents**
+
 
 .. toctree::
     :maxdepth: 2
