@@ -89,7 +89,7 @@ html_favicon = 'favicon.ico'
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
 
-if 1:
+if 0:
   print("@@@ About to generate doxygen!!")
   sp.call("cd srcs/doxy; doxygen", shell=True)
   rtd = os.environ.get("READTHEDOCS_OUTPUT", "build")

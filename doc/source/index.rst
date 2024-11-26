@@ -37,8 +37,8 @@ Here are some useful links that you can visit too:
 -----
 
 
-Table Of Contents
------------------
+**Table Of Contents**
+
 
 (please take a look at the links above - the below is just used for PDF generation, and does not list everything)
 
