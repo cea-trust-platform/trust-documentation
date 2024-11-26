@@ -6,7 +6,7 @@ TRUST Documentation
    :width: 600px
    :align: center
 
-Hi there 👋 and welcome to the **TRUST documentation** page !
+Hi there 👋 and welcome to the **TRUST documentation** page!
 
 This page provides:
 
