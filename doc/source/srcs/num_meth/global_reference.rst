@@ -21,6 +21,10 @@ Spatial Discretisation References
 
 .. [BE79] Bercovier Michel, and Engelman Michael - "A finite element for the numerical solution of viscous incompressible flows." - *Journal of Computational Physics* - (1979) - Vol 30, no. 2 - 181--201 - Elsevier.
 
+.. [LM89] Liu, C., McCormick, S. - "The finite volume-element method (FVE) for planar cavity flow." - *11th International Conference on Numerical Methods in Fluid Dynamics.* - (1989), pp. 374-378. - Springer.   
+
+.. [E92] Emonot, Philippe. - "Méthodes de volumes éléments finis : applications aux équations de Navier Stokes et résultats de convergence." - PhD Thesis - Université Claude Bernard - (1992).  
+
 .. [ER98] Edwards M. G., Rogers C. F. - "Finite volume discretization with imposed flux continuity for the general tensor pressure equation." - *Computational Geosciences* - (1998) - Vol 2 - 259--290 - Springer.
 
 .. [P00] Perot, Blair. - "Conservation properties of unstructured staggered mesh schemes." - *Journal of Computational Physics* - (2000) - Vol 159, no. 1 - 58--89 - Elsevier.
@@ -34,6 +38,8 @@ Spatial Discretisation References
 .. [lP05b] Le Potier Christophe - "Schéma volumes finis pour des opérateurs de diffusion fortement anisotropes sur des maillages non structurés." - *Comptes Rendus Mathematique Acad. Sci. Paris* - (2005).
 
 .. [LM05] Liu, C. and McCormick, S. - *The finite volume-element method (FVE) for planar cavity flow*. Dans *11th International Conference on Numerical Methods in Fluid Dynamics*, pp. 374–378. Springer.
+
+.. [F06] Fortin, Thomas. - "Une méthode éléments finis à décomposition L2 d'ordre élevé motivée par la simulation d'écoulement diphasique bas Mach." - PhD Thesis - Univ. Pierre et Marie Curie - (2006).  
 
 .. [EGH07] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "A new finite volume scheme for anisotropic diffusion problems on general grids: convergence analysis." - *Comptes rendus. Mathematique* - (2007) - Vol 344, no. 6 - 403--406.
 
@@ -62,4 +68,6 @@ Spatial Discretisation References
 .. [GG22] Gerschenfeld Antoine and Grosse Yannick. - "Development of a Robust multiphase flow solver on General Meshes; application to sodium boiling at the subchannel scale." - *NURETH 2022* - (2022).
 
 .. [CJP23] Chenier Eric, Jamelot Erell, Le Potier Christophe, and Peitavy Andrew. - "Improved Crouzeix-Raviart Scheme for the Stokes Problem." *Finite Volumes for Complex Applications X---Volume 1, Elliptic and Parabolic Problems* - (2023) - 245--253 - Springer.
+
+.. [JCS23] Jamelot, Erell, Ciarlet, Patrick, Sauter, Stefan. - "Stability of the P1NC element." - *ENUMATH 2023 - The European Conference on Numerical Mathematics and Advanced Applications. Lisbon, Portugal* - (2023).  
 
