@@ -17,6 +17,8 @@ Spatial Discretisation References
 
 .. [HA71] Harlow Francis H and Amsden Anthony. - "A numerical fluid dynamics calculation method for all flow speeds." - *Journal of Computational Physics* - (1971) - Vol 8, no. 2 - 197--213 - Elsevier.
 
+.. [CR73] Crouzeix, M. and Raviart, P.-A. - "Conforming and nonconforming finite element methods for solving the stationary Stokes equations I." - *Revue française d'automatique, informatique, recherche opérationnelle. Mathématiques* - (1973) - Vol 7, no. 3, p. 33-75.
+
 .. [I75] Ishii Mamoru - "Thermo-fluid dynamic theory of two-phase flow" - *Eyrolles-Collection de la Direction des Etudes et Recherches EDF* - (1975).
 
 .. [BE79] Bercovier Michel, and Engelman Michael - "A finite element for the numerical solution of viscous incompressible flows." - *Journal of Computational Physics* - (1979) - Vol 30, no. 2 - 181--201 - Elsevier.
