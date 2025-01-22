@@ -99,6 +99,13 @@ Hodge Operator
 We then choose the following definition for the Hodge operators, that project unknowns from the primal to the dual mesh:
 
 .. math::
+   :label: Definition_Hodge
+
+   \left.H_{\alpha}^{\mathcal{X}_c\widetilde{\mathcal{Y}}_c}\right|_{x',\tilde{y}(x)} := \int_c l_{x,c}(\overline{x})\alpha l_{x',c}(\overline{x}) \quad \forall x,x' \in X_c
+
+Local Hodge operator must be symmetric, locally stable and :math:`\mathbb{P}_0`-consistency.
+
+.. math::
    :label: Pold_H_u
    
     [u] _{\tilde{f}} = |\tilde{f}| \left( [u]_{e_{up}} \left( x_f - x_{e_{up}} \right) + [u]_{e_{down}} \left( x_f - x_{e_{down}}\right) \right) 
