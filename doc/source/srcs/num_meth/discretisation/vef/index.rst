@@ -8,24 +8,24 @@ this method in the TRUST code.
 Finite Volume Element method
 ----------------------------
 
-Main Principle
-~~~~~~~~~~~~~~
+Core Idea
+~~~~~~~~~
 
-Let consider the following instationary problem, with the velocity :math:`\boldsymbol{u}` a flux term
+First, let's consider the following instationary problem, with the velocity :math:`\boldsymbol{u}` a flux term
 :math:`\boldsymbol{F}` and a source term :math:`\boldsymbol{S}`.
 
-.. math:: 
+.. math::
    :label: Flux_continu
    
    \partial_t \boldsymbol{u} + \nabla \cdot \boldsymbol{F} = \boldsymbol{S}
 
-Let consider a control volume :math:`\omega_f` (see Figure :numref:`fig:control_volume_velocity`) in which we want to evaluate the velocity :math:`\boldsymbol{u}`. We integrate on :math:`\omega_f` between the times :math:`t^n` and
+We also introduce the control volume :math:`\omega_f` (see Figure :numref:`fig:control_volume_velocity`) in which we want to evaluate the velocity :math:`\boldsymbol{u}`. We integrate on :math:`\omega_f` between the times :math:`t^n` and
 :math:`t^{n+1}`, regardless the regularity of :math:`\boldsymbol{u}` and
 :math:`\boldsymbol{F}`.
 
 .. math:: \int_{\omega_f} (\boldsymbol{u}^{n+1} - \boldsymbol{u}^n)\mathrm{d}\boldsymbol{V} + \int_{\partial\omega_f} \int_{t^n}^{t^{n+1}} \boldsymbol{F} \cdot \boldsymbol{n} \mathrm{d}\boldsymbol{s} =  \int_{\omega_f}  \int_{t^n}^{t^{n+1}} \boldsymbol{S} \mathrm{d}\boldsymbol{V}
 
-The expression of the flux term depends on the equation : 
+The expression of the flux term depends on the equation :
 :math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I}` for
 Stokes equation and
 :math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I} + \rho \boldsymbol{u} \otimes \boldsymbol{u}`
@@ -44,18 +44,18 @@ Finite Volume Approach
 Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the middle of the face centers. The control volume :math:`\omega_f` is the polygon which relies the vertex connected to the face associated with :math:`\boldsymbol{x}_f` and the barycenters of the tetrahedron which contains :math:`\boldsymbol{x}_f`.Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity
 :math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and
 :math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of
-the right side hand term. Let discretize the evolution term such that :
+the right side hand term. Let's discretize the evolution term such that :
 
 .. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f| ~ \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
 
-Let pose :math:`\boldsymbol{F}^m = \boldsymbol{F}(t^n)` or
+Let's pose :math:`\boldsymbol{F}^m = \boldsymbol{F}(t^n)` or
 :math:`\boldsymbol{F}(t^{n+1})` or of combination of the two depending
 on the time scheme choosen. The discretization of the flux term leads to
 the following equation.
 
 .. math:: \int_{\partial\omega_f}  \int_{t^n}^{t^{n+1}} \boldsymbol{F} \cdot \boldsymbol{n} \mathrm{d}\boldsymbol{s} \approx \Delta t^{n,n+1} \int_{\partial\omega_f}  \boldsymbol{F}^m \cdot \boldsymbol{n} \mathrm{d}\boldsymbol{s} = \Delta t^{n,n+1} |l_f| (\boldsymbol{F}^m_{T_R} - \boldsymbol{F}^m_{T_L} )\boldsymbol{n}_{T_L,T_R}
 
-The discretization of the equation :eq:`Flux_continu` becomes : 
+The discretization of the equation :eq:`Flux_continu` becomes :
 
 .. math:: |\omega_f|(\boldsymbol{u}_f^{n+1} - \boldsymbol{u}_f) + \Delta t^{n,n+1} |l_f| (\boldsymbol{F}^m_{T_R} - \boldsymbol{F}^m_{T_L} )\boldsymbol{n}_{T_L,T_R} = \Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}
 
@@ -71,13 +71,9 @@ Finite Element Basis
 ~~~~~~~~~~~~~~~~~~~~
 
 Historically, the VFE method was presented with the Crouzeix-Raviart basis.
-The velocity node is at the center
-of the faces and the pressure is constrant per tetrahedron. Let pose
-:math:`(\phi_f)_{f\in \mathcal{I}_{\text{f}}}` the velocity basis (i.e.
-:math:`\phi_f(\boldsymbol{x_{f'}}) = \delta_{f,f'}`) and
-:math:`(\mathbb{I}_K)_{K\in {\mathcal{I}_K}}` the pressure basis (see
-:numref:`fig:triangle_vef`). Each discrete velocity vector
-:math:`\boldsymbol{u}_h` and pressure :math:`p_h` can be expressed with the following linear combination. 
+The full vector of the velocity is evaluated at the center of the faces of each tetrahedron. Within each cell, the pressure is a constant evaluated by its value at the center of the cell. Let's pose
+:math:`(\phi_f)_{f\in \mathcal{I}_{\text{f}}}` the velocity basis (i.e. :math:`\phi_f(\boldsymbol{x_{f'}}) = \delta_{f,f'}`) and :math:`(\mathbb{I}_K)_{K\in {\mathcal{I}_K}}` the pressure basis (see :numref:`fig:triangle_vef`). Each discrete velocity vector
+:math:`\boldsymbol{u}_h` and pressure :math:`p_h` can be expressed with the following linear combination.
 
 .. math::
 
@@ -94,7 +90,8 @@ of the faces and the pressure is constrant per tetrahedron. Let pose
 
    Control volume for pressure P0
 
-Let define :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure. 
+Let's define :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure.
+  .. GJ comment :I wonder if this phrase is usefull ?
 
 Discretization of flux term in the Stokes equation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,13 +103,13 @@ written with the finite element basis :
 
 .. math::
 
-   \int_{\partial\omega_f} \boldsymbol{F} = \underset{f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \int_{\partial\omega_{f}} \boldsymbol{\nabla} \phi_{f'} \cdot \boldsymbol{n} d\boldsymbol{s} 
+   \int_{\partial\omega_f} \boldsymbol{F} = \underset{f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \int_{\partial\omega_{f}} \boldsymbol{\nabla} \phi_{f'} \cdot \boldsymbol{n} d\boldsymbol{s}
        + \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n} d\boldsymbol{s}
 
 Note that the finite element basis :math:`(\phi_f)_{f\in \mathcal{I}_f}` can be express
-with the help of barycentric coordinate (see [CR73]_) and his gradient is constant per tetrahedron which value is :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see [E92]_, p27). 
+with the help of barycentric coordinate (see [CR73]_) and his gradient is constant per tetrahedron which value is :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see [E92]_, p27).
 
-The discretization of the gradient of velocity becomes 
+The discretization of the gradient of velocity becomes
 
 .. math::
 
@@ -123,13 +120,13 @@ The discretization of the gradient of velocity becomes
    \end{aligned}
 
 
-with : 
+with :
 
 .. math::
 
    \int_{\omega_f\cap T} \boldsymbol{n}d\boldsymbol{s} = - \int_{\partial T} \boldsymbol{n}d\boldsymbol{s} = S_T^f
 
-and the pressure part : 
+and the pressure part :
 
 .. math::
 
@@ -166,11 +163,11 @@ with:
 
 .. math::
 
-   m_h^V := 
+   m_h^V :=
        \left\{
        \begin{aligned}
        \mathbb{X}_h \times \mathbb{X}_h &\to \mathbb{R}, \\
-       (\boldsymbol{u}_h, \boldsymbol{v}_h) &\mapsto   \underset{f,f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \cdot \boldsymbol{v}_{f} 
+       (\boldsymbol{u}_h, \boldsymbol{v}_h) &\mapsto   \underset{f,f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \cdot \boldsymbol{v}_{f}
        |\omega_f|\delta_f(\boldsymbol{x}_{f'})
        \end{aligned}
    \right.
@@ -217,29 +214,29 @@ with:
 
 This formulation looks like finite element variational formulation.
 
-According to [H03]_, there are two methods for analyzing the
-scheme based on the formulation :eq:`variational_form``
+According to [H03]_, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form` (and therefore for obtaining "good" mathematical properties):
 
--  The first involves directly analyzing the scheme: proving the uniform
+-  The first involves directly analyzing the scheme. It enables to prove the uniform
    continuity of the bilinear forms, the ellipticity of :math:`a_h^V`,
    and establishing the inf-sup conditions.
 
 -  The second involves demonstrating the equivalence of assembly
    matrices derived from FEM and FVM for the same given functional
    spaces.
+   
+  .. GJ comment : So what for the second point ? What can you prove with it ?
 
-Since the finite element formulations were analyzed in the first
-section, we focus on demonstrating the equivalence of the matrices.
+  .. Since the finite element formulations were analyzed in the first section, we focus on demonstrating the equivalence of the matrices. GJ comment : Unecessary i think
 
 
 New Finite element basis
 ------------------------
 
-In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code. 
-The idea is to add pressure unknows :math:`\mathbb{P}^1` at the node each vertex which add a new control volume for the mass conservation 
-(see :numref:`fig:triangle_vef`).
+In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code.
+  .. GJ comment : to which VEF does it corresponds to ? Is there a downside ?
+The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. This add a new control volume for the mass conservation (see :numref:`fig:triangle_vef`).
 
-The stability of this new finite element basis is proved in [JCS23]_. 
+The stability of this new finite element basis is proved in [JCS23]_.
   .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
 
 .. figure:: FIGURES/pi_si_kl.png
@@ -248,5 +245,4 @@ The stability of this new finite element basis is proved in [JCS23]_.
    :height: 10cm
 
    Control volume for pressure P0 and P1
-
 
