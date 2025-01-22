@@ -145,9 +145,6 @@ and the momentum conservation by a test velocity function
 Defining :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` 
 and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure, the variational formulation for incompressible Stokes equation becomes :
 
-.. VK comment : I switched the place of discrete space definition, does it make more sense now ? 
-
-
 Find
 :math:`(\boldsymbol{u}_h, p_h) \in \mathbb{X}_h \times \mathring{\mathbb{N}}_h`
 such that:
@@ -229,17 +226,12 @@ According to [H03]_, there are two methods for analyzing the scheme based on the
    
   .. GJ comment : So what for the second point ? What can you prove with it ? 
   .. VK answer  : I add the last sentence, is that clear ?  
-
-  .. Since the finite element formulations were analyzed in the first section, we focus on demonstrating the equivalence of the matrices. GJ comment : Unecessary i think VK : I agree
-
+  .. GJ : Better, but i think we need to change a bit the structure of this section, we can talk about it 
 
 New Finite element basis
 ------------------------
 
-In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code. 
-It is called :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
-  .. GJ comment : to which VEF does it corresponds to ? Is there a downside ? 
-  .. VK answer: Some informations is added below 
+In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code under the name VEF - :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
 The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. 
 This add a new control volume for the mass conservation. :numref:`fig:triangle_vef` represents the two control volumes for the two pressure unknows:
 
