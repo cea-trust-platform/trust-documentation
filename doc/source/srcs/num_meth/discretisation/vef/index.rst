@@ -41,7 +41,7 @@ for Navier-Stokes equation.
 Finite Volume Approach
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the middle of the face centers. The control volume :math:`\omega_f` is the polygon which relies the vertex connected to the face associated with :math:`\boldsymbol{x}_f` and the barycenters of the tetrahedron which contains :math:`\boldsymbol{x}_f`.Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity
+Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the middle of the face centers. The control volume :math:`\omega_f` is the polygon which relies the vertex connected to the face associated with :math:`\boldsymbol{x}_f` and the barycenters of the tetrahedron which contains :math:`\boldsymbol{x}_f`. Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity
 :math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and
 :math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of
 the right side hand term. Let's discretize the evolution term such that :
@@ -72,14 +72,14 @@ Finite Element Basis
 
 Historically, the VFE method was presented with the Crouzeix-Raviart basis.
 The full vector of the velocity is evaluated at the center of the faces of each tetrahedron. Within each cell, the pressure is a constant evaluated by its value at the center of the cell. Let's pose
-:math:`(\phi_f)_{f\in \mathcal{I}_{\text{f}}}` the velocity basis (i.e. :math:`\phi_f(\boldsymbol{x_{f'}}) = \delta_{f,f'}`) and :math:`(\mathbb{I}_K)_{K\in {\mathcal{I}_K}}` the pressure basis (see :numref:`fig:triangle_vef`). Each discrete velocity vector
+:math:`(\phi_f)_{f\in \mathcal{I}_{\text{f}}}` the velocity basis (i.e. :math:`\phi_f(\boldsymbol{x_{f'}}) = \delta_{f,f'}`) and :math:`(\mathbb{I}_{K_k})_{k\in {\mathcal{I}_K}}` the pressure basis (see :numref:`fig:triangle_vef`). Each discrete velocity vector
 :math:`\boldsymbol{u}_h` and pressure :math:`p_h` can be expressed with the following linear combination.
 
 .. math::
 
    \begin{aligned}
        \boldsymbol{u}_h = \sum_{f\in \mathcal{I}_{\text{f}}}{}\boldsymbol{u}_f \phi_f\\
-       p_h = \sum_{K\in {\mathcal{I}_K}}{} p_K \mathbb{I}_K
+       p_h = \sum_{k\in {\mathcal{I}_K}}{} p_k \mathbb{I}_{K_k}
    \end{aligned}
 
 .. figure:: ./FIGURES/triangle.png
@@ -90,8 +90,7 @@ The full vector of the velocity is evaluated at the center of the faces of each 
 
    Control volume for pressure P0
 
-Let's define :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure.
-  .. GJ comment :I wonder if this phrase is usefull ?
+ 
 
 Discretization of flux term in the Stokes equation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -130,7 +129,7 @@ and the pressure part :
 
 .. math::
 
-   \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n}_{\omega_f} d\boldsymbol{s} =  |l_f|(p_{T_R} - p_{T_L}) \boldsymbol{n}_{T_L, T_R}
+   \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n} d\boldsymbol{s} =  |l_f|(p_{T_R} - p_{T_L}) \boldsymbol{n}_{T_L, T_R}
 
 Variational Formulation
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -142,8 +141,12 @@ similar to those in the finite element method. By multiplying the mass
 conservation by a test pressure function
 :math:`q_h = \underset{k \in \mathcal{I}_K}{\sum} q_k \mathbb{I}_{K_k}`
 and the momentum conservation by a test velocity function
-:math:`\boldsymbol{v}_h = \underset{f \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{v}_f \phi_f`,
-the variational formulation for incompressible Stokes equation becomes :
+:math:`\boldsymbol{v}_h = \underset{f \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{v}_f \phi_f`.
+Defining :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` 
+and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure, the variational formulation for incompressible Stokes equation becomes :
+
+.. VK comment : I switched the place of discrete space definition, does it make more sense now ? 
+
 
 Find
 :math:`(\boldsymbol{u}_h, p_h) \in \mathbb{X}_h \times \mathring{\mathbb{N}}_h`
@@ -222,22 +225,26 @@ According to [H03]_, there are two methods for analyzing the scheme based on the
 
 -  The second involves demonstrating the equivalence of assembly
    matrices derived from FEM and FVM for the same given functional
-   spaces.
+   spaces. Thus, numerical scheme can be analyze with the FEM formalism which is well-known for Navier-Stokes equation with Crouzeix-Raviart elements (see [CR73]_). 
    
-  .. GJ comment : So what for the second point ? What can you prove with it ?
+  .. GJ comment : So what for the second point ? What can you prove with it ? 
+  .. VK answer  : I add the last sentence, is that clear ?  
 
-  .. Since the finite element formulations were analyzed in the first section, we focus on demonstrating the equivalence of the matrices. GJ comment : Unecessary i think
+  .. Since the finite element formulations were analyzed in the first section, we focus on demonstrating the equivalence of the matrices. GJ comment : Unecessary i think VK : I agree
 
 
 New Finite element basis
 ------------------------
 
-In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code.
-  .. GJ comment : to which VEF does it corresponds to ? Is there a downside ?
-The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. This add a new control volume for the mass conservation (see :numref:`fig:triangle_vef`).
+In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code. 
+It is called :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
+  .. GJ comment : to which VEF does it corresponds to ? Is there a downside ? 
+  .. VK answer: Some informations is added below 
+The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. 
+This add a new control volume for the mass conservation. :numref:`fig:triangle_vef` represents the two control volumes for the two pressure unknows:
 
-The stability of this new finite element basis is proved in [JCS23]_.
-  .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
+-  :math:`K_k` for the constant part of the pressure which is :math:`\mathbb{P}^0` 
+-  :math:`\Pi_{S^i}` for the :math:`\mathbb{P}^1` part associated with the unknown located at the center of vertex :math:`S^i`.
 
 .. figure:: FIGURES/pi_si_kl.png
    :alt: Control volume for pressure P0 and P1
@@ -245,4 +252,9 @@ The stability of this new finite element basis is proved in [JCS23]_.
    :height: 10cm
 
    Control volume for pressure P0 and P1
+
+
+
+The stability of this new finite element basis is proved in [JCS23]_.
+  .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
 
