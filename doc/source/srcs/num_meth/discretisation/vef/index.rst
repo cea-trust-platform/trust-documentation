@@ -214,6 +214,10 @@ with:
 
 This formulation looks like finite element variational formulation.
 
+Mathematical properties
+-----------------------
+
+
 According to [H03]_, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form` (and therefore for obtaining "good" mathematical properties):
 
 -  The first involves directly analyzing the scheme. It enables to prove the uniform
@@ -227,6 +231,19 @@ According to [H03]_, there are two methods for analyzing the scheme based on the
   .. GJ comment : So what for the second point ? What can you prove with it ? 
   .. VK answer  : I add the last sentence, is that clear ?  
   .. GJ : Better, but i think we need to change a bit the structure of this section, we can talk about it 
+
+Using these equivalence properties, the finite volume method (FVM) scheme satisfies the following properties:
+
+- **Inf-sup condition**: Ensures the stability of the numerical scheme.
+- **Continuity at edge midpoints**: Implies weak continuity of velocity and enforces local mass conservation, leading to a divergence-free condition in each cell.
+- **Well-posedness of the discrete problem**: Guarantees the existence and uniqueness of the discrete solution.
+- **Convergence rate for pressure**: The pressure approximation converges with order 1 in the :math:`L^2` norm.
+- **Convergence rate for velocity**: The velocity approximation converges with order 2 in the :math:`\boldsymbol{L^2}` norm, provided that :math:`\Omega` is convex.
+
+
+
+
+The problem of parasite currents for low velocities is also observed. 
 
 New Finite element basis
 ------------------------
@@ -247,6 +264,8 @@ This add a new control volume for the mass conservation. :numref:`fig:triangle_v
 
 
 
-The stability of this new finite element basis is proved in [JCS23]_.
+The stability of this new finite element basis is proved in [JCS23]_. This scheme is used in practice in most of FVM simulation. 
+
   .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
 
+  .. but some studies have been done in Pnc/P0 due to implementation and mathematical analysis facilities.  
