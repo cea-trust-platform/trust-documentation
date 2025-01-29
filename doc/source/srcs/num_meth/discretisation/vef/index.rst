@@ -1,7 +1,7 @@
 VEF
 ===
 
-Initially introduced in [LM89]_, *Volume Element Finis* (Finite Volume Element) method is a variant of the standard finite element
+Initially introduced in [LM89]_, *Volume Element Finis -VEF-* (Finite Volume Element) method is a variant of the standard finite element
 and finite volume methods. The formalism developed in [E92]_ was subsequently used for the implementation of
 this method in the TRUST code.
 
@@ -19,17 +19,11 @@ First, let's consider the following instationary problem, with the velocity :mat
    
    \partial_t \boldsymbol{u} + \nabla \cdot \boldsymbol{F} = \boldsymbol{S}
 
-We also introduce the control volume :math:`\omega_f` (see Figure :numref:`fig:control_volume_velocity`) in which we want to evaluate the velocity :math:`\boldsymbol{u}`. We integrate on :math:`\omega_f` between the times :math:`t^n` and
-:math:`t^{n+1}`, regardless the regularity of :math:`\boldsymbol{u}` and
-:math:`\boldsymbol{F}`.
+We also introduce the control volume :math:`\omega_f` (see Figure :numref:`fig:control_volume_velocity`) in which we want to evaluate the velocity :math:`\boldsymbol{u}`. We integrate on :math:`\omega_f` between the times :math:`t^n` and :math:`t^{n+1}`, regardless the regularity of :math:`\boldsymbol{u}` and :math:`\boldsymbol{F}`. We also introduce a pressure p.
 
 .. math:: \int_{\omega_f} (\boldsymbol{u}^{n+1} - \boldsymbol{u}^n)\mathrm{d}\boldsymbol{V} + \int_{\partial\omega_f} \int_{t^n}^{t^{n+1}} \boldsymbol{F} \cdot \boldsymbol{n} \mathrm{d}\boldsymbol{s} =  \int_{\omega_f}  \int_{t^n}^{t^{n+1}} \boldsymbol{S} \mathrm{d}\boldsymbol{V}
 
-The expression of the flux term depends on the equation :
-:math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I}` for
-Stokes equation and
-:math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I} + \rho \boldsymbol{u} \otimes \boldsymbol{u}`
-for Navier-Stokes equation.
+The expression of the flux term depends on the equation : :math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I}` for Stokes equation and :math:`\boldsymbol{F} = \mu \nabla \boldsymbol{u} - p\boldsymbol{I} + \rho \boldsymbol{u} \otimes \boldsymbol{u}` for Navier-Stokes equation.
 
 .. figure:: FIGURES/control_volume_velocity.png
    :alt: Control volume for velocity
@@ -41,10 +35,7 @@ for Navier-Stokes equation.
 Finite Volume Approach
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the middle of the face centers. The control volume :math:`\omega_f` is the polygon which relies the vertex connected to the face associated with :math:`\boldsymbol{x}_f` and the barycenters of the tetrahedron which contains :math:`\boldsymbol{x}_f`. Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity
-:math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and
-:math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of
-the right side hand term. Let's discretize the evolution term such that :
+Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the barycentric center of the face :math:`f`. The control volume :math:`\omega_f` is the polygon which links the vertex of the face :math:`\boldsymbol{f}` with the barycenters of the two tetrahedron that share the face :math:`\boldsymbol{f}`. Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity :math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and :math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of the right side hand term. Let's discretize the evolution term such that :
 
 .. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f| ~ \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
 
@@ -70,7 +61,7 @@ Finite Element basis.
 Finite Element Basis
 ~~~~~~~~~~~~~~~~~~~~
 
-Historically, the VFE method was presented with the Crouzeix-Raviart basis.
+Historically, the VEF method was presented with the Crouzeix-Raviart basis.
 The full vector of the velocity is evaluated at the center of the faces of each tetrahedron. Within each cell, the pressure is a constant evaluated by its value at the center of the cell. Let's pose
 :math:`(\phi_f)_{f\in \mathcal{I}_{\text{f}}}` the velocity basis (i.e. :math:`\phi_f(\boldsymbol{x_{f'}}) = \delta_{f,f'}`) and :math:`(\mathbb{I}_{K_k})_{k\in {\mathcal{I}_K}}` the pressure basis (see :numref:`fig:triangle_vef`). Each discrete velocity vector
 :math:`\boldsymbol{u}_h` and pressure :math:`p_h` can be expressed with the following linear combination.
@@ -88,11 +79,11 @@ The full vector of the velocity is evaluated at the center of the faces of each 
    :alt: Control volume for pressure P0
    :height: 10cm
 
-   Control volume for pressure P0
+   Control volumes for VEF-P0
 
  
 
-Discretization of flux term in the Stokes equation
+Discretization of the flux term in the Stokes equation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For the Stokes equation, the flux term is
@@ -105,10 +96,9 @@ written with the finite element basis :
    \int_{\partial\omega_f} \boldsymbol{F} = \underset{f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \int_{\partial\omega_{f}} \boldsymbol{\nabla} \phi_{f'} \cdot \boldsymbol{n} d\boldsymbol{s}
        + \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n} d\boldsymbol{s}
 
-Note that the finite element basis :math:`(\phi_f)_{f\in \mathcal{I}_f}` can be express
-with the help of barycentric coordinate (see [CR73]_) and his gradient is constant per tetrahedron which value is :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see [E92]_, p27).
+Note that the finite element basis :math:`(\phi_f)_{f\in \mathcal{I}_f}` can be express with the help of barycentric coordinate (see [CR73]_) and its gradient is constant per tetrahedron: :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see [E92]_, p27).
 
-The discretization of the gradient of velocity becomes
+Thus, the discrete gradient of the velocity writes:
 
 .. math::
 
@@ -131,19 +121,13 @@ and the pressure part :
 
    \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n} d\boldsymbol{s} =  |l_f|(p_{T_R} - p_{T_L}) \boldsymbol{n}_{T_L, T_R}
 
-Variational Formulation
-^^^^^^^^^^^^^^^^^^^^^^^
+Variational Formulation of the Stokes problem
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Once the flux term :math:`\boldsymbol{F}`, the time derivative and the source term is
-discretized, we multiply it by a *test* function to derive the so-called
-*finite volume formulation*. This allows us to define bilinear forms
-similar to those in the finite element method. By multiplying the mass
-conservation by a test pressure function
-:math:`q_h = \underset{k \in \mathcal{I}_K}{\sum} q_k \mathbb{I}_{K_k}`
-and the momentum conservation by a test velocity function
+Let us introduce :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure.
+Then, we obtain the following *VEF* variational formulation by multiplying the mass conservation by a *test* pressure function
+:math:`q_h = \underset{k \in \mathcal{I}_K}{\sum} q_k \mathbb{I}_{K_k}` and the momentum conservation by a *test* velocity function
 :math:`\boldsymbol{v}_h = \underset{f \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{v}_f \phi_f`.
-Defining :math:`\mathbb{X}_h` the finite element space for discrete velocities :math:`\boldsymbol{u}_f` 
-and :math:`\mathring{\mathbb{N}}_h` for the discrete pressure, the variational formulation for incompressible Stokes equation becomes :
 
 Find
 :math:`(\boldsymbol{u}_h, p_h) \in \mathbb{X}_h \times \mathring{\mathbb{N}}_h`
@@ -218,19 +202,14 @@ Mathematical properties
 -----------------------
 
 
-According to [H03]_, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form` (and therefore for obtaining "good" mathematical properties):
+According to [H03]_, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form`:
 
--  The first involves directly analyzing the scheme. It enables to prove the uniform
-   continuity of the bilinear forms, the ellipticity of :math:`a_h^V`,
-   and establishing the inf-sup conditions.
+-  The first involves directly analyzing the scheme. It enables to prove the uniform continuity of the bilinear forms, the ellipticity of :math:`a_h^V`, and establishing the inf-sup conditions.
 
 -  The second involves demonstrating the equivalence of assembly
    matrices derived from FEM and FVM for the same given functional
    spaces. Thus, numerical scheme can be analyze with the FEM formalism which is well-known for Navier-Stokes equation with Crouzeix-Raviart elements (see [CR73]_). 
    
-  .. GJ comment : So what for the second point ? What can you prove with it ? 
-  .. VK answer  : I add the last sentence, is that clear ?  
-  .. GJ : Better, but i think we need to change a bit the structure of this section, we can talk about it 
 
 Using these equivalence properties, the finite volume method (FVM) scheme satisfies the following properties:
 
@@ -241,9 +220,7 @@ Using these equivalence properties, the finite volume method (FVM) scheme satisf
 - **Convergence rate for velocity**: The velocity approximation converges with order 2 in the :math:`\boldsymbol{L^2}` norm, provided that :math:`\Omega` is convex.
 
 
-
-
-The problem of parasite currents for low velocities is also observed. 
+However parasite currents for low velocities can appear when using the VEF approach, see [F06]_.
 
 New Finite element basis
 ------------------------
@@ -264,7 +241,7 @@ This add a new control volume for the mass conservation. :numref:`fig:triangle_v
 
 
 
-The stability of this new finite element basis is proved in [JCS23]_. This scheme is used in practice in most of FVM simulation. 
+The stability of this new finite element basis is proved in [JCS23]_. This scheme is the most used VEF discretization in TRUST. 
 
   .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
 
