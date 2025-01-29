@@ -8,6 +8,8 @@ TRUST Numerical Methods
 
 You will find here the documentation on TRUST numerical methods. 
 
+Essai bla :code:`Champ_front_base::associer_fr_dis_base` tutu tata 
+
 Those pages aim at describing the numerical schemes at hand in the TRUST plaform, giving when necessary the academic references
 that have driven the implementation, as well as the main places in the code where the methods are implemented.
 
