@@ -9,3 +9,5 @@ CMakeLists.txt
 instancie_src_*
 make.include
 instancie_appel*
+srcs_processed/
+
