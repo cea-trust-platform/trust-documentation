@@ -5,7 +5,7 @@
   :code:`class_name::method_name`
   by a proper HTML link to the Doxygen part of the documentation
 - results are output in 
-  srcs_processed/  
+  .srcs_processed/  
 (which is ignored in git)
 
 """
@@ -22,7 +22,7 @@ def clean_create_dirs():
     src_dir = root / "srcs"
     if not src_dir.exists():
         raise Exception(f"Directory {str(src_dir)} does not exist!")
-    out_dir = root / "srcs_processed"
+    out_dir = root / ".srcs_processed"
     #if out_dir.exists():
     #    print(f"Cleaning previous processed directory: {str(out_dir)}")
     #    shutil.rmtree(out_dir)

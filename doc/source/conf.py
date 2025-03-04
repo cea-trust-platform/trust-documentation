@@ -110,7 +110,7 @@ if 1:
     # Processing source RST files to handle ':code:' tags
     import sys
     sys.path.append(str(pth.parents[0]))
-    sp.call("rm -rf srcs_processed; cp -a srcs srcs_processed", shell=True)
+    sp.call("rm -rf .srcs_processed; cp -a srcs .srcs_processed", shell=True)
     import deref_code
     deref_code.do_the_job()
     
