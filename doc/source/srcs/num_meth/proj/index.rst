@@ -49,23 +49,9 @@ by
 .. math::
     \mathbb{L}U^{n+1} + C(U^n)U^{n+1} =:\mathbb{A}U^{n+1}.
 
-*Note that the pressure projection algorithm also exists with the vorticity unknown (see FINDREFPOLYMAC)*
 
-.. Initial projection
-.. ~~~~~~~~~~~~~~~~~~
-
-.. .. toctree::
-    :maxdepth: 2
-
-    initial_proj/index
-
-
-
-List of the available projection methods in TRUST
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*Note that the pressure projection algorithm also exists with the vorticity unknown (see FINDREFPOLYMAC) *
     
-.. toctree::
-    :maxdepth: 2
 
     proj_methods/index
 
