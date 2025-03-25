@@ -84,8 +84,6 @@ Projection Method References
 
 .. [PS72] Patankar S., Spalding D. - "A calculation procedure for heat, mass and momentum transfer in trhee dimensional parabolic flows" - *International Journal of Heat and Mass Transfer* (1972) - Vol 15 - 1787--1806.
 
-.. [vDR84] Van Doormaal J., Raithby G. - "Enhancements of the simple method for predicting incomressible fluid flows" - *Numerical Heat Transfer* (1984) - Vol 7 - 147--163.
-
-.. [I86] Issa R. I. - "The Computational of Compressible and Incompressible Recirculation Flows by Non-iterative Implicite Scheme" - *Journal of Computational Physics* (1986) - Vol 62 - 66--82. 
+.. [I83] Issa R. I. - "The Computational of Compressible and Incompressible Recirculation Flows by Non-iterative Implicite Scheme" - *Journal of Computational Physics* (1986) - Vol 62 - 66--82. 
 
 .. [GMS06] Guermond J., Minev P., Shen J. - "An overview of projection methods for incompressible flows" - *Computational Methods in Applied Mechanics and Engineering* - (2006) - Vol 195 - 6011--6045 - Elsevier.

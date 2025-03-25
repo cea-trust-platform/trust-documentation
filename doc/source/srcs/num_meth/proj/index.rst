@@ -13,7 +13,7 @@ In TRUST code, several projection methods have been implemented:
 
 * The Chorin-Temam projection method 
 * The SIMPLE algorithm
-* The SIMPLEC algorithm
+* The SIMPLER algorithm
 * The PISO algorithm
 
 Note these methods introduce a splitting error, which can be neglected comparing to the error due to monolitical resolution of the velocity-presure sytem with bad condition number with a lot of degrees of freedom.
@@ -128,6 +128,9 @@ It introduces a small error so-called a *splitting error* (find REF).
 SIMPLE algorithm 
 ~~~~~~~~~~~~~~~~
 
+Semi-Implicit Method for Pressure Linked Equations
+
+
 A second projection method has been proposed by [PS72]_ which consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
 
 
@@ -179,17 +182,20 @@ Once the pressure increment solved, the velocity and the pressure at time :math:
 Note that the reconstructed system is the same as the Chorin-Temam algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}`due to the system proposed in step 1. 
 
 
-SIMPLEC algorithm 
+SIMPLER algorithm 
 ~~~~~~~~~~~~~~~~~
-
-SIMPLEC algorithm [vDR84]_
+SIMPLE Revised algorithm
+SIMPLER algorithm (change citation incoming)
 
 
 
 PISO algorithm 
 ~~~~~~~~~~~~~~~
+Pressure-Implicit with Splitting of Operators
 
-PISO [I86]_
+
+
+PISO [I83]_
 
 
 
