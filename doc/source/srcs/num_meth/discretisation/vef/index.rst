@@ -207,11 +207,11 @@ according to [H03]_, there are two methods for analyzing the scheme based on the
 -  The first involves directly analyzing the scheme. It enables to prove the uniform continuity of the bilinear forms, the ellipticity of :math:`a_h^V`, and establishing the inf-sup conditions.
 
 -  The second involves demonstrating the equivalence of assembly
-   matrices derived from FEM and FVM for the same given functional
+   matrices derived from FEM and VEF for the same given functional
    spaces. Thus, numerical scheme can be analyze with the FEM formalism which is well-known for Navier-Stokes equation with Crouzeix-Raviart elements (see [CR73]_). 
    
 
-Using these equivalence properties, the finite volume method (FVM) scheme satisfies the following properties:
+Using these equivalence properties, the Finite Volume Element scheme satisfies the FEM properties:
 
 - **Inf-sup condition**: Ensures the stability of the numerical scheme.
 - **Continuity at edge midpoints**: Implies weak continuity of velocity and enforces local mass conservation, leading to a divergence-free condition in each cell.
@@ -219,8 +219,7 @@ Using these equivalence properties, the finite volume method (FVM) scheme satisf
 - **Convergence rate for pressure**: The pressure approximation converges with order 1 in the :math:`L^2` norm.
 - **Convergence rate for velocity**: The velocity approximation converges with order 2 in the :math:`\boldsymbol{L^2}` norm, provided that :math:`\Omega` is convex.
 
-
-However parasite currents for low velocities can appear when using the VEF approach, see [F06]_.
+A summary of the Crouzeix-Raviart FEM properties is presented in [Br14]_. However parasite currents for low velocities can appear when using the VEF approach, see [F06]_.
 
 New Finite element basis
 ------------------------
@@ -241,7 +240,7 @@ This add a new control volume for the mass conservation. :numref:`fig:triangle_v
 
 
 
-The stability of this new finite element basis is proved in [JCS23]_. This scheme is the most used VEF discretization in TRUST. 
+The stability of this new finite element basis is proved in [JCS23]_ and the inf-sup condtion in [F06]_. This scheme is the most used VEF discretization in TRUST. 
 
   .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
 
