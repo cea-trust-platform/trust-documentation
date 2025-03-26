@@ -128,10 +128,7 @@ It introduces a small error so-called a *splitting error* (find REF).
 SIMPLE algorithm 
 ~~~~~~~~~~~~~~~~
 
-Semi-Implicit Method for Pressure Linked Equations
-
-
-A second projection method has been proposed by [PS72]_ which consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
+Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_.It consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
 
 
 Step 1 : velocity prediction 
@@ -159,9 +156,7 @@ Adding the pressure at the previous times step for the velocity prediction impli
     \mathbb{B} U^{n+1} = 0,
     \end{aligned}
 
-with the pressure increment :math:`\delta P:= P^{n+1} - P^n`. 
-
-With the same manipulation presented for the Chorin algorithm, we obtain the following system on pressure increment  : 
+with the pressure increment :math:`\delta P:= P^{n+1} - P^n`. With the same manipulation presented for the Chorin algorithm, we obtain the following system on pressure increment: 
 
 .. math::
 
@@ -176,16 +171,15 @@ Once the pressure increment solved, the velocity and the pressure at time :math:
 
 .. math:: 
 
-    U^{n+1} = U^* + \delta t^n \mathbb{M}^{-1} \mathbb{B}^{T} \delta P^{n+1}
+    U^{n+1} = U^* + \delta t^n \mathbb{M}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
     P^{n+1} = P^n + \delta P.
 
-Note that the reconstructed system is the same as the Chorin-Temam algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}`due to the system proposed in step 1. 
+Note that the reconstructed system is the same as the Chorin-Temam algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}` due to the system proposed in step 1. 
 
 
 SIMPLER algorithm 
 ~~~~~~~~~~~~~~~~~
-SIMPLE Revised algorithm
-SIMPLER algorithm (change citation incoming)
+SIMPLE Revised algorithm (SIMPLER)
 
 
 
