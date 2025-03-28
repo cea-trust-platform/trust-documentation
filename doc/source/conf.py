@@ -91,26 +91,29 @@ html_favicon = 'favicon.ico'
 import subprocess as sp
 
 if 1:
-
-    rtd = os.environ.get("READTHEDOCS_OUTPUT", "")
+    build_dir = os.environ.get("READTHEDOCS_OUTPUT", "")
     import pathlib
     pth = pathlib.Path(__file__)
-    if rtd == "":  # Local build
+    if build_dir == "":  # Local build
         # Compute coherent output path:
-        rtd = pth.parents[1] / "build"
+        build_dir = pth.parents[1] / "build"
+    else:
+        build_dir = pathlib.Path(build_dir)
     print("@@@ About to generate doxygen!!")
     sp.call("cd srcs/doxy; doxygen", shell=True)    
     # Output directory must be created since this will run before Sphinx ...
-    print(f"@@@ Creating output directory: {rtd}/html ...")
-    sp.call(f"mkdir -p {rtd}/html", shell=True)
+    print(f"@@@ Creating output directory: {str(build_dir)}/html ...")
+    sp.call(f"mkdir -p {str(build_dir)}/html", shell=True)
     print(f"@@@ Copying doxygen result to proper directory ...")
-    sp.call(f"cp -a srcs/doxy/html {rtd}/html/doxy", shell=True)
-    sp.call(f"cp -a srcs/doxy/favicon.ico {rtd}/html/doxy", shell=True)
+    sp.call(f"cp -a srcs/doxy/html {str(build_dir)}/html/doxy", shell=True)
+    sp.call(f"cp -a srcs/doxy/favicon.ico {str(build_dir)}/html/doxy", shell=True)
     print("@@@ Done generating doxygen!!")
     # Processing source RST files to handle ':code:' tags
     import sys
+    sp.call(f"rm -rf _srcs_processed; cp -a srcs _srcs_processed", shell=True)
+    print("@@@ About to process RST files to replace code tags ...") 
     sys.path.append(str(pth.parents[0]))
-    sp.call("rm -rf .srcs_processed; cp -a srcs .srcs_processed", shell=True)
     import deref_code
-    deref_code.do_the_job()
-    
+    deref_code.do_the_job(build_dir)
+    print("@@@ Done processing RST files!")
+
