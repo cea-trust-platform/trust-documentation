@@ -4,20 +4,20 @@ Projection methods
 Initially introduced in [C67]_ - [T69]_, pressure projection methods are a way to separate pressure and velocity unknowns. 
 These methods are usefull to improve calculation performances, especially when the degrees of freedom are high.
 
-The idea of these methods has two steps:
+The idea of these methods has two main steps:
 
-* The velocity prediction : we want to try predicting an intermediate velocity without divergence-free constraint and whithout solving the pressure.  
-* The pressure correction : find the pressure which corrects the intermediate velocity to be divergence-free again. 
+* a velocity prediction : we want to try predicting an intermediate velocity without divergence-free constraint and without solving the pressure.  
+* a pressure correction : find the pressure which corrects the intermediate velocity to be divergence-free again. 
 
 In TRUST code, several projection methods have been implemented: 
 
-* The Chorin-Temam projection method 
+* The Chorin projection method (with or without pressure increment)
 * The SIMPLE algorithm
 * The SIMPLER algorithm
 * The PISO algorithm
 
 Note these methods introduce a splitting error, which can be neglected comparing to the error due to monolitical resolution of the velocity-presure sytem with bad condition number with a lot of degrees of freedom.
-An overview of projection method for incompressible flows is well presented in [GMS06]_.   
+An overview of projection method for incompressible flows is well presented in [GMS06]_ and performance comparison is presented in [JJA07]_.   
 
 
 Initial system 
@@ -34,10 +34,10 @@ These methods do not depend on the spacial discretization (EF, VDF, VEF in TRUST
     \end{aligned}
 
 
-For the Navier-Stokes equation, :math:`\mathbb{L}` represents the Laplacian matrix, :math:`\mathbb{C}(.)` the convection matrix, :math:`\mathbb{B}^T` the pressure gradient matrix, and :math:`\mathbb{B}` the diffusion matrix.
+For the Navier-Stokes equation, :math:`\mathbb{L}` represents the laplacian matrix, :math:`\mathbb{C}(.)` the convection matrix, :math:`\mathbb{B}^T` the pressure gradient matrix, and :math:`\mathbb{B}` the diffusion matrix.
 The unknowns are :math:`U` for the velocity vector, :math:`P` the pressure and the source term is :math:`F` for the momentum conservation equation. 
  
-The Laplacian and the convective operators can be etiher explicit or implicit (:math:`m\in \{n, n+1\}`). 
+The laplacian and the convective operators can be etiher explicit or implicit (:math:`m\in \{n, n+1\}`). 
 
 For the presentation and we take the source term implicitely, we replace 
 
@@ -48,6 +48,8 @@ by
  
 .. math::
     \mathbb{L}U^{n+1} + C(U^n)U^{n+1} =:\mathbb{A}U^{n+1}.
+
+*Note that the pressure projection algorithm also exists with the vorticity unknown (see FINDREFPOLYMAC) *
     
 
 Initial projection
@@ -57,11 +59,11 @@ This part is work in progress right now, I am not sure for every methods.
 
 
 
-Chorin - Temam algorithm 
+Chorin algorithm 
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-The first projection method was proposed by [C67]_ and [T69]_. In this aligorithm, the pressure is not taken for the intermediate velocity.
+The first projection method was proposed by [C67]_ and [T69]_. In this algorithm, the pressure is not taken for the intermediate velocity.
 
 
 Step 1 : velocity prediction 
@@ -82,7 +84,7 @@ The goal of step 2 is to find the pressure unknown which can correct the interme
 Step 2 : pressure correction 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In this step, the convection matrix and the Laplacian matrix are volontary avoided. We find the pressure :math:`P^{n+1}` which verifies: 
+In this step, the convection matrix and the laplacian matrix are volontary avoided (because the mass matrix is easy to inverse). We find the pressure :math:`P^{n+1}` which verifies: 
 
 .. math::
 
@@ -91,21 +93,21 @@ In this step, the convection matrix and the Laplacian matrix are volontary avoid
     \mathbb{B} U^{n+1} = 0.
     \end{aligned}
 
-Left multiplying the momentum conservation equation by :math:`\mathbb{B} \mathbb{M}^{-1}`, because of the divergence-free of :math:`U^{n+1}`, we obtain a linear system on :math:`P^{n+1}`` which is comparable with a 
+Left multiplying the momentum conservation equation by :math:`\mathbb{B} \mathbb{M}^{-1}`, because of the divergence-free of :math:`U^{n+1}`, we obtain a linear system on :math:`P^{n+1}` which is comparable with a 
 Poisson system on pressure : 
 
 .. math::
 
-    \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T}P^{n+1} = \mathbb{B}U^*
+    \delta t^n \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T}P^{n+1} = \mathbb{B}U^*
 
 *Note that this manipulation can not be done with a weak formulation as we usually do in finite elements methods. 
-With more regularity, we can directly consider* :math:`\Delta p^{n+1} = \nabla\cdot u^*` *for the analysis.*
+With more regularity, we can directly consider* :math:`\delta t^{n} \Delta p^{n+1} = \nabla\cdot u^*` *for the analysis.*
 
 The boundary condition for the pressure is modified at this step. 
 
 Step 3 : update 
 ^^^^^^^^^^^^^^^
-Once the pressure has been solved, the velocity can be updated with the momentum conservation equation coming from Step 2. It comes:
+Once the pressure has been solved, the velocity can be updated with the momentum conservation equation coming from step 2. It comes:
 
 .. math:: 
 
@@ -120,22 +122,24 @@ Note that if we sum the system from step 1 and 2, we obtain the following recons
     \mathbb{B} U^{n+1} = 0.
     \end{aligned}
 
-Remark that the velocity :math:`U^*` is present in the final system behind the convection and the Laplacian (matrix :math:`\mathbb{A}`). 
+Remark that the velocity :math:`U^*` is present in the final system behind the convection and the laplacian (matrix :math:`\mathbb{A}`). 
 It introduces a small error so-called a *splitting error* (find REF). 
 
-In TRUST, this method is used for explicit scheme. 
+In TRUST, this method is used for explicit scheme.
+
+.. to verify this remark with PL or ABN
 
 
-Chorin-Temam algorithm with pressure increment
+Chorin algorithm with pressure increment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A small modification of Chorin-Temam projection can be done for the pressure. It consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
-This method is used for semi-implicited scheme (explicit scheme with diffusion implicited) or implicit scheme. 
+A small modification of Chorin projection can be done for the pressure. It consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
+This method is used for semi-implicited schemes (explicit schemes with diffusion implicited) or implicit schemes. 
 
 Step 1 : velocity prediction 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The idea of this step is considerably the same as the Chorin-Temam algorithm, excepted the addition of the gradient of pressure solved at time 
+The idea of this step is considerably the same as the Chorin algorithm, excepted the addition of the gradient of pressure solved at time 
 :math:`t^{n}`. We write:
 
 .. math::
@@ -161,7 +165,7 @@ with the pressure increment :math:`\delta P:= P^{n+1} - P^n`. With the same mani
 
 .. math::
 
-    \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
+    \delta t^n \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
 
 
 Step 3 : update 
@@ -175,7 +179,7 @@ Once the pressure increment solved, the velocity and the pressure at time :math:
     U^{n+1} = U^* + \delta t^n \mathbb{M}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
     P^{n+1} = P^n + \delta P.
 
-Note that the reconstructed system is the same as the Chorin-Temam algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}` due to the system proposed in step 1. 
+Note that the reconstructed system is the same as the Chorin algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}` due to the system proposed in step 1. 
 
 
 
@@ -184,57 +188,86 @@ Note that the reconstructed system is the same as the Chorin-Temam algorithm, bu
 SIMPLE algorithm 
 ~~~~~~~~~~~~~~~~
 
-Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_, it is quite similar to Chorin-Temam projection 
-method with pressure increment, except that the Mass matrix :math:`\mathbb{M}` at step 2 and 3 is replaced by 
+Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_, it is quite similar to Chorin projection 
+method with pressure increment, except that the mass matrix :math:`\mathbb{M}/\delta t^n` at step 2 and 3 is replaced by the addition of  :math:`\mathbb{M}/\delta t^n` and the diagonal matrix of the convection diffusion matrix. We note:
 
 .. math:: 
 
-    \mathbb{D_A} := diag(\mathbb{A} + \frac{\mathbb{M}}{\delta t^n})  
+    \mathbb{D} := diag(\mathbb{A} + \frac{\mathbb{M}}{\delta t^n})  
 
-The pressure correction becomes: 
+Thus, the pressure correction becomes: 
    
 .. math:: 
-    \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
+    \mathbb{B} \mathbb{D}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
 
 and the update:
 
 .. math:: 
 
-    U^{n+1} = U^* + \delta t^n \mathbb{D_A}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
+    U^{n+1} = U^* + \delta t^n \mathbb{D}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
     P^{n+1} = P^n + \delta P.
 
 A relaxation can be done at the update step for the pressure (or the velocity). 
+
+The reconstructed system obtain by summing the two steps is quite similar to the Chorin reconstructed system, except that the intermediate velocity :math:`U^*` has less importance here. If we note :math:`\mathbb{D_A}` the diagonal part of :math:`\mathbb{A}` and :math:`\mathbb{E_A}` its non diagonal, it comes:
+
+.. math::
+
+    \begin{aligned}
+    \mathbb{M} \frac{U^{n+1} - U^n}{\delta t^n}  + \mathbb{D_A}U^{n+1} + \mathbb{E_A}U^* + \mathbb{B}^{T}P^{n+1} = F^{n+1},\\
+    \mathbb{B} U^{n+1} = 0.
+    \end{aligned}
+
+Implementations details can be found in :code:`Simple.h`. 
+
+To reduce the importance of the intermediate velocity has been proposed a pre-compute pressure step with the SIMPLER algorithm. 
+
 
 SIMPLER algorithm 
 ~~~~~~~~~~~~~~~~~
 SIMPLE Revised algorithm (SIMPLER) consists in applying SIMPLE algorithm with a pre-computed pressure, which consider the non-diagonal term of :math:`\mathbb{A} + \mathbb{M}/\delta t^n`. 
 
-Step 0 :  pre-computed pressure
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 0 :  pre-compute the pressure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The goal of this step is to find a pre-computed pressure :math:`P^p` in which we apply the simple algorithm.
+The goal of this step is to find a pre-computed pressure :math:`P^{n+1}` in which we apply the SIMPLE algorithm.
 
 
 Let's define the non diagonal term of :math:`\mathbb{A} + \mathbb{M}/\delta t^n` such that : 
 
 .. math::
 
-    \mathbb{E} :=  \mathbb{A} + \mathbb{M}/\delta t^n -  \mathbb{D_A}
+    \mathbb{E} :=  \mathbb{A} + \mathbb{M}/\delta t^n -  \mathbb{D}
 
-First at all, let's solve the intermediate velocity :math:`U^p` with the semi-implicited following system. 
+To find the pre-computed pressure, an intermediate velocity :math:`U^p` is find, resolving the following system:
+
+.. math:: 
+     \mathbb{D}(U_{n}) U^p - \mathbb{E}U^n = F^{n+1}
+
+
+Note that this system looks like the velocity prediction step for Chorin projection without pressure increment which would be semi-implicited (the diagonal part is implicited and the non-diagonal is explicited).
+This system is easy do solve because :math:`\mathbb{D}` is diagonal. Once :math:`U^p` is determined, the pre-computed pressure is solved, verifying 
 
 .. math:: 
 
-    \mathbb{D_A}(U_{n}) U^p = \mathbb{E}(U_{n})U_n + F^{n+1} 
+    \mathbb{B} \mathbb{D}^{-1} \mathbb{B}^t P^{n+1} = \mathbb{B}U^p. 
 
-Note that this system looks like the velocity prediction step for Chorin-Temam projection without pressure increment which would be semi-implicited (the diagonal part is implicited and the non-diagonal is explicited).
-This system is easy do solve because :math:`\mathbb{D_A}` is diagonal. Once :math:`U^p` is determined, the pre-computed pressure is solved, verifying 
+The system comes from the continuity equation 
 
 .. math:: 
+    \mathbb{D}(U^n) (U^{n+1} - U^p) + \mathbb{B}^t P^{n+1} = 0,\\
+    \mathbb{B} U^{n+1} = 0. 
 
-    \mathbb{B} \mathbb{D_A}^{-1} \mathbb{B}^t P^p = \mathbb{B}U^p. 
+.. *Note that the reconstructed system becomes*
 
-Step 1 : SIMPLE algorithm on :math:`(U^n, P^p)` 
+.. math
+
+..    \mathbb{D}(U^n) U^{n+1} - E(U^n)U^n + \mathbb{B}^t P^{n+1} = F^{n+1}. 
+
+Implementations details can be found in :code:`Simpler.h`. 
+
+
+Step 1 : SIMPLE algorithm on :math:`(U^{n+1}, P^{n+1})` 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The rest of the algorithm is the same that SIMPLE algorithm i.e.: 
@@ -243,38 +276,68 @@ The rest of the algorithm is the same that SIMPLE algorithm i.e.:
 
 .. math:: 
 
-    \mathbb{M} \frac{U^{*} - U^n}{\delta t^n} + \mathbb{A}U^* + \mathbb{B}^{T}P^{p} = F^{n+1}.
+    \mathbb{M} \frac{U^{*} - U^n}{\delta t^n} + \mathbb{A}U^* + \mathbb{B}^{T}P^{n+1} = F^{n+1}.
 
 - pressure correction : correct the velocity to respect the divergence-free constraint: 
 
 .. math::
 
-    \mathbb{B} \mathbb{D_A}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
+    \mathbb{B} \mathbb{D}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
 
 
-- update the field with the intermediate velocity and pressure:
+- update the field with the intermediate velocity:
 
 .. math:: 
 
-    U^{n+1} = U^* + \delta t^n \mathbb{D_A}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
-    P^{n+1} = P^n + \delta P.
+    U^{n+1} = U^* + \delta t^n \mathbb{D}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
 
+Note that the pressure is not updated between step 0 and step 1, only the velocity is corrected here!
 
 PISO algorithm 
 ~~~~~~~~~~~~~~~
-The Pressure-Implicit with Splitting of Operators algorithm (PISO) was proposed in [I83]_. It is a two steps projection method like the SIMPLER algorithm.
+The Pressure-Implicit with Splitting of Operators algorithm (PISO) was proposed in [I83]_. It is a two steps projection method which is a SIMPLE algorithm with a 
+second step which consider the non diagonal part of the convection-diffusion matrix :math:`\mathbb{A}`.
  
-Step 1 : Velocity prediction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Step 1 : SIMPLE algorithm
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Step 2 : First pressure correction
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+As the Chorin projection method with pressure increment, the velicity prediction consists in finding the first intermediate :math:`U^*` which satisfies the momentum equation 
 
-Step 3 : Second pressure correction
+.. math:: 
+    \mathbb{M} \frac{U^{*} - U^n}{\delta t^n} + \mathbb{A}U^* + \mathbb{B}^{T}P^{n} = F^{n+1}.
+
+
+Then, find the first pressure increment :math:`\delta P^{p1}`, by solving the first Poisson equation:
+
+.. math:: 
+    \mathbb{B} \mathbb{D}^{-1}\mathbb{B}^{T} \delta P^{p1} = \mathbb{B}U^*
+
+
+Then, update the first pressure :math:`P^{p1}` and velocity fields :math:`U^{p1}`. :
+
+.. math:: 
+    U^{p1} = U^* + \mathbb{D}^{-1} \mathbb{B}^{T} \delta P^{p1}\\
+    P^{p1} = P^n + \delta P^{p1}.
+
+Step 2 : Second pressure correction
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The diagonal term of the convection-diffusion matrix has been considered in the system at the SIMPLE step, the second pressure correction considers the non diagonal part. 
+
+The poisson system is:
+
+.. math:: 
+    \mathbb{B} \mathbb{D}^{-1}\mathbb{B}^t \delta P^{p2} = \mathbb{B} \mathbb{D}^{-1} \mathbb{E_A} U^{p1}
 
 
+
+Finally, update the velocity and the pressure fields at the next time step. 
+
+.. math:: 
+    U^{n+1} = \mathbb{E_A}U^{p1} - \mathbb{B}^t \delta P^{p2}\\
+    P^{n+1} =   P^{p1} + \delta P^{p2}
+
+Algebraic details are presented in [I83]_ or in :code:`Piso.h`
 
 .. Uzawa algorithm ? 
 .. ~~~~~~~~~~~~~~~~~

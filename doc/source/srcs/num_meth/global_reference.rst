@@ -87,3 +87,5 @@ Projection Method References
 .. [I83] Issa R. I. - "The Computational of Compressible and Incompressible Recirculation Flows by Non-iterative Implicite Scheme" - *Journal of Computational Physics* (1986) - Vol 62 - 66--82. 
 
 .. [GMS06] Guermond J., Minev P., Shen J. - "An overview of projection methods for incompressible flows" - *Computational Methods in Applied Mechanics and Engineering* - (2006) - Vol 195 - 6011--6045 - Elsevier.
+
+.. [JJA07] Jang D. S., Jetli R., Acharya S. - "Comparison of the PISO, SIMPLER, and SIMPLEC for the treatment of the Pressure-Velocity Coupling in Steady Flow Problems" - *Numerical Heat Transfer* - (2007) - Vol 10
