@@ -123,13 +123,14 @@ Note that if we sum the system from step 1 and 2, we obtain the following recons
 Remark that the velocity :math:`U^*` is present in the final system behind the convection and the Laplacian (matrix :math:`\mathbb{A}`). 
 It introduces a small error so-called a *splitting error* (find REF). 
 
+In TRUST, this method is used for explicit scheme. 
 
 
-SIMPLE algorithm 
-~~~~~~~~~~~~~~~~
+Chorin-Temam algorithm with pressure increment
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_.It consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
-
+A small modification of Chorin-Temam projection can be done for the pressure. It consists in taking the pressure at previous time at step 1, and solve an increment of pressure at step 2.
+This method is used for semi-implicited scheme (explicit scheme with diffusion implicited) or implicit scheme. 
 
 Step 1 : velocity prediction 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -177,21 +178,103 @@ Once the pressure increment solved, the velocity and the pressure at time :math:
 Note that the reconstructed system is the same as the Chorin-Temam algorithm, but the approximation of :math:`U^*` is closer to :math:`U^{n+1}` due to the system proposed in step 1. 
 
 
+
+
+
+SIMPLE algorithm 
+~~~~~~~~~~~~~~~~
+
+Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_, it is quite similar to Chorin-Temam projection 
+method with pressure increment, except that the Mass matrix :math:`\mathbb{M}` at step 2 and 3 is replaced by 
+
+.. math:: 
+
+    \mathbb{D_A} := diag(\mathbb{A} + \frac{\mathbb{M}}{\delta t^n})  
+
+The pressure correction becomes: 
+   
+.. math:: 
+    \mathbb{B} \mathbb{M}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
+
+and the update:
+
+.. math:: 
+
+    U^{n+1} = U^* + \delta t^n \mathbb{D_A}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
+    P^{n+1} = P^n + \delta P.
+
+A relaxation can be done at the update step for the pressure (or the velocity). 
+
 SIMPLER algorithm 
 ~~~~~~~~~~~~~~~~~
-SIMPLE Revised algorithm (SIMPLER)
+SIMPLE Revised algorithm (SIMPLER) consists in applying SIMPLE algorithm with a pre-computed pressure, which consider the non-diagonal term of :math:`\mathbb{A} + \mathbb{M}/\delta t^n`. 
 
+Step 0 :  pre-computed pressure
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The goal of this step is to find a pre-computed pressure :math:`P^p` in which we apply the simple algorithm.
+
+
+Let's define the non diagonal term of :math:`\mathbb{A} + \mathbb{M}/\delta t^n` such that : 
+
+.. math::
+
+    \mathbb{E} :=  \mathbb{A} + \mathbb{M}/\delta t^n -  \mathbb{D_A}
+
+First at all, let's solve the intermediate velocity :math:`U^p` with the semi-implicited following system. 
+
+.. math:: 
+
+    \mathbb{D_A}(U_{n}) U^p = \mathbb{E}(U_{n})U_n + F^{n+1} 
+
+Note that this system looks like the velocity prediction step for Chorin-Temam projection without pressure increment which would be semi-implicited (the diagonal part is implicited and the non-diagonal is explicited).
+This system is easy do solve because :math:`\mathbb{D_A}` is diagonal. Once :math:`U^p` is determined, the pre-computed pressure is solved, verifying 
+
+.. math:: 
+
+    \mathbb{B} \mathbb{D_A}^{-1} \mathbb{B}^t P^p = \mathbb{B}U^p. 
+
+Step 1 : SIMPLE algorithm on :math:`(U^n, P^p)` 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The rest of the algorithm is the same that SIMPLE algorithm i.e.: 
+
+- velicity prediction : find the intermediate velocity :math:`U^*`, solution of the following system:
+
+.. math:: 
+
+    \mathbb{M} \frac{U^{*} - U^n}{\delta t^n} + \mathbb{A}U^* + \mathbb{B}^{T}P^{p} = F^{n+1}.
+
+- pressure correction : correct the velocity to respect the divergence-free constraint: 
+
+.. math::
+
+    \mathbb{B} \mathbb{D_A}^{-1}\mathbb{B}^{T} \delta P = \mathbb{B}U^*
+
+
+- update the field with the intermediate velocity and pressure:
+
+.. math:: 
+
+    U^{n+1} = U^* + \delta t^n \mathbb{D_A}^{-1} \mathbb{B}^{T} \delta P^{n+1}\\
+    P^{n+1} = P^n + \delta P.
 
 
 PISO algorithm 
 ~~~~~~~~~~~~~~~
-Pressure-Implicit with Splitting of Operators
+The Pressure-Implicit with Splitting of Operators algorithm (PISO) was proposed in [I83]_. It is a two steps projection method like the SIMPLER algorithm.
+ 
+Step 1 : Velocity prediction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 2 : First pressure correction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Step 3 : Second pressure correction
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
 
-PISO [I83]_
 
-
-
-Uzawa algorithm ? 
-~~~~~~~~~~~~~~~~~
+.. Uzawa algorithm ? 
+.. ~~~~~~~~~~~~~~~~~
