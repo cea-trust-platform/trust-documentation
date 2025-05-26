@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,15 +18,16 @@
 
 #include <Equation_base.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 #include <SFichier.h>
 
 class Champ_base;
+class Champ_Don_base;
 
 /*! @brief Classe Terme_Source_Constituant Cette classe represente un terme source de l'equation de transport des constituants
  *
  *     de type degagement volumique de puissance thermique.!!!!A MODIFIER
- *     Un objet Terme_Source_Constituant contient la puissance (Champ donne
+ *     Un objet Terme_Source_Constituant contient la puissance (OWN_PTR(Champ_base) donne
  *     utilisateur) et des references a la masse volumique (rho) et la chaleur.
  *     specifique (Cp).
  *
@@ -42,28 +43,28 @@ public :
   void ouvrir_fichier(const Equation_base& eq, const Nom& out, const Nom& qsj, const Nom& description, SFichier& os,const Nom& type, const int flag) const;
   int completer(const Champ_Inc_base& inco);
 
-  inline const Champ_Don& get_source() const
+  inline const Champ_Don_base& get_source() const
   {
     return la_source_constituant ;
   };
 
   void mettre_a_jour(double temps)
   {
-    la_source_constituant.mettre_a_jour(temps);
+    la_source_constituant->mettre_a_jour(temps);
   };
 
 protected:
   int colw_;
-  REF(Champ_base) rho_ref;
-  Champ_Don la_source_constituant;
+  OBS_PTR(Champ_base) rho_ref;
+  OWN_PTR(Champ_Don_base) la_source_constituant;
 
 };
 
 
 /*! @brief Associe les champs donnes rho (masse volumique) et Cp (chaleur specifique) a l'objet.
  *
- * @param (Champ_Don& rho) champ donne representant la masse volumique
- * @param (Champ_Don& cp) champ donne representant la chaleur specifique
+ * @param (Champ_Don_base& rho) champ donne representant la masse volumique
+ * @param (Champ_Don_base& cp) champ donne representant la chaleur specifique
  */
 inline void Terme_Source_Constituant::associer_champs(const Champ_base& rho)
 {

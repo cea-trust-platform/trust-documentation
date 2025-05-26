@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -128,7 +128,7 @@ Entree& Terme_Source_Solide_SWIFT_VDF::readOn(Entree& is )
 
 }
 
-void Terme_Source_Solide_SWIFT_VDF::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Solide_SWIFT_VDF::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
 }
 

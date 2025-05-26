@@ -16,13 +16,14 @@
 #ifndef Domaine_dis_cache_included
 #define Domaine_dis_cache_included
 
-#include <Nom.h>
+#include <Domaine_forward.h>
+
 #include <TClearable.h>
 #include <memory>
+#include <Nom.h>
 #include <map>
 
-class Domaine;
-class Domaine_dis;
+class Domaine_dis_base;
 
 /*! @brief Cache of discretized domains. Avoid repeating the discretize operation when not
  * necessary.
@@ -35,23 +36,21 @@ public:
   static Domaine_dis_cache& Get_instance();
   static void Clear();
 
-  static Domaine_dis& Build_or_get(const Nom& type, const Domaine& dom);
-  static Domaine_dis& Build_or_get_poly_post(const Nom& type, const Domaine& dom);
+  static Domaine_dis_base& Build_or_get(const Nom& type, const Domaine& dom);
+  static Domaine_dis_base& Build_or_get_poly_post(const Nom& type, const Domaine& dom);
 
-  Domaine_dis& build_or_get(const Nom& type, const Domaine& dom);
-  Domaine_dis& build_or_get_poly_post(const Nom& type, const Domaine& dom);
+  Domaine_dis_base& build_or_get(const Nom& type, const Domaine& dom);
+  Domaine_dis_base& build_or_get_poly_post(const Nom& type, const Domaine& dom);
 
   void clear() override { cache_.clear(); }
 
 private:
-  Domaine_dis_cache() {}
-
-  using Shared_Dom_dis = std::shared_ptr<Domaine_dis>;
+  Domaine_dis_cache() { }
   /*! The actual cache hodling the true Domaine_dis objects.
   * Store them as shared_ptr since we need easy duplication, notably for NO_FACE_ discretisations.
   * See build_or_get() method.
   */
-  std::map<std::string, Shared_Dom_dis> cache_;
+  std::map<std::string, OWN_PTR(Domaine_dis_base)> cache_;
 };
 
 #endif

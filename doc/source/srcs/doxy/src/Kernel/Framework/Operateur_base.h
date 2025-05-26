@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,17 +16,17 @@
 #ifndef Operateur_base_included
 #define Operateur_base_included
 
+
 #include <Equation_base.h>
+
 #include <SolveurSys.h>
 #include <TRUST_Ref.h>
+
 #include <Matrice.h>
 
 class Frontiere_dis_base;
-class Domaine_Cl_dis;
 class Matrice_Morse;
 class EcrFicPartage;
-class Domaine_dis;
-class Champ_Inc;
 class Conds_lim;
 class SFichier;
 
@@ -50,8 +50,8 @@ class Operateur_base : public Objet_U, public MorEqn, public Champs_compris_inte
 public:
   virtual DoubleTab& ajouter(const DoubleTab&, DoubleTab&) const;
   virtual DoubleTab& calculer(const DoubleTab&, DoubleTab&) const;
-  virtual void associer_champ(const Champ_Inc&, const std::string& nom_ch);
-  virtual void associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc& inco) =0;
+  virtual void associer_champ(const Champ_Inc_base&, const std::string& nom_ch);
+  virtual void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base& inco) =0;
   virtual void associer_domaine_cl_dis(const Domaine_Cl_dis_base&);
   virtual void dimensionner(Matrice_Morse&) const /* =0 */;
   virtual void dimensionner_bloc_vitesse(Matrice_Morse& matrice) const;
@@ -90,7 +90,7 @@ public:
   inline Entree& lire_solveur(Entree&);
   virtual int systeme_invariant() const;
   virtual void ajouter_contribution_explicite_au_second_membre(const Champ_Inc_base& inconnue, DoubleTab& derivee) const;
-  const Champ_Inc& mon_inconnue() const { return le_champ_inco.valeur(); }
+  const Champ_Inc_base& mon_inconnue() const { return le_champ_inco.valeur(); }
   bool has_champ_inco() const { return le_champ_inco.non_nul(); }
   const std::string& nom_inconnue() const
   {
@@ -109,12 +109,13 @@ public:
 
   //Methodes de l interface des champs postraitables
   /////////////////////////////////////////////////////
-  void creer_champ(const Motcle& motlu) override;
+  void creer_champ(const Motcle& motlu) override { }
   const Champ_base& get_champ(const Motcle& nom) const override;
-  virtual bool has_champ(const Motcle& nom, REF(Champ_base) &ref_champ) const;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
   /////////////////////////////////////////////////////
-  void calculer_pour_post(Champ& espace_stockage, const Nom& option, int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage, const Nom& option, int comp) const override;
   Motcle get_localisation_pour_post(const Nom& option) const override;
 
   // Je rajoute deux methodes pour le calcul du flux
@@ -125,7 +126,7 @@ public:
   // Ca me permet de coder plus facilement les operateurs de diffusion selon
   // que la diffusivite varie ou non.
   // L'implementation par defaut dans Operateur_base.cpp ne fait rien
-  virtual void preparer_calcul(void);
+  virtual void preparer_calcul();
   int col_width_; // minimal size of a column for .out files (based on cl name length)
   bool has_impr_file() const { return out_ != "??"; }
 
@@ -139,7 +140,7 @@ protected:
   mutable DoubleTab flux_bords_;         // Tableau contenant les flux sur les bords de l'operateur
 
   Champs_compris champs_compris_;
-  REF(Champ_Inc) le_champ_inco;
+  OBS_PTR(Champ_Inc_base) le_champ_inco;
   std::string nom_inco_;
 };
 

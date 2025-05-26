@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Discretisation_base.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Cond_lim_base.h>
 #include <Equation_base.h>
 
@@ -29,7 +30,7 @@ Entree& Cond_lim_base::readOn(Entree& s) { return s >> le_champ_front; }
  */
 void Cond_lim_base::completer()
 {
-  champ_front()->completer();
+  champ_front().completer();
 }
 
 int Cond_lim_base::compatible_avec_eqn(const Equation_base& eqn) const
@@ -53,7 +54,7 @@ int Cond_lim_base::compatible_avec_eqn(const Equation_base& eqn) const
  */
 void Cond_lim_base::changer_temps_futur(double temps, int i)
 {
-  champ_front()->changer_temps_futur(temps, i);
+  champ_front().changer_temps_futur(temps, i);
 }
 
 /*! @brief Tourne la roue de la CL
@@ -61,7 +62,7 @@ void Cond_lim_base::changer_temps_futur(double temps, int i)
  */
 int Cond_lim_base::avancer(double temps)
 {
-  return champ_front()->avancer(temps);
+  return champ_front().avancer(temps);
 }
 
 /*! @brief Tourne la roue de la CL
@@ -69,7 +70,7 @@ int Cond_lim_base::avancer(double temps)
  */
 int Cond_lim_base::reculer(double temps)
 {
-  return champ_front()->reculer(temps);
+  return champ_front().reculer(temps);
 }
 
 /*! @brief Initialisation en debut de calcul.
@@ -92,7 +93,7 @@ int Cond_lim_base::initialiser(double temps)
  */
 void Cond_lim_base::mettre_a_jour(double temps)
 {
-  le_champ_front.mettre_a_jour(temps);
+  le_champ_front->mettre_a_jour(temps);
 }
 
 /* @brief Reset current time for the boundary condition.
@@ -130,7 +131,7 @@ int Cond_lim_base::a_mettre_a_jour_ss_pas_dt()
  */
 void Cond_lim_base::calculer_coeffs_echange(double temps)
 {
-  le_champ_front.calculer_coeffs_echange(temps);
+  le_champ_front->calculer_coeffs_echange(temps);
 }
 
 /*! @brief Appel la verification du champ lu par l intermediaire de l equation pour laquelle on considere la condition limite
@@ -147,7 +148,7 @@ void Cond_lim_base::verifie_ch_init_nb_comp() const
 /*! @brief Associe la frontiere a l'objet.
  *
  * L'objet Frontiere_dis_base est en fait associe au membre
- *     Champ_front de l'objet Cond_lim_base qui represente le champ des conditions
+ *     OWN_PTR(Champ_front_base) de l'objet Cond_lim_base qui represente le champ des conditions
  *     aux limites imposees a la frontiere.
  *
  * @param (Frontiere_dis_base& fr) la frontiere sur laquelle on impose les conditions aux limites
@@ -155,7 +156,7 @@ void Cond_lim_base::verifie_ch_init_nb_comp() const
 void Cond_lim_base::associer_fr_dis_base(const Frontiere_dis_base& fr)
 {
   assert(le_champ_front.non_nul());
-  le_champ_front.associer_fr_dis_base(fr);
+  le_champ_front->associer_fr_dis_base(fr);
   modifier_val_imp = 0;
 }
 
@@ -169,7 +170,7 @@ void Cond_lim_base::associer_fr_dis_base(const Frontiere_dis_base& fr)
 void Cond_lim_base::associer_domaine_cl_dis_base(const Domaine_Cl_dis_base& zcl)
 {
   mon_dom_cl_dis = zcl;
-  le_champ_front.valeur().verifier(*this);
+  le_champ_front->verifier(*this);
 }
 
 /*! @brief Renvoie 1 si la condition aux limites est compatible avec la discretisation passee en parametre.
@@ -219,7 +220,7 @@ void Cond_lim_base::champ_front(int face, DoubleVect& var) const
   le_champ_front->valeurs_face(face, var);
 }
 
-void Cond_lim_base::injecter_dans_champ_inc(const Champ_Inc&) const
+void Cond_lim_base::injecter_dans_champ_inc(const Champ_Inc_base&) const
 {
   Cerr << "Cond_lim_base::injecter_dans_champ_inc()" << finl;
   Cerr << "this method does nothing and must be overloaded " << finl;
@@ -231,12 +232,12 @@ void Cond_lim_base::injecter_dans_champ_inc(const Champ_Inc&) const
  */
 void Cond_lim_base::set_temps_defaut(double temps)
 {
-  champ_front()->set_temps_defaut(temps);
+  champ_front().set_temps_defaut(temps);
 }
 /*! @brief Appele par Conds_lim::completer Appel cha_front_base::fixer_nb_valeurs_temporelles
  *
  */
 void Cond_lim_base::fixer_nb_valeurs_temporelles(int nb_cases)
 {
-  champ_front()->fixer_nb_valeurs_temporelles(nb_cases);
+  champ_front().fixer_nb_valeurs_temporelles(nb_cases);
 }

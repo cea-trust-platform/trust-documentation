@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -68,10 +68,11 @@ Sortie& Domaine_Cl_VEF::printOn(Sortie& os) const
 
 Entree& Domaine_Cl_VEF::readOn(Entree& is) { return Domaine_Cl_dis_base::readOn(is); }
 
-void Domaine_Cl_VEF::associer(const Domaine_VEF& le_dom_VEF)
+void Domaine_Cl_VEF::associer(const Domaine_dis_base& dom_dis)
 {
+  const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF, dom_dis);
   int nb_faces_non_std = le_dom_VEF.nb_faces_non_std();
-  const Elem_VEF& type_elem = le_dom_VEF.type_elem();
+  const Elem_VEF_base& type_elem = le_dom_VEF.type_elem();
   int nb_fa7_elem = type_elem.nb_facette();
 
   {
@@ -106,11 +107,11 @@ void Domaine_Cl_VEF::associer(const Domaine_VEF& le_dom_VEF)
 /*! @brief remplissage des tableaux
  *
  */
-void Domaine_Cl_VEF::completer(const Domaine_dis& un_domaine_dis)
+void Domaine_Cl_VEF::completer(const Domaine_dis_base& un_domaine_dis)
 {
-  if (sub_type(Domaine_VEF, un_domaine_dis.valeur()))
+  if (sub_type(Domaine_VEF, un_domaine_dis))
     {
-      const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF, un_domaine_dis.valeur());
+      const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF, un_domaine_dis);
       remplir_type_elem_Cl(le_dom_VEF);
       remplir_volumes_entrelaces_Cl(le_dom_VEF);
       remplir_normales_facettes_Cl(le_dom_VEF);
@@ -164,7 +165,7 @@ void Domaine_Cl_VEF::remplir_volumes_entrelaces_Cl(const Domaine_VEF& le_dom_VEF
                   if (!poly_fait[n_poly])
                     {
                       poly_fait[n_poly] = 1;
-                      const Elem_VEF& type_elem = le_dom_VEF.type_elem();
+                      const Elem_VEF_base& type_elem = le_dom_VEF.type_elem();
                       type_elem.modif_volumes_entrelaces(j, elem, le_dom_VEF, volumes_entrelaces_Cl(), type_elem_Cl(n_poly));
                     }
                 }
@@ -181,7 +182,7 @@ void Domaine_Cl_VEF::remplir_volumes_entrelaces_Cl(const Domaine_VEF& le_dom_VEF
                       if (!poly_fait[n_poly])
                         {
                           poly_fait[n_poly] = 1;
-                          const Elem_VEF& type_elem = le_dom_VEF.type_elem();
+                          const Elem_VEF_base& type_elem = le_dom_VEF.type_elem();
                           type_elem.modif_volumes_entrelaces_faces_joints(num_face, elem, le_dom_VEF, volumes_entrelaces_Cl(), type_elem_Cl(n_poly));
                         }
                     }
@@ -210,11 +211,11 @@ void Domaine_Cl_VEF::remplir_normales_facettes_Cl(const Domaine_VEF& le_dom_VEF)
   const Domaine& dom = z;
   const DoubleTab& les_coords = dom.coord_sommets();
   const IntTab& les_Polys = z.les_elems();
-  const Elem_VEF& elemvef = le_dom_VEF.type_elem();
+  const Elem_VEF_base& elemvef = le_dom_VEF.type_elem();
   const IntVect& rang_elem = le_dom_VEF.rang_elem_non_std();
   const IntTab& elem_faces = le_dom_VEF.elem_faces();
   const DoubleTab& xv = le_dom_VEF.xv();
-  const IntTab& KEL = elemvef.valeur().KEL();
+  const IntTab& KEL = elemvef.KEL();
 
   int num_elem, fa7;
   int isom, ncomp;
@@ -312,7 +313,7 @@ int trois_puissance(int n)
 void Domaine_Cl_VEF::remplir_type_elem_Cl(const Domaine_VEF& le_dom_VEF)
 {
   const Domaine& z = le_dom_VEF.domaine();
-  int nfac = z.type_elem().nb_faces();   // dans Elem_geom
+  int nfac = z.type_elem()->nb_faces();   // dans Elem_geom
   const IntTab& elem_faces = le_dom_VEF.elem_faces();
   const IntTab& face_voisins = le_dom_VEF.face_voisins();
   const IntVect& rang_elem = le_dom_VEF.rang_elem_non_std();
@@ -338,9 +339,9 @@ void Domaine_Cl_VEF::remplir_type_elem_Cl(const Domaine_VEF& le_dom_VEF)
                 Cerr << "Domaine_Cl_VEF::creer_type_elem_Cl() PAS POSSIBLE!! " << finl;
               num_elem = rang_elem(elem);
               assert(num_elem != -1);
-              if (sub_type(Tri_VEF,le_dom_VEF.type_elem().valeur()) || sub_type(Tetra_VEF, le_dom_VEF.type_elem().valeur()))
+              if (sub_type(Tri_VEF,le_dom_VEF.type_elem()) || sub_type(Tetra_VEF, le_dom_VEF.type_elem()))
                 type_elem_Cl_[num_elem] += Deux_Puissance((int) (nfac - 1 - numero2));
-              else if (sub_type(Quadri_VEF,le_dom_VEF.type_elem().valeur()) || sub_type(Hexa_VEF, le_dom_VEF.type_elem().valeur()))
+              else if (sub_type(Quadri_VEF,le_dom_VEF.type_elem()) || sub_type(Hexa_VEF, le_dom_VEF.type_elem()))
                 type_elem_Cl_[num_elem] += trois_puissance((int) (nfac - 1 - numero2));
               else
                 {
@@ -358,342 +359,228 @@ void Domaine_Cl_VEF::remplir_type_elem_Cl(const Domaine_VEF& le_dom_VEF)
 /*! @brief Impose les conditions aux limites a la valeur temporelle "temps" du Champ_Inc
  *
  */
-void Domaine_Cl_VEF::imposer_cond_lim(Champ_Inc& ch, double temps)
+void Domaine_Cl_VEF::imposer_cond_lim(Champ_Inc_base& ch, double temps)
 {
-  DoubleTab& ch_tab = ch->valeurs(temps);
-  copyPartialFromDevice(ch_tab, 0, domaine_vef().premiere_face_int() * ch.valeur().nb_comp(), "Champ_Inc on boundary");
-  start_gpu_timer();
-  if (sub_type(Champ_P0_VEF, ch.valeur())) { /* Don nothing */ }
-  else if (sub_type(Champ_P1NC,ch.valeur()) || sub_type(Champ_Q1NC, ch.valeur()))
+  DoubleTab& ch_tab = ch.valeurs(temps);
+  int nb_comp = ch.nb_comp();
+  if (sub_type(Champ_P0_VEF, ch)) { /* Do nothing */ }
+  else if (sub_type(Champ_P1NC,ch) || sub_type(Champ_Q1NC, ch))
     {
-      int nb_comp;
-
-      if (sub_type(Champ_P1NC, ch.valeur()))
+      for (int i = 0; i < nb_cond_lim(); i++)
         {
-          const Champ_P1NC& chnc = ref_cast(Champ_P1NC, ch.valeur());
-          nb_comp = chnc.nb_comp();
-          int ndeb, nfin, num_face, ncomp;
-          for (int i = 0; i < nb_cond_lim(); i++)
+          const Cond_lim_base& la_cl = les_conditions_limites(i).valeur();
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          int ndeb = le_bord.num_premiere_face();
+          int nfin = ndeb + le_bord.nb_faces();
+          if (sub_type(Periodique, la_cl))
             {
-              const Cond_lim_base& la_cl = les_conditions_limites(i).valeur();
-              if (sub_type(Periodique, la_cl))
+              // On fait en sorte que le champ ait la meme valeur
+              // sur deux faces de periodicite qui sont en face l'une de l'autre
+              const Periodique& la_cl_perio = ref_cast(Periodique, la_cl);
+              CIntArrView face_associee = la_cl_perio.face_associee().view_ro();
+              if (nb_comp==1)
                 {
-
-                  // On fait en sorte que le champ ait la meme valeur
-                  // sur deux faces de periodicite qui sont en face l'une de l'autre
-                  const Periodique& la_cl_perio = ref_cast(Periodique, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  int voisine;
-                  double moy;
-                  for (num_face = ndeb; num_face < nfin; num_face++)
-                    {
-                      voisine = la_cl_perio.face_associee(num_face - ndeb) + ndeb;
-                      if (nb_comp == 1)
-                        {
-                          if (ch_tab[num_face] != ch_tab[voisine])
-                            {
-                              moy = 0.5 * (ch_tab[num_face] + ch_tab[voisine]);
-                              ch_tab[num_face] = moy;
-                              ch_tab[voisine] = moy;
-                            }
-                        }
-                      else
-                        {
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            if (ch_tab(num_face, ncomp) != ch_tab(voisine, ncomp))
-                              {
-                                moy = 0.5 * (ch_tab(num_face, ncomp) + ch_tab(voisine, ncomp));
-                                ch_tab(num_face, ncomp) = moy;
-                                ch_tab(voisine, ncomp) = moy;
-                              }
-                        }
-                    }
-                }
-              else if ((sub_type(Symetrie, la_cl)) && (ch->nature_du_champ() == vectoriel))
-                {
-                  const Domaine_VEF& zvef = chnc.domaine_vef();
-                  const DoubleTab& face_normales = zvef.face_normales();
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == dimension)
-                    {
-                      for (num_face = ndeb; num_face < nfin; num_face++)
-                        {
-                          double face_n, surf = 0, flux = 0;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            {
-                              face_n = face_normales(num_face, ncomp);
-                              flux += ch_tab(num_face, ncomp) * face_n;
-                              surf += face_n * face_n;
-                            }
-                          // flux /= surf; // Fixed bug: Arithmetic exception
-                          if (std::fabs(surf) >= DMINFLOAT)
-                            flux /= surf;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            ch_tab(num_face, ncomp) -= flux * face_normales(num_face, ncomp);
-                        }
-                    }
-                }
-              else if (sub_type(Dirichlet_entree_fluide, la_cl))
-                {
-                  const Dirichlet_entree_fluide& la_cl_diri = ref_cast(Dirichlet_entree_fluide, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb);
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp);
-                    }
-                }
-              else if (sub_type(Scalaire_impose_paroi, la_cl))
-                {
-                  const Scalaire_impose_paroi& la_cl_diri = ref_cast(Scalaire_impose_paroi, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
+                  DoubleArrView tab = static_cast<ArrOfDouble&>(ch_tab).view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    int voisine = face_associee(num_face - ndeb) + ndeb;
+                    if (tab(num_face) != tab(voisine))
                       {
-                        ch_tab[num_face] = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb);
+                        double moy = 0.5 * (tab(num_face) + tab(voisine));
+                        tab(num_face) = moy;
+                        tab(voisine) = moy;
                       }
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp);
-                    }
+                  });
                 }
-              else if ((sub_type(Dirichlet_paroi_fixe, la_cl)) && (ch->nature_du_champ() == multi_scalaire))
+              else
                 {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = 0;
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          {
-                            ch_tab(num_face, 0) = 0;
-                            ch_tab(num_face, 1) = 0;
-                          }
-                    }
-                }
-              else if (sub_type(Dirichlet_paroi_fixe, la_cl))
-                {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = 0;
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = 0;
-                    }
-                }
-              else if (sub_type(Dirichlet_paroi_defilante, la_cl))
-                {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  const Dirichlet_paroi_defilante& la_cl_diri = ref_cast(Dirichlet_paroi_defilante, la_cl);
-                  const DoubleTab& face_normales = chnc.domaine_vef().face_normales();
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp != dimension)
-                    {
-                      Cerr << "Cas non prevu dans Domaine_Cl_VEF::imposer_cond_lim." << finl;
-                      exit();
-                    }
-                  else
-                    {
-                      for (num_face = ndeb; num_face < nfin; num_face++)
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    int voisine = face_associee(num_face - ndeb) + ndeb;
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      if (tab(num_face, ncomp) != tab(voisine, ncomp))
                         {
-                          double surf = 0, flux = 0;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            {
-                              double face_n = face_normales(num_face, ncomp);
-                              flux += la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp) * face_n;
-                              surf += face_n * face_n;
-                            }
-                          // flux /= surf; // Fixed bug: Arithmetic exception
-                          if (std::fabs(surf) >= DMINFLOAT)
-                            flux /= surf;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp) - flux * face_normales(num_face, ncomp);
+                          double moy = 0.5 * (tab(num_face, ncomp) + tab(voisine, ncomp));
+                          tab(num_face, ncomp) = moy;
+                          tab(voisine, ncomp) = moy;
                         }
-                    }
+                  });
+                }
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else if ((sub_type(Symetrie, la_cl)) && (ch.nature_du_champ() == vectoriel))
+            {
+              if (nb_comp == dimension)
+                {
+                  CDoubleTabView face_normales = domaine_vef().face_normales().view_ro();
+                  DoubleTabView tab = ch_tab.view_rw();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    double surf = 0, flux = 0;
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      {
+                        double face_n = face_normales(num_face, ncomp);
+                        flux += tab(num_face, ncomp) * face_n;
+                        surf += face_n * face_n;
+                      }
+                    // flux /= surf; // Fixed bug: Arithmetic exception
+                    if (std::fabs(surf) >= DMINFLOAT)
+                      flux /= surf;
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      tab(num_face, ncomp) -= flux * face_normales(num_face, ncomp);
+                  });
+                  end_gpu_timer(__KERNEL_NAME__);
                 }
             }
-        }
-      else if (sub_type(Champ_Q1NC, ch.valeur()))
-        {
-          const Champ_Q1NC& chnc = ref_cast(Champ_Q1NC, ch.valeur());
-          nb_comp = chnc.nb_comp();
-          int ndeb, nfin, num_face, ncomp;
-          for (int i = 0; i < nb_cond_lim(); i++)
+          else if (sub_type(Dirichlet_entree_fluide, la_cl))
             {
-              const Cond_lim_base& la_cl = les_conditions_limites(i).valeur();
-              if (sub_type(Periodique, la_cl))
+              const Dirichlet_entree_fluide& la_cl_diri = ref_cast(Dirichlet_entree_fluide, la_cl);
+              CDoubleTabView val_imp = la_cl_diri.val_imp(temps).view_ro();
+              if (nb_comp == 1)
                 {
-                  // On fait en sorte que le champ ait la meme valeur
-                  // sur deux faces de periodicite qui sont en face l'une de l'autre
-                  const Periodique& la_cl_perio = ref_cast(Periodique, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  int voisine;
-                  double moy;
-                  for (num_face = ndeb; num_face < nfin; num_face++)
-                    {
-                      voisine = la_cl_perio.face_associee(num_face - ndeb) + ndeb;
-                      if (nb_comp == 1)
-                        {
-                          if (ch_tab[num_face] != ch_tab[voisine])
-                            {
-                              moy = 0.5 * (ch_tab[num_face] + ch_tab[voisine]);
-                              ch_tab[num_face] = moy;
-                              ch_tab[voisine] = moy;
-                            }
-                        }
-                      else
-                        {
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            if (ch_tab(num_face, ncomp) != ch_tab(voisine, ncomp))
-                              {
-                                moy = 0.5 * (ch_tab(num_face, ncomp) + ch_tab(voisine, ncomp));
-                                ch_tab(num_face, ncomp) = moy;
-                                ch_tab(voisine, ncomp) = moy;
-                              }
-                        }
-                    }
+                  DoubleArrView tab = static_cast<ArrOfDouble&>(ch_tab).view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin),
+                                       KOKKOS_LAMBDA(const int num_face)
+                  {
+                    tab(num_face) = val_imp(num_face - ndeb, 0);
+                  });
                 }
-              else if ((sub_type(Symetrie, la_cl)) && (ch->nature_du_champ() == vectoriel))
+              else
                 {
-                  const Domaine_VEF& zvef = chnc.domaine_vef();
-                  const DoubleTab& face_normales = zvef.face_normales();
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == dimension)
-                    {
-                      for (num_face = ndeb; num_face < nfin; num_face++)
-                        {
-                          double face_n, surf = 0, flux = 0;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            {
-                              face_n = face_normales(num_face, ncomp);
-                              flux += ch_tab(num_face, ncomp) * face_n;
-                              surf += face_n * face_n;
-                            }
-                          // flux /= surf; // Fixed bug: Arithmetic exception
-                          if (std::fabs(surf) >= DMINFLOAT)
-                            flux /= surf;
-                          for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                            ch_tab(num_face, ncomp) -= flux * face_normales(num_face, ncomp);
-                        }
-                    }
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      tab(num_face, ncomp) = val_imp(num_face - ndeb, ncomp);
+                  });
                 }
-              else if (sub_type(Dirichlet_entree_fluide, la_cl))
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else if (sub_type(Scalaire_impose_paroi, la_cl))
+            {
+              const Scalaire_impose_paroi& la_cl_diri = ref_cast(Scalaire_impose_paroi, la_cl);
+              CDoubleTabView val_imp = la_cl_diri.val_imp(temps).view_ro();
+              if (nb_comp == 1)
                 {
-                  const Dirichlet_entree_fluide& la_cl_diri = ref_cast(Dirichlet_entree_fluide, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb);
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp);
-                    }
+                  DoubleArrView tab = static_cast<ArrOfDouble&>(ch_tab).view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin),
+                                       KOKKOS_LAMBDA(const int num_face)
+                  {
+                    tab(num_face) = val_imp(num_face - ndeb, 0);
+                  });
                 }
-              else if (sub_type(Scalaire_impose_paroi, la_cl))
+              else
                 {
-                  const Scalaire_impose_paroi& la_cl_diri = ref_cast(Scalaire_impose_paroi, la_cl);
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      tab(num_face, ncomp) = val_imp(num_face - ndeb, ncomp);
+                  });
+                }
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else if ((sub_type(Dirichlet_paroi_fixe, la_cl)) && (ch.nature_du_champ() == multi_scalaire))
+            {
+              if (nb_comp == 1)
+                {
+                  DoubleArrView tab = static_cast<ArrOfDouble&>(ch_tab).view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin),
+                                       KOKKOS_LAMBDA(const int num_face)
+                  {
+                    tab(num_face) = 0;
+                  });
+                }
+              else
+                {
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
                       {
-                        ch_tab[num_face] = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb);
+                        tab(num_face, 0) = 0;
+                        tab(num_face, 1) = 0;
                       }
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp);
-                    }
+                  });
                 }
-              else if (sub_type(Dirichlet_paroi_fixe, la_cl))
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else if (sub_type(Dirichlet_paroi_fixe, la_cl))
+            {
+              if (nb_comp == 1)
                 {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = 0;
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = 0;
-                    }
+                  DoubleArrView tab = static_cast<ArrOfDouble&>(ch_tab).view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin),
+                                       KOKKOS_LAMBDA(const int num_face)
+                  {
+                    tab(num_face) = 0;
+                  });
                 }
-              else if (sub_type(Dirichlet_paroi_defilante, la_cl))
+              else
                 {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  const Dirichlet_paroi_defilante& la_cl_diri = ref_cast(Dirichlet_paroi_defilante, la_cl);
-                  ndeb = le_bord.num_premiere_face();
-                  nfin = ndeb + le_bord.nb_faces();
-                  if (nb_comp == 1)
-                    for (num_face = ndeb; num_face < nfin; num_face++)
-                      ch_tab[num_face] = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb);
-                  else
-                    {
-                      for (ncomp = 0; ncomp < nb_comp; ncomp++)
-                        for (num_face = ndeb; num_face < nfin; num_face++)
-                          ch_tab(num_face, ncomp) = la_cl_diri.val_imp_au_temps(temps, num_face - ndeb, ncomp);
-                    }
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      tab(num_face, ncomp) = 0;
+                  });
+                }
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else if (sub_type(Dirichlet_paroi_defilante, la_cl))
+            {
+              const Dirichlet_paroi_defilante& la_cl_diri = ref_cast(Dirichlet_paroi_defilante, la_cl);
+              CDoubleTabView face_normales = domaine_vef().face_normales().view_ro();
+              if (nb_comp != dimension)
+                {
+                  Cerr << "Cas non prevu dans Domaine_Cl_VEF::imposer_cond_lim." << finl;
+                  exit();
+                }
+              else
+                {
+                  CDoubleTabView val_imp = la_cl_diri.val_imp(temps).view_ro();
+                  DoubleTabView tab = ch_tab.view_wo();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA(const int num_face)
+                  {
+                    double surf = 0, flux = 0;
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      {
+                        double face_n = face_normales(num_face, ncomp);
+                        flux += val_imp(num_face - ndeb, ncomp) * face_n;
+                        surf += face_n * face_n;
+                      }
+                    // flux /= surf; // Fixed bug: Arithmetic exception
+                    if (std::fabs(surf) >= DMINFLOAT)
+                      flux /= surf;
+                    for (int ncomp = 0; ncomp < nb_comp; ncomp++)
+                      tab(num_face, ncomp) = val_imp(num_face - ndeb, ncomp) -
+                                             flux * face_normales(num_face, ncomp);
+                  });
+                  end_gpu_timer(__KERNEL_NAME__);
                 }
             }
         }
     }
   else
     {
-      Cerr << "Le type de Champ_Inc " << ch->que_suis_je() << " n'est pas prevu en VEF\n" << finl;
-
+      Cerr << "Le type de OWN_PTR(Champ_Inc_base) " << ch.que_suis_je() << " n'est pas prevu en VEF\n" << finl;
       exit();
     }
-  end_gpu_timer(0, "Boundary condition on Champ_Inc in Domaine_Cl_VEF::imposer_cond_lim");
-  copyPartialToDevice(ch_tab, 0, domaine_vef().premiere_face_int() * ch.valeur().nb_comp(), "Champ_Inc on boundary");
   ch_tab.echange_espace_virtuel();
 
   // PARTIE PRESSION
   // dans le cas Navier stokes et si la condition est forte en pression aux sommets on impose la valeur aux sommets
-  if (sub_type(Navier_Stokes_std, ch.valeur().equation()))
+  if (sub_type(Navier_Stokes_std, ch.equation()))
     {
-      const Domaine_VEF& domaine_vef = ref_cast(Domaine_VEF, equation().domaine_dis().valeur());
+      const Domaine_VEF& domaine_vef = ref_cast(Domaine_VEF, equation().domaine_dis());
       if ((domaine_vef.get_cl_pression_sommet_faible() == 0) && (domaine_vef.get_alphaS()))
         {
           int nps = domaine_vef.numero_premier_sommet();
-          DoubleTab& pression = ref_cast(Navier_Stokes_std,ch->equation()).pression().valeurs();
           int nbsom_tot = domaine_vef.nb_som_tot();
-          ArrOfDouble surf_loc(nbsom_tot);
+          DoubleTrav tab_surf_loc(nbsom_tot);
+          tab_surf_loc = 0;
+          DoubleTab& tab_pression = ref_cast(Navier_Stokes_std,ch.equation()).pression().valeurs();
           int nb_cond_lims = nb_cond_lim();
           // On boucle une premiere fois pour mettre a zero la pression aux sommets
           for (int i = 0; i < nb_cond_lims; i++)
@@ -702,18 +589,23 @@ void Domaine_Cl_VEF::imposer_cond_lim(Champ_Inc& ch, double temps)
               if (sub_type(Neumann_sortie_libre, la_cl))
                 {
                   const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  const IntTab& faces = domaine_vef.face_sommets();
-                  int nbsf = faces.dimension(1);
+                  int nbsf = domaine_vef.face_sommets().dimension(1);
                   int num2 = le_bord.nb_faces_tot();
-                  for (int ind_face = 0; ind_face < num2; ind_face++)
-                    {
-                      int face = le_bord.num_face(ind_face);
-                      for (int som = 0; som < nbsf; som++)
-                        {
-                          int som_glob = faces(face, som);
-                          pression(nps + som_glob) = 0;
-                        }
-                    }
+                  CIntTabView faces = domaine_vef.face_sommets().view_ro();
+                  CIntArrView num_face = le_bord.num_face().view_ro();
+                  DoubleArrView pression = static_cast<DoubleVect&>(tab_pression).view_rw();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                                       Kokkos::RangePolicy<>(0, num2), KOKKOS_LAMBDA(
+                                         const int ind_face)
+                  {
+                    int face = num_face(ind_face);
+                    for (int som = 0; som < nbsf; som++)
+                      {
+                        int som_glob = faces(face, som);
+                        Kokkos::atomic_store(&pression(nps + som_glob), 0);
+                      }
+                  });
+                  end_gpu_timer(__KERNEL_NAME__);
                 }
             }
 
@@ -725,21 +617,29 @@ void Domaine_Cl_VEF::imposer_cond_lim(Champ_Inc& ch, double temps)
                 {
                   const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre, la_cl);
                   const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  const IntTab& faces = domaine_vef.face_sommets();
-                  int nbsf = faces.dimension(1);
+                  int nbsf = domaine_vef.face_sommets().dimension(1);
                   int num2 = le_bord.nb_faces_tot();
-                  for (int ind_face = 0; ind_face < num2; ind_face++)
-                    {
-                      int face = le_bord.num_face(ind_face);
-                      double P_imp = la_sortie_libre.flux_impose(ind_face);
-                      double face_surf = domaine_vef.face_surfaces(face);
-                      for (int som = 0; som < nbsf; som++)
-                        {
-                          int som_glob = faces(face, som);
-                          pression(nps + som_glob) += P_imp * face_surf;
-                          surf_loc[som_glob] += face_surf;
-                        }
-                    }
+                  CIntArrView num_face = le_bord.num_face().view_ro();
+                  CIntTabView faces = domaine_vef.face_sommets().view_ro();
+                  CDoubleArrView flux_impose = static_cast<const DoubleVect&>(la_sortie_libre.flux_impose(true)).view_ro();
+                  CDoubleArrView face_surfaces = domaine_vef.face_surfaces().view_ro();
+                  DoubleArrView surf_loc = static_cast<DoubleVect&>(tab_surf_loc).view_rw();
+                  DoubleArrView pression = static_cast<DoubleVect&>(tab_pression).view_rw();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                                       Kokkos::RangePolicy<>(0, num2), KOKKOS_LAMBDA(
+                                         const int ind_face)
+                  {
+                    int face = num_face(ind_face);
+                    double P_imp = flux_impose(ind_face);
+                    double face_surf = face_surfaces(face);
+                    for (int som = 0; som < nbsf; som++)
+                      {
+                        int som_glob = faces(face, som);
+                        Kokkos::atomic_add(&pression(nps + som_glob), P_imp * face_surf);
+                        Kokkos::atomic_add(&surf_loc[som_glob], face_surf);
+                      }
+                  });
+                  end_gpu_timer(__KERNEL_NAME__);
                 }
             }
           // On boucle une troisieme fois pour diviser par la surface
@@ -748,28 +648,23 @@ void Domaine_Cl_VEF::imposer_cond_lim(Champ_Inc& ch, double temps)
               const Cond_lim_base& la_cl = les_conditions_limites(i).valeur();
               if (sub_type(Neumann_sortie_libre, la_cl))
                 {
-                  const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
-                  const IntTab& faces = domaine_vef.face_sommets();
-                  int nbsf = faces.dimension(1);
-                  int num2 = le_bord.nb_faces_tot();
-                  for (int ind_face = 0; ind_face < num2; ind_face++)
-                    {
-                      int face = le_bord.num_face(ind_face);
-                      for (int som = 0; som < nbsf; som++)
-                        {
-                          int som_glob = faces(face, som);
-                          double& surf = surf_loc[som_glob];
-                          if (surf > 0)
-                            {
-                              pression(nps + som_glob) /= surf;
-                              surf = -1;
-                            }
-                        }
-                    }
+                  DoubleArrView surf_loc = static_cast<DoubleVect&>(tab_surf_loc).view_rw();
+                  DoubleArrView pression = static_cast<DoubleVect&>(tab_pression).view_rw();
+                  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                                       Kokkos::RangePolicy<>(0, nbsom_tot), KOKKOS_LAMBDA(
+                                         const int som_glob)
+                  {
+                    if (surf_loc[som_glob] > 0)
+                      {
+                        pression(nps + som_glob) /= surf_loc[som_glob];
+                        surf_loc[som_glob] = 0;
+                      }
+                  });
+                  end_gpu_timer(__KERNEL_NAME__);
                 }
             }
-          pression.echange_espace_virtuel();
-          Debog::verifier("pression dans Domaine_Cl_VEF::imposer_cond_lim", pression);
+          tab_pression.echange_espace_virtuel();
+          Debog::verifier("pression dans Domaine_Cl_VEF::imposer_cond_lim", tab_pression);
         }
     }
 }
@@ -808,7 +703,7 @@ int Domaine_Cl_VEF::initialiser(double temps)
       if (modif_perio_fait_ == 0)
         {
           Cerr << "modification du Domaine_Cl_VEF pour periodicite" << finl;
-          const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis().valeur());
+          const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis());
           const DoubleVect& volumes_entrelaces = le_dom_VEF.volumes_entrelaces();
           remplir_volumes_entrelaces_Cl(le_dom_VEF);
           for (int i = 0; i < les_conditions_limites_.size(); i++)
@@ -853,10 +748,10 @@ int Domaine_Cl_VEF::initialiser(double temps)
 
 Domaine_VEF& Domaine_Cl_VEF::domaine_vef()
 {
-  return ref_cast(Domaine_VEF, domaine_dis().valeur());
+  return ref_cast(Domaine_VEF, domaine_dis());
 }
 
 const Domaine_VEF& Domaine_Cl_VEF::domaine_vef() const
 {
-  return ref_cast(Domaine_VEF, domaine_dis().valeur());
+  return ref_cast(Domaine_VEF, domaine_dis());
 }

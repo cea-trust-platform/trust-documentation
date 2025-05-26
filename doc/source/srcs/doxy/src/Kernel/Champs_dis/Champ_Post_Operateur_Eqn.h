@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,7 +22,7 @@
 
 class Equation_base;
 
-/*! @brief class Champ_Post_Operateur_Eqn Champ destine a post-traiter le gradient d un champ generique
+/*! @brief class Champ_Post_Operateur_Eqn OWN_PTR(Champ_base) destine a post-traiter le gradient d un champ generique
  *
  *  La classe porte un operateur statistique "gradient"
  *
@@ -48,9 +48,9 @@ public:
 
   const Noms get_property(const Motcle& query) const override;
   Entity  get_localisation(const int index = -1) const override;
-  const Champ_base&  get_champ(Champ& espace_stockage) const override;
-  const Champ_base&  get_champ_without_evaluation(Champ& espace_stockage) const override;
-
+  const Champ_base&  get_champ(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base&  get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base&  get_champ_compo_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const;
 
   const Operateur_base& Operateur() const override;
   Operateur_base& Operateur() override;
@@ -59,12 +59,11 @@ public:
   //virtual Entree &   lire(const Motcle & motcle, Entree & is);
   void set_param(Param& param) override;
   void verification_cas_compo() const;
-  const Champ_base&  get_champ_compo_without_evaluation(Champ& espace_stockage) const;
 
 protected:
   int numero_source_,numero_op_, numero_masse_;
-  REF(Equation_base) ref_eq_;
-  int sans_solveur_masse_;
+  OBS_PTR(Equation_base) ref_eq_;
+  bool sans_solveur_masse_ = false;
   Entity localisation_inco_ = Entity::NODE;
   int compo_;                            //Pour identifier la composante a recuperer
 };

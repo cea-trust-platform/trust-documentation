@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -856,40 +856,71 @@ Matrice_Morse& Matrice_Morse::partie_sup(const Matrice_Morse& a)
  * Operation: resu = resu + A*x
  *
  */
-DoubleVect& Matrice_Morse::ajouter_multvect_(const DoubleVect& x,DoubleVect& resu) const
+DoubleVect& Matrice_Morse::ajouter_multvect_(const DoubleVect& tab_x,DoubleVect& tab_resu) const
 {
-  assert_check_morse_matrix_structure( );
+  assert_check_morse_matrix_structure();
   const int n = tab1_.size_array() - 1;
-
-  assert(x.size_array() == nb_colonnes());
+  assert(tab_x.size_array() == nb_colonnes());
   // Test dans cet ordre car l'attribut size() peut etre invalide:
-  assert(resu.size_array() == n || resu.size() == n);
-
-  const int *tab1_ptr = tab1_.addr() + 1;
-  const int *tab2_ptr = tab2_.addr();
-  const double *coeff_ptr = coeff_.addr();
-  const double * x_fortran = x.addr() - 1; // Pour indexer x avec un indice fortran
-  int k_fortran = 1; // indice fortran dans tab2 et coeff
-  for (int i = 0; i < n; i++, tab1_ptr++)
+  assert(tab_resu.size_array() == n || tab_resu.size() == n);
+  // If matrix, x, resu are on device, we compute on the device to avoid expensive copy during TRUST GCP:
+  if (tab_x.isDataOnDevice() && tab_resu.isDataOnDevice() && coeff_.isDataOnDevice())
     {
-      const int kmax = *tab1_ptr; // tab1_[i+1] = indice fortran dans tab2_
-      assert(kmax >= k_fortran && kmax <= (tab2_.size_array()+1));
-      double t = resu[i];
-      assert(k_fortran == tab1_[i] && tab2_ptr == tab2_.addr()+(k_fortran-1));
-      for (; k_fortran < kmax; k_fortran++, tab2_ptr++, coeff_ptr++)
-        {
-          int colonne = *tab2_ptr; // indice fortran
-          assert(colonne >= 1 && colonne <= nb_colonnes());
-          t += (*coeff_ptr) * x_fortran[colonne];
-        }
-      resu[i] = t;
+      //if (tab_x.line_size()>1) Process::exit("line_size>1 pour x dans Matrice_Morse::ajouter_multvect_");
+      // Faster implementation on GPU (ToDo Kokkos: future, use Kokkos kernel?)
+      CIntArrView tab1 = tab1_.view_ro();
+      CIntArrView tab2 = tab2_.view_ro();
+      CDoubleArrView coeff = coeff_.view_ro();
+      CDoubleArrView x = tab_x.view_ro();
+      DoubleArrView resu = tab_resu.view_rw();
+      start_gpu_timer(__KERNEL_NAME__);
+      Kokkos::parallel_for(__KERNEL_NAME__,
+                           Kokkos::RangePolicy<>(0, n), KOKKOS_LAMBDA(
+                             const int i)
+      {
+        for (int k = tab1(i) - 1; k < tab1(i + 1) - 1; k++)
+          {
+            int j = tab2(k) - 1;
+            resu(i) += coeff(k) * x(j);
+          }
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
-  return resu;
+  else
+    {
+      tab_x.ensureDataOnHost();
+      tab_resu.ensureDataOnHost();
+      coeff_.ensureDataOnHost();
+      // Fast CPU (old) implementation with pointer:
+      const DoubleVect& x = tab_x;
+      DoubleVect& resu = tab_resu;
+      const int *tab1_ptr = tab1_.addr() + 1;
+      const int *tab2_ptr = tab2_.addr();
+      const double *coeff_ptr = coeff_.addr();
+      const double *x_fortran = x.addr() - 1; // Pour indexer x avec un indice fortran
+      int k_fortran = 1; // indice fortran dans tab2 et coeff
+      for (int i = 0; i < n; i++, tab1_ptr++)
+        {
+          const int kmax = *tab1_ptr; // tab1_[i+1] = indice fortran dans tab2_
+          assert(kmax >= k_fortran && kmax <= (tab2_.size_array() + 1));
+          double t = resu[i];
+          assert(k_fortran == tab1_[i] && tab2_ptr == tab2_.addr() + (k_fortran - 1));
+          for (; k_fortran < kmax; k_fortran++, tab2_ptr++, coeff_ptr++)
+            {
+              int colonne = *tab2_ptr; // indice fortran
+              assert(colonne >= 1 && colonne <= nb_colonnes());
+              t += (*coeff_ptr) * x_fortran[colonne];
+            }
+          resu[i] = t;
+        }
+    }
+  return tab_resu;
 }
 
 // Multiplication de la matrice par un vecteur x en prenant uniquement les items reels non communs pour x
 ArrOfDouble& Matrice_Morse::ajouter_multvect_(const ArrOfDouble& x,ArrOfDouble& resu,ArrOfInt& est_reel_pas_com) const
 {
+  ToDo_Kokkos("critical ?");
   assert_check_morse_matrix_structure( );
   int n = nb_lignes();
 
@@ -1623,7 +1654,7 @@ Matrice_Morse& Matrice_Morse::affecte_prod(const Matrice_Morse& a, const Matrice
                   if (len > nzmax-1)
                     {
                       // Cerr << "Matrice_Morse::affect_prod len > nzmax -1 " << nzmax << finl;
-                      nzmax += nrow/ii*nzmax;
+                      nzmax *= 2;
                       coeff_.resize(nzmax);
                       tab2_.resize(nzmax);
                     }
@@ -1799,48 +1830,20 @@ template<> inline void _fill_slot<const double *>(const double*& dest, const dou
 template<typename _TAB_T_, typename _VALUE_T_>
 inline void Matrice_Morse::get_stencil_coeff_templ( IntTab& stencil, _TAB_T_& coeffs_span) const
 {
-  coeffs_span.resize( 0 );
   coeffs_span.resize(tab2_.size_array());
-
-  stencil.resize( 0, 2 );
   stencil.resize(tab2_.size_array(), 2);
-
-
-  IntTab tmp1(0);
-
-
-  std::vector<_VALUE_T_> tmp2;
-
-  ArrOfInt index;
-
   int compteur = 0;
-
   const int nb_lines = nb_lignes( );
   for ( int i=0; i<nb_lines; ++i )
     {
-      int k0   = tab1_( i ) - 1;
-      int k1   = tab1_( i + 1 ) - 1;
-      int size = k1 - k0;
-
-      tmp1.resize( size );
-      tmp2.resize( size );
-
-      index.resize_array( 0 );
-
+      const int k0 = tab1_( i ) - 1;
+      const int k1 = tab1_( i + 1 ) - 1;
+      const int size = k1 - k0;
       for ( int k=0; k<size; ++k )
         {
-          tmp1( k ) = tab2_( k + k0 ) - 1;
-          ::_fill_slot<_VALUE_T_>(tmp2[k], coeff_(k+k0));
-        }
-
-      tri_lexicographique_tableau_indirect( tmp1, index );
-
-      for ( int k=0; k<size; ++k )
-        {
-          int l = index[ k ];
           stencil( compteur + k , 0 ) = i;
-          stencil( compteur + k , 1 ) = tmp1[ l ];
-          coeffs_span[ compteur + k ] = tmp2[ l ];
+          stencil( compteur + k , 1 ) = tab2_( k + k0 ) - 1;
+          ::_fill_slot<_VALUE_T_>(coeffs_span[ compteur + k ], coeff_(k+k0));
         }
       compteur += size;
     }
@@ -2085,8 +2088,7 @@ int Matrice_Morse_test()
 
 void Matrice_Morse::clean()
 {
-  for (int i=0; i<nb_coeff(); i++)
-    coeff_[i]=0.;
+  coeff_ = 0;
 }
 
 /*! @brief Calcule la largeur de bande d'une matrice morse
@@ -2111,7 +2113,7 @@ int Matrice_Morse::largeur_de_bande() const
   return min;
 }
 
-bool Matrice_Morse::check_morse_matrix_structure( void ) const
+bool Matrice_Morse::check_morse_matrix_structure() const
 {
   const int nb_lines   = nb_lignes( );
   const int nb_columns = nb_colonnes( );
@@ -2167,7 +2169,7 @@ bool Matrice_Morse::check_morse_matrix_structure( void ) const
   return true;
 }
 
-bool Matrice_Morse::check_sorted_morse_matrix_structure( void ) const
+bool Matrice_Morse::check_sorted_morse_matrix_structure() const
 {
   const int nb_lines   = nb_lignes( );
   const int nb_columns = nb_colonnes( );
@@ -2233,7 +2235,7 @@ bool Matrice_Morse::check_sorted_morse_matrix_structure( void ) const
 }
 
 
-void Matrice_Morse::assert_check_morse_matrix_structure( void ) const
+void Matrice_Morse::assert_check_morse_matrix_structure() const
 {
   if (!morse_matrix_structure_has_changed_) return;
 #ifndef NDEBUG
@@ -2248,7 +2250,7 @@ void Matrice_Morse::assert_check_morse_matrix_structure( void ) const
 #endif
 }
 
-void Matrice_Morse::assert_check_sorted_morse_matrix_structure( void ) const
+void Matrice_Morse::assert_check_sorted_morse_matrix_structure() const
 {
   if (!morse_matrix_structure_has_changed_) return;
 #ifndef NDEBUG
@@ -2313,6 +2315,25 @@ void Matrice_Morse::sort_stencil()
   for (int i = 0; i + 1 < tab1_.size(); i++) //indice de ligne
     std::sort(tab2_.addr() + tab1_(i) - 1, tab2_.addr() + tab1_(i + 1) - 1);
   morse_matrix_structure_has_changed_ = sorted_ = 1;
+}
+
+// Check if the matrix is sorted based on a stencil condition
+bool Matrice_Morse::is_sorted_stencil() const
+{
+  if (!sorted_)
+    {
+      const int n = nb_lignes();
+      for (int i = 0; i < n; i++)
+        {
+          const int k0 = tab1_( i ) - 1;
+          const int k1 = tab1_( i + 1 ) - 1;
+          for (int k=k0; k<k1-1; k++)
+            if (tab2_(k)>tab2_(k+1))
+              return sorted_; // not sorted
+        }
+      sorted_ = true;
+    }
+  return sorted_;
 }
 
 // Check the matrix is diagonal:

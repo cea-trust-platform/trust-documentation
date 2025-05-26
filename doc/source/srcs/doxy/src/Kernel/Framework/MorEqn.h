@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,8 +19,8 @@
 #include <TRUST_Ref.h>
 #include <Motcle.h>
 
+class Champ_base;
 class Equation_base;
-class Champ;
 
 /*! @brief classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une
  *
@@ -36,7 +36,7 @@ class MorEqn
 
 public:
   void associer_eqn(const Equation_base&);
-  virtual void calculer_pour_post(Champ& espace_stockage,const Nom& option, int comp) const;
+  virtual void calculer_pour_post(Champ_base& espace_stockage,const Nom& option, int comp) const;
   virtual Motcle get_localisation_pour_post(const Nom& option) const;
   inline const Equation_base& equation() const;
   inline Equation_base& equation();
@@ -46,7 +46,7 @@ public:
   /* compatibilite avec les equations multiphase : par defaut, message d'erreur */
   virtual void check_multiphase_compatibility() const;
 protected :
-  REF(Equation_base) mon_equation;
+  OBS_PTR(Equation_base) mon_equation;
   inline virtual ~MorEqn();
 };
 

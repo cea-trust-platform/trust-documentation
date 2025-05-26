@@ -71,7 +71,7 @@ void Champ_Generique_Morceau_Equation::completer(const Postraitement_base& post)
   if (sub_type(Champ_Generique_refChamp,get_source(0)))
     {
 
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       const Champ_base& mon_champ = get_source(0).get_champ(espace_stockage);
       if (sub_type(Champ_Inc_base,mon_champ))
         {
@@ -112,9 +112,9 @@ void Champ_Generique_Morceau_Equation::completer(const Postraitement_base& post)
   Champ_Gen_de_Champs_Gen::completer(post);
 }
 
-Champ_Fonc& Champ_Generique_Morceau_Equation::creer_espace_stockage(const Nature_du_champ& nature,
-                                                                    const int nb_comp,
-                                                                    Champ_Fonc& es_tmp) const
+OWN_PTR(Champ_Fonc_base)& Champ_Generique_Morceau_Equation::creer_espace_stockage(const Nature_du_champ& nature,
+                                                                                  const int nb_comp,
+                                                                                  OWN_PTR(Champ_Fonc_base)& es_tmp) const
 {
   Noms noms;
   Noms unites;
@@ -145,14 +145,14 @@ Champ_Fonc& Champ_Generique_Morceau_Equation::creer_espace_stockage(const Nature
 /*! @brief le morceau d equation lance la discretisation du champ espace_stockage et remplit son tableau de valeurs par la methode calculer_pour_post(.
  *
  * ..)
- *  Rq : Ce procede differe de celui applique dans les autres Champ_Generique pour lesquels
+ *  Rq : Ce procede differe de celui applique dans les autres Champ_Generique_base pour lesquels
  *  le remplissage du tableau de valeurs de espace_stockage n'est pas delegue
  *
  *
  */
-const Champ_base& Champ_Generique_Morceau_Equation::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Morceau_Equation::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   Nature_du_champ nature;
   int nb_comp = -1;
 
@@ -169,14 +169,14 @@ const Champ_base& Champ_Generique_Morceau_Equation::get_champ(Champ& espace_stoc
 
   espace_stockage = creer_espace_stockage(nature,nb_comp,es_tmp);
   morceau().calculer_pour_post(espace_stockage,option_,compo_);
-  DoubleTab& es_val = espace_stockage.valeurs();
+  DoubleTab& es_val = espace_stockage->valeurs();
   es_val.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
-const Champ_base& Champ_Generique_Morceau_Equation::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Morceau_Equation::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   Nature_du_champ nature;
   int nb_comp = -1;
 
@@ -187,7 +187,7 @@ const Champ_base& Champ_Generique_Morceau_Equation::get_champ_without_evaluation
     }
 
   espace_stockage = creer_espace_stockage(nature,nb_comp,es_tmp);
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 const Noms Champ_Generique_Morceau_Equation::get_property(const Motcle& query) const
 {
@@ -321,7 +321,7 @@ void Champ_Generique_Morceau_Equation::nommer_source()
 
 }
 
-//Rend le morceau d equation considere pour ce Champ_Generique
+//Rend le morceau d equation considere pour ce Champ_Generique_base
 //Actuellement seul type de morceau considere : les operateurs
 //Pour considerer  d autres morceaux d equation il faudra tester type_morceau_
 const MorEqn& Champ_Generique_Morceau_Equation::morceau() const

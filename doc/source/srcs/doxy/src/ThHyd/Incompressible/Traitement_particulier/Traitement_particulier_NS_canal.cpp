@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,6 +29,14 @@
 #include <Champ_Uniforme.h>
 
 Implemente_base_sans_constructeur(Traitement_particulier_NS_canal,"Traitement_particulier_NS_canal",Traitement_particulier_NS_base);
+// XD canal traitement_particulier_base canal -1 Keyword for statistics on a periodic plane channel.
+// XD attr dt_impr_moy_spat floattant dt_impr_moy_spat 1 Period to print the spatial average (default value is 1e6).
+// XD attr dt_impr_moy_temp floattant dt_impr_moy_temp 1 Period to print the temporal average (default value is 1e6).
+// XD attr debut_stat floattant debut_stat 1 Time to start the temporal averaging (default value is 1e6).
+// XD attr fin_stat floattant fin_stat 1 Time to end the temporal averaging (default value is 1e6).
+// XD attr pulsation_w floattant pulsation_w 1 Pulsation for phase averaging (in case of pulsating forcing term) (no default value).
+// XD attr nb_points_par_phase entier nb_points_par_phase 1 Number of samples to represent phase average all along a period (no default value).
+// XD attr reprise chaine reprise 1 val_moy_temp_xxxxxx.sauv : Keyword to resume a calculation with previous averaged quantities. NL2 Note that for thermal and turbulent problems, averages on temperature and turbulent viscosity are automatically calculated. To resume a calculation with phase averaging, val_moy_temp_xxxxxx.sauv_phase file is required on the directory where the job is submitted (this last file will be then automatically loaded by TRUST).
 
 Traitement_particulier_NS_canal::Traitement_particulier_NS_canal()
 {
@@ -181,22 +189,19 @@ void Traitement_particulier_NS_canal::remplir_Tab_recap(IntTab& Tab_rec) const
 
 void Traitement_particulier_NS_canal::preparer_calcul_particulier()
 {
-  const RefObjU& modele_turbulence = mon_equation.valeur().get_modele(TURBULENCE);
+  const RefObjU& modele_turbulence = mon_equation->get_modele(TURBULENCE);
   if (modele_turbulence.non_nul() && sub_type(Modele_turbulence_hyd_base,modele_turbulence.valeur()))
     {
       oui_profil_nu_t = 1;
       Nval=13;
     }
 
-  if (mon_equation.valeur().probleme().nombre_d_equations()>1)
-    try
+  if (mon_equation->probleme().nombre_d_equations()>1)
+    if (mon_equation->probleme().equation(1).has_champ("temperature"))
       {
-        Temp = mon_equation.valeur().probleme().equation(1).get_champ("temperature");
+        Temp = mon_equation->probleme().equation(1).get_champ("temperature");
         oui_profil_Temp = 1 ;
         Nval=18;
-      }
-    catch (Champs_compris_erreur&)
-      {
       }
 
   remplir_Y(Y,compt,Ny); // renvoie vers Traitement_particulier_NS_canal_VDF ou Traitement_particulier_NS_canal_VEF
@@ -681,7 +686,7 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
   /////////////////////////////////////////////////////////
   // !!!!!  Hypotheses : maillage symetrique suivant la demi-hauteur et s'etendant de Y=0 a Y=H
 
-  Nom nom_discr=mon_equation.valeur().discretisation().que_suis_je();
+  Nom nom_discr=mon_equation->discretisation().que_suis_je();
   // indice du premier point hors paroi
   int kmin=(nom_discr=="VEFPreP1B" || nom_discr=="VEF") ? 1 : 0;
   int kmax=Y_tot.size()-1-kmin;                         // indice du dernier point hors paroi
@@ -720,15 +725,15 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
   double retau_robin_m=0.;
   double utau_robin_m=0.;
 
-  const RefObjU& modele_turbulence         = mon_equation.valeur().get_modele(TURBULENCE);
+  const RefObjU& modele_turbulence         = mon_equation->get_modele(TURBULENCE);
   const Equation_base& eqn                 = ref_cast(Equation_base,mon_equation.valeur()) ;
-  const Domaine_Cl_dis_base& domaine_Cl_dis_base = ref_cast(Domaine_Cl_dis_base,eqn.domaine_Cl_dis().valeur());
+  const Domaine_Cl_dis_base& domaine_Cl_dis_base = ref_cast(Domaine_Cl_dis_base,eqn.domaine_Cl_dis());
   const Conds_lim& les_cl                  = domaine_Cl_dis_base.les_conditions_limites();
-  const Domaine_VF& domaine_VF                   = ref_cast(Domaine_VF,eqn.domaine_dis().valeur());
+  const Domaine_VF& domaine_VF                   = ref_cast(Domaine_VF,eqn.domaine_dis());
   double tps                               = mon_equation->inconnue().temps();
 
   double nb_pas_dt=mon_equation->schema_temps().nb_pas_dt();
-  int reprise = mon_equation.valeur().probleme().reprise_effectuee();
+  int reprise = mon_equation->probleme().reprise_effectuee();
   bool new_file = ( nb_pas_dt == 0 && reprise == 0 );
   IOS_OPEN_MODE mode;
   if (new_file == 0)
@@ -739,22 +744,22 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
   for (auto& itr : les_cl)
     {
       const Cond_lim& la_cl = itr;
-      if (la_cl.valeur().que_suis_je() == "Paroi_decalee_Robin")
+      if (la_cl->que_suis_je() == "Paroi_decalee_Robin")
         nb_cl_robin+=1;
       if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()))
         nb_cl_diri+=1;
     }
 
-  if (modele_turbulence.non_nul() && !ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur()).loi_paroi().valeur().que_suis_je().debute_par("negligeable"))
+  if (modele_turbulence.non_nul() && !ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur()).loi_paroi().que_suis_je().debute_par("negligeable"))
     {
       // PQ : 13/07/05 : prise en compte des lois de paroi pour le calcul de u_tau
       // Hypotheses :    1ere condition de Dirichlet = paroi basse
       //                 2eme condition de Dirichlet = paroi haute
       //                 maillage regulier suivant x
-      const Fluide_base& fluide = ref_cast(Fluide_base,mon_equation.valeur().probleme().equation(0).milieu());
-      const Turbulence_paroi& loipar           = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur()).loi_paroi();
+      const Fluide_base& fluide = ref_cast(Fluide_base,mon_equation->probleme().equation(0).milieu());
+      const Turbulence_paroi_base& loipar = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur()).loi_paroi();
       DoubleTab tau_tan;
-      tau_tan.ref(loipar->Cisaillement_paroi());
+      tau_tan.ref(loipar.Cisaillement_paroi());
 
 //      int num_cl_rep=0;
 //      int nbfaces=0;
@@ -776,11 +781,11 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
           double rho = 0.;
           double mu = 0.;
 
-          if ( sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+          if ( sub_type(Champ_Uniforme,fluide.masse_volumique()) )
             {
               rho = fluide.masse_volumique().valeurs()(0,0);
             }
-          if ( sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+          if ( sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
             {
               mu = fluide.viscosite_dynamique().valeurs()(0,0);
             }
@@ -790,14 +795,14 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
           for (auto& itr : les_cl)
             {
               tauw_diri_tmp=0.;
-              if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+              if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                 rho = 0.;
-              if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+              if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                 mu = 0.;
               const Cond_lim& la_cl = itr;
               if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()))
                 {
-                  const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+                  const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
                   nbfaces_bord_diri = la_front_dis.nb_faces();
                   int ndeb = la_front_dis.num_premiere_face();
                   int nfin = ndeb + nbfaces_bord_diri;
@@ -811,9 +816,9 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
                           int elem = domaine_VF.face_voisins(fac,0);
                           if (elem == -1)
                             elem = domaine_VF.face_voisins(fac,1);
-                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                             rho += fluide.masse_volumique().valeurs()[elem];
-                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                             mu += fluide.viscosite_dynamique().valeurs()[elem];
                         }
                     }
@@ -827,20 +832,21 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
                           int elem = domaine_VF.face_voisins(fac,0);
                           if (elem == -1)
                             elem = domaine_VF.face_voisins(fac,1);
-                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                             rho += fluide.masse_volumique().valeurs()[elem];
-                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                             mu += fluide.viscosite_dynamique().valeurs()[elem];
                         }
                     }
-                  tauw_diri_tmp=mp_sum(tauw_diri_tmp)/mp_sum(nbfaces_bord_diri);
-                  if(!(mon_equation.valeur().probleme().is_dilatable()))
+                  double nb_fac_bord_diri_tot = mp_sum_as_double(nbfaces_bord_diri);
+                  tauw_diri_tmp=mp_sum(tauw_diri_tmp)/nb_fac_bord_diri_tot;
+                  if(!(mon_equation->probleme().is_dilatable()))
                     tauw_diri_tmp *= rho ;
 
-                  if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
-                    rho=mp_sum(rho)/mp_sum(nbfaces_bord_diri);
-                  if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
-                    mu=mp_sum(mu)/mp_sum(nbfaces_bord_diri);
+                  if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
+                    rho=mp_sum(rho)/nb_fac_bord_diri_tot;
+                  if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
+                    mu=mp_sum(mu)/nb_fac_bord_diri_tot;
 
                   tauw_diri(numero_bord_diri) = tauw_diri_tmp;
                   utau_diri(numero_bord_diri) = sqrt(tauw_diri_tmp/rho);
@@ -899,11 +905,11 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
           double rho = 0.;
           double mu = 0.;
 
-          if ( sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+          if ( sub_type(Champ_Uniforme,fluide.masse_volumique()) )
             {
               rho = fluide.masse_volumique().valeurs()(0,0);
             }
-          if ( sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+          if ( sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
             {
               mu = fluide.viscosite_dynamique().valeurs()(0,0);
             }
@@ -913,14 +919,14 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
           for (auto& itr : les_cl)
             {
               tauw_robin_tmp=0.;
-              if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+              if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                 rho = 0.;
-              if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+              if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                 mu = 0.;
               const Cond_lim& la_cl = itr;
-              if (la_cl.valeur().que_suis_je() == "Paroi_decalee_Robin")
+              if (la_cl->que_suis_je() == "Paroi_decalee_Robin")
                 {
-                  const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+                  const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
                   nbfaces_bord_robin = la_front_dis.nb_faces();
                   int ndeb = la_front_dis.num_premiere_face();
                   int nfin = ndeb + nbfaces_bord_robin;
@@ -934,9 +940,9 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
                           int elem = domaine_VF.face_voisins(fac,0);
                           if (elem == -1)
                             elem = domaine_VF.face_voisins(fac,1);
-                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                             rho+=fluide.masse_volumique().valeurs()[elem];
-                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                             mu+=fluide.viscosite_dynamique().valeurs()[elem];
                         }
                     }
@@ -950,20 +956,21 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
                           int elem = domaine_VF.face_voisins(fac,0);
                           if (elem == -1)
                             elem = domaine_VF.face_voisins(fac,1);
-                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
                             rho+=fluide.masse_volumique().valeurs()[elem];
-                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
+                          if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
                             mu+=fluide.viscosite_dynamique().valeurs()[elem];
                         }
                     }
-                  tauw_robin_tmp=mp_sum(tauw_robin_tmp)/mp_sum(nbfaces_bord_robin);
-                  if(!(mon_equation.valeur().probleme().is_dilatable()))
+                  double nb_fac_bord_rob_tot = mp_sum_as_double(nbfaces_bord_robin);
+                  tauw_robin_tmp=mp_sum(tauw_robin_tmp)/nb_fac_bord_rob_tot;
+                  if(!(mon_equation->probleme().is_dilatable()))
                     tauw_robin_tmp *= rho ;
 
-                  if ( !sub_type(Champ_Uniforme,fluide.masse_volumique().valeur()) )
-                    rho=mp_sum(rho)/mp_sum(nbfaces_bord_robin);
-                  if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique().valeur()) )
-                    mu=mp_sum(mu)/mp_sum(nbfaces_bord_robin);
+                  if ( !sub_type(Champ_Uniforme,fluide.masse_volumique()) )
+                    rho=mp_sum(rho)/nb_fac_bord_rob_tot;
+                  if ( !sub_type(Champ_Uniforme,fluide.viscosite_dynamique()) )
+                    mu=mp_sum(mu)/nb_fac_bord_rob_tot;
 
                   tauw_robin(numero_bord_robin) = tauw_robin_tmp;
                   utau_robin(numero_bord_robin) = sqrt(tauw_robin_tmp/rho);
@@ -1016,7 +1023,7 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
 //          const Cond_lim& la_cl = les_cl[num_cl];
 //          if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()))
 //            {
-//              const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+//              const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
 //              nbfaces = la_front_dis.nb_faces();
 //              int ndeb = la_front_dis.num_premiere_face();
 //              int nfin = ndeb + nbfaces;
@@ -1045,7 +1052,7 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
 //          const Cond_lim& la_cl = les_cl[num_cl];
 //          if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()))
 //            {
-//              const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+//              const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
 //              nbfaces = la_front_dis.nb_faces();
 //              int ndeb = la_front_dis.num_premiere_face();
 //              int nfin = ndeb + nbfaces;
@@ -1065,7 +1072,7 @@ void Traitement_particulier_NS_canal::calcul_reynolds_tau()
 //      nbfaces_tot=mp_sum(nbfaces);
 //      if (nbfaces_tot)
 //        tauwh=mp_sum(tauwh)/nbfaces_tot;
-//      if(!(mon_equation.valeur().probleme().is_QC()))
+//      if(!(mon_equation->probleme().is_QC()))
 //        {
 //          tauwb*=rho_bas;
 //          tauwh*=rho_haut;

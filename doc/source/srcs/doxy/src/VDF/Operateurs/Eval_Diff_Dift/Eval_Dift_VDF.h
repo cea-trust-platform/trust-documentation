@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,9 +16,8 @@
 #ifndef Eval_Dift_VDF_included
 #define Eval_Dift_VDF_included
 
-#include <Turbulence_paroi_scal.h>
+#include <Turbulence_paroi_scal_base.h>
 #include <Eval_Diff_VDF.h>
-#include <Champ_Fonc.h>
 #include <TRUSTVects.h>
 #include <TRUST_Ref.h>
 
@@ -88,22 +87,22 @@ public:
       }
   }
 
-  inline const Champ_Fonc& diffusivite_turbulente() const { return ref_diffusivite_turbulente_.valeur(); }
+  inline const Champ_Fonc_base& diffusivite_turbulente() const { return ref_diffusivite_turbulente_.valeur(); }
 
-  inline void associer_diff_turb(const Champ_Fonc& diff_turb)
+  inline void associer_diff_turb(const Champ_Fonc_base& diff_turb)
   {
     ref_diffusivite_turbulente_ = diff_turb;
     tab_diffusivite_turbulente.ref(diff_turb.valeurs());
     is_multi_ = (diff_turb.valeurs().dimension(1) > 1) ? 1 : 0;
   }
 
-  inline virtual void associer_loipar(const Turbulence_paroi_scal& loi_paroi) { loipar = loi_paroi; }
+  inline virtual void associer_loipar(const Turbulence_paroi_scal_base& loi_paroi) { loipar = loi_paroi; }
   inline virtual void init_ind_fluctu_term() { /* do nothing */}
 
 protected:
   int is_multi_ = 0;
-  REF(Champ_Fonc) ref_diffusivite_turbulente_;
-  REF(Turbulence_paroi_scal) loipar;
+  OBS_PTR(Champ_Fonc_base) ref_diffusivite_turbulente_;
+  OBS_PTR(Turbulence_paroi_scal_base) loipar;
   DoubleVects equivalent_distance;
   DoubleTab tab_diffusivite_turbulente;
 };

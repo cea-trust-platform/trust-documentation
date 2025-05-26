@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,6 +30,9 @@
 #include <Champ_P0_VEF.h>
 #include <TRUSTTab_parts.h>
 #include <Frontiere_dis_base.h>
+
+#include <kokkos++.h>
+#include <TRUSTArray_kokkos.tpp>
 
 DoubleVect& Champ_P1iP1B_implementation::valeur_a_elem(const DoubleVect& position, DoubleVect& val, int le_poly) const
 {
@@ -73,8 +76,6 @@ double Champ_P1iP1B_implementation::valeur_a_elem_compo(const DoubleVect& positi
 // Renvoie le tableau val contenant les valeurs du champ aux points
 DoubleTab& Champ_P1iP1B_implementation::valeur_aux_elems(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& val) const
 {
-  int som;
-  double xs,ys,zs=0;
   // zs bien initialise en 3D
 
   const Domaine_VEF& zvef = domaine_vef();
@@ -98,47 +99,58 @@ DoubleTab& Champ_P1iP1B_implementation::valeur_aux_elems(const DoubleTab& positi
 
   if (nb_compo_ == 1)
     {
-      for(int rang_poly=0; rang_poly<les_polys_size; rang_poly++)
-        {
-          // On initialise
-          val(rang_poly,0) = 0.;
+      // HIP Kokkos prevent from the function calls inside the Kokkos region:
+      // Error: error: reference to __host__ function 'get_alphaE' in __host__ __device__ function
+      bool alphaE = zvef.get_alphaE();
+      bool alphaS = zvef.get_alphaS();
+      CDoubleArrView champ_filtre_v = static_cast<DoubleVect&>(champ_filtre_).view_ro();
+      CIntTabView sommet_poly_v = sommet_poly.view_ro();
+      CDoubleTabView coord_v = coord.view_ro();
+      CDoubleTabView positions_v = positions.view_ro();
+      CIntArrView les_polys_v = les_polys.view_ro();
+      DoubleTabView val_v = val.view_rw();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),les_polys_size, KOKKOS_LAMBDA(
+                             const int rang_poly)
+      {
+        // On initialise
+        val_v(rang_poly,0) = 0.;
 
-          // On prend le_poly
-          int le_poly=les_polys(rang_poly);
-          if (le_poly != -1)
-            {
-              // Contribution P0
-              if (zvef.get_alphaE())
-                val(rang_poly,0) += champ_filtre_(le_poly);
-              // Contribution P1
-              if (zvef.get_alphaS())
-                {
-                  xs = positions(rang_poly,0);
-                  ys = positions(rang_poly,1);
-                  if (dimension == 3)
-                    zs = positions(rang_poly,2);
+        // On prend le_poly
+        int le_poly=les_polys_v(rang_poly);
+        if (le_poly != -1)
+          {
+            // Contribution P0
+            if (alphaE)
+              val_v(rang_poly, 0) += champ_filtre_v(le_poly);
+            // Contribution P1
+            if (alphaS)
+              {
+                double xs = positions_v(rang_poly,0);
+                double ys = positions_v(rang_poly,1);
+                double zs = (dimension == 3) ? positions_v(rang_poly,2) : 0;
 
-                  // Calcul par les fonctions de forme P1 du champ filtre
-                  // au point (xs,yz,zs)
-                  for (int i=0; i<dimension+1; i++)
-                    {
-                      som = prs+sommet_poly(le_poly,i);
-                      double champ_filtre_som=champ_filtre_(som);
-                      double li=0.;
+                // Calcul par les fonctions de forme P1 du champ filtre
+                // au point (xs,yz,zs)
+                for (int i=0; i<dimension+1; i++)
+                  {
+                    int som = prs+sommet_poly_v(le_poly,i);
+                    double champ_filtre_som = champ_filtre_v(som);
+                    double li=0.;
 
-                      if (dimension == 2)
-                        li=coord_barycentrique_P1_triangle(sommet_poly,
-                                                           coord, xs, ys,
-                                                           le_poly, i);
-                      else if (dimension == 3)
-                        li=coord_barycentrique_P1_tetraedre(sommet_poly,
-                                                            coord, xs, ys, zs,
-                                                            le_poly, i);
-                      val(rang_poly,0) += champ_filtre_som * li;
-                    }
-                }
-            }
-        }
+                    if (dimension == 2)
+                      li=coord_barycentrique_P1_triangle(sommet_poly_v,
+                                                         coord_v, xs, ys,
+                                                         le_poly, i);
+                    else if (dimension == 3)
+                      li=coord_barycentrique_P1_tetraedre(sommet_poly_v,
+                                                          coord_v, xs, ys, zs,
+                                                          le_poly, i);
+                    val_v(rang_poly,0) += champ_filtre_som * li;
+                  }
+              }
+          }
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
   else // nb_compo_ > 1
     {
@@ -160,11 +172,11 @@ DoubleVect& Champ_P1iP1B_implementation::valeur_aux_elems_compo(const DoubleTab&
 
 // Recupere un domaine
 // Renvoie un tableau contenant les valeurs du champ aux sommets du domaine
-DoubleTab& Champ_P1iP1B_implementation::valeur_aux_sommets(const Domaine& dom, DoubleTab& val) const
+DoubleTab& Champ_P1iP1B_implementation::valeur_aux_sommets(const Domaine& dom, DoubleTab& tab_val) const
 {
   const Domaine_VEF& zvef = domaine_vef();
   int nb_compo_=le_champ().nb_comp();
-  assert(nb_compo_ == val.line_size());
+  assert(nb_compo_ == tab_val.line_size());
 
   // Filtrage du champ pour le postraitement (contenu dans le tableau champ_filtre_)
   champ_filtre_=filtrage(zvef,le_champ());
@@ -174,7 +186,7 @@ DoubleTab& Champ_P1iP1B_implementation::valeur_aux_sommets(const Domaine& dom, D
       Champ_P0_VEF tmp;
       tmp.associer_domaine_dis_base(zvef);
       tmp.valeurs() = champ_filtre_;
-      tmp.valeur_aux_sommets(zvef.domaine(), val);
+      tmp.valeur_aux_sommets(zvef.domaine(), tab_val);
     }
 
   if (zvef.get_alphaS()) // Support P1
@@ -183,12 +195,14 @@ DoubleTab& Champ_P1iP1B_implementation::valeur_aux_sommets(const Domaine& dom, D
       int prs=zvef.numero_premier_sommet();
       if (nb_compo_ == 1)
         {
-          int som,num_som;
-          for (num_som = 0; num_som<nbs; num_som++)
-            {
-              som = prs+num_som;
-              val(num_som,0) += champ_filtre_(som);
-            }
+          CDoubleArrView champ_filtre = static_cast<const DoubleVect&>(champ_filtre_).view_ro();
+          DoubleTabView val = tab_val.view_rw();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nbs, KOKKOS_LAMBDA(const int num_som)
+          {
+            int som = prs+num_som;
+            val(num_som,0) += champ_filtre(som);
+          });
+          end_gpu_timer(__KERNEL_NAME__);
         }
       else // nb_compo_ > 1
         {
@@ -196,7 +210,7 @@ DoubleTab& Champ_P1iP1B_implementation::valeur_aux_sommets(const Domaine& dom, D
           Process::exit();
         }
     }
-  return val;
+  return tab_val;
 }
 
 
@@ -218,33 +232,31 @@ DoubleTab& Champ_P1iP1B_implementation::remplir_coord_noeuds(DoubleTab& coord) c
   const Domaine& le_dom=zvef.domaine();
   const Domaine& dom=le_dom;
   const DoubleTab& coord_sommets=dom.coord_sommets();
-  int nbe=zvef.nb_elem_tot();
-  int nbs=zvef.nb_som_tot();
-  int pre=zvef.numero_premier_element();
-  int prs=zvef.numero_premier_sommet();
   int dimension=Objet_U::dimension;
 
   const DoubleTab& xg = zvef.xp();
-
-  int k=pre;
+  int nbe=zvef.get_alphaE() ? zvef.nb_elem_tot() : 0;
+  int nbs=zvef.get_alphaS() ? zvef.nb_som_tot() : 0;
   coord.resize(nbe+nbs,dimension);
-  {
-    for(int i=0; i<nbe; i++)
-      {
-        for(int j=0; j<dimension; j++)
-          coord(k,j)=xg(i,j);
-        k++;
-      }
-  }
-  k=prs;
-  {
-    for(int i=0; i<nbs; i++)
-      {
-        for(int j=0; j<dimension; j++)
-          coord(k,j)=coord_sommets(i,j);
-        k++;
-      }
-  }
+  int k = 0;
+  if (zvef.get_alphaE())
+    {
+      for(int i=0; i<nbe; i++)
+        {
+          for(int j=0; j<dimension; j++)
+            coord(k,j)=xg(i,j);
+          k++;
+        }
+    }
+  if (zvef.get_alphaS())
+    {
+      for(int i=0; i<nbs; i++)
+        {
+          for(int j=0; j<dimension; j++)
+            coord(k,j)=coord_sommets(i,j);
+          k++;
+        }
+    }
   return coord;
 }
 
@@ -359,6 +371,8 @@ void corriger(const Domaine_VEF& domaine_VEF, DoubleTab& champ_filtre_, Matrice&
     }
   if (domaine_VEF.get_alphaA()&& domaine_VEF.get_renum_arete_perio().size_array())
     {
+      champ_filtre_.ensureDataOnHost(); // We need copy H2D as the Pa part of DoubleTab_parts is computed on host
+      ToDo_Kokkos("critical for P0P1Pa");
       DoubleVect& Pa = parties_P[2];  // partie aretes
 
       // Si premier passage on assemble la matrice
@@ -376,7 +390,7 @@ void corriger(const Domaine_VEF& domaine_VEF, DoubleTab& champ_filtre_, Matrice&
 
       SolveurSys solveur;
       solveur.typer("Solv_GCP");
-      Precond p;
+      OWN_PTR(Precond_base) p;
       p.typer("SSOR");
       ref_cast(Solv_GCP,solveur.valeur()).set_precond(p);
       solveur.nommer("Pa_filter_solver");
@@ -454,13 +468,13 @@ DoubleTab& Champ_P1iP1B_implementation::filtrage(const Domaine_VEF& zvef, const 
   if (zvef.get_alphaE() && zvef.get_alphaS())
     {
       // Pas de filtrage si deja fait sur ce champ:
-      if (un_champ.valeurs().addr()==adresse_champ_filtre_ && un_champ.temps()==temps_filtrage_)
+      if (un_champ.valeurs().data()==adresse_champ_filtre_ && un_champ.temps()==temps_filtrage_)
         return champ_filtre_;
 
       // On copie le champ a filtrer dans le tableau qui contiendra le champ filtre
       champ_filtre_=un_champ.valeurs();
       temps_filtrage_=un_champ.temps();
-      adresse_champ_filtre_=un_champ.valeurs().addr();
+      adresse_champ_filtre_=un_champ.valeurs().data();
       //Cout << "Filtrage du champ " << un_champ.le_nom() << " au temps " << un_champ.temps() << finl;
 
       // Correction du champ

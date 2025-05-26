@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -55,9 +55,9 @@ public :
 
 protected :
 
-  REF(Domaine_VDF) le_dom_VDF;
-  REF(Domaine_Cl_VDF) le_dom_Cl_VDF;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  OBS_PTR(Domaine_VDF) le_dom_VDF;
+  OBS_PTR(Domaine_Cl_VDF) le_dom_Cl_VDF;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
   /*    void calculer_cell_cent_vel(DoubleTab& ); */
   /*    void calculer_debit_ES(double& ,double&,double&  ) const; */
   /*    void calculer_debit(double& ,double& ) const; */

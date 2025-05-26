@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #define Perte_Charge_Anisotrope_VEF_P1NC_included
 
 #include <Perte_Charge_VEF.h>
+#include <Champ_Don_base.h>
 
 //!  Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)
 /**
@@ -55,7 +56,7 @@ public:
   void mettre_a_jour(double temps) override
   {
     diam_hydr->mettre_a_jour(temps);
-    v.mettre_a_jour(temps);
+    v->mettre_a_jour(temps);
   }
 
 protected:
@@ -69,7 +70,7 @@ protected:
 private:
 
   mutable Parser_U lambda_ortho;
-  Champ_Don v;//!< Vecteur directeur de la perte de charge.
+  OWN_PTR(Champ_Don_base) v;//!< Vecteur directeur de la perte de charge.
 };
 
 #endif

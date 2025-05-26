@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,16 +18,15 @@
 
 #include <Evaluateur_Source_VEF_Face.h>
 #include <TRUST_Ref.h>
-#include <Domaine.h>
 
-class Champ_Don;
+#include <Domaine.h>
 
 class Eval_Dirac_VEF_Face: public Evaluateur_Source_VEF_Face
 {
 public:
   Eval_Dirac_VEF_Face() : puissance(-123.), nb_dirac(-123.) {}
 
-  void associer_champs(const Champ_Don& );
+  void associer_champs(const Champ_Don_base& );
   void mettre_a_jour() override;
 
   template <typename Type_Double>
@@ -40,8 +39,8 @@ public:
   DoubleVect le_point;
 
 protected:
-  REF(Champ_Don) la_puissance;
-  REF(Domaine) mon_dom;
+  OBS_PTR(Champ_Don_base) la_puissance;
+  OBS_PTR(Domaine) mon_dom;
   double puissance, nb_dirac;
 
   template <typename Type_Double>
@@ -59,9 +58,28 @@ inline void Eval_Dirac_VEF_Face::calculer_terme_source(const int num_face, Type_
   if (face_voisins(num_face, 1) == -1) elem = face_voisins(num_face, 0);
   else elem = face_voisins(num_face, 1);
 
-  const int test = mon_dom.valeur().type_elem().contient(le_point, elem);
+  const int test = mon_dom->type_elem()->contient(le_point, elem);
   assert(nb_dirac != -123. && puissance != -123.);
   for (int i = 0; i < size; i++) source[i] = (test == 1) ? nb_dirac * puissance : 0.;
 }
 
+class Eval_Dirac_VEF_Face_View: public Eval_Dirac_VEF_Face
+{
+public:
+  void set(const Eval_Dirac_VEF_Face& eval) const
+  {
+  };
+  KOKKOS_INLINE_FUNCTION
+  void calculer_terme_source_standard_view(int num_face, DoubleArrView source) const
+  {
+    Process::Kokkos_exit("Not coded!");
+  };
+  KOKKOS_INLINE_FUNCTION
+  void calculer_terme_source_non_standard_view(int num_face, DoubleArrView source) const
+  {
+    Process::Kokkos_exit("Not coded!");
+  };
+private:
+  // Views
+};
 #endif /* Eval_Dirac_VEF_Face_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,10 +18,9 @@
 
 #include <TRUSTTabs_forward.h>
 #include <Perte_Charge.h>
-#include <Domaine_dis.h>
-#include <Champ_Don.h>
 #include <Parser_U.h>
-class Domaine;
+#include <Domaine_forward.h>
+
 class Domaine_dis_base;
 class Equation_base;
 class Source_base;

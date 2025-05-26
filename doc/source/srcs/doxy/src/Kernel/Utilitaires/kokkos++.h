@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,6 +15,7 @@
 
 #ifdef __NVCOMPILER
 #pragma diag_suppress 177
+#pragma diag_suppress 47 /* warning cuda */
 #endif
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wshadow"
@@ -26,11 +27,20 @@
 #pragma GCC diagnostic ignored "-Wsuggest-override"
 #endif
 
+#if defined(LATATOOLS)
+#undef KOKKOS
+#define KOKKOS_FUNCTION
+#define KOKKOS_INLINE_FUNCTION inline
+#else
+#define KOKKOS
 #include <Kokkos_Core.hpp>
-#include <Kokkos_DualView.hpp>
+#endif
+
+#undef _KOKKOS_AVX
 
 #pragma GCC diagnostic pop
 #ifdef __NVCOMPILER
 #pragma diag_warning 177
+#pragma diag_warning 47
 #endif
 

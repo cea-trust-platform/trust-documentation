@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -74,7 +74,7 @@ void test_un_solveur(SolveurSys& solveur, const Matrice_Base& matrice, const Dou
       statistiques().get_stats(solv_sys_counter_l, stat_resol_0);
       Cout<<"------------------------------------"<<finl;
       Cout<<"Try " << i << " of solver " << solveur <<finl;
-      //solveur.valeur().fixer_limpr(0);
+      //solveur->fixer_limpr(0);
       statistiques().begin_count(solv_sys_counter_l);
       solveur.nommer("test_solver");
 
@@ -191,11 +191,12 @@ Entree& Test_solveur::interpreter(Entree& is)
   Nom fichier_solution("Solution.sa");
   Nom fichier_matrice("Matrice.sa");
   Nom fichier_solveur;
-  int pas_de_solution_init=0,ascii;
+  bool pas_de_solution_init=false;
+  bool ascii = false;
+  bool limpr_ = false;
   double seuil_verification=DMAXFLOAT;
   SolveurSys solveur;
   double seuil_list=0;
-  int limpr_;
   int nb_test=2; // On teste 2 fois un solveur car la premiere fois, le cout du preconditionnement peut penaliser
   Param  param((*this).que_suis_je());
   param.ajouter("fichier_secmem",&fichier_secmem);  // nom du fichier contenant le second membre (Secmem.sa par defaut)
@@ -220,7 +221,7 @@ Entree& Test_solveur::interpreter(Entree& is)
     entree.ouvrir(fichier_matrice);
     entree>>matrice;
     Cout<<" size of system "<<matrice.valeur( ).nb_colonnes()<<finl;
-    //matrice.valeur().imprimer_formatte(Cout);
+    //matrice->imprimer_formatte(Cout);
   }
   {
     LecFicDistribue entree;
@@ -260,8 +261,6 @@ Entree& Test_solveur::interpreter(Entree& is)
 
   secmem.echange_espace_virtuel();
   solution.echange_espace_virtuel();
-  //Champ_Inc bidon;
-  //bidon.typer("Champ_P0_VDF");
   ArrOfDouble temps(nb_test);
   if (fichier_solveur==Nom())
     test_un_solveur(solveur,  matrice , secmem , solution , -10, temps,seuil_verification);
@@ -284,7 +283,6 @@ Solv_Optimal::Solv_Optimal():n_resol_(0),n_reinit_(0)
   freq_recalc_ = 100;
   fichier_solveur_="solveurs_";
   fichier_solveur_+=Nom(numero_solv_optimal);
-  fichier_solveur_non_recree_=0;
   numero_solv_optimal++;
 
 }
@@ -299,7 +297,7 @@ Sortie& Solv_Optimal::printOn(Sortie& s ) const
 
 Entree& Solv_Optimal::readOn(Entree& is )
 {
-  int impr,quiet;
+  bool impr,quiet;
   Param param((*this).que_suis_je());
   param.ajouter("seuil",&seuil_,Param::REQUIRED); // seuil de resolution
   param.ajouter_flag("impr",&impr); // active impression des solveurs

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,10 +16,11 @@
 #ifndef MD_Vector_std_included
 #define MD_Vector_std_included
 
+#include <MD_Vector_mono.h>
 #include <Schema_Comm_Vecteurs.h>
+#include <Schema_Comm.h>
 #include <Echange_EV_Options.h>
 #include <Static_Int_Lists.h>
-#include <MD_Vector_base2.h>
 #include <communications.h>
 #include <TRUSTArrays.h>
 #include <TRUSTVect.h>
@@ -35,25 +36,44 @@
  *   par exemple)
  *
  */
-class MD_Vector_std : public MD_Vector_base2
+class MD_Vector_std : public MD_Vector_mono
 {
-  Declare_instanciable_sans_constructeur(MD_Vector_std);
+  Declare_instanciable(MD_Vector_std);
+
 public:
-  MD_Vector_std();
+  MD_Vector_std(int n);  // Simple ctor for SIDES
   MD_Vector_std(int nb_items_tot, int nb_items_reels, const ArrOfInt& pe_voisins,
                 const ArrsOfInt& items_to_send, const ArrsOfInt& items_to_recv, const ArrsOfInt& blocs_to_recv);
 
   inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, DoubleVect& v) const override { initialize_comm_template<double>(opt,sc,v); }
-  inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, FloatVect& v) const override { initialize_comm_template<float>(opt,sc,v); }
-  inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, IntVect& v) const override { initialize_comm_template<int>(opt,sc,v); }
-
   inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, DoubleVect& v) const override { prepare_send_data_template<double>(opt,sc,v); }
-  inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, FloatVect& v) const override { prepare_send_data_template<float>(opt,sc,v); }
-  inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, IntVect& v) const override { prepare_send_data_template<int>(opt,sc,v); }
-
   inline void process_recv_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, DoubleVect& v) const override { process_recv_data_template<double>(opt,sc,v); }
+
+  inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, FloatVect& v) const override { initialize_comm_template<float>(opt,sc,v); }
+  inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, FloatVect& v) const override { prepare_send_data_template<float>(opt,sc,v); }
   inline void process_recv_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, FloatVect& v) const override { process_recv_data_template<float>(opt,sc,v); }
+
+  inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, IntVect& v) const override { initialize_comm_template<int>(opt,sc,v); }
+  inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, IntVect& v) const override { prepare_send_data_template<int>(opt,sc,v); }
   inline void process_recv_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, IntVect& v) const override { process_recv_data_template<int>(opt,sc,v); }
+
+#if INT_is_64_ == 2
+  inline void initialize_comm(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, TIDVect& v) const override { initialize_comm_template<trustIdType>(opt,sc,v); }
+  inline void prepare_send_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, TIDVect& v) const override { prepare_send_data_template<trustIdType>(opt,sc,v); }
+  inline void process_recv_data(const Echange_EV_Options& opt, Schema_Comm_Vecteurs& sc, TIDVect& v) const override { process_recv_data_template<trustIdType>(opt,sc,v); }
+#endif
+
+  inline const ArrOfInt& pe_voisins() const { return pe_voisins_; }
+  inline const Static_Int_Lists& items_to_send() const { return items_to_send_; }
+  inline const Static_Int_Lists& items_to_recv() const { return items_to_recv_; }
+  inline const Static_Int_Lists& blocs_to_recv() const { return blocs_to_recv_; }
+
+  void append_from_other_std(const MD_Vector_std& src, int offset, int multiplier) override;
+  void fill_md_vect_renum(const IntVect& renum, MD_Vector& md_vect) const override;
+
+  bool use_blocks() const override { return true; }
+
+protected:
 
   // Numeros des processeurs voisins avec qui j'echange des donnees (meme taille que les VECT suivants)
   ArrOfInt pe_voisins_;

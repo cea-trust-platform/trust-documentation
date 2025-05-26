@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,7 +24,7 @@
 #include <Champ_Q1NC.h>
 #include <Periodique.h>
 #include <TRUSTTrav.h>
-#include <Champ_Don.h>
+
 #include <Debog.h>
 
 Implemente_instanciable(Op_Dift_VEF_Face_Q1, "Op_Dift_VEF_Q1NC", Op_Dift_VEF_base);
@@ -54,7 +54,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
   const IntVect& rang_elem_non_std = domaine_VEF.rang_elem_non_std();
   const int n1 = domaine_VEF.nb_faces(), nb_faces_elem = domaine_VEF.domaine().nb_faces_elem(), nb_comp = resu.line_size();
   const double mu = diffusivite(0);
-  const DoubleTab& mu_turb = diffusivite_turbulente()->valeurs(), &face_normale = domaine_VEF.face_normales();
+  const DoubleTab& mu_turb = diffusivite_turbulente().valeurs(), &face_normale = domaine_VEF.face_normales();
   DoubleVect n(dimension);
   DoubleTrav Tgrad(dimension, dimension);
 
@@ -65,7 +65,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
         Debog::verifier("Op_Dift_VEF_Face_Q1::ajouter apres nb_compo= 1 nbords, resu", resu);
 
         const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         int nb_faces_bord = le_bord.nb_faces();
         int num1 = 0;
         int num2 = nb_faces_bord;
@@ -132,7 +132,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
         Debog::verifier("Op_Dift_VEF_Face_Q1::ajouter apres nb_compo> 1 nbords, resu", resu);
 
         const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         //const IntTab& elem_faces = domaine_VEF.elem_faces();
         int nb_faces_bord_tot = le_bord.nb_faces_tot();
         int nb_faces_bord = le_bord.nb_faces();
@@ -186,7 +186,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
           }
         else if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) || sub_type(Dirichlet_paroi_defilante, la_cl.valeur()))
           {
-            if (le_modele_turbulence.valeur().utiliser_loi_paroi())
+            if (le_modele_turbulence->utiliser_loi_paroi())
               {
                 if (dimension == 2)
                   {
@@ -340,7 +340,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
       if (sub_type(Neumann_paroi, la_cl.valeur()))
         {
           const Neumann_paroi& la_cl_paroi = ref_cast(Neumann_paroi, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face = ndeb; face < nfin; face++)
@@ -350,7 +350,7 @@ DoubleTab& Op_Dift_VEF_Face_Q1::ajouter(const DoubleTab& inconnue, DoubleTab& re
       else if (sub_type(Echange_externe_impose, la_cl.valeur()))
         {
           const Echange_externe_impose& la_cl_paroi = ref_cast(Echange_externe_impose, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face = ndeb; face < nfin; face++)
@@ -372,7 +372,7 @@ void Op_Dift_VEF_Face_Q1::contribuer_a_avec(const DoubleTab& transporte, Matrice
   const IntTab& elem_faces = domaine_VEF.elem_faces(), &face_voisins = domaine_VEF.face_voisins();
   const IntVect& rang_elem_non_std = domaine_VEF.rang_elem_non_std();
   const int nb_comp = transporte.line_size(), nb_faces_elem = domaine_VEF.domaine().nb_faces_elem(), n1 = domaine_VEF.nb_faces();
-  const DoubleTab& mu_turb = diffusivite_turbulente()->valeurs();
+  const DoubleTab& mu_turb = diffusivite_turbulente().valeurs();
   const double mu = diffusivite(0);
 
   //DoubleVect n(dimension);
@@ -384,7 +384,7 @@ void Op_Dift_VEF_Face_Q1::contribuer_a_avec(const DoubleTab& transporte, Matrice
   for (int n_bord = 0; n_bord < domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       const int num1 = le_bord.num_premiere_face(), num2 = num1 + le_bord.nb_faces();
 
       if (sub_type(Periodique, la_cl.valeur()))

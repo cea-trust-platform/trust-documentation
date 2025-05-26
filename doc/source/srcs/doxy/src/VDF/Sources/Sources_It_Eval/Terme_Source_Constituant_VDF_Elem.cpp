@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,8 @@
 #include <Domaine_VDF.h>
 
 Implemente_instanciable_sans_constructeur(Terme_Source_Constituant_VDF_Elem,"Source_Constituant_VDF_P0_VDF",Terme_Source_VDF_base);
+// XD source_constituant source_base source_constituant 0 Keyword to specify source rates, in [[C]/s], for each one of the nb constituents. [C] is the concentration unit.
+// XD attr ch field_base ch 0 Field type.
 
 Sortie& Terme_Source_Constituant_VDF_Elem::printOn(Sortie& s) const { return s << que_suis_je(); }
 
@@ -35,15 +37,15 @@ Entree& Terme_Source_Constituant_VDF_Elem::readOn(Entree& s)
 void Terme_Source_Constituant_VDF_Elem::completer()
 {
   Terme_Source_VDF_base::completer();
-  col_width_ = Terme_Source_Constituant::completer(equation().inconnue().valeur());
+  col_width_ = Terme_Source_Constituant::completer(equation().inconnue());
 }
 
-void Terme_Source_Constituant_VDF_Elem::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Terme_Source_Constituant_VDF_Elem::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-  iter->associer_domaines(zvdf, zclvdf);
-  Eval_Source_C_VDF_Elem& eval_puis = static_cast<Eval_Source_C_VDF_Elem&> (iter->evaluateur());
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+  iter_->associer_domaines(zvdf, zclvdf);
+  Eval_Source_C_VDF_Elem& eval_puis = static_cast<Eval_Source_C_VDF_Elem&> (iter_->evaluateur());
   eval_puis.associer_domaines(zvdf,zclvdf);
 }
 
@@ -51,6 +53,6 @@ void Terme_Source_Constituant_VDF_Elem::associer_pb(const Probleme_base& pb)
 {
   const Equation_base& eqn = pb.equation(0);
   eqn.discretisation().nommer_completer_champ_physique(eqn.domaine_dis(),la_source_constituant.le_nom(),"",la_source_constituant,pb);
-  Eval_Source_C_VDF_Elem& eval_puis = static_cast<Eval_Source_C_VDF_Elem&> (iter->evaluateur());
+  Eval_Source_C_VDF_Elem& eval_puis = static_cast<Eval_Source_C_VDF_Elem&> (iter_->evaluateur());
   eval_puis.associer_champs(la_source_constituant);
 }

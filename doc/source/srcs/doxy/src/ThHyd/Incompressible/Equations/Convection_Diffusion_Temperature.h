@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,12 +16,7 @@
 #ifndef Convection_Diffusion_Temperature_included
 #define Convection_Diffusion_Temperature_included
 
-#include <Convection_Diffusion_std.h>
-#include <TRUST_Vector.h>
-#include <Fluide_base.h>
-#include <Champ_Fonc.h>
-#include <TRUSTTabs.h>
-#include <TRUST_Ref.h>
+#include <Convection_Diffusion_Temperature_base.h>
 
 /*! @brief classe Convection_Diffusion_Temperature Cas particulier de Convection_Diffusion_std
  *
@@ -29,36 +24,28 @@
  *
  * @sa Conv_Diffusion_std
  */
-
-class Convection_Diffusion_Temperature : public Convection_Diffusion_std
+class Convection_Diffusion_Temperature : public Convection_Diffusion_Temperature_base
 {
-  Declare_instanciable_sans_constructeur(Convection_Diffusion_Temperature);
+  Declare_instanciable(Convection_Diffusion_Temperature);
+public:
 
-public :
-
-  Convection_Diffusion_Temperature();
   void set_param(Param& titi) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
-  inline void associer_fluide(const Fluide_base& );
-  inline const Champ_Inc& inconnue() const override;
-  inline Champ_Inc& inconnue() override;
+  inline const Champ_Inc_base& inconnue() const override { return la_temperature; }
+  inline Champ_Inc_base& inconnue() override { return la_temperature; }
   void discretiser() override;
   int preparer_calcul() override;
-  const Fluide_base& fluide() const;
-  Fluide_base& fluide();
-  const Milieu_base& milieu() const override { return fluide(); }
-  Milieu_base& milieu() override { return fluide(); }
   void associer_milieu_base(const Milieu_base& ) override;
-  const Champ_Don& diffusivite_pour_transport() const override { return milieu().conductivite(); }
-  const Champ_base& diffusivite_pour_pas_de_temps() const override { return milieu().diffusivite(); }
   //Methodes de l interface des champs postraitables
   /////////////////////////////////////////////////////
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
-  double get_time_factor() const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
   /////////////////////////////////////////////////////
 
+  double get_time_factor() const override;
   const Motcle& domaine_application() const override;
 
   DoubleTab& derivee_en_temps_inco(DoubleTab& ) override;
@@ -66,26 +53,16 @@ public :
   void assembler_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) const override;
   /* champ convecte : rho * cp * T */
   static void calculer_rho_cp_T(const Objet_U& obj, DoubleTab& val, DoubleTab& bval, tabs_t& deriv);
-  // std::pair<std::string, fonc_calc_t> get_fonc_champ_conserve() const override
-  // {
-  //   return { "rho_cp_T", calculer_rho_cp_T };
-  // }
 
 protected :
-
-  Champ_Inc la_temperature;
-  REF(Fluide_base) le_fluide;
-
-  Champ_Fonc gradient_temperature;
-  Champ_Fonc h_echange;
+  OWN_PTR(Champ_Inc_base) la_temperature;
+  OWN_PTR(Champ_Fonc_base) gradient_temperature, h_echange;
 
   // Parametres penalisation IBC
-  int is_penalized;
-  double eta;
-  int choix_pena;
-  int tag_indic_pena_global;
-  IntTab indic_pena_global;
-  IntTab indic_face_pena_global;
+  int is_penalized = 0;
+  double eta = 1.0;
+  int choix_pena = 0, tag_indic_pena_global = -1;
+  IntTab indic_pena_global = 0, indic_face_pena_global = 0;
   VECT(RefObjU) ref_penalisation_L2_FTD;
   DoubleTabs tab_penalisation_L2_FTD;
 
@@ -98,14 +75,6 @@ protected :
   void calcul_indic_pena_global(IntTab&, IntTab&);
   void transport_ibc(DoubleTrav&, DoubleTab&);
   void ecrire_fichier_pena_th(DoubleTab&, DoubleTab&, DoubleTab&, DoubleTab&);
-  // Fin parametres IBC
-
-
 };
 
-
-inline void Convection_Diffusion_Temperature::associer_fluide(const Fluide_base& un_fluide) { le_fluide = un_fluide; }
-inline const Champ_Inc& Convection_Diffusion_Temperature::inconnue() const { return la_temperature; }
-inline Champ_Inc& Convection_Diffusion_Temperature::inconnue() { return la_temperature; }
-
-#endif
+#endif /* Convection_Diffusion_Temperature_included */

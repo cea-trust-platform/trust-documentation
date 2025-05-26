@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,6 +24,25 @@
 #include <Debog.h>
 
 Implemente_instanciable(Op_Dift_standard_VEF_Face, "Op_Dift_VEF_P1NC_standard", Op_Dift_VEF_base);
+
+// XD bloc_diffusion_standard objet_lecture nul 0 grad_Ubar 1 makes the gradient calculated through the filtered values of velocity (P1-conform).NL2 nu 1 (respectively nut 1) takes the molecular viscosity (eddy viscosity) into account in the velocity gradient part of the diffusion expression. NL2 nu_transp 1 (respectively nut_transp 1) takes the molecular viscosity (eddy viscosity) into account according in the TRANSPOSED velocity gradient part of the diffusion expression.NL2 filtrer_resu 1 allows to filter the resulting diffusive fluxes contribution.
+// XD attr mot1 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot1 0 not_set
+// XD attr val1 entier(into=[0,1]) val1 0 not_set
+// XD attr mot2 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot2 0 not_set
+// XD attr val2 entier(into=[0,1]) val2 0 not_set
+// XD attr mot3 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot3 0 not_set
+// XD attr val3 entier(into=[0,1]) val3 0 not_set
+// XD attr mot4 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot4 0 not_set
+// XD attr val4 entier(into=[0,1]) val4 0 not_set
+// XD attr mot5 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot5 0 not_set
+// XD attr val5 entier(into=[0,1]) val5 0 not_set
+// XD attr mot6 chaine(into=["grad_Ubar","nu","nut","nu_transp","nut_transp","filtrer_resu"]) mot6 0 not_set
+// XD attr val6 entier(into=[0,1]) val6 0 not_set
+
+// XD diffusion_standard diffusion_deriv standard 0 A new keyword, intended for LES calculations, has been developed to optimise and parameterise each term of the diffusion operator. Remark:NL2 NL2 1. This class requires to define a filtering operator : see solveur_barNL2 2. The former (original) version: diffusion { } -which omitted some of the term of the diffusion operator- can be recovered by using the following parameters in the new class :NL2 diffusion { standard grad_Ubar 0 nu 1 nut 1 nu_transp 0 nut_transp 1 filtrer_resu 0}.
+// XD attr mot1 chaine(into=["defaut_bar"]) mot1 1 equivalent to grad_Ubar 1 nu 1 nut 1 nu_transp 1 nut_transp 1 filtrer_resu 1
+// XD attr bloc_diffusion_standard bloc_diffusion_standard bloc_diffusion_standard 1 not_set
+
 
 Sortie& Op_Dift_standard_VEF_Face::printOn(Sortie& s) const { return s << que_suis_je(); }
 
@@ -87,7 +106,7 @@ void Op_Dift_standard_VEF_Face::ajouter_cas_vectoriel(const DoubleTab& vitesse, 
 
   Champ_P1NC::calcul_gradient(ubar, grad, domaine_Cl_VEF);
 
-  if (le_modele_turbulence.valeur().utiliser_loi_paroi())
+  if (le_modele_turbulence->utiliser_loi_paroi())
     Champ_P1NC::calcul_duidxj_paroi(grad, nu, nu_turb, tau_tan_, domaine_Cl_VEF);
 
   grad.echange_espace_virtuel();
@@ -124,7 +143,7 @@ void Op_Dift_standard_VEF_Face::calcul_divergence(DoubleTab& dif, const DoubleTa
   for (int num_cl = 0; num_cl < nb_cl; num_cl++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(num_cl);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       const int nb_faces_b = le_bord.nb_faces();
       const int num1 = le_bord.num_premiere_face(), num2 = num1 + nb_faces_b;
 
@@ -227,7 +246,7 @@ void Op_Dift_standard_VEF_Face::calcul_divergence(DoubleTab& dif, const DoubleTa
 
 DoubleTab& Op_Dift_standard_VEF_Face::ajouter(const DoubleTab& inconnue, DoubleTab& resu) const
 {
-  const DoubleTab& nu_turb = diffusivite_turbulente()->valeurs();
+  const DoubleTab& nu_turb = diffusivite_turbulente().valeurs();
   DoubleTab nu(nu_turb);
   remplir_nu(nu);
   ajouter_cas_vectoriel(inconnue, resu, nu, nu_turb);

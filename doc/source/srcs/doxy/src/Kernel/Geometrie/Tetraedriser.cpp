@@ -16,6 +16,9 @@
 #include <Tetraedriser.h>
 
 Implemente_instanciable(Tetraedriser, "Tetraedriser", Triangulation_base);
+// XD tetraedriser interprete tetraedriser -1 To achieve a tetrahedral mesh based on a mesh comprising blocks, the Tetraedriser (Tetrahedralise) interpretor is used in VEF discretization. Initial block is divided in 6 tetrahedra: \includepng{{tetraedriser.jpeg}}{{5}}
+// XD attr domain_name ref_domaine domain_name 0 Name of domain.
+
 
 Sortie& Tetraedriser::printOn(Sortie& os) const { return Interprete::printOn(os); }
 
@@ -130,28 +133,28 @@ void Tetraedriser::trianguler(Domaine& domaine) const
   for (auto &itr : domaine.faces_bord())
     {
       Faces& les_faces = itr.faces();
-      les_faces.typer(Faces::triangle_3D);
+      les_faces.typer(Type_Face::triangle_3D);
       decoupe(les_faces);
     }
 
   for (auto &itr : domaine.faces_raccord())
     {
       Faces& les_faces = itr->faces();
-      les_faces.typer(Faces::triangle_3D);
+      les_faces.typer(Type_Face::triangle_3D);
       decoupe(les_faces);
     }
 
   for (auto &itr : domaine.bords_int())
     {
       Faces& les_faces = itr.faces();
-      les_faces.typer(Faces::triangle_3D);
+      les_faces.typer(Type_Face::triangle_3D);
       decoupe(les_faces);
     }
 
   for (auto &itr : domaine.groupes_faces())
     {
       Faces& les_faces = itr.faces();
-      les_faces.typer(Faces::triangle_3D);
+      les_faces.typer(Type_Face::triangle_3D);
       decoupe(les_faces);
     }
 }

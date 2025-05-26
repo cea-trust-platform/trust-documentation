@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,12 +13,13 @@
 *
 *****************************************************************************/
 
+#include <Format_Post_base.h>
 #include <Lata_2_Other.h>
-#include <Format_Post.h>
 #include <EFichierBin.h>
 #include <LataFilter.h>
 #include <LmlReader.h>
 #include <PE_Groups.h>
+#include <Polyedre.h>
 #include <SFichier.h>
 #include <Domaine.h>
 #include <EChaine.h>
@@ -29,8 +30,12 @@ Implemente_instanciable(Lata_2_Other, "lata_to_other|lata_2_other", Interprete);
 // XD attr mot chaine(into=["format_post_sup"]) mot 0 not_set
 // XD attr format chaine(into=["lml","lata","lata_v2","med"]) format 1 generated file post_med.data use format (MED or LATA or LML keyword).
 
-// XD lata_to_other interprete lata_to_other -1 To convert results file written with LATA format to MED or LML format. Warning: Fields located at faces are not supported yet.
-// XD attr format chaine(into=["lml","lata","lata_v2","med"]) format 1 Results format (MED or LATA or LML keyword).
+// XD format_lata_to_CGNS objet_lecture nul 0 not_set
+// XD attr mot chaine(into=["format_post_sup"]) mot 0 not_set
+// XD attr format chaine(into=["lml","lata","lata_v2","med","cgns"]) format 1 generated file post_CGNS.data use format (CGNS or LATA or LML keyword).
+
+// XD lata_to_other interprete lata_to_other -1 To convert results file written with LATA format to CGNS, MED or LML format. Warning: Fields located at faces are not supported yet.
+// XD attr format chaine(into=["lml","lata","lata_v2","med","cgns"]) format 1 Results format (CGNS, MED or LATA or LML keyword).
 // XD attr file chaine file 0 LATA file to convert to the new format.
 // XD attr file_post chaine file_post 0 Name of file post.
 
@@ -48,88 +53,245 @@ Sortie& Lata_2_Other::printOn(Sortie& is) const
 }
 
 /*! @brief Convert a Lata domain object ('Domain') into a TRUST domain object ('Domaine')
- *
  */
 void convert_domain_to_Domaine(const Domain& dom, Domaine& dom_trio)
 {
-  //      dom_trio.les_sommets()=geom.nodes_;
-  // mais geom.nodes est un FloatTab
-  DoubleTab& som = dom_trio.les_sommets();
-  int nx = 1, ny = 1, nz = 1;
-  if (dom.get_domain_type() == Domain::UNSTRUCTURED)
-    {
-      const DomainUnstructured& geom = dom.cast_DomainUnstructured();
-      int dim1 = geom.nodes_.dimension(0);
-      int dim2 = geom.nodes_.dimension(1);
-      som.resize(dim1, dim2);
-      for (int i1 = 0; i1 < dim1; i1++)
-        for (int i2 = 0; i2 < dim2; i2++)
-          som(i1, i2) = geom.nodes_(i1, i2);
-    }
-  else
-    {
-      assert(dom.get_domain_type() == Domain::IJK);
-      const DomainIJK& geom = dom.cast_DomainIJK();
-      const int dim = geom.coord_.size();
-
-      nx = geom.coord_[0].size_array();
-      ny = geom.coord_[1].size_array();
-      nz = 1;
-      if (dim > 2)
-        nz = geom.coord_[2].size_array();
-
-      som.resize(nx * ny * nz, dim);
-
-      for (int i = 0; i < nx; i++)
-        for (int j = 0; j < ny; j++)
-          for (int k = 0; k < nz; k++)
-            {
-              int nn = i * ny * nz + j * nz + k;
-              som(nn, 0) = geom.coord_[0][i];
-              som(nn, 1) = geom.coord_[1][j];
-              if (dim > 2)
-                som(nn, 2) = geom.coord_[2][k];
-            }
-    }
-
   Nom type_elem = dom.lata_element_name(dom.elt_type_);
   if (type_elem == "PRISM6")
     type_elem = "PRISME";
-  // domaine.type_elem()=type_ele;
-  dom_trio.typer(type_elem);
 
-  dom_trio.type_elem().associer_domaine(dom_trio);
+  Cerr << "Reading from Lata_DB an ELEM of type " << type_elem << " ... Typing the TRUST Domaine !" << finl;
+  dom_trio.typer(type_elem);
+  dom_trio.type_elem()->associer_domaine(dom_trio);
+
+  bool poly_generique = false;
   if (dom.get_domain_type() == Domain::UNSTRUCTURED)
     {
       const DomainUnstructured& geom = dom.cast_DomainUnstructured();
-      dom_trio.les_elems() = geom.elements_;
+      if (geom.elem_faces_.dimension(0) > 0 && geom.faces_.dimension(0) > 0)
+        poly_generique = true; /* pas le cas de post triomc */
+    }
+
+  /*
+   * XXX Elie Saikali => pour polyedre/polygon faut remplir plus de choses ;)
+   */
+  if (type_elem == "POLYEDRE" && poly_generique)
+    {
+      // dom_trio tjrs en 32 ... faut bricoler ...
+      Domaine_32_64<trustIdType> dom_trio_poubelle;
+      dom_trio_poubelle.typer(type_elem);
+
+      if (dom.get_domain_type() == Domain::UNSTRUCTURED)
+        {
+          const DomainUnstructured& geom = dom.cast_DomainUnstructured();
+          const auto& elems = geom.elements_; // elem -> nodes
+          const auto& faces = geom.faces_; // faces -> nodes
+          const auto& ef = geom.elem_faces_; // elem -> faces
+          const auto& nod = geom.nodes_;
+
+          trustIdType dim1_tmp = nod.dimension(0);
+          // Check that the Lata domain fits in 32b
+          if (dim1_tmp >= std::numeric_limits<int>::max())
+            Process::exit("LATA file is too big and does not fit into 32bits!!");
+
+          const trustIdType nb_elems = elems.dimension(0);
+
+          std::vector<trustIdType> conn, connIndex;
+          trustIdType idx = 0;
+          connIndex.push_back(idx);
+          for (trustIdType i = 0; i < nb_elems; i++)
+            {
+              conn.push_back(31); /* MC.normPolyhedre dans MC */
+              idx++;
+
+              for (int j = 0; j < ef.dimension(1); j++)
+                {
+                  trustIdType fac = ef(i, j);
+
+                  if (fac < 0)
+                    continue;
+
+                  bool is_not_last = true;
+
+                  if (j+1 < ef.dimension(1) && ef(i, j+1) < 0)
+                    is_not_last = false;
+
+                  for (int jj = 0; jj < faces.dimension(1); jj++)
+                    {
+                      const trustIdType ff = faces(fac, jj);
+
+                      if (ff < 0)
+                        continue;
+
+                      conn.push_back(faces(fac, jj));
+                      idx++;
+                    }
+
+                  if (j < ef.dimension(1) - 1 && is_not_last)
+                    {
+                      conn.push_back(-1);
+                      idx++;
+                    }
+                }
+              connIndex.push_back(idx);
+            }
+
+          trustIdType marker = 0;
+          trustIdType conn_size = static_cast<trustIdType>(conn.size());
+
+          for (trustIdType i = 0; i < conn_size; i++)
+            if (conn[i] < 0)
+              marker++;
+
+          trustIdType num_nodes = conn_size - nb_elems - marker;
+          trustIdType nfaces = nb_elems + marker;
+
+          ArrOfInt_T<trustIdType> nodes(num_nodes), facesIndex(nfaces + 1), polyhedronIndex(nb_elems + 1);
+
+          IntTab_T<trustIdType> les_elems;
+          trustIdType face = 0, node = 0;
+
+          for (trustIdType i = 0; i < nb_elems; i++)
+            {
+              polyhedronIndex[i] = face; // Index des polyedres
+
+              trustIdType index = connIndex[i] + 1;
+              int nb_som = static_cast<int>(connIndex[i + 1] - index);
+              for (int j = 0; j < nb_som; j++)
+                {
+                  if (j == 0 || conn[index + j] < 0)
+                    facesIndex[face++] = node; // Index des faces:
+                  if (conn[index + j] >= 0)
+                    nodes[node++] = conn[index + j]; // Index local des sommets de la face
+                }
+            }
+          facesIndex[nfaces] = node;
+          polyhedronIndex[nb_elems] = face;
+
+          // welcome to Bricorama ....
+          auto& poly_poubelle = ref_cast(Polyedre_32_64<trustIdType>, dom_trio_poubelle.type_elem().valeur());
+          auto& poly = ref_cast(Polyedre, dom_trio.type_elem().valeur());
+
+          poly_poubelle.affecte_connectivite_numero_global(nodes, facesIndex, polyhedronIndex, les_elems);
+
+          // back to life ... faut tout caster car dom_trio est 32 bit
+          poly.set_nb_som_face_max(poly_poubelle.get_nb_som_elem_max());
+
+          // step 1 : polyhedronIndex
+          ArrOfInt tmp;
+          polyhedronIndex.from_tid_to_int(tmp);
+          poly.getsetPolyhedronIndex() = tmp;
+
+          // step 2 : les_elems
+          IntTab tmp1;
+          les_elems.from_tid_to_int(tmp1);
+          dom_trio.les_elems() = tmp1;
+
+          // step 3 : facesIndex
+          ArrOfInt tmp2;
+          facesIndex.from_tid_to_int(tmp2);
+          poly.getsetFacesIndex() = tmp2;
+
+          // step 4 : Nodes
+          ArrOfInt tmp3;
+          const auto& nd = poly_poubelle.getNodes(); // attention l'attribue pas nodes local
+          tmp3.resize((int) nd.size_array());
+          for (auto i = 0; i < nd.size_array(); i++)
+            tmp3[i] = static_cast<int>(nd[i]);
+          poly.getsetNodes() = tmp3;
+
+          // step  5 : enfin tab sommets
+          DoubleTab& som = dom_trio.les_sommets();
+          int dim1 = (int) dim1_tmp;
+          int dim2 = geom.nodes_.dimension_int(1);
+          som.resize(dim1, dim2);
+          for (int i1 = 0; i1 < dim1; i1++)
+            for (int i2 = 0; i2 < dim2; i2++)
+              som(i1, i2) = geom.nodes_(i1, i2);
+        }
+      else throw;
     }
   else
     {
-      dom_trio.les_elems().resize((nx - 1) * (ny - 1) * (nz - 1), dom_trio.nb_som_elem());
-      IntTab& elems = dom_trio.les_elems();
-      for (int i = 0; i < nx - 1; i++)
-        for (int j = 0; j < ny - 1; j++)
-          for (int k = 0; k < nz - 1; k++)
-            {
-              int nn = i * (ny - 1) * (nz - 1) + j * (nz - 1) + k;
-              nn = i + j * (nx - 1) + k * ((nx - 1) * (ny - 1));
-              elems(nn, 0) = i * ny * nz + j * nz + k;
-              elems(nn, 1) = (i + 1) * ny * nz + j * nz + k;
-              elems(nn, 2) = (i) * ny * nz + (j + 1) * nz + k;
-              elems(nn, 3) = (i + 1) * ny * nz + (j + 1) * nz + k;
-              if (elems.dimension(1) > 4)
-                for (int ii = 0; ii < 4; ii++)
-                  elems(nn, 4 + ii) = elems(nn, ii) + 1;
-            }
-      // a coder
-      //Process::exit();
+      //      dom_trio.les_sommets()=geom.nodes_;
+      // mais geom.nodes est un FloatTab
+      DoubleTab& som = dom_trio.les_sommets();
+      int nx = 1, ny = 1, nz = 1;
+      if (dom.get_domain_type() == Domain::UNSTRUCTURED)
+        {
+          const DomainUnstructured& geom = dom.cast_DomainUnstructured();
+          trustIdType dim1_tmp = geom.nodes_.dimension(0);
+          // Check that the Lata domain fits in 32b
+          if (dim1_tmp >= std::numeric_limits<int>::max())
+            Process::exit("LATA file is too big and does not fit into 32bits!!");
+          int dim1 = (int) dim1_tmp;
+          int dim2 = geom.nodes_.dimension_int(1);
+          som.resize(dim1, dim2);
+          for (int i1 = 0; i1 < dim1; i1++)
+            for (int i2 = 0; i2 < dim2; i2++)
+              som(i1, i2) = geom.nodes_(i1, i2);
+        }
+      else
+        {
+          assert(dom.get_domain_type() == Domain::IJK);
+          const DomainIJK& geom = dom.cast_DomainIJK();
+          const int dim = geom.coord_.size();
+
+          nx = geom.coord_[0].size_array();
+          ny = geom.coord_[1].size_array();
+          nz = 1;
+          if (dim > 2)
+            nz = geom.coord_[2].size_array();
+
+          som.resize(nx * ny * nz, dim);
+
+          for (int i = 0; i < nx; i++)
+            for (int j = 0; j < ny; j++)
+              for (int k = 0; k < nz; k++)
+                {
+                  int nn = i * ny * nz + j * nz + k;
+                  som(nn, 0) = geom.coord_[0][i];
+                  som(nn, 1) = geom.coord_[1][j];
+                  if (dim > 2)
+                    som(nn, 2) = geom.coord_[2][k];
+                }
+        }
+
+      if (dom.get_domain_type() == Domain::UNSTRUCTURED)
+        {
+          const DomainUnstructured& geom = dom.cast_DomainUnstructured();
+#if INT_is_64_ == 2
+          IntTab tmp;
+          geom.elements_.from_tid_to_int(tmp);
+          dom_trio.les_elems() = tmp;
+#else
+          dom_trio.les_elems() = geom.elements_;
+#endif
+        }
+      else
+        {
+          dom_trio.les_elems().resize((nx - 1) * (ny - 1) * (nz - 1), dom_trio.nb_som_elem());
+          IntTab& elems = dom_trio.les_elems();
+          for (int i = 0; i < nx - 1; i++)
+            for (int j = 0; j < ny - 1; j++)
+              for (int k = 0; k < nz - 1; k++)
+                {
+                  int nn = i * (ny - 1) * (nz - 1) + j * (nz - 1) + k;
+                  nn = i + j * (nx - 1) + k * ((nx - 1) * (ny - 1));
+                  elems(nn, 0) = i * ny * nz + j * nz + k;
+                  elems(nn, 1) = (i + 1) * ny * nz + j * nz + k;
+                  elems(nn, 2) = (i) * ny * nz + (j + 1) * nz + k;
+                  elems(nn, 3) = (i + 1) * ny * nz + (j + 1) * nz + k;
+                  if (elems.dimension(1) > 4)
+                    for (int ii = 0; ii < 4; ii++)
+                      elems(nn, 4 + ii) = elems(nn, ii) + 1;
+                }
+        }
     }
+
   dom_trio.faces_bord().associer_domaine(dom_trio);
   dom_trio.faces_raccord().associer_domaine(dom_trio);
   dom_trio.faces_joint().associer_domaine(dom_trio);
-
-  dom_trio.type_elem().associer_domaine(dom_trio);
   dom_trio.fixer_premieres_faces_frontiere();
 
   if (dom.id_.timestep_ != 0)
@@ -143,7 +305,7 @@ Entree& Lata_2_Other::interpreter(Entree& is)
   Nom format_post_supp;
   is >> format_post_supp >> nom_lata >> nom_fic;
 
-  std::set<std::string> formats( { "LML", "LATA", "LATA_V2", "MED" });
+  std::set<std::string> formats( { "LML", "LATA", "LATA_V2", "MED", "CGNS" });
   Nom tmp = format_post_supp;
   if (formats.count(tmp.majuscule().getString()) == 0)
     {
@@ -153,7 +315,7 @@ Entree& Lata_2_Other::interpreter(Entree& is)
 
   // Creation d'un sous-groupe contenant uniquement le processeur maitre
   ArrOfInt liste_pe(1);
-  DERIV(Comm_Group) group;
+  OWN_PTR(Comm_Group) group;
   // on se met en non axi le temps de la conversion
   int axi_sa = axi;
   axi = 0;
@@ -203,8 +365,8 @@ Entree& Lata_2_Other::interpreter(Entree& is)
 
       Nom type("Format_Post_");
       type += format_post_;
-      Format_Post post_typer;
-      post_typer.typer_direct(type);
+      OWN_PTR(Format_Post_base) post_typer;
+      post_typer.typer(type.getChar());
       Format_Post_base& post = ref_cast(Format_Post_base, post_typer.valeur());
       Nom nom_2(nom_pdb);
       Nom format_post_bis(format_post_);
@@ -213,7 +375,10 @@ Entree& Lata_2_Other::interpreter(Entree& is)
       Nom suffix(".");
       suffix += format_post_bis;
       nom_2.prefix(suffix);
-      //      int est_le_premie_post=0;
+
+      if (Motcle(format_post_supp) == "CGNS" && nom_2.finit_par(".cgns"))
+        nom_2.prefix(".cgns");
+
       int format_binaire_ = 0;
       if (format_post_bis != "lata")
         post.initialize_by_default(nom_2);
@@ -234,7 +399,10 @@ Entree& Lata_2_Other::interpreter(Entree& is)
             dom_trio.nommer(geoms[i]);
             convert_domain_to_Domaine(dom, dom_trio);
             int est_le_premier_post = (i == 0);
-            post.ecrire_entete(0., 0, est_le_premier_post);
+
+            if (Motcle(format_post_supp) != "CGNS" || (Motcle(format_post_supp) == "CGNS" && i == 0))
+              post.ecrire_entete(0., 0, est_le_premier_post);
+
             int reprise = 0;
             double t_init = 0.;
             post.preparer_post(dom_trio.le_nom(), est_le_premier_post, reprise, t_init);
@@ -277,9 +445,10 @@ Entree& Lata_2_Other::interpreter(Entree& is)
                       {
                         const FieldFloat& field = filter.get_float_field(fieldid);
                         {
-                          const FloatTab& values_lata = field.data_;
-                          int dim1 = values_lata.dimension(0);
-                          int dim2 = values_lata.dimension(1);
+                          const BigFloatTab& values_lata = field.data_;
+                          assert(values_lata.size_array() < std::numeric_limits<int>::max());
+                          int dim1 = (int)values_lata.dimension(0);
+                          int dim2 = values_lata.dimension_int(1);
                           values.resize(dim1, dim2);
                           for (int i1 = 0; i1 < dim1; i1++)
                             for (int i2 = 0; i2 < dim2; i2++)

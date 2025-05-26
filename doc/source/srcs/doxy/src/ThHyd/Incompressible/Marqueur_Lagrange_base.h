@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,15 +13,12 @@
 *
 *****************************************************************************/
 
-
 #ifndef Marqueur_Lagrange_base_included
 #define Marqueur_Lagrange_base_included
 
-#include <Objet_U.h>
-#include <Motcle.h>
-#include <Champ_Fonc.h>
-#include <Champs_compris.h>
 #include <Champs_compris_interface.h>
+#include <Champ_Fonc_base.h>
+#include <Champs_compris.h>
 
 class Ensemble_Lagrange_base;
 class Probleme_base;
@@ -56,14 +53,16 @@ public :
 
   //Methodes de l interface des champs postraitables
   /////////////////////////////////////////////////////
-  void creer_champ(const Motcle& motlu) override;
+  void creer_champ(const Motcle& motlu) override { }
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   /////////////////////////////////////////////////////
 
 protected :
 
-  Champ_Fonc densite_particules_; //Exprime le nombre de particules par maille
+  OWN_PTR(Champ_Fonc_base)  densite_particules_; //Exprime le nombre de particules par maille
   double t_debut_integr_;            //Temps de debut d integration des trajectoires
 
 private :

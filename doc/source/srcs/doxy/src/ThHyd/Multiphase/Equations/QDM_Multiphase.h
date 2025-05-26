@@ -16,8 +16,8 @@
 #ifndef QDM_Multiphase_included
 #define QDM_Multiphase_included
 
-#include <Navier_Stokes_std.h>
 #include <Operateur_Evanescence.h>
+#include <Navier_Stokes_std.h>
 #include <vector>
 
 /*! @brief classe QDM_Multiphase Cette classe porte les termes de l'equation de la dynamique
@@ -64,27 +64,26 @@ public :
   */
   int has_interface_blocs() const override;
   void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl = {}) const override;
-  const Champ_Don& diffusivite_pour_transport() const override;
+  const Champ_Don_base& diffusivite_pour_transport() const override;
   const Champ_base& diffusivite_pour_pas_de_temps() const override;
   const Champ_base& vitesse_pour_transport() const override;
   void assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) override;
   void creer_champ(const Motcle& motlu) override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
 
-  void update_y_plus(const DoubleTab& tab) ;
   double alpha_res() const ;
 
 protected:
   Entree& lire_cond_init(Entree&) override; //pour lire la pression
   int preparer_calcul() override; //appelle la methode de Equation_base
 
-  std::vector<Champ_Inc> vit_phases_; //vitesses de chaque phase
+  std::vector<OWN_PTR(Champ_Inc_base)> vit_phases_; //vitesses de chaque phase
   Motcles noms_vit_phases_; //leurs noms
 
-  std::vector<Champ_Fonc> grad_vit_phases_; //gradient des vitesses de chaque phase
+  std::vector<OWN_PTR(Champ_Fonc_base)> grad_vit_phases_; //gradient des vitesses de chaque phase
   Motcles noms_grad_vit_phases_; //leurs noms
 
-  Operateur_Evanescence evanescence;
+  Operateur_Evanescence evanescence_;
 };
 
-#endif
+#endif /* QDM_Multiphase_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #include <Source_Neutronique_VDF.h>
 #include <Probleme_base.h>
 #include <Domaine_Cl_VDF.h>
-#include <Champ_Inc.h>
+
 #include <Domaine_VDF.h>
 
 Implemente_instanciable_sans_constructeur(Source_Neutronique_VDF,"Source_Neutronique_VDF_P0_VDF",Source_Neutronique);
@@ -27,7 +27,7 @@ Entree& Source_Neutronique_VDF::readOn(Entree& s) { return Source_Neutronique::r
 void Source_Neutronique_VDF::completer()
 {
   Source_Neutronique::completer();
-  iter->completer_();
+  iter_->completer_();
 }
 
 double Source_Neutronique_VDF::calculer_Tmoyenne()
@@ -41,19 +41,19 @@ double Source_Neutronique_VDF::calculer_Tmoyenne()
   return T;
 }
 
-void Source_Neutronique_VDF::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Source_Neutronique_VDF::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
   le_dom = zvdf;
-  iter->associer_domaines(zvdf, zclvdf);
-  Eval_Puiss_Neutr_VDF_Elem& eval_puis = static_cast<Eval_Puiss_Neutr_VDF_Elem&> (iter->evaluateur());
+  iter_->associer_domaines(zvdf, zclvdf);
+  Eval_Puiss_Neutr_VDF_Elem& eval_puis = static_cast<Eval_Puiss_Neutr_VDF_Elem&> (iter_->evaluateur());
   eval_puis.associer_domaines(zvdf, zclvdf );
 }
 
 void Source_Neutronique_VDF::associer_pb(const Probleme_base& pb)
 {
-  Eval_Puiss_Neutr_VDF_Elem& eval_puis = static_cast<Eval_Puiss_Neutr_VDF_Elem&> (iter->evaluateur());
+  Eval_Puiss_Neutr_VDF_Elem& eval_puis = static_cast<Eval_Puiss_Neutr_VDF_Elem&> (iter_->evaluateur());
   eval_puis.associer_champs(la_puissance);
   eval_puis.associer_repartition(repartition(),nom_ssz());
 }

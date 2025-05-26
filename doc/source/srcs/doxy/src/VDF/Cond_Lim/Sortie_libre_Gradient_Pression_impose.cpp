@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Sortie_libre_Gradient_Pression_impose.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Navier_Stokes_std.h>
 #include <Champ_Uniforme.h>
 #include <Milieu_base.h>
@@ -21,6 +22,8 @@
 #include <Domaine_VDF.h>
 
 Implemente_instanciable(Sortie_libre_Gradient_Pression_impose, "Frontiere_ouverte_Gradient_Pression_impose", Neumann_sortie_libre);
+// XD frontiere_ouverte_gradient_pression_impose neumann frontiere_ouverte_gradient_pression_impose -1 Normal imposed pressure gradient condition on the open boundary called bord (edge). This boundary condition may be only used in VDF discretization. The imposed $\partial P/\partial n$ value is expressed in Pa.m-1.
+// XD attr ch front_field_base ch 0 Boundary field type.
 
 Sortie& Sortie_libre_Gradient_Pression_impose::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -31,7 +34,7 @@ Entree& Sortie_libre_Gradient_Pression_impose::readOn(Entree& s)
 
   s >> le_champ_front;
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   return s;
 }
 
@@ -41,8 +44,8 @@ void Sortie_libre_Gradient_Pression_impose::completer()
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
-  const Domaine_VDF& domaine_vdf = ref_cast(Domaine_VDF, eqn.domaine_dis().valeur());
-  const Champ_P0_VDF& pression = ref_cast(Champ_P0_VDF, eqn_hydr.pression().valeur());
+  const Domaine_VDF& domaine_vdf = ref_cast(Domaine_VDF, eqn.domaine_dis());
+  const Champ_P0_VDF& pression = ref_cast(Champ_P0_VDF, eqn_hydr.pression());
   const IntTab& face_voisins = domaine_vdf.face_voisins();
   const DoubleVect& volumes_entrelaces = domaine_vdf.volumes_entrelaces();
   const DoubleVect& face_surfaces = domaine_vdf.face_surfaces();
@@ -83,10 +86,10 @@ void Sortie_libre_Gradient_Pression_impose::mettre_a_jour(double temps)
 
 double Sortie_libre_Gradient_Pression_impose::flux_impose(int face) const
 {
-  if (le_champ_front.valeurs().size() == 1)
-    return (trace_pression_int[face] + coeff[face] * le_champ_front(0, 0));
-  else if (le_champ_front.valeurs().line_size() == 1)
-    return (trace_pression_int[face] + coeff[face] * le_champ_front(face, 0));
+  if (le_champ_front->valeurs().size() == 1)
+    return (trace_pression_int[face] + coeff[face] * le_champ_front->valeurs()(0, 0));
+  else if (le_champ_front->valeurs().line_size() == 1)
+    return (trace_pression_int[face] + coeff[face] * le_champ_front->valeurs()(face, 0));
   else
     Cerr << "Sortie_libre_Gradient_Pression_impose::flux_impose erreur" << finl;
   exit();
@@ -106,14 +109,14 @@ double Sortie_libre_Gradient_Pression_impose::flux_impose(int face, int ncomp) c
 double Sortie_libre_Gradient_Pression_impose::grad_P_imp(int face) const
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  if (sub_type(Champ_Uniforme, mil.masse_volumique().valeur()))
+  if (sub_type(Champ_Uniforme, mil.masse_volumique()))
     {
-      const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique().valeur());
-      double d_rho = rho(0, 0);
-      if (le_champ_front.valeurs().size() == 1)
-        return le_champ_front(0, 0) / d_rho;
-      else if (le_champ_front.valeurs().line_size() == 1)
-        return le_champ_front(face, 0) / d_rho;
+      const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique());
+      double d_rho = rho.valeurs()(0, 0);
+      if (le_champ_front->valeurs().size() == 1)
+        return le_champ_front->valeurs()(0, 0) / d_rho;
+      else if (le_champ_front->valeurs().line_size() == 1)
+        return le_champ_front->valeurs()(face, 0) / d_rho;
       else
         Cerr << "Sortie_libre_Gradient_Pression_impose::grad_P_imp() erreur" << finl;
     }
@@ -125,10 +128,10 @@ double Sortie_libre_Gradient_Pression_impose::grad_P_imp(int face) const
       if (elem == -1)
         elem = le_dom_VDF->face_voisins(face, 1);
       double d_rho = tab_rho(elem);
-      if (le_champ_front.valeurs().size() == 1)
-        return le_champ_front(0, 0) / d_rho;
-      else if (le_champ_front.valeurs().line_size() == 1)
-        return le_champ_front(face, 0) / d_rho;
+      if (le_champ_front->valeurs().size() == 1)
+        return le_champ_front->valeurs()(0, 0) / d_rho;
+      else if (le_champ_front->valeurs().line_size() == 1)
+        return le_champ_front->valeurs()(face, 0) / d_rho;
       else
         Cerr << "Sortie_libre_Gradient_Pression_impose::grad_P_imp() erreur" << finl;
     }

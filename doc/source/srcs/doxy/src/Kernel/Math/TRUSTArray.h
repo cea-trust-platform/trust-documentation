@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,11 +23,29 @@
 #include <memory>
 #include <climits>
 #include <vector>
+#include <TRUSTTabs_forward.h>
 
 #include <Device.h>
-
-#ifndef LATATOOLS  // Lata tools without Kokkos
 #include <View_Types.h>  // Kokkos stuff
+
+//Booleans for checking if an execution space is host or device
+#ifndef LATATOOLS
+
+//When compiled on CPU, DefaultExecutionSpace=DefaultHostExecutionSpace = serial or OpenMP
+//When compiled on GPU, DefaultExecutionSpace=Cuda, DefaultHostExecutionSpace=serial or OpenMP
+
+//Checking if ExecSpace is Kokkos::DefaultExecutionSpace
+//GPU compiled: True if Exec=Device
+//CPU compiled: Always true
+template <typename EXEC_SPACE >
+constexpr bool is_default_exec_space = std::is_same<EXEC_SPACE, Kokkos::DefaultExecutionSpace>::value;
+
+//Checking if GPU enabled, and if so, checking if ExecSpace is Kokkos::DefaultExecutionSpace
+//GPU compiled: true is Exec=Host
+//CPU compiled: Always false
+template <typename EXEC_SPACE >
+constexpr bool gpu_enabled_is_host_exec_space = std::is_same<EXEC_SPACE, Kokkos::DefaultHostExecutionSpace>::value &&
+                                                !std::is_same<Kokkos::DefaultHostExecutionSpace, Kokkos::DefaultExecutionSpace>::value;
 #endif
 
 /*! @brief Represents a an array of int/int64/double/... values.
@@ -55,45 +73,49 @@
  *  to perform the allocation again.
  *  - a Trav may not be ref_data or ref_array.
  *  - see implementation details of this mechanism in the TRUSTTravPool class.
+ *
+ *  In the template parameters below, _TYPE_ is the value type (what it contains), _SIZE_ is the extent type (how many items).
  */
-template <typename _TYPE_>
+template <typename _TYPE_, typename _SIZE_>
 class TRUSTArray : public Array_base
 {
 protected:
-  unsigned taille_memoire() const override { return sizeof(TRUSTArray<_TYPE_>); }
+  unsigned taille_memoire() const override { return sizeof(TRUSTArray<_TYPE_, _SIZE_>); }
 
   int duplique() const override
   {
     TRUSTArray* xxx = new  TRUSTArray(*this);
-    if(!xxx)
-      {
-        Cerr << "Not enough memory " << finl;
-        Process::exit();
-      }
+    if(!xxx) Process::exit("Not enough memory ");
     return xxx->numero();
   }
-
   Sortie& printOn(Sortie& os) const override;
   Entree& readOn(Entree& is) override;
 
+  //From TRUSTTab.h; now here
+  int nb_dim_ = 1;
+
 public:
   using Value_type_ = _TYPE_;
-  using Iterator = typename tcb::span<_TYPE_>::iterator;
+  using int_t = _SIZE_;
+  using Iterator_ = typename tcb::span<_TYPE_>::iterator;
   using Vector_ = std::vector<_TYPE_, TVAlloc<_TYPE_> >;
   using Span_ = tcb::span<_TYPE_>;
 
   // Tests can inspect whatever they want:
-  friend class TestTRUSTArray;
+  friend class TRUSTArrayKokkos;
+
+  // One instanciation with given template parameter may see all other template versions (useful in ref_as_big())
+  template<typename _TYPE2_, typename _SIZE2_> friend class TRUSTArray;
 
   // Iterators
-  inline Iterator begin() { return span_.begin(); }
-  inline Iterator end() { return span_.end(); }
+  inline Iterator_ begin() { return span_.begin(); }
+  inline Iterator_ end() { return span_.end(); }
 
   inline virtual ~TRUSTArray();
 
   TRUSTArray() : TRUSTArray(0) { }
 
-  TRUSTArray(int n) : storage_type_(STORAGE::STANDARD)
+  TRUSTArray(_SIZE_ n) : storage_type_(STORAGE::STANDARD)
   {
     if (n)
       {
@@ -113,36 +135,48 @@ public:
     Array_base(), storage_type_(A.storage_type_)
   {
     assert(A.mem_ != nullptr || A.span_.empty());
-    const int size = A.size_array();
+    const _SIZE_ size = A.size_array();
     if (size > 0)
       {
         // storage_type_ must be set properly before invoking this! So that Trav mechanism works:
         resize_array_(size, RESIZE_OPTIONS::NOCOPY_NOINIT);
-
-        data_location_ = std::make_shared<DataLocation>(A.get_data_location());
-        if (get_data_location() != DataLocation::HostOnly)   // Only allocate on device what has been at least once on device
+        if (A.get_data_location() != DataLocation::HostOnly)   // Only allocate *this on device if A is on the device
           // Not a Trav already allocated on device (avoid double alloc on device for Trav)
           if(!(storage_type_ == STORAGE::TEMP_STORAGE && isAllocatedOnDevice(mem_->data())))
             allocateOnDevice(*this);
+        // Set new location AFTER possible allocation
+        data_location_ = std::make_shared<DataLocation>(A.get_data_location());
         inject_array(A);
       }
   }
 
   // Resizing methods
-  inline void resize(int new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT) { resize_array(new_size, opt); }
-  inline void resize_array(int new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  inline void resize(_SIZE_ new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT) { resize_array(new_size, opt); }
+  inline void resize_array(_SIZE_ new_size, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+
+  // Conversion method - from a small array (_SIZE_=int) of TID (_TYPE_=trustIdType), return a big one (_SIZE_=long).
+  // No data copied! This behaves somewhat like a ref_array:
+  void ref_as_big(TRUSTArray<_TYPE_, trustIdType>& out) const;
+
+  // The other way around compared to ref_as_big! From big to small. In debug, size limit is checked.
+  void ref_as_small(TRUSTArray<_TYPE_, int>& out) const;
+
+  // Conversion from a BigArrOfTID to an ArrOfInt - see also similar method in TRUSTTab
+  void from_tid_to_int(TRUSTArray<int, int>& out) const;
 
   /*! Memory allocation type - TEMP arrays (i.e. Trav) have a different allocation mechanism - see TRUSTTravPool.h) */
   inline void set_mem_storage(const STORAGE storage);
   inline STORAGE get_mem_storage() const { return storage_type_; }
 
+  inline std::shared_ptr<Vector_> get_mem() {return mem_;}
+
   inline TRUSTArray& operator=(const TRUSTArray&);
 
-  inline _TYPE_& operator[](int i);
-  inline const _TYPE_& operator[](int i) const;
+  inline _TYPE_& operator[](_SIZE_ i);
+  inline const _TYPE_& operator[](_SIZE_ i) const;
 
-  inline _TYPE_& operator()(int i) { return operator[](i); }
-  inline const _TYPE_& operator()(int i) const { return operator[](i); }
+  inline _TYPE_& operator()(_SIZE_ i) { return operator[](i); }
+  inline const _TYPE_& operator()(_SIZE_ i) const { return operator[](i); }
 
   // Ces methodes renvoient un pointeur vers le premier element du tableau pour une utilisation sur le host
   inline _TYPE_ * addr();
@@ -153,10 +187,14 @@ public:
   inline const _TYPE_ *data() const;
 
   /*! Return the size of the span on the data (not the full underlying allocated size)   */
-  inline int size_array() const;
+  inline _SIZE_ size_array() const;
 
   /*! Returns the number of owners of the data, i.e. the number of Arrays pointing to the same underlying data */
   inline int ref_count() const;
+
+#ifdef TRUST_GTEST
+  inline int nb_dim() const;
+#endif
 
   /*! Add a slot at the end of the array and store it valeur -> similar to vector<>::push_back */
   inline void append_array(_TYPE_ valeur);
@@ -182,7 +220,7 @@ public:
   /*! divise toutes les cases par dy (pas pour TRUSTArray<int>) */
   TRUSTArray& operator/= (const _TYPE_ dy);
 
-  TRUSTArray& inject_array(const TRUSTArray& source, int nb_elements=-1,  int first_element_dest=0, int first_element_source=0);
+  TRUSTArray& inject_array(const TRUSTArray& source, _SIZE_ nb_elements=-1,  _SIZE_ first_element_dest=0, _SIZE_ first_element_source=0);
 
   inline TRUSTArray& copy_array(const TRUSTArray& a)
   {
@@ -191,60 +229,119 @@ public:
   }
 
   inline void ordonne_array();
-  inline void array_trier_retirer_doublons();
 
   // methodes virtuelles
 
   /*! Construction de tableaux qui pointent vers des donnees existantes !!! Utiliser ref_data avec precaution */
-  inline virtual void ref_data(_TYPE_* ptr, int size);
+  inline virtual void ref_data(_TYPE_* ptr, _SIZE_ size);
   /*! Remet le tableau dans l'etat obtenu avec le constructeur par defaut (libere la memoire mais conserve le mode d'allocation memoire actuel) */
   inline virtual void reset() { detach_array(); }
-  inline virtual void ref_array(TRUSTArray&, int start=0, int sz=-1);
-  inline virtual void resize_tab(int n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  inline virtual void ref_array(TRUSTArray&, _SIZE_ start=0, _SIZE_ sz=-1);
+  inline virtual void resize_tab(_SIZE_ n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
 
   // Host/Device methods:
   inline DataLocation get_data_location() {  return data_location_ == nullptr ? DataLocation::HostOnly : *data_location_;   }
   inline DataLocation get_data_location() const { return data_location_ == nullptr ? DataLocation::HostOnly : *data_location_; }
   inline void set_data_location(DataLocation flag) { if (data_location_ != nullptr) *data_location_ = flag; }
   inline void set_data_location(DataLocation flag) const { if (data_location_ != nullptr) *data_location_ = flag; }
+  inline int size_mem() { return mem_ == nullptr ? 0 : (int)mem_->size(); };
 
-  inline void checkDataOnHost();
-  inline void checkDataOnHost() const;
+  inline void ensureDataOnHost();
+  inline void ensureDataOnHost() const;
   inline bool isDataOnDevice() const;
-  inline bool checkDataOnDevice(std::string kernel_name="??");
-  inline bool checkDataOnDevice(std::string kernel_name="??") const;
-  inline bool checkDataOnDevice(const TRUSTArray& arr, std::string kernel_name="??");
+  inline bool checkDataOnDevice();
+  inline bool checkDataOnDevice() const;
+  inline bool checkDataOnDevice(const TRUSTArray& arr);
 
   inline virtual Span_ get_span() { return span_; }
   inline virtual Span_ get_span_tot() { return span_; }
   inline virtual const Span_ get_span() const { return span_; }
   inline virtual const Span_ get_span_tot() const { return span_; }
 
-#ifndef LATATOOLS   // Lata tools without Kokkos
-  // Kokkos accessors
-  inline ConstViewArr<_TYPE_> view_ro() const;  // Read-only
-  inline ViewArr<_TYPE_> view_wo();             // Write-only
-  inline ViewArr<_TYPE_> view_rw();             // Read-write
+  //From TRUSTArray.h, now also here and overridden in TRUSTTab
+  inline virtual _SIZE_ dimension_tot(int) const;
+
+#ifdef KOKKOS
+
+  template<int _SHAPE_>
+  inline bool check_flattened() const;
+
+  template<int _SHAPE_>
+  std::array<_SIZE_, 4> getDims() const;
+
+  //Clean the internal view of the Trust Array in case it is needed, if the Array is static to avoid it's destruction after Kokkos::finalize
+  inline void CleanMyView()
+  {
+    device_view_1_=DeviceView<_TYPE_,1>();
+    device_view_2_=DeviceView<_TYPE_,2>();
+    device_view_3_=DeviceView<_TYPE_,3>();
+    device_view_4_=DeviceView<_TYPE_,4>();
+  }
+
+  // Kokkos accessors (brace yourself!)
+  // See implementation in TRUSTArray_kokkos.h
+
+  // ** Informations for Arrays **
+  // Default value of _SHAPE_ is 1.
+  // You can only use  use _SHAPE_ = 1 on a TRUSTArray
+
+  // ** Informations for Tabs **
+  // It is not allowed to have a multi-D view of different shape than a multi-D tab
+  // It is allowed to have a 1D view on a multi-D tab. In this case, the view is flattened
+  // It is allowed to have a multi-D View on a 1D Tab (type: tab, nb_dim_=1)
+  // This last case happens in Op_Conv_VEF_Face.cpp where a default constructed tab (nb_dim=1)
+  // Is pointed to other tabs and used in kokkos (weird case)
+
+  //See test/UnitTests/unit_array_kokkos.cpp for examples
+
+  // Read-only
+  template <int _SHAPE_ = 1, typename EXEC_SPACE = Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, ConstView<_TYPE_,_SHAPE_> >
+  view_ro() const;
+
+  template <int _SHAPE_ = 1, typename EXEC_SPACE = Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, ConstHostView<_TYPE_,_SHAPE_> >
+  view_ro() const;
+
+  // Write-only
+  template <int _SHAPE_ = 1, typename EXEC_SPACE=Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, View<_TYPE_,_SHAPE_> >
+  view_wo();
+
+  template <int _SHAPE_ = 1, typename EXEC_SPACE=Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, HostView<_TYPE_,_SHAPE_> >
+  view_wo();
+
+  // Read-write
+  template <int _SHAPE_ = 1, typename EXEC_SPACE=Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, View<_TYPE_,_SHAPE_> >
+  view_rw();
+
+  template <int _SHAPE_ = 1, typename EXEC_SPACE=Kokkos::DefaultExecutionSpace>
+  inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, HostView<_TYPE_,_SHAPE_> >
+  view_rw();
+
 #endif
 
-  inline void sync_to_host() const;              // Synchronize back to host
-  inline void modified_on_host() const;         // Mark data as being modified on host side
-
 protected:
-  inline void attach_array(const TRUSTArray& a, int start=0, int size=-1);
+  inline void attach_array(const TRUSTArray& a, _SIZE_ start=0, _SIZE_ size=-1);
   inline bool detach_array();
 
-  void resize_array_(int n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
+  void resize_array_(_SIZE_ n, RESIZE_OPTIONS opt=RESIZE_OPTIONS::COPY_INIT);
 
+#ifdef KOKKOS
   // Kokkos members
-  inline void init_view_arr() const;
+  template<int _SHAPE_> inline void init_device_view() const;
 
-  mutable bool dual_view_init_ = false;
-#ifndef LATATOOLS  // Lata tools without Kokkos
-  mutable DualViewArr<_TYPE_> dual_view_arr_;
+  mutable DeviceView<_TYPE_, 1> device_view_1_;
+  mutable DeviceView<_TYPE_, 2> device_view_2_;
+  mutable DeviceView<_TYPE_, 3> device_view_3_;
+  mutable DeviceView<_TYPE_, 4> device_view_4_;
+
 #endif
 
 private:
+
   /*! Shared pointer to the actual underlying memory block:
    *   - shared_ptr because data can be shared between several owners -> see ref_array()
    *   - std::vector<> because we want contiguous data, with a smart allocation mechanism
@@ -269,12 +366,41 @@ private:
 
 private:
   /*! Debug */
-  inline void printKernel(bool flag, const TRUSTArray& tab, std::string kernel_name) const;
+  template<typename _TAB_> void ref_conv_helper_(_TAB_& out) const;
+
+#ifdef KOKKOS
+
+  // get_device_view for _SHAPE_ == 1
+  template<int _SHAPE_>
+  typename std::enable_if<_SHAPE_ == 1, DeviceView<_TYPE_, 1>>::type& get_device_view() const { return device_view_1_; }
+
+  // get_device_view for _SHAPE_ == 2
+  template<int _SHAPE_>
+  typename std::enable_if<_SHAPE_ == 2, DeviceView<_TYPE_, 2>>::type& get_device_view() const { return device_view_2_; }
+
+  // get_device_view for _SHAPE_ == 3
+  template<int _SHAPE_>
+  typename std::enable_if<_SHAPE_ == 3, DeviceView<_TYPE_, 3>>::type& get_device_view() const { return device_view_3_; }
+
+  // get_device_view for _SHAPE_ == 4
+  template<int _SHAPE_>
+  typename std::enable_if<_SHAPE_ == 4, DeviceView<_TYPE_, 4>>::type& get_device_view() const { return device_view_4_; }
+
+#endif
 };
 
-using ArrOfDouble = TRUSTArray<double>;
-using ArrOfFloat = TRUSTArray<float>;
-using ArrOfInt = TRUSTArray<int>;
+using ArrOfDouble = TRUSTArray<double, int>;
+using ArrOfFloat = TRUSTArray<float, int>;
+using ArrOfInt = TRUSTArray<int, int>;
+using ArrOfTID = TRUSTArray<trustIdType, int>;
+
+template <typename _TYPE_>
+using BigTRUSTArray = TRUSTArray<_TYPE_, trustIdType>;
+
+using BigArrOfDouble = BigTRUSTArray<double>;
+using BigArrOfInt = BigTRUSTArray<int>;
+using BigArrOfTID = BigTRUSTArray<trustIdType>;
+
 
 /* *********************************** *
  * FONCTIONS NON MEMBRES DE TRUSTArray *
@@ -287,10 +413,7 @@ using ArrOfInt = TRUSTArray<int>;
  * ******************************* */
 
 #include <TRUSTArray_device.tpp> // OMP stuff
-
-#ifndef LATATOOLS
 #include <TRUSTArray_kokkos.tpp> // Kokkos stuff
-#endif
 
 #include <TRUSTArray.tpp> // The rest here!
 

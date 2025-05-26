@@ -39,12 +39,20 @@ Entree& Interface_base::readOn(Entree& is)
   return is;
 }
 
+void Interface_base::discretiser_sigma(const Nom& sig_nom, double temps)
+{
+  const Discretisation_base& dis = pb_->discretisation();
+  const Domaine_dis_base& dom_dis = pb_->domaine_dis();
+  dis.discretiser_champ("temperature", dom_dis, sig_nom, "N/m", 1, temps, ch_sigma_);
+}
+
+
 void Interface_base::mettre_a_jour(double temps)
 {
   DoubleTab& sigma_tab = ch_sigma_->valeurs();
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, pb_.valeur());
-  const DoubleTab& press = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression()->valeurs(),
-                   &temp = pbm.equation_energie().inconnue()->valeurs();
+  const DoubleTab& press = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression().valeurs(),
+                   &temp = pbm.equation_energie().inconnue().valeurs();
 
   // XXX Elie Saikali : Cas sans saturation !
   // pour le moment on simplifie le calcul et on prend la moyenne de T
@@ -66,16 +74,36 @@ void Interface_base::mettre_a_jour(double temps)
   sigma_tab.echange_espace_virtuel();
 }
 
+// lois en T
 void Interface_base::sigma(const SpanD T, const SpanD P, SpanD res, int ncomp, int ind) const
 {
   if (sigma__ >= 0)
-    for (int i =0; i < (int)P.size(); i++) res[i * ncomp + ind] = sigma__;
-  else sigma_(T,P,res,ncomp,ind);
+    for (int i = 0; i < (int) P.size(); i++)
+      res[i * ncomp + ind] = sigma__;
+  else
+    sigma_(T, P, res, ncomp, ind);
 }
 
 double Interface_base::sigma(const double T, const double P) const
 {
-  ArrayD Tt = {T}, Pp = {P}, res_ = {0.};
-  sigma(SpanD(Tt),SpanD(Pp),SpanD(res_),1,0);
+  ArrayD Tt = { T }, Pp = { P }, res_ = { 0. };
+  sigma(SpanD(Tt), SpanD(Pp), SpanD(res_), 1, 0);
+  return res_[0];
+}
+
+// lois en h
+void Interface_base::sigma_h(const SpanD H, const SpanD P, SpanD res, int ncomp, int ind) const
+{
+  if (sigma__ >= 0)
+    for (int i = 0; i < (int) P.size(); i++)
+      res[i * ncomp + ind] = sigma__;
+  else
+    sigma_h_(H, P, res, ncomp, ind);
+}
+
+double Interface_base::sigma_h(const double h, const double P) const
+{
+  ArrayD H = { h }, Pp = { P }, res_ = { 0. };
+  sigma_h(SpanD(H), SpanD(Pp), SpanD(res_), 1, 0);
   return res_[0];
 }

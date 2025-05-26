@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,8 +21,7 @@
 #include <Param.h>
 #include <Domaine_dis_cache.h>
 
-Implemente_instanciable_sans_constructeur(Champ_Generique_Interpolation,"Interpolation",Champ_Gen_de_Champs_Gen);
-Add_synonym(Champ_Generique_Interpolation,"Champ_Post_Interpolation");
+Implemente_instanciable_sans_constructeur(Champ_Generique_Interpolation,"Champ_Post_Interpolation|Interpolation",Champ_Gen_de_Champs_Gen);
 
 /*! @brief voir reset()
  *
@@ -172,7 +171,7 @@ int Champ_Generique_Interpolation::set_domaine(const Nom& nom_domaine, int exit_
 /*! @brief Interpolation du champ source en fonction de la methode, localisation et domaine demandes.
  *
  */
-const Champ_base& Champ_Generique_Interpolation::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Interpolation::get_champ(OWN_PTR(Champ_base)&) const
 {
   if (localisation_ == "")
     {
@@ -183,7 +182,7 @@ const Champ_base& Champ_Generique_Interpolation::get_champ(Champ& espace_stockag
 
   if (methode_ == "calculer_champ_post")
     {
-      get_champ_with_calculer_champ_post(espace_stockage);
+      get_champ_with_calculer_champ_post();
     }
   else
     {
@@ -191,13 +190,13 @@ const Champ_base& Champ_Generique_Interpolation::get_champ(Champ& espace_stockag
       exit();
     }
 
-  return espace_stockage.valeur();
+  return espace_stockage_;
 }
 
-const Champ_base& Champ_Generique_Interpolation::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Interpolation::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ espace_stockage_source;
+  OWN_PTR(Champ_base) espace_stockage_source;
   const Champ_base& source = get_source(0).get_champ_without_evaluation(espace_stockage_source);
   // Domaine sur lequel on interpole le champ :
   //  si domaine_ est une ref nulle, on prend le domaine natif du champ.
@@ -222,18 +221,17 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_without_evaluation(Ch
   nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
 
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 /*! @brief Interpolation du champ source a l'aide de Champ_base::calculer_champ_xxx_post
  *
  */
-const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_post(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_post() const
 {
-  Champ espace_stockage_source;
-  const Champ_base& source0 = get_source(0).get_champ(espace_stockage_source);
-  Champ source_bis;
+  const Champ_base& source0 = get_source(0).get_champ(espace_stockage_source_);
+  OWN_PTR(Champ_base) source_bis;
 
   if (optimisation_sous_maillage_==-1)
     {
@@ -266,19 +264,21 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
   Nature_du_champ nature_source = (ncomp==-1)?source.nature_du_champ():scalaire;
   nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
+  if (espace_stockage_.est_nul())
+    creer_espace_stockage(nature_source, nb_comp, espace_stockage_);
+  espace_stockage_->changer_temps(source.temps());
 
-  Champ_Fonc es_tmp;
-  espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
+  nb_comp = espace_stockage_->nb_comp(); // with DG, espace_stockage has smaller dimension than source
 
   //double default_value=-1e35;
   //espace_stockage.valeurs()=default_value;
   int decal=10;
   if (optimisation_sous_maillage_==-1)
     {
-      espace_stockage.valeurs()=0;
+      espace_stockage_->valeurs()=0;
       // premier appel avec maillage different (ou on a force) , on essaye de voir si on peut optimiser
       // on champ la source on y met val(i)=i, pour recuperer le numero de la maille apres
-      DoubleTab& val=source_bis.valeurs();
+      DoubleTab& val=source_bis->valeurs();
 
       int dim0 = val.dimension_tot(0);
       for (int i=0; i<dim0; i++)
@@ -287,7 +287,7 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
     }
 
   //Evaluation des valeurs du champ espace_stockage
-  DoubleTab& espace_valeurs = espace_stockage->valeurs();
+  DoubleTab& espace_valeurs = espace_stockage_->valeurs();
 
   if (optimisation_sous_maillage_==1)
     {
@@ -304,47 +304,73 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
         else espace_valeurs(i, ncomp) = val_temp[renumerotation_maillage_[i]];
 
       espace_valeurs.echange_espace_virtuel();
-      return espace_stockage.valeur();
+      return espace_stockage_;
     }
 
-  int imax=0;
-  //  int jmax=0;;
-  imax = espace_valeurs.dimension(0);
-  //if (espace_valeurs.nb_dim()==2)
-  //  jmax = espace_valeurs.dimension(1);
-
+  int imax = espace_valeurs.dimension(0);
   if (localisation_ == "elem")
     {
       const int nb_elements = domaine.nb_elem();
-
       if (ncomp==-1)
         {
-          DoubleTab val_temp;
+          DoubleTrav val_temp;
           source.calculer_valeurs_elem_post(val_temp,
                                             nb_elements,
                                             nom_champ_interpole,
                                             domaine);
-
-          for (int i_val=0; i_val<imax; i_val++)
-            for (int j_val=0; j_val<nb_comp; j_val++)
-              espace_valeurs(i_val,j_val) = val_temp(i_val,j_val);
-
+          if (val_temp.isDataOnDevice())
+            {
+              CDoubleTabView val_temp_v = val_temp.view_ro();
+              DoubleTabView espace_valeurs_v = espace_valeurs.view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+              Kokkos::MDRangePolicy < Kokkos::Rank < 2 >> ({ 0, 0 },
+              {imax, nb_comp}), KOKKOS_LAMBDA(
+                const int i,
+                const int j)
+              {
+                espace_valeurs_v(i, j) = val_temp_v(i, j);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else
+            {
+              for (int i_val=0; i_val<imax; i_val++)
+                for (int j_val=0; j_val<nb_comp; j_val++)
+                  espace_valeurs(i_val,j_val) = val_temp(i_val,j_val);
+            }
         }
       else
         //On construit un tableau de valeurs a nb_comp composantes meme si ncomp!=-1
         {
-          DoubleTab val_temp;
+          DoubleTrav val_temp;
           source.calculer_valeurs_elem_compo_post(val_temp,
                                                   ncomp,
                                                   nb_elements,
                                                   nom_champ_interpole,
                                                   domaine);
-
-          int dim0 = val_temp.dimension(0);
-          for (int i=0; i<dim0; i++)
-            for (int j=0; j<nb_comp; j++)
-              if (j==ncomp)
-                espace_valeurs(i,j) = val_temp(i);
+          if (val_temp.isDataOnDevice())
+            {
+              CDoubleArrView val_temp_v = static_cast<const DoubleVect&>(val_temp).view_ro();
+              DoubleTabView espace_valeurs_v = espace_valeurs.view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+              Kokkos::MDRangePolicy < Kokkos::Rank < 2 >> ({ 0, 0 },
+              {val_temp.dimension(0), nb_comp}), KOKKOS_LAMBDA(
+                const int i,
+                const int j)
+              {
+                if (j == ncomp)
+                  espace_valeurs_v(i, j) = val_temp_v(i);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else
+            {
+              int dim0 = val_temp.dimension(0);
+              for (int i=0; i<dim0; i++)
+                for (int j=0; j<nb_comp; j++)
+                  if (j==ncomp)
+                    espace_valeurs(i,j) = val_temp(i);
+            }
         }
 
     }
@@ -352,53 +378,75 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
     {
       const int nb_sommets = domaine.nb_som();
       // PL: mise a jour de l'espace virtuel de la source:
-      Champ copie_source;
+      OWN_PTR(Champ_base) copie_source;
       copie_source = source;
-      copie_source.valeurs().echange_espace_virtuel();
+      copie_source->valeurs().echange_espace_virtuel();
       if (ncomp==-1)
         {
-          DoubleTab val_temp;
-          copie_source.valeur().calculer_valeurs_som_post(val_temp,
-                                                          nb_sommets,
-                                                          nom_champ_interpole,
-                                                          domaine);
-          for (int i_val=0; i_val<imax; i_val++)
-            for (int j_val=0; j_val<nb_comp; j_val++)
-              espace_valeurs(i_val,j_val) = val_temp(i_val,j_val);
+          DoubleTrav val_temp;
+          copie_source->calculer_valeurs_som_post(val_temp,
+                                                  nb_sommets,
+                                                  nom_champ_interpole,
+                                                  domaine);
+          if (val_temp.isDataOnDevice())
+            {
+              CDoubleTabView val_temp_v = val_temp.view_ro();
+              DoubleTabView espace_valeurs_v = espace_valeurs.view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+              Kokkos::MDRangePolicy < Kokkos::Rank < 2 >> ({ 0, 0 },
+              {imax, nb_comp}), KOKKOS_LAMBDA(
+                const int i,
+                const int j)
+              {
+                espace_valeurs_v(i, j) = val_temp_v(i, j);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else
+            {
+              for (int i_val=0; i_val<imax; i_val++)
+                for (int j_val=0; j_val<nb_comp; j_val++)
+                  espace_valeurs(i_val,j_val) = val_temp(i_val,j_val);
+            }
         }
       else
         //On construit un tableau de valeurs a nb_comp composantes meme si ncomp!=-1
         {
-          DoubleTab val_temp;
-          copie_source.valeur().calculer_valeurs_som_compo_post(val_temp,
-                                                                ncomp,
-                                                                nb_sommets,
-                                                                nom_champ_interpole,
-                                                                domaine);
-
-          int dim0 = val_temp.dimension(0);
-          for (int i=0; i<dim0; i++)
-            for (int j=0; j<nb_comp; j++)
-              if (j==ncomp)
-                espace_valeurs(i,j) = val_temp(i);
+          DoubleTrav val_temp;
+          copie_source->calculer_valeurs_som_compo_post(val_temp,
+                                                        ncomp,
+                                                        nb_sommets,
+                                                        nom_champ_interpole,
+                                                        domaine);
+          if (val_temp.isDataOnDevice())
+            {
+              CDoubleArrView val_temp_v = static_cast<const DoubleVect&>(val_temp).view_ro();
+              DoubleTabView espace_valeurs_v = espace_valeurs.view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+              Kokkos::MDRangePolicy < Kokkos::Rank < 2 >> ({ 0, 0 },
+              {val_temp.dimension(0), nb_comp}), KOKKOS_LAMBDA(
+                const int i,
+                const int j)
+              {
+                if (j == ncomp)
+                  espace_valeurs_v(i, j) = val_temp_v(i);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+          else
+            {
+              int dim0 = val_temp.dimension(0);
+              for (int i=0; i<dim0; i++)
+                for (int j=0; j<nb_comp; j++)
+                  if (j==ncomp)
+                    espace_valeurs(i,j) = val_temp(i);
+            }
         }
     }
   else
     {
-      //     const Nom& nom_source = source.que_suis_je();
-      //if (((nom_source=="Champ_P1NC") || (nom_source=="Champ_Fonc_P1NC")) && (localisation_=="faces"))
-      // {
-      espace_stockage->affecter(source);
-      // }
-      /* else
-          {
-            Cerr << "Champ_Generique_Interpolation::get_champ localisation uncoded " << localisation_ << " for " <<source.que_suis_je()<<finl;
-            exit();
-          }
-      */
+      espace_stockage_->affecter(source);
     }
-
-
 
   if (optimisation_sous_maillage_==-1)
     {
@@ -434,12 +482,12 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
       if (test)
         {
           ref_cast_non_const(Champ_Generique_Interpolation,(*this)).optimisation_sous_maillage_=0;
-          Champ espace_stockage_test;
-          get_champ_with_calculer_champ_post(espace_stockage_test);
+          OWN_PTR(Champ_base) espace_stockage_test;
+          espace_stockage_test = get_champ_with_calculer_champ_post();
           ref_cast_non_const(Champ_Generique_Interpolation,(*this)).optimisation_sous_maillage_=test;
-          get_champ_with_calculer_champ_post(espace_stockage);
-          espace_stockage_test.valeurs()-=espace_stockage.valeurs();
-          double dmax= mp_max_abs_vect(espace_stockage_test.valeurs());
+          get_champ_with_calculer_champ_post();
+          espace_stockage_test->valeurs()-=espace_stockage_->valeurs();
+          double dmax= mp_max_abs_vect(espace_stockage_test->valeurs());
           if (dmax > 1e-7)
             {
               Cerr<<nom_champ[0]<<" optimisation ko "<< dmax<<finl;
@@ -458,18 +506,18 @@ const Champ_base& Champ_Generique_Interpolation::get_champ_with_calculer_champ_p
             }
         }
       ref_cast_non_const(Champ_Generique_Interpolation,(*this)).optimisation_sous_maillage_=test;
-      return get_champ_with_calculer_champ_post(espace_stockage);
+      return get_champ_with_calculer_champ_post();
     }
 
   espace_valeurs.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage_;
 }
 
 const DoubleTab& Champ_Generique_Interpolation::get_ref_values() const
 {
-  Champ champ_a_ecrire;
+  OWN_PTR(Champ_base) champ_a_ecrire;
   get_champ(champ_a_ecrire);
-  return champ_a_ecrire.valeurs();
+  return champ_a_ecrire->valeurs();
 }
 
 void Champ_Generique_Interpolation::get_copy_values(DoubleTab& values) const
@@ -550,7 +598,7 @@ const Noms Champ_Generique_Interpolation::get_property(const Motcle& query) cons
 
         if (compo_.size()>1)
           {
-            //Le champ a ete cree par macro et on a rempli l attribut compo_ du Champ_Generique
+            //Le champ a ete cree par macro et on a rempli l attribut compo_ du Champ_Generique_base
             //Cela permet de reproduire les noms de composantes dans les lml
             compo=compo_;
           }
@@ -633,14 +681,13 @@ const Domaine_dis_base& Champ_Generique_Interpolation::get_ref_domaine_dis_base(
 {
   if (domaine_.non_nul())
     {
-      if (le_dom_dis.est_nul() || le_dom_dis->est_nul())
+      if (le_dom_dis.est_nul())
         {
           Cerr << "Error in Interpolation definition:" << finl;
           Cerr << "The domain " << domaine_->le_nom() << " is not built." << finl;
           exit();
         }
-      const Domaine_dis_base& domaine_dis = le_dom_dis.valeur().valeur();
-      return domaine_dis;
+      return le_dom_dis.valeur();
     }
   else
     {
@@ -685,13 +732,13 @@ void Champ_Generique_Interpolation::discretiser_domaine()
       Nom type_discr = discr.que_suis_je();
       if (type_discr == "VEFPreP1B") type_discr = "VEF";
       // on ne cree pas les faces sauf si on veut une interpolation aux faces ou si on a des polyedres
-      // Nom type = sub_type(Poly_geom_base, domaine_.valeur().type_elem().valeur()) ? "Domaine_" : "NO_FACE_Domaine_";
+      // Nom type = sub_type(Poly_geom_base, domaine_->type_elem().valeur()) ? "Domaine_" : "NO_FACE_Domaine_";
       Nom type = "NO_FACE_Domaine_";
       if (localisation_=="faces")
         {
           type="Domaine_";
           // On verifie que la localisation aux faces est possible sur le domaine (sinon elem ou som)
-          if (domaine_.valeur().type_elem().valeur().nb_som_face()<=2 && dimension==3)
+          if (domaine_->type_elem()->nb_som_face()<=2 && dimension==3)
             {
               Cerr << "'localisation faces' is not possible in 3D on the 2D surface mesh " << domaine_->le_nom() << " with the field: " << get_property("NOM")[0] << finl;
               Cerr << "Please use 'localisation elem' instead." << finl;

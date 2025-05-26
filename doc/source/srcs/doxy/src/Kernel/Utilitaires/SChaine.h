@@ -30,7 +30,7 @@ public:
   unsigned get_size() const;
   void setf(IOS_FORMAT code) override;
 //  void self_test();   // [ABN] to be put in unit tests ...
-  int set_bin(int bin) override;
+  void set_bin(bool bin) override;
 
 protected:
   mutable std::string string_;

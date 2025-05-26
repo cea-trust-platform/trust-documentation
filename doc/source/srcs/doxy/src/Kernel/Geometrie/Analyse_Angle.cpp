@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -102,7 +102,7 @@ Entree& Analyse_Angle::interpreter(Entree& is)
 void histogramme_angle(const Domaine& dom , Sortie& out,  int nb_histo )
 {
   out<<finl<<"Histogram of the largest angle of each element found into the mesh "<<dom.le_nom()<<" :" << finl;
-  Motcle type_elem(dom.type_elem().valeur().que_suis_je());
+  Motcle type_elem(dom.type_elem()->que_suis_je());
   if (((type_elem!="triangle")&& (type_elem!="tetraedre")) || ((type_elem=="triangle") && (Domaine::dimension==3)))
     {
       out<<"Not available for "<<type_elem<<" in dimension "<<Domaine::dimension<<finl;
@@ -134,13 +134,13 @@ void histogramme_angle(const Domaine& dom , Sortie& out,  int nb_histo )
     }
   if (histo[nb_histo]>0)
     Process::exit();
-  int nb_elem_tot=(int)Process::mp_sum(nb_elem);
+  int nb_elem_tot = Process::check_int_overflow(Process::mp_sum(nb_elem));  // Analyse_angle only provided in 32b!
   if (nb_elem_tot>0)
     {
       double obtuse_cells_proportion=0;
       for (int h=0; h<nb_histo; h++)
         {
-          histo[h]=Process::mp_sum(histo[h]);
+          histo[h]=static_cast<int>(Process::mp_sum(histo[h]));  // should remain within 'int' range
           // Pas d'angles en dessous de 60 forcement
           if (180/nb_histo*h>=60)
             {

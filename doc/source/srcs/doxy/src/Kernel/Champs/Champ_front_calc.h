@@ -30,7 +30,7 @@ class Milieu_base;
 /*! @brief classe Champ_front_calc Classe derivee de Champ_front_var qui represente les
  *
  *      champs a la frontiere obtenus en prenant la trace
- *      d'un objet de type Champ_Inc (champ inconnue d'une equation)
+ *      d'un objet de type OWN_PTR(Champ_Inc_base) (champ inconnue d'une equation)
  *
  * @sa Champ_front_var_instationnaire Champ_Inc
  */
@@ -57,7 +57,7 @@ public:
   inline void set_distant(int d) { distant_=d ; }
 
 protected :
-  REF(Champ_Inc_base) l_inconnue;          // L'inconnue du probleme oppose
+  OBS_PTR(Champ_Inc_base) l_inconnue;          // L'inconnue du probleme oppose
   Nom nom_autre_bord_,nom_autre_pb_;       // Nom du bord et du probleme oppose
   Motcle nom_inco_;
   bool via_readon_ = false;

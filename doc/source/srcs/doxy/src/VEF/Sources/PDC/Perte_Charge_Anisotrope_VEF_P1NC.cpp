@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,18 +19,17 @@
 #include <Param.h>
 
 Implemente_instanciable(Perte_Charge_Anisotrope_VEF_P1NC,"Perte_Charge_Anisotrope_VEF_P1NC",Perte_Charge_VEF);
-
+// XD perte_charge_anisotrope source_base perte_charge_anisotrope 1 Anisotropic pressure loss.
+// XD  attr lambda chaine lambda_u 0 Function for loss coefficient which may be Reynolds dependant (Ex: 64/Re).
+// XD  attr lambda_ortho chaine lambda_ortho 0 Function for loss coefficient in transverse direction which may be Reynolds dependant (Ex: 64/Re).
+// XD  attr diam_hydr champ_don_base diam_hydr 0 Hydraulic diameter value.
+// XD  attr direction champ_don_base direction 0 Field which indicates the direction of the pressure loss.
+// XD  attr sous_zone chaine sous_zone 1 Optional sub-area where pressure loss applies.
 
 Sortie& Perte_Charge_Anisotrope_VEF_P1NC::printOn(Sortie& s ) const
 {
   return s << que_suis_je() << finl;
 }
-
-////////////////////////////////////////////////////////////////
-//                                                            //
-//                         readOn                             //
-//                                                            //
-////////////////////////////////////////////////////////////////
 
 Entree& Perte_Charge_Anisotrope_VEF_P1NC::readOn(Entree& s )
 {
@@ -108,7 +107,7 @@ void Perte_Charge_Anisotrope_VEF_P1NC::coeffs_perte_charge(const DoubleVect& u, 
   // Calcul de v et ||v||^2
   //  DoubleVect v_valeur(dimension);
   double vcarre=0;
-  v.valeur().valeur_a(pos,v_valeur);
+  v->valeur_a(pos,v_valeur);
   for (int dim=0; dim<dimension; dim++)
     vcarre+=v_valeur[dim]*v_valeur[dim];
   v_valeur/=sqrt(vcarre);

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,6 @@ struct rocalution_initializer
   {
     if (rocalution_initialized==0)
       {
-        disable_accelerator_rocalution(!Objet_U::computeOnDevice); // TRUST_DISABLE_DEVICE=1 $exec pour desactiver la version GPU de rocALUTION
         set_omp_affinity_rocalution(false); // Disable OpenMP thread affinity
         //char* dev_per_node = getenv("TRUST_DEVICES_PER_NODE");
         //init_rocalution(Process::me(), dev_per_node==nullptr ? 1 : atoi(dev_per_node));
@@ -90,7 +89,6 @@ private :
   Motcle coarse_grid_solver_ = "LU";
   double omega_ = 0.8;
   int coarse_grids_host_ = 0;
-  ArrOfDouble sol_host,rhs_host;
   GlobalVector<double> sol, rhs, e;
   IntVect local_renum_;
 #endif

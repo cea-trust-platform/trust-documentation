@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,11 +17,13 @@
 #include <Probleme_base.h>
 #include <Milieu_base.h>
 #include <Domaine_Cl_VDF.h>
-#include <Champ_Don.h>
+
 #include <Domaine_VDF.h>
 #include <Param.h>
 
 Implemente_instanciable_sans_constructeur(Source_Forchheimer_VDF_Face,"Forchheimer_VDF_Face",Terme_Source_VDF_base);
+// XD forchheimer source_base forchheimer 0 Class to add the source term of Forchheimer -Cf/sqrt(K)*V2 in the Navier-Stokes equations. We must precise a permeability model : constant or Ergun\'s law. Moreover we can give the constant Cf : by default its value is 1. Forchheimer source term is available also for quasi compressible calculation. A new keyword is aded for porosity (porosite).
+// XD attr bloc bloc_lecture bloc 0 Description.
 
 Sortie& Source_Forchheimer_VDF_Face::printOn(Sortie& s) const { return s << que_suis_je(); }
 
@@ -48,8 +50,8 @@ int Source_Forchheimer_VDF_Face::lire_motcle_non_standard(const Motcle& mot, Ent
     {
       Motcle motlu;
       is >> motlu;
-      eval().modK.typer(motlu);
-      is >> eval().modK.valeur();
+      eval().modK_.typer(motlu);
+      is >> eval().modK_.valeur();
       return 1;
     }
   else if (mot=="Cf")
@@ -75,16 +77,16 @@ int Source_Forchheimer_VDF_Face::lire_motcle_non_standard(const Motcle& mot, Ent
 }
 
 
-void Source_Forchheimer_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Source_Forchheimer_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-  iter->associer_domaines(zvdf, zclvdf);
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+  iter_->associer_domaines(zvdf, zclvdf);
   eval().associer_domaines(zvdf, zclvdf );
 }
 
 void Source_Forchheimer_VDF_Face::associer_pb(const Probleme_base& pb)
 {
-  const Champ_Inc& vit = pb.equation(0).inconnue();
+  const Champ_Inc_base& vit = pb.equation(0).inconnue();
   eval().associer(vit);
 }

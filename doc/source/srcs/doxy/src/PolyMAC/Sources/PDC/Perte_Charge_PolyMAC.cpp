@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,75 +29,21 @@
 #include <Sous_Domaine.h>
 #include <Param.h>
 
-Implemente_base(Perte_Charge_PolyMAC, "Perte_Charge_PolyMAC", Source_base);
+Implemente_base(Perte_Charge_PolyMAC, "Perte_Charge_PolyMAC", Perte_Charge_Gen);
 
 Sortie& Perte_Charge_PolyMAC::printOn(Sortie& s) const { return s << que_suis_je() << endl; }
 
-Entree& Perte_Charge_PolyMAC::readOn(Entree& is)
-{
-  Param param(que_suis_je());
-  Cerr << que_suis_je() << "::readOn " << finl;
-  lambda.setNbVar(4 + dimension);
-  set_param(param);
-  param.lire_avec_accolades_depuis(is);
-  Cerr << "Interpretation de la fonction " << lambda.getString() << " ... ";
-  lambda.parseString();
-  Cerr << " Ok" << finl;
-  if (diam_hydr->nb_comp() != 1)
-    {
-      Cerr << "Il faut definir le champ diam_hydr a une composante" << finl;
-      exit();
-    }
-  return is;
-}
-
-void Perte_Charge_PolyMAC::set_param(Param& param)
-{
-  param.ajouter_non_std("lambda", (this), Param::REQUIRED);
-  param.ajouter("diam_hydr", &diam_hydr, Param::REQUIRED);
-  param.ajouter_non_std("sous_domaine|sous_zone", (this));
-  param.ajouter("implicite", &implicite_);
-}
-
-int Perte_Charge_PolyMAC::lire_motcle_non_standard(const Motcle& mot, Entree& is)
-{
-  if (mot == "lambda")
-    {
-      Nom tmp;
-      is >> tmp;
-      lambda.setString(tmp);
-      lambda.addVar("Re");
-      lambda.addVar("t");
-      lambda.addVar("x");
-      if (dimension > 1)
-        lambda.addVar("y");
-      if (dimension > 2)
-        lambda.addVar("z");
-      return 1;
-    }
-  else if (mot == "sous_domaine")
-    {
-      is >> nom_sous_domaine;
-      sous_domaine = true;
-      return 1;
-    }
-  else // non compris
-    {
-      Cerr << "Mot cle \"" << mot << "\" non compris lors de la lecture d'un " << que_suis_je() << finl;
-      Process::exit();
-    }
-  return -1;
-}
+Entree& Perte_Charge_PolyMAC::readOn(Entree& is) { return Perte_Charge_Gen::readOn(is); }
 
 void Perte_Charge_PolyMAC::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
 
   assert(has_interface_blocs());
 
-  const Domaine_Poly_base& domaine = ref_cast(Domaine_Poly_base, equation().domaine_dis().valeur());
+  const Domaine_Poly_base& domaine = ref_cast(Domaine_Poly_base, equation().domaine_dis());
   const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()) : nullptr;
-  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur());
-  const Champ_Don& dh = diam_hydr;
+  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue());
+  const Champ_Don_base& dh = diam_hydr;
 
   const DoubleTab& xp = domaine.xp(), &xv = domaine.xv(), &vit = la_vitesse->valeurs(), &pvit = la_vitesse->passe(),
                    &nu = le_fluide->viscosite_cinematique().valeurs(), &vfd = domaine.volumes_entrelaces_dir(),
@@ -106,7 +52,7 @@ void Perte_Charge_PolyMAC::ajouter_blocs(matrices_t matrices, DoubleTab& secmem,
 
   const DoubleVect& pe = le_fluide->porosite_elem(), &pf = le_fluide->porosite_face(), &fs = domaine.face_surfaces(), &ve = domaine.volumes();
   const Multiplicateur_diphasique_base *fmult = pbm && pbm->has_correlation("multiplicateur_diphasique") ?
-                                                &ref_cast(Multiplicateur_diphasique_base, pbm->get_correlation("multiplicateur_diphasique").valeur()) : nullptr;
+                                                &ref_cast(Multiplicateur_diphasique_base, pbm->get_correlation("multiplicateur_diphasique")) : nullptr;
 
   const Sous_Domaine *pssz = sous_domaine ? &le_sous_domaine.valeur() : nullptr;
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins(), &fcl = ch.fcl();
@@ -150,7 +96,7 @@ void Perte_Charge_PolyMAC::ajouter_blocs(matrices_t matrices, DoubleTab& secmem,
         pos(d) = xp(e, d);
 
       /* vecteur vitesse en e */
-      double dh_e = C_dh ? dh(0, 0) : dh->valeur_a_compo(pos, 0);
+      double dh_e = C_dh ? dh.valeurs()(0, 0) : dh.valeur_a_compo(pos, 0);
       if (poly_v2)
         for (d = 0; d < D; d++)
           for (n = 0; n < N; n++)
@@ -196,6 +142,7 @@ void Perte_Charge_PolyMAC::ajouter_blocs(matrices_t matrices, DoubleTab& secmem,
           for (n = 0; n < N; n++)
             {
               double fac = pf(f) * vfd(f, e != f_e(f, 0)) * 0.5 / dh_e, fac_n = fac * mult(n, 0) * Cf(n) * nv(n), fac_m = fac * mult(n, 1) * Cf_t(n) * Gm / rho(!cR * e, n);
+
               for (m = 0; m < N; m++)
                 secmem(f, n) -= ((m == n) * fac_n + fac_m) * (alp ? (*alp)(e, m) : 1) * (pbm ? rho(!cR * e, m) : 1) * vit(f, m);
               if (mat)
@@ -221,14 +168,14 @@ DoubleTab& Perte_Charge_PolyMAC::ajouter(DoubleTab& resu) const
 {
   if (has_interface_blocs()) return Source_base::ajouter(resu);
 
-  const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
-  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur());
-  const Champ_Don& nu = le_fluide->viscosite_cinematique(), &dh = diam_hydr;
+  const Domaine_PolyMAC& domaine = le_dom_poly();
+  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue());
+  const Champ_Don_base& nu = le_fluide->viscosite_cinematique(), &dh = diam_hydr;
   const DoubleTab& xp = domaine.xp(), &xv = domaine.xv(), &vit = la_vitesse->valeurs();
   const DoubleVect& pe = equation().milieu().porosite_elem(), &pf = equation().milieu().porosite_face(), &fs = domaine.face_surfaces();
   const Sous_Domaine *pssz = sous_domaine ? &le_sous_domaine.valeur() : nullptr;
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins();
-  int i, j, k, f, fb, r, C_nu = sub_type(Champ_Uniforme, nu.valeur()), C_dh = sub_type(Champ_Uniforme, diam_hydr.valeur());
+  int i, j, k, f, fb, r, C_nu = sub_type(Champ_Uniforme, nu), C_dh = sub_type(Champ_Uniforme, diam_hydr.valeur());
   double t = equation().schema_temps().temps_courant();
   DoubleVect pos(dimension), ve(dimension), dir(dimension);
 
@@ -240,7 +187,7 @@ DoubleTab& Perte_Charge_PolyMAC::ajouter(DoubleTab& resu) const
         pos(r) = xp(e, r);
 
       /* valeurs evaluees en l'element : nu, Dh, vecteur vitesse, Re, coefficients de perte de charge isotrope et directionel + la direction */
-      double nu_e = C_nu ? nu(0, 0) : nu->valeur_a_compo(pos, 0), dh_e = C_dh ? dh(0, 0) : dh->valeur_a_compo(pos, 0);
+      double nu_e = C_nu ? nu.valeurs()(0, 0) : nu.valeur_a_compo(pos, 0), dh_e = C_dh ? dh.valeurs()(0, 0) : dh.valeur_a_compo(pos, 0);
       for (j = domaine.vedeb(e), ve = 0; j < domaine.vedeb(e + 1); j++)
         for (r = 0; r < dimension; r++)
           fb = domaine.veji(j), ve(r) += domaine.veci(j, r) * vit(fb) * pf(fb) / pe(e);
@@ -271,14 +218,14 @@ void Perte_Charge_PolyMAC::contribuer_a_avec(const DoubleTab& inco, Matrice_Mors
       return;
     }
 
-  const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
-  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur());
-  const Champ_Don& nu = le_fluide->viscosite_cinematique(), &dh = diam_hydr;
+  const Domaine_PolyMAC& domaine = le_dom_poly();
+  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, equation().inconnue());
+  const Champ_Don_base& nu = le_fluide->viscosite_cinematique(), &dh = diam_hydr;
   const DoubleTab& xp = domaine.xp(), &xv = domaine.xv(), &vit = inco;
   const DoubleVect& pe = equation().milieu().porosite_elem(), &pf = equation().milieu().porosite_face(), &fs = domaine.face_surfaces();
   const Sous_Domaine *pssz = sous_domaine ? &le_sous_domaine.valeur() : nullptr;
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins();
-  int i, j, k, f, fb, r, C_nu = sub_type(Champ_Uniforme, nu.valeur()), C_dh = sub_type(Champ_Uniforme, diam_hydr.valeur());
+  int i, j, k, f, fb, r, C_nu = sub_type(Champ_Uniforme, nu), C_dh = sub_type(Champ_Uniforme, diam_hydr.valeur());
   double t = equation().schema_temps().temps_courant();
   DoubleVect pos(dimension), ve(dimension), dir(dimension);
 
@@ -289,7 +236,7 @@ void Perte_Charge_PolyMAC::contribuer_a_avec(const DoubleTab& inco, Matrice_Mors
         pos(r) = xp(e, r);
 
       /* valeurs evaluees en l'element : nu, Dh, vecteur vitesse, Re, coefficients de perte de charge isotrope et directionel + la direction */
-      double nu_e = C_nu ? nu(0, 0) : nu->valeur_a_compo(pos, 0), dh_e = C_dh ? dh(0, 0) : dh->valeur_a_compo(pos, 0);
+      double nu_e = C_nu ? nu.valeurs()(0, 0) : nu.valeur_a_compo(pos, 0), dh_e = C_dh ? dh.valeurs()(0, 0) : dh.valeur_a_compo(pos, 0);
       for (j = domaine.vedeb(e), ve = 0; j < domaine.vedeb(e + 1); j++)
         for (r = 0; r < dimension; r++)
           fb = domaine.veji(j), ve(r) += domaine.veci(j, r) * vit(fb) * pf(fb) / pe(e);
@@ -324,27 +271,3 @@ void Perte_Charge_PolyMAC::contribuer_a_avec(const DoubleTab& inco, Matrice_Mors
     }
 }
 
-DoubleTab& Perte_Charge_PolyMAC::calculer(DoubleTab& resu) const
-{
-  resu = 0.;
-  return ajouter(resu);
-}
-
-void Perte_Charge_PolyMAC::completer()
-{
-  Source_base::completer();
-  if (sous_domaine)
-    le_sous_domaine = equation().probleme().domaine().ss_domaine(nom_sous_domaine);
-}
-
-void Perte_Charge_PolyMAC::associer_pb(const Probleme_base& pb)
-{
-  la_vitesse = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur());
-  le_fluide = ref_cast(Fluide_base, equation().milieu());
-}
-
-void Perte_Charge_PolyMAC::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
-{
-  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  le_dom_Cl_PolyMAC = ref_cast(Domaine_Cl_PolyMAC, domaine_Cl_dis.valeur());
-}

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,10 +33,10 @@ inline void traiter_flux(DoubleTab& curl, double flux, int element1, int element
   curl(npe + element2) -= flux;
 }
 
-void Op_Curl_VEFP1B::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis, const Champ_Inc& inco)
+void Op_Curl_VEFP1B::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis, const Champ_Inc_base& inco)
 {
-  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis.valeur());
-  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis.valeur());
+  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis);
+  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis);
   elements_pour_sommet();
 }
 
@@ -194,7 +194,7 @@ DoubleTab Op_Curl_VEFP1B::vecteur_normal(const int face, const int elem) const
 // Tableau qui stocke a la place "i", tous les elements du maillage qui contiennent le sommet de numero global "i"
 int Op_Curl_VEFP1B::elements_pour_sommet()
 {
-  const Domaine& domaine = le_dom_vef.valeur().domaine();
+  const Domaine& domaine = le_dom_vef->domaine();
   int numero_global_som;
   elements_pour_sommet_.dimensionner(domaine.nb_som());
 

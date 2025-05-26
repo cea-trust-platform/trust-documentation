@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,10 +13,11 @@
 *
 *****************************************************************************/
 
+#include <Equation_base.h>
 #include <MorEqn.h>
 #include <Motcle.h>
-#include <Equation_base.h>
 
+// XD mor_eqn objet_u mor_eqn -1 Class of equation pieces (morceaux d\'equation).
 /*! @brief Associe une equation a l'objet.
  *
  * Affecte le membre MorEqn::mon_equation avec l'objet
@@ -31,7 +32,7 @@ void MorEqn::associer_eqn(const Equation_base& eqn)
 
 // Calcul des valeurs liees a un morceau d equation (Operateurs, ...) pour postraitement
 //
-void MorEqn::calculer_pour_post(Champ& espace_stockage,const Nom& option, int comp) const
+void MorEqn::calculer_pour_post(Champ_base& espace_stockage,const Nom& option, int comp) const
 {
   Cerr<<"The method calculer_pour_post(...) is currently not coded"<<finl;
   Cerr<<"for the piece of the regarded equation and option chosen"<<finl;
@@ -50,6 +51,6 @@ void MorEqn::check_multiphase_compatibility() const
 {
   const Objet_U *obj = dynamic_cast<const Objet_U *>(this);
   if (!obj) abort(); //on n'est meme pas un Objet_U ?
-  Cerr << obj->que_suis_je() << " is not compatible with " << mon_equation.valeur().que_suis_je() <<"!" << finl;
+  Cerr << obj->que_suis_je() << " is not compatible with " << mon_equation->que_suis_je() <<"!" << finl;
   Process::exit();
 }

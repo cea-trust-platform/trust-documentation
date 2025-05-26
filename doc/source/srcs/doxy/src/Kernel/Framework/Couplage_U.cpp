@@ -82,13 +82,14 @@ bool Couplage_U::isStationary() const
 
 std::string Couplage_U::newCompute()
 {
+  Cerr << "[Parameter] ----------------------------" << finl;
+  std::string dir="";
   for(int i=0; i<nb_problemes(); i++)
     {
-      std::string dir = ref_cast(Probleme_base, probleme(i)).newCompute();
-      if (!dir.empty()) return dir;
+      std::string dirname = ref_cast(Probleme_base, probleme(i)).newCompute();
+      dir = dirname.empty() ? dir : dirname;
     }
-  //if (compute && !isStationary()) Process::exit("Unexpected case. Stationary not reached and Champ_parametrique used.");
-  return "";
+  return dir;
 }
 
 void Couplage_U::setStationary(bool flag)
@@ -190,9 +191,9 @@ double Couplage_U::futureTime() const
   return probleme(0).futureTime();
 }
 
-REF(Field_base) Couplage_U::findInputField(const Nom& name) const
+OBS_PTR(Field_base) Couplage_U::findInputField(const Nom& name) const
 {
-  REF(Field_base) ch;
+  OBS_PTR(Field_base) ch;
   for (int i=0; i<nb_problemes(); i++)
     {
       ch=probleme(i).findInputField(name);
@@ -201,9 +202,9 @@ REF(Field_base) Couplage_U::findInputField(const Nom& name) const
     }
   return ch;
 }
-REF(Champ_Generique_base) Couplage_U::findOutputField(const Nom& name) const
+OBS_PTR(Champ_Generique_base) Couplage_U::findOutputField(const Nom& name) const
 {
-  REF(Champ_Generique_base) ch;
+  OBS_PTR(Champ_Generique_base) ch;
   for (int i=0; i<nb_problemes(); i++)
     {
       ch=probleme(i).findOutputField(name);

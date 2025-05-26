@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,7 @@
 #ifdef PETSC_HAVE_HYPRE
 #include <HYPRE_config.h>
 #endif
+#include <cfenv>
 #include <tuple>
 #include <Matrice_Morse_Sym.h>
 #include <stat_counters.h>
@@ -45,6 +46,126 @@
 #include <functional>
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(Solv_Petsc,"Solv_Petsc",Solv_Externe);
+
+// XD petsc solveur_sys_base petsc 0 Solver via Petsc API
+// XD   attr solveur solveur_petsc_deriv solveur 0 solver type and options
+
+// XD solveur_petsc_deriv objet_u solveur_petsc_deriv -1 Additional information is available in the PETSC documentation: https://petsc.org/release/manual/
+// XD   attr seuil floattant seuil 1 corresponds to the iterative solver convergence value. The iterative solver converges when the Euclidean residue standard ||Ax-B|| is less than seuil.
+// XD   attr quiet rien quiet 1 is a keyword which is used to not displaying any outputs of the solver.
+// XD   attr impr rien impr 1 used to request display of the Euclidean residue standard each time this iterates through the conjugated gradient (display to the standard outlet).
+// XD   attr rtol floattant rtol 1 not_set
+// XD   attr atol floattant atol 1 not_set
+// XD   attr save_matrix_mtx_format rien save_matrix_mtx_format 1 not_set
+
+// XD solveur_petsc_lu solveur_petsc_deriv lu -1 Several solvers through PETSc API are available. NL2 TIPS: NL2 NL2 NL2 A) Solver for symmetric linear systems (e.g: Pressure system from Navier-Stokes equations): NL2 -The CHOLESKY parallel solver is from MUMPS library. It offers better performance than all others solvers if you have enough RAM for your calculation. A parallel calculation on a cluster with 4GBytes on each processor, 40000 cells/processor seems the upper limit. Seems to be very slow to initialize above 500 cpus/cores. NL2 -When running a parallel calculation with a high number of cpus/cores (typically more than 500) where preconditioner scalabilty is the key for CPU performance, consider BICGSTAB with BLOCK_JACOBI_ICC(1) as preconditioner or if not converges, GCP with BLOCK_JACOBI_ICC(1) as preconditioner. NL2 -For other situations, the first choice should be GCP/SSOR. In order to fine tune the solver choice, each one of the previous list should be considered. Indeed, the CPU speed of a solver depends of a lot of parameters. You may give a try to the OPTIMAL solver to help you to find the fastest solver on your study. NL2 NL2 B) Solver for non symmetric linear systems (e.g.: Implicit schemes): NL2 The BICGSTAB/DIAG solver seems to offer the best performances.
+
+// XD solveur_petsc_Cholesky_superlu solveur_petsc_deriv Cholesky_superlu -1 Parallelized Cholesky from SUPERLU_DIST library (less CPU and RAM, efficient than the previous one)
+
+// XD solveur_petsc_Cholesky_pastix solveur_petsc_deriv Cholesky_pastix -1  Parallelized Cholesky from PASTIX library.
+
+// XD solveur_petsc_Cholesky_umfpack solveur_petsc_deriv Cholesky_umfpack -1 Sequential Cholesky from UMFPACK library (seems fast).
+
+// XD solveur_petsc_Cholesky_out_of_core solveur_petsc_deriv Cholesky_out_of_core -1 Same as the previous one but with a written LU decomposition of disk (save RAM memory but add an extra CPU cost during Ax=B solve).
+
+// XD solveur_petsc_cholesky solveur_petsc_deriv cholesky -1 Parallelized version of Cholesky from MUMPS library. This solver accepts an option to select a different ordering than the automatic selected one by MUMPS (and printed by using the impr option). The possible choices are Metis, Scotch, PT-Scotch or Parmetis. The two last options can only be used during a parallel calculation, whereas the two first are available for sequential or parallel calculations. It seems that the CPU cost of A=LU factorization but also of the backward/forward elimination steps may sometimes be reduced by selecting a different ordering (Scotch seems often the best for b/f elimination) than the default one. NL2 Notice that this solver requires a huge amont of memory compared to iterative methods. To know how much RAM you will need by core, then use the impr option to have detailled informations during the analysis phase and before the factorisation phase (in the following output, you will learn that the largest memory is taken by the zeroth CPU with 108MB): NL2 Rank of proc needing largest memory in IC facto :  0  NL2 Estimated corresponding MBYTES for IC facto : 108 NL2 Thanks to the following graph, you read that in order to solve for instance a flow on a mesh with 2.6e6 cells, you will need to run a parallel calculation on 32 CPUs if you have cluster nodes with only 4GB/core (6.2GB*0.42~2.6GB) : NL2 \includepng{{petscgraph.jpeg}}{{10}}
+// XD   attr save_matrice|save_matrix rien save_matrix 1 not_set
+// XD   attr save_matrix_petsc_format rien save_matrix_petsc_format 1 not_set
+// XD   attr reduce_ram rien reduce_ram 1 not_set
+// XD   attr cli_quiet solveur_petsc_option_cli cli_quiet 1 not_set
+// XD   attr cli solveur_petsc_option_cli cli 1 not_set
+
+// XD solveur_petsc_cholesky_mumps_blr solveur_petsc_deriv cholesky_mumps_blr -1 BLR for (Block Low-Rank)
+// XD   attr reduce_ram rien reduce_ram 1 not_set
+// XD   attr dropping_parameter floattant dropping_parameter 1 not_set
+// XD   attr cli solveur_petsc_option_cli cli 1 not_set
+
+// XD solveur_petsc_option_cli bloc_lecture nul -1 solver
+
+// XD solveur_petsc_cli solveur_petsc_deriv cli 0  Command Line Interface. Should be used only by advanced users, to access the whole solver/preconditioners from the PETSC API. To find all the available options, run your calculation with the -ksp_view -help options: NL2 trust datafile [N] --ksp_view --help NL2 -pc_type Preconditioner:(one of) none jacobi pbjacobi bjacobi sor lu shell mg eisenstat ilu icc cholesky asm ksp composite redundant nn mat fieldsplit galerkin openmp spai hypre tfs (PCSetType) NL2 HYPRE preconditioner options: NL2 -pc_hypre_type pilut (choose one of) pilut parasails boomeramg NL2 HYPRE ParaSails Options NL2 -pc_hypre_parasails_nlevels 1: Number of number of levels (None) NL2 -pc_hypre_parasails_thresh 0.1: Threshold (None) NL2 -pc_hypre_parasails_filter 0.1: filter (None) NL2 -pc_hypre_parasails_loadbal 0: Load balance (None) NL2 -pc_hypre_parasails_logging: FALSE Print info to screen (None) NL2 -pc_hypre_parasails_reuse: FALSE Reuse nonzero pattern in preconditioner (None) NL2 -pc_hypre_parasails_sym nonsymmetric (choose one of) nonsymmetric SPD nonsymmetric,SPD NL2 NL2 Krylov Method (KSP) Options NL2 -ksp_type Krylov method:(one of) cg cgne stcg gltr richardson chebychev gmres tcqmr bcgs bcgsl cgs tfqmr cr lsqr preonly qcg bicg fgmres minres symmlq lgmres lcd (KSPSetType) NL2 -ksp_max_it 10000: Maximum number of iterations (KSPSetTolerances) NL2 -ksp_rtol 0: Relative decrease in residual norm (KSPSetTolerances) NL2 -ksp_atol 1e-12: Absolute value of residual norm (KSPSetTolerances) NL2 -ksp_divtol 10000: Residual norm increase cause divergence (KSPSetTolerances) NL2 -ksp_converged_use_initial_residual_norm: Use initial residual residual norm for computing relative convergence NL2 -ksp_monitor_singular_value stdout: Monitor singular values (KSPMonitorSet) NL2 -ksp_monitor_short stdout: Monitor preconditioned residual norm with fewer digits (KSPMonitorSet) NL2 -ksp_monitor_draw: Monitor graphically preconditioned residual norm (KSPMonitorSet) NL2 -ksp_monitor_draw_true_residual: Monitor graphically true residual norm (KSPMonitorSet) NL2 NL2 Example to use the multigrid method as a solver, not only as a preconditioner: NL2 Solveur_pression Petsc CLI {-ksp_type richardson -pc_type hypre -pc_hypre_type boomeramg -ksp_atol 1.e-7 }
+// XD   attr seuil suppress_param seuil 1 corresponds to the iterative solver convergence value. The iterative solver converges when the Euclidean residue standard  is less than seuil.
+// XD   attr quiet suppress_param quiet 1 is a keyword which is used to not displaying any outputs of the solver.
+// XD   attr impr suppress_param impr 1 impress or not
+// XD   attr rtol suppress_param rtol 1 not_set
+// XD   attr atol suppress_param atol 1 not_set
+// XD   attr save_matrix_mtx_format suppress_param save_matrix_mtx_format 1 not_set
+// XD   attr cli_bloc bloc_lecture cli_bloc 0 bloc
+
+// XD solveur_petsc_cli_quiet solveur_petsc_deriv cli_quiet 0 solver
+// XD   attr seuil suppress_param seuil 1 corresponds to the iterative solver convergence value. The iterative solver converges when the Euclidean residue standard is less than seuil.
+// XD   attr quiet suppress_param quiet 1 is a keyword which is used to not displaying any outputs of the solver.
+// XD   attr impr suppress_param impr 1 impress or not
+// XD   attr rtol suppress_param rtol 1 not_set
+// XD   attr atol suppress_param atol 1 not_set
+// XD   attr save_matrix_mtx_format suppress_param save_matrix_mtx_format 1 not_set
+// XD   attr cli_quiet_bloc bloc_lecture cli_quiet_bloc 0 bloc
+
+// XD solveur_petsc_IBICGSTAB solveur_petsc_deriv IBICGSTAB -1 Improved version of previous one for massive parallel computations (only a single global reduction operation instead of the usual 3 or 4).
+// XD   attr precond preconditionneur_petsc_deriv precond 1 not_set
+
+// XD solveur_petsc_BICGSTAB solveur_petsc_deriv BICGSTAB -1 Stabilized Bi-Conjugate Gradient
+// XD   attr precond preconditionneur_petsc_deriv precond 1 not_set
+
+// XD solveur_petsc_gmres solveur_petsc_deriv gmres -1 Generalized Minimal Residual
+// XD   attr precond preconditionneur_petsc_deriv precond 1 not_set
+// XD   attr reuse_preconditioner_nb_it_max entier reuse_preconditioner_nb_it_max 1 not_set
+// XD   attr save_matrix_petsc_format rien save_matrix_petsc_format 1 not_set
+// XD   attr nb_it_max entier nb_it_max 1 In order to specify a given number of iterations instead of a condition on the residue with the keyword seuil. May be useful when defining a PETSc solver for the implicit time scheme where convergence is very fast: 5 or less iterations seems enough.
+
+// XD solveur_petsc_gcp solveur_petsc_deriv gcp -1 Preconditioned Conjugate Gradient
+// XD   attr precond preconditionneur_petsc_deriv precond 1 preconditioner
+// XD   attr precond_nul rien precond_nul 1 No preconditioner used, equivalent to precond null { }
+// XD   attr rtol floattant rtol 1 not_set
+// XD   attr reuse_preconditioner_nb_it_max entier reuse_preconditioner_nb_it_max 1 not_set
+// XD   attr cli solveur_petsc_option_cli cli 1 not_set
+// XD   attr reorder_matrix entier reorder_matrix 1 not_set
+// XD   attr read_matrix rien read_matrix 1 save_matrix|read_matrix are the keywords to save|read into a file the constant matrix A of the linear system Ax=B solved (eg: matrix from the pressure linear system for an incompressible flow). It is useful when you want to minimize the MPI communications on massive parallel calculation. Indeed, in VEF discretization, the overlapping width (generaly 2, specified with the largeur_joint option in the partition keyword partition) can be reduced to 1, once the matrix has been properly assembled and saved. The cost of the MPI communications in TRUST itself (not in PETSc) will be reduced with length messages divided by 2. So the strategy is: NL2 I) Partition your VEF mesh with a largeur_joint value of 2 NL2 II) Run your parallel calculation on 0 time step, to build and save the matrix with the save_matrix option. A file named Matrix_NBROWS_rows_NCPUS_cpus.petsc will be saved to the disk (where NBROWS is the number of rows of the matrix and NCPUS the number of CPUs used). NL2 III) Partition your VEF mesh with a largeur_joint value of 1 NL2 IV) Run your parallel calculation completly now and substitute the save_matrix option by the read_matrix option. Some interesting gains have been noticed when the cost of linear system solve with PETSc is small compared to all the other operations.
+// XD   attr save_matrice|save_matrix rien save_matrix 1 see read_matrix
+// XD   attr petsc_decide entier petsc_decide 1 not_set
+// XD   attr pcshell chaine pcshell 1 not_set
+// XD   attr aij rien aij 1 not_set
+
+// XD solveur_petsc_PIPECG solveur_petsc_deriv PIPECG -1 Pipelined Conjugate Gradient (possible reduced CPU cost during massive parallel calculation due to a single non-blocking reduction per iteration, if TRUST is built with a MPI-3 implementation)... no example in TRUST
+
+
+// XD preconditionneur_petsc_deriv objet_u preconditionneur_petsc_deriv -1 Preconditioners available with petsc solvers
+
+// XD preconditionneur_petsc_diag preconditionneur_petsc_deriv diag -1 Diagonal (Jacobi) preconditioner.
+
+// XD preconditionneur_petsc_c_amg preconditionneur_petsc_deriv c-amg -1 preconditionner
+
+// XD preconditionneur_petsc_sa_amg preconditionneur_petsc_deriv sa-amg -1 preconditionner
+
+// XD preconditionneur_petsc_BLOCK_JACOBI_ICC preconditionneur_petsc_deriv BLOCK_JACOBI_ICC -1 Incomplete Cholesky factorization for symmetric matrix with the PETSc implementation.
+// XD   attr level entier level 1 factorization level (default value, 1). In parallel, the factorization is done by block (one per processor by default).
+// XD   attr ordering chaine(into=["natural","rcm"]) ordering 1  The ordering of the local matrix is natural by default, but rcm ordering, which reduces the bandwith of the local matrix, may interestingly improves the quality of the decomposition and reduces the number of iterations.
+
+// XD preconditionneur_petsc_boomeramg preconditionneur_petsc_deriv boomeramg -1 Multigrid preconditioner (no option is available yet, look at CLI command and Petsc documentation to try other options).
+
+// XD preconditionneur_petsc_null preconditionneur_petsc_deriv null -1 No preconditioner used
+
+// XD preconditionneur_petsc_lu preconditionneur_petsc_deriv lu -1 preconditionner
+
+// XD preconditionneur_petsc_jacobi preconditionneur_petsc_deriv jacobi -1 preconditionner
+
+// XD preconditionneur_petsc_EISENTAT preconditionneur_petsc_deriv EISENTAT -1 SSOR version with Eisenstat trick which reduces the number of computations and thus CPU cost...
+// XD   attr omega floattant omega 1 relaxation factor
+
+// XD preconditionneur_petsc_ssor preconditionneur_petsc_deriv ssor -1 Symmetric Successive Over Relaxation algorithm.
+// XD   attr omega floattant omega 1 relaxation factor (default value, 1.5)
+
+// XD preconditionneur_petsc_block_jacobi_ilu preconditionneur_petsc_deriv block_jacobi_ilu -1 preconditionner
+// XD   attr level entier level 1 not_set
+
+// XD preconditionneur_petsc_spai preconditionneur_petsc_deriv spai -1  Spai Approximate Inverse algorithm from Parasails Hypre library.
+// XD   attr level entier level 1 first parameter
+// XD   attr epsilon floattant epsilon 1 second parameter
+
+// XD preconditionneur_petsc_pilut preconditionneur_petsc_deriv pilut -1 Dual Threashold Incomplete LU factorization.
+// XD   attr level entier level 1 factorization level
+// XD   attr epsilon floattant epsilon 1 drop tolerance
+
+
 
 // printOn
 Sortie& Solv_Petsc::printOn(Sortie& s ) const
@@ -86,6 +207,10 @@ void Solv_Petsc::create_solver(Entree& entree)
 {
   if (amgx_ || std::getenv("TRUST_PETSC_VERBOSE")) verbose = true;
 #ifdef PETSCKSP_H
+
+  if(!std::is_same<PetscInt, trustIdType>::value)
+    Process::exit("Type mismatch!!! PetscInt and trustIdType should be equal!!! PETSc not compiled in 64b??");
+
   lecture(entree);
   EChaine is(get_chaine_lue());
 
@@ -150,6 +275,10 @@ void Solv_Petsc::create_solver(Entree& entree)
       Nom petsc_TU(":");
       petsc_TU+=nom_du_cas();
       petsc_TU+="_petsc.TU";
+#ifdef TRUST_USE_GPU
+      if (instance==1) PetscLogGpuTime(); // May slow down calculation
+      //add_option("log_view_gpu_time",""); 	// Pas pris en compte...
+#endif
       add_option("log_view",petsc_TU); 	// Monitor performances at the end of the calculation
       PetscLogDefaultBegin(); 		// Necessary cause if not Event logs not printed in petsc_TU file ... I don't know why...
     }
@@ -172,7 +301,7 @@ void Solv_Petsc::create_solver(Entree& entree)
     les_solveurs[4] = "CHOLESKY_OUT_OF_CORE|MUMPS_OUT_OF_CORE";
     les_solveurs[5] = "BICGSTAB";
     les_solveurs[6] = "IBICGSTAB";
-    les_solveurs[7] = "CHOLESKY_SUPERLU";
+    les_solveurs[7] = "CHOLESKY_SUPERLU|LU_SUPERLU";
     les_solveurs[8] = "PGMRES";
     les_solveurs[9] = "LU";
     les_solveurs[10] = "PIPECG";
@@ -263,7 +392,27 @@ void Solv_Petsc::create_solver(Entree& entree)
             add_option("options_view", "");
             add_option("options_left", "");
           }
-
+        if (!amgx_)
+          {
+            // Changement dans PETSc 3.21: plus de preconditioneur par defaut
+            // On met ILU(0) comme auparavant pour ne pas changer tous les jeux de donnees qui ont: "petsc cli { }"
+            Nom current_pc;
+            Nom option="-";
+            option+=option_prefix_;
+            option+="pc_type";
+            if (!has_option(option, current_pc))
+              {
+                if (Process::nproc()>1)
+                  {
+                    add_option("pc_type", "bjacobi");
+                    add_option("sub_pc_type", "ilu");
+                  }
+                else
+                  {
+                    add_option("pc_type", "ilu");
+                  }
+              }
+          }
         break;
       }
     case 1:
@@ -368,11 +517,17 @@ void Solv_Petsc::create_solver(Entree& entree)
       }
     case 20:
       {
+        // Strumpack faster than MUMPS on CPU sometimes (LU and solve, ex: JEL_bous)
         solveur_direct_ = strumpack;
         // ToDo add BLR option
         KSPSetType(SolveurPetsc_, KSPPREONLY);
         solver_supported_on_gpu_by_petsc=1;
-        if (gpu_) add_option("mat_strumpack_gpu", "1");
+        if (gpu_)
+          {
+            // Triangular solve by default on GPU but limited to 1 MPI rank
+            add_option("mat_strumpack_gpu", "1");
+            add_option("mat_strumpack_metis_nodeNDP", "1"); // See https://github.com/pghysels/STRUMPACK/issues/127
+          }
         break;
       }
     case 5:
@@ -396,11 +551,11 @@ void Solv_Petsc::create_solver(Entree& entree)
       {
         solveur_direct_=superlu_dist;
         // SuperLU_dist, parallel but not faster than MUMPS
-#ifdef PETSC_HAVE_OPENMP
-        // Version GPU disponible de SuperLU si OpenMP active (necessaire)
-        solver_supported_on_gpu_by_petsc=1;
-#endif
         KSPSetType(SolveurPetsc_, KSPPREONLY);
+        // ToDo: Update again SuperLU_dist cause GPU Triangular solver available for L (soon U)
+        // But slower on GPU than Strumpack during factorization...
+        solver_supported_on_gpu_by_petsc=1;
+        //if (gpu_) add_option("XXX", "1");
         break;
       }
     case 11:
@@ -457,7 +612,7 @@ void Solv_Petsc::create_solver(Entree& entree)
   // On verifie que le solveur est supporte sur GPU:
   if (gpu_)
     {
-#ifdef PETSC_HAVE_CUDA
+#if defined(PETSC_HAVE_CUDA) || defined(PETSC_HAVE_HIP)
       Cerr << "GPU capabilities of PETSc will be used." << finl;
 #else
       Cerr << "You can not use petsc_gpu keyword cause GPU" << finl;
@@ -549,7 +704,7 @@ void Solv_Petsc::create_solver(Entree& entree)
                 if (solveur_direct_==mumps)
                   add_option("mat_mumps_icntl_4","3");
                 else if (solveur_direct_==superlu_dist)
-                  add_option("mat_superlu_dist_statprint","");
+                  add_option("mat_superlu_dist_printstat","");
                 else if (solveur_direct_==petsc)
                   {}
                 else if (solveur_direct_==umfpack)
@@ -663,7 +818,7 @@ void Solv_Petsc::create_solver(Entree& entree)
             case 30:
               {
                 pc="pcshell";
-                PCShell& pcs = pc_user_.pc_shell;
+                OWN_PTR(PCShell_base)& pcs = pc_user_.pc_shell;
                 is >> motlu;
                 pcs.typer(motlu);
                 is >> pcs.valeur();
@@ -1067,9 +1222,14 @@ void Solv_Petsc::create_solver(Entree& entree)
                 PCHYPRESetType(PreconditionneurPetsc_, "parasails");
                 add_option("pc_hypre_parasails_nlevels",(Nom)level.value());     // Higher values of level [>=0] leads to more accurate, but more expensive preconditioners (default 1)
                 add_option("pc_hypre_parasails_thresh",(Nom)epsilon.value());   // Lower values of eps [0-1] leads to more accurate, but more expensive preconditioners (default 0.1)
-                add_option("pc_hypre_parasails_sym","SPD"); // Matrice symetrique definie positive
+                //add_option("pc_hypre_parasails_sym","SPD"); // Matrice symetrique definie positive. PL: comment cela a pu marcher avant ? La matrice n'est pas toujours symetrique.
                 check_not_defined(omega);
                 check_not_defined(ordering);
+#ifdef INT_is_64_
+                KSPType type_ksp;
+                KSPGetType(SolveurPetsc_, &type_ksp);
+                if ((Nom)type_ksp==KSPCG) Process::exit("SPAI preconditioner is not supported anymore. If you want to keep this precond, try using BICGSTAB solver insted of GCP.");
+#endif
                 break;
               }
             case 5:
@@ -1162,6 +1322,7 @@ void Solv_Petsc::create_solver(Entree& entree)
                 // Voir https://mooseframework.inl.gov/releases/moose/2021-05-18/application_development/hypre.html
                 //if (dimension==3) Cerr << "Warning, on massive parallel calculation for best performance, consider playing with -pc_hypre_boomeramg_strong_threshold 0.7 or 0.8 or 0.9" << finl;
                 if (dimension==3) add_option("pc_hypre_boomeramg_strong_threshold", "0.7");
+                if (limpr()) add_option("pc_hypre_boomeramg_print_statistics","1");
                 check_not_defined(omega);
                 check_not_defined(level);
                 check_not_defined(epsilon);
@@ -1206,12 +1367,15 @@ void Solv_Petsc::create_solver(Entree& entree)
                     add_amgx_option("p:dense_lu_num_rows","2");
                     if (rang==10) // C-AMG
                       {
-                        add_amgx_option("p:algorithm","CLASSICAL");
-                        add_amgx_option("p:selector","PMIS","PMIS selector seems to take less memory, and much faster setup than HMIS.");
+                        add_amgx_option("p:algorithm","CLASSICAL","Best choice if you have enough memory and fine tune carefully p:selector and p:strength parameters.");
+                        //add_amgx_option("p:selector","PMIS","PMIS selector seems to take less memory, and much faster setup than HMIS."); // Ne permet pas autre chose que p:strength_threshold=0.25 sur le maillage 220e6 de DomainFlowLES !
+                        add_amgx_option("p:selector","HMIS","PMIS may offer faster setup but weaker (some issues for a high number of GPUs) than serial implementation!");
                         add_amgx_option("p:interpolator","D2","Also available D1. D2 is considerably more expensive during both setup and solve phases, but convergence on difficult problems");
                         Nom strength("AHAT");
                         add_amgx_option("p:strength",strength,"Choose the strength of connection metric to use. Allowable options are AHAT and ALL");
-                        if (strength=="AHAT") add_amgx_option("p:strength_threshold","0.25","All edges with strength below this threshold will be discarded. Higher: faster setup, lower memory but lower convergence");
+                        //if (strength=="AHAT") add_amgx_option("p:strength_threshold","0.25","All edges with strength below this threshold will be discarded. Higher: faster setup, lower memory but lower convergence");
+                        // Change 0.25 to 0.8 as Boomeramg: in all cases, less memory and faster times globally
+                        if (strength=="AHAT") add_amgx_option("p:strength_threshold","0.8","All edges with strength below this threshold will be discarded. Higher: faster setup, lower memory but lower convergence. You may try 0.25 for better convergence if enough memory.");
                       }
                     else if (rang==11) // SA-AMG
                       {
@@ -1242,6 +1406,8 @@ void Solv_Petsc::create_solver(Entree& entree)
                       {
                         add_option("pc_gamg_type","agg");
                         add_option("pc_gamg_agg_nsmooths","1");
+                        // Non performances catastrophiques:
+                        //add_option("pc_gamg_threshold","0.7"); // Fix in parallel:  Computed maximum singular value as zero
                         //add_option("pc_gamg_aggressive_square_graph","1");
                       }
                     else if (rang==15) // UA-AMG
@@ -1289,8 +1455,8 @@ void Solv_Petsc::create_solver(Entree& entree)
                   PCstruct *pcstruct;
 
                   PCShellGetContext(pc_apply,(void**) &pcstruct);
-                  PCShell& pcs=pcstruct->pc_shell;
-                  return pcs.computePC(pc_apply,x,y);
+                  OWN_PTR(PCShell_base)& pcs=pcstruct->pc_shell;
+                  return pcs->computePC(pc_apply,x,y);
                 };
 
                 auto PCShellUserDestroy =  [](PC pc_apply)
@@ -1298,8 +1464,8 @@ void Solv_Petsc::create_solver(Entree& entree)
                   PCstruct *pcstruct;
 
                   PCShellGetContext(pc_apply,(void**) &pcstruct);
-                  PCShell& pcs=pcstruct->pc_shell;
-                  return pcs.destroyPC(pc_apply);
+                  OWN_PTR(PCShell_base)& pcs=pcstruct->pc_shell;
+                  return pcs->destroyPC(pc_apply);
                 };
 
                 PCShellSetApply(PreconditionneurPetsc_, PCShellUserApply);
@@ -1399,7 +1565,11 @@ void Solv_Petsc::create_solver(Entree& entree)
           nb_it_max_ = NB_IT_MAX_DEFINED;
         }
       // Convergence si residu(it) < MAX (seuil_relatif_ * residu(0), seuil_);
-      if (seuil_==0 && seuil_relatif_==0) seuil_=1.e-12; // Si aucun seuil defini, on prend un seuil absolu de 1.e-12 (comme avant)
+      if (seuil_==0 && seuil_relatif_==0)
+        {
+          seuil_=1.e-12; // Si aucun seuil defini, on prend un seuil absolu de 1.e-12 (comme avant)
+          seuil_relatif_=1.e-14; // To avoid over convergence, typically with: petsc cli { } where no tolerance are given
+        }
       KSPSetTolerances(SolveurPetsc_, seuil_relatif_, seuil_, (divtol_==0 ? PETSC_DEFAULT : divtol_), nb_it_max_);
     }
 // Change le calcul du test de convergence relative (||Ax-b||/||Ax(0)-b|| au lieu de ||Ax-b||/||b||)
@@ -1421,10 +1591,10 @@ void Solv_Petsc::create_solver(Entree& entree)
 
   PCType type_pc;
   PCGetType(PreconditionneurPetsc_, &type_pc);
-  type_pc_=(Nom)type_pc;
+  if (type_pc) type_pc_=(Nom)type_pc;
 
   // Pas de version CPU de Hypre si PETSc active le support GPU:
-#ifdef PETSC_HAVE_CUDA
+#if defined(PETSC_HAVE_CUDA) || defined(PETSC_HAVE_HIP)
   if (type_pc_=="hypre") gpu_ = true;
 #endif
 
@@ -1443,7 +1613,7 @@ void Solv_Petsc::create_solver(Entree& entree)
       if (Process::nproc()<=4)
         add_amgx_option("determinism_flag","1", "15% slower but enabled for NR tests");
 #ifdef MPIX_CUDA_AWARE_SUPPORT
-      add_amgx_option("#communicator","MPI_DIRECT","Enable GPU direct with MPI Cuda-Aware. Yet to prove to be better (30% slower):");
+      if (getenv("AMGX_USE_MPI_GPU_AWARE")) add_amgx_option("communicator","MPI_DIRECT","Enable GPU direct with MPI Cuda-Aware. No gain for the moment.");
 #endif
       s << amgx_options_;
       Cerr << "Writing the AmgX config file: " << config() << finl;
@@ -1470,8 +1640,8 @@ const Nom Solv_Petsc::config()
 int Solv_Petsc::instance=-1;
 int Solv_Petsc::numero_solveur=0;
 #ifdef PETSCKSP_H
-// Attention, bug apres PETSc 3.14 le logging avec PetscLogStage est tres cher pour MatSetValues (appel MPI meme en sequentiel!). Vu sur Flica5 avec appel frequents a Update_matrix
-PetscLogStage Solv_Petsc::KSPSolve_Stage_=0;
+PetscLogStage Solv_Petsc::Create_Stage_=1;
+PetscLogStage Solv_Petsc::KSPSolve_Stage_=2;
 
 // Sortie Maple d'une matrice morse
 void sortie_maple(Sortie& s, const Matrice_Morse& M)
@@ -1502,7 +1672,7 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
     {
       MatInfo Info;
       MatGetInfo(MatricePetsc_,MAT_GLOBAL_SUM,&Info);
-      int nnz = (int)Info.nz_allocated;
+      trustIdType nnz = (trustIdType)Info.nz_allocated;
 
       Nom filename("Matrix_");
       filename+=(Nom)nb_rows_tot_;
@@ -1510,22 +1680,33 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
       filename+=(Nom)nproc();
       filename+="_cpus.petsc";
 
-      PetscViewer viewer;
       Cerr << "Writing the global PETSc matrix (" << nb_rows_tot_<< " rows and " << nnz << " nnz) in the binary file " << filename << finl;
-      // To go faster with MPI IO ?
-      //PetscViewerCreate(PETSC_COMM_WORLD,&viewer);
-      //PetscViewerFileSetName(viewer,filename);
-      //PetscViewerBinarySetMPIIO(viewer);
-      // Save the matrix:
-      PetscViewerBinaryOpen(PETSC_COMM_WORLD,filename,FILE_MODE_WRITE,&viewer);
+      if (Process::nproc()>32) Cerr << "It may take some minutes..." << finl;
+      PetscViewer viewer;
+      PetscViewerCreate(PETSC_COMM_WORLD, &viewer);
+// HDF5 issue: the file is empty, don't know why
+// So trying to use MPIIO to speedup the write/load...
+//#ifdef PETSC_HAVE_HDF5
+//      PetscViewerSetType(viewer, PETSCVIEWERHDF5);
+//#else
+      PetscViewerSetType(viewer, PETSCVIEWERBINARY);
+      PetscViewerBinarySetUseMPIIO(viewer, PETSC_TRUE);
+//#endif
+      PetscViewerFileSetMode(viewer, FILE_MODE_WRITE);
+      PetscViewerFileSetName(viewer, filename);
+      statistiques().begin_count(sauvegarde_counter_);
+      trustIdType bytes = 8 * nnz + 4 * nnz + 4 * nb_rows_tot_;
       MatView(MatricePetsc_, viewer);
+      statistiques().end_count(sauvegarde_counter_, bytes);
+      Cerr << "[IO] " << statistiques().last_time(sauvegarde_counter_) << " s to write matrix file." << finl;
       // Save also the RHS if on the host:
       if (SecondMembrePetsc_!=nullptr)
         {
           Cerr << "Writing also the RHS in the file " << filename << finl;
           VecView(SecondMembrePetsc_, viewer);
         }
-      else Process::exit("You can't export anymore matrix&RHS at PETSc format with AmgX solver. Switch to PETSc solver instead.");
+      else
+        Process::exit("You can't export anymore matrix&RHS at PETSc format with AmgX solver. Switch to PETSc solver instead.");
       PetscViewerDestroy(&viewer);
 
       // ASCII output for small matrix(debugging)
@@ -1571,7 +1752,7 @@ void Solv_Petsc::SaveObjectsToFile(const DoubleVect& secmem, DoubleVect& solutio
       mtx << "%%matrix" << finl;
       mtx << (int)rows << " " << (int)rows << " " << (int)ia[rows] << finl;
       for (int row=0; row<rows; row++)
-        for (int j=ia[row]; j<ia[row+1]; j++)
+        for (PetscInt j=ia[row]; j<ia[row+1]; j++)
           mtx << row+1 << " " << (int)ja[j]+1 << " " << v[j] << finl;
       // Sauve b au format matrix market
       filename = Objet_U::nom_du_cas();
@@ -1614,9 +1795,6 @@ void Solv_Petsc::RestoreMatrixFromFile()
   filename+="_cpus.petsc";
   add_option("viewer_binary_skip_info",""); // Skip reading .info file to avoid -vecload_block_size unused option
 
-  PetscViewer viewer;
-  Cerr << "Reading the global PETSc matrix in the binary file " << filename << finl;
-  PetscViewerBinaryOpen(PETSC_COMM_WORLD,filename,FILE_MODE_READ,&viewer);
   MatCreate(PETSC_COMM_WORLD,&MatricePetsc_);
   if (petsc_decide_)
     MatSetSizes(MatricePetsc_, PETSC_DECIDE, PETSC_DECIDE, nb_rows_tot_, nb_rows_tot_);
@@ -1628,7 +1806,28 @@ void Solv_Petsc::RestoreMatrixFromFile()
     }
   else
     MatSetSizes(MatricePetsc_, nb_rows_, nb_rows_, PETSC_DECIDE, PETSC_DECIDE);
+
+  Cerr << "Reading the global PETSc matrix in the binary file " << filename << finl;
+  if (Process::nproc()>32) Cerr << "It may take some minutes..." << finl;
+  PetscViewer viewer;
+  PetscViewerCreate(PETSC_COMM_WORLD, &viewer);
+//#ifdef PETSC_HAVE_HDF5
+//  PetscViewerSetType(viewer, PETSCVIEWERHDF5);
+//#else
+  PetscViewerSetType(viewer, PETSCVIEWERBINARY);
+  PetscViewerBinarySetUseMPIIO(viewer, PETSC_TRUE);
+//#endif
+  PetscViewerFileSetMode(viewer, FILE_MODE_READ);
+  PetscViewerFileSetName(viewer, filename);
+  statistiques().begin_count(sauvegarde_counter_);
   MatLoad(MatricePetsc_, viewer);
+  MatInfo Info;
+  MatGetInfo(MatricePetsc_,MAT_GLOBAL_SUM,&Info);
+  trustIdType nnz = (trustIdType)Info.nz_allocated;
+  trustIdType bytes = 8 * nnz + 4 * nnz + 4 * nb_rows_tot_;
+  statistiques().end_count(sauvegarde_counter_, bytes);
+  Cerr << "[IO] " << statistiques().last_time(sauvegarde_counter_) << " s to read matrix file." << finl;
+
   PetscViewerDestroy(&viewer);
   if (!matrice_symetrique_)
     {
@@ -1637,7 +1836,18 @@ void Solv_Petsc::RestoreMatrixFromFile()
     }
   // Conversion AIJ to SBAIJ:
   MatSetOption(MatricePetsc_, MAT_SYMMETRIC, PETSC_TRUE);
-  MatConvert(MatricePetsc_, MATSBAIJ, MAT_INPLACE_MATRIX, &MatricePetsc_);
+#ifdef PETSC_HAVE_CUDA
+  if (gpu_)
+    MatConvert(MatricePetsc_, MATAIJCUSPARSE, MAT_INPLACE_MATRIX, &MatricePetsc_);
+  else
+#endif
+#ifdef PETSC_HAVE_HIP
+    if (gpu_)
+      MatConvert(MatricePetsc_, MATAIJHIPSPARSE, MAT_INPLACE_MATRIX, &MatricePetsc_);
+    else
+#endif
+      MatConvert(MatricePetsc_, MATSBAIJ, MAT_INPLACE_MATRIX, &MatricePetsc_);
+
   PetscInt nb_rows_tot,nb_cols_tot;
   MatGetSize(MatricePetsc_,&nb_rows_tot,&nb_cols_tot);
   Cerr << "The matrix read has " << (int)nb_rows_tot << " rows." << finl;
@@ -1656,7 +1866,7 @@ void Solv_Petsc::RestoreMatrixFromFile()
 // Since PETSc 3.10 The option ksp_view is not taken into account for (at least) instance = 2
 // I don't understand why ??!!
 // So I introduce this fix : if the option ksp_view is in PETSc Options then we call the KSPView function
-bool Solv_Petsc::enable_ksp_view( void )
+bool Solv_Petsc::enable_ksp_view()
 {
   Nom option="-ksp_view";
   Nom empty="                                                                                                 ";
@@ -1693,6 +1903,17 @@ void Solv_Petsc::add_amgx_option(const Nom& key_value)
     }
 }
 
+bool Solv_Petsc::has_option(const Nom& option, Nom& current_value)
+{
+  PetscBool flg;
+  Nom vide="                                                                                                 ";
+  char* tmp=strdup(vide);
+  PetscOptionsGetString(PETSC_NULLPTR,PETSC_NULLPTR,option,tmp,vide.longueur(),&flg);
+  current_value = tmp;
+  free(tmp);
+  return current_value!=vide;
+}
+
 int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
 {
   Nom option="-";
@@ -1712,13 +1933,13 @@ int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
   // Il ne dit pas non plus qu'elle est unused avec -options_left
   // Nouveau 1.6.3 pour la ligne de commande reste prioritaire, on ne change une option
   // que si elle n'a pas deja ete specifiee...
-  PetscBool flg;
-  Nom vide="                                                                                                 ";
-  char* tmp=strdup(vide);
-  PetscOptionsGetString(PETSC_NULLPTR,PETSC_NULLPTR,option,tmp,vide.longueur(),&flg);
-  Nom actual_value(tmp);
-  free(tmp);
-  if (actual_value==vide)
+  Nom current_value;
+  if (has_option(option, current_value))
+    {
+      if (limpr() >= 0) Cerr << "Option Petsc: " << option << " " << value << " not taken cause " << option << " already defined to " << current_value << finl;
+      return 0;
+    }
+  else
     {
       if (value=="")
         {
@@ -1731,11 +1952,6 @@ int Solv_Petsc::add_option(const Nom& astring, const Nom& value, int cli)
           if (limpr() >= 0) Cerr << "Option Petsc: " << option << " " << value << finl;
         }
       return 1;
-    }
-  else
-    {
-      if (limpr() >= 0) Cerr << "Option Petsc: " << option << " " << value << " not taken cause " << option << " already defined to " << actual_value << finl;
-      return 0;
     }
 }
 
@@ -1768,10 +1984,15 @@ PetscErrorCode MyKSPMonitor(KSP SolveurPetsc, PetscInt it, PetscReal residu, voi
 int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVect& secmem, DoubleVect& solution)
 {
 #ifdef PETSCKSP_H
+  std::fenv_t fenv;
+  std::feholdexcept(&fenv);
   // Si on utilise un solver petsc on le signale pour les stats finales
   statistiques().begin_count(solv_sys_petsc_counter_);
   statistiques().end_count(solv_sys_petsc_counter_,1,1);
   double start = Statistiques::get_time_now();
+  // Attention, bug apres PETSc 3.14 le logging avec PetscLogStage est tres cher pour MatSetValues (appel MPI meme en sequentiel!). Vu sur Flica5 avec appel frequents a Update_matrix
+  bool log_Create_Stage = false; // ToDO mettre un test plus intelligent selon taille du cas ou si parallele ?
+  if (log_Create_Stage) PetscLogStagePush(Create_Stage_);
   if (nouvelle_matrice())
     {
       // Changement de la taille de matrice, on detruit les objets dont la taille change:
@@ -1799,7 +2020,7 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
             DMDestroy(&dm_);
         }
 
-      matrice_symetrique_ = 1;      // On suppose que la matrice est symetrique
+      matrice_symetrique_ = true;      // On suppose que la matrice est symetrique
 
       // Construction de la numerotation globale:
       if (MatricePetsc_==nullptr)
@@ -1831,7 +2052,7 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
                                            : matrice_morse_intermediaire;
 
       // Verification stencil de la matrice
-      nouveau_stencil_ = (MatricePetsc_ == nullptr ? true : check_stencil(matrice_morse));
+      nouveau_stencil_ = (MatricePetsc_ == nullptr || rebuild_matrix_ || read_matrix_ ? true : check_stencil(matrice_morse));
 
       // Build x and b if necessary
       Create_vectors(secmem);
@@ -1857,7 +2078,7 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
 
   // Save the matrix and the RHS if the matrix has changed...
   if (nouvelle_matrice() && save_matrix_) SaveObjectsToFile(secmem, solution);
-
+  if (log_Create_Stage) PetscLogStagePop();
   //////////////////////////
   // Solve the linear system
   //////////////////////////
@@ -1877,9 +2098,14 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
   // Calcul et verification du vrai residu sur matrice:
   bool check_residual = controle_residu_;
 #ifndef NDEBUG
-  if (amgx_ || gpu_) check_residual = true; // En debug uniquement car verification faite sur CPU ce qui est dommage en prod...
+  if (amgx_ || gpu_)
+    if (getenv("TRUST_CLOCK_ON")==nullptr)
+      {
+        Cerr << "Warning checking residual. D2H and H2D copies are possible..." << finl;
+        check_residual = true; // En debug uniquement car verification faite sur CPU ce qui est dommage en prod...
+      }
 #endif
-  if (check_residual)
+  if (check_residual && !MatricePetsc_ /* Matrice_Petsc::ajouter_multvect() not implemented bouh */)
     {
       DoubleVect test(secmem);
       test*=-1;
@@ -1898,7 +2124,8 @@ int Solv_Petsc::resoudre_systeme(const Matrice_Base& la_matrice, const DoubleVec
             }
         }
     }
-  if (solution.isDataOnDevice() && !amgx_) mapToDevice(solution, "solution after solve PETSc");
+  if (solution.isDataOnDevice() && !amgx_) mapToDevice(solution);
+  std::fesetenv(&fenv);
   return nbiter;
 #else
   return -1;
@@ -1979,7 +2206,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
   // Keep precond ?
   if (nouvelle_matrice_)
     {
-      set_reuse_preconditioner(false); // Par defaut, precond est refait
+      //set_reuse_preconditioner(false); // Par defaut, precond est refait
       PetscBool flg;
       PetscOptionsHasName(PETSC_NULLPTR,option_prefix_,"-ksp_reuse_preconditioner",&flg);
       if (flg)
@@ -1993,8 +2220,8 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
       if (reuse_preconditioner()) Cout << "Matrix has changed but reusing previous preconditioner..." << finl;
       if (type_pc_ == "shell" && !reuse_preconditioner())
         {
-          PCShell& pcs=pc_user_.pc_shell;
-          pcs.setUpPC(PreconditionneurPetsc_, MatricePetsc_, SolutionPetsc_);
+          OWN_PTR(PCShell_base)& pcs=pc_user_.pc_shell;
+          pcs->setUpPC(PreconditionneurPetsc_, MatricePetsc_, SolutionPetsc_);
         }
       else
         KSPSetReusePreconditioner(SolveurPetsc_, (PetscBool) reuse_preconditioner()); // Default PETSC_FALSE
@@ -2027,6 +2254,14 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
           Cerr << "KSP_DIVERGED_ITS" << finl;
           Cerr << "That means the solver didn't converge within the maximal iterations number." << finl;
           Cerr << "You can change the maximal number of iterations with the -ksp_max_it option." << finl;
+#ifdef MPIX_CUDA_AWARE_SUPPORT
+          // Probleme vu avec GPU direct si >= 4 GPUs et preconditinneurs C-AMG ou BOOMERAMG
+          // OK pour SA-AMG et Jacobi
+          // Il faudrait faire un reproducer a soumettre a PETSc...
+          Cerr << "It seems there is a convergence issue (bug?) with MPI GPU Aware library with PETSc CG and some preconditioners." << finl;
+          Cerr << "Try using BICGSTAB instead of GCP to bypass the issue." << finl;
+          Process::exit();
+#endif
         }
       else Cerr << (int)Reason << finl;
       throw Reason;
@@ -2034,6 +2269,7 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
   if (Reason<0 && !return_on_error_) exit();
   PetscInt nbiter=-1;
   KSPGetIterationNumber(SolveurPetsc_, &nbiter);
+  int nbit = (int)nbiter;  // always an int actually
   if (limpr()>-1)
     {
       // MyKSPMonitor ne marche pas pour certains solveurs (residu(0) n'est pas calcule):
@@ -2051,12 +2287,12 @@ int Solv_Petsc::solve(ArrOfDouble& residu)
           // Calcul de residu(nbiter)=||Ax-B||
           VecScale(SecondMembrePetsc_, -1);
           MatMultAdd(MatricePetsc_, SolutionPetsc_, SecondMembrePetsc_, SecondMembrePetsc_);
-          VecNorm(SecondMembrePetsc_, NORM_2, &residu[nbiter]);
+          VecNorm(SecondMembrePetsc_, NORM_2, &residu[nbit]);
         }
     }
   if (verbose) Cout << finl << "[Petsc] Time to solve system:    \t" << Statistiques::get_time_now() - start << finl;
   PetscLogStagePop();
-  return Reason < 0 ? (int)Reason : nbiter;
+  return Reason < 0 ? (int)Reason : nbit;
 }
 #endif
 
@@ -2065,24 +2301,43 @@ void Solv_Petsc::Update_vectors(const DoubleVect& secmem, DoubleVect& solution)
 {
   // Assemblage du second membre et de la solution
   double start = Statistiques::get_time_now();
-  // ToDo OpenMP afficher un warning pour dire d'utiliser un solveur GPU si solution est sur le GPU
-  secmem.checkDataOnHost();
-  solution.checkDataOnHost();
-  PetscInt size=ix.size_array();
-  if (gpu_) statistiques().begin_count(gpu_copytodevice_counter_);
-  VecSetOption(SecondMembrePetsc_, VEC_IGNORE_NEGATIVE_INDICES, PETSC_TRUE);
-  VecSetValues(SecondMembrePetsc_, size, (PetscInt*)ix.addr(), secmem.addr(), INSERT_VALUES);
-  VecSetOption(SolutionPetsc_, VEC_IGNORE_NEGATIVE_INDICES, PETSC_TRUE);
-  VecSetValues(SolutionPetsc_, size, (PetscInt*)ix.addr(), solution.addr(), INSERT_VALUES);
-  VecAssemblyBegin(SecondMembrePetsc_);
-  VecAssemblyEnd(SecondMembrePetsc_);
-  VecAssemblyBegin(SolutionPetsc_);
-  VecAssemblyEnd(SolutionPetsc_);
-  if (gpu_) statistiques().end_count(gpu_copytodevice_counter_);
-  if (reorder_matrix_)
+  bool DataOnDevice = solution.checkDataOnDevice(secmem);
+  if (gpu_ && DataOnDevice && !isViennaCLVector()) // The 2 arrays are up to date on the device and the solver is a GPU one (fastest strategy)
     {
-      VecPermute(SecondMembrePetsc_, colperm, PETSC_FALSE);
-      VecPermute(SolutionPetsc_, colperm, PETSC_FALSE);
+      // We update PETSc vectors with the arrays on device:
+      Update_lhs_rhs<Kokkos::DefaultExecutionSpace>(secmem, solution);
+#ifdef PETSC_HAVE_CUDA
+      VecCUDAPlaceArray(SecondMembrePetsc_, addrOnDevice(rhs_));
+      VecCUDAPlaceArray(SolutionPetsc_, addrOnDevice(lhs_));
+#endif
+#ifdef PETSC_HAVE_HIP
+      VecHIPPlaceArray(SecondMembrePetsc_, addrOnDevice(rhs_));
+      VecHIPPlaceArray(SolutionPetsc_, addrOnDevice(lhs_));
+#endif
+      if (reorder_matrix_) Process::exit("reorder_matrix option is not supported yet on GPU");
+      if (different_partition_) Process::exit("different_partition option is not supported yet on GPU");
+    }
+  else
+    {
+      // ToDo OpenMP afficher un warning pour dire d'utiliser un solveur GPU si solution est sur le GPU
+      secmem.ensureDataOnHost();
+      solution.ensureDataOnHost();
+      PetscInt size=ix.size_array();
+      if (gpu_) statistiques().begin_count(gpu_copytodevice_counter_);
+      VecSetOption(SecondMembrePetsc_, VEC_IGNORE_NEGATIVE_INDICES, PETSC_TRUE);
+      VecSetValues(SecondMembrePetsc_, size, ix.addr(), secmem.addr(), INSERT_VALUES);
+      VecSetOption(SolutionPetsc_, VEC_IGNORE_NEGATIVE_INDICES, PETSC_TRUE);
+      VecSetValues(SolutionPetsc_, size, ix.addr(), solution.addr(), INSERT_VALUES);
+      VecAssemblyBegin(SecondMembrePetsc_);
+      VecAssemblyEnd(SecondMembrePetsc_);
+      VecAssemblyBegin(SolutionPetsc_);
+      VecAssemblyEnd(SolutionPetsc_);
+      if (gpu_) statistiques().end_count(gpu_copytodevice_counter_);
+      if (reorder_matrix_)
+        {
+          VecPermute(SecondMembrePetsc_, colperm, PETSC_FALSE);
+          VecPermute(SolutionPetsc_, colperm, PETSC_FALSE);
+        }
     }
   if (verbose) Cout << "[Petsc] Time to update vectors: \t" << Statistiques::get_time_now() - start << finl;
 
@@ -2090,35 +2345,58 @@ void Solv_Petsc::Update_vectors(const DoubleVect& secmem, DoubleVect& solution)
 //  VecView(SolutionPetsc_,PETSC_VIEWER_STDOUT_WORLD);
 }
 
+bool Solv_Petsc::isViennaCLVector()
+{
+  VecType type;
+  VecGetType(SecondMembrePetsc_, &type);
+  return strcmp(type, VECSEQVIENNACL)==0 || strcmp(type, VECMPIVIENNACL)==0;
+}
+
 void Solv_Petsc::Update_solution(DoubleVect& solution)
 {
   // Recuperation de la solution
   double start = Statistiques::get_time_now();
-  int size=ix.size_array();
-  if (reorder_matrix_)
-    VecPermute(SolutionPetsc_, rowperm, PETSC_TRUE);
-  // ToDo un seul VecGetValues comme VecSetValues
-  if (different_partition_)
+  bool DataOnDevice = solution.checkDataOnDevice();
+  if (gpu_ && DataOnDevice && !isViennaCLVector()) // solution is on the device to SolutionPetsc_ -> solution update without copy
     {
-      // TRUST and PETSc has different partition, a local vector LocalSolutionPetsc_ is gathered from the global vector SolutionPetsc_ :
-      VecScatterBegin(VecScatter_, SolutionPetsc_, LocalSolutionPetsc_, INSERT_VALUES, SCATTER_FORWARD);
-      VecScatterEnd  (VecScatter_, SolutionPetsc_, LocalSolutionPetsc_, INSERT_VALUES, SCATTER_FORWARD);
-      // Use the local vector to get the solution:
-      PetscInt colonne_locale=0;
-      for (int i=0; i<size; i++)
-        if (items_to_keep_[i])
-          {
-            VecGetValues(LocalSolutionPetsc_, 1, &colonne_locale, &solution(i));
-            colonne_locale++;
-          }
-      assert(nb_rows_==colonne_locale);
+      Solv_Externe::Update_solution<Kokkos::DefaultExecutionSpace>(solution);
+#ifdef PETSC_HAVE_CUDA
+      VecCUDAResetArray(SecondMembrePetsc_);
+      VecCUDAResetArray(SolutionPetsc_);
+#endif
+#ifdef PETSC_HAVE_HIP
+      VecHIPResetArray(SecondMembrePetsc_);
+      VecHIPResetArray(SolutionPetsc_);
+#endif
     }
   else
     {
-      // TRUST and PETSc has same partition, local solution can be accessed from the global vector:
-      if (gpu_) statistiques().begin_count(gpu_copyfromdevice_counter_);
-      VecGetValues(SolutionPetsc_, size, (PetscInt*)ix.addr(), solution.addr());
-      if (gpu_) statistiques().end_count(gpu_copyfromdevice_counter_);
+      int size=ix.size_array();
+      if (reorder_matrix_)
+        VecPermute(SolutionPetsc_, rowperm, PETSC_TRUE);
+      // ToDo un seul VecGetValues comme VecSetValues
+      if (different_partition_)
+        {
+          // TRUST and PETSc have different partitions, a local vector LocalSolutionPetsc_ is gathered from the global vector SolutionPetsc_ :
+          VecScatterBegin(VecScatter_, SolutionPetsc_, LocalSolutionPetsc_, INSERT_VALUES, SCATTER_FORWARD);
+          VecScatterEnd  (VecScatter_, SolutionPetsc_, LocalSolutionPetsc_, INSERT_VALUES, SCATTER_FORWARD);
+          // Use the local vector to get the solution:
+          PetscInt colonne_locale=0;
+          for (int i=0; i<size; i++)
+            if (items_to_keep_[i])
+              {
+                VecGetValues(LocalSolutionPetsc_, 1, &colonne_locale, &solution(i));
+                colonne_locale++;
+              }
+          assert(nb_rows_==colonne_locale);
+        }
+      else
+        {
+          // TRUST and PETSc has same partition, local solution can be accessed from the global vector:
+          if (gpu_) statistiques().begin_count(gpu_copyfromdevice_counter_);
+          VecGetValues(SolutionPetsc_, size, ix.addr(), solution.addr());
+          if (gpu_) statistiques().end_count(gpu_copyfromdevice_counter_);
+        }
     }
   if (verbose) Cout << finl << "[Petsc] Time to update solution: \t" << Statistiques::get_time_now() - start << finl;
 }
@@ -2137,6 +2415,9 @@ void Solv_Petsc::check_aij(const Matrice_Morse& mat)
   // Je n'arrive pas a faire marcher le stockage symetrique avec le preconditionneur PCEISENSTAT
   // qui est interessant car necessite 2 fois moins d'operations que le SSOR
   if (type_pc_==PCEISENSTAT) mataij_=1;
+
+  // Reading a Matrix with Hypre (ToDo test if mataij=1 for Hypre is not better, cause here 2 matrix seqsbaij and seqaij)
+  if (read_matrix_ && type_pc_==PCHYPRE) mataij_=1;
 
   // Dans le cas de SUPERLU_DIST pour Cholesky, je n'arrive pas a faire marcher le stockage
   // symetrique donc l'utilisation de SUPERLU_DIST n'est pas encore optimale en RAM...
@@ -2168,13 +2449,13 @@ void Solv_Petsc::check_aij(const Matrice_Morse& mat)
       // Ajout d'un test de verification de la symetrie supposee de la matrice PETSc
       // Ce test a permis de trouver un defaut de parallelisme sur le remplissage
       // de la matrice en pression lors de l'introduction de l'option volume etendu
-      int check_matrice_symetrique_ = matrice_symetrique_;
+      bool check_matrice_symetrique_ = matrice_symetrique_;
       // Check cancelled for:
 #ifdef PETSC_HAVE_CUDA
-      if (!amgx_) check_matrice_symetrique_=0; // Bug with CUDA ?
+      if (!amgx_) check_matrice_symetrique_=false; // Bug with CUDA ?
 #endif
 #ifdef NDEBUG
-      check_matrice_symetrique_=0; // Not done in production
+      check_matrice_symetrique_=false; // Not done in production
 #endif
       if (mataij_ == 0)
         {
@@ -2483,6 +2764,11 @@ void Solv_Petsc::Create_objects(const Matrice_Morse& mat, int blocksize)
 void Solv_Petsc::Create_vectors(const DoubleVect& b)
 {
   if (SecondMembrePetsc_!=nullptr) return; // Deja construit
+  if (gpu_)
+    {
+      // For GPU solvers, allocate 2 arrays on device to avoid 2 H2D and 1 D2H copy later during each solve.
+      Create_lhs_rhs_onDevice();
+    }
   // Build x
   VecCreate(PETSC_COMM_WORLD,&SecondMembrePetsc_);
   // Set sizes:
@@ -2490,23 +2776,30 @@ void Solv_Petsc::Create_vectors(const DoubleVect& b)
     VecSetSizes(SecondMembrePetsc_, PETSC_DECIDE, nb_rows_tot_);
   else if (petsc_cpus_selection_)
     {
-      int nb_rows_petsc = compute_nb_rows_petsc(nb_rows_tot_);
+      PetscInt nb_rows_petsc = compute_nb_rows_petsc(nb_rows_tot_);
       VecSetSizes(SecondMembrePetsc_, nb_rows_petsc, PETSC_DECIDE);
     }
   else
     VecSetSizes(SecondMembrePetsc_, nb_rows_, PETSC_DECIDE);
 
   // Set type:
-  if (Process::is_parallel())
-    VecSetType(SecondMembrePetsc_, gpu_ ? VECMPICUDA : VECMPI);
+#ifdef PETSC_HAVE_CUDA
+  if (gpu_)
+    VecSetType(SecondMembrePetsc_, (Process::is_sequential() ? VECSEQCUDA : VECMPICUDA));
   else
-    VecSetType(SecondMembrePetsc_, gpu_ ? VECSEQCUDA : VECSEQ);
+#endif
+#ifdef PETSC_HAVE_HIP
+    if (gpu_)
+      VecSetType(SecondMembrePetsc_, (Process::is_sequential() ? VECSEQHIP : VECMPIHIP));
+    else
+#endif
+      VecSetType(SecondMembrePetsc_, (Process::is_sequential() ? VECSEQ : VECMPI));
   VecSetOptionsPrefix(SecondMembrePetsc_, option_prefix_);
   VecSetFromOptions(SecondMembrePetsc_);
   // Build b
   VecDuplicate(SecondMembrePetsc_,&SolutionPetsc_);
   // Initialize x to avoid a crash on GPU later with VecSetValues... (bug PETSc?)
-  if (gpu_) VecSet(SolutionPetsc_,0.0);
+  // if (gpu_) VecSet(SolutionPetsc_,0.0);
 
   // Only in the case where TRUST and PETSc partitions are not the same
   // VecGetValues can only get values on the same processor, so need to gather values from
@@ -2517,11 +2810,11 @@ void Solv_Petsc::Create_vectors(const DoubleVect& b)
       // Create the local vector of length nb_rows_:
       VecCreateSeq(PETSC_COMM_SELF, nb_rows_, &LocalSolutionPetsc_);
       // Create the Scatter context to gather from the global solution to the local solution
-      ArrOfInt from(nb_rows_);
+      ArrOfPetscInt from(nb_rows_);
       for (int i=0; i<nb_rows_; i++)
         from[i]=decalage_local_global_+i; // Global indices in SolutionPetsc_
       IS fromis;
-      ISCreateGeneral(PETSC_COMM_WORLD, from.size_array(), (PetscInt*)from.addr(), PETSC_COPY_VALUES, &fromis);
+      ISCreateGeneral(PETSC_COMM_WORLD, from.size_array(), from.addr(), PETSC_COPY_VALUES, &fromis);
       VecScatterCreate(SolutionPetsc_, fromis, LocalSolutionPetsc_, PETSC_NULLPTR, &VecScatter_);
       ISDestroy(&fromis);
       // Will permit later with VecScatterBegin/VecScatterEnd something like:
@@ -2535,7 +2828,7 @@ void Solv_Petsc::Create_DM(const DoubleVect& b)
   /* creation de champs Petsc si des MD_Vector_Composite sont trouves dans b, avec recursion! */
   if (sub_type(MD_Vector_composite, b.get_md_vector().valeur()))
     {
-      std::map<std::string, std::vector<int>> champ;
+      std::map<std::string, std::vector<PetscInt>> champ;
       //liste (MD_Vector_composite, offset de ses elements, multiplicateur (nb d'items du tableau par item du MD_Vector) prefixe des noms de ses champs)
       std::vector<std::tuple<const MD_Vector_composite *, int, int, std::string>>
                                                                                mdc_list =
@@ -2558,7 +2851,7 @@ void Solv_Petsc::Create_DM(const DoubleVect& b)
                                                    prefix + std::to_string((long long) i)));
               else
                 {
-                  std::vector<int> indices;
+                  std::vector<PetscInt> indices;
                   for (int j = 0; j < nb_seq; j++) indices.push_back(decalage_local_global_ + idx + j);
                   if (mdc.get_name(i)!="")
                     champ[mdc.get_name(i).getString()] = indices;
@@ -2574,7 +2867,7 @@ void Solv_Petsc::Create_DM(const DoubleVect& b)
       PetscSectionCreate(PETSC_COMM_WORLD, &sec);
       PetscSectionSetNumFields(sec, (int)champ.size());
       PetscSectionSetChart(sec, decalage_local_global_,
-                           decalage_local_global_ + b.line_size() * b.get_md_vector().valeur().nb_items_seq_local());
+                           decalage_local_global_ + b.line_size() * b.get_md_vector()->nb_items_seq_local());
       int idx = 0;
       for (auto &&kv : champ)
         {
@@ -2588,17 +2881,17 @@ void Solv_Petsc::Create_DM(const DoubleVect& b)
 
       /* DMShell : un objet encapsulant la section */
       DMShellCreate(PETSC_COMM_WORLD, &dm_);
-      DMSetSection(dm_, sec);
+      DMSetLocalSection(dm_, sec);
       DMSetUp(dm_);
       PetscSectionDestroy(&sec);
     }
   if (sub_type(MD_Vector_composite, b.get_md_vector().valeur())) PCSetDM(PreconditionneurPetsc_, dm_);
 }
 
-int Solv_Petsc::compute_nb_rows_petsc(int nb_rows_tot)
+PetscInt Solv_Petsc::compute_nb_rows_petsc(PetscInt nb_rows_tot)
 {
   // Case the user specifies a number of CPUs:
-  int nb_rows_petsc = nb_rows_tot / petsc_nb_cpus_;
+  PetscInt nb_rows_petsc = nb_rows_tot / petsc_nb_cpus_;
   // Process 0 takes the possible rows in excess:
   if (je_suis_maitre()) nb_rows_petsc = nb_rows_tot - (petsc_nb_cpus_ - 1) * nb_rows_petsc;
   //
@@ -2647,7 +2940,7 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
     MatSetSizes(MatricePetsc, PETSC_DECIDE, PETSC_DECIDE, nb_rows_tot_, nb_rows_tot_);
   else if (petsc_cpus_selection_)
     {
-      int nb_rows_petsc = compute_nb_rows_petsc(nb_rows_tot_);
+      PetscInt nb_rows_petsc = compute_nb_rows_petsc(nb_rows_tot_);
       Journal() << "Process " << Process::me() << " has " << nb_rows_petsc << " rows of the matrix PETSc." << finl;
       MatSetSizes(MatricePetsc, nb_rows_petsc, nb_rows_petsc, PETSC_DECIDE, PETSC_DECIDE);
     }
@@ -2657,28 +2950,31 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
   //////////////////////////////////////////////
   // Determination du nombre d'elements non nuls
   //////////////////////////////////////////////
-  ArrOfInt nnz(nb_rows_);
-  ArrOfInt d_nnz(nb_rows_);
-  ArrOfInt o_nnz(nb_rows_);
-  nnz = 0;
-  d_nnz = 0;
-  o_nnz = 0;
-  ArrOfInt& renum_array = renum_;  // tableau vu comme lineaire
-  int premiere_colonne_globale = decalage_local_global_;
-  int derniere_colonne_globale = nb_rows_ + decalage_local_global_;
+  ArrOfPetscInt nnz(nb_rows_);
+  ArrOfPetscInt d_nnz(nb_rows_);
+  ArrOfPetscInt o_nnz(nb_rows_);
+  //nnz = 0;
+  //d_nnz = 0;
+  //o_nnz = 0;
+  ArrOfTID& renum_array = renum_;  // tableau vu comme lineaire
+  const PetscInt premiere_colonne_globale = decalage_local_global_;
+  const PetscInt derniere_colonne_globale = nb_rows_ + decalage_local_global_;
   const ArrOfInt& tab1 = mat_morse.get_tab1();
   const ArrOfInt& tab2 = mat_morse.get_tab2();
   //const ArrOfDouble& coeff = mat_morse.get_coeff();
   int cpt = 0;
-  for (int i = 0; i < tab1.size_array() - 1; i++)
+  const int n = tab1.size_array() - 1;
+  for (int i = 0; i < n; i++)
     {
       if (items_to_keep_[i])
         {
-          nnz[cpt] = tab1[i + 1] - tab1[i]; // Nombre d'elements non nuls sur la ligne i
-          for (int k = tab1[i] - 1; k < tab1[i + 1] - 1; k++)
+          const int k0 = tab1[i] - 1;
+          const int k1 = tab1[i + 1] - 1;
+          nnz[cpt] = k1 - k0; // Nombre d'elements non nuls sur la ligne i
+          for (int k = k0; k < k1; k++)
             {
-              int colonne_locale = tab2[k] - 1;
-              int colonne_globale = renum_array[colonne_locale];
+              const int colonne_locale = tab2[k] - 1;
+              const PetscInt colonne_globale = renum_array[colonne_locale];
               if (colonne_globale >= premiere_colonne_globale && colonne_globale < derniere_colonne_globale)
                 d_nnz[cpt]++;
               else
@@ -2710,7 +3006,12 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
         MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJCUSPARSE : MATMPIAIJCUSPARSE));
       else
 #endif
-        MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJ : MATMPIAIJ));
+#ifdef PETSC_HAVE_HIP
+        if (gpu_)
+          MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJHIPSPARSE : MATMPIAIJHIPSPARSE));
+        else
+#endif
+          MatSetType(MatricePetsc, (Process::is_sequential() ? MATSEQAIJ : MATMPIAIJ));
     }
   // Surcharge eventuelle par ligne de commande avec -mat_type:
   // Example: now possible to change aijcusparse to aijviennacl via CLI
@@ -2731,16 +3032,16 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
         {
           // If partition of TRUST and PETSc differs, difficult to preallocate the matrix finely so:
           // ToDo, try to optimize:
-          PetscInt nz = (int) mp_max((nnz.size_array() == 0 ? 0 : max_array(nnz)));
+          int nz = Process::mp_max((nnz.size_array() == 0 ? 0 : (int)max_array(nnz)));  // max_array always an int: max numb of zeros on a line
           MatSeqSBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULLPTR);
           MatMPISBAIJSetPreallocation(MatricePetsc, block_size_, nz, PETSC_NULLPTR, nz, PETSC_NULLPTR);
         }
       else
         {
-          MatSeqSBAIJSetPreallocation(MatricePetsc, block_size_, PETSC_DEFAULT, (PetscInt*)nnz.addr());
+          MatSeqSBAIJSetPreallocation(MatricePetsc, block_size_, PETSC_DEFAULT, nnz.addr());
           // Test on nb_rows==0 is to avoid PAR_docond_anisoproc hangs
-          MatMPISBAIJSetPreallocation(MatricePetsc, block_size_, (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), (PetscInt*)d_nnz.addr(),
-                                      (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), (PetscInt*)o_nnz.addr());
+          MatMPISBAIJSetPreallocation(MatricePetsc, block_size_, (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), d_nnz.addr(),
+                                      (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), o_nnz.addr());
         }
     }
   else
@@ -2749,16 +3050,16 @@ void Solv_Petsc::Create_MatricePetsc(Mat& MatricePetsc, int mataij, const Matric
         {
           // If partition of TRUST and PETSc differs, difficult to preallocate the matrix finely so:
           // ToDo, try to optimize:
-          PetscInt nz = (int) mp_max((nnz.size_array() == 0 ? 0 : max_array(nnz)));
+          int nz = Process::mp_max((nnz.size_array() == 0 ? 0 : (int)max_array(nnz)));   // max_array always an int: max numb of zeros on a line
           MatSeqAIJSetPreallocation(MatricePetsc, nz, PETSC_NULLPTR);
           MatMPIAIJSetPreallocation(MatricePetsc, nz, PETSC_NULLPTR, nz, PETSC_NULLPTR);
         }
       else
         {
-          MatSeqAIJSetPreallocation(MatricePetsc, PETSC_DEFAULT, (PetscInt*)nnz.addr());
+          MatSeqAIJSetPreallocation(MatricePetsc, PETSC_DEFAULT, nnz.addr());
           // Test on nb_rows==0 is to avoid PAR_docond_anisoproc hangs
-          MatMPIAIJSetPreallocation(MatricePetsc, (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), (PetscInt*)d_nnz.addr(),
-                                    (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), (PetscInt*)o_nnz.addr());
+          MatMPIAIJSetPreallocation(MatricePetsc, (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), d_nnz.addr(),
+                                    (nb_rows_ == 0 ? 0 : PETSC_DEFAULT), o_nnz.addr());
         }
     }
 
@@ -2824,7 +3125,7 @@ void Solv_Petsc::Update_matrix(Mat& MatricePetsc, const Matrice_Morse& mat_morse
   // ToDo : recalcul de nnz utile ?
   ArrOfInt nnz(nb_rows_);
   nnz = 0;
-  ArrOfInt& renum_array = renum_;  // tableau vu comme lineaire
+  ArrOfTID& renum_array = renum_;  // tab seen as a flat array (can't use ArrOfPetscInt& because of C++ ref cast...)
   const ArrOfInt& tab1 = mat_morse.get_tab1();
   const ArrOfInt& tab2 = mat_morse.get_tab2();
   int cpt = 0;
@@ -2835,32 +3136,35 @@ void Solv_Petsc::Update_matrix(Mat& MatricePetsc, const Matrice_Morse& mat_morse
         cpt++;
       }
   int size = (nb_rows_ == 0 ? 0 : max_array(nnz)); // Test sur nb_rows si nul (cas proc vide) car sinon max_array plante
-  ArrOfDouble coeff_(size);
-  ArrOfInt tab2_(size);
+  ArrOfDouble coeff_tmp(size);
+  ArrOfPetscInt tab2_tmp(size);
   const ArrOfDouble& coeff = mat_morse.get_coeff();
   cpt = 0;
-  for(int i=0; i<tab1.size_array() - 1; i++)
+  const int n = tab1.size_array() - 1;
+  for(int i=0; i < n; i++)
     {
       if (items_to_keep_[i])
         {
           PetscInt ligne_globale = cpt + decalage_local_global_;
           int ncol = 0;
-          for (int k = tab1[i] - 1; k < tab1[i + 1] - 1; k++)
+          const int k0 = tab1[i] - 1;
+          const int k1 = tab1[i + 1] - 1;
+          for (int k = k0; k < k1; k++)
             {
-              coeff_[ncol] = coeff[k];
-              tab2_[ncol] = renum_array[tab2[k] - 1];
+              coeff_tmp[ncol] = coeff[k];
+              tab2_tmp[ncol] = renum_array[tab2[k] - 1];
               ncol++;
             }
           assert(ncol == nnz[cpt]);
           if (journal)
             {
               Journal() << (int)ligne_globale << " ";
-              for (int j = 0; j < ncol; j++) Journal() << coeff_[j] << " ";
+              for (int j = 0; j < ncol; j++) Journal() << coeff_tmp[j] << " ";
               Journal() << finl;
             }
           try
             {
-              MatSetValues(MatricePetsc, 1, &ligne_globale, ncol, (PetscInt*)tab2_.addr(), coeff_.addr(), INSERT_VALUES);
+              MatSetValues(MatricePetsc, 1, &ligne_globale, ncol, tab2_tmp.addr(), coeff_tmp.addr(), INSERT_VALUES);
             }
           catch(...)
             {
@@ -2911,8 +3215,8 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
   // Est ce un nouveau stencil ?
   double start = Statistiques::get_time_now();
   int new_stencil=0;
-  if (rebuild_matrix_ || read_matrix_ || !mataij_)
-    new_stencil = 1;
+  if (!mataij_)
+    new_stencil = 1; // Don't how to check the stencil with symmetric ?
   else
     {
       PetscBool done;
@@ -2934,17 +3238,22 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
       const ArrOfInt& tab1 = mat_morse.get_tab1();
       const ArrOfInt& tab2 = mat_morse.get_tab2();
       const ArrOfDouble& coeff = mat_morse.get_coeff();
-      const ArrOfInt& renum_array = renum_;
+      const ArrOfTID& renum_array = renum_;
       int RowLocal = 0;
       //Journal() << "Provisoire: nb_rows_=" << nb_rows_ << " nb_rows_tot_=" << nb_rows_tot_ << finl;
-      for (int i = 0; i < tab1.size_array() - 1; i++)
+      const int n = tab1.size_array() - 1;
+      for (int i = 0; i < n; i++)
         {
           if (items_to_keep_[i])
             {
               int nnz_row = 0;
-              for (int k = tab1[i] - 1; k < tab1[i + 1] - 1; k++)
+              const int k0 = tab1[i] - 1;
+              const int k1 = tab1[i + 1] - 1;
+              for (int k = k0; k < k1; k++)
                 if (coeff[k] != 0) nnz_row++;
-              if (nnz_row != rowOffsets[RowLocal + 1] - rowOffsets[RowLocal])
+              const PetscInt kk0 = rowOffsets[RowLocal];
+              const PetscInt kk1 = rowOffsets[RowLocal + 1];
+              if (nnz_row != (int)(kk1 - kk0))
                 {
                   //Journal() << "Provisoire: Number of non-zero will change from " << rowOffsets[RowLocal + 1] - rowOffsets[RowLocal] << " to " << nnz_row << " on row " << RowLocal << finl;
                   new_stencil = 1;
@@ -2952,19 +3261,17 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
                 }
               else
                 {
-                  for (int k = tab1[i] - 1; k < tab1[i + 1] - 1; k++)
+                  for (int k = k0; k < k1; k++)
                     {
                       if (coeff[k] != 0)
                         {
                           bool found = false;
-                          int col = renum_array[tab2[k] - 1];
-                          // Boucle pour voir si le coeff est sur le GPU:
-                          int RowGlobal = decalage_local_global_+RowLocal;
-                          for (int kk = rowOffsets[RowLocal]; kk < rowOffsets[RowLocal + 1]; kk++)
+                          const PetscInt col = renum_array[tab2[k] - 1];
+                          const PetscInt RowGlobal = decalage_local_global_+RowLocal;
+                          for (PetscInt kk = kk0; kk < kk1; kk++)
                             {
                               if (colIndices[kk] == col)
                                 {
-                                  // values[kk] = coeff(k); // On met a jour le coefficient
                                   found = true;
                                   break;
                                 }
@@ -2981,6 +3288,7 @@ bool Solv_Petsc::check_stencil(const Matrice_Morse& mat_morse)
               RowLocal++;
             }
         }
+      MatRestoreRowIJ(localA, 0, PETSC_FALSE, PETSC_FALSE, &nRowsLocal, &rowOffsets, &colIndices, &done);
       if (Process::is_parallel()) MatDestroy(&localA);
       new_stencil = mp_max(new_stencil);
     }

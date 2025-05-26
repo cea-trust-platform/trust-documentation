@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,17 +33,17 @@
 
 #include <Domaine_Cl_dis_base.h>
 
+
 class Domaine_VEF;
-class Champ_Inc;
 
 class Domaine_Cl_VEF: public Domaine_Cl_dis_base
 {
   Declare_instanciable(Domaine_Cl_VEF);
 public:
-  void associer(const Domaine_VEF&);
-  void completer(const Domaine_dis&) override;
+  void associer(const Domaine_dis_base&) override;
+  void completer(const Domaine_dis_base&) override;
   int initialiser(double temps) override;
-  void imposer_cond_lim(Champ_Inc&, double) override;
+  void imposer_cond_lim(Champ_Inc_base&, double) override;
 
   virtual void remplir_volumes_entrelaces_Cl(const Domaine_VEF&);
   void remplir_normales_facettes_Cl(const Domaine_VEF&);

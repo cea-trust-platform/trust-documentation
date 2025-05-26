@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,12 +18,12 @@
 
 #include <Energie_Multiphase.h>
 #include <Masse_Multiphase.h>
+#include <Correlation_base.h>
 #include <Pb_Fluide_base.h>
 #include <QDM_Multiphase.h>
-#include <Correlation.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_List.h>
 #include <Interprete.h>
-#include <Equation.h>
 #include <Verif_Cl.h>
 
 /*! @brief classe Pb_Multiphase Cette classe represente un probleme de thermohydraulique multiphase de type "3*N equations" :
@@ -51,14 +51,9 @@ public:
   const Equation_base& equation(int) const override ;
   Equation_base& equation(int) override;
   void associer_milieu_base(const Milieu_base& ) override;
-  virtual Entree& lire_equations(Entree& is, Motcle& dernier_mot) override;
+  Entree& lire_equations(Entree& is, Motcle& dernier_mot) override;
   int verifier() override;
-  void mettre_a_jour(double temps) override;
-  void completer() override;
-  virtual Entree& lire_correlations(Entree& is);
   void preparer_calcul() override;
-  const Champ_base& get_champ(const Motcle& nom) const override;
-  bool has_champ(const Motcle& nom) const override;
 
   /* nombre de phases du probleme */
   int nb_phases() const { return noms_phases_.size(); }
@@ -66,36 +61,24 @@ public:
   const Noms& noms_phases() const { return noms_phases_; }
 
   double calculer_pas_de_temps() const override;
-  const Correlation& get_correlation(std::string nom_correlation) const
-  {
-    Motcle mot(nom_correlation);
-    return correlations.at(mot.getString());
-  }
 
-  int has_correlation(std::string nom_correlation) const
-  {
-    Motcle mot(nom_correlation);
-    return (int)correlations.count(mot.getString());
-  }
-
-  Equation_base& equation_qdm() { return eq_qdm; }
-  const Equation_base& equation_qdm() const { return eq_qdm; }
-  Equation_base& equation_masse() { return eq_masse; }
-  const Equation_base& equation_masse() const { return eq_masse; }
-  Equation_base& equation_energie() { return eq_energie; }
-  const Equation_base& equation_energie() const { return eq_energie; }
-
-protected:
   virtual void typer_lire_correlation_hem() { /* Do nothing */}
 
-  Noms noms_phases_;
-  std::map<std::string, Correlation> correlations;
+  virtual Equation_base& equation_qdm() { return eq_qdm_; }
+  virtual const Equation_base& equation_qdm() const { return eq_qdm_; }
+  virtual Equation_base& equation_masse() { return eq_masse_; }
+  virtual const Equation_base& equation_masse() const { return eq_masse_; }
+  virtual Equation_base& equation_energie() { return eq_energie_; }
+  virtual const Equation_base& equation_energie() const { return eq_energie_; }
 
+  inline virtual bool resolution_en_T() const { return true; }
+
+protected:
+  Noms noms_phases_;
   // equations
-  QDM_Multiphase eq_qdm;
-  Energie_Multiphase eq_energie;
-  Masse_Multiphase eq_masse;
-  LIST(Equation) eq_opt; //autres equations (turbulence, aire interfaciale...)
+  QDM_Multiphase eq_qdm_;
+  Energie_Multiphase eq_energie_;
+  Masse_Multiphase eq_masse_;
 };
 
 #endif /* Pb_Multiphase_included */

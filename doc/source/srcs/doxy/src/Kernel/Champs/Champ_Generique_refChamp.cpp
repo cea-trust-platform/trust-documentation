@@ -28,6 +28,8 @@
 #include <Postraitement.h>
 
 Implemente_instanciable(Champ_Generique_refChamp,"refChamp",Champ_Generique_base);
+// XD refchamp champ_generique_base refchamp -1 Field of prolem
+
 Add_synonym(Champ_Generique_refChamp,"Champ_Post_refChamp");
 
 /*! @brief Imprime sur un flot de sortie.
@@ -54,8 +56,8 @@ Entree& Champ_Generique_refChamp::readOn(Entree& is)
  */
 void Champ_Generique_refChamp::set_param(Param& param)
 {
-  param.ajouter_non_std("nom_source",(this));
-  param.ajouter_non_std("Pb_champ",(this),Param::REQUIRED);
+  param.ajouter_non_std("nom_source",(this)); // XD attr nom_source chaine nom_source 1 The alias name for the field
+  param.ajouter_non_std("Pb_champ",(this),Param::REQUIRED); // XD attr pb_champ deuxmots pb_champ 0 { Pb_champ nom_pb nom_champ } : nom_pb is the problem name and nom_champ is the selected field name.
 }
 
 int Champ_Generique_refChamp::lire_motcle_non_standard(const Motcle& mot, Entree& is)
@@ -75,12 +77,12 @@ int Champ_Generique_refChamp::lire_motcle_non_standard(const Motcle& mot, Entree
       Probleme_base& pb = ref_cast_non_const(Probleme_base, ob);
       ref_pb_ = pb;
       // Recherche du champ "nom_champ" dans le probleme:
-      REF(Champ_base) ref_champ;
+      OBS_PTR(Champ_base) ref_champ;
       Noms liste_noms;
       pb.get_noms_champs_postraitables(liste_noms);
       pb.creer_champ(nom_champ_);
       ref_champ = pb.get_champ(nom_champ_);
-      ref_champ.valeur().corriger_unite_nom_compo();
+      ref_champ->corriger_unite_nom_compo();
       set_ref_champ(ref_champ.valeur());
       return 1;
     }
@@ -285,7 +287,7 @@ const Domaine_Cl_dis_base& Champ_Generique_refChamp::get_ref_zcl_dis_base() cons
 {
   const Champ_base& ch = get_ref_champ_base();
   if (sub_type(Champ_Inc_base,ch))
-    return ref_cast(Champ_Inc_base,ch).equation().domaine_Cl_dis().valeur();
+    return ref_cast(Champ_Inc_base,ch).equation().domaine_Cl_dis();
   else
     {
       Cerr<<"No zcl_dis is available for the field "<<ch.que_suis_je()<<finl;
@@ -411,16 +413,14 @@ void Champ_Generique_refChamp::mettre_a_jour(double temps)
  * Ici, l'espace_stockage n'est pas utilise, le champ existe deja
  *
  */
-const Champ_base& Champ_Generique_refChamp::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_refChamp::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  {
-    const Nom& nom_cible = get_ref_champ_base().le_nom();
-    ref_pb_->get_champ(nom_cible);
-    return get_ref_champ_base();
-  }
+  const Nom& nom_cible = get_ref_champ_base().le_nom();
+  ref_pb_->get_champ(nom_cible);
+  return get_ref_champ_base();
 }
 
-const Champ_base& Champ_Generique_refChamp::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_refChamp::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
   return get_champ(espace_stockage);
 }
@@ -473,7 +473,7 @@ double Champ_Generique_refChamp::get_time() const
 
 //Renvoie la directive (champ_elem, champ_sommets, champ_face ou pression)
 //pour lancer la discretisation de l espace de stockage rendu par
-//la methode get_champ() du Champ_Generique qui a lance l appel de cette methode
+//la methode get_champ() du Champ_Generique_base qui a lance l appel de cette methode
 const Motcle Champ_Generique_refChamp::get_directive_pour_discr() const
 {
   Motcle directive;
@@ -482,8 +482,8 @@ const Motcle Champ_Generique_refChamp::get_directive_pour_discr() const
   // Champs discrets a une seule localisation :
   if (sub_type(Champ_Inc_P0_base,ch) || sub_type(Champ_Fonc_P0_base,ch))
     {
-      directive = "champ_elem";
-      //    assert(localisation_=="ELEMENTS");
+      const Domaine_dis_base& domaine_dis = get_ref_domaine_dis_base();
+      directive = (domaine_dis.que_suis_je() == "Domaine_DG") ? "champ_elem_DG" : "champ_elem";
     }
   else if (sub_type(Champ_Inc_P1_base,ch) || sub_type(Champ_Fonc_P1_base,ch)
            || sub_type(Champ_Inc_P1_base,ch) || sub_type(Champ_Inc_Q1_base,ch)

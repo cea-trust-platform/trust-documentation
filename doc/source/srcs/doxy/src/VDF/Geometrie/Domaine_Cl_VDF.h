@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,8 +18,8 @@
 
 #include <Domaine_Cl_dis_base.h>
 
+
 class Domaine_VDF;
-class Champ_Inc;
 
 namespace TypeAreteBordVDF
 {
@@ -63,9 +63,9 @@ class Domaine_Cl_VDF : public Domaine_Cl_dis_base
 {
   Declare_instanciable(Domaine_Cl_VDF);
 public :
-  void associer(const Domaine_VDF&);
-  void completer(const Domaine_dis&) override;
-  void imposer_cond_lim(Champ_Inc&, double) override;
+  void associer(const Domaine_dis_base&) override;
+  void completer(const Domaine_dis_base&) override;
+  void imposer_cond_lim(Champ_Inc_base&, double) override;
   int nb_faces_sortie_libre() const;
   int nb_faces_bord() const;
   Domaine_VDF& domaine_VDF();

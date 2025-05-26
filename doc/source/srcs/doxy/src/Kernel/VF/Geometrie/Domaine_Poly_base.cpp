@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,7 @@
 #include <MD_Vector_composite.h>
 #include <Domaine_Poly_base.h>
 #include <MD_Vector_tools.h>
+#include <Interface_blocs.h>
 #include <Comm_Group_MPI.h>
 #include <Quadrangle_VEF.h>
 #include <communications.h>
@@ -63,7 +64,7 @@ Sortie& Domaine_Poly_base::ecrit(Sortie& os) const
   os << "____ h_carre "<<finl;
   os << h_carre << finl;
   os << "____ type_elem_ "<<finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << "____ nb_elem_std_ "<<finl;
   os << nb_elem_std_ << finl;
   os << "____ volumes_entrelaces_ "<<finl;
@@ -82,7 +83,7 @@ Sortie& Domaine_Poly_base::printOn(Sortie& os) const
   Domaine_VF::printOn(os);
 
   os << h_carre << finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << nb_elem_std_ << finl;
   os << volumes_entrelaces_ << finl;
   os << face_normales_ << finl;
@@ -97,7 +98,26 @@ Entree& Domaine_Poly_base::readOn(Entree& is)
 {
   Domaine_VF::readOn(is);
   is >> h_carre;
-  is >> type_elem_;
+
+  /* read type_elem */
+  {
+    Nom type;
+    is >> type;
+    if (type == "Tri_poly")
+      type_elem_ = Tri_poly();
+    else if (type == "Tetra_poly")
+      type_elem_ = Tetra_poly();
+    else if (type == "Quadri_poly")
+      type_elem_ = Quadri_poly();
+    else if (type == "Hexa_poly")
+      type_elem_ = Hexa_poly();
+    else
+      {
+        Cerr << type << " is not an Elem_poly !" << finl;
+        Process::exit();
+      }
+  }
+
   is >> nb_elem_std_ ;
   is >> volumes_entrelaces_ ;
   is >> face_normales_ ;
@@ -137,7 +157,7 @@ void Domaine_Poly_base::reordonner(Faces& les_faces)
     const int nb_faces_front = domaine().nb_faces_frontiere();
     dom.creer_tableau_elements(rang_elem_non_std_);
     //    rang_elem_non_std_.resize(nb_elements);
-    //    Scatter::creer_tableau_distribue(dom, Joint::ELEMENT, rang_elem_non_std_);
+    //    Scatter::creer_tableau_distribue(dom, JOINT_ITEM::ELEMENT, rang_elem_non_std_);
     rang_elem_non_std_ = -1;
     int nb_elems_non_std = 0;
     // D'abord on marque les elements non standards avec rang_elem_non_std_[i] = 0
@@ -166,22 +186,45 @@ void Domaine_Poly_base::reordonner(Faces& les_faces)
   }
 
   renumeroter(les_faces);
-
 }
 
 void Domaine_Poly_base::typer_elem(Domaine& domaine_geom)
 {
-  const Elem_geom_base& type_elem_geom = domaine_geom.type_elem().valeur();
+  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
 
-  if (sub_type(Rectangle,type_elem_geom))
+  if (sub_type(Rectangle, elem_geom))
     {
       domaine_geom.typer("Quadrangle");
     }
-  else if (sub_type(Hexaedre,type_elem_geom))
+  else if (sub_type(Hexaedre, elem_geom))
     domaine_geom.typer("Hexaedre_VEF");
 
-  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
-  type_elem_.typer(elem_geom.que_suis_je());
+  const Nom& type_elem_geom = domaine_geom.type_elem()->que_suis_je();
+
+  Cerr << "Elem_poly => type geometrique : " << type_elem_geom << finl;
+
+  Nom type;
+  if (type_elem_geom == "Triangle")
+    type = "Tri_poly";
+  else if (type_elem_geom == "Tetraedre")
+    type = "Tetra_poly";
+  else if (type_elem_geom == "Quadrangle")
+    type = "Quadri_poly";
+  else if (type_elem_geom == "Hexaedre_VEF")
+    type = "Hexa_poly";
+  else if (type_elem_geom == "Segment")
+    type = "Segment_poly";
+  else if (type_elem_geom == "Polygone")
+    type = "Polygone_poly";
+  else if (type_elem_geom == "Polyedre")
+    type = "Polyedre_poly";
+  else
+    {
+      Cerr << "problem in Elem_poly::typer" << finl;
+      Process::exit();
+    }
+  type_elem_.typer(type);
+  Cerr << "Elem_poly => type retenu : " << type_elem_->que_suis_je() << finl;
 }
 
 void Domaine_Poly_base::discretiser()
@@ -281,7 +324,7 @@ void Domaine_Poly_base::discretiser()
     const int n = nb_faces();
     face_normales_.resize(n, dimension);
     // const Domaine & dom = domaine();
-    //    Scatter::creer_tableau_distribue(dom, Joint::FACE, face_normales_);
+    //    Scatter::creer_tableau_distribue(dom, JOINT_ITEM::FACE, face_normales_);
     creer_tableau_faces(face_normales_);
     const IntTab& face_som = face_sommets();
     IntTab& face_vois = face_voisins();
@@ -289,9 +332,9 @@ void Domaine_Poly_base::discretiser()
     const int n_tot = nb_faces_tot();
     for (num_face = 0; num_face < n_tot; num_face++)
       {
-        type_elem_.normale(num_face,
-                           face_normales_,
-                           face_som, face_vois, elem_face, domaine_geom);
+        type_elem_->normale(num_face,
+                            face_normales_,
+                            face_som, face_vois, elem_face, domaine_geom);
       }
 
     DoubleTab old(face_normales_);
@@ -361,6 +404,90 @@ void Domaine_Poly_base::discretiser()
     }
 
   //calculer_h_carre();
+}
+
+
+void Domaine_Poly_base::modifier_pour_Cl(const Conds_lim& conds_lim)
+{
+  Cerr << "Domaine_Poly has been filled with success" << finl;
+  //      calculer_h_carre();
+
+  Journal() << "Domaine_Poly_base::Modifier_pour_Cl" << finl;
+  int nb_cond_lim=conds_lim.size();
+  int num_cond_lim=0;
+  for (; num_cond_lim<nb_cond_lim; num_cond_lim++)
+    {
+      //for cl
+      const Cond_lim_base& cl = conds_lim[num_cond_lim].valeur();
+      if (sub_type(Periodique, cl))
+        {
+          //if Perio
+          const Periodique& la_cl_period = ref_cast(Periodique,cl);
+          int nb_faces_elem = domaine().nb_faces_elem();
+          const Front_VF& la_front_dis = ref_cast(Front_VF,cl.frontiere_dis());
+          int ndeb = 0;
+          int nfin = la_front_dis.nb_faces_tot();
+#ifndef NDEBUG
+          int num_premiere_face = la_front_dis.num_premiere_face();
+          int num_derniere_face = num_premiere_face+nfin;
+#endif
+          int nbr_faces_bord = la_front_dis.nb_faces();
+          assert((nb_faces()==0)||(ndeb<nb_faces()));
+          assert(nfin>=ndeb);
+          int elem1,elem2,k;
+          int face;
+          // Modification des tableaux face_voisins_ , face_normales_ , volumes_entrelaces_
+          // On change l'orientation de certaines normales
+          // de sorte que les normales aux faces de periodicite soient orientees
+          // de face_voisins(la_face_en_question,0) vers face_voisins(la_face_en_question,1)
+          // comme le sont les faces internes d'ailleurs
+
+          DoubleVect C1C2(dimension);
+          double vol,psc=0;
+
+          for (int ind_face=ndeb; ind_face<nfin; ind_face++)
+            {
+              //for ind_face
+              face = la_front_dis.num_face(ind_face);
+              if  ( (face_voisins_(face,0) == -1) || (face_voisins_(face,1) == -1) )
+                {
+                  int faassociee = la_front_dis.num_face(la_cl_period.face_associee(ind_face));
+                  if (ind_face<nbr_faces_bord)
+                    {
+                      assert(faassociee>=num_premiere_face);
+                      assert(faassociee<num_derniere_face);
+                    }
+
+                  elem1 = face_voisins_(face,0);
+                  elem2 = face_voisins_(faassociee,0);
+                  vol = (volumes_[elem1] + volumes_[elem2])/nb_faces_elem;
+                  volumes_entrelaces_[face] = vol;
+                  volumes_entrelaces_[faassociee] = vol;
+                  face_voisins_(face,1) = elem2;
+                  face_voisins_(faassociee,0) = elem1;
+                  face_voisins_(faassociee,1) = elem2;
+                  psc = 0;
+                  for (k=0; k<dimension; k++)
+                    {
+                      C1C2[k] = xv_(face,k) - xp_(face_voisins_(face,0),k);
+                      psc += face_normales_(face,k)*C1C2[k];
+                    }
+
+                  if (psc < 0)
+                    for (k=0; k<dimension; k++)
+                      face_normales_(face,k) *= -1;
+
+                  for (k=0; k<dimension; k++)
+                    face_normales_(faassociee,k) = face_normales_(face,k);
+                }
+            }
+        }
+    }
+
+  // PQ : 10/10/05 : les faces periodiques etant a double contribution
+  //          l'appel a marquer_faces_double_contrib s'effectue dans cette methode
+  //          afin de pouvoir beneficier de conds_lim.
+  Domaine_VF::marquer_faces_double_contrib(conds_lim);
 }
 
 void Domaine_Poly_base::detecter_faces_non_planes() const
@@ -488,7 +615,7 @@ void Domaine_Poly_base::orthocentrer()
         for (i = 0, b_f_ortho(f) = 1; i < dimension; i++)
           if (std::fabs(X(i, 0)) > 1e-8) xv_(f, i) += X(i, 0);
       }
-  Cerr << 100. * mp_somme_vect(b_f_ortho) / Process::mp_sum(nb_faces()) << "% orthocentered faces " << finl;
+  Cerr << 100. * (double)(mp_somme_vect(b_f_ortho) / Process::mp_sum(nb_faces())) << "% orthocentered faces " << finl;
 
   /* 2. orthocentrage des elements */
   Cerr << domaine().le_nom() << " : ";
@@ -520,7 +647,7 @@ void Domaine_Poly_base::orthocentrer()
       for (i = 0, b_e_ortho(e) = 1; i < dimension; i++)
         if (std::fabs(X(i, 0)) > 1e-8) xp_(e, i) += X(i, 0);
     }
-  Cerr << 100. * mp_somme_vect(b_e_ortho) / Process::mp_sum(nb_elem()) << "% d'elements orthocentres" << finl;
+  Cerr << 100. * (double)(mp_somme_vect(b_e_ortho) / Process::mp_sum(nb_elem())) << "% d'elements orthocentres" << finl;
 }
 
 void Domaine_Poly_base::calculer_h_carre()
@@ -528,11 +655,11 @@ void Domaine_Poly_base::calculer_h_carre()
   // Calcul de h_carre
   h_carre = 1.e30;
   if (h_carre_.size()) return; // deja fait
-  h_carre_.resize(nb_faces());
+  h_carre_.resize(nb_elem_tot());
   // Calcul des surfaces
   const DoubleVect& surfaces=face_surfaces();
   const int nb_faces_elem=domaine().nb_faces_elem();
-  const int nbe=nb_elem();
+  const int nbe=nb_elem_tot();
   for (int num_elem=0; num_elem<nbe; num_elem++)
     {
       double surf_max = 0;
@@ -657,27 +784,7 @@ DoubleVect& Domaine_Poly_base::dist_norm_bord(DoubleVect& dist, const Nom& nom_b
 
 const IntTab& Domaine_Poly_base::equiv() const
 {
-  if (equiv_.nb_dim() == 3) return equiv_;
-  const IntTab& e_f = elem_faces(), &f_e = face_voisins();
-  const DoubleTab& nf = face_normales();
-  const DoubleVect& fs = face_surfaces();//, &vf = volumes_entrelaces();
-  int i, j, e1, e2, f, f1, f2, d, D = dimension, ok;
-
-  IntTrav ntot, nequiv;
-  creer_tableau_faces(ntot), creer_tableau_faces(nequiv);
-  equiv_.resize(nb_faces_tot(), 2, e_f.dimension(1));
-  Cerr << domaine().le_nom() << " : intializing equiv... ";
-  for (f = 0, equiv_ = -1; f < nb_faces_tot(); f++)
-    if ((e1 = f_e(f, 0)) >= 0 && (e2 = f_e(f, 1)) >= 0)
-      for (i = 0; i < e_f.dimension(1) && (f1 = e_f(e1, i)) >= 0; i++)
-        for (j = 0, ntot(f)++; j < e_f.dimension(1) && (f2 = e_f(e2, j)) >= 0; j++)
-          {
-            if (std::fabs(std::fabs(dot(&nf(f1, 0), &nf(f2, 0)) / (fs(f1) * fs(f2))) - 1) > 1e-6) continue; //normales colineaires?
-            for (ok = 1, d = 0; d < D; d++) ok &= std::fabs((xv_(f1, d) - xp_(e1, d)) - (xv_(f2, d) - xp_(e2, d))) < 1e-12; //xv - xp identiques?
-            if (!ok) continue;
-            equiv_(f, 0, i) = f2, equiv_(f, 1, j) = f1, nequiv(f)++; //si oui, on a equivalence
-          }
-  Cerr << mp_somme_vect(nequiv) * 100. / mp_somme_vect(ntot) << "% equivalent faces!" << finl;
+  if (equiv_.nb_dim() != 3) init_equiv();
   return equiv_;
 }
 

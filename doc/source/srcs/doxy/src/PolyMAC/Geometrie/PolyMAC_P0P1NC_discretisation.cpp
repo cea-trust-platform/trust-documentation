@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,23 +13,23 @@
 *
 *****************************************************************************/
 
-#include <PolyMAC_P0P1NC_discretisation.h>
-#include <Champ_Fonc_Tabule.h>
-#include <Champ_Fonc_Elem_PolyMAC.h>
 #include <Champ_Fonc_Tabule_Elem_PolyMAC.h>
-#include <Milieu_base.h>
-#include <Equation_base.h>
-#include <Champ_Uniforme.h>
-#include <DescStructure.h>
-#include <Champ_Inc.h>
-#include <Schema_Temps_base.h>
-#include <Motcle.h>
-#include <Domaine_Cl_PolyMAC.h>
-#include <Domaine_Cl_dis.h>
-#include <Operateur.h>
+#include <PolyMAC_P0P1NC_discretisation.h>
 #include <Op_Diff_PolyMAC_P0P1NC_base.h>
+#include <Champ_Fonc_Elem_PolyMAC.h>
+#include <Domaine_PolyMAC_P0P1NC.h>
+#include <Domaine_Cl_PolyMAC.h>
+#include <Schema_Temps_base.h>
+#include <Champ_Fonc_Tabule.h>
+#include <Champ_Uniforme.h>
+#include <Equation_base.h>
+#include <DescStructure.h>
+#include <Milieu_base.h>
+#include <Operateur.h>
+#include <Motcle.h>
 
 Implemente_instanciable(PolyMAC_P0P1NC_discretisation, "PolyMAC_P0P1NC", PolyMAC_discretisation);
+// XD polymac_P0P1NC discretisation_base polymac_P0P1NC -1 polymac_P0P1NC discretization (previously polymac discretization compatible with pb_multi).
 
 Entree& PolyMAC_P0P1NC_discretisation::readOn(Entree& s) { return s; }
 
@@ -48,7 +48,7 @@ Sortie& PolyMAC_P0P1NC_discretisation::printOn(Sortie& s) const { return s; }
  *
  */
 void PolyMAC_P0P1NC_discretisation::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& noms, const Noms& unites, int nb_comp, int nb_pas_dt,
-                                                      double temps, Champ_Inc& champ, const Nom& sous_type) const
+                                                      double temps, OWN_PTR(Champ_Inc_base) &champ, const Nom& sous_type) const
 {
   const Domaine_PolyMAC_P0P1NC& domaine_PolyMAC_P0P1NC = ref_cast(Domaine_PolyMAC_P0P1NC, z);
 
@@ -63,9 +63,8 @@ void PolyMAC_P0P1NC_discretisation::discretiser_champ(const Motcle& directive, c
 
   // Le type de champ de vitesse depend du type d'element :
   int zp1 = false, default_nb_comp = 0, rang = motcles.search(directive);
-  Nom type_elem = Nom("Champ_Elem_") + que_suis_je(), type_som = "Champ_Som_PolyMAC_P0P1NC",
-      type_champ_scal = zp1 ? type_som : type_elem, type_champ_vitesse =
-                          zp1 ? "Champ_Arete_PolyMAC_P0P1NC" : Nom("Champ_Face_") + que_suis_je(), type;
+  Nom type_elem = Nom("Champ_Elem_") + que_suis_je(), type_som = "Champ_Som_PolyMAC_P0P1NC", type_champ_scal = zp1 ? type_som : type_elem, type_champ_vitesse =
+                                                                                                                 zp1 ? "Champ_Arete_PolyMAC_P0P1NC" : Nom("Champ_Face_") + que_suis_je(), type;
   switch(rang)
     {
     case 0:
@@ -123,9 +122,9 @@ void PolyMAC_P0P1NC_discretisation::discretiser_champ(const Motcle& directive, c
   creer_champ(champ, z, type, noms[0], unites[0], nb_comp, nb_ddl, nb_pas_dt, temps, directive, que_suis_je());
   if (nature == multi_scalaire)
     {
-      champ.valeur().fixer_nature_du_champ(nature);
-      champ.valeur().fixer_unites(unites);
-      champ.valeur().fixer_noms_compo(noms);
+      champ->fixer_nature_du_champ(nature);
+      champ->fixer_unites(unites);
+      champ->fixer_noms_compo(noms);
     }
 }
 
@@ -139,14 +138,9 @@ void PolyMAC_P0P1NC_discretisation::discretiser_champ(const Motcle& directive, c
 void PolyMAC_P0P1NC_discretisation::discretiser_champ_fonc_don(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& noms, const Noms& unites, int nb_comp,
                                                                double temps, Objet_U& champ) const
 {
-  // Deux pointeurs pour acceder facilement au champ_don ou au champ_fonc,
-  // suivant le type de l'objet champ.
-  Champ_Fonc *champ_fonc = 0;
-  Champ_Don *champ_don = 0;
-  if (sub_type(Champ_Fonc, champ))
-    champ_fonc = &ref_cast(Champ_Fonc, champ);
-  else
-    champ_don = &ref_cast(Champ_Don, champ);
+  // Deux pointeurs pour acceder facilement au champ_don ou au champ_fonc, suivant le type de l'objet champ.
+  OWN_PTR(Champ_Fonc_base) *champ_fonc = dynamic_cast<OWN_PTR(Champ_Fonc_base)*>(&champ);
+  OWN_PTR(Champ_Don_base) *champ_don = dynamic_cast<OWN_PTR(Champ_Don_base)*>(&champ);
 
   const Domaine_PolyMAC_P0P1NC& domaine_PolyMAC_P0P1NC = ref_cast(Domaine_PolyMAC_P0P1NC, z);
 
@@ -236,33 +230,33 @@ void PolyMAC_P0P1NC_discretisation::discretiser_champ_fonc_don(const Motcle& dir
     }
   else if ((nature == multi_scalaire) && (champ_don))
     {
-      Cerr << "There is no field of type Champ_Don with a multi_scalaire nature." << finl;
+      Cerr << "There is no field of type OWN_PTR(Champ_Don_base) with a multi_scalaire nature." << finl;
       exit();
     }
 }
 
-void PolyMAC_P0P1NC_discretisation::y_plus(const Domaine_dis& z, const Domaine_Cl_dis& zcl, const Champ_Inc& ch_vitesse, Champ_Fonc& ch) const
+void PolyMAC_P0P1NC_discretisation::y_plus(const Domaine_dis_base& z, const Domaine_Cl_dis_base& zcl, const Champ_Inc_base& ch_vitesse, OWN_PTR(Champ_Fonc_base) &ch) const
 {
   Cerr << "Discretisation de y plus" << finl; // Utilise comme modele distance paroi globale
   Noms noms(1), unites(1);
   noms[0] = Nom("y_plus");
   unites[0] = Nom("adimensionnel");
-  discretiser_champ(Motcle("champ_elem"), z.valeur(), scalaire, noms, unites, 1, 0, ch);
+  discretiser_champ(Motcle("champ_elem"), z, scalaire, noms, unites, 1, 0, ch);
   DoubleTab& tab_y_p = ch->valeurs();
   for (int i = 0; i < tab_y_p.dimension_tot(0); i++)
     for (int n = 0; n < tab_y_p.dimension_tot(1); n++)
       tab_y_p(i, n) = -1.;
 }
 
-void PolyMAC_P0P1NC_discretisation::grad_u(const Domaine_dis& z, const Domaine_Cl_dis& zcl, const Champ_Inc& ch_vitesse, Champ_Fonc& ch) const
+void PolyMAC_P0P1NC_discretisation::grad_u(const Domaine_dis_base& z, const Domaine_Cl_dis_base& zcl, const Champ_Inc_base& ch_vitesse, OWN_PTR(Champ_Fonc_base) &ch) const
 {
   abort();
 }
 
-Nom PolyMAC_P0P1NC_discretisation::get_name_of_type_for(const Nom& class_operateur, const Nom& type_operateur, const Equation_base& eqn, const REF(Champ_base) &champ_sup) const
+Nom PolyMAC_P0P1NC_discretisation::get_name_of_type_for(const Nom& class_operateur, const Nom& type_operateur, const Equation_base& eqn, const OBS_PTR(Champ_base) &champ_sup) const
 {
   Nom type;
-  Nom type_ch = eqn.inconnue()->que_suis_je();
+  Nom type_ch = eqn.inconnue().que_suis_je();
   if (type_ch.debute_par("Champ_Elem"))
     type_ch = "_Elem";
   else if (type_ch.debute_par("Champ_Som"))
@@ -292,13 +286,13 @@ Nom PolyMAC_P0P1NC_discretisation::get_name_of_type_for(const Nom& class_operate
   return type;
 }
 
-void PolyMAC_P0P1NC_discretisation::residu(const Domaine_dis& z, const Champ_Inc& ch_inco, Champ_Fonc& champ) const
+void PolyMAC_P0P1NC_discretisation::residu(const Domaine_dis_base& z, const Champ_Inc_base& ch_inco, OWN_PTR(Champ_Fonc_base) &champ) const
 {
   Nom ch_name(ch_inco.le_nom());
   ch_name += "_residu";
   Cerr << "Discretization of " << ch_name << finl;
 
-  Nom type_ch = ch_inco.valeur().que_suis_je();
+  Nom type_ch = ch_inco.que_suis_je();
   if (type_ch.debute_par("Champ_Face"))
     {
       Motcle loc = "champ_face";
@@ -306,7 +300,7 @@ void PolyMAC_P0P1NC_discretisation::residu(const Domaine_dis& z, const Champ_Inc
       nom[0] = ch_name;
       unites[0] = "units_not_defined";
       int nb_comp = ch_inco.valeurs().line_size() * dimension;
-      discretiser_champ(loc, z.valeur(), vectoriel, nom, unites, nb_comp, ch_inco.temps(), champ);
+      discretiser_champ(loc, z, vectoriel, nom, unites, nb_comp, ch_inco.temps(), champ);
     }
   else
     {
@@ -315,7 +309,7 @@ void PolyMAC_P0P1NC_discretisation::residu(const Domaine_dis& z, const Champ_Inc
       nom[0] = ch_name;
       unites[0] = "units_not_defined";
       int nb_comp = ch_inco.valeurs().line_size();
-      discretiser_champ(loc, z.valeur(), scalaire, nom, unites, nb_comp, ch_inco.temps(), champ);
+      discretiser_champ(loc, z, scalaire, nom, unites, nb_comp, ch_inco.temps(), champ);
     }
 
   Champ_Fonc_base& ch_fonc = ref_cast(Champ_Fonc_base, champ.valeur());

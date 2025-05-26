@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <communications.h>
 #include <Probleme_base.h>
 #include <Synonyme_info.h>
-#include <Champ_Fonc.h>
+
 #include <Domaine_VF.h>
 #include <Param.h>
 
@@ -90,7 +90,7 @@ void Champ_Generique_Reduction_0D::completer(const Postraitement_base& post)
       Cerr<<"The source field named "<<nom_source[0]<<" of this last "<<que_suis_je()<<" field "<<finl;
       Cerr<<"must be previously interpolated at the elem or som location."<<finl;
       Cerr<<"Please use instead the syntax : "<<finl;
-      Cerr<<"..."<<que_suis_je()<<" { source Champ_Post_Interpolation { ... } ... }"<<finl;
+      Cerr<<"..."<<que_suis_je()<<" { source Interpolation { localisation ... } ... }"<<finl;
       Cerr<<"or contact TRUST support."<<finl;
       exit();
     }
@@ -178,39 +178,40 @@ void Champ_Generique_Reduction_0D::completer(const Postraitement_base& post)
 
 }
 
-const Champ_base& Champ_Generique_Reduction_0D::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Reduction_0D::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ_without_evaluation(source_espace_stockage);
   Nature_du_champ nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
 
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 /*! @brief Reduction_0D du champ source (au sens qu on le rend uniforme) en fonction de la methode (min, max, moyenne, moyenne_ponderee_volume_elem, somme, somme_ponderee)
  *
  *  Dans le cas ou le champ possede plusieurs composantes, elles sont traitees une par une
  *
  */
-const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Reduction_0D::get_champ(OWN_PTR(Champ_base)&) const
 {
-
-  Champ source_espace_stockage;
-  const Champ_base& source = get_source(0).get_champ(source_espace_stockage);
+  const Champ_base& source = get_source(0).get_champ(source_espace_stockage_);
   const Domaine_dis_base& domaine_dis = get_source(0).get_ref_domaine_dis_base();
   Nature_du_champ nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
 
   // dimension() sur le tableau de valeurs des champs PolyMAC_P0P1NC renvoie -1 (plusieurs supports)
-  // ToDo: reecrire completement cette methode (horrible, tres mal ecrite) en deportant les methodes min/max/sum/... pour chaque Champ !
+  // ToDo: reecrire completement cette methode (horrible, tres mal ecrite) en deportant les methodes min/max/sum/... pour chaque OWN_PTR(Champ_base) !
   if (source.que_suis_je()=="Champ_Face_PolyMAC_P0P1NC" || source.que_suis_je()=="Champ_Face_PolyMAC_P0")
     Process::exit("PolyMAC_P0P1NC/PolyMAC_P0 face field not supported yet for Reduction_0D");
 
-  Champ_Fonc es_tmp;
-  espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
+
+  if (espace_stockage_.est_nul())
+    creer_espace_stockage(nature_source,nb_comp,espace_stockage_);
+  else
+    espace_stockage_->changer_temps(get_time());
 
   int nb_dim = source.valeurs().nb_dim();
   // correction pour le 3D
@@ -219,15 +220,23 @@ const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage
 
   ConstDoubleTab_parts valeurs_source_parts(source.valeurs()); // pour ignorer les variables auxiliaires
   const DoubleTab& valeurs_source = valeurs_source_parts[0];   // de PolyMAC_P0P1NC (sinon : min, moyenne FAUX)
-  DoubleTab&  espace_valeurs = espace_stockage->valeurs();
+  DoubleTab& espace_valeurs = espace_stockage_->valeurs();
   const Domaine_VF& zvf = ref_cast(Domaine_VF,domaine_dis);
-  //DoubleVect val_extraites(nb_comp);
   double val_extraite=-100.;
 
   if (nb_comp==1)
     {
       extraire(val_extraite,valeurs_source);
       espace_valeurs = val_extraite;
+    }
+  else if (domaine_dis.que_suis_je() == "Domaine_DG")
+    {
+      extraire(val_extraite,valeurs_source);
+      int size_vect = valeurs_source.dimension(0);
+
+      for (int i=0; i<size_vect; i++)
+        for (int j=0; j<nb_comp; j++)
+          espace_valeurs(i,j) = val_extraite;
     }
   else
     {
@@ -237,15 +246,12 @@ const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage
           if (nb_dim!=nb_comp) //Cas des Champ_Face_VDF
             {
               size_vect=0;
-              //const IntVect& ori = zvf.orientation();
               for (int i=0; i<valeurs_source.dimension(0); i++)
-                //if (ori(i)==comp)
                 if (zvf.orientation(i)==comp)
                   ++size_vect;
             }
 
-
-          DoubleVect vect_source;
+          DoubleTrav vect_source;
           //Pour l'option somme vect_source doit avoir une structure parallele
           //pour appliquer val_extraite = mp_prodscal(vect_source,un)
           //Sa dimension est alors fixee par rapport au nombre d items de la source
@@ -270,15 +276,19 @@ const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage
           // Remplissage
           if (nb_dim==nb_comp)
             {
-              for (int i=0; i<size_vect; i++)
-                vect_source(i) = valeurs_source(i,comp);
+              CDoubleTabView valeurs = valeurs_source.view_ro();
+              DoubleArrView vect = static_cast<ArrOfDouble&>(vect_source).view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), size_vect, KOKKOS_LAMBDA(const int i)
+              {
+                vect(i) = valeurs(i,comp);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
           else
             {
+              ToDo_Kokkos("critical, warning check you have a NR test case with .son !");
               int k=0;
-              //const IntVect& ori = zvf.orientation();
               for (int i=0; i<valeurs_source.dimension(0); i++)
-                //if (ori(i)==comp)
                 if (zvf.orientation(i)==comp)
                   {
                     if (methode_=="somme" || methode_=="moyenne" || methode_=="sum" || methode_=="average")
@@ -295,14 +305,17 @@ const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage
 
           if (nb_dim==nb_comp)
             {
-              for (int i=0; i<size_vect; i++)
-                espace_valeurs(i,comp) = val_extraite;
+              DoubleTabView valeurs = espace_valeurs.view_wo();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), size_vect, KOKKOS_LAMBDA(const int i)
+              {
+                valeurs(i,comp) = val_extraite;
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
           else
             {
-              //const IntVect& ori = zvf.orientation();
+              ToDo_Kokkos("critical, warning check you have a NR test case with .son !");
               for (int i=0; i<valeurs_source.dimension(0); i++)
-                //if (ori(i)==comp)
                 if (zvf.orientation(i)==comp)
                   espace_valeurs(i) = val_extraite;
             }
@@ -310,7 +323,7 @@ const Champ_base& Champ_Generique_Reduction_0D::get_champ(Champ& espace_stockage
     }
   espace_valeurs.echange_espace_virtuel();
 
-  return espace_stockage.valeur();
+  return espace_stockage_;
 }
 
 //Extrait la valeur du vecteur val_source dans val_extraite
@@ -361,20 +374,13 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
       // au ELEM
       if (get_localisation()==Entity::ELEMENT)
         {
-          int nb_elem = zvf.nb_elem();
           if (methode_ =="L1_norm")
             {
-              for (int i=0; i<nb_elem; i++)
-                {
-                  sum+=std::fabs(val_source(i))*volumes(i);
-                }
+              sum = zvf.compute_L1_norm(val_source);
             }
           else if (methode_ =="L2_norm")
             {
-              for (int i=0; i<nb_elem; i++)
-                {
-                  sum+=val_source(i)*val_source(i)*volumes(i);
-                }
+              sum = zvf.compute_L2_norm(val_source);
             }
           else
             {
@@ -388,6 +394,7 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
         {
           // Calcul des volumes de controle a chaque face
           int nb_face = zvf.nb_faces();
+          ToDo_Kokkos("Code but check test!");
           if (!volume_controle_.size())
             {
               volume_controle_.resize(nb_face);
@@ -460,6 +467,7 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
       // au NODE
       if (get_localisation()==Entity::NODE)
         {
+          ToDo_Kokkos("Code but check test!");
           // Calcul des volumes de controle a chaque sommet
           int nb_som = zvf.nb_som();
           if (!volume_controle_.size())
@@ -513,9 +521,8 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
       const Domaine_VF& zvf = ref_cast(Domaine_VF,domaine_dis);
       double sum=0;
       double volume=0;
-      const DoubleVect& volumes = zvf.volumes();
       //int volumes_size_tot = mp_sum(volumes.size_array());
-      if (volumes.size_array()<zvf.nb_elem())
+      if (zvf.volumes().size_array()<zvf.nb_elem())
         {
           Cerr << "The mesh volumes of the domain " << zvf.domaine().le_nom() << " are not available yet." << finl;
           Cerr << "It is not implemented yet." << finl;
@@ -526,15 +533,19 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
       if (get_localisation()==Entity::ELEMENT)
         {
           int nb_elem = zvf.nb_elem();
-          for (int i=0; i<nb_elem; i++)
-            {
-              sum+=val_source(i)*volumes(i);
-              volume+=volumes(i);
-            }
+          CDoubleArrView volumes = zvf.volumes().view_ro();
+          CDoubleArrView val = val_source.view_ro();
+          Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(const int i, double & sum_tmp, double & volume_tmp)
+          {
+            double v = volumes(i);
+            sum_tmp += val(i) * v;
+            volume_tmp += v;
+          }, sum, volume);
+          end_gpu_timer(__KERNEL_NAME__);
         }
 
       // au FACE
-      if (get_localisation()==Entity::FACE)
+      else if (get_localisation()==Entity::FACE)
         {
           // Calcul des volumes de controle a chaque face
           int nb_face = zvf.nb_faces();
@@ -544,15 +555,19 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
               volume_controle_=0;
               int nb_faces_par_elem = zvf.elem_faces().dimension_tot(1);
               int nb_elem = zvf.nb_elem();
-              for (int i=0; i<nb_elem; i++)
-                for (int j=0; j<nb_faces_par_elem; j++)
-                  {
-                    int face=zvf.elem_faces(i,j);
-                    volume_controle_(face)+=volumes(i)/nb_faces_par_elem;
-                  }
+              CIntTabView elem_faces = zvf.elem_faces().view_ro();
+              CDoubleArrView volumes = zvf.volumes().view_ro();
+              DoubleArrView volume_controle = volume_controle_.view_rw();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), range_2D({0, 0}, {nb_elem, nb_faces_par_elem}), KOKKOS_LAMBDA(const int i, const int j)
+              {
+                int face = elem_faces(i,j);
+                Kokkos::atomic_add(&volume_controle(face), volumes(i)/nb_faces_par_elem);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
           if (composante_VDF>=0)
             {
+              ToDo_Kokkos("Code but check test!");
               //const IntVect& ori = zvf.orientation();
               int k=0;
               for (int i=0; i<nb_face; i++)
@@ -565,22 +580,30 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
                   }
             }
           else
-            for (int i=0; i<nb_face; i++)
+            {
+              CDoubleArrView volume_controle = volume_controle_.view_ro();
+              CDoubleArrView val = val_source.view_ro();
+              Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__), nb_face, KOKKOS_LAMBDA(const int i, double & sum_tmp, double & volume_tmp)
               {
-                sum+=val_source(i)*volume_controle_(i);
-                volume+=volume_controle_(i);
-              }
+                double vc = volume_controle(i);
+                sum_tmp += val(i) * vc;
+                volume_tmp += vc;
+              }, sum, volume);
+              end_gpu_timer(__KERNEL_NAME__);
+            }
         }
 
       // au NODE
-      if (get_localisation()==Entity::NODE)
+      else if (get_localisation()==Entity::NODE)
         {
+          ToDo_Kokkos("Code but check test!");
           // Calcul des volumes de controle a chaque sommet
           int nb_som = zvf.nb_som();
           if (!volume_controle_.size())
             {
               volume_controle_.resize(nb_som);
               volume_controle_=0;
+              const DoubleVect& volumes = zvf.volumes();
               int nb_som_par_elem = zvf.domaine().les_elems().dimension_tot(1);
               int nb_elem = zvf.nb_elem();
               for (int i=0; i<nb_elem; i++)
@@ -626,7 +649,7 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
       // au ELEM
       if (get_localisation()==Entity::ELEMENT)
         {
-          Champ source_espace_stockage2;
+          OWN_PTR(Champ_base) source_espace_stockage2;
           const Champ_base& source2 = get_source(1).get_champ(source_espace_stockage2);
           Motcle nom_source_1(get_source(1).get_nom_post());
           if (!(nom_source_1.debute_par("porosite_volumique")||(nom_source_1.debute_par("beta"))))
@@ -678,6 +701,7 @@ void Champ_Generique_Reduction_0D::extraire(double& val_extraite,const DoubleVec
         }
       else if (methode_=="moyenne" || methode_=="average")
         {
+          ToDo_Kokkos("Code but check test!");
           if (loc==Entity::FACE && composante_VDF>=0)
             {
               // Dans le cas vectoriel en VDF, il ne faut compter que les

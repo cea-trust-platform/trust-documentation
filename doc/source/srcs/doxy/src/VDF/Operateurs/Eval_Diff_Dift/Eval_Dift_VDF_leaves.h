@@ -54,7 +54,7 @@ public:
   static constexpr bool IS_MODIF_DEQ = true;
   inline int get_ind_Fluctu_Term() const { return ind_Fluctu_Term; }
   void init_ind_fluctu_term() override;
-  void associer_loipar(const Turbulence_paroi_scal& loi_paroi) override;
+  void associer_loipar(const Turbulence_paroi_scal_base& loi_paroi) override;
 
 private:
   int ind_Fluctu_Term = 1;
@@ -94,13 +94,13 @@ class Eval_Dift_VDF_Face : public Eval_Diff_VDF_Face_Gen<Eval_Dift_VDF_Face>, pu
 public:
   static constexpr bool IS_TURB = true, CALC_FA7_SORTIE_LIB = true, CALC_ARR_PAR_FL = false;
   inline void associer_modele_turbulence(const Modele_turbulence_hyd_base& mod) { le_modele_turbulence = mod;  }
-  inline bool uses_wall() const { return le_modele_turbulence.valeur().utiliser_loi_paroi(); }
+  inline bool uses_wall() const { return le_modele_turbulence->utiliser_loi_paroi(); }
   void mettre_a_jour() override;
   double tau_tan_impl(int face,int k) const;
 
 private:
-  REF(Modele_turbulence_hyd_base) le_modele_turbulence;
-  REF(Turbulence_paroi_base) loipar;
+  OBS_PTR(Modele_turbulence_hyd_base) le_modele_turbulence;
+  OBS_PTR(Turbulence_paroi_base) loipar;
   DoubleTab tau_tan_;
 };
 

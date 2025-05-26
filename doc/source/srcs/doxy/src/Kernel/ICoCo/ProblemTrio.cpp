@@ -41,7 +41,7 @@
 #include <stat_counters.h>
 #include <Field_base.h>
 
-#include <Champ_Inc.h>
+
 #include <Equation_base.h>
 
 
@@ -132,7 +132,7 @@ bool ProblemTrio::initialize()
       Comm_Group_MPI::set_trio_u_world((*my_params).comm);
 
     }
-  Comm_Group_MPI::set_must_mpi_initialize(0); // ???
+  Comm_Group_MPI::set_must_mpi_initialize(false); // ???
 #endif
   int argc=2;
   char** argv=new char*[argc];
@@ -566,7 +566,7 @@ void ProblemTrio::setInputMEDDoubleField(const std::string& name, const MEDDoubl
   const unsigned int nbcomp = (int)fieldArr->getNumberOfComponents();
   std::vector<std::string> compo_names = fieldArr->getInfoOnComponents();
 
-  REF(Field_base) ch = pb->findInputField(Nom(name));
+  OBS_PTR(Field_base) ch = pb->findInputField(Nom(name));
   assert(nbcomp == (unsigned)ch->nb_comp());
   for (unsigned int i = 0; i < nbcomp; i++)
     {
@@ -625,7 +625,7 @@ ICoCo::MEDDoubleField ProblemTrio::getDirectAccessToUnknown(const std::string& u
       size_t nbTup = 0, nbCompo = 0;
       for (int i=0; i < pb_base.nombre_d_equations(); i++)
         {
-          Champ_Inc& ci = pb_base.equation(i).inconnue();
+          Champ_Inc_base& ci = pb_base.equation(i).inconnue();
           assert(ci.valeurs().nb_dim() == 2);
           if (Motcle(ci.le_nom()) == Motcle(unk_name))
             {

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,6 +24,11 @@
 #include <Domaine_VF.h>
 
 Implemente_instanciable_sans_constructeur(Champ_front_calc,"Champ_front_calc",Ch_front_var_instationnaire_dep);
+// XD champ_front_calc front_field_base champ_front_calc 0 This keyword is used on a boundary to get a field from another boundary. The local and remote boundaries should have the same mesh. If not, the Champ_front_recyclage keyword could be used instead. It is used in the condition block at the limits of equation which itself refers to a problem called pb1. We are working under the supposition that pb1 is coupled to another problem.
+// XD attr problem_name ref_Pb_base problem_name 0 Name of the other problem to which pb1 is coupled.
+// XD attr bord chaine bord 0 Name of the side which is the boundary between the 2 domains in the domain object description associated with the problem_name object.
+// XD attr field_name chaine field_name 0 Name of the field containing the value that the user wishes to use at the boundary. The field_name object must be recognized by the problem_name object.
+
 
 Champ_front_calc::Champ_front_calc() { set_distant(1); }
 
@@ -62,7 +67,7 @@ void Champ_front_calc::creer(const Nom& nom_pb, const Nom& nom_bord, const Motcl
 {
   nom_autre_pb_ = nom_pb;
   nom_autre_bord_ = nom_bord;
-  REF(Probleme_base) autre_pb;
+  OBS_PTR(Probleme_base) autre_pb;
   Objet_U& ob = Interprete::objet(nom_autre_pb_);
   if (sub_type(Probleme_base, ob))
     {
@@ -73,12 +78,12 @@ void Champ_front_calc::creer(const Nom& nom_pb, const Nom& nom_bord, const Motcl
       Cerr << "We did not find problem with name " << nom_pb << finl;
       exit();
     }
-  REF(Champ_base) rch;
+  OBS_PTR(Champ_base) rch;
   rch = autre_pb->get_champ(nom_inco);
   if (sub_type(Champ_Inc_base, rch.valeur()))
     {
       l_inconnue = ref_cast(Champ_Inc_base, rch.valeur());
-      fixer_nb_comp(rch.valeur().nb_comp());
+      fixer_nb_comp(rch->nb_comp());
     }
   else
     {
@@ -224,7 +229,7 @@ const Domaine_dis_base& Champ_front_calc::domaine_dis() const
  */
 const Domaine_Cl_dis_base& Champ_front_calc::domaine_Cl_dis() const
 {
-  return equation().domaine_Cl_dis().valeur();
+  return equation().domaine_Cl_dis();
 }
 
 /*! @brief Renvoie la frontiere discretisee correspondante au domaine sur lequel prend la trace.

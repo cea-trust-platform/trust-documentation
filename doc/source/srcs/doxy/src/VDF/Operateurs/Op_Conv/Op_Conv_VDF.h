@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,39 +16,40 @@
 #ifndef Op_Conv_VDF_included
 #define Op_Conv_VDF_included
 
-#include <type_traits>
-#include <Iterateur_VDF.h>
+#include <Iterateur_VDF_base.h>
+#include <TRUST_Deriv.h>
 #include <Op_VDF_Elem.h>
 #include <Op_VDF_Face.h>
+#include <type_traits>
 
 template <typename OP_TYPE>
 class Op_Conv_VDF : public Op_VDF_Elem, public Op_VDF_Face
 {
 protected:
   // pour operateurs elem
-  inline void dimensionner_elem(Matrice_Morse& matrice) const { Op_VDF_Elem::dimensionner(iter_()->domaine(), iter_()->domaine_Cl(), matrice); }
-  inline void modifier_pour_Cl_elem(Matrice_Morse& matrice, DoubleTab& secmem) const { Op_VDF_Elem::modifier_pour_Cl(iter_()->domaine(), iter_()->domaine_Cl(), matrice, secmem); }
+  inline void dimensionner_elem(Matrice_Morse& matrice) const { Op_VDF_Elem::dimensionner(iter_vdf()->domaine(), iter_vdf()->domaine_Cl(), matrice, 0); }
+  inline void modifier_pour_Cl_elem(Matrice_Morse& matrice, DoubleTab& secmem) const { Op_VDF_Elem::modifier_pour_Cl(iter_vdf()->domaine(), iter_vdf()->domaine_Cl(), matrice, secmem); }
 
   // pour operateurs face
-  inline void dimensionner_face(Matrice_Morse& matrice) const { Op_VDF_Face::dimensionner(iter_()->domaine(), iter_()->domaine_Cl(), matrice); }
-  inline void modifier_pour_Cl_face(Matrice_Morse& matrice, DoubleTab& secmem) const { Op_VDF_Face::modifier_pour_Cl(iter_()->domaine(), iter_()->domaine_Cl(), matrice, secmem); }
+  inline void dimensionner_face(Matrice_Morse& matrice) const { Op_VDF_Face::dimensionner(iter_vdf()->domaine(), iter_vdf()->domaine_Cl(), matrice); }
+  inline void modifier_pour_Cl_face(Matrice_Morse& matrice, DoubleTab& secmem) const { Op_VDF_Face::modifier_pour_Cl(iter_vdf()->domaine(), iter_vdf()->domaine_Cl(), matrice, secmem); }
 
   // pour les deux !
   template <Type_Operateur _TYPE_ , typename EVAL_TYPE>
   inline std::enable_if_t<_TYPE_ == Type_Operateur::Op_CONV_ELEM, void>
-  associer_impl(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis, const Champ_Inc& ch_transporte)
+  associer_impl(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis, const Champ_Inc_base& ch_transporte)
   {
     constexpr bool is_QUICK = std::is_same<EVAL_TYPE,Eval_Quick_VDF_Elem>::value, is_CENTRE4 = std::is_same<EVAL_TYPE,Eval_Centre4_VDF_Elem>::value;
-    const Champ_P0_VDF& inco = ref_cast(Champ_P0_VDF,ch_transporte.valeur());
+    const Champ_P0_VDF& inco = ref_cast(Champ_P0_VDF,ch_transporte);
     associer_<EVAL_TYPE,is_QUICK,is_CENTRE4>(domaine_dis,domaine_cl_dis).associer_inconnue(inco); // Cheerssssssssss !!!
   }
 
   template <Type_Operateur _TYPE_ , typename EVAL_TYPE>
   inline std::enable_if_t<_TYPE_ == Type_Operateur::Op_CONV_FACE, void>
-  associer_impl(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis, const Champ_Inc& ch_vit)
+  associer_impl(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis, const Champ_Inc_base& ch_vit)
   {
     constexpr bool is_QUICK = std::is_same<EVAL_TYPE,Eval_Quick_VDF_Face>::value, is_CENTRE4 = std::is_same<EVAL_TYPE,Eval_Centre4_VDF_Face>::value;
-    const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF,ch_vit.valeur());
+    const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF,ch_vit);
     associer_<EVAL_TYPE,is_QUICK,is_CENTRE4>(domaine_dis,domaine_cl_dis).associer_inconnue(vit); // Cheerssssssssss !!!
   }
 
@@ -66,37 +67,37 @@ protected:
   void associer_vitesse_impl(const Champ_base& ch_vit)
   {
     const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, ch_vit);
-    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&>(iter_()->evaluateur());
+    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&>(iter_vdf()->evaluateur());
     eval_conv.associer(vit);
   }
 
   template <typename EVAL_TYPE>
   const Champ_base& vitesse_impl() const
   {
-    const EVAL_TYPE& eval_conv = static_cast<const EVAL_TYPE&>(iter_()->evaluateur());
+    const EVAL_TYPE& eval_conv = static_cast<const EVAL_TYPE&>(iter_vdf()->evaluateur());
     return eval_conv.vitesse();
   }
 
   template <typename EVAL_TYPE>
   Champ_base& vitesse_impl()
   {
-    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&>(iter_()->evaluateur());
+    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&>(iter_vdf()->evaluateur());
     return eval_conv.vitesse();
   }
 
 private:
   // CRTP pour recuperer l'iter
-  inline const Iterateur_VDF& iter_() const { return static_cast<const OP_TYPE *>(this)->get_iter(); }
-  inline Iterateur_VDF& iter_() { return static_cast<OP_TYPE *>(this)->get_iter(); }
+  inline const OWN_PTR(Iterateur_VDF_base)& iter_vdf() const { return static_cast<const OP_TYPE *>(this)->get_iter(); }
+  inline OWN_PTR(Iterateur_VDF_base)& iter_vdf() { return static_cast<OP_TYPE *>(this)->get_iter(); }
 
   // Methode enorme pour tout le monde !
   template <typename EVAL_TYPE, bool is_QUICK, bool is_CENTRE4>
-  EVAL_TYPE& associer_(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+  EVAL_TYPE& associer_(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
   {
-    const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-    const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-    iter_()->associer(zvdf,zclvdf,static_cast<OP_TYPE&>(*this)); // Et ouiiiiiiiii
-    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&> (iter_()->evaluateur()); // Mais ouiiiiiiiiiiii
+    const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+    const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+    iter_vdf()->associer(zvdf,zclvdf,static_cast<OP_TYPE&>(*this)); // Et ouiiiiiiiii
+    EVAL_TYPE& eval_conv = static_cast<EVAL_TYPE&> (iter_vdf()->evaluateur()); // Mais ouiiiiiiiiiiii
     eval_conv.associer_domaines(zvdf, zclvdf );
 
     if (is_QUICK || is_CENTRE4)

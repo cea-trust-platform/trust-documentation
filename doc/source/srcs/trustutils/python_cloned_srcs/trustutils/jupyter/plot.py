@@ -79,7 +79,7 @@ def read_csv(data, **kwargs):
         name of the file we want to save. 
     comment : char, default = "#"
         Character indicating that the remainder of line should not be parsed.
-    delim_whitespace : bool, default = True
+    delim_whitespace : bool, default = True. Deprecated since version 2.2.0 -> Use sep="\\s+" instead.
         Specifies whether or not whitespace (e.g. ' ' or '\t') will be used as the sep delimiter.
     kwargs : dictionary
         additional properties available in pandas.read_csv() options
@@ -97,75 +97,6 @@ def read_csv(data, **kwargs):
     os.chdir(origin)
 
     return df
-
-
-def readFile(name):
-    """
-    Method for loading and saving files.
-        
-    Parameters
-    --------- 
-    data : str 
-        name of the file we want to save. 
-
-    Returns
-    ------- 
-    list of lines
-    """
-    origin = os.getcwd()
-    os.chdir(BUILD_DIRECTORY)
-
-    f = open(name, "r")
-    data = f.read().splitlines()
-
-    os.chdir(origin)
-    saveFileAccumulator(name)
-
-    return data
-
-
-def lastMoment(name):
-    """
-    Method to return the last moment
-        
-    Parameters
-    --------- 
-    name : str 
-        name of the file. 
-
-    Returns
-    ------- 
-    The last time of the plot.
-        
-    """
-    f = open(name, "r")
-    return f.readlines()[-1].split(" ")[0]
-
-
-def timeArray(name):
-    """
-
-    Method to return the time step list.
-        
-    Parameters
-    --------- 
-    name : str 
-        name of the file. 
-
-    Returns
-    ------- 
-    The last time of the plot.
-        
-    """
-    f = open(name, "r")
-    time_list = []
-    for i in f.readlines():
-        tmp = i.split(" ")[0]
-        if tmp != "#":
-            time_list.append(float(tmp))
-            # time_list.append(tmp)
-
-    return time_list
 
 
 class Graph:
@@ -524,11 +455,11 @@ class Graph:
         xmin : float
             Minimun of the ploted interval of x.
         xmax : float
-            Maximun of the ploted interval of x.
+            Maximum of the ploted interval of x.
         ymin : float
             Minimun of the ploted interval of y.
         ymax : float
-            Maximun of the ploted interval of y.
+            Maximum of the ploted interval of y.
         coordonee : 
             coordinates in the subplotlist.  
             
@@ -622,7 +553,7 @@ class Table:  # ancien tableau
         
         """
         dftmp = pd.DataFrame(ligne, columns=self.columns, index=[name])
-        self.df = pd.concat([self.df, dftmp])
+        self.df = pd.concat([self.df.astype(dftmp.dtypes), dftmp.astype(self.df.dtypes)])
 
     def setTitle(self,title):
         """
@@ -712,7 +643,8 @@ class Table:  # ancien tableau
         s= self.df.to_latex()
         s = s.replace(r"\textbackslash", "")
         s = s.replace(r"\$","$")
-        s = "\\begin{center} \n %s \n \end{center}" % s
+        s = s.replace("_",r"\_")
+        s = r"\begin{center} %s \end{center}" % s
         return s
 
     def _repr_html_(self):

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #include <Domaine_PolyMAC_P0.h>
 #include <Champ_Face_PolyMAC.h>
 #include <Domaine_Cl_PolyMAC.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Equation_base.h>
 #include <Milieu_base.h>
 
@@ -49,10 +49,10 @@ inline double valeur(const DoubleTab& valeurs_champ, int elem1, int elem2, const
     }
 }
 
-void Source_Generique_Face_PolyMAC::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& zcl_dis)
+void Source_Generique_Face_PolyMAC::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& zcl_dis)
 {
-  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  la_zcl_PolyMAC = ref_cast(Domaine_Cl_PolyMAC, zcl_dis.valeur());
+  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis);
+  la_zcl_PolyMAC = ref_cast(Domaine_Cl_PolyMAC, zcl_dis);
 }
 
 Nom Source_Generique_Face_PolyMAC::localisation_source()
@@ -62,12 +62,11 @@ Nom Source_Generique_Face_PolyMAC::localisation_source()
 
 DoubleTab& Source_Generique_Face_PolyMAC::ajouter(DoubleTab& resu) const
 {
-  Champ espace_stockage;
+  OWN_PTR(Champ_base) espace_stockage;
   const Champ_base& la_source = ch_source_->get_champ(espace_stockage); // Aux faces
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
   const Domaine_Cl_PolyMAC& domaine_Cl_PolyMAC = la_zcl_PolyMAC.valeur();
-  const DoubleVect& pf = equation().milieu().porosite_face();
-  const DoubleVect& fs = domaine.face_surfaces();
+  const DoubleVect& pf = equation().milieu().porosite_face(), &fs = domaine.face_surfaces();
   const IntTab& f_e = domaine.face_voisins();
   const DoubleTab& xv = domaine.xv(), &xp = domaine.xp();
   /* 1. faces de bord -> on ne contribue qu'aux faces de Neumann */
@@ -76,7 +75,7 @@ DoubleTab& Source_Generique_Face_PolyMAC::ajouter(DoubleTab& resu) const
       const Cond_lim& la_cl = domaine_Cl_PolyMAC.les_conditions_limites(n_bord);
       if (!sub_type(Neumann, la_cl.valeur()) && !sub_type(Neumann_homogene, la_cl.valeur()))
         continue;
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       for (int f = le_bord.num_premiere_face(); f < le_bord.num_premiere_face() + le_bord.nb_faces(); f++)
         {
           int e = domaine.face_voisins(f, 0);
@@ -98,11 +97,11 @@ DoubleTab& Source_Generique_Face_PolyMAC::ajouter(DoubleTab& resu) const
 
 DoubleTab& Source_Generique_Face_PolyMAC_P0P1NC::ajouter(DoubleTab& resu) const
 {
-  Champ espace_stockage;
+  OWN_PTR(Champ_base) espace_stockage;
   const Champ_base& la_source = ch_source_->get_champ(espace_stockage); // Aux faces
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
   const DoubleVect& pf = equation().milieu().porosite_face(), &vf = domaine.volumes_entrelaces();
-  const IntTab& fcl = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur()).fcl();
+  const IntTab& fcl = ref_cast(Champ_Face_PolyMAC, equation().inconnue()).fcl();
   for (int f = 0, calc_cl = !sub_type(Domaine_PolyMAC_P0, domaine); f < domaine.nb_faces(); f++)
     if (calc_cl || fcl(f, 0) < 2)
       resu(f) += pf(f) * vf(f) * la_source.valeurs()(f);

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,7 +34,7 @@ class Op_Grad_PolyMAC_Face: public Operateur_Grad_base
 {
   Declare_instanciable(Op_Grad_PolyMAC_Face);
 public:
-  void associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc&) override;
+  void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base&) override;
   void dimensionner(Matrice_Morse&) const override;
   DoubleTab& ajouter(const DoubleTab&, DoubleTab&) const override;
   DoubleTab& calculer(const DoubleTab&, DoubleTab&) const override;
@@ -42,8 +42,8 @@ public:
   int impr(Sortie& os) const override;
 
 protected:
-  REF(Domaine_PolyMAC) ref_domaine;
-  REF(Domaine_Cl_PolyMAC) ref_zcl;
+  OBS_PTR(Domaine_PolyMAC) ref_domaine;
+  OBS_PTR(Domaine_Cl_PolyMAC) ref_dcl;
   IntTab face_voisins;
   DoubleVect porosite_surf;
 };

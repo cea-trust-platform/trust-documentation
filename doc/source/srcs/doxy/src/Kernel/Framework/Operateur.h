@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,8 +16,9 @@
 #ifndef Operateur_included
 #define Operateur_included
 
+#include <TRUSTTabs_forward.h>
 #include <TRUST_Ref.h>
-#include <Champ_Inc.h>
+#include <MorEqn.h>
 #include <Motcle.h>
 
 class Discretisation_base;
@@ -27,7 +28,7 @@ class Champ_Inc_base;
 /*! @brief classe Operateur Classe generique de la hierarchie des operateurs.
  *
  *      Cette classe generique est particuliere car elle n'HERITE PAS
- *      de DERIV(Operateur_base) mais de MorEqn.
+ *      de OWN_PTR(Operateur_base) mais de MorEqn.
  *      Une reference sur un Operateur_base est renvoye par la methode
  *      Operateur::l_op_base() qui est virtuelle pure et doit etre surchargee
  *      dans ses derivees.
@@ -42,8 +43,8 @@ public :
   virtual const Operateur_base& l_op_base() const=0;
   virtual DoubleTab& ajouter(const DoubleTab&, DoubleTab& ) const=0;
   virtual DoubleTab& calculer(const DoubleTab&,DoubleTab& ) const=0;
-  DoubleTab& ajouter(const Champ_Inc&, DoubleTab& ) const;
-  DoubleTab& calculer(const Champ_Inc&,DoubleTab& ) const;
+  DoubleTab& ajouter(const Champ_Inc_base&, DoubleTab& ) const;
+  DoubleTab& calculer(const Champ_Inc_base&,DoubleTab& ) const;
   DoubleTab& ajouter(DoubleTab& ) const;
   DoubleTab& calculer(DoubleTab& ) const;
   const Nom& type() const;
@@ -54,24 +55,24 @@ public :
   virtual void typer()=0;
   virtual void completer();
   virtual void mettre_a_jour(double temps);
-  const Champ_Inc& mon_inconnue() const;
+  const Champ_Inc_base& mon_inconnue() const;
   const Discretisation_base& discretisation() const;
   int limpr() const;
   void imprimer(Sortie& os) const;
   Sortie& ecrire(Sortie& ) const;
   Entree& lire(Entree& );
   void ajouter_contribution_explicite_au_second_membre(const Champ_Inc_base& inconnue, DoubleTab& derivee) const;
-  void associer_champ(const Champ_Inc&, const std::string& nom_ch);
+  void associer_champ(const Champ_Inc_base&, const std::string& nom_ch);
 
   void set_fichier(const Nom& nom);
   void set_description(const Nom& nom);
-  //Methode non_nul declaree car Operateur n est pas un DERIV de Operateur_base
+  //Methode non_nul declaree car Operateur n est pas un OWN_PTR de Operateur_base
   //et n accede pas a la methode non_nul
   virtual int op_non_nul() const =0;
 
 protected :
   std::string nom_inco_;
-  REF(Champ_Inc) le_champ_inco;
+  OBS_PTR(Champ_Inc_base) le_champ_inco;
   Motcle typ;
 };
 #endif

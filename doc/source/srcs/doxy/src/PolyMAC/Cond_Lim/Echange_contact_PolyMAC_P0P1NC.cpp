@@ -44,8 +44,8 @@ Entree& Echange_contact_PolyMAC_P0P1NC::readOn(Entree& s )
   //Motcle nom_champ;
   s >> nom_autre_pb_ >> nom_bord_ >> nom_champ_ >> invh_paroi;
   invh_paroi = invh_paroi > 1e8 ? 0 : 1. / invh_paroi;
-  T_ext().typer("Ch_front_var_instationnaire_dep");
-  T_ext()->fixer_nb_comp(1);
+  le_champ_front.typer("Ch_front_var_instationnaire_dep");
+  T_ext().fixer_nb_comp(1);
   return s;
 }
 
@@ -56,7 +56,7 @@ void Echange_contact_PolyMAC_P0P1NC::init_op() const
   ch.creer(nom_autre_pb_, nom_bord_, nom_champ_);
   fvf = ref_cast(Front_VF, frontiere_dis()), o_fvf = ref_cast(Front_VF, ch.front_dis()); //frontieres
   const Equation_base& eqn = domaine_Cl_dis().equation(), &o_eqn = ch.equation(); //equations
-  i_fvf = eqn.domaine_dis()->rang_frontiere(fvf->le_nom()), i_o_fvf = o_eqn.domaine_dis()->rang_frontiere(nom_bord_);
+  i_fvf = eqn.domaine_dis().rang_frontiere(fvf->le_nom()), i_o_fvf = o_eqn.domaine_dis().rang_frontiere(nom_bord_);
 
   int i_op = -1, o_i_op = -1, i; //indice de l'operateur de diffusion dans l'autre equation
   for (i = 0; i < eqn.nombre_d_operateurs(); i++)
@@ -89,11 +89,11 @@ void Echange_contact_PolyMAC_P0P1NC::init_f_dist() const
   MCAuto<DataArrayDouble> fdad(DataArrayDouble::New()), o_fdad(DataArrayDouble::New());
   fdad->useExternalArrayWithRWAccess(xvf.addr(), nf_tot, D), o_fdad->useExternalArrayWithRWAccess(o_xvf.addr(), o_nf_tot, D);
   //point de o_fdad le plus proche de chaque point de {f,s}dad
-  MCAuto<DataArrayInt> f_idx(nf_tot && o_nf_tot ? o_fdad->findClosestTupleId(fdad) : nullptr);
+  MCAuto<DataArrayIdType> f_idx(nf_tot && o_nf_tot ? o_fdad->findClosestTupleId(fdad) : nullptr);
 
   for (i = 0; i < nf_tot; i++) //remplissage de f_dist : face distante si coincidence, -1 sinon
     {
-      f = fvf->num_face(i), o_f = o_nf_tot ? o_fvf->num_face(f_idx->getIJ(i, 0)) : -1;
+      f = fvf->num_face(i), o_f = o_nf_tot ? o_fvf->num_face((int)(f_idx->getIJ(i, 0))) : -1;
       double d2 = o_f >= 0 ? domaine.dot(&xv(f, 0), &xv(f, 0), &o_xv(o_f, 0), &o_xv(o_f, 0)) : 1e8;
       if (d2 < 1e-12) f_dist(i) = o_f;
       else f_dist(i) = -1;

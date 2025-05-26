@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,16 +17,17 @@
 #define Convection_Diffusion_Fluide_Dilatable_Proto_included
 
 #include <TRUSTTabs_forward.h>
+#include <Interface_blocs.h>
 
 class Convection_Diffusion_Fluide_Dilatable_base;
 class Convection_Diffusion_std;
 class Fluide_Dilatable_base;
+class Champ_Inc_base;
 class Probleme_base;
 class Matrice_Morse;
-class Champ_Inc;
+class YAML_data;
 class Sortie;
 class Entree;
-#include <Interface_blocs.h>
 
 class Convection_Diffusion_Fluide_Dilatable_Proto
 {
@@ -35,9 +36,10 @@ public:
   // Convection_Diffusion_std parce que on a un heritage V et on va appeler la classe mere de l'autre cote ...
   // Sinon il faut mettre les methodes dans Equation_base... a voir ...
   // [ Vive les classes templates ... dommage !]
+  static std::vector<YAML_data> data_a_sauvegarder(const Convection_Diffusion_std& eq, const Fluide_Dilatable_base& fld);
   static int Sauvegarder_WC(Sortie& os, const Convection_Diffusion_std& eq, const Fluide_Dilatable_base& fld);
   static int Reprendre_WC(Entree& is, double temps,Convection_Diffusion_std& eq, Fluide_Dilatable_base& fld,
-                          Champ_Inc& inco, Probleme_base& pb);
+                          Champ_Inc_base& inco, Probleme_base& pb);
 
   virtual ~Convection_Diffusion_Fluide_Dilatable_Proto() {}
 
@@ -53,7 +55,7 @@ protected:
   virtual void calculer_div_u_ou_div_rhou(DoubleTab& res) const = 0;
   virtual bool is_thermal() const = 0;
   virtual bool is_generic() const = 0;
-
+  mutable OWN_PTR(Champ_Inc_base) ch_unite_;
 };
 
 #endif /* Convection_Diffusion_Fluide_Dilatable_Proto_included */

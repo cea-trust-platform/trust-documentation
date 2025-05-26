@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,8 +18,8 @@
 #define Matrice_Dense_included
 
 #include <Matrice_Base.h>
-#include <Matrice_Morse.h>
 #include <TRUSTTab.h>
+class Matrice_Morse;
 
 class Matrice_Dense : public Matrice_Base
 {
@@ -27,13 +27,15 @@ class Matrice_Dense : public Matrice_Base
   Declare_instanciable_sans_constructeur( Matrice_Dense );
 
 public :
-  Matrice_Dense( void );
+  Matrice_Dense();
   Matrice_Dense( const int nb_lines , const int nb_cols );
   void dimensionner( const int nb_lines , const int nb_cols );
   void read_from_file( const Nom& filename );
   void convert_to_morse_matrix( Matrice_Morse& morse_matrix ) const;
   inline const double& operator( )( const int line , const int col ) const;
   inline double& operator( )( const int line , const int col );
+  friend Matrice_Dense operator+(const Matrice_Dense& A, const Matrice_Dense& B);
+  friend Matrice_Dense operator*(const double& a, const Matrice_Dense& B);
   void build_matrix_from_coefficients_line_by_line( const DoubleVect& coefficients );
   void build_matrix_from_coefficients_column_by_column( const DoubleVect& coefficients );
   bool is_the_same( const Matrice_Dense& other_matrix , const double tol=1e-14 ) const;
@@ -50,10 +52,12 @@ public :
   DoubleTab& ajouter_multTab_(const DoubleTab& x, DoubleTab& r) const override;
 
   void scale( const double x ) override ;
+  void clean() override;
   void get_stencil( IntTab& stencil ) const override;
 
   // Perform the matrix inversion
   void inverse();
+  void solve(const ArrOfDouble& b, ArrOfDouble& x);
 
   // Perform a matrix multipication : (*this) * B = RES
   void multiplyToRight(const Matrice_Dense& B, Matrice_Dense& RES) const;
@@ -64,6 +68,8 @@ public :
 private :
 
   DoubleTab Matrix_ ;
+  ArrOfInt ipiv;
+  ArrOfDouble work;
 };
 
 // Access operators

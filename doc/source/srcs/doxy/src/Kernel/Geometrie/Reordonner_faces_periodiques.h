@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,21 +18,31 @@
 
 #include <Interprete_geometrique_base.h>
 #include <TRUSTTabs_forward.h>
-class Frontiere;
-class Domaine;
+#include <Domaine_forward.h>
 
 /*! @brief Cet interprete permet de reordonner les faces d'un bord periodique selon la convention utilisee dans le decoupeur (d'abord les faces d'une extremite du domaine, puis dans le
  *
  *   meme ordre, les faces jumelles sur le bord oppose).
  *
  */
-class Reordonner_faces_periodiques : public Interprete_geometrique_base
+template <typename _SIZE_>
+class Reordonner_faces_periodiques_32_64 : public Interprete_geometrique_base_32_64<_SIZE_>
 {
 public:
-  static int reordonner_faces_periodiques(const Domaine& domaine, IntTab& faces, const ArrOfDouble& direction_perio, const double epsilon);
-  static int check_faces_periodiques(const Frontiere& frontiere, ArrOfDouble& vecteur_delta, ArrOfDouble& erreur, const int verbose = 0);
-  static void renum_som_perio(const Domaine&, const Noms& liste_bords_periodiques, ArrOfInt& renum_som_perio, const int calculer_espace_virtuel);
-  static void chercher_direction_perio(ArrOfDouble& direction_perio, const Domaine& dom, const Nom& bord);
+  using int_t = _SIZE_;
+
+  static int reordonner_faces_periodiques(const Domaine_32_64<_SIZE_>& domaine, IntTab_T<_SIZE_>& faces, const ArrOfDouble& direction_perio, const double epsilon);
+
+  static int check_faces_periodiques(const Frontiere_32_64<_SIZE_>& frontiere, ArrOfDouble& vecteur_delta, ArrOfDouble& erreur,
+                                     bool verbose=false);
+
+  static void renum_som_perio(const Domaine_32_64<_SIZE_>& dom, const Noms& liste_bords_periodiques,
+                              ArrOfInt_T<_SIZE_>& renum_som_perio, bool calculer_espace_virtuel);
+
+  static void chercher_direction_perio(ArrOfDouble& direction_perio, const Domaine_32_64<_SIZE_>& dom, const Nom& bord);
 };
+
+using Reordonner_faces_periodiques = Reordonner_faces_periodiques_32_64<int>;
+using Reordonner_faces_periodiques_64 = Reordonner_faces_periodiques_32_64<trustIdType>;
 
 #endif

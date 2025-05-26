@@ -86,7 +86,7 @@ void Traitement_particulier_NS_Profils_thermo_VDF::associer_eqn(const Equation_b
 {
   Traitement_particulier_NS_Profils_VDF::associer_eqn(eq_ns);
 
-  const Probleme_base& pb = mon_equation.valeur().probleme();
+  const Probleme_base& pb = mon_equation->probleme();
   int flag=0;
   for(int i=0; i<pb.nombre_d_equations(); i++)
     {
@@ -215,7 +215,7 @@ void Traitement_particulier_NS_Profils_thermo_VDF::calculer_moyennes_spatiales_t
   const DoubleTab& vitesse = mon_equation->inconnue().valeurs();
 
   // On veut acceder aux valeurs de la temperature a partir de mon_equation_NRJ.
-  const DoubleTab& Temp = mon_equation_NRJ.valeur().inconnue().valeurs();
+  const DoubleTab& Temp = mon_equation_NRJ->inconnue().valeurs();
 
 
 
@@ -728,13 +728,13 @@ void Traitement_particulier_NS_Profils_thermo_VDF::reprendre_stat()
 
 
 
-void  Traitement_particulier_NS_Profils_thermo_VDF::init_calcul_moyenne(void)
+void  Traitement_particulier_NS_Profils_thermo_VDF::init_calcul_moyenne()
 {
   Traitement_particulier_NS_Profils_VDF::init_calcul_moyenne();
 }
 
 
-void  Traitement_particulier_NS_Profils_thermo_VDF::preparer_calcul_particulier(void)
+void  Traitement_particulier_NS_Profils_thermo_VDF::preparer_calcul_particulier()
 {
   if ((oui_u_inst != 0)||(oui_profil_nu_t != 0))
     // On fait appel uniquement a la methode dans NS_Profils_VDF pour initialiser
@@ -754,7 +754,7 @@ void  Traitement_particulier_NS_Profils_thermo_VDF::preparer_calcul_particulier(
 
 
 
-void Traitement_particulier_NS_Profils_thermo_VDF::init_calcul_stats(void)
+void Traitement_particulier_NS_Profils_thermo_VDF::init_calcul_stats()
 {
   Traitement_particulier_NS_Profils::init_calcul_stats();
 

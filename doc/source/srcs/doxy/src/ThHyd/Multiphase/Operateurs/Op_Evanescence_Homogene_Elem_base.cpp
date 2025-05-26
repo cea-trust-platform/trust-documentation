@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -40,7 +40,7 @@ Entree& Op_Evanescence_Homogene_Elem_base::readOn(Entree& is)
 
 void Op_Evanescence_Homogene_Elem_base::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleTab& inco = equation().inconnue().valeurs();
 
   /* on doit pouvoir ajouter / soustraire les equations entre composantes */
@@ -50,7 +50,7 @@ void Op_Evanescence_Homogene_Elem_base::dimensionner_blocs(matrices_t matrices, 
     if (n_m.second->nb_colonnes())
       {
         Matrice_Morse& mat = *n_m.second, mat2;
-        IntTrav sten(0, 2);
+        IntTab sten(0, 2);
 
 
         std::set<int> idx;
@@ -70,8 +70,8 @@ void Op_Evanescence_Homogene_Elem_base::dimensionner_blocs(matrices_t matrices, 
 void Op_Evanescence_Homogene_Elem_base::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Milieu_composite& milc = ref_cast(Milieu_composite, equation().milieu());
-  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue().valeur());
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, equation().probleme());
   const DoubleTab& inco = ch.valeurs(), &alpha = pb.equation_masse().inconnue().valeurs(), &rho = equation().milieu().masse_volumique().valeurs(), &p = ref_cast(QDM_Multiphase, pb.equation_qdm()).pression().valeurs();
 
@@ -79,7 +79,7 @@ void Op_Evanescence_Homogene_Elem_base::ajouter_blocs(matrices_t matrices, Doubl
                     ? &ref_cast(SETS, ref_cast(Schema_Implicite_base, pb.equation_qdm().schema_temps()).solveur().valeur()) : nullptr;
 
   int e, i, j, k, n, N = inco.line_size(), m, M = p.line_size(), is_m = ch.le_nom() == "alpha", cR = (rho.dimension_tot(0) == 1),
-                     iter = sch ? sch->iteration : 0, p_degen = is_m && sch ? sch->p_degen : 0;
+                     iter = sch ? sch->iteration_ : 0, p_degen = is_m && sch ? sch->p_degen_ : 0;
   if (N == 1 || p_degen || (is_m && !iter)) return; //pas d'evanescence en simple phase ou si p est degenere
 
   double a_eps = alpha_res_, a_eps_min = alpha_res_min_, a_m, a_max; //seuil de declenchement du traitement de l'evanescence
@@ -131,6 +131,4 @@ void Op_Evanescence_Homogene_Elem_base::ajouter_blocs(matrices_t matrices, Doubl
                   }
               }
       }
-  if (!is_m && equation().schema_temps().temps_courant() > 0.68)
-    e++;
 }

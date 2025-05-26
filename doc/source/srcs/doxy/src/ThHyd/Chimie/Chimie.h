@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,12 +18,12 @@
 
 #include <Champs_compris_interface.h>
 #include <TRUST_List.h>
-#include <Champ_Don.h>
+
 #include <TRUST_Ref.h>
 #include <Reaction.h>
 #include <Objet_U.h>
 #include <Motcle.h>
-#include <Champ.h>
+
 
 class Probleme_base;
 class Discretisation_base;
@@ -40,15 +40,17 @@ public:
   double calculer_pas_de_temps() const;
   void discretiser(const Probleme_base&);
   virtual const Champ_base& get_champ(const Motcle& nom) const;
+  virtual bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const;
+  virtual bool has_champ(const Motcle& nom) const;
   virtual void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const;
   int sauvegarder(Sortie& ) const override;
   int reprendre(Entree& ) override;
 
 protected:
   LIST(Reaction) reactions_;
-  REF(Probleme_base) pb_;
+  OBS_PTR(Probleme_base) pb_;
   Motcles alias;
-  VECT(REF(Champ_Inc_base)) liste_Y_,liste_ai_,liste_nd10_,liste_ngrains_,liste_C_;
+  VECT(OBS_PTR(Champ_Inc_base)) liste_Y_,liste_ai_,liste_nd10_,liste_ngrains_,liste_C_;
   int nb_grains_ = -10;
   DoubleTab Puissance_volumique_;
   int modele_micro_melange_ = 0;

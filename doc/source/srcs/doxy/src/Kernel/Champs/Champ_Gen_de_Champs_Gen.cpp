@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,17 +15,18 @@
 
 #include <Champ_Gen_de_Champs_Gen.h>
 #include <Champ_Generique_refChamp.h>
-#include <Champs_compris.h>
 #include <Discretisation_base.h>
+#include <Champ_Fonc_base.h>
+#include <Champs_compris.h>
 #include <Param.h>
 
 Implemente_base(Champ_Gen_de_Champs_Gen,"Champ_Gen_de_Champs_Gen",Champ_Generique_base);
 
-//cf Champ_Generique_base::readOn
+// XD champ_post_de_champs_post champ_generique_base champ_post_de_champs_post -1 not_set
+
 Entree& Champ_Gen_de_Champs_Gen::readOn(Entree& is)
 {
-  Champ_Generique_base::readOn(is);
-  return is;
+  return Champ_Generique_base::readOn(is);
 }
 
 Sortie& Champ_Gen_de_Champs_Gen::printOn(Sortie& os) const
@@ -40,18 +41,18 @@ Sortie& Champ_Gen_de_Champs_Gen::printOn(Sortie& os) const
 //  nom_source : option pour nommer le champ en tant que source (sinon nommer par defaut)
 void Champ_Gen_de_Champs_Gen::set_param(Param& param)
 {
-  param.ajouter_non_std("source",(this));
-  param.ajouter_non_std("sources",(this));
-  param.ajouter_non_std("nom_source",(this));
-  param.ajouter_non_std("source_reference",(this));
-  param.ajouter("sources_reference",&noms_sources_ref_);
+  param.ajouter_non_std("source",(this)); // XD attr source champ_generique_base source 1 the source field.
+  param.ajouter_non_std("sources",(this)); // XD attr sources listchamp_generique sources 1 sources { Champ_Post.... { ... } Champ_Post.. { ... }}
+  param.ajouter_non_std("nom_source",(this)); // XD attr nom_source chaine nom_source 1 To name a source field with the nom_source keyword
+  param.ajouter_non_std("source_reference",(this)); // XD attr source_reference chaine source_reference 1 not_set
+  param.ajouter("sources_reference",&noms_sources_ref_); // XD attr sources_reference list_nom_virgule sources_reference 1 not_set
 }
 
 int Champ_Gen_de_Champs_Gen::lire_motcle_non_standard(const Motcle& mot, Entree& is)
 {
   if (mot=="source")
     {
-      Champ_Generique& new_src = sources_.add(Champ_Generique());
+      OWN_PTR(Champ_Generique_base)& new_src = sources_.add(OWN_PTR(Champ_Generique_base)());
       Nom typ;
       is >> typ;
       Journal() << "Reading a source type " << typ << finl;
@@ -83,7 +84,7 @@ int Champ_Gen_de_Champs_Gen::lire_motcle_non_standard(const Motcle& mot, Entree&
         }
       while(1)
         {
-          Champ_Generique& new_src = sources_.add(Champ_Generique());
+          OWN_PTR(Champ_Generique_base)& new_src = sources_.add(OWN_PTR(Champ_Generique_base)());
           Journal() << "Reading a source type " << typ << finl;
           new_src.typer(typ);
           is >> new_src.valeur();
@@ -110,18 +111,6 @@ int Champ_Gen_de_Champs_Gen::lire_motcle_non_standard(const Motcle& mot, Entree&
     return Champ_Generique_base::lire_motcle_non_standard(mot,is);
 }
 
-LIST(Champ_Generique)& Champ_Gen_de_Champs_Gen::get_set_sources()
-{
-  return sources_;
-}
-
-Champ_Generique& Champ_Gen_de_Champs_Gen::get_set_source()
-{
-  if (sources_.size() < 1)
-    sources_.add(Champ_Generique());
-  return sources_[0];
-}
-
 void Champ_Gen_de_Champs_Gen::reset()
 {
   sources_.vide();
@@ -131,14 +120,17 @@ void Champ_Gen_de_Champs_Gen::mettre_a_jour(double temps)
 {
   const int n = sources_.size();
   for (int i = 0; i < n; i++)
-    sources_[i].valeur().mettre_a_jour(temps);
+    sources_[i]->mettre_a_jour(temps);
 }
 
-Champ_Fonc& Champ_Gen_de_Champs_Gen::creer_espace_stockage(const Nature_du_champ& nature,
-                                                           const int nb_comp,
-                                                           Champ_Fonc& es_tmp) const
+OWN_PTR(Champ_Fonc_base)& Champ_Gen_de_Champs_Gen::creer_espace_stockage(const Nature_du_champ& nature,
+                                                                         const int nb_comp,
+                                                                         OWN_PTR(Champ_Fonc_base)& es_tmp) const
 {
-
+  if (!es_tmp.est_nul())
+    {
+      ToDo_Kokkos("critical, call to creer_espace_stockage() is expensive on GPU (fields copy on host). Refactor like Champ_Generique_Moyenne and other advanced fields...");
+    }
   Noms noms;
   Noms unites;
   for (int c=0; c<nb_comp; c++)
@@ -157,7 +149,6 @@ Champ_Fonc& Champ_Gen_de_Champs_Gen::creer_espace_stockage(const Nature_du_champ
       const  Domaine_Cl_dis_base& zcl = get_ref_zcl_dis_base();
       es_tmp->completer(zcl);
     }
-
   return es_tmp;
 }
 
@@ -199,6 +190,21 @@ int Champ_Gen_de_Champs_Gen::get_nb_sources() const
   return sources_reference_.size()+sources_.size();
 }
 
+/*! @brief for PDI IO: retrieve name, type and dimensions of the field to save/restore
+ *
+ */
+std::vector<YAML_data> Champ_Gen_de_Champs_Gen::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data;
+  const int n = sources_.size();
+  for (int i = 0; i < n; i++)
+    {
+      std::vector<YAML_data> source_data = sources_[i]->data_a_sauvegarder();
+      data.insert(data.end(), source_data.begin(), source_data.end());
+    }
+  return data;
+}
+
 /*! @brief sauvegarde des differentes sources
  *
  */
@@ -207,7 +213,7 @@ int Champ_Gen_de_Champs_Gen::sauvegarder(Sortie& os) const
   const int n = sources_.size();
   int bytes = 0;
   for (int i = 0; i < n; i++)
-    bytes += sources_[i].valeur().sauvegarder(os);
+    bytes += sources_[i]->sauvegarder(os);
   return bytes;
 }
 
@@ -218,7 +224,7 @@ int Champ_Gen_de_Champs_Gen::reprendre(Entree& is)
 {
   const int n = sources_.size();
   for (int i = 0; i < n; i++)
-    sources_[i].valeur().reprendre(is);
+    sources_[i]->reprendre(is);
   return 1;
 }
 
@@ -230,9 +236,8 @@ void Champ_Gen_de_Champs_Gen::completer(const Postraitement_base& post)
       sources_reference_.vide();
       for (int i=0; i<n_sources_ref; i++)
         {
-          REF(Champ_Generique_base)& source_ref=sources_reference_.add(REF(Champ_Generique_base)());
+          OBS_PTR(Champ_Generique_base)& source_ref=sources_reference_.add(OBS_PTR(Champ_Generique_base)());
           const Postraitement& postraitement =ref_cast(Postraitement,post);
-          //const Probleme_base& pb = ref_cast(Postraitement,post).probleme();
           source_ref = postraitement.get_champ_post(noms_sources_ref_[i]);
         }
     }
@@ -240,6 +245,13 @@ void Champ_Gen_de_Champs_Gen::completer(const Postraitement_base& post)
   for (int i = n_sources_ref ; i < n; i++)
     {
       Champ_Generique_base& source_a_completer = ref_cast(Champ_Generique_base,set_source(i));
+      if (sub_type(Champ_Gen_de_Champs_Gen,source_a_completer))
+        {
+          Champ_Gen_de_Champs_Gen& champ = ref_cast(Champ_Gen_de_Champs_Gen,source_a_completer);
+          const Nom& my_parent = champ.get_parent_name();
+          Nom me = my_parent == "??" ? nom_post_ : my_parent + "_" + nom_post_;
+          champ.set_parent_name(me);
+        }
       source_a_completer.completer(post);
     }
 
@@ -380,7 +392,7 @@ void Champ_Gen_de_Champs_Gen::nommer_sources(const Postraitement_base& post)
       else
         {
           Cerr<<"There is no method nommer_source() for this type of field "<<finl;
-          Cerr<<"sources_[i].valeur().que_suis_je()"<<finl;
+          Cerr<<"sources_[i]->que_suis_je()"<<finl;
           exit();
         }
     }
@@ -439,24 +451,26 @@ void Champ_Gen_de_Champs_Gen::lire_bidon(Entree& is) const
     }
 }
 
+bool Champ_Gen_de_Champs_Gen::has_champ_post(const Motcle& nom) const
+{
+  if (Champ_Generique_base::has_champ_post(nom))
+    return true;
+
+  if (get_source(0).has_champ_post(nom))
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_Generique_base& Champ_Gen_de_Champs_Gen::get_champ_post(const Motcle& nom) const
 {
-  try
-    {
-      return Champ_Generique_base::get_champ_post(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-  try
-    {
-      return get_source(0).get_champ_post(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+  if (Champ_Generique_base::has_champ_post(nom))
+    return Champ_Generique_base::get_champ_post(nom);
 
-  throw Champs_compris_erreur();
+  if (get_source(0).has_champ_post(nom))
+    return get_source(0).get_champ_post(nom);
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 int Champ_Gen_de_Champs_Gen::comprend_champ_post(const Motcle& identifiant) const

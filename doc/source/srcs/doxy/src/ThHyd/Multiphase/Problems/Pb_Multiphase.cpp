@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,6 +29,7 @@ Implemente_instanciable(Pb_Multiphase, "Pb_Multiphase", Pb_Fluide_base);
 // XD attr milieu_composite bloc_lecture milieu_composite 1 The composite medium associated with the problem.
 // XD attr Milieu_MUSIG bloc_lecture Milieu_MUSIG 1 The composite medium associated with the problem.
 // XD attr correlations bloc_lecture correlations 1 List of correlations used in specific source terms (i.e. interfacial flux,  interfacial friction, ...)
+// XD attr models bloc_lecture models 1 List of models used in specific source terms (i.e. interfacial flux,  interfacial friction, ...)
 // XD attr QDM_Multiphase QDM_Multiphase QDM_Multiphase 0 Momentum conservation equation for a multi-phase problem where the unknown is the velocity
 // XD attr Masse_Multiphase Masse_Multiphase Masse_Multiphase 0 Mass consevation equation for a multi-phase problem where the unknown is the alpha (void fraction)
 // XD attr Energie_Multiphase Energie_Multiphase Energie_Multiphase 0 Internal energy conservation equation for a multi-phase problem where the unknown is the temperature
@@ -42,7 +43,10 @@ Implemente_instanciable(Pb_Multiphase, "Pb_Multiphase", Pb_Fluide_base);
 // XD Energie_cinetique_turbulente_WIT eqn_base Energie_cinetique_turbulente_WIT -1 Bubble Induced Turbulent kinetic Energy equation for a turbulent multi-phase problem (available in TrioCFD)
 // XD Taux_dissipation_turbulent eqn_base Taux_dissipation_turbulent -1 Turbulent Dissipation frequency equation for a turbulent mono/multi-phase problem (available in TrioCFD)
 
-Sortie& Pb_Multiphase::printOn(Sortie& os) const { return Pb_Fluide_base::printOn(os); }
+Sortie& Pb_Multiphase::printOn(Sortie& os) const
+{
+  return Pb_Fluide_base::printOn(os);
+}
 
 Entree& Pb_Multiphase::readOn(Entree& is)
 {
@@ -58,69 +62,38 @@ Entree& Pb_Multiphase::readOn(Entree& is)
 Entree& Pb_Multiphase::lire_equations(Entree& is, Motcle& mot)
 {
   // Verify that user choosed adapted time scheme/solver
-  if (!sub_type(Schema_Euler_Implicite,le_schema_en_temps_.valeur()))
+  if (!sub_type(Schema_Euler_Implicite, le_schema_en_temps_.valeur()))
     {
       Cerr << "Error: for Pb_Multiphase, you can only use Scheme_euler_implicit time scheme with sets/ice solver" << finl;
       Process::exit();
     }
-  else if (sub_type(Schema_Euler_Implicite,le_schema_en_temps_.valeur()))
+  else if (sub_type(Schema_Euler_Implicite, le_schema_en_temps_.valeur()))
     {
-      Schema_Euler_Implicite& schm_imp = ref_cast(Schema_Euler_Implicite,le_schema_en_temps_.valeur());
-      if (!sub_type(SETS,schm_imp.solveur().valeur()))
+      Schema_Euler_Implicite& schm_imp = ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur());
+      if (!sub_type(SETS, schm_imp.solveur().valeur()))
         {
           Cerr << "Error: for Pb_Multiphase, you can only use Scheme_euler_implicit time scheme with sets/ice solver" << finl;
           Process::exit();
         }
     }
 
-  bool already_read;
+  bool already_read {true};
 
   is >> mot;
-  if (mot == "correlations") lire_correlations(is), already_read = false;
-  else already_read = true;
+  if (mot == "correlations" || mot == "models")
+    lire_correlations(is), already_read = false;
 
-  typer_lire_correlation_hem(); // enforce a interfacial flux correlation with constant coefficient si HEM
+  typer_lire_correlation_hem(); // enforce an interfacial flux correlation with constant coefficient if HEM
 
   Cerr << "Reading of the equations" << finl;
-  for(int i = 0; i < nombre_d_equations(); i++, already_read = false)
+  for (int i = 0; i < nombre_d_equations(); i++, already_read = false)
     {
-      if (!already_read) is >> mot;
+      if (!already_read)
+        is >> mot;
       is >> getset_equation_by_name(mot);
     }
 
-  /* lecture d'equations optionnelles */
-  Noms noms_eq, noms_eq_maj; //noms de toutes les equations possibles!
-  Type_info::les_sous_types(Nom("Equation_base"), noms_eq);
-  for (auto& itr : noms_eq) noms_eq_maj.add(Motcle(itr)); //ha ha ha
-  for (is >> mot; noms_eq_maj.rang(mot) >= 0; is >> mot)
-    {
-      eq_opt.add(Equation()); //une autre equation optionelle
-      eq_opt.dernier().typer(mot); //on lui donne le bon type
-      Equation_base& eq = eq_opt.dernier().valeur();
-      //memes associations que pour les autres equations : probleme, milieu, schema en temps
-      eq.associer_pb_base(*this);
-      eq.associer_milieu_base(milieu());
-      eq.associer_sch_tps_base(le_schema_en_temps_);
-      eq.associer_domaine_dis(domaine_dis());
-      eq.discretiser(); //a faire avant de lire l'equation
-      is >> eq; //et c'est parti!
-      eq.associer_milieu_equation(); //remontee vers le milieu
-    }
-  return is;
-}
-
-Entree& Pb_Multiphase::lire_correlations(Entree& is)
-{
-  Motcle mot;
-  is >> mot;
-  if (mot != "{")
-    {
-      Cerr << "correlations : { expected instead of " << mot << finl;
-      Process::exit();
-    }
-  for (is >> mot; mot != "}"; is >> mot)
-    if (correlations.count(mot.getString())) Process::exit(que_suis_je() + " : a correlation already exists for " + mot + " !");
-    else correlations[mot.getString()].typer_lire(*this, mot, is);
+  read_optional_equations(is, mot);
   return is;
 }
 
@@ -128,9 +101,9 @@ void Pb_Multiphase::typer_lire_milieu(Entree& is)
 {
   le_milieu_.resize(1); /* Un milieu .. mais composite !! */
   is >> le_milieu_[0]; // On commence par la lecture du milieu
-  if (!sub_type(Milieu_composite,le_milieu_[0].valeur()))
+  if (!sub_type(Milieu_composite, le_milieu_[0].valeur()))
     {
-      Cerr << "Error: Fluid of type " << le_milieu_[0].valeur().le_type() << " is not compatible with " << que_suis_je() << " problem which accepts only Milieu_composite medium" << finl;
+      Cerr << "Error: Fluid of type " << le_milieu_[0]->le_type() << " is not compatible with " << que_suis_je() << " problem which accepts only Milieu_composite medium" << finl;
       Cerr << "Check your datafile!" << finl;
       Process::exit();
     }
@@ -140,7 +113,8 @@ void Pb_Multiphase::typer_lire_milieu(Entree& is)
   // On discretise les equations maintenant ! voir avec Elie si t'es pas d'accord
   Probleme_base::discretiser_equations();
   // remontee de l'inconnue vers le milieu
-  for (int i = 0; i < nombre_d_equations(); i++) equation(i).associer_milieu_equation();
+  for (int i = 0; i < nombre_d_equations(); i++)
+    equation(i).associer_milieu_equation();
   // On discretise le milieu composite
   equation(0).milieu().discretiser((*this), la_discretisation_.valeur());
 }
@@ -155,7 +129,7 @@ void Pb_Multiphase::typer_lire_milieu(Entree& is)
  */
 int Pb_Multiphase::nombre_d_equations() const
 {
-  return 3 + eq_opt.size();
+  return 3 + eq_opt_.size();
 }
 
 /*! @brief Renvoie l'equation d'hydraulique de type Navier_Stokes_std si i=0 Renvoie l'equation de la thermique de type
@@ -168,16 +142,20 @@ int Pb_Multiphase::nombre_d_equations() const
  */
 const Equation_base& Pb_Multiphase::equation(int i) const
 {
-  if      (i == 0) return eq_qdm;
-  else if (i == 1) return eq_masse;
-  else if (i == 2) return eq_energie;
-  else if (i < 3 + eq_opt.size()) return eq_opt[i - 3].valeur();
+  if (i == 0)
+    return eq_qdm_;
+  else if (i == 1)
+    return eq_masse_;
+  else if (i == 2)
+    return eq_energie_;
+  else if (i < 3 + eq_opt_.size())
+    return eq_opt_[i - 3].valeur();
   else
     {
       Cerr << "Pb_Multiphase::equation() : Wrong equation number" << i << "!" << finl;
       Process::exit();
     }
-  return eq_qdm; //pour renvoyer quelque chose
+  return eq_qdm_; //pour renvoyer quelque chose
 }
 
 /*! @brief Renvoie l'equation d'hydraulique de type Navier_Stokes_std si i=0 Renvoie l'equation de la thermique de type
@@ -189,18 +167,21 @@ const Equation_base& Pb_Multiphase::equation(int i) const
  */
 Equation_base& Pb_Multiphase::equation(int i)
 {
-  if      (i == 0) return eq_qdm;
-  else if (i == 1) return eq_masse;
-  else if (i == 2) return eq_energie;
-  else if (i < 3 + eq_opt.size()) return eq_opt[i - 3].valeur();
+  if (i == 0)
+    return eq_qdm_;
+  else if (i == 1)
+    return eq_masse_;
+  else if (i == 2)
+    return eq_energie_;
+  else if (i < 3 + eq_opt_.size())
+    return eq_opt_[i - 3].valeur();
   else
     {
       Cerr << "Pb_Multiphase::equation() : Wrong equation number" << i << "!" << finl;
       Process::exit();
     }
-  return eq_qdm; //pour renvoyer quelque chose
+  return eq_qdm_; //pour renvoyer quelque chose
 }
-
 
 /*! @brief Associe le milieu au probleme Le milieu doit etre de type fluide incompressible
  *
@@ -220,24 +201,15 @@ void Pb_Multiphase::associer_milieu_base(const Milieu_base& mil)
  * Le test se fait sur les conditions
  *     aux limites discretisees de chaque equation.
  *     Appel la fonction de librairie hors classe:
- *       tester_compatibilite_hydr_thermique(const Domaine_Cl_dis&,const Domaine_Cl_dis&)
+ *       tester_compatibilite_hydr_thermique(const Domaine_Cl_dis_base&,const Domaine_Cl_dis_base&)
  *
  * @return (int) code de retour propage
  */
 int Pb_Multiphase::verifier()
 {
-  const Domaine_Cl_dis& domaine_Cl_hydr = equation_qdm().domaine_Cl_dis();
-  const Domaine_Cl_dis& domaine_Cl_th = equation_energie().domaine_Cl_dis();
-  return tester_compatibilite_hydr_thermique(domaine_Cl_hydr,domaine_Cl_th);
-}
-
-void Pb_Multiphase::mettre_a_jour(double temps)
-{
-  Probleme_base::mettre_a_jour(temps);
-  for (auto &&corr : correlations)
-    {
-      corr.second->mettre_a_jour(temps);
-    }
+  const Domaine_Cl_dis_base& domaine_Cl_hydr = equation_qdm().domaine_Cl_dis();
+  const Domaine_Cl_dis_base& domaine_Cl_th = equation_energie().domaine_Cl_dis();
+  return tester_compatibilite_hydr_thermique(domaine_Cl_hydr, domaine_Cl_th);
 }
 
 void Pb_Multiphase::preparer_calcul()
@@ -247,69 +219,26 @@ void Pb_Multiphase::preparer_calcul()
   mettre_a_jour(temps);
 }
 
-bool Pb_Multiphase::has_champ(const Motcle& un_nom) const
-{
-  Champ_base const * champ = nullptr ;
-
-  for (auto &&corr : correlations)
-    {
-      try
-        {
-          champ = &corr.second->get_champ(un_nom);
-        }
-      catch (Champs_compris_erreur&)  {        }
-    }
-  if (champ) return true ;
-  return Probleme_base::has_champ(un_nom);
-}
-
-
-const Champ_base& Pb_Multiphase::get_champ(const Motcle& un_nom) const
-{
-  for (auto &&corr : correlations)
-    {
-      try
-        {
-          return corr.second->get_champ(un_nom);
-        }
-      catch (Champs_compris_erreur&) { }
-    }
-  try
-    {
-      return Pb_Fluide_base::get_champ(un_nom);
-    }
-  catch (Champs_compris_erreur&) { }
-  throw Champs_compris_erreur();
-}
-
-void Pb_Multiphase::completer()
-{
-  Pb_Fluide_base::completer();
-
-  for (auto &&corr : correlations)
-    {
-      corr.second->completer();
-    }
-}
-
 double Pb_Multiphase::calculer_pas_de_temps() const
 {
-  if sub_type(ICE, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()) return Pb_Fluide_base::calculer_pas_de_temps() ;
-  else if (ref_cast(SETS, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()).facsec_diffusion_for_sets()<0.) return Pb_Fluide_base::calculer_pas_de_temps() ;
+  if (sub_type(ICE, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()))
+    return Pb_Fluide_base::calculer_pas_de_temps();
+  else if (ref_cast(SETS, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()).facsec_diffusion_for_sets() < 0.)
+    return Pb_Fluide_base::calculer_pas_de_temps();
 
   // Case where we calculate the time step with higher facsec for diffusion
 
-  double dt=schema_temps().pas_temps_max();
-  for(int i=0; i<nombre_d_equations(); i++)
+  double dt = schema_temps().pas_temps_max();
+  for (int i = 0; i < nombre_d_equations(); i++)
     {
       double dt_op;
 
       int nb_op = equation(i).nombre_d_operateurs();
-      for(int j=0; j<nb_op; j++)
+      for (int j = 0; j < nb_op; j++)
         {
           dt_op = equation(i).operateur(j).calculer_pas_de_temps();
 
-          const Operateur_base& op=equation(i).operateur(j).l_op_base();
+          const Operateur_base& op = equation(i).operateur(j).l_op_base();
 
           if (le_schema_en_temps_->limpr())
             {
@@ -318,16 +247,17 @@ double Pb_Multiphase::calculer_pas_de_temps() const
                   Cout << " " << finl;
                   Cout << "Printing of the next provisional time steps for the equation: " << equation(i).que_suis_je() << finl;
                 }
-              if (sub_type(Operateur_Conv_base,op))
+              if (sub_type(Operateur_Conv_base, op))
                 Cout << "   convective";
-              else if (sub_type(Operateur_Diff_base,op))
+              else if (sub_type(Operateur_Diff_base, op))
                 Cout << "   diffusive";
               else
                 Cout << "   operator ";
-              Cout<<" time step : "<< dt_op << finl;
+              Cout << " time step : " << dt_op << finl;
             }
-          if (sub_type(Operateur_Diff_base,op)) dt_op *= ref_cast(SETS, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()).facsec_diffusion_for_sets();
-          dt=std::min(dt,dt_op);
+          if (sub_type(Operateur_Diff_base, op))
+            dt_op *= ref_cast(SETS, ref_cast(Schema_Euler_Implicite, le_schema_en_temps_.valeur()).solveur().valeur()).facsec_diffusion_for_sets();
+          dt = std::min(dt, dt_op);
         }
     }
   return dt;

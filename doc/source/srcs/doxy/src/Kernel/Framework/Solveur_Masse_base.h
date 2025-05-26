@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,14 +18,14 @@
 
 #include <TRUSTTabs_forward.h>
 #include <Interface_blocs.h>
+
+#include <TRUST_Deriv.h>
 #include <MorEqn.h>
 
-class Domaine_dis;
-class Domaine_dis_base;
-class Domaine_Cl_dis;
 class Domaine_Cl_dis_base;
-class Matrice_Base;
+class Domaine_dis_base;
 class Matrice_Morse;
+class Matrice_Base;
 
 /*! @brief classe Solveur_Masse_base Represente la matrice de masse d'une equation.
  *
@@ -86,12 +86,12 @@ public :
   // j'ajoute une methode completer()
   // qui est appelee par la methode completer() des equations.
   // L'implementation par defaut ne fait rien.
-  virtual void completer(void);
+  virtual void completer();
 
   // j'ajoute une methode preparer_calcul()
   // qui est appelee par la methode preparer_calcul des equations
   // L'implementation par defaut ne fait rien
-  virtual void preparer_calcul(void);
+  virtual void preparer_calcul();
 
   inline void set_penalisation_flag(int pen) { penalisation_flag_ = pen;  }
 
@@ -104,4 +104,4 @@ private:
   mutable double penalisation_;
 };
 
-#endif
+#endif /* Solveur_Masse_base_included */

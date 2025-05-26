@@ -54,11 +54,11 @@ int Modele_turbulence_scal_Schmidt::comprend_champ(const Motcle& mot) const
  *     Renvoie 0 sinon.
  *
  * @param (Motcle& mot) le nom d'un champ fonction du modele de turbulence
- * @param (REF(Champ_base)& ch_ref) la reference sur le champ recherche (si il a ete trouve)
+ * @param (OBS_PTR(Champ_base)& ch_ref) la reference sur le champ recherche (si il a ete trouve)
  * @return (int) 1 si un champ fonction du nom specifie a ete trouve 0 sinon
  */
 int Modele_turbulence_scal_Schmidt::a_pour_Champ_Fonc(const Motcle& mot,
-                                                      REF(Champ_base) &ch_ref) const
+                                                      OBS_PTR(Champ_base) &ch_ref) const
 {
   if (mot == Motcle("diffusion_turbulente"))
     {
@@ -76,12 +76,11 @@ void Modele_turbulence_scal_Schmidt::mettre_a_jour(double)
 {
   calculer_diffusion_turbulente();
   const Milieu_base& mil = equation().probleme().milieu();
-  const Turbulence_paroi_scal& lp = loi_paroi();
-  if (lp.non_nul())
+  if (loi_paroi_non_nulle())
     loipar_->calculer_scal(diffusivite_turbulente_);
 
-  DoubleTab& lambda_t = conductivite_turbulente_.valeurs();
-  lambda_t = diffusivite_turbulente_.valeurs();
+  DoubleTab& lambda_t = conductivite_turbulente_->valeurs();
+  lambda_t = diffusivite_turbulente_->valeurs();
   if (equation().probleme().is_dilatable())
     multiplier_par_rho_si_dilatable(lambda_t, mil);
   conductivite_turbulente_->valeurs().echange_espace_virtuel();
@@ -92,13 +91,13 @@ void Modele_turbulence_scal_Schmidt::mettre_a_jour(double)
  *
  * diffusion_turbulente = viscosite_turbulente / Sc_turbulent
  *
- * @return (Champ_Fonc&) la diffusion turbulente nouvellement calculee
+ * @return (Champ_Fonc_base&) la diffusion turbulente nouvellement calculee
  * @throws les champs diffusivite_turbulente et viscosite_turbulente
  * doivent avoir le meme nombre de valeurs nodales
  */
-Champ_Fonc& Modele_turbulence_scal_Schmidt::calculer_diffusion_turbulente()
+Champ_Fonc_base& Modele_turbulence_scal_Schmidt::calculer_diffusion_turbulente()
 {
-  DoubleTab& alpha_t = diffusivite_turbulente_.valeurs();
+  DoubleTab& alpha_t = diffusivite_turbulente_->valeurs();
   const DoubleTab& nu_t = la_viscosite_turbulente_->valeurs();
   double temps = la_viscosite_turbulente_->temps();
   int n = alpha_t.size();
@@ -111,8 +110,8 @@ Champ_Fonc& Modele_turbulence_scal_Schmidt::calculer_diffusion_turbulente()
 
   for (int i = 0; i < n; i++)
     alpha_t[i] = nu_t[i] / LeScturb_;
-  diffusivite_turbulente_.changer_temps(temps);
+  diffusivite_turbulente_->changer_temps(temps);
   if (equation().probleme().is_dilatable())
-    diviser_par_rho_si_dilatable(diffusivite_turbulente_.valeurs(), equation().probleme().milieu());
+    diviser_par_rho_si_dilatable(diffusivite_turbulente_->valeurs(), equation().probleme().milieu());
   return diffusivite_turbulente_;
 }

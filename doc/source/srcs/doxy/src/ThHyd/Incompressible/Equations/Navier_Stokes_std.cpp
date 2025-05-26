@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,32 +13,35 @@
 *
 *****************************************************************************/
 
+#include <Transport_Interfaces_base.h>
+#include <MD_Vector_composite.h>
+#include <Matrice_Morse_Sym.h>
 #include <Navier_Stokes_std.h>
+#include <Frontiere_dis_base.h>
+#include <Schema_Temps_base.h>
+#include <MD_Vector_tools.h>
+#include <Assembleur_base.h>
+#include <TRUSTTab_parts.h>
+#include <communications.h>
+#include <Champ_Uniforme.h>
+#include <MD_Vector_std.h>
+#include <solv_iteratif.h>
 #include <Probleme_base.h>
-#include <Domaine.h>
-#include <Fluide_base.h>
 #include <Discret_Thyd.h>
+#include <Fluide_base.h>
+#include <Op_Conv_ALE.h>
+#include <Domaine_VF.h>
+#include <TRUSTTrav.h>
+#include <SFichier.h>
+#include <Domaine.h>
+#include <Param.h>
 #include <Avanc.h>
 #include <Debog.h>
-#include <Matrice_Morse_Sym.h>
-#include <Champ_Uniforme.h>
-#include <Op_Conv_ALE.h>
-#include <Frontiere_dis_base.h>
-#include <solv_iteratif.h>
-#include <Schema_Temps.h>
-#include <TRUSTTrav.h>
-#include <Assembleur_base.h>
-#include <communications.h>
-#include <Transport_Interfaces_base.h>
-#include <SFichier.h>
-#include <Param.h>
-#include <MD_Vector_std.h>
-#include <MD_Vector_composite.h>
-#include <MD_Vector_tools.h>
-#include <TRUSTTab_parts.h>
-#include <Domaine_VF.h>
+
+#include <TRUST_2_PDI.h>
 
 Implemente_instanciable_sans_constructeur(Navier_Stokes_std,"Navier_Stokes_standard",Equation_base);
+// XD navier_stokes_standard eqn_base navier_stokes_standard -1 Navier-Stokes equations.
 
 Navier_Stokes_std::Navier_Stokes_std():methode_calcul_pression_initiale_(0),div_u_nul_et_non_dsurdt_divu_(0),postraitement_gradient_P_(0)
 {
@@ -52,16 +55,10 @@ Navier_Stokes_std::Navier_Stokes_std():methode_calcul_pression_initiale_(0),div_
   raison_seuil_divU=-100;
 }
 
-/*! @brief Simple appel a:  Equation_base::printOn(Sortie&) Ecrit l'equation sur un flot de sortie.
- *
- * @param (Sortie& os) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Navier_Stokes_std::printOn(Sortie& is) const
 {
   return Equation_base::printOn(is);
 }
-
 
 /*! @brief Appel Equation_base::readOn(Entree& is) En sortie verifie que l'on a bien lu:
  *
@@ -89,13 +86,11 @@ Entree& Navier_Stokes_std::readOn(Entree& is)
   terme_convectif.set_fichier("Convection_qdm");
   terme_convectif.set_description("Momentum flow rate=Integral(rho*u*u*ndS) [N] if SI units used");
   terme_diffusif.set_fichier("Contrainte_visqueuse");
-  terme_diffusif.set_description("Friction drag exerted by the fluid=Integral(-mu*grad(u)*ndS) [N] if SI units used");
+  terme_diffusif.set_description("Friction drag exerted by the fluid=Integral(-mu*(grad(u) +grad(u)^T)*ndS) [N] if SI units used");
   divergence.set_fichier("Debit");
   divergence.set_description((Nom)"Volumetric flow rate=Integral(u*ndS) [m"+(Nom)(dimension+bidim_axi)+".s-1] if SI units used");
   gradient.set_fichier("Force_pression");
   gradient.set_description("Pressure drag exerted by the fluid=Integral(P*ndS) [N] if SI units used");
-
-  readOn_IBM(is,*this);
 
   return is;
 }
@@ -107,19 +102,17 @@ void Navier_Stokes_std::set_param(Param& param)
   param.ajouter_non_std("convection",(this));
   param.ajouter_condition("is_read_diffusion","The diffusion operator must be read, select negligeable type if you want to neglect it.");
   param.ajouter_condition("is_read_convection","The convection operator must be read, select negligeable type if you want to neglect it.");
-  param.ajouter_non_std("solveur_pression",(this),Param::REQUIRED);
-  param.ajouter_non_std("dt_projection",(this));
-  param.ajouter_non_std("Traitement_particulier",(this));
+  param.ajouter_non_std("solveur_pression",(this),Param::REQUIRED); // XD attr solveur_pression solveur_sys_base solveur_pression 1 Linear pressure system resolution method.
+  param.ajouter_non_std("dt_projection",(this));  // XD attr dt_projection deuxmots dt_projection 1 nb value : This keyword checks every nb time-steps the equality of velocity divergence to zero. value is the criteria convergency for the solver used.
+  param.ajouter_non_std("Traitement_particulier",(this)); // XD attr traitement_particulier traitement_particulier traitement_particulier 1 Keyword to post-process particular values.
   param.ajouter_non_std("Erreur_max_DivU",(this));
   param.ajouter("uzawa",&seuil_uzawa);
   //param.ajouter_non_std("vitesse_transportante",(this));
-  param.ajouter_non_std("seuil_divU",(this));
-  param.ajouter_non_std("solveur_bar",(this));
-  param.ajouter("projection_initiale",&projection_initiale);
-  param.ajouter_non_std("methode_calcul_pression_initiale",(this));
-
-  // for IBM methods
-  set_param_IBM(param);
+  param.ajouter_non_std("seuil_divU",(this));  // XD attr seuil_divU floatfloat seuil_divU 1 value factor : this keyword is intended to minimise the number of iterations during the pressure system resolution. The convergence criteria during this step (\'seuil\' in solveur_pression) is dynamically adapted according to the mass conservation. At tn , the linear system Ax=B is considered as solved if the residual ||Ax-B||<seuil(tn). For tn+1, the threshold value seuil(tn+1) will be evualated as: NL2 If ( |max(DivU)*dt|<value ) NL2 Seuil(tn+1)= Seuil(tn)*factor NL2 Else NL2 Seuil(tn+1)= Seuil(tn)*factor NL2 Endif NL2 The first parameter (value) is the mass evolution the user is ready to accept per timestep, and the second one (factor) is the factor of evolution for \'seuil\' (for example 1.1, so 10% per timestep). Investigations has to be lead to know more about the effects of these two last parameters on the behaviour of the simulations.
+  param.ajouter_non_std("solveur_bar",(this)); // XD attr solveur_bar solveur_sys_base solveur_bar 1 This keyword is used to define when filtering operation is called (typically for EF convective scheme, standard diffusion operator and Source_Qdm_lambdaup ). A file (solveur.bar) is then created and used for inversion procedure. Syntax is the same then for pressure solver (GCP is required for multi-processor calculations and, in a general way, for big meshes).
+  param.ajouter("projection_initiale",&projection_initiale); // XD attr projection_initiale entier projection_initiale 1 Keyword to suppress, if boolean equals 0, the initial projection which checks DivU=0. By default, boolean equals 1.
+  param.ajouter_flag("postraiter_gradient_pression_sans_masse", &postraiter_gradient_pression_sans_masse_, Param::OPTIONAL); // XD attr postraiter_gradient_pression_sans_masse rien postraiter_gradient_pression_sans_masse 1 Avoid mass matrix multiplication for the gradient postprocessing
+  param.ajouter_non_std("methode_calcul_pression_initiale",(this));  // XD attr methode_calcul_pression_initiale chaine(into=["avec_les_cl","avec_sources","avec_sources_et_operateurs","sans_rien"]) methode_calcul_pression_initiale 1 Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 }
 
 int Navier_Stokes_std::lire_motcle_non_standard(const Motcle& mot, Entree& is)
@@ -145,7 +138,7 @@ int Navier_Stokes_std::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     {
       Cerr << "Reading and typing of pressure solver : " << finl;
       is >> solveur_pression_;
-      Cerr<<"Pressure solver type : "<<solveur_pression_.valeur().que_suis_je()<< finl;
+      Cerr<<"Pressure solver type : "<<solveur_pression_->que_suis_je()<< finl;
       solveur_pression_.nommer("solveur_pression");
       return 1;
     }
@@ -180,8 +173,8 @@ int Navier_Stokes_std::lire_motcle_non_standard(const Motcle& mot, Entree& is)
           type+=discr;
           Cerr << type << finl;
           le_traitement_particulier.typer(type);
-          le_traitement_particulier.associer_eqn(*this);
-          le_traitement_particulier.lire(is);
+          le_traitement_particulier->associer_eqn(*this);
+          le_traitement_particulier->lire(is);
         }
       else
         {
@@ -193,7 +186,7 @@ int Navier_Stokes_std::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     }
   else if (mot=="Erreur_max_DivU")
     {
-      Cerr << "Reading DivU maximun" << finl;
+      Cerr << "Reading DivU maximum" << finl;
       is >> max_div_U;
       is >> seuil_projection;
       return 1;
@@ -254,7 +247,7 @@ int Navier_Stokes_std::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     return Equation_base::lire_motcle_non_standard(mot,is);
 }
 
-const Champ_Don& Navier_Stokes_std::diffusivite_pour_transport() const
+const Champ_Don_base& Navier_Stokes_std::diffusivite_pour_transport() const
 {
   return fluide().viscosite_cinematique();
 }
@@ -302,7 +295,7 @@ void Navier_Stokes_std::completer()
       Cerr << "Centrifuge force term creation for Axi case."<< finl;
       Nom type_so = "Force_Centrifuge_";
       Nom disc = discretisation().que_suis_je();
-      Nom champ = inconnue()->que_suis_je();
+      Nom champ = inconnue().que_suis_je();
       champ.suffix("Champ_");
       type_so+=disc;
       type_so+="_";
@@ -317,24 +310,24 @@ void Navier_Stokes_std::completer()
   // On ne decline pas le residu par composantes pour la vitesse:
   initialise_residu(1);
 
-  la_pression.associer_eqn(*this);
+  la_pression->associer_eqn(*this);
   la_pression->completer(le_dom_Cl_dis.valeur());
   // [ABN] make sure the pressure knows the domaine_Cl_dis to be able to use specific postreatment like 'gravcl'
   la_pression->associer_domaine_cl_dis(le_dom_Cl_dis);
 
-  divergence_U.associer_eqn(*this);
-  if (gradient_P.non_nul()) gradient_P.associer_eqn(*this);
-  la_pression_en_pa.associer_eqn(*this);
+  divergence_U->associer_eqn(*this);
+  if (gradient_P.non_nul()) gradient_P->associer_eqn(*this);
+  la_pression_en_pa->associer_eqn(*this);
   la_pression_en_pa->completer(le_dom_Cl_dis.valeur());
   la_pression_en_pa->associer_domaine_cl_dis(le_dom_Cl_dis);
   divergence.completer();
   gradient.completer();
-  assembleur_pression_.associer_domaine_cl_dis_base(domaine_Cl_dis().valeur());
-  assembleur_pression_.completer(*this);
+  assembleur_pression_->associer_domaine_cl_dis_base(domaine_Cl_dis());
+  assembleur_pression_->completer(*this);
 
   if (distance_paroi_globale.non_nul())// On initialize la distance au bord au debut du calcul si on en a besoin, ce ne sera plus mis a jour par la suite car le maillage est fixe ; on le fait tard car il faut avoir lu les CL
     {
-      Domaine_dis_base& domaine = domaine_dis().valeur();
+      Domaine_dis_base& domaine = domaine_dis();
       domaine.init_dist_paroi_globale(domaine_Cl_dis().les_conditions_limites());
       Cerr << "Initializing distance_paroi_globale ... " << finl;
       const DoubleTab& dist_calc = domaine.y_elem();
@@ -358,15 +351,15 @@ void Navier_Stokes_std::discretiser()
   const Discret_Thyd& dis=ref_cast(Discret_Thyd, discretisation());
 
   discretiser_vitesse();
-  la_vitesse.valeur().add_synonymous(Nom("velocity"));
+  la_vitesse->add_synonymous(Nom("velocity"));
   champs_compris_.ajoute_champ(la_vitesse);
 
   dis.pression(schema_temps(), domaine_dis(), la_pression);
-  la_pression.valeur().add_synonymous(Nom("P_star"));
+  la_pression->add_synonymous(Nom("P_star"));
   champs_compris_.ajoute_champ(la_pression);
 
   dis.pression_en_pa(schema_temps(), domaine_dis(), la_pression_en_pa);
-  la_pression_en_pa.valeur().add_synonymous(Nom("Pressure"));
+  la_pression_en_pa->add_synonymous(Nom("Pressure"));
   champs_compris_.ajoute_champ(la_pression_en_pa);
 
 
@@ -415,7 +408,7 @@ void Navier_Stokes_std::discretiser_assembleur_pression()
   type += discretisation().que_suis_je();
   Cerr << "Navier_Stokes_std::discretiser_assembleur_pression : type="<< type << finl;
   assembleur_pression_.typer(type);
-  assembleur_pression_.associer_domaine_dis_base(domaine_dis().valeur());
+  assembleur_pression_->associer_domaine_dis_base(domaine_dis());
 }
 
 /*! @brief Renvoie le nombre d'operateurs de l'equation: Pour Navier Stokes Standard c'est 2.
@@ -575,20 +568,20 @@ const Operateur_Grad& Navier_Stokes_std::operateur_gradient() const
 
 /*! @brief Renvoie la vitesse (champ inconnue de l'equation) (version const)
  *
- * @return (Champ_Inc&) le champ inconnue representant la vitesse
+ * @return (Champ_Inc_base&) le champ inconnue representant la vitesse
  */
-const Champ_Inc& Navier_Stokes_std::inconnue() const
+const Champ_Inc_base& Navier_Stokes_std::inconnue() const
 {
-  return la_vitesse;
+  return la_vitesse.valeur();
 }
 
 /*! @brief Renvoie la vitesse (champ inconnue de l'equation)
  *
- * @return (Champ_Inc&) le champ inconnue representant la vitesse
+ * @return (Champ_Inc_base&) le champ inconnue representant la vitesse
  */
-Champ_Inc& Navier_Stokes_std::inconnue()
+Champ_Inc_base& Navier_Stokes_std::inconnue()
 {
-  return la_vitesse;
+  return la_vitesse.valeur();
 }
 
 /*! @brief Renvoie le solveur en pression (version const)
@@ -646,17 +639,17 @@ Entree& Navier_Stokes_std::lire_cond_init(Entree& is)
       ind = compris.rang(motlu);
       if (ind==1)
         {
-          Champ_Don ch_init;
+          OWN_PTR(Champ_Don_base) ch_init;
           is >> ch_init;
-          verifie_ch_init_nb_comp(inconnue(),ch_init.nb_comp());
-          inconnue()->affecter(ch_init.valeur());
+          verifie_ch_init_nb_comp(inconnue(),ch_init->nb_comp());
+          inconnue().affecter(ch_init.valeur());
         }
       else if (ind==2)
         {
-          Champ_Don ch_init;
+          OWN_PTR(Champ_Don_base) ch_init;
           is >> ch_init;
-          verifie_ch_init_nb_comp(pression(),ch_init.nb_comp());
-          pression()->affecter(ch_init.valeur());
+          verifie_ch_init_nb_comp(pression(),ch_init->nb_comp());
+          pression().affecter(ch_init.valeur());
         }
       else if (ind==-1)
         {
@@ -673,14 +666,14 @@ Entree& Navier_Stokes_std::lire_cond_init(Entree& is)
  */
 DoubleTab& Navier_Stokes_std::corriger_derivee_expl(DoubleTab& derivee)
 {
-  if (assembleur_pression_.valeur().get_resoudre_increment_pression())
+  if (assembleur_pression_->get_resoudre_increment_pression())
     {
       // PL: Pour ne pas calculer ce gradient, il faut
       // A) postraitement_gradient_P_==0 car sinon grad contient alors M-1BtP
       // B) les conditions en pression soient stationnaires (pas facile a detecter: Orlansky, P(t), gradient_pression impose...)
       // En outre, cela fait des ecarts avec le schema CN iteratif
-      const DoubleTab& tab_pression = la_pression.valeurs();
-      DoubleTab& gradP = gradient_P.valeurs();
+      const DoubleTab& tab_pression = la_pression->valeurs();
+      DoubleTab& gradP = gradient_P->valeurs();
       gradient.calculer(tab_pression, gradP);
       derivee -= gradP;
     }
@@ -704,8 +697,8 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
   // Cp is calculated from the following equation:
   // (BJ_{n}M-1Bt)Cp=B(J_{n}U_{n}/timestep+J_{n}derivee_out-J_{n+1}U_ALE), J-Jacobian, _{n}- at time n
 
-  DoubleTab& tab_pression=la_pression.valeurs();
-  DoubleTab& gradP=gradient_P.valeurs();
+  DoubleTab& tab_pression=la_pression->valeurs();
+  DoubleTab& gradP=gradient_P->valeurs();
   DoubleTrav secmemP(tab_pression);
   DoubleTrav deriveeALE(derivee);
 
@@ -721,7 +714,7 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
       DoubleTab derivee2(derivee);
       const double dt=schema_temps().pas_de_temps();
       derivee2*=dt;
-      derivee2+=la_vitesse.passe();
+      derivee2+=la_vitesse->passe();
       derivee2/=dt;
       if( !sub_type(Op_Conv_ALE, terme_convectif.valeur()) ) //No ALE method
         {
@@ -740,7 +733,7 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
     {
       secmemP *= -1; // car div =-B
       // Correction du second membre d'apres les conditions aux limites :
-      assembleur_pression_.modifier_secmem(secmemP);
+      assembleur_pression_->modifier_secmem(secmemP);
     }
 
   // Set print of the linear system solve according to dt_impr:
@@ -748,7 +741,7 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
 
   const bool is_ALE = ( sub_type(Op_Conv_ALE, terme_convectif.valeur()) );
 
-  if (assembleur_pression_.valeur().get_resoudre_increment_pression())
+  if (assembleur_pression_->get_resoudre_increment_pression())
     {
       if( is_ALE )
         {
@@ -761,17 +754,17 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
 
       // P(n+1) = P(n) + Cp
       tab_pression += Cp;
-      assembleur_pression_.modifier_solution(tab_pression);
+      assembleur_pression_->modifier_solution(tab_pression);
 
       // M-1 Bt P(n+1)
-      solveur_masse.appliquer(gradP);
+      solveur_masse->appliquer(gradP);
       derivee += gradP; // M-1 F
     }
   else
     {
       // Solve B M-1 Bt P(n+1) = B M-1 F
       solveur_pression_.resoudre_systeme(matrice_pression_.valeur(), secmemP, tab_pression);
-      assembleur_pression_.modifier_solution(tab_pression);
+      assembleur_pression_->modifier_solution(tab_pression);
       // It is not done anymore cause:
       // Iterative solvers are less accurate
       // Time converges in O(sqrt(dt)) and not O(dt)
@@ -787,14 +780,13 @@ DoubleTab& Navier_Stokes_std::corriger_derivee_impl(DoubleTab& derivee)
   // M-1Bt P(n+1) is calculated:
   DoubleTrav Mmoins1gradP(gradP);
   Mmoins1gradP = gradP;
-  solveur_masse.appliquer(Mmoins1gradP);
+  solveur_masse->appliquer(Mmoins1gradP);
 
   // dU/dt = M-1(F-Bt P(n+1))
   derivee -= Mmoins1gradP;
 
   return derivee;
 }
-
 
 /*! @brief Calcule la solution U des equations: | M(U-V)/dt + BtP = 0
  *
@@ -813,15 +805,15 @@ void Navier_Stokes_std::projeter()
   else
     {
       Cerr << "Projection of initial and boundaries conditions " << finl;
-      DoubleTab& tab_vitesse = la_vitesse.valeurs();
+      DoubleTab& tab_vitesse = la_vitesse->valeurs();
       tab_vitesse.echange_espace_virtuel();
-      la_pression.valeurs().echange_espace_virtuel();
-      DoubleTrav secmem(la_pression.valeurs());
+      la_pression->valeurs().echange_espace_virtuel();
+      DoubleTrav secmem(la_pression->valeurs());
       // Cela ne sert a rien d'initialiser lagrange avec la pression
       // voir ca penalise le calcul en p1B et CL p<>0
       // On prend un DoubleTrav au lieu d'un DoubleTab pour avoir lagrange=0
-      DoubleTrav lagrange(la_pression.valeurs());
-      DoubleTrav gradP(gradient_P.valeurs());
+      DoubleTrav lagrange(la_pression->valeurs());
+      DoubleTrav gradP(gradient_P->valeurs());
 
       double normal_seuil = 0.;
 
@@ -829,7 +821,7 @@ void Navier_Stokes_std::projeter()
       //  B u = 0
       //  => e B(M-1)Bt l = Bv
       //
-      if ( is_IBM() ) modify_initial_velocity_IBM(tab_vitesse);
+      modify_initial_variable();
 
       divergence.calculer(tab_vitesse, secmem);
       // Desormais on calcule le pas de temps avant la projection
@@ -854,17 +846,17 @@ void Navier_Stokes_std::projeter()
 
       // Correction du second membre d'apres les conditions aux limites :
       solveur_pression_.resoudre_systeme(matrice_pression_.valeur(),secmem,lagrange);
-      assembleur_pression_.modifier_solution(lagrange);
+      assembleur_pression_->modifier_solution(lagrange);
       lagrange.echange_espace_virtuel();
 
       // M-1 Bt l
       gradient->multvect(lagrange, gradP);
 
-      if ( is_IBM() ) modify_initial_gradP_IBM(gradP);
+      modify_initial_gradP(gradP);
 
       gradP.echange_espace_virtuel();
 
-      solveur_masse.appliquer(gradP);
+      solveur_masse->appliquer(gradP);
       gradP.echange_espace_virtuel();
 
       if (tab_vitesse.dimension_tot(0) == gradP.dimension_tot(0))
@@ -875,7 +867,7 @@ void Navier_Stokes_std::projeter()
           partv[0].ajoute(-dt,gradP);
         }
       tab_vitesse.echange_espace_virtuel();
-      solveur_masse.corriger_solution(tab_vitesse, tab_vitesse);
+      solveur_masse->corriger_solution(tab_vitesse, tab_vitesse);
 
       Debog::verifier("Navier_Stokes_std::projeter, vitesse", tab_vitesse);
 
@@ -921,111 +913,98 @@ int Navier_Stokes_std::projection_a_faire()
  *
  *      initialisation de la pression.
  *
+ *      assemblage du systeme en pression
+ *
  * @return (int) renvoie toujours 1
  */
 int Navier_Stokes_std::preparer_calcul()
-// assemblage du systeme en pression
 {
   const double temps = schema_temps().temps_courant();
   sources().mettre_a_jour(temps);
   Equation_base::preparer_calcul();
-  bool is_QC = que_suis_je().finit_par("_QC");
-  if ( is_IBM () )
-    {
-      preparer_calcul_IBM(is_QC);
-    }
+  bool is_dilatable = probleme().is_dilatable();
+  if (!is_dilatable)
+    assembleur_pression_->assembler(matrice_pression_);
   else
     {
-      if (!is_QC)
-        {
-          assembleur_pression_.assembler(matrice_pression_);
-        }
-      else
-        {
-          Cerr<<"Assembling for quasi-compressible"<<finl;
-          assembleur_pression_.assembler_QC(fluide().masse_volumique().valeurs(),matrice_pression_);
-        }
+      Cerr << "Assembling for quasi-compressible" << finl;
+      assembleur_pression_->assembler_QC(fluide().masse_volumique().valeurs(), matrice_pression_);
     }
 
   // GF en cas de reprise on conserve la valeur de la pression
   // avant elle ne servait qu' a initialiser le lagrange pour la projection
   // C'est important pour le Simpler/Piso de bien repartir de la pression
   // sauvegardee...
-  //la_pression.valeurs()=0.;
-  Debog::verifier("Navier_Stokes_std::preparer_calcul, la_pression av projeter", la_pression.valeurs());
+  //la_pression->valeurs()=0.;
+  Debog::verifier("Navier_Stokes_std::preparer_calcul, la_pression av projeter", la_pression->valeurs());
   if (projection_a_faire())
     projeter();
 
   // Au cas ou une cl de pression depend de u que l'on vient de modifier
   le_dom_Cl_dis->mettre_a_jour(temps);
-  Debog::verifier("Navier_Stokes_std::preparer_calcul, la_pression ap projeter", la_pression.valeurs());
+  Debog::verifier("Navier_Stokes_std::preparer_calcul, la_pression ap projeter", la_pression->valeurs());
 
   // Initialisation du champ de pression (resolution de Laplacien(P)=0 avec les conditions limites en pression)
   // Permet de demarrer la resolution avec une bonne approximation de la pression (important pour le Piso ou P!=0)
-  if  (!probleme().reprise_effectuee() && methode_calcul_pression_initiale_!=3)
+  if (!probleme().reprise_effectuee() && methode_calcul_pression_initiale_ != 3)
     {
-      Cout<<"Estimation du champ de pression au demarrage:" <<finl;
-      DoubleTrav secmem(la_pression.valeurs());
-      DoubleTrav vpoint(gradient_P.valeurs());
-      gradient.calculer(la_pression.valeurs(), gradient_P.valeurs());
-      vpoint-=gradient_P.valeurs();
-      if ( is_IBM() ) reprise_calcul_IBM(vpoint);
-      if (methode_calcul_pression_initiale_>=2)
-        for (int op=0; op<nombre_d_operateurs(); op++)
+      Cout << "Estimation du champ de pression au demarrage:" << finl;
+      DoubleTrav secmem(la_pression->valeurs());
+      DoubleTrav vpoint(gradient_P->valeurs());
+      gradient.calculer(la_pression->valeurs(), gradient_P->valeurs());
+      vpoint -= gradient_P->valeurs();
+
+      if (methode_calcul_pression_initiale_ >= 2)
+        for (int op = 0; op < nombre_d_operateurs(); op++)
           operateur(op).ajouter(vpoint);
-      if (methode_calcul_pression_initiale_>=1)
+      if (methode_calcul_pression_initiale_ >= 1)
         {
-          int mod=0;
-          if (le_schema_en_temps->pas_de_temps()==0)
+          int mod = 0;
+          if (le_schema_en_temps->pas_de_temps() == 0)
             {
-              double dt = std::max(le_schema_en_temps->pas_temps_min(),calculer_pas_de_temps());
+              double dt = std::max(le_schema_en_temps->pas_temps_min(), calculer_pas_de_temps());
               dt = std::min(dt, le_schema_en_temps->pas_temps_max());
-              le_schema_en_temps->set_dt()=(dt);
-              mod=1;
+              le_schema_en_temps->set_dt() = (dt);
+              mod = 1;
             }
           sources().ajouter(vpoint);
-          if (is_IBM() && projection_initiale==0) pression_initiale_IBM(vpoint);
           if (mod)
-            le_schema_en_temps->set_dt()=0;
+            le_schema_en_temps->set_dt() = 0;
         }
 
-      solveur_masse.appliquer(vpoint);
+      solveur_masse->appliquer(vpoint);
       vpoint.echange_espace_virtuel();
       divergence.calculer(vpoint, secmem);
-      secmem*=-1;
+      secmem *= -1;
       secmem.echange_espace_virtuel();
 
-      assembleur_pression_->modifier_secmem_pour_incr_p(la_pression.valeurs(), 1, secmem);
-      DoubleTrav inc_pre(la_pression.valeurs());
-      solveur_pression_.resoudre_systeme(matrice_pression_.valeur(),secmem, inc_pre);
+      assembleur_pression_->modifier_secmem_pour_incr_p(la_pression->valeurs(), 1, secmem);
+      DoubleTrav inc_pre(la_pression->valeurs());
+      solveur_pression_.resoudre_systeme(matrice_pression_.valeur(), secmem, inc_pre);
       Cerr << "Pressure increment computed successfully" << finl;
 
-      if ( is_IBM() ) pression_correction_IBM( inc_pre );
-
       // On veut que l'espace virtuel soit a jour, donc all_items
-      operator_add(la_pression.valeurs(), inc_pre, VECT_ALL_ITEMS);
+      operator_add(la_pression->valeurs(), inc_pre, VECT_ALL_ITEMS);
     }
   // Mise a jour pression
-  la_pression.changer_temps(temps);
+  la_pression->changer_temps(temps);
   calculer_la_pression_en_pa();
   // Calcul des forces de pression:
   gradient->calculer_flux_bords();
 
   // Calcul gradient_P (ToDo rendre coherent avec ::mettre_a_jour()):
-  gradient.calculer(la_pression.valeurs(),gradient_P.valeurs());
-  gradient_P.changer_temps(temps);
+  gradient.calculer(la_pression->valeurs(), gradient_P->valeurs());
+  gradient_P->changer_temps(temps);
 
   // Calcul divergence_U
-  divergence.calculer(la_vitesse.valeurs(),divergence_U.valeurs());
-  divergence_U.changer_temps(temps);
+  divergence.calculer(la_vitesse->valeurs(), divergence_U->valeurs());
+  divergence_U->changer_temps(temps);
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier.preparer_calcul_particulier();
+    le_traitement_particulier->preparer_calcul_particulier();
 
   Debog::verifier("Navier_Stokes_std::preparer_calcul, vitesse", inconnue());
   Debog::verifier("Navier_Stokes_std::preparer_calcul, pression", la_pression);
-
-  if ( is_IBM() ) matrice_pression_IBM();
 
   return 1;
 }
@@ -1045,24 +1024,22 @@ void Navier_Stokes_std::mettre_a_jour(double temps)
   Equation_base::mettre_a_jour(temps);
 
   // Mise a jour de la pression
-  la_pression.mettre_a_jour(temps);
+  la_pression->mettre_a_jour(temps);
   calculer_la_pression_en_pa();
   // Calcul des forces de pression:
   gradient->calculer_flux_bords();
 
   // Update the divergence of the velocity div(U)
-  divergence.calculer(la_vitesse->valeurs(),divergence_U.valeurs());
-  divergence_U.mettre_a_jour(temps);
+  divergence.calculer(la_vitesse->valeurs(),divergence_U->valeurs());
+  divergence_U->mettre_a_jour(temps);
 
   // Pour le postraitement, on veut M-1BtP et non BtP
   if (postraitement_gradient_P_)
     {
-      gradient.calculer(la_pression.valeurs(), gradient_P.valeurs());
+      gradient.calculer(la_pression->valeurs(), gradient_P->valeurs());
       if (!postraiter_gradient_pression_sans_masse_)
-        {
-          solveur_masse.appliquer(gradient_P.valeurs());
-        }
-      gradient_P.mettre_a_jour(temps);
+        solveur_masse->appliquer(gradient_P->valeurs());
+      gradient_P->mettre_a_jour(temps);
     }
 
   // PQ : 04/03 : procedure de determination dynamique du seuil de convergence en pression
@@ -1086,21 +1063,21 @@ void Navier_Stokes_std::mettre_a_jour(double temps)
     projeter();
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier.post_traitement_particulier();
-  Debog::verifier("Navier_Stokes_std::mettre_a_jour : pression", la_pression.valeurs());
-  Debog::verifier("Navier_Stokes_std::mettre_a_jour : vitesse", la_vitesse.valeurs());
+    le_traitement_particulier->post_traitement_particulier();
+  Debog::verifier("Navier_Stokes_std::mettre_a_jour : pression", la_pression->valeurs());
+  Debog::verifier("Navier_Stokes_std::mettre_a_jour : vitesse", la_vitesse->valeurs());
 
-  if (la_vorticite.non_nul()) la_vorticite.mettre_a_jour(temps);
-  if (critere_Q.non_nul()) critere_Q.mettre_a_jour(temps);
-  if (Reynolds_maille.non_nul()) Reynolds_maille.mettre_a_jour(temps);
-  if (Taux_cisaillement.non_nul()) Taux_cisaillement.mettre_a_jour(temps);
-  if (grad_u.non_nul()) grad_u.mettre_a_jour(temps);
+  if (la_vorticite.non_nul()) la_vorticite->mettre_a_jour(temps);
+  if (critere_Q.non_nul()) critere_Q->mettre_a_jour(temps);
+  if (Reynolds_maille.non_nul()) Reynolds_maille->mettre_a_jour(temps);
+  if (Taux_cisaillement.non_nul()) Taux_cisaillement->mettre_a_jour(temps);
+  if (grad_u.non_nul()) grad_u->mettre_a_jour(temps);
 }
 
 double Navier_Stokes_std::LocalFlowRateRelativeError() const
 {
   // Estimation of a flow rate relative error
-  DoubleTrav array(divergence_U.valeurs()); // array(i)=sum(u.ndS)
+  DoubleTrav array(divergence_U->valeurs()); // array(i)=sum(u.ndS)
   divergence.volumique(array); // array(i)=sum(u.ndS)/vol(i)
   return mp_max_abs_vect(array) * schema_temps().pas_de_temps(); // =max|sum(u.ndS)/(vol(i)/dt)|
 }
@@ -1110,8 +1087,8 @@ void Navier_Stokes_std::abortTimeStep()
   // On reprend la pression du debut du pas de temps
   // Utile si on reprend le pas de temps parce que la pression a diverge (sinon tres mauvaise precision)
   // et si on est en Piso (suppose pression juste au debut du pas de temps).
-  pression()->valeurs()=P_n;
-  //pression()->valeurs()=0;
+  pression().valeurs()=P_n;
+  //pression().valeurs()=0;
   Equation_base::abortTimeStep();
 }
 
@@ -1119,13 +1096,13 @@ void Navier_Stokes_std::abortTimeStep()
  */
 void Navier_Stokes_std::resetTime(double time)
 {
-  pression()->resetTime(time);
+  pression().resetTime(time);
   Equation_base::resetTime(time);
 }
 
 bool Navier_Stokes_std::initTimeStep(double dt)
 {
-  P_n=pression()->valeurs();
+  P_n=pression().valeurs();
 
   // needed by ALE method and we don't want domaine_ale object in TRUST
   update_pressure_matrix( );
@@ -1170,20 +1147,18 @@ bool Navier_Stokes_std::initTimeStep(double dt)
         }
     }
 
-  double ddt = Equation_base::initTimeStep(dt);
+  bool ddt = Equation_base::initTimeStep(dt);
 
   for (int i=1; i<=sch_tps.nb_valeurs_futures(); i++)
     if (i <= pression().nb_valeurs_temporelles())
       {
         double tps=sch_tps.temps_futur(i);
         // Mise a jour du temps dans les champs de pression
-        pression()->changer_temps_futur(tps,i);
-        pression_pa()->changer_temps_futur(tps,i);
-        pression()->futur(i)=pression()->valeurs();
-        pression_pa()->futur(i)=pression_pa()->valeurs();
+        pression().changer_temps_futur(tps,i);
+        pression_pa().changer_temps_futur(tps,i);
+        pression().futur(i)=pression().valeurs();
+        pression_pa().futur(i)=pression_pa().valeurs();
       }
-
-  if ( is_IBM() ) initTimeStep_IBM(ddt);
 
   return ddt;
 }
@@ -1198,9 +1173,9 @@ bool Navier_Stokes_std::initTimeStep(double dt)
  */
 void Navier_Stokes_std::calculer_la_pression_en_pa()
 {
-  DoubleTab& Pa=la_pression_en_pa.valeurs();
-  DoubleTab& tab_pression=la_pression.valeurs();
-  const Champ_base& rho=milieu().masse_volumique().valeur();
+  DoubleTab& Pa=la_pression_en_pa->valeurs();
+  DoubleTab& tab_pression=la_pression->valeurs();
+  const Champ_base& rho=milieu().masse_volumique();
   if (Pa.get_md_vector() == tab_pression.get_md_vector())
     Pa = tab_pression; //Pa et tab_pression ont le meme support
   else
@@ -1211,8 +1186,19 @@ void Navier_Stokes_std::calculer_la_pression_en_pa()
     }
   // On multiplie par rho si uniforme sinon deja en Pa...
   if (sub_type(Champ_Uniforme,rho))
-    Pa *= rho(0,0);
-  la_pression_en_pa.mettre_a_jour(pression().temps());
+    Pa *= rho.valeurs()(0,0);
+  la_pression_en_pa->mettre_a_jour(pression().temps());
+}
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
+ *
+ */
+std::vector<YAML_data> Navier_Stokes_std::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = Equation_base::data_a_sauvegarder();
+  std::vector<YAML_data> pression = la_pression->data_a_sauvegarder();
+  data.insert(data.end(), pression.begin(), pression.end());
+  return data;
 }
 
 /*! @brief Appelle Equation_base::sauvegarder(Sortie&) et sauvegarde la pression sur un flot de sortie.
@@ -1224,7 +1210,7 @@ int Navier_Stokes_std::sauvegarder(Sortie& os) const
 {
   int bytes=0;
   bytes += Equation_base::sauvegarder(os);
-  bytes += la_pression.sauvegarder(os);
+  bytes += la_pression->sauvegarder(os);
   //La methode sauver() assurant la sauvegarde pour le traitement particulier
   //est maintenant appelee ici au lieu d etre appelee dans des problemes particuliers
   sauver();
@@ -1244,16 +1230,19 @@ int Navier_Stokes_std::sauvegarder(Sortie& os) const
 int Navier_Stokes_std::reprendre(Entree& is)
 {
   Equation_base::reprendre(is);
-  double temps = schema_temps().temps_courant();
-  Nom ident_pression(la_pression.le_nom());
-  ident_pression += la_pression.valeur().que_suis_je();
-  ident_pression += probleme().domaine().le_nom();
-  ident_pression += Nom(temps,probleme().reprise_format_temps());
-  avancer_fichier(is, ident_pression);
-  la_pression.reprendre(is);
+  if(!TRUST_2_PDI::is_PDI_restart())
+    {
+      double temps = schema_temps().temps_courant();
+      Nom ident_pression(la_pression.le_nom());
+      ident_pression += la_pression->que_suis_je();
+      ident_pression += probleme().domaine().le_nom();
+      ident_pression += Nom(temps,probleme().reprise_format_temps());
+      avancer_fichier(is, ident_pression);
+    }
+  la_pression->reprendre(is);
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier.reprendre_stat();
+    le_traitement_particulier->reprendre_stat();
 
   return 1;
 }
@@ -1397,9 +1386,12 @@ void Navier_Stokes_std::creer_champ(const Motcle& motlu)
 
   if (le_traitement_particulier.non_nul())
     le_traitement_particulier->creer_champ(motlu);
+
+  if (Taux_cisaillement.non_nul())
+    if (!grad_u.non_nul()) creer_champ("gradient_vitesse");
 }
 
-void  Navier_Stokes_std::calculer_pression_hydrostatique(Champ_base& pression_hydro) const
+void Navier_Stokes_std::calculer_pression_hydrostatique(Champ_base& pression_hydro) const
 {
   DoubleTab& val= pression_hydro.valeurs();
   const DoubleTab& coords = domaine_dis().domaine().les_sommets();
@@ -1408,7 +1400,7 @@ void  Navier_Stokes_std::calculer_pression_hydrostatique(Champ_base& pression_hy
       Cerr<<"postprocessing of presion_hydrostatique needs gravity"<<finl;
       exit();
     }
-  const Champ_base& rho = milieu().masse_volumique().valeur();
+  const Champ_base& rho = milieu().masse_volumique();
   if (!sub_type(Champ_Uniforme,rho))
     {
       Cerr<<"postprocessing of presion_hydrostatique availabe only for incompressible flow"<<finl;
@@ -1429,124 +1421,239 @@ void  Navier_Stokes_std::calculer_pression_hydrostatique(Champ_base& pression_hy
   val.echange_espace_virtuel();
 }
 
+bool Navier_Stokes_std::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
+{
+  if (nom == "gradient_pression")
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "vorticite" && la_vorticite.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "critere_Q" && critere_Q.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "y_plus" && y_plus.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "reynolds_maille" && Reynolds_maille.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "courant_maille" && Courant_maille.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "taux_cisaillement" && Taux_cisaillement.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "gradient_vitesse" && grad_u.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (nom == "pression_hydrostatique" && pression_hydrostatique_.non_nul())
+    {
+      ref_champ = Navier_Stokes_std::get_champ(nom);
+      return true;
+    }
+
+  if (Equation_base::has_champ(nom, ref_champ))
+    return true;
+
+  if (le_traitement_particulier.non_nul())
+    if (le_traitement_particulier->has_champ(nom, ref_champ))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+bool Navier_Stokes_std::has_champ(const Motcle& nom) const
+{
+  if (nom == "gradient_pression")
+    return true;
+
+  if (nom == "vorticite" && la_vorticite.non_nul())
+    return true;
+
+  if (nom == "critere_Q" && critere_Q.non_nul())
+    return true;
+
+  if (nom == "y_plus" && y_plus.non_nul())
+    return true;
+
+  if (nom == "reynolds_maille" && Reynolds_maille.non_nul())
+    return true;
+
+  if (nom == "courant_maille" && Courant_maille.non_nul())
+    return true;
+
+  if (nom == "taux_cisaillement" && Taux_cisaillement.non_nul())
+    return true;
+
+  if (nom == "gradient_vitesse" && grad_u.non_nul())
+    return true;
+
+  if (nom == "pression_hydrostatique" && pression_hydrostatique_.non_nul())
+    return true;
+
+  if (Equation_base::has_champ(nom))
+    return true;
+
+  if (le_traitement_particulier.non_nul())
+    if (le_traitement_particulier->has_champ(nom))
+      return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Navier_Stokes_std::get_champ(const Motcle& nom) const
 {
   double temps_init = schema_temps().temps_init();
-  if (nom=="gradient_pression") postraitement_gradient_P_=1;
-  if (nom=="vorticite")
+  if (nom == "gradient_pression")
+    postraitement_gradient_P_ = 1;
+
+  if (nom == "vorticite")
     {
-      if (la_vorticite.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,la_vorticite.valeur());
-      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
+      if (la_vorticite.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, la_vorticite.valeur());
+      if ((ch.temps() == temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="critere_Q")
+
+  if (nom == "critere_Q")
     {
-      if (critere_Q.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,critere_Q.valeur());
-      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
+      if (critere_Q.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, critere_Q.valeur());
+      if ((ch.temps() == temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="porosite_volumique")
+
+  if (nom == "y_plus")
     {
-      if (porosite_volumique.est_nul())  throw Champs_compris_erreur();
-      double temps_courant = schema_temps().temps_courant();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,porosite_volumique.valeur());
-      if ((ch.temps()!=temps_courant) || (ch.temps()==temps_init))
-        ch.mettre_a_jour(temps_courant);
-      return champs_compris_.get_champ(nom);
-    }
-  if (nom=="y_plus")
-    {
-      if (y_plus.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,y_plus.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if (y_plus.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, y_plus.valeur());
+      if (((ch.temps() != la_vitesse->temps()) || (ch.temps() == temps_init)) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="reynolds_maille")
+
+  if (nom == "reynolds_maille")
     {
-      if (Reynolds_maille.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,Reynolds_maille.valeur());
-      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
+      if (Reynolds_maille.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, Reynolds_maille.valeur());
+      if ((ch.temps() == temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="courant_maille")
+
+  if (nom == "courant_maille")
     {
-      if (Courant_maille.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,Courant_maille.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if (Courant_maille.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, Courant_maille.valeur());
+      if (((ch.temps() != la_vitesse->temps()) || (ch.temps() == temps_init)) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="taux_cisaillement")
+
+  if (nom == "taux_cisaillement")
     {
-      if (Taux_cisaillement.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,Taux_cisaillement.valeur());
-      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
+      if (Taux_cisaillement.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, Taux_cisaillement.valeur());
+      if ((ch.temps() == temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="gradient_vitesse")
+
+  if (nom == "gradient_vitesse")
     {
-      if (grad_u.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base, grad_u.valeur());
-      if ((ch.temps()==temps_init) && (la_vitesse->mon_equation_non_nul()))
+      if (grad_u.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, grad_u.valeur());
+      if ((ch.temps() == temps_init) && (la_vitesse->mon_equation_non_nul()))
         ch.mettre_a_jour(la_vitesse->temps());
       return champs_compris_.get_champ(nom);
     }
-  if (nom=="pression_hydrostatique")
+
+  if (nom == "pression_hydrostatique")
     {
-      if (pression_hydrostatique_.est_nul())  throw Champs_compris_erreur();
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,pression_hydrostatique_.valeur());
-      if (((ch.temps()!=la_vitesse->temps()) || (ch.temps()==temps_init)) && (la_vitesse->mon_equation_non_nul()))
+      if (pression_hydrostatique_.est_nul())
+        throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, pression_hydrostatique_.valeur());
+      if (((ch.temps() != la_vitesse->temps()) || (ch.temps() == temps_init)) && (la_vitesse->mon_equation_non_nul()))
         {
           calculer_pression_hydrostatique(ch);
           ch.mettre_a_jour(la_vitesse->temps());
         }
       return champs_compris_.get_champ(nom);
     }
-  try
-    {
-      return Equation_base::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+
+  OBS_PTR(Champ_base) ref_champ;
+
+  if (Equation_base::has_champ(nom, ref_champ))
+    return ref_champ;
 
   if (le_traitement_particulier.non_nul())
-    try
-      {
-        return le_traitement_particulier->get_champ(nom);
-      }
-    catch (Champs_compris_erreur&)
-      {
-      }
-  throw Champs_compris_erreur();
+    if (le_traitement_particulier->has_champ(nom, ref_champ))
+      return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
-void Navier_Stokes_std::get_noms_champs_postraitables(Noms& nom,Option opt) const
+void Navier_Stokes_std::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
-  Equation_base::get_noms_champs_postraitables(nom,opt);
+  Equation_base::get_noms_champs_postraitables(nom, opt);
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier->get_noms_champs_postraitables(nom,opt);
+    le_traitement_particulier->get_noms_champs_postraitables(nom, opt);
 
   Noms noms_compris = champs_compris_.liste_noms_compris();
   noms_compris.add("vorticite");
   noms_compris.add("critere_Q");
-  noms_compris.add("porosite_volumique");
   noms_compris.add("y_plus");
   noms_compris.add("reynolds_maille");
   noms_compris.add("courant_maille");
   noms_compris.add("taux_cisaillement");
   noms_compris.add("pression_hydrostatique");
   noms_compris.add("gradient_vitesse");
-  if (opt==DESCRIPTION)
-    Cerr<<" Navier_Stokes_std : "<< noms_compris <<finl;
+
+  if (opt == DESCRIPTION)
+    Cerr << " Navier_Stokes_std : " << noms_compris << finl;
   else
     nom.add(noms_compris);
 }
@@ -1566,7 +1673,7 @@ int Navier_Stokes_std::impr(Sortie& os) const
   // Affichage des bilans volumiques si on n'est pas en QC, ni en Front Tracking
   if (!probleme().is_dilatable() && probleme().que_suis_je()!="Probleme_FT_Disc_gen")
     {
-      double LocalFlowRateError=mp_max_abs_vect(divergence_U.valeurs());
+      double LocalFlowRateError=mp_max_abs_vect(divergence_U->valeurs());
       os << finl;
       os << "Cell balance flow rate control for the problem " << probleme().le_nom() << " : " << finl;
       os << "Absolute value : " << LocalFlowRateError << " m"<<dimension+bidim_axi<<"/s" << finl;
@@ -1575,7 +1682,7 @@ int Navier_Stokes_std::impr(Sortie& os) const
       // It is relative errors (normalized by the volume/dt)
       double dt = schema_temps().pas_de_temps();
       double local = LocalFlowRateError / ( probleme().domaine().volume_total() / dt );
-      double global = mp_somme_vect(divergence_U.valeurs()) / ( probleme().domaine().volume_total() / dt );
+      double global = mp_somme_vect(divergence_U->valeurs()) / ( probleme().domaine().volume_total() / dt );
       cumulative_ += global;
       os << "time step continuity errors : sum local = " << local << ", global = " << global << ", cumulative = " << cumulative_ << finl;
       // Nouveau 1.6.1, arret si bilans de masse mauvais et seuil<1.e20
@@ -1588,15 +1695,17 @@ int Navier_Stokes_std::impr(Sortie& os) const
               exit();
             }
         }
+#ifndef TRUST_USE_GPU
       // Since 1.6.6, warning to use PETSc Cholesky instead of an iterative method for pressure solver
       int nw=100;
-      if (solveur_pression_->solveur_direct()==0 && le_schema_en_temps->nb_pas_dt()<nw && Process::nproc()<256 && la_pression.valeurs().size_array()<40000)
+      if (solveur_pression_->solveur_direct()==0 && le_schema_en_temps->nb_pas_dt()<nw && Process::nproc()<256 && la_pression->valeurs().size_array()<40000)
         {
           Cerr << finl << "********************** Advice (printed only on the first " << nw << " time steps) *********************" << finl;
           Cerr << "You should use PETSc Cholesky solver instead of an iterative method for the pressure solver." << finl;
           Cerr << "For the caracteristics of your problem, it will be faster and give a better mass flow balance." << finl;
           Cerr << "**********************************************************************************************" << finl << finl;
         }
+#endif
     }
 
   if ((seuil_divU < 1.) && (sub_type(solv_iteratif,solveur_pression_.valeur())))
@@ -1623,7 +1732,7 @@ const Motcle& Navier_Stokes_std::domaine_application() const
 
 static void construire_matrice_implicite(Operateur_base& op,
                                          const DoubleTab& valeurs_inconnue,
-                                         const Solveur_Masse& solv_masse,
+                                         const Solveur_Masse_base& solv_masse,
                                          const double dt)
 {
   Matrice& mat = op.set_matrice();
@@ -1649,7 +1758,7 @@ static void construire_matrice_implicite(Operateur_base& op,
           mat = new_mat;
           // Reinitialisation du solveur (recalcul des preconditionnements, factorisation, etc...)
           //ref_cast_non_const(SolveurSys_base,op.get_solveur().valeur()).reinit();
-          op.set_solveur().valeur().reinit();
+          op.set_solveur()->reinit();
         }
     }
 }
@@ -1658,26 +1767,26 @@ static void construire_matrice_implicite(Operateur_base& op,
 void Navier_Stokes_std::dimensionner_matrice_sans_mem(Matrice_Morse& matrice)
 {
   Equation_base::dimensionner_matrice_sans_mem(matrice);
-  if (gradient.valeur().has_interface_blocs())
-    gradient.valeur().dimensionner_blocs({{ "vitesse", &matrice }});
+  if (gradient->has_interface_blocs())
+    gradient->dimensionner_blocs({{ "vitesse", &matrice }});
 }
 
 int Navier_Stokes_std::has_interface_blocs() const
 {
-  return Equation_base::has_interface_blocs() && gradient.valeur().has_interface_blocs();
+  return Equation_base::has_interface_blocs() && gradient->has_interface_blocs();
 }
 
 /* le gradient passe en dernier */
 void Navier_Stokes_std::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
   Equation_base::dimensionner_blocs(matrices, semi_impl);
-  gradient.valeur().dimensionner_blocs(matrices, semi_impl);
+  gradient->dimensionner_blocs(matrices, semi_impl);
 }
 
 void Navier_Stokes_std::assembler_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   Equation_base::assembler_blocs(matrices, secmem, semi_impl);
-  gradient.valeur().ajouter_blocs(matrices, secmem, semi_impl);
+  gradient->ajouter_blocs(matrices, secmem, semi_impl);
 }
 
 DoubleTab& Navier_Stokes_std::derivee_en_temps_inco(DoubleTab& derivee)
@@ -1729,13 +1838,13 @@ DoubleTab& Navier_Stokes_std::derivee_en_temps_inco(DoubleTab& derivee)
                   // Un seul operateur implicite.
                   DoubleTrav secmem(derivee);
                   secmem=derivee;
-                  DoubleTrav incre_pre(la_pression.valeurs());
-                  gradient.calculer(la_pression.valeurs(),gradient_P.valeurs());
-                  secmem-=gradient_P.valeurs();
+                  DoubleTrav incre_pre(la_pression->valeurs());
+                  gradient.calculer(la_pression->valeurs(),gradient_P->valeurs());
+                  secmem-=gradient_P->valeurs();
                   uzawa(secmem, matrice,op.set_solveur(),derivee, incre_pre);
 
-                  la_pression.valeurs()+=incre_pre;
-                  gradient.calculer(la_pression.valeurs(),gradient_P.valeurs());
+                  la_pression->valeurs()+=incre_pre;
+                  gradient.calculer(la_pression->valeurs(),gradient_P->valeurs());
                 }
               else
                 {
@@ -1860,10 +1969,10 @@ void Navier_Stokes_std::uzawa(const DoubleTab& secmem, const Matrice_Base& A, So
 void Navier_Stokes_std::sauver() const
 {
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier.sauver_stat();
+    le_traitement_particulier->sauver_stat();
 }
 
-const Champ_Inc& Navier_Stokes_std::rho_la_vitesse() const
+const Champ_Inc_base& Navier_Stokes_std::rho_la_vitesse() const
 {
   Cerr<<" Navier_Stokes_std::rho_la_vitesse() must be overloaded "<<finl;
   assert(0);
@@ -1881,7 +1990,19 @@ void Navier_Stokes_std::div_ale_derivative( DoubleTrav& deriveeALE, double times
   // nothing to do
 }
 
-void Navier_Stokes_std::update_pressure_matrix( void )
+void Navier_Stokes_std::update_pressure_matrix()
 {
   // nothing to do
+}
+
+void Navier_Stokes_std::update_y_plus(const DoubleTab& tab)
+{
+  if (y_plus.est_nul()) Process::exit(que_suis_je() + " : y_plus must be initialised so it can be updated") ;
+  DoubleTab& tab_y_p = y_plus->valeurs();
+  if (tab.nb_dim()==2)
+    for (int i = 0 ; i < tab_y_p.dimension_tot(0) ; i++)
+      for (int n = 0 ; n < tab_y_p.dimension_tot(1) ; n++) tab_y_p(i,n) = tab(i,n);
+  if (tab.nb_dim()==3)
+    for (int i = 0 ; i < tab_y_p.dimension_tot(0) ; i++)
+      for (int n = 0 ; n < tab_y_p.dimension_tot(1) ; n++) tab_y_p(i,n) = tab(i,0,n);
 }

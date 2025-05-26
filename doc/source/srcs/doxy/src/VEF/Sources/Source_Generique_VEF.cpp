@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,10 +16,11 @@
 #include <Source_Generique_VEF.h>
 #include <Domaine_VEF.h>
 #include <Domaine_Cl_VEF.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Dirichlet.h>
 #include <Dirichlet_homogene.h>
 #include <Equation_base.h>
+#include <Champ_base.h>
 #include <Milieu_base.h>
 
 Implemente_instanciable(Source_Generique_VEF,"Source_Generique_VEF_P1NC",Source_Generique_base);
@@ -38,7 +39,7 @@ Entree& Source_Generique_VEF::readOn(Entree& is)
 
 DoubleTab& Source_Generique_VEF::ajouter(DoubleTab& resu) const
 {
-  Champ espace_stockage;
+  OWN_PTR(Champ_base) espace_stockage;
   const Champ_base& champ_calc = ch_source_->get_champ(espace_stockage);
   const DoubleTab& valeurs_calc = champ_calc.valeurs();
 
@@ -54,7 +55,7 @@ DoubleTab& Source_Generique_VEF::ajouter(DoubleTab& resu) const
   for (int num_cl =0; num_cl<nb_front_cl; num_cl++)
     {
       const Cond_lim& la_cl = la_zcl_VEF->les_conditions_limites(num_cl);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -75,11 +76,11 @@ DoubleTab& Source_Generique_VEF::ajouter(DoubleTab& resu) const
   return resu;
 }
 
-void Source_Generique_VEF::associer_domaines(const Domaine_dis& domaine_dis,
-                                             const Domaine_Cl_dis& zcl_dis)
+void Source_Generique_VEF::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                             const Domaine_Cl_dis_base& zcl_dis)
 {
-  le_dom_VEF = ref_cast(Domaine_VEF,domaine_dis.valeur());
-  la_zcl_VEF = ref_cast(Domaine_Cl_VEF,zcl_dis.valeur());
+  le_dom_VEF = ref_cast(Domaine_VEF,domaine_dis);
+  la_zcl_VEF = ref_cast(Domaine_Cl_VEF,zcl_dis);
 }
 
 Nom Source_Generique_VEF::localisation_source()

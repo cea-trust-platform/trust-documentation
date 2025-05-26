@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,26 +34,37 @@ void Modele_turbulence_hyd_LES_Smago_VEF::set_param(Param& param)
   param.ajouter_condition("value_of_cs_ge_0", "sous_maille_smago model constant must be positive.");
 }
 
-Champ_Fonc& Modele_turbulence_hyd_LES_Smago_VEF::calculer_viscosite_turbulente()
+Champ_Fonc_base& Modele_turbulence_hyd_LES_Smago_VEF::calculer_viscosite_turbulente()
 {
   const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF, le_dom_VF_.valeur());
   const int nb_elem = domaine_VEF.nb_elem();
   const int nb_elem_tot = domaine_VEF.nb_elem_tot();
-  SMA_barre_.resize(nb_elem_tot);
+  if (SMA_barre_.size_array()==0)
+    SMA_barre_.resize(nb_elem_tot);
 
   calculer_S_barre();
 
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
+  DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
   if (visco_turb.size() != nb_elem)
     {
       Cerr << "Size error for the array containing the values of the turbulent viscosity." << finl;
       exit();
     }
-  for (int elem = 0; elem < nb_elem; elem++)
-    visco_turb(elem) = cs_ * cs_ * l_(elem) * l_(elem) * sqrt(SMA_barre_[elem]);
+
+  //const double cs = cs_;
+  CDoubleArrView l_v = l_.view_ro();
+  CDoubleArrView SMA_barre_v = SMA_barre_.view_ro();
+  DoubleTabView visco_turb_v = visco_turb.view_wo();
+  const double cs = cs_;
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(
+                         const int elem)
+  {
+    visco_turb_v(elem,0) = cs*cs*l_v(elem)*l_v(elem)*sqrt(SMA_barre_v(elem));
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 
   double temps = mon_equation_->inconnue().temps();
-  la_viscosite_turbulente_.changer_temps(temps);
+  la_viscosite_turbulente_->changer_temps(temps);
   return la_viscosite_turbulente_;
 }
 

@@ -25,7 +25,7 @@
 using CGNS_TYPE = CGNS_ENUMT(ElementType_t);
 using CGNS_LOC = CGNS_ENUMT(GridLocation_t);
 
-class Domaine;
+#include <Domaine_forward.h>
 class Motcle;
 
 class TRUST_2_CGNS
@@ -100,9 +100,9 @@ public:
   static std::string remove_slash_linkfile(std::string&);
 
 private:
-  REF(Domaine) dom_trust_;
-  REF(DoubleTab) sommets_;
-  REF(IntTab) elems_;
+  OBS_PTR(Domaine) dom_trust_;
+  OBS_PTR(DoubleTab) sommets_;
+  OBS_PTR(IntTab) elems_;
 
   bool par_in_zone_ = false, all_procs_write_ = true, postraiter_domaine_ = false;
   int ns_tot_ = -123, ne_tot_ = -123, nb_procs_writing_ = -123;

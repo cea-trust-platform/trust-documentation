@@ -16,6 +16,8 @@
 #include <Tetraedriser_homogene_compact.h>
 
 Implemente_instanciable(Tetraedriser_homogene_compact, "Tetraedriser_homogene_compact", Triangulation_base);
+// XD tetraedriser_homogene_compact tetraedriser tetraedriser_homogene_compact -1 This new discretization generates tetrahedral elements from cartesian or non-cartesian hexahedral elements. The process cut each hexahedral in 6 pyramids, each of them being cut then in 4 tetrahedral. So, in comparison with tetra_homogene, less elements (*24 instead of*40) with more homogeneous volumes are generated. Moreover, this process is done in a faster way. Initial block is divided in 24 tetrahedra: \includepng{{tetraedriserhomogenecompact.jpeg}}{{5}}
+
 
 Sortie& Tetraedriser_homogene_compact::printOn(Sortie& os) const { return Interprete::printOn(os); }
 
@@ -195,7 +197,7 @@ void Tetraedriser_homogene_compact::trianguler(Domaine& domaine) const
 
       domaine.construit_octree();
 
-      //On dimensionne une premiere fois le tableau des sommets avec la dimension maximun
+      //On dimensionne une premiere fois le tableau des sommets avec la dimension maximum
       //puis on redimensionnera seulement a la fin par la dimension exacte
 
       DoubleTab& sommets_dom = domaine.les_sommets();
@@ -474,7 +476,7 @@ void Tetraedriser_homogene_compact::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.faces_bord())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems, fait_sommet, nface);
         }
 
@@ -482,7 +484,7 @@ void Tetraedriser_homogene_compact::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.faces_raccord())
         {
           Faces& les_faces = itr->faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems, fait_sommet, nface);
         }
 
@@ -490,7 +492,7 @@ void Tetraedriser_homogene_compact::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.bords_int())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems, fait_sommet, nface);
         }
 
@@ -498,7 +500,7 @@ void Tetraedriser_homogene_compact::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.groupes_faces())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems, fait_sommet, nface);
         }
 

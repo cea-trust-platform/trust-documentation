@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,8 +16,9 @@
 #ifndef Op_Conv_VDF_base_included
 #define Op_Conv_VDF_base_included
 
+#include <Iterateur_VDF_base.h>
 #include <Operateur_Conv.h>
-#include <Iterateur_VDF.h>
+#include <TRUST_Deriv.h>
 
 /*! @brief class Op_Conv_VDF_base Classe de base des operateurs de convection VDF
  *
@@ -27,12 +28,12 @@ class Op_Conv_VDF_base : public Operateur_Conv_base
   Declare_base(Op_Conv_VDF_base);
 
 public:
-  inline Op_Conv_VDF_base( const Iterateur_VDF_base& iter_base) : iter(iter_base) { } // constructeur
+  inline Op_Conv_VDF_base( const Iterateur_VDF_base& iter_base) { iter_ = iter_base; } // constructeur
   void completer() override;
   void preparer_calcul() override;
-  void associer_domaine_cl_dis(const Domaine_Cl_dis_base& zcl) override { iter->associer_domaine_cl_dis(zcl); }
+  void associer_domaine_cl_dis(const Domaine_Cl_dis_base& zcl) override { iter_->associer_domaine_cl_dis(zcl); }
   void calculer_dt_local(DoubleTab&) const override ; //Local time step calculation
-  void calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const override;
   void creer_champ(const Motcle& ) override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
   void mettre_a_jour(double ) override;
@@ -42,23 +43,28 @@ public:
   Motcle get_localisation_pour_post(const Nom& option) const override;
   virtual const Champ_base& vitesse() const = 0;
   virtual Champ_base& vitesse() = 0;
-  inline DoubleTab& calculer(const DoubleTab& inco, DoubleTab& resu ) const override { return iter->calculer(inco, resu); }
-  inline const Iterateur_VDF& get_iter() const { return iter; }
-  inline Iterateur_VDF& get_iter() { return iter; }
+  inline DoubleTab& calculer(const DoubleTab& inco, DoubleTab& resu ) const override { return iter_->calculer(inco, resu); }
+  inline const OWN_PTR(Iterateur_VDF_base)& get_iter() const { return iter_; }
+  inline OWN_PTR(Iterateur_VDF_base)& get_iter() { return iter_; }
 
   inline int has_interface_blocs() const override { return 1; }
 
   void set_incompressible(const int flag) override
   {
+    if (flag == 0)
+      {
+        Cerr << "Compressible form of operator \"" << que_suis_je() << "\" :" << finl;
+        Cerr << "Discretization of \u2207(inco \u2297 v) - v \u2207.(inco)" << finl;
+      }
     incompressible_ = flag; // XXX remove later !
-    iter->set_incompressible(flag);
+    iter_->set_incompressible(flag);
   }
 
   void ajouter_blocs(matrices_t , DoubleTab& , const tabs_t& ) const override;
   void dimensionner_blocs_elem(matrices_t , const tabs_t& ) const;
   void dimensionner_blocs_face(matrices_t , const tabs_t& ) const;
 
-  void associer_champ_temp(const Champ_Inc&, bool) const override;
+  void associer_champ_temp(const Champ_Inc_base&, bool) const override;
   void contribuer_au_second_membre(DoubleTab& resu) const override
   {
     Cerr << "Op_Conv_VDF_base::" << __func__ << " should not be called !" << finl;
@@ -66,17 +72,17 @@ public:
   }
 
 protected:
-  Iterateur_VDF iter;
+  OWN_PTR(Iterateur_VDF_base) iter_;
   void associer_champ_convecte_elem();
   void associer_champ_convecte_face();
 
 private:
   /* si operateur de convection de Masse_Multiphase */
-  std::vector<Champ_Inc> cc_phases_; //flux massiques (kg/m2/s)
+  std::vector<OWN_PTR(Champ_Inc_base)> cc_phases_; //flux massiques (kg/m2/s)
   Motcles noms_cc_phases_; //leurs noms
-  std::vector<Champ_Inc> vd_phases_; //vitesses debitantes
+  std::vector<OWN_PTR(Champ_Inc_base)> vd_phases_; //vitesses debitantes
   Motcles noms_vd_phases_; //leurs noms
-  std::vector<Champ_Inc> x_phases_; //titres par phase
+  std::vector<OWN_PTR(Champ_Inc_base)> x_phases_; //titres par phase
   Motcles noms_x_phases_; //leurs noms
   mutable DoubleTab fluent_;
 };

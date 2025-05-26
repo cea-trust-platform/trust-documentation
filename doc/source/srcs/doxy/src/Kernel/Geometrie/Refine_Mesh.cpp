@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,7 +13,6 @@
 *
 *****************************************************************************/
 
-#include <Static_Int_Lists.h>
 #include <Array_tools.h>
 #include <Refine_Mesh.h>
 #include <Sous_Domaine.h>
@@ -37,7 +36,7 @@ Entree& Refine_Mesh::interpreter_(Entree& is)
   return is;
 }
 
-void Refine_Mesh::apply(void)
+void Refine_Mesh::apply()
 {
   Cerr << "Refining domain " << domaine().le_nom() << finl;
 
@@ -56,7 +55,7 @@ void Refine_Mesh::apply(void)
   Cerr << "Refinement... OK" << finl;
 }
 
-void Refine_Mesh::check_dimension(void) const
+void Refine_Mesh::check_dimension() const
 {
   if (!((Objet_U::dimension == 2) || (Objet_U::dimension == 3)))
     {
@@ -67,9 +66,9 @@ void Refine_Mesh::check_dimension(void) const
     }
 }
 
-void Refine_Mesh::check_cell_type(void) const
+void Refine_Mesh::check_cell_type() const
 {
-  const Nom& cell_type = domaine().type_elem().valeur().que_suis_je();
+  const Nom& cell_type = domaine().type_elem()->que_suis_je();
 
   if (!((cell_type == Motcle("Triangle")) || (cell_type == Motcle("Tetraedre"))))
     {
@@ -80,12 +79,12 @@ void Refine_Mesh::check_cell_type(void) const
     }
 }
 
-void Refine_Mesh::apply_2D(void)
+void Refine_Mesh::apply_2D()
 {
   Domaine& domain = domaine();
   Scatter::uninit_sequential_domain(domain);
 
-  assert(domain.type_elem().valeur().que_suis_je() == Motcle("Triangle"));
+  assert(domain.type_elem()->que_suis_je() == Motcle("Triangle"));
 
   IntTab nodes_of_edges;
   IntTab edges_of_cells;
@@ -115,18 +114,18 @@ void Refine_Mesh::apply_2D(void)
   IntTabs new_cells_of_internal_frontier_faces;
   build_new_internal_frontier_faces_2D(new_nodes_of_internal_frontier_faces, new_cells_of_internal_frontier_faces, incidence_from_node_to_edges);
 
-  update_domain(Nom("Triangle"), Faces::segment_2D, new_nodes, new_cells, new_sub_domaines_descriptions, new_nodes_of_boundary_faces, new_cells_of_boundary_faces, new_nodes_of_connector_faces,
+  update_domain(Nom("Triangle"), Type_Face::segment_2D, new_nodes, new_cells, new_sub_domaines_descriptions, new_nodes_of_boundary_faces, new_cells_of_boundary_faces, new_nodes_of_connector_faces,
                 new_cells_of_connector_faces, new_nodes_of_internal_frontier_faces, new_cells_of_internal_frontier_faces);
 
   Scatter::init_sequential_domain(domain);
 }
 
-void Refine_Mesh::apply_3D(void)
+void Refine_Mesh::apply_3D()
 {
   Domaine& domain = domaine();
   Scatter::uninit_sequential_domain(domain);
 
-  assert(domain.type_elem().valeur().que_suis_je() == Motcle("Tetraedre"));
+  assert(domain.type_elem()->que_suis_je() == Motcle("Tetraedre"));
 
   IntTab nodes_of_edges;
   IntTab edges_of_cells;
@@ -156,7 +155,7 @@ void Refine_Mesh::apply_3D(void)
   IntTabs new_cells_of_internal_frontier_faces;
   build_new_internal_frontier_faces_3D(new_nodes_of_internal_frontier_faces, new_cells_of_internal_frontier_faces, incidence_from_node_to_edges);
 
-  update_domain(Nom("Tetraedre"), Faces::triangle_3D, new_nodes, new_cells, new_sub_domaines_descriptions, new_nodes_of_boundary_faces, new_cells_of_boundary_faces, new_nodes_of_connector_faces,
+  update_domain(Nom("Tetraedre"), Type_Face::triangle_3D, new_nodes, new_cells, new_sub_domaines_descriptions, new_nodes_of_boundary_faces, new_cells_of_boundary_faces, new_nodes_of_connector_faces,
                 new_cells_of_connector_faces, new_nodes_of_internal_frontier_faces, new_cells_of_internal_frontier_faces);
 
   Scatter::init_sequential_domain(domain);

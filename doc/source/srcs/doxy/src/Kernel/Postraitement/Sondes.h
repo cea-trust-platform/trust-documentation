@@ -19,7 +19,7 @@
 #include <Champ_Generique_base.h>
 #include <Champs_compris.h>
 #include <TRUST_List.h>
-#include <Champ.h>
+
 #include <Sonde.h>
 #include <Noms.h>
 
@@ -27,7 +27,7 @@
  *
  * @sa Sonde Postraitement
  */
-class Sondes : public LIST(DERIV(Sonde))
+class Sondes : public LIST(OWN_PTR(Sonde))
 {
   Declare_instanciable(Sondes);
 public:
@@ -38,20 +38,21 @@ public:
   void associer_post(const Postraitement&);
   void postraiter();
   void mettre_a_jour(double temps, double tinit);
-  REF(Champ_base) get_from_cache(REF(Champ_Generique_base)& mon_champ, const Nom& nom_champ_lu_);
+  OBS_PTR(Champ_base) get_from_cache(OBS_PTR(Champ_Generique_base)& mon_champ, const Nom& nom_champ_lu_);
   void clear_cache();
   void set_noms_champs_postraitables();
   const Motcles& get_noms_champs_postraitables() const { return noms_champs_postraitables_; }
   bool update_positions=false;
   void set_update_positions(bool update_positions);
   bool get_update_positions();
+  void resetTime(double time) { for (auto &itr : *this) itr->resetTime(time); };
 
 private:
   // Mecanisme de cache pour les sondes:
-  LIST(REF(Champ_base)) sourceList;
-  LIST(Champ) espaceStockageList;
+  LIST(OBS_PTR(Champ_base)) sourceList;
+  LIST(OWN_PTR(Champ_base)) espaceStockageList;
   Noms sourceNoms;
-  REF(Postraitement) mon_post;
+  OBS_PTR(Postraitement) mon_post;
   Motcles noms_champs_postraitables_;
 };
 

@@ -32,14 +32,14 @@ class Modele_turbulence_scal_Schmidt: public Modele_turbulence_scal_diffturb_bas
 
 public:
   virtual int comprend_champ(const Motcle&) const;
-  virtual int a_pour_Champ_Fonc(const Motcle&, REF(Champ_base)&) const;
+  virtual int a_pour_Champ_Fonc(const Motcle&, OBS_PTR(Champ_base)&) const;
   void mettre_a_jour(double) override;
   void set_param(Param&) override;
   inline double get_Scturb() const { return LeScturb_; }
 
 protected:
   double LeScturb_ = 0.7;
-  Champ_Fonc& calculer_diffusion_turbulente();
+  Champ_Fonc_base& calculer_diffusion_turbulente();
 };
 
 #endif /* Modele_turbulence_scal_Schmidt_included */

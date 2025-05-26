@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -32,6 +32,15 @@ public :
     return { { "temperature", { tmin_ - 273.15, tmax_ - 273.15 } }, { "pression", { pmin_, pmax_ } } };
   }
 
+  MRange unknown_range_h() const override
+  {
+    if (hmax_ < -100. )
+      return Fluide_reel_base::unknown_range_h();
+
+    return { { "enthalpie", { hmin_ , hmax_ } }, { "pression", { pmin_, pmax_ } } };
+  }
+
+  // lois en T
   void rho_(const SpanD T, const SpanD P, SpanD R, int ncomp = 1, int id = 0) const override
   {
     TPPI_->tppi_get_rho_pT(P, Tk_(T), R, ncomp, id);
@@ -102,10 +111,72 @@ public :
     TPPI_->tppi_get_all_pb_multiphase_pT(input,inter, bord, ncomp, id);
   }
 
+  // lois en h
+  void rho_h_(const SpanD h, const SpanD P, SpanD R, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_rho_ph(P, h, R, ncomp, id);
+  }
+
+  void dP_rho_h_(const SpanD h, const SpanD P, SpanD dP_R, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_rho_dp_ph(P, h, dP_R, ncomp, id);
+  }
+
+  void dh_rho_h_(const SpanD h, const SpanD P, SpanD dT_R, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_rho_dh_ph(P, h, dT_R, ncomp, id);
+  }
+
+  void T_(const SpanD h, const SpanD P, SpanD T, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_T_ph(P, h, T, ncomp, id);
+    Tc_(T); /* put back T in C */
+  }
+
+  void dP_T_(const SpanD h, const SpanD P, SpanD dP_T, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_T_dp_ph(P, h, dP_T, ncomp, id);
+  }
+
+  void dh_T_(const SpanD h, const SpanD P, SpanD dh_T, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_T_dh_ph(P, h, dh_T, ncomp, id);
+  }
+
+  void cp_h_(const SpanD h, const SpanD P, SpanD CP, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_cp_ph(P, h, CP, ncomp, id);
+  }
+
+  void beta_h_(const SpanD h, const SpanD P, SpanD B, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_beta_ph(P, h, B, ncomp, id);
+  }
+
+  void mu_h_(const SpanD h, const SpanD P, SpanD M, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_mu_ph(P, h, M, ncomp, id);
+  }
+
+  void lambda_h_(const SpanD h, const SpanD P, SpanD L, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_lambda_ph(P, h, L, ncomp, id);
+  }
+
+  void compute_CPMLB_pb_multiphase_h_(const MSpanD input, MLoiSpanD_h prop, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_CPMLB_pb_multiphase_ph(input, prop, ncomp, id);
+  }
+
+  void compute_all_pb_multiphase_h_(const MSpanD input, MLoiSpanD_h inter, MLoiSpanD_h bord, int ncomp = 1, int id = 0) const override
+  {
+    TPPI_->tppi_get_all_pb_multiphase_ph(input, inter, bord, ncomp, id);
+  }
+
 protected:
   std::shared_ptr<TPPI> TPPI_ = nullptr;
   Motcle model_name_, fluid_name_;
-  double tmin_ = -123., tmax_ = -123., pmin_ = -123., pmax_ = -123.;
+  double tmin_ = -123., tmax_ = -123., pmin_ = -123., pmax_ = -123., hmin_ = -123., hmax_ = -123.;
 };
 
 #endif /* Fluide_generique_TPPI_base_included */

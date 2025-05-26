@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,26 +18,22 @@
 
 #include <Probleme_base_interface_proto.h>
 #include <Champs_compris_interface.h>
-#include <Sortie_Fichier_base.h>
-#include <Probleme_Couple.h>
-#include <Postraitements.h>
-#include <Sortie_Brute.h>
-#include <TRUST_Deriv.h>
-#include <Domaine_dis.h>
-#include <TRUST_List.h>
-#include <Probleme_U.h>
-#include <TRUST_Ref.h>
-#include <Milieu.h>
 #include <Champ_front_Parametrique.h>
 #include <Champ_Parametrique.h>
+#include <Correlation_base.h>
+#include <Probleme_Couple.h>
+#include <Postraitements.h>
+#include <Equation_base.h>
+#include <Save_Restart.h>
+#include <Milieu_base.h>
+#include <TRUST_List.h>
+#include <Probleme_U.h>
 
 class Loi_Fermeture_base;
 class Schema_Temps_base;
 class EcrFicPartageBin;
-class Equation_base;
 class Postraitement;
 class Field_base;
-class Champ_Fonc;
 
 /*! @brief classe Probleme_base C'est un Probleme_U qui n'est pas un couplage.
  *
@@ -59,7 +55,7 @@ class Probleme_base : public Champs_compris_interface, public Probleme_U, public
 {
   Declare_base_sans_destructeur(Probleme_base);
 public:
-  ~Probleme_base();
+  ~Probleme_base() { }
   virtual void associer();
   virtual Entree& lire_equations(Entree& is, Motcle& dernier_mot);
   virtual void completer();
@@ -76,6 +72,11 @@ public:
   Equation_base& equation(const Nom&);
   int sauvegarder(Sortie& ) const override;
   int reprendre(Entree& ) override;
+  inline int is_sauvegarde_simple() const { return save_restart_.is_sauvegarde_simple(); }
+  inline const Nom& restart_filename() const { return save_restart_.restart_filename(); }
+  inline const Nom& checkpoint_filename() const { return save_restart_.checkpoint_filename(); }
+  inline const Nom& checkpoint_format() const { return save_restart_.checkpoint_format(); }
+  inline const Nom& yaml_filename() const { return save_restart_.yaml_filename(); }
 
   virtual const Equation_base& get_equation_by_name(const Nom&) const;
   virtual Equation_base& getset_equation_by_name(const Nom&);
@@ -95,57 +96,55 @@ public:
   virtual void discretiser_equations();
   virtual void finir();
 
-  inline std::vector<Milieu>& milieu_vect() { return le_milieu_; }
-  inline const std::vector<Milieu>& milieu_vect() const { return le_milieu_; }
+  inline std::vector<OWN_PTR(Milieu_base)>& milieu_vect() { return le_milieu_; }
+  inline const std::vector<OWN_PTR(Milieu_base)>& milieu_vect() const { return le_milieu_; }
 
   const Schema_Temps_base& schema_temps() const;
   Schema_Temps_base& schema_temps();
   const Domaine& domaine() const;
   Domaine& domaine();
-  const Domaine_dis& domaine_dis() const;
-  Domaine_dis& domaine_dis();
-  int is_dilatable() const;
+  const Domaine_dis_base& domaine_dis() const;
+  Domaine_dis_base& domaine_dis();
+  bool is_dilatable() const;
 
-  virtual int allocate_file_size(long int& size) const;
-  virtual int file_size_xyz() const;
-
-  inline void nommer(const Nom&) override;
-  inline const Nom& le_nom() const override;
   inline const Discretisation_base& discretisation() const;
   inline Postraitements& postraitements() { return les_postraitements_; }
   inline const Postraitements& postraitements() const { return les_postraitements_; }
   void init_postraitements();
   virtual int expression_predefini(const Motcle& motlu, Nom& expression);
-  inline const char* reprise_format_temps() const;
-  inline bool& reprise_effectuee() { return restart_done_; }
-  inline bool reprise_effectuee() const { return restart_done_; }
+
+  inline const char* reprise_format_temps() const { return save_restart_.reprise_format_temps(); }
+  inline bool& reprise_effectuee() { return save_restart_.reprise_effectuee(); }
+  inline bool reprise_effectuee() const { return save_restart_.reprise_effectuee(); }
 
   //Methodes de l interface des champs postraitables
   /////////////////////////////////////////////////////
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
-  virtual bool has_champ(const Motcle& nom) const;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   /////////////////////////////////////////////////////
 
   //Pour acceder a un champ de la liste portee pas le postraitement.
   virtual const Champ_Generique_base& get_champ_post(const Motcle& nom) const;
+  virtual bool has_champ_post(const Motcle& nom) const;
   virtual int comprend_champ_post(const Motcle& nom) const;
 
   // Fonctions de recherche de IntTab pour le postraitement
-  virtual int a_pour_IntVect(const Motcle&, REF(IntVect)& ) const;
+  virtual int a_pour_IntVect(const Motcle&, OBS_PTR(IntVect)& ) const;
   virtual void lire_postraitement_interfaces(Entree& is);
   virtual void postraiter_interfaces(const Nom& nom_fich, Sortie& s, const Nom& format, double temps);
 
   virtual void addInputField(Field_base& f) { addInputField_impl(*this, f); }
-  void sauver_xyz(int) const;
+
   int is_coupled() const { return (int)pbc_.non_nul(); }
 
   int postraiter(int force = 1) override;
   int limpr() const override;
   int lsauv() const override;
   void sauver() const override;
-  virtual void allocation() const;
+  virtual void allocation() const final;
 
   //////////////////////////////////////////////////
   //                                              //
@@ -182,62 +181,53 @@ public:
   bool updateGivenFields() override { return updateGivenFields_impl(*this); }
   double futureTime() const override { return futureTime_impl(*this); }
 
-  REF(Field_base) findInputField(const Nom& name) const override { return findInputField_impl(*this, name); }
-  REF(Champ_Generique_base) findOutputField(const Nom& name) const override { return findOutputField_impl(*this, name); }
+  OBS_PTR(Field_base) findInputField(const Nom& name) const override { return findInputField_impl(*this, name); }
+  OBS_PTR(Champ_Generique_base) findOutputField(const Nom& name) const override { return findOutputField_impl(*this, name); }
 
   virtual bool is_pb_med() { return false ; }
-  virtual bool is_pb_FT() { return false ; }
   virtual bool is_pb_rayo() { return false ; }
 
   void associer_pb_couple(const Probleme_Couple& pbc) { pbc_ = pbc; }
   const Probleme_Couple& get_pb_couple() const { return pbc_; }
   Probleme_Couple& get_pb_couple() { return pbc_; }
+  LIST(OBS_PTR(SFichier))& get_set_out_files() const { return out_files_ ; }
+
+  const Correlation_base& get_correlation(std::string nom_correlation) const
+  {
+    Motcle mot(nom_correlation);
+    return correlations_.at(mot.getString());
+  }
+
+  int has_correlation(std::string nom_correlation) const
+  {
+    Motcle mot(nom_correlation);
+    return (int)correlations_.count(mot.getString());
+  }
 
 protected :
-  std::vector<Milieu> le_milieu_;
-  REF(Domaine_dis) le_domaine_dis_;   // Discretized domain. Just a REF since Domaine_dis_cache is the real owner.
-  Postraitements les_postraitements_;
-  REF(Domaine) le_domaine_;
-  REF(Schema_Temps_base) le_schema_en_temps_;
-  REF(Discretisation_base) la_discretisation_;
-  REF(Probleme_Couple) pbc_;
+
   void warn_old_syntax();
   virtual void typer_lire_milieu(Entree& is) ;
-  void lire_sauvegarde_reprise(Entree& is, Motcle& motlu) ;
+  virtual void lire_solved_equations(Entree& is) { /* Do nothing */ }
+  Entree& read_optional_equations(Entree& is, Motcle& mot);
+  virtual Entree& lire_correlations(Entree& is);
 
-  mutable DERIV(Sortie_Fichier_base) ficsauv_;
-  mutable Sortie_Brute* osauv_hdf_ = nullptr;
-
+  Save_Restart save_restart_;
   bool milieu_via_associer_ = false;
+  std::vector<OWN_PTR(Milieu_base)> le_milieu_;
+  OBS_PTR(Domaine_dis_base) le_domaine_dis_;   // Discretized domain. Just a REF since Domaine_dis_cache is the real owner.
+  Postraitements les_postraitements_;
+  OBS_PTR(Domaine) le_domaine_;
+  OBS_PTR(Schema_Temps_base) le_schema_en_temps_;
+  OBS_PTR(Discretisation_base) la_discretisation_;
+  OBS_PTR(Probleme_Couple) pbc_;
+  mutable LIST(OBS_PTR(SFichier)) out_files_; // Liste des SFichier a fermer (.out)
+  std::map<std::string, OWN_PTR(Correlation_base)> correlations_;
 
-  Nom restart_file_name_;  // Name of the file for save/restart
-  Nom restart_format_;     // Format for the save restart
-  bool restart_done_ = false;         // Has a restart been done?
-  bool simple_restart_ = false;       // Restart file name
-  int restart_version_ = 155;         // Version number, for example 155 (1.5.5) -> used to manage old restart files
-  bool restart_in_progress_ = false;  //true variable only during the time step during which a resumption of computation is carried out
-
-  static long int File_size_;        // Espace disque pris par les sauvegarde XYZ
-  static int Bad_allocate_;        // 1 si allocation reussi, 0 sinon
-  static int Nb_pb_total_;        // Nombre total de probleme
-  static int Num_pb_;                // numero du probleme
-  mutable Nom error_;                // Erreur d'allocation
-
-  LIST(REF(Loi_Fermeture_base)) liste_loi_fermeture_; // liste des fermetures associees au probleme
-  LIST(REF(Champ_Parametrique)) Champs_Parametriques_; //Champs parametriques a mettre a jour lorsque le calcul courant est fini
+  LIST(OBS_PTR(Loi_Fermeture_base)) liste_loi_fermeture_; // liste des fermetures associees au probleme
+  LIST(OBS_PTR(Champ_Parametrique)) Champs_Parametriques_; //Champs parametriques a mettre a jour lorsque le calcul courant est fini
+  LIST(OWN_PTR(Equation_base)) eq_opt_; //autres equations (turbulence, aire interfaciale...)
 };
-
-/*! @brief surcharge Objet_U::nommer(const Nom&) Donne un nom au probleme
- *
- * @param (Nom& name) le nom a donner au probleme
- */
-inline void Probleme_base::nommer(const Nom& name) { nom=name; }
-
-/*! @brief surcharge Objet_U::le_nom() Renvoie le nom du probleme
- *
- * @return (Nom&) le nom du probleme
- */
-inline const Nom& Probleme_base::le_nom() const { return nom; }
 
 /*! @brief Renvoie la discretisation associee au probleme
  *
@@ -252,22 +242,6 @@ inline const Discretisation_base& Probleme_base::discretisation() const
       exit();
     }
   return la_discretisation_.valeur();
-}
-
-// Method which may be called from anywhere:
-inline const char* time_format_from(const int reprise_version)
-{
-  // Depuis la 155 le format de la balise temps est en scientifique
-  // pour eviter des erreurs (incoherence entre temps)
-  if (reprise_version<155)
-    return "%f";
-  else
-    return "%e";
-}
-
-inline const char* Probleme_base::reprise_format_temps() const
-{
-  return time_format_from(restart_version_);
 }
 
 #endif /* Probleme_base_included */

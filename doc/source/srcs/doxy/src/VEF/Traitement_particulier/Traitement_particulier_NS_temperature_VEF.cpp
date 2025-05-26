@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,12 +53,12 @@ void Traitement_particulier_NS_temperature_VEF::calcul_temperature()
 {
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdisbase);
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis().valeur() );
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis() );
   //  const DoubleTab& xv = domaine_VEF.xv();    // centre de gravite des faces
   int nb_front=domaine_VEF.nb_front_Cl();
 
 
-  const Probleme_base& pb = mon_equation.valeur().probleme();
+  const Probleme_base& pb = mon_equation->probleme();
   int flag=0;
 
   for(int i=0; i<pb.nombre_d_equations(); i++)
@@ -83,10 +83,10 @@ void Traitement_particulier_NS_temperature_VEF::calcul_temperature()
       exit();
     }
 
-  const DoubleTab& tab_temperature = mon_equation_NRJ.valeur().inconnue().valeurs();
+  const DoubleTab& tab_temperature = mon_equation_NRJ->inconnue().valeurs();
 
   const DoubleTab& vitesse = pb.get_champ(Motcle("vitesse")).valeurs();
-  const Champ_base& rho_ = pb.milieu().masse_volumique().valeur();
+  const Champ_base& rho_ = pb.milieu().masse_volumique();
   const DoubleTab& rho = rho_.valeurs();
   int taille_rho=rho.dimension(0);
   const double temps = mon_equation->inconnue().temps();
@@ -95,7 +95,7 @@ void Traitement_particulier_NS_temperature_VEF::calcul_temperature()
   for (int n_bord=0; n_bord<nb_front; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int num2 = num1 + le_bord.nb_faces();
 

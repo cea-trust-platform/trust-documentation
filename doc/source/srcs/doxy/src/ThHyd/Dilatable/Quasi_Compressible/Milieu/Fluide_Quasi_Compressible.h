@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,9 +17,6 @@
 #define Fluide_Quasi_Compressible_included
 
 #include <Fluide_Dilatable_base.h>
-#include <EDO_Pression_th.h>
-
-class Domaine_Cl_dis;
 
 /*! @brief classe Fluide_Quasi_Compressible Cette classe represente un d'un fluide quasi compressible
  *
@@ -30,41 +27,32 @@ class Domaine_Cl_dis;
 
 class Fluide_Quasi_Compressible : public Fluide_Dilatable_base
 {
-  Declare_instanciable_sans_constructeur(Fluide_Quasi_Compressible);
+  Declare_instanciable(Fluide_Quasi_Compressible);
 public :
-  Fluide_Quasi_Compressible();
   void set_param(Param& param) override;
   void completer(const Probleme_base&) override;
-  void preparer_pas_temps() override;
-  void prepare_pressure_edo() override;
-  void write_mean_edo(double) override;
-  void checkTraitementPth(const Domaine_Cl_dis& domaine_cl) override;
   void discretiser(const Probleme_base& pb, const  Discretisation_base& dis) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
 
   // Methodes inlines
-  inline void Resoudre_EDO_PT();
+  inline void Resoudre_EDO_PT() override;
   inline void secmembre_divU_Z(DoubleTab& ) const override;
   inline int get_traitement_rho_gravite() const { return traitement_rho_gravite_; }
-  inline double masse_totale(double P,const DoubleTab& T) { return EDO_Pth_->masse_totale( P, T); }
 
 protected :
-  int traitement_rho_gravite_; // 0 : gravite = rho*g, 1 : gravite =(rho-rho_moy)*g
-  double temps_debut_prise_en_compte_drho_dt_,omega_drho_dt_;
-  EDO_Pression_th EDO_Pth_;
-  Nom output_file_;
+  int traitement_rho_gravite_ = 0; // 0 : gravite = rho*g, 1 : gravite =(rho-rho_moy)*g
+  double temps_debut_prise_en_compte_drho_dt_ = -DMAXFLOAT,omega_drho_dt_ = 1.;
   mutable DoubleTab tab_W_old_;
 
 private :
-  void completer_edo(const Probleme_base& );
   void remplir_champ_pression_tot(int n, const DoubleTab& PHydro, DoubleTab& PTot) override;
 };
 
 inline void Fluide_Quasi_Compressible::Resoudre_EDO_PT()
 {
-  Pth_n = Pth_;
+  Pth_n_ = Pth_;
 
-  if (traitement_PTh != 2)
+  if (traitement_PTh_ != 2)
     {
       Pth_ = EDO_Pth_->resoudre(Pth_);
 
@@ -81,7 +69,7 @@ inline void Fluide_Quasi_Compressible::Resoudre_EDO_PT()
 //Calcule W=-dZ/dt, 2nd membre de l'equation div(rhoU) = W
 inline void Fluide_Quasi_Compressible::secmembre_divU_Z(DoubleTab& tab_W) const
 {
-  double temps=vitesse_->temps();
+  double temps=ch_vitesse_->temps();
   if (temps>temps_debut_prise_en_compte_drho_dt_)
     {
       eos_tools_->secmembre_divU_Z(tab_W);

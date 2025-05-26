@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,27 +21,22 @@
 
 class Convection_Diffusion_std;
 class Domaine_Cl_VEF;
-class Champ_Don;
 class Domaine_VEF;
 
 /*! @brief Terme Source de Boussinesq pour une dicretisation VEF
  *
  */
-
 class Terme_Boussinesq_VEF_Face : public Terme_Boussinesq_base
 {
-
   Declare_instanciable(Terme_Boussinesq_VEF_Face);
-
 public:
-
   DoubleTab& ajouter(DoubleTab& ) const override ;
 
 protected:
 
-  REF(Domaine_VEF) le_dom_VEF;
-  REF(Domaine_Cl_VEF) le_dom_Cl_VEF;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis&) override;
+  OBS_PTR(Domaine_VEF) le_dom_VEF;
+  OBS_PTR(Domaine_Cl_VEF) le_dom_Cl_VEF;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base&) override;
 };
 
 #endif

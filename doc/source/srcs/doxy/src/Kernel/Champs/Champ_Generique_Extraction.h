@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Champ_Generique_Extraction_included
 
 #include <Champ_Gen_de_Champs_Gen.h>
-#include <Domaine_dis.h>
+
 
 /*! @brief Un champ generique qui effctue l extraction d un champ sur une frontiere
  *
@@ -43,8 +43,8 @@ public:
   Champ_Generique_Extraction();
   void set_param(Param& param) override;
   Entity  get_localisation(const int index = -1) const override;
-  const Champ_base&  get_champ(Champ& espace_stockage) const override;
-  const Champ_base&  get_champ_without_evaluation(Champ& espace_stockage) const override;
+  const Champ_base&  get_champ(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base&  get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const override;
   const Noms        get_property(const Motcle& query) const override;
   void nommer_source() override;
   void completer(const Postraitement_base& post) override;
@@ -58,8 +58,8 @@ protected :
   Nom dom_extrac_;              // Nom du domaine d extraction
   Nom nom_fr_;                  // Nom de la frontiere sur laquelle on fait l extraction
   Nom methode_;                 // Type de methode pour extraire ("trace" ou "champ_frontiere")
-  REF(Domaine) domaine_;        // Reference sur le domaine d extraction
-  REF(Domaine_dis) le_dom_dis;  // Le domaine discretise - real owner is Domaine_dis_cache
+  OBS_PTR(Domaine) domaine_;        // Reference sur le domaine d extraction
+  OBS_PTR(Domaine_dis_base) le_dom_dis;  // Le domaine discretise - real owner is Domaine_dis_cache
 };
 
 #endif

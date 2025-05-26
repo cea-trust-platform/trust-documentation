@@ -18,6 +18,7 @@
 #include <Schema_Temps_base.h>
 #include <Equation_base.h>
 #include <Probleme_base.h>
+#include <Champ_Don_base.h>
 #include <Domaine_VF.h>
 #include <Param.h>
 
@@ -77,10 +78,10 @@ void Terme_Puissance_Thermique_Echange_Impose_Elem_base::mettre_a_jour(double te
 {
   const Domaine_VF& domaine = le_dom.valeur();
   const DoubleVect& volumes = domaine.volumes();
-  const DoubleTab& himp = himp_.valeur().valeurs();
-  const DoubleTab& Text = Text_.valeur().valeurs();
+  const DoubleTab& himp = himp_->valeurs();
+  const DoubleTab& Text = Text_->valeurs();
   const DoubleTab& T = equation().inconnue().valeurs();
-  int nb_elem = le_dom.valeur().nb_elem(), c_h = himp.dimension(0) == 1, c_T = Text.dimension(0) == 1, n, N = T.line_size();
+  int nb_elem = le_dom->nb_elem(), c_h = himp.dimension(0) == 1, c_T = Text.dimension(0) == 1, n, N = T.line_size();
 
   bilan().resize(N + 1), bilan() = 0;
 
@@ -92,8 +93,8 @@ void Terme_Puissance_Thermique_Echange_Impose_Elem_base::mettre_a_jour(double te
   //pour le fichier de suivi : seulement sur le maitre, car Source_base::imprimer() fait une somme sur les procs
   if (!Process::me()) bilan()(N) = DT_regul_;
 
-  himp_.mettre_a_jour(temps);
-  Text_.mettre_a_jour(temps);
+  himp_->mettre_a_jour(temps);
+  Text_->mettre_a_jour(temps);
 }
 
 void Terme_Puissance_Thermique_Echange_Impose_Elem_base::pid_process()
@@ -110,20 +111,20 @@ void Terme_Puissance_Thermique_Echange_Impose_Elem_base::pid_process()
   p_error = error;
 }
 
-void Terme_Puissance_Thermique_Echange_Impose_Elem_base::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Puissance_Thermique_Echange_Impose_Elem_base::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom = ref_cast(Domaine_VF, domaine_dis.valeur());
-  le_dom_Cl = ref_cast(Domaine_Cl_dis_base, domaine_Cl_dis.valeur());
+  le_dom = ref_cast(Domaine_VF, domaine_dis);
+  le_dom_Cl = ref_cast(Domaine_Cl_dis_base, domaine_Cl_dis);
 }
 
 void Terme_Puissance_Thermique_Echange_Impose_Elem_base::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Domaine_VF& domaine = le_dom.valeur();
   const DoubleVect& volumes = domaine.volumes();
-  const DoubleTab& himp = himp_.valeur().valeurs();
-  const DoubleTab& Text = Text_.valeur().valeurs();
+  const DoubleTab& himp = himp_->valeurs();
+  const DoubleTab& Text = Text_->valeurs();
   const DoubleTab& T = equation().inconnue().valeurs();
-  int nb_elem = le_dom.valeur().nb_elem(), c_h = himp.dimension(0) == 1, c_T = Text.dimension(0) == 1, n, N = T.line_size();
+  int nb_elem = le_dom->nb_elem(), c_h = himp.dimension(0) == 1, c_T = Text.dimension(0) == 1, n, N = T.line_size();
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
 

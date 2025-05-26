@@ -42,11 +42,11 @@ void Modele_turbulence_hyd_LES_Wale_VDF::set_param(Param& param)
   param.ajouter_condition("value_of_cw_ge_0", "sous_maille_Wale_VDF model constant must be positive.");
 }
 
-Champ_Fonc& Modele_turbulence_hyd_LES_Wale_VDF::calculer_viscosite_turbulente()
+Champ_Fonc_base& Modele_turbulence_hyd_LES_Wale_VDF::calculer_viscosite_turbulente()
 {
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());
   const double temps = mon_equation_->inconnue().temps();
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
+  DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
 
   if (est_egal(cw_, 0., 1.e-15))
     visco_turb = 0.;
@@ -74,14 +74,14 @@ Champ_Fonc& Modele_turbulence_hyd_LES_Wale_VDF::calculer_viscosite_turbulente()
         }
     }
 
-  la_viscosite_turbulente_.changer_temps(temps);
+  la_viscosite_turbulente_->changer_temps(temps);
 
   return la_viscosite_turbulente_;
 }
 
 void Modele_turbulence_hyd_LES_Wale_VDF::calculer_OP1_OP2()
 {
-  Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation_->inconnue().valeur());
+  Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation_->inconnue());
   const DoubleTab& vitesse = mon_equation_->inconnue().valeurs();
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());
   const Domaine_Cl_VDF& domaine_Cl_VDF = ref_cast(Domaine_Cl_VDF, le_dom_Cl_.valeur());

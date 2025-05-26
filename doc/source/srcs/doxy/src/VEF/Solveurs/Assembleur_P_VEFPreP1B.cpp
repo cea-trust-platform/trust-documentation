@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,6 +30,7 @@
 #include <SolveurPP1B.h>
 #include <Check_espace_virtuel.h>
 #include <Solv_Petsc.h>
+#include <Solv_AMG.h>
 #include <Matrice_Petsc.h>
 
 Implemente_instanciable(Assembleur_P_VEFPreP1B,"Assembleur_P_VEFPreP1B",Assembleur_P_VEF);
@@ -90,8 +91,8 @@ void Assembleur_P_VEFPreP1B::completer(const Equation_base& eqn)
   if (domaine_Vef().get_P1Bulle())
     {
       // Pour changer de base et retrouver le P1Bulle
-      alpha=1./Objet_U::dimension;
-      beta=1./(Objet_U::dimension*(Objet_U::dimension+1));
+      alpha_=1./Objet_U::dimension;
+      beta_=1./(Objet_U::dimension*(Objet_U::dimension+1));
     }
   la_matrice_de_travail_.typer("Matrice_Bloc_Sym");
 }
@@ -220,6 +221,8 @@ int Assembleur_P_VEFPreP1B::assembler_mat(Matrice& la_matrice,const DoubleVect& 
   bool read_matrix = false;
   if (sub_type(Solv_Petsc, solveur_pression.valeur()))
     read_matrix = ref_cast(Solv_Petsc, solveur_pression.valeur()).read_matrix();
+  else if (sub_type(Solv_AMG, solveur_pression.valeur()))
+    read_matrix = ref_cast(Solv_AMG, solveur_pression.valeur()).read_matrix();
   if (read_matrix) // Lecture de la matrice dans un fichier
     {
       la_matrice.typer("Matrice_Petsc");
@@ -323,7 +326,7 @@ int Assembleur_P_VEFPreP1B::assembler_mat(Matrice& la_matrice,const DoubleVect& 
           updateP0Pa(domaine_vef, domaine_Cl_VEF, la_matrice_bloc_sym_de_travail.get_bloc(P0, Pa),
                      inverse_quantitee_entrelacee);
       }
-      int ordre_matrice = mp_sum(la_matrice_bloc_sym_de_travail.nb_lignes());
+      trustIdType ordre_matrice = mp_sum(la_matrice_bloc_sym_de_travail.nb_lignes());
       Cerr << "Order of the matrix = " << ordre_matrice << finl;
 
       // Methode verifier
@@ -342,7 +345,7 @@ int Assembleur_P_VEFPreP1B::assembler_mat(Matrice& la_matrice,const DoubleVect& 
       modifier_matrice(la_matrice_de_travail_);
 
       // Conversion eventuelle en Matrice_Morse_Sym
-      if (ref_cast(Navier_Stokes_std, mon_equation.valeur()).solveur_pression().supporte_matrice_morse_sym() &&
+      if (ref_cast(Navier_Stokes_std, mon_equation.valeur()).solveur_pression()->supporte_matrice_morse_sym() &&
           domaine_vef.get_alphaE() != nombre_supports) // On n'est pas en P0
         {
           //////////////////////////////////////////////////////////
@@ -380,7 +383,7 @@ int Assembleur_P_VEFPreP1B::assembler_mat(Matrice& la_matrice,const DoubleVect& 
     }
 
   // Si pas deja fait, on prends un solveur (SolveurPP1B) qui fera les changements de base pour la solution et le second membre
-  if (changement_base() && solveur_pression.valeur().que_suis_je() != "SolveurPP1B")
+  if (changement_base() && solveur_pression->que_suis_je() != "SolveurPP1B")
     {
       SolveurSys solveur_pression_lu = solveur_pression;
       solveur_pression.typer("SolveurPP1B");
@@ -411,6 +414,7 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
       int npa=le_dom.numero_premiere_arete();
       // b n'a pas forcement son espace virtuel a jour
       int nb_aretes=le_dom.domaine().nb_aretes();
+      ToDo_Kokkos("critical");
       for(int i=0; i<nb_aretes; i++)
         if(!ok_arete[i] && b(npa+i)!=0.) // Les aretes superflues ont une valeur nulle
           {
@@ -431,23 +435,25 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
       const Domaine& dom=le_dom.domaine();
       int nps=le_dom.numero_premier_sommet();
       int ns=le_dom.domaine().nb_som();
-      for(int i=0; i<ns; i++)
-        {
-          int k=dom.get_renum_som_perio(i);
-          if((k!=i)&& b(nps+i)!=0.)
-            {
-              Cerr << "Pb div Som, la pression sur le sommet " << i << " (qui est periodique) n'est pas nulle." << finl;
-              Cerr << "En terme clair, le second membre n'est pas nul sur un sommet periodique." << finl;
-              if (b(nps+i)!=b(nps+k))
-                {
-                  Cerr << "En outre, le second membre n'a pas la meme valeur sur les 2 sommets periodiques." << finl;
-                  Cerr << "b(nps+i)=" << b(nps+i) << " <> b(nps+k)=" << b(nps+k) << finl;
-                }
-              Cerr << "Il y'a probabilite que le modele utilise soit mal implemente pour" << finl;
-              Cerr << "une condition de periodicite. Contacter le support TRUST." << finl;
-              Process::exit();
-            }
-        }
+      CIntArrView renum_som_perio = dom.get_renum_som_perio().view_ro();
+      CDoubleArrView b_v = static_cast<const DoubleVect&>(b).view_ro();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), ns, KOKKOS_LAMBDA(
+                             const int i)
+      {
+        int k=renum_som_perio(i);
+        if((k!=i)&& b_v(nps+i)!=0.)
+          {
+            printf("Pb div Som, la pression sur le sommet %ld (qui est periodique) n'est pas nulle.\n",(long)i);
+            printf("En terme clair, le second membre n'est pas nul sur un sommet periodique.\n");
+            if (b_v(nps+i)!=b_v(nps+k))
+              {
+                printf("En outre, le second membre n'a pas la meme valeur sur les 2 sommets periodiques.\n");
+                printf("b(nps+i)=%f <> b(nps+k)=%f\n",b_v(nps+i),b_v(nps+k));
+              }
+            Kokkos::abort("Il y'a probabilite que le modele utilise soit mal implemente pour\nune condition de periodicite. Contacter le support TRUST.");
+          }
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
 
   if (get_resoudre_en_u())
@@ -455,14 +461,16 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
       const Domaine_VEF& domaine_VEF =  domaine_Vef();
       const Domaine_Cl_VEF& domaine_Cl = le_dom_Cl_VEF.valeur();
 
-      const DoubleVect& porosite_face = domaine_Cl.equation().milieu().porosite_face();
+      CDoubleArrView porosite_face = domaine_Cl.equation().milieu().porosite_face().view_ro();
 
       const int nb_cond_lim = domaine_Cl.nb_cond_lim();
 
       /**************************/
       /* Recuperation de Gpoint */
       /**************************/
-      DoubleTrav Gpoint(equation().inconnue().valeurs());
+      DoubleTrav tab_Gpoint(equation().inconnue().valeurs());
+      DoubleTabView Gpoint = tab_Gpoint.view_wo();
+
       //Gpoint=0.; Un DoubleTrav initialise a 0
       int Gpoint_nul = 1; // Drapeau pour economiser potentiellement un echange_espace_virtuel
       for (int cond_lim=0; cond_lim<nb_cond_lim; cond_lim++)
@@ -470,7 +478,7 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
           const Cond_lim_base& cl_base = domaine_Cl.les_conditions_limites(cond_lim).valeur();
 
           const Front_VF& front_VF = ref_cast(Front_VF,cl_base.frontiere_dis());
-          const Champ_front_base& champ_front = cl_base.champ_front().valeur();
+          const Champ_front_base& champ_front = cl_base.champ_front();
 
           const int ndeb = front_VF.num_premiere_face();
           const int nfin = ndeb+front_VF.nb_faces();
@@ -479,17 +487,22 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
           if (sub_type(Entree_fluide_vitesse_imposee, cl_base) && champ_front.instationnaire())
             {
               Gpoint_nul = 0;
-              const DoubleTab& gpoint = champ_front.derivee_en_temps();
-              bool ch_unif = (gpoint.nb_dim()==1);
-
-              for (int num_face=ndeb; num_face<nfin; num_face++)
-                for (int dim=0; dim<Objet_U::dimension; dim++)
-                  Gpoint(num_face,dim)=porosite_face(num_face) * (ch_unif ? gpoint(dim) : gpoint(num_face-ndeb,dim));
+              CDoubleTabView gpoint = champ_front.derivee_en_temps().view_ro();
+              CDoubleArrView arr_gpoint = static_cast<const DoubleVect&>(champ_front.derivee_en_temps()).view_ro();
+              bool ch_unif = (champ_front.derivee_en_temps().nb_dim()==1);
+              int dimension_ = Objet_U::dimension;
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin),
+                                   KOKKOS_LAMBDA(const int num_face)
+              {
+                for (int dim=0; dim<dimension_; dim++)
+                  Gpoint(num_face,dim) = porosite_face(num_face) * (ch_unif ? arr_gpoint(dim) : gpoint(num_face-ndeb,dim));
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
         }
 
       //Pour le parallele
-      if (!Gpoint_nul) Gpoint.echange_espace_virtuel();
+      if (!Gpoint_nul) tab_Gpoint.echange_espace_virtuel();
 
       /******************************/
       /* Fin recuperation de Gpoint */
@@ -499,9 +512,9 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
       /* Modification du second membre */
       /*********************************/
 
-      if (domaine_VEF.get_alphaE()) modifier_secmem_elem(Gpoint,b);
-      if (domaine_VEF.get_alphaS()) modifier_secmem_som(Gpoint,b);
-      if (domaine_VEF.get_alphaA()) modifier_secmem_aretes(Gpoint,b);
+      if (domaine_VEF.get_alphaE()) modifier_secmem_elem(tab_Gpoint,b);
+      if (domaine_VEF.get_alphaS()) modifier_secmem_som(tab_Gpoint,b);
+      if (domaine_VEF.get_alphaA()) modifier_secmem_aretes(tab_Gpoint,b);
 
       /**********************************/
       /* Fin modification second membre */
@@ -513,45 +526,46 @@ int Assembleur_P_VEFPreP1B::modifier_secmem(DoubleTab& b)
   return 1;
 }
 
-int Assembleur_P_VEFPreP1B::modifier_secmem_elem(const DoubleTab& Gpoint, DoubleTab& b)
+int Assembleur_P_VEFPreP1B::modifier_secmem_elem(const DoubleTab& tab_Gpoint, DoubleTab& tab_b)
 {
   const Domaine_VEF& domaine_VEF =  domaine_Vef();
   const Domaine_Cl_VEF& domaine_Cl = le_dom_Cl_VEF.valeur();
-
   const int nb_cond_lim = domaine_Cl.nb_cond_lim();
-
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
-
   for (int cond_lim=0; cond_lim<nb_cond_lim; cond_lim++)
     {
       const Cond_lim_base& cl_base = domaine_Cl.les_conditions_limites(cond_lim).valeur();
 
       const Front_VF& front_VF = ref_cast(Front_VF,cl_base.frontiere_dis());
-      const Champ_front_base& champ_front = cl_base.champ_front().valeur();
-
+      const Champ_front_base& champ_front = cl_base.champ_front();
       /* Test sur la nature du champ au bord du domaine */
-      if (sub_type(Entree_fluide_vitesse_imposee, cl_base)  && champ_front.instationnaire() )
+      if (sub_type(Entree_fluide_vitesse_imposee, cl_base) && champ_front.instationnaire() )
         {
           // Construction de la liste des faces a traiter (reelles + virtuelles)
+          ToDo_Kokkos("Check we have a test case!");
           const int nb_faces_bord_tot = front_VF.nb_faces_tot();
+          int dimension_ = Objet_U::dimension;
+          CIntTabView face_voisins = domaine_VEF.face_voisins().view_ro();
+          CDoubleTabView face_normales = domaine_VEF.face_normales().view_ro();
+          CDoubleTabView Gpoint = tab_Gpoint.view_ro();
+          CIntArrView front_num_face = front_VF.num_face().view_ro();
+          DoubleArrView b = static_cast<DoubleVect&>(tab_b).view_rw();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_faces_bord_tot, KOKKOS_LAMBDA(const int ind_face)
+          {
+            const int num_face = front_num_face(ind_face);
+            const int elem = face_voisins(num_face,0);
+            assert(elem!=-1);
 
-          for (int ind_face=0; ind_face<nb_faces_bord_tot; ind_face++)
-            {
-              const int num_face =  front_VF.num_face(ind_face);
-              const int elem = face_voisins(num_face,0);
-              assert(elem!=-1);
-
-              for (int dim=0; dim<Objet_U::dimension; dim++)
-                b(elem)-=Gpoint(num_face,dim)*face_normales(num_face,dim);
-            }
+            for (int dim=0; dim<dimension_; dim++)
+              Kokkos::atomic_add(&b(elem), -Gpoint(num_face,dim)*face_normales(num_face,dim));
+          });
+          end_gpu_timer(__KERNEL_NAME__);
         }
     }
 
   return 1;
 }
 
-int Assembleur_P_VEFPreP1B::modifier_secmem_som(const DoubleTab& Gpoint, DoubleTab& b)
+int Assembleur_P_VEFPreP1B::modifier_secmem_som(const DoubleTab& tab_Gpoint, DoubleTab& tab_b)
 {
   const Domaine_VEF& domaine_VEF =  domaine_Vef();
   const Domaine_Cl_VEF& domaine_Cl = le_dom_Cl_VEF.valeur();
@@ -563,71 +577,77 @@ int Assembleur_P_VEFPreP1B::modifier_secmem_som(const DoubleTab& Gpoint, DoubleT
 
   const double coeff_dim = Objet_U::dimension*(Objet_U::dimension+1);
 
-  const IntTab& elem_faces = domaine_VEF.elem_faces();
-  const IntTab& face_sommets = domaine_VEF.face_sommets();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
-  const IntTab& elem_sommets = domaine.les_elems();
-
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
-  ArrOfDouble sigma(Objet_U::dimension);
-
   for (int cond_lim=0; cond_lim<nb_cond_lim; cond_lim++)
     {
       const Cond_lim_base& cl_base = domaine_Cl.les_conditions_limites(cond_lim).valeur();
 
       const Front_VF& front_VF = ref_cast(Front_VF,cl_base.frontiere_dis());
-      const Champ_front_base& champ_front = cl_base.champ_front().valeur();
+      const Champ_front_base& champ_front = cl_base.champ_front();
 
       /* Test sur la nature du champ au bord du domaine */
       if (sub_type(Entree_fluide_vitesse_imposee, cl_base)  && champ_front.instationnaire())
         {
           // Construction de la liste des faces a traiter (reelles + virtuelles)
           const int nb_faces_bord_tot = front_VF.nb_faces_tot();
+          int dimension_ = Objet_U::dimension;
+          CIntTabView elem_faces = domaine_VEF.elem_faces().view_ro();
+          CIntTabView face_sommets = domaine_VEF.face_sommets().view_ro();
+          CIntTabView face_voisins = domaine_VEF.face_voisins().view_ro();
+          CIntTabView elem_sommets = domaine.les_elems().view_ro();
+          CDoubleTabView face_normales = domaine_VEF.face_normales().view_ro();
+          CDoubleTabView Gpoint = tab_Gpoint.view_ro();
+          CIntArrView renum_som_perio = domaine.get_renum_som_perio().view_ro();
+          CIntArrView front_num_face = front_VF.num_face().view_ro();
+          DoubleArrView b = static_cast<DoubleVect&>(tab_b).view_rw();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_faces_bord_tot, KOKKOS_LAMBDA(const int ind_face)
+          {
+            double sigma[3];
+            const int num_face = front_num_face(ind_face);
+            const int elem = face_voisins(num_face,0);
+            assert(elem!=-1);
 
-          for (int ind_face=0; ind_face<nb_faces_bord_tot; ind_face++)
-            {
-              const int num_face =  front_VF.num_face(ind_face);
-              const int elem = face_voisins(num_face,0);
-              assert(elem!=-1);
+            //Calcul de la vitesse au centre de l'element
+            for (int i_sigma = 0; i_sigma < 3; ++i_sigma)
+              sigma[i_sigma] = 0;
 
-              //Calcul de la vitesse au centre de l'element
-              sigma=0.;
-              for (int face_loc=0; face_loc<nb_faces_elem; face_loc++)
-                {
-                  const int face = elem_faces(elem,face_loc);
+            for (int face_loc=0; face_loc<nb_faces_elem; face_loc++)
+              {
+                const int face = elem_faces(elem,face_loc);
 
-                  for(int comp=0; comp<dimension; comp++)
-                    sigma[comp]+=Gpoint(face,comp);
-                }
+                for(int comp=0; comp<dimension_; comp++)
+                  sigma[comp] += Gpoint(face, comp);
+              }
 
-              //Calcul de la divergence de la vitesse
-              for(int face_loc=0; face_loc<nb_faces_elem; face_loc++)
-                {
-                  const int som = nb_elem_tot+domaine.get_renum_som_perio(elem_sommets(elem,face_loc));
-                  const int face = elem_faces(elem,face_loc);
+            //Calcul de la divergence de la vitesse
+            for(int face_loc=0; face_loc<nb_faces_elem; face_loc++)
+              {
+                const int som = nb_elem_tot + renum_som_perio(elem_sommets(elem,face_loc));
+                const int face = elem_faces(elem,face_loc);
 
-                  double psc=0;
-                  double signe=1.;
-                  if(elem!=face_voisins(face,0)) signe=-1.;
+                double psc=0;
+                double signe=1.;
+                if(elem != face_voisins(face,0)) signe=-1.;
 
-                  for(int comp=0; comp<dimension; comp++)
-                    psc+=sigma[comp]*face_normales(face,comp);
+                for(int comp=0; comp<dimension_; comp++)
+                  psc += sigma[comp]*face_normales(face,comp);
 
-                  b(som)-=signe*psc/coeff_dim;
-                }
+                Kokkos::atomic_add(&b(som), -signe*psc/coeff_dim);
+              }
 
-              double flux = 0. ;
-              for (int comp=0; comp<dimension; comp++)
-                flux += Gpoint(num_face,comp) * face_normales(num_face,comp) ;
+            double flux = 0. ;
+            for (int comp=0; comp<dimension_; comp++)
+              flux += Gpoint(num_face,comp) * face_normales(num_face,comp) ;
 
-              flux*=1./dimension;
-              for(int som_loc=0; som_loc<nb_faces_elem-1; som_loc++)
-                {
-                  const int som=domaine.get_renum_som_perio(face_sommets(num_face,som_loc));
-                  b(nb_elem_tot+som)-=flux;
-                }
-              //Fin du calcul de la divergence de la vitesse
-            }
+            flux*=1./dimension_;
+            for(int som_loc=0; som_loc<nb_faces_elem-1; som_loc++)
+              {
+                const int som = nb_elem_tot + renum_som_perio(face_sommets(num_face,som_loc));
+                // DOUBT_HARI: Should it be atomic?
+                Kokkos::atomic_add(&b(som), -flux);
+              }
+            //Fin du calcul de la divergence de la vitesse
+          });
+          end_gpu_timer(__KERNEL_NAME__);
         }
     }
 
@@ -639,7 +659,7 @@ int Assembleur_P_VEFPreP1B::modifier_secmem_aretes(const DoubleTab& Gpoint, Doub
   return 1;
 }
 
-int Assembleur_P_VEFPreP1B::modifier_solution(DoubleTab& pression)
+int Assembleur_P_VEFPreP1B::modifier_solution(DoubleTab& tab_pression)
 {
 
   //  if (!has_P_ref) exit();
@@ -656,16 +676,16 @@ int Assembleur_P_VEFPreP1B::modifier_solution(DoubleTab& pression)
       int npa=le_dom.numero_premiere_arete();
       for(int i=0; i<nb_aretes; i++)
         {
-          if(!ok_arete(i) && pression(npa+i)!=0.)
+          if(!ok_arete(i) && tab_pression(npa+i)!=0.)
             {
-              Cerr << "Pb pression arete superflue, P(" << npa+i << ")=" << pression(npa+i) << finl;
-              pression(npa+i)=0;
+              Cerr << "Pb pression arete superflue, P(" << npa+i << ")=" << tab_pression(npa+i) << finl;
+              tab_pression(npa+i)=0;
               Process::exit();
             }
-          else if ( (renum_arete_perio[i]!=i) && pression(npa+i)!=0.)
+          else if ( (renum_arete_perio[i]!=i) && tab_pression(npa+i)!=0.)
             {
-              Cerr << "Pb pression arete superflue periodique, P(" << npa+i << ")=" << pression(npa+i) << finl;
-              pression(npa+i)=0;
+              Cerr << "Pb pression arete superflue periodique, P(" << npa+i << ")=" << tab_pression(npa+i) << finl;
+              tab_pression(npa+i)=0;
               Process::exit();
             }
         }
@@ -677,16 +697,21 @@ int Assembleur_P_VEFPreP1B::modifier_solution(DoubleTab& pression)
       const Domaine& dom=le_dom.domaine();
       int nps=le_dom.numero_premier_sommet();
       int ns=le_dom.domaine().nb_som();
-      for(int i=0; i<ns; i++)
-        {
-          int k=dom.get_renum_som_perio(i);
-          if (k!=i) pression(nps+i)=pression(nps+k);
-        }
+      CIntArrView renum_som_perio = dom.get_renum_som_perio().view_ro();
+      DoubleArrView pression = static_cast<DoubleVect&>(tab_pression).view_rw();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                           Kokkos::RangePolicy<>(0, ns), KOKKOS_LAMBDA(
+                             const int i)
+      {
+        int k=renum_som_perio(i);
+        if (k!=i) pression(nps+i)=pression(nps+k);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
   // pression.echange_espace_virtuel();
   // pour retirer le min de la pression si pas de Pref et si que PO sinon on filtre plus tard
   if (le_dom.get_alphaE() && (le_dom.get_alphaS()==0) && (le_dom.get_alphaA()==0) )
-    Assembleur_P_VEF::modifier_solution( pression);
+    Assembleur_P_VEF::modifier_solution(tab_pression);
   // Verification possible par variable d'environnement:
   char* theValue = getenv("TRUST_VERIFIE_DIRICHLET");
   if(theValue != nullptr) verifier_dirichlet();
@@ -708,11 +733,11 @@ void Assembleur_P_VEFPreP1B::verifier_dirichlet()
   faces=-1;
   const IntTab& face_sommets=domaine_Vef().face_sommets();
   Faces_de_Dirichlet=0;
-  const Conds_lim& les_cl = le_dom_Cl_VEF.valeur().les_conditions_limites();
+  const Conds_lim& les_cl = le_dom_Cl_VEF->les_conditions_limites();
   for(int i=0; i<les_cl.size(); i++)
     {
       const Cond_lim& la_cl = les_cl[i];
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int num2 = num1 + le_bord.nb_faces();
       if ((sub_type(Dirichlet, la_cl.valeur()))
@@ -823,7 +848,7 @@ int Assembleur_P_VEFPreP1B::modifier_matrice(Matrice& la_matrice)
 {
   int matrice_modifiee=0;
   has_P_ref=0;
-  const Conds_lim& les_cl = le_dom_Cl_VEF.valeur().les_conditions_limites();
+  const Conds_lim& les_cl = le_dom_Cl_VEF->les_conditions_limites();
   const Domaine_VEF& domaine_VEF = domaine_Vef();
   // Recherche s'il y'a une pression de reference, et si oui la matrice n'est pas modifiee
   for(int i=0; i<les_cl.size(); i++)
@@ -1124,16 +1149,16 @@ void Assembleur_P_VEFPreP1B::changer_base_matrice(Matrice& la_matrice)
 
   // Modification du bloc A11
   // As1s2~=As1s2-beta*[somme(Ak1s2)(s1 appartient a k1)+somme(Ak1s1)(s2 appartenant a k1)]+beta*beta*somme(Ak1k2)(s1 appartenant a k1 et s2 appartenant a k2)
-  operation11(A00,A01,A11,beta,domaine_Vef().domaine());
+  operation11(A00,A01,A11,beta_,domaine_Vef().domaine());
 
   // Modification du bloc A01
   // Ak1s~=alpha*Ak1s - alpha*beta*somme(Ak1k2)(s appartenant a k2)
-  A01*=alpha;
-  operation01(A00,A01,alpha,beta,domaine_Vef().domaine());
+  A01*=alpha_;
+  operation01(A00,A01,alpha_,beta_,domaine_Vef().domaine());
 
   // Modification du bloc A00
   // Ak1k2~ = alpha * alpha * Ak1k2
-  A00*=alpha*alpha;
+  A00*=alpha_*alpha_;
 }
 
 
@@ -1162,36 +1187,32 @@ void Assembleur_P_VEFPreP1B::changer_base_pression(DoubleVect& x)
 }
 
 template<vecteur _v_>
-void Assembleur_P_VEFPreP1B::changer_base(DoubleVect& v)
+void Assembleur_P_VEFPreP1B::changer_base(DoubleVect& tab_v)
 {
   assert(domaine_Vef().get_alphaE() && domaine_Vef().get_alphaS() && !domaine_Vef().get_alphaA()); // P0+P1 uniquement
   // xk~ = xk / alpha + beta / alpha * somme(xs)(s appartenant a k)
   // xs~ = xs
+  double alpha = alpha_;
+  double beta = beta_;
   int nb_elem_tot = domaine_Vef().nb_elem_tot();
   int nb_som_elem = domaine_Vef().domaine().les_elems().dimension(1);
-  const int* les_elems_addr = mapToDevice(domaine_Vef().domaine().les_elems());
-  const int* renum_som_perio_addr = mapToDevice(domaine_Vef().domaine().get_renum_som_perio());
-  double* v_addr = computeOnTheDevice(v);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
-  for (int k=0; k<nb_elem_tot; k++)
-    {
-      if (_v_==vecteur::pression) v_addr[k] /= alpha;
-      double somme=0;
-      for (int som=0; som<nb_som_elem; som++)
-        {
-          int s = nb_elem_tot + renum_som_perio_addr[les_elems_addr[k*nb_som_elem+som]];
-          if (_v_==vecteur::pression)         somme += v_addr[s];
-          if (_v_==vecteur::pression_inverse) somme += v_addr[s];
-          if (_v_==vecteur::second_membre)
-            {
-              #pragma omp atomic
-              v_addr[s] -= beta * v_addr[k];
-            }
-        }
-      if (_v_==vecteur::pression)         v_addr[k] += beta / alpha * somme;
-      if (_v_==vecteur::pression_inverse) v_addr[k] = alpha * v_addr[k] - beta * somme;
-      if (_v_==vecteur::second_membre)    v_addr[k] *= alpha;
-    }
-  end_gpu_timer(Objet_U::computeOnDevice, "Elem loop in Assembleur_P_VEFPreP1B::changer_base");
+  CIntTabView les_elems = domaine_Vef().domaine().les_elems().view_ro();
+  CIntArrView renum_som_perio = domaine_Vef().domaine().get_renum_som_perio().view_ro();
+  DoubleArrView v = tab_v.view_rw();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem_tot, KOKKOS_LAMBDA(const int k)
+  {
+    if (_v_==vecteur::pression) v(k) /= alpha;
+    double somme=0;
+    for (int som=0; som<nb_som_elem; som++)
+      {
+        int s = nb_elem_tot + renum_som_perio(les_elems(k, som));
+        if (_v_==vecteur::pression)         somme += v(s);
+        if (_v_==vecteur::pression_inverse) somme += v(s);
+        if (_v_==vecteur::second_membre) Kokkos::atomic_sub(&v(s), beta * v(k));
+      }
+    if (_v_==vecteur::pression)         v(k) += beta / alpha * somme;
+    if (_v_==vecteur::pression_inverse) v(k) = alpha * v(k) - beta * somme;
+    if (_v_==vecteur::second_membre)    v(k) *= alpha;
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 }

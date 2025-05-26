@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -63,7 +63,7 @@ void Op_Dift_EF_Q1::remplir_marqueur_elem_CL_paroi(ArrOfInt& marqueur,const Doma
 {
   const IntTab& face_voisins=domaine_EF.face_voisins();
   marqueur.resize_array(domaine_EF.nb_elem_tot());
-  if (!(le_modele_turbulence.valeur().utiliser_loi_paroi())) return;
+  if (!(le_modele_turbulence->utiliser_loi_paroi())) return;
 
   int nb_bords=domaine_EF.nb_front_Cl();
   for (int n_bord=0; n_bord<nb_bords; n_bord++)
@@ -73,7 +73,7 @@ void Op_Dift_EF_Q1::remplir_marqueur_elem_CL_paroi(ArrOfInt& marqueur,const Doma
       if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) ||
           sub_type(Dirichlet_paroi_defilante,la_cl.valeur()) )
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int nfin =le_bord.nb_faces_tot();
           for (int ind_face=0; ind_face<nfin; ind_face++)
             {
@@ -130,7 +130,7 @@ DoubleTab& Op_Dift_EF_Q1::ajouter(const DoubleTab& tab_inconnue, DoubleTab& resu
   int nb_som_elem=domaine_ef.domaine().nb_som_elem();
 
   int N = resu.line_size();
-  Nature_du_champ nat= equation().inconnue().valeur().nature_du_champ();
+  Nature_du_champ nat= equation().inconnue().nature_du_champ();
   if (nat==vectoriel)
     {
       if ((dimension==3)&&(nb_som_elem==8))
@@ -209,13 +209,13 @@ DoubleTab& Op_Dift_EF_Q1::ajouter_new(const DoubleTab& tab_inconnue, DoubleTab& 
   //  const Domaine_Cl_EF& domaine_Cl_EF = la_zcl_EF.valeur();
   //const Domaine_EF& domaine_EF = le_dom_EF.valeur();
 
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   const int N = resu.line_size();
   ArrOfInt marqueur_neuman;
   ArrOfInt marqueur_paroi=0;
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   if(N > 1)
     {
       remplir_marqueur_sommet_neumann( marqueur_neuman,domaine_ef,la_zcl_EF.valeur(),transpose_partout_ );
@@ -307,11 +307,11 @@ void Op_Dift_EF_Q1::ajouter_contribution(const DoubleTab& transporte, Matrice_Mo
   // avant le premier pas de temps
   remplir_nu(nu_);
 
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   const int N = transporte.line_size();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   const DoubleVect& volumes_thilde= domaine_ef.volumes_thilde();
   const DoubleVect& volumes= domaine_ef.volumes();
 
@@ -366,11 +366,11 @@ void Op_Dift_EF_Q1::ajouter_contribution_new(const DoubleTab& transporte, Matric
   // avant le premier pas de temps
   remplir_nu(nu_);
 
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   const int N = transporte.line_size();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   //const DoubleVect& volumes_thilde= domaine_ef.volumes_thilde();
   const DoubleVect& volumes= domaine_ef.volumes();
 
@@ -434,7 +434,7 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
   flux_bords_=0.;
   // const DoubleTab& tab_inconnue=equation().inconnue().valeurs();
   // on parcourt toutes les faces de bord et on calcule lambda*gradT
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   const IntTab& face_voisins=domaine_ef.face_voisins();
   const DoubleTab& bij=domaine_ef.Bij();
   int nb_som_elem=domaine_ef.domaine().nb_som_elem();
@@ -451,7 +451,7 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
 
   const int N = resu.line_size();
 
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   if (N > 1)
@@ -460,7 +460,7 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
         {
 
           const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int nb_faces_bord = le_bord.nb_faces_tot();
           int num1=0;
           int num2=nb_faces_bord;
@@ -468,7 +468,7 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
           if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) ||
               sub_type(Dirichlet_paroi_defilante,la_cl.valeur()) )
             {
-              if (le_modele_turbulence.valeur().utiliser_loi_paroi())
+              if (le_modele_turbulence->utiliser_loi_paroi())
                 {
                   DoubleVect n(dimension);
                   DoubleTrav Tgrad(dimension,dimension);
@@ -572,7 +572,7 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -629,8 +629,8 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
           if (contrib_interne)
             {
               const Echange_interne_global_parfait& la_cl_paroi = ref_cast(Echange_interne_global_parfait, la_cl.valeur());
-              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-              const IntTab& fmap = Text.face_map();
+              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+              const IntVect& fmap = Text.face_map();
               std::vector<bool> hit(nfin-ndeb);
               std::fill(hit.begin(), hit.end(), false);
               for (int face=ndeb; face<nfin; face++)
@@ -690,8 +690,8 @@ void Op_Dift_EF_Q1::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,
           for (int face=ndeb; face<nfin; face++)
             {
               double h=la_cl_paroi.h_imp(face-ndeb);
-              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-              const IntTab& fmap = Text.face_map();
+              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+              const IntVect& fmap = Text.face_map();
               int opp_face = fmap(face-ndeb)+ndeb;
 
               double tm=0.0;
@@ -772,7 +772,7 @@ void Op_Dift_EF_Q1::ajouter_contributions_bords(Matrice_Morse& matrice ) const
 {
   const Domaine_Cl_EF& domaine_Cl_EF = la_zcl_EF.valeur();
   const Domaine_EF& domaine_EF = le_dom_EF.valeur();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
 
   const IntTab& face_sommets=domaine_ef.face_sommets();
   int nb_som_face=domaine_ef.nb_som_face();
@@ -792,7 +792,7 @@ void Op_Dift_EF_Q1::ajouter_contributions_bords(Matrice_Morse& matrice ) const
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -824,8 +824,8 @@ void Op_Dift_EF_Q1::ajouter_contributions_bords(Matrice_Morse& matrice ) const
       else if (sub_type(Echange_interne_global_parfait, la_cl.valeur()))
         {
           const Echange_interne_global_parfait& la_cl_paroi = ref_cast(Echange_interne_global_parfait, la_cl.valeur());
-          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-          const IntTab& fmap = Text.face_map();
+          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+          const IntVect& fmap = Text.face_map();
           std::vector<bool> hit(nfin-ndeb);
           std::fill(hit.begin(), hit.end(), false);
           for (int face=ndeb; face<nfin; face++)
@@ -874,8 +874,8 @@ void Op_Dift_EF_Q1::ajouter_contributions_bords(Matrice_Morse& matrice ) const
       else if (sub_type(Echange_interne_global_impose, la_cl.valeur()))
         {
           const Echange_interne_global_impose& la_cl_paroi = ref_cast(Echange_interne_global_impose, la_cl.valeur());
-          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-          const IntTab& fmap = Text.face_map();
+          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+          const IntVect& fmap = Text.face_map();
           const DoubleVect& surface_gap = la_cl_paroi.surface_gap();
           for (int face=ndeb; face<nfin; face++)
             {
@@ -929,7 +929,7 @@ void Op_Dift_EF_Q1::verifier() const
   testee=1;
 }
 
-void Op_Dift_EF_Q1::calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const
+void Op_Dift_EF_Q1::calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const
 {
 }
 
@@ -957,7 +957,7 @@ double Op_Dift_EF_Q1::calculer_dt_stab() const
 
   const Domaine& mon_dom= mon_dom_EF.domaine();
 
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
   if (equation().que_suis_je().debute_par("Convection_Diffusion_Temp"))
     {
@@ -991,7 +991,7 @@ double Op_Dift_EF_Q1::calculer_dt_stab() const
       const DoubleTab&      valeurs_diffusivite = champ_diffusivite.valeurs();
       double valeurs_diffusivite_dt=-1;
       int unif_diffu_dt;
-      const Nature_du_champ nature_champ = equation().inconnue()->nature_du_champ();
+      const Nature_du_champ nature_champ = equation().inconnue().nature_du_champ();
 
       if (sub_type(Champ_Uniforme,champ_diffusivite))
         {

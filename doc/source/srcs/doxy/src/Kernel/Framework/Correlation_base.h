@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,7 @@
 
 #include <Champs_compris_interface.h>
 #include <Champs_compris.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 #include <Param.h>
 
@@ -27,18 +28,21 @@ class Correlation_base : public Objet_U, public Champs_compris_interface
 {
   Declare_base(Correlation_base);
 public:
-  virtual Entree& lire(Entree& is); //appelle readOn, mais est publique!
-  void associer_pb(const Probleme_base& pb);
   virtual void mettre_a_jour(double temps) { }
   virtual void completer() { }
+  void associer_pb(const Probleme_base&);
+
+  static void typer_lire_correlation(OWN_PTR(Correlation_base)&, const Probleme_base&, const Nom&, Entree&);
 
   //Methodes de l interface des champs postraitables
-  void creer_champ(const Motcle& motlu) override {};
-  const Champ_base& get_champ(const Motcle& nom) const override { throw Champs_compris_erreur(); }
+  void creer_champ(const Motcle& motlu) override { }
+  const Champ_base& get_champ(const Motcle& nom) const override { throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !")); }
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override { }
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
 protected:
-  REF(Probleme_base) pb_;
+  OBS_PTR(Probleme_base) pb_;
   Champs_compris champs_compris_;
 };
 

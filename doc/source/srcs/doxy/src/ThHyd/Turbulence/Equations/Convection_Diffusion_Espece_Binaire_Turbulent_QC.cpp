@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,6 +53,17 @@ int Convection_Diffusion_Espece_Binaire_Turbulent_QC::lire_motcle_non_standard(c
     }
   else
     return Convection_Diffusion_Espece_Binaire_QC::lire_motcle_non_standard(mot, is);
+}
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
+ *
+ */
+std::vector<YAML_data> Convection_Diffusion_Espece_Binaire_Turbulent_QC::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = Convection_Diffusion_Espece_Binaire_QC::data_a_sauvegarder();
+  std::vector<YAML_data> turb = Convection_Diffusion_Turbulent::data_a_sauvegarder();
+  data.insert(data.end(), turb.begin(), turb.end());
+  return data;
 }
 
 /*! @brief Sauvegarde sur un flot de sortie, double appel a: Convection_Diffusion_Espece_Binaire_QC::sauvegarder(Sortie& );
@@ -115,24 +126,40 @@ void Convection_Diffusion_Espece_Binaire_Turbulent_QC::creer_champ(const Motcle&
     le_modele_turbulence->creer_champ(motlu);
 }
 
+bool Convection_Diffusion_Espece_Binaire_Turbulent_QC::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
+{
+  if (Convection_Diffusion_Espece_Binaire_QC::has_champ(nom))
+    return Convection_Diffusion_Espece_Binaire_QC::has_champ(nom, ref_champ);
+
+  if (le_modele_turbulence.non_nul())
+    if (le_modele_turbulence->has_champ(nom))
+      return le_modele_turbulence->has_champ(nom, ref_champ);
+
+  return false; /* rien trouve */
+}
+
+bool Convection_Diffusion_Espece_Binaire_Turbulent_QC::has_champ(const Motcle& nom) const
+{
+  if (Convection_Diffusion_Espece_Binaire_QC::has_champ(nom))
+    return true;
+
+  if (le_modele_turbulence.non_nul())
+    if (le_modele_turbulence->has_champ(nom))
+      return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Convection_Diffusion_Espece_Binaire_Turbulent_QC::get_champ(const Motcle& nom) const
 {
-  try
-    {
-      return Convection_Diffusion_Espece_Binaire_QC::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+  if (Convection_Diffusion_Espece_Binaire_QC::has_champ(nom))
+    return Convection_Diffusion_Espece_Binaire_QC::get_champ(nom);
+
   if (le_modele_turbulence.non_nul())
-    try
-      {
-        return le_modele_turbulence->get_champ(nom);
-      }
-    catch (Champs_compris_erreur&)
-      {
-      }
-  throw Champs_compris_erreur();
+    if (le_modele_turbulence->has_champ(nom))
+      return le_modele_turbulence->get_champ(nom);
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 void Convection_Diffusion_Espece_Binaire_Turbulent_QC::get_noms_champs_postraitables(Noms& nom, Option opt) const

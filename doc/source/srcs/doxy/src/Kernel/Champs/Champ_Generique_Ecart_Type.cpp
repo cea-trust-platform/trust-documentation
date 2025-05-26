@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,12 +15,14 @@
 
 #include <Champ_Generique_Ecart_Type.h>
 #include <Champ_Generique_Moyenne.h>
-#include <Schema_Temps.h>
-#include <Postraitement.h>
 #include <Discretisation_base.h>
+#include <Schema_Temps_base.h>
+#include <Postraitement.h>
 #include <Synonyme_info.h>
 
 Implemente_instanciable(Champ_Generique_Ecart_Type,"Champ_Post_Statistiques_Ecart_Type|Ecart_Type",Champ_Generique_Statistiques_base);
+// XD ecart_type champ_post_statistiques_base ecart_type -1 to calculate the standard deviation (statistic rms) of the field nom_champ.
+
 
 Sortie& Champ_Generique_Ecart_Type::printOn(Sortie& s ) const
 {
@@ -58,7 +60,13 @@ void Champ_Generique_Ecart_Type::completer(const Postraitement_base& post)
       const Operateur_Statistique_tps_base& operateur = ref_cast(Champ_Generique_Moyenne,champ_stat_base).Operateur_Statistique();
       const Op_Moyenne& op_moyenne = ref_cast(Op_Moyenne,operateur);
       Op_Ecart_Type_.associer_op_stat(op_moyenne);
-      Op_Ecart_Type_.completer(Pb);
+
+      Nom prefix = Pb.le_nom() + "_";
+      if(post.le_nom() != "??" && post.le_nom() != "neant")
+        prefix += post.le_nom() +"_";
+      if(parent_name_ != "??" && !use_source_name_only_)
+        prefix += parent_name_ + "_";
+      Op_Ecart_Type_.completer(Pb, prefix);
     }
   else
     {
@@ -71,22 +79,37 @@ void Champ_Generique_Ecart_Type::completer(const Postraitement_base& post)
       Cerr<<get_property("nom")[0]<<finl;
       exit();
     }
+
 }
 
-const Champ_base& Champ_Generique_Ecart_Type::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Ecart_Type::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  const REF(Champ_Generique_base)& mon_champ = integrale().le_champ();
-  Champ espace_stockage_source;
+  const OBS_PTR(Champ_Generique_base)& mon_champ = integrale().le_champ();
+  OWN_PTR(Champ_base) espace_stockage_source;
   const Champ_base& source = mon_champ->get_champ(espace_stockage_source);
   Nature_du_champ nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base) es_tmp;
   espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
+  return espace_stockage;
+}
 
-  DoubleTab& tab_ecart_type = espace_stockage.valeurs();
+const Champ_base& Champ_Generique_Ecart_Type::get_champ(OWN_PTR(Champ_base)&) const
+{
+  // Creation de l'espace_stockage
+  const OBS_PTR(Champ_Generique_base)& mon_champ = integrale().le_champ();
+  OWN_PTR(Champ_base) espace_stockage_source;
+  const Champ_base& source = mon_champ->get_champ(espace_stockage_source);
+  Nature_du_champ nature_source = source.nature_du_champ();
+  int nb_comp = source.nb_comp();
+  if (espace_stockage_.est_nul())
+    creer_espace_stockage(nature_source,nb_comp,espace_stockage_);
+  else
+    espace_stockage_->changer_temps(temps());
+  DoubleTab& tab_ecart_type = espace_stockage_->valeurs();
   tab_ecart_type = Op_Ecart_Type_.calculer_valeurs();
   tab_ecart_type.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage_;
 }
 
 const Noms Champ_Generique_Ecart_Type::get_property(const Motcle& query) const

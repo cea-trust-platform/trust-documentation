@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,10 +15,10 @@
 
 
 #include <Champ_front_fonc_gradient.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Frontiere_dis_base.h>
 
 Implemente_instanciable(Champ_front_fonc_gradient,"Champ_front_fonc_gradient",Champ_front_tangentiel);
-
 
 Sortie& Champ_front_fonc_gradient::printOn(Sortie& os) const
 {
@@ -28,7 +28,6 @@ Sortie& Champ_front_fonc_gradient::printOn(Sortie& os) const
 
 Entree& Champ_front_fonc_gradient::readOn(Entree& s)
 {
-  Cerr << "Champ_front_fonc_gradient::readOn" << finl;
   return s;
 }
 
@@ -39,11 +38,11 @@ void Champ_front_fonc_gradient::associer_ch_inc_base(const Champ_Inc_base& inc)
 
 const Cond_lim_base& Champ_front_fonc_gradient::condition_limite(const Nom& nom_bord)
 {
-  const Domaine_Cl_dis_base& zcl=inconnue.valeur().equation().domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl=inconnue->equation().domaine_Cl_dis();
   int n=zcl.nb_cond_lim();
   for(int i=0; i<n ; i++)
     {
-      const Frontiere_dis_base& fr_dis=zcl.les_conditions_limites(i).frontiere_dis();
+      const Frontiere_dis_base& fr_dis=zcl.les_conditions_limites(i)->frontiere_dis();
       if (fr_dis.le_nom() == nom_bord)
         return zcl.les_conditions_limites(i);
     }

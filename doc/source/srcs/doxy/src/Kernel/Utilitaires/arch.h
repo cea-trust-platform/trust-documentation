@@ -1,5 +1,6 @@
+//TRUST_NO_INDENT
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -12,6 +13,12 @@
 * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *
 *****************************************************************************/
+
+/*****************************************************************************/
+/* WARNING: this file is generated automatically from arch.h.in !!           */
+/* DO NOT EDIT MANUALLY.                                                     */
+/*****************************************************************************/
+
 
 /*! @brief Gestion des dependances machines pour l'appel a FORTRAN La macro F77DECLARE(TOTO) permet de declarer une routine FORTRAN.
  *
@@ -65,16 +72,71 @@ double atanh(const double&);
 #define F77NAME(x) x
 #endif
 
-// Pour eviter problemes de portage 32/64bits
-// avec les appels Fortran a partir du C++
-// on definit les integer comme des int (4 octets)
-// et non plus des long int (4 octets sur 32bits ou 8 octets sur 64bits)
-// typedef mieux que #define pour definir un type
-typedef int entier;
+// Used for FORTRAN interfaces:
 typedef int integer;
+// This one always remain an int, even when replacing all int by long in the historical (find/replace)
+// 64b building mode:
 typedef int True_int;
-//#define INT_is_64_
+
 extern char* pwd();
 
-#endif // _ARCH_H_
+/* **************************************
+            32b / 64b management
+  **************************************
+  Below we define 'trustIdType', type used to store all geometrical entity indices (element index, node index, ...) that might
+  exceed the 32b limit.
 
+  All the TRUST libraries (LIBLATAFILTER notably) and all the main C++ source code can be compiled in either 32b or 64b depending
+  on the flag set at configure time.
+
+  However the lata_tools and VisIt plugin are **only** 64b for simplicity, and because it will be provided to the VisIt team for integration.
+
+  In the core TRUST C++ code, the strategy is as follows: all the C++ classes that are potentially used before the Scatter keyword
+  should support both 32 or 64b mode. This is typically done by having them templatized on the SIZE parameter. In practice however
+  some classes are not yet ported to 64b and will remain only functional in 32b.
+  The idea is that once the computation is distributed on several processors, each proc will never need to use 64b indices. And everything
+  happening after Scatter (like the operator computations, etc.) is done on one proc only.
+  (note that there are some exceptions for the postprocessing where we still need a total number of elements for example).
+
+  The Zone files (containing splitted domains after Partition) are always written in 32b (see DomaineCutter and look for set_64b(false))
+  Similarly, the save/restart files are always 32b (see SaveRestart.cpp).
+  
+  The input/output management is sometimes tricky, since even with an executable compiled in 64b, we might need to write (/read) 32b data.
+  See what is done class AbstractIO about this.
+
+  Various types/sizes of arrays are declared in TRUSTTab_forward.h. For example you might want a small of array of (big) identifiers (=SmallArrOfTID)
+  or a big array of regular 32b int (=BigArrOfInt). Notice that for big arrays, only the first dimension (dimension 0) might be big. Other axes
+  always remain within 32b.
+  
+  For the IJK parts of the code, the rule is that : the three directions nx, ny and nz are always within 32b, but their *product* might exceed 32b.
+
+  At the time of writing, there are two ways to produce a 64b version of the code:
+    - either with configure flag '-with-64-bit-indices' which brutally replace all 'int' in the source code with 'long' (historical).
+    When done so, C++ define tag 'INT_is_64_' is set to 1.
+    - or with configure flag '-64-bit-new' (the final target), defining trustIdType to int64. In this case C++ define tag
+    'INT_is_64_' is set to 2.
+*/
+
+#include <cstdint>
+// We will often rely on std::numeric_limits<int>::max(), so need this:
+#include <limits>
+
+#if 1          // are we in 64b mode?
+using trustIdType = std::int64_t;
+#  ifndef INT_is_64_           // it might have been already defined by the CMake (e.g. in lata_tools compilation)
+#    if  1     // are we in 64b mode, new way of doing it?
+#      define INT_is_64_ 2
+#    else
+#      define INT_is_64_ 1
+#    endif
+#  endif
+#else
+#  ifdef LATATOOLS
+using trustIdType = std::int64_t;   // In lata_tools and VisIt lata plugin, trustIdType is always 64b, so that the tools
+//                                  // can deal with any type of lata files (32b or 64b)
+#  else
+using trustIdType = int;
+#  endif
+#endif
+
+#endif // _ARCH_H_

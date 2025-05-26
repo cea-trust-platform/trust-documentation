@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,9 +15,9 @@
 
 #include <Diametre_bulles_champ.h>
 #include <Pb_Multiphase.h>
-#include <Domaine_dis.h>
+
 #include <Discret_Thyd.h>
-#include <Champ_Don.h>
+
 
 Implemente_instanciable(Diametre_bulles_champ, "Diametre_bulles_champ", Correlation_base);
 
@@ -28,7 +28,7 @@ Sortie& Diametre_bulles_champ::printOn(Sortie& os) const
 
 Entree& Diametre_bulles_champ::readOn(Entree& is)
 {
-  Champ_Don diametres_don_;
+  OWN_PTR(Champ_Don_base) diametres_don_;
   is >> diametres_don_;
 
   Pb_Multiphase& pb = ref_cast(Pb_Multiphase, pb_.valeur());
@@ -38,22 +38,38 @@ Entree& Diametre_bulles_champ::readOn(Entree& is)
   noms[0] = "diametre_bulles";
   unites[0] = "m";
   Motcle typeChamp = "champ_elem" ;
-  const Domaine_dis& z = ref_cast(Domaine_dis, pb.domaine_dis());
-  dis.discretiser_champ(typeChamp, z.valeur(), scalaire, noms , unites, N, 0, diametres_);
+  const Domaine_dis_base& z = pb.domaine_dis();
+  dis.discretiser_champ(typeChamp, z, scalaire, noms , unites, N, 0, diametres_);
 
   champs_compris_.ajoute_champ(diametres_);
 
   diametres_->affecter(diametres_don_.valeur());
 
-  diametres_.valeurs().echange_espace_virtuel();
+  diametres_->valeurs().echange_espace_virtuel();
 
   return is;
 }
 
+bool Diametre_bulles_champ::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (nom == "diametre_bulles")
+    return champs_compris_.has_champ(nom, ref_champ);
+
+  return false; /* rien trouve */
+}
+
+bool Diametre_bulles_champ::has_champ(const Motcle& nom) const
+{
+  if (nom == "diametre_bulles")
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Diametre_bulles_champ::get_champ(const Motcle& nom) const
 {
-  if (nom=="diametre_bulles")
+  if (nom == "diametre_bulles")
     return champs_compris_.get_champ(nom);
 
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }

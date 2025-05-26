@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,8 @@
 
 #include <TRUST_Ref.h>
 #include <Nom.h>
+#include <vector>
+#include <YAML_data.h>
 
 class Probleme_base;
 class Entree;
@@ -43,6 +45,7 @@ public:
   virtual void mettre_a_jour(double temps);
   virtual void init() {}
   virtual void finir() {}
+  virtual std::vector<YAML_data> data_a_sauvegarder() const { return std::vector<YAML_data>(); }
   int sauvegarder(Sortie& os) const override;
   int reprendre(Entree& is) override;
   virtual void completer() = 0;
@@ -58,7 +61,7 @@ public:
 
 protected:
   Nom le_nom_;
-  REF(Probleme_base) mon_probleme;
+  OBS_PTR(Probleme_base) mon_probleme;
   double temps_;
 };
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,21 +16,16 @@
 #ifndef Source_PDF_EF_included
 #define Source_PDF_EF_included
 
+
+#include <Navier_Stokes_std.h>
 #include <Source_PDF_base.h>
-#include <Champ_Fonc.h>
+
 #include <TRUST_Ref.h>
 #include <Matrice.h>
 
 class Probleme_base;
 class Domaine_Cl_EF;
 class Domaine_EF;
-
-/*! @brief class Source_PDF_EF Source term for the penalisation of the momentum in the Immersed Boundary Method (IBM)
- *
- *
- *
- * @sa Source_PDF_base
- */
 
 class Source_PDF_EF : public Source_PDF_base
 {
@@ -40,47 +35,51 @@ class Source_PDF_EF : public Source_PDF_base
 public:
   void associer_pb(const Probleme_base& ) override;
   DoubleTab& ajouter_(const DoubleTab&, DoubleTab&) const override;
-  DoubleTab& ajouter_(const DoubleTab&, DoubleTab&, const int) const override;
+  DoubleTab& ajouter_(const DoubleTab&, DoubleTab&, const int) const override ;
   void contribuer_a_avec(const DoubleTab&, Matrice_Morse&) const override;
-  void verif_ajouter_contrib(const DoubleTab& vitesse, Matrice_Morse& matrice) const ;
-  DoubleVect diag_coeff_elem(ArrOfDouble&, const DoubleTab&, int) const override ;
+  void verif_ajouter_contrib(const DoubleTab& variable, Matrice_Morse& matrice) const ;
   DoubleTab compute_coeff_elem() const override;
-  DoubleTab compute_coeff_matrice_pression() const override;
+  DoubleVect diag_coeff_elem(ArrOfDouble&, const DoubleTab&, int) const override;
+  DoubleTab compute_coeff_matrice() const override;
   void multiply_coeff_volume(DoubleTab&) const override;
-  void correct_pressure(const DoubleTab&,DoubleTab&,const DoubleTab&) const override;
-  void correct_incr_pressure(const DoubleTab&,DoubleTab&) const override;
-  void correct_vitesse(const DoubleTab&,DoubleTab&) const override;
-  void calculer_vitesse_imposee();
+  void correct_variable(const DoubleTab&,DoubleTab&) const override ;
   void test(Matrice&) const;
   void updateChampRho();
+
+  void correct_pressure(const DoubleTab&,DoubleTab&,const DoubleTab&) const override ;
+  void correct_incr_pressure(const DoubleTab&,DoubleTab&) const override ;
+
   int impr(Sortie&) const override;
   // void ouvrir_fichier_partage(EcrFicPartage&, const Nom&, const Nom&) const;
-  //  void imprimer_ustar_yplus__mean_only(Sortie&, const Nom& ) const override;
+  // void imprimer_ustar_yplus__mean_only(Sortie&, const Nom& ) const override;
 
   // Methodes de l interface des champs postraitables
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
 
 protected:
-  Champ_Don champ_nodal_;
-  void compute_vitesse_imposee_projete(const DoubleTab&, const DoubleTab&, double, double) override;
-  void calculer_vitesse_imposee_hybrid() override;
-  void calculer_vitesse_imposee_elem_fluid() override;
-  void calculer_vitesse_imposee_mean_grad() override;
+  OWN_PTR(Champ_Don_base) champ_nodal_;
+  void compute_variable_imposee_projete(const DoubleTab&, const DoubleTab&, double, double) override;
+  void calculer_variable_imposee_hybrid()  override;
+  void calculer_variable_imposee_elem_fluid() override;
+  void calculer_variable_imposee_mean_grad()  override;
   void calculer_vitesse_imposee_power_law_tbl() override;
   void calculer_vitesse_imposee_power_law_tbl_u_star() override;
   void rotate_imposed_velocity(DoubleTab&) override;
   DoubleTab compute_pond(const DoubleTab&, const DoubleTab&, const DoubleVect&, int&, int&) const ;
-  REF(Domaine_EF) le_dom_EF;
-  REF(Domaine_Cl_EF) le_dom_Cl_EF;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  void filtre_CLD(DoubleTab&) const;
+  OBS_PTR(Domaine_EF) le_dom_EF;
+  OBS_PTR(Domaine_Cl_EF) le_dom_Cl_EF;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
   void compute_indicateur_nodal_champ_aire() override;
 
   DoubleVect tab_u_star_ibm_;                //!< valeurs des u* IBM calculees localement
   DoubleVect tab_y_plus_ibm_;                //!< valeurs des d+ IBM calculees localement
-  mutable Champ_Fonc champ_u_star_ibm_;          //!< Champ pour postraitement
-  mutable Champ_Fonc champ_y_plus_ibm_;          //!< Champ pour postraitement
+  mutable OWN_PTR(Champ_Fonc_base)  champ_u_star_ibm_;          //!< Champ pour postraitement
+  mutable OWN_PTR(Champ_Fonc_base)  champ_y_plus_ibm_;          //!< Champ pour postraitement
 };
 
 #endif

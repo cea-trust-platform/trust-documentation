@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,22 +14,44 @@
 *****************************************************************************/
 
 #include <Convection_Diffusion_Turbulent.h>
+#include <Modele_turbulence_scal_base.h>
 #include <Operateur_Diff_base.h>
 #include <Discretisation_base.h>
 #include <Schema_Temps_base.h>
 #include <Champ_Uniforme.h>
 #include <Operateur_Diff.h>
 #include <Probleme_base.h>
-#include <Champ_Don.h>
+
 #include <Domaine.h>
 #include <Avanc.h>
 
 Entree& Convection_Diffusion_Turbulent::lire_modele(Entree& is, const Equation_base& eqn)
 {
-  Cerr << "Reading and typing of the turbulence model : " << finl;
-  le_modele_turbulence.associer_eqn(eqn);
-  is >> le_modele_turbulence;
-  le_modele_turbulence.discretiser();
+  Cerr << "Reading and typing of the turbulence model : ";
+
+  Motcle typ;
+  is >> typ;
+
+  Motcle nom1("Modele_turbulence_scal_");
+  nom1 += typ;
+
+  if (typ == "sous_maille_dyn")
+    {
+      nom1 += "_";
+      Nom disc = eqn.discretisation().que_suis_je();
+      if (disc == "VEFPreP1B") disc = "VEF";
+      nom1 += disc;
+    }
+  Cerr << nom1 << finl;
+
+  le_modele_turbulence.typer(nom1);
+  le_modele_turbulence->associer_eqn(eqn);
+  le_modele_turbulence->associer(eqn.domaine_dis(), eqn.domaine_Cl_dis());
+
+  is >> le_modele_turbulence.valeur(); // On lit :-)
+
+  le_modele_turbulence->discretiser();
+
   return is;
 }
 
@@ -49,7 +71,7 @@ Entree& Convection_Diffusion_Turbulent::lire_op_diff_turbulent(Entree& is, const
 
       terme_diffusif.typer(type);
       terme_diffusif.l_op_base().associer_eqn(eqn);
-      Cerr << terme_diffusif.valeur().que_suis_je() << finl;
+      Cerr << terme_diffusif->que_suis_je() << finl;
       terme_diffusif->associer_diffusivite(terme_diffusif.diffusivite());
 
       assert(motbidon == accfermee);
@@ -65,7 +87,7 @@ Entree& Convection_Diffusion_Turbulent::lire_op_diff_turbulent(Entree& is, const
       if ((terme_diffusif.diffusivite().nb_comp() != 1) && ((disc == "VDF")))
         nb_inc = "_Multi_inco_";
 
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
 
       type += disc;
       type += nb_inc;
@@ -94,7 +116,7 @@ Entree& Convection_Diffusion_Turbulent::lire_op_diff_turbulent(Entree& is, const
 
       type += nb_inc;
 
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
       if (type_inco == "Champ_Q1_EF")
         type += "Q1";
       else
@@ -109,7 +131,7 @@ Entree& Convection_Diffusion_Turbulent::lire_op_diff_turbulent(Entree& is, const
 
       terme_diffusif.typer(type);
       terme_diffusif.l_op_base().associer_eqn(eqn);
-      Cerr << terme_diffusif.valeur().que_suis_je() << finl;
+      Cerr << terme_diffusif->que_suis_je() << finl;
       terme_diffusif->associer_diffusivite(terme_diffusif.diffusivite());
     }
   return is;
@@ -120,8 +142,8 @@ Entree& Convection_Diffusion_Turbulent::lire_op_diff_turbulent(Entree& is, const
  */
 void Convection_Diffusion_Turbulent::completer()
 {
-  le_modele_turbulence.completer();
-  le_modele_turbulence->loi_paroi()->completer();
+  le_modele_turbulence->completer();
+  le_modele_turbulence->loi_paroi().completer();
 }
 
 bool Convection_Diffusion_Turbulent::initTimeStep(double dt)
@@ -135,11 +157,20 @@ bool Convection_Diffusion_Turbulent::initTimeStep(double dt)
  */
 int Convection_Diffusion_Turbulent::preparer_calcul()
 {
-  le_modele_turbulence.preparer_calcul();
+  le_modele_turbulence->preparer_calcul();
   return 1;
 }
 
-/*! @brief Simple appel a Modele_turbulence_scal::sauvegarder(Sortie&) sur le membre concerne.
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
+ *
+ */
+std::vector<YAML_data> Convection_Diffusion_Turbulent::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = le_modele_turbulence->data_a_sauvegarder();
+  return data;
+}
+
+/*! @brief Simple appel a Modele_turbulence_scal_base::sauvegarder(Sortie&) sur le membre concerne.
  *
  *     Sauvegarde le modele de turbulence sur un flot
  *     de sortie.
@@ -149,7 +180,7 @@ int Convection_Diffusion_Turbulent::preparer_calcul()
  */
 int Convection_Diffusion_Turbulent::sauvegarder(Sortie& os) const
 {
-  return le_modele_turbulence.sauvegarder(os);
+  return le_modele_turbulence->sauvegarder(os);
 }
 
 /*! @brief Reprise (apres une sauvegarde) a partir d'un flot d'entree.
@@ -160,7 +191,7 @@ int Convection_Diffusion_Turbulent::sauvegarder(Sortie& os) const
  */
 int Convection_Diffusion_Turbulent::reprendre(Entree& is)
 {
-  le_modele_turbulence.reprendre(is);
+  le_modele_turbulence->reprendre(is);
   return 1;
 }
 
@@ -170,5 +201,5 @@ int Convection_Diffusion_Turbulent::reprendre(Entree& is)
  */
 void Convection_Diffusion_Turbulent::mettre_a_jour(double temps)
 {
-  le_modele_turbulence.mettre_a_jour(temps);
+  le_modele_turbulence->mettre_a_jour(temps);
 }

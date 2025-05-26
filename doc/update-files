@@ -1,5 +1,0 @@
-#!/bin/bash
-
-( cd source/srcs/trustutils && ./update-files )
-( cd source/srcs/doxy && ./update-files )
-

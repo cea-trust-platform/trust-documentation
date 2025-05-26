@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,30 +13,21 @@
 *
 *****************************************************************************/
 
-#include <Source_Qdm_EF.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Champ_Uniforme.h>
-#include <Domaine.h>
-#include <Domaine_Cl_dis.h>
-#include <Domaine_EF.h>
-#include <Domaine_Cl_EF.h>
 
+#include <Source_Qdm_EF.h>
 #include <Equation_base.h>
+#include <Domaine_Cl_EF.h>
+#include <Domaine_EF.h>
+#include <Domaine.h>
 
 Implemente_instanciable(Source_Qdm_EF,"Source_Qdm_EF",Source_base);
-
-
-
-//// printOn
-//
 
 Sortie& Source_Qdm_EF::printOn(Sortie& s ) const
 {
   return s << que_suis_je() ;
 }
-
-
-//// readOn
-//
 
 Entree& Source_Qdm_EF::readOn(Entree& s )
 {
@@ -55,11 +46,11 @@ void Source_Qdm_EF::associer_pb(const Probleme_base& )
   ;
 }
 
-void Source_Qdm_EF::associer_domaines(const Domaine_dis& domaine_dis,
-                                      const Domaine_Cl_dis& domaine_Cl_dis)
+void Source_Qdm_EF::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                      const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_EF = ref_cast(Domaine_EF, domaine_dis.valeur());
-  le_dom_Cl_EF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis.valeur());
+  le_dom_EF = ref_cast(Domaine_EF, domaine_dis);
+  le_dom_Cl_EF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis);
 }
 
 
@@ -75,7 +66,7 @@ DoubleTab& Source_Qdm_EF::ajouter(DoubleTab& resu) const
 
   if (sub_type(Champ_Uniforme,la_source.valeur()))
     is_source_unif=1;
-  const DoubleTab& tab_source=la_source.valeur().valeurs();
+  const DoubleTab& tab_source=la_source->valeurs();
   for (int num_elem=0; num_elem<nb_elems; num_elem++)
     for (int comp=0; comp<ncomp; comp++)
       {

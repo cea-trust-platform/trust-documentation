@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,10 +24,10 @@ Implemente_instanciable(Frottement_interfacial_PolyMAC_P0, "Frottement_interfaci
 Sortie& Frottement_interfacial_PolyMAC_P0::printOn(Sortie& os) const { return os; }
 Entree& Frottement_interfacial_PolyMAC_P0::readOn(Entree& is) { return Source_Frottement_interfacial_base::readOn(is); }
 
-void Frottement_interfacial_PolyMAC_P0::dimensionner_blocs_aux(IntTrav& stencil) const
+void Frottement_interfacial_PolyMAC_P0::dimensionner_blocs_aux(IntTab& stencil) const
 {
-  const DoubleTab& inco = ref_cast(Champ_Face_base, equation().inconnue().valeur()).valeurs();
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const DoubleTab& inco = ref_cast(Champ_Face_base, equation().inconnue()).valeurs();
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   int i, j, e, k, l, N = inco.line_size(), d, db, D = dimension, nf_tot = domaine.nb_faces_tot();
 
   /* elements */
@@ -41,15 +41,18 @@ void Frottement_interfacial_PolyMAC_P0::dimensionner_blocs_aux(IntTrav& stencil)
 void Frottement_interfacial_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
-  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue().valeur());
+  const bool res_en_T = pbm.resolution_en_T();
+  if (!res_en_T) Process::exit("Frottement_interfacial_PolyMAC_P0::ajouter_blocs NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
+  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue());
   Matrice_Morse *mat = matrices.count(ch.le_nom().getString()) ? matrices.at(ch.le_nom().getString()) : nullptr;
-  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis().valeur());
+  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis());
   const IntTab& f_e = domaine.face_voisins(), &fcl = ch.fcl();
   const DoubleVect& pe = equation().milieu().porosite_elem(), &pf = equation().milieu().porosite_face(), &ve = domaine.volumes(), &vf = domaine.volumes_entrelaces(), &dh_e = equation().milieu().diametre_hydraulique_elem();
   const DoubleTab& inco = ch.valeurs(), &pvit = ch.passe(), &vfd = domaine.volumes_entrelaces_dir(),
                    &alpha = pbm.equation_masse().inconnue().passe(),
                     &press = ref_cast(QDM_Multiphase, equation()).pression().passe(),
-                     &temp  = pbm.equation_energie().inconnue().passe(),
+                     &temp = pbm.equation_energie().inconnue().passe(),
                       &rho   = equation().milieu().masse_volumique().passe(),
                        &mu    = ref_cast(Fluide_base, equation().milieu()).viscosite_dynamique().passe();
   const Milieu_composite& milc = ref_cast(Milieu_composite, equation().milieu());
@@ -99,7 +102,7 @@ void Frottement_interfacial_PolyMAC_P0::ajouter_blocs(matrices_t matrices, Doubl
             {
               a_l(n)   += vfd(f, c) / vf(f) * alpha(e, n);
               p_l(n)   += vfd(f, c) / vf(f) * press(e, n * (Np > 1));
-              T_l(n)   += vfd(f, c) / vf(f) * temp(e, n);
+              T_l(n)   += vfd(f, c) / vf(f) * temp(e, n); // FIXME SI res_en_T
               rho_l(n) += vfd(f, c) / vf(f) * rho(!cR * e, n);
               mu_l(n)  += vfd(f, c) / vf(f) * mu(!cM * e, n);
               for (k = n+1; k < N; k++)
@@ -144,7 +147,7 @@ void Frottement_interfacial_PolyMAC_P0::ajouter_blocs(matrices_t matrices, Doubl
         {
           a_l(n)   = alpha(e, n);
           p_l(n)   = press(e, n * (Np > 1));
-          T_l(n)   =  temp(e, n);
+          T_l(n)   =  temp(e, n); // FIXME SI res_en_T
           rho_l(n) =   rho(!cR * e, n);
           mu_l(n)  =    mu(!cM * e, n);
           for (k = n+1; k < N; k++)

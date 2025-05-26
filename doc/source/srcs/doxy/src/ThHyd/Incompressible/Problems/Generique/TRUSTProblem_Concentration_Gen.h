@@ -74,7 +74,7 @@ public:
         Nom nom_inco = "concentration", nom_eq = eqn.que_suis_je();
         nom_inco += Nom(i), nom_eq += Nom(i);
         Cerr << "The unknown name of the " << eqn.que_suis_je() << " equation " << i << " is modified => " << nom_inco << finl;
-        eqn.inconnue()->nommer(nom_inco);
+        eqn.inconnue().nommer(nom_inco);
         Cerr << "The " << eqn.que_suis_je() << " equation name, of number " << i << ", is modified => " << nom_eq << finl;
         eqn.nommer(nom_eq);
 
@@ -100,9 +100,9 @@ public:
     nb_consts_ = les_consts.nb_constituants();
     mil_constituants_.resize(nb_consts_);
 
-    if (!sub_type(Champ_Uniforme, les_consts.diffusivite_constituant().valeur()))
+    if (!sub_type(Champ_Uniforme, les_consts.diffusivite_constituant()))
       {
-        Cerr << "Error in TRUSTProblem_Concentration_Gen<_DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_>::lire_resize_medium. You can not use a diffusion coefficient of type " << les_consts.diffusivite_constituant()->que_suis_je() << " !!!" << finl;
+        Cerr << "Error in TRUSTProblem_Concentration_Gen<_DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_>::lire_resize_medium. You can not use a diffusion coefficient of type " << les_consts.diffusivite_constituant().que_suis_je() << " !!!" << finl;
         Cerr << "We only accept uniform fields for the moment ... Fix your data set or call the 911 !!!" << finl;
         Process::exit();
       }
@@ -112,7 +112,7 @@ public:
   void create_constituants_echaines()
   {
     const Constituant& les_consts = ref_cast(_MEDIUM_TYPE_, _DERIVED_TYPE_::milieu_vect().back().valeur());
-    const DoubleTab& vals = les_consts.diffusivite_constituant()->valeurs();
+    const DoubleTab& vals = les_consts.diffusivite_constituant().valeurs();
 
     for (int i = 0; i < nb_consts_; i++)
       {

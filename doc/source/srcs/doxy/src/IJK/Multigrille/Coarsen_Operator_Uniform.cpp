@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,7 +14,7 @@
 *****************************************************************************/
 
 #include <Coarsen_Operator_Uniform.h>
-#include <IJK_Grid_Geometry.h>
+#include <Domaine_IJK.h>
 #include <stat_counters.h>
 
 Implemente_instanciable_sans_constructeur(Coarsen_Operator_Uniform, "Coarsen_Operator_Uniform", Coarsen_Operator_base);
@@ -42,20 +42,9 @@ Entree& Coarsen_Operator_Uniform::readOn(Entree& is)
   Coarsen_Operator_base::readOn(is);
 
   const int coarsenCode = coarsen_factors_[0]*100 + coarsen_factors_[1]*10 + coarsen_factors_[2];
-  switch (coarsenCode)
-    {
-    case 112:
-    case 122:
-    case 212:
-    case 222:
-    case 113:
-    case 132:
-      break;
-    default:
-      Cerr << "Error in Coarsen_Operator_Uniform::readOn: invalid combination of coarsening factors\n";
-      Process::exit();
-      break;
-    }
+
+  Cerr << "\nCoarsen Operator Uniform code: " << coarsenCode << "\n";
+
   return is;
 }
 

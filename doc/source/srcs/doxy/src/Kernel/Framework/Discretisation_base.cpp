@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,6 +25,8 @@
 #include <Domaine_VF.h>
 
 Implemente_base(Discretisation_base, "Discretisation_base", Objet_U);
+// XD discretisation_base objet_u discretisation_base -1 Basic class for space discretization of thermohydraulic turbulent problems.
+
 
 const Motcle Discretisation_base::DEMANDE_DESCRIPTION = Motcle("demande_description");
 const Nom Discretisation_base::NOM_VIDE = Nom("-");
@@ -56,7 +58,7 @@ void Discretisation_base::associer_domaine(const Domaine& dom)
 // (exemple pour la vitesse : 1 composante en VDF, 3 en VEF)
 // Si on met nb_comp = -1, la discretisation choisit le nombre
 // approprie, sinon elle utilise la valeur fournie.
-void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, int nb_pas_dt, double temps, Champ_Inc& champ,
+void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, int nb_pas_dt, double temps, OWN_PTR(Champ_Inc_base)& champ,
                                             const Nom& sous_type) const
 {
   Noms noms;
@@ -67,7 +69,7 @@ void Discretisation_base::discretiser_champ(const Motcle& directive, const Domai
   discretiser_champ(directive, z, scalaire, noms, unites, nb_comp, nb_pas_dt, temps, champ, sous_type);
 }
 
-void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, Champ_Fonc& champ) const
+void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)& champ) const
 {
   Noms noms;
   Noms unites;
@@ -77,7 +79,7 @@ void Discretisation_base::discretiser_champ(const Motcle& directive, const Domai
   discretiser_champ(directive, z, scalaire, noms, unites, nb_comp, temps, champ);
 }
 
-void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, Champ_Don& champ) const
+void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)& champ) const
 {
   Noms noms;
   Noms unites;
@@ -117,7 +119,7 @@ void Discretisation_base::test_demande_description(const Motcle& directive, cons
  *
  */
 void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& noms, const Noms& unites, int nb_comp, int nb_pas_dt, double temps,
-                                            Champ_Inc& champ, const Nom& sous_type) const
+                                            OWN_PTR(Champ_Inc_base)& champ, const Nom& sous_type) const
 
 {
   test_demande_description(directive, champ.que_suis_je());
@@ -134,7 +136,7 @@ void Discretisation_base::discretiser_champ(const Motcle& directive, const Domai
  *
  */
 void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& noms, const Noms& unites, int nb_comp, double temps,
-                                            Champ_Fonc& champ) const
+                                            OWN_PTR(Champ_Fonc_base)& champ) const
 
 {
   test_demande_description(directive, champ.que_suis_je());
@@ -151,7 +153,7 @@ void Discretisation_base::discretiser_champ(const Motcle& directive, const Domai
  *
  */
 void Discretisation_base::discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& noms, const Noms& unites, int nb_comp, double temps,
-                                            Champ_Don& champ) const
+                                            OWN_PTR(Champ_Don_base)& champ) const
 
 {
   test_demande_description(directive, champ.que_suis_je());
@@ -169,11 +171,6 @@ void Discretisation_base::discretiser_variables() const
   Process::exit("Discretisation_base::discretiser_variables() does nothing and must be overloaded !");
 }
 
-void Discretisation_base::discretiser_Domaine_Cl_dis(const Domaine_dis&, Domaine_Cl_dis&) const
-{
-  Process::exit("Discretisation_base::discretiser_Domaine_Cl_dis does nothing and must be overloaded !");
-}
-
 /*! @brief Fonction outil pour fixer les membres communs a tous les types de champs (utilisee dans creer_champ)
  *
  */
@@ -182,7 +179,14 @@ void Discretisation_base::champ_fixer_membres_communs(Champ_base& ch, const Doma
   ch.associer_domaine_dis_base(z);
   ch.nommer(nom);
   ch.fixer_nb_comp(nb_comp);
-  if ((nb_comp > 1) && (nb_comp == dimension))
+  if (z.que_suis_je() == "Domaine_DG")
+    {
+      Noms noms(nb_comp);
+      for (int k = 0; k<nb_comp; k++)
+        noms[k] = nom + "_phi_" + std::to_string(k);
+      ch.fixer_noms_compo(noms);
+    }
+  else if ((nb_comp > 1) && (nb_comp == dimension))
     {
       Noms noms(nb_comp);
       if (!axi)
@@ -206,13 +210,13 @@ void Discretisation_base::champ_fixer_membres_communs(Champ_base& ch, const Doma
   ch.changer_temps(temps);
 }
 
-/*! @brief Methode statique qui cree un Champ_Inc du type specifie.
+/*! @brief Methode statique qui cree un OWN_PTR(Champ_Inc_base) du type specifie.
  *
  * Les parametres "directive" et "nom_discretisation" sont
  *  utilises pour l'affichage uniquement et sont optionnels
  *
  */
-void Discretisation_base::creer_champ(Champ_Inc& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, int nb_pas_dt, double temps,
+void Discretisation_base::creer_champ(OWN_PTR(Champ_Inc_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, int nb_pas_dt, double temps,
                                       const Nom& directive, const Nom& nom_discretisation)
 {
   //Nom nomd = nom_discretisation; // Pour contourner le probleme du "static" dans type_info::nom()
@@ -222,13 +226,13 @@ void Discretisation_base::creer_champ(Champ_Inc& ch, const Domaine_dis_base& z, 
   champ_fixer_membres_communs(chb, z, type, nom, unite, nb_comp, nb_ddl, temps);
 }
 
-/*! @brief Methode statique qui cree un Champ_Fonc du type specifie.
+/*! @brief Methode statique qui cree un OWN_PTR(Champ_Fonc_base)  du type specifie.
  *
  * Les parametres "directive" et "nom_discretisation" sont
  *  utilises pour l'affichage uniquement et sont optionnels
  *
  */
-void Discretisation_base::creer_champ(Champ_Fonc& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive,
+void Discretisation_base::creer_champ(OWN_PTR(Champ_Fonc_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive,
                                       const Nom& nom_discretisation)
 {
   //Nom nomd = nom_discretisation; // Pour contourner le probleme du "static" dans type_info::nom()
@@ -237,13 +241,13 @@ void Discretisation_base::creer_champ(Champ_Fonc& ch, const Domaine_dis_base& z,
   champ_fixer_membres_communs(chb, z, type, nom, unite, nb_comp, nb_ddl, temps);
 }
 
-/*! @brief Methode statique qui cree un Champ_Don du type specifie.
+/*! @brief Methode statique qui cree un OWN_PTR(Champ_Don_base) du type specifie.
  *
  * Les parametres "directive" et "nom_discretisation" sont
  *  utilises pour l'affichage uniquement et sont optionnels
  *
  */
-void Discretisation_base::creer_champ(Champ_Don& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive,
+void Discretisation_base::creer_champ(OWN_PTR(Champ_Don_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive,
                                       const Nom& nom_discretisation)
 {
   //Nom nomd = nom_discretisation; // Pour contourner le probleme du "static" dans type_info::nom()
@@ -252,29 +256,29 @@ void Discretisation_base::creer_champ(Champ_Don& ch, const Domaine_dis_base& z, 
   champ_fixer_membres_communs(chb, z, type, nom, unite, nb_comp, nb_ddl, temps);
 }
 
-void Discretisation_base::discretiser(REF(Domaine_dis) &dom_dis) const
+Domaine_dis_base& Discretisation_base::discretiser() const
 {
   Nom type = "Domaine_", dis = que_suis_je();
   if (dis == "VEFPreP1B") dis = "VEF";
   type += dis;
   const Domaine& dom = le_domaine_.valeur();
-  dom_dis = Domaine_dis_cache::Build_or_get(type, dom);
+  return Domaine_dis_cache::Build_or_get(type, dom);
 }
 
-void Discretisation_base::volume_maille(const Schema_Temps_base& sch, const Domaine_dis& z, Champ_Fonc& ch) const
+void Discretisation_base::volume_maille(const Schema_Temps_base& sch, const Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const
 {
   Cerr << "Discretization of the field 'volume of meshes'" << finl;
-  const Domaine_VF& domaine_VF = ref_cast(Domaine_VF, z.valeur());
+  const Domaine_VF& domaine_VF = ref_cast(Domaine_VF, z);
   discretiser_champ("champ_elem", domaine_VF, "volume_maille", "m3", 1, sch.temps_courant(), ch);
   Champ_Fonc_base& ch_fonc = ref_cast(Champ_Fonc_base, ch.valeur());
   DoubleVect& tab = ch_fonc.valeurs();
   tab = domaine_VF.volumes();
 }
 
-void Discretisation_base::mesh_numbering(const Schema_Temps_base& sch, const Domaine_dis& z, Champ_Fonc& ch) const
+void Discretisation_base::mesh_numbering(const Schema_Temps_base& sch, const Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const
 {
   Cerr << "Discretization of the field mesh numbering" << finl;
-  const Domaine_VF& domaine_VF = ref_cast(Domaine_VF, z.valeur());
+  const Domaine_VF& domaine_VF = ref_cast(Domaine_VF, z);
   Noms noms(3);
   Noms unit(3);
   noms[0]="nodes"; // Composante 0: numerotation des sommets
@@ -284,10 +288,10 @@ void Discretisation_base::mesh_numbering(const Schema_Temps_base& sch, const Dom
   // La gestion des champs avec composantes par TRUST + plugin lata est une plaie...
   // Vivement VTK pour eviter cette passerelle entre TRUST et VisIt/Paraview/Tecplot
   discretiser_champ("champ_elem", domaine_VF, multi_scalaire, noms, unit, 3, sch.temps_courant(), ch);
-  ch.valeur().nommer("mesh_numbering");
-  DoubleTab& tab = ch.valeurs();
+  ch->nommer("mesh_numbering");
+  DoubleTab& tab = ch->valeurs();
   tab=0;
-  const IntTab& les_elems = z->domaine().les_elems();
+  const IntTab& les_elems = z.domaine().les_elems();
   const IntTab& elem_faces = domaine_VF.elem_faces();
   int nb_elem = les_elems.dimension(0);
   int nb_soms_elem = les_elems.dimension(1);
@@ -304,13 +308,13 @@ void Discretisation_base::mesh_numbering(const Schema_Temps_base& sch, const Dom
     }
 }
 
-void Discretisation_base::residu(const Domaine_dis&, const Champ_Inc&, Champ_Fonc&) const
+void Discretisation_base::residu(const Domaine_dis_base&, const Champ_Inc_base&, OWN_PTR(Champ_Fonc_base)&) const
 {
   Cerr << "Discret_Thyd::residu() does nothing ! " << que_suis_je() << " needs to overload it !" << finl;
   Process::exit();
 }
 
-void Discretisation_base::modifier_champ_tabule(const Domaine_dis_base& domaine_dis, Champ_Fonc_Tabule& ch_tab, const VECT(REF(Champ_base)) &ch_inc) const
+void Discretisation_base::modifier_champ_tabule(const Domaine_dis_base& domaine_dis, Champ_Fonc_Tabule& ch_tab, const VECT(OBS_PTR(Champ_base)) &ch_inc) const
 {
   Cerr << que_suis_je() << " must overload Discretisation_base::modifier_champ_tabule !" << finl;
   Process::exit();
@@ -325,10 +329,10 @@ void Discretisation_base::nommer_completer_champ_physique(const Domaine_dis_base
     {
       Noms& noms_variables = ref_cast(Champ_Fonc_Tabule, le_champ).noms_champs_parametre();
       Noms& noms_pbs = ref_cast(Champ_Fonc_Tabule, le_champ).noms_problemes();
-      VECT(REF(Champ_base)) les_ch_eq;
+      VECT(OBS_PTR(Champ_base)) les_ch_eq;
       for (int i = 0; i < noms_variables.size(); i++)
         {
-          REF(Champ_base) champ;
+          OBS_PTR(Champ_base) champ;
           const Probleme_base& pb_ch = noms_pbs.size() == 0 ? pb : ref_cast(Probleme_base, Interprete::objet(noms_pbs[i]));
           champ = pb_ch.get_champ(Motcle(noms_variables[i]));
           les_ch_eq.add(champ);
@@ -343,7 +347,7 @@ void Discretisation_base::nommer_completer_champ_physique(const Domaine_dis_base
  */
 
 // cela permet de specifier le comportement pour chaque discretisation
-Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const Nom& type_operateur, const Equation_base& eqn, const REF(Champ_base) &champ_sup) const
+Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const Nom& type_operateur, const Equation_base& eqn, const OBS_PTR(Champ_base) &champ_sup) const
 {
   Nom type;
   if (class_operateur == "Source")
@@ -365,7 +369,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
             disc = "VEF";
         }
 
-      Nom type_ch = eqn.inconnue()->que_suis_je();
+      Nom type_ch = eqn.inconnue().que_suis_je();
       if (type_ch == "Champ_Q1NC") type_ch = "Champ_P1NC";
 
       type_ch.suffix("Champ_");
@@ -384,7 +388,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
 
       type += discr;
 
-      Nom type_ch = eqn.inconnue()->que_suis_je();
+      Nom type_ch = eqn.inconnue().que_suis_je();
 
       if (type_ch == "Champ_Q1NC") type_ch = "Champ_P1NC";
       if (type_ch.debute_par("Champ_P0_VDF")) type_ch = "Champ_P0_VDF";
@@ -409,17 +413,17 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
 
       type += discr;
       type += "_";
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
 
       if (type_inco == "Champ_Q1NC") type_inco = "Champ_P1NC";
 
       type += (type_inco.suffix("Champ_"));
 
       //Test pour appliquer un gradient a un Champ_P1NC a une composante en VEF : Typage a revoir (revison des operateurs)
-      if ((eqn.inconnue()->le_nom() != "vitesse") && (eqn.inconnue()->que_suis_je() == "Champ_P1NC")) type = "Op_Grad_P1NC_to_P0";
+      if ((eqn.inconnue().le_nom() != "vitesse") && (eqn.inconnue().que_suis_je() == "Champ_P1NC")) type = "Op_Grad_P1NC_to_P0";
 
       //Test pour appliquer un gradient a un Champ_P0 a une composante en VDF : Typage a revoir (revison des operateurs)
-      if ((eqn.inconnue()->le_nom() != "vitesse") && (eqn.inconnue()->que_suis_je() == "Champ_P0_VDF")) type = "Op_Grad_P0_to_Face";
+      if ((eqn.inconnue().le_nom() != "vitesse") && (eqn.inconnue().que_suis_je() == "Champ_P0_VDF")) type = "Op_Grad_P0_to_Face";
 
       return type;
     }
@@ -428,7 +432,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
       type = "Op_Div_";
 
       Nom discr = eqn.discretisation().que_suis_je();
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
       type += discr;
 
       type += "_";
@@ -461,8 +465,10 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
         {
           Nom nb_inc;
           // Modif Elie Saikali (Nov 2020)
-          if (eqn.probleme().que_suis_je() == "Pb_Multiphase" || (diffusivite.nb_comp() == 1 && nom_discr == "VDF")) nb_inc = "_";
+          if (eqn.probleme().que_suis_je().debute_par("Pb_Multiphase") || (diffusivite.nb_comp() == 1 && nom_discr == "VDF")) nb_inc = "_";
           else if (diffusivite.nb_comp() > 1 && diffusivite.le_nom() == "conductivite") nb_inc = "ANISOTROPE_";
+          else if (nom_discr == "VDF" && eqn.diffusion_multi_scalaire())
+            nb_inc = "_Multi_inco_Multi_scalar_";
           else
             {
               if (nom_discr == "VEF") nb_inc = "_";
@@ -474,7 +480,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
       else // par contre, je modifie le cas general pour eviter de rajouter des cas particuliers
         type += "_";
 
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
 
       type += (type_inco.suffix("Champ_"));
       if (axi == 1) type += "_Axi";
@@ -510,7 +516,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
           if (type_operateur != "KEps_Comp")
             {
               type += tiret;
-              Nom type_inco = eqn.inconnue()->que_suis_je();
+              Nom type_inco = eqn.inconnue().que_suis_je();
               if (type_inco == "Champ_Q1NC") type_inco = "Champ_P1NC";
               if (type_inco.debute_par("Champ_P0_VDF")) type_inco = "Champ_P0_VDF";
               if (type_inco.debute_par("Champ_Face")) type_inco = "Champ_Face";
@@ -525,7 +531,7 @@ Nom Discretisation_base::get_name_of_type_for(const Nom& class_operateur, const 
     }
   else if (class_operateur == "Operateur_Evanescence")
     {
-      Nom type_inco = eqn.inconnue()->que_suis_je();
+      Nom type_inco = eqn.inconnue().que_suis_je();
       if (type_inco == "Champ_Q1NC") type_inco = "Champ_P1NC";
       if (type_inco.debute_par("Champ_P0_VDF")) type_inco = "Champ_P0_VDF";
       if (type_inco.debute_par("Champ_Face")) type_inco = "Champ_Face";

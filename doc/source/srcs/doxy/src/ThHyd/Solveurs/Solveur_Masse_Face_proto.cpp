@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,7 +53,7 @@ DoubleTab& Solveur_Masse_Face_proto::appliquer_impl_proto(DoubleTab& sm) const
   return sm;
 }
 
-void Solveur_Masse_Face_proto::dimensionner_blocs_proto(matrices_t matrices, const tabs_t& semi_impl, const bool allocate, IntTrav& sten) const
+void Solveur_Masse_Face_proto::dimensionner_blocs_proto(matrices_t matrices, const tabs_t& semi_impl, const bool allocate, IntTab& sten) const
 {
   const std::string& nom_inc = solv_mass_->equation().inconnue().le_nom().getString();
   if (!matrices.count(nom_inc)) return; //rien a faire
@@ -62,7 +62,7 @@ void Solveur_Masse_Face_proto::dimensionner_blocs_proto(matrices_t matrices, con
   const Domaine_VF& domaine = le_dom_.valeur();
   const DoubleTab& inco = solv_mass_->equation().inconnue().valeurs();
   const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, solv_mass_->equation().probleme()) ? &ref_cast(Pb_Multiphase, solv_mass_->equation().probleme()) : nullptr;
-  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee").valeur()) : nullptr;
+  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee")) : nullptr;
   int i, f, m, n, N = inco.line_size();
 
   for (f = 0, i = 0; f < domaine.nb_faces(); f++)
@@ -88,7 +88,7 @@ void Solveur_Masse_Face_proto::ajouter_blocs_proto(matrices_t matrices, DoubleTa
   const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, solv_mass_->equation().probleme()) ? &ref_cast(Pb_Multiphase, solv_mass_->equation().probleme()) : nullptr;
   const DoubleTab& vfd = domaine.volumes_entrelaces_dir(), &rho = solv_mass_->equation().milieu().masse_volumique().passe(),
                    *alpha = pbm ? &pbm->equation_masse().inconnue().passe() : nullptr, *a_r = pbm ? &pbm->equation_masse().champ_conserve().passe() : nullptr;
-  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee").valeur()) : nullptr;
+  const Masse_ajoutee_base *corr = pbm && pbm->has_correlation("masse_ajoutee") ? &ref_cast(Masse_ajoutee_base, pbm->get_correlation("masse_ajoutee")) : nullptr;
   int i, e, f, m, n, N = inco.line_size(), cR = rho.dimension_tot(0) == 1;
 
   /* faces : si CLs, pas de produit par alpha * rho en multiphase */

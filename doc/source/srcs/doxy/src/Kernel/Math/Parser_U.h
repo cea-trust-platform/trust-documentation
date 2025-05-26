@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -76,9 +76,9 @@ public :
   /**
    * Fixe la valeur de la variable de numero specifie. Ce numero correspondt a l'ordre de l'ajout des variables par la methode addVar().
    */
-  inline void setVar(int i, double val);
+  inline void setVar(True_int i, double val);
 #ifdef INT_is_64_
-  inline void setVar(True_int i, double val)
+  inline void setVar(trustIdType i, double val)
   {
     parser->setVar((int)i, val);
   };
@@ -98,7 +98,7 @@ public :
   inline void setString(const Nom& nom) ;
   inline void addCst(const Constante& cst);
   inline void setImpulsion(double tinit, double periode);
-  inline void addFunc(const UnaryFunction& f);
+  Parser& getParser() { return *parser; }
 
 
 
@@ -162,7 +162,7 @@ inline void Parser_U::setVar(const std::string& v, double val)
 /**
  * Fixe la valeur de la variable de numero specifie. Ce numero correspond a l'ordre de l'ajout des variables par la methode addVar().
  */
-inline void Parser_U::setVar(int i, double val)
+inline void Parser_U::setVar(True_int i, double val)
 {
   parser->setVar(i, val);
 }
@@ -207,11 +207,6 @@ inline void Parser_U::setString(const Nom& nom)
 inline void Parser_U::addCst(const Constante& cst)
 {
   parser->addCst(cst);
-}
-
-inline void Parser_U::addFunc(const UnaryFunction& f)
-{
-  parser->addFunc(f);
 }
 
 inline void Parser_U::setImpulsion(double tinit, double periode)

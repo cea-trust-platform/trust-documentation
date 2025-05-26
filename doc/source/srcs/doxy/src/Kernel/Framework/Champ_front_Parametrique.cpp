@@ -21,7 +21,7 @@
 
 
 Implemente_instanciable(Champ_front_Parametrique,"Champ_front_Parametrique",Champ_front_base);
-// XD Champ_front_Parametrique front_field_base Champ_front_Parametrique 0 Parametric boundary field
+// XD Champ_front_Parametrique front_field_base Champ_front_Parametrique 1 Parametric boundary field
 
 Sortie& Champ_front_Parametrique::printOn(Sortie& os) const
 {
@@ -41,10 +41,10 @@ Entree& Champ_front_Parametrique::readOn(Entree& is)
   if (motlu!="{") Process::exit("Waiting { !");
   while (motlu!="}")
     {
-      Champ_front ch;
+      OWN_PTR(Champ_front_base) ch;
       fic >> ch;
       champs_.add(ch);
-      //Cerr << "[Parameter] Reading: " << ch.valeur().que_suis_je() << finl; //" " << ch.valeur() << finl;
+      //Cerr << "[Parameter] Reading: " << ch->que_suis_je() << finl; //" " << ch.valeur() << finl;
       fic >> motlu;
     }
   // On fixe le premier parametre:
@@ -62,10 +62,10 @@ std::string Champ_front_Parametrique::newCompute() const
       if (index_)
         {
           previous_field = " from ";
-          previous_field += champ().valeur().que_suis_je();
+          previous_field += champ().que_suis_je();
         }
       index_++;
-      Nom next_field = champ().valeur().que_suis_je();
+      Nom next_field = champ().que_suis_je();
       Cerr << "[Parameter] Updating boundary field" << previous_field << " to " << next_field << finl;
       return Champ_Parametrique::dirnameCompute(index_);
     }
@@ -104,8 +104,8 @@ void Champ_front_Parametrique::calculer_derivee_en_temps(double t1, double t2)
     }
   else
     {
-      champ()->calculer_derivee_en_temps(t1, t2);
-      Gpoint_ = champ()->derivee_en_temps();
+      champ().calculer_derivee_en_temps(t1, t2);
+      Gpoint_ = champ().derivee_en_temps();
     }
   last_t2_ = t2;
 }

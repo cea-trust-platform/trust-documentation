@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,6 +16,11 @@
 #ifndef distances_VEF_inclus
 #define distances_VEF_inclus
 #include <Domaine_VEF.h>
+// Kokkos
+KOKKOS_INLINE_FUNCTION
+double distance(int dim,int fac,int elem,CDoubleTabView xp, CDoubleTabView xv, CDoubleTabView face_normale);
+KOKKOS_INLINE_FUNCTION
+double norm_vit1(int dim, CDoubleTabView vit, int fac, int nfac, const int* num, CDoubleTabView face_normale, double* val);
 //double norm_2D_vit1(const DoubleTab& vit,int elem,int num1,int num2,const Domaine_VEF& domaine,double& val1);
 double norm_2D_vit1(const DoubleTab& vit,int elem,int num1,int num2,const Domaine_VEF& domaine,double& val1, double& val2);
 double norm_2D_vit1_lp(const DoubleTab& vit,int elem,int num1,int num2,const Domaine_VEF& domaine,double& val1,double& val2);
@@ -101,5 +106,107 @@ inline double distance_face(int fac,int fac1,const Domaine_VEF& domaine)
       calcule_r0r1(face_normale,fac,r0,r1);
       return std::fabs(r0*(x1-x0)+r1*(y1-y0));
     }
+}
+
+// Kokkos function (factorize distance_2D and distance_3D functions)
+KOKKOS_INLINE_FUNCTION
+double distance(int dim,int fac,int elem, CDoubleTabView xp, CDoubleTabView xv, CDoubleTabView face_normale)
+{
+  double norme=0;
+  double ps=0;
+  for (int i=0; i<dim; i++)
+    {
+      double fn_i = face_normale(fac, i);
+      norme += fn_i * fn_i;
+      ps += fn_i * (xp(elem, i) - xv(fac, i));
+    }
+  return std::fabs(ps/sqrt(norme));
+}
+// Kokkos function (factorize norm_2D_vit1 and norm_3D_vit1)
+KOKKOS_INLINE_FUNCTION
+double norm_vit1(int dim, CDoubleTabView vit, int fac, int nfac, const int* num,
+                 CDoubleTabView face_normale,
+                 double* val)
+{
+  // fac numero de la face a paroi fixe
+  double r[3] {};
+  double norme = 0;
+  for (int i=0; i<dim; i++)
+    {
+      r[i] = face_normale(fac, i);
+      norme += r[i] * r[i];
+    }
+  norme = sqrt(norme);
+  for(int i = 0; i < dim; i++)
+    r[i] /= norme;
+
+  double v[3] {};
+  for (int i=0; i<dim; i++)
+    {
+      v[i] = 0;
+      for (int j = 0; j < dim; j++)
+        v[i] += vit(num[j], i);
+      v[i] /= nfac;
+    }
+
+  double sum_carre=0;
+  double psc=0;
+  for (int i=0; i<dim; i++)
+    {
+      sum_carre += carre(v[i]);
+      psc += v[i] * r[i];
+    }
+  double norm_vit = sqrt(std::fabs(sum_carre-carre(psc)));
+
+  // val1,val2 val3 sont les vitesses tangentielles
+  for (int i=0; i<dim; i++)
+    val[i]=(v[i] - psc*r[i])/(norm_vit + DMINFLOAT);
+
+  return norm_vit;
+}
+
+KOKKOS_INLINE_FUNCTION
+double norm_vit1_lp(int dim, CDoubleTabView vit, int fac, int nfac, const int* num,
+                    CDoubleTabView face_normale,
+                    double* val)
+{
+  // fac numero de la face a paroi fixe
+  double r[3] {};
+  double norme = 0;
+  double c[] = {1., 1., 1.};
+  double c_sum = 0;
+  for (int i=0; i<dim; i++)
+    {
+      r[i] = face_normale(fac, i);
+      norme += r[i] * r[i];
+      c_sum += c[i];
+    }
+  norme = sqrt(norme);
+  for(int i = 0; i < dim; i++)
+    r[i] /= norme;
+
+  double v[3] {};
+  for (int i=0; i<dim; i++)
+    {
+      v[i] = 0;
+      for (int j = 0; j < dim; j++)
+        v[i] += c[i] * vit(num[j], i);
+      v[i] /= c_sum;
+    }
+
+  double sum_carre=0;
+  double psc=0;
+  for (int i=0; i<dim; i++)
+    {
+      sum_carre += carre(v[i]);
+      psc += v[i] * r[i];
+    }
+  double norm_vit = sqrt(std::fabs(sum_carre-carre(psc)));
+
+  // val1,val2 val3 sont les vitesses tangentielles
+  for (int i=0; i<dim; i++)
+    val[i]=(v[i] - psc*r[i])/(norm_vit + DMINFLOAT);
+
+  return norm_vit;
 }
 #endif

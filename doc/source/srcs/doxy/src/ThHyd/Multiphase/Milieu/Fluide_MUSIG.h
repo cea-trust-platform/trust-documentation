@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Fluide_MUSIG_included
 
 #include <Fluide_base.h>
-#include <Fluide.h>
+#include <TRUST_Deriv.h>
 #include <vector>
 #include <map>
 
@@ -35,16 +35,18 @@ class Fluide_MUSIG : public Fluide_base
 {
   Declare_instanciable( Fluide_MUSIG ) ;
 public :
-  inline DoubleTab getdiametres() { return diametres_; }
-  inline int getNbSubPhase() { return nbSubPhases_; }
-  inline Fluide getFluide() { return fluide_; }
+  inline const DoubleTab& get_Diametres() const { return diametres_; }
+
+  inline const int& get_NbSubPhase() const { return nbSubPhases_; }
+
+  inline const OWN_PTR(Fluide_base)& get_Fluide() const { return fluide_; }
 
   int initialiser(const double temps) override;
 
 protected :
   DoubleTab diametres_;
   int nbSubPhases_ = -1;
-  Fluide fluide_;
+  OWN_PTR(Fluide_base) fluide_;
 };
 
 #endif /* Fluide_MUSIG_included */

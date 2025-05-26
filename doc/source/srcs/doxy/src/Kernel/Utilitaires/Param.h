@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -40,23 +40,19 @@ public:
   enum Nature { OPTIONAL = 0, REQUIRED = 1 };
   Param(const char *);
   // ajout d'argument
-  void ajouter(const char *,int* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
-  void ajouter(const char *,double* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
-  void ajouter(const char *, Objet_U* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
-  void ajouter_arr_size_predefinie(const char *, ArrOfInt* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
-  void ajouter_arr_size_predefinie(const char *, ArrOfDouble* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
+  void ajouter(const char *,int* ,Param::Nature nat = Param::OPTIONAL);
+#if INT_is_64_ == 2
+  void ajouter(const char *,trustIdType* ,Param::Nature nat = Param::OPTIONAL);
+#endif
+  void ajouter(const char *,double* ,Param::Nature nat = Param::OPTIONAL);
+  void ajouter(const char *, Objet_U* ,Param::Nature nat = Param::OPTIONAL);
+  void ajouter_arr_size_predefinie(const char *, ArrOfInt* ,Param::Nature nat = Param::OPTIONAL);
+  void ajouter_arr_size_predefinie(const char *, ArrOfDouble* ,Param::Nature nat = Param::OPTIONAL);
 
-  template <typename _CLASSE_>
-  void ajouter_deriv(const char * mot, const char *prefixe, TRUST_Deriv<_CLASSE_> * quoi, Param::Nature nat = Param::OPTIONAL)
-  {
-    Objet_a_lire& obj=create_or_get_objet_a_lire(mot);
-    obj.set_nature( nat == Param::REQUIRED ? Objet_a_lire::REQUIRED : Objet_a_lire::OPTIONAL);
-    obj.set_deriv<_CLASSE_>(quoi, prefixe);
-  }
-
-  void ajouter_flag(const char *,int* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
+  void ajouter_flag(const char *,int* ,Param::Nature nat = Param::OPTIONAL);
+  void ajouter_flag(const char *,bool* ,Param::Nature nat = Param::OPTIONAL);
   Param& ajouter_param(const char *, Param::Nature nat = Param::OPTIONAL);
-  void ajouter_non_std(const char *,Objet_U* ,Param::Nature nat = Param::OPTIONAL);//int opt=1);
+  void ajouter_non_std(const char *,Objet_U* ,Param::Nature nat = Param::OPTIONAL);
   void ajouter_condition(const char* condition, const char* message,const char*  name=0);
   void supprimer(const char *);
   void supprimer_condition(const char*  name);
@@ -71,7 +67,6 @@ public:
   int lire_avec_accolades_depuis(Entree& is);
   int lire_sans_accolade(Entree& is);
   inline int lire_avec_accolades(Entree& is) { return lire_avec_accolades_depuis(is); }
-  //int verifier_avant_ajout(const char*);
 
   int read(Entree& is,int with_acco=1);
   void print(Sortie& s) const;
@@ -81,7 +76,6 @@ public:
   double get_value(const Nom& mot_lu) const;
   int check();
 protected:
-  //int verifier_avant_ajout(char*);
   Param();
   Objet_a_lire& create_or_get_objet_a_lire(const char *);
 

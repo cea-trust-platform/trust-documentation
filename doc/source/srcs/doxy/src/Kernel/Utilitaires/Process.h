@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,13 @@
 #define Process_included
 
 #include <TRUST_Version.h>  // so that it is accessible from everywhere in TRUST
+#include <arch.h>
 
 #ifdef LATATOOLS
 #include <string>
 #include <stdlib.h>
+#else
+#include <kokkos++.h>
 #endif
 
 class Objet_U;
@@ -55,11 +58,13 @@ public:
   static void exit(const std::string& s) { ::exit(-1); }
 
   static double mp_sum(double) { return 0; }
+  static float mp_sum(float) { return 0; }
   static double mp_max(double) { return 0; }
   static int mp_max(int) { return 0; }
   static double mp_min(double) { return 0; }
   static int mp_min(int) { return 0; }
-  static int mp_sum(int) { return 0; }
+  static trustIdType mp_sum(int) { return 0; }
+  static trustIdType mp_sum(trustIdType) { return 0; }
 
 #else
   static int me(); /* mon rang dans le groupe courant */
@@ -67,28 +72,81 @@ public:
   static bool is_parallel();
   static void exit(int exit_code = -1);
 
-  static double mp_sum(double);
+  //
+  // Min/max across all procs
+  //
   static double mp_max(double);
-  static int mp_max(int);
   static double mp_min(double);
+  static int mp_max(int);
   static int mp_min(int);
-  static int mp_sum(int);
+#if INT_is_64_ == 2
+  static trustIdType mp_max(trustIdType);
+  static trustIdType mp_min(trustIdType);
+#endif
+
+  //
+  // Sum across all procs
+  //
+  static double mp_sum(double);
+  static float mp_sum(float);
+#if INT_is_64_ == 2
+  // Careful, the sum of many 'int' on several procs, might return a 'long'!!
+  static trustIdType mp_sum(int v) { return mp_sum(static_cast<trustIdType>(v)); }
+#endif
+  static trustIdType mp_sum(trustIdType);
+  // When computing percentages or ratios, useful:
+  static double mp_sum_as_double(int v) { return static_cast<double>(mp_sum(v)); }
+#if INT_is_64_ == 2
+  static double mp_sum_as_double(trustIdType v) { return static_cast<double>(mp_sum(v)); }
+#endif
+
+  // Summing for all procs before me:
+  static trustIdType mppartial_sum(trustIdType i);
+#if INT_is_64_ == 2
+  static trustIdType mppartial_sum(int i) { return mppartial_sum(static_cast<trustIdType>(i)); }
+#endif
+
+  // Summing two doubles at once
+  static void mpsum_multiple(double& x1, double& x2);
+
+  static bool mp_and(bool);
+  static bool mp_or(bool);
+
+  static int check_int_overflow(trustIdType);
 
   static int je_suis_maitre();
+  KOKKOS_INLINE_FUNCTION static void Kokkos_exit(const char*);
+  static int node_master();
   static void exit(const Nom& message, int exit_code = -1);
   static bool is_sequential(); // serial ?
   static void barrier();
-  static bool mp_and(bool);
   static void abort();
 
   static Sortie& Journal(int message_level = 0);
   static double ram_processeur();
   static void imprimer_ram_totale(int all_process = 0);
+  //static void print_allocated_memory(std::string s); // To look for memory increase
   static int exception_sur_exit;
   static int multiple_files;
   static bool force_single_file(const int ranks, const Nom& filename);
 #endif
 };
+
+/*! @brief Routine de sortie de TRUST dans une region Kokkos
+ *
+ */
+#ifndef LATATOOLS
+KOKKOS_INLINE_FUNCTION void Process::Kokkos_exit(const char* str)
+{
+#ifdef KOKKOS
+  // ToDo Kokkos: try to exit more properly on device...
+  Kokkos::abort(str);
+  //Kokkos::finalize();
+#else
+  Process::exit(str);
+#endif
+}
+#endif
 
 #endif /* Process_included */
 

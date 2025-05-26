@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -51,7 +51,7 @@ public :
   void associer_diffusivite(const Champ_base& ) override ;
   const Champ_base& diffusivite() const override;
   inline void associer_champ_masse_volumique(const Champ_base&) override;
-  void calculer_pour_post(Champ& espace_stockage,const Nom& option, int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage,const Nom& option, int comp) const override;
   Motcle get_localisation_pour_post(const Nom& option) const override;
 
   void ajouter_flux(const DoubleTab& inconnue, DoubleTab& contribution) const override;
@@ -67,8 +67,8 @@ public :
 
 protected :
 
-  REF(Champ_base) la_diffusivite;
-  inline void associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc& ) override ;
+  OBS_PTR(Champ_base) la_diffusivite;
+  inline void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base& ) override ;
 };
 
 class Op_Dift_negligeable: public Op_Diff_negligeable
@@ -147,18 +147,18 @@ inline void Op_Diff_negligeable::mettre_a_jour(double temps)
 }
 
 
-/*! @brief Associe divers objets a un operateurs negligeable: NE FAIT RIEN Simple appel a Operateur_negligeable::associer(const Domaine_dis&,
+/*! @brief Associe divers objets a un operateurs negligeable: NE FAIT RIEN Simple appel a Operateur_negligeable::associer(const Domaine_dis_base&,
  *
- *                                                      const Domaine_Cl_dis&,
- *                                                      const Champ_Inc&)
+ *                                                      const Domaine_Cl_dis_base&,
+ *                                                      const Champ_Inc_base&)
  *
- * @param (Domaine_dis& z)
- * @param (Domaine_Cl_dis& zcl)
- * @param (Champ_Inc& ch)
+ * @param (Domaine_dis_base& z)
+ * @param (Domaine_Cl_dis_base& zcl)
+ * @param (Champ_Inc_base& ch)
  */
-inline void Op_Diff_negligeable::associer(const Domaine_dis& z,
-                                          const Domaine_Cl_dis& zcl,
-                                          const Champ_Inc& ch)
+inline void Op_Diff_negligeable::associer(const Domaine_dis_base& z,
+                                          const Domaine_Cl_dis_base& zcl,
+                                          const Champ_Inc_base& ch)
 {
   Operateur_negligeable::associer(z, zcl, ch);
 }

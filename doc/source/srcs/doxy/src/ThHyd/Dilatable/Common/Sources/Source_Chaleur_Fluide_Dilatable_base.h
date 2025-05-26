@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,12 +16,12 @@
 #ifndef Source_Chaleur_Fluide_Dilatable_base_included
 #define Source_Chaleur_Fluide_Dilatable_base_included
 
+
 #include <Source_base.h>
+
 #include <TRUST_Ref.h>
 
 class Fluide_Dilatable_base;
-class Domaine_Cl_dis;
-class Domaine_dis;
 
 /*! @brief class Source_Chaleur_Fluide_Dilatable_base
  *
@@ -46,8 +46,8 @@ public:
   inline void associer_pb(const Probleme_base& ) override { }
 
 protected:
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override =0;
-  REF(Fluide_Dilatable_base) le_fluide;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override =0;
+  OBS_PTR(Fluide_Dilatable_base) le_fluide;
   DoubleVect volumes,porosites;
 };
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -40,28 +40,29 @@ public:
   void associer_vitesse(const Champ_base& ) override;
   inline const Champ_Inc_base& vitesse() const { return vitesse_.valeur(); }
   inline Champ_Inc_base& vitesse() { return vitesse_.valeur(); }
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& ,const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& ,const Champ_Inc_base& ) override;
   DoubleTab& calculer(const DoubleTab& , DoubleTab& ) const override;
   void abortTimeStep() override;
   double calculer_dt_stab() const override ;
   void calculer_dt_local(DoubleTab&) const override ; //Local time step calculation
-  void calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const override;
   Motcle get_localisation_pour_post(const Nom& option) const override;
 
-  virtual void remplir_fluent(DoubleVect& ) const;
+  virtual void remplir_fluent() const;
   int impr(Sortie& os) const override;
   void associer_domaine_cl_dis(const Domaine_Cl_dis_base&) override;
   int  phi_u_transportant(const Equation_base& eq) const;
 
 protected:
-  REF(Domaine_VEF) le_dom_vef;
-  REF(Domaine_Cl_VEF) la_zcl_vef;
-  REF(Champ_Inc_base) vitesse_;
+  OBS_PTR(Domaine_VEF) le_dom_vef;
+  OBS_PTR(Domaine_Cl_VEF) la_zcl_vef;
+  OBS_PTR(Champ_Inc_base) vitesse_;
 
-  mutable DoubleVect fluent;           // tableau qui sert pour le calcul du pas
+  mutable DoubleVect fluent_;           // tableau qui sert pour le calcul du pas
   // Les jeton pour la permmutation des schemas de convection
   mutable int jeton = -1;
   mutable int roue = -1;
+  mutable ArrOfInt faces_entrelaces_Cl_; // tableau de travail
 };
 
 #endif

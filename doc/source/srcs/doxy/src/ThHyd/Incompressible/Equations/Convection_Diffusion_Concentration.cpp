@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -78,6 +78,7 @@ void Convection_Diffusion_Concentration::set_param(Param& param)
   param.ajouter_non_std("nom_inconnue",(this)); // XD_ADD_P chaine Keyword Nom_inconnue will rename the unknown of this equation with the given name. In the postprocessing part, the concentration field will be accessible with this name. This is usefull if you want to track more than one concentration (otherwise, only the concentration field in the first concentration equation can be accessed).
   param.ajouter_non_std("alias",(this)); // XD_ADD_P chaine not_set
   param.ajouter("masse_molaire",&masse_molaire_); // XD_ADD_P floattant not_set
+  param.ajouter_non_std("is_multi_scalar|is_multi_scalar_diffusion", (this)); // XD_ADD_P rien Flag to activate the multi_scalar diffusion operator
 }
 
 int Convection_Diffusion_Concentration::lire_motcle_non_standard(const Motcle& mot, Entree& is)
@@ -87,9 +88,9 @@ int Convection_Diffusion_Concentration::lire_motcle_non_standard(const Motcle& m
       Motcle nom; // Question: veut-on le mettre en majuscules ?
       is >> nom;
       Cerr << "The unknow of a Convection_Diffusion_Concentration equation is renamed"
-           << "\n Old name : " << inconnue().valeur().le_nom()
+           << "\n Old name : " << inconnue().le_nom()
            << "\n New name : " << nom << finl;
-      inconnue().valeur().nommer(nom);
+      inconnue().nommer(nom);
       champs_compris_.ajoute_champ(la_concentration);
       return 1;
     }
@@ -98,10 +99,15 @@ int Convection_Diffusion_Concentration::lire_motcle_non_standard(const Motcle& m
       Motcle nom; // Question: veut-on le mettre en majuscules ?
       is >> nom;
       Cerr << "nom_inconnue: On renomme l'equation et son inconnue"
-           << "\n Ancien nom : " << inconnue().valeur().le_nom()
+           << "\n Ancien nom : " << inconnue().le_nom()
            << "\n Nouveau nom : " << nom << finl;
-      inconnue().valeur().nommer(nom);
+      inconnue().nommer(nom);
       champs_compris_.ajoute_champ(la_concentration);
+      return 1;
+    }
+  else if (mot=="is_multi_scalar" || mot=="is_multi_scalar_diffusion")
+    {
+      diffusion_multi_scalaire_ = true;
       return 1;
     }
   else
@@ -116,16 +122,10 @@ int Convection_Diffusion_Concentration::lire_motcle_non_standard(const Motcle& m
 void Convection_Diffusion_Concentration::associer_milieu_base(const Milieu_base& un_milieu)
 {
   const Constituant& un_constituant = ref_cast(Constituant,un_milieu);
-  if (un_constituant.diffusivite_constituant().non_nul())
-    associer_constituant(un_constituant);
-  else
-    {
-      Cerr << "The dye (constituant) diffusivity has not been defined." << finl ;
-      exit();
-    }
+  associer_constituant(un_constituant);
 }
 
-const Champ_Don& Convection_Diffusion_Concentration::diffusivite_pour_transport() const
+const Champ_Don_base& Convection_Diffusion_Concentration::diffusivite_pour_transport() const
 {
   return constituant().diffusivite_constituant();
 }
@@ -235,7 +235,7 @@ int Convection_Diffusion_Concentration::impr(Sortie& os) const
  *     le type a ete specifie.
  *
  * @param (Motcle& mot) le type du champ dont on veut recuperer la reference
- * @param (REF(Champ_base)& ch_ref) la reference sur le champ du type specifie
+ * @param (OBS_PTR(Champ_base)& ch_ref) la reference sur le champ du type specifie
  * @return (int) renvoie 1 si le champ a ete trouve, 0 sinon
  */
 inline int string2int(char* digit, int& result)

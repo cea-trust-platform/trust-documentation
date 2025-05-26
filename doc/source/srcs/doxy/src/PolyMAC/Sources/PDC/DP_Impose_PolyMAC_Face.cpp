@@ -69,7 +69,7 @@ void DP_Impose_PolyMAC_Face::completer()
 void DP_Impose_PolyMAC_Face::remplir_num_faces(Entree& s)
 {
   const Domaine& le_domaine = equation().probleme().domaine();
-  const Domaine_Poly_base& domaine_poly = ref_cast(Domaine_Poly_base,equation().domaine_dis().valeur());
+  const Domaine_Poly_base& domaine_poly = ref_cast(Domaine_Poly_base,equation().domaine_dis());
   int taille_bloc = domaine_poly.nb_elem();
   num_faces.resize(taille_bloc);
   lire_surfaces(s,le_domaine,domaine_poly,num_faces, sgn);
@@ -92,13 +92,13 @@ void DP_Impose_PolyMAC_Face::remplir_num_faces(Entree& s)
 
 void DP_Impose_PolyMAC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  const Domaine_Poly_base& domaine_poly = ref_cast(Domaine_Poly_base,equation().domaine_dis().valeur());
+  const Domaine_Poly_base& domaine_poly = ref_cast(Domaine_Poly_base,equation().domaine_dis());
   const DoubleVect& pf = equation().milieu().porosite_face(), &fs = domaine_poly.face_surfaces();
   const DoubleTab& vit = equation().inconnue().valeurs();
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
 
-  double rho = equation().milieu().masse_volumique()(0, 0),
+  double rho = equation().milieu().masse_volumique().valeurs()(0, 0),
          fac_rho = (equation().probleme().is_dilatable() || sub_type(Pb_Multiphase, equation().probleme())) ? 1.0 : 1.0 / rho;
 
   if (regul_)
@@ -113,7 +113,7 @@ void DP_Impose_PolyMAC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secme
       DoubleTrav xvf(num_faces.size(), dimension), DP(num_faces.size(), 3);
       for (int i = 0; i < num_faces.size(); i++)
         for (int j = 0; j < dimension; j++) xvf(i, j) = domaine_poly.xv()(num_faces(i), j);
-      DP_.valeur().valeur_aux(xvf, DP);
+      DP_->valeur_aux(xvf, DP);
       for (int i = 0, f; i < num_faces.size(); i++)
         if ((f = num_faces(i)) < domaine_poly.nb_faces())
           {

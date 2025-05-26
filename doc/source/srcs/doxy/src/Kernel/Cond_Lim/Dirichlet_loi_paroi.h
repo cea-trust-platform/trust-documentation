@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Dirichlet_loi_paroi_included
 
 #include <Frontiere_dis_base.h>
-#include <Correlation.h>
+#include <Correlation_base.h>
 #include <TRUST_Ref.h>
 #include <Dirichlet.h>
 #include <TRUSTTab.h>
@@ -40,7 +40,7 @@ public:
   virtual int avancer(double temps) override {return 1;} // Avancer ne fait rien car le champ est modifie dans mettre_a_jour
   void mettre_a_jour(double tps) override;
 
-  virtual void associer_correlation(const Correlation& corr) { correlation_loi_paroi_ = corr; }
+  virtual void associer_correlation(const Correlation_base& corr) { correlation_loi_paroi_ = corr; }
   void associer_fr_dis_base(const Frontiere_dis_base& fr) override { la_frontiere_dis = fr; }
   void associer_domaine_cl_dis_base(const Domaine_Cl_dis_base& zcl) override { mon_dom_cl_dis = zcl; }
 
@@ -70,8 +70,8 @@ public:
 protected:
   virtual void me_calculer()=0;
 
-  REF(Correlation) correlation_loi_paroi_;
-  REF(Frontiere_dis_base) la_frontiere_dis;
+  OBS_PTR(Correlation_base) correlation_loi_paroi_;
+  OBS_PTR(Frontiere_dis_base) la_frontiere_dis;
   double mon_temps = -1.e8;
   DoubleTab d_;
 };

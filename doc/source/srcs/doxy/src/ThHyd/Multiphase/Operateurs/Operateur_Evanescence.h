@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@
  * @sa Operateur_base Operateur
  */
 
-class Operateur_Evanescence : public Operateur, public DERIV(Operateur_Evanescence_base)
+class Operateur_Evanescence : public Operateur, public OWN_PTR(Operateur_Evanescence_base)
 {
   Declare_instanciable(Operateur_Evanescence);
 public:
@@ -36,12 +36,12 @@ public:
   const Operateur_base& l_op_base() const override { return valeur(); }
   DoubleTab& ajouter(const DoubleTab& donnee, DoubleTab& resu) const override { return valeur().ajouter(donnee, resu); }
   DoubleTab& calculer(const DoubleTab& donnee, DoubleTab& resu) const override { return valeur().calculer(donnee, resu); }
-  void typer(const Nom& un_type) { DERIV(Operateur_Evanescence_base)::typer(un_type); }
+  void typer(const Nom& un_type) { OWN_PTR(Operateur_Evanescence_base)::typer(un_type); }
   void typer() override;
   inline int op_non_nul() const override { return non_nul(); };
 
 protected:
-  REF(Champ_base) la_diffusivite;
+  OBS_PTR(Champ_base) la_diffusivite_;
 };
 
 #endif /* Operateur_Evanescence_included */

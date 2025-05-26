@@ -49,7 +49,7 @@ Entree& Champ_Don_Face_lu::readOn(Entree& is)
   Nom nom;
   is >> nom;
   Probleme_base& pb = ref_cast(Probleme_base, Interprete::objet(nom));
-  associer_domaine_dis_base(pb.domaine_dis().valeur());
+  associer_domaine_dis_base(pb.domaine_dis());
   const Domaine_VDF& zvdf = ref_cast(Domaine_VDF, domaine_dis_base());
   int nb_faces = zvdf.nb_faces();
   is >> dim;
@@ -101,7 +101,7 @@ Entree& Champ_Don_Face_lu::readOn(Entree& is)
         }
     }
 
-  int erreur = mp_sum(nb_faces - nb_faces_affectees);
+  int erreur = static_cast<int>(mp_sum(nb_faces - nb_faces_affectees)); // should remain small
   if (erreur)
     {
       Cerr << "Erreur dans Champ_Don_Face_lu.\n" << erreur << " faces n'ont pas ete affectees.\n" << "Voir la liste des faces dans les fichiers .log" << finl;

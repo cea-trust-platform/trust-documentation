@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,7 +22,7 @@
 #include <Field_base.h>
 #include <Noms.h>
 class Motcle;
-class Domaine;
+#include <Domaine_forward.h>
 class Domaine_dis_base;
 class Format_Post_base;
 class Frontiere_dis_base;
@@ -85,8 +85,8 @@ public:
   virtual double valeur_a_compo(const DoubleVect& position, int ncomp) const;
   virtual double valeur_a_elem_compo(const DoubleVect& position, int le_poly, int ncomp) const;
 
+  virtual DoubleTab& valeur_aux_centres_de_gravite(const Domaine&, DoubleTab& valeurs) const;
   virtual DoubleTab& valeur_aux(const DoubleTab& positions, DoubleTab& valeurs) const;
-  virtual DoubleTab& valeur_aux_centres_de_gravite(const DoubleTab& positions, DoubleTab& valeurs) const;
   virtual DoubleVect& valeur_aux_compo(const DoubleTab& positions, DoubleVect& valeurs, int ncomp) const;
   virtual DoubleTab& valeur_aux_elems(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& valeurs) const;
   virtual DoubleVect& valeur_aux_elems_compo(const DoubleTab& positions, const IntVect& les_polys, DoubleVect& valeurs, int ncomp) const;
@@ -96,15 +96,17 @@ public:
   virtual double valeur_a_sommet_compo(int, int, int) const;
   virtual DoubleTab& valeur_aux_sommets(const Domaine&, DoubleTab&) const;
   virtual DoubleVect& valeur_aux_sommets_compo(const Domaine&, DoubleVect&, int) const;
+  virtual DoubleTab& eval_elem(DoubleTab& valeurs) const;
+
 
   /* ces methodes ne s'appliquent que si a_un_domaine_dis_base() */
   virtual DoubleTab& valeur_aux_faces(DoubleTab& result) const;
   virtual DoubleTab valeur_aux_bords() const;
 
-  int calculer_valeurs_som_post(DoubleTab& valeurs, int nbsom, Nom& nom_post, const Domaine& dom) const;
-  int calculer_valeurs_som_compo_post(DoubleTab& valeurs, int ncomp, int nbsom, Nom& nom_post, const Domaine& dom, int appliquer_cl=0) const;
-  int calculer_valeurs_elem_post(DoubleTab& valeurs, int nbelem, Nom& nom_post, const Domaine& dom) const;
-  int calculer_valeurs_elem_compo_post(DoubleTab& valeurs, int ncomp, int nbelem, Nom& nom_post, const Domaine& dom) const;
+  void calculer_valeurs_som_post(DoubleTab& valeurs, int nbsom, Nom& nom_post, const Domaine& dom) const;
+  void calculer_valeurs_som_compo_post(DoubleTab& valeurs, int ncomp, int nbsom, Nom& nom_post, const Domaine& dom, int appliquer_cl=0) const;
+  void calculer_valeurs_elem_post(DoubleTab& valeurs, int nbelem, Nom& nom_post, const Domaine& dom) const;
+  void calculer_valeurs_elem_compo_post(DoubleTab& valeurs, int ncomp, int nbelem, Nom& nom_post, const Domaine& dom) const;
   void corriger_unite_nom_compo();
   virtual int completer_post_champ(const Domaine& dom, const int axi, const Nom& loc_post, const Nom& le_nom_champ_post, Format_Post_base& format) const;
   virtual void completer(const Domaine_Cl_dis_base& zcl);

@@ -15,7 +15,7 @@
 
 #include <Op_Diff_Turbulent_PolyMAC_P0_Elem.h>
 #include <Op_Diff_Turbulent_PolyMAC_P0_Face.h>
-#include <Pb_Multiphase.h>
+#include <Probleme_base.h>
 
 Implemente_instanciable( Op_Diff_Turbulent_PolyMAC_P0_Elem, "Op_Diff_Turbulent_PolyMAC_P0_Elem|Op_Diff_Turbulente_PolyMAC_P0_Elem", Op_Diff_PolyMAC_P0_Elem );
 
@@ -24,8 +24,8 @@ Sortie& Op_Diff_Turbulent_PolyMAC_P0_Elem::printOn(Sortie& os) const { return Op
 Entree& Op_Diff_Turbulent_PolyMAC_P0_Elem::readOn(Entree& is)
 {
   //lecture de la correlation de diffusivite turbulente
-  corr_.typer_lire(equation().probleme(), "transport_turbulent", is);
-  associer_proto(ref_cast(Pb_Multiphase, equation().probleme()), champs_compris_);
+  Correlation_base::typer_lire_correlation(corr_, equation().probleme(), "transport_turbulent", is);
+  associer_proto(equation().probleme(), champs_compris_);
   ajout_champs_proto_elem();
   return is;
 }
@@ -52,6 +52,7 @@ void Op_Diff_Turbulent_PolyMAC_P0_Elem::completer()
 {
   Op_Diff_PolyMAC_P0_Elem::completer();
   completer_proto_elem(*this);
+  nu_constant_ = 0; // if pb_hydraulique with mu champ_uniforme : fgrad is not the same!
 }
 
 void Op_Diff_Turbulent_PolyMAC_P0_Elem::modifier_mu(DoubleTab& mu) const
@@ -65,8 +66,8 @@ void Op_Diff_Turbulent_PolyMAC_P0_Elem::modifier_mu(DoubleTab& mu) const
       Process::exit();
     }
 
-  const Correlation& corr_visc_qdm = ref_cast(Op_Diff_Turbulent_PolyMAC_P0_Face, op_qdm).correlation();
-  if (corr_.est_nul() || !sub_type(Viscosite_turbulente_base, corr_visc_qdm.valeur()))
+  const Correlation_base& corr_visc_qdm = ref_cast(Op_Diff_Turbulent_PolyMAC_P0_Face, op_qdm).correlation();
+  if (corr_.est_nul() || !sub_type(Viscosite_turbulente_base, corr_visc_qdm))
     {
       Cerr << "Error in " << que_suis_je() << ": no turbulent viscosity correlation found!" << finl;
       Process::exit();
@@ -83,7 +84,7 @@ void Op_Diff_Turbulent_PolyMAC_P0_Elem::modifier_mu(DoubleTab& mu) const
 
   // remplissage par la correlation : ICI c'est LAMBDA_T ET PAS ALPHA_T => W/mK et pas m2/s
   ref_cast(Transport_turbulent_base, corr_.valeur()).modifier_mu(ref_cast(Convection_Diffusion_std, equation()),
-                                                                 ref_cast(Viscosite_turbulente_base, corr_visc_qdm.valeur()),
+                                                                 ref_cast(Viscosite_turbulente_base, corr_visc_qdm),
                                                                  mu);
 
   mu.echange_espace_virtuel();

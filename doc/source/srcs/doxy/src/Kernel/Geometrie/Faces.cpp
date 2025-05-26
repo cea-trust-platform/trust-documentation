@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,15 +14,12 @@
 *****************************************************************************/
 
 #include <Faces.h>
-#include <Faces2.h>
 #include <DomaineAxi1d.h>
 #include <communications.h>
 #include <Linear_algebra_tools_impl.h>
+#include <TRUSTLists.h>
 
-
-Implemente_instanciable_sans_constructeur(Faces,"Faces",Objet_U);
-Faces::Faces():nb_som_face(0) { }
-
+Implemente_instanciable_32_64(Faces_32_64,"Faces",Objet_U);
 
 /*! @brief Ecrit les faces sur un flots de sortie.
  *
@@ -30,13 +27,14 @@ Faces::Faces():nb_som_face(0) { }
  *       - le type des faces
  *       - les sommets
  *       - les voisins
- *     On ecrit juste le type Faces::vide_0D, si le nombre de
+ *     On ecrit juste le type Type_Face::vide_0D, si le nombre de
  *     faces est nul.
  *
  * @param (Sortie& s) un flot de sortie
  * @return (Sortie&) le flot de sortie modifie
  */
-Sortie& Faces::printOn(Sortie& s ) const
+template <typename _SIZE_>
+Sortie& Faces_32_64<_SIZE_>::printOn(Sortie& s ) const
 {
   if(nb_faces()==0)
     s << "vide_0D" << finl;
@@ -55,13 +53,14 @@ Sortie& Faces::printOn(Sortie& s ) const
  *       - le type des faces
  *       - les sommets
  *       - les voisins
- *     On ecrit juste le type Faces::vide_0D, si le nombre de
+ *     On ecrit juste le type Type_Face::vide_0D, si le nombre de
  *     faces est nul.
  *
  * @param (Sortie& s) un flot de sortie
  * @return (Sortie&) le flot de sortie modifie
  */
-Sortie& Faces::ecrit(Sortie& s ) const
+template <typename _SIZE_>
+Sortie& Faces_32_64<_SIZE_>::ecrit(Sortie& s ) const
 {
   if(nb_faces()==0)
     s << "vide_0D" << finl;
@@ -81,12 +80,13 @@ Sortie& Faces::ecrit(Sortie& s ) const
  *       - les sommets
  *       - les voisins
  *     Et on reordonne les sommets.
- *     Cree un objets Faces avec 0 faces si le type est "vide_0D"
+ *     Cree un objets Faces_32_64 avec 0 faces si le type est "vide_0D"
  *
  * @param (Entree& s) un flot d'entree
  * @return (Entree&) le flot d'entree modifie
  */
-Entree& Faces::readOn(Entree& s)
+template <typename _SIZE_>
+Entree& Faces_32_64<_SIZE_>::readOn(Entree& s)
 {
   Motcle typ;
   s >> typ;
@@ -119,7 +119,8 @@ Entree& Faces::readOn(Entree& s)
  * @param (Entree& s) un flot d'entree
  * @return (Entree&) le flot d'entree modifie
  */
-Entree& Faces::lit(Entree& s)
+template <typename _SIZE_>
+Entree& Faces_32_64<_SIZE_>::lit(Entree& s)
 {
   Motcle typ;
   s >> typ;
@@ -139,6 +140,52 @@ Entree& Faces::lit(Entree& s)
   return s ;
 }
 
+
+/*! @brief Renvoie le numero du plus petit (au sens de la
+ *  numerotation des sommets) sommet d'une face
+ *
+ * @param (Faces& faces) les faces
+ * @param (int face) la face dont on cherche le plus petit sommet
+ * @param (int nb_som) le nombre de sommet par face
+ * @return (int) le numero du plus petit sommet la face specifiee
+ */
+template <typename _SIZE_>
+typename Faces_32_64<_SIZE_>::int_t Faces_32_64<_SIZE_>::ppsf(int_t face, int nb_som) const
+{
+  int_t som = sommet(face,0);
+  for(int imin=1; imin < nb_som; imin++)
+    som=std::min(som,sommet(face,imin));
+  return som;
+}
+
+/*! @brief Compare 2 faces de 2 ensembles de faces f1 et f2
+ *
+ *     et Renvoie 1 si elles sont egales, 0 Sinon.
+ *
+ * @param (int f1) l'indice de la face dans le premier ensemble de face represente par *this
+ * @param (Faces& faces2) le deuxieme ensemble de face
+ * @param (int f2) l'indice de la face dans le deuxieme ensemble de face
+ * @param (int nb_som) le nombre de sommet par face
+ * @return (int) 1 si les 2 faces sont les memes 0 sinon
+ */
+template <typename _SIZE_>
+bool Faces_32_64<_SIZE_>::same_face(int_t f1, const Faces_32_64& faces2, int_t f2, int nb_som) const
+{
+  // [ABN] ??? I don't understand this ugliness - should compare std::set<>?
+  bool ok=true;
+  for(int i=0; i<nb_som && ok ; i++)
+    {
+      bool nok=true;
+      for(int j=0; j<nb_som && nok ; j++)
+        {
+          if(sommet(f1, i) == faces2.sommet(f2, j))
+            nok=false;           // memes sommets
+        }
+      if(nok) ok=false;          // sommet pas trouve ==> pas meme face
+    }
+  return ok;
+}
+
 /*! @brief Renvoie un objet de Type_Face representant le type de nom specifie.
  *
  *     Les noms de types reconnus sont:
@@ -156,7 +203,8 @@ Entree& Faces::lit(Entree& s)
  * @return (Type_Face) le type de face correspondant au parametre mo
  * @throws type de face non reconnu
  */
-Type_Face Faces::type(const Motcle& mot) const
+template <typename _SIZE_>
+Type_Face Faces_32_64<_SIZE_>::type(const Motcle& mot) const
 {
   Motcles les_mots(10);
   {
@@ -175,25 +223,25 @@ Type_Face Faces::type(const Motcle& mot) const
   switch(rang)
     {
     case  0 :
-      return Faces::vide_0D;
+      return Type_Face::vide_0D;
     case  1 :
-      return Faces::point_1D;
+      return Type_Face::point_1D;
     case  2 :
-      return Faces::point_1D_axi;
+      return Type_Face::point_1D_axi;
     case  3 :
-      return Faces::segment_2D;
+      return Type_Face::segment_2D;
     case  4 :
-      return Faces::triangle_3D;
+      return Type_Face::triangle_3D;
     case  5 :
-      return Faces::quadrangle_3D;
+      return Type_Face::quadrangle_3D;
     case  6 :
-      return Faces::segment_2D_axi;
+      return Type_Face::segment_2D_axi;
     case  7 :
-      return Faces::quadrangle_3D_axi;
+      return Type_Face::quadrangle_3D_axi;
     case  8 :
-      return Faces::quadrilatere_2D_axi;
+      return Type_Face::quadrilatere_2D_axi;
     case 9 :
-      return Faces::polygone_3D;
+      return Type_Face::polygone_3D;
     default :
       {
         Cerr << "In the area number " << Process::me() << " " << mot << " is not a type of face." << finl;
@@ -210,55 +258,56 @@ Type_Face Faces::type(const Motcle& mot) const
       }
     }
   // pour le compilo :
-  return Faces::point_1D;
+  return Type_Face::point_1D;
 }
 
 /*! @brief Renvoie le nom associe a un type de face.
  *
- * (inverse de Type_Face Faces::type(const Motcle& ) const)
+ * (inverse de Type_Face Faces_32_64<_SIZE_>::type(const Motcle& ) const)
  *
  * @param (Type_Face& typ) un type de face
  * @return (Motcle&) le nom correspondant au type speficie en parametre
  * @throws type de face non reconnu
  */
-Motcle& Faces::type(const Type_Face& typ) const
+template <typename _SIZE_>
+Motcle& Faces_32_64<_SIZE_>::type(const Type_Face& typ) const
 {
   static Motcle mot;
   switch(typ)
     {
-    case  Faces::vide_0D :
+    case  Type_Face::vide_0D :
       mot="vide_0D";
       break;
-    case  Faces::point_1D :
+    case  Type_Face::point_1D :
       mot="point_1D";
       break;
-    case  Faces::point_1D_axi :
+    case  Type_Face::point_1D_axi :
       mot="point_1D_axi";
       break;
-    case  Faces::segment_2D :
+    case  Type_Face::segment_2D :
       mot="segment_2D";
       break;
-    case  Faces::segment_2D_axi :
+    case  Type_Face::segment_2D_axi :
       mot="segment_2D_axi";
       break;
-    case  Faces::triangle_3D :
+    case  Type_Face::triangle_3D :
       mot="triangle_3D";
       break;
-    case  Faces::quadrangle_3D :
+    case  Type_Face::quadrangle_3D :
       mot="quadrangle_3D";
       break;
-    case  Faces::quadrangle_3D_axi :
+    case  Type_Face::quadrangle_3D_axi :
       mot="quadrangle_3D_axi";
       break;
-    case Faces::quadrilatere_2D_axi :
+    case Type_Face::quadrilatere_2D_axi :
       mot="quadrilatere_2D_axi";
       break;
-    case Faces::polygone_3D:
+    case Type_Face::polygone_3D:
       mot="polygone_3D";
       break;
     default :
       {
-        Cerr << "Error TRUST in Motcle& Faces::type(const Type_Face& typ)" << finl;
+        Cerr << "Error TRUST in Motcle& Faces_32_64<_SIZE_>::type(const Type_Face& typ)" << finl;
         exit();
       }
     }
@@ -272,13 +321,14 @@ Motcle& Faces::type(const Type_Face& typ) const
  * @param (IntTab& sommet) le tableau des sommets a ajouter
  * @throws les sommets specifies n'ont pas la bonne dimension (1D,2D,3D)
  */
-void Faces::ajouter(const IntTab& tab_sommet)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::ajouter(const IntTab_t& tab_sommet)
 {
   assert(sommets.dimension(1)==tab_sommet.dimension(1));
-  int oldsz=sommets.dimension(0);
-  int addsz=tab_sommet.dimension(0);
+  int_t oldsz=sommets.dimension(0);
+  int_t addsz=tab_sommet.dimension(0);
   dimensionner(oldsz+addsz);
-  for(int i=0; i<addsz; i++)
+  for(int_t i=0; i<addsz; i++)
     for(int j=0; j<tab_sommet.dimension(1); j++)
       sommets(oldsz+i,j)=tab_sommet(i,j);
 }
@@ -290,14 +340,15 @@ void Faces::ajouter(const IntTab& tab_sommet)
  * @param (int i) le nouveau nombre de face
  * @return (int) le nouveau nombre de face
  */
-int Faces::dimensionner(int i)
+template <typename _SIZE_>
+typename Faces_32_64<_SIZE_>::int_t Faces_32_64<_SIZE_>::dimensionner(int_t i)
 {
-  int oldsz=nb_faces();
+  int_t oldsz=nb_faces();
   int nombre_som_faces=nb_som_faces();
   if (sommets.size()!=0) sommets.detach_vect(); // Fixed bug: To have the possibility of merging borders after discretization
   sommets.resize(i,nombre_som_faces);
   faces_voisins.resize(i, 2);
-  for(int j=oldsz; j<i; j++)
+  for(int_t j=oldsz; j<i; j++)
     {
       for(int k=0; k<nombre_som_faces; k++)
         sommets(j,k)=-1;
@@ -310,10 +361,10 @@ int Faces::dimensionner(int i)
  *
  * @param (int nb_faces_joint) le nombre de faces representant des Joints
  */
-void Faces::initialiser_faces_joint(int nb_faces_joint)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::initialiser_faces_joint(int_t nb_faces_joint)
 {
-  int i;
-  for(i=0; i<nb_faces_joint; i++)
+  for(int_t i=0; i<nb_faces_joint; i++)
     //      faces_voisins(i,0)=faces_voisins(i,1)=-2;
     faces_voisins(i,0)=faces_voisins(i,1)=-1;
 }
@@ -322,10 +373,10 @@ void Faces::initialiser_faces_joint(int nb_faces_joint)
  *
  * @param (int nb_faces_joint) le nombre de faces representant des Joints
  */
-void Faces::initialiser_sommets_faces_joint(int nb_faces_joint)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::initialiser_sommets_faces_joint(int_t nb_faces_joint)
 {
-  int i;
-  for(i=0; i<nb_faces_joint; i++)
+  for(int_t i=0; i<nb_faces_joint; i++)
     for(int k=0; k<nb_som_faces(); k++)
       //         sommets(i,k)=-2;
       sommets(i,k)=-1;
@@ -335,7 +386,8 @@ void Faces::initialiser_sommets_faces_joint(int nb_faces_joint)
  *
  * @param (Motcle& typ) le type a donner aux faces
  */
-void Faces::typer(const Motcle& typ)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::typer(const Motcle& typ)
 {
   typer(type(typ));
 }
@@ -345,44 +397,45 @@ void Faces::typer(const Motcle& typ)
  * @param (Type_Face& typ) le type a donner aux faces
  * @throws type de face inconnu
  */
-void Faces::typer(const Type_Face& typ)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::typer(const Type_Face& typ)
 {
   type_face_ = typ;
   // int axi_ = 0;
   int max_dim = 3;
   switch(typ)
     {
-    case  Faces::vide_0D :
+    case  Type_Face::vide_0D :
       nb_som_face=0;
       break;
-    case  Faces::point_1D :
-    case  Faces::point_1D_axi :
+    case  Type_Face::point_1D :
+    case  Type_Face::point_1D_axi :
       nb_som_face=1;
       break;
-    case  Faces::segment_2D :
+    case  Type_Face::segment_2D :
       nb_som_face=2;
       break;
-    case  Faces::segment_2D_axi :
+    case  Type_Face::segment_2D_axi :
       nb_som_face=2; //axi_=1;
       break;
-    case  Faces::triangle_3D :
+    case  Type_Face::triangle_3D :
       nb_som_face=3;
       break;
-    case  Faces::quadrangle_3D :
+    case  Type_Face::quadrangle_3D :
       nb_som_face=4;
       break;
-    case  Faces::quadrangle_3D_axi :
+    case  Type_Face::quadrangle_3D_axi :
       nb_som_face=4; //axi_=1;
       break;
-    case  Faces::quadrilatere_2D_axi :
+    case  Type_Face::quadrilatere_2D_axi :
       nb_som_face=2; //axi_=1;
       break;
-    case Faces::polygone_3D:
+    case Type_Face::polygone_3D:
       nb_som_face=-1; // sera fixe plus tard
       break;
     default :
       {
-        Cerr << "Error TRUST in Faces::typer(const Motcle& typ)" << finl;
+        Cerr << "Error TRUST in Faces_32_64<_SIZE_>::typer(const Motcle& typ)" << finl;
         exit();
       }
     }
@@ -409,7 +462,8 @@ void Faces::typer(const Type_Face& typ)
  * @param (int num_elem) le numero de l'element voisin de la face
  * @throws face deja complete
  */
-void Faces::completer(int face, int num_elem)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::completer(int_t face, int_t num_elem)
 {
   if ( voisin(face,0) == -1)
     voisin(face, 0) = num_elem;
@@ -437,15 +491,16 @@ void Faces::completer(int face, int num_elem)
  * @throws calcul de surface errone (surface <= 0)
  * @throws type de face ne correspondant pas a la dimension d'espace
  */
-void Faces::calculer_surfaces(DoubleVect& surfaces) const
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::calculer_surfaces(DoubleVect_t& surfaces) const
 {
   surfaces.resize(nb_faces_tot());
-  const Domaine& dom=domaine();
+  const Domaine_t& dom=domaine();
   // Verification qu'en coordonnees cylindriques, r est bien positif
   if (axi || bidim_axi)
     {
-      int nb_som = dom.les_sommets().dimension(0);
-      for (int i=0; i<nb_som; i++)
+      int_t nb_som = dom.les_sommets().dimension(0);
+      for (int_t i=0; i<nb_som; i++)
         {
           if (dom.coord(i,0)<0)
             {
@@ -458,11 +513,11 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
     }
   switch(type_face_)
     {
-    case Faces::segment_2D :
+    case Type_Face::segment_2D :
       {
         assert(dimension==2);
         double delta0, delta1;
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             delta0=(dom.coord(sommet(face ,0), 0) - dom.coord(sommet(face ,1), 0));
             delta0*=delta0;
@@ -477,11 +532,11 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case Faces::quadrilatere_2D_axi :
+    case Type_Face::quadrilatere_2D_axi :
       {
         assert(dimension==2);
         double r0,r1,z0,z1,delta_r,delta_z;
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             r0 = dom.coord(sommet(face ,0), 0);
             r1 = dom.coord(sommet(face ,1), 0);
@@ -501,11 +556,11 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
         break;
       }
 
-    case  Faces::segment_2D_axi :
+    case  Type_Face::segment_2D_axi :
       {
         assert(dimension==2);
         double r0,r1,teta0,teta1,d_teta;
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             r0 = dom.coord(sommet(face ,0), 0);
             r1 = dom.coord(sommet(face ,1), 0);
@@ -522,7 +577,7 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case  Faces::triangle_3D :
+    case  Type_Face::triangle_3D :
       {
         assert(dimension==3);
 
@@ -530,7 +585,7 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
         double longueur0, longueur1;
         double prod,sa;
 
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             prod=0;
             delta0=(dom.coord(sommet(face ,1), 0) - dom.coord(sommet(face ,0), 0));
@@ -556,15 +611,15 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case  Faces::quadrangle_3D :
+    case  Type_Face::quadrangle_3D :
       {
         // On se base sur Hexa_VEF::normale():
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
-            int n0 = sommet(face, 0);
-            int n1 = sommet(face, 1);
-            int n2 = sommet(face, 2);
-            int n3 = sommet(face, 3);
+            int_t n0 = sommet(face, 0),
+                  n1 = sommet(face, 1),
+                  n2 = sommet(face, 2),
+                  n3 = sommet(face, 3);
             // NB: Dans un prisme, il y'a aussi des triangles comme faces... Donc:
             if (n3<0) n3 = n2;
 
@@ -596,11 +651,11 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case Faces::quadrangle_3D_axi :
+    case Type_Face::quadrangle_3D_axi :
       {
         assert(dimension==3);
         double r0,r1,teta0,teta1,teta2,z0,z2,d_teta,delta_r;
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             r0 = dom.coord(sommet(face ,0), 0);
             r1 = dom.coord(sommet(face ,1), 0);
@@ -635,23 +690,23 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case Faces::point_1D:
-    case Faces::vide_0D :
+    case Type_Face::point_1D:
+    case Type_Face::vide_0D :
       {
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           surfaces(face) = 1.0;
 
         break;
       }
-    case Faces::point_1D_axi:
+    case Type_Face::point_1D_axi:
       {
         assert(dimension==3);
 
-        const DomaineAxi1d& domax = ref_cast(DomaineAxi1d,dom);
+        const DomaineAxi1d_t& domax = ref_cast(DomaineAxi1d_t,dom);
 
-        for(int face=0; face <nb_faces_tot(); face++)
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
-            int elem = voisin(face,0)==-1 ? voisin(face,1) : voisin(face,0);
+            int_t elem = voisin(face,0)==-1 ? voisin(face,1) : voisin(face,0);
 
             double x0 = domax.origine_repere(elem,0);
             double y0 = domax.origine_repere(elem,1);
@@ -663,11 +718,11 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
           }
         break;
       }
-    case Faces::polygone_3D:
+    case Type_Face::polygone_3D:
       {
-        const DoubleTab& coord=dom.coord_sommets();
-        int nmax=les_sommets().dimension(1);
-        for(int face=0; face <nb_faces_tot(); face++)
+        const DoubleTab_t& coord=dom.coord_sommets();
+        int nmax=les_sommets().dimension_int(1);
+        for(int_t face=0; face <nb_faces_tot(); face++)
           {
             double n0=0,n1=0,n2=0;
             int n=nmax-1;
@@ -677,8 +732,8 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
 
                 int ip1_0=0;
                 if (i0<n) ip1_0=i0+1;
-                int i=sommet(face,i0);
-                int ip1=sommet(face,ip1_0);
+                int_t i=sommet(face,i0);
+                int_t ip1=sommet(face,ip1_0);
                 n0+=coord(i,1)*coord(ip1,2)-coord(i,2)*coord(ip1,1);
                 n1+=coord(i,2)*coord(ip1,0)-coord(i,0)*coord(ip1,2);
                 n2+=coord(i,0)*coord(ip1,1)-coord(i,1)*coord(ip1,0);
@@ -689,7 +744,7 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
       }
     default :
       {
-        Cerr << "Error TRUST in type of Faces not recognized " << finl;
+        Cerr << "Error TRUST in type of Faces_32_64 not recognized " << finl;
         exit();
       }
     }
@@ -700,42 +755,39 @@ void Faces::calculer_surfaces(DoubleVect& surfaces) const
  *
  * @param (DoubleTab& xv) tableau contenant les coordonnees des centres de gravite de chaque face. xv(i,j) contient la coordonnee j du centre de gravite de la i-ieme face. On resize le tableau xv et on lui affecte le descripteur parallele du tableau des sommets avant de le remplir.
  */
-void Faces::calculer_centres_gravite(DoubleTab& xv) const
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::calculer_centres_gravite(DoubleTab_t& xv) const
 {
   // Le tableau xv est dimensionne dans ::calculer_centres_gravite
-  const Domaine& dom=domaine();
-  const DoubleTab& coord=dom.coord_sommets();
-  ::calculer_centres_gravite(xv, type_face_,
-                             coord, sommets);
+  const Domaine_t& dom=domaine();
+  const DoubleTab_t& coord=dom.coord_sommets();
+  Faces_32_64::Calculer_centres_gravite(xv, type_face_, coord, sommets);
 }
 
 
-void calculer_centres_gravite(DoubleTab& xv,
-                              Type_Face type_face_,
-                              const DoubleTab& coord,
-                              const IntTab& sommet)
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::Calculer_centres_gravite(DoubleTab_t& xv, Type_Face type_face_, const DoubleTab_t& coord,  const IntTab_t& sommet)
 {
-  int nb_faces_tot = sommet.dimension_tot(0);
-  int dim = coord.dimension(1);
+  int_t nb_faces_tot = sommet.dimension_tot(0);
+  int dim = coord.dimension_int(1);
   xv.resize(nb_faces_tot, dim);
   // Copie le descripteur parallele du tableau sommet:
   xv.set_md_vector(sommet.get_md_vector());
 
   if(nb_faces_tot!=0)
     {
-      int nb_som_faces=sommet.dimension(1);
+      int nb_som_faces=sommet.dimension_int(1);
       double inv=1./nb_som_faces;
-      int k, som;
       xv = 0;
       if(Objet_U::axi)
         {
           switch(type_face_)
             {
-            case  Faces::segment_2D_axi :
+            case  Type_Face::segment_2D_axi :
               {
-                for (int face=0; face<nb_faces_tot; face++)
+                for (int_t face=0; face<nb_faces_tot; face++)
                   {
-                    for(som=0; som < nb_som_faces; som++)
+                    for(int som=0; som < nb_som_faces; som++)
                       xv(face, 0)+=coord(sommet(face ,som), 0);
                     double teta_0=coord(sommet(face ,0), 1);
                     double teta_1=coord(sommet(face ,1), 1);
@@ -752,13 +804,13 @@ void calculer_centres_gravite(DoubleTab& xv,
                   }
                 break;
               }
-            case Faces::quadrangle_3D_axi :
+            case Type_Face::quadrangle_3D_axi :
               {
-                for (int face=0; face<nb_faces_tot; face++)
+                for (int_t face=0; face<nb_faces_tot; face++)
                   {
-                    for(som=0; som < nb_som_faces; som++)
+                    for(int som=0; som < nb_som_faces; som++)
                       xv(face, 0)+=coord(sommet(face ,som), 0);
-                    for(som=0; som < nb_som_faces; som++)
+                    for(int som=0; som < nb_som_faces; som++)
                       xv(face, 2)+=coord(sommet(face ,som), 2);
                     double teta_0=coord(sommet(face ,0), 1);
                     double teta_1=coord(sommet(face ,1), 1);
@@ -786,7 +838,7 @@ void calculer_centres_gravite(DoubleTab& xv,
               }
             default:
               {
-                Cerr << "Face type number " << (int)type_face_ << " not provided in Faces::calculer_centres_gravite" << finl;
+                Cerr << "Face type number " << (int)type_face_ << " not provided in Faces_32_64<_SIZE_>::calculer_centres_gravite" << finl;
                 break;
               }
             }
@@ -794,16 +846,16 @@ void calculer_centres_gravite(DoubleTab& xv,
         }
       else
         {
-          for (int face=0; face<nb_faces_tot; face++)
+          for (int_t face=0; face<nb_faces_tot; face++)
             {
               int nb_som=nb_som_faces;
               while (sommet(face,nb_som-1)==-1) nb_som--;
 
               inv=1./nb_som;
-              for(k=0; k<dim; k++)
-                for(som=0; som < nb_som; som++)
+              for(int k=0; k<dim; k++)
+                for(int som=0; som < nb_som; som++)
                   xv(face, k)+=coord(sommet(face ,som), k);
-              for(k=0; k<dim; k++)
+              for(int k=0; k<dim; k++)
                 xv(face, k)*=inv;
             }
         }
@@ -816,32 +868,32 @@ void calculer_centres_gravite(DoubleTab& xv,
  *
  * @throws type de face non reconnu
  */
-void Faces::reordonner()
+template <typename _SIZE_>
+void Faces_32_64<_SIZE_>::reordonner()
 {
-  //Cerr << "Faces::reordonner()" << finl;
+  //Cerr << "Faces_32_64<_SIZE_>::reordonner()" << finl;
   switch(type_face_)
     {
-    case  Faces::point_1D :
-    case  Faces::point_1D_axi :
+    case  Type_Face::point_1D :
+    case  Type_Face::point_1D_axi :
       {
         break;
       }
-    case  Faces::segment_2D :
+    case  Type_Face::segment_2D :
       {
         // on peut avoir des bords de maillage triangulaire en 3D
         assert(dimension>=2);
         break;
       }
-    case Faces::quadrilatere_2D_axi :
+    case Type_Face::quadrilatere_2D_axi :
       {
         assert(dimension==2);
-        const Domaine& madomaine=domaine();
-        const Domaine& dom=madomaine;
-        ArrOfInt S(2);
-        ArrOfInt NS(2);
+        const Domaine_t& dom=domaine();
+        SmallArrOfTID_t S(2);
+        SmallArrOfTID_t NS(2);
         int i;
-        const int nombre_faces=nb_faces();
-        for(int face=0; face < nombre_faces; face++)
+        const int_t nombre_faces=nb_faces();
+        for(int_t face=0; face < nombre_faces; face++)
           {
             NS=-1;
             for(i=0; i<2; i++)
@@ -867,28 +919,27 @@ void Faces::reordonner()
           }
         break;
       }
-    case  Faces::segment_2D_axi :
+    case  Type_Face::segment_2D_axi :
       {
         assert(dimension==2);
         break;
       }
-    case  Faces::triangle_3D :
+    case  Type_Face::triangle_3D :
       {
         assert(dimension==3);
         break;
       }
-    case  Faces::quadrangle_3D :
+    case  Type_Face::quadrangle_3D :
       {
         assert(dimension==3);
-        const Domaine& madomaine=domaine();
-        const Domaine& dom=madomaine;
-        ArrOfInt S(4);
-        ArrOfInt NS(4);
+        const Domaine_t& dom=domaine();
+        SmallArrOfTID_t S(4);
+        SmallArrOfTID_t NS(4);
         int i;
         double xmin, ymin, zmin;
         double xmax, ymax, zmax;
-        const int nombre_faces=nb_faces();
-        for(int face=0; face < nombre_faces; face++)
+        const int_t nombre_faces=nb_faces();
+        for(int_t face=0; face < nombre_faces; face++)
           {
             NS=-1;
             for(i=0; i<4; i++)
@@ -899,11 +950,8 @@ void Faces::reordonner()
             if (1)
               {
                 // adaptation de Hexaedre_VEF::reordonne
-                const DoubleTab& coord=dom.les_sommets();
-                int s0=S[0];
-                int s1=S[1];
-                int s2=S[2];
-                int s3=S[3];
+                const DoubleTab_t& coord=dom.les_sommets();
+                int_t s0=S[0], s1=S[1], s2=S[2], s3=S[3];
                 double x03=coord(s3,0)-coord(s0,0);
                 double y03=coord(s3,1)-coord(s0,1);
                 double z03=coord(s3,2)-coord(s0,2);
@@ -1011,35 +1059,33 @@ void Faces::reordonner()
           }
         break;
       }
-    case Faces::quadrangle_3D_axi :
+    case Type_Face::quadrangle_3D_axi :
       {
         assert(dimension==3);
         break;
       }
-    case Faces::polygone_3D:
+    case Type_Face::polygone_3D:
       assert(dimension==3);
       break;
     default :
       {
-        Cerr << "Error TRUST in type of Faces not recognized " << finl;
+        Cerr << "Error TRUST in type of Faces_32_64 not recognized " << finl;
         exit();
       }
     }
-//  Cerr << "Faces::reordonner() ok" << finl;
 }
 
-/*! @brief Compare l'objet Faces passe en parametre avec l'objet Faces lui-meme (this)
+/*! @brief Compare l'objet Faces_32_64 passe en parametre avec l'objet Faces_32_64 lui-meme (this)
  *
- * @param (Faces& faces) les faces avec lesquel on compare l'objet
+ * @param (Faces_32_64& faces) les faces avec lesquel on compare l'objet
  * @param (IntVect& renum) le vecteur renumerotation - renum est de taille 1 et renum contient -1 si il n'y pas le meme nombre de face dans l'objet que dans le parametre faces. - renum autant d'elements que de nombre de face sinon. et renum(i) = le rang de la face i du parametre faces dans l'objet courant
  * @return (IntVect&)
  */
-IntVect& Faces::compare(const Faces& faces, IntVect& renum)
+template <typename _SIZE_>
+typename Faces_32_64<_SIZE_>::IntVect_t& Faces_32_64<_SIZE_>::compare(const Faces_32_64& faces, IntVect_t& renum)
 {
-  const Domaine& le_dom=domaine();
-  const Domaine& sa_domaine=faces.domaine();
-  const Domaine& domaine=le_dom;
-  const Domaine& son_domaine=sa_domaine;
+  const Domaine_t& domaine = this->domaine();
+  const Domaine_t& son_domaine=faces.domaine();
   if ( (nb_faces() != faces.nb_faces()) || ( type_face_ != faces.type_face_) )
     {
       renum.resize(1);
@@ -1049,23 +1095,30 @@ IntVect& Faces::compare(const Faces& faces, IntVect& renum)
   if(domaine.le_nom() == son_domaine.le_nom())
     {
       // il suffit de comparer les numeros des sommets :
-      IntLists listes;
-      int premier=0;
-      int numerol, face, ok, rang;
+      TRUSTLists<_SIZE_> listes;
+      int_t premier=0;
+      int_t numerol, face;
+      int numeroli;
+      int ok;
+      int_t rang;
       for(face=0; face<nb_faces(); face++)
         {
-          numerol=ppsf(*this, face, nb_som_face);
-          listes[numerol].add(premier++);
+          numerol=this->ppsf(face, nb_som_face);
+          assert(numerol < std::numeric_limits<int>::max());
+          numeroli = (int)numerol;
+          listes[numeroli].add(premier++);
         }
       for(face=0; face<nb_faces(); face++)
         {
-          numerol=ppsf(faces, face, nb_som_face);
-          IntList_Curseur curseur(listes[numerol]);
+          numerol=faces.ppsf(face, nb_som_face);
+          assert(numerol < std::numeric_limits<int>::max());
+          numeroli = (int)numerol;
+          TRUSTList_Curseur<_SIZE_> curseur(listes[numeroli]);
           ok=1;
           while (curseur && ok)
             {
               rang=curseur.valeur();
-              ok=!same(faces, face, *this, rang, nb_som_face);
+              ok=!faces.same_face(face, *this, rang, nb_som_face);
               if(!ok)
                 {
                   // "face==rang"
@@ -1090,3 +1143,7 @@ IntVect& Faces::compare(const Faces& faces, IntVect& renum)
 }
 
 
+template class Faces_32_64<int>;
+#if INT_is_64_ == 2
+template class Faces_32_64<trustIdType>;
+#endif

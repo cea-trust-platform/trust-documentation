@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,11 @@
 
 Implemente_base(Traitement_particulier_NS_base,"Traitement_particulier_NS_base",Objet_U);
 
+// XD traitement_particulier_base objet_lecture traitement_particulier_base 1 Basic class to post-process particular values.
+// XD traitement_particulier objet_lecture nul 0 Auxiliary class to post-process particular values.
+// XD attr aco chaine(into=["{"]) aco 0 Opening curly bracket.
+// XD attr trait_part traitement_particulier_base trait_part 0 Type of traitement_particulier.
+// XD attr acof chaine(into=["}"]) acof 0 Closing curly bracket.
 
 /*! @brief Impression de l'equation sur un flot de sortie.
  *
@@ -50,21 +55,25 @@ void Traitement_particulier_NS_base::associer_eqn(const Equation_base& eqn)
   mon_equation = ref_cast(Navier_Stokes_std,eqn);
 }
 
-void Traitement_particulier_NS_base::creer_champ(const Motcle& motlu)
-{
-}
-
 const Champ_base& Traitement_particulier_NS_base::get_champ(const Motcle& nom) const
 {
   return champs_compris_.get_champ(nom);
 }
 
-void Traitement_particulier_NS_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+void Traitement_particulier_NS_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
-  if (opt==DESCRIPTION)
-    Cerr<<que_suis_je()<<" : "<<champs_compris_.liste_noms_compris()<<finl;
+  if (opt == DESCRIPTION)
+    Cerr << que_suis_je() << " : " << champs_compris_.liste_noms_compris() << finl;
   else
     nom.add(champs_compris_.liste_noms_compris());
 }
 
+bool Traitement_particulier_NS_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  return champs_compris_.has_champ(nom, ref_champ);
+}
 
+bool Traitement_particulier_NS_base::has_champ(const Motcle& nom) const
+{
+  return champs_compris_.has_champ(nom);
+}

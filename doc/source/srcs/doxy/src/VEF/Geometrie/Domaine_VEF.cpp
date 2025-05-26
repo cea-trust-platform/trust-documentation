@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -50,7 +50,7 @@ Sortie& Domaine_VEF::ecrit(Sortie& os) const
   os << "____ h_carre " << finl;
   os << h_carre << finl;
   os << "____ type_elem_ " << finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << "____ nb_elem_std_ " << finl;
   os << nb_elem_std_ << finl;
   os << "____ volumes_entrelaces_ " << finl;
@@ -71,7 +71,7 @@ Sortie& Domaine_VEF::printOn(Sortie& os) const
   Domaine_VF::printOn(os);
 
   os << h_carre << finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << nb_elem_std_ << finl;
   os << volumes_entrelaces_ << finl;
   os << face_normales_ << finl;
@@ -87,7 +87,26 @@ Entree& Domaine_VEF::readOn(Entree& is)
 {
   Domaine_VF::readOn(is);
   is >> h_carre;
-  is >> type_elem_;
+
+  /* read type_elem */
+  {
+    Nom type;
+    is >> type;
+    if (type == "Tri_VEF")
+      type_elem_ = Tri_VEF();
+    else if (type == "Tetra_VEF")
+      type_elem_ = Tetra_VEF();
+    else if (type == "Quadri_VEF")
+      type_elem_ = Quadri_VEF();
+    else if (type == "Hexa_VEF")
+      type_elem_ = Hexa_VEF();
+    else
+      {
+        Cerr << type << " n'est pas un Elem_VEF !" << finl;
+        Process::exit();
+      }
+  }
+
   is >> nb_elem_std_;
   is >> volumes_entrelaces_;
   is >> face_normales_;
@@ -282,12 +301,12 @@ void Domaine_VEF::discretiser()
     const int n_tot = nb_faces_tot();
     for (num_face = 0; num_face < n_tot; num_face++)
       {
-        type_elem_.normale(num_face, face_normales_, face_som, face_vois, elem_face, domaine_geom);
+        type_elem_->normale(num_face, face_normales_, face_som, face_vois, elem_face, domaine_geom);
       }
   }
 
   // Calcul de facette_normales_
-  type_elem_.creer_facette_normales(domaine_geom, facette_normales(), rang_elem_non_std());
+  type_elem_->creer_facette_normales(domaine_geom, facette_normales(), rang_elem_non_std());
 
   calculer_volumes_entrelaces();
   Cerr << "Informations of the Domaine VEF of the domain " << domaine().le_nom() << " : " << finl;
@@ -500,7 +519,7 @@ void Domaine_VEF::construire_ok_arete()
   // pour les sommets communs recus d'un autre processeur
   {
     ArrOfBit flags;
-    MD_Vector_tools::get_sequential_items_flags(dom.les_sommets().get_md_vector(), flags);
+    dom.les_sommets().get_md_vector()->get_sequential_items_flags(flags);
     for (int i = 0; i < nb_som_reel; i++)
       {
         if (!flags[i])
@@ -610,8 +629,8 @@ void Domaine_VEF::construire_ok_arete()
 
   ArrOfBit marqueurs_aretes;
   const MD_Vector& md_aretes = md_vector_aretes();
-  MD_Vector_tools::get_sequential_items_flags(md_aretes, marqueurs_aretes);
-  const int nb_aretes_seq = md_aretes.valeur().nb_items_seq_tot();
+  md_aretes->get_sequential_items_flags(marqueurs_aretes);
+  const trustIdType nb_aretes_seq = md_aretes->nb_items_seq_tot();
 
   if (Process::je_suis_maitre())
     fic_ok_arete_ << nb_aretes_seq << finl;
@@ -631,7 +650,7 @@ void Domaine_VEF::construire_renum_arete_perio(const Conds_lim& conds_lim)
 {
   Cerr << "Build array renum_arete_perio..." << finl;
   const IntTab& aretes_som=domaine().aretes_som();
-  const int nb_aretes_tot=domaine().nb_aretes_tot();
+  const int nb_aretes_tot = static_cast<int>(domaine().nb_aretes_tot()); // domain is already discretised, so already split, so we're just working with a small part
   const Domaine& dom=domaine();
 
   // Initialisation de renum_arete_perio
@@ -682,7 +701,7 @@ void Domaine_VEF::construire_renum_arete_perio(const Conds_lim& conds_lim)
                     int som11=aretes_som(ar1, 0);
                     int som12=aretes_som(ar1, 1);
                     int ok=0;
-                    int nbf = domaine().type_elem().nb_som_face();
+                    int nbf = domaine().type_elem()->nb_som_face();
                     const IntTab& sommet = face_sommets();
                     for (int k=0; k<nbf; k++)
                       if (sommet(face,k)==som11 || sommet(face,k)==som12) ok++;
@@ -809,9 +828,9 @@ void Domaine_VEF::verifie_ok_arete(int nombre_aretes_superflues_prevues_sur_le_d
               // Si l'arete superflue est commune on en tient compte
               for (int j=0; j<dom.faces_joint().size(); j++)
                 {
-                  int nb_aretes_sur_le_joint = dom.faces_joint()(j).joint_item(Joint::ARETE).items_communs().size_array();
+                  int nb_aretes_sur_le_joint = dom.faces_joint()(j).joint_item(JOINT_ITEM::ARETE).items_communs().size_array();
                   for (int k=0; k<nb_aretes_sur_le_joint; k++)
-                    if (dom.faces_joint()(j).joint_item(Joint::ARETE).items_communs()[k]==i) aretes_superflues_communes++;
+                    if (dom.faces_joint()(j).joint_item(JOINT_ITEM::ARETE).items_communs()[k]==i) aretes_superflues_communes++;
                 }
               // On compte les aretes reelles superflues
               if (i<nb_aretes_reelles)
@@ -836,13 +855,13 @@ void Domaine_VEF::verifie_ok_arete(int nombre_aretes_superflues_prevues_sur_le_d
         int sommets_communs=1;
         // On tient compte des sommets communs
         for (int j=0; j<dom.faces_joint().size(); j++)
-          for (int k=0; k<dom.faces_joint()(j).joint_item(Joint::SOMMET).items_communs().size_array(); k++)
-            if (dom.faces_joint()(j).joint_item(Joint::SOMMET).items_communs()[k]==i) sommets_communs++;
+          for (int k=0; k<dom.faces_joint()(j).joint_item(JOINT_ITEM::SOMMET).items_communs().size_array(); k++)
+            if (dom.faces_joint()(j).joint_item(JOINT_ITEM::SOMMET).items_communs()[k]==i) sommets_communs++;
         nb_sommets_non_periodiques+=1./sommets_communs;
       }
-  double total_nombre_aretes_superflues=mp_sum(nombre_aretes_reelles_superflues);
-  double somme_nombre_aretes_superflues_prevues_par_domaine=mp_sum(nombre_aretes_superflues_prevues_sur_le_dom);
-  double total_nb_sommets_non_periodiques=mp_sum(nb_sommets_non_periodiques);
+  double total_nombre_aretes_superflues = mp_sum(nombre_aretes_reelles_superflues);
+  double somme_nombre_aretes_superflues_prevues_par_domaine = mp_sum_as_double(nombre_aretes_superflues_prevues_sur_le_dom);
+  double total_nb_sommets_non_periodiques = mp_sum(nb_sommets_non_periodiques);
 
 
   // Cerr << "Nombre de sommets non periodiques           = " << total_nb_sommets_non_periodiques << finl;
@@ -905,7 +924,7 @@ int Domaine_VEF::lecture_ok_arete()
 
   int n;
   fic_ok_arete_ >> n;
-  if (n != md_vector_aretes().valeur().nb_items_seq_tot())
+  if (n != md_vector_aretes()->nb_items_seq_tot())
     {
       Cerr << "File " << fichier << " is not compatible with the current mesh." << finl;
       return 0;
@@ -1032,11 +1051,6 @@ void Domaine_VEF::calculer_volumes_entrelaces()
       volumes_entrelaces_[num_face] = (volumes(elem1) + volumes(elem2)) * facteur;
     }
   volumes_entrelaces_.echange_espace_virtuel();
-}
-
-void Domaine_VEF::remplir_elem_faces()
-{
-  creer_faces_virtuelles_non_std();
 }
 
 void Domaine_VEF::modifier_pour_Cl(const Conds_lim& conds_lim)
@@ -1181,26 +1195,32 @@ void Domaine_VEF::modifier_pour_Cl(const Conds_lim& conds_lim)
 
 void Domaine_VEF::typer_elem(Domaine& domaine_geom)
 {
-  const Elem_geom_base& type_elem_geom = domaine_geom.type_elem().valeur();
-  if (sub_type(Rectangle, type_elem_geom))
-    {
-      domaine_geom.typer("Quadrangle");
-    }
-  else if (sub_type(Hexaedre, type_elem_geom))
+  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
+  if (sub_type(Rectangle, elem_geom))
+    domaine_geom.typer("Quadrangle");
+  else if (sub_type(Hexaedre, elem_geom))
     domaine_geom.typer("Hexaedre_VEF");
 
-  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
-  type_elem_.typer(elem_geom.que_suis_je());
-}
+  const Nom& type_elem_geom = domaine_geom.type_elem()->que_suis_je();
 
-/*! @brief creation de l'espace distant pour les faces virtuelles; creation du tableau des faces virtuelles de bord
- *
- */
-void Domaine_VEF::creer_faces_virtuelles_non_std()
-
-{
-  ind_faces_virt_non_std_.resize_array(314);
-  ind_faces_virt_non_std_ = -999;
+  if (Motcle(type_elem_geom) != "Segment")
+    {
+      Nom type;
+      if (type_elem_geom == "Triangle")
+        type = "Tri_VEF";
+      else if (type_elem_geom == "Tetraedre")
+        type = "Tetra_VEF";
+      else if (type_elem_geom == "Quadrangle")
+        type = "Quadri_VEF";
+      else if (type_elem_geom == "Hexaedre_VEF")
+        type = "Hexa_VEF";
+      else
+        {
+          Cerr << "probleme de typage dans Elem_VEF::typer" << finl;
+          Process::exit();
+        }
+      type_elem_.typer(type);
+    }
 }
 
 DoubleTab& Domaine_VEF::vecteur_face_facette()
@@ -1213,7 +1233,7 @@ DoubleTab& Domaine_VEF::vecteur_face_facette()
       const int nfa7 = type_elem().nb_facette();
       const int nb_poly_tot = nb_elem_tot();
       vecteur_face_facette_.resize(nb_poly_tot, nfa7, dimension, 2);
-      const IntTab& KEL = type_elem().valeur().KEL();
+      const IntTab& KEL = type_elem().KEL();
       const IntTab& les_Polys = domaine().les_elems();
       const DoubleTab& coord = domaine().coord_sommets();
       const DoubleTab& xg = xp();

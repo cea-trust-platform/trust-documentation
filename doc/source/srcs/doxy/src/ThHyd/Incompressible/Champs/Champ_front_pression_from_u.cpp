@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,6 +22,9 @@
 #include <Champ_Uniforme.h>
 
 Implemente_instanciable(Champ_front_pression_from_u,"Champ_front_pression_from_u",Ch_front_var_instationnaire_dep);
+// XD champ_front_pression_from_u front_field_base champ_front_pression_from_u 0 this field is used to define a pressure field depending of a velocity field.
+// XD attr expression chaine expression 0 value depending of a velocity (like $2*u_moy^2$).
+
 
 
 Sortie& Champ_front_pression_from_u::printOn(Sortie& os) const
@@ -62,7 +65,7 @@ int Champ_front_pression_from_u::initialiser(double tps, const Champ_Inc_base& i
   const Milieu_base& mil=inco.equation().milieu();
   if (sub_type(Fluide_Incompressible,mil))
     {
-      if ((sub_type(Champ_Uniforme,mil.masse_volumique().valeur())))
+      if ((sub_type(Champ_Uniforme,mil.masse_volumique())))
         {
 
 
@@ -92,7 +95,7 @@ void  Champ_front_pression_from_u::mettre_a_jour(double tps)
   const Operateur_Div& opdiv=eqns.operateur_divergence();
   const Domaine_VF& domaine_VF = ref_cast(Domaine_VF,domaine_dis());
 
-  const DoubleTab& Flux0=opdiv.valeur().flux_bords();
+  const DoubleTab& Flux0=opdiv->flux_bords();
   if (Flux0.size()==0)
     {
       Cerr<<" Div pas encore pres...."<<finl;
@@ -100,7 +103,7 @@ void  Champ_front_pression_from_u::mettre_a_jour(double tps)
       //   DoubleTrav resu(eqns.div());
       //opdiv.calculer(inco.valeurs(),resu);
     }
-  const DoubleTab& Flux=opdiv.valeur().flux_bords();
+  const DoubleTab& Flux=opdiv->flux_bords();
   const Front_VF& le_bord= ref_cast(Front_VF,frontiere_dis());
   int premiere=le_bord.num_premiere_face();
   double surf=0;

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,6 +15,7 @@
 
 #include <EcritureLectureSpecial.h>
 #include <Scalaire_impose_paroi.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Schema_Temps_base.h>
 #include <Champ_Inc_P0_base.h>
 #include <Champ_Inc_P1_base.h>
@@ -23,9 +24,11 @@
 #include <Champ_Inc_base.h>
 #include <Equation_base.h>
 #include <Probleme_base.h>
+#include <TRUST_2_PDI.h>
+#include <Domaine_VF.h>
+#include <YAML_data.h>
 #include <Dirichlet.h>
 #include <Domaine.h>
-#include <Domaine_VF.h>
 
 Implemente_base_sans_constructeur(Champ_Inc_base,"Champ_Inc_base",Champ_base);
 
@@ -128,24 +131,6 @@ int Champ_Inc_base::nb_valeurs_nodales() const
   return n;
 }
 
-/*! @brief Renvoie le tableau des valeurs du champ au temps courant.
- *
- * @return (DoubleTab&) le tableau des valeurs du champ
- */
-DoubleTab& Champ_Inc_base::valeurs()
-{
-  return les_valeurs->valeurs();
-}
-
-/*! @brief Renvoie le tableau des valeurs du champ au temp courant (version const)
- *
- * @return (DoubleTab&) le tableau des valeurs du champ
- */
-const DoubleTab& Champ_Inc_base::valeurs() const
-{
-  return les_valeurs->valeurs();
-}
-
 /*! @brief Renvoie les valeurs du champs a l'instant temps.
  *
  * @param (double temps) le  temps  auquel on veut les valeurs du champ
@@ -229,49 +214,6 @@ const DoubleTab& Champ_Inc_base::valeurs(double tps) const
   Cerr << "Contact TRUST support." << finl;
   Process::exit();
   return valeurs();
-}
-/*! @brief Renvoie les valeurs du champs a l'instant t+i.
- *
- * @param (int i) le pas de temps futur auquel on veut les valeurs du champ
- * @return (DoubleTab&) les valeurs du champs a l'instant t+i
- */
-DoubleTab& Champ_Inc_base::futur(int i)
-{
-  return les_valeurs->futur(i).valeurs();
-}
-
-/*! @brief Renvoie les valeurs du champs a l'instant t+i.
- *
- * (version const)
- *
- * @param (int i) le pas de temps futur auquel on veut les valeurs du champ
- * @return (DoubleTab&) les valeurs du champs a l'instant t+i
- */
-const DoubleTab& Champ_Inc_base::futur(int i) const
-{
-  return les_valeurs->futur(i).valeurs();
-}
-
-/*! @brief Renvoie les valeurs du champs a l'instant t-i.
- *
- * @param (int i) le pas de temps passe auquel on veut les valeurs du champ
- * @return (DoubleTab&) les valeurs du champs a l'instant t-i
- */
-DoubleTab& Champ_Inc_base::passe(int i)
-{
-  return les_valeurs->passe(i).valeurs();
-}
-
-/*! @brief Renvoie les valeurs du champs a l'instant t-i.
- *
- * (version const)
- *
- * @param (int i) le pas de temps passe auquel on veut les valeurs du champ
- * @return (DoubleTab&) les valeurs du champs a l'instant t-i
- */
-const DoubleTab& Champ_Inc_base::passe(int i) const
-{
-  return les_valeurs->passe(i).valeurs();
 }
 
 /*! @brief Avance le pointeur courant de i pas de temps, dans la liste des valeurs temporelles conservees.
@@ -394,6 +336,37 @@ double Champ_Inc_base::recuperer_temps_passe(int i) const
   const Roue& la_roue = les_valeurs.valeur();
   return la_roue.passe(i).temps();
 }
+/*! @brief for PDI IO: retrieve the name of the HDF5 dataset in which the field will be saved or be restored from
+ */
+Nom Champ_Inc_base::get_PDI_dname() const
+{
+  Nom name = PDI_dname_;
+  if(name == "??")
+    {
+      if(mon_equation_non_nul())
+        name = equation().probleme().le_nom() + "_" + le_nom();
+      else
+        {
+          // Sometimes (with Champ_fonc_reprise), the equation has not been associated yet so we can't prefix the name of the dataset with the name of the problem
+          Cerr << "Champ_Inc_base::get_PDI_dname equation has not been associated yet. Please set the dataset name with Champ_Inc_base::set_PDI_dname()." << finl;
+          Process::exit();
+        }
+    }
+  return (Motcle)name;
+}
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the field to save/restore.
+ */
+std::vector<YAML_data> Champ_Inc_base::data_a_sauvegarder() const
+{
+  const Nom& name = get_PDI_dname();
+  int nb_dim = valeurs().nb_dim();
+  YAML_data d(name.getString(), "double", nb_dim);
+  d.set_save_field_type(PDI_save_type_);
+  std::vector<YAML_data> data;
+  data.push_back(d);
+  return data;
+}
 
 /*! @brief Sauvegarde le champ inconnue sur un flot de sortie.
  *
@@ -421,11 +394,34 @@ int Champ_Inc_base::sauvegarder(Sortie& fich) const
   int bytes = 0;
   if (special)
     bytes = EcritureLectureSpecial::ecriture_special(*this, fich);
+  else if (TRUST_2_PDI::is_PDI_checkpoint())
+    {
+      bytes = 8 * valeurs().size_array();
+
+      // Sharing the dimensions of the unknown field with PDI
+      TRUST_2_PDI pdi_interface;
+      const Nom& name = get_PDI_dname();
+      pdi_interface.share_TRUSTTab_dimensions(valeurs(), name, 1 /*write mode*/);
+
+      if(PDI_save_type_)
+        pdi_interface.share_type(name, que_suis_je());
+
+      // Sharing the unknown field with PDI
+      if( valeurs().dimension_tot(0) )
+        pdi_interface.TRUST_start_sharing(name.getString(), valeurs().addr());
+      else
+        {
+          // if the dimension is null in a direction - might happen in parallel - sharing an empty array
+          ArrOfDouble garbage( valeurs().nb_dim() );
+          pdi_interface.TRUST_start_sharing(name.getString(), garbage.addr());
+        }
+    }
   else
     {
       bytes = 8 * valeurs().size_array();
       valeurs().ecrit(fich);
     }
+
   if (a_faire)
     {
       // fich << flush ; Ne flushe pas en binaire !
@@ -453,26 +449,48 @@ int Champ_Inc_base::reprendre(Entree& fich)
   int special = EcritureLectureSpecial::is_lecture_special();
   if (nom_ != Nom("anonyme")) // lecture pour reprise
     {
-      fich >> un_temps;
-      int nb_val_nodales_old = nb_valeurs_nodales();
-      Cerr << "Resume of the field " << nom_;
-
-      if (special)
-        EcritureLectureSpecial::lecture_special(*this, fich);
-      else
-        valeurs().lit(fich);
-      if (nb_val_nodales_old != nb_valeurs_nodales())
+      Cerr << "Resume of the field " << nom_ << finl;
+      if(TRUST_2_PDI::is_PDI_restart())
         {
-          Cerr << finl << "Problem in the resumption " << finl;
-          Cerr << "The field wich is read, does not have same number of nodal values" << finl;
-          Cerr << "that the field created by the discretization " << finl;
-          Process::exit();
+          TRUST_2_PDI pdi_interface;
+          const Nom& name = get_PDI_dname();
+          pdi_interface.share_TRUSTTab_dimensions(valeurs(), name, 0 /*read mode*/);
+          if( valeurs().dimension_tot(0) )
+            pdi_interface.read(name.getChar(), valeurs().addr());
+          else
+            {
+              ArrOfDouble garbage( valeurs().nb_dim() );
+              pdi_interface.read(name.getChar(), garbage.addr());
+            }
+        }
+      else
+        {
+          int nb_val_nodales_old = nb_valeurs_nodales();
+          fich >> un_temps;
+          if (special)
+            EcritureLectureSpecial::lecture_special(*this, fich);
+          else
+            valeurs().lit(fich);
+
+          if (nb_val_nodales_old != nb_valeurs_nodales())
+            {
+              Cerr << finl << "Problem in the resumption " << finl;
+              Cerr << "The field wich is read, does not have same number of nodal values" << finl;
+              Cerr << "that the field created by the discretization " << finl;
+              Process::exit();
+            }
         }
       Cerr << " performed." << finl;
     }
   else // lecture pour sauter le bloc
     {
-      DoubleTab tempo;
+      if(TRUST_2_PDI::is_PDI_restart())
+        {
+          Cerr << finl << "Problem in the resumption " << finl;
+          Cerr << "PDI format does not require to navigate through file..." << finl;
+          Process::exit();
+        }
+      BigDoubleTab tempo;
       fich >> un_temps;
       tempo.jump(fich);
     }
@@ -488,9 +506,7 @@ int Champ_Inc_base::reprendre(Entree& fich)
 DoubleTab& Champ_Inc_base::valeur_aux(const DoubleTab& positions, DoubleTab& tab_valeurs) const
 {
   const Domaine& domaine = domaine_dis_base().domaine();
-  IntVect les_polys;
-  les_polys.resize(tab_valeurs.dimension_tot(0), RESIZE_OPTIONS::NOCOPY_NOINIT);
-
+  IntTrav les_polys;
   domaine.chercher_elements(positions, les_polys);
 
   return valeur_aux_elems(positions, les_polys, tab_valeurs);
@@ -506,7 +522,7 @@ DoubleTab& Champ_Inc_base::valeur_aux(const DoubleTab& positions, DoubleTab& tab
 DoubleVect& Champ_Inc_base::valeur_aux_compo(const DoubleTab& positions, DoubleVect& tab_valeurs, int ncomp) const
 {
   const Domaine& domaine = domaine_dis_base().domaine();
-  IntVect les_polys(positions.dimension(0));
+  IntTrav les_polys;
   domaine.chercher_elements(positions, les_polys);
   return valeur_aux_elems_compo(positions, les_polys, tab_valeurs, ncomp);
 }
@@ -525,7 +541,7 @@ DoubleVect& Champ_Inc_base::valeur_a(const DoubleVect& position, DoubleVect& tab
   return valeur_a_elem(position, tab_valeurs, le_poly(0));
 }
 
-/*! @brief Affectation d'un Champ generique (Champ_base) dans un champ inconnue.
+/*! @brief Affectation d'un OWN_PTR(Champ_base) generique (Champ_base) dans un champ inconnue.
  *
  * @param (Champ_base& ch) le champ partie droite de l'affectation
  * @return (Champ_base&) le resultat de l'affectation (*this)
@@ -535,9 +551,9 @@ Champ_base& Champ_Inc_base::affecter_(const Champ_base& ch)
   DoubleTab noeuds;
   remplir_coord_noeuds(noeuds);
 
-  // Modif B.M. pour ne pas faire d'interpolation sur les cases virtuelles
   if (valeurs().size_reelle_ok())
     {
+      // Modif B.M. pour ne pas faire d'interpolation sur les cases virtuelles
       const int n = valeurs().dimension(0);
       DoubleTab pos, val;
       pos.ref_tab(noeuds, 0, n);
@@ -563,7 +579,7 @@ void Champ_Inc_base::verifie_valeurs_cl()
 {
 }
 
-/*! @brief Affectation d'une composante d'un Champ quelconque (Champ_base) dans une composante d'un champ inconnue
+/*! @brief Affectation d'une composante d'un OWN_PTR(Champ_base) quelconque (Champ_base) dans une composante d'un champ inconnue
  *
  * @param (Champ_base& ch) la partie droite de l'affectation
  * @param (int compo) l'index de la composante a affecter
@@ -679,7 +695,7 @@ void Champ_Inc_base::associer_eqn(const Equation_base& eqn)
   MorEqn::associer_eqn(eqn);
 }
 
-void Champ_Inc_base::associer_domaine_cl_dis(const Domaine_Cl_dis& zcl)
+void Champ_Inc_base::associer_domaine_cl_dis(const Domaine_Cl_dis_base& zcl)
 {
   mon_dom_cl_dis = zcl;
 }
@@ -689,7 +705,7 @@ void Champ_Inc_base::associer_domaine_dis_base(const Domaine_dis_base& z_dis)
   le_dom_VF = ref_cast(Domaine_VF, z_dis);
 }
 
-const Domaine_Cl_dis& Champ_Inc_base::domaine_Cl_dis() const
+const Domaine_Cl_dis_base& Champ_Inc_base::domaine_Cl_dis() const
 {
   if (!mon_dom_cl_dis.non_nul())
     return equation().domaine_Cl_dis();
@@ -697,7 +713,7 @@ const Domaine_Cl_dis& Champ_Inc_base::domaine_Cl_dis() const
     return mon_dom_cl_dis.valeur();
 }
 
-Domaine_Cl_dis& Champ_Inc_base::domaine_Cl_dis()
+Domaine_Cl_dis_base& Champ_Inc_base::domaine_Cl_dis()
 {
   if (!mon_dom_cl_dis.non_nul())
     return equation().domaine_Cl_dis();
@@ -718,7 +734,6 @@ void Champ_Inc_base::resize_val_bord()
 
 DoubleTab Champ_Inc_base::valeur_aux_bords() const
 {
-  //si Champ_Inc calcule (fonc_calc_ existe), alors les valeurs aux bords sont stockees dans val_bord_
   if (fonc_calc_ || bord_fluide_multiphase_)
     {
       DoubleTab result;
@@ -730,7 +745,7 @@ DoubleTab Champ_Inc_base::valeur_aux_bords() const
   const IntTab& f_e = domaine.face_voisins(), &f_s = domaine.face_sommets();
   DoubleTrav result(domaine.xv_bord().dimension_tot(0), valeurs().line_size());
 
-  const Conds_lim& cls = domaine_Cl_dis().valeur().les_conditions_limites();
+  const Conds_lim& cls = domaine_Cl_dis().les_conditions_limites();
   int j, k, f, fb, s, n, N = result.line_size(), is_p = (le_nom().debute_par("pression") || le_nom().debute_par("pressure")), n_som;
   for (const auto& itr : cls)
     {

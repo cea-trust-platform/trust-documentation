@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -72,11 +72,11 @@ void Terme_Source_inc_th_VDF_Face::associer_pb(const Probleme_base& pb)
 }
 
 
-void Terme_Source_inc_th_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                     const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_inc_th_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                     const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 }
 
 // void Terme_Source_inc_th_VDF_Face::mettre_a_jour(double temps)
@@ -98,7 +98,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
   const DoubleVect& volumes_entrelaces = domaine_VDF.volumes_entrelaces();
   const Domaine& domaine = le_dom_VDF->domaine();
   int nb_elem = domaine.nb_elem();
-  const Champ_Uniforme& ch_beta = ref_cast(Champ_Uniforme,beta().valeur());
+  const Champ_Uniforme& ch_beta = ref_cast(Champ_Uniforme,beta());
   const DoubleTab& vitesse = eq_hydraulique().inconnue().valeurs();
   const DoubleVect& temperature = eq_thermique().inconnue().valeurs();
   DoubleVect cell_cent_temp(temperature);
@@ -127,7 +127,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
   // Exemple XTOF
   //   Cerr << " debut de parallel " << finl;
   DoubleTab cell_cent_vel(0, dimension);
-  le_dom_VDF.valeur().domaine().creer_tableau_elements(cell_cent_vel);
+  le_dom_VDF->domaine().creer_tableau_elements(cell_cent_vel);
   //    DoubleTrav toto(cell_cent_vel);
 
   DoubleTab temp1(cell_cent_vel);
@@ -160,7 +160,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
   for (element_number=0 ; element_number<nb_elem ; element_number ++)
     {
       //       Cerr << me() << " " << element_number << finl;
-      cell_cent_temp(element_number)*=ch_beta(0,0);
+      cell_cent_temp(element_number)*=ch_beta.valeurs()(0,0);
       temp1_t(element_number)=0.;
       temp2_t(element_number)=0.;
       filt_temp(element_number)=0.;
@@ -1005,7 +1005,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
         {
 
           //const Neumann_sortie_libre& la_cl_neumann = ref_cast(Neumann_sortie_libre,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -1032,7 +1032,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
         { /* Do nothing */}
       else if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -1053,7 +1053,7 @@ void Terme_Source_inc_th_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab&
     }
 
   // Boucle sur les faces internes
-  Cerr << me() << " faces internes thermique" << ch_beta(0,0) << finl;
+  Cerr << me() << " faces internes thermique" << ch_beta.valeurs()(0,0) << finl;
 
   double min_inc=1.e6, max_inc=-1.e6;
   int num_e1=-1, n_comp1=-1;

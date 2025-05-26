@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,7 +37,6 @@ Champ_Post_Operateur_Eqn::Champ_Post_Operateur_Eqn()
   numero_op_=-1;
   numero_source_=-1;
   numero_masse_ = -1;
-  sans_solveur_masse_=0;
   compo_=-1;
 }
 
@@ -61,28 +60,28 @@ Entree& Champ_Post_Operateur_Eqn::readOn(Entree& s )
 void Champ_Post_Operateur_Eqn::verification_cas_compo() const
 {
   // On applique compo a un vecteur
-  const Nature_du_champ& nature_ch=ref_eq_.valeur().inconnue().valeur().nature_du_champ();
+  const Nature_du_champ& nature_ch=ref_eq_->inconnue().nature_du_champ();
   if ((nature_ch != vectoriel) && (compo_ != -1 ))
     {
       Cerr<<"Error in Champ_Post_Operateur_Eqn::verification_cas_compo()"<<finl;
       Cerr<<"It isn't possible to get a component from a non vectoriel field " <<finl;
-      exit();
+      Process::exit();
     }
 
   // Verification de compo
-  const int nb_compo= ref_eq_.valeur().inconnue().valeur().nb_comp();
+  const int nb_compo= ref_eq_->inconnue().nb_comp();
   if ((compo_<-1)||(compo_>nb_compo-1))
     {
       Cerr<<"Error in Champ_Post_Operateur_Eqn::verification_cas_compo()"<<finl;
       Cerr<<"compo="<<compo_<<" is not allowed."<<" You must give a value between 0 and "<< nb_compo-1<<finl;
-      exit();
+      Process::exit();
     }
   // Verifier qu'on n'est pas en VDF
   if (ref_eq_->discretisation().is_vdf() && (compo_ != -1 ))
     {
       Cerr<<"Error in Champ_Post_Operateur_Eqn::verification_cas_compo()"<<finl;
       Cerr<<"The option compo is not available in case of VDF discretization"<<finl;
-      exit();
+      Process::exit();
     }
 }
 
@@ -96,7 +95,7 @@ void Champ_Post_Operateur_Eqn::completer(const Postraitement_base& post)
   if (sub_type(Champ_Generique_refChamp,get_source(0)))
     {
 
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       const Champ_base& mon_champ = get_source(0).get_champ(espace_stockage);
       if (sub_type(Champ_Inc_base,mon_champ))
         {
@@ -126,7 +125,7 @@ void Champ_Post_Operateur_Eqn::completer(const Postraitement_base& post)
   if (numero_eq_==-1)
     {
       Cerr<<"Champ_Post_Operateur_Eqn can be applied only to equation unknown."<<finl;
-      exit();
+      Process::exit();
     }
 
   ref_eq_=Pb.equation(numero_eq_);
@@ -135,7 +134,7 @@ void Champ_Post_Operateur_Eqn::completer(const Postraitement_base& post)
   const Equation_base& eqn=ref_eq_.valeur();
   const MD_Vector& mdf = eqn.inconnue().valeurs().get_md_vector(),
                    md = sub_type(MD_Vector_composite, mdf.valeur()) ? ref_cast(MD_Vector_composite, mdf.valeur()).get_desc_part(0) : mdf;
-  const Domaine_VF& zvf= ref_cast( Domaine_VF,ref_eq_.valeur().domaine_dis().valeur());
+  const Domaine_VF& zvf= ref_cast( Domaine_VF,ref_eq_->domaine_dis());
   if (md== zvf.face_sommets().get_md_vector())
     {
       localisation_inco_=Entity::FACE;
@@ -159,16 +158,16 @@ void Champ_Post_Operateur_Eqn::completer(const Postraitement_base& post)
   verification_cas_compo();
 }
 
-const Champ_base& Champ_Post_Operateur_Eqn::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Post_Operateur_Eqn::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  espace_stockage = ref_eq_.valeur().inconnue();
+  espace_stockage = ref_eq_->inconnue();
   return espace_stockage;
 }
 
-const Champ_base& Champ_Post_Operateur_Eqn::get_champ_compo_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Post_Operateur_Eqn::get_champ_compo_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ_Fonc espace_stockage_fonc;
+  OWN_PTR(Champ_Fonc_base)  espace_stockage_fonc;
   //Champ source_espace_stockage;
 
   double temps=0.;
@@ -187,23 +186,23 @@ const Champ_base& Champ_Post_Operateur_Eqn::get_champ_compo_without_evaluation(C
       break;
     default:
       Cerr<<"error in Champ_Post_Operateur_Eqn::get_champ"<<finl;
-      exit();
+      Process::exit();
 
     }
   int nb_comp = 1;
-  ref_eq_.valeur().discretisation().discretiser_champ(directive,ref_eq_->domaine_dis().valeur(),"oooo","unit", nb_comp,temps,espace_stockage_fonc);
+  ref_eq_->discretisation().discretiser_champ(directive,ref_eq_->domaine_dis(),"oooo","unit", nb_comp,temps,espace_stockage_fonc);
   espace_stockage = espace_stockage_fonc;
-  espace_stockage.valeur().fixer_nature_du_champ(scalaire);
+  espace_stockage->fixer_nature_du_champ(scalaire);
 
   return espace_stockage;
 }
 
-const Champ_base& Champ_Post_Operateur_Eqn::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Post_Operateur_Eqn::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
   // On commence par construire le champ vectoriel complet
-  Champ espace_stockage_complet;
+  OWN_PTR(Champ_base) espace_stockage_complet;
   espace_stockage_complet = get_champ_without_evaluation(espace_stockage_complet);
-  DoubleTab& es = (espace_stockage_complet.valeurs());
+  DoubleTab& es = (espace_stockage_complet->valeurs());
 
   //if (ref_eq_->schema_temps().temps_courant()!=0)
   {
@@ -218,9 +217,9 @@ const Champ_base& Champ_Post_Operateur_Eqn::get_champ(Champ& espace_stockage) co
     else if ((numero_masse_!=-1) && ref_eq_->has_interface_blocs())
       es=0, ref_eq_->schema_temps().ajouter_blocs({},es,ref_eq_.valeur());
     if (!sans_solveur_masse_)
-      ref_eq_->solv_masse().valeur().appliquer_impl(es); //On divise par le volume
+      ref_eq_->solv_masse().appliquer_impl(es); //On divise par le volume
     // Hack: car Masse_PolyMAC_Face::appliquer_impl ne divise pas par le volume (matrice de masse)....
-    if (ref_eq_->solv_masse().valeur().que_suis_je()=="Masse_PolyMAC_Face")
+    if (ref_eq_->solv_masse().que_suis_je()=="Masse_PolyMAC_Face")
       {
         //Cerr << "Volumic source terms on faces with PolyMAC can't be post-processed yet." << finl;
         Cerr << "Warning, source terms on faces with PolyMAC are post-processed as S*dV not as volumic source terms S." << finl;
@@ -233,9 +232,9 @@ const Champ_base& Champ_Post_Operateur_Eqn::get_champ(Champ& espace_stockage) co
   if (compo_>-1)
     {
       // on prepare l'espace de stockage pour une composante
-      Champ espace_stockage_compo;
+      OWN_PTR(Champ_base) espace_stockage_compo;
       espace_stockage_compo = get_champ_compo_without_evaluation(espace_stockage_compo);
-      DoubleTab& es_compo = (espace_stockage_compo.valeurs());
+      DoubleTab& es_compo = (espace_stockage_compo->valeurs());
       int nb_pos = es.dimension(0);
       for (int i=0; i<nb_pos; i++)
         {
@@ -246,7 +245,7 @@ const Champ_base& Champ_Post_Operateur_Eqn::get_champ(Champ& espace_stockage) co
   else
     espace_stockage = espace_stockage_complet;
 
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
 const Noms Champ_Post_Operateur_Eqn::get_property(const Motcle& query) const
@@ -265,7 +264,7 @@ const Noms Champ_Post_Operateur_Eqn::get_property(const Motcle& query) const
       {
         if (compo_==-1)
           {
-            int nb_comp= ref_eq_.valeur().inconnue().valeur().nb_comp();
+            int nb_comp= ref_eq_->inconnue().nb_comp();
             Noms compo(nb_comp);
             for (int i=0; i<nb_comp; i++)
               {
@@ -286,7 +285,7 @@ const Noms Champ_Post_Operateur_Eqn::get_property(const Motcle& query) const
       {
         if (compo_==-1)
           {
-            int nb_comp= ref_eq_.valeur().inconnue().valeur().nb_comp();
+            int nb_comp= ref_eq_->inconnue().nb_comp();
             Noms unites(nb_comp);
             //Noms source_unites = get_source(0).get_property("unites");
             for (int i=0; i<nb_comp; i++)

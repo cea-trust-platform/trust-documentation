@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,27 +14,22 @@
 *****************************************************************************/
 
 #include <Schema_Euler_Implicite.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Probleme_Couple.h>
+#include <communications.h>
 #include <Equation_base.h>
 #include <Probleme_base.h>
-#include <Probleme_Couple.h>
+#include <LecFicDiffuse.h>
 #include <Milieu_base.h>
 #include <Param.h>
-#include <LecFicDiffuse.h>
-#include <communications.h>
 #include <string>
 
 Implemente_instanciable(Schema_Euler_Implicite,"Schema_euler_implicite|Scheme_euler_implicit",Schema_Implicite_base);
-
-//     printOn()
-/////
 
 Sortie& Schema_Euler_Implicite::printOn(Sortie& s) const
 {
   return  Schema_Implicite_base::printOn(s);
 }
-
-//// readOn
-//
 
 Entree& Schema_Euler_Implicite::readOn(Entree& s)
 {
@@ -93,20 +88,6 @@ void Schema_Euler_Implicite::calcul_fac_sec(double& residu,double& residu_old,do
   //
 }
 
-void Schema_Euler_Implicite::set_param(Param& param)
-{
-  // XD schema_euler_implicite schema_implicite_base schema_euler_implicite -1 This is the Euler implicit scheme.
-  param.ajouter("max_iter_implicite",&nb_ite_max);
-  param.ajouter_non_std("facsec_max", (this)); // XD_ADD_P floattant For old syntax, see the complete parameters of facsec for details
-  param.ajouter_non_std("resolution_monolithique", (this)); // XD_ADD_P bloc_lecture Activate monolithic resolution for coupled problems. Solves together the equations corresponding to the application domains in the given order. All aplication domains of the coupled equations must be given to determine the order of resolution. If the monolithic solving is not wanted for a specific application domain, an underscore can be added as prefix. For example, resolution_monolithique { dom1 { dom2 dom3 } _dom4 } will solve in a single matrix the equations having dom1 as application domain, then the equations having dom2 or dom3 as application domain in a single matrix, then the equations having dom4 as application domain in a sequential way (not in a single matrix).
-  Schema_Implicite_base::set_param(param);
-
-  // XD  facsec interprete nul 1 To parameter the safety factor for the time step during the simulation.
-  // XD attr facsec_ini floattant facsec_ini 1 Initial facsec taken into account at the beginning of the simulation.
-  // XD attr facsec_max floattant facsec_max 1 Maximum ratio allowed between time step and stability time returned by CFL condition. The initial ratio given by facsec keyword is changed during the calculation with the implicit scheme but it couldn\'t be higher than facsec_max value.NL2 Warning: Some implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3 needs facsec=facsec_max=1. NL2 Advice:NL2 The calculation may start with a facsec specified by the user and increased by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic only or thermal hydraulic with forced convection and low coupling between velocity and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic with forced convection and strong coupling between velocity and temperature (Boussinesq value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection, facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8) as if the scheme was unconditionally stableNL2These values can also be used as rule of thumb for initial facsec with a facsec_max limit higher.
-  // XD attr rapport_residus floattant rapport_residus 1 Ratio between the residual at time n and the residual at time n+1 above which the facsec is increased by multiplying by sqrt(rapport_residus) (1.2 by default).
-  // XD attr nb_ite_sans_accel_max entier nb_ite_sans_accel_max 1 Maximum number of iterations without facsec increases (20000 by default): if facsec does not increase with the previous condition (ration between 2 consecutive residuals too high), we increase it by force after nb_ite_sans_accel_max iterations.
-}
 
 int Schema_Euler_Implicite::lire_motcle_non_standard(const Motcle& mot, Entree& is)
 {
@@ -138,57 +119,35 @@ int Schema_Euler_Implicite::lire_motcle_non_standard(const Motcle& mot, Entree& 
     }
   else if (mot == "facsec_max")  //old syntax
     is >> facsec_max_;
+  else if (mot == "facsec_expert")
+    lire_facsec_expert(is);
+  else if (mot == "facsec_func")
+    lire_facsec_func(is);
   else return Schema_Implicite_base::lire_motcle_non_standard(mot, is);
   return 1;
 }
 
 
-Entree& Schema_Euler_Implicite::lire_facsec(Entree& is)
+// XD facsec_expert interprete nul 1 To parameter the safety factor for the time step during the simulation.
+Entree& Schema_Euler_Implicite::lire_facsec_expert(Entree& is)
 {
-  Motcle m;
-  is >> m;
-  if (m == "{")  // New syntax
-    {
-      Motcles facsec_mots(5);
-      facsec_mots[0]="facsec_ini";
-      facsec_mots[1]="facsec_max";
-      facsec_mots[2]="rapport_residus";
-      facsec_mots[3]="nb_ite_sans_accel_max";
-      is >> m;
-      while(m!="}")
-        {
-          int res_rang=facsec_mots.search(m);
-          switch(res_rang)
-            {
-            case 0:
-              is >> facsec_;
-              break;
-            case 1:
-              is >> facsec_max_;
-              break;
-            case 2:
-              is >> rapport_residus_;
-              break;
-            case 3:
-              is >> nb_ite_sans_accel_max_;
-              break;
-            default :
-              {
-                Cerr<<" We do not understand "<<m <<"in Schema_Euler_Implicite::lire_facsec"<<finl;
-                Cerr<<" keywords understood "<<facsec_mots<<finl;
-                exit();
-              }
-            }
-          is >> m;
-        }
-    }
-  else
-    lire_facsec_func(m);
+  Param param("facsec_expert");
+  param.ajouter("facsec_ini",&facsec_);               // XD_ADD_P floattant Initial facsec taken into account at the beginning of the simulation.
+  param.ajouter("facsec_max",&facsec_max_);           // XD_ADD_P floattant Maximum ratio allowed between time step and stability time returned by CFL condition. The initial ratio given by facsec keyword is changed during the calculation with the implicit scheme but it couldn\'t be higher than facsec_max value.NL2 Warning: Some implicit schemes do not permit high facsec_max, example Schema_Adams_Moulton_order_3 needs facsec=facsec_max=1. NL2 Advice:NL2 The calculation may start with a facsec specified by the user and increased by the algorithm up to the facsec_max limit. But the user can also choose to specify a constant facsec (facsec_max will be set to facsec value then). Faster convergence has been seen and depends on the kind of calculation: NL2-Hydraulic only or thermal hydraulic with forced convection and low coupling between velocity and temperature (Boussinesq value beta low), facsec between 20-30NL2-Thermal hydraulic with forced convection and strong coupling between velocity and temperature (Boussinesq value beta high), facsec between 90-100 NL2-Thermohydralic with natural convection, facsec around 300NL2 -Conduction only, facsec can be set to a very high value (1e8) as if the scheme was unconditionally stableNL2These values can also be used as rule of thumb for initial facsec with a facsec_max limit higher.
+  param.ajouter("rapport_residus",&rapport_residus_); // XD_ADD_P floattant Ratio between the residual at time n and the residual at time n+1 above which the facsec is increased by multiplying by sqrt(rapport_residus) (1.2 by default).
+  param.ajouter("nb_ite_sans_accel_max",&nb_ite_sans_accel_max_); // XD_ADD_P entier Maximum number of iterations without facsec increases (20000 by default): if facsec does not increase with the previous condition (ration between 2 consecutive residuals too high), we increase it by force after nb_ite_sans_accel_max iterations.
+
+  param.lire_avec_accolades(is);
+
   return is;
 }
 
-void Schema_Euler_Implicite::lire_facsec_func(Nom& facsec_str)
+void Schema_Euler_Implicite::lire_facsec_func(Entree& is)
 {
+  Nom facsec_str;
+
+  is >> facsec_str;
+
   facsec_fn_.setNbVar(1);
   facsec_fn_.setString(facsec_str);
   facsec_fn_.addVar("t");
@@ -196,6 +155,17 @@ void Schema_Euler_Implicite::lire_facsec_func(Nom& facsec_str)
   facsec_ = facsec_fn_.eval();
   if(facsec_str.majuscule().contient("T"))
     facsec_func_ = true;
+}
+
+void Schema_Euler_Implicite::set_param(Param& param)
+{
+  // XD schema_euler_implicite schema_implicite_base schema_euler_implicite -1 This is the Euler implicit scheme.
+  param.ajouter("max_iter_implicite",&nb_ite_max);
+  param.ajouter_non_std("facsec_max", (this)); // XD_ADD_P floattant For old syntax, see the complete parameters of facsec for details
+  param.ajouter_non_std("facsec_expert", (this)); // XD_ADD_P facsec_expert Advanced facsec specification
+  param.ajouter_non_std("facsec_func", (this)); // XD_ADD_P chaine Advanced facsec specification as a function
+  param.ajouter_non_std("resolution_monolithique", (this)); // XD_ADD_P bloc_lecture Activate monolithic resolution for coupled problems. Solves together the equations corresponding to the application domains in the given order. All aplication domains of the coupled equations must be given to determine the order of resolution. If the monolithic solving is not wanted for a specific application domain, an underscore can be added as prefix. For example, resolution_monolithique { dom1 { dom2 dom3 } _dom4 } will solve in a single matrix the equations having dom1 as application domain, then the equations having dom2 or dom3 as application domain in a single matrix, then the equations having dom4 as application domain in a sequential way (not in a single matrix).
+  Schema_Implicite_base::set_param(param);
 }
 
 
@@ -296,14 +266,14 @@ int Schema_Euler_Implicite::Iterer_Pb(Probleme_base& pb,int compteur, int& ok)
       double temps=temps_courant_+dt_;
 
       // imposer_cond_lim   sert pour la pression et pour les echanges entre pbs
-      eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+      eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
       Cout<<"Solving " << eqn.que_suis_je() << " equation :" << finl;
       const DoubleTab& inut=futur;
-      convergence_eqn=le_solveur.valeur().iterer_eqn(eqn, inut, present, dt_, compteur, ok);
+      convergence_eqn=le_solveur->iterer_eqn(eqn, inut, present, dt_, compteur, ok);
       if (!ok) return false; //echec total -> on sort sans traiter les equations suivantes
       convergence_pb = convergence_pb&&convergence_eqn;
       futur=present;
-      eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+      eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
       present=futur;
 
       // La ligne suivante (commentee) realise:
@@ -312,7 +282,7 @@ int Schema_Euler_Implicite::Iterer_Pb(Probleme_base& pb,int compteur, int& ok)
       //   eqn.inconnue().mettre_a_jour(temps);
 
       //   eqn.inconnue().reculer();
-      eqn.inconnue().valeur().Champ_base::changer_temps(temps);
+      eqn.inconnue().Champ_base::changer_temps(temps);
       Cout << finl;
     }
   return (convergence_pb==true);
@@ -327,7 +297,7 @@ void Schema_Euler_Implicite::test_stationnaire(Probleme_base& pb)
       DoubleTab& present = pb.equation(i).inconnue().valeurs();
       DoubleTab& futur = pb.equation(i).inconnue().futur();
       futur = present;
-      pb.equation(i).domaine_Cl_dis()->imposer_cond_lim(pb.equation(i).inconnue(),temps_courant()+pas_de_temps());
+      pb.equation(i).domaine_Cl_dis().imposer_cond_lim(pb.equation(i).inconnue(),temps_courant()+pas_de_temps());
       present -= passe;
       present/=dt_;
       update_critere_statio(present, pb.equation(i));
@@ -423,7 +393,7 @@ int Schema_Euler_Implicite::faire_un_pas_de_temps_pb_couple(Probleme_Couple& pbc
               const int nb_eqn=pb.nombre_d_equations();
               for(int ii=0; ii<nb_eqn; ii++)
                 {
-                  pb.equation(ii).domaine_Cl_dis()->calculer_coeffs_echange(temps_courant_+pas_de_temps());
+                  pb.equation(ii).domaine_Cl_dis().calculer_coeffs_echange(temps_courant_+pas_de_temps());
                 }
 
             }
@@ -450,7 +420,7 @@ int Schema_Euler_Implicite::faire_un_pas_de_temps_pb_couple(Probleme_Couple& pbc
               for (auto && s : resolution_monolithique_)
                 {
                   // serach all equations of this dom app
-                  LIST(REF(Equation_base)) eqs;
+                  LIST(OBS_PTR(Equation_base)) eqs;
                   for(i = 0; i < pbc.nb_problemes(); i++)
                     for(int j = 0; j < ref_cast(Probleme_base,pbc.probleme(i)).nombre_d_equations(); j++)
                       {
@@ -474,7 +444,7 @@ int Schema_Euler_Implicite::faire_un_pas_de_temps_pb_couple(Probleme_Couple& pbc
                           eqs[k]->probleme().updateGivenFields();
                         }
                       Cout << " } are solved by assembling a single matrix." << finl;
-                      bool convergence_eqs = le_solveur.valeur().iterer_eqs(eqs, compteur, ok);
+                      bool convergence_eqs = le_solveur->iterer_eqs(eqs, compteur, ok);
                       convergence_pbc = convergence_pbc && convergence_eqs;
                     }
                   else
@@ -489,17 +459,17 @@ int Schema_Euler_Implicite::faire_un_pas_de_temps_pb_couple(Probleme_Couple& pbc
                           double temps = temps_courant_ + dt_;
 
                           // imposer_cond_lim   sert pour la pression et pour les echanges entre pbs
-                          eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+                          eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
                           Cout<<"Solving " << eqn.que_suis_je() << " equation :" << finl;
                           const DoubleTab& inut=futur;
-                          bool convergence_eqn=le_solveur.valeur().iterer_eqn(eqn, inut, present, dt_, compteur, ok);
+                          bool convergence_eqn=le_solveur->iterer_eqn(eqn, inut, present, dt_, compteur, ok);
                           if (!ok) break;
                           convergence_pbc = convergence_pbc && convergence_eqn;
                           futur = present;
-                          eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+                          eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
                           present = futur;
 
-                          eqn.inconnue().valeur().Champ_base::changer_temps(temps);
+                          eqn.inconnue().Champ_base::changer_temps(temps);
                           Cout << finl;
                         }
                     }
@@ -562,7 +532,7 @@ int Schema_Euler_Implicite::faire_un_pas_de_temps_eqn_base(Equation_base& eqn)
       Cout<<"Schema_Euler_Implicite: Implicit iteration " << compteur << " on the "<<eqn.que_suis_je() << " equation of the problem "<< eqn.probleme().le_nom()<< " :" <<finl;
       Cout<<"==================================================================================" << finl;
       const DoubleTab& inut=futur;
-      convergence_eqn=le_solveur.valeur().iterer_eqn(eqn, inut, present, dt_, compteur, ok);
+      convergence_eqn=le_solveur->iterer_eqn(eqn, inut, present, dt_, compteur, ok);
       if (!ok) return 0; //si echec total
       futur=present;
       eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());

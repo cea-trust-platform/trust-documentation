@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,7 +27,6 @@ class Op_Dift_VDF_Face_leaves
 /// \endcond
 
 class Modele_turbulence_hyd_base;
-class Champ_Fonc;
 
 class Op_Dift_VDF_Face : public Op_Dift_VDF_Face_base, public Op_Diff_Dift_VDF<Op_Dift_VDF_Face>
 {
@@ -35,8 +34,8 @@ class Op_Dift_VDF_Face : public Op_Dift_VDF_Face_base, public Op_Diff_Dift_VDF<O
 
 public:
   Op_Dift_VDF_Face();
-  inline void associer(const Domaine_dis& zd, const Domaine_Cl_dis& zcd, const Champ_Inc& ch) override { associer_impl<Type_Operateur::Op_DIFT_FACE,Eval_Dift_VDF_Face>(zd,zcd,ch); }
-  inline void associer_diffusivite_turbulente(const Champ_Fonc& ch) { associer_diffusivite_turbulente_impl<Type_Operateur::Op_DIFT_FACE,Eval_Dift_VDF_Face>(ch); }
+  inline void associer(const Domaine_dis_base& zd, const Domaine_Cl_dis_base& zcd, const Champ_Inc_base& ch) override { associer_impl<Type_Operateur::Op_DIFT_FACE,Eval_Dift_VDF_Face>(zd,zcd,ch); }
+  inline void associer_diffusivite_turbulente(const Champ_Fonc_base& ch) { associer_diffusivite_turbulente_impl<Type_Operateur::Op_DIFT_FACE,Eval_Dift_VDF_Face>(ch); }
   inline void associer_diffusivite(const Champ_base& ch) override { associer_diffusivite_impl<Eval_Dift_VDF_Face>(ch); }
   inline const Champ_base& diffusivite() const override { return diffusivite_impl<Eval_Dift_VDF_Face>(); }
   inline void completer() override
@@ -84,7 +83,7 @@ public:
 
 protected:
   int is_var_ = 0;
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Champ_base) diffusivite_;
 };
 
 inline double Op_Dift_VDF_Face_Axi::nu_mean_4_pts_(const int i, const int j) const

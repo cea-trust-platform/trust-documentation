@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ class Champ_base;
  * @sa Operateur_Diff_base Operateur
  */
 
-class Operateur_Diff: public Operateur, public DERIV(Operateur_Diff_base)
+class Operateur_Diff: public Operateur, public OWN_PTR(Operateur_Diff_base)
 {
   Declare_instanciable(Operateur_Diff);
 public:
@@ -47,7 +47,7 @@ public:
   inline int op_non_nul() const override;
 
 protected:
-  REF(Champ_base) la_diffusivite;
+  OBS_PTR(Champ_base) la_diffusivite;
 };
 
 inline int Operateur_Diff::op_non_nul() const

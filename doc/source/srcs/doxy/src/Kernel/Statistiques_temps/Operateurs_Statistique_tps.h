@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #ifndef Operateurs_Statistique_tps_included
 #define Operateurs_Statistique_tps_included
 
-#include <Operateur_Statistique_tps.h>
+#include <Operateur_Statistique_tps_base.h>
 #include <TRUST_List.h>
 #include <TRUST_Ref.h>
 
@@ -27,35 +27,23 @@ class Motcle;
  *
  *      Les objets Postraitement portent un objet de ce type.
  *
- * @sa Operateur_Statistique_tps Postraitement
+ * @sa Postraitement
  */
-class Operateurs_Statistique_tps : public LIST(Operateur_Statistique_tps)
+class Operateurs_Statistique_tps: public LIST(OWN_PTR(Operateur_Statistique_tps_base))
 {
   Declare_instanciable(Operateurs_Statistique_tps);
 
 public:
+  inline int lserie() const { return lserie_; }
+  inline double dt_integr_serie() const { return dt_integr_serie_; }
 
-  inline int lserie() const;
-  inline double dt_integr_serie() const;
-  int sauvegarder(Sortie& os) const override;
-  int reprendre(Entree& is) override;
+  int sauvegarder(Sortie &os) const override;
+  int reprendre(Entree &is) override;
 
 protected:
-
-  REF(Postraitement) mon_post;
-  int lserie_=-123;
-  double dt_integr_serie_=123.;
-
+  OBS_PTR(Postraitement) mon_post_;
+  int lserie_ = -123;
+  double dt_integr_serie_ = 123.;
 };
 
-inline int Operateurs_Statistique_tps::lserie() const
-{
-  return lserie_;
-}
-
-inline double Operateurs_Statistique_tps::dt_integr_serie() const
-{
-  return dt_integr_serie_;
-}
-
-#endif
+#endif /* Operateurs_Statistique_tps_included */

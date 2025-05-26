@@ -29,26 +29,13 @@ Implemente_instanciable(Solide,"Solide",Milieu_base);
 // XD attr lambda field_base lambda_u 1 Conductivity (W.m-1.K-1).
 // XD attr user_field field_base user_field 1 user defined field.
 
-/*! @brief Ecrit les caracteristiques du milieu su run flot de sortie.
- *
- * Simple appel a: Milieu_base::printOn(Sortie&)
- *
- * @param (Sortie& os) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Solide::printOn(Sortie& os) const { return Milieu_base::printOn(os); }
 
-/*! @brief Lit les caracteristiques du milieu a partir d'un flot d'entree.
- *
- *  cf Milieu_base::readOn
- *
- * @param (Entree& is) un flot d'entree
- * @return (Entree& is) le flot d'entree modifie
- */
 Entree& Solide::readOn(Entree& is)
 {
-  champs_don_.add(mon_champ_);
-  return Milieu_base::readOn(is);
+  Milieu_base::readOn(is);
+  if (mon_champ_.non_nul())  champs_don_.add(mon_champ_.valeur());
+  return is;
 }
 
 void Solide::set_param(Param& param)
@@ -70,9 +57,9 @@ void Solide::set_param(Param& param)
 void Solide::verifier_coherence_champs(int& err,Nom& msg)
 {
   msg="";
-  if (sub_type(Champ_Uniforme,lambda.valeur()))
+  if (sub_type(Champ_Uniforme,ch_lambda_.valeur()))
     {
-      if (lambda(0,0) <= 0)
+      if (ch_lambda_->valeurs()(0,0) <= 0)
         {
           msg += "The conductivity lambda is not striclty positive. \n";
           err = 1;
@@ -109,10 +96,10 @@ void Solide::discretiser(const Probleme_base& pb, const Discretisation_base& dis
       const double temps = pb.schema_temps().temps_courant();
       if (sub_type(Champ_Fonc_MED,mon_champ_.valeur()))
         {
-          Cerr<<"Convert Champ_fonc_MED " << nom_champ_ << " to a Champ_Don ..."<<finl;
-          Champ_Don tmp_fld;
+          Cerr<<"Convert Champ_fonc_MED " << nom_champ_ << " to a OWN_PTR(Champ_Don_base) ..."<<finl;
+          OWN_PTR(Champ_Don_base) tmp_fld;
           dis.discretiser_champ("champ_elem",domaine_dis,"neant","neant",1,temps,tmp_fld);
-          tmp_fld.affecter_(mon_champ_.valeur()); // interpolate ...
+          tmp_fld->affecter(mon_champ_.valeur()); // interpolate ...
           mon_champ_.detach();
           dis.discretiser_champ("champ_elem",domaine_dis,nom_champ_,"neant",1,temps,mon_champ_);
           mon_champ_->valeurs() = tmp_fld->valeurs();

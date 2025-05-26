@@ -16,6 +16,8 @@
 #include <Tetraedriser_homogene.h>
 
 Implemente_instanciable(Tetraedriser_homogene, "Tetraedriser_homogene", Triangulation_base);
+// XD tetraedriser_homogene tetraedriser tetraedriser_homogene -1 Use the Tetraedriser_homogene (Homogeneous_Tetrahedralisation) interpretor in VEF discretization to mesh a block in tetrahedrals. Each block hexahedral is no longer divided into 6 tetrahedrals (keyword Tetraedriser (Tetrahedralise)), it is now broken down into 40 tetrahedrals. Thus a block defined with 11 nodes in each X, Y, Z direction will contain 10*10*10*40=40,000 tetrahedrals. This also allows problems in the mesh corners with the P1NC/P1iso/P1bulle or P1/P1 discretization items to be avoided. Initial block is divided in 40 tetrahedra: \includepng{{tetraedriserhomogene.jpeg}}{{5}}
+
 
 Sortie& Tetraedriser_homogene::printOn(Sortie& os) const { return Interprete::printOn(os); }
 
@@ -222,7 +224,7 @@ void Tetraedriser_homogene::trianguler(Domaine& domaine) const
       // Construction de l'Octree sur la grille "VDF" de base
       domaine.construit_octree();
 
-      //On dimensionne une premiere fois le tableau des sommets avec la dimension maximun
+      //On dimensionne une premiere fois le tableau des sommets avec la dimension maximum
       //puis on redimensionnera seulement a la fin par la dimension exacte
 
       DoubleTab& sommets_dom = domaine.les_sommets();
@@ -650,7 +652,7 @@ void Tetraedriser_homogene::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.faces_bord())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems);
         }
 
@@ -658,7 +660,7 @@ void Tetraedriser_homogene::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.faces_raccord())
         {
           Faces& les_faces = itr->faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems);
         }
 
@@ -666,7 +668,7 @@ void Tetraedriser_homogene::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.bords_int())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems);
         }
 
@@ -674,7 +676,7 @@ void Tetraedriser_homogene::trianguler(Domaine& domaine) const
       for (auto &itr : domaine.groupes_faces())
         {
           Faces& les_faces = itr.faces();
-          les_faces.typer(Faces::triangle_3D);
+          les_faces.typer(Type_Face::triangle_3D);
           decoupe(domaine, les_faces, new_soms_old_elems);
         }
       Cerr << "END of Tetraedriser_homogene..." << finl;

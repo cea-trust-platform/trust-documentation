@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,12 +19,12 @@
 
 #include <Terme_Source_Qdm.h>
 #include <Operateur_Conv.h>
-#include <Equation.h>
+#include <Equation_base.h>
 
 class Probleme_base;
+class Domaine_Cl_dis_base;
+
 /*! @brief class Terme_Source_Th_TdivU_VEF_Face
- *
- *
  *
  * @sa Source_base
  */
@@ -41,14 +41,14 @@ public:
   void mettre_a_jour(double ) override;
   void completer() override;
   void associer_eqn_t();
+
 protected:
   void modifier_domaine_cl();
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
 
-
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
-  REF(Equation_base) eqn_t;
-  Domaine_Cl_dis mon_domcl_;
-  REF(Domaine_Cl_dis_base) domainecl_sa;
+  OBS_PTR(Equation_base) eqn_t;
+  OWN_PTR(Domaine_Cl_dis_base) mon_domcl_;
+  OBS_PTR(Domaine_Cl_dis_base) domainecl_sa;
   int domaine_cl_mod_ = 0;
 };
 

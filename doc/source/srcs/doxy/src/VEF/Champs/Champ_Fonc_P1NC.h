@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,7 +22,7 @@
 
 /*! @brief classe Champ_Fonc_P1NC
  *
- * @sa Champ_Fonc_base Champ P1NC
+ * @sa Champ_Fonc_base OWN_PTR(Champ_base) P1NC
  */
 class Champ_Fonc_P1NC: public Champ_Fonc_base, public Champ_P1NC_implementation
 {
@@ -44,6 +44,11 @@ public:
   inline double valeur_a_elem_compo(const DoubleVect& position, int le_poly, int ncomp) const override
   {
     return Champ_P1NC_implementation::valeur_a_elem_compo(position, le_poly, ncomp);
+  }
+
+  inline DoubleTab& valeur_aux_centres_de_gravite(const Domaine& dom, DoubleTab& tab_valeurs) const override
+  {
+    return Champ_P1NC_implementation::valeur_aux_centres_de_gravite(dom, tab_valeurs);
   }
 
   inline DoubleTab& valeur_aux_elems(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& tab_valeurs) const override

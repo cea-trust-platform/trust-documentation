@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #include <Loi_Etat_rhoT_GP_QC.h>
 #include <TRUSTTab.h>
 #include <Param.h>
+#include <ParserView.h>
 
 Implemente_instanciable_sans_constructeur( Loi_Etat_rhoT_GP_QC, "Loi_Etat_rhoT_Gaz_Parfait_QC", Loi_Etat_GP_base ) ;
 // XD rhoT_gaz_parfait_QC loi_etat_gaz_parfait_base rhoT_gaz_parfait_QC -1 Class for perfect gas used with a quasi-compressible fluid where the state equation is defined as rho = f(T).
@@ -60,7 +61,7 @@ Entree& Loi_Etat_rhoT_GP_QC::readOn( Entree& is )
       parser_.parseString();
     }
   else
-    assert(rho_xyz_.valeur().que_suis_je() == "Champ_Fonc_xyz" );
+    assert(rho_xyz_->que_suis_je() == "Champ_Fonc_xyz" );
 
   return is;
 }
@@ -70,17 +71,17 @@ Entree& Loi_Etat_rhoT_GP_QC::readOn( Entree& is )
 void Loi_Etat_rhoT_GP_QC::initialiser_rho()
 {
   int isVDF = 0;
-  if (le_fluide->masse_volumique().valeur().que_suis_je()=="Champ_Fonc_P0_VDF") isVDF = 1;
+  if (le_fluide->masse_volumique().que_suis_je()=="Champ_Fonc_P0_VDF") isVDF = 1;
   // We know that mu is always stored on elems
   int nb_elems = le_fluide->viscosite_dynamique().valeurs().size();
-  // The Champ_Don rho_xyz_ is evaluated on elements
-  assert (rho_xyz_.valeur().valeurs().size() == nb_elems);
+  // The OWN_PTR(Champ_Don_base) rho_xyz_ is evaluated on elements
+  assert (rho_xyz_->valeurs().size() == nb_elems);
 
   if (isVDF)
     {
       // Disc VDF => rho_ & rho_xyz_ on elems => we do nothing
       rho_.resize(nb_elems, 1);
-      DoubleTab& fld = rho_xyz_.valeur().valeurs();
+      DoubleTab& fld = rho_xyz_->valeurs();
       for (int i=0; i<nb_elems; i++) rho_(i,0)=fld(i,0);
     }
   else
@@ -89,7 +90,7 @@ void Loi_Etat_rhoT_GP_QC::initialiser_rho()
       int nb_faces =  le_fluide->masse_volumique().valeurs().size(); // rho on faces in VEF
       rho_.resize(nb_faces, 1);
 
-      Champ_base& ch_rho = le_fluide->masse_volumique().valeur();
+      Champ_base& ch_rho = le_fluide->masse_volumique();
       ch_rho.affecter_(rho_xyz_);
       DoubleTab& fld = ch_rho.valeurs();
       for (int i = 0; i < nb_faces; i++) rho_(i,0)= fld(i,0);
@@ -150,12 +151,40 @@ void Loi_Etat_rhoT_GP_QC::calculer_masse_volumique()
 {
   const DoubleTab& tab_ICh = le_fluide->inco_chaleur().valeurs();
   DoubleTab& tab_rho = le_fluide->masse_volumique().valeurs();
-  double Pth = le_fluide->pression_th();
   int n=tab_rho.size();
-  for (int som=0 ; som<n ; som++)
+  if (is_exp_)
     {
-      tab_rho_np1(som) =  calculer_masse_volumique(Pth,tab_ICh(som,0),som);
-      tab_rho(som,0) = 0.5 * (tab_rho_n(som) + tab_rho_np1(som));
+      double TMIN = TMIN_;
+      ParserView parser(parser_);
+      parser.parseString();
+      CDoubleTabView ICh = tab_ICh.view_ro();
+      CDoubleArrView rho_n = static_cast<const DoubleVect&>(tab_rho_n).view_ro();
+      DoubleArrView rho_np1 = static_cast<DoubleVect&>(tab_rho_np1).view_wo();
+      DoubleTabView rho = tab_rho.view_wo();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), n, KOKKOS_LAMBDA(const int i)
+      {
+        double T = ICh(i, 0);
+        if (T<=TMIN) Process::Kokkos_exit("Dumb temperature in Loi_Etat_rhoT_GP_QC::calculer_masse_volumique !");
+        int threadId = parser.acquire();
+        parser.setVar(0, T, threadId);
+        rho_np1(i) = parser.eval(threadId);
+        rho(i, 0) = 0.5 * (rho_n(i) + rho_np1(i));
+        parser.release(threadId);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+    }
+  else
+    {
+      CDoubleTabView rho = rho_.view_ro();
+      CDoubleArrView rho_n = static_cast<const DoubleVect&>(tab_rho_n).view_ro();
+      DoubleArrView rho_np1 = static_cast<DoubleVect&>(tab_rho_np1).view_wo();
+      DoubleTabView masse_volumique = tab_rho.view_rw();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), n, KOKKOS_LAMBDA(const int i)
+      {
+        rho_np1(i) = rho(i,0);
+        masse_volumique(i, 0) = 0.5 * (rho_n(i) + rho_np1(i));
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
   tab_rho.echange_espace_virtuel();
   tab_rho_np1.echange_espace_virtuel();

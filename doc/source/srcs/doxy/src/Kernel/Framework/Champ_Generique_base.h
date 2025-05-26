@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,14 +16,17 @@
 #ifndef Champ_Generique_base_included
 #define Champ_Generique_base_included
 
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 #include <Domaine.h>
-#include <Champ.h>
+#include <ArrOfBit.h>
+#include <YAML_data.h>
 
-class ArrOfBit;
 class Postraitement_base;
 class Discretisation_base;
+class Domaine_Cl_dis_base;
 class Param;
+class Champ_base;
 
 enum class Entity { NODE, SEGMENT, FACE, ELEMENT };
 
@@ -41,6 +44,12 @@ class Champ_Generique_base : public Objet_U
 {
   Declare_base(Champ_Generique_base);
 public:
+
+  /* XXX Elie Saikali : re-mets ici et pas dans Objet_U */
+  virtual std::vector<YAML_data> data_a_sauvegarder() const { return std::vector<YAML_data>(); };
+  int sauvegarder(Sortie& os) const override { return 0; }
+  int reprendre(Entree& is) override { return 1; }
+
   virtual void set_param(Param& param)=0;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   virtual int  get_dimension() const;
@@ -88,7 +97,7 @@ public:
   //  Soit elle renvoie un champ existant (voir Champ_Generique_refChamp)
   //   et elle n'utilise pas espace_stockage.
   //  Soit elle construit un nouveau champ qu'elle stocke dans espace_stockage,
-  //   et la valeur de retour est espace_stockage.valeur()
+  //   et la valeur de retour est espace_stockage
   //  L'appelant recupere le resultat du calcul dans la valeur de retour,
   //   sachant qu'elle peut eventuellement referencer espace_stockage
   //   (donc, ne pas detruire espace_stockage trop tot).
@@ -96,24 +105,20 @@ public:
   // Les etapes de creation de l espace de stockage sont :
   // espace_stockage.typer(type_champ)
   // espace_stockage.associer_domaine_dis_base(un_domaine_dis)
-  // espace_stockage->fixer_nb_comp(nb_comp);
-  // espace_stockage->fixer_nb_valeurs_nodales(nb_ddl);
+  // espace_stockage.fixer_nb_comp(nb_comp);
+  // espace_stockage.fixer_nb_valeurs_nodales(nb_ddl);
   // Calcul des valeurs par instruction de la forme
   // espace_stockage.valeurs() = Operateur.calculer(source.valeurs())
   // espace_stockage.valeurs().echange_espace_virtuel()
-  //return espace_stockage.valeur()
+  //return espace_stockage
 
-  virtual const Champ_base&   get_champ(Champ& espace_stockage) const = 0;
-  virtual const Champ_base&   get_champ_without_evaluation(Champ& espace_stockage) const=0;
-  /*
-    {
-      return get_champ(espace_stockage);
-    };
-  */
+  virtual const Champ_base& get_champ(OWN_PTR(Champ_base) &espace_stockage) const = 0;
+  virtual const Champ_base& get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const=0;
 
   //get_champ_post() renvoie le champ si l identifiant passe en parametre designe
   //le nom du champ ou l une de ses composantes
   virtual const Champ_Generique_base& get_champ_post(const Motcle& nom) const;
+  virtual bool has_champ_post(const Motcle& nom) const;
 
   //renvoie 1 si le champ est identifie, 0 sinon
   virtual int comprend_champ_post(const Motcle& identifiant) const;
@@ -123,7 +128,10 @@ public:
 
   //fixe l attribut identifiant_appel_ du champ pour indiquer si la requete
   //a ete lancee par le nom ou une composante du champ (cf Champ_Generique_Interpolation)
-  void fixer_identifiant_appel(const Nom& identifiant);
+  inline void fixer_identifiant_appel(const Nom& identifiant)
+  {
+    identifiant_appel_ = identifiant;
+  }
 
 protected:
   static void               assert_parallel(int);
@@ -131,13 +139,8 @@ protected:
   Nom nom_post_;
   Nom identifiant_appel_;
   Nom nom_pb_;
-  REF(Probleme_base) ref_pb_;
+  OBS_PTR(Probleme_base) ref_pb_;
 };
-
-inline void Champ_Generique_base::fixer_identifiant_appel(const Nom& identifiant)
-{
-  identifiant_appel_ = identifiant;
-}
 
 inline int Champ_Generique_base::composante(const Nom& nom_test,const Nom& nom,const Noms& composantes, const Noms& syno)
 {
@@ -163,19 +166,23 @@ inline int Champ_Generique_base::composante(const Nom& nom_test,const Nom& nom,c
     }
   return ncomp;
 }
+
+/*
+ * @brief class Champ_Generique_erreur
+ *
+ * Classe Champ_Generique_erreur
+ */
 class Champ_Generique_erreur
 {
-
 public:
   Nom mot1;
 
-  Champ_Generique_erreur(const Nom mot2)
+  Champ_Generique_erreur(const Nom& mot2)
   {
     mot1 = mot2;
     Cerr<<"Error of type : "<<mot1<<finl;
     Process::exit();
   }
-
 };
 
-#endif
+#endif /* Champ_Generique_base_included */

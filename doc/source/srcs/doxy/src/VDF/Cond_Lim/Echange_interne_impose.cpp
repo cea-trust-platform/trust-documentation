@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -78,39 +78,39 @@ void Echange_interne_impose::verifie_ch_init_nb_comp() const
 void  Echange_interne_impose::set_temps_defaut(double temps)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().set_temps_defaut(temps);
+    h_gap_->set_temps_defaut(temps);
   Echange_externe_impose::set_temps_defaut(temps);
 }
 void  Echange_interne_impose::fixer_nb_valeurs_temporelles(int nb_cases)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().fixer_nb_valeurs_temporelles(nb_cases);
+    h_gap_->fixer_nb_valeurs_temporelles(nb_cases);
   Echange_externe_impose::fixer_nb_valeurs_temporelles(nb_cases);
 }
 //
 void  Echange_interne_impose::changer_temps_futur(double temps,int i)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().changer_temps_futur(temps,i);
+    h_gap_->changer_temps_futur(temps,i);
   Echange_externe_impose::changer_temps_futur(temps,i);
 }
 int  Echange_interne_impose::avancer(double temps)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().avancer(temps);
+    h_gap_->avancer(temps);
   return Echange_externe_impose::avancer(temps);
 }
 
 int  Echange_interne_impose::reculer(double temps)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().reculer(temps);
+    h_gap_->reculer(temps);
   return Echange_externe_impose::reculer(temps);
 }
 void  Echange_interne_impose::associer_fr_dis_base(const Frontiere_dis_base& fr)
 {
   if (h_gap_.non_nul())
-    h_gap_.valeur().associer_fr_dis_base(fr);
+    h_gap_->associer_fr_dis_base(fr);
   Echange_externe_impose::associer_fr_dis_base(fr);
 }
 
@@ -122,7 +122,7 @@ void Echange_interne_impose::completer()
 
   lambda_ref_ = domaine_Cl_dis().equation().probleme().milieu().conductivite();
 
-  Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext().valeur());
+  Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext());
   t_ext.creer(nom_pb, nom_bord, "temperature");
 
   const Front_VF& fvf = ref_cast(Front_VF, frontiere_dis());
@@ -164,20 +164,20 @@ void Echange_interne_impose::update_inv_lambda()
 void Echange_interne_impose::mettre_a_jour(double tps)
 {
   Echange_externe_impose::mettre_a_jour(tps);
-  h_gap_.mettre_a_jour(tps);
+  h_gap_->mettre_a_jour(tps);
 
   update_inv_lambda();
 
   bool isVDF = sub_type(Domaine_VDF, frontiere_dis().domaine_dis());
 
-  DoubleTab& h_impose = h_imp_.valeurs();
-  DoubleTab& h_gap = h_gap_.valeurs();
+  DoubleTab& h_impose = h_imp_->valeurs();
+  DoubleTab& h_gap = h_gap_->valeurs();
 
   // If VDF, fix h_imp to take into account half cell on the other side of the wall:
   if (isVDF)
     {
-      const Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext().valeur());
-      const IntTab& face_map = t_ext.face_map();
+      const Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext());
+      const IntVect& face_map = t_ext.face_map();
       const Front_VF& fvf = ref_cast(Front_VF, frontiere_dis());
 
       for (int numf=0; numf < fvf.nb_faces(); numf++)

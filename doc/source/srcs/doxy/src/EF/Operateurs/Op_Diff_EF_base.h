@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,13 +19,12 @@
 #include <Neumann_sortie_libre.h>
 #include <Operateur_Diff_base.h>
 #include <Domaine_Cl_EF.h>
+
 #include <Op_EF_base.h>
 #include <Domaine_EF.h>
 #include <TRUST_Ref.h>
 
 class Champ_Inc_base;
-class Domaine_Cl_dis;
-class Domaine_dis;
 class Sortie;
 
 enum class AJOUTE_SCAL { GEN , D3_8 , D2_4 };
@@ -42,15 +41,15 @@ class Op_Diff_EF_base : public Operateur_Diff_base, public Op_EF_base
 public:
 
   int impr(Sortie& os) const override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& ,const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& ,const Champ_Inc_base& ) override;
   double calculer_dt_stab() const override;
   virtual void remplir_nu(DoubleTab&) const=0;
 
 protected:
 
-  REF(Domaine_EF) le_dom_EF;
-  REF(Domaine_Cl_EF) la_zcl_EF;
-  REF(Champ_Inc_base) inconnue;
+  OBS_PTR(Domaine_EF) le_dom_EF;
+  OBS_PTR(Domaine_Cl_EF) la_zcl_EF;
+  OBS_PTR(Champ_Inc_base) inconnue;
   mutable DoubleTab nu_;
 
 };
@@ -70,7 +69,7 @@ inline void remplir_marqueur_sommet_neumann(ArrOfInt& marqueur,const Domaine_EF&
 
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int nfin =le_bord.nb_faces_tot();
           for (int ind_face=0; ind_face<nfin; ind_face++)
             {

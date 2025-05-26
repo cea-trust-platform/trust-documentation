@@ -24,25 +24,19 @@
 #include <vt_user.h>
 #endif
 
-
 #include <Champ_Generique_base.h>
 #include <Convert_ICoCoTrioField.h>
-
 
 Implemente_base(Probleme_U,"Probleme_U",Objet_U);
 
 using ICoCo::WrongArgument;
 using ICoCo::TrioField;
 
-/*! @brief A surcharger.
- */
 Sortie& Probleme_U::printOn(Sortie& os) const
 {
   return os;
 }
 
-/*! @brief A surcharger.
- */
 Entree& Probleme_U::readOn(Entree& is)
 {
   return is ;
@@ -325,6 +319,8 @@ bool Probleme_U::run()
       std::string newDirectory = stop ? newCompute() : "";
       if (!newDirectory.empty())
         {
+          // ToDo: ameliorer le message
+          //if (!isStationary()) Process::exit("Error, the parametric problem is not stationary! Check the convergence.");
           // Keep on the resolution if parametric variation in a new directory:
           stop = false;
           setStationary(stop);
@@ -465,7 +461,7 @@ bool Probleme_U::runUntil(double time)
 /*! @brief pour recodage eventuel et appel unifie en python
  *
  */
-bool Probleme_U::solveTimeStep(void)
+bool Probleme_U::solveTimeStep()
 {
   bool converged = false;
   bool ok        = true;
@@ -507,11 +503,11 @@ void Probleme_U::getInputFieldsNames(Noms& noms) const
  *   - no optimisation of the number of REF objects created and destroyed.
  *
  * @param (string name) name of the input field we are looking for
- * @return (REF(Field_base)) found <=> non_nul(), then points to a Champ_Input_Proto of that name.
+ * @return (OBS_PTR(Field_base)) found <=> non_nul(), then points to a Champ_Input_Proto of that name.
  */
-REF(Field_base) Probleme_U::findInputField(const Nom& name) const
+OBS_PTR(Field_base) Probleme_U::findInputField(const Nom& name) const
 {
-  REF(Field_base) ch;
+  OBS_PTR(Field_base) ch;
   return ch;
 }
 
@@ -526,9 +522,9 @@ void Probleme_U::getOutputFieldsNames(Noms& noms) const
 {
 }
 
-REF(Champ_Generique_base) Probleme_U::findOutputField(const Nom& name) const
+OBS_PTR(Champ_Generique_base) Probleme_U::findOutputField(const Nom& name) const
 {
-  REF(Champ_Generique_base) ch;
+  OBS_PTR(Champ_Generique_base) ch;
   return ch;
 }
 
@@ -539,7 +535,7 @@ REF(Champ_Generique_base) Probleme_U::findOutputField(const Nom& name) const
  */
 void Probleme_U::getInputFieldTemplate(const Nom& name, TrioField& afield) const
 {
-  REF(Field_base) ch=findInputField(name);
+  OBS_PTR(Field_base) ch=findInputField(name);
   if (!ch.non_nul())
     throw WrongArgument(le_nom().getChar(),"getInputFieldTemplate",name.getString(),"no input field of that name");
 
@@ -556,7 +552,7 @@ void Probleme_U::getInputFieldTemplate(const Nom& name, TrioField& afield) const
  */
 void Probleme_U::setInputField(const Nom& name, const TrioField& afield)
 {
-  REF(Field_base) ch=findInputField(name);
+  OBS_PTR(Field_base) ch=findInputField(name);
   if (!ch.non_nul())
     throw WrongArgument(le_nom().getChar(),"setInputField",name.getString(),"no input field of that name");
   if (!est_egal(afield._time1,presentTime()))
@@ -577,7 +573,7 @@ void Probleme_U::setInputField(const Nom& name, const TrioField& afield)
 void Probleme_U::getOutputField(const Nom& name,  TrioField& afield) const
 {
 
-  REF(Champ_Generique_base) ref_ch=findOutputField(name);
+  OBS_PTR(Champ_Generique_base) ref_ch=findOutputField(name);
   if (!ref_ch.non_nul())
     throw WrongArgument(le_nom().getChar(),"getOutputField",name.getString(),"no output field of that name");
 
@@ -589,7 +585,7 @@ void Probleme_U::getOutputField(const Nom& name,  TrioField& afield) const
 // For now: set a field value provided the field has only one item.
 void Probleme_U::setInputDoubleValue(const Nom& name, const double val)
 {
-  REF(Field_base) ch = findInputField(name);
+  OBS_PTR(Field_base) ch = findInputField(name);
   if (!ch.non_nul())
     throw WrongArgument(le_nom().getChar(),"setInputDoubleValue",name.getString(),"no input field of that name");
   if (ch->nb_comp() != 1)
@@ -602,7 +598,6 @@ void Probleme_U::setInputDoubleValue(const Nom& name, const double val)
   chip->setDoubleValue(val);
 }
 
-
 std::string Probleme_U::getOutputStringValue(const std::string& name)
 {
   if(str_params_.count(name) == 0)
@@ -612,14 +607,13 @@ std::string Probleme_U::getOutputStringValue(const std::string& name)
   return str_params_[name];
 }
 
-
 void Probleme_U::setInputIntValue(const Nom& name, const int& val)
 {
   // add value in ICoCoScalarRegister
-  reg.setInputIntValue(name, val);
+  reg_.setInputIntValue(name, val);
 }
 
 int Probleme_U::getOutputIntValue(const Nom& name) const
 {
-  return reg.getOutputIntValue(name);
+  return reg_.getOutputIntValue(name);
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,23 +17,20 @@
 #define Paroi_hyd_base_VDF_included
 
 #include <Turbulence_paroi_base.h>
+
 #include <distances_VDF.h>
 #include <TRUST_Ref.h>
 
 class Champ_Fonc_base;
 class Domaine_Cl_VDF;
-class Domaine_Cl_dis;
 class Domaine_VDF;
-class Domaine_dis;
 
 class Paroi_hyd_base_VDF : public Turbulence_paroi_base
 {
   Declare_base(Paroi_hyd_base_VDF);
 public:
-  void associer(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  void associer(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
   void init_lois_paroi_();
-  void imprimer_premiere_ligne_ustar(int boundaries_, const LIST(Nom)& boundaries_list, const Nom& nom_fichier_) const override;
-  void imprimer_ustar_mean_only(Sortie&, int, const LIST(Nom)&, const Nom& ) const override;
 
   /**
    * OC 09/2004 :
@@ -55,8 +52,6 @@ public:
      void calculer_u_star_avec_cisaillement(DoubleVect& tab_u_star) const ;
   */
 protected:
-  REF(Domaine_VDF) le_dom_VDF;
-  REF(Domaine_Cl_VDF) le_dom_Cl_VDF;
 };
 
 #endif /* Paroi_hyd_base_VDF_included */

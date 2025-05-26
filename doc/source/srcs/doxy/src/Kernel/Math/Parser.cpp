@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,15 +14,11 @@
 *****************************************************************************/
 
 #include <StringTokenizer.h>
-#include <StdFunction.h>
 #include <algorithm>
 #include <Parser.h>
+#include <queue>
 
 void debug(StringTokenizer*);
-
-Constante Parser::c_pi;
-LIST(DERIV(UnaryFunction)) Parser::unary_func;
-LIST(Constante) Parser::les_cst;
 
 /* Les identificateurs suivants doivent etre definis de maniere unique pour chaque fonction */
 
@@ -32,107 +28,72 @@ Parser::Parser()
   state=0;
   root=nullptr;
   str= new std::string("0");
-  maxvar=1;
-  ivar=0;
-  les_var = new Variable*[maxvar];
   impuls_tn = -1.;
   impuls_T = 1.;
   impuls_t0 = 0.;
   impuls_tempo = 0.;
+  setNbVar(1);
 }
 
 Parser::Parser(const Parser& p)
 {
   init_parser();
+  state=p.state;
+  root=nullptr;
+  str= new std::string(*p.str);
   impuls_tn = p.impuls_tn;
   impuls_T = p.impuls_T;
   impuls_t0 = p.impuls_t0;
   impuls_tempo = p.impuls_tempo;
-
-  state=p.state;
-  maxvar=p.maxvar;
+  setNbVar(p.maxvar);
   ivar=p.ivar;
-
-  root=nullptr;
-
-  str= new std::string(*p.str);
-
-  les_var = new Variable*[maxvar];
   for (int i = 0; i < ivar; i++)
     {
-      les_var[i] = new Variable(*(p.les_var[i]));
+      les_var[i] = p.les_var[i];
+      les_var_names[i] = p.les_var_names[i];
     }
-
   parseString();
 }
 
-
-Parser::Parser(std::string& s,int n)
+Parser::Parser(std::string& s, int n)
 {
   init_parser();
+  state=0;
+  root=nullptr;
+  str= new std::string(s);
   impuls_tn = -1.;
   impuls_T = 1.;
   impuls_t0 = 0.;
   impuls_tempo = 0.;
-
-  state=0;
-  root=nullptr;
-  str= new std::string(s);
-  maxvar=n;
-  ivar=0;
-  les_var = new Variable*[maxvar];
+  setNbVar(n);
 }
-
 
 void Parser::init_parser()
 {
   srand48(1);
-  if (unary_func.size()==0)
-    {
-      Sin SIN;
-      Asin ASIN;
-      Cos COS;
-      Acos ACOS;
-      Tan TAN;
-      Atan ATAN;
-      Ln LN;
-      Exp EXP;
-      Sqrt SQRT;
-      Int INT;
-      Erf ERF;
-      Rnd RND;
-      Cosh COSH;
-      Sinh SINH;
-      Tanh TANH;
-      Atanh ATANH;
-      Not NOT;
-      Abs ABS;
-      Sgn SGN;
-      addFunc(SIN);
-      addFunc(ASIN);
-      addFunc(COS);
-      addFunc(ACOS);
-      addFunc(TAN);
-      addFunc(ATAN);
-      addFunc(LN);
-      addFunc(EXP);
-      addFunc(SQRT);
-      addFunc(INT);
-      addFunc(ERF);
-      addFunc(RND);
-      addFunc(COSH);
-      addFunc(SINH);
-      addFunc(TANH);
-      addFunc(NOT);
-      addFunc(ABS);
-      addFunc(SGN);
-      addFunc(ATANH);
-      c_pi.nommer(Nom("PI"));
-      c_pi.setValue(2*asin(1.));
-      addCst(c_pi);
-    }
+  map_function_["SIN"] = static_cast<int>(FUNCTION::SIN);
+  map_function_["ASIN"] = static_cast<int>(FUNCTION::ASIN);
+  map_function_["COS"] = static_cast<int>(FUNCTION::COS);
+  map_function_["ACOS"] = static_cast<int>(FUNCTION::ACOS);
+  map_function_["TAN"] = static_cast<int>(FUNCTION::TAN);
+  map_function_["ATAN"] = static_cast<int>(FUNCTION::ATAN);
+  map_function_["LN"] = static_cast<int>(FUNCTION::LN);
+  map_function_["EXP"] = static_cast<int>(FUNCTION::EXP);
+  map_function_["SQRT"] = static_cast<int>(FUNCTION::SQRT);
+  map_function_["INT"] = static_cast<int>(FUNCTION::ENT);
+  map_function_["ERF"] = static_cast<int>(FUNCTION::ERF);
+  map_function_["RND"] = static_cast<int>(FUNCTION::RND);
+  map_function_["COSH"] = static_cast<int>(FUNCTION::COSH);
+  map_function_["SINH"] = static_cast<int>(FUNCTION::SINH);
+  map_function_["TANH"] = static_cast<int>(FUNCTION::TANH);
+  map_function_["NOT"] = static_cast<int>(FUNCTION::NOT);
+  map_function_["ABS"] = static_cast<int>(FUNCTION::ABS);
+  map_function_["SGN"] = static_cast<int>(FUNCTION::SGN);
+  map_function_["ATANH"] = static_cast<int>(FUNCTION::ATANH);
+  c_pi.nommer(Nom("PI"));
+  c_pi.setValue(2*asin(1.));
+  addCst(c_pi);
 }
-
 
 void destroy(PNode* p)
 {
@@ -148,22 +109,15 @@ void destroy(PNode* p)
 Parser::~Parser()
 {
   if (root !=nullptr) destroy(root);
-  for (int i =0; i<ivar; i++)
-    delete les_var[i];
   delete str;
-  delete[] les_var;
 }
-
 
 void Parser::setNbVar(int nvar)
 {
-  if (ivar>0)
-    for (int i =0; i<ivar; i++)
-      delete les_var[i];
-  delete[] les_var;
   maxvar=nvar;
   ivar=0;
-  les_var = new Variable*[maxvar];
+  les_var.resize(maxvar);
+  les_var_names.dimensionner_force(maxvar);
 }
 
 void Parser::parseString()
@@ -177,9 +131,7 @@ void Parser::parseString()
       Cerr << "Expression " << *str << " does not contain the same number of opening and closing parenthesis." << finl;
       Process::exit();
     }
-
   state = 0;
-
   while ( (tok.nextToken()) != StringTokenizer::EOS)
     {
       switch (state)
@@ -201,85 +153,61 @@ void Parser::parseString()
     }
   parserState2(&tok,&st_ob,&st_op);
   root = (PNode*) *st_ob.getBase();
-}
 
-double Parser::evalFunc(PNode* node)
-{
-  /* OC : Nouvelle version : */
-  if (node->value<=0)
-    {
-      UnaryFunction& f = unary_func[-node->value-1]; // OC attention, dans node->value c est l'oppose de l'indice de la func dans la liste
-      // afin de distinguer operateur binaire (>0) et fonctions unaires (<0>
-      // Il est donc necessaire de prendre -node->value ici pour referencer un element de la liste
-      // De plus, on rajoute +1 car le zero ne doit pas etre utiliser pour les fonctions
-      return f.eval(eval(node->left));
-    }
-  else
-    {
-      Cerr << "method evalFunc : Unknown func !!!" << finl;
-      Process::exit();
-      return -1;
-    }
-}
+  // Conversion
+  PNodes.clear();
+  std::unordered_map<PNode*, int> nodeToIndex;
+  std::queue<PNode*> queue;
+  int currentIndex = 0;
 
-// Ne pas inliner car sinon Parser::eval(PNode* node) plus souvent appelee encore
-// ne sera peut etre pas inlinee...
-double Parser::evalOp(PNode* node)
-{
-  // PL 12/11/2010, reecriture avec switch pour optimisation
-  double x = (node->left  != nullptr ? eval(node->left)  : 0);
-  double y = (node->right != nullptr ? eval(node->right) : 0);
-  switch (node->value)
+  // Start the traversal from the root
+  queue.push(root);
+  nodeToIndex[root] = currentIndex++;
+
+  while (!queue.empty())
     {
-    case 0: // ADD
-      return x + y;
-    case 1: // SUBTRACT
-      return  x - y;
-    case 2: // MULTIPLY
-      return x * y;
-    case 3: // DIVIDE
-      if (y==0)
+      PNode* current = queue.front();
+      queue.pop();
+
+      // Create a PNodePod from the current PNode
+      PNodePod pod;
+      pod.type = current->type;
+      pod.value = current->value;
+      pod.nvalue = current->nvalue;
+
+      // Process the left child
+      if (current->left)
         {
-          Cerr << "Error in the Parser : x/y calculated with y equals 0. You are using a formulae with a division per 0." << finl;
-          Process::exit();
+          if (nodeToIndex.find(current->left) == nodeToIndex.end())
+            {
+              nodeToIndex[current->left] = currentIndex++;
+              queue.push(current->left);
+            }
+          pod.left = nodeToIndex[current->left];
         }
-      return x/y;
-    case 4: // POWER
-      if (y != (int)(y) && x<0)
+      else
         {
-          Cerr << "Error in the Parser : x^y calculated with negative value for x and y real." << finl;
-          Process::exit();
+          pod.left = -1; // Indicate no child
         }
-      return pow(x,y);
-    case 5: // LT
-      return (x<y)?1:0;
-    case 6: // GT
-      return (x>y)?1:0;
-    case 7: // LE
-      return (x<=y)?1:0;
-    case 8: // GE
-      return (x>=y)?1:0;
-    case 9: // MOD
-      return ((int)(x))%((int)(y));
-    case 10: // MAX
-      return (x>y)?x:y;
-    case 11: // MIN
-      return (x<y)?x:y;
-    case 12: // AND
-      return x && y;
-    case 13: // OR
-      return x || y;
-    case 14: // EQ
-      return (x == y);
-    case 15: // NEQ
-      return (x != y);
-    default:
-      Cerr << "Method evalOp : Unknown op " << (int)node->value << "!!!" << finl;
-      Process::exit();
-      return 0;
+
+      // Process the right child
+      if (current->right)
+        {
+          if (nodeToIndex.find(current->right) == nodeToIndex.end())
+            {
+              nodeToIndex[current->right] = currentIndex++;
+              queue.push(current->right);
+            }
+          pod.right = nodeToIndex[current->right];
+        }
+      else
+        {
+          pod.right = -1; // Indicate no child
+        }
+
+      PNodes.push_back(pod);
     }
 }
-
 
 int Parser::precedence(int op)
 {
@@ -333,7 +261,7 @@ void Parser::parserState0(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
       if (trouv>-1)
         {
           PNode *node = new PNode();
-          node->type = PNode::VAR;
+          node->type = PNode_type::VAR;
           node->value = trouv;
           ob->push(node);
           state = 2;
@@ -353,7 +281,7 @@ void Parser::parserState0(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
               if (trouv>=0)
                 {
                   PNode *node = new PNode();
-                  node->type = PNode::VALUE;
+                  node->type = PNode_type::VALUE;
                   node->nvalue = les_cst(trouv).getValue();
                   ob->push(node);
                   state = 2;
@@ -366,24 +294,20 @@ void Parser::parserState0(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                   // permet d avoir 0 erreur valgrind avec cppunit
                   root=(PNode*) *(ob->getBase());
                   Cerr << "List of known var "<<finl;
-                  for (int i=0; i<ivar; i++)
-                    Cerr<<les_var[i]->getString()<< " ";
+                  for (auto name : les_var_names)
+                    Cerr<<name<< " ";
                   Cerr<<finl;
                   Process::exit();
                 }
-
             }
-
         }
-
     }
-
   else if (tokenizer->type == StringTokenizer::NUMBER)
     {
       PNode* node;
       node = new PNode();
-      node->type = PNode::VALUE;
-      //Cout << "NODE NUMBER = " << PNode::VALUE << finl;
+      node->type = PNode_type::VALUE;
+      //Cout << "NODE NUMBER = " << PNode_type::VALUE << finl;
       node->nvalue = tokenizer->getNValue();
       ob->push(node);
       state = 2;
@@ -393,7 +317,7 @@ void Parser::parserState0(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
       PNode* node;
       op->push(StringTokenizer::ADD);
       node = new PNode();
-      node->type = PNode::VALUE;
+      node->type = PNode_type::VALUE;
       node->nvalue = 0.;
       ob->push(node);
       state = 1;
@@ -403,7 +327,7 @@ void Parser::parserState0(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
       PNode* node;
       op->push(StringTokenizer::SUBTRACT);
       node = new PNode();
-      node->type = PNode::VALUE;
+      node->type = PNode_type::VALUE;
       node->nvalue = 0.;
       ob->push(node);
       state = 1;
@@ -419,14 +343,12 @@ void Parser::parserState1(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
 {
   if (tokenizer->type == StringTokenizer::STRING)
     {
-
       int trouv = searchVar(tokenizer->getSValue());
-
       if (trouv>-1)
         {
           //Cerr << "variable = " << trouv << " " << tokenizer->getSValue() << finl;
           PNode *node = new PNode();
-          node->type = PNode::VAR;
+          node->type = PNode_type::VAR;
           node->value = trouv;
           ob->push(node);
           state = 2;
@@ -446,7 +368,7 @@ void Parser::parserState1(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
               if (trouv>=0)
                 {
                   PNode *node = new PNode();
-                  node->type = PNode::VALUE;
+                  node->type = PNode_type::VALUE;
                   node->nvalue = les_cst(trouv).getValue();
                   ob->push(node);
                   state = 2;
@@ -457,19 +379,18 @@ void Parser::parserState1(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                   Cerr << *str << "\n";
                   Cerr << " identifier " << func << " unknown !! " << finl;
                   Cerr << "List of known var "<<finl;
-                  for (int i=0; i<ivar; i++)
-                    Cerr<<les_var[i]->getString()<< " ";
+                  for (auto name : les_var_names)
+                    Cerr<<name<< " ";
                   Cerr<<finl;
                   Process::exit();
                 }
-
             }
         }
     }
   else if (tokenizer->type == StringTokenizer::NUMBER )
     {
       PNode* node = new PNode();
-      node->type = PNode::VALUE;
+      node->type = PNode_type::VALUE;
       node->nvalue = tokenizer->getNValue();
       ob->push(node);
       state = 2;
@@ -484,16 +405,12 @@ void Parser::parserState1(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
       Cerr << "state 1 error !! " << finl;
       Process::exit();
     }
-
 }
-
-
 
 int Parser::test_op_binaire(int type)
 {
   return ((type == StringTokenizer::ADD )||( type == StringTokenizer::SUBTRACT )||( type == StringTokenizer::MULTIPLY )||( type == StringTokenizer::DIVIDE )||( type == StringTokenizer::POWER )||( type == StringTokenizer::LT )||( type == StringTokenizer::GT )||( type == StringTokenizer::LE )||( type == StringTokenizer::GE )||( type == StringTokenizer::MOD) || ( type == StringTokenizer::MAX) || ( type == StringTokenizer::MIN) || ( type == StringTokenizer::AND)||( type == StringTokenizer::OR)||( type == StringTokenizer::EQ)||( type == StringTokenizer::NEQ));
 }
-
 
 void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(int)* op)
 {
@@ -516,7 +433,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                   PNode* deux = (PNode*) ob->pop();
                   PNode* un = (PNode*) ob->pop();
                   PNode* node = new PNode();
-                  node->type = PNode::OP;
+                  node->type = PNode_type::OP;
                   node->value=tmp;
                   node->left = un;
                   node->right = deux;
@@ -526,7 +443,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                 {
                   PNode* un = (PNode*) ob->pop();
                   PNode* node = new PNode();
-                  node->type=PNode::FUNCTION;
+                  node->type=PNode_type::FUNCTION;
                   node->value=tmp;
                   node->left = un;
                   node->right=nullptr;
@@ -541,7 +458,6 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                   Process::exit();
                   break;
                 }
-
               if (!op->isEmpty()) tmpi =  op->peek();
               else break ;
             }
@@ -562,7 +478,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                   PNode* deux = (PNode*) ob->pop();
                   PNode* un = (PNode*) ob->pop();
                   PNode* node = new PNode();
-                  node->type = PNode::OP;
+                  node->type = PNode_type::OP;
                   node->value=tmp;
                   node->left = un;
                   node->right=deux;
@@ -572,7 +488,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
                 {
                   PNode* un = (PNode*) ob->pop();
                   PNode* node = new PNode();
-                  node->type=PNode::FUNCTION;
+                  node->type=PNode_type::FUNCTION;
                   node->value=tmp;
                   node->left = un;
                   node->right=nullptr;
@@ -593,7 +509,6 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
             }
         }
       state = 2;
-
     }
   else if (tokenizer->type == StringTokenizer::EOS)
     {
@@ -606,7 +521,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
               PNode* deux = (PNode*) ob->pop();
               PNode* un = (PNode*) ob->pop();
               PNode* node = new PNode();
-              node->type = PNode::OP;
+              node->type = PNode_type::OP;
               node->value=tmp;
               node->left = un;
               node->right=deux;
@@ -616,7 +531,7 @@ void Parser::parserState2(StringTokenizer* tokenizer, PSTACK(PNode)* ob, STACK(i
             {
               PNode* un = (PNode*) ob->pop();
               PNode* node = new PNode();
-              node->type=PNode::FUNCTION;
+              node->type=PNode_type::FUNCTION;
               node->value=tmp;
               node->left = un;
               node->right=nullptr;
@@ -658,7 +573,13 @@ void Parser::addVar(const char *vv)
         }
     }
   if (ivar<maxvar)
-    les_var[ivar++] = new Variable(vv);
+    {
+      Nom s(vv);
+      s.majuscule();
+      les_var.resize(ivar+1);
+      les_var_names[ivar] = s;
+      ivar++;
+    }
   else
     {
       Cerr << "Maximum " << maxvar << " variables !! " << finl;
@@ -682,40 +603,20 @@ int Parser::searchCst(const std::string& v)
 }
 
 
-int Parser::searchFunc(const std::string& v)
+int Parser::searchFunc(const std::string& f)
 {
-  int i=0;
-  Nom nv(v);
-  nv.majuscule();
-  for (auto& itr : unary_func)
-    {
-      UnaryFunction& f = itr.valeur();
-      Nom n2(f.getName());
-      n2.majuscule();
-      if (nv == n2) return i+1 ; // OC: pour ne pas utiliser le zero car sinon conflit avec la nouvelle numerotation des operateurs binaires.
-      i++;
-    }
-  return -1;
+  std::string function_name(f);
+  std::transform(function_name.begin(), function_name.end(), function_name.begin(), ::toupper);
+  auto it = map_function_.find(function_name);
+  if (it != map_function_.end())
+    return it->second + 1; // OC: pour ne pas utiliser le zero car sinon conflit avec la nouvelle numerotation des operateurs binaires.
+  else
+    return -1;
 }
 
 void Parser::addCst(const Constante& cst)
 {
   les_cst.add(cst);
-}
-
-void Parser::addFunc(const UnaryFunction& f)
-{
-  int size = unary_func.size();
-  for (int i=0; i<size; i++)
-    {
-      if (unary_func[i]->getName() == f.getName())
-        {
-          Cerr << "Function " <<  f.getName() << " has already been defined !" << finl;
-          Process::exit();
-        }
-    }
-  DERIV(UnaryFunction)& df = unary_func.add(DERIV(UnaryFunction)());
-  df = f;
 }
 
 void debug(StringTokenizer * t)

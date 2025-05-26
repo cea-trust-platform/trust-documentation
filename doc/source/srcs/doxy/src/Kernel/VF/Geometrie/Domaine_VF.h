@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,18 +16,27 @@
 #ifndef Domaine_VF_included
 #define Domaine_VF_included
 
+#include <Domaine_dis_base.h>
+#include <Domaine_forward.h>
 #include <TRUSTArrays.h>
 #include <Front_VF.h>
-#include <Domaine_dis.h>
+
+#include <medcoupling++.h>
+
+#ifdef MEDCOUPLING_
+#include <MEDCouplingFieldTemplate.hxx>
+#include <MEDCouplingCMesh.hxx>
+using MEDCoupling::MEDCouplingCMesh;
+using MEDCoupling::MCAuto;
+using MEDCoupling::MEDCouplingFieldDouble;
+#endif
 
 class Domaine_Cl_dis_base;
-class Faces;
 
 /*! @brief class Domaine_VF
  *
  *  Cette classe abstraite contient les informations geometriques
  *  communes aux methodes de Volumes Finis (methodes VDF et VEF par exemple)
- *
  *
  * @sa Domaine_dis_base
  */
@@ -141,16 +150,22 @@ public :
   void construire_face_virt_pe_num();
   const IntTab& face_virt_pe_num() const;
 
-  virtual void creer_tableau_faces(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
-  virtual void creer_tableau_aretes(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
-  virtual void creer_tableau_faces_bord(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
-  virtual const MD_Vector& md_vector_faces_bord() const { return md_vector_faces_front_; }
-  virtual const MD_Vector& md_vector_faces() const { return md_vector_faces_; }
+  void creer_tableau_faces(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
+  void creer_tableau_aretes(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
+  void creer_tableau_faces_bord(Array_base&, RESIZE_OPTIONS opt = RESIZE_OPTIONS::COPY_INIT) const;
+  const MD_Vector& md_vector_faces_bord() const { return md_vector_faces_front_; }
+  const MD_Vector& md_vector_faces() const { return md_vector_faces_; }
   // Attention, si les aretes ne sont pas remplies, le md_vector_ est nul
-  virtual const MD_Vector& md_vector_aretes() const { return md_vector_aretes_; }
+  const MD_Vector& md_vector_aretes() const { return md_vector_aretes_; }
 
   virtual const DoubleTab& xv_bord() const;
   DoubleTab calculer_xgr() const;
+
+  virtual void get_position(DoubleTab& positions) const;
+  virtual double compute_L1_norm(const DoubleVect& val_source) const;
+  virtual double compute_L2_norm(const DoubleVect& val_source) const;
+  virtual void get_nb_integ_points(IntTab& nelem) const;
+  virtual void get_ind_integ_points(IntTab& nelem) const;
 
   //produit scalaire (a - ma).(b - mb)
   inline double dot (const double *a, const double *b, const double *ma = nullptr, const double *mb = nullptr) const;
@@ -167,13 +182,22 @@ public :
 
 // Methodes pour le calcul et l'appel de la distance au bord solide le plus proche ; en entree on met le tableau des CL de la QDM
   void init_dist_paroi_globale(const Conds_lim& conds_lim) override;
-  const DoubleTab& normale_paroi_elem()  const {return n_y_elem_;} ;
-  const DoubleTab& normale_paroi_faces() const {return n_y_faces_;} ;
+  const DoubleTab& normale_paroi_elem()  const {return n_y_elem_;}
+  const DoubleTab& normale_paroi_faces() const {return n_y_faces_;}
+
+  void build_mc_face_mesh() const;
+  void build_mc_dual_mesh() const;
+
+#ifdef MEDCOUPLING_
+  inline const MEDCouplingUMesh* get_mc_face_mesh() const;
+  inline const MEDCouplingUMesh* get_mc_dual_mesh() const;
+#endif
 
 private:
   DoubleVect face_surfaces_;                // surface des faces
 
 protected:
+
   DoubleVect volumes_;                          // volumes des elements
   DoubleVect inverse_volumes_;                  // inverse du volumes des elements
   DoubleVect volumes_entrelaces_;            // volumes entrelaces pour l'integration des Qdm
@@ -210,9 +234,6 @@ protected:
   // face_virt_pe_num_(i-nb_faces_,1) = numero local de cette face sur le PE qui le possede
   IntTab face_virt_pe_num_;
 
-
-  virtual void remplir_elem_faces()=0;
-
   DoubleTab n_y_elem_ ; // vecteur normal entre le bord le plus proche et l'element
   DoubleTab n_y_faces_; // vecteur normal entre le bord le plus proche et la face
 
@@ -221,6 +242,129 @@ protected:
   IntVect rang_elem_non_std_;    // rang_elem_non_std_= -1 si l'element est standard
   // rang_elem_non_std_= rang de l'element dans les tableaux
   // relatifs aux elements non standards
+
+  //
+  // Dual mesh management:
+  //
+#ifdef MEDCOUPLING_
+  ///! MEDCoupling version of the face domain - stored in Domaine_dis since faces are built here:
+  mutable MCAuto<MEDCouplingUMesh> mc_face_mesh_;
+  mutable MCAuto<MEDCouplingUMesh> mc_dual_mesh_;
+  mutable bool mc_face_mesh_ready_ = false;
+  mutable bool mc_dual_mesh_ready_ = false;
+#endif
+
+  mutable IntTab face_dual_; ///< For each face f, face_dual_(f, j) returns the element built on the left and right of the face in the dual mesh. Same sorting as face_voisins_
+
+  /*
+   * XXX Elie Saikali
+   *
+   *  Si demande, on construit un maillage structure de type MEDCouplingCMesh et les maps elems/faces/noeuds qui vont avec (CART -> TRUST) !
+   *
+   */
+public:
+  void build_map_mc_Cmesh(const bool with_faces) override;
+
+#ifdef MEDCOUPLING_
+private:
+  MCAuto<MEDCouplingCMesh> mc_Cmesh_;
+  std::vector<int> mc_Cmesh_elemCorrespondence_, mc_Cmesh_nodesCorrespondence_;
+  std::vector<int> mc_Cmesh_facesXCorrespondence_, mc_Cmesh_facesYCorrespondence_, mc_Cmesh_facesZCorrespondence_;
+  std::vector<double> mc_Cmesh_x_coords_, mc_Cmesh_y_coords_, mc_Cmesh_z_coords_;
+
+  bool mc_Cmesh_ready_ = false, mc_Cmesh_with_faces_corr_ = false;
+
+  void build_mc_Cmesh();
+  void build_mc_Cmesh_nodesCorrespondence();
+  void build_mc_Cmesh_correspondence(bool withFace);
+
+  template <typename TYPE>
+  TYPE Cmesh_error(const char * nom_funct) const
+  {
+    cerr << "Domaine_VF::" << nom_funct << " should not be called since the MEDCouplingCMesh of Domaine_VF is not yet filled !!!" << endl;
+    Cerr << "Add the interpret Build_Map_to_Structured in your data file !!!" << finl;
+    throw;
+  }
+
+public:
+
+  inline const MEDCouplingCMesh* get_mc_CMesh() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_;
+    else return Cmesh_error<MEDCouplingCMesh*>(__func__);
+  }
+
+  const std::vector<int>& get_mc_Cmesh_elemCorrespondence() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_elemCorrespondence_;
+    else return Cmesh_error<std::vector<int>&>(__func__);
+  }
+
+  const std::vector<int>& get_mc_Cmesh_facesXCorrespondence() const
+  {
+    if (mc_Cmesh_ready_ && mc_Cmesh_with_faces_corr_) return mc_Cmesh_facesXCorrespondence_;
+    else return Cmesh_error<std::vector<int>&>(__func__);
+  }
+
+  const std::vector<int>& get_mc_Cmesh_facesYCorrespondence() const
+  {
+    if (mc_Cmesh_ready_ && mc_Cmesh_with_faces_corr_) return mc_Cmesh_facesYCorrespondence_;
+    else return Cmesh_error<std::vector<int>&>(__func__);
+  }
+
+  const std::vector<int>& get_mc_Cmesh_facesZCorrespondence() const
+  {
+    if (mc_Cmesh_ready_ && mc_Cmesh_with_faces_corr_) return mc_Cmesh_facesZCorrespondence_;
+    else return Cmesh_error<std::vector<int>&>(__func__);
+  }
+
+  const std::vector<int>& get_mc_Cmesh_nodesCorrespondence() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_nodesCorrespondence_;
+    else return Cmesh_error<std::vector<int>&>(__func__);
+  }
+
+  const std::vector<double>& get_mc_Cmesh_x_coords() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_x_coords_;
+    else return Cmesh_error<std::vector<double>&>(__func__);
+  }
+
+  const std::vector<double>& get_mc_Cmesh_y_coords() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_y_coords_;
+    else return Cmesh_error<std::vector<double>&>(__func__);
+  }
+
+  const std::vector<double>& get_mc_Cmesh_z_coords() const
+  {
+    if (mc_Cmesh_ready_) return mc_Cmesh_z_coords_;
+    else return Cmesh_error<std::vector<double>&>(__func__);
+  }
+
+  // Attention : n_som i pas elem !
+  int get_mc_Cmesh_ni() const
+  {
+    if (mc_Cmesh_ready_) return static_cast<int>(mc_Cmesh_x_coords_.size());
+    else return Cmesh_error<int>(__func__);
+  }
+
+  // Attention : n_som j pas elem !
+  int get_mc_Cmesh_nj() const
+  {
+    if (mc_Cmesh_ready_) return static_cast<int>(mc_Cmesh_y_coords_.size());
+    else return Cmesh_error<int>(__func__);
+  }
+
+  // Attention : n_som k pas elem !
+  int get_mc_Cmesh_nk() const
+  {
+    if (mc_Cmesh_ready_) return static_cast<int>(mc_Cmesh_z_coords_.size());
+    else return Cmesh_error<int>(__func__);
+  }
+
+#endif
+
 };
 
 // Renvoie le numero local de face a partir d'un numero de face global et de elem local (0 ou 1)
@@ -447,6 +591,15 @@ inline Frontiere_dis_base& Domaine_VF::frontiere_dis(int i)
   return les_bords_[i];
 }
 
+/*! @brief renvoie le nombre total de faces sur lesquelles sont appliquees les conditions limites :
+ *
+ *  bords, raccords, plaques.
+ *
+ */
+inline int Domaine_VF::nb_faces_bord_tot() const
+{
+  return md_vector_faces_bord()->get_nb_items_tot();
+}
 
 inline const IntVect& Domaine_VF::orientation() const
 {
@@ -515,5 +668,20 @@ inline std::array<double, 3> Domaine_VF::cross(int dima, int dimb, const double 
   return res;
 }
 
+#ifdef MEDCOUPLING_
+
+inline const MEDCouplingUMesh* Domaine_VF::get_mc_face_mesh() const
+{
+  if (!mc_face_mesh_ready_) build_mc_face_mesh();
+  return mc_face_mesh_;
+}
+
+inline const MEDCouplingUMesh* Domaine_VF::get_mc_dual_mesh() const
+{
+  if (!mc_dual_mesh_ready_) build_mc_dual_mesh();
+  return mc_dual_mesh_;
+}
+
+#endif
 
 #endif /* Domaine_VF_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -64,21 +64,21 @@ void Solveur_Masse_base::assembler()
  */
 void Solveur_Masse_base::set_name_of_coefficient_temporel(const Nom& name)
 {
-  name_of_coefficient_temporel_=name;
-  has_coefficient_temporel_=1;
-  if (name=="no_coeff")
+  name_of_coefficient_temporel_ = name;
+  has_coefficient_temporel_ = 1;
+  if (name == "no_coeff")
     {
-      has_coefficient_temporel_=0;
+      has_coefficient_temporel_ = 0;
       return;
     }
-  REF(Champ_base) ref_coeff;
-  try
+
+  if (equation().has_champ(name_of_coefficient_temporel_))
     {
-      ref_coeff = equation().get_champ(name_of_coefficient_temporel_);
+      /* Do nothing */
     }
-  catch (Champs_compris_erreur&)
+  else
     {
-      Cerr<< name_of_coefficient_temporel_<< " not understood by "<< equation().que_suis_je()<<finl;
+      Cerr << name_of_coefficient_temporel_ << " not understood by " << equation().que_suis_je() << finl;
       Process::exit();
     }
 }
@@ -91,7 +91,7 @@ DoubleTab& Solveur_Masse_base::appliquer(DoubleTab& x) const
 {
   if (has_coefficient_temporel_)
     {
-      REF(Champ_base) ref_coeff;
+      OBS_PTR(Champ_base) ref_coeff;
       ref_coeff = equation().get_champ(name_of_coefficient_temporel_);
 
       DoubleTab values;
@@ -110,8 +110,8 @@ DoubleTab& Solveur_Masse_base::appliquer(DoubleTab& x) const
       else if (sub_type(Champ_Don_base,ref_coeff.valeur()))
         {
           DoubleTab nodes;
-          equation().inconnue().valeur().remplir_coord_noeuds(nodes);
-          ref_coeff.valeur().valeur_aux(nodes,values);
+          equation().inconnue().remplir_coord_noeuds(nodes);
+          ref_coeff->valeur_aux(nodes,values);
         }
 
       Debog::verifier("Solveur_Masse_base::appliquer coeffs",values);
@@ -330,26 +330,33 @@ void Solveur_Masse_base::get_masse_divide_by_local_dt(DoubleVect& m_dt_locaux, D
 
 }
 
-DoubleTab& Solveur_Masse_base::corriger_solution(DoubleTab& x, const DoubleTab& y, int incr) const
+DoubleTab& Solveur_Masse_base::corriger_solution(DoubleTab& tab_x, const DoubleTab& tab_y, int incr) const
 {
-  int sz = y.dimension_tot(0) * y.line_size();
-  DoubleTrav diag(equation().inconnue().valeurs());
-  diag=1.;
-  appliquer(diag); // M-1
+  int sz = tab_y.dimension_tot(0) * tab_y.line_size();
+  DoubleTrav tab_diag(equation().inconnue().valeurs());
+  tab_diag=1.;
+  appliquer(tab_diag); // M-1
   // Si x et y sont sur le device, on deporte l'execution sur le device:
-  bool kernelOnDevice = x.checkDataOnDevice(y);
-  const double* diag_addr = mapToDevice(diag, "", kernelOnDevice);
-  const double* y_addr    = mapToDevice(y, "", kernelOnDevice);
-  double* x_addr          = computeOnTheDevice(x, "", kernelOnDevice);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for(int i=0; i<sz; i++)
+  bool kernelOnDevice = tab_x.checkDataOnDevice(tab_y);
+  if (kernelOnDevice)
     {
-      if (diag_addr[i]<1.e-12)
-        x_addr[i] = y_addr[i];
+      CDoubleArrView diag = static_cast<const ArrOfDouble&>(tab_diag).view_ro();
+      CDoubleArrView y    = static_cast<const ArrOfDouble&>(tab_y).view_ro();
+      DoubleArrView  x    = static_cast<ArrOfDouble&>(tab_x).view_wo();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), sz, KOKKOS_LAMBDA(const int i)
+      {
+        if (diag[i]<1.e-12)
+          x[i] = y[i];
+      });
+      end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
     }
-  end_gpu_timer(kernelOnDevice, "Solveur_Masse_base::corriger_solution");
-  return x;
+  else
+    {
+      for(int i=0; i<sz; i++)
+        if (tab_diag.addr()[i]<1.e-12)
+          tab_x.addr()[i] = tab_y.addr()[i];
+    }
+  return tab_x;
 }
 
 // Ajout d'une methode dimensionner()
@@ -386,9 +393,9 @@ void Solveur_Masse_base::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, d
 
 // Ajout d'une methode completer
 // Ne fait rien par defaut
-void Solveur_Masse_base::completer(void) { }
+void Solveur_Masse_base::completer() { }
 
 // Ajout d'une methode preparer_calcul
 // Ne fait rien par defaut
-void Solveur_Masse_base::preparer_calcul(void) { }
+void Solveur_Masse_base::preparer_calcul() { }
 

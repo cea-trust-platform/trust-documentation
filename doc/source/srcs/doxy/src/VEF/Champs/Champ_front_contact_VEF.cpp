@@ -39,6 +39,11 @@
 // En particulier les gradients...
 
 Implemente_instanciable(Champ_front_contact_VEF,"Champ_front_contact_VEF",Ch_front_var_instationnaire_dep);
+// XD champ_front_contact_vef front_field_base champ_front_contact_vef 0 This field is used on a boundary between a solid and fluid domain to exchange a calculated temperature at the contact face of the two domains according to the flux of the two problems.
+// XD attr local_pb ref_Pb_base local_pb 0 Name of the problem.
+// XD attr local_boundary chaine local_boundary 0 Name of the boundary.
+// XD attr remote_pb ref_Pb_base remote_pb 0 Name of the second problem.
+// XD attr remote_boundary chaine remote_boundary 0 Name of the boundary in the second problem.
 
 
 Sortie& Champ_front_contact_VEF::printOn(Sortie& os) const
@@ -144,7 +149,7 @@ void Champ_front_contact_VEF::creer(const Nom& nompb1, const Nom& nom1, const No
   nom_inco1 = nom_inco;
   nom_inco2 = nom_inco;
 
-  REF(Champ_base) rch1;
+  OBS_PTR(Champ_base) rch1;
   Probleme_base& pb1 = ref_cast(Probleme_base, Interprete::objet(nompb1));
 
   if (!sub_type(Pb_Conduction, pb1))
@@ -154,7 +159,7 @@ void Champ_front_contact_VEF::creer(const Nom& nompb1, const Nom& nom1, const No
   rch1 = pb1.get_champ(nom_inco1);
   l_inconnue1 = ref_cast(Champ_Inc_base, rch1.valeur());
 
-  REF(Champ_base) rch2;
+  OBS_PTR(Champ_base) rch2;
   Probleme_base& pb2 = ref_cast(Probleme_base, Interprete::objet(nompb2));
 
   if (!sub_type(Pb_Conduction, pb2))
@@ -232,11 +237,11 @@ void Champ_front_contact_VEF::calcul_grads_locaux(double temps)
       const Modele_turbulence_scal_base& mod_turb_scal = ref_cast(Modele_turbulence_scal_base,mod.valeur());
       coeff_turb = mod_turb_scal.conductivite_turbulente().valeurs();
 
-      const Turbulence_paroi_scal& loipar = mod_turb_scal.loi_paroi();
+      const Turbulence_paroi_scal_base& loipar = mod_turb_scal.loi_paroi();
 
-      if (loipar.non_nul())
+      if (mod_turb_scal.loi_paroi_non_nulle())
         {
-          if( loipar.valeur().use_equivalent_distance() )
+          if( loipar.use_equivalent_distance() )
             {
               ind_loi_paroi=1;
               // const Paroi_scal_hyd_base_VEF& paroi_vef = ref_cast(Paroi_scal_hyd_base_VEF,loipar.valeur());
@@ -250,7 +255,7 @@ void Champ_front_contact_VEF::calcul_grads_locaux(double temps)
               for (int ind_face=0; ind_face<nb_faces; ind_face++)
                 {
                   // d_equiv(ind_face) = paroi_vef.equivalent_distance(i_bord,ind_face);
-                  d_equiv(ind_face) = loipar.valeur().equivalent_distance(i_bord,ind_face);
+                  d_equiv(ind_face) = loipar.equivalent_distance(i_bord,ind_face);
                 }
             }
         }
@@ -480,7 +485,7 @@ const Domaine_dis_base& Champ_front_contact_VEF::domaine_dis() const
 
 const Domaine_Cl_dis_base& Champ_front_contact_VEF::domaine_Cl_dis() const
 {
-  return equation().domaine_Cl_dis().valeur();
+  return equation().domaine_Cl_dis();
 }
 
 
@@ -492,7 +497,7 @@ const Frontiere_dis_base& Champ_front_contact_VEF::front_dis() const
 
 void Champ_front_contact_VEF::calcul_coeff_amort()
 {
-  const Domaine_VEF& le_dom_dis=ref_cast(Domaine_VEF, l_inconnue1->equation().domaine_dis().valeur());
+  const Domaine_VEF& le_dom_dis=ref_cast(Domaine_VEF, l_inconnue1->equation().domaine_dis());
   int rang_front = le_dom_dis.rang_frontiere(nom_bord1);
   const Front_VF& la_front_vf=ref_cast(Front_VF, le_dom_dis.frontiere_dis(rang_front));
   const DoubleVect& vol = le_dom_dis.volumes();
@@ -516,8 +521,8 @@ void Champ_front_contact_VEF::calcul_coeff_amort()
       ratio = sqrt(ratio);
 
       double alpha;
-      if(sub_type(Champ_Uniforme,le_milieu.diffusivite().valeur()))
-        alpha=le_milieu.diffusivite()(0,0);
+      if(sub_type(Champ_Uniforme,le_milieu.diffusivite()))
+        alpha=le_milieu.diffusivite().valeurs()(0,0);
       else
         {
           const DoubleTab& tab_alpha = le_milieu.diffusivite().valeurs();
@@ -536,7 +541,7 @@ void Champ_front_contact_VEF::associer_front_vf_et_ch_front_autre_pb()
 {
   const Champ_Inc_base& temp_autre = l_inconnue2.valeur();
   const Equation_base& eqn = temp_autre.equation();
-  const Domaine_Cl_dis_base& zcl = eqn.domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = eqn.domaine_Cl_dis();
 
   int num_cl;
   for (num_cl = 0; num_cl<zcl.nb_cond_lim(); num_cl++)
@@ -545,9 +550,9 @@ void Champ_front_contact_VEF::associer_front_vf_et_ch_front_autre_pb()
       const Nom& le_nom_cl = la_cl.frontiere_dis().le_nom();
       if (le_nom_cl == nom_bord2)
         {
-          if (sub_type(Champ_front_contact_VEF,la_cl.champ_front().valeur()))
+          if (sub_type(Champ_front_contact_VEF,la_cl.champ_front()))
             {
-              ch_fr_autre_pb = ref_cast(Champ_front_contact_VEF,la_cl.champ_front().valeur());
+              ch_fr_autre_pb = ref_cast(Champ_front_contact_VEF,la_cl.champ_front());
               // Test de securite pour verifier que l'on a bien saisit le champ
               // front_contact_VEF.
               if (ch_fr_autre_pb->nom_pb1 == nom_pb1)
@@ -605,7 +610,7 @@ void Champ_front_contact_VEF::remplir_connect_bords()
   associer_ch_inc_base(l_inconnue1.valeur()) ;
 
   assert (nom_bord != "??") ;
-  const Domaine_VEF& le_dom_dis1=ref_cast(Domaine_VEF, l_inconnue1->equation().domaine_dis().valeur());
+  const Domaine_VEF& le_dom_dis1=ref_cast(Domaine_VEF, l_inconnue1->equation().domaine_dis());
 
   int rang_front1 = le_dom_dis1.rang_frontiere(nom_bord1);
   const Front_VF& la_front_vf1=ref_cast(Front_VF, le_dom_dis1.frontiere_dis(rang_front1));
@@ -623,7 +628,7 @@ void Champ_front_contact_VEF::remplir_connect_bords()
   associer_ch_inc_base(l_inconnue2.valeur()) ;
 
   assert (nom_bord != "??") ;
-  const Domaine_VEF& le_dom_dis2=ref_cast(Domaine_VEF, l_inconnue2->equation().domaine_dis().valeur());
+  const Domaine_VEF& le_dom_dis2=ref_cast(Domaine_VEF, l_inconnue2->equation().domaine_dis());
 
   int rang_front2 = le_dom_dis2.rang_frontiere(nom_bord2);
   const Front_VF& la_front_vf2=ref_cast(Front_VF, le_dom_dis2.frontiere_dis(rang_front2));
@@ -814,7 +819,7 @@ void Champ_front_contact_VEF::remplir_connect_bords()
 
 void Champ_front_contact_VEF::remplir_faces_coin()
 {
-  const Domaine_Cl_VEF& la_zcl_dis1=ref_cast(Domaine_Cl_VEF, l_inconnue1->equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& la_zcl_dis1=ref_cast(Domaine_Cl_VEF, l_inconnue1->equation().domaine_Cl_dis());
   const Conds_lim& conds_lim = la_zcl_dis1.les_conditions_limites();
   int size_cl = conds_lim.size();
   int size = elems_voisin_bord_.size();
@@ -845,10 +850,10 @@ void Champ_front_contact_VEF::remplir_faces_coin()
 
   for (int num_cl=0; num_cl<size_cl; num_cl++)
     {
-      const Champ_front& ch_front = conds_lim[num_cl]->champ_front();
-      if (sub_type(Champ_front_contact_VEF,ch_front.valeur()))
+      const Champ_front_base& ch_front = conds_lim[num_cl]->champ_front();
+      if (sub_type(Champ_front_contact_VEF,ch_front))
         {
-          const Champ_front_contact_VEF& ch_front_contact = ref_cast(Champ_front_contact_VEF,ch_front.valeur());
+          const Champ_front_contact_VEF& ch_front_contact = ref_cast(Champ_front_contact_VEF,ch_front);
           const Nom& nom_bord_autre_fr = ch_front_contact.get_nom_bord1();
 
           if (nom_bord1!=nom_bord_autre_fr)
@@ -902,7 +907,7 @@ void Champ_front_contact_VEF::test_faces_coin()
 {
   const Domaine_VEF& le_dom_dis1=ref_cast(Domaine_VEF, l_inconnue1->domaine_dis_base());
   const DoubleTab& xv1 = le_dom_dis1.xv();
-  const Domaine_Cl_VEF& la_zcl_dis1=ref_cast(Domaine_Cl_VEF, l_inconnue1->equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& la_zcl_dis1=ref_cast(Domaine_Cl_VEF, l_inconnue1->equation().domaine_Cl_dis());
   const Conds_lim& conds_lim = la_zcl_dis1.les_conditions_limites();
   int size_cl = conds_lim.size();
 
@@ -910,10 +915,10 @@ void Champ_front_contact_VEF::test_faces_coin()
   int erreur = 0;
   for (int num_cl=0; num_cl<size_cl; num_cl++)
     {
-      const Champ_front& ch_front = conds_lim[num_cl]->champ_front();
-      if (sub_type(Champ_front_contact_VEF,ch_front.valeur()))
+      const Champ_front_base& ch_front = conds_lim[num_cl]->champ_front();
+      if (sub_type(Champ_front_contact_VEF,ch_front))
         {
-          const Champ_front_contact_VEF& ch_front_contact = ref_cast(Champ_front_contact_VEF,ch_front.valeur());
+          const Champ_front_contact_VEF& ch_front_contact = ref_cast(Champ_front_contact_VEF,ch_front);
           const Nom& nom_bord_fr = ch_front_contact.get_nom_bord1();
           int rang_front_fr = le_dom_dis1.rang_frontiere(nom_bord_fr);
           const Front_VF& la_front_vf_fr = ref_cast(Front_VF, le_dom_dis1.frontiere_dis(rang_front_fr));

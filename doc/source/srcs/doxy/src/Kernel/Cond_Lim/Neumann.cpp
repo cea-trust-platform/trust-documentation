@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,9 +13,12 @@
 *
 *****************************************************************************/
 
+#include <Frontiere_dis_base.h>
+#include <Front_VF.h>
 #include <Neumann.h>
 
 Implemente_base(Neumann, "Neumann", Cond_lim_base);
+// XD neumann condlim_base neumann -1 Neumann condition at the boundary called bord (edge) : 1). For Navier-Stokes equations, constraint imposed at the boundary; 2). For scalar transport equation, flux imposed at the boundary.
 
 Sortie& Neumann::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -29,10 +32,10 @@ Entree& Neumann::readOn(Entree& s) { return Cond_lim_base::readOn(s); }
  */
 double Neumann::flux_impose(int i) const
 {
-  if (le_champ_front.valeurs().size() == 1)
-    return le_champ_front(0, 0);
-  else if (le_champ_front.valeurs().dimension(1) == 1)
-    return le_champ_front(i, 0);
+  if (le_champ_front->valeurs().size() == 1)
+    return le_champ_front->valeurs()(0, 0);
+  else if (le_champ_front->valeurs().dimension(1) == 1)
+    return le_champ_front->valeurs()(i, 0);
   else
     Cerr << "Neumann::flux_impose error" << finl;
   Process::exit();
@@ -47,8 +50,49 @@ double Neumann::flux_impose(int i) const
  */
 double Neumann::flux_impose(int i, int j) const
 {
-  if (le_champ_front.valeurs().dimension(0) == 1)
-    return le_champ_front(0, j);
+  if (le_champ_front->valeurs().dimension(0) == 1)
+    return le_champ_front->valeurs()(0, j);
   else
-    return le_champ_front(i, j);
+    return le_champ_front->valeurs()(i, j);
 }
+
+/*! @brief Updates and returns the imposed flux array.
+ *
+ * This function checks the total number of faces in the boundary and resizes the
+ * `flux_impose_` array if necessary. It updates the values based on the imposed
+ * flux from the front field if the field is unsteady or if the dimensions have changed.
+ *
+ * @return const DoubleTab& Reference to the updated imposed flux array.
+ */
+const DoubleTab& Neumann::flux_impose(bool nb_faces_tot) const
+{
+  const Front_VF& le_bord = ref_cast(Front_VF, frontiere_dis());
+  // ToDo factorize in Champ_front_base::valeurs_face()
+  int size;
+  if (nb_faces_tot)
+    size = le_champ_front->valeurs().dimension(0) == 1 ? le_bord.nb_faces_tot() : le_champ_front->valeurs().dimension_tot(0);
+  else
+    size = le_champ_front->valeurs().dimension(0) == 1 ? le_bord.nb_faces() : le_champ_front->valeurs().dimension(0);
+
+  if (size>0)
+    {
+      bool update = le_champ_front->instationnaire();
+      if (flux_impose_.dimension(0) != size)
+        {
+          int nb_comp = le_champ_front->valeurs().size() == 1 ? 1 : le_champ_front->valeurs().dimension(1);
+          flux_impose_.resize(size, nb_comp);
+          update = true;
+        }
+      update = true; // Provisoire (ecarts sur Quasi_Comp_Obst_GP_VEF_Pmoy ???)
+      if (update)
+        {
+          int nb_comp = flux_impose_.dimension(1);
+          for (int i = 0; i < size; i++)
+            for (int j = 0; j < nb_comp; j++)
+              flux_impose_(i, j) = flux_impose(i, j);
+        }
+    }
+  return flux_impose_;
+}
+
+

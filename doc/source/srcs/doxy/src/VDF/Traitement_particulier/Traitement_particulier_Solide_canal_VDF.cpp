@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -111,7 +111,7 @@ void Traitement_particulier_Solide_canal_VDF::calculer_moyennes_spatiales_thermo
   int nb_elems = domaine_VDF.domaine().nb_elem();
 
   // On veut acceder aux valeurs de la temperature a partir de mon_equation_NRJ.
-  const DoubleTab& Temp = mon_equation.valeur().inconnue().valeurs();
+  const DoubleTab& Temp = mon_equation->inconnue().valeurs();
 
   // t2moy correspond
   DoubleTrav t2moy(N);
@@ -254,7 +254,7 @@ void Traitement_particulier_Solide_canal_VDF::ecriture_fichier_moy_temp_thermo(c
 
 
 
-void Traitement_particulier_Solide_canal_VDF::init_calcul_stats(void)
+void Traitement_particulier_Solide_canal_VDF::init_calcul_stats()
 {
   Tmoy_temp.resize(N);
   Tmoy_temp=0;
@@ -264,7 +264,7 @@ void Traitement_particulier_Solide_canal_VDF::init_calcul_stats(void)
 
 
 
-void Traitement_particulier_Solide_canal_VDF::init_calcul_moyenne(void)
+void Traitement_particulier_Solide_canal_VDF::init_calcul_moyenne()
 {
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VDF& domaine_VDF=ref_cast(Domaine_VDF, zdisbase);

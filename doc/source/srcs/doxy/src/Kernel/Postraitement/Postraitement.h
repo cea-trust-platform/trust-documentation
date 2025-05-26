@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,8 +21,8 @@
 #include <Liste_Champ_Generique.h>
 #include <Postraitement_base.h>
 #include <Schema_Temps_base.h>
+#include <Format_Post_base.h>
 #include <Probleme_base.h>
-#include <Format_Post.h>
 #include <Champs_Fonc.h>
 #include <Sondes_Int.h>
 #include <TRUST_List.h>
@@ -66,6 +66,7 @@ public:
   void postraiter(int forcer) override;
   void mettre_a_jour(double temps) override;
   void finir() override;
+  std::vector<YAML_data> data_a_sauvegarder() const override;
   int sauvegarder(Sortie& os) const override;
   int reprendre(Entree& is) override;
   void completer() override;
@@ -87,28 +88,27 @@ public:
 
   int postraiter_sondes();
   int traiter_sondes();
-  int postraiter_champs();
+  virtual int postraiter_champs();
   // Called by postraiter_champs - only deal with the writing of the field values, not the geometrical parts:
   virtual void postprocess_field_values();
 
   int traiter_champs();
-  int lire_champs_a_postraiter(Entree& );                //Lance eventuellement la creation de champs generiques par macro
+  virtual int lire_champs_a_postraiter(Entree& is, bool expect_acco);                //Lance eventuellement la creation de champs generiques par macro
   //et construit la liste noms_champs_a_post_ des champs post-traites
   int lire_champs_stat_a_postraiter(Entree&);        //idem pour statistiques
   int lire_champs_operateurs(Entree& is);                //Lecture d un champ generique, nomme et complete
-  void complete_champ(Champ_Generique& champ,const Motcle& motlu);
+  void complete_champ(Champ_Generique_base& champ,const Motcle& motlu);
   int postraiter_tableaux();
   int traiter_tableaux();
   int lire_tableaux_a_postraiter(Entree& );
   inline int lpost(double, double) const;
   inline int lpost_champ(double) const;
   inline int lpost_stat(double) const;
-  inline int ind_post(int nb_pas_dt) { return (nb_pas_dt%nb_pas_dt_post_==0) ? 1 : 0; }
+  inline int ind_post(int nb_pas_dt) const { return (nb_pas_dt%nb_pas_dt_post_==0) ? 1 : 0; }
+  int nb_pas_dt_post() const { return nb_pas_dt_post_; }
 
-  inline double dt_post_ch() const { return dt_post_ch_; }
+  inline double dt_post() const { return dt_post_; }
   inline Nom nom_fich() const { return nom_fich_; }
-  // int contient_champ_fonc(const Motcle& )
-  inline int lpost_tab(double) const;
   static inline LIST(Nom)& noms_fichiers_sondes() { return noms_fichiers_sondes_; }
   inline int& est_le_premier_postraitement_pour_nom_fich() { return est_le_premier_postraitement_pour_nom_fich_; }
   inline int& est_le_dernier_postraitement_pour_nom_fich() { return est_le_dernier_postraitement_pour_nom_fich_; }
@@ -137,6 +137,7 @@ public:
 
 
   virtual const Champ_Generique_base& get_champ_post(const Motcle& nom) const;
+  virtual bool has_champ_post(const Motcle& nom) const;
 
   Nom set_expression_champ(const Motcle& motlu1,const Motcle& motlu2,
                            const Motcle& motlu3,const Motcle& motlu4,
@@ -154,15 +155,15 @@ public:
   //Methode macro pour le cas des champs med
   void creer_champ_post_med(const Motcle& motlu1,const Motcle& motlu2,Entree& s);
 
-  //Methode comprend_champ_post() qui indique si l identifiant correspond au nom d un Champ_Generique
+  //Methode comprend_champ_post() qui indique si l identifiant correspond au nom d un Champ_Generique_base
   //ou a l une de ses composantes-les sources sont testees recusrivement
   int comprend_champ_post(const Motcle& identifiant) const;
 
   //temporaire a reviser
-  void verifie_nom_et_sources(const Champ_Generique& champ);
+  void verifie_nom_et_sources(const Champ_Generique_base& champ);
   static Nom get_nom_localisation(const Entity& loc);
 
-  int champ_fonc(Motcle& nom_champ, REF(Champ_base)& mon_champ, REF(Operateur_Statistique_tps_base)&
+  int champ_fonc(Motcle& nom_champ, OBS_PTR(Champ_base)& mon_champ, OBS_PTR(Operateur_Statistique_tps_base)&
                  operateur_statistique) const;
 
   inline int& compteur_champ_stat();
@@ -174,18 +175,15 @@ public:
    * @return -1 if nothing more was written, 1 otherwise.
    */
   virtual int write_extra_mesh() { return -1; }
-  const REF(Domaine)& domaine() { return le_domaine; }
+  const OBS_PTR(Domaine)& domaine() { return le_domaine_; }
   int DeprecatedKeepDuplicatedProbes=0; // Ancien format des sondes dans les .son qui autorise les sondes dupliquees
 
 protected:
 
   int est_le_premier_postraitement_pour_nom_fich_, est_le_dernier_postraitement_pour_nom_fich_;
-  double dt_post_ch_ ;           // ecriture des champs sur fichier nom_du_cas.lml tous les dt_post
-  double dt_post_stat_;         // ecriture des statistiques sur fichier nom_du_cas.lml tous les dt_stat
-  double dt_post_tab;           // ecriture des tableaux d'entiers sur fichier nom_du_cas.lml
-
-  int nb_pas_dt_post_;
-  Parser_U fdt_post;
+  double dt_post_;          ///< ecriture des donnees (champs, stats, int_array) tous les dt_post (un temps)
+  int nb_pas_dt_post_;       ///< ecriture des donnees (champs, stats, int_array) tous les dt_post (une periode en nb d'iteration)
+  Parser_U fdt_post_;
 
   Sondes les_sondes_;           // Sondes a traiter
   Sondes_Int les_sondes_int_;   // Sondes pour des tableaux d'entiers
@@ -204,36 +202,34 @@ protected:
   int lserie_;
   double dt_integr_serie_;
 
-  LIST(REF(IntVect)) tableaux_a_postraiter_; // Liste de references a des tableaux a post-traiter
+  LIST(OBS_PTR(IntVect)) tableaux_a_postraiter_; // Liste de references a des tableaux a post-traiter
   LIST(Nom) noms_tableaux_;
 
-  Format_Post format_post;
+  OWN_PTR(Format_Post_base) format_post_;
 
   static LIST(Nom) noms_fichiers_sondes_;
-  int sondes_demande_, champs_demande_, stat_demande_, stat_demande_definition_champs_;
-  int binaire, tableaux_demande_;
-  Nom nom_fich_, format, option_para;
+  bool sondes_demande_, champs_demande_, stat_demande_, stat_demande_definition_champs_, tableaux_demande_;
+  int binaire_;
+  Nom nom_fich_, format_, option_para_;
   Nom suffix_for_reset_; // Suffix appended to post base name when the method resetTime() was invoked - default to "_AFTER_RESET"
-  double temps_, dernier_temps; // temps du precedent appel a postraiter()
-  static Motcles formats_supportes;
-  REF(Domaine) le_domaine;
-  REF(Domaine_dis_base) domaine_dis_pour_faces;
-
-private :
+  double temps_, dernier_temps_; // temps du precedent appel a postraiter()
+  static Motcles formats_supportes_;
+  OBS_PTR(Domaine) le_domaine_;
+  OBS_PTR(Domaine_dis_base) domaine_dis_pour_faces_;
 };
 
 
 inline int Postraitement::lpost(double temps_courant, double dt_post) const
 {
   double epsilon = 1.e-8;
-  if (dt_post<=temps_courant - dernier_temps)
+  if (dt_post<=temps_courant - dernier_temps_)
     return 1;
   else
     {
       // Voir Schema_Temps_base::limpr pour information sur epsilon et modf
       double i, j;
       modf(temps_courant/dt_post + epsilon, &i);
-      modf(dernier_temps/dt_post + epsilon, &j);
+      modf(dernier_temps_/dt_post + epsilon, &j);
       return ( i>j );
     }
 }
@@ -247,9 +243,6 @@ inline int Postraitement::lpost(double temps_courant, double dt_post) const
  * @param (double dt) le pas de temps qui vient d'etre accompli
  * @return (int) valeur booleenne, VRAI si le pas de temp et le temps courant fournis indique qu'un postraitement est necessaire, FAUX sinon.
  */
-inline int Postraitement::lpost_champ(double temps_courant) const { return lpost(temps_courant, dt_post_ch_); }
-inline int Postraitement::lpost_stat(double temps_courant) const { return lpost(temps_courant, dt_post_stat_); }
-inline int Postraitement::lpost_tab(double temps_courant) const { return lpost(temps_courant, dt_post_tab); }
 inline int& Postraitement::compteur_champ_stat() { return nb_champs_stat_; }
 inline const double& Postraitement::tstat_deb() const { return tstat_deb_; }
 inline const double& Postraitement::tstat_fin() const { return tstat_fin_; }

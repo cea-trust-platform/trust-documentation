@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,7 +21,7 @@
 
 class Probleme_base;
 class Domaine_dis_base;
-class Domaine;
+#include <Domaine_forward.h>
 class Nom;
 class Operateur_Statistique_tps_base;
 
@@ -51,18 +51,15 @@ public:
   virtual const Operateur_Statistique_tps_base& Operateur_Statistique() const = 0;
   virtual Operateur_Statistique_tps_base& Operateur_Statistique() = 0;
 
+  std::vector<YAML_data> data_a_sauvegarder() const override;
   int sauvegarder(Sortie& os) const override;
   int reprendre(Entree& is) override;
-  void   mettre_a_jour(double temps) override;
+  void mettre_a_jour(double temps) override;
 
   void fixer_tdeb_tfin(const double t_deb,const double t_fin);
   void fixer_serie(const double t1,const double t2) override;
   void fixer_tstat_deb(const double t1,const double t2) override;
   void lire_bidon(Entree& is) const override;
-  inline const Champ_base&   get_champ_without_evaluation(Champ& espace_stockage) const override
-  {
-    return get_champ(espace_stockage);
-  };
 
   inline double tstat_deb() const
   {
@@ -73,8 +70,11 @@ public:
     return tstat_fin_;
   }
 
+  void use_source_name_only(bool b) { use_source_name_only_ = b; }
+
 protected:
 
+  bool use_source_name_only_ = false; // for PDI: does the name has to be prefixed with the name of my parent field, or am I just using my name?
   double tstat_deb_, tstat_fin_; //temps de debut et de fin des statistiques pour ce champ
 };
 

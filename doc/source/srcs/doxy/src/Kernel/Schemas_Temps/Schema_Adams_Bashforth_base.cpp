@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,31 +14,17 @@
 *****************************************************************************/
 
 #include <Schema_Adams_Bashforth_base.h>
+#include <Equation_base.h>
 #include <Probleme_base.h>
 #include <TRUSTTrav.h>
-#include <Equation.h>
 
 Implemente_base(Schema_Adams_Bashforth_base,"Schema_Adams_Bashforth_base",Schema_Explicite_Multi_TimeStep_base);
 
-
-/*! @brief Simple appel a: Schema_Temps_base::printOn(Sortie& ) Ecrit le schema en temps sur un flot de sortie.
- *
- * @param (Sortie& s) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Schema_Adams_Bashforth_base::printOn(Sortie& s) const
 {
   return Schema_Explicite_Multi_TimeStep_base::printOn(s);
 }
 
-
-/*! @brief Lit le schema en temps a partir d'un flot d'entree.
- *
- * Simple appel a: Schema_Temps_base::readOn(Entree& )
- *
- * @param (Entree& s) un flot d'entree
- * @return (Entree&) le flot d'entree modifie
- */
 Entree& Schema_Adams_Bashforth_base::readOn(Entree& s)
 {
   return Schema_Explicite_Multi_TimeStep_base::readOn(s) ;
@@ -75,10 +61,10 @@ void Schema_Adams_Bashforth_base::modifier_second_membre(const Equation_base& eq
       for (i=0; i<nb_valeurs_passees(); ++i)
         {
           offset   =  nb_valeurs_passees()-i;
-          times[i] =  eqn_bis.inconnue().valeur().recuperer_temps_passe(offset); //past
+          times[i] =  eqn_bis.inconnue().recuperer_temps_passe(offset); //past
         }
-      times[nb_valeurs_passees()]   = eqn_bis.inconnue().valeur().recuperer_temps_futur(0); //present
-      times[nb_valeurs_passees()+1] = eqn_bis.inconnue().valeur().recuperer_temps_futur(1); //future
+      times[nb_valeurs_passees()]   = eqn_bis.inconnue().recuperer_temps_futur(0); //present
+      times[nb_valeurs_passees()+1] = eqn_bis.inconnue().recuperer_temps_futur(1); //future
 
       compute_coefficients(time_step,times);
 

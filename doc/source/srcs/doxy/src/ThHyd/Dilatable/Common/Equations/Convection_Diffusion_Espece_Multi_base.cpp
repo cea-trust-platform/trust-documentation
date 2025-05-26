@@ -36,7 +36,7 @@ Entree& Convection_Diffusion_Espece_Multi_base::readOn(Entree& is)
   terme_convectif.set_description((Nom)"Convective flux =Integral(-rho*Y*u*ndS) [kg/s] if SI units used");
   terme_diffusif.set_fichier(diff);
   terme_diffusif.set_description((Nom)"Diffusive flux=Integral(rho*D*grad(Y)*ndS) [kg/s] if SI units used");
-  l_inco_ch.valeur().add_synonymous(alias_);
+  l_inco_ch->add_synonymous(alias_);
   champs_compris_.ajoute_champ(l_inco_ch);
   return is;
 }
@@ -65,22 +65,40 @@ int Convection_Diffusion_Espece_Multi_base::lire_motcle_non_standard(const Motcl
     return Convection_Diffusion_Espece_Fluide_Dilatable_base::lire_motcle_non_standard(mot,is);
 }
 
+bool Convection_Diffusion_Espece_Multi_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
+{
+  if (Convection_Diffusion_Espece_Fluide_Dilatable_base::has_champ(nom, ref_champ))
+    return true;
+
+  // a revoir ..... a mon avis
+  if (probleme().equation(0).has_champ(nom, ref_champ))
+    return true;
+
+  return false; /* rien trouve */
+}
+
+bool Convection_Diffusion_Espece_Multi_base::has_champ(const Motcle& nom) const
+{
+  if (Convection_Diffusion_Espece_Fluide_Dilatable_base::has_champ(nom))
+    return true;
+
+  // a revoir ..... a mon avis
+  if (probleme().equation(0).has_champ(nom))
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Convection_Diffusion_Espece_Multi_base::get_champ(const Motcle& nom) const
 {
-  try
-    {
-      return Convection_Diffusion_Espece_Fluide_Dilatable_base::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-// a revoir ..... a mon avis
-  try
-    {
-      return probleme().equation(0).get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-  throw Champs_compris_erreur();
+  OBS_PTR(Champ_base) ref_champ;
+
+  if (Convection_Diffusion_Espece_Fluide_Dilatable_base::has_champ(nom, ref_champ))
+    return ref_champ;
+
+  // a revoir ..... a mon avis
+  if (probleme().equation(0).has_champ(nom, ref_champ))
+    return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }

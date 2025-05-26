@@ -21,7 +21,7 @@
 #include <Neumann_sortie_libre.h>
 
 Implemente_instanciable(Op_Conv_DI_L2_VEF_Face,"Op_Conv_DI_L2_VEF_P1NC",Op_Conv_VEF_base);
-
+// XD convection_di_l2 convection_deriv di_l2 0 Only for VEF discretization.
 
 //// printOn
 //
@@ -428,11 +428,10 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
 
   const DoubleTab& normales_facettes_Cl = domaine_Cl_VEF.normales_facettes_Cl();
   //  const DoubleVect& volumes_entrelaces_Cl = domaine_Cl_VEF.volumes_entrelaces_Cl();
-  DoubleVect& fluent_ = fluent;
 
   int nfac = domaine.nb_faces_elem();
   int nsom = domaine.nb_som_elem();
-  int nb_som_facette = domaine.type_elem().nb_som_face();
+  int nb_som_facette = domaine.type_elem()->nb_som_face();
 
   //  int premiere_face_int = domaine_VEF.premiere_face_int();
 
@@ -489,7 +488,7 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           nb_faces_perio += le_bord.nb_faces();
         }
     }
@@ -508,7 +507,7 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           //          const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -533,7 +532,7 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
   // boucle sur les polys
 
   int nlim = -1 ;
-  const IntTab& KEL=domaine_VEF.type_elem().valeur().KEL();
+  const IntTab& KEL=domaine_VEF.type_elem().KEL();
   for (poly=0; poly<nb_elem_tot; poly++)
     {
 
@@ -550,13 +549,13 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
       // calcul de la vitesse aux sommets des polyedres
       for (j=0; j<dimension; j++)
         {
-          vs[j] = la_vitesse(face[0],j);
+          vs[j] = la_vitesse.valeurs()(face[0],j);
           for (i=1; i<nfac; i++)
-            vs[j]+= la_vitesse(face[i],j);
+            vs[j]+= la_vitesse.valeurs()(face[i],j);
         }
       for (i=0; i<nsom; i++)
         for (j=0; j<dimension; j++)
-          vsom(i,j) = vs[j] - dimension*la_vitesse(face[i],j);
+          vsom(i,j) = vs[j] - dimension*la_vitesse.valeurs()(face[i],j);
 
       // calcul de vc
       domaine_VEF.type_elem().calcul_vc(face,vc,vs,vsom,vitesse(),
@@ -668,14 +667,14 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
           const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
             {
               psc =0;
               for (i=0; i<dimension; i++)
-                psc += la_vitesse(num_face,i)*face_normales(num_face,i);
+                psc += la_vitesse.valeurs()(num_face,i)*face_normales(num_face,i);
               if (psc>0)
                 if (ncomp_ch_transporte == 1)
                   {
@@ -708,7 +707,7 @@ DoubleTab& Op_Conv_DI_L2_VEF_Face::ajouter(const DoubleTab& transporte,
       else if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());
@@ -810,7 +809,7 @@ void Op_Conv_DI_L2_VEF_Face::reconst_DI_L2_2d(DoubleTab& derive ,int poly,
   coor_trans(1,0) = 0. ;
   coor_trans(1,1) = 1. ;
 
-  for (i=0; i<dimension; i++) vs(i)= (la_vitesse(num1,i)+la_vitesse(num2,i)) / 2.;
+  for (i=0; i<dimension; i++) vs(i)= (la_vitesse.valeurs()(num1,i)+la_vitesse.valeurs()(num2,i)) / 2.;
 
   dist = 0. ;
 
@@ -968,7 +967,7 @@ void Op_Conv_DI_L2_VEF_Face::reconst_DI_L2_3d(DoubleTab& derive, int poly,
 
   int nfac = domaine.nb_faces_elem();
   //  int nsom = domaine.nb_som_elem();
-  //  int nb_som_facette = domaine.type_elem().nb_som_face();
+  //  int nb_som_facette = domaine.type_elem()->nb_som_face();
 
   const DoubleTab& xv = domaine_VEF.xv();
   const DoubleTab& xp = domaine_VEF.xp();
@@ -1040,10 +1039,10 @@ void Op_Conv_DI_L2_VEF_Face::reconst_DI_L2_3d(DoubleTab& derive, int poly,
           face_glob = elem_faces(poly, face_adj );
           face(face_adj) = face_glob ;
           for (i=0; i<dimension; i++)
-            vs(i) -= la_vitesse(face_glob,i)/double(nfac) ;
+            vs(i) -= la_vitesse.valeurs()(face_glob,i)/double(nfac) ;
 
         }
-      for (i=0; i<dimension; i++) vs(i) += la_vitesse(num1,i) + la_vitesse(num2,i) ;
+      for (i=0; i<dimension; i++) vs(i) += la_vitesse.valeurs()(num1,i) + la_vitesse.valeurs()(num2,i) ;
 
       dist = 0. ;
 

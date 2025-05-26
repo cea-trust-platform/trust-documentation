@@ -31,7 +31,7 @@ using MEDCoupling::MEDFileFieldMultiTS;
 
 Implemente_instanciable( Champ_Fonc_MED_Table_Temps, "Champ_Fonc_MED_Table_Temps", Champ_Fonc_MED );
 // XD Champ_Fonc_MED_Table_Temps champ_fonc_med Champ_Fonc_MED_Table_Temps -1 Field defined as a fixed spatial shape scaled by a temporal coefficient
-// XD attr table_temps chaine table_temps 1 Table containing the temporal coefficient used to scale the field
+// XD attr table_temps bloc_lecture table_temps 1 Table containing the temporal coefficient used to scale the field
 // XD attr table_temps_lue chaine table_temps_lue 1 Name of the file containing the values of the temporal coefficient used to scale the field
 
 Sortie& Champ_Fonc_MED_Table_Temps::printOn(Sortie& os) const { return Champ_Fonc_MED::printOn(os); }
@@ -85,7 +85,7 @@ void Champ_Fonc_MED_Table_Temps::lire_donnees_champ(const std::string& fileName,
 #ifdef MEDCOUPLING_
   MCAuto<MEDFileFieldMultiTS> ft1(MEDFileFieldMultiTS::New(fileName,fieldName));
   std::vector<double> tps;
-  std::vector< std::pair<int,int> > tst = ft1->getTimeSteps(tps);
+  std::vector< std::pair<True_int,True_int> > tst = ft1->getTimeSteps(tps);
 
   temps_sauv.resize_array(1);
 
@@ -107,7 +107,7 @@ void Champ_Fonc_MED_Table_Temps::lire_donnees_champ(const std::string& fileName,
       Cerr << "ERROR reading MED field! Not a MEDCouplingFieldDouble!!" << finl;
       Process::exit(-1);
     }
-  size = field->getNumberOfTuplesExpected();
+  size = (int)field->getNumberOfTuplesExpected();
   nbcomp = (int) field->getNumberOfComponents();
 
   if (field_type == MEDCoupling::ON_NODES)
@@ -153,10 +153,6 @@ void Champ_Fonc_MED_Table_Temps::lire(double t, int given_it)
   if (domainebidon_inst.nb_elem() > 0)
     {
       double frac = la_table.val(t);
-      if (frac_==DMAXFLOAT)
-        frac_ = frac;
-      else if (frac!=frac_)
-        set_instationnaire(true); // table non constante
       const DoubleTab& vals0 = le_champ0().valeurs();
       DoubleTab& vals = le_champ().valeurs();
 
@@ -165,4 +161,9 @@ void Champ_Fonc_MED_Table_Temps::lire(double t, int given_it)
     }
   Champ_Fonc_base::mettre_a_jour(t);
   le_champ().Champ_Fonc_base::mettre_a_jour(t);
+}
+
+bool Champ_Fonc_MED_Table_Temps::instationnaire() const
+{
+  return la_table.instationnaire();
 }

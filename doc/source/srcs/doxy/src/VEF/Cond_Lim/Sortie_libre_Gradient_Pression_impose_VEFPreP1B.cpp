@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Sortie_libre_Gradient_Pression_impose_VEFPreP1B.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Champ_P1_isoP1Bulle.h>
 #include <Navier_Stokes_std.h>
 #include <distances_VEF.h>
@@ -22,6 +23,8 @@
 #include <Debog.h>
 
 Implemente_instanciable(Sortie_libre_Gradient_Pression_impose_VEFPreP1B, "Frontiere_ouverte_Gradient_Pression_impose_VEFPreP1B", Sortie_libre_Gradient_Pression_impose_VEF);
+// XD frontiere_ouverte_gradient_pression_impose_vefprep1b frontiere_ouverte_gradient_pression_impose frontiere_ouverte_gradient_pression_impose_vefprep1b -1 Keyword for an outlet boundary condition in VEF P1B/P1NC on the gradient of the pressure.
+
 
 Sortie& Sortie_libre_Gradient_Pression_impose_VEFPreP1B::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -37,8 +40,8 @@ int Sortie_libre_Gradient_Pression_impose_VEFPreP1B::initialiser(double temps)
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
-  const Champ_P1_isoP1Bulle& pression = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression().valeur());
-  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis().valeur());
+  const Champ_P1_isoP1Bulle& pression = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression());
+  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis());
   const IntTab& face_voisins = mon_dom_VEF.face_voisins();
   const Front_VF& le_bord = ref_cast(Front_VF, frontiere_dis());
   pression_interne = pression;

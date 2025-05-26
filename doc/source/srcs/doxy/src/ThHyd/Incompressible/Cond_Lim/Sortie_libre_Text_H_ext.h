@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,15 +19,13 @@
 #include <TRUST_Ref.h>
 #include <Neumann.h>
 
-class Champ_Inc;
-
 /*! @brief classe  Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee
  *
  *     Pour les equations de Navier_Stokes on impose necessairement la pression sur une telle frontiere
  *     Pour traiter l'hydraulique, on derive donc de la classe Neumann_sortie_libre la classe Sortie_libre_pression_imposee
  *     Les conditions aux limites de type Neumann_sortie_libre ou des types derives se traduisent par des flux diffusifs nuls.
  *     En revanche, le traitement des flux convectifs impose de connaitre le champ convecte a l'exterieur de la frontiere en cas de re-entree
- *     de fluide. C'est pourquoi la classe porte un Champ_front (membre le_champ_ext).
+ *     de fluide. C'est pourquoi la classe porte un OWN_PTR(Champ_front_base) (membre le_champ_ext).
  *     Dans les operateurs de calcul, les conditions aux limites de type Neumann_sortie_libre et des types derives seront traites de maniere identique
  *
  * @sa Neumann
@@ -44,7 +42,7 @@ public:
   double flux_impose(int i, int j) const override;
 
 protected:
-  Champ_front le_champ_Text, le_champ_hext;
+  OWN_PTR(Champ_front_base) le_champ_Text, le_champ_hext;
   int type_cond_lim = -1;
 };
 

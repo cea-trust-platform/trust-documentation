@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -49,7 +49,7 @@ void Debog_Pb::verifier_gen(const char *const msg, const TRUSTVect<_TYPE_>& arr,
   debog_data_file_ >> reference;
 
   const int n = reference.size_array();
-  const int nb_items_seq = arr.get_md_vector().valeur().nb_items_seq_tot();
+  const trustIdType nb_items_seq = arr.get_md_vector()->nb_items_seq_tot();
   const int ls = arr.line_size();
 
   if (n != nb_items_seq * ls)
@@ -81,7 +81,10 @@ void Debog_Pb::verifier_partie(const TRUSTVect<_TYPE_>& reference, const TRUSTVe
           // (le tableau de reference contient toutes les valeurs sequentielles, sous-partie par sous-partie, la taille de la sous-partie est egale au nombre total
           // d'items sequentiels multiplie par le linesize de la sous-partie). Attention, toutes les sous-parties n'ont pas forcement la meme linesize
           const TRUSTTab<_TYPE_>& part = parts[i];
-          const int sequential_size = part.get_md_vector().valeur().nb_items_seq_tot();
+          const trustIdType s0 = part.get_md_vector()->nb_items_seq_tot();
+          if (s0 > std::numeric_limits<int>::max())
+            Process::exit("Debog_Pb::verifier_partie() - case is too big to be checked with Debog_Pb!!");
+          const int sequential_size = static_cast<int>(s0);
           const int line_size = part.line_size();
           // ref_array() veut un tableau non const, mais on va l'utiliser uniquement en const...
           TRUSTArray<_TYPE_>& cast_array = ref_cast_non_const(TRUSTArray<_TYPE_>, reference);
@@ -102,7 +105,7 @@ void Debog_Pb::verifier_partie_std(const TRUSTVect<_TYPE_>& reference, const TRU
     {
       // Force la copie sur le host:
       arr.set_data_location(DataLocation::Device);
-      copyFromDevice(arr, "(Debog forced)");
+      copyFromDevice(arr);
       assert(arr.get_data_location()==DataLocation::HostDevice);
       // Comparaison avec array:
       int size = arr.size_array();
@@ -114,7 +117,7 @@ void Debog_Pb::verifier_partie_std(const TRUSTVect<_TYPE_>& reference, const TRU
           }
     }
   else
-    copyFromDevice(arr, "(Debog)"); // Copie sur le host si Device
+    copyFromDevice(arr); // Copie sur le host si Device
 
   static constexpr bool IS_DOUBLE = std::is_same<_TYPE_,double>::value;
   Nom identificateur;
@@ -329,7 +332,7 @@ template<typename _TYPE_>
 void Debog_Pb::ecrire_partie(const TRUSTVect<_TYPE_>& arr)
 {
   const MD_Vector_base& md = arr.get_md_vector().valeur();
-  if (sub_type(MD_Vector_std, md))
+  if (sub_type(MD_Vector_std, md) || sub_type(MD_Vector_seq, md))
     {
       const int ls = arr.line_size();
       write_debog_data_file_.put(arr.addr(), arr.size_array(), ls);
@@ -412,7 +415,7 @@ Debog_Pb::verifier(const char *const msg, _TYPE_ x, _TYPE_ *ref_value)
           if (err) detailed_log_file_ << " ECART (int) reference=" << y << " calcul=" << x << finl;
         }
 
-      err = mp_sum(err);
+      err = static_cast<int>(mp_sum(err));  // always within 'int' range
       if (Process::je_suis_maitre())
         {
           const char *ok = (err > 0.) ? " ERROR       " : " OK           ";

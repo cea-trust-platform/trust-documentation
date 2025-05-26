@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -57,7 +57,6 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
 
 
   const DoubleTab& normales_facettes_Cl = domaine_Cl_VEF.normales_facettes_Cl();
-  DoubleVect& fluent_ = fluent;
 
   int nfac = domaine.nb_faces_elem();
 
@@ -118,7 +117,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -139,7 +138,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           //          const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -168,7 +167,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
   // Boucle pour ajouter la partie : Gradient(U^2/2)
   // ******* boucle sur les elements
   // 06/01/2000 On ne s'occupe pas encore des conditions aux limites (sauf periodique)
-  const IntTab& KEL=domaine_VEF.type_elem().valeur().KEL();
+  const IntTab& KEL=domaine_VEF.type_elem().KEL();
   for (poly=0; poly<nb_elem_tot; poly++)
     {
 
@@ -245,7 +244,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
               psc[i] = 0.;
               for (j=0; j<dimension; j++)
                 {
-                  psc[i]+= la_vitesse(face[i],j)*cc[j];
+                  psc[i]+= la_vitesse.valeurs()(face[i],j)*cc[j];
                 }
             }
 
@@ -273,7 +272,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
 
           flux = 0.;
           for (comp0=0; comp0<dimension; comp0++)
-            flux += la_vitesse(num_calc,comp0)*la_vitesse(num_calc,comp0);
+            flux += la_vitesse.valeurs()(num_calc,comp0)*la_vitesse.valeurs()(num_calc,comp0);
 
           for (comp0=0; comp0<dimension; comp0++)
             {
@@ -318,7 +317,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());
@@ -395,8 +394,8 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
           assert(vol1>0);
           inter  = vorticite[elem0]*vol0/3.+vorticite[elem1]*vol1/3.;
 
-          resu(num_face,0) -= -inter*la_vitesse(num_face,1);
-          resu(num_face,1) -= inter*la_vitesse(num_face,0);
+          resu(num_face,0) -= -inter*la_vitesse.valeurs()(num_face,1);
+          resu(num_face,1) -= inter*la_vitesse.valeurs()(num_face,0);
 
           // signe - car on est dans le second membre
 
@@ -415,9 +414,9 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
           a1 = vorticite(elem0,1)*vol0/4. + vorticite(elem1,1)*vol1/4.;
           a2 = vorticite(elem0,2)*vol0/4. + vorticite(elem1,2)*vol1/4.;
 
-          resu(num_face,0) -= a1*la_vitesse(num_face,2)-a2*la_vitesse(num_face,1) ;
-          resu(num_face,1) -= a2*la_vitesse(num_face,0)-a0*la_vitesse(num_face,2) ;
-          resu(num_face,2) -= a0*la_vitesse(num_face,1)-a1*la_vitesse(num_face,0) ;
+          resu(num_face,0) -= a1*la_vitesse.valeurs()(num_face,2)-a2*la_vitesse.valeurs()(num_face,1) ;
+          resu(num_face,1) -= a2*la_vitesse.valeurs()(num_face,0)-a0*la_vitesse.valeurs()(num_face,2) ;
+          resu(num_face,2) -= a0*la_vitesse.valeurs()(num_face,1)-a1*la_vitesse.valeurs()(num_face,0) ;
 
           // signe - car on est dans le second membre
 
@@ -439,7 +438,7 @@ DoubleTab& Op_Conv_Vort_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           //          Cerr << "num1=" << num1 << "  num2=" << num2 << finl;

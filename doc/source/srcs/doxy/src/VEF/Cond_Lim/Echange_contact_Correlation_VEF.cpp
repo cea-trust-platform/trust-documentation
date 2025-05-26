@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,14 +14,15 @@
 *****************************************************************************/
 
 #include <Echange_contact_Correlation_VEF.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Champ_front_calc.h>
 #include <communications.h>
 #include <Champ_Uniforme.h>
 #include <Probleme_base.h>
 #include <Milieu_base.h>
 #include <Schema_Comm.h>
-#include <Solv_TDMA.h>
 #include <Domaine_VEF.h>
+#include <Solv_TDMA.h>
 #include <EFichier.h>
 #include <SFichier.h>
 #include <Domaine.h>
@@ -38,14 +39,14 @@ Entree& Echange_contact_Correlation_VEF::readOn(Entree& is )
   if (supp_discs.size() == 0) supp_discs = { Nom("VEF"), Nom("EF"), Nom("EF_axi"), Nom("VEF_P1_P1"), Nom("VEFPreP1B"), Nom("PolyMAC"), Nom("PolyMAC_P0P1NC"), Nom("PolyMAC_P0")   };
 
   Param param(que_suis_je());
-  Reprise_temperature=0;
+  Reprise_temperature=false;
   dt_impr = 1e10;
   avec_rayo=0;
   set_param(param);
   param.lire_avec_accolades_depuis(is);
 
-  champ_front().typer("Champ_front_fonc");
-  champ_front()->fixer_nb_comp(1);
+  le_champ_front.typer("Champ_front_fonc");
+  champ_front().fixer_nb_comp(1);
   return is;
 }
 
@@ -154,11 +155,11 @@ void Echange_contact_Correlation_VEF::calculer_h_solide(DoubleTab& tab)
 
   const Equation_base& mon_eqn = domaine_Cl_dis().equation();
   const Milieu_base& mon_milieu = mon_eqn.milieu();
-  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const IntTab& face_voisins = zvef.face_voisins();
 
-  int nb_comp = mon_milieu.conductivite()->nb_comp();
+  int nb_comp = mon_milieu.conductivite().nb_comp();
   const int nb_faces_bord = ma_front_vf.nb_faces();
 
   const int ndeb = ma_front_vf.num_premiere_face();
@@ -166,7 +167,7 @@ void Echange_contact_Correlation_VEF::calculer_h_solide(DoubleTab& tab)
 
 
 
-  if(!sub_type(Champ_Uniforme,mon_milieu.conductivite().valeur()))
+  if(!sub_type(Champ_Uniforme,mon_milieu.conductivite()))
     {
       const DoubleTab& tab_lambda = mon_milieu.conductivite().valeurs();
 
@@ -180,7 +181,7 @@ void Echange_contact_Correlation_VEF::calculer_h_solide(DoubleTab& tab)
             tab(face-ndeb,i) = pdt_scalSqrt(zvef,face,face,elem,dimension,tab_lambda(elem,i)) ;
         }
     }
-  else  // la conductivite est un Champ uniforme
+  else  // la conductivite est un OWN_PTR(Champ_base) uniforme
     {
       const DoubleTab& tab_lambda = mon_milieu.conductivite().valeurs();
 
@@ -221,7 +222,7 @@ void Echange_contact_Correlation_VEF::completer()
   const Milieu_base& mon_milieu = mon_eqn.milieu();
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const int nb_faces_bord = ma_front_vf.nb_faces();
-  int nb_comp = mon_milieu.conductivite()->nb_comp();
+  int nb_comp = mon_milieu.conductivite().nb_comp();
   h_solide.resize(nb_faces_bord,nb_comp);
 
 
@@ -235,10 +236,10 @@ void Echange_contact_Correlation_VEF::completer()
 
 
 
-  DoubleTab& Tparoi =champ_front().valeur().valeurs();
+  DoubleTab& Tparoi =champ_front().valeurs();
   Tparoi.resize(nb_faces_bord,nb_comp);
   const DoubleTab& Ts = mon_eqn.inconnue().valeurs();
-  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis());
   const IntTab& face_voisins = zvef.face_voisins();
   const int ndeb = ma_front_vf.num_premiere_face();
   for (int ii=0; ii<nb_faces_bord; ii++)
@@ -371,13 +372,13 @@ double Echange_contact_Correlation_VEF::calculer_coefficient_echange(int i)
  */
 void Echange_contact_Correlation_VEF::calculer_Q()
 {
-  const Domaine_VEF& ma_zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VEF& ma_zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const int ndeb = ma_front_vf.num_premiere_face();
   const int nb_faces_bord = ma_front_vf.nb_faces();
   const IntTab& face_voisins = ma_zvef.face_voisins();
 
-  DoubleTab& Tp= champ_front()->valeurs();
+  DoubleTab& Tp= champ_front().valeurs();
 
 
   Qvol=0.;
@@ -399,7 +400,7 @@ void Echange_contact_Correlation_VEF::calculer_Q()
 
 void Echange_contact_Correlation_VEF::init()
 {
-  const Domaine_VEF& ma_zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VEF& ma_zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const DoubleTab& xv = ma_zvef.xv();
   const IntTab& face_sommets = ma_zvef.face_sommets();
@@ -712,10 +713,10 @@ void Echange_contact_Correlation_VEF::mettre_a_jour(double temps)
   Fichier_sauv_nom+=".sauv";
 
   // Operation de reprise du champ de temperature dans le fluide
-  if (Reprise_temperature==1)
+  if (Reprise_temperature)
     {
       Echange_contact_Correlation_VEF_reprendre(Fichier_sauv_nom, temps, T);
-      Reprise_temperature=0;
+      Reprise_temperature=false;
     }
 
   calculer_CL();
@@ -732,10 +733,10 @@ void Echange_contact_Correlation_VEF::mettre_a_jour(double temps)
   calculer_h_solide(h_solide);
 
   const int taille = h_solide.dimension(0);
-  DoubleTab& Tparoi = champ_front().valeur().valeurs();
+  DoubleTab& Tparoi = champ_front().valeurs();
   const Equation_base& mon_eqn = domaine_Cl_dis().equation();
   const DoubleTab& Ts = mon_eqn.inconnue().valeurs();
-  Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis().valeur());
+  Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const IntTab& face_voisins = zvef.face_voisins();
   const int ndeb = ma_front_vf.num_premiere_face();

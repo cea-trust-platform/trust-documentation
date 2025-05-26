@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -32,12 +32,12 @@ Sortie& Op_Grad_PolyMAC_Face::printOn(Sortie& s) const { return s << que_suis_je
 
 Entree& Op_Grad_PolyMAC_Face::readOn(Entree& s) { return s; }
 
-void Op_Grad_PolyMAC_Face::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis, const Champ_Inc&)
+void Op_Grad_PolyMAC_Face::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis, const Champ_Inc_base&)
 {
-  const Domaine_PolyMAC& zPolyMAC_P0P1NC = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_cast(Domaine_Cl_PolyMAC, domaine_Cl_dis.valeur());
+  const Domaine_PolyMAC& zPolyMAC_P0P1NC = ref_cast(Domaine_PolyMAC, domaine_dis);
+  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_cast(Domaine_Cl_PolyMAC, domaine_Cl_dis);
   ref_domaine = zPolyMAC_P0P1NC;
-  ref_zcl = zclPolyMAC_P0P1NC;
+  ref_dcl = zclPolyMAC_P0P1NC;
   porosite_surf.ref(equation().milieu().porosite_face());
   face_voisins.ref(zPolyMAC_P0P1NC.face_voisins());
 }
@@ -54,8 +54,13 @@ void Op_Grad_PolyMAC_Face::dimensionner(Matrice_Morse& mat) const
   IntTab stencil(0, 2);
 
   for (int f = 0; f < zPolyMAC_P0P1NC.nb_faces(); f++)
-    for (int i = 0, e; i < 2 && (e = zPolyMAC_P0P1NC.face_voisins(f, i)) >= 0; i++)
-      stencil.append_line(f, e);
+    for (int i = 0; i < 2; i++)
+      {
+        const int e = zPolyMAC_P0P1NC.face_voisins(f, i);
+        if (e < 0) continue;
+
+        stencil.append_line(f, e);
+      }
   tableau_trier_retirer_doublons(stencil);
   Matrix_tools::allocate_morse_matrix(zPolyMAC_P0P1NC.nb_faces_tot(), zPolyMAC_P0P1NC.nb_elem_tot(), stencil, mat);
 }
@@ -66,7 +71,7 @@ DoubleTab& Op_Grad_PolyMAC_Face::ajouter(const DoubleTab& inco, DoubleTab& resu)
 
   assert_espace_virtuel_vect(inco);
   const Domaine_PolyMAC& zPolyMAC_P0P1NC = ref_domaine.valeur();
-  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_zcl.valeur();
+  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_dcl.valeur();
   const DoubleVect& face_surfaces = zPolyMAC_P0P1NC.face_surfaces();
 
   double coef;
@@ -85,7 +90,7 @@ DoubleTab& Op_Grad_PolyMAC_Face::ajouter(const DoubleTab& inco, DoubleTab& resu)
       if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
         {
           const Neumann_sortie_libre& la_cl_typee = ref_cast(Neumann_sortie_libre, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -137,7 +142,7 @@ void Op_Grad_PolyMAC_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Mors
 
   assert_espace_virtuel_vect(inco);
   const Domaine_PolyMAC& zPolyMAC_P0P1NC = ref_domaine.valeur();
-  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_zcl.valeur();
+  const Domaine_Cl_PolyMAC& zclPolyMAC_P0P1NC = ref_dcl.valeur();
   const DoubleVect& face_surfaces = zPolyMAC_P0P1NC.face_surfaces();
 
   double coef;
@@ -155,7 +160,7 @@ void Op_Grad_PolyMAC_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Mors
       const Cond_lim& la_cl = zclPolyMAC_P0P1NC.les_conditions_limites(n_bord);
       if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 

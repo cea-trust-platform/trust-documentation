@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,21 +45,22 @@ Lec_Diffuse_base& Lec_Diffuse_base::operator=(const Lec_Diffuse_base& )
   return *this;
 }
 
-Entree& Lec_Diffuse_base::operator>>(int& ob) { return operator_template<int>(ob); }
-int Lec_Diffuse_base::get(int* ob, int n) { return get_template<int>(ob, n); }
+Entree& Lec_Diffuse_base::operator>>(True_int& ob) { return operator_template<True_int>(ob); }
+int Lec_Diffuse_base::get(True_int* ob, std::streamsize n) { return get_template<True_int>(ob, n); }
 
-#ifndef INT_is_64_
 Entree& Lec_Diffuse_base::operator>>(long& ob) { return operator_template<long>(ob); }
-int Lec_Diffuse_base::get(long* ob, int n) { return get_template<long>(ob, n); }
-#endif
+int Lec_Diffuse_base::get(long* ob, std::streamsize n) { return get_template<long>(ob, n); }
+
+Entree& Lec_Diffuse_base::operator>>(long long& ob) { return operator_template<long long>(ob); }
+int Lec_Diffuse_base::get(long long* ob, std::streamsize n) { return get_template<long long>(ob, n); }
 
 Entree& Lec_Diffuse_base::operator>>(float& ob) { return operator_template<float>(ob); }
-int Lec_Diffuse_base::get(float* ob, int n) { return get_template<float>(ob, n); }
+int Lec_Diffuse_base::get(float* ob, std::streamsize n) { return get_template<float>(ob, n); }
 
 Entree& Lec_Diffuse_base::operator>>(double& ob) { return operator_template<double>(ob); }
-int Lec_Diffuse_base::get(double *ob, int n) { return get_template<double>(ob, n); }
+int Lec_Diffuse_base::get(double *ob, std::streamsize n) { return get_template<double>(ob, n); }
 
-int Lec_Diffuse_base::get(char *buf, int bufsize)
+int Lec_Diffuse_base::get(char *buf, std::streamsize bufsize)
 {
   int l = -1;
   if (Process::je_suis_maitre())
@@ -125,16 +126,15 @@ int Lec_Diffuse_base::fail()
  * set_bin(bin)
  *
  */
-int Lec_Diffuse_base::set_bin(int bin)
+void Lec_Diffuse_base::set_bin(bool bin)
 {
   if (Process::je_suis_maitre())
     {
       Entree& is = get_entree_master();
-      bin = is.set_bin(bin);
+      is.set_bin(bin);
     }
   if (diffuse_) envoyer_broadcast(bin, 0);
   Entree::set_bin(bin);
-  return bin;
 }
 
 /*! @brief appelle get_entree_master().
@@ -142,15 +142,14 @@ int Lec_Diffuse_base::set_bin(int bin)
  * set_check_types(flag)
  *
  */
-void Lec_Diffuse_base::set_check_types(int flag)
+void Lec_Diffuse_base::set_check_types(bool flag)
 {
   Entree::set_check_types(flag);
   Entree& is = get_entree_master();
   is.set_check_types(flag);
 }
 
-void Lec_Diffuse_base::set_diffuse(int diffuse)
+void Lec_Diffuse_base::set_diffuse(bool diffuse)
 {
-  assert(diffuse==0 || diffuse==1);
   diffuse_ = diffuse;
 }

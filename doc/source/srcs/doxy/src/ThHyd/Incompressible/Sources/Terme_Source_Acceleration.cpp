@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,7 +14,7 @@
 *****************************************************************************/
 
 #include <Terme_Source_Acceleration.h>
-#include <Domaine_dis.h>
+
 #include <Probleme_base.h>
 #include <Navier_Stokes_std.h>
 #include <Discretisation_base.h>
@@ -22,6 +22,14 @@
 #include <Schema_Temps_base.h>
 
 Implemente_base_sans_constructeur(Terme_Source_Acceleration,"Terme_Source_Acceleration",Source_base);
+// XD acceleration source_base acceleration 1 Momentum source term to take in account the forces due to rotation or translation of a non Galilean referential R\' (centre 0\') into the Galilean referential R (centre 0).
+// XD attr vitesse field_base vitesse 1 Keyword for the velocity of the referential R\' into the R referential (dOO\'/dt term [m.s-1]). The velocity is mandatory when you want to print the total cinetic energy into the non-mobile Galilean referential R (see Ec_dans_repere_fixe keyword).
+// XD attr acceleration field_base acceleration 1 Keyword for the acceleration of the referential R\' into the R referential (d2OO\'/dt2 term [m.s-2]). field_base is a time dependant field (eg: Champ_Fonc_t).
+// XD attr omega field_base omega 1 Keyword for a rotation of the referential R\' into the R referential [rad.s-1]. field_base is a 3D time dependant field specified for example by a Champ_Fonc_t keyword. The time_field field should have 3 components even in 2D (In 2D: 0 0 omega).
+// XD attr domegadt field_base domegadt 1 Keyword to define the time derivative of the previous rotation [rad.s-2]. Should be zero if the rotation is constant. The time_field field should have 3 components even in 2D (In 2D: 0 0 domegadt).
+// XD attr centre_rotation field_base centre_rotation 1 Keyword to specify the centre of rotation (expressed in R\' coordinates) of R\' into R (if the domain rotates with the R\' referential, the centre of rotation is 0\'=(0,0,0)). The time_field should have 2 or 3 components according the dimension 2 or 3.
+// XD attr option chaine(into=["terme_complet","coriolis_seul","entrainement_seul"]) option 1 Keyword to specify the kind of calculation: terme_complet (default option) will calculate both the Coriolis and centrifugal forces, coriolis_seul will calculate the first one only, entrainement_seul will calculate the second one only.
+
 
 Terme_Source_Acceleration::Terme_Source_Acceleration()
 {
@@ -183,10 +191,10 @@ void Terme_Source_Acceleration::lire_data(Entree& s)
     }
   if (n > 0)
     {
-      if (omega_.valeur().valeurs().dimension(0) != 1
-          || domegadt_.valeur().valeurs().dimension(0) != 1
-          || omega_.valeur().valeurs().dimension(1) != 3
-          || domegadt_.valeur().valeurs().dimension(1) != 3)
+      if (omega_->valeurs().dimension(0) != 1
+          || domegadt_->valeurs().dimension(0) != 1
+          || omega_->valeurs().dimension(1) != 3
+          || domegadt_->valeurs().dimension(1) != 3)
         {
           Cerr << "Erreur dans Terme_Source_Acceleration::lire_data" << finl;
           Cerr << " les champs OMEGA et DOMEGADT doivent etre des champs" << finl;
@@ -197,7 +205,7 @@ void Terme_Source_Acceleration::lire_data(Entree& s)
     }
   if (champ_acceleration_.non_nul())
     {
-      if (champ_acceleration_.valeur().valeurs().dimension(0) != 1)
+      if (champ_acceleration_->valeurs().dimension(0) != 1)
         {
           Cerr << "Erreur dans Terme_Source_Acceleration::lire_data" << finl;
           Cerr << " Le champ ACCELERATION doit etre un champ uniforme" << finl;
@@ -220,12 +228,12 @@ void Terme_Source_Acceleration::lire_data(Entree& s)
         exit();
       }
     const Discretisation_base& dis   = eqn.discretisation();
-    const Domaine_dis_base&        domaine  = eqn.domaine_dis().valeur();
+    const Domaine_dis_base&        domaine  = eqn.domaine_dis();
     const double                temps = eqn.schema_temps().temps_courant();
     dis.discretiser_champ("vitesse", domaine, "acceleration_terme_source", "kg/ms^2",
                           Objet_U::dimension, /* composantes */
                           temps,
-                          get_set_terme_source_post());
+                          terme_source_post_);
     champs_compris_.ajoute_champ(terme_source_post_);
   }
 }
@@ -239,10 +247,10 @@ const Champ_Fonc_base& Terme_Source_Acceleration::get_terme_source_post() const
   return terme_source_post_.valeur();
 }
 
-Champ_Fonc& Terme_Source_Acceleration::get_set_terme_source_post() const
+Champ_Fonc_base& Terme_Source_Acceleration::get_set_terme_source_post() const
 {
   // terme_source_post_ est mutable, on peut donc le renvoyer "non const"
-  return terme_source_post_;
+  return terme_source_post_.valeur();
 }
 
 /*! @brief Calcul de la valeur du champ la_source aux faces en fonction de - calculer_vitesse_faces()
@@ -257,7 +265,7 @@ Champ_Fonc& Terme_Source_Acceleration::get_set_terme_source_post() const
 const DoubleTab&
 Terme_Source_Acceleration::calculer_la_source(DoubleTab& acceleration_aux_faces) const
 {
-  const Domaine_VF&    domaine_VF = ref_cast(Domaine_VF, equation().domaine_dis().valeur());;
+  const Domaine_VF&    domaine_VF = ref_cast(Domaine_VF, equation().domaine_dis());;
 
   const DoubleTab& centre_faces = domaine_VF.xv();
 
@@ -275,7 +283,7 @@ Terme_Source_Acceleration::calculer_la_source(DoubleTab& acceleration_aux_faces)
 
     if (champ_acceleration_.non_nul())
       {
-        const DoubleTab& a_ = champ_acceleration_.valeur().valeurs();
+        const DoubleTab& a_ = champ_acceleration_->valeurs();
         for (j = 0; j < dim; j++)
           a[j] = a_(0, j);
       }
@@ -283,9 +291,9 @@ Terme_Source_Acceleration::calculer_la_source(DoubleTab& acceleration_aux_faces)
     if (omega_.non_nul())
       {
         // L'utilisateur a specifie un mouvement de rotation solide
-        const DoubleTab& champ_w  = omega_          .valeur().valeurs();
-        const DoubleTab& champ_dw = domegadt_       .valeur().valeurs();
-        const DoubleTab& champ_c  = centre_rotation_.valeur().valeurs();
+        const DoubleTab& champ_w  = omega_          ->valeurs();
+        const DoubleTab& champ_dw = domegadt_       ->valeurs();
+        const DoubleTab& champ_c  = centre_rotation_->valeurs();
         // Attention: en 2D, le vecteur rotation est typiquement oriente
         // dans la direction Z : donc boucle jusqu'a 3 dans tous les cas:
         for (j = 0; j < 3; j++) w[j]  = champ_w(0,j);
@@ -379,12 +387,12 @@ void Terme_Source_Acceleration::mettre_a_jour(double temps)
 {
   //Cerr << "Terme_Source_Acceleration::mettre_a_jour temps=" << temps << finl;
   if (champ_acceleration_.non_nul())
-    champ_acceleration_.mettre_a_jour(temps);
+    champ_acceleration_->mettre_a_jour(temps);
   if (omega_.non_nul())
     {
-      omega_.mettre_a_jour(temps);
-      domegadt_.mettre_a_jour(temps);
-      centre_rotation_.mettre_a_jour(temps);
+      omega_->mettre_a_jour(temps);
+      domegadt_->mettre_a_jour(temps);
+      centre_rotation_->mettre_a_jour(temps);
     }
   get_set_terme_source_post().mettre_a_jour(temps);
 }
@@ -397,7 +405,7 @@ void Terme_Source_Acceleration::mettre_a_jour(double temps)
  *
  */
 int Terme_Source_Acceleration::a_pour_Champ_Fonc(const Motcle& mot,
-                                                 REF(Champ_base) & ch_ref) const
+                                                 OBS_PTR(Champ_base) & ch_ref) const
 {
   int ok = 0;
   if (mot == "ACCELERATION_TERME_SOURCE")

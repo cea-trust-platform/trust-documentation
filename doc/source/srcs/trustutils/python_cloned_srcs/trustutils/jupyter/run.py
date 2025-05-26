@@ -114,7 +114,7 @@ class TRUSTCase(object):
 
     _UNIQ_ID_START = -1
 
-    def __init__(self, directory, datasetName, nbProcs=1, execOptions="", record=False):
+    def __init__(self, directory, datasetName, nbProcs=1, execOptions="", excluNR=False):
         """ 
         Initialisation of the class
 
@@ -127,10 +127,10 @@ class TRUSTCase(object):
             Path of the case we want to run, relatively to the 'src' folder.
         nbProcs : int
             Number of processors to use to run the case.
-        record : bool 
-            whether to add the case to the global list of cases to run
         execOptions : str
             TRUST Options to add at the execution of the test case 
+        excluNR : bool 
+            to remove of the non regression test cases
 
         Returns
         ------
@@ -145,8 +145,7 @@ class TRUSTCase(object):
         self.last_run_ok_ = -255  # exit status of the last run of the case
         self.last_run_err_ = ""  # error message returned when last running the case
         self.execOptions = execOptions
-        if record:
-            self._ListCases.append(self)
+        self.excluNR = excluNR
 
     def _fullDir(self):
         """
@@ -198,7 +197,7 @@ class TRUSTCase(object):
         result = filedata.substitute(subs_dict)
         with open(path, "w") as file: file.write(result)
 
-    def copy(self, targetName, targetDirectory=None, nbProcs=1, execOptions=""):
+    def copy(self, targetName, targetDirectory=None, nbProcs=1, execOptions="", excluNR=False):
         """ 
             Copy a TRUST Case
 
@@ -207,8 +206,14 @@ class TRUSTCase(object):
 
         targetName: str
             New name
+        targetDirectory: str
+            New directory
         nbProcs: int
             number of procs
+        execOptions : str
+            TRUST Options to add at the execution of the test case 
+        excluNR : bool 
+            to remove of the non regression test cases
 
         """
         if targetDirectory is None:
@@ -223,7 +228,7 @@ class TRUSTCase(object):
 
         copyfile(self._fullPath(), pthTgt)
 
-        return TRUSTCase(targetDirectory, targetName, nbProcs=nbProcs, execOptions=execOptions, record=False)
+        return TRUSTCase(targetDirectory, targetName, nbProcs=nbProcs, execOptions=execOptions, excluNR=False)
 
     def dumpDataset(self, user_keywords=[]):
         """ 
@@ -381,7 +386,7 @@ class TRUSTCase(object):
         os.chmod(scriptFl, 0o755)
         return scriptFl, fullL
 
-    def partition(self, verbose=False):
+    def partition(self, verbose=False, overwritePartition=True):
         """ 
         Apply partitioning of specified test case with trust -partition if nbProcs>1 only
         This avoids to modify trust -partition to be able to call it with 1 cpu
@@ -389,6 +394,16 @@ class TRUSTCase(object):
         Parameters
         ---------
         verbose: bool
+        overwritePartition: bool
+            Whether to overwrite the partition from the dataset when running trust -partition
+            If True, uses 
+                trust -partition xxx.data nbProcs
+            which will overwrite (or create) the partition in the dataset, but will cut the domain in a single direction.
+            This is the old and default behavior.
+            If False, uses the partition from the dataset by using
+                trust -partition xxx.data
+            without specifying nbProcs
+            Warning: this will not crash if there is no commented partition block in the dataset
         
         """
         ok = True
@@ -405,7 +420,13 @@ class TRUSTCase(object):
 
         err_file = self.name_ + "_partition.err"
         out_file = self.name_ + "_partition.out"
-        cmd = "trust -partition %s %s 2>%s 1>%s" % (self.name_, str(self.nbProcs_), err_file, out_file)
+        if overwritePartition:
+            # old default behavior
+            cmd = "trust -partition %s %s 2>%s 1>%s" % (self.name_, str(self.nbProcs_), err_file, out_file)
+        else:
+            # possibility to keep user defined partition
+            # Warning: no error if there is no partition in the dataset
+            cmd = "trust -partition %s 2>%s 1>%s" % (self.name_, err_file, out_file)
         output = subprocess.run(cmd, shell=True, executable="/bin/bash", stderr=subprocess.STDOUT)
         if verbose:
             print(cmd)
@@ -418,8 +439,10 @@ class TRUSTCase(object):
         baseName = os.path.join(self.dir_, self.dataFileName_)
 
         saveFileAccumulator(f"{baseName}.dt_ev")
+        saveFileAccumulator(f"{baseName}.newton_evol")
         saveFileAccumulator(f"{baseName}.data")
         saveFileAccumulator(f"{baseName}.out")
+        saveFileAccumulator(f"{baseName}_*.out")
         saveFileAccumulator(f"{baseName}.err")
         saveFileAccumulator(f"{baseName}_*.son")
         saveFileAccumulator(f"{baseName}.TU")
@@ -536,8 +559,10 @@ class TRUSTSuite(object):
         baseName = os.path.join(case.dir_, case.name_)
 
         saveFileAccumulator(f"{baseName}.dt_ev")
+        saveFileAccumulator(f"{baseName}.newton_evol")
         saveFileAccumulator(f"{baseName}.data")
         saveFileAccumulator(f"{baseName}.out")
+        saveFileAccumulator(f"{baseName}_*.out")
         saveFileAccumulator(f"{baseName}.err")
         saveFileAccumulator(f"{baseName}_*.son")
         saveFileAccumulator(f"{baseName}.TU")
@@ -693,6 +718,7 @@ class TRUSTSuite(object):
             list_exclu_nr = list(map(lambda a: os.path.normpath(a), list_cases))
 
         for c in self.getCases():
+            if c.excluNR: continue
             if c.dir_ != ".":
                 t = os.path.join(c.dir_, c.name_ + ".data")
                 # t = c.dir_ + "/" + c.name_ + ".data"
@@ -713,21 +739,6 @@ class TRUSTSuite(object):
                 text += "with " + str(c.nbProcs_)  + " procs"
             text += "\n"
         displayMD(text)
-
-def readFile(data):
-    """
-    Method to open and read file with Save in FileAccumulator"
-    """
-    path = os.getcwd()
-    os.chdir(BUILD_DIRECTORY)
-
-    f = open(data,"r")
-    print(f.read())
-    f.close()
-
-    os.chdir(path)
-
-    saveFileAccumulator(data)
 
 def saveFileAccumulator(data):
     """ Method for saving files for the Non Regression test
@@ -864,7 +875,7 @@ def dumpText(fiche, list_keywords=[]):
 
     print("".join(test))
 
-def addCaseFromTemplate(templateData, targetDirectory, dic, nbProcs=1, targetData=None, execOptions=""):
+def addCaseFromTemplate(templateData, targetDirectory, dic, nbProcs=1, targetData=None, execOptions="",excluNR=False):
     """ Add a case to run to the list of globally recorded cases.
     
     Parameters
@@ -879,6 +890,8 @@ def addCaseFromTemplate(templateData, targetDirectory, dic, nbProcs=1, targetDat
         if provided, templateData will be copied as targetData + dictionary applied + added to TRUSTSuite()
     nbProcs : int 
         Number of processors
+    excluNR : bool 
+        to remove of the non regression test cases
 
     Returns
     -------
@@ -904,12 +917,12 @@ def addCaseFromTemplate(templateData, targetDirectory, dic, nbProcs=1, targetDat
     from shutil import copyfile
 
     copyfile(fullDir, pthTgt)
-    tc = addCase(targetDirectory, targetData, nbProcs, execOptions)
+    tc = addCase(targetDirectory, targetData, nbProcs, execOptions, excluNR)
     tc.substitute_template(dic)
     return tc
 
 
-def addCase(directoryOrTRUSTCase, datasetName="", nbProcs=1, execOptions=""):
+def addCase(directoryOrTRUSTCase, datasetName="", nbProcs=1, execOptions="", excluNR=False):
     """ 
     Add a case to run to the list of globally recorded cases.
 
@@ -924,6 +937,8 @@ def addCase(directoryOrTRUSTCase, datasetName="", nbProcs=1, execOptions=""):
         Number of processors
     execOptions : str
         TRUST Options to add at the execution of the test case 
+    excluNR : bool 
+        to remove of the non regression test cases
 
     Returns
     -------
@@ -940,7 +955,7 @@ def addCase(directoryOrTRUSTCase, datasetName="", nbProcs=1, execOptions=""):
     elif isinstance(directoryOrTRUSTCase, str):
         if datasetName == "":
             raise ValueError("addCase() method can either be called with a single argument (a TRUSTCase object) or with at least 2 arguments (directory and case name)")
-        tc = TRUSTCase(directoryOrTRUSTCase, datasetName, nbProcs,execOptions=execOptions)
+        tc = TRUSTCase(directoryOrTRUSTCase, datasetName, nbProcs,execOptions=execOptions,excluNR=excluNR)
         initCaseSuite()
         defaultSuite_.addCase(tc)
         return tc
@@ -1038,6 +1053,14 @@ def extractNRCases():
     """
     global defaultSuite_
     return defaultSuite_.extractNRCases()
+
+def isExtractingNR():
+    """
+    Check environnement variable IS_EXTRACTING_NR to know if extracting_nr is active
+    """
+
+    if (os.getenv("IS_EXTRACTING_NR") == '1'): return True
+    return False
 
 
 def runCases(verbose=False, preventConcurrent=False):

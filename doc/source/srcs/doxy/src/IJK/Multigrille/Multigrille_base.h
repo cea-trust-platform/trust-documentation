@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -61,7 +61,7 @@ protected:
 
   Matrice_Grossiere& set_coarse_matrix()
   {
-    solveur_grossier_.valeur().reinit();
+    solveur_grossier_->reinit();
     return coarse_matrix_;
   }
   enum StorageId { STORAGE_RHS, STORAGE_X, STORAGE_RESIDUE };
@@ -159,7 +159,7 @@ private:
   int n_krilov_; // number of krilov vectors in gmres
   int max_iter_gmres_;
   int solv_jacobi_;
-  int impr_;
+  bool impr_ = false;
   int impr_gmres_;
   int max_iter_mixed_solver_; // maximum number of iterations in mixed precision solver
   int check_residu_;

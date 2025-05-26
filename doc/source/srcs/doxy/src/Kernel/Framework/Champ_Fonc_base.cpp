@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,8 @@
 #include <MD_Vector_tools.h>
 #include <Domaine_VF.h>
 #include <Domaine.h>
+#include <TRUSTTrav.h>
+#include <TRUST_2_PDI.h>
 
 Implemente_base(Champ_Fonc_base, "Champ_Fonc_base", Champ_Don_base);
 
@@ -80,6 +82,25 @@ void Champ_Fonc_base::creer_tableau_distribue(const MD_Vector& md, RESIZE_OPTION
     }
 }
 
+
+Nom Champ_Fonc_base::get_pdi_name() const
+{
+  Nom name = pdi_name_ == "??" ? (Motcle)nom_ : (Motcle)pdi_name_;
+  return name;
+}
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the field to save/restore.
+ */
+std::vector<YAML_data> Champ_Fonc_base::data_a_sauvegarder() const
+{
+  const Nom& name = get_pdi_name();
+  int nb_dim = valeurs().nb_dim();
+  YAML_data d(name.getString(), "double", nb_dim);
+  std::vector<YAML_data> data;
+  data.push_back(d);
+  return data;
+}
+
 /*! @brief Sauvegarde le champ sur un flot de sortie Ecrit le nom, le temps et les valeurs.
  *
  * @param (Sortie& fich) un flot de sortie
@@ -104,6 +125,14 @@ int Champ_Fonc_base::sauvegarder(Sortie& fich) const
   int bytes = 0;
   if (special)
     bytes = EcritureLectureSpecial::ecriture_special(*this, fich);
+  else if (TRUST_2_PDI::is_PDI_checkpoint())
+    {
+      bytes = 8 * valeurs().size_array();
+      const Nom& name = get_pdi_name();
+      TRUST_2_PDI pdi_interface;
+      pdi_interface.share_TRUSTTab_dimensions(valeurs(), name, 1 /*write mode*/);
+      pdi_interface.TRUST_start_sharing(name.getString(), valeurs().addr());
+    }
   else
     {
       bytes = 8 * valeurs().size_array();
@@ -132,16 +161,32 @@ int Champ_Fonc_base::reprendre(Entree& fich)
   int special = EcritureLectureSpecial::is_lecture_special();
   if (nom_ != Nom("anonyme")) // lecture pour reprise
     {
-      fich >> un_temps;
       Cerr << "Resume of the field " << nom_;
-      if (special)
-        EcritureLectureSpecial::lecture_special(*this, fich);
+      if(TRUST_2_PDI::is_PDI_restart())
+        {
+          TRUST_2_PDI pdi_interface;
+          const Nom& name = get_pdi_name();
+          pdi_interface.share_TRUSTTab_dimensions(valeurs(), name, 0 /*read mode*/);
+          pdi_interface.read(name.getChar(), valeurs().addr());
+        }
       else
-        valeurs().lit(fich);
+        {
+          fich >> un_temps;
+          if (special)
+            EcritureLectureSpecial::lecture_special(*this, fich);
+          else
+            valeurs().lit(fich);
+        }
       Cerr << " performed." << finl;
     }
   else // lecture pour sauter le bloc
     {
+      if(TRUST_2_PDI::is_PDI_restart())
+        {
+          Cerr << finl << "Problem in the resumption " << finl;
+          Cerr << "PDI format does not require to navigate through file..." << finl;
+          Process::exit();
+        }
       DoubleTab tempo;
       fich >> un_temps;
       tempo.jump(fich);
@@ -235,7 +280,7 @@ const Domaine& Champ_Fonc_base::domaine() const
 DoubleTab& Champ_Fonc_base::valeur_aux(const DoubleTab& positions, DoubleTab& tab_valeurs) const
 {
   const Domaine& domaine = domaine_dis_base().domaine();
-  IntVect les_polys(positions.dimension(0));
+  IntTrav les_polys;
   domaine.chercher_elements(positions, les_polys);
   return valeur_aux_elems(positions, les_polys, tab_valeurs);
 }

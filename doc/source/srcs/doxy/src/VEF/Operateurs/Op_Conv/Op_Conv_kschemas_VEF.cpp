@@ -30,7 +30,7 @@ Entree& Op_Conv_kschemas_VEF::readOn(Entree& s )
   return s ;
 }
 
-void Op_Conv_kschemas_VEF::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis, const Champ_Inc& ch)
+void Op_Conv_kschemas_VEF::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis, const Champ_Inc_base& ch)
 {
   // CCa le 28/05/99 Le schema Kquick ne marche pas en paralle !!
   if (Process::is_parallel())
@@ -182,8 +182,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
 
   int nfac = domaine.nb_faces_elem();
   int nsom = domaine.nb_som_elem();
-  int nb_som_facette = domaine.type_elem().nb_som_face();
-  DoubleVect& fluent_ = fluent;
+  int nb_som_facette = domaine.type_elem()->nb_som_face();
 
   // Pour le traitement de la convection on distingue les polyedres
   // standard qui ne "voient" pas les conditions aux limites et les
@@ -212,7 +211,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
   // trop couteux et pour le moment on n'etend pas les porosites aux hexa
 
   int istetra=0;
-  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem().valeur();
+  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem();
   Nom nom_elem=type_elemvef.que_suis_je();
   if ((nom_elem=="Tetra_VEF")||(nom_elem=="Tri_VEF")) istetra=1;
 
@@ -232,7 +231,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -248,7 +247,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -342,7 +341,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
   //////////////////////////////////////////////////////////////////////////////////////
   // boucle sur les polys
   //////////////////////////////////////////////////////////////////////////////////////
-  const IntTab& KEL=domaine_VEF.type_elem().valeur().KEL();
+  const IntTab& KEL=domaine_VEF.type_elem().KEL();
   for (poly=0; poly<nb_elem; poly++)
     {
       rang = rang_elem_non_std(poly);
@@ -361,9 +360,9 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
       // calcul de la vitesse aux sommets des polyedres
       for (j=0; j<dimension; j++)
         {
-          vs(j) = la_vitesse(face(0),j)*porosite_face(face(0));
+          vs(j) = la_vitesse.valeurs()(face(0),j)*porosite_face(face(0));
           for (i=1; i<nfac; i++)
-            vs(j)+= la_vitesse(face(i),j)*porosite_face(face(i));
+            vs(j)+= la_vitesse.valeurs()(face(i),j)*porosite_face(face(i));
         }
 
       //int ncomp;
@@ -372,7 +371,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
           for (j=0; j<nsom; j++)
             {
               for (int ncomp=0; ncomp<Objet_U::dimension; ncomp++)
-                vsom(j,ncomp) =vs[ncomp] - Objet_U::dimension*la_vitesse(face[j],ncomp)*porosite_face(face[j]);
+                vsom(j,ncomp) =vs[ncomp] - Objet_U::dimension*la_vitesse.valeurs()(face[j],ncomp)*porosite_face(face[j]);
             }
         }
       else
@@ -440,7 +439,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
 
               psc = 0;
               for (j=0; j<dimension; j++)
-                psc+=((vsom(KEL(i+2,fa7),j) + la_vitesse(num3,j) * porosite_face(num3)))*cc[j];
+                psc+=((vsom(KEL(i+2,fa7),j) + la_vitesse.valeurs()(num3,j) * porosite_face(num3)))*cc[j];
               psc *=0.5;
               convkschemas(K,ncomp_ch_transporte,dimension,poly,poly1,poly2,num10,num20,psc,transporte,
                            fluent_,flux,rx0,gradient_elem);
@@ -603,9 +602,9 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
           // calcul de la vitesse aux sommets des polyedres
           for (j=0; j<dimension; j++)
             {
-              vs(j) = la_vitesse(face(0),j)*porosite_face(face(0));
+              vs(j) = la_vitesse.valeurs()(face(0),j)*porosite_face(face(0));
               for (i=1; i<nfac; i++)
-                vs(j)+= la_vitesse(face(i),j)*porosite_face(face(j));
+                vs(j)+= la_vitesse.valeurs()(face(i),j)*porosite_face(face(j));
             }
           int ncomp;
           for (j=0; j<nsom; j++)
@@ -672,7 +671,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
 
                   psc = 0;
                   for (j=0; j<dimension; j++)
-                    psc+=((vsom(KEL(i+2,fa7),j) + la_vitesse(num3,j) * porosite_face(num3)))*cc[j];
+                    psc+=((vsom(KEL(i+2,fa7),j) + la_vitesse.valeurs()(num3,j) * porosite_face(num3)))*cc[j];
                   psc *=0.5;
                   convkschemas(K,ncomp_ch_transporte,dimension,poly,poly1,poly2,num10,num20,psc,transporte,
                                fluent_,flux,rx0,gradient_elem);
@@ -828,14 +827,14 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
           const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
             {
               psc =0;
               for (i=0; i<dimension; i++)
-                psc += la_vitesse(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
+                psc += la_vitesse.valeurs()(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
               if (psc>0)
                 for (i=0; i<ncomp_ch_transporte; i++)
                   {
@@ -856,7 +855,7 @@ DoubleTab& Op_Conv_kschemas_VEF::ajouter(const DoubleTab& transporte,
       else if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());

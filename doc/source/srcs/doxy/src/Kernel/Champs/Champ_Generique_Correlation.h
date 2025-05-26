@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ class Postraitement_base;
 
 //// Syntaxe a respecter pour jdd
 //
-// "nom_champ" Correlation { t_deb "val_tdeb" t_fin "val_tfin"
+// "nom_champ" correlation { t_deb "val_tdeb" t_fin "val_tfin"
 //                source "type_champ_gen" { ...source ref_Champ { Pb_champ "nom_pb" "nom_champ_discret1" } }
 //                source "type_champ_gen" { ...source ref_Champ { Pb_champ "nom_pb" "nom_champ_discret2" } }
 //               }
@@ -51,7 +51,7 @@ public:
 
   inline double temps() const override
   {
-    return Op_Correlation_.integrale().temps();
+    return Op_Correlation_.integrale().le_champ_calcule().temps();
   };
   inline const Integrale_tps_Champ& integrale() const override
   {
@@ -63,13 +63,17 @@ public:
   void completer(const Postraitement_base& post) override;
 
   const Motcle get_directive_pour_discr() const override;
-  const Champ_base&  get_champ(Champ& espace_stockage) const override;
+  const Champ_base&  get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base& get_champ(OWN_PTR(Champ_base)& espace_stockage) const override;
   void nommer_source() override;
   int get_info_type_post() const override;
 
 protected:
 
   Op_Correlation Op_Correlation_;
+
+private:
+  mutable OWN_PTR(Champ_Fonc_base) espace_stockage_;
 };
 
 inline const Operateur_Statistique_tps_base& Champ_Generique_Correlation::Operateur_Statistique() const

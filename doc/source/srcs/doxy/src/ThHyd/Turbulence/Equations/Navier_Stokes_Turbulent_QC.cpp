@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -39,7 +39,7 @@ Entree& Navier_Stokes_Turbulent_QC::readOn(Entree& is)
   return is;
 }
 
-const Champ_Don& Navier_Stokes_Turbulent_QC::diffusivite_pour_transport() const
+const Champ_Don_base& Navier_Stokes_Turbulent_QC::diffusivite_pour_transport() const
 {
   return fluide().viscosite_dynamique();
 }
@@ -73,8 +73,7 @@ void Navier_Stokes_Turbulent_QC::discretiser()
   Navier_Stokes_Turbulent::discretiser();
   const Discret_Thyd& dis = ref_cast(Discret_Thyd, discretisation());
   dis.vitesse(schema_temps(), domaine_dis(), rho_la_vitesse_);
-  rho_la_vitesse_.nommer("rho_u");
-  rho_la_vitesse_.valeur().nommer("rho_u");
+  rho_la_vitesse_->nommer("rho_u");
 }
 
 /*! @brief Appels successifs a: Navier_Stokes_std::completer()
@@ -88,7 +87,7 @@ void Navier_Stokes_Turbulent_QC::completer()
     {
       Cerr << "Gravity=" << le_fluide->gravite() << finl;
       //l'equation de NS en quasi compressible peut contenir un terme source de gravite
-      if (le_fluide->beta_t().non_nul())    //pour debogage    A ENLEVER APRES
+      if (le_fluide->has_beta_t())    //pour debogage    A ENLEVER APRES
         {
           Cerr << "Beta_t !=0  -> Boussinesq is currently used :" << finl;
         }
@@ -120,50 +119,53 @@ void Navier_Stokes_Turbulent_QC::completer()
 int Navier_Stokes_Turbulent_QC::preparer_calcul()
 {
   return Navier_Stokes_Turbulent::preparer_calcul();
-  /*
-   // Cerr << "Navier_Stokes_Fluide_Dilatable_Proto::preparer_calcul()" << finl;
-   Equation_base::preparer_calcul();
-   //solveur_pression->assembler_QC(le_fluide->masse_volumique().valeurs());
-   assembleur_pression_->assembler_QC(le_fluide->masse_volumique().valeurs(),matrice_pression_);
+}
 
+bool Navier_Stokes_Turbulent_QC::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
+{
+  if (nom == "rho_u")
+    {
+      ref_champ = rho_la_vitesse();
+      return true;
+    }
 
-   if (le_traitement_particulier.non_nul())
-   le_traitement_particulier.preparer_calcul_particulier();
+  if (Navier_Stokes_Turbulent::has_champ(nom, ref_champ))
+    return true;
 
+  if (milieu().has_champ(nom, ref_champ))
+    return true;
 
-   la_pression.valeurs()=0.;
-   la_pression.changer_temps(schema_temps().temps_courant());
-   Cerr << "Projection of initial and boundaries conditions" << finl;
+  return false; /* rien trouve */
+}
 
-   projeter();
-   le_modele_turbulence.preparer_calcul();
+bool Navier_Stokes_Turbulent_QC::has_champ(const Motcle& nom) const
+{
+  if (nom == "rho_u")
+    return true;
 
-   return 1;*/
+  if (Navier_Stokes_Turbulent::has_champ(nom))
+    return true;
+
+  if (milieu().has_champ(nom))
+    return true;
+
+  return false; /* rien trouve */
 }
 
 const Champ_base& Navier_Stokes_Turbulent_QC::get_champ(const Motcle& nom) const
 {
-
   if (nom == "rho_u")
-    return rho_la_vitesse().valeur();
-  try
-    {
-      return Navier_Stokes_Turbulent::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+    return rho_la_vitesse();
 
-  try
+  OBS_PTR(Champ_base) ref_champ;
 
-    {
-      return milieu().get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-  throw Champs_compris_erreur();
+  if (Navier_Stokes_Turbulent::has_champ(nom, ref_champ))
+    return ref_champ;
 
+  if (milieu().has_champ(nom, ref_champ))
+    return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 /*! @brief Calcule la derivee en temps de l'inconnue vitesse, i.
@@ -198,7 +200,7 @@ bool Navier_Stokes_Turbulent_QC::initTimeStep(double dt)
 
   const DoubleTab& tab_rho = fluide_QC.rho_discvit();
 
-  DoubleTab& rhovitesse = rho_la_vitesse_.valeurs();
+  DoubleTab& rhovitesse = rho_la_vitesse_->valeurs();
   Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse_impl(tab_rho, tab_vitesse, rhovitesse);
 
   return Navier_Stokes_Turbulent::initTimeStep(dt);

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -39,21 +39,21 @@ Entree& Terme_Boussinesq_VDF_Face::readOn(Entree& s )
   return Terme_Boussinesq_base::readOn(s);
 }
 
-void Terme_Boussinesq_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                  const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Boussinesq_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                  const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 }
 
 void Terme_Boussinesq_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Domaine_VDF& domaine_VDF = le_dom_VDF.valeur();
   const Domaine_Cl_VDF& domaine_Cl_VDF_hyd = le_dom_Cl_VDF.valeur();
-  const Domaine_Cl_dis& domaine_Cl_scal = equation_scalaire().domaine_Cl_dis();
-  const Domaine_Cl_VDF& domaine_Cl_VDF_scal = ref_cast(Domaine_Cl_VDF,domaine_Cl_scal.valeur());
+  const Domaine_Cl_dis_base& domaine_Cl_scal = equation_scalaire().domaine_Cl_dis();
+  const Domaine_Cl_VDF& domaine_Cl_VDF_scal = ref_cast(Domaine_Cl_VDF,domaine_Cl_scal);
   const DoubleTab& param = equation_scalaire().inconnue().valeurs();
-  const DoubleTab& beta_valeurs = beta().valeur().valeurs();
+  const DoubleTab& beta_valeurs = beta().valeurs();
   const DoubleVect& grav = gravite().valeurs();
   const IntTab& face_voisins = domaine_VDF.face_voisins();
   const IntVect& orientation = domaine_VDF.orientation();
@@ -76,7 +76,7 @@ void Terme_Boussinesq_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
       // pour chaque Condition Limite on regarde son type
       const Cond_lim& la_cl = domaine_Cl_VDF_hyd.les_conditions_limites(n_bord);
       const Cond_lim& la_cl_scal = domaine_Cl_VDF_scal.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 

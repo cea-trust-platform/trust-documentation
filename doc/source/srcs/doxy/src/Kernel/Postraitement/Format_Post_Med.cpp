@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -133,14 +133,30 @@ int Format_Post_Med::preparer_post(const Nom& id_du_domaine,const int est_le_pre
 
 int Format_Post_Med::ecrire_domaine(const Domaine& domaine,const int est_le_premier_post)
 {
-  const REF(Domaine_dis_base) domaine_dis_base;
+  const OBS_PTR(Domaine_dis_base) domaine_dis_base;
   return ecrire_domaine_dis(domaine, domaine_dis_base, est_le_premier_post);
+}
+
+void Format_Post_Med::ecrire_domaine_dual(const Domaine& domaine, const int est_le_premier_post)
+{
+  Nom nom_fich(med_basename_);
+  nom_fich +="_dual.";
+  Nom format="med";
+  nom_fich += format;
+
+  bool append = !est_le_premier_post;
+
+  assert(domaine_dis_.non_nul());
+  ecr_med_.set_file_name_and_dom(nom_fich, domaine, &domaine_dis_.valeur());
+  ecr_med_.ecrire_domaine_dual(append);
 }
 
 /*! @brief voir Format_Post_base::ecrire_domaine
  */
-int Format_Post_Med::ecrire_domaine_dis(const Domaine& domaine,const REF(Domaine_dis_base)& domaine_dis_base,const int est_le_premier_post)
+int Format_Post_Med::ecrire_domaine_dis(const Domaine& domaine,const OBS_PTR(Domaine_dis_base)& domaine_dis_base,const int est_le_premier_post)
 {
+  domaine_dis_ = domaine_dis_base; // as in base class
+
   Nom nom_fich(med_basename_);
   nom_fich +=".";
   Nom format="med";
@@ -152,7 +168,7 @@ int Format_Post_Med::ecrire_domaine_dis(const Domaine& domaine,const REF(Domaine
   nom_fic_base += format;
   Nom nom_fic=nom_fic_base.nom_me(Process::me());
 
-  ecrire_domaine_med(domaine,domaine_dis_base,nom_fic,est_le_premier_post,nom_fich);
+  ecrire_domaine_med(domaine,nom_fic,est_le_premier_post,nom_fich);
 
   return 1; // ok tout va bien
 }
@@ -324,7 +340,7 @@ int Format_Post_Med::preparer_post_med(const Nom& nom_fich1,const Nom& nom_fich2
   return 1;
 }
 
-int Format_Post_Med::ecrire_domaine_med(const Domaine& domaine,const REF(Domaine_dis_base)& domaine_dis_base,const Nom& nom_fic,const int est_le_premier_post,Nom& nom_fich)
+int Format_Post_Med::ecrire_domaine_med(const Domaine& domaine,const Nom& nom_fic,const int est_le_premier_post,Nom& nom_fich)
 {
   int dim = domaine.les_sommets().dimension(1);
   bool append = !est_le_premier_post;
@@ -340,8 +356,8 @@ int Format_Post_Med::ecrire_domaine_med(const Domaine& domaine,const REF(Domaine
       if (!ecr_med_.get_major_mode()) Cerr << "Try using med_major format if you have issue when opening this file with older Salome versions.";
       Cerr << finl;
     }
-  ecr_med_.set_file_name_and_dom(nom_fic, domaine);
-  ecr_med_.ecrire_domaine_dis(domaine_dis_base, append);
+  ecr_med_.set_file_name_and_dom(nom_fic, domaine, domaine_dis_.non_nul() ? &domaine_dis_.valeur() : nullptr);
+  ecr_med_.ecrire_domaine_dis(append);
   return 1;
 
 }
@@ -365,7 +381,7 @@ int Format_Post_Med::ecrire_champ_med(const Domaine& dom,const Noms& unite_, con
                                       const DoubleTab& valeurs,Nom& nom_fich)
 {
   Nom fic = nom_pdb.nom_me(me());
-  ecr_med_.set_file_name_and_dom(fic, dom);
+  ecr_med_.set_file_name_and_dom(fic, dom, domaine_dis_.non_nul() ? &domaine_dis_.valeur() : nullptr);
 
   Nom nom_post(id_du_champ);
   Noms noms_compo_courts(noms_compo);
@@ -398,7 +414,7 @@ int Format_Post_Med::ecrire_champ_med(const Domaine& dom,const Noms& unite_, con
 #ifdef MEDCOUPLING_
       nom_post.prefix("_FACES_");
       nom_post.prefix("_faces_");
-      nom_dom = dom.get_mc_face_mesh()->getName();
+      nom_dom = dom.le_nom();
       for (int i = 0; i < noms_compo.size(); ++i)
         noms_compo_courts[i] = Motcle(noms_compo_courts[i]).getPrefix("_FACES_");
 #else
@@ -433,8 +449,3 @@ int Format_Post_Med::ecrire_champ_med(const Domaine& dom,const Noms& unite_, con
     }
   return 1;
 }
-
-
-
-
-

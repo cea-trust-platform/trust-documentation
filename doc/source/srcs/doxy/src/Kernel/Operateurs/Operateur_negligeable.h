@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,9 +18,9 @@
 
 #include <TRUSTTab.h>
 
-class Domaine_dis;
-class Domaine_Cl_dis;
-class Champ_Inc;
+class Domaine_Cl_dis_base;
+class Domaine_dis_base;
+class Champ_Inc_base;
 
 /*! @brief Classe Opnegligeable Cette classe definit l'interface d'un operateur negligeable
  *
@@ -40,7 +40,7 @@ public :
   inline void mettre_a_jour(double );
 
 protected :
-  inline void associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc&);
+  inline void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base&);
 };
 
 
@@ -83,11 +83,11 @@ inline void Operateur_negligeable::mettre_a_jour(double )
 
 /*! @brief Associe divers objets a un operateurs negligeable: NE FAIT RIEN
  *
- * @param (Domaine_dis&)
- * @param (Domaine_Cl_dis&)
- * @param (Champ_Inc&)
+ * @param (Domaine_dis_base&)
+ * @param (Domaine_Cl_dis_base&)
+ * @param (Champ_Inc_base&)
  */
-inline void Operateur_negligeable::associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc&)
+inline void Operateur_negligeable::associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base&)
 {
 }
 #endif

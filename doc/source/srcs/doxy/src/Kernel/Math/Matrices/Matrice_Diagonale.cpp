@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,12 +35,12 @@ int Matrice_Diagonale::ordre() const
   return coefficients_.size();
 }
 
-int Matrice_Diagonale::nb_lignes( void ) const
+int Matrice_Diagonale::nb_lignes() const
 {
   return coefficients_.size( );
 }
 
-int Matrice_Diagonale::nb_colonnes( void ) const
+int Matrice_Diagonale::nb_colonnes() const
 {
   return coefficients_.size( );
 }
@@ -108,6 +108,11 @@ void Matrice_Diagonale::scale( const double x )
   coefficients_ *= x;
 }
 
+void Matrice_Diagonale::clean()
+{
+  coefficients_ = 0.;
+}
+
 void Matrice_Diagonale::get_stencil( IntTab& stencil ) const
 {
   if( is_stencil_up_to_date_ )
@@ -168,7 +173,7 @@ void Matrice_Diagonale::get_symmetric_stencil_and_coefficients( IntTab&      ste
                                 coefficients );
 }
 
-Matrice_Diagonale::Matrice_Diagonale( void ) : Matrice_Base( ), coefficients_( )
+Matrice_Diagonale::Matrice_Diagonale() : Matrice_Base( ), coefficients_( )
 {
   is_stencil_up_to_date_ = false ;
 }
@@ -183,12 +188,12 @@ Matrice_Diagonale::Matrice_Diagonale(const DoubleVect& coefficients) : Matrice_B
   is_stencil_up_to_date_ = false ;
 }
 
-DoubleVect& Matrice_Diagonale::get_coefficients( void )
+DoubleVect& Matrice_Diagonale::get_coefficients()
 {
   return coefficients_;
 }
 
-const DoubleVect& Matrice_Diagonale::get_coefficients( void ) const
+const DoubleVect& Matrice_Diagonale::get_coefficients() const
 {
   return coefficients_;
 }

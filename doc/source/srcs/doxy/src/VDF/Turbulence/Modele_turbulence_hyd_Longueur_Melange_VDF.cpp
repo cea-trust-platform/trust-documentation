@@ -14,7 +14,7 @@
 *****************************************************************************/
 
 #include <Modele_turbulence_hyd_Longueur_Melange_VDF.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Domaine_Cl_VDF.h>
 #include <Champ_Face_VDF.h>
 #include <Equation_base.h>
@@ -51,7 +51,7 @@ int Modele_turbulence_hyd_Longueur_Melange_VDF::preparer_calcul()
   return 1;
 }
 
-Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_viscosite_turbulente()
+Champ_Fonc_base& Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_viscosite_turbulente()
 {
   double hauteur = std::fabs(alt_max_ - alt_min_); // test alt_max>alt_min a faire, plutot que de prendre fabs ??
   //Attention, ici "hauteur" est la hauteur reelle du canal (pas la demi-hauteur)
@@ -60,8 +60,8 @@ Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_viscosite_turbu
 
   double temps = mon_equation_->inconnue().temps();
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
-  DoubleVect& k = energie_cinetique_turb_.valeurs();
+  DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
+  DoubleVect& k = energie_cinetique_turb_->valeurs();
   const int nb_elem = domaine_VDF.nb_elem();
   const int nb_elem_tot = domaine_VDF.nb_elem_tot();
   const DoubleTab& xp = domaine_VDF.xp();
@@ -99,14 +99,14 @@ Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_viscosite_turbu
 
   Debog::verifier("Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_viscosite_turbulente visco_turb 1", visco_turb);
 
-  la_viscosite_turbulente_.changer_temps(temps);
+  la_viscosite_turbulente_->changer_temps(temps);
   return la_viscosite_turbulente_;
 }
 
 void Modele_turbulence_hyd_Longueur_Melange_VDF::calculer_Sij2()
 {
   const DoubleTab& vitesse = mon_equation_->inconnue().valeurs();
-  Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, mon_equation_->inconnue().valeur());
+  Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, mon_equation_->inconnue());
   const Domaine_Cl_VDF& domaine_Cl_VDF = ref_cast(Domaine_Cl_VDF, le_dom_Cl_.valeur());
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());
   const int nb_elem = domaine_VDF.nb_elem_tot();

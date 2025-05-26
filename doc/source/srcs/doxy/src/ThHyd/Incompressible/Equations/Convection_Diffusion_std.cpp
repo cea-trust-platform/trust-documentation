@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -138,7 +138,7 @@ Operateur& Convection_Diffusion_std::operateur(int i)
   return terme_diffusif;
 }
 
-const Champ_Don& Convection_Diffusion_std::diffusivite_pour_transport() const
+const Champ_Don_base& Convection_Diffusion_std::diffusivite_pour_transport() const
 {
   return milieu().diffusivite();
 }
@@ -162,3 +162,9 @@ int Convection_Diffusion_std::reprendre_base(Entree& is)
 {
   return Equation_base::reprendre(is);
 }
+
+std::vector<YAML_data> Convection_Diffusion_std::data_a_sauvegarder_base() const
+{
+  return Equation_base::data_a_sauvegarder();
+}
+

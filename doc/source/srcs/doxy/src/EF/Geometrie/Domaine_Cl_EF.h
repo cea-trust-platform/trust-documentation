@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,10 +26,8 @@
  * @sa Domaine_Cl_dis_base
  */
 #include <Domaine_Cl_dis_base.h>
-#include <Champ_Don.h>
 
-
-class Champ_Inc;
+class Champ_Don_base;
 class Domaine_EF;
 class Matrice_Morse;
 
@@ -40,11 +38,10 @@ class Domaine_Cl_EF : public Domaine_Cl_dis_base
 
 public :
 
-  void associer(const Domaine_EF& );
-  void completer(const Domaine_dis& ) override;
+  void completer(const Domaine_dis_base& ) override;
 //  void mettre_a_jour(double );
   int initialiser(double temps) override;
-  void imposer_cond_lim(Champ_Inc&, double) override;
+  void imposer_cond_lim(Champ_Inc_base&, double) override;
 
   void imposer_symetrie(DoubleTab&,int tous_les_sommets_sym=0) const;
   void imposer_symetrie_partiellement(DoubleTab&,const Noms&) const;
@@ -73,7 +70,7 @@ protected:
   void remplir_type_elem_Cl(const Domaine_EF& );
   ArrOfInt type_sommet_;  // -1 interne 0 Neumann 1 Symetrie >2 Dirichlet
   // Un sommet est d'abord diri , puis Symetrie , puis Neumann , puis interne
-  Champ_Don normales_symetrie_,normales_symetrie_bis_,normales_symetrie_ter_;
+  OWN_PTR(Champ_Don_base) normales_symetrie_,normales_symetrie_bis_,normales_symetrie_ter_;
 };
 
 //

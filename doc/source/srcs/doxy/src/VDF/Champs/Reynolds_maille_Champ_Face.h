@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,8 +19,8 @@
 #include <Champ_Fonc_Face_VDF.h>
 #include <TRUST_Ref.h>
 
+
 class Champ_Face_VDF;
-class Champ_Don;
 
 class Reynolds_maille_Champ_Face: public Champ_Fonc_Face_VDF
 {
@@ -28,11 +28,11 @@ class Reynolds_maille_Champ_Face: public Champ_Fonc_Face_VDF
 public:
   inline const Champ_Face_VDF& vitesse() const { return vitesse_.valeur(); }
   void mettre_a_jour(double) override;
-  void associer_champ(const Champ_Face_VDF&, const Champ_Don&);
+  void associer_champ(const Champ_Face_VDF&, const Champ_Don_base&);
 
 protected:
-  REF(Champ_Face_VDF) vitesse_;
-  REF(Champ_Don) nu_;
+  OBS_PTR(Champ_Face_VDF) vitesse_;
+  OBS_PTR(Champ_Don_base) nu_;
 };
 
 #endif /* Reynolds_maille_Champ_Face_included */

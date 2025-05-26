@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,6 +30,8 @@
 #include <SChaine.h>
 #include <FichierHDFPar.h>
 #include <EChaineJDD.h>
+#include <DeviceMemory.h>
+#include <kokkos++.h>
 
 // Chacun des fichiers Cerr, Cout et Journal(i)
 // peut etre redirige vers l'un des quatre fichiers suivants:
@@ -40,14 +42,10 @@ static Sortie        std_err_(cerr);
 // Instance de la Sortie pointant vers cout
 static Sortie        std_out_(cout);
 // Instances du fichier Journal
-// (if the journal is shared between all the procs, journal_file_ is not used
-//  and the processors' output is redirected to journal_shared_stream_ before being written in a HDF5 file)
 static SFichier     journal_file_;
-static SChaine      journal_shared_stream_;
-static int 			journal_shared_;
 
-static int        journal_file_open_;
-static Nom           journal_file_name_;
+static int          journal_file_open_;
+static Nom          journal_file_name_;
 // Niveau maximal des messages ecrits. La valeur initiale determine
 // si les messages ecrits avant l'initialisation du journal sont ecrits
 // ou pas.
@@ -92,6 +90,15 @@ int Process::je_suis_maitre()
   return r == 0;
 }
 
+/*! @brief renvoie 1 si on est sur le processeur maitre du noeud numa, 0 sinon.
+ *
+ */
+int Process::node_master()
+{
+  const int r = PE_Groups::get_node_group().rank();
+  return r == 0;
+}
+
 /*! @brief renvoie le nombre de processeurs dans le groupe courant Voir Comm_Group::nproc() et PE_Groups::current_group()
  *
  */
@@ -132,55 +139,10 @@ void Process::barrier()
   PE_Groups::current_group().barrier(0);
 }
 
-/*! @brief Calcule le max de x sur tous les processeurs du groupe courant.
- *
- * Remarques :
- *    Cette methode doit etre appelee sur tous les processeurs du groupe.
- *    La valeur renvoyee est identique sur tous les processeurs.
- *
- */
-double Process::mp_max(double x)
-{
-  const Comm_Group& grp = PE_Groups::current_group();
-  double y;
-  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_MAX);
-  return y;
-}
-
-int Process::mp_max(int x)
-{
-  const Comm_Group& grp = PE_Groups::current_group();
-  int y;
-  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_MAX);
-  return y;
-}
-
-
-/*! @brief Calcule le min de x sur tous les processeurs du groupe courant.
- *
- * @sa mp_max()
- *
- */
-double Process::mp_min(double x)
-{
-  const Comm_Group& grp = PE_Groups::current_group();
-  double y;
-  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_MIN);
-  return y;
-}
-
-int Process::mp_min(int x)
-{
-  const Comm_Group& grp = PE_Groups::current_group();
-  int y;
-  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_MIN);
-  return y;
-}
 
 /*! @brief Calcule la somme de x sur tous les processeurs du groupe courant.
  *
  * @sa mp_max()
- *
  */
 double Process::mp_sum(double x)
 {
@@ -190,18 +152,88 @@ double Process::mp_sum(double x)
   return y;
 }
 
-/*! @brief Calcule la somme de x sur tous les processeurs du groupe courant.
- *
- * @sa mp_max()
- *
- */
-int Process::mp_sum(int x)
+float Process::mp_sum(float x)
 {
   const Comm_Group& grp = PE_Groups::current_group();
-  int y;
+  float y;
   grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_SUM);
   return y;
 }
+
+/*! @brief Calcule la somme de x sur tous les processeurs du groupe courant.
+ *
+ * !!! Note that the sum of many int might result in a long !!!
+ *
+ * @sa mp_max()
+ */
+trustIdType Process::mp_sum(trustIdType x)
+{
+  const Comm_Group& grp = PE_Groups::current_group();
+  trustIdType y;
+  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_SUM);
+  return y;
+}
+
+
+namespace
+{
+
+template <typename T>
+T mp_operations_commun_(T x, Comm_Group::Collective_Op op)
+{
+  const Comm_Group& grp = PE_Groups::current_group();
+  T y;
+  grp.mp_collective_op(&x, &y, 1, op);
+  return y;
+}
+}
+
+/*! @brief renvoie le plus grand int i sur l'ensemble des processeurs du groupe courant.
+ *
+ */
+int Process::mp_max(int x) { return mp_operations_commun_(x,Comm_Group::COLL_MAX); }
+double Process::mp_max(double x) { return mp_operations_commun_(x,Comm_Group::COLL_MAX); }
+#if INT_is_64_ == 2
+trustIdType Process::mp_max(trustIdType x) { return mp_operations_commun_(x,Comm_Group::COLL_MAX); }
+#endif
+
+
+/*! @brief renvoie le plus petit int i sur l'ensemble des processeurs du groupe courant.
+ *
+ */
+int Process::mp_min(int x) { return mp_operations_commun_(x,Comm_Group::COLL_MIN); }
+double Process::mp_min(double x) { return mp_operations_commun_(x,Comm_Group::COLL_MIN); }
+#if INT_is_64_ == 2
+trustIdType Process::mp_min(trustIdType x) { return mp_operations_commun_(x,Comm_Group::COLL_MIN); }
+#endif
+
+/*! @brief Calul de la somme partielle de i sur les processeurs 0 a me()-1 (renvoie 0 sur le processeur 0).
+ *
+ * Voir Comm_Group::mppartial_sum()
+ *
+ */
+trustIdType Process::mppartial_sum(trustIdType x)
+{
+  const Comm_Group& grp = PE_Groups::current_group();
+  trustIdType xx = x;
+  trustIdType y;
+
+  grp.mp_collective_op(&xx, &y, 1, Comm_Group::COLL_PARTIAL_SUM);
+  return y;
+}
+
+void Process::mpsum_multiple(double& x1, double& x2)
+{
+  const Comm_Group& grp = PE_Groups::current_group();
+  double x[2];
+  double y[2];
+  x[0] = x1;
+  x[1] = x2;
+  grp.mp_collective_op(x, y, 2, Comm_Group::COLL_SUM);
+  x1 = y[0];
+  x2 = y[1];
+}
+
 
 /*! @brief Calcule le 'et' logique de b sur tous les processeurs du groupe courant.
  *
@@ -215,10 +247,42 @@ bool Process::mp_and(bool b)
   return y == 1;
 }
 
-/*! @brief Routine de sortie de Trio-U sur une erreur Sauvegarde la memoire et le hierarchie dans les fichiers "memoire.
+bool Process::mp_or(bool b)
+{
+  const Comm_Group& grp = PE_Groups::current_group();
+  int x = b ? 1 : 0;
+  int y;
+  grp.mp_collective_op(&x, &y, 1, Comm_Group::COLL_MAX);
+  return y == 1;
+}
+
+
+int Process::check_int_overflow(trustIdType v)
+{
+  if (v >= std::numeric_limits<int>::max())
+    Process::exit("Value too big - above 32b and can not be converted to int!!");
+  return static_cast<int>(v);
+}
+
+/*! @brief Routine de sortie de TRUST dans une region Kokkos
  *
- * dump" et "hierarchie.dump"
+ */
+/*
+KOKKOS_FUNCTION
+void Process::Kokkos_exit(const char* str)
+{
+#ifdef TRUST_USE_GPU
+ // ToDo Kokkos: try to exit more properly on device...
+ Kokkos::abort(str);
+ //Kokkos::finalize();
+#else
+    Process::exit(str);
+#endif
+}*/
+
+/*! @brief Routine de sortie de TRUST sur une erreur.
  *
+ * Sauvegarde la memoire et de la hierarchie dans les fichiers "memoire.dump" et "hierarchie.dump"
  */
 void Process::exit(int i)
 {
@@ -258,9 +322,6 @@ void Process::exit(const Nom& message ,int i)
         }
     }
   Journal() << message << finl;
-  if( journal_shared_ && journal_file_open_)
-    end_journal(verbose_level_);
-
 
   if (exception_sur_exit)
     {
@@ -271,11 +332,6 @@ void Process::exit(const Nom& message ,int i)
     {
       int abort=0;
 #ifdef MPI_
-#ifdef INT_is_64_
-#define MPI_ENTIER MPI_LONG
-#else
-#define MPI_ENTIER MPI_INT
-#endif
       if (Process::is_parallel())
         {
           const MPI_Comm& mpi_comm=ref_cast(Comm_Group_MPI,PE_Groups::groupe_TRUST()).get_mpi_comm();
@@ -318,6 +374,7 @@ void Process::exit(const Nom& message ,int i)
           PE_Groups::finalize();
         }
     }
+  // Kokkos::finalize();
   // On force exit();
   if (i==0) i=-1;
   ::exit(i); //Seul ::exit utilise dans le code jusqu'a 01/23. second ajoute car appel recursif a Process::exit si droits ecriture dossier etude manquants
@@ -349,12 +406,7 @@ Sortie& Process::Journal(int message_level)
   if (message_level <= verbose_level_ && verbose_level_ > 0)
     {
       if (journal_file_open_)
-        {
-          if(journal_shared_)
-            return journal_shared_stream_;
-          else
-            return journal_file_;
-        }
+        return journal_file_;
       else
         return std_err_;
     }
@@ -373,6 +425,13 @@ double Process::ram_processeur()
 #endif
 }
 
+/* #include <malloc.h>
+void Process::print_allocated_memory(std::string s)
+{
+  struct mallinfo2 info = mallinfo2();
+  Cout << "Total allocated memory: " << s << " " << info.uordblks << " B" << finl;
+} */
+
 void Process::imprimer_ram_totale(int all_process)
 {
   double memoire=ram_processeur();
@@ -380,17 +439,16 @@ void Process::imprimer_ram_totale(int all_process)
     {
       int Mo=1024*1024;
       if (all_process) Journal() << (int)(memoire/Mo) << " MBytes of RAM taken by the processor " << Process::me() << finl;
-      /*      if (Process::nproc()>100)
-              {
-                memoire=Process::nproc()*memoire;
-                Cout << (int)(memoire/Mo) << " MBytes of RAM taken by the calculation (estimation)." << finl;
-              }
-            else */
       {
-        //int max_memoire=Process::mp_max(memoire); // int au lieu de double provoque un segfault comment detecter ?
         double max_memoire=Process::mp_max(memoire);
         double total_memoire=Process::mp_sum(memoire);
         Cout << (int)(total_memoire/Mo) << " MBytes of RAM taken by the calculation (max on a rank: "<<(int)(max_memoire/Mo)<<" MB)." << finl;
+#ifdef TRUST_USE_GPU
+        int Go = 1024 * Mo;
+        double allocated = mp_max((double)DeviceMemory::allocatedBytesOnDevice());
+        size_t total = DeviceMemory::deviceMemGetInfo(1);
+        Cout << 0.1*(int)(10*allocated/Go) << " GBytes of maximal RAM allocated on a GPU (" <<  int(100 * allocated / total) << "%)" << finl;
+#endif
       }
     }
 }
@@ -401,38 +459,23 @@ void Process::imprimer_ram_totale(int all_process)
  * @param (file_name) si pointeur nul, tout le monde ecrit dans cerr, sinon c'est le nom du fichier (doit etre different sur chaque processeur)
  * @param (append) indique si on ouvre le fichier en mode append ou pas.
  */
-void init_journal_file(int verbose_level, int journal_shared, const char * file_name, int append)
+void init_journal_file(int verbose_level, const char * file_name, int append)
 {
-  journal_shared_ = journal_shared;
-  if( journal_shared_ )
-    {
-      if(journal_file_open_)
-        end_journal(verbose_level);
-    }
-  else
-    end_journal(verbose_level);
+  end_journal(verbose_level);
 
   if (verbose_level > 0)
     {
       if (file_name)
         {
-          if(!journal_shared_)
+          IOS_OPEN_MODE mode = ios::out;
+          if (append)
+            mode = ios::app;
+          if (!journal_file_.ouvrir(file_name, mode))
             {
-              IOS_OPEN_MODE mode = ios::out;
-              if (append)
-                mode = ios::app;
-              if (!journal_file_.ouvrir(file_name, mode))
-                {
-                  Cerr << "Fatal error in init_journal_file: cannot open journal file" << finl;
-                  Process::exit();
-                }
+              Cerr << "Fatal error in init_journal_file: cannot open journal file" << finl;
+              Process::exit();
             }
-          else
-            {
-              if(append)
-                Cerr << "Process.cpp::init_journal_file : append mode is not possible with HDF5!\n"
-                     << "If " << file_name << " already exists, it will be overwritten" << finl;
-            }
+
           journal_file_open_ = 1;
           journal_file_name_ = file_name;
         }
@@ -444,15 +487,7 @@ void end_journal(int verbose_level)
 {
   // Attention: acrobatie pour que ca "plante proprement" si le destructeur
   // ecrit dans le journal !
-  if(journal_shared_)
-    {
-      FichierHDFPar fic_hdf;
-      fic_hdf.create(journal_file_name_);
-      fic_hdf.create_and_fill_dataset_MW("/log", journal_shared_stream_);
-      fic_hdf.close();
-    }
-  else
-    journal_file_.close();
+  journal_file_.close();
   journal_file_open_ = 0;
 }
 
@@ -464,12 +499,7 @@ void end_journal(int verbose_level)
 Sortie& get_Cerr()
 {
   if (journal_file_open_ && cerr_to_journal_)
-    {
-      if(journal_shared_)
-        return journal_shared_stream_;
-      else
-        return journal_file_;
-    }
+    return journal_file_;
   else
     {
       // dans le cas ou on a pas initialise les groupes
@@ -480,12 +510,7 @@ Sortie& get_Cerr()
       if (Process::je_suis_maitre())
         return std_err_;
       else if (verbose_level_)
-        {
-          if(journal_shared_)
-            return journal_shared_stream_;
-          else
-            return journal_file_;
-        }
+        return journal_file_;
       else
         return journal_zero_;
     }
@@ -501,12 +526,7 @@ Sortie& get_Cout()
   if (Process::je_suis_maitre())
     {
       if (journal_file_open_ && cerr_to_journal_)
-        {
-          if(journal_shared_)
-            return journal_shared_stream_;
-          else
-            return journal_file_;
-        }
+        return journal_file_;
       else
         return std_out_;
     }

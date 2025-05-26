@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,12 +21,14 @@
 /*! @brief Methode outil pour retirer les doublons dans un tableau.
  *
  */
-void array_trier_retirer_doublons(ArrOfInt& array);
+template <typename _TYPE_, typename _SIZE_>
+void array_trier_retirer_doublons(TRUSTArray<_TYPE_,_SIZE_>& array);
 
 /*! @brief Methode outil pour calculer l'intersection entre deux listes d'entiers.
  *
  */
-void array_calculer_intersection(ArrOfInt& liste1, const ArrOfInt& liste2);
+template <typename _TYPE_, typename _SIZE_>
+void array_calculer_intersection(TRUSTArray<_TYPE_,_SIZE_>& liste1, const TRUSTArray<_TYPE_,_SIZE_>& liste2);
 
 /*! @brief Methode outil pour calculer la difference entre deux listes d'entiers triees
  *
@@ -41,17 +43,20 @@ int array_bsearch(const ArrOfInt& tab, int valeur);
 /*! @brief Tri lexicographique d'un tableau
  *
  */
-int tri_lexicographique_tableau(IntTab& tab);
+template <typename _TYPE_, typename _SIZE_>
+int tri_lexicographique_tableau(TRUSTTab<_TYPE_,_SIZE_>& tab);
 
 /*! @brief Tri indirect (on trie le tableau index qui contient des numeros de lignes dans tab)
  *
  */
-int tri_lexicographique_tableau_indirect(const IntTab& tab, ArrOfInt& index);
+template <typename _TYPE_, typename _SIZE_>
+int tri_lexicographique_tableau_indirect(const TRUSTTab<_TYPE_,_SIZE_>& tab, ArrOfInt_T<_SIZE_>& index);
 
 /*! @brief Methode outil pour retirer les doublons dans un tableau.
  *
  */
-void tableau_trier_retirer_doublons(IntTab& tab);
+template <typename _SIZE_>
+void tableau_trier_retirer_doublons(IntTab_T<_SIZE_>& tab);
 
 /*! @brief Methode outil pour trouver les doublons (permet de retirer les doublons sans changer l'ordre des elements)
  *
@@ -59,8 +64,8 @@ void tableau_trier_retirer_doublons(IntTab& tab);
 void calculer_renum_sans_doublons(const IntTab& tab, ArrOfInt& renum, ArrOfInt& items_a_garder);
 
 
-template<typename _TYPE_>
-inline void append_array_to_array(TRUSTArray<_TYPE_>& dest, const TRUSTArray<_TYPE_>& src)
+template<typename _TYPE_, typename _SIZE_>
+inline void append_array_to_array(TRUSTArray<_TYPE_,_SIZE_>& dest, const TRUSTArray<_TYPE_,_SIZE_>& src)
 {
   const int n1 = dest.size_array(), n2 = src.size_array();
   dest.resize_array(n1+n2);

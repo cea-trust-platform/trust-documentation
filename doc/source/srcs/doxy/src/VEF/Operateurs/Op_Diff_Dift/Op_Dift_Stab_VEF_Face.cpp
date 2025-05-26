@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,6 +31,14 @@
 #include <Debog.h>
 
 Implemente_instanciable(Op_Dift_Stab_VEF_Face, "Op_Dift_VEF_P1NC_stab", Op_Dift_VEF_base);
+// XD diffusion_stab diffusion_deriv stab 1 keyword allowing consistent and stable calculations even in case of obtuse angle meshes.
+// XD attr standard entier standard 1 to recover the same results as calculations made by standard laminar diffusion operator. However, no stabilization technique is used and calculations may be unstable when working with obtuse angle meshes (by default 0)
+// XD attr info entier info 1 developer option to get the stabilizing ratio (by default 0)
+// XD attr new_jacobian entier new_jacobian 1 when implicit time schemes are used, this option defines a new jacobian that may be more suitable to get stationary solutions (by default 0)
+// XD attr nu entier nu 1 (respectively nut 1) takes the molecular viscosity (resp. eddy viscosity) into account in the velocity gradient part of the diffusion expression (by default nu=1 and nut=1)
+// XD attr nut entier nut 1 not_set
+// XD attr nu_transp entier nu_transp 1 (respectively nut_transp 1) takes the molecular viscosity (resp. eddy viscosity) into account in the transposed velocity gradient part of the diffusion expression (by default nu_transp=0 and nut_transp=1)
+// XD attr nut_transp entier nut_transp 1 not_set
 
 double my_minimum(double a, double b, double c)
 {
@@ -555,7 +563,7 @@ void Op_Dift_Stab_VEF_Face::calculer_min_max(const DoubleTab& inconnueTab, int& 
   for (n_bord = 0; n_bord < nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
 
       num1 = 0;
       num2 = le_bord.nb_faces_tot();
@@ -610,7 +618,7 @@ void Op_Dift_Stab_VEF_Face::completer()
   for (int n_bord = 0; n_bord < nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       int nb_faces_bord_tot = le_bord.nb_faces_tot(), face = -1;
 
       if ((sub_type(Dirichlet, la_cl.valeur())) || (sub_type(Dirichlet_homogene, la_cl.valeur())))
@@ -666,7 +674,7 @@ void Op_Dift_Stab_VEF_Face::ajouter_cas_vectoriel(const DoubleTab& inconnue, con
 
 DoubleTab& Op_Dift_Stab_VEF_Face::ajouter(const DoubleTab& inconnue_org, DoubleTab& resu) const
 {
-  const DoubleTab& nu_turb = diffusivite_turbulente()->valeurs();
+  const DoubleTab& nu_turb = diffusivite_turbulente().valeurs();
   const DoubleVect& porosite_face = equation().milieu().porosite_face(), &porosite_elem = equation().milieu().porosite_elem();
   const int nb_comp = resu.line_size();
 
@@ -695,7 +703,7 @@ DoubleTab& Op_Dift_Stab_VEF_Face::ajouter(const DoubleTab& inconnue_org, DoubleT
   Debog::verifier("Op_Dift_Stab_VEF_Face::ajouter inconnue_org", inconnue_org);
   Debog::verifier("Op_Dift_Stab_VEF_Face::ajouter inconnue", inconnue);
 
-  if (equation().inconnue()->nature_du_champ() != vectoriel)
+  if (equation().inconnue().nature_du_champ() != vectoriel)
     ajouter_cas_scalaire(inconnue, nu, nu_turb_m, resu2);
   else
     ajouter_cas_vectoriel(inconnue, nu, nu_turb_m, resu2);
@@ -712,7 +720,7 @@ void Op_Dift_Stab_VEF_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Mor
   modifier_matrice_pour_periodique_avant_contribuer(matrice, equation());
   remplir_nu(nu_); // On remplit le tableau nu car l'assemblage d'une matrice avec ajouter_contribution peut se faire avant le premier pas de temps
 
-  const DoubleTab& nu_turb_ = diffusivite_turbulente()->valeurs();
+  const DoubleTab& nu_turb_ = diffusivite_turbulente().valeurs();
   DoubleTab nu, nu_turb;
 
   int marq = phi_psi_diffuse(equation());
@@ -725,7 +733,7 @@ void Op_Dift_Stab_VEF_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Mor
   DoubleVect porosite_eventuelle(equation().milieu().porosite_face());
   if (!marq) porosite_eventuelle = 1;
 
-  if (equation().inconnue()->nature_du_champ() == vectoriel)
+  if (equation().inconnue().nature_du_champ() == vectoriel)
     {
       if (!new_jacobian_)
         {

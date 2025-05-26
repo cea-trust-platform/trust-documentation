@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -33,8 +33,8 @@ public :
   Aire_interfaciale();
 
   void associer_fluide(const Fluide_base& );
-  inline const Champ_Inc& inconnue() const override;
-  inline Champ_Inc& inconnue() override;
+  inline const Champ_Inc_base& inconnue() const override { return l_inco_ch_; }
+  inline Champ_Inc_base& inconnue() override { return l_inco_ch_; }
   void discretiser() override;
   const Milieu_base& milieu() const override;
   Milieu_base& milieu() override;
@@ -42,35 +42,25 @@ public :
   int impr(Sortie& os) const override;
   void mettre_a_jour(double temps) override;
 
-  int positive_unkown() override {return 1;};
+  bool positive_unkown() override { return true; }
 
-  int nombre_d_operateurs() const override //pas de diffusion
-  {
-    return 1;
-  }
+  int nombre_d_operateurs() const override { return has_diff_turb_ ? 2 : 1; }
   const Operateur& operateur(int) const override;
   Operateur& operateur(int) override;
 
   const Motcle& domaine_application() const override;
 
 protected :
+  OWN_PTR(Champ_Inc_base) l_inco_ch_;
+  OWN_PTR(Champ_Fonc_base)  diametre_bulles_;
+  OBS_PTR(Fluide_base) le_fluide_;
 
-  Champ_Inc l_inco_ch;
-  Champ_Fonc diametre_bulles;
-
-  REF(Fluide_base) le_fluide;
-
+  bool has_diff_turb_ = false;
   int n_l=-1 ; // Number of the liquid phase (the one where no IA is stored)
+  int n_g1=-1 ;
+  int n_g2=-1 ;
+  const double g = 9.81 ;
 };
 
-inline const Champ_Inc& Aire_interfaciale::inconnue() const
-{
-  return l_inco_ch;
-}
+#endif /* Aire_interfaciale_included */
 
-inline Champ_Inc& Aire_interfaciale::inconnue()
-{
-  return l_inco_ch;
-}
-
-#endif

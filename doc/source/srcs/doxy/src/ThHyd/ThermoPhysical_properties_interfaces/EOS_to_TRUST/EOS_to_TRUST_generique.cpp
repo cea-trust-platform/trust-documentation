@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -95,7 +95,7 @@ int EOS_to_TRUST_generique::tppi_get_beta_pT(const SpanD P, const SpanD T, SpanD
 #endif
 }
 
-// methods particuliers par application pour gagner en performance : utilise dans Pb_Multiphase (pour le moment !)
+// methodes particulieres par application pour gagner en performance : utilisees dans Pb_Multiphase (pour le moment !)
 #ifdef HAS_EOS
 int EOS_to_TRUST_generique::tppi_get_all_properties_T_(const MSpanD input , EOS_Fields& flds_out, EOS_Error_Field& ferr, int ncomp, int id) const
 {
@@ -112,6 +112,25 @@ int EOS_to_TRUST_generique::tppi_get_all_properties_T_(const MSpanD input , EOS_
       for (auto &val : TT) val = T[i_it * ncomp + id];
 
       EOS_Field T_fld("Temperature", "T", (int) TT.size(), (double*) TT.begin()), P_fld("Pressure", "P", (int) P.size(), (double*) P.begin());
+      return (int)fluide->compute(P_fld, T_fld, flds_out, ferr);
+    }
+}
+
+int EOS_to_TRUST_generique::tppi_get_all_properties_h_(const MSpanD input , EOS_Fields& flds_out, EOS_Error_Field& ferr, int ncomp, int id) const
+{
+  const SpanD T = input.at("enthalpie"), P = input.at("pressure");
+  if (ncomp == 1)
+    {
+      EOS_Field T_fld("Enthalpy", "h", (int) T.size(), (double*) T.begin()), P_fld("Pressure", "P", (int) P.size(), (double*) P.begin());
+      return (int)fluide->compute(P_fld, T_fld, flds_out, ferr);
+    }
+  else /* attention stride */
+    {
+      VectorD temp_((int) P.size());
+      SpanD TT(temp_);
+      for (auto &val : TT) val = T[i_it * ncomp + id];
+
+      EOS_Field T_fld("Enthalpy", "h", (int) TT.size(), (double*) TT.begin()), P_fld("Pressure", "P", (int) P.size(), (double*) P.begin());
       return (int)fluide->compute(P_fld, T_fld, flds_out, ferr);
     }
 }
@@ -232,6 +251,86 @@ int EOS_to_TRUST_generique::tppi_get_all_prop_loi_F5(const MSpanD input, MLoiSpa
   EOS_Field T_fld("Enthalpy", "h", (int) H.size(), (double*) H.begin()), P_fld("Pressure", "P", (int) P.size(), (double*) P.begin());
   return (int)fluide->compute(P_fld, T_fld, flds_out, ferr);
 
+#else
+  Cerr << "EOS_to_TRUST_generique::" <<  __func__ << " should not be called since TRUST is not compiled with the EOS library !!! " << finl;
+  throw;
+#endif
+}
+
+int EOS_to_TRUST_generique::tppi_get_CPMLB_pb_multiphase_ph(const MSpanD input, MLoiSpanD_h prop, int ncomp, int id) const
+{
+#ifdef HAS_EOS
+  assert((int )prop.size() == 4 && (int )input.size() == 2);
+
+  const SpanD H = input.at("enthalpie"), P = input.at("pressure");
+  if ((int )H.size() != ncomp * (int )P.size()) Process::exit("Ah bon ? NON !");
+
+  const int nb_out = 3; /* 4 variables to fill --- without BETA :: TODO FIXME */
+  ArrOfInt tmp((int)P.size());
+  EOS_Error_Field ferr(tmp);
+  EOS_Fields flds_out(nb_out);
+  int i_out = 0;
+
+  for (auto& itr : prop)
+    {
+      assert((int )H.size() == ncomp * (int )itr.second.size());
+      Loi_en_h prop_ = itr.first;
+      SpanD span_ = itr.second;
+      if (prop_ != Loi_en_h::BETA)
+        flds_out[i_out++] = EOS_Field(EOS_prop_en_h[(int) prop_][0], EOS_prop_en_h[(int) prop_][1], (int) span_.size(), (double*) span_.begin());
+    }
+
+  /* beta  FIXME */
+  SpanD B = prop.at(Loi_en_h::BETA);
+  for (int i = 0; i < (int) B.size(); i++) B[i] = 0.;
+
+  int err_ = tppi_get_all_properties_h_(input, flds_out, ferr, ncomp, id);
+
+  return err_;
+#else
+  Cerr << "EOS_to_TRUST_generique::" <<  __func__ << " should not be called since TRUST is not compiled with the EOS library !!! " << finl;
+  throw;
+#endif
+}
+
+int EOS_to_TRUST_generique::tppi_get_all_pb_multiphase_ph(const MSpanD input, MLoiSpanD_h inter, MLoiSpanD_h bord, int ncomp, int id) const
+{
+#ifdef HAS_EOS
+  assert( (int )input.size() == 4 && (int )inter.size() == 6 && (int )bord.size() == 2);
+  const SpanD H = input.at("enthalpie"), P = input.at("pressure"), bH = input.at("bord_enthalpie"), bP = input.at("bord_pressure");
+  assert ((int )bH.size() == ncomp * (int )bP.size() && (int )H.size() == ncomp * (int )P.size());
+
+  const int nb_out = (int )inter.size(), bnb_out = (int )bord.size();
+  ArrOfInt tmp((int)P.size()), btmp((int)bP.size());
+  EOS_Error_Field ferr(tmp), bferr(btmp);
+  EOS_Fields flds_out(nb_out), bflds_out(bnb_out);
+
+  int i_out = 0, bi_out = 0;
+
+  for (auto& itr : bord)
+    {
+      Loi_en_h prop_ = itr.first;
+      SpanD span_ = itr.second;
+      assert((int ) bH.size() == ncomp * (int ) span_.size());
+      bflds_out[bi_out++] = EOS_Field(EOS_prop_en_h[(int) prop_][0], EOS_prop_en_h[(int) prop_][1], (int) span_.size(), (double*) span_.begin());
+    }
+
+  for (auto& itr : inter)
+    {
+      Loi_en_h prop_ = itr.first;
+      SpanD span_ = itr.second;
+      assert((int ) H.size() == ncomp * (int ) span_.size());
+      flds_out[i_out++] = EOS_Field(EOS_prop_en_h[(int) prop_][0], EOS_prop_en_h[(int) prop_][1], (int) span_.size(), (double*) span_.begin());
+    }
+
+  int err1_ = tppi_get_all_properties_h_( { { "enthalpie", bH }, { "pressure", bP } }, bflds_out, bferr, ncomp, id); // bords
+  int err2_ = tppi_get_all_properties_h_( { { "enthalpie", H }, { "pressure", P } }, flds_out, ferr, ncomp, id); // interne
+
+  // XXX : put T in C !!
+  SpanD T = inter.at(Loi_en_h::T), bT = bord.at(Loi_en_h::T);
+  Tc_(T), Tc_(bT);
+
+  return std::max(err1_, err2_);
 #else
   Cerr << "EOS_to_TRUST_generique::" <<  __func__ << " should not be called since TRUST is not compiled with the EOS library !!! " << finl;
   throw;

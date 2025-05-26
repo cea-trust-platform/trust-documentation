@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,24 +13,27 @@
 *
 *****************************************************************************/
 
-#include <EOS_Tools_VEF.h>
-#include <Domaine.h>
-#include <Domaine_VEF.h>
-#include <Debog.h>
-#include <Navier_Stokes_std.h>
-#include <Schema_Temps_base.h>
-#include <Fluide_Dilatable_base.h>
+#include <Navier_Stokes_Fluide_Dilatable_base.h>
+#include <Source_Masse_Fluide_Dilatable_base.h>
 #include <Loi_Etat_Melange_GP_base.h>
-#include <Porosites_champ.h>
-#include <Champ_P1NC.h>
+#include <Fluide_Dilatable_base.h>
 #include <Check_espace_virtuel.h>
+#include <Schema_Temps_base.h>
+#include <Porosites_champ.h>
+#include <EOS_Tools_VEF.h>
+#include <Domaine_VEF.h>
+#include <Champ_P1NC.h>
+#include <Domaine.h>
+#include <Debog.h>
+
+#include <kokkos++.h>
+#include <TRUSTArray_kokkos.tpp>
 
 Implemente_instanciable(EOS_Tools_VEF,"EOS_Tools_VEF",EOS_Tools_base);
 
 Sortie& EOS_Tools_VEF::printOn(Sortie& os) const
 {
-  os <<que_suis_je()<< finl;
-  return os;
+  return os <<que_suis_je()<< finl;
 }
 
 Entree& EOS_Tools_VEF::readOn(Entree& is)
@@ -40,13 +43,19 @@ Entree& EOS_Tools_VEF::readOn(Entree& is)
 
 /*! @brief Associe les domaines a l'EDO
  *
- * @param (Domaine_dis& domaine) domaine
- * @param (Domaine_Cl_dis& domaine_cl) domaine cl
+ * @param (Domaine_dis_base& domaine) domaine
+ * @param (Domaine_Cl_dis_base& domaine_cl) domaine cl
  */
-void  EOS_Tools_VEF::associer_domaines(const Domaine_dis& domaine, const Domaine_Cl_dis& domaine_cl)
+void EOS_Tools_VEF::associer_domaines(const Domaine_dis_base& dds, const Domaine_Cl_dis_base& domaine_cl)
 {
-  le_dom = ref_cast(Domaine_VEF,domaine.valeur());
+  le_dom = ref_cast(Domaine_VEF,dds);
   le_dom_Cl = domaine_cl;
+  if (!un_.get_md_vector().non_nul())
+    {
+      le_dom->creer_tableau_faces(un_, RESIZE_OPTIONS::NOCOPY_NOINIT);
+      mapToDevice(un_); // Copy on device this constant array
+      un_ = 1.;
+    }
 }
 
 /*! @brief Renvoie rho avec la meme discretisation que la vitesse : une valeur par face en VEF
@@ -78,10 +87,7 @@ double EOS_Tools_VEF::moyenne_vol(const DoubleTab& tab) const
   double x = Champ_P1NC::calculer_integrale_volumique(le_dom.valeur(), tab, FAUX_EN_PERIO);
   // La facon simple de faire serait celle-ci, mais c'est faux a cause de FAUX_EN_PERIO
   //  qui compte deux fois les volumes entrelaces des faces periodiques:
-  DoubleVect un;
-  le_dom.valeur().creer_tableau_faces(un, RESIZE_OPTIONS::NOCOPY_NOINIT);
-  un = 1.;
-  double y = Champ_P1NC::calculer_integrale_volumique(le_dom.valeur(), un, FAUX_EN_PERIO);
+  double y = Champ_P1NC::calculer_integrale_volumique(le_dom.valeur(), un_, FAUX_EN_PERIO);
   return x / y;
 }
 
@@ -90,11 +96,12 @@ double EOS_Tools_VEF::moyenne_vol(const DoubleTab& tab) const
  */
 void EOS_Tools_VEF::divu_discvit(const DoubleTab& DivVelocityElements, DoubleTab& DivVelocityFaces)
 {
+  ToDo_Kokkos("critical");
   assert_espace_virtuel_vect(DivVelocityElements);
   //Corrections pour moyenner div(u) sur les faces
   const DoubleVect& volumes = le_dom->volumes();
   const DoubleVect& volumes_entrelaces = le_dom->volumes_entrelaces();
-  const DoubleVect& volumes_entrelaces_Cl = ref_cast(Domaine_Cl_VEF,le_dom_Cl->valeur()).volumes_entrelaces_Cl();
+  const DoubleVect& volumes_entrelaces_Cl = ref_cast(Domaine_Cl_VEF,le_dom_Cl.valeur()).volumes_entrelaces_Cl();
 
   IntTab& face_voisins = le_dom->face_voisins();
   int premiere_fac_std=le_dom->premiere_face_std();
@@ -142,136 +149,172 @@ void EOS_Tools_VEF::divu_discvit(const DoubleTab& DivVelocityElements, DoubleTab
  */
 void EOS_Tools_VEF::secmembre_divU_Z(DoubleTab& tab_W) const
 {
-  double dt = le_fluide().vitesse()->equation().schema_temps().pas_de_temps();
-  int face, elem, som,som_glob;
+  double dt = le_fluide().vitesse().equation().schema_temps().pas_de_temps();
   const IntTab& face_sommets = le_dom->face_sommets();
-  int nb_elem_tot=le_dom->nb_elem_tot();
-  int nb_som_tot=le_dom->domaine().nb_som_tot();
-  int nb_faces_tot=le_dom->nb_faces_tot();
-  const Equation_base& eq=le_fluide().vitesse()->equation();
-  DoubleTab tab_dZ;
+  int nb_elem_tot = le_dom->nb_elem_tot();
+  int nb_som_tot = le_dom->domaine().nb_som_tot();
+  int nb_faces_tot = le_dom->nb_faces_tot();
+  const Equation_base& eq = le_fluide().vitesse().equation();
 
   // Dimensionnement de tab_dZ
-  const Navier_Stokes_std& eqns = ref_cast(Navier_Stokes_std,eq);
-  const DoubleTab& pression = eqns.pression().valeurs();
-  tab_dZ = pression;
+  const Navier_Stokes_std& eqns = ref_cast(Navier_Stokes_std, eq);
+  const DoubleVect& pression = eqns.pression().valeurs();
 
-  DoubleVect tab_rhon_som(nb_som_tot);
-  DoubleVect volume_int_som(nb_som_tot);
-  DoubleVect tab_rhonp1_som(nb_som_tot);
+  DoubleTrav tab_dZ = pression;
+  DoubleTrav tab_rhon_som(nb_som_tot);
+  DoubleTrav volume_int_som(nb_som_tot);
+  DoubleTrav tab_rhonp1_som(nb_som_tot);
 
   const DoubleTab& tab_rhon = le_fluide().loi_etat()->rho_n();
   const DoubleTab& tab_rhonp1 = le_fluide().loi_etat()->rho_np1();
-  DoubleTab tab_rhonP1_,tab_rhonp1P1_;
+  DoubleTrav tab_rhonP1_, tab_rhonp1P1_;
   const DoubleVect& porosite_face = le_fluide().porosite_face();
-  const DoubleTab& tab_rhonP1=modif_par_porosite_si_flag(tab_rhon,tab_rhonP1_,1,porosite_face);
-  const DoubleTab& tab_rhonp1P1=modif_par_porosite_si_flag(tab_rhonp1,tab_rhonp1P1_,1,porosite_face);
-  const IntTab& elem_faces = le_dom->elem_faces();
-  const DoubleVect& volumes = le_dom->volumes();
+  const DoubleTab& tab_rhonP1 = modif_par_porosite_si_flag(tab_rhon, tab_rhonP1_, 1, porosite_face);
+  const DoubleTab& tab_rhonp1P1 = modif_par_porosite_si_flag(tab_rhonp1, tab_rhonp1P1_, 1, porosite_face);
   const DoubleVect& volumes_entrelaces = le_dom->volumes_entrelaces();
-  const Domaine_VEF& zp1b=ref_cast(Domaine_VEF,le_dom.valeur());
-  const DoubleVect& volumes_controle=zp1b.volume_aux_sommets();
+  const Domaine_VEF& zp1b = ref_cast(Domaine_VEF, le_dom.valeur());
 
-  double rn,rnp1;
   int nfe = le_dom->domaine().nb_faces_elem();
   int nsf = le_dom->nb_som_face();
-  const Domaine& dom=le_dom->domaine();
+  const Domaine& dom = le_dom->domaine();
 
   // calcul de la somme des volumes entrelacees autour d'un sommet
-  // ToDo OpenMP or Kokkos
-  volume_int_som=0.;
-  for (face=0 ; face<nb_faces_tot ; face++)
-    for (som=0 ; som<nsf ; som++)
+  volume_int_som = 0.;
+  CIntTabView face_sommets_v = face_sommets.view_ro();
+  CDoubleArrView volumes_entrelaces_v = static_cast<const DoubleVect&>(volumes_entrelaces).view_ro();
+  CIntArrView renum_som_perio_v = dom.get_renum_som_perio().view_ro();
+  DoubleArrView volume_int_som_v = static_cast<DoubleVect&>(volume_int_som).view_rw();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_faces_tot, KOKKOS_LAMBDA(
+                         const int face)
+  {
+    for (int som = 0; som < nsf; som++)
       {
-        som_glob=dom.get_renum_som_perio(face_sommets(face,som));
-        volume_int_som(som_glob)+=volumes_entrelaces(face);
+        int som_glob = renum_som_perio_v(face_sommets_v(face, som));
+        Kokkos::atomic_add(&volume_int_som_v(som_glob), volumes_entrelaces_v(face));
       }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
   //discretisation de rho sur les sommets
-  tab_rhon_som=0;
-  tab_rhonp1_som=0;
+  tab_rhon_som = 0;
+  tab_rhonp1_som = 0;
 
-  double pond;
-  pond=1./nsf; // version_originale
-  // ToDo OpenMP or Kokkos
-  for (face=0 ; face<nb_faces_tot ; face++)
-    {
-      for (som=0 ; som<nsf ; som++)
-        {
-          som_glob=dom.get_renum_som_perio(face_sommets(face,som));
-          pond=volumes_entrelaces(face)/volume_int_som(som_glob);
-          tab_rhon_som(som_glob) += tab_rhonP1(face)*pond;
-          tab_rhonp1_som(som_glob) += tab_rhonp1P1(face)*pond;
-        }
-    }
+  CDoubleTabView tab_rhonP1_v = tab_rhonP1.view_ro();
+  CDoubleTabView tab_rhonp1P1_v = tab_rhonp1P1.view_ro();
+  DoubleArrView tab_rhon_som_v = static_cast<DoubleVect&>(tab_rhon_som).view_rw();
+  DoubleArrView tab_rhonp1_som_v = static_cast<DoubleVect&>(tab_rhonp1_som).view_rw();
+  Kokkos::parallel_for(  start_gpu_timer(__KERNEL_NAME__), nb_faces_tot, KOKKOS_LAMBDA(
+                           const int face)
+  {
+    for (int som = 0; som < nsf; som++)
+      {
+        int som_glob = renum_som_perio_v(face_sommets_v(face, som));
+        // double pond = 1./nsf; // version_originale
+        double pond = volumes_entrelaces_v(face) / volume_int_som_v(som_glob);
+        Kokkos::atomic_add(&tab_rhon_som_v(som_glob), tab_rhonP1_v(face, 0) * pond);
+        Kokkos::atomic_add(&tab_rhonp1_som_v(som_glob), tab_rhonp1P1_v(face, 0) * pond);
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 
-  //Corrections pour test de la moyenne de la derivee de la masse volumique
+//Corrections pour test de la moyenne de la derivee de la masse volumique
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_dZ=",tab_dZ);
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_rhonP1=",tab_rhonP1);
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_rhonp1P1=",tab_rhonp1P1);
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z dt=",dt);
 
-  int decal=0;
   int p_has_elem=zp1b.get_alphaE();
-  int nb_case=nb_elem_tot*p_has_elem;
-  // ToDo OpenMP or Kokkos
-  for (elem=0 ; elem<nb_case ; elem++)
-    {
-      rn=0;
-      rnp1=0;
-      for (face=0 ; face<nfe ; face++)
-        {
-          rn += tab_rhonP1(elem_faces(elem,face));
-          rnp1 += tab_rhonp1P1(elem_faces(elem,face));
-        }
-      tab_dZ(elem) = (rnp1-rn)/(nfe*dt);
-    }
-
-  decal+=nb_case;
-  tab_dZ.echange_espace_virtuel();
-
-  Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_dZ=",tab_dZ);
   int p_has_som=zp1b.get_alphaS();
-  nb_case=nb_som_tot*p_has_som;
-// ToDo OpenMP
-  for (som=0 ; som<nb_case ; som++)
-    tab_dZ(decal+som) = ((tab_rhonp1_som(som))-(tab_rhon_som(som)))/dt;
-
-  decal+=nb_case;
   int p_has_arrete=zp1b.get_alphaA();
-  int nb_ar_tot=le_dom->domaine().nb_aretes_tot();
-  nb_case=nb_ar_tot*p_has_arrete;
+  int nb_ar_tot = le_dom->domaine().nb_aretes_tot();
 
-  for (int ar=0 ; ar<nb_case ; ar++)
-    tab_dZ(decal+ar) =0;
+  // ToDo_Kokkos, try to merge all theses kernels for efficiency:
+  int decal=0;
+  DoubleArrView tab_dZ_v = static_cast<DoubleVect&>(tab_dZ).view_rw();
+  if (p_has_elem)
+    {
+      CIntTabView elem_faces_v = le_dom->elem_faces().view_ro();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem_tot, KOKKOS_LAMBDA(
+                             const int elem)
+      {
+        double rn = 0;
+        double rnp1 = 0;
+        for (int face = 0; face < nfe; face++)
+          {
+            rn += tab_rhonP1_v(elem_faces_v(elem, face), 0);
+            rnp1 += tab_rhonp1P1_v(elem_faces_v(elem, face), 0);
+          }
+        tab_dZ_v(elem) = (rnp1 - rn) / (nfe * dt);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+      decal += nb_elem_tot;
+    }
 
-  assert(decal+nb_case==tab_W.size_totale());
+  if (p_has_som)
+    {
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_som_tot, KOKKOS_LAMBDA(
+                             const int som)
+      {
+        tab_dZ_v(decal + som) = ((tab_rhonp1_som_v(som)) - (tab_rhon_som_v(som))) / dt;
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+      decal += nb_som_tot;
+    }
+
+  if (p_has_arrete)
+    {
+      for (int ar = 0; ar < nb_ar_tot; ar++)
+        tab_dZ(decal + ar) = 0;
+    }
   tab_dZ.echange_espace_virtuel();
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_dZ=",tab_dZ);
 
-  double coefdivelem=1,coefdivsom=1;
-  decal=0;
-  nb_case=nb_elem_tot*p_has_elem;
-// ToDo OpenMP
-  for (elem=0 ; elem<nb_case ; elem++)
-    tab_W(elem) = -coefdivelem*tab_dZ(elem) * volumes(elem);
+  // Ajout des termes sources speciaux de l'equation de masse:
+  const bool has_mass_flux = (sub_type(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation())) ?
+                             ref_cast(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation()).has_source_masse() : false;
 
-  Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tabW elem",tab_W);
-  decal+=nb_case;
-  nb_case=nb_som_tot*p_has_som;
-
-  for (som=0 ; som<nb_case ; som++)
-    tab_W(decal+som) = -coefdivsom*tab_dZ(decal+som)*volumes_controle(som)*1;
-
-  decal+=nb_case;
-  nb_case=nb_ar_tot*p_has_arrete;
-  for (int ar=0 ; ar<nb_case ; ar++)
+  if (has_mass_flux)
     {
-      //pour l'instant on n'a pas calcule tab_dZ aux aretes
-      assert(tab_dZ(decal+ar)==0);
-      tab_W(decal+ar) =0;
+      const Source_Masse_Fluide_Dilatable_base& src_mass = ref_cast(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation()).source_masse();
+      src_mass.ajouter_projection(le_fluide(),tab_dZ); // attention : tab_dZ a taille comme pression
     }
 
-  assert(decal+nb_case==tab_W.size_totale());
+  CDoubleArrView dZ = static_cast<DoubleVect&>(tab_dZ).view_ro();
+  DoubleTabView W = tab_W.view_rw();
+  decal=0;
+  if (p_has_elem)
+    {
+      double coefdivelem=1;
+      CDoubleArrView volumes_v = le_dom->volumes().view_ro();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem_tot, KOKKOS_LAMBDA(
+                             const int elem)
+      {
+        W(elem, 0) = -coefdivelem * dZ(elem) * volumes_v(elem);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+      decal+=nb_elem_tot;
+    }
+  if (p_has_som)
+    {
+      double coefdivsom=1;
+      CDoubleArrView volumes_controle_v = zp1b.volume_aux_sommets().view_ro();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_som_tot, KOKKOS_LAMBDA(
+                             const int som)
+      {
+        W(decal + som, 0) = -coefdivsom * dZ(decal + som) * volumes_controle_v(som);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+      decal+=nb_som_tot;
+    }
+  if (p_has_arrete)
+    {
+      for (int ar = 0; ar < nb_ar_tot; ar++)
+        {
+          //pour l'instant on n'a pas calcule tab_dZ aux aretes
+          assert(tab_dZ(decal + ar) == 0);
+          tab_W(decal + ar) = 0.;
+        }
+    }
   tab_W.echange_espace_virtuel();
   Debog::verifier("EOS_Tools_VEF::secmembre_divU_Z tab_W=",tab_W);
 }

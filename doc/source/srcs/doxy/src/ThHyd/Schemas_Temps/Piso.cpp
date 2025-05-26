@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,6 +16,7 @@
 #include <Fluide_Dilatable_base.h>
 #include <MD_Vector_composite.h>
 #include <Discretisation_base.h>
+#include <Navier_Stokes_IBM.h>
 #include <Schema_Temps_base.h>
 #include <MD_Vector_tools.h>
 #include <Source_PDF_base.h>
@@ -29,15 +30,13 @@
 #include <Debog.h>
 #include <Piso.h>
 
-Implemente_instanciable_sans_constructeur(Piso,"Piso",Simpler);
+Implemente_instanciable(Piso,"Piso",Simpler);
+// XD piso simpler piso -1 Piso (Pressure Implicit with Split Operator) - method to solve N_S.
+// XD attr seuil_convergence_implicite floattant seuil_convergence_implicite 1 Convergence criteria.
+// XD attr nb_corrections_max entier nb_corrections_max 1 Maximum number of corrections performed by the PISO algorithm to achieve the projection of the velocity field. The algorithm may perform less corrections then nb_corrections_max if the accuracy of the projection is sufficient. (By default nb_corrections_max is set to 21).
 
 Implemente_instanciable_sans_constructeur(Implicite,"Implicite",Piso);
-
-Piso::Piso()
-{
-  nb_corrections_max_ = 21;
-  avancement_crank_ = 0;
-}
+// XD implicite piso implicite -1 similar to PISO, but as it looks like a simplified solver, it will use fewer timesteps. But it may run faster because the pressure matrix is not re-assembled and thus provides CPU gains.
 
 Implicite::Implicite()
 {
@@ -92,7 +91,7 @@ void test_imposer_cond_lim(Equation_base& eqn,DoubleTab& current2,const char * m
   DoubleTab& present = eqn.inconnue().futur();
   DoubleTab sauv(present);
   const Schema_Temps_base& sch = eqn.probleme().schema_temps();
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),sch.temps_courant()+sch.pas_de_temps());
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),sch.temps_courant()+sch.pas_de_temps());
   present -= sauv;
   // BM, je remplace max_abs par mp_pax_abs: du coup la methode doit etre appelee simultanement par tous les procs.
   double ecart_max=mp_max_abs_vect(present);
@@ -114,6 +113,7 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
   converge = 1;
   if (nb_ite>1) return;
   Navier_Stokes_std& eqnNS = ref_cast(Navier_Stokes_std,eqn);
+  const bool is_NS_IBM = sub_type(Navier_Stokes_IBM, eqnNS);
 
   if (eqnNS.discretisation().que_suis_je() == "PolyMAC")
     return iterer_NS_PolyMAC(eqnNS, current, pression, dt, matrice, ok);
@@ -145,44 +145,10 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
   //matrice = A[Un] = M/delta_t + CONV +DIFF
   //resu =  A[Un]Un -(A[Un]Un-Ss) + Sv -BtPn
 
-  // <IBM> Taking into account penality term for Immersed Boundary Method
-  const int i_source_PDF = eqnNS.get_i_source_pdf();
-  if (i_source_PDF != -1)
-    {
-      Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
-      Cerr<<"Immersed Interface: Dirichlet velocity in momentum equation for PDF (if any)."<<finl;
-      // Terme PDF IB value : -rho/delta_t  ksi_gamma/epsilon U_gamma
-      DoubleTab secmem_pdf(resu);
-      src.calculer_pdf(secmem_pdf);
-      resu -= secmem_pdf;
-      resu.echange_espace_virtuel();
+  if (is_NS_IBM)
+    add_penality_term(eqnNS, resu, gradP);
 
-      // Terme en temps : -rho/delta_t ksi_gamma Un
-      int i_traitement_special = 101;
-      if (eqnNS.nombre_d_operateurs() > 1)
-        {
-          if (eqnNS.vitesse_pour_transport().le_nom()=="rho_u") i_traitement_special = 1;
-        }
-      DoubleTrav secmem_pdf_time(resu);
-      src.calculer(secmem_pdf_time, i_traitement_special);
-      secmem_pdf += secmem_pdf_time;
-
-      // Sauvegarde de secmem_pdf
-      secmem_pdf.echange_espace_virtuel();
-      src.set_sec_mem_pdf(secmem_pdf);
-
-      DoubleTab coeff;
-      coeff = eqnNS.get_champ_coeff_pdf_som();
-      if (eqnNS.get_gradient_pression_qdm_modifie()==1)
-        {
-          Cerr<<"(IBM) Immersed Interface: modified pressure gradient in momentum equation."<<finl;
-          gradP/=coeff;
-        }
-      gradP.echange_espace_virtuel();
-    }
-  // </IBM>
-
-  gradient.valeur().calculer(pression,gradP);
+  gradient->calculer(pression,gradP);
   if (eqnNS.has_interface_blocs()) //si l'interface blocs est disponible, on l'utilise
     {
       eqnNS.assembler_blocs_avec_inertie({{ "vitesse", &matrice }}, resu);
@@ -196,7 +162,7 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
       eqnNS.assembler_avec_inertie(matrice,current,resu);
     }
 
-  le_solveur_.valeur().reinit();
+  le_solveur_->reinit();
 
   //sometimes we need a second special treatement like for ALE for example
   second_special_treatment( eqn, current, resu, matrice );
@@ -209,7 +175,7 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
   if (avancement_crank_==0)
     {
       assembler_matrice_pression_implicite(eqnNS,matrice,matrice_en_pression_2);
-      solveur_pression_.valeur().reinit();
+      solveur_pression_->reinit();
     }
 
   //Etape predicteur
@@ -236,21 +202,15 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
   else
     divergence.calculer(current,secmem);
   secmem *= -1;
-  // <IBM> Taking into account zero velocity divergence for Immersed Boundary Method
-  if ((i_source_PDF != -1) && (eqnNS.get_correction_matrice_pression()==1))
-    {
-      Cerr<<"(IBM) Immersed Interface: velocity divergence is zero for crossed elements."<<finl;
-      DoubleTrav coeff;
-      coeff = eqnNS.get_champ_coeff_pdf_som();
-      Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
-      src.correct_incr_pressure(coeff, secmem);
-    }
-  // <IBM>
+
+  if (is_NS_IBM)
+    correct_incr_pressure(eqnNS, secmem);
+
   secmem.echange_espace_virtuel();
   Debog::verifier("Piso::iterer_NS secmem",secmem);
 
   // GF il ne faut pas modifier le scd membre le terme en du/dt au bord a deja ete pris en compte dans la resolution precedente
-  //  eqnNS.assembleur_pression().valeur().modifier_secmem(secmem);
+  //  eqnNS.assembleur_pression()->modifier_secmem(secmem);
 
   //Etape de correction 1
   Cout << "Solving mass equation :" << finl;
@@ -267,16 +227,11 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
     {
       //calcul de Un+1
       //Calcul de Bt(delta_t*delta_P)
-      gradient.valeur().multvect(correction_en_pression,gradP);
+      gradient->multvect(correction_en_pression,gradP);
       eqn.solv_masse().appliquer(gradP);
-      if ((i_source_PDF != -1) && (eqnNS.get_correction_vitesse_modifie()==1))
-        {
-          Cerr<<"(IBM) Immersed Interface: modified velocity correction."<<finl;
-          DoubleTab coeff;
-          coeff = eqnNS.get_champ_coeff_pdf_som();
-          gradP/=coeff;
-          gradP.echange_espace_virtuel();
-        }
+
+      if (is_NS_IBM)
+        correct_gradP(eqnNS, gradP);
 
       //Calcul de Un+1 = U* -delta_t*delta_P
       current -= gradP;
@@ -288,21 +243,12 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
       Debog::verifier("Piso::iterer_NS correction avant dt",correction_en_pression);
       correction_en_pression /= dt;
 
-      // <IBM> Immersed Interface: modified pressure correction.
-      if ((i_source_PDF != -1) && (eqnNS.get_correction_pression_modifie()==1))
-        {
-          Cerr<<"Immersed Interface: modified pressure correction."<<finl;
-          DoubleTab coeff;
-          coeff = eqnNS.get_champ_coeff_pdf_som();
-          const Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
-          src.correct_pressure(coeff,pression,correction_en_pression);
-        }
+      if (is_NS_IBM)
+        correct_pressure(eqnNS, pression, correction_en_pression);
       else
-        {
-          pression += correction_en_pression;
-        }
+        pression += correction_en_pression;
       // </IBM>
-      eqnNS.assembleur_pression().valeur().modifier_solution(pression);
+      eqnNS.assembleur_pression()->modifier_solution(pression);
       pression.echange_espace_virtuel();
       Debog::verifier("Piso::iterer_NS pression finale",pression);
       Debog::verifier("Piso::iterer_NS current final",current);
@@ -318,7 +264,7 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
 
   //Calcul de P* = Pn + P'
   pression += correction_en_pression;
-  eqnNS.assembleur_pression().valeur().modifier_solution(pression);
+  eqnNS.assembleur_pression()->modifier_solution(pression);
   //Resolution du systeme D[Un]U' = -BtP'
   DoubleTrav correction_en_vitesse(current);
   calculer_correction_en_vitesse(correction_en_pression,gradP,correction_en_vitesse,matrice,gradient);
@@ -388,7 +334,7 @@ void Piso::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression,
       pression_norme_old = pression_norme;
       //Calcul de P** = P* + P''
       pression += correction_en_pression;
-      eqnNS.assembleur_pression().valeur().modifier_solution(pression);
+      eqnNS.assembleur_pression()->modifier_solution(pression);
 
       //Calcul de U*** = U** + U''
       current += correction_en_vitesse;
@@ -424,7 +370,7 @@ void Piso::iterer_NS_PolyMAC(Navier_Stokes_std& eqn, DoubleTab& current, DoubleT
   op_grad.ajouter(pression, secmem_NS);
   secmem_NS *= -1;
   eqnNS.assembler_avec_inertie(matrice, current, secmem_NS);
-  le_solveur_.valeur().reinit();
+  le_solveur_->reinit();
   le_solveur_.resoudre_systeme(matrice, secmem_NS, v_new);
   v_new.echange_espace_virtuel();
 
@@ -450,15 +396,15 @@ void Piso::iterer_NS_PolyMAC(Navier_Stokes_std& eqn, DoubleTab& current, DoubleT
           for (int j = 0; j < p_sec[1].dimension(0); j++)
             diag(j) = dt * matrice(j, j);
           diag.echange_espace_virtuel();
-          eqn.assembleur_pression().valeur().assembler_mat(mat_press, diag, 1, 1);
-          eqn.solveur_pression().valeur().reinit();
+          eqn.assembleur_pression()->assembler_mat(mat_press, diag, 1, 1);
+          eqn.solveur_pression()->reinit();
         }
 
       //resolution
       Cerr << "PISO : |sec dp| < " << mp_max_abs_vect(p_sec[0]) << " |sec dv| < " << mp_max_abs_vect(p_sec[1]) << finl;
       eqn.solveur_pression().resoudre_systeme(avancement_crank_ == 1 ? mat_press_orig.valeur() : mat_press.valeur(), secmem_M, sol_M);
       //mises a jour : v^(i) = v^(i-1)+dv^(i), p^(i) = p^(i-1) + dp^(i)
-      eqn.assembleur_pression().valeur().corriger_vitesses(sol_M, dv);
+      eqn.assembleur_pression()->corriger_vitesses(sol_M, dv);
       Cerr << "PISO : |dp| < " << mp_max_abs_vect(p_sol[0]) / dt << " |dv| < " << mp_max_abs_vect(dv);
       v_new += dv, sol_M /= dt, pression -= sol_M;
       //
@@ -479,6 +425,89 @@ void Piso::second_special_treatment(Equation_base& eqn,DoubleTab& current, Doubl
   //nothing to do
 }
 
+void Piso::add_penality_term(Navier_Stokes_std& eqnNS, DoubleTrav& resu , DoubleTrav& gradP)
+{
+  // <IBM> Taking into account penality term for Immersed Boundary Method
+  Navier_Stokes_IBM& eqnNS_IBM = ref_cast(Navier_Stokes_IBM, eqnNS);
+  const int i_source_PDF = eqnNS_IBM.get_i_source_pdf();
+  if (i_source_PDF != -1)
+    {
+      Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
+      DoubleTab secmem_pdf(resu);
+      src.calculer_pdf(secmem_pdf);
+
+      // Terme en temps : -rho/delta_t ksi_gamma Un
+      int pdf_bilan = src.get_modele().pdf_bilan();
+      if (pdf_bilan == 1)
+        {
+          int i_traitement_special = 101;
+          if (eqnNS.nombre_d_operateurs() > 1)
+            {
+              if (eqnNS.vitesse_pour_transport().le_nom() == "rho_u")
+                i_traitement_special = 1;
+            }
+          DoubleTrav secmem_pdf_time(resu);
+          src.calculer(secmem_pdf_time, i_traitement_special);
+          secmem_pdf += secmem_pdf_time;
+        }
+
+      // Sauvegarde de secmem_pdf
+      secmem_pdf.echange_espace_virtuel();
+      src.set_sec_mem_pdf(secmem_pdf);
+
+      const DoubleTab& coeff = eqnNS_IBM.get_champ_coeff_pdf_som();
+      if (eqnNS_IBM.get_gradient_pression_qdm_modifie() == 1)
+        {
+          Cerr << "(IBM) Immersed Interface: modified pressure gradient in momentum equation." << finl;
+          gradP /= coeff;
+        }
+      gradP.echange_espace_virtuel();
+    }
+}
+
+void Piso::correct_gradP(Navier_Stokes_std& eqnNS, DoubleTrav& gradP)
+{
+  Navier_Stokes_IBM& eqnNS_IBM = ref_cast(Navier_Stokes_IBM, eqnNS);
+  const int i_source_PDF = eqnNS_IBM.get_i_source_pdf();
+  if ((i_source_PDF != -1) && (eqnNS_IBM.get_correction_vitesse_modifie() == 1))
+    {
+      Cerr << "(IBM) Immersed Interface: modified velocity correction." << finl;
+      const DoubleTab& coeff = eqnNS_IBM.get_champ_coeff_pdf_som();
+      gradP /= coeff;
+      gradP.echange_espace_virtuel();
+    }
+}
+
+void Piso::correct_incr_pressure(Navier_Stokes_std& eqnNS, DoubleTrav& secmem)
+{
+  // <IBM> Taking into account zero velocity divergence for Immersed Boundary Method
+  Navier_Stokes_IBM& eqnNS_IBM = ref_cast(Navier_Stokes_IBM, eqnNS);
+  const int i_source_PDF = eqnNS_IBM.get_i_source_pdf();
+  if ((i_source_PDF != -1) && (eqnNS_IBM.get_correction_matrice_pression() == 1))
+    {
+      Cerr << "(IBM) Immersed Interface: velocity divergence is zero for crossed elements." << finl;
+      const DoubleTab& coeff = eqnNS_IBM.get_champ_coeff_pdf_som();
+      Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
+      src.correct_incr_pressure(coeff, secmem);
+    }
+}
+
+void Piso::correct_pressure(Navier_Stokes_std& eqnNS, DoubleTab& pression, DoubleTab& correction_en_pression)
+{
+  // <IBM> Immersed Interface: modified pressure correction.
+  Navier_Stokes_IBM& eqnNS_IBM = ref_cast(Navier_Stokes_IBM, eqnNS);
+  const int i_source_PDF = eqnNS_IBM.get_i_source_pdf();
+  if ((i_source_PDF != -1) && (eqnNS_IBM.get_correction_pression_modifie()==1))
+    {
+      Cerr<<"Immersed Interface: modified pressure correction."<<finl;
+      const DoubleTab& coeff = eqnNS_IBM.get_champ_coeff_pdf_som();
+      const Source_PDF_base& src = dynamic_cast<Source_PDF_base&>((eqnNS.sources())[i_source_PDF].valeur());
+      src.correct_pressure(coeff,pression,correction_en_pression);
+    }
+  else
+    pression += correction_en_pression;
+}
+
 void Implicite::first_special_treatment(Equation_base& eqn, Navier_Stokes_std& eqnNS, DoubleTab& current, double dt, DoubleTrav& resu)
 {
   //nothing to do
@@ -488,3 +517,5 @@ void Implicite::second_special_treatment(Equation_base& eqn,DoubleTab& current, 
 {
   //nothing to do
 }
+
+

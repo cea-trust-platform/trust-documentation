@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,6 +20,7 @@
 #include <Navier_Stokes_std.h>
 #include <Probleme_base.h>
 #include <Discret_Thyd.h>
+#include <TRUST_2_PDI.h>
 #include <Domaine.h>
 #include <Avanc.h>
 #include <Statistiques.h>
@@ -54,7 +55,7 @@ const Champ_base& Convection_Diffusion_Chaleur_Fluide_Dilatable_base::vitesse_po
 {
   const Probleme_base& pb = probleme();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std,pb.equation(0));
-  const Champ_Inc& vitessetransportante = eqn_hydr.rho_la_vitesse(); // rho * u
+  const Champ_Inc_base& vitessetransportante = eqn_hydr.rho_la_vitesse(); // rho * u
   return vitessetransportante;
 }
 
@@ -94,6 +95,19 @@ void Convection_Diffusion_Chaleur_Fluide_Dilatable_base::assembler_blocs_avec_in
   statistiques().end_count(assemblage_sys_counter_);
 }
 
+/*! @brief for PDI IO: retrieve name and type and dimensions of the thermo pressure
+ *
+ */
+std::vector<YAML_data> Convection_Diffusion_Chaleur_Fluide_Dilatable_base::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = Equation_base::data_a_sauvegarder();
+  Nom pth("pression_thermo");
+  pth += probleme().domaine().le_nom();
+  YAML_data d(pth.getString(), "double");
+  d.set_local(false /*same value for everyone*/);
+  data.push_back(d);
+  return data;
+}
 
 int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::sauvegarder(Sortie& os) const
 {
@@ -103,10 +117,10 @@ int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::sauvegarder(Sortie& os) 
   int a_faire,special;
   EcritureLectureSpecial::is_ecriture_special(special,a_faire);
 
+  Nom ident_Pth("pression_thermo");
+  ident_Pth += probleme().domaine().le_nom();
   if (a_faire)
     {
-      Nom ident_Pth("pression_thermo");
-      ident_Pth += probleme().domaine().le_nom();
       double temps = inconnue().temps();
       ident_Pth += Nom(temps,"%e");
       os << ident_Pth<<finl;
@@ -114,6 +128,12 @@ int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::sauvegarder(Sortie& os) 
       os << le_fluide->pression_th();
       os << flush ;
       Cerr << "Saving thermodynamic pressure at time : " <<  Nom(temps,"%e") << finl;
+    }
+  else if(TRUST_2_PDI::is_PDI_checkpoint())
+    {
+      bytes += 8;
+      TRUST_2_PDI pdi_interface;
+      pdi_interface.TRUST_start_sharing(ident_Pth.getString(), &le_fluide->get_pression_th());
     }
   return bytes;
 }
@@ -131,13 +151,21 @@ int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::reprendre(Entree& is)
 {
   if (le_fluide->type_fluide() != "Gaz_Parfait") l_inco_ch->nommer("enthalpie");
   Equation_base::reprendre(is);
-  double temps = schema_temps().temps_courant();
   Nom ident_Pth("pression_thermo");
   ident_Pth += probleme().domaine().le_nom();
-  ident_Pth += Nom(temps,probleme().reprise_format_temps());
-  avancer_fichier(is, ident_Pth);
   double pth;
-  is>>pth;
+  if(TRUST_2_PDI::is_PDI_restart())
+    {
+      TRUST_2_PDI pdi_interface;
+      pdi_interface.read(ident_Pth.getString(), &pth);
+    }
+  else
+    {
+      double temps = schema_temps().temps_courant();
+      ident_Pth += Nom(temps,probleme().reprise_format_temps());
+      avancer_fichier(is, ident_Pth);
+      is>>pth;
+    }
   le_fluide->set_pression_th(pth);
   return 1;
 }
@@ -155,19 +183,19 @@ int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::preparer_calcul()
  */
 int Convection_Diffusion_Chaleur_Fluide_Dilatable_base::remplir_cl_modifiee()
 {
-  zcl_modif_=(domaine_Cl_dis());
-  Conds_lim& condlims=zcl_modif_.valeur().les_conditions_limites();
+  zcl_modif_= domaine_Cl_dis();
+  Conds_lim& condlims=zcl_modif_->les_conditions_limites();
   int nb=condlims.size();
   // pour chaque condlim on recupere le champ_front et on met 1
   // meme si la cond lim est un flux (dans ce cas la convection restera nullle.)
   for (int i=0; i<nb; i++)
     {
-      DoubleTab& T=condlims[i].valeur().champ_front().valeurs();
+      DoubleTab& T=condlims[i]->champ_front().valeurs();
       T=1.;
       if (sub_type(Neumann_sortie_libre,condlims[i].valeur()))
         ref_cast(Neumann_sortie_libre,condlims[i].valeur()).tab_ext()=1;
     }
-  zcl_modif_.les_conditions_limites().set_modifier_val_imp(0);
+  zcl_modif_->les_conditions_limites().set_modifier_val_imp(0);
   return 1;
 }
 

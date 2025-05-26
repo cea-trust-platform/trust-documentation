@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,24 +18,12 @@
 #include <Champ_Elem_PolyMAC_P0P1NC.h>
 #include <Echange_externe_impose.h>
 #include <Domaine_PolyMAC_P0P1NC.h>
-#include <Flux_parietal_base.h>
 #include <Domaine_Cl_PolyMAC.h>
-#include <Dirichlet_homogene.h>
-#include <Schema_Temps_base.h>
-#include <Champ_front_calc.h>
-#include <TRUSTTab_parts.h>
-#include <MD_Vector_base.h>
-#include <communications.h>
-#include <Synonyme_info.h>
+#include <Flux_parietal_base.h>
 #include <Pb_Multiphase.h>
-#include <Neumann_paroi.h>
 #include <Matrix_tools.h>
 #include <Statistiques.h>
 #include <Array_tools.h>
-#include <TRUSTLists.h>
-#include <Dirichlet.h>
-#include <functional>
-#include <cmath>
 #include <deque>
 
 extern Stat_Counter_Id diffusion_counter_;
@@ -55,9 +43,9 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::completer()
 {
   Op_Diff_PolyMAC_P0P1NC_base::completer();
   Equation_base& eq = equation();
-  Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, le_champ_inco.non_nul() ? le_champ_inco.valeur() : eq.inconnue().valeur());
+  Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, le_champ_inco.non_nul() ? le_champ_inco.valeur() : eq.inconnue());
   ch.init_auxiliary_variables();
-  const Domaine_PolyMAC_P0P1NC& domaine = le_dom_poly_.valeur();
+  const Domaine_PolyMAC_P0P1NC& domaine = ref_cast(Domaine_PolyMAC_P0P1NC, le_dom_poly_.valeur());
   if (domaine.domaine().nb_joints() && domaine.domaine().joint(0).epaisseur() < 1)
     {
       Cerr << "Op_Diff_PolyMAC_P0P1NC_Elem : largeur de joint insuffisante (minimum 1)!" << finl;
@@ -103,7 +91,7 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::init_op_ext() const
 
 double Op_Diff_PolyMAC_P0P1NC_Elem::calculer_dt_stab() const
 {
-  const Domaine_PolyMAC_P0P1NC& domaine = le_dom_poly_.valeur();
+  const Domaine_PolyMAC_P0P1NC& domaine = ref_cast(Domaine_PolyMAC_P0P1NC, le_dom_poly_.valeur());
   const IntTab& e_f = domaine.elem_faces();
   const DoubleTab& nf = domaine.face_normales(), *alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : nullptr, &diffu =
                                                           diffusivite_pour_pas_de_temps().valeurs(), &lambda = diffusivite().valeurs();
@@ -140,16 +128,16 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::dimensionner_blocs_ext(int aux_only, matrices_
   std::vector<std::reference_wrapper<const IntTab>> fcl, e_f, f_e; //tableaux "fcl", "elem_faces", "faces_voisins"
   std::vector<std::reference_wrapper<const DoubleTab>> diffu, inco; //inconnues, normales aux faces, positions elems / faces / sommets
   std::deque<ConstDoubleTab_parts> v_part; //blocs de chaque inconnue
-  std::vector<IntTrav> stencil(n_ext); //stencils par matrice
+  std::vector<IntTab> stencil(n_ext); //stencils par matrice
   for (i = 0, M = 0; i < n_ext; M = std::max(M, N[i]), i++)
     {
       std::string nom_mat = i ? nom_inco + "/" + op_ext[i]->equation().probleme().le_nom().getString() : nom_inco;
       mat[i] = matrices.count(nom_mat) ? matrices.at(nom_mat) : nullptr;
-      domaine.push_back(std::ref(ref_cast(Domaine_PolyMAC_P0P1NC, op_ext[i]->equation().domaine_dis().valeur())));
+      domaine.push_back(std::ref(ref_cast(Domaine_PolyMAC_P0P1NC, op_ext[i]->equation().domaine_dis())));
       f_e.push_back(std::ref(domaine[i].get().face_voisins())), e_f.push_back(std::ref(domaine[i].get().elem_faces()));
       cls.push_back(std::ref(op_ext[i]->equation().domaine_Cl_dis().les_conditions_limites()));
       diffu.push_back(ref_cast(Op_Diff_PolyMAC_P0P1NC_Elem, *op_ext[i]).nu());
-      const Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, op_ext[i]->has_champ_inco() ? op_ext[i]->mon_inconnue().valeur() : op_ext[i]->equation().inconnue().valeur());
+      const Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, op_ext[i]->has_champ_inco() ? op_ext[i]->mon_inconnue() : op_ext[i]->equation().inconnue());
 
       N.push_back(ch.valeurs().line_size()), fcl.push_back(std::ref(ch.fcl())), ne_tot.push_back(domaine[i].get().nb_elem_tot());
       inco.push_back(ch.valeurs()), v_part.emplace_back(ch.valeurs());
@@ -226,8 +214,12 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::dimensionner_blocs_ext(int aux_only, matrices_
   for (auto &&st : stencil)
     n_sten += st.dimension(0); //n_sten : nombre total de points du stencil de l'operateur
   if (!aux_only)
-    Cerr << "width " << Process::mp_sum(n_sten) * 1. / (N[0] * domaine[0].get().mdv_elems_faces.valeur().nb_items_seq_tot()) << " "
-         << mp_somme_vect(tpfa) * 100. / (N[0] * domaine[0].get().md_vector_faces().valeur().nb_items_seq_tot()) << "% TPFA " << finl;
+    {
+      const double elem_face_t = static_cast<double>(domaine[0].get().mdv_elems_faces->nb_items_seq_tot()),
+                   face_t = static_cast<double>(domaine[0].get().md_vector_faces()->nb_items_seq_tot());
+      Cerr << "width " << mp_sum_as_double(n_sten) / (N[0] * elem_face_t) << " "
+           << mp_somme_vect_as_double(tpfa) * 100. / (N[0] * face_t) << "% TPFA " << finl;
+    }
 }
 
 void Op_Diff_PolyMAC_P0P1NC_Elem::ajouter_blocs_ext(int aux_only, matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
@@ -249,18 +241,18 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::ajouter_blocs_ext(int aux_only, matrices_t mat
     {
       std::string nom_mat = i ? nom_inco + "/" + op_ext[i]->equation().probleme().le_nom().getString() : nom_inco;
       mat[i] = matrices.count(nom_mat) ? matrices.at(nom_mat) : nullptr;
-      domaine.push_back(std::ref(ref_cast(Domaine_PolyMAC_P0P1NC, op_ext[i]->equation().domaine_dis().valeur())));
+      domaine.push_back(std::ref(ref_cast(Domaine_PolyMAC_P0P1NC, op_ext[i]->equation().domaine_dis())));
       f_e.push_back(std::ref(domaine[i].get().face_voisins())), e_f.push_back(std::ref(domaine[i].get().elem_faces())), f_s.push_back(std::ref(domaine[i].get().face_sommets()));
       fs.push_back(std::ref(domaine[i].get().face_surfaces()));
       xp.push_back(std::ref(domaine[i].get().xp())), xv.push_back(std::ref(domaine[i].get().xv()));
       pe.push_back(std::ref(equation().milieu().porosite_elem())), pf.push_back(std::ref(equation().milieu().porosite_face())), ve.push_back(std::ref(domaine[i].get().volumes()));
       cls.push_back(std::ref(op_ext[i]->equation().domaine_Cl_dis().les_conditions_limites()));
       diffu.push_back(ref_cast(Op_Diff_PolyMAC_P0P1NC_Elem, *op_ext[i]).nu());
-      const Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, op_ext[i]->has_champ_inco() ? op_ext[i]->mon_inconnue().valeur() : op_ext[i]->equation().inconnue().valeur());
+      const Champ_Elem_PolyMAC_P0P1NC& ch = ref_cast(Champ_Elem_PolyMAC_P0P1NC, op_ext[i]->has_champ_inco() ? op_ext[i]->mon_inconnue() : op_ext[i]->equation().inconnue());
       inco.push_back(std::ref(semi_impl.count(nom_mat) ? semi_impl.at(nom_mat) : ch.valeurs())), v_part.emplace_back(inco.back());
       corr.push_back(
-        sub_type(Energie_Multiphase, op_ext[i]->equation()) && ref_cast(Pb_Multiphase, op_ext[i]->equation().probleme()).has_correlation("flux_parietal") ?
-        &ref_cast(Flux_parietal_base, ref_cast(Pb_Multiphase, op_ext[i]->equation().probleme()).get_correlation("flux_parietal").valeur()) : nullptr);
+        sub_type(Energie_Multiphase, op_ext[i]->equation()) && op_ext[i]->equation().probleme().has_correlation("flux_parietal") ?
+        &ref_cast(Flux_parietal_base, op_ext[i]->equation().probleme().get_correlation("flux_parietal")) : nullptr);
       N.push_back(inco[i].get().line_size()), ne_tot.push_back(domaine[i].get().nb_elem_tot()), fcl.push_back(std::ref(ch.fcl()));
     }
 
@@ -455,7 +447,7 @@ void Op_Diff_PolyMAC_P0P1NC_Elem::ajouter_blocs_ext(int aux_only, matrices_t mat
       }
     else if (fcl[0](f, 0) == 4)
       for (n = 0; n < N[0]; n++) //Neumann
-        secmem(!aux_only * ne_tot[0] + f, n) -= fs[0](f) * ref_cast(Neumann, cls[0].get()[fcl[0](f, 1)].valeur()).flux_impose(fcl[0](f, 2), n);
+        secmem(!aux_only * ne_tot[0] + f, n) += fs[0](f) * ref_cast(Neumann, cls[0].get()[fcl[0](f, 1)].valeur()).flux_impose(fcl[0](f, 2), n);
     else if (fcl[0](f, 0) && fcl[0](f, 0) < 3)
       for (e = f_e[0](f, 0), n = 0; n < N[0]; n++) //Echange_global_impose
         {

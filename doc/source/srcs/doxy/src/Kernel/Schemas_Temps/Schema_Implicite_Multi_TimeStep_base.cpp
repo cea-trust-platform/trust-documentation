@@ -14,17 +14,17 @@
 *****************************************************************************/
 
 #include <Schema_Implicite_Multi_TimeStep_base.h>
-#include <Equation_base.h>
-#include <Probleme_base.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Probleme_Couple.h>
-#include <Milieu_base.h>
-#include <Param.h>
-#include <LecFicDiffuse.h>
 #include <communications.h>
 #include <Matrice_Morse.h>
+#include <Equation_base.h>
+#include <Probleme_base.h>
+#include <LecFicDiffuse.h>
+#include <Milieu_base.h>
+#include <Param.h>
 
 Implemente_base(Schema_Implicite_Multi_TimeStep_base,"Schema_Implicite_Multi_TimeStep_base",Schema_Implicite_base);
-
 
 Sortie& Schema_Implicite_Multi_TimeStep_base::printOn(Sortie& s) const
 {
@@ -180,17 +180,17 @@ int Schema_Implicite_Multi_TimeStep_base::Iterer_Pb(Probleme_base& pb,int ite)
       authorized_equation(eqn);
 
       // imposer_cond_lim   sert pour la pression et pour les echanges entre pbs
-      eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+      eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
       Cout<<"Solving equation "<<eqn.que_suis_je()<<finl;
       const DoubleTab& inut=futur;
 
       store_equation_parameters(eqn,stored_parameters);
-      convergence_eqn = le_solveur.valeur().iterer_eqn(eqn,inut, present, dt_,ite, ok);
+      convergence_eqn = le_solveur->iterer_eqn(eqn,inut, present, dt_,ite, ok);
       modify_equation_parameters(eqn,stored_parameters);
 
       convergence_pb  = convergence_pb&&convergence_eqn;
       futur           = present;
-      eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+      eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
       present         = futur;
 
       // La ligne suivante realise:
@@ -216,7 +216,7 @@ void Schema_Implicite_Multi_TimeStep_base::test_stationnaire(Probleme_base& pb)
       DoubleTab& futur = pb.equation(i).inconnue().futur();
 
       futur    = present;
-      pb.equation(i).domaine_Cl_dis()->imposer_cond_lim(pb.equation(i).inconnue(),temps_courant()+pas_de_temps());
+      pb.equation(i).domaine_Cl_dis().imposer_cond_lim(pb.equation(i).inconnue(),temps_courant()+pas_de_temps());
       present -= passe;
       present /= dt_;
       update_critere_statio(present, pb.equation(i));
@@ -343,7 +343,7 @@ int Schema_Implicite_Multi_TimeStep_base::faire_un_pas_de_temps_pb_couple(Proble
               const int nb_eqn=pb.nombre_d_equations();
               for(int ii=0; ii<nb_eqn; ii++)
                 {
-                  pb.equation(ii).domaine_Cl_dis()->calculer_coeffs_echange(temps_courant_+pas_de_temps());
+                  pb.equation(ii).domaine_Cl_dis().calculer_coeffs_echange(temps_courant_+pas_de_temps());
                 }
 
             }
@@ -399,10 +399,10 @@ void Schema_Implicite_Multi_TimeStep_base::ajouter_inertie(Matrice_Base& mat_mor
       for (i=0; i<nb_valeurs_passees(); ++i)
         {
           offset   =  nb_valeurs_passees()-i;
-          times[i] =  eqn_bis.inconnue().valeur().recuperer_temps_passe(offset); //past time
+          times[i] =  eqn_bis.inconnue().recuperer_temps_passe(offset); //past time
         }
-      times[nb_valeurs_passees()]   = eqn_bis.inconnue().valeur().recuperer_temps_futur(0); //present time
-      times[nb_valeurs_passees()+1] = eqn_bis.inconnue().valeur().recuperer_temps_futur(1); //future time
+      times[nb_valeurs_passees()]   = eqn_bis.inconnue().recuperer_temps_futur(0); //present time
+      times[nb_valeurs_passees()+1] = eqn_bis.inconnue().recuperer_temps_futur(1); //future time
 
       compute_coefficients(time_step,times);
       add_multi_timestep_data(eqn, mat_morse, secmem);
@@ -453,7 +453,7 @@ int Schema_Implicite_Multi_TimeStep_base::faire_un_pas_de_temps_eqn_base(Equatio
 
       const DoubleTab& inut=futur;
       store_equation_parameters(eqn,stored_parameters);
-      convergence_eqn=le_solveur.valeur().iterer_eqn(eqn, inut, present, dt_, compteur, ok);
+      convergence_eqn=le_solveur->iterer_eqn(eqn, inut, present, dt_, compteur, ok);
       modify_equation_parameters(eqn,stored_parameters);
       futur=present;
       eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());

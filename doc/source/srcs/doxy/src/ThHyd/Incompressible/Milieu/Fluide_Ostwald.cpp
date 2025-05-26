@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -55,19 +55,23 @@ void Fluide_Ostwald::set_param(Param& param)
   param.ajouter("n",&N_,Param::REQUIRED);
 }
 
-void  Fluide_Ostwald::discretiser(const Probleme_base& pb, const  Discretisation_base& dis)
+void Fluide_Ostwald::discretiser(const Probleme_base& pb, const  Discretisation_base& dis)
 {
   const Domaine_dis_base& domaine_dis=pb.equation(0).domaine_dis();
   const Discret_Thyd& dis2=ref_cast(Discret_Thyd, dis);
 
   // avec la signature de Ostwald....
   const Navier_Stokes_std& eqn_hydr=ref_cast(Navier_Stokes_std,pb.equation(0));
+  // Typing mu field
+  Nom dis_nam = dis.que_suis_je();
+  if (dis_nam.debute_par("VEF")) dis_nam = "VEF";
+  ch_mu_.typer(Nom("Champ_Ostwald_") + dis_nam);
+
   dis2.proprietes_physiques_fluide_Ostwald(eqn_hydr.domaine_dis(),(*this),eqn_hydr,eqn_hydr.inconnue());
-  Champ_Don& K = consistance();
-  if (K.non_nul())
+  if (K_.non_nul())
     {
-      dis.nommer_completer_champ_physique(domaine_dis,"consistance","kg/m/s",K.valeur(),pb);
-      champs_compris_.ajoute_champ(K.valeur());
+      dis.nommer_completer_champ_physique(domaine_dis,"consistance","kg/m/s",K_.valeur(),pb);
+      champs_compris_.ajoute_champ(K_.valeur());
     }
 
   Fluide_Incompressible::discretiser(pb,dis);
@@ -80,9 +84,9 @@ void Fluide_Ostwald::creer_champs_non_lus()
 
 void Fluide_Ostwald::mettre_a_jour(double tps)
 {
-  K_.mettre_a_jour(tps);
+  K_->mettre_a_jour(tps);
   if (N_.non_nul() )
-    N_.mettre_a_jour(tps);
+    N_->mettre_a_jour(tps);
   Fluide_Incompressible::mettre_a_jour(tps);
 }
 

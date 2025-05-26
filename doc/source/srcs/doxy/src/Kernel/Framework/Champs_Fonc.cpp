@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,7 +15,7 @@
 
 #include <Champs_Fonc.h>
 
-Implemente_instanciable(Champs_Fonc, "Champs_Fonc", LIST(Champ_Fonc));
+Implemente_instanciable(Champs_Fonc, "Champs_Fonc", LIST(OWN_PTR(Champ_Fonc_base)));
 
 Entree& Champs_Fonc::readOn(Entree& s) { return s; }
 
@@ -27,5 +27,5 @@ Sortie& Champs_Fonc::printOn(Sortie& s) const { return s; }
  */
 void Champs_Fonc::mettre_a_jour(double tps)
 {
-  for (auto &itr : *this) itr.mettre_a_jour(tps);
+  for (auto &itr : *this) itr->mettre_a_jour(tps);
 }

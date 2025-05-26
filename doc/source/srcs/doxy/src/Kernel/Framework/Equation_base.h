@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,14 +17,18 @@
 #define Equation_base_included
 
 #include <Ecrire_fichier_xyz_valeur.h>
-#include <Parametre_equation.h>
+#include <Parametre_equation_base.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Discretisation_base.h>
+#include <Solveur_Masse_base.h>
+#include <Matrice_Morse_Diag.h>
 #include <MD_Vector_tools.h>
 #include <Interface_blocs.h>
 #include <Value_Input_Int.h>
 #include <TRUSTTab_parts.h>
-#include <Domaine_Cl_dis.h>
-#include <Solveur_Masse.h>
+#include <Champ_Inc_base.h>
 #include <Matrice_Morse.h>
+#include <Ecrire_YAML.h>
 #include <Champs_Fonc.h>
 #include <TRUST_Ref.h>
 #include <TRUSTList.h>
@@ -33,12 +37,10 @@
 #include <Sources.h>
 #include <vector>
 
-class Discretisation_base;
 class Schema_Temps_base;
-class Domaine_dis;
+class Cond_lim_base;
 class Milieu_base;
 class Operateur;
-class Champ_Inc;
 class Motcle;
 class Param;
 
@@ -55,21 +57,20 @@ enum Type_modele { TURBULENCE };
  *      U_h est l'inconnue representee par un objet "Champ_Inc"
  *      Op_i est le i-eme operateur de l'equation represente par un objet "Operateur"
  *      Sources sont les termes sources (eventuellement inexistant) de l'equation represente par des objets "Source".
- *      Une equation est lie a un probleme par une reference contenue dans le membre REF(Probleme_base) mon_probleme.
+ *      Une equation est lie a un probleme par une reference contenue dans le membre OBS_PTR(Probleme_base) mon_probleme.
  *
  *      Classe abstraite dont toutes les equations doivent deriver.
  *      Methodes abstraites:
  *        int nombre_d_operateurs() const
  *        const Operateur& operateur(int) const
  *        Operateur& operateur(int)
- *        const Champ_Inc& inconnue() const
- *        Champ_Inc& inconnue()
+ *        const Champ_Inc_base& inconnue() const
+ *        Champ_Inc_base& inconnue()
  *        void associer_milieu_base(const Milieu_base&)
  *        const Milieu_base& milieu() const
  *        Milieu_base& milieu()
  *        Entree& lire(const Motcle&, Entree&) [protegee]
  *
- * @sa Equation
  */
 class Equation_base : public Champs_compris_interface, public Objet_U
 {
@@ -89,13 +90,20 @@ public :
   virtual Operateur& operateur(int) =0;
   virtual const Operateur& operateur_fonctionnel(int) const;
   virtual Operateur& operateur_fonctionnel(int);
-  virtual const Champ_Inc& inconnue() const =0;
-  virtual Champ_Inc& inconnue() =0;
+  virtual const Champ_Inc_base& inconnue() const =0;
+  virtual Champ_Inc_base& inconnue() =0;
   virtual void associer_milieu_base(const Milieu_base&)=0;
   virtual const Milieu_base& milieu() const =0;
   virtual Milieu_base& milieu() =0;
+
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
   int sauvegarder(Sortie&) const override;
   int reprendre(Entree&) override;
+  // if some equations need to save some parts of their data in a different backup file, we need to override these 2 methods below
+  // (useful if some backup formats are not available for every equations)
+  virtual void init_save_file() { }
+  virtual void close_save_file() { }
+
   int limpr() const;
   virtual void imprimer(Sortie& os) const;
   virtual int impr(Sortie& os) const;
@@ -119,21 +127,21 @@ public :
   void calculer_pas_de_temps_locaux(DoubleTab&) const;  //Computation of local time: Vect of size number of faces of the domain
   Sources& sources();
   const Sources& sources() const;
-  inline Solveur_Masse& solv_masse();
-  inline const Solveur_Masse& solv_masse() const;
+  inline Solveur_Masse_base& solv_masse();
+  inline const Solveur_Masse_base& solv_masse() const;
   Probleme_base& probleme();
   const Probleme_base& probleme() const;
   Schema_Temps_base& schema_temps();
   const Schema_Temps_base& schema_temps() const;
   virtual void associer_sch_tps_base(const Schema_Temps_base&);
-  virtual void associer_domaine_dis(const Domaine_dis&);
+  virtual void associer_domaine_dis(const Domaine_dis_base&);
 
   const Discretisation_base& discretisation() const;
 
-  virtual inline Domaine_Cl_dis& domaine_Cl_dis();
-  virtual inline const Domaine_Cl_dis& domaine_Cl_dis() const;
-  Domaine_dis& domaine_dis();
-  const Domaine_dis& domaine_dis() const;
+  virtual inline Domaine_Cl_dis_base& domaine_Cl_dis();
+  virtual inline const Domaine_Cl_dis_base& domaine_Cl_dis() const;
+  Domaine_dis_base& domaine_dis();
+  const Domaine_dis_base& domaine_dis() const;
   //
   inline const Nom& le_nom() const override;
   inline DoubleVect& get_residu() { return residu_; }
@@ -201,6 +209,8 @@ public :
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   /////////////////////////////////////////////////////
 
   virtual const Motcle& domaine_application() const;
@@ -211,6 +221,8 @@ public :
   }
 
   DoubleTab& derivee_en_temps_conv(DoubleTab& , const DoubleTab& );
+  // Diffusion implicit scheme
+  Matrice_Morse_Diag diag_;
   void Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& solution)
   {
     return Gradient_conjugue_diff_impl(secmem,solution,0,NULL_);
@@ -219,32 +231,40 @@ public :
   {
     return Gradient_conjugue_diff_impl(secmem,solution,terme_mul.dimension_tot(0),terme_mul);
   }
-  inline Parametre_equation& parametre_equation() { return parametre_equation_ ; }
-  inline const Parametre_equation& parametre_equation() const { return parametre_equation_ ; }
+  inline OWN_PTR(Parametre_equation_base)& parametre_equation() { return parametre_equation_ ; }
+  inline const OWN_PTR(Parametre_equation_base)& parametre_equation() const { return parametre_equation_ ; }
   virtual const RefObjU& get_modele(Type_modele type) const;
   virtual int equation_non_resolue() const;
   int disable_equation_residual() const { return disable_equation_residual_; };
 
   //pour les schemas en temps a pas multiples
-  inline virtual const Champ_Inc& derivee_en_temps() const { return derivee_en_temps_; }
-  inline virtual Champ_Inc& derivee_en_temps() { return derivee_en_temps_; }
+  inline virtual const Champ_Inc_base& derivee_en_temps() const { return derivee_en_temps_; }
+  inline virtual Champ_Inc_base& derivee_en_temps() { return derivee_en_temps_; }
   void set_calculate_time_derivative(int i) { calculate_time_derivative_=i; }
   int calculate_time_derivative() const { return calculate_time_derivative_; }
 
   void set_residuals(const DoubleTab& residual);
-  virtual int positive_unkown() {return 0;}
+  virtual bool positive_unkown() { return false; }
 
   inline void add_champs_compris(const Champ_base& ch) { champs_compris_.ajoute_champ(ch); };
+
+  // set to true if operator is multiscalar (mixes components together). Only coded for VDF-Elem at present !
+  inline void set_diffusion_multi_scalaire(bool flg = true)
+  {
+    if (flg) assert (discretisation().is_vdf());
+    diffusion_multi_scalaire_ = flg;
+  }
+  inline const bool& diffusion_multi_scalaire() const { return diffusion_multi_scalaire_; }
 
 protected :
 
   Nom nom_;
-  Solveur_Masse solveur_masse;
+  OWN_PTR(Solveur_Masse_base) solveur_masse;
   Sources les_sources;
-  REF(Schema_Temps_base) le_schema_en_temps;
-  REF(Domaine_dis) le_dom_dis;
-  Domaine_Cl_dis le_dom_Cl_dis;
-  REF(Probleme_base) mon_probleme;
+  OBS_PTR(Schema_Temps_base) le_schema_en_temps;
+  OBS_PTR(Domaine_dis_base) le_dom_dis;
+  OWN_PTR(Domaine_Cl_dis_base) le_dom_Cl_dis;
+  OBS_PTR(Probleme_base) mon_probleme;
   virtual void set_param(Param& titi);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   virtual Entree& lire_sources(Entree&);
@@ -260,7 +280,7 @@ protected :
   int sys_invariant_;
   int implicite_;
   bool has_time_factor_; // Parameter set to 1 if convection has a prefactor (eg rhoCp in energy)
-  Parametre_equation parametre_equation_;
+  OWN_PTR(Parametre_equation_base) parametre_equation_;
 
   LIST(RefObjU) liste_modeles_; //Le premier element de la liste est le modele nul
   Champs_compris champs_compris_;
@@ -271,14 +291,22 @@ protected :
   mutable int matrice_init;
 
   //pour l'interface assembler_blocs
-  mutable Champ_Inc champ_conserve_;
-  mutable Champ_Inc champ_convecte_;
+  mutable OWN_PTR(Champ_Inc_base) champ_conserve_;
+  mutable OWN_PTR(Champ_Inc_base) champ_convecte_;
+
+  // For multistep methods, store previous dI/dt(n), dI/dt(n-1),...
+  OWN_PTR(Champ_Inc_base) derivee_en_temps_;
+  int calculate_time_derivative_;
 
   // pour une positivation du terme en fin d'iteration si necessaire
   // renvoie 1 pour un champ positif, 0 pour un champ negatif
 
+  bool diffusion_multi_scalaire_ = false;
+
 private :
   void Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& solution, int size_terme_mul, const DoubleTab& term_mul);
+  virtual void derivee_en_temps_inco_sources(DoubleTrav& ) { /* Don nothing */ }
+  virtual void verify_scheme() { /* Don nothing */ }
 
   Ecrire_fichier_xyz_valeur xyz_field_values_file_;
 
@@ -287,17 +315,12 @@ private :
   DoubleVect residu_;
   DoubleVect residu_initial_;
   // retourne le CHAMP (et non la norme) des residus de chaque inconnu du probleme
-  Champ_Fonc field_residu_;
+  OWN_PTR(Champ_Fonc_base)  field_residu_;
 
   mutable DoubleTab NULL_;
   int disable_equation_residual_ = 0;
   mutable Parser_U equation_non_resolue_;
   Value_Input_Int eq_non_resolue_input_;
-
-  // For multistep methods, store previous dI/dt(n), dI/dt(n-1),...
-  Champ_Inc derivee_en_temps_;
-  int calculate_time_derivative_;
-
 };
 
 
@@ -312,29 +335,31 @@ inline const Nom& Equation_base::le_nom() const
 
 /*! @brief Renvoie le domaine des conditions aux limite discretisee associee a l'equation
  *
- * @return (Domaine_Cl_dis&) Domaine de condition aux limites discretisee
+ * @return (Domaine_Cl_dis_base&) Domaine de condition aux limites discretisee
  */
-inline Domaine_Cl_dis& Equation_base::domaine_Cl_dis()
+inline Domaine_Cl_dis_base& Equation_base::domaine_Cl_dis()
 {
-  return le_dom_Cl_dis;
+  assert(le_dom_Cl_dis.non_nul());
+  return le_dom_Cl_dis.valeur();
 }
 
 /*! @brief Renvoie le domaine des conditions aux limite discretisee associee a l'equation
  *
  *     (version const)
  *
- * @return (Domaine_Cl_dis&) Domaine de condition aux limites discretisee
+ * @return (Domaine_Cl_dis_base&) Domaine de condition aux limites discretisee
  */
-inline const Domaine_Cl_dis& Equation_base::domaine_Cl_dis() const
+inline const Domaine_Cl_dis_base& Equation_base::domaine_Cl_dis() const
 {
-  return le_dom_Cl_dis;
+  assert(le_dom_Cl_dis.non_nul());
+  return le_dom_Cl_dis.valeur();
 }
 
 /*! @brief Renvoie le solveur de masse associe a l'equation.
  *
- * @return (Solveur_Masse&) le solveur de masse associe a l'equation
+ * @return (Solveur_Masse_base&) le solveur de masse associe a l'equation
  */
-inline Solveur_Masse& Equation_base::solv_masse()
+inline Solveur_Masse_base& Equation_base::solv_masse()
 {
   return solveur_masse;
 }
@@ -343,9 +368,9 @@ inline Solveur_Masse& Equation_base::solv_masse()
  *
  * (version const)
  *
- * @return (Solveur_Masse&) le solveur de masse associe a l'equation
+ * @return (Solveur_Masse_base&) le solveur de masse associe a l'equation
  */
-inline const Solveur_Masse& Equation_base::solv_masse() const
+inline const Solveur_Masse_base& Equation_base::solv_masse() const
 {
   return solveur_masse;
 }

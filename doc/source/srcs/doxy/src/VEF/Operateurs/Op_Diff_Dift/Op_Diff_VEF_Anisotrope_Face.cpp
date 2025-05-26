@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,20 +14,21 @@
 *****************************************************************************/
 
 #include <Op_Diff_VEF_Anisotrope_Face.h>
-#include <Champ_P1NC.h>
-#include <Champ_Q1NC.h>
-#include <Champ_Uniforme.h>
-#include <Periodique.h>
-#include <Symetrie.h>
-#include <Neumann_homogene.h>
-#include <Neumann_paroi.h>
+#include <Echange_externe_radiatif.h>
 #include <Echange_externe_impose.h>
 #include <Neumann_sortie_libre.h>
-#include <Milieu_base.h>
-#include <TRUSTTrav.h>
-#include <Probleme_base.h>
 #include <Navier_Stokes_std.h>
+#include <Neumann_homogene.h>
 #include <Porosites_champ.h>
+#include <Champ_Uniforme.h>
+#include <Neumann_paroi.h>
+#include <Probleme_base.h>
+#include <Milieu_base.h>
+#include <Champ_P1NC.h>
+#include <Champ_Q1NC.h>
+#include <Periodique.h>
+#include <TRUSTTrav.h>
+#include <Symetrie.h>
 
 Implemente_instanciable( Op_Diff_VEF_Anisotrope_Face, "Op_Diff_VEFANISOTROPE_P1NC", Op_Diff_VEF_base) ;
 
@@ -87,7 +88,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_scalaire(const DoubleTab& inconnue
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       //const IntTab& elemfaces = domaine_VEF.elem_faces();
       int num1=0;
       int num2=le_bord.nb_faces_tot();
@@ -207,7 +208,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_scalaire(const DoubleTab& inconnue
       if (sub_type(Neumann_paroi,la_cl.valeur()))
         {
           const Neumann_paroi& la_cl_paroi = ref_cast(Neumann_paroi, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -220,7 +221,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_scalaire(const DoubleTab& inconnue
       else if (sub_type(Echange_externe_impose,la_cl.valeur()))
         {
           const Echange_externe_impose& la_cl_paroi = ref_cast(Echange_externe_impose, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -228,13 +229,20 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_scalaire(const DoubleTab& inconnue
               flux=la_cl_paroi.h_imp(face-ndeb)*(la_cl_paroi.T_ext(face-ndeb)-inconnue(face))*domaine_VEF.surface(face);
               resu[face] += flux;
               tab_flux_bords(face,0) = flux;
+              if (la_cl_paroi.has_emissivite())
+                {
+                  const double text = la_cl_paroi.T_ext(face - ndeb), T = inconnue(face);
+                  flux = COEFF_STEFAN_BOLTZMANN * la_cl_paroi.emissivite(face - ndeb) * (text * text * text * text - T * T * T * T) * domaine_VEF.face_surfaces(face);
+                  resu[face] += flux;
+                  tab_flux_bords(face, 0) += flux;
+                }
             }
         }
       else if (sub_type(Neumann_homogene,la_cl.valeur())
                || sub_type(Symetrie,la_cl.valeur())
                || sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -285,7 +293,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_multi_scalaire(const DoubleTab& in
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
       int num1 = 0;
       int num2 = le_bord.nb_faces_tot();
@@ -432,7 +440,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_multi_scalaire(const DoubleTab& in
       if (sub_type(Neumann_paroi,la_cl.valeur()))
         {
           const Neumann_paroi& la_cl_paroi = ref_cast(Neumann_paroi, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -448,7 +456,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_multi_scalaire(const DoubleTab& in
       else if (sub_type(Echange_externe_impose,la_cl.valeur()))
         {
           const Echange_externe_impose& la_cl_paroi = ref_cast(Echange_externe_impose, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -458,6 +466,14 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_multi_scalaire(const DoubleTab& in
                   flux0=la_cl_paroi.h_imp(face-ndeb,nc)*(la_cl_paroi.T_ext(face-ndeb,nc)-inconnue(face,nc))*domaine_VEF.surface(face);
                   resu(face,nc) += flux0;
                   tab_flux_bords(face,nc) = flux0;
+
+                  if (la_cl_paroi.has_emissivite())
+                    {
+                      const double text = la_cl_paroi.T_ext(face - ndeb, nc), T = inconnue(face, nc);
+                      flux0 = COEFF_STEFAN_BOLTZMANN * la_cl_paroi.emissivite(face - ndeb, nc) * (text * text * text * text - T * T * T * T) * domaine_VEF.face_surfaces(face);
+                      resu(face, nc) += flux0;
+                      tab_flux_bords(face, nc) += flux0;
+                    }
                 }
             }
         }
@@ -465,7 +481,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_cas_multi_scalaire(const DoubleTab& in
                || sub_type(Symetrie,la_cl.valeur())
                || sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
@@ -497,7 +513,7 @@ DoubleTab& Op_Diff_VEF_Anisotrope_Face::ajouter(const DoubleTab& inconnue_org, D
   modif_par_porosite_si_flag(nu_,nu,!marq,porosite_elem);
   const DoubleTab& inconnue=modif_par_porosite_si_flag(inconnue_org,tab_inconnue,marq,porosite_face);
 
-  const Champ_base& inco = equation().inconnue().valeur();
+  const Champ_base& inco = equation().inconnue();
   const Nature_du_champ nature_champ = inco.nature_du_champ();
   if(nature_champ==scalaire)
     ajouter_cas_scalaire(inconnue, resu, flux_bords_, nu, domaine_Cl_VEF, domaine_VEF);
@@ -558,7 +574,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_contribution(const DoubleTab& transpor
   for (int n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int num2 = num1 + le_bord.nb_faces();
 
@@ -689,12 +705,26 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_contribution(const DoubleTab& transpor
       else if (sub_type(Echange_externe_impose,la_cl.valeur()))
         {
           const Echange_externe_impose& la_cl_paroi = ref_cast(Echange_externe_impose, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)
             {
               matrice(face,face) += la_cl_paroi.h_imp(face-ndeb)*domaine_VEF.face_surfaces(face);
+            }
+        }
+      else if (sub_type(Echange_externe_radiatif,la_cl.valeur()))
+        {
+          const Echange_externe_radiatif& la_cl_paroi = ref_cast(Echange_externe_radiatif, la_cl.valeur());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
+          int ndeb = le_bord.num_premiere_face();
+          int nfin = ndeb + le_bord.nb_faces();
+          for (int face=ndeb; face<nfin; face++)
+            {
+              const DoubleTab& inconnue = equation().inconnue().valeurs();
+
+              const double T = inconnue(face);
+              matrice(face,face) += 4 * COEFF_STEFAN_BOLTZMANN * la_cl_paroi.emissivite(face-ndeb) * T * T * T *domaine_VEF.face_surfaces(face);
             }
         }
       else if (sub_type(Neumann_homogene,la_cl.valeur())
@@ -750,7 +780,7 @@ void Op_Diff_VEF_Anisotrope_Face::ajouter_contribution_multi_scalaire(const Doub
   for (int n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int num2 = num1 + le_bord.nb_faces();
       if (sub_type(Periodique,la_cl.valeur()))
@@ -935,7 +965,7 @@ void Op_Diff_VEF_Anisotrope_Face::contribue_au_second_membre(DoubleTab& resu ) c
       if (sub_type(Neumann_paroi,la_cl.valeur()))
         {
           const Neumann_paroi& la_cl_paroi = ref_cast(Neumann_paroi, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           for (int face=ndeb; face<nfin; face++)

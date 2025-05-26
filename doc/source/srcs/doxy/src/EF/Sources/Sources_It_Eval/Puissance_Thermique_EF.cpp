@@ -28,18 +28,18 @@ Entree& Puissance_Thermique_EF::readOn(Entree& s)
 {
   const Equation_base& eqn = equation();
   Terme_Puissance_Thermique::lire_donnees(s, eqn);
-  champs_compris_.ajoute_champ(la_puissance);
-  champs_don_.add(la_puissance);
-  champs_don_.add(la_puissance_lu);
+  champs_compris_.ajoute_champ(la_puissance.valeur());
+  if (la_puissance.non_nul()) champs_don_.add(la_puissance.valeur());
+  if (la_puissance_lu.non_nul()) champs_don_.add(la_puissance_lu.valeur());
   return s;
 }
 
-void Puissance_Thermique_EF::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Puissance_Thermique_EF::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis.valeur());
-  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_cl_dis.valeur());
-  iter->associer_domaines(zEF, zclEF);
-  Eval_Puiss_Th_EF& eval_puis = dynamic_cast<Eval_Puiss_Th_EF&> (iter->evaluateur());
+  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis);
+  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_cl_dis);
+  iter_->associer_domaines(zEF, zclEF);
+  Eval_Puiss_Th_EF& eval_puis = dynamic_cast<Eval_Puiss_Th_EF&> (iter_->evaluateur());
   eval_puis.associer_domaines(zEF, zclEF);
 }
 
@@ -47,6 +47,6 @@ void Puissance_Thermique_EF::associer_pb(const Probleme_base& pb)
 {
   const Equation_base& eqn = pb.equation(0);
   eqn.discretisation().nommer_completer_champ_physique(eqn.domaine_dis(), la_puissance.le_nom(), "W/m3", la_puissance, pb);
-  Eval_Puiss_Th_EF& eval_puis = dynamic_cast<Eval_Puiss_Th_EF&> (iter->evaluateur());
+  Eval_Puiss_Th_EF& eval_puis = dynamic_cast<Eval_Puiss_Th_EF&> (iter_->evaluateur());
   eval_puis.associer_champs(la_puissance);
 }

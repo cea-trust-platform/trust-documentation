@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,14 +18,14 @@
 
 #include <Viscosite_turbulente_base.h>
 #include <Transport_turbulent_base.h>
-#include <Correlation.h>
-#include <Champ_Fonc.h>
+#include <Correlation_base.h>
+#include <Champs_compris.h>
 #include <TRUST_Ref.h>
 #include <vector>
 
 class Operateur_Diff_base;
-class Champs_compris;
-class Pb_Multiphase;
+class Champ_Fonc_base;
+class Probleme_base;
 class Equation_base;
 
 class Op_Dift_Multiphase_proto
@@ -37,9 +37,9 @@ private:
   void mettre_a_jour_(const double, const bool /* is_face */);
 
 public:
-  void associer_proto(const Pb_Multiphase&, Champs_compris& );
+  void associer_proto(const Probleme_base&, Champs_compris& );
 
-  inline const Correlation& correlation() const { return corr_ ; }
+  inline const Correlation_base& correlation() const { return corr_ ; }
 
   void ajout_champs_proto_face() { ajout_champs_(true); }
   void ajout_champs_proto_elem() { ajout_champs_(false); }
@@ -71,12 +71,13 @@ public:
   }
 
 protected:
+  bool is_pbm_ = true;
   DoubleTab nu_ou_lambda_turb_; // comme le nom dit
-  Correlation corr_; // correlation de viscosite/transport turbulente
-  std::vector<Champ_Fonc> nu_ou_lambda_turb_post_, mu_ou_alpha_turb_post_; // champ de postraitement
+  OWN_PTR(Correlation_base) corr_; // correlation de viscosite/transport turbulente
+  std::vector<OWN_PTR(Champ_Fonc_base)> nu_ou_lambda_turb_post_, mu_ou_alpha_turb_post_; // champ de postraitement
   Motcles noms_nu_ou_lambda_turb_post_, noms_mu_ou_alpha_turb_post_; //leurs noms
-  REF(Pb_Multiphase) pbm_;
-  REF(Champs_compris) le_chmp_compris_;
+  OBS_PTR(Probleme_base) pbm_;
+  OBS_PTR(Champs_compris) le_chmp_compris_;
 };
 
 #endif /* Op_Dift_Multiphase_proto_included */

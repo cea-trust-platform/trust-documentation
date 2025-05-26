@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,28 +17,16 @@
 #define Op_Diff_VEF_Anisotrope_Face_included
 
 #include <Op_Diff_VEF_base.h>
-#include <Matrice_Morse.h>
 #include <Champ_base.h>
 #include <TRUST_Ref.h>
 
-class Champ_Inc;
 
-/*! @brief : class Op_Diff_VEF_Anisotrope_Face
- *
- *  <Description of class Op_Diff_VEF_Anisotrope_Face>
- *
- *
- *
- */
-
+class Matrice_Morse;
 
 class Op_Diff_VEF_Anisotrope_Face : public Op_Diff_VEF_base
 {
   Declare_instanciable( Op_Diff_VEF_Anisotrope_Face ) ;
-
 public:
-
-
   void associer_diffusivite(const Champ_base& ) override;
   void completer() override;
   const Champ_base& diffusivite() const override;
@@ -48,7 +36,6 @@ public:
   void verifier() const;
 
   // Methodes pour l implicite.
-
   inline void dimensionner(Matrice_Morse& ) const override;
   inline void modifier_pour_Cl(Matrice_Morse&, DoubleTab&) const override;
   inline void contribuer_a_avec(const DoubleTab&, Matrice_Morse&) const override;
@@ -80,7 +67,7 @@ public:
 protected :
 
 
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Champ_base) diffusivite_;
 
   //DoubleVect porosite_face;
 };
@@ -107,7 +94,7 @@ inline void Op_Diff_VEF_Anisotrope_Face::modifier_pour_Cl(Matrice_Morse& matrice
 inline void Op_Diff_VEF_Anisotrope_Face::contribuer_a_avec(const DoubleTab& inco,
                                                            Matrice_Morse& matrice) const
 {
-  const Champ_base& inconnue = equation().inconnue().valeur();
+  const Champ_base& inconnue = equation().inconnue();
   const Nature_du_champ nature_champ = inconnue.nature_du_champ();
   if (nature_champ!=multi_scalaire)
     ajouter_contribution(inco, matrice);

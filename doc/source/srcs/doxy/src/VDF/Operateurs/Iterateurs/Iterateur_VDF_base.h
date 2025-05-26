@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,14 +17,12 @@
 #define Iterateur_VDF_base_included
 
 #include <CL_Types_include.h>
+#include <Domaine_Cl_VDF.h>
 #include <Operateur_base.h>
 #include <Evaluateur_VDF.h>
 #include <Champ_Face_VDF.h>
 #include <Probleme_base.h>
 #include <Equation_base.h>
-#include <Matrice_Morse.h>
-#include <Domaine_Cl_VDF.h>
-#include <Domaine_Cl_dis.h>
 #include <Domaine_VDF.h>
 #include <Milieu_base.h>
 #include <TRUSTTrav.h>
@@ -33,6 +31,7 @@
 class Champ_Inc_base;
 class Operateur_base;
 class Champ_base;
+class Matrice_Morse;
 
 enum class Type_Operateur { Op_CONV_ELEM , Op_CONV_FACE , Op_DIFF_ELEM , Op_DIFT_ELEM , Op_DIFF_FACE , Op_DIFT_FACE , Op_DIFT_MULTIPHASE_FACE , Op_DIFT_MULTIPHASE_ELEM } ; // ne touche pas !
 
@@ -88,6 +87,8 @@ public:
     is_pb_multi = ty_pb;
   }
 
+  inline void set_multiscalar_diff(bool m) { multiscalar_diff_ = m; }
+
   virtual DoubleTab& calculer(const DoubleTab& inco, DoubleTab& resu) const final
   {
     operator_egal(resu, 0., VECT_REAL_ITEMS);
@@ -106,14 +107,26 @@ public:
     ajouter_blocs({{ op_base->equation().inconnue().le_nom().getString(), &m }}, secmem, {});
   }
 
+  virtual void associer_correlation_flux_parietal(const Correlation_base& corr)
+  {
+    Cerr << "Iterateur_VDF_base::" << __func__ << " should not be called !" << finl;
+    Process::exit();
+  }
+
+  virtual void creer_champ_T_paroi_pour_flux_parietal()
+  {
+    Cerr << "Iterateur_VDF_base::" << __func__ << " should not be called !" << finl;
+    Process::exit();
+  }
+
 protected:
-  REF(Domaine_VDF) le_dom;
-  REF(Domaine_Cl_VDF) la_zcl;
-  REF(Operateur_base) op_base;
-  REF(Champ_Inc_base) le_champ_convecte_ou_inc;
-  REF(Champ_base) le_ch_v;
+  OBS_PTR(Domaine_VDF) le_dom;
+  OBS_PTR(Domaine_Cl_VDF) la_zcl;
+  OBS_PTR(Operateur_base) op_base;
+  OBS_PTR(Champ_Inc_base) le_champ_convecte_ou_inc;
+  OBS_PTR(Champ_base) le_ch_v;
   std::string nom_ch_inco_;
-  bool is_conv_op_ = false, is_pb_multi = false, use_base_val_b_ = false;
+  bool is_conv_op_ = false, is_pb_multi = false, use_base_val_b_ = false, multiscalar_diff_ = false;
   int incompressible_ = 1;
 };
 

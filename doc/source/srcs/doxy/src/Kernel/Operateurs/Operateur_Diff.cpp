@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,9 +17,22 @@
 #include <Operateur_Diff.h>
 #include <stat_counters.h>
 #include <Champ_base.h>
-#include <Champ_Don.h>
 
-Implemente_instanciable(Operateur_Diff,"Operateur_Diff",DERIV(Operateur_Diff_base));
+
+Implemente_instanciable(Operateur_Diff,"Operateur_Diff",OWN_PTR(Operateur_Diff_base));
+// XD diffusion_deriv objet_lecture diffusion_deriv 0 not_set
+// XD bloc_diffusion objet_lecture nul 0 not_set
+// XD attr aco chaine(into=["{"]) aco 0 Opening curly bracket.
+// XD attr operateur diffusion_deriv operateur 1 if none is specified, the diffusive scheme used is a 2nd-order scheme.
+// XD attr op_implicite op_implicite op_implicite 1 To have diffusive implicitation, it use Uzawa algorithm. Very useful when viscosity has large variations.
+// XD attr acof chaine(into=["}"]) acof 0 Closing curly bracket.
+
+/* Here we put the doc for all shared (VDF, VEF,...) keywords: */
+
+// XD diffusion_negligeable diffusion_deriv negligeable 0 the diffusivity will not taken in count
+
+// XD diffusion_option diffusion_deriv option 0 not_set
+// XD attr bloc_lecture bloc_lecture bloc_lecture 0 not_set
 
 Sortie& Operateur_Diff::printOn(Sortie& os) const
 {
@@ -40,7 +53,7 @@ void Operateur_Diff::typer()
   Cerr << "Operateur_Diff::typer("<<typ<<")" << finl;
   if (Motcle(typ)==Motcle("negligeable"))
     {
-      DERIV(Operateur_Diff_base)::typer("Op_Diff_negligeable");
+      OWN_PTR(Operateur_Diff_base)::typer("Op_Diff_negligeable");
       valeur().associer_diffusivite(diffusivite());
     }
   else
@@ -48,7 +61,7 @@ void Operateur_Diff::typer()
       assert(la_diffusivite.non_nul());
       Equation_base& eqn=mon_equation.valeur();
       Nom nom_type= eqn.discretisation().get_name_of_type_for(que_suis_je(),typ,eqn,diffusivite());
-      DERIV(Operateur_Diff_base)::typer(nom_type);
+      OWN_PTR(Operateur_Diff_base)::typer(nom_type);
       valeur().associer_diffusivite(diffusivite());
     }
   Cerr << valeur().que_suis_je() << finl;
@@ -110,7 +123,7 @@ DoubleTab& Operateur_Diff::calculer(const DoubleTab& donnee,
 
 /*! @brief Renvoie le champ representant la diffusivite.
  *
- * @return (Champ_Don&) le champ representant la diffusivite
+ * @return (Champ_Don_base&) le champ representant la diffusivite
  */
 const Champ_base& Operateur_Diff::diffusivite() const
 {
@@ -120,7 +133,7 @@ const Champ_base& Operateur_Diff::diffusivite() const
 
 /*! @brief Associe la diffusivite a l'operateur.
  *
- * @param (Champ_Don& nu) le champ representant la diffusivite
+ * @param (Champ_Don_base& nu) le champ representant la diffusivite
  * @return le champ representant la diffusivite
  */
 void Operateur_Diff::associer_diffusivite(const Champ_base& nu)
@@ -139,5 +152,5 @@ void  Operateur_Diff::associer_diffusivite_pour_pas_de_temps(const Champ_base& n
  */
 void Operateur_Diff::typer(const Nom& un_type)
 {
-  DERIV(Operateur_Diff_base)::typer(un_type);
+  OWN_PTR(Operateur_Diff_base)::typer(un_type);
 }

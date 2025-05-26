@@ -407,7 +407,7 @@ Entree& Lire_Tgrid::interpreter_(Entree& is)
                   Cerr << "Contact TRUST support." << finl;
                   exit();
                 }
-              dom.type_elem().associer_domaine(dom);
+              dom.type_elem()->associer_domaine(dom);
             }
           Cerr << finl;
         }
@@ -482,7 +482,7 @@ Entree& Lire_Tgrid::interpreter_(Entree& is)
                 }
               ArrOfInt elem(2),som(nb_som_face);
               int nb_face_lu=ifin-ideb+1;
-              REF(Frontiere) nouveau_bord;
+              OBS_PTR(Frontiere) nouveau_bord;
               // On lit les sommets de la face et les 2 elements au contact de la face
               for (int i=0; i<nb_face_lu; i++)
                 {
@@ -547,11 +547,11 @@ Entree& Lire_Tgrid::interpreter_(Entree& is)
                           nouveau_bord=dom.faces_bord().add(Bord());
                           nouveau_bord->nommer((Nom)idomaine);
                           if (nb_som_face==3)
-                            nouveau_bord->faces().typer(Faces::triangle_3D);
+                            nouveau_bord->faces().typer(Type_Face::triangle_3D);
                           else if (nb_som_face==4)
-                            nouveau_bord->faces().typer(Faces::quadrangle_3D);
+                            nouveau_bord->faces().typer(Type_Face::quadrangle_3D);
                           else if (nb_som_face==2)
-                            nouveau_bord->faces().typer(Faces::segment_2D);
+                            nouveau_bord->faces().typer(Type_Face::segment_2D);
                           else
                             {
                               Cerr << "Type of boundary face not provided for nb_som_face=" << nb_som_face << finl;
@@ -702,7 +702,7 @@ Entree& Lire_Tgrid::interpreter_(Entree& is)
         }
 
   // On reordonne le domaine (utile surtout pour les hexaedres)
-  dom.type_elem().reordonner();
+  dom.type_elem()->reordonner();
 
   // Nettoie le domaine pour enlever les noeuds inutiles
   // Mettre une methode a Domaine::nettoie

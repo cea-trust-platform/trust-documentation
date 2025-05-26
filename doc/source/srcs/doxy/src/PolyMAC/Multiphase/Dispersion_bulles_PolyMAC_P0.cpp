@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,10 +34,10 @@ Entree& Dispersion_bulles_PolyMAC_P0::readOn(Entree& is)
   return is;
 }
 
-void Dispersion_bulles_PolyMAC_P0::dimensionner_blocs_aux(IntTrav& stencil) const
+void Dispersion_bulles_PolyMAC_P0::dimensionner_blocs_aux(IntTab& stencil) const
 {
-  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue().valeur());
-  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis().valeur());
+  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue());
+  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis());
   const DoubleTab& inco = ch.valeurs();
 
   int i, j, e, k, l, N = inco.line_size(), d, db, D = dimension, nf_tot = domaine.nb_faces_tot();
@@ -53,15 +53,18 @@ void Dispersion_bulles_PolyMAC_P0::dimensionner_blocs_aux(IntTrav& stencil) cons
 void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
-  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue().valeur());
-  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis().valeur());
+  const bool res_en_T = pbm.resolution_en_T();
+  if (!res_en_T) Process::exit("Dispersion_bulles_PolyMAC_P0::ajouter_blocs NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
+  const Champ_Face_PolyMAC_P0& ch = ref_cast(Champ_Face_PolyMAC_P0, equation().inconnue());
+  const Domaine_PolyMAC_P0& domaine = ref_cast(Domaine_PolyMAC_P0, equation().domaine_dis());
   const IntTab& f_e = domaine.face_voisins(), &fcl = ch.fcl(), &e_f = domaine.elem_faces();
   const DoubleVect& pe = equation().milieu().porosite_elem(), &pf = equation().milieu().porosite_face(), &ve = domaine.volumes(), &vf = domaine.volumes_entrelaces(), &fs = domaine.face_surfaces();
   const DoubleTab& vf_dir = domaine.volumes_entrelaces_dir(), &xp = domaine.xp(), &xv = domaine.xv();
   const DoubleTab& pvit = ch.passe(),
                    &alpha = pbm.equation_masse().inconnue().passe(),
                     &press = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression().passe(),
-                     &temp  = pbm.equation_energie().inconnue().passe(),
+                     &temp = pbm.equation_energie().inconnue().passe(),
                       &rho   = equation().milieu().masse_volumique().passe(),
                        &mu    = ref_cast(Fluide_base, equation().milieu()).viscosite_dynamique().passe();
   const Milieu_composite& milc = ref_cast(Milieu_composite, equation().milieu());
@@ -70,19 +73,27 @@ void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab&
   DoubleTab const * k_turb = (equation().probleme().has_champ("k")) ? &equation().probleme().get_champ("k").passe() : nullptr ;
   DoubleTab const * k_WIT = (equation().probleme().has_champ("k_WIT")) ? &equation().probleme().get_champ("k_WIT").passe() : nullptr ;
 
-  int N = pvit.line_size() , Np = press.line_size(), D = dimension, nf_tot = domaine.nb_faces_tot(), nf = domaine.nb_faces(), ne_tot = domaine.nb_elem_tot(),  cR = (rho.dimension_tot(0) == 1), cM = (mu.dimension_tot(0) == 1), Nk = (k_turb) ? (*k_turb).dimension(1) : 1;
+  int N = pvit.line_size() ,
+      Np = press.line_size(),
+      D = dimension,
+      nf_tot = domaine.nb_faces_tot(),
+      nf = domaine.nb_faces(),
+      ne_tot = domaine.nb_elem_tot(),
+      cR = (rho.dimension_tot(0) == 1),
+      cM = (mu.dimension_tot(0) == 1),
+      Nk = (k_turb) ? (*k_turb).dimension(1) : 1;
   DoubleTrav nut(domaine.nb_elem_tot(), N); //viscosite turbulente
-  if (is_turb) ref_cast(Viscosite_turbulente_base, ref_cast(Op_Diff_Turbulent_PolyMAC_P0_Face, equation().operateur(0).l_op_base()).correlation().valeur()).eddy_viscosity(nut); //remplissage par la correlation
+  if (is_turb) ref_cast(Viscosite_turbulente_base, ref_cast(Op_Diff_Turbulent_PolyMAC_P0_Face, equation().operateur(0).l_op_base()).correlation()).eddy_viscosity(nut); //remplissage par la correlation
 
   // Input-output
-  const Dispersion_bulles_base& correlation_db = ref_cast(Dispersion_bulles_base, correlation_->valeur());
+  const Dispersion_bulles_base& correlation_db = ref_cast(Dispersion_bulles_base, correlation_.valeur());
   Dispersion_bulles_base::input_t in;
   Dispersion_bulles_base::output_t out;
   in.alpha.resize(N), in.T.resize(N), in.p.resize(N), in.rho.resize(N), in.mu.resize(N), in.sigma.resize(N*(N-1)/2), in.k_turb.resize(N), in.nut.resize(N), in.d_bulles.resize(N), in.nv.resize(N, N);
   out.Ctd.resize(N, N);
 
   /* calculaiton of the gradient of alpha at the face */
-  const Champ_Elem_PolyMAC_P0& ch_a = ref_cast(Champ_Elem_PolyMAC_P0, pbm.equation_masse().inconnue().valeur());
+  const Champ_Elem_PolyMAC_P0& ch_a = ref_cast(Champ_Elem_PolyMAC_P0, pbm.equation_masse().inconnue());
   DoubleTrav grad_f_a(pvit);
   ch_a.init_grad(0);
   const IntTab& fg_d = ch_a.fgrad_d, &fg_e = ch_a.fgrad_e;  // Tables utilisees dans domaine_PolyMAC_P0::fgrad pour le calcul du gradient
@@ -111,7 +122,7 @@ void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab&
           {
             Interface_base& sat = milc.get_interface(k,l);
             const int ind_trav = (k*(N-1)-(k-1)*(k)/2) + (l-k-1); // Et oui ! matrice triang sup !
-            for (int i = 0 ; i<ne_tot ; i++) Sigma_tab(i,ind_trav) = sat.sigma(temp(i,k),press(i,k * (Np > 1))) ;
+            for (int i = 0 ; i<ne_tot ; i++) Sigma_tab(i,ind_trav) = res_en_T ? sat.sigma(temp(i,k),press(i,k * (Np > 1))) : sat.sigma_h(temp(i,k),press(i,k * (Np > 1))) ;
           }
       }
 
@@ -148,7 +159,7 @@ void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab&
   for (int f = 0; f < nf; f++)
     if (fcl(f, 0) < 2)
       {
-        in.alpha=0., in.T=0., in.rho=0., in.mu=0., in.sigma=0., in.k_turb=0., in.nut=0., in.d_bulles=0., in.nv=0.;
+        in.alpha=0., in.T=0., in.p=0, in.rho=0., in.mu=0., in.sigma=0., in.k_turb=0., in.nut=0., in.d_bulles=0., in.nv=0., in.k_WIT=0;
         int e;
         for (int c = 0; c < 2 && (e = f_e(f, c)) >= 0; c++)
           {
@@ -156,7 +167,7 @@ void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab&
               {
                 in.alpha[n]   += vf_dir(f, c)/vf(f) * alpha(e, n);
                 in.p[n]   += vf_dir(f, c)/vf(f) * press(e, n * (Np > 1));
-                in.T[n]   += vf_dir(f, c)/vf(f) * temp(e, n);
+                in.T[n]   += vf_dir(f, c)/vf(f) * temp(e, n); // FIXME SI res_en_T
                 in.rho[n] += vf_dir(f, c)/vf(f) * rho(!cR * e, n);
                 in.mu[n]  += vf_dir(f, c)/vf(f) * mu(!cM * e, n);
                 in.nut[n] += is_turb    ? vf_dir(f, c)/vf(f) * nut(e,n) : 0;
@@ -194,7 +205,7 @@ void Dispersion_bulles_PolyMAC_P0::ajouter_blocs(matrices_t matrices, DoubleTab&
         {
           in.alpha[n] = alpha(e, n);
           in.p[n]     = press(e, n * (Np > 1));
-          in.T[n]     = temp(e, n);
+          in.T[n]     = temp(e, n); // FIXME SI res_en_T
           in.rho[n]   = rho(!cR * e, n);
           in.mu[n]    = mu(!cM * e, n);
           in.nut[n]   = is_turb    ? nut(e,n) : 0;

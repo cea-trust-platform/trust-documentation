@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,21 +19,21 @@
 #include <Evaluateur_Source_Elem.h>
 #include <TRUST_Ref.h>
 
+
 class Champ_Uniforme;
-class Champ_Don;
 
 class Eval_Puiss_Neutr_VDF_Elem: public Evaluateur_Source_Elem
 {
 public:
   Eval_Puiss_Neutr_VDF_Elem() : puissance(-123.) { }
-  void associer_champs(const Champ_Don& );
+  void associer_champs(const Champ_Don_base& );
   void associer_repartition(const Nom& fxyz, const Nom& nom_ssz);
   void mettre_a_jour() override;
   void completer() override;
   template <typename Type_Double> void calculer_terme_source(const int , Type_Double& ) const;
 
 protected:
-  REF(Champ_Uniforme) la_puissance;
+  OBS_PTR(Champ_Uniforme) la_puissance;
   double puissance;
   DoubleTab rep;
   Nom fxyz;

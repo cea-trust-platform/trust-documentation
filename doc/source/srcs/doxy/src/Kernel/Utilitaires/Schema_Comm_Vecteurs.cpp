@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,10 +20,13 @@
 #include <sstream>
 #include <comm_incl.h>
 
-int Schema_Comm_Vecteurs::buffer_locked_;
+bool Schema_Comm_Vecteurs::buffer_locked_;
 ArrOfDouble Schema_Comm_Vecteurs::tmp_area_double_;
 ArrOfFloat Schema_Comm_Vecteurs::tmp_area_float_;
 ArrOfInt Schema_Comm_Vecteurs::tmp_area_int_;
+#if INT_is_64_ == 2
+ArrOfTID Schema_Comm_Vecteurs::tmp_area_tid_;
+#endif
 Schema_Comm_Vecteurs_Static_Data Schema_Comm_Vecteurs::sdata_;
 bool check_comm_vector = false;
 
@@ -49,8 +52,11 @@ void Schema_Comm_Vecteurs_Static_Data::init(int min_buf_size, bool bufferOnDevic
   // Le buffer global a-t-il une taille suffisante ?
   if (buffer_base_size_ < min_buf_size)
     {
-      if (buffer_base_device_size_>0)
-        deleteOnDevice(buffer_base_, buffer_base_device_size_);
+      if (buffer_base_device_size_ > 0)
+        {
+          deleteOnDevice(buffer_base_, buffer_base_device_size_);
+          buffer_base_device_size_ = 0;
+        }
       delete [] buffer_base_;
       buffer_base_ = new char[min_buf_size];
       // GF ajout de la mise a zero pour mpiwrapper valgrind mais est ce util ?
@@ -63,7 +69,7 @@ void Schema_Comm_Vecteurs_Static_Data::init(int min_buf_size, bool bufferOnDevic
       // Allocate buffer_base_ on device:
       if (buffer_base_device_size_>0)
         deleteOnDevice(buffer_base_, buffer_base_device_size_);
-      allocateOnDevice(buffer_base_, min_buf_size, "buffer_base_");
+      allocateOnDevice(buffer_base_, min_buf_size);
       buffer_base_device_size_ = min_buf_size;
     }
 }
@@ -81,7 +87,17 @@ Schema_Comm_Vecteurs_Static_Data::~Schema_Comm_Vecteurs_Static_Data()
 Schema_Comm_Vecteurs::Schema_Comm_Vecteurs()
 {
   status_ = RESET;
-  use_gpu_aware_mpi_ = getenv("TRUST_USE_GPU_AWARE_MPI") != nullptr;
+  const char* env_var = getenv("TRUST_USE_MPI_GPU_AWARE");
+  use_gpu_aware_mpi_ = env_var != nullptr && std::stoi(env_var) == 1;
+  if (use_gpu_aware_mpi_)
+    {
+#ifdef CRAY_MPICH_VER
+      if (getenv("MPICH_GPU_SUPPORT_ENABLED") == nullptr)
+        Process::exit("You try to enable GPU communications on Cray MPICH with TRUST_USE_MPI_GPU_AWARE=1 but forgot to set also MPICH_GPU_SUPPORT_ENABLED=1 !");
+#endif
+      std::cerr << "[MPI] Enabling GPU capability to communicate between devices." << std::endl;
+      //Cerr << "[MPI] Warning! Only MPI calls with device pointers will benefit. Classic MPI calls with host pointers will be slower..." << finl;
+    }
 }
 
 Schema_Comm_Vecteurs::~Schema_Comm_Vecteurs()
@@ -111,13 +127,8 @@ void Schema_Comm_Vecteurs::begin_init()
   if (use_gpu_aware_mpi_)
     {
 #if defined(TRUST_USE_CUDA) && !defined(MPIX_CUDA_AWARE_SUPPORT)
-      Process::exit("MPI version is detected as not CUDA-Aware. You can't use TRUST_USE_GPU_AWARE_MPI=1");
+      Process::exit("MPI version is detected as not CUDA-Aware. You can't use TRUST_USE_MPI_GPU_AWARE=1");
 #endif
-      if (Process::je_suis_maitre())
-        {
-          Cerr << "[MPI] Enabling GPU capability to communicate between devices." << finl;
-          Cerr << "[MPI] Warning! Only MPI calls with device pointers will benefit. Classic MPI calls with host pointers will be slower..." << finl;
-        }
     }
 }
 
@@ -205,7 +216,7 @@ void Schema_Comm_Vecteurs::begin_comm(bool bufferOnDevice)
       Cerr << "Internal error in Schema_Comm_Vecteurs::begin_comm(): buffers already locked by another communication" << finl;
       Process::exit();
     }
-  buffer_locked_ = 1;
+  buffer_locked_ = true;
   sdata_.init(min_buf_size_, bufferOnDevice);
 
   // Fait pointer les buffers sur le debut des send_buffers
@@ -218,26 +229,23 @@ void Schema_Comm_Vecteurs::begin_comm(bool bufferOnDevice)
       sdata_.buf_pointers_[pe] = ptr;
       ptr += send_buf_sizes_[i];
     }
-  buffer_locked_ = 1;
+  buffer_locked_ = true;
   status_ = BEGIN_COMM;
+  bufferOnDevice_ = bufferOnDevice;
 }
 
-void Schema_Comm_Vecteurs::exchange(bool bufferOnDevice)
+void Schema_Comm_Vecteurs::exchange()
 {
   char * ptr = sdata_.buffer_base_;
   // Copy buffer before MPI send
-  if (bufferOnDevice)
+  if (bufferOnDevice_)
     {
       if (!use_gpu_aware_mpi_)
-        copyFromDevice(sdata_.buffer_base_, min_buf_size_, "buffer_base_"); // Copy buffer to host for MPI communication
+        copyFromDevice(sdata_.buffer_base_, min_buf_size_); // Copy buffer to host for MPI communication
       else
         {
           // Communication between devices. Use device buffer:
-          char * buffer_base = sdata_.buffer_base_;
-          #pragma omp target data use_device_ptr(buffer_base)
-          {
-            ptr = buffer_base;
-          }
+          ptr = addrOnDevice(sdata_.buffer_base_);
         }
     }
 
@@ -284,7 +292,7 @@ void Schema_Comm_Vecteurs::exchange(bool bufferOnDevice)
   status_ = EXCHANGED;
 
   // Copy buffer to device after MPI recv if GPU-Aware MPI is not enabled:
-  if (bufferOnDevice && !use_gpu_aware_mpi_) copyToDevice(sdata_.buffer_base_, min_buf_size_, "buffer_base_");
+  if (bufferOnDevice_ && !use_gpu_aware_mpi_) copyToDevice(sdata_.buffer_base_, min_buf_size_);
 }
 
 void Schema_Comm_Vecteurs::end_comm()
@@ -293,7 +301,8 @@ void Schema_Comm_Vecteurs::end_comm()
   // Verifie qu'on a bien lu toutes les donnees
   assert(check_buffers_full());
   status_ = END_INIT; // pret pour un nouveau begin_comm()
-  buffer_locked_ = 0;
+  buffer_locked_ = false;
+  bufferOnDevice_ = false;
 }
 
 /*! @brief Selon status_, verifie que tous les pointeurs de buffers pointent a la fin du buffer aloue pour chaque processeur en emission

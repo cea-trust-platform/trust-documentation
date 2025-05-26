@@ -19,12 +19,13 @@
 #include <EcrFicPartage.h>
 #include <Periodique.h>
 #include <sys/stat.h>
-#include <Champ.h>
+
 #include <Front_VF.h>
 #include <Domaine_VF.h>
 #include <Matrice_Morse.h>
 #include <TRUSTTrav.h>
 #include <Discretisation_base.h>
+#include <Domaine_Cl_dis_base.h>
 
 Implemente_base_sans_constructeur(Operateur_base,"Operateur_base",Objet_U);
 
@@ -89,15 +90,15 @@ void Operateur_base::completer()
 {
   assert(mon_equation.non_nul());
   const Equation_base& eqn = equation();
-  const Domaine_dis& zdis= eqn.domaine_dis();
+  const Domaine_dis_base& zdis= eqn.domaine_dis();
 
-  const Domaine_Cl_dis& zcl = le_champ_inco.non_nul() ? le_champ_inco.valeur()->domaine_Cl_dis() : eqn.domaine_Cl_dis();
-  const Champ_Inc& inco = le_champ_inco.non_nul() ? le_champ_inco.valeur() : eqn.inconnue();
+  const Domaine_Cl_dis_base& zcl = le_champ_inco.non_nul() ? le_champ_inco->domaine_Cl_dis() : eqn.domaine_Cl_dis();
+  const Champ_Inc_base& inco = le_champ_inco.non_nul() ? le_champ_inco.valeur() : eqn.inconnue();
   associer(zdis, zcl, inco);
-  const Conds_lim& les_cl = zcl->les_conditions_limites();
+  const Conds_lim& les_cl = zcl.les_conditions_limites();
   for (auto& itr : les_cl)
     {
-      const Frontiere_dis_base& la_fr = itr.frontiere_dis();
+      const Frontiere_dis_base& la_fr = itr->frontiere_dis();
       col_width_ = std::max(col_width_, la_fr.le_nom().longueur());
     }
   int w_suffix = 3; // pour ajout _Mx (moment)
@@ -105,7 +106,7 @@ void Operateur_base::completer()
   // pour les champs a plusieurs composantes, le header des colonnes des fichiers .out prend la forme
   // Time cl1_compo1  cl1_compo2 ...
   // on prend en compte la longueur de compo1, compo2, etc...
-  Noms noms_compo_courts(inco->noms_compo());
+  Noms noms_compo_courts(inco.noms_compo());
   if (noms_compo_courts.size() > 1)
     for (int i = 0; i < noms_compo_courts.size(); ++i)
       {
@@ -115,7 +116,7 @@ void Operateur_base::completer()
   col_width_ += w_suffix + 1;
 }
 
-void Operateur_base::associer_champ(const Champ_Inc& ch, const std::string& nom_ch)
+void Operateur_base::associer_champ(const Champ_Inc_base& ch, const std::string& nom_ch)
 {
   le_champ_inco = ch;
   nom_inco_ = nom_ch;
@@ -157,21 +158,25 @@ int Operateur_base::impr(Sortie& os) const
 void Operateur_base::dimensionner(Matrice_Morse& mat) const
 {
   /* on tente dimensionner_blocs() */
-  if (has_interface_blocs()) dimensionner_blocs({{ equation().inconnue().le_nom().getString(), &mat }});
-  else Process::exit(que_suis_je() + " : dimensionner() not coded!");
+  if (has_interface_blocs())
+    dimensionner_blocs( { { equation().inconnue().le_nom().getString(), &mat } });
+  else
+    Process::exit(que_suis_je() + " : dimensionner() not coded!");
 }
 
 void Operateur_base::dimensionner_bloc_vitesse(Matrice_Morse& mat) const
 {
   /* on tente dimensionner_blocs() */
-  if (has_interface_blocs()) dimensionner_blocs({{ "vitesse", &mat }});
+  if (has_interface_blocs())
+    dimensionner_blocs( { { "vitesse", &mat } });
 }
 
 void Operateur_base::dimensionner_termes_croises(Matrice_Morse& mat, const Probleme_base& autre_pb, int nl, int nc) const
 {
   if (!has_interface_blocs()) return;
   std::string nom_inco = equation().inconnue().le_nom().getString(),
-              nom = equation().probleme().le_nom() == autre_pb.le_nom() ? nom_inco : nom_inco + "/" + autre_pb.le_nom().getString(); //nom de bloc croise pour l'interface_blocs
+              nom = equation().probleme().le_nom() == autre_pb.le_nom() ? nom_inco :
+                    nom_inco + "/" + autre_pb.le_nom().getString(); //nom de bloc croise pour l'interface_blocs
   dimensionner_blocs({{ nom, &mat }}, {});
 }
 
@@ -183,11 +188,14 @@ void Operateur_base::ajouter_termes_croises(const DoubleTab& inco, const Problem
 
 void Operateur_base::contribuer_termes_croises(const DoubleTab& inco, const Probleme_base& autre_pb, const DoubleTab& autre_inco, Matrice_Morse& matrice) const
 {
-  if (!has_interface_blocs()) return;
+  if (!has_interface_blocs())
+    return;
   DoubleTrav secmem(inco); //on va le jeter
+  secmem = inco;
   std::string nom_inco = equation().inconnue().le_nom().getString(),
-              nom = equation().probleme().le_nom() == autre_pb.le_nom() ? nom_inco : nom_inco + "/" + autre_pb.le_nom().getString(); //nom de bloc croise pour l'interface_blocs
-  ajouter_blocs({{ nom, &matrice}}, secmem, {});
+              nom = equation().probleme().le_nom() == autre_pb.le_nom() ? nom_inco :
+                    nom_inco + "/" + autre_pb.le_nom().getString(); //nom de bloc croise pour l'interface_blocs
+  ajouter_blocs( { { nom, &matrice } }, secmem, { });
 }
 
 void Operateur_base::dimensionner_blocs(matrices_t mats, const tabs_t& semi_impl) const
@@ -245,18 +253,20 @@ DoubleTab&  Operateur_base::calculer(const DoubleTab& inco, DoubleTab& secmem) c
  */
 void Operateur_base::contribuer_a_avec(const DoubleTab& inco, Matrice_Morse& matrice) const
 {
-  /* on tente ajouter_blocs() */
   DoubleTrav secmem(inco); //on va le jeter
-  if (has_interface_blocs()) ajouter_blocs({{ equation().inconnue().le_nom().getString(), &matrice }}, secmem);
-  else Process::exit(que_suis_je() + " : contribuer_a_avec() not coded!");
+  secmem = inco;
+  if (has_interface_blocs())
+    ajouter_blocs( { { equation().inconnue().le_nom().getString(), &matrice } }, secmem);
+  else
+    Process::exit(que_suis_je() + " : contribuer_a_avec() not coded!");
 }
 
 void Operateur_base::contribuer_bloc_vitesse(const DoubleTab& inco, Matrice_Morse& matrice) const
 {
-  /* on tente ajouter_blocs() */
   if (has_interface_blocs())
     {
-      DoubleTrav secmem(equation().inconnue().valeurs()); //on va le jeter
+      DoubleTrav secmem(inco); //on va le jeter
+      secmem = inco;
       ajouter_blocs({{ "vitesse", &matrice }}, secmem);
     }
 }
@@ -304,7 +314,7 @@ void Operateur_base::ouvrir_fichier(SFichier& os,const Nom& type, const int flag
 {
 
   // flag nul on n'ouvre pas le fichier
-  if (flag==0)
+  if (flag==0 || os.is_open())
     return ;
 
   if (!je_suis_maitre())
@@ -334,7 +344,7 @@ void Operateur_base::ouvrir_fichier(SFichier& os,const Nom& type, const int flag
       os.set_col_width(wcol - !gnuplot_header);
       os.add_col("Time");
       os.set_col_width(wcol);
-      const Conds_lim& les_cls=eqn.inconnue()->domaine_Cl_dis().les_conditions_limites();
+      const Conds_lim& les_cls=eqn.inconnue().domaine_Cl_dis().les_conditions_limites();
 
       if (flux_bords_.nb_dim()!=2)
         {
@@ -345,7 +355,7 @@ void Operateur_base::ouvrir_fichier(SFichier& os,const Nom& type, const int flag
       // s'il y a plusieurs composantes par CL, on se sert des noms de composante de l'inconnue
       int nb_compo = flux_bords_.line_size();
       if (type=="moment" && dimension == 2) nb_compo=1;
-      Noms noms_compo_courts(eqn.inconnue()->noms_compo());
+      Noms noms_compo_courts(eqn.inconnue().noms_compo());
       if (nb_compo > 1)
         for (int i = 0; i < noms_compo_courts.size(); ++i)
           noms_compo_courts[i] = Motcle(noms_compo_courts[i]).getSuffix(eqn.inconnue().le_nom());
@@ -356,7 +366,7 @@ void Operateur_base::ouvrir_fichier(SFichier& os,const Nom& type, const int flag
       // Time cl1_compo1  cl1_compo2 cl2 compo1 cl2_compo2 ...
       for (int num_cl=0; num_cl<les_cls.size(); num_cl++)
         {
-          const Frontiere_dis_base& la_fr = les_cls[num_cl].frontiere_dis();
+          const Frontiere_dis_base& la_fr = les_cls[num_cl]->frontiere_dis();
           if (type!="sum" || eqn.domaine_dis().domaine().bords_a_imprimer_sum().contient(la_fr.le_nom()))
             {
               Nom ch = la_fr.le_nom();
@@ -407,6 +417,8 @@ void Operateur_base::ouvrir_fichier(SFichier& os,const Nom& type, const int flag
     }
   os.precision(precision);
   os.setf(ios::scientific);
+  // Ajout de os a la liste des fichiers a fermer lors de l'appel a Probleme_base::finir()
+  pb.get_set_out_files().add(os);
 }
 
 /*! @brief Ouverture/creation d'un fichier d'impression d'un operateur A surcharger dans les classes derivees.
@@ -446,24 +458,25 @@ void Operateur_base::ajouter_contribution_explicite_au_second_membre(const Champ
   ajouter(inconnue.valeurs(), derivee);
 }
 
-
-void Operateur_base::creer_champ(const Motcle& motlu)
-{
-}
-
 const Champ_base& Operateur_base::get_champ(const Motcle& nom) const
 {
   return champs_compris_.get_champ(nom);
 }
-bool Operateur_base::has_champ(const Motcle& nom, REF(Champ_base)& ref_champ) const
+
+bool Operateur_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
 {
   return champs_compris_.has_champ(nom, ref_champ);
 }
 
-void Operateur_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+bool Operateur_base::has_champ(const Motcle& nom) const
 {
-  if (opt==DESCRIPTION)
-    Cerr<<que_suis_je()<<" : "<<champs_compris_.liste_noms_compris()<<finl;
+  return champs_compris_.has_champ(nom);
+}
+
+void Operateur_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
+{
+  if (opt == DESCRIPTION)
+    Cerr << que_suis_je() << " : " << champs_compris_.liste_noms_compris() << finl;
   else
     nom.add(champs_compris_.liste_noms_compris());
 }
@@ -472,15 +485,15 @@ void Operateur_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
 //Options reconnues : "stabilite" pour dt_stab
 //                      "flux_bords" ou "flux_surfacique_bords" pour flux_bords_
 //
-void Operateur_base::calculer_pour_post(Champ& espace_stockage,const Nom& option, int comp) const
+void Operateur_base::calculer_pour_post(Champ_base& espace_stockage,const Nom& option, int comp) const
 {
   if (Motcle(option)=="flux_bords" || Motcle(option)=="flux_surfacique_bords")
     {
       bool surfacique = (Motcle(option)=="flux_surfacique_bords");
-      DoubleTab& es_valeurs = espace_stockage->valeurs();
+      DoubleTab& es_valeurs = espace_stockage.valeurs();
       es_valeurs = 0.;
       const Domaine_Cl_dis_base& zcl_dis = equation().domaine_Cl_dis();
-      const Domaine_dis_base& zdis = equation().domaine_dis().valeur();
+      const Domaine_dis_base& zdis = equation().domaine_dis();
       int nb_front = zdis.nb_front_Cl();
 
       if (flux_bords_.nb_dim()==2)
@@ -489,8 +502,8 @@ void Operateur_base::calculer_pour_post(Champ& espace_stockage,const Nom& option
           for (int n_bord=0; n_bord<nb_front; n_bord++)
             {
               const Cond_lim& la_cl = zcl_dis.les_conditions_limites(n_bord);
-              const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
-              if (surfacique) la_cl.frontiere_dis().frontiere().faces().calculer_surfaces(aire);
+              const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
+              if (surfacique) la_cl->frontiere_dis().frontiere().faces().calculer_surfaces(aire);
               int ndeb = le_bord.num_premiere_face();
               int nfin = ndeb + le_bord.nb_faces();
 
@@ -546,7 +559,7 @@ void Operateur_base::calculer_flux(const DoubleTab& inconnue, DoubleTab& flux) c
 // que la diffusivite varie ou non.
 //
 // Par defaut : ne fait rien
-void Operateur_base::preparer_calcul(void) { }
+void Operateur_base::preparer_calcul() { }
 
 // Methode pour tester la methode contribuer_a_avec
 // Test active par une variable d'environnement
@@ -602,12 +615,12 @@ void Operateur_base::tester_contribuer_a_avec(const DoubleTab& inco, const Matri
   mat_contribuer.ajouter_multvect(inco, resu); // Calcule le flux avec la matrice et l'ajoute a resu (resu=Op(Inc(n))-A*Inc(n))
   resu*=-1;
   contribuer_au_second_membre(resu); // Ajoute flux impose
-  mon_equation.valeur().solv_masse().appliquer(resu); // M-1*(Op(Inc(n))-A*Inc(n))
+  mon_equation->solv_masse().appliquer(resu); // M-1*(Op(Inc(n))-A*Inc(n))
   // On multiplie par le volume car les coefficients sont divises par le volume et on ne veut pas
   // qu'un calcul sur des petites mailles semblent disfonctionner;
   DoubleTab un(inco);
   un=1;
-  mon_equation.valeur().solv_masse().appliquer(un);
+  mon_equation->solv_masse().appliquer(un);
   resu/=mp_max_vect(un);
   double err=mp_max_abs_vect(resu);
   Cerr<<"Test contribuer_a_avec on " << que_suis_je() <<" error: "<<err<<finl;

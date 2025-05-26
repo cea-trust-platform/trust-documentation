@@ -26,7 +26,8 @@
 #include <petscdm.h>
 #include <TRUSTTab.h>
 #endif
-#include <PCShell.h>
+#include <PCShell_base.h>
+#include <TRUST_Deriv.h>
 
 class Matrice_Morse_Sym;
 class Matrice_Morse;
@@ -38,7 +39,7 @@ extern bool gmres_right_unpreconditionned;
 /* Struct to associate Petsc preconditionner to user-provided preconditioner */
 typedef struct
 {
-  PCShell pc_shell;
+  OWN_PTR(PCShell_base) pc_shell;
 } PCstruct;
 
 
@@ -104,6 +105,7 @@ public :
   }
   // Timers:
   static PetscLogStage KSPSolve_Stage_;
+  static PetscLogStage Create_Stage_;
   void set_rtol(const double& rtol)
   {
     seuil_relatif_ = rtol;
@@ -112,8 +114,12 @@ public :
 #endif
   static int instance;               // Nombre d'instances en cours de la classe
   static int numero_solveur;         // Compte les solveurs crees et utilises pour le prefix des options
+
 protected :
 #ifdef PETSCKSP_H
+  using ArrOfPetscInt = TRUSTArray<PetscInt, PetscInt>;
+
+  bool isViennaCLVector();
   void check_aij(const Matrice_Morse&);
   void Create_DM(const DoubleVect& ); // Construit un DM (Distributed Mesh)
   virtual void Create_objects(const Matrice_Morse&, int); // Construit differents objets PETSC dont matrice
@@ -129,14 +135,15 @@ protected :
   {
     return nouveau_stencil_;
   }; // ToDo: Remonter dans Solveur_Sys avec nouvelle_matrice
-  bool enable_ksp_view( void );
+  bool enable_ksp_view();
+  bool has_option(const Nom& option, Nom& current_value);
   int add_option(const Nom& option, const double& value, int cli = 0);
   int add_option(const Nom& option, const Nom& value, int cli = 0);
   void add_amgx_option(const Nom& key, const Nom& value, const std::string& comment="");
   void add_amgx_option(const Nom& key_value);
   void SaveObjectsToFile(const DoubleVect& b, DoubleVect& x);
   void RestoreMatrixFromFile();
-  int compute_nb_rows_petsc(int);
+  PetscInt compute_nb_rows_petsc(PetscInt);
 
   // Attributes
   double seuil_;
@@ -173,6 +180,8 @@ protected :
   Vec LocalSolutionPetsc_;	// Local solution in case of petsc_decide_=1
   VecScatter VecScatter_;	// Scatter context needed when petsc_decide_=1 to gather values of global to local solution
 #endif
+
+
   int solveur_direct_ = no;          // Pour savoir si l'on manipule un solveur direct et non iteratif
   int read_matrix_;		// Read constant matrix in a file
   bool gpu_ = false;                    // Utilisation des solveurs GPU de PETSc
@@ -305,6 +314,7 @@ inline void Solv_Petsc::initialize()
         Cerr << "NB: if you want to disable the wrinting of the *_petsc.TU file then specify the disable_TU flag in your datafile before reading the block of schema in time." << finl;
       else
         Cerr << "Reading of disable_TU flag => Disable the writing of the *_petsc.TU file."<< finl;
+      PetscLogStageRegister("CreateStage",&Create_Stage_);
       PetscLogStageRegister("KSPSolve",&KSPSolve_Stage_);
     }
 }

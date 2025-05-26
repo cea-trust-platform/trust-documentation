@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <Champ_P1NC_implementation.h>
 #include <Domaine_Cl_VEF.h>
 #include <Domaine_VEF.h>
-#include <Champ_Inc.h>
+
 #include <Ok_Perio.h>
 
 /*! @brief class Champ_P1NC
@@ -77,6 +77,11 @@ public:
   inline double valeur_a_sommet_compo(int num_som, int le_poly, int ncomp) const override
   {
     return Champ_P1NC_implementation::valeur_a_sommet_compo(num_som, le_poly, ncomp);
+  }
+
+  inline DoubleTab& valeur_aux_centres_de_gravite(const Domaine& dom, DoubleTab& tab_valeurs) const override
+  {
+    return Champ_P1NC_implementation::valeur_aux_centres_de_gravite(dom, tab_valeurs);
   }
 
   inline DoubleTab& valeur_aux_elems(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& tab_valeurs) const override

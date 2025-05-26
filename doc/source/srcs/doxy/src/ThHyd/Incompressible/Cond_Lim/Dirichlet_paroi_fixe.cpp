@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,6 +16,8 @@
 #include <Dirichlet_paroi_fixe.h>
 
 Implemente_instanciable(Dirichlet_paroi_fixe, "Paroi_fixe", Dirichlet_homogene);
+// XD paroi_fixe condlim_base paroi_fixe -1 Keyword to designate a situation of adherence to the wall called bord (edge) (normal and tangential velocity at the edge is zero).
+
 
 Sortie& Dirichlet_paroi_fixe::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -31,6 +33,6 @@ Entree& Dirichlet_paroi_fixe::readOn(Entree& s)
 
   Dirichlet_homogene::readOn(s);
   int nb_comp = Objet_U::dimension;
-  le_champ_front.valeur().fixer_nb_comp(nb_comp);
+  le_champ_front->fixer_nb_comp(nb_comp);
   return s;
 }

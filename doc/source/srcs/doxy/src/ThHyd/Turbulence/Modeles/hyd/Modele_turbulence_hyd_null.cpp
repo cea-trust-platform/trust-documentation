@@ -35,7 +35,7 @@ Entree& Modele_turbulence_hyd_null::readOn(Entree& is)
   // Creation d'une loi de paroi nulle:
   const Equation_base& eqn = equation();
   const Nom& discr = eqn.discretisation().que_suis_je();
-  loipar_.associer_modele(*this);
+
   if (discr == "VEF" || discr == "VEFPreP1B") loipar_.typer("negligeable_VEF");
   else if (discr == "VDF") loipar_.typer("negligeable_VDF");
   else if (discr == "EF") loipar_.typer("negligeable_EF");
@@ -46,8 +46,8 @@ Entree& Modele_turbulence_hyd_null::readOn(Entree& is)
       Cerr << finl;
       exit();
     }
-  loipar_.valeur().associer_modele(*this);
-  loipar_.valeur().associer(eqn.domaine_dis(), eqn.domaine_Cl_dis());
+  loipar_->associer_modele(*this);
+  loipar_->associer(eqn.domaine_dis(), eqn.domaine_Cl_dis());
 
   // Pas envie de debugger XDATA ... je penalise tt le monde alors
   Param param(que_suis_je());

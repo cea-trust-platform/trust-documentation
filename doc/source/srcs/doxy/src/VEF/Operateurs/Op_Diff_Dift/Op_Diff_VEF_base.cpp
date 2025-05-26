@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,7 +22,6 @@
 #include <Schema_Temps_base.h>
 #include <Champ_Fonc_P0_base.h>
 #include <Discretisation_base.h>
-#include <Champ.h>
 #include <Check_espace_virtuel.h>
 #include <Echange_externe_impose.h>
 
@@ -54,24 +53,24 @@ int Op_Diff_VEF_base::impr(Sortie& os) const
   return Op_VEF_Face::impr(os, *this);
 }
 
-void Op_Diff_VEF_base::associer(const Domaine_dis& domaine_dis,
-                                const Domaine_Cl_dis& domaine_cl_dis,
-                                const Champ_Inc& ch_transporte)
+void Op_Diff_VEF_base::associer(const Domaine_dis_base& domaine_dis,
+                                const Domaine_Cl_dis_base& domaine_cl_dis,
+                                const Champ_Inc_base& ch_transporte)
 {
 
-  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_dis.valeur());
-  const Domaine_Cl_VEF& zclvef = ref_cast(Domaine_Cl_VEF,domaine_cl_dis.valeur());
+  const Domaine_VEF& zvef = ref_cast(Domaine_VEF,domaine_dis);
+  const Domaine_Cl_VEF& zclvef = ref_cast(Domaine_Cl_VEF,domaine_cl_dis);
 
-  if (sub_type(Champ_P1NC,ch_transporte.valeur()))
+  if (sub_type(Champ_P1NC,ch_transporte))
     {
-      const Champ_P1NC& inco = ref_cast(Champ_P1NC,ch_transporte.valeur());
-      REF(Champ_P1NC) inconnue;
+      const Champ_P1NC& inco = ref_cast(Champ_P1NC,ch_transporte);
+      OBS_PTR(Champ_P1NC) inconnue;
       inconnue = inco;
     }
-  if (sub_type(Champ_Q1NC,ch_transporte.valeur()))
+  if (sub_type(Champ_Q1NC,ch_transporte))
     {
-      const Champ_Q1NC& inco = ref_cast(Champ_Q1NC,ch_transporte.valeur());
-      REF(Champ_Q1NC) inconnue;
+      const Champ_Q1NC& inco = ref_cast(Champ_Q1NC,ch_transporte);
+      OBS_PTR(Champ_Q1NC) inconnue;
       inconnue = inco;
     }
 
@@ -80,11 +79,11 @@ void Op_Diff_VEF_base::associer(const Domaine_dis& domaine_dis,
 
 
   const Domaine_VEF& domaine_VEF = le_dom_vef.valeur();
-  int nb_dim = ch_transporte->valeurs().nb_dim();
+  int nb_dim = ch_transporte.valeurs().nb_dim();
   int nb_comp = 1;
 
   if(nb_dim==2)
-    nb_comp = ch_transporte->valeurs().dimension(1);
+    nb_comp = ch_transporte.valeurs().dimension(1);
 
   flux_bords_.resize(domaine_VEF.nb_faces_bord(), nb_comp);
   flux_bords_ = 0.;
@@ -98,9 +97,8 @@ double Op_Diff_VEF_base::calculer_dt_stab() const
 
   double dt_stab = DMAXFLOAT;
   const Domaine_VEF& domaine_VEF = le_dom_vef.valeur();
-  if (! has_champ_masse_volumique())
+  if (!has_champ_masse_volumique())
     {
-
       // Methode "standard" de calcul du pas de temps
       // Ce calcul est tres conservatif: si le max de la diffusivite
       // n'est pas atteint a l'endroit ou le min de delta_h_carre est atteint,
@@ -118,11 +116,10 @@ double Op_Diff_VEF_base::calculer_dt_stab() const
         {
           // loop on boundaries
           const Cond_lim_base& la_cl = le_dom_cl_vef.les_conditions_limites(i).valeur();
-
           if (sub_type(Echange_externe_impose,la_cl))
             {
               const Echange_externe_impose& la_cl_int = ref_cast(Echange_externe_impose,la_cl);
-              const Champ_front_base& le_ch_front = ref_cast( Champ_front_base, la_cl_int.h_imp().valeur());
+              const Champ_front_base& le_ch_front = ref_cast( Champ_front_base, la_cl_int.h_imp());
               const DoubleVect& tab = le_ch_front.valeurs();
               if(tab.size() > 0)
                 {
@@ -154,40 +151,41 @@ double Op_Diff_VEF_base::calculer_dt_stab() const
             }
           dt_stab = min_delta_h_carre / (2. * dimension * alpha_max);
         }
-
     }
   else
     {
-      const double           deux_dim      = 2. * Objet_U::dimension;
-      const Champ_base& champ_diffu   = diffusivite();
-      const DoubleTab&       valeurs_diffu = champ_diffu.valeurs();
-      const Champ_base&      champ_rho     = get_champ_masse_volumique();
-      const DoubleTab&       valeurs_rho   = champ_rho.valeurs();
+      // Champ de masse volumique variable.
+      const double deux_dim = 2. * Objet_U::dimension;
+      const Champ_base& champ_diffu = diffusivite();
+      const Champ_base& champ_rho = get_champ_masse_volumique();
       assert(sub_type(Champ_Fonc_P0_base, champ_rho));
       assert(sub_type(Champ_Fonc_P0_base, champ_diffu));
       const int nb_elem = domaine_VEF.nb_elem();
-      assert(valeurs_rho.size_array()==domaine_VEF.nb_elem_tot());
-      // Champ de masse volumique variable.
-      for (int elem = 0; elem < nb_elem; elem++)
-        {
-          const double h_carre = domaine_VEF.carre_pas_maille(elem);
-          const double diffu   = valeurs_diffu(elem);
-          const double rho     = valeurs_rho(elem);
-          const double dt      = h_carre * rho / (deux_dim * (diffu+DMINFLOAT));
-          if (dt_stab > dt)
-            dt_stab = dt;
-        }
+      CDoubleArrView carre_pas_maille = domaine_VEF.carre_pas_maille().view_ro();
+      CDoubleArrView valeurs_diffu = static_cast<const DoubleVect&>(champ_diffu.valeurs()).view_ro();
+      CDoubleArrView valeurs_rho   = static_cast<const DoubleVect&>(champ_rho.valeurs()).view_ro();
+      Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__),
+                              range_1D(0, nb_elem), KOKKOS_LAMBDA(
+                                const int elem, double& dtstab)
+      {
+        const double h_carre = carre_pas_maille(elem);
+        const double diffu   = valeurs_diffu(elem);
+        const double rho     = valeurs_rho(elem);
+        const double dt      = h_carre * rho / (deux_dim * (diffu+DMINFLOAT));
+        if (dt < dtstab) dtstab = dt;
+      }, Kokkos::Min<double>(dt_stab));
+      end_gpu_timer(__KERNEL_NAME__);
     }
   dt_stab = Process::mp_min(dt_stab);
   return dt_stab;
 }
 
 // cf Op_Diff_VEF_base::calculer_dt_stab() pour choix de calcul de dt_stab
-void Op_Diff_VEF_base::calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const
+void Op_Diff_VEF_base::calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const
 {
   if (Motcle(option)=="stabilite")
     {
-      DoubleTab& es_valeurs = espace_stockage->valeurs();
+      DoubleTab& es_valeurs = espace_stockage.valeurs();
 
       if (le_dom_vef.non_nul())
         {
@@ -207,7 +205,7 @@ void Op_Diff_VEF_base::calculer_pour_post(Champ& espace_stockage,const Nom& opti
                   const int nb_elem = domaine_VEF.nb_elem();
                   for (int elem = 0; elem < nb_elem; elem++)
                     {
-                      es_valeurs(elem) = domaine_VEF.carre_pas_maille(elem) / (2. * dimension * alpha_max);
+                      es_valeurs(elem) = domaine_VEF.carre_pas_maille()(elem) / (2. * dimension * alpha_max);
                     }
                 }
             }
@@ -225,7 +223,7 @@ void Op_Diff_VEF_base::calculer_pour_post(Champ& espace_stockage,const Nom& opti
               // Champ de masse volumique variable.
               for (int elem = 0; elem < nb_elem; elem++)
                 {
-                  const double h_carre = domaine_VEF.carre_pas_maille(elem);
+                  const double h_carre = domaine_VEF.carre_pas_maille()(elem);
                   const double diffu   = valeurs_diffu(elem);
                   const double rho     = valeurs_rho(elem);
                   const double dt      = h_carre * rho / (deux_dim * diffu);
@@ -250,33 +248,38 @@ Motcle Op_Diff_VEF_base::get_localisation_pour_post(const Nom& option) const
   return loc;
 }
 
-void Op_Diff_VEF_base::remplir_nu(DoubleTab& nu) const
+void Op_Diff_VEF_base::remplir_nu(DoubleTab& tab_nu) const
 {
   const Domaine_VEF& domaine_VEF = le_dom_vef.valeur();
   // On dimensionne nu
-  const DoubleTab& diffu=diffusivite().valeurs();
-  if (!nu.get_md_vector().non_nul())
+  const DoubleTab& tab_diffu = diffusivite().valeurs();
+  if (!tab_nu.get_md_vector().non_nul())
     {
-      nu.resize(0, diffu.line_size());
-      domaine_VEF.domaine().creer_tableau_elements(nu, RESIZE_OPTIONS::NOCOPY_NOINIT);
+      tab_nu.resize(0, tab_diffu.line_size());
+      domaine_VEF.domaine().creer_tableau_elements(tab_nu, RESIZE_OPTIONS::NOCOPY_NOINIT);
     }
-  if (!diffu.get_md_vector().non_nul())
+  if (!tab_diffu.get_md_vector().non_nul())
     {
-      // diffusvite uniforme
-      const int n = nu.dimension_tot(0);
-      const int nb_comp = nu.line_size();
-      // Tableaux vus comme uni-dimenionnels:
-      const double* arr_diffu = mapToDevice(diffu);
-      double* arr_nu = computeOnTheDevice(nu);
-      #pragma omp target teams distribute parallel for if (computeOnDevice)
-      for (int i = 0; i < n; i++)
-        for (int j = 0; j < nb_comp; j++)
-          arr_nu[i*nb_comp + j] = arr_diffu[j];
+      // diffusivite uniforme
+      const int n = tab_nu.dimension_tot(0);
+      const int nb_comp = tab_nu.line_size();
+      CDoubleArrView diffu = static_cast<const DoubleVect&>(tab_diffu).view_ro();
+      DoubleTabView nu = tab_nu.view_rw();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                           range_2D({0, 0}, {n, nb_comp}),
+                           KOKKOS_LAMBDA(const int i, const int j)
+      {
+        nu(i, j) = diffu(j);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
     }
   else
     {
-      assert(nu.get_md_vector() == diffu.get_md_vector());
-      assert_espace_virtuel_vect(diffu);
-      nu.inject_array(diffu);
+      assert(tab_nu.get_md_vector() == tab_diffu.get_md_vector());
+      assert_espace_virtuel_vect(tab_diffu);
+      // Sync arrays on the device before copy:
+      mapToDevice(tab_diffu);
+      computeOnTheDevice(tab_nu);
+      tab_nu.inject_array(tab_diffu);
     }
 }

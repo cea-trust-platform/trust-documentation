@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,18 +16,16 @@
 #ifndef Domaine_dis_base_included
 #define Domaine_dis_base_included
 
-#include <Sous_domaines_dis.h>
-#include <TRUST_Ref.h>
-#include <Domaine.h>
-#include <Champ_Fonc.h>
 #include <Champs_compris_interface.h>
+#include <Sous_domaine_dis_base.h>
+#include <Champ_Fonc_base.h>
 #include <Champs_compris.h>
+#include <Domaine.h>
 
 class Domaine_Cl_dis_base;
 class Frontiere_dis_base;
-class Domaine_dis;
-class Conds_lim;
 class Probleme_base;
+class Conds_lim;
 
 /*! @brief classe Domaine_dis_base Cette classe est la base de la hierarchie des domaines discretisees.
  *
@@ -56,10 +54,8 @@ public :
   /// Sous_domaines_dis
   ///
   int nombre_de_sous_domaines_dis() const;
-  const Sous_domaine_dis& sous_domaine_dis(int i) const;
-  Sous_domaine_dis& sous_domaine_dis(int i);
-  Sous_domaines_dis& sous_domaines_dis()             { return les_sous_domaines_dis; }
-  const Sous_domaines_dis& sous_domaines_dis() const { return les_sous_domaines_dis; }
+  const Sous_domaine_dis_base& sous_domaine_dis(int i) const;
+  Sous_domaine_dis_base& sous_domaine_dis(int i);
 
   ///
   /// Bord and Frontiere
@@ -85,7 +81,8 @@ public :
   ///
   void associer_domaine(const Domaine&);
   void discretiser_root(const Nom& typ);
-  virtual void discretiser() {}
+  virtual void discretiser() { }
+  virtual void build_map_mc_Cmesh(const bool with_faces) { /* Do nothing */ }
   virtual void discretiser_no_face() = 0;
   virtual void typer_discretiser_ss_domaine(int i) = 0;
   virtual void modifier_pour_Cl(const Conds_lim&) =0;
@@ -102,22 +99,24 @@ public :
   }
 
   // Post processing de champs:
-  const Champ_Fonc& volume_maille() const { return volume_maille_; }
-  const Champ_Fonc& mesh_numbering() const { return mesh_numbering_; }
+  const Champ_Fonc_base& volume_maille() const { return volume_maille_; }
+  const Champ_Fonc_base& mesh_numbering() const { return mesh_numbering_; }
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
   void creer_champ(const Motcle& motlu) override { Process::exit("No, call creer_champ(const Motcle&, const Probleme_base&)"); };
   void creer_champ(const Motcle&, const Probleme_base&);
   const Champ_base& get_champ(const Motcle&) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
 protected :
-  REF(Domaine) le_dom;
+  OBS_PTR(Domaine) le_dom;
 
-  Sous_domaines_dis les_sous_domaines_dis;
+  TRUST_Vector<OWN_PTR(Sous_domaine_dis_base)> les_sous_domaines_dis;
   int dist_paroi_initialisee_ = 0;
   DoubleTab y_elem_, y_faces_;
   Champs_compris champs_compris_;
-  Champ_Fonc volume_maille_;
-  Champ_Fonc mesh_numbering_;
+  OWN_PTR(Champ_Fonc_base)  volume_maille_;
+  OWN_PTR(Champ_Fonc_base)  mesh_numbering_;
 };
 
 #endif /* Domaine_dis_base_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,16 +16,15 @@
 #ifndef Echange_contact_PolyMAC_P0P1NC_included
 #define Echange_contact_PolyMAC_P0P1NC_included
 
-#include <Echange_externe_impose.h>
 #include <Op_Diff_PolyMAC_P0P1NC_Elem.h>
+#include <Echange_externe_impose.h>
 #include <TRUSTTabs_forward.h>
 #include <MD_Vector_tools.h>
 #include <TRUST_Ref.h>
 
 class Domaine_PolyMAC_P0P1NC;
-class Champ_Inc;
 class Front_VF;
-class Faces;
+#include <Domaine_forward.h>
 
 /*! @brief classe : Echange_contact_PolyMAC_P0P1NC Outre le champ_front representant la temperature de paroi,
  *
@@ -38,12 +37,12 @@ class Echange_contact_PolyMAC_P0P1NC  : public Echange_externe_impose
   Declare_instanciable(Echange_contact_PolyMAC_P0P1NC);
 public :
   void init_op() const;
-  void mettre_a_jour(double temps) override { }; //non utilise
-  void verifie_ch_init_nb_comp() const override { }; //pas de contrainte sur les composantes de chaque cote
+  void mettre_a_jour(double temps) override { } //non utilise
+  void verifie_ch_init_nb_comp() const override { } //pas de contrainte sur les composantes de chaque cote
 
-  mutable REF(Front_VF) fvf, o_fvf; //frontiere dans l'autre probleme
+  mutable OBS_PTR(Front_VF) fvf, o_fvf; //frontiere dans l'autre probleme
   mutable int i_fvf = -1 , i_o_fvf = -1;  //indices de frontiere de chaque cote
-  mutable REF(Op_Diff_PolyMAC_P0P1NC_Elem) diff, o_diff; //operateurs de diffusion de chaque cote
+  mutable OBS_PTR(Op_Diff_PolyMAC_P0P1NC_Elem) diff, o_diff; //operateurs de diffusion de chaque cote
   mutable int o_idx = -1; //indice de l'autre operateur dans le tableau op_ext de Op_Diff_PolyMAC_P0P1NC_Elem (a remplir par celui-ci)
 
   /* faces de l'autre cote de la frontiere */
@@ -57,4 +56,4 @@ protected :
   Nom nom_autre_pb_, nom_bord_, nom_champ_; //nom du probleme distant, du bord, du champ
 };
 
-#endif
+#endif /* Echange_contact_PolyMAC_P0P1NC_included */

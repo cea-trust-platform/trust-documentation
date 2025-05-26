@@ -19,6 +19,8 @@
 #include <Synonyme_info.h>
 
 Implemente_instanciable(Champ_Generique_Divergence,"Divergence",Champ_Generique_Operateur_base);
+// XD divergence champ_post_operateur_base divergence -1 To calculate divergency of a given field.
+
 Add_synonym(Champ_Generique_Divergence,"Champ_Post_Operateur_Divergence");
 
 Sortie& Champ_Generique_Divergence::printOn(Sortie& s ) const
@@ -41,7 +43,7 @@ void Champ_Generique_Divergence::completer(const Postraitement_base& post)
 
   if (sub_type(Champ_Generique_refChamp,get_source(0)))
     {
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       if (get_source(0).get_champ(espace_stockage).le_nom()=="vitesse")
         {
           const Equation_base& eqn = Pb.equation(0);
@@ -56,13 +58,13 @@ void Champ_Generique_Divergence::completer(const Postraitement_base& post)
     }
 }
 
-const Champ_base& Champ_Generique_Divergence::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Divergence::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
 
   if (Op_Div_.non_nul())
     {
-      Champ_Fonc es_tmp;
+      OWN_PTR(Champ_Fonc_base)  es_tmp;
       espace_stockage = creer_espace_stockage(scalaire,1,es_tmp);
     }
   else
@@ -71,19 +73,19 @@ const Champ_base& Champ_Generique_Divergence::get_champ_without_evaluation(Champ
       Cerr<<"We can apply a Champ_Generique_Divergence only to the velocity field"<<finl;
       exit();
     }
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
-const Champ_base& Champ_Generique_Divergence::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Divergence::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ(source_espace_stockage);
 
   if (Op_Div_.non_nul())
     {
-      Champ_Fonc es_tmp;
+      OWN_PTR(Champ_Fonc_base)  es_tmp;
       espace_stockage = creer_espace_stockage(scalaire,1,es_tmp);
-      Op_Div_.calculer(source.valeurs(),espace_stockage.valeurs());
+      Op_Div_.calculer(source.valeurs(),espace_stockage->valeurs());
     }
   else
     {
@@ -95,14 +97,14 @@ const Champ_base& Champ_Generique_Divergence::get_champ(Champ& espace_stockage) 
 
   DoubleTab& espace_valeurs = espace_stockage->valeurs();
   espace_valeurs.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
 
 Entity Champ_Generique_Divergence::get_localisation(const int index) const
 {
   Entity loc;
-  Nom type_op = Op_Div_.valeur().que_suis_je();
+  Nom type_op = Op_Div_->que_suis_je();
   if (((type_op=="Op_Div_VEF_P1NC") || (type_op=="Op_Div_VDF_Face")) && (index <= 0))
     loc = Entity::ELEMENT;
   else

@@ -22,7 +22,7 @@
 #include <Schema_Temps_base.h>
 #include <Champ_Uniforme.h>
 #include <Domaine_PolyMAC.h>
-#include <Domaine_Cl_dis.h>
+
 #include <TRUSTTab_parts.h>
 #include <Probleme_base.h>
 #include <Equation_base.h>

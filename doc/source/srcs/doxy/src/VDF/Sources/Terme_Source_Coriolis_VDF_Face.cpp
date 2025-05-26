@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -77,15 +77,15 @@ void Terme_Source_Coriolis_VDF_Face::associer_pb(const Probleme_base& pb)
     }
 
   la_source.resize(0,dimension);
-  le_dom_VDF.valeur().domaine().creer_tableau_elements(la_source);
+  le_dom_VDF->domaine().creer_tableau_elements(la_source);
 }
 
 
-void Terme_Source_Coriolis_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                       const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Coriolis_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                       const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 
 }
 
@@ -120,7 +120,7 @@ void Terme_Source_Coriolis_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTa
         {
 
           //          const Neumann_sortie_libre& la_cl_neumann = ref_cast(Neumann_sortie_libre,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -146,7 +146,7 @@ void Terme_Source_Coriolis_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTa
         { /* Do nothing */}
       else if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -186,7 +186,7 @@ void Terme_Source_Coriolis_VDF_Face::calculer_force_de_Coriolis() const
   const Domaine_VDF& domaine_VDF = le_dom_VDF.valeur();
   const DoubleTab& vitesse = eq_hydraulique().inconnue().valeurs();
   //  int nb_faces = domaine_VDF.nb_faces();
-  const int nb_elems =  eq_hydraulique().domaine_dis().domaine().nb_elem();
+  const int nb_elems = eq_hydraulique().domaine_dis().domaine().nb_elem();
   const IntTab& elem_faces = domaine_VDF.elem_faces();
   //  const IntTab& face_voisins = domaine_VDF.face_voisins();
   DoubleVect om = omega();

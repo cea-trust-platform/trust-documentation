@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,12 @@
 #include <Equation_base.h>
 
 Implemente_instanciable_sans_constructeur(Echange_global_impose,"Paroi_echange_global_impose",Echange_impose_base);
+// XD paroi_echange_global_impose condlim_base paroi_echange_global_impose -1 Global type exchange condition (internal) that is to say that diffusion on the first fluid mesh is not taken into consideration.
+// XD attr h_imp chaine h_imp 0 Global exchange coefficient value. The global exchange coefficient value is expressed in W.m-2.K-1.
+// XD attr himpc front_field_base himpc 0 Boundary field type.
+// XD attr text chaine text 0 External temperature value. The external temperature value is expressed in oC or K.
+// XD attr ch front_field_base ch 0 Boundary field type.
+
 
 Echange_global_impose::Echange_global_impose()
 {
@@ -115,7 +121,7 @@ int Echange_global_impose::initialiser(double temps)
 }
 
 
-double Echange_global_impose::champ_exterieur(int i, const Champ_front& champ_ext) const
+double Echange_global_impose::champ_exterieur(int i, const Champ_front_base& champ_ext) const
 {
   if (mon_dom_cl_dis->equation().que_suis_je()!="Convection_Diffusion_Concentration")
     {
@@ -123,7 +129,7 @@ double Echange_global_impose::champ_exterieur(int i, const Champ_front& champ_ex
       Nom nom_pb=mon_dom_cl_dis->equation().probleme().que_suis_je();
       double d_Cp;
       double d_rho;
-      const Champ_base& rho=mil.masse_volumique().valeur();
+      const Champ_base& rho=mil.masse_volumique();
       if ((nom_pb.debute_par("Probleme_Interface")|| nom_pb==Nom("Probleme_Thermo_Front_Tracking"))||!sub_type(Champ_Uniforme,rho)||nom_pb==Nom("Pb_Conduction"))
         {
           // Pour le front tracking, on ne divise pas par Rho*Cp
@@ -133,30 +139,23 @@ double Echange_global_impose::champ_exterieur(int i, const Champ_front& champ_ex
         }
       else
         {
-          const Champ_Don& Cp =mil.capacite_calorifique();
+          const Champ_Don_base& Cp =mil.capacite_calorifique();
 
           if (sub_type(Champ_Uniforme,rho))
-            {
-              d_rho= rho(0,0);
-            }
+            d_rho= rho.valeurs()(0,0);
           else
-            {
-              d_rho= rho(i);
-            }
-          if (sub_type(Champ_Uniforme,Cp.valeur()))
-            {
-              d_Cp= Cp(0,0);
-            }
+            d_rho= rho.valeurs()(i);
+
+          if (sub_type(Champ_Uniforme,Cp))
+            d_Cp= Cp.valeurs()(0,0);
           else
-            {
-              d_Cp= Cp.valeur()(i);
-            }
+            d_Cp= Cp.valeurs()(i);
         }
 
       if (champ_ext.valeurs().size()==1)
-        return champ_ext(0,0)/(d_rho*d_Cp);
+        return champ_ext.valeurs()(0,0)/(d_rho*d_Cp);
       else if (champ_ext.valeurs().dimension(1)==1)
-        return champ_ext(i,0)/(d_rho*d_Cp);
+        return champ_ext.valeurs()(i,0)/(d_rho*d_Cp);
       else
         Cerr << "Echange_global_impose::flux_impose erreur" << finl;
       exit();
@@ -165,9 +164,9 @@ double Echange_global_impose::champ_exterieur(int i, const Champ_front& champ_ex
   else
     {
       if (champ_ext.valeurs().size()==1)
-        return champ_ext(0,0);
+        return champ_ext.valeurs()(0,0);
       else if (champ_ext.valeurs().dimension(1)==1)
-        return champ_ext(i,0);
+        return champ_ext.valeurs()(i,0);
       else
         Cerr << "Echange_global_impose::flux_impose erreur" << finl;
       exit();
@@ -176,7 +175,7 @@ double Echange_global_impose::champ_exterieur(int i, const Champ_front& champ_ex
     }
 }
 
-double Echange_global_impose::champ_exterieur(int i,int j, const Champ_front& champ_ext) const
+double Echange_global_impose::champ_exterieur(int i,int j, const Champ_front_base& champ_ext) const
 {
   if (mon_dom_cl_dis->equation().que_suis_je()!="Convection_Diffusion_Concentration")
     {
@@ -184,7 +183,7 @@ double Echange_global_impose::champ_exterieur(int i,int j, const Champ_front& ch
       Nom nom_pb=mon_dom_cl_dis->equation().probleme().que_suis_je();
       double d_Cp;
       double d_rho;
-      const Champ_base& rho=mil.masse_volumique().valeur();
+      const Champ_base& rho=mil.masse_volumique();
       if ((nom_pb.debute_par("Probleme_Interface")|| nom_pb.debute_par("Probleme_FT")|| nom_pb==Nom("Probleme_Thermo_Front_Tracking"))||!sub_type(Champ_Uniforme,rho)||nom_pb==Nom("Pb_Conduction"))
         {
           // Pour le front tracking, on ne divise pas par Rho*Cp
@@ -194,36 +193,29 @@ double Echange_global_impose::champ_exterieur(int i,int j, const Champ_front& ch
         }
       else
         {
-          const Champ_Don& Cp =mil.capacite_calorifique();
+          const Champ_Don_base& Cp =mil.capacite_calorifique();
 
           if (sub_type(Champ_Uniforme,rho))
-            {
-              d_rho= rho(0,0);
-            }
+            d_rho= rho.valeurs()(0,0);
           else
-            {
-              d_rho= rho(i);
-            }
-          if (sub_type(Champ_Uniforme,Cp.valeur()))
-            {
-              d_Cp= Cp(0,0);
-            }
+            d_rho= rho.valeurs()(i);
+
+          if (sub_type(Champ_Uniforme,Cp))
+            d_Cp= Cp.valeurs()(0,0);
           else
-            {
-              d_Cp= Cp.valeur()(i);
-            }
+            d_Cp= Cp.valeurs()(i);
         }
       if (champ_ext.valeurs().dimension(0)==1)
-        return champ_ext(0,j)/(d_rho*d_Cp);
+        return champ_ext.valeurs()(0,j)/(d_rho*d_Cp);
       else
-        return champ_ext(i,j)/(d_rho*d_Cp);
+        return champ_ext.valeurs()(i,j)/(d_rho*d_Cp);
     }
   else
     {
       if (champ_ext.valeurs().dimension(0)==1)
-        return champ_ext(0,j);
+        return champ_ext.valeurs()(0,j);
       else
-        return champ_ext(i,j);
+        return champ_ext.valeurs()(i,j);
     }
 }
 

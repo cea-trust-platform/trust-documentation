@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -43,13 +43,13 @@ public :
   void calculer_integrales_temporelles(DoubleTab& , const DoubleTab& , const DoubleTab& , const DoubleVect& , const DoubleVect& );
 
   void post_traitement_particulier() override;
-  void init_calcul_moyenne(void) override;
-  void preparer_calcul_particulier(void) override;
-  void init_calcul_stats(void);
+  void init_calcul_moyenne() override;
+  void preparer_calcul_particulier() override;
+  void init_calcul_stats();
 
 protected :
 
-  REF(Convection_Diffusion_std) mon_equation_NRJ;
+  OBS_PTR(Convection_Diffusion_std) mon_equation_NRJ;
   int oui_stats_thermo = 0, oui_repr_stats_thermo = 0,tmin_tmax = 0;
   Nom fich_repr_stats_thermo;
   DoubleTab Tmoy_temp,Trms_temp ,upTp_temp,vpTp_temp,wpTp_temp;

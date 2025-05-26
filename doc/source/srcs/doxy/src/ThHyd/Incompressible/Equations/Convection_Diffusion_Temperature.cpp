@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,37 +31,17 @@
 extern Stat_Counter_Id assemblage_sys_counter_;
 extern Stat_Counter_Id source_counter_;
 
-Implemente_instanciable_sans_constructeur(Convection_Diffusion_Temperature,"Convection_Diffusion_Temperature",Convection_Diffusion_std);
+Implemente_instanciable(Convection_Diffusion_Temperature,"Convection_Diffusion_Temperature",Convection_Diffusion_Temperature_base);
+// XD convection_diffusion_temperature eqn_base convection_diffusion_temperature -1 Energy equation (temperature diffusion convection).
+// XD attr penalisation_l2_ftd penalisation_l2_ftd penalisation_l2_ftd 1 to activate or not (the default is Direct Forcing method) the Penalized Direct Forcing method to impose the specified temperature on the solid-fluid interface.
 
-Convection_Diffusion_Temperature::Convection_Diffusion_Temperature()
-{
-  eta = 1.0;
-  is_penalized = 0;
-  tag_indic_pena_global = -1;
-  indic_pena_global = 0;
-  indic_face_pena_global = 0;
-  choix_pena = 0;
-}
-/*! @brief Simple appel a: Convection_Diffusion_std::printOn(Sortie&)
- *
- * @param (Sortie& is) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
-Sortie& Convection_Diffusion_Temperature::printOn(Sortie& is) const
-{
-  return Convection_Diffusion_std::printOn(is);
-}
+Sortie& Convection_Diffusion_Temperature::printOn(Sortie& is) const { return Convection_Diffusion_Temperature_base::printOn(is); }
 
-/*! @brief Verifie si l'equation a une temperature et un fluide associe cf Convection_Diffusion_std::readOn(Entree&).
- *
- * @param (Entree& is) un flot d'entree
- * @return (Entree& is) le flot d'entree modifie
- */
 Entree& Convection_Diffusion_Temperature::readOn(Entree& is)
 {
   assert(la_temperature.non_nul());
   assert(le_fluide.non_nul());
-  Convection_Diffusion_std::readOn(is);
+  Convection_Diffusion_Temperature_base::readOn(is);
   //Nom unite;
   //if (dimension+bidim_axi==2) unite="[W/m]";
   //else unite="[W]";
@@ -83,7 +63,7 @@ Entree& Convection_Diffusion_Temperature::readOn(Entree& is)
 
 void Convection_Diffusion_Temperature::set_param(Param& param)
 {
-  Convection_Diffusion_std::set_param(param);
+  Convection_Diffusion_Temperature_base::set_param(param);
   param.ajouter_non_std("penalisation_L2_FTD",(this));
 }
 
@@ -128,12 +108,12 @@ int Convection_Diffusion_Temperature::lire_motcle_non_standard(const Motcle& un_
           Cerr << "On attendait : " << accolade_ouverte << finl;
           exit();
         }
-      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
       domaine_vf.domaine().creer_tableau_elements(indic_pena_global);
       domaine_vf.creer_tableau_faces(indic_face_pena_global);
     }
   else
-    return Convection_Diffusion_std::lire_motcle_non_standard(un_mot,is);
+    return Convection_Diffusion_Temperature_base::lire_motcle_non_standard(un_mot,is);
   return 1;
 }
 
@@ -148,20 +128,16 @@ void Convection_Diffusion_Temperature::associer_milieu_base(const Milieu_base& u
   else Process::exit(que_suis_je() + " : le fluide " + un_milieu.que_suis_je() + " n'est pas de type Fluide_base!");
 }
 
-
-/*! @brief Discretise l'equation.
- *
- */
 void Convection_Diffusion_Temperature::discretiser()
 {
   if (!sub_type(Fluide_reel_base,le_fluide.valeur()))
-    if  (le_fluide->conductivite().est_nul() || le_fluide->capacite_calorifique().est_nul() || le_fluide->beta_t().est_nul())
+    if (!le_fluide->has_conductivite() || !le_fluide->has_capacite_calorifique() || !le_fluide->has_beta_t())
       {
         Cerr << "You have not defined the following physical properties of the fluid " << finl;
-        Cerr << "needed to solve energy equation: " << que_suis_je() << finl;
-        if  (le_fluide->conductivite().est_nul()) Cerr << "  Thermal conductivity (lambda)"<< finl;
-        if  (le_fluide->capacite_calorifique().est_nul()) Cerr << "  Specific heat capacity (Cp)"<< finl;
-        if  (le_fluide->beta_t().est_nul()) Cerr << "  Thermal expansion coefficient (beta_th)"<< finl;
+        Cerr << "needed to solve the energy equation: " << que_suis_je() << finl;
+        if  (!le_fluide->has_conductivite()) Cerr << "  Thermal conductivity (lambda)"<< finl;
+        if  (!le_fluide->has_capacite_calorifique()) Cerr << "  Specific heat capacity (Cp)"<< finl;
+        if  (!le_fluide->has_beta_t()) Cerr << "  Thermal expansion coefficient (beta_th)"<< finl;
         exit();
       }
 
@@ -178,41 +154,6 @@ void Convection_Diffusion_Temperature::discretiser()
 int Convection_Diffusion_Temperature::preparer_calcul()
 {
   return Equation_base::preparer_calcul();
-}
-
-/*! @brief Renvoie le fluide incompressible associe a l'equation.
- *
- * (version const)
- *
- * @return (Fluide_base&) le fluide incompressible associe a l'equation
- * @throws pas de fluide associe a l'eqaution
- */
-const Fluide_base& Convection_Diffusion_Temperature::fluide() const
-{
-  if(le_fluide.est_nul())
-    {
-      Cerr << "A fluid has not been associated to "
-           << "the Convection_Diffusion_Temperature equation" << finl;
-      exit();
-    }
-  return le_fluide.valeur();
-}
-
-
-/*! @brief Renvoie le fluide incompressible associe a l'equation.
- *
- * @return (Fluide_base&) le fluide incompressible associe a l'equation
- * @throws pas de fluide associe a l'eqaution
- */
-Fluide_base& Convection_Diffusion_Temperature::fluide()
-{
-  if(le_fluide.est_nul())
-    {
-      Cerr << "A fluid has not been associated to"
-           << "the Convection_Diffusion_Temperature equation" << finl;
-      exit();
-    }
-  return le_fluide.valeur();
 }
 
 inline int string2int(const char* digit, int& result)
@@ -237,32 +178,22 @@ inline int string2int(const char* digit, int& result)
 
 void Convection_Diffusion_Temperature::get_noms_champs_postraitables(Noms& nom,Option opt) const
 {
-  Convection_Diffusion_std::get_noms_champs_postraitables(nom,opt);
+  Convection_Diffusion_Temperature_base::get_noms_champs_postraitables(nom,opt);
 
   Noms noms_compris = champs_compris_.liste_noms_compris();
   noms_compris.add("gradient_temperature");
   noms_compris.add("h_echange_");
-  if (opt==DESCRIPTION)
-    Cerr<<" Convection_Diffusion_Temperature : "<< noms_compris <<finl;
+
+  if (opt == DESCRIPTION)
+    Cerr << que_suis_je() << " : " << noms_compris << finl;
   else
     nom.add(noms_compris);
 }
 
-
 void Convection_Diffusion_Temperature::creer_champ(const Motcle& motlu)
 {
-  Convection_Diffusion_std::creer_champ(motlu);
+  Convection_Diffusion_Temperature_base::creer_champ(motlu);
 
-  Motcle nom_mot(motlu),temp_mot(nom_mot);
-  /*  if (motlu == "temperature_paroi")
-      {
-        if (!temperature_paroi.non_nul())
-          {
-            const Discret_Thyd& dis=ref_cast(Discret_Thyd, discretisation());
-            dis.t_paroi(domaine_dis(),domaine_Cl_dis(),*this,temperature_paroi);
-            champs_compris_.ajoute_champ(temperature_paroi);
-          }
-      } */
   if (motlu == "gradient_temperature")
     {
       if (gradient_temperature.est_nul())
@@ -272,6 +203,8 @@ void Convection_Diffusion_Temperature::creer_champ(const Motcle& motlu)
           champs_compris_.ajoute_champ(gradient_temperature);
         }
     }
+
+  Motcle nom_mot(motlu),temp_mot(nom_mot);
   if (nom_mot.debute_par("H_ECHANGE"))
     {
       if (h_echange.est_nul())
@@ -286,51 +219,64 @@ void Convection_Diffusion_Temperature::creer_champ(const Motcle& motlu)
     }
 }
 
+bool Convection_Diffusion_Temperature::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
+{
+  if (nom == "gradient_temperature")
+    {
+      ref_champ = Convection_Diffusion_Temperature::get_champ(nom);
+      return true;
+    }
+
+  if (h_echange.non_nul())
+    if (nom == h_echange->le_nom())
+      {
+        ref_champ = Convection_Diffusion_Temperature::get_champ(nom);
+        return true;
+      }
+
+  if (Convection_Diffusion_Temperature_base::has_champ(nom))
+    return Convection_Diffusion_Temperature_base::has_champ(nom, ref_champ);
+
+  return false; /* rien trouve */
+}
+
+bool Convection_Diffusion_Temperature::has_champ(const Motcle& nom) const
+{
+  if (nom == "gradient_temperature")
+    return true;
+
+  if (h_echange.non_nul())
+    if (nom == h_echange->le_nom())
+      return true;
+
+  if (Convection_Diffusion_Temperature_base::has_champ(nom))
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Convection_Diffusion_Temperature::get_champ(const Motcle& nom) const
 {
-
-
-  /*  if (nom=="temperature_paroi")
-      {
-        double temps_init = schema_temps().temps_init();
-        Champ_Fonc_base& ch_tp=ref_cast_non_const(Champ_Fonc_base,temperature_paroi.valeur());
-        if (((ch_tp.temps()!=la_temperature->temps()) || (ch_tp.temps()==temps_init)) && ((la_temperature->mon_equation_non_nul())))
-          ch_tp.mettre_a_jour(la_temperature->temps());
-        return champs_compris_.get_champ(nom);
-      } */
-  if (nom=="gradient_temperature")
+  if (nom == "gradient_temperature")
     {
       double temps_init = schema_temps().temps_init();
-      Champ_Fonc_base& ch_gt=ref_cast_non_const(Champ_Fonc_base,gradient_temperature.valeur());
-      if (((ch_gt.temps()!=la_temperature->temps()) || (ch_gt.temps()==temps_init)) && (la_temperature->mon_equation_non_nul()))
+      Champ_Fonc_base& ch_gt = ref_cast_non_const(Champ_Fonc_base, gradient_temperature.valeur());
+      if (((ch_gt.temps() != la_temperature->temps()) || (ch_gt.temps() == temps_init)) && (la_temperature->mon_equation_non_nul()))
         ch_gt.mettre_a_jour(la_temperature->temps());
       return champs_compris_.get_champ(nom);
     }
+
   if (h_echange.non_nul())
-    if (nom==h_echange.valeur().le_nom())
+    if (nom == h_echange->le_nom())
       {
         double temps_init = schema_temps().temps_init();
-        Champ_Fonc_base& ch_hconv=ref_cast_non_const(Champ_Fonc_base,h_echange.valeur());
-        if (((ch_hconv.temps()!=la_temperature->temps()) || (ch_hconv.temps()==temps_init)) && (la_temperature->mon_equation_non_nul()))
-          {
-            ch_hconv.mettre_a_jour(la_temperature->temps());
-
-          }
+        Champ_Fonc_base& ch_hconv = ref_cast_non_const(Champ_Fonc_base, h_echange.valeur());
+        if (((ch_hconv.temps() != la_temperature->temps()) || (ch_hconv.temps() == temps_init)) && (la_temperature->mon_equation_non_nul()))
+          ch_hconv.mettre_a_jour(la_temperature->temps());
         return champs_compris_.get_champ(nom);
       }
 
-  try
-    {
-      return Convection_Diffusion_std::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-
-  throw Champs_compris_erreur();
-  REF(Champ_base) ref_champ;
-
-  return ref_champ;
+  return Convection_Diffusion_Temperature_base::get_champ(nom);
 }
 
 /*! @brief Renvoie le nom du domaine d'application de l'equation.
@@ -389,11 +335,11 @@ DoubleTab& Convection_Diffusion_Temperature::derivee_en_temps_inco(DoubleTab& de
         {
           // Store dI/dt(n) = M-1 secmem :
           derivee_en_temps().valeurs()=secmem;
-          solveur_masse.appliquer(derivee_en_temps().valeurs());
+          solveur_masse->appliquer(derivee_en_temps().valeurs());
           schema_temps().modifier_second_membre((*this),secmem); // Change secmem for some schemes (eg: Adams_Bashforth)
         }
 
-      solveur_masse.appliquer(secmem);
+      solveur_masse->appliquer(secmem);
       Equation_base::Gradient_conjugue_diff_impl(secmem, derivee);
 
       //  penalisation de la temperature
@@ -404,7 +350,7 @@ DoubleTab& Convection_Diffusion_Temperature::derivee_en_temps_inco(DoubleTab& de
 
 double Convection_Diffusion_Temperature::get_time_factor() const
 {
-  return domaine_dis()->nb_elem() ? milieu().capacite_calorifique().valeurs()(0, 0) * milieu().masse_volumique().valeurs()(0, 0) : 1.0;
+  return domaine_dis().nb_elem() ? milieu().capacite_calorifique().valeurs()(0, 0) * milieu().masse_volumique().valeurs()(0, 0) : 1.0;
 }
 
 // ajoute les contributions des operateurs et des sources
@@ -480,6 +426,7 @@ void Convection_Diffusion_Temperature::assembler(Matrice_Morse& matrice, const D
           }
           statistiques().begin_count(assemblage_sys_counter_);
         }
+
       sources().contribuer_a_avec(inco,matrice);
       statistiques().end_count(assemblage_sys_counter_,0,0);
       sources().ajouter(resu);
@@ -498,7 +445,7 @@ void Convection_Diffusion_Temperature::assembler(Matrice_Morse& matrice, const D
 
 void Convection_Diffusion_Temperature::assembler_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  if (discretisation().is_polymac_family() || probleme().que_suis_je() == "Pb_Multiphase")
+  if (discretisation().is_polymac_family() || probleme().que_suis_je().debute_par("Pb_Multiphase"))
     {
       Equation_base::assembler_blocs(matrices, secmem, semi_impl);
       return;
@@ -539,7 +486,7 @@ void Convection_Diffusion_Temperature::assembler_blocs(matrices_t matrices, Doub
 
   statistiques().begin_count(source_counter_);
   for (int i = 0; i < les_sources.size(); i++)
-    les_sources(i).valeur().ajouter_blocs(matrices, secmem, semi_impl);
+    les_sources(i)->ajouter_blocs(matrices, secmem, semi_impl);
   statistiques().end_count(source_counter_);
 
   statistiques().begin_count(assemblage_sys_counter_);
@@ -605,7 +552,7 @@ void Convection_Diffusion_Temperature::transport_ibc(DoubleTrav& secmem_conv_vr,
   set_indic_pena_globale();
 
   // on calcule l indicatrice epaisse
-  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
   const IntTab& faces_elem = domaine_vf.face_voisins();
   IntTrav indic_pena_global_fat(indic_pena_global);
   for (int i_face = 0; i_face < indic_face_pena_global.size(); i_face++)
@@ -636,7 +583,7 @@ void Convection_Diffusion_Temperature::transport_ibc(DoubleTrav& secmem_conv_vr,
                   if (indic_pena_global_fat(voisin) != 0)
                     {
                       ++coeff;
-                    } ;
+                    }
                 }
             }
           if (coeff > 1) indic_pena_global_fat(i_elem) = 1;
@@ -701,7 +648,7 @@ void Convection_Diffusion_Temperature::mise_en_place_domaine_fantome(DoubleTab& 
   for (int k_elem =0 ; k_elem <nb_elem; ++k_elem)  ((indicatrice_totale(k_elem)!=0) ? ++x : ++j);
 
   //traitement cellules fantomes (if any)
-  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
   const IntTab& elem_faces = domaine_vf.elem_faces();
   const IntTab& faces_elem = domaine_vf.face_voisins();
   const int nb_faces_elem = elem_faces.dimension(1);
@@ -882,7 +829,7 @@ void Convection_Diffusion_Temperature::calcul_indic_pena_global(IntTab& indicatr
             }
         }
       // fonction characteristique (numero ibc) pour l'ensemble des ibc
-      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
       const IntTab& face_voisins = domaine_vf.face_voisins();
       for (int i = 0; i < nfaces ; i++)
         {
@@ -924,7 +871,7 @@ DoubleTab& Convection_Diffusion_Temperature::penalisation_L2(DoubleTab& u)
   set_indic_pena_globale();
 
   //calcul de T_voisinage pour tous les elemnts
-  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
   const IntTab& elem_faces = domaine_vf.elem_faces();
   const IntTab& faces_elem = domaine_vf.face_voisins();
   const int nb_faces_elem = elem_faces.dimension(1);
@@ -1115,12 +1062,12 @@ void Convection_Diffusion_Temperature::ecrire_fichier_pena_th(DoubleTab& u_old, 
   if (le_schema_en_temps->limpr())
     {
 
-      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis().valeur());
+      const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis());
       const DoubleVect& vol_maille = domaine_vf.volumes();
       const Fluide_base& fluide_inc = ref_cast(Fluide_base, milieu());
       const DoubleTab& tab_rho = fluide_inc.masse_volumique().valeurs();
       const double rho = tab_rho(0,0);
-      const DoubleTab& tab_cp = fluide_inc.capacite_calorifique().valeur().valeurs();
+      const DoubleTab& tab_cp = fluide_inc.capacite_calorifique().valeurs();
       const double cp = tab_cp(0,0);
 
       //  Methode pour calculer le flux total sur les ibc
@@ -1233,19 +1180,19 @@ void Convection_Diffusion_Temperature::calculer_rho_cp_T(const Objet_U& obj, Dou
 {
   const Equation_base& eqn = ref_cast(Equation_base, obj);
   const Fluide_base& fl = ref_cast(Fluide_base, eqn.milieu());
-  const Champ_Inc_base& ch_T = eqn.inconnue().valeur();
-  const Champ_base& ch_rho = fl.masse_volumique().valeur();
+  const Champ_Inc_base& ch_T = eqn.inconnue();
+  const Champ_base& ch_rho = fl.masse_volumique();
   assert(sub_type(Champ_Uniforme, ch_rho));
-  const Champ_Don& ch_cp = fl.capacite_calorifique();
+  const Champ_Don_base& ch_cp = fl.capacite_calorifique();
   const DoubleTab& cp = fl.capacite_calorifique().valeurs(), &rho = ch_rho.valeurs(), &T = ch_T.valeurs();
 
   /* valeurs du champ */
-  const int N = val.line_size(), Nl = val.dimension_tot(0), cCp = sub_type(Champ_Uniforme, ch_cp.valeur());
+  const int N = val.line_size(), Nl = val.dimension_tot(0), cCp = sub_type(Champ_Uniforme, ch_cp);
   for (int i = 0; i < Nl; i++)
     for (int n = 0; n < N; n++) val(i, n) = rho(0, n) * cp(!cCp * i, n) * T(i, n);
 
   /* on ne peut utiliser valeur_aux_bords que si ch_rho a un domaine_dis_base */
-  DoubleTab b_cp = cCp ? cp : ch_cp->valeur_aux_bords(), b_T = ch_T.valeur_aux_bords();
+  DoubleTab b_cp = cCp ? cp : ch_cp.valeur_aux_bords(), b_T = ch_T.valeur_aux_bords();
   int Nb = b_T.dimension_tot(0);
   // on suppose que rho est un champ_uniforme : on utilise directement le tableau du champ
   for (int i = 0; i < Nb; i++)

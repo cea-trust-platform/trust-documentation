@@ -16,23 +16,22 @@
 #ifndef Discretisation_base_included
 #define Discretisation_base_included
 
+#include <Domaine_forward.h>
 #include <Champ_base.h> // Pour Nature_du_champ
+
 #include <TRUST_Ref.h>
+
+
 
 class Champ_Fonc_Tabule;
 class Schema_Temps_base;
 class Domaine_dis_base;
 class Champ_Fonc_base;
-class Domaine_Cl_dis;
 class Champ_Inc_base;
+class Champ_Don_base;
 class Probleme_base;
 class Equation_base;
-class Domaine_dis;
 class Champ_base;
-class Champ_Fonc;
-class Champ_Don;
-class Champ_Inc;
-class Domaine;
 class Motcle;
 
 /*! @brief classe Discretisation_base Cette classe represente un schema de discretisation en espace, qui
@@ -41,7 +40,7 @@ class Motcle;
  *      abstraite qui est a la base de la hierarchie des discretisations
  *      en espace.
  *
- * @sa Probleme_base, Classe abstraite dont toutes les discretisations en espace doivent, deriver., Methode abstraite:, void domaine_Cl_dis(Domaine_dis& , Domaine_Cl_dis& ) const
+ * @sa Probleme_base, Classe abstraite dont toutes les discretisations en espace doivent, deriver., Methode abstraite:, void domaine_Cl_dis(Domaine_dis_base& , Domaine_Cl_dis_base& ) const
  */
 class Discretisation_base : public Objet_U
 {
@@ -58,48 +57,49 @@ public :
   // La valeur retournee par defaut est VIA_AJOUTER, pour ne pas perturber le comportement normal des classes de Trio-U en dehors du noyau.
   //
   enum type_calcul_du_residu { VIA_CONTRIBUER_AU_SECOND_MEMBRE = 0, VIA_AJOUTER = 1 };
-  inline virtual type_calcul_du_residu codage_du_calcul_du_residu(void) const { return VIA_AJOUTER; }
+  inline virtual type_calcul_du_residu codage_du_calcul_du_residu() const { return VIA_AJOUTER; }
 
   void associer_domaine(const Domaine& dom);
 
+  virtual Nom domaine_cl_dis_type() const = 0;
+
   virtual void discretiser_variables() const;
-  virtual void discretiser_Domaine_Cl_dis(const Domaine_dis&, Domaine_Cl_dis&) const;
-  virtual void discretiser(REF(Domaine_dis)&) const;
-  virtual void domaine_Cl_dis(Domaine_dis&, Domaine_Cl_dis&) const = 0;
+  virtual Domaine_dis_base& discretiser() const;
 
   // Creation de champs scalaires ou vectoriels (essentiellement appel a la methode generale, ne pas surcharger ces methodes, elles ne sont la que par commodite)
-  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, int nb_pas_dt, double temps, Champ_Inc& champ,
+  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, int nb_pas_dt, double temps, OWN_PTR(Champ_Inc_base)& champ,
                          const Nom& sous_type=NOM_VIDE) const;
-  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, Champ_Fonc& champ) const;
-  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, Champ_Don& champ) const;
+  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)& champ) const;
+  void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, const Nom& nom, const Nom& unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)& champ) const;
 
   // Creation de champs generaux (eventuellement multiscalaires) :
   // * Ces methodes doivent etre surchargees.
   // * Chaque methode comprend le motcle demande_description, qui provoque l'affichage de l'ensembldes des directives comprises (et appelle a l'ancetre avec le meme motcle).
   // * Si champ scalaire ou vectoriel, le premier nom et la premiere unite sont utilises
   virtual void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& nom, const Noms& unite, int nb_comp, int nb_pas_dt, double temps,
-                                 Champ_Inc& champ, const Nom& sous_type=NOM_VIDE) const;
-  virtual void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& nom, const Noms& unite, int nb_comp, double temps, Champ_Fonc& champ) const;
-  virtual void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& nom, const Noms& unite, int nb_comp, double temps, Champ_Don& champ) const;
+                                 OWN_PTR(Champ_Inc_base)& champ, const Nom& sous_type=NOM_VIDE) const;
+  virtual void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& nom, const Noms& unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)& champ) const;
+  virtual void discretiser_champ(const Motcle& directive, const Domaine_dis_base& z, Nature_du_champ nature, const Noms& nom, const Noms& unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)& champ) const;
 
   void nommer_completer_champ_physique(const Domaine_dis_base& domaine_vdf, const Nom& nom_champ, const Nom& unite, Champ_base& champ, const Probleme_base& pbi) const;
   int verifie_sous_type(Nom& type, const Nom& sous_type, const Motcle& directive) const;
 
-  void volume_maille(const Schema_Temps_base& sch, const Domaine_dis& z, Champ_Fonc& ch) const;
-  void mesh_numbering(const Schema_Temps_base& sch, const Domaine_dis& z, Champ_Fonc& ch) const;
-  virtual void residu(const Domaine_dis&, const Champ_Inc&, Champ_Fonc&) const;
+  void volume_maille(const Schema_Temps_base& sch, const Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const;
+  void mesh_numbering(const Schema_Temps_base& sch, const Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const;
+  virtual void residu(const Domaine_dis_base&, const Champ_Inc_base&, OWN_PTR(Champ_Fonc_base)&) const;
 
-  static void creer_champ(Champ_Inc& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, int nb_pas_dt, double temps,
+  static void creer_champ(OWN_PTR(Champ_Inc_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, int nb_pas_dt, double temps,
                           const Nom& directive=NOM_VIDE, const Nom& nom_discretisation=NOM_VIDE);
-  static void creer_champ(Champ_Fonc& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive = NOM_VIDE,
+  static void creer_champ(OWN_PTR(Champ_Fonc_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive = NOM_VIDE,
                           const Nom& nom_discretisation=NOM_VIDE);
-  static void creer_champ(Champ_Don& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive = NOM_VIDE,
+  static void creer_champ(OWN_PTR(Champ_Don_base)& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps, const Nom& directive = NOM_VIDE,
                           const Nom& nom_discretisation=NOM_VIDE);
 
-  virtual Nom get_name_of_type_for(const Nom& class_operateur, const Nom& type_operteur,const Equation_base& eqn, const REF(Champ_base)& champ_supp =REF(Champ_base)()) const;
+  virtual Nom get_name_of_type_for(const Nom& class_operateur, const Nom& type_operteur,const Equation_base& eqn, const OBS_PTR(Champ_base)& champ_supp =OBS_PTR(Champ_base)()) const;
 
   // usefull methods to detect discretization
   virtual bool is_ef() const { return false; }
+  virtual bool is_dg() const { return false; }
   virtual bool is_vdf() const { return false; }
   virtual bool is_vef() const { return false; }
   virtual bool is_polymac() const { return false; }
@@ -110,13 +110,13 @@ public :
 protected:
   static const Motcle DEMANDE_DESCRIPTION;
   static const Nom NOM_VIDE;
-  REF(Domaine) le_domaine_;
+  OBS_PTR(Domaine) le_domaine_;
 
 private:
   void test_demande_description(const Motcle& , const Nom&) const;
   static void champ_fixer_membres_communs(Champ_base& ch, const Domaine_dis_base& z, const Nom& type, const Nom& nom, const Nom& unite, int nb_comp, int nb_ddl, double temps);
 
-  virtual void modifier_champ_tabule(const Domaine_dis_base& domaine_dis,Champ_Fonc_Tabule& ch_tab,const VECT(REF(Champ_base))& ch_inc) const ;
+  virtual void modifier_champ_tabule(const Domaine_dis_base& domaine_dis,Champ_Fonc_Tabule& ch_tab,const VECT(OBS_PTR(Champ_base))& ch_inc) const ;
 };
 
 using Discretisation = TRUST_Deriv<Discretisation_base>;

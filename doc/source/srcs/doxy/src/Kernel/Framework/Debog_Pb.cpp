@@ -17,16 +17,23 @@
 #include <Probleme_base.h>
 #include <PE_Groups.h>
 #include <Debog_Pb.h>
-#include <Equation.h>
+#include <Equation_base.h>
 #include <EChaine.h>
 #include <Domaine_VF.h>
 #include <Domaine.h>
 #include <Param.h>
 
-REF(Debog_Pb) Debog_Pb::instance_debog_;
+OBS_PTR(Debog_Pb) Debog_Pb::instance_debog_;
 
 Implemente_instanciable(Debog_Pb,"Debog_pb",Objet_U);
 Implemente_instanciable(Debog_Pb_Wrapper,"Debog",Interprete);
+// XD debog interprete debog 0 Class to debug some differences between two TRUST versions on a same data file. NL2 If you want to compare the results of the same code in sequential and parallel calculation, first run (mode=0) in sequential mode (the files fichier1 and fichier2 will be written first) then the second run in parallel calculation (mode=1). NL2 During the first run (mode=0), it prints into the file DEBOG, values at different points of the code thanks to the C++ instruction call. see for example in Kernel/Framework/Resoudre.cpp file the instruction: Debog::verifier(msg,value); Where msg is a string and value may be a double, an integer or an array. NL2 During the second run (mode=1), it prints into a file Err_Debog.dbg the same messages than in the DEBOG file and checks if the differences between results from both codes are less than a given value (error). If not, it prints Ok else show the differences and the lines where it occured.
+// XD attr pb ref_pb_gen_base pb 0 Name of the problem to debug.
+// XD attr fichier1 chaine file1 0 Name of the file where domain will be written in sequential calculation.
+// XD attr fichier2 chaine file2 0 Name of the file where faces will be written in sequential calculation.
+// XD attr seuil floattant seuil 0 Minimal value (by default 1.e-20) for the differences between the two codes.
+// XD attr mode entier mode 0 By default -1 (nothing is written in the different files), you will set 0 for the sequential run, and 1 for the parallel run.
+
 
 Sortie& Debog_Pb::printOn(Sortie& os) const
 {
@@ -77,12 +84,6 @@ Entree& Debog_Pb::readOn(Entree& is)
     }
 
   Probleme_base& pb = ref_cast(Probleme_base, obj);
-  if (!pb.domaine_dis().non_nul())
-    {
-      Cerr<<finl;
-      Cerr<<"WARNING, problem in Debog"<<finl;
-      Cerr<<"It might be because you have put the command Debog before having associated the discretization to the problem."<<finl;
-    }
   ref_pb_ = pb;
 
   if (mode_db_ == 0)
@@ -177,8 +178,8 @@ void Debog_Pb::write_geometry_data()
       Cerr << "Error in Debog.cpp: cannot write geometry data in parallel." << finl;
       Process::exit();
     }
-  const Domaine& dom = ref_pb_.valeur().domaine();
-  const Domaine_dis_base& zd = ref_pb_.valeur().domaine_dis().valeur();
+  const Domaine& dom = ref_pb_->domaine();
+  const Domaine_dis_base& zd = ref_pb_->domaine_dis();
   const Domaine_VF& zvf = ref_cast(Domaine_VF, zd);
   {
     SFichier f(fichier_domaine_);
@@ -245,11 +246,10 @@ void Debog_Pb::add_renum_item(const DoubleTab& coord_ref, const DoubleTab& coord
       if (k != 1)
         {
           Cerr << "Debog::add_renum_item: Error. Id=" << id
-               << "\n Item with following coordinates was found " << k << " times within epsilon=" << epsilon
-               << "\n in the reference geometry: " << center << finl;
+               << "\n Item " << i << " with following coordinates was found " << k << " times within epsilon=" << epsilon << " in the reference geometry: " << center << finl;
           if (noeuds_doubles_ignores_==0)
             {
-              Cerr << "If you wan't to discard nodes comparison in the mesh, add 'noeuds_doubles_ignores 1' option in debog_pb keyword." << finl;
+              Cerr << "If you want to discard nodes comparison in the mesh, add 'noeuds_doubles_ignores 1' option in debog_pb keyword." << finl;
               exit();
             }
           else
@@ -258,22 +258,25 @@ void Debog_Pb::add_renum_item(const DoubleTab& coord_ref, const DoubleTab& coord
               renum[i] = -1;
             }
         }
-      // renum[i] is the index of the i-th local item in the reference geometry
-      renum[i] = elements[0];
+      else
+        {
+          // renum[i] is the index of the i-th local item in the reference geometry
+          renum[i] = elements[0];
+        }
     }
 }
 
 void Debog_Pb::read_geometry_data()
 {
-  const Domaine& dom = ref_pb_.valeur().domaine();
-  const Domaine_dis_base& zd = ref_pb_.valeur().domaine_dis().valeur();
+  const Domaine& dom = ref_pb_->domaine();
+  const Domaine_dis_base& zd = ref_pb_->domaine_dis();
   const Domaine_VF& zvf = ref_cast(Domaine_VF, zd);
   {
     DoubleTab coord_som_seq; // sommets
     DoubleTab xp_seq; // centres des elements
     // Il faut passer dans un groupe monoprocesseur pour Domaine::readOn:
     {
-      DERIV(Comm_Group) group;
+      OWN_PTR(Comm_Group) group;
       ArrOfInt liste_procs(1); // Liste de 1 processeur contenant le proc 0
       PE_Groups::create_group(liste_procs, group, 1);
       if (PE_Groups::enter_group(group.valeur()))
@@ -361,6 +364,7 @@ const IntVect& Debog_Pb::find_renum_vector(const MD_Vector& mdv, Nom& id) const
           return renum;
         }
     }
+  Cerr << "Error, we don't find renum_vector for the array on item: "<< id << finl;
   throw RENUM_ARRAY_NOT_FOUND;
 }
 
@@ -387,7 +391,10 @@ void Debog_Pb::verifier_matrice(const char *const msg, const Matrice_Base& matri
   Nom id;
 
   // Boucle sur les items sequentiels du vecteur x de A*x=b
-  const int nb_colonnes = md_colonnes.valeur().nb_items_seq_tot();
+  const trustIdType nbc0 = md_colonnes->nb_items_seq_tot();
+  if (nbc0 > std::numeric_limits<int>::max())
+    Process::exit("Debog_Pb::verifier_matrice() - total number of items too big!");
+  const int nb_colonnes = static_cast<int>(nbc0);
 
   for (int i = 0; i < nb_colonnes; i++)
     {

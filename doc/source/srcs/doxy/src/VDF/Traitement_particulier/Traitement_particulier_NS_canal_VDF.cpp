@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -244,7 +244,7 @@ void Traitement_particulier_NS_canal_VDF::calculer_moyenne_spatiale_vitesse_rho_
   int face_x_0,face_y_0,face_y_1,face_z_0;
 
   const Fluide_base& le_fluide = ref_cast(Fluide_base,mon_equation->milieu());
-  const DoubleTab& visco_dyn = le_fluide.viscosite_dynamique()->valeurs();
+  const DoubleTab& visco_dyn = le_fluide.viscosite_dynamique().valeurs();
   const DoubleTab& tab_rho_elem = le_fluide.masse_volumique().valeurs();
   int taille_mu=visco_dyn.dimension(0);
   int taille_rho=tab_rho_elem.dimension(0);
@@ -308,9 +308,9 @@ void Traitement_particulier_NS_canal_VDF::calculer_moyenne_spatiale_nut(DoubleTa
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VDF& domaine_VDF=ref_cast(Domaine_VDF, zdisbase);
   //const DoubleTab& xp = domaine_VDF.xp();
-  const RefObjU& modele_turbulence = mon_equation.valeur().get_modele(TURBULENCE);
+  const RefObjU& modele_turbulence = mon_equation->get_modele(TURBULENCE);
   const Modele_turbulence_hyd_base& mod_turb = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur());
-  const DoubleTab& nu_t = mod_turb.viscosite_turbulente()->valeurs();
+  const DoubleTab& nu_t = mod_turb.viscosite_turbulente().valeurs();
 
   int nb_elems = domaine_VDF.domaine().nb_elem();
   int num_elem,i;
@@ -332,7 +332,7 @@ void Traitement_particulier_NS_canal_VDF::calculer_moyenne_spatiale_Temp(DoubleT
   const Domaine_VDF& domaine_VDF=ref_cast(Domaine_VDF, zdisbase);
   //const DoubleTab& xp = domaine_VDF.xp();
   const IntTab& elem_faces = domaine_VDF.elem_faces();
-  const DoubleTab& temperature = Temp.valeur().valeurs();
+  const DoubleTab& temperature = Temp->valeurs();
   const DoubleTab& vitesse = mon_equation->inconnue().valeurs();
   double u,v,wl,T;
   int nb_elems = domaine_VDF.domaine().nb_elem();

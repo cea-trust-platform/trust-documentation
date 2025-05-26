@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,11 +21,11 @@ Implemente_base(Op_Dift_VDF_Face_Axi_base,"Op_Dift_VDF_Face_Axi_base",Op_Dift_VD
 Sortie& Op_Dift_VDF_Face_Axi_base::printOn(Sortie& s ) const { return s << que_suis_je() ; }
 Entree& Op_Dift_VDF_Face_Axi_base::readOn(Entree& s ) { return s ; }
 
-void Op_Dift_VDF_Face_Axi_base::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis, const Champ_Inc& ch_transporte)
+void Op_Dift_VDF_Face_Axi_base::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis, const Champ_Inc_base& ch_transporte)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-  const Champ_Face_VDF& inco = ref_cast(Champ_Face_VDF,ch_transporte.valeur());
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+  const Champ_Face_VDF& inco = ref_cast(Champ_Face_VDF,ch_transporte);
   le_dom_vdf = zvdf;
   la_zcl_vdf = zclvdf;
   inconnue = inco;
@@ -45,7 +45,7 @@ void Op_Dift_VDF_Face_Axi_base::completer()
 {
   Op_Dift_VDF_base::completer();
   Equation_base& eqn_hydr = equation();
-  Champ_Face_VDF& vitesse = ref_cast(Champ_Face_VDF,eqn_hydr.inconnue().valeur());
+  Champ_Face_VDF& vitesse = ref_cast(Champ_Face_VDF,eqn_hydr.inconnue());
   vitesse.dimensionner_tenseur_Grad();
   const RefObjU& modele_turbulence = eqn_hydr.get_modele(TURBULENCE);
   const Modele_turbulence_hyd_base& mod_turb = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur());
@@ -59,7 +59,7 @@ double Op_Dift_VDF_Face_Axi_base::calculer_dt_stab() const
 
 void Op_Dift_VDF_Face_Axi_base::mettre_a_jour(double )
 {
-  if (le_modele_turbulence->loi_paroi().non_nul()) tau_tan.ref(le_modele_turbulence->loi_paroi()->Cisaillement_paroi());
+  if (le_modele_turbulence->has_loi_paroi_hyd()) tau_tan.ref(le_modele_turbulence->loi_paroi().Cisaillement_paroi());
 }
 
 // XXX E Saikali : j'ai fait comme ca sinon nu_t est pas initialiser dans le cas var
@@ -304,7 +304,7 @@ DoubleTab& Op_Dift_VDF_Face_Axi_base::ajouter(const DoubleTab& inco, DoubleTab& 
   mettre_a_jour_var(temps); // seulement pour var_axi !
 
   const Domaine_Cl_VDF& zclvdf = la_zcl_vdf.valeur();
-  const DoubleVect& visco_turb = diffusivite_turbulente()->valeurs();
+  const DoubleVect& visco_turb = diffusivite_turbulente().valeurs();
   const DoubleTab& tau_diag = inconnue->tau_diag(), &tau_croises = inconnue->tau_croises();
   ref_cast_non_const(Champ_Face_VDF,inconnue.valeur()).calculer_dercov_axi(zclvdf);
 
@@ -562,7 +562,7 @@ void Op_Dift_VDF_Face_Axi_base::ajouter_contribution(const DoubleTab& inco, Matr
   mettre_a_jour_var(temps); // seulement pour var_axi !
 
   const Domaine_Cl_VDF& zclvdf = la_zcl_vdf.valeur();
-  const DoubleVect& visco_turb = diffusivite_turbulente()->valeurs();
+  const DoubleVect& visco_turb = diffusivite_turbulente().valeurs();
   const DoubleTab& tau_diag = inconnue->tau_diag();
   ref_cast_non_const(Champ_Face_VDF,inconnue.valeur()).calculer_dercov_axi(zclvdf);
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,17 +41,25 @@ Entree& Source_Flux_interfacial_base::readOn(Entree& is)
   if (!pbm.has_correlation("flux_interfacial"))
     Process::exit(que_suis_je() + " : a flux_interfacial correlation must be defined in the global correlations { } block!");
 
+  const bool res_en_T = pbm.resolution_en_T();
+  if (!res_en_T) Process::exit("Source_Flux_interfacial_base::readOn NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
+  for (int n = 0; n < pbm.nb_phases(); n++)
+    {
+      if ((( pbm.nom_phase(n).finit_par("group1"))) || (( pbm.nom_phase(n).finit_par("group2"))))  mod2grp = 1.;
+    }
+
   correlation_ = pbm.get_correlation("flux_interfacial");
 
-  dv_min = ref_cast(Flux_interfacial_base, correlation_->valeur()).dv_min();
+  dv_min = ref_cast(Flux_interfacial_base, correlation_.valeur()).dv_min();
 
   return is;
 }
 
 void Source_Flux_interfacial_base::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue().valeur());
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleTab& inco = ch.valeurs();
 
   /* on doit pouvoir ajouter / soustraire les equations entre composantes */
@@ -64,7 +72,7 @@ void Source_Flux_interfacial_base::dimensionner_blocs(matrices_t matrices, const
         Matrice_Morse& mat = *n_m.second, mat2;
         const DoubleTab& dep = equation().probleme().get_champ(n_m.first).valeurs();
         const int M = dep.line_size();
-        IntTrav sten(0, 2);
+        IntTab sten(0, 2);
 
         if (n_m.first == "temperature" || n_m.first == "pression" || n_m.first == "alpha" || n_m.first == "interfacial_area" ) /* temperature/pression: dependance locale */
           for (e = 0; e < domaine.nb_elem(); e++)
@@ -87,7 +95,7 @@ void Source_Flux_interfacial_base::dimensionner_blocs(matrices_t matrices, const
 
 void Source_Flux_interfacial_base::completer()
 {
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   int N = equation().inconnue().valeurs().line_size();
   if (!sub_type(Source_Flux_interfacial_base, equation().sources().dernier().valeur()))
     Process::exit(que_suis_je() + " : Source_Flux_interfacial_base must be the last source term in the source term declaration list of the " + equation().que_suis_je() + " equation ! ");
@@ -135,15 +143,15 @@ void Source_Flux_interfacial_base::mettre_a_jour(double temps)
 void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
-  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue().valeur());
+  const Champ_Inc_P0_base& ch = ref_cast(Champ_Inc_P0_base, equation().inconnue());
   // Matrice_Morse *mat = matrices.count(ch.le_nom().getString()) ? matrices.at(ch.le_nom().getString()) : nullptr;
   const Milieu_composite& milc = ref_cast(Milieu_composite, equation().milieu());
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleVect& pe = milc.porosite_elem(), &ve = domaine.volumes();
   const tabs_t& der_h = ref_cast(Champ_Inc_base, milc.enthalpie()).derivees();
   const Champ_base& ch_rho = milc.masse_volumique();
-  const Champ_Inc_base& ch_alpha = pbm.equation_masse().inconnue().valeur(), &ch_a_r = pbm.equation_masse().champ_conserve(),
-                        &ch_temp = pbm.equation_energie().inconnue().valeur(), &ch_p = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression().valeur(),
+  const Champ_Inc_base& ch_alpha = pbm.equation_masse().inconnue(), &ch_a_r = pbm.equation_masse().champ_conserve(),
+                        &ch_temp = pbm.equation_energie().inconnue(), &ch_p = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression(),
                          *pch_rho = sub_type(Champ_Inc_base, ch_rho) ? &ref_cast(Champ_Inc_base, ch_rho) : nullptr;
 
   const DoubleTab& inco = ch.valeurs(), &alpha = ch_alpha.valeurs(), &press = ch_p.valeurs(), &temp  = ch_temp.valeurs(), &temp_p  = ch_temp.passe(),
@@ -161,8 +169,8 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
   int i, j, col, e, d, D = dimension, k, l, n, N = inco.line_size(), is_therm;
   const int cL = (lambda.dimension_tot(0) == 1), cM = (mu.dimension_tot(0) == 1), cR = (rho.dimension_tot(0) == 1), cCp = (Cp.dimension_tot(0) == 1);
 
-  const Flux_interfacial_base& correlation_fi = ref_cast(Flux_interfacial_base, correlation_.valeur().valeur());
-  const Changement_phase_base *correlation_G = pbm.has_correlation("changement_phase") ? &ref_cast(Changement_phase_base, pbm.get_correlation("changement_phase").valeur()) : nullptr;
+  const Flux_interfacial_base& correlation_fi = ref_cast(Flux_interfacial_base, correlation_.valeur());
+  const Changement_phase_base *correlation_G = pbm.has_correlation("changement_phase") ? &ref_cast(Changement_phase_base, pbm.get_correlation("changement_phase")) : nullptr;
   double dt = equation().schema_temps().pas_de_temps(), alpha_min = 1.e-6;
 
   // Viscosite turbulente pour les correlations qui en ont besoin
@@ -170,8 +178,8 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
   if (is_turb_)
     {
       nut.resize(0, N);
-      MD_Vector_tools::creer_tableau_distribue(equation().inconnue()->valeurs().get_md_vector(), nut); //Necessary to compare size in eddy_viscosity()
-      const Viscosite_turbulente_base& corr_visc_turb = ref_cast(Viscosite_turbulente_base, ref_cast(Operateur_Diff_base, equation().probleme().equation(0).operateur(0).l_op_base()).correlation_viscosite_turbulente()->valeur());
+      MD_Vector_tools::creer_tableau_distribue(equation().inconnue().valeurs().get_md_vector(), nut); //Necessary to compare size in eddy_viscosity()
+      const Viscosite_turbulente_base& corr_visc_turb = ref_cast(Viscosite_turbulente_base, *ref_cast(Operateur_Diff_base, equation().probleme().equation(0).operateur(0).l_op_base()).correlation_viscosite_turbulente());
       corr_visc_turb.eddy_viscosity(nut);
     }
 
@@ -195,7 +203,7 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
     eq_m.operateur(i).l_op_base().ajouter_blocs(mat_m, sec_m, semi_impl);
   for (i = 0; i < eq_m.sources().size(); i++)
     if (!sub_type(Source_Flux_interfacial_base, eq_m.sources()(i).valeur())) /* toutes les sources sauf le flux interfacial */
-      eq_m.sources()(i).valeur().ajouter_blocs(mat_m, sec_m, semi_impl);
+      eq_m.sources()(i)->ajouter_blocs(mat_m, sec_m, semi_impl);
   std::vector<std::array<Matrice_Morse *, 2>> vec_m; //vecteur "matrice source, matrice de destination"
   for (auto &&n_m : matrices)
     if (n_m.first.find("/") == std::string::npos && mat_m[n_m.first]->get_tab1().size() > 1) vec_m.push_back({{ mat_m[n_m.first], n_m.second }});
@@ -215,7 +223,7 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
   // fill velocity at elem tab
   DoubleTab pvit_elem(0, N * D);
   domaine.domaine().creer_tableau_elements(pvit_elem);
-  const Champ_Face_base& ch_vit = ref_cast(Champ_Face_base,ref_cast(Pb_Multiphase, equation().probleme()).equation_qdm().inconnue().valeur());
+  const Champ_Face_base& ch_vit = ref_cast(Champ_Face_base,ref_cast(Pb_Multiphase, equation().probleme()).equation_qdm().inconnue());
   ch_vit.get_elem_vector_field(pvit_elem);
 
   // remplir les tabs ...
@@ -250,7 +258,8 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
           sats_all.insert( { SAT::LV_SAT, Lvap_tab.get_span() });
           sats_all.insert( { SAT::LV_SAT_DP, dP_Lvap_tab.get_span() });
 
-          z_sat.compute_all_flux_interfacial_pb_multiphase(press.get_span() /* elem reel */, sats_all, nb_max_sat, ind_trav);
+          ConstDoubleTab_parts ppart(press);
+          z_sat.compute_all_flux_interfacial_pb_multiphase(ppart[0].get_span() /* elem reel */, sats_all, nb_max_sat, ind_trav);
         }
 
   for (e = 0; e < domaine.nb_elem(); e++)
@@ -266,7 +275,7 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
         for (k = 0 ; k<N ; k++) nv(n, k) = std::max(sqrt(nv(n, k)), dv_min);
       //coeffs d'echange vers l'interface (explicites)
       in.dh = dh, in.alpha = &alpha(e, 0), in.T = &temp(e, 0),  in.T_passe = &temp_p(e, 0), in.p = press(e, 0), in.nv = &nv(0, 0), in.h = &h(e, 0), in.dT_h = dT_h ? &(*dT_h)(e, 0) : nullptr, in.dP_h = dP_h ? &(*dP_h)(e, 0) : nullptr;
-      in.lambda = &lambda(!cL * e, 0), in.mu = &mu(!cM * e, 0), in.rho = &rho(!cR * e, 0), in.Cp = &Cp(!cCp * e, 0), in.e = e, in.Lvap = &Lvap_tab(e, 0), in.dP_Lvap = &dP_Lvap_tab(e, 0), in.sigma = &Sigma_tab(e,0);
+      in.lambda = &lambda(!cL * e, 0), in.mu = &mu(!cM * e, 0), in.rho = &rho(!cR * e, 0), in.Cp = &Cp(!cCp * e, 0), in.e = e, in.Lvap = &Lvap_tab(e, 0), in.dP_Lvap = &dP_Lvap_tab(e, 0), in.sigma = &Sigma_tab(e,0), in.Tsat = &Ts_tab(e,0), in.dP_Tsat = &dPTs_tab(e,0);
       in.d_bulles = (d_bulles) ? &(*d_bulles)(e,0) : nullptr, in.k_turb = (k_turb) ? &(*k_turb)(e,0) : nullptr, in.nut = (is_turb_) ? &nut(e,0) : nullptr;
       correlation_fi.coeffs(in, out);
 
@@ -352,42 +361,45 @@ void Source_Flux_interfacial_base::ajouter_blocs(matrices_t matrices, DoubleTab&
                           (*s_d[1])(N * e + (i ? l : k), col) += (i ? -1 : 1) * hc * sgn * x;
                 }
               else if (sub_type(Aire_interfaciale, equation())) //eq d'aire interfaciale ; looks like the mass equation ; not a conservation equation !
-                if (k==0) // k est la phase porteuse
-                  if (alpha(e, l) > alpha_min) // if the phase l is present
-                    {
-                      secmem(e, l) += vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G ;
-                      if (n_lim < 0) /* G par limite thermique */
+                if (0.> mod2grp)
+                  {
+                    if (k==0) // k est la phase porteuse
+                      if (alpha(e, l) > alpha_min) // if the phase l is present
                         {
-                          if (Ma)   //derivees en alpha
+                          secmem(e, l) += vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G ;
+                          if (n_lim < 0) /* G par limite thermique */
                             {
-                              (*Ma)(N * e + l , N * e + l) -= vol * 2./3. * inco(e, l) / (-alpha(e, l)*alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G;
-                              for (n = 0; n < N; n++) (*Ma)(N * e + l , N * e + n) -=
-                                  vol * 2./3. * inco(e, l) / (alpha(e, l)              * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * da_G(n);
+                              if (Ma)   //derivees en alpha
+                                {
+                                  (*Ma)(N * e + l , N * e + l) -= vol * 2./3. * inco(e, l) / (-alpha(e, l)*alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G;
+                                  for (n = 0; n < N; n++) (*Ma)(N * e + l , N * e + n) -=
+                                      vol * 2./3. * inco(e, l) / (alpha(e, l)              * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * da_G(n);
+                                }
+                              if (Mt)   //derivees en T
+                                {
+                                  if (pch_rho) (*Mt)(N * e + l , N * e + l) -=
+                                      vol * 2./3. * inco(e, l) / alpha(e, l)*-pch_rho->derivees().at("temperature")(e, l)/((*pch_rho).valeurs()(e, l)*(*pch_rho).valeurs()(e, l)) * G;
+                                  for (n = 0; n < N; n++) (*Mt)(N * e + l , N * e + n) -=
+                                      vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * dT_G(n);
+                                }
+                              if (Mp)  //derivees en p
+                                {
+                                  if (pch_rho) (*Mp)(N * e + l , e) -=
+                                      vol * 2./3. * inco(e, l) / alpha(e, l)*-pch_rho->derivees().at("pression")(e, l)/((*pch_rho).valeurs()(e, l)*(*pch_rho).valeurs()(e, l)) * G;
+                                  for (n = 0; n < N; n++) (*Mp)(N * e + l , N * e + n) -=
+                                      vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * dP_G;
+                                }
+                              if (Mai) //derivees en ai
+                                {
+                                  (*Mai)(N * e + l , N * e + l) -= vol * 2./3. / (alpha(e, l)* (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G;
+                                } // dAi_G a ajouter
                             }
-                          if (Mt)   //derivees en T
-                            {
-                              if (pch_rho) (*Mt)(N * e + l , N * e + l) -=
-                                  vol * 2./3. * inco(e, l) / alpha(e, l)*-pch_rho->derivees().at("temperature")(e, l)/((*pch_rho).valeurs()(e, l)*(*pch_rho).valeurs()(e, l)) * G;
-                              for (n = 0; n < N; n++) (*Mt)(N * e + l , N * e + n) -=
-                                  vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * dT_G(n);
-                            }
-                          if (Mp)  //derivees en p
-                            {
-                              if (pch_rho) (*Mp)(N * e + l , e) -=
-                                  vol * 2./3. * inco(e, l) / alpha(e, l)*-pch_rho->derivees().at("pression")(e, l)/((*pch_rho).valeurs()(e, l)*(*pch_rho).valeurs()(e, l)) * G;
-                              for (n = 0; n < N; n++) (*Mp)(N * e + l , N * e + n) -=
-                                  vol * 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * dP_G;
-                            }
-                          if (Mai) //derivees en ai
-                            {
-                              (*Mai)(N * e + l , N * e + l) -= vol * 2./3. / (alpha(e, l)* (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * G;
-                            } // dAi_G a ajouter
+                          else for (auto &s_d : vec_m) /* G par evanescence */
+                              for (j = s_d[0]->get_tab1()(N * e + n_lim) - 1; j < s_d[0]->get_tab1()(N * e + n_lim + 1) - 1; j++)
+                                for (col = s_d[0]->get_tab2()(j) - 1, x = -s_d[0]->get_coeff()(j), i = 0; i < 2; i++)
+                                  (*s_d[1])(N * e + l , col) -= 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * sgn * x;
                         }
-                      else for (auto &s_d : vec_m) /* G par evanescence */
-                          for (j = s_d[0]->get_tab1()(N * e + n_lim) - 1; j < s_d[0]->get_tab1()(N * e + n_lim + 1) - 1; j++)
-                            for (col = s_d[0]->get_tab2()(j) - 1, x = -s_d[0]->get_coeff()(j), i = 0; i < 2; i++)
-                              (*s_d[1])(N * e + l , col) -= 2./3. * inco(e, l) / (alpha(e, l) * (pch_rho ? (*pch_rho).valeurs()(e, l) : rho(e, l))) * sgn * x;
-                    }
+                  }
             }
           else if (sub_type(Energie_Multiphase, equation())) /* pas de saturation : echanges d'energie seulement */
             {

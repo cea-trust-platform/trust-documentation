@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,27 +13,28 @@
 *
 *****************************************************************************/
 
-#include <Champ_Inc_P0_base.h>
-#include <Domaine.h>
-#include <Equation_base.h>
-#include <Domaine_dis_base.h>
-#include <Frontiere_dis_base.h>
-#include <Domaine_Cl_dis.h>
-#include <Dirichlet.h>
-#include <Symetrie.h>
-#include <Dirichlet_homogene.h>
-#include <Neumann_homogene.h>
 #include <Echange_externe_impose.h>
 #include <Echange_global_impose.h>
-#include <Neumann_paroi.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Frontiere_dis_base.h>
+#include <Dirichlet_homogene.h>
+#include <Champ_Inc_P0_base.h>
+#include <Domaine_dis_base.h>
+#include <Neumann_homogene.h>
 #include <Neumann_val_ext.h>
+
+#include <Neumann_paroi.h>
+#include <Equation_base.h>
+#include <Dirichlet.h>
+#include <Symetrie.h>
+#include <Domaine.h>
 
 Implemente_base(Champ_Inc_P0_base,"Champ_Inc_P0_base",Champ_Inc_base);
 
 Sortie& Champ_Inc_P0_base::printOn(Sortie& os) const
 {
-  os << que_suis_je() << " " << le_nom();
-  return os;
+  return os << que_suis_je() << " " << le_nom();
 }
 
 Entree& Champ_Inc_P0_base::readOn(Entree& is)
@@ -83,22 +84,22 @@ DoubleTab& Champ_Inc_P0_base::trace(const Frontiere_dis_base& fr, DoubleTab& x, 
 //utilitaires pour CL
 void Champ_Inc_P0_base::init_fcl() const
 {
-  const Conds_lim& cls = mon_dom_cl_dis.valeur().les_conditions_limites();
+  const Conds_lim& cls = mon_dom_cl_dis->les_conditions_limites();
   int i, f, n;
 
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, mon_equation->domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, mon_equation->domaine_dis());
   fcl_.resize(domaine.nb_faces_tot(), 3);
   for (n = 0; n < cls.size(); n++)
     {
-      const Front_VF& fvf = ref_cast(Front_VF, cls[n].frontiere_dis());
+      const Front_VF& fvf = ref_cast(Front_VF, cls[n]->frontiere_dis());
       int idx = sub_type(Echange_externe_impose, cls[n].valeur()) + 2 * sub_type(Echange_global_impose, cls[n].valeur())
                 + 4 * sub_type(Neumann_paroi, cls[n].valeur())      + 5 * (sub_type(Neumann_homogene, cls[n].valeur()) || sub_type(Neumann_val_ext, cls[n].valeur()) || sub_type(Symetrie, cls[n].valeur()))
                 + 6 * sub_type(Dirichlet, cls[n].valeur())          + 7 * sub_type(Dirichlet_homogene, cls[n].valeur());
-      if (cls[n].valeur().que_suis_je().debute_par("Paroi_Echange_contact"))
+      if (cls[n]->que_suis_je().debute_par("Paroi_Echange_contact"))
         idx = 3;
       if (!idx)
         {
-          Cerr << "Champ_Inc_P0_base : CL non codee rencontree! " << cls[n].valeur().que_suis_je() << finl;
+          Cerr << "Champ_Inc_P0_base : CL non codee rencontree! " << cls[n]->que_suis_je() << finl;
           Process::exit();
         }
       for (i = 0; i < fvf.nb_faces_tot(); i++)

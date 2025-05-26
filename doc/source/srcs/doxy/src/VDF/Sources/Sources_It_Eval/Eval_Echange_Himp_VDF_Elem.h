@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Eval_Echange_Himp_VDF_Elem_included
 
 #include <Evaluateur_Source_Elem.h>
-#include <Champ_Inc.h>
+
 #include <TRUST_Ref.h>
 
 class Eval_Echange_Himp_VDF_Elem: public Evaluateur_Source_Elem
@@ -25,16 +25,16 @@ class Eval_Echange_Himp_VDF_Elem: public Evaluateur_Source_Elem
 public:
   Eval_Echange_Himp_VDF_Elem() : h_(-1.) { }
   template <typename Type_Double> void calculer_terme_source(const int , Type_Double& ) const;
-  inline void associer_champs(const Champ_Inc& ,const Champ_Inc& ,const double );
+  inline void associer_champs(const Champ_Inc_base& ,const Champ_Inc_base& ,const double );
   inline void mettre_a_jour() override;
 
 protected:
-  REF(Champ_Inc) T, T_voisin;
+  OBS_PTR(Champ_Inc_base) T, T_voisin;
   DoubleTab Tcourant, Tvois;
   double h_;
 };
 
-inline void Eval_Echange_Himp_VDF_Elem::associer_champs(const Champ_Inc& tc, const Champ_Inc& tv, const double dh)
+inline void Eval_Echange_Himp_VDF_Elem::associer_champs(const Champ_Inc_base& tc, const Champ_Inc_base& tv, const double dh)
 {
   this->h_ = dh;
   T = tc;

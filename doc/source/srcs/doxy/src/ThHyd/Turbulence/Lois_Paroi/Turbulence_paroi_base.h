@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,16 +18,13 @@
 
 #include <Champs_compris_interface.h>
 #include <Champs_compris.h>
-#include <Champ_Fonc.h>
-#include <Champ_Inc.h>
+#include <Champ_Inc_base.h>
 #include <TRUST_Ref.h>
+#include <YAML_data.h>
 
 class Modele_turbulence_hyd_base;
 class Probleme_base;
 class EcrFicPartage;
-class Modele_turbulence_hyd;
-class Domaine_Cl_dis;
-class Domaine_dis;
 class Param;
 
 /*! @brief Classe Turbulence_paroi_base Classe de base pour la hierarchie des classes representant les modeles
@@ -35,32 +32,30 @@ class Param;
  *     de calcul des grandeurs turbulentes aux voisinages des parois.
  *     Contient une reference a un modele de turbulence.
  *
- * @sa Paroi_std_hyd_VDF Paroi_std_scal_hyd_VDF, Classe abstraite, Methodes abstraites, void associer(const Domaine_dis&, const Domaine_Cl_dis&), int init_lois_paroi(), int calculer_hyd(DoubleTab& ), int calculer_hyd(DoubleTab& , DoubleTab& )
+ * @sa Paroi_std_hyd_VDF Paroi_std_scal_hyd_VDF, Classe abstraite, Methodes abstraites, void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&), int init_lois_paroi(), int calculer_hyd(DoubleTab& ), int calculer_hyd(DoubleTab& , DoubleTab& )
  */
 class Turbulence_paroi_base: public Champs_compris_interface, public Objet_U
 {
-
-  Declare_base_sans_constructeur(Turbulence_paroi_base);
-
+  Declare_base(Turbulence_paroi_base);
 public:
 
-  Turbulence_paroi_base();
-  virtual void set_param(Param& param);
+  static void typer_lire_turbulence_paroi(OWN_PTR(Turbulence_paroi_base)&, const Modele_turbulence_hyd_base&, Entree& );
+
+  virtual void set_param(Param& param) { /* Do nothing */ }
   inline void associer_modele(const Modele_turbulence_hyd_base&);
-  virtual void associer(const Domaine_dis&, const Domaine_Cl_dis&)=0;
+  virtual void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&)=0;
   virtual void completer() { }
   virtual int init_lois_paroi() =0;
-  inline int calculer_hyd(Champ_Inc&);
-  inline int calculer_hyd(Champ_Fonc&, Champ_Fonc&);
+  inline int calculer_hyd(Champ_Inc_base&);
+  inline int calculer_hyd(Champ_Fonc_base&, Champ_Fonc_base&);
   virtual int calculer_hyd(DoubleTab&) =0;
   virtual int calculer_hyd(DoubleTab&, DoubleTab&) =0;
   virtual int calculer_hyd_BiK(DoubleTab&, DoubleTab&) =0;
   inline virtual DoubleTab& corriger_derivee_impl(DoubleTab& d) const { return d; }
   inline virtual void imprimer_ustar(Sortie&) const { }
-  inline virtual void imprimer_ustar_mean_only(Sortie&, int, const LIST(Nom)&, const Nom&) const { }
-  inline virtual void imprimer_premiere_ligne_ustar(int, const LIST(Nom)&, const Nom&) const { }
-  // rajout pour prendre en compte Cisaillement_paroi dans la classe
-  // de base
+  virtual void imprimer_premiere_ligne_ustar(int, const LIST(Nom)&, const Nom&) const;
+  virtual void imprimer_ustar_mean_only(Sortie&, int, const LIST(Nom)&, const Nom&) const;
+  // rajout pour prendre en compte Cisaillement_paroi dans la classe de base
 
   inline const DoubleTab& Cisaillement_paroi() const;
   inline const DoubleVect& tab_u_star() const;
@@ -71,29 +66,31 @@ public:
   //OC 01/2006: ajout de la fonctionnalite sauvegarde/reprise : utile pour TBLE pour l'instant.
   int sauvegarder(Sortie&) const override { return 0; }
   int reprendre(Entree&) override { return 0; }
+  virtual std::vector<YAML_data> data_a_sauvegarder() const { return std::vector<YAML_data>(); }
 
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
   // Ecriture dans un fichier separe de u_star, Cisaillement_paroi etc...
   void ouvrir_fichier_partage(EcrFicPartage&, const Nom&) const;
   void ouvrir_fichier_partage(EcrFicPartage&, const Nom&, const Nom&) const;
   // indique si on utilise le cisaillement ou non
-  virtual bool use_shear() const; // Generalement true sauf par exemple pour loi paroi_negligeable_XXX
+  virtual bool use_shear() const { return true; } // Generalement true sauf par exemple pour loi paroi_negligeable_XXX
 
 protected:
-  REF(Modele_turbulence_hyd_base) mon_modele_turb_hyd;
+  OBS_PTR(Modele_turbulence_hyd_base) mon_modele_turb_hyd;
   DoubleTab Cisaillement_paroi_;         //valeurs des contraintes tangentielles aux
   // parois calculees localement a partir de u*
   DoubleVect tab_u_star_;                // valeurs des u* calculees localement
   DoubleVect tab_d_plus_;                // valeurs des d+ calculees localement
-  mutable Champ_Fonc champ_u_star_;                                // Champ pour postraitement
-  mutable int nb_impr_;                        // Compteur d'impression
-  mutable int nb_impr0_;                        // Compteur d'impression
-
-protected:
+  mutable OWN_PTR(Champ_Fonc_base)  champ_u_star_;                                // Champ pour postraitement
+  mutable int nb_impr_ = 0, nb_impr0_ = 0;                        // Compteur d'impression
   Champs_compris champs_compris_;
+  OBS_PTR(Domaine_VF) le_dom_dis_;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl_dis_;
 };
 
 /*! @brief Associe un modele de turbulence a l'objet.
@@ -107,21 +104,21 @@ inline void Turbulence_paroi_base::associer_modele(const Modele_turbulence_hyd_b
 
 /*! @brief Simple appel a int calculer_hyd(DoubleTab& ).
  *
- * @param (Champ_Inc& ch)
+ * @param (Champ_Inc_base& ch)
  * @return (int) code de retour propage
  */
-inline int Turbulence_paroi_base::calculer_hyd(Champ_Inc& ch)
+inline int Turbulence_paroi_base::calculer_hyd(Champ_Inc_base& ch)
 {
   return calculer_hyd(ch.valeurs());
 }
 
 /*! @brief Simple appel a int calculer_hyd(DoubleTab&, DoubleTab&).
  *
- * @param (Champ_Inc& ch1)
- * @param (Champ_Inc& ch2)
+ * @param (Champ_Inc_base& ch1)
+ * @param (Champ_Inc_base& ch2)
  * @return (int) code de retour propage
  */
-inline int Turbulence_paroi_base::calculer_hyd(Champ_Fonc& ch1, Champ_Fonc& ch2)
+inline int Turbulence_paroi_base::calculer_hyd(Champ_Fonc_base& ch1, Champ_Fonc_base& ch2)
 {
   return calculer_hyd(ch1.valeurs(), ch2.valeurs());
 }

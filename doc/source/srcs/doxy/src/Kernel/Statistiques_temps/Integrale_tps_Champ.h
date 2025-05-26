@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,54 +18,58 @@
 
 #include <Champ_Generique_base.h>
 #include <TRUSTTabs_forward.h>
-#include <Champ_Fonc.h>
+#include <Champ_Fonc_base.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 
 class Domaine_dis_base;
 class Champ_base;
 
-class Integrale_tps_Champ : public Champ_Fonc
+class Integrale_tps_Champ : public Objet_U
 {
   Declare_instanciable(Integrale_tps_Champ);
 public:
-  inline const REF(Champ_Generique_base)& le_champ() const { return mon_champ; }
-  inline double temps_integrale() const { return tps_integrale; } // le temps courant de l'integrale
+  inline const Champ_Fonc_base& le_champ_calcule() const { return le_champ_.valeur(); }
+  inline Champ_Fonc_base& le_champ_calcule() { return le_champ_.valeur(); }
+  inline const OBS_PTR(Champ_Generique_base)& le_champ() const { return le_champ_ref_; }
+
+  inline double temps_integrale() const { return tps_integrale_; } // le temps courant de l'integrale
   inline double t_debut() const { return t_debut_; } // le temps de debut d'integration
   inline double t_fin() const { return t_fin_; } //  le temps de fin d'integration
-  inline double dt_integration() const { return dt_integr_calcul; } // la duree d'integration deja effectuee
+  inline double dt_integration() const { return dt_integr_calcul_; } // la duree d'integration deja effectuee
   inline void fixer_t_debut(double t) { t_debut_ = t; } // Fixe le temps de debut d'integration
   inline void fixer_t_fin(double t) { t_fin_ = t; } // Fixe le temps de fin d'integration
-  inline void fixer_dt_integr(double t) { dt_integr_calcul = t; }
-  inline void fixer_tps_integrale(double t) { tps_integrale = t; } // Fixe le temps courant de l'integrale (derniere date a laquelle on a mis l'integrale a jour)
+  inline void fixer_dt_integr(double t) { dt_integr_calcul_ = t; }
+  inline void fixer_tps_integrale(double t) { tps_integrale_ = t; } // Fixe le temps courant de l'integrale (derniere date a laquelle on a mis l'integrale a jour)
   inline void associer(const Champ_base&, int, double, double) { }
   inline void associer(const Champ_Generique_base&, int, double, double);
-  virtual inline void mettre_a_jour(double );
   virtual void mettre_a_jour_integrale();
 
-protected :
+  virtual inline void mettre_a_jour(double)
+  {
+    mettre_a_jour_integrale();
+    double le_temps = le_champ_ref_->get_time();
+    le_champ_->changer_temps(le_temps);
+  }
 
-  REF(Champ_Generique_base) mon_champ;
-  int puissance = -10;
-  double t_debut_ = -100., t_fin_= -100.;
-  double tps_integrale= -100., dt_integr_calcul= -100.;
+  void typer_champ(const Nom&);
+
+protected:
+  OWN_PTR(Champ_Fonc_base) le_champ_;
+  OBS_PTR(Champ_Generique_base) le_champ_ref_;
+  int puissance_ = -10;
+  double t_debut_ = -100., t_fin_ = -100.;
+  double tps_integrale_ = -100., dt_integr_calcul_ = -100.;
 };
 
 inline void Integrale_tps_Champ::associer(const Champ_Generique_base& le_ch, int n, double t0, double t1)
 {
-  mon_champ= le_ch;
-  puissance = n;
+  le_champ_ref_ = le_ch;
+  puissance_ = n;
   t_debut_ = t0;
   t_fin_ = t1;
-  tps_integrale =t_debut_;
-  dt_integr_calcul=0;
+  tps_integrale_ = t_debut_;
+  dt_integr_calcul_ = 0;
 }
 
-inline void Integrale_tps_Champ::mettre_a_jour(double )
-{
-  mettre_a_jour_integrale();
-  //Champ espace_stockage_source;
-  double le_temps = mon_champ->get_time();
-  changer_temps(le_temps);
-}
-
-#endif
+#endif /* Integrale_tps_Champ_included */

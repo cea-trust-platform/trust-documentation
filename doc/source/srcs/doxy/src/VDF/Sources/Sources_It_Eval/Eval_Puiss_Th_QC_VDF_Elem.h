@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,22 +20,22 @@
 #include <Evaluateur_Source_Elem.h>
 #include <TRUST_Ref.h>
 
-class Champ_Don;
+
 
 class Eval_Puiss_Th_QC_VDF_Elem: public Evaluateur_Source_Elem
 {
 public:
   Eval_Puiss_Th_QC_VDF_Elem() { }
-  inline void associer_puissance(const Champ_Don& Q);
+  inline void associer_puissance(const Champ_Don_base& Q);
   template <typename Type_Double> void calculer_terme_source(const int , Type_Double& ) const;
   inline void mettre_a_jour() override { /* Do nothing */}
 
 protected:
-  REF(Champ_Don) la_puissance;
+  OBS_PTR(Champ_Don_base) la_puissance;
   DoubleTab puissance;
 };
 
-inline void Eval_Puiss_Th_QC_VDF_Elem::associer_puissance(const Champ_Don& Q)
+inline void Eval_Puiss_Th_QC_VDF_Elem::associer_puissance(const Champ_Don_base& Q)
 {
   la_puissance = Q;
   puissance.ref(Q.valeurs());

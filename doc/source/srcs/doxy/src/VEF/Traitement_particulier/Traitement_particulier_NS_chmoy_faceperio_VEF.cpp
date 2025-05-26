@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -47,11 +47,11 @@ Entree& Traitement_particulier_NS_chmoy_faceperio_VEF::readOn(Entree& is)
   return is;
 }
 
-void Traitement_particulier_NS_chmoy_faceperio_VEF::init_calcul_stats(void)
+void Traitement_particulier_NS_chmoy_faceperio_VEF::init_calcul_stats()
 {
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdisbase);
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis().valeur() );
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis() );
   const DoubleTab& xv = domaine_VEF.xv();    // centre de gravite des faces
   // Imprime dans un fichier les faces periodiques (numero+coordonnees du centre)
   int nb_front=domaine_VEF.nb_front_Cl();
@@ -60,7 +60,7 @@ void Traitement_particulier_NS_chmoy_faceperio_VEF::init_calcul_stats(void)
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           if (le_bord.nb_faces())
             {
               chmoy_faceperio.resize(le_bord.nb_faces(),Objet_U::dimension);
@@ -68,7 +68,7 @@ void Traitement_particulier_NS_chmoy_faceperio_VEF::init_calcul_stats(void)
               EcrFicPartage fic("geom_face_perio");
               fic.setf(ios::scientific);
               fic.precision(format_precision_geom);
-              int nb_faces_bord = mp_sum(le_bord.nb_faces());
+              trustIdType nb_faces_bord = mp_sum(le_bord.nb_faces());
               if (Process::je_suis_maitre()) fic<<nb_faces_bord<<finl;
               int num1 = le_bord.num_premiere_face();
               int num2 = num1 + le_bord.nb_faces();
@@ -85,7 +85,7 @@ void Traitement_particulier_NS_chmoy_faceperio_VEF::calcul_chmoy_faceperio(doubl
 {
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdisbase);
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis().valeur() );
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis() );
   const DoubleTab& vitesse = mon_equation->inconnue().valeurs();
 
   // Calcul de la moyenne temporelle de la vitesse sur les frontieres periodiques:
@@ -98,7 +98,7 @@ void Traitement_particulier_NS_chmoy_faceperio_VEF::calcul_chmoy_faceperio(doubl
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (int num_face=num1; num_face<num2; num_face++)
@@ -122,10 +122,10 @@ void Traitement_particulier_NS_chmoy_faceperio_VEF::calcul_chmoy_faceperio(doubl
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
           if (sub_type(Periodique,la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
               int num1 = le_bord.num_premiere_face();
               int num2 = num1 + le_bord.nb_faces();
-              int nb_faces_bord = mp_sum(le_bord.nb_faces());
+              trustIdType nb_faces_bord = mp_sum(le_bord.nb_faces());
               if (Process::je_suis_maitre()) fic<<nb_faces_bord<<finl;
               for (int num_face=num1; num_face<num2; num_face++)
                 fic<<num_face<<" "<<chmoy_faceperio(num_face,0)<<" "<<chmoy_faceperio(num_face,1)<<" "<<chmoy_faceperio(num_face,2)<<finl;

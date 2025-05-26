@@ -20,6 +20,8 @@
 #include <Synonyme_info.h>
 
 Implemente_instanciable(Champ_Generique_Gradient,"Gradient",Champ_Generique_Operateur_base);
+// XD gradient champ_post_operateur_base gradient -1 To calculate gradient of a given field.
+
 Add_synonym(Champ_Generique_Gradient,"Champ_Post_Operateur_Gradient");
 
 Sortie& Champ_Generique_Gradient::printOn(Sortie& s ) const
@@ -40,7 +42,7 @@ void Champ_Generique_Gradient::completer(const Postraitement_base& post)
   if (sub_type(Champ_Generique_refChamp,get_source(0)))
     {
 
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       const Champ_base& mon_champ = get_source(0).get_champ(espace_stockage);
       if (sub_type(Champ_Inc_base,mon_champ))
         {
@@ -70,9 +72,9 @@ void Champ_Generique_Gradient::completer(const Postraitement_base& post)
               Op_Grad_.typer();
               Op_Grad_.l_op_base().associer_eqn(eqn);
 
-              const Domaine_dis& zdis = eqn.domaine_dis();
-              const Domaine_Cl_dis& zcl = eqn.domaine_Cl_dis();
-              const Champ_Inc& inco = eqn.inconnue();
+              const Domaine_dis_base& zdis = eqn.domaine_dis();
+              const Domaine_Cl_dis_base& zcl = eqn.domaine_Cl_dis();
+              const Champ_Inc_base& inco = eqn.inconnue();
               Op_Grad_->associer(zdis, zcl, inco);
             }
           else
@@ -90,12 +92,12 @@ void Champ_Generique_Gradient::completer(const Postraitement_base& post)
     }
 }
 
-const Champ_base& Champ_Generique_Gradient::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Gradient::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
   if (Op_Grad_.non_nul())
     {
-      Champ_Fonc es_tmp;
+      OWN_PTR(Champ_Fonc_base)  es_tmp;
       espace_stockage = creer_espace_stockage(vectoriel,dimension,es_tmp);
 
     }
@@ -106,23 +108,23 @@ const Champ_base& Champ_Generique_Gradient::get_champ_without_evaluation(Champ& 
       Cerr<<"or to a field of type Champ_P1NC or Champ_P0_VDF at one component"<<finl;
       exit();
     }
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
-const Champ_base& Champ_Generique_Gradient::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Gradient::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ(source_espace_stockage);
 
   if (Op_Grad_.non_nul())
     {
-      Champ_Fonc es_tmp;
+      OWN_PTR(Champ_Fonc_base)  es_tmp;
       espace_stockage = creer_espace_stockage(vectoriel,dimension,es_tmp);
 
-      Op_Grad_.calculer(source.valeurs(),espace_stockage.valeurs());
+      Op_Grad_.calculer(source.valeurs(),espace_stockage->valeurs());
 
-      Nom type_op = Op_Grad_.valeur().que_suis_je();
+      Nom type_op = Op_Grad_->que_suis_je();
       if ((type_op!="Op_Grad_P1NC_to_P0") && (type_op!="Op_Grad_P0_to_Face"))
-        Op_Grad_.equation().solv_masse().appliquer(espace_stockage.valeurs());
+        Op_Grad_.equation().solv_masse().appliquer(espace_stockage->valeurs());
     }
   else
     {
@@ -135,7 +137,7 @@ const Champ_base& Champ_Generique_Gradient::get_champ(Champ& espace_stockage) co
 
   DoubleTab& espace_valeurs = espace_stockage->valeurs();
   espace_valeurs.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
 const Noms Champ_Generique_Gradient::get_property(const Motcle& query) const
@@ -211,7 +213,7 @@ const Noms Champ_Generique_Gradient::get_property(const Motcle& query) const
 Entity Champ_Generique_Gradient::get_localisation(const int index) const
 {
   Entity loc;
-  Nom type_op = Op_Grad_.valeur().que_suis_je();
+  Nom type_op = Op_Grad_->que_suis_je();
   if ((type_op=="Op_Grad_P1NC_to_P0") && (index <= 0))
     loc = Entity::ELEMENT;
   else if ((type_op=="Op_Grad_P0_to_Face") && (index <= 0))
@@ -242,7 +244,7 @@ const Motcle Champ_Generique_Gradient::get_directive_pour_discr() const
 {
   Motcle directive;
 
-  Nom type_op = Op_Grad_.valeur().que_suis_je();
+  Nom type_op = Op_Grad_->que_suis_je();
   if (type_op=="Op_Grad_P1NC_to_P0")
     directive = "champ_elem";
   else

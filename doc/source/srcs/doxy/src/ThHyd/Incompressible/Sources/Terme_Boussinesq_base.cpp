@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,8 +19,14 @@
 #include <Motcle.h>
 #include <algorithm>
 #include <Param.h>
+#include <Pb_Multiphase.h>
 
 Implemente_base(Terme_Boussinesq_base,"Terme_Boussinesq_base",Source_base);
+// XD boussinesq_temperature source_base boussinesq_temperature -1 Class to describe a source term that couples the movement quantity equation and energy equation with the Boussinesq hypothesis.
+// XD attr t0 chaine t0 0 Reference temperature value (oC or K). It can also be a time dependant function since the 1.6.6 version.
+// XD attr verif_boussinesq entier verif_boussinesq 1 Keyword to check (1) or not (0) the reference value in comparison with the mean value in the domain. It is set to 1 by default.
+// XD boussinesq_concentration source_base boussinesq_concentration -1 Class to describe a source term that couples the movement quantity equation and constituent transport equation with the Boussinesq hypothesis.
+// XD attr c0 list c0 0 Reference concentration field type. The only field type currently available is Champ_Uniforme (Uniform field).
 
 Sortie& Terme_Boussinesq_base::printOn(Sortie& s ) const { return s << que_suis_je() ; }
 
@@ -47,6 +53,12 @@ void Terme_Boussinesq_base::set_param(Param& param)
 void Terme_Boussinesq_base::associer_pb(const Probleme_base& pb)
 {
   int ok=0;
+  if (sub_type(Pb_Multiphase, pb))
+    {
+      Cerr << "Error: The boussinesq source term can't be defined for a problem of kind " << pb.que_suis_je() << finl;
+      Cerr << "       Use source_qdm if you want to add this source term!" << finl;
+      Process::exit();
+    }
   int n_eq=pb.nombre_d_equations();
   for (int eq=0; eq<n_eq; eq++)
     {
@@ -72,13 +84,13 @@ void Terme_Boussinesq_base::associer_pb(const Probleme_base& pb)
 
   if (NomScalaire_=="temperature")
     {
-      valid_beta_field = fluide.beta_t( ).non_nul( );
+      valid_beta_field = fluide.has_beta_t();
       beta_field_name = "thermal expansion value (beta_th)";
       beta_=fluide.beta_t();
     }
   else if (NomScalaire_=="concentration")
     {
-      valid_beta_field = fluide.beta_c( ).non_nul( );
+      valid_beta_field = fluide.has_beta_c();
       beta_field_name = "volume expansion coefficient values in concentration (beta_co)";
       beta_=fluide.beta_c();
     }

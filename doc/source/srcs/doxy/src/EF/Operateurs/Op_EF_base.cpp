@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -98,7 +98,7 @@ void Op_EF_base::dimensionner(const Domaine_EF& le_dom,
               Process::exit(-1);
             }
           const Echange_interne_global_impose& cl = ref_cast(Echange_interne_global_impose, ccl);
-          const Champ_front_calc_interne& ch = ref_cast(Champ_front_calc_interne, cl.T_ext().valeur());
+          const Champ_front_calc_interne& ch = ref_cast(Champ_front_calc_interne, cl.T_ext());
           extra_nb_coeff += ch.face_map().size_array();
           if(sub_type(Echange_interne_global_parfait, ccl))
             extra_nb_coeff += ch.face_map().size_array() / 2;
@@ -133,8 +133,8 @@ void Op_EF_base::dimensionner(const Domaine_EF& le_dom,
         {
           const Echange_interne_global_impose& cl = ref_cast(Echange_interne_global_impose, ccl);
           bool is_parfait = sub_type(Echange_interne_global_parfait, ccl);
-          const Champ_front_calc_interne& ch = ref_cast(Champ_front_calc_interne, cl.T_ext().valeur());
-          const IntTab& mp = ch.face_map();   // indices of (local) *faces*
+          const Champ_front_calc_interne& ch = ref_cast(Champ_front_calc_interne, cl.T_ext());
+          const IntVect& mp = ch.face_map();   // indices of (local) *faces*
           const Front_VF& le_bord = ref_cast(Front_VF,cl.frontiere_dis());
           int nfacedeb = le_bord.num_premiere_face();
           int nfacefin = nfacedeb + le_bord.nb_faces();
@@ -271,7 +271,7 @@ void Op_EF_base::modifier_pour_Cl(const Domaine_EF& le_dom,
   for (const auto& itr : les_cl)
     {
       const Cond_lim& la_cl = itr;
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int nfaces = le_bord.nb_faces_tot();
       if (sub_type(Dirichlet,la_cl.valeur()))
         {
@@ -338,7 +338,7 @@ void Op_EF_base::modifier_pour_Cl(const Domaine_EF& le_dom,
 
   // On modifie pour la symetrie
 
-  if (le_dom_cl.equation().inconnue().valeur().nature_du_champ()==vectoriel)
+  if (le_dom_cl.equation().inconnue().nature_du_champ()==vectoriel)
     {
       le_dom_cl.imposer_symetrie_matrice_secmem(la_matrice,secmem);
     }
@@ -359,7 +359,7 @@ void Op_EF_base::modifier_pour_Cl(const Domaine_EF& le_dom,
 void Op_EF_base::modifier_flux( const Operateur_base& op) const
 {
   controle_modifier_flux_=1;
-  const Domaine_EF& le_dom_EF=ref_cast(Domaine_EF,op.equation().domaine_dis().valeur());
+  const Domaine_EF& le_dom_EF=ref_cast(Domaine_EF,op.equation().domaine_dis());
   DoubleTab& flux_bords_=op.flux_bords();
   int nb_compo=flux_bords_.dimension(1);
   const Probleme_base& pb=op.equation().probleme();
@@ -368,10 +368,10 @@ void Op_EF_base::modifier_flux( const Operateur_base& op) const
   Nom nom_eqn=op.equation().que_suis_je();
   if (nom_eqn.debute_par("Navier_Stokes") && pb.milieu().que_suis_je()=="Fluide_Incompressible")
     {
-      const Champ_base& rho = op.equation().milieu().masse_volumique().valeur();
+      const Champ_base& rho = op.equation().milieu().masse_volumique();
       if (sub_type(Champ_Uniforme,rho))
         {
-          double coef = rho(0,0);
+          double coef = rho.valeurs()(0,0);
           int nb_faces_bord=le_dom_EF.nb_faces_bord();
           for (int face=0; face<nb_faces_bord; face++)
             for(int k=0; k<nb_compo; k++)
@@ -386,8 +386,8 @@ void Op_EF_base::modifier_flux( const Operateur_base& op) const
  */
 int Op_EF_base::impr(Sortie& os, const Operateur_base& op) const
 {
-  const Domaine_EF& le_dom_EF=ref_cast(Domaine_EF,op.equation().domaine_dis().valeur());
-  DoubleTab& flux_bords_=op.flux_bords();
+  const Domaine_EF& le_dom_EF=ref_cast(Domaine_EF,op.equation().domaine_dis());
+  const DoubleTab& flux_bords_=op.flux_bords();
   if (flux_bords_.nb_dim()!=2)
     {
       Cout << "L'impression des flux n'est pas codee pour l'operateur " << op.que_suis_je() << finl;
@@ -411,12 +411,9 @@ int Op_EF_base::impr(Sortie& os, const Operateur_base& op) const
   const int impr_bord=(le_dom_EF.domaine().bords_a_imprimer().est_vide() ? 0:1);
   int flag=0;
   if (Process::je_suis_maitre()) flag=1;
-  //SFichier Flux;
-  if (!Flux.is_open()) op.ouvrir_fichier( Flux,"",flag);
-  //SFichier Flux_moment;
-  if (!Flux_moment.is_open()) op.ouvrir_fichier(Flux_moment,"moment",impr_mom&&flag);
-  //SFichier Flux_sum;
-  if (!Flux_sum.is_open()) op.ouvrir_fichier(Flux_sum,"sum",impr_sum&&flag);
+  op.ouvrir_fichier( Flux,"",flag);
+  op.ouvrir_fichier(Flux_moment,"moment",impr_mom&&flag);
+  op.ouvrir_fichier(Flux_sum,"sum",impr_sum&&flag);
   EcrFicPartage Flux_face;
   op.ouvrir_fichier_partage(Flux_face,"",impr_bord);
 
@@ -443,9 +440,9 @@ int Op_EF_base::impr(Sortie& os, const Operateur_base& op) const
   for (int num_cl=0; num_cl<le_dom_EF.nb_front_Cl(); num_cl++)
     {
       flux_bord=0;
-      const Frontiere_dis_base& la_fr = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl).frontiere_dis();
+      const Frontiere_dis_base& la_fr = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl)->frontiere_dis();
       const Cond_lim& la_cl = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       for (int face=ndeb; face<nfin; face++)
@@ -503,9 +500,9 @@ int Op_EF_base::impr(Sortie& os, const Operateur_base& op) const
   // Impression sur chaque face si demande
   for (int num_cl=0; num_cl<le_dom_EF.nb_front_Cl(); num_cl++)
     {
-      const Frontiere_dis_base& la_fr = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl).frontiere_dis();
+      const Frontiere_dis_base& la_fr = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl)->frontiere_dis();
       const Cond_lim& la_cl = op.equation().domaine_Cl_dis().les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       // Impression sur chaque face
@@ -541,17 +538,13 @@ int Op_EF_base::elem_contribue(const int elem) const
 
 void Op_EF_base::marque_elem(const Equation_base& eqn)
 {
-  try
+  if (eqn.has_champ("marqueur_loi_de_paroi"))
     {
-      const DoubleTab& marq=eqn.get_champ("marqueur_loi_de_paroi").valeurs();
-      int ntot=marq.dimension_tot(0);
+      const DoubleTab& marq = eqn.get_champ("marqueur_loi_de_paroi").valeurs();
+      int ntot = marq.dimension_tot(0);
       marqueur_elem_.resize_array(ntot);
-      for (int n=0; n<ntot; n++)
-        if (marq(n)>0)
-          marqueur_elem_[n]=1;
+      for (int n = 0; n < ntot; n++)
+        if (marq(n) > 0)
+          marqueur_elem_[n] = 1;
     }
-  catch  (Champs_compris_erreur&)
-    {
-    }
-
 }

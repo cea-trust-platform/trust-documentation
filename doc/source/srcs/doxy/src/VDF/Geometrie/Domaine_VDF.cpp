@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -176,7 +176,7 @@ void Domaine_VDF::reordonner(Faces& les_faces)
     for (int i_joint = 0; i_joint < nb_joints; i_joint++)
       {
         Joint&     joint         = joints[i_joint];
-        ArrOfInt& indices_faces = joint.set_joint_item(Joint::FACE).set_items_communs();
+        ArrOfInt& indices_faces = joint.set_joint_item(JOINT_ITEM::FACE).set_items_communs();
         const int nb_faces_bis    = indices_faces.size_array();
         assert(nb_faces_bis == joint.nb_faces()); // items_communs rempli ?
         for (i = 0; i < nb_faces_bis; i++)
@@ -294,11 +294,6 @@ void Domaine_VDF::remplir_face_normales()
       int ori = orientation(f);
       face_normales_(f,ori) = face_surfaces(f);
     }
-}
-
-void  Domaine_VDF::remplir_elem_faces()
-{
-  // Deja fait dans la nouvelle version
 }
 
 /*! @brief remplissage des volumes entrelaces
@@ -955,7 +950,7 @@ void Domaine_VDF::creer_elements_fictifs(const Domaine_Cl_dis_base& zcldisbase)
       for (int n_bord=0; n_bord<nb_front_Cl(); n_bord++)
         {
           const Cond_lim& la_cl = zclvdf.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           if ( (sub_type(Dirichlet_entree_fluide,la_cl.valeur())) ||
                (sub_type(Neumann_sortie_libre,la_cl.valeur())) )
             {

@@ -16,5 +16,8 @@ cp $install_dir/all.rst doc/source/srcs/reference
 cp $orig_dir/doc/extra_rst/parser.rst doc/source/srcs/reference
 cp $orig_dir/doc/images/* doc/source/srcs/reference/images
 
+echo "Updating C++ and Python sources ..."
+(cd doc && ./update_files)
+
 echo "All done! Do not forget to 'git add/rm' any new/deleted file ..."
 

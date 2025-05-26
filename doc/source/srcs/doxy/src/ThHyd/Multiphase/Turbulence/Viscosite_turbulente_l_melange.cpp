@@ -41,12 +41,13 @@ Entree& Viscosite_turbulente_l_melange::readOn(Entree& is)
 void Viscosite_turbulente_l_melange::eddy_viscosity(DoubleTab& nu_t) const
 {
   const DoubleTab& tc = pb_->get_champ("taux_cisaillement").valeurs(),
-                   &y_elem = ref_cast(Domaine_VF, pb_->domaine_dis().valeur()).y_elem();
+                   &y_elem = ref_cast(Domaine_VF, pb_->domaine_dis()).y_elem();
   assert(nu_t.dimension_tot(0) == tc.dimension_tot(0) && tc.dimension(1) <= nu_t.dimension(1));
   //on met 0 pour les composantes au-dela de k.dimension(1) (ex. : vapeur dans Pb_Multiphase)
   for (int i = 0; i < nu_t.dimension_tot(0); i++)
     for (int n = 0; n < nu_t.dimension(1); n++)
-      nu_t(i, n) = n < tc.dimension(1) ? tc(i, n) * l_melange_ * y_elem(i) : 0;
+      nu_t(i, n) = n < 1 ? tc(i, n) * l_melange_ * y_elem(i) : 0; // Does weird things when non zero on gas phase. Is this the real problem ?
+//      nu_t(i, n) = n < tc.dimension(1) ? tc(i, n) * l_melange_ * y_elem(i) : 0; Old version
 }
 
 void Viscosite_turbulente_l_melange::reynolds_stress(DoubleTab& R_ij) const

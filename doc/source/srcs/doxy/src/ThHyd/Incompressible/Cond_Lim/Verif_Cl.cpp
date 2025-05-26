@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,24 +13,25 @@
 *
 *****************************************************************************/
 
-#include <Verif_Cl.h>
-#include <Domaine_Cl_dis.h>
-#include <Periodique.h>
-#include <Dirichlet_paroi_fixe.h>
-#include <Dirichlet_paroi_defilante.h>
 #include <Entree_fluide_concentration_imposee.h>
 #include <Dirichlet_entree_fluide_leaves.h>
+#include <Dirichlet_paroi_defilante.h>
 #include <Entree_fluide_T_h_imposee.h>
-#include <Neumann_paroi.h>
 #include <Neumann_paroi_adiabatique.h>
 #include <Neumann_paroi_flux_nul.h>
-#include <Symetrie.h>
 #include <Echange_global_impose.h>
 #include <Echange_externe_impose.h>
-#include <Neumann_sortie_libre.h>
 #include <Scalaire_impose_paroi.h>
-#include <Motcle.h>
+#include <Neumann_sortie_libre.h>
+#include <Dirichlet_paroi_fixe.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Frontiere_dis_base.h>
+
+#include <Neumann_paroi.h>
+#include <Periodique.h>
+#include <Verif_Cl.h>
+#include <Symetrie.h>
+#include <Motcle.h>
 
 /*! @brief Teste la compatibilite des conditions aux limites thermiques et hydrauliques.
  *
@@ -60,20 +61,20 @@
  *     -----------------------------------------------------------------------
  *     Periodique ======================> Periodique
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param[in] (Domaine_Cl_dis& domaine_Cl_th)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param[in] (Domaine_Cl_dis_base& domaine_Cl_th)
  * @return (int) renvoie toujours 1
  * @throws nombres de conditions aux limites differents
  * @throws conditions aux limites hydraulique et thermique incompatibles
  */
-int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis& domaine_Cl_hydr, const Domaine_Cl_dis& domaine_Cl_th)
+int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis_base& domaine_Cl_hydr, const Domaine_Cl_dis_base& domaine_Cl_th)
 {
 
   int nb_Cl = domaine_Cl_hydr.nb_cond_lim();
 
   if (domaine_Cl_th.nb_cond_lim() != nb_Cl)
     {
-      Cerr << "The two objects of Domaine_Cl_dis type don't have" << finl;
+      Cerr << "The two objects of OWN_PTR(Domaine_Cl_dis_base) type don't have" << finl;
       Cerr << "the same number of boundary conditions." << finl;
       Process::exit();
     }
@@ -148,16 +149,16 @@ int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis& domaine_Cl_hydr, c
 
 /*! @brief Affiche un message d'erreur pour la fonction precedente
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param (Domaine_Cl_dis& domaine_Cl_th)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_th)
  * @param (int num_Cl) numero de la CL
  * @return (int) renvoie toujours 1
  */
 int message_erreur_therm(const Cond_lim& la_cl_hydr, const Cond_lim& la_cl_th, int& num_Cl)
 {
   Cerr << "The hydraulic and thermal boundary conditions are not consitent on border:" << finl;
-  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_th.frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
-  Cerr << la_cl_hydr.valeur().que_suis_je() << " and " << la_cl_th.valeur().que_suis_je() << " !! " << finl;
+  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_th->frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
+  Cerr << la_cl_hydr->que_suis_je() << " and " << la_cl_th->que_suis_je() << " !! " << finl;
   Process::exit();
   return 1;
 }
@@ -182,20 +183,20 @@ int message_erreur_therm(const Cond_lim& la_cl_hydr, const Cond_lim& la_cl_th, i
  *     -----------------------------------------------------------------------
  *     Periodique ======================> Periodique
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param (Domaine_Cl_dis& domaine_Cl_co)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_co)
  * @return (int) renvoie toujours 1
  * @throws nombres de conditions aux limites differents
  * @throws conditions aux limite hydraulique et concentration incompatible
  */
-int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis& domaine_Cl_hydr, const Domaine_Cl_dis& domaine_Cl_co)
+int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis_base& domaine_Cl_hydr, const Domaine_Cl_dis_base& domaine_Cl_co)
 {
 
   int nb_Cl = domaine_Cl_hydr.nb_cond_lim();
 
   if (domaine_Cl_co.nb_cond_lim() != nb_Cl)
     {
-      Cerr << "The two objects of Domaine_Cl_dis type don't have" << finl;
+      Cerr << "The two objects of OWN_PTR(Domaine_Cl_dis_base) type don't have" << finl;
       Cerr << "the same number of boundary conditions." << finl;
       Process::exit();
     }
@@ -232,7 +233,7 @@ int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis& domaine_Cl_hyd
         }
       else if (sub_type(Symetrie, la_cl_hydr.valeur()))
         {
-          if ((sub_type(Symetrie, la_cl_co.valeur())) || (sub_type(Neumann_paroi_flux_nul, la_cl_co.valeur())))
+          if ((sub_type(Symetrie, la_cl_co.valeur())) || (sub_type(Neumann_paroi_flux_nul, la_cl_co.valeur()))|| (sub_type(Echange_externe_impose, la_cl_co.valeur())))
             { /* Do nothing */}
           else
             {
@@ -255,16 +256,16 @@ int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis& domaine_Cl_hyd
 
 /*! @brief Affiche un message d'erreur pour la fonction precedente
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param (Domaine_Cl_dis& domaine_Cl_co)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_co)
  * @param (int num_Cl) numero de la CL
  * @return (int) renvoie toujours 1
  */
 int message_erreur_conc(const Cond_lim& la_cl_hydr, const Cond_lim& la_cl_co, int& num_Cl)
 {
   Cerr << "The hydraulic and concentration boundary conditions are not consitent on border:" << finl;
-  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_co.frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
-  Cerr << la_cl_hydr.valeur().que_suis_je() << " and " << la_cl_co.valeur().que_suis_je() << " !! " << finl;
+  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_co->frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
+  Cerr << la_cl_hydr->que_suis_je() << " and " << la_cl_co->que_suis_je() << " !! " << finl;
   Process::exit();
   return 1;
 }
@@ -293,20 +294,20 @@ int message_erreur_conc(const Cond_lim& la_cl_hydr, const Cond_lim& la_cl_co, in
  *     -----------------------------------------------------------------------
  *     Periodique ======================> Periodique
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param[in] (Domaine_Cl_dis& domaine_Cl_fm)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param[in] (Domaine_Cl_dis_base& domaine_Cl_fm)
  * @return (int) renvoie toujours 1
  * @throws nombres de conditions aux limites differents
  * @throws conditions aux limites hydraulique et fraction massiques incompatibles
  */
-int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis& domaine_Cl_hydr, const Domaine_Cl_dis& domaine_Cl_fm)
+int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis_base& domaine_Cl_hydr, const Domaine_Cl_dis_base& domaine_Cl_fm)
 {
 
   int nb_Cl = domaine_Cl_hydr.nb_cond_lim();
 
   if (domaine_Cl_fm.nb_cond_lim() != nb_Cl)
     {
-      Cerr << "The two objects of Domaine_Cl_dis type don't have" << finl;
+      Cerr << "The two objects of OWN_PTR(Domaine_Cl_dis_base) type don't have" << finl;
       Cerr << "the same number of boundary conditions." << finl;
       Process::exit();
     }
@@ -376,16 +377,16 @@ int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis& domaine_Cl
 
 /*! @brief Affiche un message d'erreur pour la fonction precedente
  *
- * @param (Domaine_Cl_dis& domaine_Cl_hydr)
- * @param (Domaine_Cl_dis& domaine_Cl_frac_mass)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_hydr)
+ * @param (Domaine_Cl_dis_base& domaine_Cl_frac_mass)
  * @param (int num_Cl) numero de la CL
  * @return (int) renvoie toujours 1
  */
 int message_erreur_fraction_massique(const Cond_lim& la_cl_hydr, const Cond_lim& la_cl_frac_mass, int& num_Cl)
 {
   Cerr << "The hydraulic and massic fraction boundary conditions are not consitent on border:" << finl;
-  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_frac_mass.frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
-  Cerr << la_cl_hydr.valeur().que_suis_je() << " and " << la_cl_frac_mass.valeur().que_suis_je() << " !! " << finl;
+  Cerr << "Boundary conditions number " << num_Cl << " \"" << la_cl_frac_mass->frontiere_dis().le_nom() << "\" have been assigned to : " << finl;
+  Cerr << la_cl_hydr->que_suis_je() << " and " << la_cl_frac_mass->que_suis_je() << " !! " << finl;
   Process::exit();
   return 1;
 }

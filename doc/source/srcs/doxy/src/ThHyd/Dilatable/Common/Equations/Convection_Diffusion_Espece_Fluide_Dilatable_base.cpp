@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,18 +37,18 @@ int Convection_Diffusion_Espece_Fluide_Dilatable_base::preparer_calcul()
   // remplissage du domaine cl modifiee avec 1 partout au bord...
   zcl_modif_=(domaine_Cl_dis());
 
-  Conds_lim& condlims=zcl_modif_.valeur().les_conditions_limites();
+  Conds_lim& condlims=zcl_modif_->les_conditions_limites();
   int nb=condlims.size();
   for (int i=0; i<nb; i++)
     {
       // pour chaque condlim on recupere le champ_front et on met 1
       // meme si la cond lim est un flux (dans ce cas la convection restera nullle.)
-      DoubleTab& T=condlims[i].valeur().champ_front().valeurs();
+      DoubleTab& T=condlims[i]->champ_front().valeurs();
       T=1.;
       if (sub_type(Neumann_sortie_libre,condlims[i].valeur()))
         ref_cast(Neumann_sortie_libre,condlims[i].valeur()).tab_ext()=1;
     }
-  zcl_modif_.les_conditions_limites().set_modifier_val_imp(0);
+  zcl_modif_->les_conditions_limites().set_modifier_val_imp(0);
   return 1;
 }
 
@@ -68,6 +68,11 @@ void Convection_Diffusion_Espece_Fluide_Dilatable_base::discretiser()
 void Convection_Diffusion_Espece_Fluide_Dilatable_base::calculer_div_u_ou_div_rhou(DoubleTab& Div) const
 {
   Convection_Diffusion_Fluide_Dilatable_Proto::calculer_div_rho_u_impl(Div,*this);
+}
+
+std::vector<YAML_data> Convection_Diffusion_Espece_Fluide_Dilatable_base::data_a_sauvegarder() const
+{
+  return Equation_base::data_a_sauvegarder();
 }
 
 int Convection_Diffusion_Espece_Fluide_Dilatable_base::sauvegarder(Sortie& os) const

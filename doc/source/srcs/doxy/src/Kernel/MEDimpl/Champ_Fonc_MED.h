@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,7 +18,7 @@
 
 #include <Domaine_VF_inst.h>
 #include <TRUSTArray.h>
-#include <Champ_Fonc.h>
+
 #include <Param.h>
 #include <med++.h>
 #include <medcoupling++.h>
@@ -67,19 +67,19 @@ public :
   inline int remplir_coord_noeuds_et_polys(DoubleTab&, IntVect&) const override;
   inline virtual const Champ_Fonc_base& le_champ() const;
   inline virtual Champ_Fonc_base& le_champ();
-  const ArrOfDouble& get_saved_times(void) const;
+  const ArrOfDouble& get_saved_times() const;
 
 protected:
   // Parameters read in the dataset:
   Nom nom_fichier_med_;
   Nom nom_champ_, nom_decoup_, nom_dom_, nom_maillage_;
   Motcle loc_;
-  int use_existing_domain_=0;
+  bool use_existing_domain_ = false;
   double temps_=0.0;
-  int last_time_only_=0;
+  bool last_time_only_ = false;
 
   // Other:
-  REF(Domaine) mon_dom;
+  OBS_PTR(Domaine) mon_dom;
   Domaine dom_med_;
   Domaine_VF_inst domainebidon_inst;
   int numero_ch = -10;
@@ -93,9 +93,9 @@ protected:
   std::vector< std::pair<int,int> > time_steps_;
 #endif
 #endif
-  Champ_Fonc vrai_champ_;
+  OWN_PTR(Champ_Fonc_base)  vrai_champ_;
   Nom nom_champ_dans_fichier_med_;
-  std::vector<int> filter;
+  std::vector<trustIdType> filter;
   ArrOfDouble temps_sauv_;
 
   virtual void set_param(Param& param);

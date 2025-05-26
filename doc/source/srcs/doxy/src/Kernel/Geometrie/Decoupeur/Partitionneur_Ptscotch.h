@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <Partitionneur_base.h>
 #include <TRUST_Ref.h>
 
-class Domaine;
+#include <Domaine_forward.h>
 
 /*! @brief Partition d'un domaine en nb_parties parties equilibrees en utilisant la librairie Ptscotch.
  *
@@ -39,11 +39,11 @@ public:
 
 private:
   // Parametres du partitionneur
-  REF(Domaine) ref_domaine_;
-  int nb_parties_;
+  OBS_PTR(Domaine) ref_domaine_;
+  int nb_parties_ = -1;
 
   // Drapeau: utiliser ou pas la ponderation des edges dans metis.
-  int use_weights_;
+  bool use_weights_ = false;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,12 +17,12 @@
 #define Format_Post_base_included
 
 #include <TRUSTTabs_forward.h>
+#include <TRUST_Deriv.h>
 #include <Champ_base.h>
 #include <TRUST_Ref.h>
 #include <Domaine.h>
 
 class Domaine_dis_base;
-class Domaine_dis;
 class Motcle;
 class Param;
 
@@ -85,7 +85,6 @@ class Param;
 // est presente ci-dessous (toute methode n est pas forcement necessaire en fonction du format utilise)
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // format_post.initialize_by_default(nom_fichier)
-// format_post.test_coherence(champ,stat,dt_ch,dt_stat)
 // format_post.ecrire_entete(temps_courant,reprise,est_le_premier_post)
 // format_post.preparer_post(id_domaine,est_le_premier_post,reprise,t_init)
 // format_post.completer_post(dom,axi,nature_champ,nb_compo,noms_compo,loc_post,id_champ_post)
@@ -114,7 +113,6 @@ public:
   virtual int completer_post(const Domaine& dom, const int axi, const Nature_du_champ& nature, const int nb_compo, const Noms& noms_compo, const Motcle& loc_post, const Nom& le_nom_champ_post);
 
   virtual int preparer_post(const Nom& id_du_domaine, const int est_le_premier_post, const int reprise, const double t_init);
-  virtual int test_coherence(const int champs, const int stat, const double dt_ch, const double dt_stat);
 
   virtual int init_ecriture(double temps_courant, double temps_post, int est_le_premier_postraitement_pour_nom_fich_, const Domaine& domaine);
 
@@ -122,7 +120,8 @@ public:
   virtual int finir(const int est_le_dernier_post);
 
   virtual int ecrire_domaine(const Domaine& domaine,const int est_le_premier_post);
-  virtual int ecrire_domaine_dis(const Domaine& domaine,const REF(Domaine_dis_base)& domaine_dis_base,const int est_le_premier_post);
+  virtual void ecrire_domaine_dual(const Domaine& domaine,const int est_le_premier_post);
+  virtual int ecrire_domaine_dis(const Domaine& domaine,const OBS_PTR(Domaine_dis_base)& domaine_dis_base,const int est_le_premier_post);
   virtual int ecrire_temps(const double temps);
 
   virtual int ecrire_champ(const Domaine& domaine, const Noms& unite_, const Noms& noms_compo, int ncomp, double temps_, const Nom& id_du_champ, const Nom& id_du_domaine,
@@ -140,6 +139,9 @@ public:
 
   virtual void set_postraiter_domain() { /* Do nothing */ }
 
+protected:
+  OBS_PTR(Domaine_dis_base) domaine_dis_; ///< Reference to the discretized domain - used for face fields.
+
 };
 
-#endif
+#endif /* Format_Post_base_included */

@@ -38,11 +38,11 @@ void Modele_turbulence_hyd_LES_Smago_VDF::set_param(Param& param)
   param.ajouter_condition("value_of_cs_ge_0", "sous_maille_smago model constant must be positive.");
 }
 
-Champ_Fonc& Modele_turbulence_hyd_LES_Smago_VDF::calculer_viscosite_turbulente()
+Champ_Fonc_base& Modele_turbulence_hyd_LES_Smago_VDF::calculer_viscosite_turbulente()
 {
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());
   double temps = mon_equation_->inconnue().temps();
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
+  DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
   int nb_elem = domaine_VDF.domaine().nb_elem();
   const int nb_elem_tot = domaine_VDF.nb_elem_tot();
 
@@ -61,13 +61,13 @@ Champ_Fonc& Modele_turbulence_hyd_LES_Smago_VDF::calculer_viscosite_turbulente()
 
   Debog::verifier("Modele_turbulence_hyd_LES_Smago_VDF::calculer_viscosite_turbulente visco_turb 1", visco_turb);
 
-  la_viscosite_turbulente_.changer_temps(temps);
+  la_viscosite_turbulente_->changer_temps(temps);
   return la_viscosite_turbulente_;
 }
 
 void Modele_turbulence_hyd_LES_Smago_VDF::calculer_S_barre()
 {
-  Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation_->inconnue().valeur());
+  Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation_->inconnue());
   const DoubleTab& vitesse = mon_equation_->inconnue().valeurs();
   const Domaine_Cl_VDF& domaine_Cl_VDF = ref_cast(Domaine_Cl_VDF, le_dom_Cl_.valeur());
   const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_VF_.valeur());

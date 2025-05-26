@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,12 @@
 #include <Discretisation_base.h>
 
 Implemente_instanciable(Paroi_Knudsen_non_negligeable, "Paroi_Knudsen_non_negligeable", Dirichlet_paroi_defilante);
+// XD paroi_knudsen_non_negligeable dirichlet paroi_knudsen_non_negligeable -1 Boundary condition for number of Knudsen (Kn) above 0.001 where slip-flow condition appears: the velocity near the wall depends on the shear stress : Kn=l/L with l is the mean-free-path of the molecules and L a characteristic length scale. NL2 U(y=0)-Uwall=k(dU/dY) NL2 Where k is a coefficient given by several laws: NL2 Mawxell : k=(2-s)*l/s NL2 Bestok\&Karniadakis :k=(2-s)/s*L*Kn/(1+Kn) NL2 Xue\&Fan :k=(2-s)/s*L*tanh(Kn) NL2 s is a value between 0 and 2 named accomodation coefficient. s=1 seems a good value. NL2 Warning : The keyword is available for VDF calculation only for the moment.
+// XD attr name_champ_1 chaine(into=["vitesse_paroi","k"]) name_champ_1 0 Field name.
+// XD attr champ_1 front_field_base champ_1 0 Boundary field type.
+// XD attr name_champ_2 chaine(into=["vitesse_paroi","k"]) name_champ_2 0 Field name.
+// XD attr champ_2 front_field_base champ_2 0 Boundary field type.
+
 
 Sortie& Paroi_Knudsen_non_negligeable::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -55,15 +61,15 @@ void Paroi_Knudsen_non_negligeable::completer()
   Nom type = "Champ_front_fonc_gradient_";
   type += domaine_Cl_dis().equation().discretisation().que_suis_je();
   // Typage definitif en fonction de la discretisation
-  Frontiere_dis_base& fr = le_champ_front.frontiere_dis();
+  Frontiere_dis_base& fr = le_champ_front->frontiere_dis();
   le_champ_front.typer(type);
-  le_champ_front.associer_fr_dis_base(fr);
+  le_champ_front->associer_fr_dis_base(fr);
   // Paroi defilante : le champ_front est la vitesse de nombre
   // de composantes la dimension du pb ... Est ce utile de dimensionner
   // maintenant cela ?
   le_champ_front->fixer_nb_comp(dimension);
   // On associe l'inconnue:
   Champ_front_fonc_gradient& ch = ref_cast(Champ_front_fonc_gradient, le_champ_front.valeur());
-  ch.associer_ch_inc_base(domaine_Cl_dis().equation().inconnue().valeur());
+  ch.associer_ch_inc_base(domaine_Cl_dis().equation().inconnue());
   Cerr << "Paroi_Knudsen_non_negligeable::completer OK" << finl;
 }

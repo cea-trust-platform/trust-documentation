@@ -17,9 +17,9 @@
 #define Viscosite_turbulente_l_melange_included
 #include <TRUSTTab.h>
 #include <Viscosite_turbulente_base.h>
-#include <Champ_Fonc.h>
+
 #include <Schema_Temps_base.h>
-#include <Domaine_dis.h>
+
 
 /*! @brief Diffusivite turbulente a longueur de melange et vitesse de melange identique pour les deux phases
  *

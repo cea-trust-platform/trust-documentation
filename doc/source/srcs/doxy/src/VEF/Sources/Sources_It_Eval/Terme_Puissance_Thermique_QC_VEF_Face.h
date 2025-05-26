@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,6 @@
 #include <Terme_Puissance_Thermique_VEF_base.h>
 #include <Eval_Puiss_Th_QC_VEF_Face.h>
 #include <Iterateur_Source_VEF_Face.h>
-#include <Iterateur_Source.h>
 
 /*! @brief class Terme_Puissance_Thermique_QC_VEF_Face
  *
@@ -31,8 +30,8 @@ class Terme_Puissance_Thermique_QC_VEF_Face: public Terme_Puissance_Thermique_VE
 {
   Declare_instanciable_sans_constructeur(Terme_Puissance_Thermique_QC_VEF_Face);
 public:
-  Terme_Puissance_Thermique_QC_VEF_Face() : Terme_Puissance_Thermique_VEF_base(Iterateur_Source_VEF_Face<Eval_Puiss_Th_QC_VEF_Face>()) { }
-  void associer_domaines(const Domaine_dis&, const Domaine_Cl_dis&) override;
+  Terme_Puissance_Thermique_QC_VEF_Face() : Terme_Puissance_Thermique_VEF_base(Iterateur_Source_VEF_Face<Eval_Puiss_Th_QC_VEF_Face_View>()) { }
+  void associer_domaines(const Domaine_dis_base&, const Domaine_Cl_dis_base&) override;
   void associer_pb(const Probleme_base&) override;
   void mettre_a_jour(double temps) override { Terme_Puissance_Thermique::mettre_a_jour(temps); }
 };

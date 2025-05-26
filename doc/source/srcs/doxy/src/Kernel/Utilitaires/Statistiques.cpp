@@ -481,11 +481,16 @@ void Statistiques::begin_count_(const int id)
       // Level 1 only to avoid MPI calls
       if (si.counter_level[id]==1) VT_USER_START(si.description[id]);
 #endif
+#ifdef TRUST_USE_CUDA
+      // Level 1 only to avoid MPI calls
+      if (si.counter_level[id]==1)
+        nvtxRangePush(si.description[id]);
+#endif
     }
 
 }
 
-void Statistiques::end_count_(const int id, int quantity, int count)
+void Statistiques::end_count_(const int id, trustIdType quantity, int count)
 {
   Stat_Internals& si = *stat_internals;
   assert(id < si.nb_counters);
@@ -506,6 +511,10 @@ void Statistiques::end_count_(const int id, int quantity, int count)
 #ifdef VTRACE
 // Level 1 only to avoid MPI calls
           if (si.counter_level[id]==1) VT_USER_END(si.description[id]);
+#endif
+#ifdef TRUST_USE_CUDA
+          // Level 1 only to avoid MPI calls
+          if (si.counter_level[id]==1) nvtxRangePop();
 #endif
         }
     }
@@ -580,7 +589,7 @@ void Statistiques::dump(const char * message, int mode_append)
   if ( (Process::je_suis_maitre()) && (strcmp(message, "Statistiques d'initialisation du calcul")==0) )
     {
       File_header << "# Detailed performance log file. See the associated validation form for an example of data analysis"<< std::endl;
-      File_header << "# Number of processor = " << Process::nproc() << std::endl ;
+      File_header << "# Number of processor(s) = " << Process::nproc() << std::endl ;
       File_header << "# The time was measured by the following method :" << Time::description << std::endl;
       File_header << "# By default, only averaged statistics on all processor are printed. For accessing the detail per processor, add 'stat_per_proc_perf_log 1' in the data file"<< std::endl;
       File_header << "# Processor number equal to -1 corresponds to the performance of the calculation averaged on the processors during the simulation step" << std::endl;
@@ -1372,7 +1381,7 @@ void Statistiques::print_communciation_tracking_details(const char* message, int
 
       double tot_time_in_domaine_i = si.counter_time[i].second();
       int comm_pourcent = tot_time_in_domaine_i != 0.0 ?  (int)std::lrint(tot_communication_in_domaine_i / tot_time_in_domaine_i * 100) : 0;
-      int avg_comm_pourcent = Process::mp_sum(comm_pourcent) / Process::nproc();
+      int avg_comm_pourcent = static_cast<int>(Process::mp_sum(comm_pourcent)) / Process::nproc();
 
       if (tot_avg_communication_in_domaine_i)
         {
@@ -1390,12 +1399,12 @@ void Statistiques::print_communciation_tracking_details(const char* message, int
                   avg_communication_of_type_j /= Process::nproc();
 
                   int communication_type_pourcentage = tot_communication_in_domaine_i != 0.0 ? (int)std::lrint(communication_of_type_j.time / tot_communication_in_domaine_i * 100) : 0;
-                  int avg_communication_type_pourcentage = Process::mp_sum(communication_type_pourcentage);
+                  int avg_communication_type_pourcentage = static_cast<int>(Process::mp_sum(communication_type_pourcentage));
                   avg_communication_type_pourcentage /= Process::nproc();
 
                   if(avg_communication_of_type_j)
                     {
-#ifdef INT_is_64_
+#if INT_is_64_ == 1  // Only when replacing all 'int' by 'long'
                       snprintf(desc, BUFLEN + 100, "%10s %-25s %.2e s (%2li%%)\n", "\tdont", si.description[counter_id], avg_communication_of_type_j,avg_communication_type_pourcentage);
 #else
                       snprintf(desc, BUFLEN + 100, "%10s %-25s %.2e s (%2i%%)\n", "\tdont", si.description[counter_id], avg_communication_of_type_j,avg_communication_type_pourcentage);
@@ -1452,7 +1461,7 @@ void Statistiques::print_communciation_tracking_details(const char* message, int
           avg_communication_in_domaine_j /= Process::nproc();
 
           int pourcentage = total_time_of_communication_i != 0.0 ? (int)std::lrint(communication_in_domaine_j / total_time_of_communication_i * 100) : 0;
-          int avg_pourcentage = Process::mp_sum(pourcentage);
+          int avg_pourcentage = static_cast<int>(Process::mp_sum(pourcentage));
           avg_pourcentage /= Process::nproc();
           if(avg_pourcentage)
             comm << "\tdont " << si.description[j] << " : " << avg_communication_in_domaine_j << "s (" << avg_pourcentage << "%) \n";
@@ -1491,7 +1500,7 @@ void Statistiques::print_communciation_tracking_details(const char* message, int
       avg_all_reduce_in_domaine_i /= Process::nproc();
 
       int pourcentage = all_reduce_family[0] != 0.0 ? (int)std::lrint(all_reduce_family[i] / all_reduce_family[0] * 100) : 0;
-      int avg_pourcentage = Process::mp_sum(pourcentage);
+      int avg_pourcentage = static_cast<int>(Process::mp_sum(pourcentage));
       avg_pourcentage /= Process::nproc();
 
       if(avg_pourcentage)
@@ -1520,7 +1529,7 @@ void Statistiques::print_communciation_tracking_details(const char* message, int
       avg_send_recv_in_domaine_i /= Process::nproc();
 
       int pourcentage = send_recv_family[0] != 0.0 ? (int)std::lrint(send_recv_family[i] / send_recv_family[0] * 100) : 0;
-      int avg_pourcentage = Process::mp_sum(pourcentage);
+      int avg_pourcentage = static_cast<int>(Process::mp_sum(pourcentage)); // remains small
       avg_pourcentage /= Process::nproc();
 
       if(avg_pourcentage)

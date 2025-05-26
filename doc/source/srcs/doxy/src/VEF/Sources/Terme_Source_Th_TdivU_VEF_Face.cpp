@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,21 +14,23 @@
 *****************************************************************************/
 
 #include <Terme_Source_Th_TdivU_VEF_Face.h>
-#include <Navier_Stokes_std.h>
-#include <Probleme_base.h>
 #include <Convection_Diffusion_std.h>
 #include <Op_Conv_Muscl_VEF_Face.h>
-#include <EChaine.h>
+#include <Echange_impose_base.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Dirichlet_homogene.h>
+#include <Navier_Stokes_std.h>
+#include <Neumann_homogene.h>
+#include <Neumann_val_ext.h>
+#include <Probleme_base.h>
 #include <Milieu_base.h>
 #include <Periodique.h>
-#include <Neumann_homogene.h>
 #include <Symetrie.h>
 #include <Neumann.h>
-#include <Neumann_val_ext.h>
-#include <Dirichlet_homogene.h>
-#include <Echange_impose_base.h>
+#include <EChaine.h>
 
 Implemente_instanciable(Terme_Source_Th_TdivU_VEF_Face,"Source_Th_TdivU_VEF_P1NC",Source_base);
+// XD source_th_tdivu source_base source_th_tdivu 0 This term source is dedicated for any scalar (called T) transport. Coupled with upwind (amont) or muscl scheme, this term gives for final expression of convection : div(U.T)-T.div (U)=U.grad(T) This ensures, in incompressible flow when divergence free is badly resolved, to stay in a better way in the physical boundaries. NL2 Warning: Only available in VEF discretization.
 
 Sortie& Terme_Source_Th_TdivU_VEF_Face::printOn(Sortie& s ) const
 {
@@ -76,8 +78,8 @@ void Terme_Source_Th_TdivU_VEF_Face::associer_eqn_t()
   eqn_t = equation();
 }
 
-void Terme_Source_Th_TdivU_VEF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                       const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Th_TdivU_VEF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                       const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
 }
 
@@ -91,11 +93,10 @@ void Terme_Source_Th_TdivU_VEF_Face::modifier_domaine_cl()
 {
   if (domaine_cl_mod_) return;
   domaine_cl_mod_=1;
-  Domaine_Cl_dis& mon_domcl=ref_cast(Domaine_Cl_dis,mon_domcl_);
-  mon_domcl=eqn_t.valeur().domaine_Cl_dis();
-  domainecl_sa=eqn_t.valeur().domaine_Cl_dis().valeur();
-  Conds_lim& condlims=mon_domcl.les_conditions_limites();
-  Conds_lim& condlims_sa=domainecl_sa.valeur().les_conditions_limites();
+  mon_domcl_=eqn_t->domaine_Cl_dis();
+  domainecl_sa=eqn_t->domaine_Cl_dis();
+  Conds_lim& condlims=mon_domcl_->les_conditions_limites();
+  Conds_lim& condlims_sa=domainecl_sa->les_conditions_limites();
   int nb=condlims.size();
 
   for (int i=0; i<nb*0; i++)
@@ -131,7 +132,7 @@ void Terme_Source_Th_TdivU_VEF_Face::modifier_domaine_cl()
         {
           EChaine cons("Frontiere_ouverte T_ext Champ_front_uniforme 1 1");
           //EChaine cons("symetrie");
-          Frontiere_dis_base& frdis=condlims[i].valeur().frontiere_dis();
+          Frontiere_dis_base& frdis=condlims[i]->frontiere_dis();
           cons>>condlims[i];
           Cond_lim_base& cl_m=condlims[i].valeur();
 
@@ -165,7 +166,7 @@ DoubleTab& Terme_Source_Th_TdivU_VEF_Face::ajouter(DoubleTab& resu) const
   Operateur_base& optype=ref_cast_non_const(Operateur_base,Op_conv.l_op_base());
   // We save the boundary fluxes:
   DoubleTab flux_bords_backup = optype.flux_bords();
-  optype.associer_domaine_cl_dis(mon_domcl_);
+  optype.associer_domaine_cl_dis(mon_domcl_.valeur());
   Op_conv.ajouter(temp,TdivU);
   for(int face=0; face<nb_faces; face++)
     {

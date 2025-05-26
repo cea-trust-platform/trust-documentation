@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,8 @@
 #ifndef Modele_turbulence_scal_base_included
 #define Modele_turbulence_scal_base_included
 
-#include <Turbulence_paroi_scal.h>
+#include <Turbulence_paroi_scal_base.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 
 class Convection_Diffusion_std;
@@ -42,17 +43,18 @@ public:
   virtual int preparer_calcul();
   virtual bool initTimeStep(double dt);
   virtual void mettre_a_jour(double) =0;
-  inline const Champ_Fonc& conductivite_turbulente() const { return conductivite_turbulente_; }
-  inline const Champ_Fonc& diffusivite_turbulente() const { return diffusivite_turbulente_; }
-  inline const Turbulence_paroi_scal& loi_paroi() const;
+  inline const Champ_Fonc_base& conductivite_turbulente() const { return conductivite_turbulente_; }
+  inline const Champ_Fonc_base& diffusivite_turbulente() const { return diffusivite_turbulente_; }
+  inline const Turbulence_paroi_scal_base& loi_paroi() const;
   inline int loi_paroi_non_nulle() const;
-  inline Turbulence_paroi_scal& loi_paroi();
+  inline Turbulence_paroi_scal_base& loi_paroi();
   virtual void discretiser();
-  //void discretiser_diff_turb(const Schema_Temps_base&, Domaine_dis&, Champ_Fonc&) const;
+  //void discretiser_diff_turb(const Schema_Temps_base&, Domaine_dis_base&, Champ_Fonc_base&) const;
   void associer_eqn(const Equation_base&);
   virtual void completer();
-  virtual void associer(const Domaine_dis&, const Domaine_Cl_dis&);
+  virtual void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&);
   void a_faire(Sortie&) const;
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
   int sauvegarder(Sortie&) const override;
   int reprendre(Entree&) override;
   inline Convection_Diffusion_std& equation();
@@ -61,30 +63,33 @@ public:
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
-  int limpr_nusselt(double, double, double) const;
+  int limpr_nusselt(double, double, double, double) const;
   virtual void imprimer(Sortie&) const;
 
   virtual void set_param(Param&);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
 
 protected:
-  Champ_Fonc conductivite_turbulente_, diffusivite_turbulente_;
-  REF(Convection_Diffusion_std) mon_equation_;
-  Turbulence_paroi_scal loipar_;
-  double dt_impr_nusselt_ = DMAXFLOAT;
-
-protected:
+  OWN_PTR(Champ_Fonc_base)  conductivite_turbulente_, diffusivite_turbulente_;
+  OBS_PTR(Convection_Diffusion_std) mon_equation_;
+  OWN_PTR(Turbulence_paroi_scal_base) loipar_;
+  double dt_impr_nusselt_ = DMAXFLOAT, dt_impr_nusselt_mean_only_ = DMAXFLOAT;
+  int boundaries_ = 0;
+  LIST(Nom) boundaries_list_;
+  Nom nom_fichier_ = "";
   Champs_compris champs_compris_;
 };
 
 /*! @brief Renvoie la loi de turbulence sur la paroi (version const)
  *
- * @return (Turbulence_paroi_scal&) la loi de turbulence sur la paroi
+ * @return (Turbulence_paroi_scal_base&) la loi de turbulence sur la paroi
  */
-inline const Turbulence_paroi_scal& Modele_turbulence_scal_base::loi_paroi() const
+inline const Turbulence_paroi_scal_base& Modele_turbulence_scal_base::loi_paroi() const
 {
-  return loipar_;
+  return loipar_.valeur();
 }
 
 /*! @brief Renvoie si oui ou non loi de paroi (version const)
@@ -98,11 +103,11 @@ inline int Modele_turbulence_scal_base::loi_paroi_non_nulle() const
 
 /*! @brief Renvoie la loi de turbulence sur la paroi
  *
- * @return (Turbulence_paroi_scal&) la loi de turbulence sur la paroi
+ * @return (Turbulence_paroi_scal_base&) la loi de turbulence sur la paroi
  */
-inline Turbulence_paroi_scal& Modele_turbulence_scal_base::loi_paroi()
+inline Turbulence_paroi_scal_base& Modele_turbulence_scal_base::loi_paroi()
 {
-  return loipar_;
+  return loipar_.valeur();
 }
 
 inline Convection_Diffusion_std& Modele_turbulence_scal_base::equation()

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -28,6 +28,10 @@
 #include <Param.h>
 
 Implemente_instanciable(Perte_Charge_Circulaire_VEF_P1NC,"Perte_Charge_Circulaire_VEF_P1NC",Perte_Charge_VEF);
+// XD perte_charge_circulaire source_base perte_charge_circulaire 1 New pressure loss.
+// XD   attr lambda chaine lambda_u 0 Function f(Re_tot, Re_long, t, x, y, z) for loss coefficient in the longitudinal direction
+// XD   attr diam_hydr champ_don_base diam_hydr 0 Hydraulic diameter value.
+// XD   attr sous_zone chaine sous_zone 1 Optional sub-area where pressure loss applies.
 
 Sortie& Perte_Charge_Circulaire_VEF_P1NC::printOn(Sortie& s ) const
 {
@@ -48,9 +52,9 @@ Entree& Perte_Charge_Circulaire_VEF_P1NC::readOn(Entree& s )
 void Perte_Charge_Circulaire_VEF_P1NC::set_param(Param& param)
 {
   Perte_Charge_VEF::set_param(param);
-  param.ajouter_non_std("lambda_ortho",(this),Param::REQUIRED);
-  param.ajouter("diam_hydr_ortho",&diam_hydr_ortho,Param::REQUIRED);
-  param.ajouter("direction",&v,Param::REQUIRED);
+  param.ajouter_non_std("lambda_ortho",(this),Param::REQUIRED); // XD_ADD_P chaine function: Function f(Re_tot, Re_ortho, t, x, y, z) for loss coefficient in transverse direction
+  param.ajouter("diam_hydr_ortho",&diam_hydr_ortho,Param::REQUIRED); // XD_ADD_P champ_don_base Transverse hydraulic diameter value.
+  param.ajouter("direction",&v,Param::REQUIRED); // XD_ADD_P champ_don_base Field which indicates the direction of the pressure loss.
 }
 
 int Perte_Charge_Circulaire_VEF_P1NC::lire_motcle_non_standard(const Motcle& mot, Entree& is)
@@ -105,7 +109,7 @@ void  Perte_Charge_Circulaire_VEF_P1NC::coeffs_perte_charge(const DoubleVect& u,
   // Calcul de v et ||v||^2
   av_valeur.resize(dimension);
 
-  v.valeur().valeur_a(pos,av_valeur);
+  v->valeur_a(pos,av_valeur);
   // on norme v
   {
     double vcarre=0;
@@ -199,7 +203,7 @@ void  Perte_Charge_Circulaire_VEF_P1NC::coeffs_perte_charge(const DoubleVect& u,
   // A factoriser plus tard....
   // copie de Perte_Charge_VEF::ajouter
   // Raccourcis
-  const Champ_Don& nu=le_fluide->viscosite_cinematique(); // viscosite cinematique
+  const Champ_Don_base& nu=le_fluide->viscosite_cinematique(); // viscosite cinematique
   const DoubleTab& xv=le_dom_VEF->xv() ;                     // centres de gravite des faces
   const DoubleTab& vit=la_vitesse->valeurs();
   // Sinon segfault a l'initialisation de ssz quand il n'y a pas de sous-domaine !
@@ -215,7 +219,7 @@ void  Perte_Charge_Circulaire_VEF_P1NC::coeffs_perte_charge(const DoubleVect& u,
   static DoubleVect pos(dimension);
 
   // Optimisations pour les cas ou nu ou diam_hydr sont constants
-  bool nu_constant=sub_type(Champ_Uniforme,nu.valeur())?true:false;
+  bool nu_constant=sub_type(Champ_Uniforme,nu)?true:false;
   double nu_valeur;
   //if (nu_constant)
   ////nu_valeur=nu(0,0);
@@ -253,7 +257,7 @@ void  Perte_Charge_Circulaire_VEF_P1NC::coeffs_perte_charge(const DoubleVect& u,
 
   // Calcul de nu
   if (!nu_constant) {
-  nu_valeur=nu->valeur_a_compo(pos,0);
+  nu_valeur=nu.valeur_a_compo(pos,0);
   } else nu_valeur=nu(0,0);
 
   // Calcul du diametre hydraulique

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,22 +13,23 @@
 *
 *****************************************************************************/
 
+#include <Navier_Stokes_Fluide_Dilatable_base.h>
+#include <Source_Masse_Fluide_Dilatable_base.h>
+#include <Fluide_Dilatable_base.h>
+#include <Check_espace_virtuel.h>
+#include <Schema_Temps_base.h>
+#include <Champ_Face_VDF.h>
+#include <communications.h>
+#include <Equation_base.h>
 #include <EOS_Tools_VDF.h>
 #include <Domaine_VDF.h>
 #include <Debog.h>
-#include <Champ_Face_VDF.h>
-#include <Fluide_Dilatable_base.h>
-#include <Equation_base.h>
-#include <Schema_Temps.h>
-#include <Check_espace_virtuel.h>
-#include <communications.h>
 
 Implemente_instanciable(EOS_Tools_VDF,"EOS_Tools_VDF",EOS_Tools_base);
 
 Sortie& EOS_Tools_VDF::printOn(Sortie& os) const
 {
-  os <<que_suis_je()<< finl;
-  return os;
+  return os <<que_suis_je()<< finl;
 }
 
 Entree& EOS_Tools_VDF::readOn(Entree& is)
@@ -36,12 +37,12 @@ Entree& EOS_Tools_VDF::readOn(Entree& is)
   return is;
 }
 
-void  EOS_Tools_VDF::associer_domaines(const Domaine_dis& domaine, const Domaine_Cl_dis& domaine_cl)
+void  EOS_Tools_VDF::associer_domaines(const Domaine_dis_base& dds, const Domaine_Cl_dis_base& domaine_cl)
 {
-  le_dom = ref_cast(Domaine_VDF,domaine.valeur());
+  le_dom = ref_cast(Domaine_VDF,dds);
   le_dom_Cl = domaine_cl;
   Champ_Face_VDF toto;
-  toto.associer_domaine_dis_base(domaine.valeur());
+  toto.associer_domaine_dis_base(dds);
   toto.fixer_nb_comp(1);
   toto.fixer_nb_valeurs_nodales(le_dom->nb_faces());
   tab_rho_face=toto.valeurs();
@@ -141,7 +142,7 @@ void EOS_Tools_VDF::divu_discvit(const DoubleTab& secmem1, DoubleTab& secmem2)
  */
 void EOS_Tools_VDF::secmembre_divU_Z(DoubleTab& tab_W) const
 {
-  double dt = le_fluide().vitesse()->equation().schema_temps().pas_de_temps();
+  double dt = le_fluide().vitesse().equation().schema_temps().pas_de_temps();
   int elem,nb_elem = le_dom->nb_elem();//,nb_faces = le_dom->nb_faces();
   DoubleVect tab_dZ(nb_elem);
   //DoubleTab tab_gradZ(nb_faces);
@@ -154,12 +155,18 @@ void EOS_Tools_VDF::secmembre_divU_Z(DoubleTab& tab_W) const
   for (elem=0 ; elem<nb_elem ; elem++)
     tab_dZ(elem) = (tab_rhonp1P0(elem)-tab_rhonP0(elem))/dt;
 
-  double tmp;
-  for (elem=0 ; elem<nb_elem ; elem++)
+  // Ajout des termes sources speciaux de l'equation de masse:
+  const bool has_mass_flux = (sub_type(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation())) ?
+                             ref_cast(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation()).has_source_masse() : false;
+
+  if (has_mass_flux)
     {
-      tmp = tab_dZ(elem) ;
-      tab_W(elem) = -tmp * volumes(elem);
+      const Source_Masse_Fluide_Dilatable_base& src_mass = ref_cast(Navier_Stokes_Fluide_Dilatable_base, le_fluide().vitesse().equation()).source_masse();
+      src_mass.ajouter_projection(le_fluide(), static_cast<DoubleTab&>(tab_dZ));
     }
+
+  for (elem = 0; elem < nb_elem; elem++)
+    tab_W(elem) = -tab_dZ(elem) * volumes(elem);
 }
 
 void EOS_Tools_VDF::mettre_a_jour(double temps)

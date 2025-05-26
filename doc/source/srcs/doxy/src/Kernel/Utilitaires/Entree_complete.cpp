@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -49,25 +49,26 @@ Entree& Entree_complete::get_input()
   return *entree2_;
 }
 
-int Entree_complete::get(char* ob, int bufsize)
+int Entree_complete::get(char* ob, std::streamsize bufsize)
 {
   Entree& is = get_input();
   return is.get(ob, bufsize);
 }
 
-Entree& Entree_complete::operator>>(int& ob) { return operator_template<int>(ob); }
-int Entree_complete::get(int * ob, int n) { return get_template<int>(ob,n); }
+Entree& Entree_complete::operator>>(True_int& ob) { return operator_template<True_int>(ob); }
+int Entree_complete::get(True_int * ob, std::streamsize n) { return get_template<True_int>(ob,n); }
 
-#ifndef INT_is_64_
 Entree& Entree_complete::operator>>(long& ob) { return operator_template<long>(ob); }
-int Entree_complete::get(long * ob, int n) { return get_template<long>(ob,n); }
-#endif
+int Entree_complete::get(long * ob, std::streamsize n) { return get_template<long>(ob,n); }
+
+Entree& Entree_complete::operator>>(long long& ob) { return operator_template<long long>(ob); }
+int Entree_complete::get(long long * ob, std::streamsize n) { return get_template<long long>(ob,n); }
 
 Entree& Entree_complete::operator>>(float& ob) { return operator_template<float>(ob); }
-int Entree_complete::get(float * ob, int n) { return get_template<float>(ob,n); }
+int Entree_complete::get(float * ob, std::streamsize n) { return get_template<float>(ob,n); }
 
 Entree& Entree_complete::operator>>(double& ob) { return operator_template<double>(ob); }
-int Entree_complete::get(double * ob, int n) { return get_template<double>(ob,n); }
+int Entree_complete::get(double * ob, std::streamsize n) { return get_template<double>(ob,n); }
 
 int Entree_complete::eof()
 {
@@ -92,14 +93,13 @@ int Entree_complete::good()
  * exit()
  *
  */
-int Entree_complete::set_bin(int bin)
+void Entree_complete::set_bin(bool bin)
 {
   if (bin)
     {
-      Cerr << "Error in Entree_complete::set_bin(int bin) : not supported" << finl;
+      Cerr << "Error in Entree_complete::set_bin(bool bin) : not supported" << finl;
       Process::exit();
     }
-  return bin;
 }
 
 /*! @brief affecte le drapeau aux deux entrees sources Attention, le drapeau de entree2 est modifie !
@@ -107,7 +107,7 @@ int Entree_complete::set_bin(int bin)
  *   Voir Entree::set_check_types()
  *
  */
-void Entree_complete::set_check_types(int flag)
+void Entree_complete::set_check_types(bool flag)
 {
   Entree::set_check_types(flag);
   chaine_str_.set_check_types(flag);

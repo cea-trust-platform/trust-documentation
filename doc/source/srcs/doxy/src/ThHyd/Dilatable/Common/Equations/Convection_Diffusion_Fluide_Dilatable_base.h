@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,7 +36,7 @@ public :
   void associer_fluide(const Fluide_Dilatable_base& );
   void associer_milieu_base(const Milieu_base& ) override;
   int impr(Sortie& os) const override;
-  const Champ_Don& diffusivite_pour_transport() const override;
+  const Champ_Don_base& diffusivite_pour_transport() const override;
   const Fluide_Dilatable_base& fluide() const;
   Fluide_Dilatable_base& fluide();
   const Milieu_base& milieu() const override;
@@ -51,15 +51,15 @@ public :
   bool is_generic() const override = 0;
 
   // Methodes inlines
-  inline const Champ_Inc& inconnue() const override { return l_inco_ch; }
-  inline Champ_Inc& inconnue() override { return l_inco_ch; }
-  inline const Domaine_Cl_dis& domaine_cl_modif() const { return zcl_modif_ ;}
-  inline Domaine_Cl_dis& domaine_cl_modif() { return zcl_modif_ ;}
+  inline const Champ_Inc_base& inconnue() const override { return l_inco_ch; }
+  inline Champ_Inc_base& inconnue() override { return l_inco_ch; }
+  inline const Domaine_Cl_dis_base& domaine_cl_modif() const { return zcl_modif_.valeur();}
+  inline Domaine_Cl_dis_base& domaine_cl_modif() { return zcl_modif_.valeur();}
 
 protected:
-  Champ_Inc l_inco_ch;
-  Domaine_Cl_dis zcl_modif_;
-  REF(Fluide_Dilatable_base) le_fluide;
+  OWN_PTR(Champ_Inc_base) l_inco_ch;
+  OWN_PTR(Domaine_Cl_dis_base) zcl_modif_;
+  OBS_PTR(Fluide_Dilatable_base) le_fluide;
 };
 
 #endif /* Convection_Diffusion_Fluide_Dilatable_base_included */

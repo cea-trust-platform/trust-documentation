@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -190,16 +190,21 @@ void read_med_field_names(const Nom& nom_fic, Noms& noms_chps, ArrOfDouble& temp
 
 #ifdef MED_
 // renvoit le type med a partir du type trio
-med_geometry_type type_geo_trio_to_type_med(const Nom& type_elem_,med_axis_type& rep)
+med_geometry_type type_geo_trio_to_type_med(const Nom& type_elem_i,med_axis_type& rep)
 {
   rep=MED_CARTESIAN;
-  Motcle type_elem;
-  type_elem=type_elem_;
+
+  // Strip any '_64_ prefix:
+  Motcle type_elem_0 = type_elem_i;
+  type_elem_0.prefix("_64");
+
+  // Check for axi:
+  Motcle type_elem = type_elem_0;
   type_elem.prefix("_AXI");
-  if (type_elem!=Motcle(type_elem_))
+  if (type_elem != Motcle(type_elem_0))
     {
       rep=MED_SPHERICAL;
-      Cerr<<"#"<<type_elem<<"#"<<Motcle(type_elem_)<<"#"<<(type_elem!=Motcle(type_elem_))<<finl;
+      Cerr<<"#"<<type_elem<<"#"<<Motcle(type_elem_0)<<"#"<<(type_elem!=Motcle(type_elem_0))<<finl;
       if (type_elem=="QUADRILATERE_2D")
         type_elem="SEGMENT_2D";
       if (type_elem=="RECTANGLE_2D")
@@ -338,15 +343,19 @@ INTERP_KERNEL::NormalizedCellType type_geo_trio_to_type_medcoupling(const Nom& t
 
 /*! @brief Passage de la connectivite TRUST a MED si toMED=true de MED a trio si toMED=false
  */
-void conn_trust_to_med(IntTab& les_elems, const Nom& type_elem, bool toMED)
+template <typename _SIZE_>
+void conn_trust_to_med(IntTab_T<_SIZE_>& les_elems, const Nom& type_elem, bool toMED)
 {
 #ifdef MED_
-  int nele=les_elems.dimension(0);
+  using int_t = _SIZE_;
+  using IntTab_t = IntTab_T<_SIZE_>;
+
+  int_t nele=les_elems.dimension(0);
   // cas face_bord vide
   if (nele==0) return;
   med_geometry_type type_elem_med;
   type_elem_med=type_geo_trio_to_type_med(type_elem);
-  IntTab les_elemsn(les_elems);
+  IntTab_t les_elemsn(les_elems);
   ArrOfInt filter;
   switch (type_elem_med)
     {
@@ -411,7 +420,7 @@ void conn_trust_to_med(IntTab& les_elems, const Nom& type_elem, bool toMED)
     case MED_POLYGON:
     case MED_POLYHEDRON:
       {
-        int nb_som_max=les_elems.dimension(1);
+        int nb_som_max=les_elems.dimension_int(1);
         filter.resize_array(nb_som_max);
         std::iota(filter.addr(), filter.addr()+nb_som_max, 0);
         break ;
@@ -429,16 +438,21 @@ void conn_trust_to_med(IntTab& les_elems, const Nom& type_elem, bool toMED)
     }
   if (toMED)
     {
-      for (int el=0; el<nele; el++)
+      for (int_t el=0; el<nele; el++)
         for (int n=0; n<ns; n++)
           les_elems(el,n)=les_elemsn(el,filter[n]);
     }
   else
     {
-      for (int el=0; el<nele; el++)
+      for (int_t el=0; el<nele; el++)
         for (int n=0; n<ns; n++)
           les_elems(el,filter[n])=les_elemsn(el,n);
     }
 #endif
 }
 
+// Explicit instanciation
+template void conn_trust_to_med(IntTab_T<int>& les_elems, const Nom& type_elem, bool toMED);
+#if INT_is_64_ == 2
+template void conn_trust_to_med(IntTab_T<trustIdType>& les_elems, const Nom& type_elem, bool toMED);
+#endif

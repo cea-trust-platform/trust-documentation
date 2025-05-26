@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,9 @@
 #include <Domaine_VF.h>
 
 Implemente_instanciable_sans_constructeur(Sortie_libre_pression_moyenne_imposee, "Frontiere_ouverte_pression_moyenne_imposee", Neumann_sortie_libre);
+// XD frontiere_ouverte_pression_moyenne_imposee neumann frontiere_ouverte_pression_moyenne_imposee 0 Class for open boundary with pressure mean level imposed.
+// XD attr pext floattant pext 0 Mean pressure.
+
 
 Sortie_libre_pression_moyenne_imposee::Sortie_libre_pression_moyenne_imposee() : d_rho(-123.) { }
 
@@ -32,7 +35,7 @@ Entree& Sortie_libre_pression_moyenne_imposee::readOn(Entree& s)
 
   s >> Pext_;
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   le_champ_front.typer("Champ_front_fonc");
   le_champ_front->fixer_nb_comp(1);
   return s;
@@ -41,10 +44,10 @@ Entree& Sortie_libre_pression_moyenne_imposee::readOn(Entree& s)
 void Sortie_libre_pression_moyenne_imposee::completer()
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  if (sub_type(Champ_Uniforme, mil.masse_volumique().valeur()))
+  if (sub_type(Champ_Uniforme, mil.masse_volumique()))
     {
-      const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique().valeur());
-      d_rho = rho(0, 0);
+      const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique());
+      d_rho = rho.valeurs()(0, 0);
     }
   else
     d_rho = -1;
@@ -52,14 +55,14 @@ void Sortie_libre_pression_moyenne_imposee::completer()
   int i;
   ndeb_ = ref_cast(Front_VF,frontiere_dis()).num_premiere_face();
   nb_faces_ = ref_cast(Front_VF,frontiere_dis()).nb_faces();
-  le_champ_front.valeurs().resize(nb_faces_, 1);
-  DoubleTab& Pimp = le_champ_front.valeurs();
+  le_champ_front->valeurs().resize(nb_faces_, 1);
+  DoubleTab& Pimp = le_champ_front->valeurs();
   for (i = 0; i < nb_faces_; i++)
     Pimp(i, 0) = Pext_;
 
   surfaces.resize(nb_faces_);
 
-  Domaine_VF& zvf = ref_cast(Domaine_VF, mon_dom_cl_dis->domaine_dis().valeur());
+  Domaine_VF& zvf = ref_cast(Domaine_VF, mon_dom_cl_dis->domaine_dis());
   for (i = 0; i < nb_faces_; i++)
     {
       surfaces(i) = zvf.face_surfaces(i + ndeb_);
@@ -77,7 +80,7 @@ void Sortie_libre_pression_moyenne_imposee::mettre_a_jour(double temps)
   const DoubleTab& tab_P = ref_cast(Navier_Stokes_std,mon_dom_cl_dis->equation()).pression().valeurs();
 
   int face, elem, facegl;
-  DoubleTab& Pimp = le_champ_front.valeurs();
+  DoubleTab& Pimp = le_champ_front->valeurs();
 
   double Ptot = 0, s, S = 0;
 
@@ -121,18 +124,18 @@ void Sortie_libre_pression_moyenne_imposee::mettre_a_jour(double temps)
 double Sortie_libre_pression_moyenne_imposee::flux_impose(int i) const
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  const Champ_base& rho = mil.masse_volumique().valeur();
+  const Champ_base& rho = mil.masse_volumique();
   double rho_;
   assert(!est_egal(d_rho, -123.));
   if (d_rho == -1)
-    rho_ = rho(i);
+    rho_ = rho.valeurs()(i);
   else
     rho_ = d_rho;
 
-  if (le_champ_front.valeurs().size() == 1)
-    return le_champ_front(0, 0) / rho_;
-  else if (le_champ_front.valeurs().dimension(1) == 1)
-    return le_champ_front(i, 0) / rho_;
+  if (le_champ_front->valeurs().size() == 1)
+    return le_champ_front->valeurs()(0, 0) / rho_;
+  else if (le_champ_front->valeurs().dimension(1) == 1)
+    return le_champ_front->valeurs()(i, 0) / rho_;
   else
     Cerr << "Neumann::flux_impose erreur" << finl;
   exit();
@@ -151,17 +154,17 @@ double Sortie_libre_pression_moyenne_imposee::flux_impose(int i) const
 double Sortie_libre_pression_moyenne_imposee::flux_impose(int i, int j) const
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  const Champ_base& rho = mil.masse_volumique().valeur();
+  const Champ_base& rho = mil.masse_volumique();
   double rho_;
   assert(!est_egal(d_rho, -123.));
   if (d_rho == -1)
-    rho_ = rho(i);
+    rho_ = rho.valeurs()(i);
   else
     rho_ = d_rho;
 
-  if (le_champ_front.valeurs().dimension(0) == 1)
-    return le_champ_front(0, j) / rho_;
+  if (le_champ_front->valeurs().dimension(0) == 1)
+    return le_champ_front->valeurs()(0, j) / rho_;
   else
-    return le_champ_front(i, j) / rho_;
+    return le_champ_front->valeurs()(i, j) / rho_;
 }
 

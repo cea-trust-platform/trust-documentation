@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,11 +34,14 @@ public :
   int tppi_get_beta_pT(const SpanD P, const SpanD T, SpanD R, int ncomp = 1, int id = 0) const override;
   int tppi_get_beta_ph(const SpanD P, const SpanD H, SpanD R, int ncomp = 1, int id = 0) const override;
 
-  // methods particuliers par application pour gagner en performance : utilise dans Pb_Multiphase
+  // methodes particulieres par application pour gagner en performance : utilisees dans Pb_Multiphase
   int tppi_get_CPMLB_pb_multiphase_pT(const MSpanD , MLoiSpanD , int ncomp = 1, int id = 0) const override;
   int tppi_get_all_pb_multiphase_pT(const MSpanD , MLoiSpanD , MLoiSpanD , int ncomp = 1, int id = 0) const override;
 
-  // methods particuliers par application pour gagner en performance : utilise dans F5
+  int tppi_get_CPMLB_pb_multiphase_ph(const MSpanD , MLoiSpanD_h , int ncomp = 1, int id = 0) const override;
+  int tppi_get_all_pb_multiphase_ph(const MSpanD , MLoiSpanD_h , MLoiSpanD_h , int ncomp = 1, int id = 0) const override;
+
+  // methode particuliere par application pour gagner en performance : utilisee dans F5
   int tppi_get_all_prop_loi_F5(const MSpanD , MLoiSpanD_h  , int ncomp = 1, int id = 0, bool is_liq = true) const override;
 
 private:
@@ -47,6 +50,7 @@ private:
 
 #ifdef HAS_EOS
   int tppi_get_all_properties_T_(const MSpanD , NEPTUNE::EOS_Fields& , NEPTUNE::EOS_Error_Field&  , int ncomp = 1, int id = 0) const;
+  int tppi_get_all_properties_h_(const MSpanD , NEPTUNE::EOS_Fields& , NEPTUNE::EOS_Error_Field&  , int ncomp = 1, int id = 0) const;
 #endif
 };
 

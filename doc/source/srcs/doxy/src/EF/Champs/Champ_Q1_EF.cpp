@@ -16,7 +16,7 @@
 #include <Champ_Q1_EF.h>
 #include <Domaine_EF.h>
 #include <Domaine.h>
-#include <Equation.h>
+#include <Equation_base.h>
 #include <distances_EF.h>
 #include <Dirichlet_paroi_fixe.h>
 #include <Dirichlet_paroi_defilante.h>
@@ -157,10 +157,10 @@ void Champ_Q1_EF::calcul_y_plus(const Domaine_Cl_EF& domaine_Cl_EF, DoubleTab& y
   const Equation_base& eqn_hydr = equation();
   const DoubleTab& vitesse = eqn_hydr.inconnue().valeurs();
   const Fluide_base& le_fluide = ref_cast(Fluide_base, eqn_hydr.milieu());
-  const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-  const DoubleTab& tab_visco = ch_visco_cin->valeurs();
+  const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+  const DoubleTab& tab_visco = ch_visco_cin.valeurs();
 
-  if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+  if (sub_type(Champ_Uniforme, ch_visco_cin))
     {
       visco = tab_visco(0, 0);
       l_unif = 1;
@@ -195,7 +195,7 @@ void Champ_Q1_EF::calcul_y_plus(const Domaine_Cl_EF& domaine_Cl_EF, DoubleTab& y
 
       if (sub_type(Dirichlet_paroi_fixe, la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           // Loop on real faces
           ndeb = 0;
           nfin = le_bord.nb_faces_tot();

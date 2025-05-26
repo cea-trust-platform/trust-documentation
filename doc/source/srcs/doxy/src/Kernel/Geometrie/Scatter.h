@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,10 +20,9 @@
 #include <Interprete.h>
 #include <TRUST_Ref.h>
 #include <Joint.h>
+#include <Domaine_forward.h>
 
 class Domaine_VF;
-class Domaine;
-class Joints;
 
 class Scatter : public Interprete
 {
@@ -36,7 +35,7 @@ public:
   static int Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab& sommets2, ArrOfInt& correspondance, const double epsilon);
   static void construire_correspondance_sommets_par_coordonnees(Domaine& dom);
   static void construire_correspondance_aretes_par_coordonnees(Domaine_VF& zvf);
-  static void construire_correspondance_items_par_coordonnees(Joints& joints, const Joint::Type_Item type_item, const DoubleTab& coord_items);
+  static void construire_correspondance_items_par_coordonnees(Joints& joints, const JOINT_ITEM type_item, const DoubleTab& coord_items);
 
   static void construire_structures_paralleles(Domaine& dom, const Noms& liste_bords_perio);
 
@@ -45,12 +44,12 @@ public:
   static void calculer_espace_distant(Domaine&                  domaine,
                                       const int           nb_items_reels,
                                       const ArrsOfInt& items_to_send,
-                                      const Joint::Type_Item type_item);
+                                      const JOINT_ITEM type_item);
 
   static void calculer_nb_items_virtuels(Joints& joints,
-                                         const Joint::Type_Item type_item);
+                                         const JOINT_ITEM type_item);
 
-  static void calculer_renum_items_communs(Joints& joints, const Joint::Type_Item type_item);
+  static void calculer_renum_items_communs(Joints& joints, const JOINT_ITEM type_item);
   static void calculer_espace_distant_faces(Domaine& domaine, const int nb_faces_reelles, const IntTab& elem_faces);
   static void calculer_espace_distant_aretes(Domaine& domaine, const int nb_aretes_reelles, const IntTab& elem_aretes);
 
@@ -64,14 +63,19 @@ public:
   static void ajouter_joints(Domaine& domaine, ArrOfInt& pe_voisins);
 
   static void trier_les_joints(Joints& joints);
-  static void construire_md_vector(const Domaine&, int nb_items_reels, const Joint::Type_Item, MD_Vector&);
-  static void init_sequential_domain(Domaine&);
-  static void uninit_sequential_domain(Domaine&);
+  static void construire_md_vector(const Domaine&, int nb_items_reels, const JOINT_ITEM, MD_Vector&);
 
   static void check_consistancy_remote_items( Domaine& dom, const ArrOfInt& mergedDomaines );
 
+  // Although Scatter is never meant to be used in 64b, those two methods are needed by both configurations:
+  template <typename _SIZE_>
+  static void init_sequential_domain(Domaine_32_64<_SIZE_>& dom);
+  template <typename _SIZE_>
+  static void uninit_sequential_domain(Domaine_32_64<_SIZE_>& dom);
+
+
 protected:
-  REF(Domaine) le_domaine;
+  OBS_PTR(Domaine) le_domaine;
 
   void read_domain_no_comm(Entree& fic );
 };

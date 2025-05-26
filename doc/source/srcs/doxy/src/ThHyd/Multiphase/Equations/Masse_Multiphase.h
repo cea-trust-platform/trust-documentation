@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,8 +36,8 @@ public :
   void set_param(Param& param) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   void associer_fluide(const Fluide_base& );
-  inline const Champ_Inc& inconnue() const override;
-  inline Champ_Inc& inconnue() override;
+  inline const Champ_Inc_base& inconnue() const override;
+  inline Champ_Inc_base& inconnue() override;
 
   void discretiser() override;
   const Milieu_base& milieu() const override;
@@ -77,32 +77,32 @@ public :
   inline const Operateur_Grad& operateur_gradient_inconnue() const { return Op_Grad_;}
 
 protected :
-
-  Champ_Inc l_inco_ch;
-  REF(Fluide_base) le_fluide;
+  OWN_PTR(Champ_Inc_base) l_inco_ch_;
+  OBS_PTR(Fluide_base) le_fluide_;
   Operateur_Grad Op_Grad_; // Pour calculer le gradient en VDF
+  Operateur_Evanescence evanescence_;
 
-  Operateur_Evanescence evanescence;
+private:
+  void verifier_somme_alpha();
 };
 
 
 /*! @brief Renvoie le champ inconnue representant l'inconnue (T ou H) (version const)
  *
- * @return (Champ_Inc&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
+ * @return (Champ_Inc_base&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
  */
-inline const Champ_Inc& Masse_Multiphase::inconnue() const
+inline const Champ_Inc_base& Masse_Multiphase::inconnue() const
 {
-  return l_inco_ch;
+  return l_inco_ch_;
 }
-
 
 /*! @brief Renvoie le champ inconnue representant l'inconnue (T ou H)
  *
- * @return (Champ_Inc&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
+ * @return (Champ_Inc_base&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
  */
-inline Champ_Inc& Masse_Multiphase::inconnue()
+inline Champ_Inc_base& Masse_Multiphase::inconnue()
 {
-  return l_inco_ch;
+  return l_inco_ch_;
 }
 
-#endif
+#endif /* Masse_Multiphase_included */

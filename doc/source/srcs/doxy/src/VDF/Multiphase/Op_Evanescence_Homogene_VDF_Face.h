@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,13 +17,18 @@
 #define Op_Evanescence_Homogene_VDF_Face_included
 
 #include <Op_Evanescence_Homogene_Face_base.h>
+#include <Operateur_Grad.h>
 
 class Op_Evanescence_Homogene_VDF_Face: public Op_Evanescence_Homogene_Face_base
 {
   Declare_instanciable(Op_Evanescence_Homogene_VDF_Face);
 protected:
-  void dimensionner_blocs_aux(std::set<int>&, IntTrav& ,  Matrice_Morse& ) const override { /* Do nothing */ }
-  void ajouter_blocs_aux(IntTrav& , DoubleTrav , matrices_t , DoubleTab& ) const override { /* Do nothing */ }
+  void calc_grad_alpha_faces(DoubleTab&) const override;
+
+  void preparer_calcul() override;
+
+private:
+  Operateur_Grad grad_vdf_faces_;
 };
 
 #endif /* Op_Evanescence_Homogene_VDF_Face_included */

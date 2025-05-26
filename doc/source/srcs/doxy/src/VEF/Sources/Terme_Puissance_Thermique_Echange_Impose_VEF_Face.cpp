@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,12 +41,12 @@ Entree& Terme_Puissance_Thermique_Echange_Impose_VEF_Face::readOn(Entree& s )
 
 void Terme_Puissance_Thermique_Echange_Impose_VEF_Face::mettre_a_jour(double temps)
 {
-  int nb_faces = le_dom_VEF.valeur().nb_faces();
+  int nb_faces = le_dom_VEF->nb_faces();
   const Domaine_VEF& domaine = ref_cast(Domaine_VEF, le_dom_VEF.valeur());
   const IntTab& face_voisins = domaine.face_voisins();
   const DoubleVect& volumes_entrelaces = domaine.volumes_entrelaces();
-  const DoubleTab& himp = himp_.valeur().valeurs();
-  const DoubleTab& Text = Text_.valeur().valeurs();
+  const DoubleTab& himp = himp_->valeurs();
+  const DoubleTab& Text = Text_->valeurs();
   const DoubleTab& T = equation().inconnue().valeurs();
   const DoubleVect& volumes_elements = domaine.volumes();
 
@@ -79,27 +79,27 @@ void Terme_Puissance_Thermique_Echange_Impose_VEF_Face::mettre_a_jour(double tem
       bilan()(0) -= c * (hm*T(num_face)-htextm) * vol;
 
     }
-  himp_.mettre_a_jour(temps);
-  Text_.mettre_a_jour(temps);
+  himp_->mettre_a_jour(temps);
+  Text_->mettre_a_jour(temps);
 }
 
-void Terme_Puissance_Thermique_Echange_Impose_VEF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                                          const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Puissance_Thermique_Echange_Impose_VEF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                                          const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
   Cerr << " Terme_Puissance_Thermique_Echange_Impose_VEF_Face::associer_domaines " << finl ;
-  le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis.valeur());
-  le_dom_Cl_VEF = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis.valeur());
+  le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis);
+  le_dom_Cl_VEF = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis);
 }
 
 
 DoubleTab& Terme_Puissance_Thermique_Echange_Impose_VEF_Face::ajouter(DoubleTab& resu )  const
 {
-  int nb_faces=le_dom_VEF.valeur().nb_faces();
+  int nb_faces=le_dom_VEF->nb_faces();
   const Domaine_VF&     domaine               = le_dom_VEF.valeur();
   const IntTab&      face_voisins       = domaine.face_voisins();
   const DoubleVect& volumes_entrelaces = domaine.volumes_entrelaces();
-  const DoubleTab& himp = himp_.valeur().valeurs();
-  const DoubleTab& Text = Text_.valeur().valeurs();
+  const DoubleTab& himp = himp_->valeurs();
+  const DoubleTab& Text = Text_->valeurs();
 
   const DoubleTab& T = equation().inconnue().valeurs();
   const DoubleVect& volumes_elements = domaine.volumes();
@@ -144,12 +144,12 @@ void Terme_Puissance_Thermique_Echange_Impose_VEF_Face::contribuer_a_avec(const 
 {
 
 
-  int nb_faces=le_dom_VEF.valeur().nb_faces();
+  int nb_faces=le_dom_VEF->nb_faces();
   const Domaine_VF&     domaine               = le_dom_VEF.valeur();
   const IntTab&      face_voisins       = domaine.face_voisins();
   const DoubleVect& volumes_entrelaces = domaine.volumes_entrelaces();
-  const DoubleTab& himp = himp_.valeur().valeurs();
-  // const DoubleTab& Text = Text_.valeur().valeurs();
+  const DoubleTab& himp = himp_->valeurs();
+  // const DoubleTab& Text = Text_->valeurs();
   // const DoubleTab& T = equation().inconnue().valeurs();
   const DoubleVect& volumes_elements = domaine.volumes();
 

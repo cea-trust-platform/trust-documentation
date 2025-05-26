@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,9 +15,7 @@
 
 #include <Gravite_Multiphase.h>
 #include <Pb_Multiphase.h>
-#include <Domaine_dis.h>
 #include <Discret_Thyd.h>
-#include <Champ_Don.h>
 
 Implemente_instanciable(Gravite_Multiphase, "Gravite_Multiphase", Correlation_base);
 
@@ -28,7 +26,7 @@ Sortie& Gravite_Multiphase::printOn(Sortie& os) const
 
 Entree& Gravite_Multiphase::readOn(Entree& is)
 {
-  Champ_Don gravite_don_;
+  OWN_PTR(Champ_Don_base) gravite_don_;
   is >> gravite_don_;
 
   Pb_Multiphase& pb = ref_cast(Pb_Multiphase, pb_.valeur());
@@ -38,22 +36,37 @@ Entree& Gravite_Multiphase::readOn(Entree& is)
   noms[0] = "gravite";
   unites[0] = "m/s^2";
   Motcle typeChamp = "champ_elem" ;
-  const Domaine_dis& z = ref_cast(Domaine_dis, pb.domaine_dis());
-  dis.discretiser_champ(typeChamp, z.valeur(), scalaire, noms , unites, D, 0, gravite_);
+  const Domaine_dis_base& z = pb.domaine_dis();
+  dis.discretiser_champ(typeChamp, z, scalaire, noms , unites, D, 0, gravite_);
 
   champs_compris_.ajoute_champ(gravite_);
 
   gravite_->affecter(gravite_don_.valeur());
-
-  gravite_.valeurs().echange_espace_virtuel();
+  gravite_->valeurs().echange_espace_virtuel();
 
   return is;
 }
 
+bool Gravite_Multiphase::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (nom == "gravite")
+    return champs_compris_.has_champ(nom, ref_champ);
+
+  return false; /* rien trouve */
+}
+
+bool Gravite_Multiphase::has_champ(const Motcle& nom) const
+{
+  if (nom == "gravite")
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Gravite_Multiphase::get_champ(const Motcle& nom) const
 {
-  if (nom=="gravite")
+  if (nom == "gravite")
     return champs_compris_.get_champ(nom);
 
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }

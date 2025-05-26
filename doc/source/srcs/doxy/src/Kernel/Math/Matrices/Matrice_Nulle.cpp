@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -88,6 +88,11 @@ void Matrice_Nulle::scale( const double x )
   // nothing to do
 }
 
+void Matrice_Nulle::clean()
+{
+  // nothing to do
+}
+
 void Matrice_Nulle::get_stencil( IntTab& stencil ) const
 {
   stencil.resize( 0, 2 );
@@ -130,7 +135,7 @@ void Matrice_Nulle::get_symmetric_stencil_and_coefficients( IntTab&      stencil
                                 coefficients );
 }
 
-Matrice_Nulle::Matrice_Nulle( void ) : Matrice_Base( )
+Matrice_Nulle::Matrice_Nulle() : Matrice_Base( )
 {
   nb_lines_   = -1;
   nb_columns_ = -2;

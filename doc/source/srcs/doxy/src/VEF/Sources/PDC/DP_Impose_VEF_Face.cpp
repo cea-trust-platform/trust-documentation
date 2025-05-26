@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -67,7 +67,7 @@ void DP_Impose_VEF_Face::completer()
 void DP_Impose_VEF_Face::remplir_num_faces(Entree& s)
 {
   const Domaine& le_domaine = equation().probleme().domaine();
-  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis().valeur());
+  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis());
   int taille_bloc = dom.nb_elem();
   num_faces.resize(taille_bloc);
   lire_surfaces(s,le_domaine,dom,num_faces, sgn);
@@ -99,13 +99,12 @@ void DP_Impose_VEF_Face::mettre_a_jour(double temps)
 
 void DP_Impose_VEF_Face::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis().valeur());
+  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis());
 
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse& mat = *matrices.at(nom_inco), mat2;
 
-  IntTrav sten(0, 2);
-
+  IntTab sten(0, 2);
 
   int i, f, d, db, D = dimension, n, N = equation().inconnue().valeurs().line_size() / D, nf_tot = dom.nb_faces_tot();
   for (i = 0; i < num_faces.size(); i++)
@@ -122,14 +121,14 @@ void DP_Impose_VEF_Face::dimensionner_blocs(matrices_t matrices, const tabs_t& s
 
 void DP_Impose_VEF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis().valeur());
+  const Domaine_VEF& dom = ref_cast(Domaine_VEF, equation().domaine_dis());
   const DoubleVect& pf = equation().milieu().porosite_face(), &fs = dom.face_surfaces();
   const DoubleTab& vit = equation().inconnue().valeurs(), &nf = dom.face_normales();
   const std::string& nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
   const int D = dimension, N = vit.line_size() / D;
 
-  double rho = equation().milieu().masse_volumique()(0, 0), fac_rho = equation().probleme().is_dilatable() ? 1.0 : 1.0 / rho;
+  double rho = equation().milieu().masse_volumique().valeurs()(0, 0), fac_rho = equation().probleme().is_dilatable() ? 1.0 : 1.0 / rho;
 
   if (regul_)
     {
@@ -144,7 +143,7 @@ void DP_Impose_VEF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, c
       for (int i = 0; i < num_faces.size(); i++)
         for (int j = 0; j < dimension; j++)
           xvf(i, j) = dom.xv()(num_faces(i), j);
-      DP_.valeur().valeur_aux(xvf, DP);
+      DP_->valeur_aux(xvf, DP);
 
       for (int i = 0, f; i < num_faces.size(); i++)
         if ((f = num_faces(i)) < dom.nb_faces())

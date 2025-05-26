@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,14 +14,15 @@
 *****************************************************************************/
 
 #include <Echange_contact_Correlation_VDF.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Champ_front_calc.h>
 #include <communications.h>
 #include <Champ_Uniforme.h>
 #include <Probleme_base.h>
 #include <Milieu_base.h>
+#include <Domaine_VDF.h>
 #include <Conduction.h>
 #include <Solv_TDMA.h>
-#include <Domaine_VDF.h>
 #include <SFichier.h>
 #include <Param.h>
 
@@ -35,13 +36,13 @@ Entree& Echange_contact_Correlation_VDF::readOn(Entree& is )
   if (app_domains.size() == 0) app_domains = { Motcle("Thermique") };
 
   Param param(que_suis_je());
-  Reprise_temperature=0;
+  Reprise_temperature=false;
   dt_impr = 1e10;
   set_param(param);
   param.lire_avec_accolades_depuis(is);
 
-  T_ext().typer("Champ_front_fonc");
-  T_ext()->fixer_nb_comp(1);
+  le_champ_front.typer("Champ_front_fonc");
+  T_ext().fixer_nb_comp(1);
   h_imp_.typer("Champ_front_fonc");
   h_imp_->fixer_nb_comp(1);
   return is;
@@ -131,7 +132,7 @@ void Echange_contact_Correlation_VDF::calculer_h_mon_pb(DoubleTab& tab)
   // forcement local
   const Equation_base& mon_eqn = domaine_Cl_dis().equation();
   const Milieu_base& mon_milieu = mon_eqn.milieu();
-  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   calculer_h_solide(tab,mon_eqn,ma_zvdf,ma_front_vf,mon_milieu);
 }
@@ -160,7 +161,7 @@ void Echange_contact_Correlation_VDF::completer()
 
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const int nb_faces_bord = ma_front_vf.nb_faces();
-  DoubleTab& Text_valeurs = T_ext().valeur().valeurs();
+  DoubleTab& Text_valeurs = T_ext().valeurs();
   Text_valeurs.resize(nb_faces_bord,1);
 
   mon_h.resize(nb_faces_bord,1);
@@ -252,7 +253,7 @@ double Echange_contact_Correlation_VDF::calculer_coefficient_echange(int i)
  */
 void Echange_contact_Correlation_VDF::calculer_Q()
 {
-  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis());
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
   const int ndeb = ma_front_vf.num_premiere_face();
   const int nb_faces_bord = ma_front_vf.nb_faces();
@@ -280,7 +281,7 @@ void Echange_contact_Correlation_VDF::calculer_Q()
 
 void Echange_contact_Correlation_VDF::trier_coord()
 {
-  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VDF& ma_zvdf = ref_cast(Domaine_VDF,domaine_Cl_dis().domaine_dis());
   const DoubleVect& surfaces = ma_zvdf.face_surfaces();
   const Front_VF& ma_front_vf = ref_cast(Front_VF,frontiere_dis());
 
@@ -493,7 +494,7 @@ void Echange_contact_Correlation_VDF::mettre_a_jour(double temps)
   const int ME = Process::me();
   const int nbproc = Process::nproc();
   FILE *Fichier_sauv;
-  if (Reprise_temperature==1)
+  if (Reprise_temperature)
     {
       if (nbproc>1)
         {
@@ -590,7 +591,7 @@ void Echange_contact_Correlation_VDF::mettre_a_jour(double temps)
               exit();
             }
         }
-      Reprise_temperature=0;
+      Reprise_temperature=false;
     }
 
   calculer_CL();
@@ -610,7 +611,7 @@ void Echange_contact_Correlation_VDF::mettre_a_jour(double temps)
   DoubleTab& mon_h= h_imp_->valeurs();
   calculer_h_mon_pb(mon_h);
   const int taille=mon_h.dimension(0);
-  DoubleTab& Text_valeurs = T_ext().valeur().valeurs();
+  DoubleTab& Text_valeurs = T_ext().valeurs();
 
   for (int ii=0; ii<taille; ii++)
     {
@@ -663,7 +664,7 @@ void Echange_contact_Correlation_VDF::calculer_h_solide(DoubleTab& tab,const Equ
   DoubleVect e;
   const IntTab& face_voisins = zvdf_2.face_voisins();
   int i;
-  int nb_comp = le_milieu.conductivite()->nb_comp();
+  int nb_comp = le_milieu.conductivite().nb_comp();
   int ndeb = front_vf.num_premiere_face();
   int nfin = ndeb + front_vf.nb_faces();
 
@@ -673,7 +674,7 @@ void Echange_contact_Correlation_VDF::calculer_h_solide(DoubleTab& tab,const Equ
     e(face-ndeb) = zvdf_2.dist_norm_bord(face);
 
   // Calcul de tab = 1/(e/lambda + 1/h_paroi) =1/(e/lambda+invhparoi)
-  if(!sub_type(Champ_Uniforme,le_milieu.conductivite().valeur()))
+  if(!sub_type(Champ_Uniforme,le_milieu.conductivite()))
     {
       //Cerr << "raccord local homogene et conductivite non uniforme" << finl;
       const DoubleTab& tab_lambda = le_milieu.conductivite().valeurs();
@@ -684,19 +685,19 @@ void Echange_contact_Correlation_VDF::calculer_h_solide(DoubleTab& tab,const Equ
             elem = face_voisins(face,1);
           for(i=0; i<nb_comp; i++)
             {
-              assert(le_milieu.conductivite()(elem,i)!=0.);
+              assert(le_milieu.conductivite().valeurs()(elem,i)!=0.);
               tab(face-ndeb,i) = tab_lambda(elem,i)/e(face-ndeb);
             }
         }
     }
-  else  // la conductivite est un Champ uniforme
+  else  // la conductivite est un OWN_PTR(Champ_base) uniforme
     {
       for (int face=ndeb; face<nfin; face++)
         {
           for(i=0; i<nb_comp; i++)
             {
-              assert(le_milieu.conductivite()(0,i)!=0.);
-              tab(face-ndeb,i) = le_milieu.conductivite()(0,i)/e(face-ndeb);
+              assert(le_milieu.conductivite().valeurs()(0,i)!=0.);
+              tab(face-ndeb,i) = le_milieu.conductivite().valeurs()(0,i)/e(face-ndeb);
             }
         }
     }

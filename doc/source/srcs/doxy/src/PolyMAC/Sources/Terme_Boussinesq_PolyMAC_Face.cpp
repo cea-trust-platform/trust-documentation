@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,18 +41,18 @@ Sortie& Terme_Boussinesq_PolyMAC_Face::printOn(Sortie& s) const { return Terme_B
 
 Entree& Terme_Boussinesq_PolyMAC_Face::readOn(Entree& s) { return Terme_Boussinesq_base::readOn(s); }
 
-void Terme_Boussinesq_PolyMAC_Face::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Boussinesq_PolyMAC_Face::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  le_dom_Cl_PolyMAC = ref_cast(Domaine_Cl_PolyMAC, domaine_Cl_dis.valeur());
+  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis);
+  le_dom_Cl_PolyMAC = ref_cast(Domaine_Cl_PolyMAC, domaine_Cl_dis);
 }
 
 void Terme_Boussinesq_PolyMAC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
   const DoubleTab& param = equation_scalaire().inconnue().valeurs();
-  const DoubleTab& beta_valeurs = beta().valeur().valeurs();
-  const IntTab& f_e = domaine.face_voisins(), &fcl = ref_cast(Champ_Face_PolyMAC, equation().inconnue().valeur()).fcl();
+  const DoubleTab& beta_valeurs = beta().valeurs();
+  const IntTab& f_e = domaine.face_voisins(), &fcl = ref_cast(Champ_Face_PolyMAC, equation().inconnue()).fcl();
   const DoubleTab& rho = equation().milieu().masse_volumique().passe(), &vfd = domaine.volumes_entrelaces_dir(), &nf = domaine.face_normales(),
                    *alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : nullptr;
   const DoubleVect& pf = equation().milieu().porosite_face(), &pe = equation().milieu().porosite_elem(), &ve = domaine.volumes(), &fs = domaine.face_surfaces(), &grav = gravite().valeurs();

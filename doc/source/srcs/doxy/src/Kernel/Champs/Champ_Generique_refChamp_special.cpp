@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,27 +45,21 @@ const DoubleTab& Champ_Generique_refChamp_special::get_ref_values() const
   const DoubleTab& val = ref_cast(Champ_Inc_base,ref_champ_.valeur()).futur(case_);
   return val;
 }
-const Champ_base& Champ_Generique_refChamp_special::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_refChamp_special::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  {
+  Objet_U& ob = Interprete::objet(nom_pb_);
+  const Probleme_base& pb = ref_cast(Probleme_base,ob);
+  const Nom& nom_cible = ref_champ_->le_nom();
+  pb.get_champ(nom_cible);
 
-    Objet_U& ob = Interprete::objet(nom_pb_);
-    const Probleme_base& pb = ref_cast(Probleme_base,ob);
-    const Nom& nom_cible = ref_champ_.valeur().le_nom();
-    pb.get_champ(nom_cible);
-
-    espace_stockage= get_ref_champ_base();
-    if (case_>0)
-      ref_cast(Champ_Inc_base,espace_stockage.valeur()).avancer(case_);
-    if (case_<0)
-      {
-        Cerr<<"KO si case_<0; pourquoi ????????,"<<finl;
-        ref_cast(Champ_Inc_base,espace_stockage.valeur()).reculer(-case_);
-        exit();
-      }
-    return espace_stockage.valeur();
-
-
-  }
-
+  espace_stockage= get_ref_champ_base();
+  if (case_>0)
+    ref_cast(Champ_Inc_base,espace_stockage.valeur()).avancer(case_);
+  if (case_<0)
+    {
+      Cerr<<"KO si case_<0; pourquoi ????????,"<<finl;
+      ref_cast(Champ_Inc_base,espace_stockage.valeur()).reculer(-case_);
+      exit();
+    }
+  return espace_stockage;
 }

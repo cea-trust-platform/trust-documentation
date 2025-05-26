@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -38,8 +38,6 @@ Implemente_instanciable_sans_constructeur(Partitionneur_Parmetis,"Partitionneur_
 
 Partitionneur_Parmetis::Partitionneur_Parmetis()
 {
-  nb_parties_ = -1;
-  use_weights_ = 0;
 }
 
 Sortie& Partitionneur_Parmetis::printOn(Sortie& os) const
@@ -83,6 +81,7 @@ void Partitionneur_Parmetis::construire_partition(IntVect& elem_part, int& nb_pa
   Cerr << "PARMETIS is not compiled with this version. Use another partition tool like Tranche." << finl;
   Process::exit();
 #else
+
   if (!ref_domaine_.non_nul())
     {
       Cerr << "Error in Partitionneur_Parmetis::construire_partition\n";
@@ -101,13 +100,13 @@ void Partitionneur_Parmetis::construire_partition(IntVect& elem_part, int& nb_pa
   if (nb_parties_ == 1)
     {
 
-      int nb_elem = ref_domaine_.valeur().nb_elem();
+      int nb_elem = ref_domaine_->nb_elem();
       elem_part.resize_array(nb_elem);
       elem_part = 0;
       return;
     }
 
-  if (ref_domaine_.valeur().nb_elem() == 0)
+  if (ref_domaine_->nb_elem() == 0)
     return;
 
   Cerr << "Partitionneur_Parmetis::construire_partition" << finl;
@@ -133,7 +132,7 @@ void Partitionneur_Parmetis::construire_partition(IntVect& elem_part, int& nb_pa
   idx_t ncon=1;
   real_t ubvec = 1.05f; //recommanded value
   idx_t numflag = 0; //numerotation C
-  std::vector<real_t> tpwgts(ncon*int_parts, (real_t)(1.0/int_parts)); //we want the weight to be equally distributed on each sub_somain
+  std::vector<real_t> tpwgts(ncon*int_parts, (real_t)(1.0/nb_parties_)); //we want the weight to be equally distributed on each sub_somain
   MPI_Comm comm = Comm_Group_MPI::get_trio_u_world();
   int status = ParMETIS_V3_PartKway(graph.vtxdist.addr(), graph.xadj.addr(), graph.adjncy.addr(),
                                     graph.vwgts.addr(), graph.ewgts.addr(), &graph.weightflag,
@@ -153,10 +152,10 @@ void Partitionneur_Parmetis::construire_partition(IntVect& elem_part, int& nb_pa
   Cerr << "-> You can increase nb_essais option (default 1) to try to reduce (but at a higher CPU cost) this number." << finl;
   Cerr << "===============" << finl;
 
-  MD_Vector_tools::creer_tableau_distribue(ref_domaine_.valeur().md_vector_elements(), elem_part);
-  const int n = ref_domaine_.valeur().nb_elem();
+  MD_Vector_tools::creer_tableau_distribue(ref_domaine_->md_vector_elements(), elem_part);
+  const int n = ref_domaine_->nb_elem();
   for (int i = 0; i < n; i++)
-    elem_part[i] = partition[i];
+    elem_part[i] = static_cast<int>(partition[i]);  // partition[i] is a a proc number...
 
   // Correction de la partition pour la periodicite. (***)
   if (graph_elements_perio.get_nb_lists() > 0)
@@ -173,7 +172,6 @@ void Partitionneur_Parmetis::construire_partition(IntVect& elem_part, int& nb_pa
   Cerr << "Correction elem0 on processor 0" << finl;
   corriger_elem0_sur_proc0(elem_part);
   elem_part.echange_espace_virtuel();
-
 #endif
 }
 

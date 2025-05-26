@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,6 +27,7 @@
 #include <communications.h>
 #include <MD_Vector_tools.h>
 #include <MD_Vector_std.h>
+#include <MD_Vector_seq.h>
 #include <unistd.h> // PGI
 #include <Poly_geom_base.h>
 #include <Entree_Brute.h>
@@ -35,6 +36,7 @@
 #include <LecFicDiffuse.h>
 #include <Format_Post_Lata.h>
 #include <EFichierBin.h>
+#include <Array_tools.h>
 
 extern Stat_Counter_Id interprete_scatter_counter_;
 
@@ -94,7 +96,7 @@ void dump_lata(const Domaine& dom)
   DoubleTab data(dom.nb_elem());
   for(int ij = 0; ij < nb_joints; ij++)
     {
-      const ArrOfInt& t1 = dom.joint(ij).joint_item(Joint::ELEMENT).items_distants();
+      const ArrOfInt& t1 = dom.joint(ij).joint_item(JOINT_ITEM::ELEMENT).items_distants();
       data = 0.;
       const int nt1 = t1.size_array();
       for (int i = 0; i < nt1; i++) data[t1[i]] += 1;
@@ -203,7 +205,7 @@ Entree& Scatter::interpreter(Entree& is)
   Objet_U& obj = objet(nomdomaine);
   if(!sub_type(Domaine, obj))
     {
-      Cerr << "obj : " << obj << " is not an object of type Domain !" << finl;
+      Cerr << "Error in Scatter: object of type '" << obj.que_suis_je() << "' when Domaine was expected!" << finl;
       exit();
     }
   Domaine& dom = ref_cast(Domaine, obj);
@@ -219,7 +221,7 @@ Entree& Scatter::interpreter(Entree& is)
 
   barrier();
   Cerr << "Calculation of renum_items_communs for the nodes" << finl;
-  calculer_renum_items_communs(dom.faces_joint(), Joint::SOMMET);
+  calculer_renum_items_communs(dom.faces_joint(), JOINT_ITEM::SOMMET);
 
   // Pas encore code: on verifie que les sommets communs ont des coordonnees identiques
   // sur tous les processeurs.
@@ -236,12 +238,12 @@ Entree& Scatter::interpreter(Entree& is)
   Cerr << "End Distribue_domaines" << finl;
 
   Cerr << "\nQuality of partitioning --------------------------------------------" << finl;
-  int total_nb_elem = Process::mp_sum(dom.nb_elem());
+  trustIdType total_nb_elem = Process::mp_sum(dom.nb_elem());
   Cerr << "\nTotal nb of elements = " << total_nb_elem << finl;
   Cerr << "Number of Domaines : " << Process::nproc() << finl;
   double min_element_domaine = mp_min(dom.nb_elem());
   double max_element_domaine = mp_max(dom.nb_elem());
-  double mean_element_domaine = total_nb_elem / Process::nproc();
+  double mean_element_domaine = (double)(total_nb_elem / Process::nproc());
   Cerr << "Min number of elements on a Domaine = " << min_element_domaine << finl;
   Cerr << "Max number of elements on a Domaine = " << max_element_domaine << finl;
   Cerr << "Mean number of elements per Domaine = " << (int)(mean_element_domaine) << finl;
@@ -309,7 +311,7 @@ void Scatter::check_consistancy_remote_items(Domaine& dom, const ArrOfInt& merge
   for (int i_joint = 0; i_joint < nb_joints; i_joint++)
     {
       const Joint& joint     = joints[i_joint];
-      const ArrOfInt& items_communs = joint.joint_item(Joint::SOMMET).items_communs();
+      const ArrOfInt& items_communs = joint.joint_item(JOINT_ITEM::SOMMET).items_communs();
       const int nb_items_communs = items_communs.size_array();
 
       DoubleTab&   coord   = coord_items_locaux[i_joint];
@@ -363,8 +365,8 @@ void Scatter::check_consistancy_remote_items(Domaine& dom, const ArrOfInt& merge
           const int neighbourDomaineWasMerged = mergedDomaines[pe_voisin];
           if(neighbourDomaineWasMerged && pe_voisin>moi)
             continue;
-          ArrOfInt& items_communs = dom.faces_joint()[i_joint].set_joint_item(Joint::SOMMET).set_items_communs();
-          const ArrOfInt old_items_communs = joints[i_joint].joint_item(Joint::SOMMET).items_communs();
+          ArrOfInt& items_communs = dom.faces_joint()[i_joint].set_joint_item(JOINT_ITEM::SOMMET).set_items_communs();
+          const ArrOfInt old_items_communs = joints[i_joint].joint_item(JOINT_ITEM::SOMMET).items_communs();
           const int     nb_items      = items_communs.size_array();
           const DoubleTab& coord_voisin = coord_items_distants[i_joint];
           const DoubleTab& my_coord = coord_items_locaux[i_joint];
@@ -446,15 +448,15 @@ void Scatter::read_domain_no_comm(Entree& fic)
           while(joint_to_add.PEvoisin() != dom.faces_joint()[my_joint_index].PEvoisin())
             my_joint_index++;
 
-          const ArrOfInt& sommets_to_add = joint_to_add.joint_item(Joint::SOMMET).items_communs();
-          ArrOfInt& items_communs = dom.faces_joint()[my_joint_index].set_joint_item(Joint::SOMMET).set_items_communs();
+          const ArrOfInt& sommets_to_add = joint_to_add.joint_item(JOINT_ITEM::SOMMET).items_communs();
+          ArrOfInt& items_communs = dom.faces_joint()[my_joint_index].set_joint_item(JOINT_ITEM::SOMMET).set_items_communs();
 
           for(int index=0; index<sommets_to_add.size_array(); index++)
             items_communs.append_array(sommets_to_add[index]); // sommets_to_add is already renumbered with 'nums' - see call to renum_joint_common_items above
-          items_communs.array_trier_retirer_doublons();
+          array_trier_retirer_doublons(items_communs);
 
-          const ArrOfInt& elements_to_add = joint_to_add.joint_item(Joint::ELEMENT).items_distants();
-          ArrOfInt& items_distants = dom.faces_joint()[my_joint_index].set_joint_item(Joint::ELEMENT).set_items_distants();
+          const ArrOfInt& elements_to_add = joint_to_add.joint_item(JOINT_ITEM::ELEMENT).items_distants();
+          ArrOfInt& items_distants = dom.faces_joint()[my_joint_index].set_joint_item(JOINT_ITEM::ELEMENT).set_items_distants();
 
           for(int index=0; index<elements_to_add.size_array(); index++)
             items_distants.append_array(elements_to_add[index]); // idem
@@ -490,9 +492,9 @@ void Scatter::lire_domaine(Nom& nomentree, Noms& liste_bords_periodiques)
       Process::exit();
     }
 
-  static Stat_Counter_Id stats = statistiques().new_counter(0 /* Level */, "Scatter::lire_domaine", 0 /* Group */);
+//  static Stat_Counter_Id stats = statistiques().new_counter(0 /* Level */, "Scatter::lire_domaine", 0 /* Group */);
 
-  statistiques().begin_count(stats);
+//  statistiques().begin_count(stats);
   ArrOfInt mergedDomaines(Process::nproc());
   mergedDomaines = 0;
   bool domain_not_built = true;
@@ -632,7 +634,7 @@ void Scatter::lire_domaine(Nom& nomentree, Noms& liste_bords_periodiques)
   dom.check_domaine();
 
   // PL : pas tout a fait exact le nombre affiche de sommets, on compte plusieurs fois les sommets des joints...
-  int nbsom = mp_sum(dom.les_sommets().dimension(0));
+  trustIdType nbsom = mp_sum(dom.les_sommets().dimension(0));
   Cerr << " Number of nodes: " << nbsom << finl;
 
   init_sequential_domain(dom);
@@ -656,7 +658,7 @@ void Scatter::lire_domaine(Nom& nomentree, Noms& liste_bords_periodiques)
         }
     }
 
-  statistiques().end_count(stats);
+//  statistiques().end_count(stats);
   barrier();
 }
 
@@ -681,7 +683,7 @@ void Scatter::construire_structures_paralleles(Domaine& dom, const Noms& liste_b
   if (liste_bords_periodiques.size() > 0)
     corriger_espace_distant_elements_perio(dom, liste_bords_periodiques);
 
-  calculer_nb_items_virtuels(dom.faces_joint(), Joint::ELEMENT);
+  calculer_nb_items_virtuels(dom.faces_joint(), JOINT_ITEM::ELEMENT);
 
   // Determination des sommets distants en fonction des elements distants
   calculer_espace_distant_sommets(dom, liste_bords_periodiques);
@@ -691,8 +693,8 @@ void Scatter::construire_structures_paralleles(Domaine& dom, const Noms& liste_b
   DoubleTab& sommets = dom.les_sommets();
   IntTab& elements = dom.les_elems();
   MD_Vector md_sommets, md_elements;
-  construire_md_vector(dom, sommets.dimension(0), Joint::SOMMET, md_sommets);
-  construire_md_vector(dom, elements.dimension(0), Joint::ELEMENT, md_elements);
+  construire_md_vector(dom, sommets.dimension(0), JOINT_ITEM::SOMMET, md_sommets);
+  construire_md_vector(dom, elements.dimension(0), JOINT_ITEM::ELEMENT, md_elements);
   MD_Vector_tools::creer_tableau_distribue(md_sommets, sommets);
   sommets.echange_espace_virtuel();
   construire_espace_virtuel_traduction(md_elements /* type index */,
@@ -729,80 +731,6 @@ void Scatter::trier_les_joints(Joints& joints)
     }
 }
 
-
-/*! @brief Methode outil pour retirer les doublons dans un tableau.
- *
- */
-static void array_trier_retirer_doublons(ArrOfInt& array)
-{
-  const int size_ = array.size_array();
-  if (size_ == 0)
-    return;
-  // Tri dans l'ordre croissant
-  array.ordonne_array();
-  // Retire les doublons
-  int new_size_ = 1;
-  int last_value = array[0];
-  for (int i = 1; i < size_; i++)
-    {
-      if (array[i] != last_value)
-        {
-          array[new_size_] = last_value = array[i];
-          new_size_++;
-        }
-    }
-  array.resize_array(new_size_);
-}
-
-
-/*! @brief Retire de "sorted_array" les elements qui figurent dans "sorted_elements".
- *
- * Les deux tableaux doivent etre initialement ordonnes dans l'ordre croissant.
- *   Exemple:
- *    En entree sorted_array=[1,4,9,10,12,18], sorted_elements=[3,5,9,10,18,25]
- *    En sortie sorted_array=[1,4,12]
- *
- */
-static void array_retirer_elements(ArrOfInt& sorted_array, const ArrOfInt& sorted_elements_list)
-{
-  int i_read;      // Index dans sorted_array (en lecture)
-  int i_write = 0; // Index dans sorted_array (la ou on ecrit)
-  int j = 0;       // Index dans sorted_elements
-  const int n = sorted_array.size_array();
-  const int m = sorted_elements_list.size_array();
-  if (m == 0)
-    return;
-
-  int j_value = sorted_elements_list[j];
-  for (i_read = 0; i_read < n; i_read++)
-    {
-      // Tableau trie ?
-      assert(i_read == 0 || sorted_array[i_read] > sorted_array[i_read-1]);
-      const int i_value = sorted_array[i_read];
-
-      // On avance dans la liste sorted_elements jusqu'a trouver ou depasser
-      // l'element i_value
-      while ((j_value < i_value) && (j < m))
-        {
-          j++;
-          if (j == m)
-            break;
-          assert(sorted_elements_list[j] > j_value); // Tableau trie ?
-          j_value = sorted_elements_list[j];
-        }
-
-      if (j == m || j_value != i_value)
-        {
-          // i_value ne figure pas dans le tableau sorted_elements, on le garde
-          sorted_array[i_write] = i_value;
-          i_write++;
-        }
-    }
-  sorted_array.resize_array(i_write);
-}
-
-
-
 // Si un joint avec le "pe" existe, renvoie son indice,
 // sion cree un nouveau joint et renvoie son indice.
 static int ajouter_joint(Domaine& domaine, int pe)
@@ -830,29 +758,29 @@ static int ajouter_joint(Domaine& domaine, int pe)
   {
     for (int t = 0; t < 5; t++)
       {
-        Joint::Type_Item type;
+        JOINT_ITEM type;
         switch(t)
           {
           case 0:
-            type = Joint::SOMMET;
+            type = JOINT_ITEM::SOMMET;
             break;
           case 1:
-            type = Joint::ELEMENT;
+            type = JOINT_ITEM::ELEMENT;
             break;
           case 2:
-            type = Joint::FACE;
+            type = JOINT_ITEM::FACE;
             break;
           case 3:
-            type = Joint::ARETE;
+            type = JOINT_ITEM::ARETE;
             break;
           case 4:
-            type = Joint::FACE_FRONT;
+            type = JOINT_ITEM::FACE_FRONT;
             break;
           default:
             Cerr << "Error in Scatter.cpp : ajouter_joint" << finl;
             // Pour eviter le warning suivant sur gcc 3.4:
             // Scatter.cpp:416: warning: 'type' might be used uninitialized in this function
-            type = Joint::SOMMET;
+            type = JOINT_ITEM::SOMMET;
             Process::exit();
           }
         Joint_Items& data = joint.set_joint_item(type);
@@ -890,7 +818,7 @@ static int ajouter_joint(Domaine& domaine, int pe)
 void Scatter::calculer_espace_distant(Domaine&                  domaine,
                                       const int           nb_items_reels,
                                       const ArrsOfInt& items_to_send,
-                                      const Joint::Type_Item type_item)
+                                      const JOINT_ITEM type_item)
 {
   assert(items_to_send.size() == Process::nproc());
 
@@ -1151,11 +1079,14 @@ void Scatter::ajouter_joints(Domaine& domaine,
  * @param (items_lies) si le tableau est non vide, il doit etre de taille nb_items_reels. Dans ce cas, il permet de forcer la propriete suivante : "si l'item i est distant, alors l'item items_lies[i] est distant aussi". Ce tableau est utilise pour inclure les sommets periodiques virtuels associes. (voir calculer_espace_distant_sommets).
  */
 static void calculer_espace_distant_item(Domaine& le_dom,
-                                         const Joint::Type_Item type_item,
+                                         const JOINT_ITEM type_item,
                                          const IntTab& connectivite_elem_item,
                                          const int nb_items_reels,
                                          const ArrOfInt& items_lies)
 {
+  if(Process::is_sequential())
+    return;
+
   const Joints& joints                 = le_dom.faces_joint();
   const int   nb_joints              = joints.size();
   const int   nproc                  = Process::nproc();
@@ -1175,7 +1106,7 @@ static void calculer_espace_distant_item(Domaine& le_dom,
     {
       const Joint&     joint          = joints[i_joint];
       const int     pe_voisin      = joint.PEvoisin();
-      const ArrOfInt& esp_dist_elems = joint.joint_item(Joint::ELEMENT).items_distants();
+      const ArrOfInt& esp_dist_elems = joint.joint_item(JOINT_ITEM::ELEMENT).items_distants();
       const int     nb_elems_dist  = esp_dist_elems.size_array();
       liste_items.resize_array(0);
       // On met dans liste_items tous les items de tous les elements
@@ -1219,7 +1150,7 @@ static void calculer_espace_distant_item(Domaine& le_dom,
  *   (plus petit pe qui le possede) qui le met dans son espace distant.
  *   Attention, on cree de nouveaux joints.
  *   On remplit les tableaux
- *    dom.faces_joint(i).joint_item(Joint::SOMMET).items_distants();
+ *    dom.faces_joint(i).joint_item(JOINT_ITEM::SOMMET).items_distants();
  *
  */
 void Scatter::calculer_espace_distant_sommets(Domaine& dom, const Noms& liste_bords_perio)
@@ -1238,7 +1169,7 @@ void Scatter::calculer_espace_distant_sommets(Domaine& dom, const Noms& liste_bo
                                                 0 /* ne pas calculer pour les sommets virtuels */);
 
   calculer_espace_distant_item(dom,
-                               Joint::SOMMET,
+                               JOINT_ITEM::SOMMET,
                                connectivite_elem_som,
                                nb_sommets_reels,
                                renum_som_perio);
@@ -1257,7 +1188,7 @@ void Scatter::calculer_espace_distant_faces(Domaine& domaine,
   ArrOfInt tableau_vide;
 
   calculer_espace_distant_item(domaine,
-                               Joint::FACE,
+                               JOINT_ITEM::FACE,
                                elem_faces,
                                nb_faces_reelles,
                                tableau_vide);
@@ -1274,7 +1205,7 @@ void Scatter::calculer_espace_distant_aretes(Domaine& domaine,
     Cerr << "Scatter::calculer_espace_distant_aretes : start" << finl;
   ArrOfInt tableau_vide;
   calculer_espace_distant_item(domaine,
-                               Joint::ARETE,
+                               JOINT_ITEM::ARETE,
                                elem_aretes,
                                nb_aretes_reelles,
                                tableau_vide);
@@ -1290,7 +1221,7 @@ void Scatter::calculer_espace_distant_aretes(Domaine& domaine,
  *
  */
 void Scatter::calculer_renum_items_communs(Joints& joints,
-                                           const Joint::Type_Item type_item)
+                                           const JOINT_ITEM type_item)
 {
   // Il suffit d'envoyer au voisin le tableau _faces dans l'ordre
   // pour qu'il ait les indices des faces sur l'autre pe.
@@ -1346,8 +1277,15 @@ void Scatter::calculer_renum_items_communs(Joints& joints,
 /*! @brief construction d'un MD_Vector_std a partir des informations de joint du domaine pour le type d'item demande.
  *
  */
-void Scatter::construire_md_vector(const Domaine& dom, int nb_items_reels, const Joint::Type_Item type_item, MD_Vector& md_vector)
+void Scatter::construire_md_vector(const Domaine& dom, int nb_items_reels, const JOINT_ITEM type_item, MD_Vector& md_vector)
 {
+  if(Process::is_sequential())
+    {
+      MD_Vector_seq mdseq(nb_items_reels);
+      md_vector.copy(mdseq);
+      return;
+    }
+
   const Joints& joints  = dom.faces_joint();
   const int nb_joints = joints.size();
 
@@ -1443,23 +1381,6 @@ void Scatter::construire_md_vector(const Domaine& dom, int nb_items_reels, const
     }
 }
 
-// Fonction tri (selon la premiere colonne du tableau)
-static True_int fct_tri_table_inverse(const void *ptr1, const void *ptr2)
-{
-  const int i1 = *(int*)ptr1;
-  const int i2 = *(int*)ptr2;
-#ifdef INT_is_64_
-  if (i1 == i2)
-    return 0;
-  if (i1>i2)
-    return 1;
-  return -1;
-#else
-  return i1 - i2;
-#endif
-
-}
-
 /*! @brief Cette classe fournit les outils pour construire l'espace virtuel d'un tableau contenant des indices d'entites geometriques
  *
  *   (sommets, elements, faces). Elle gere en particulier la
@@ -1472,27 +1393,26 @@ public:
   Traduction_Indice_Global_Local() {};
   void initialiser(const MD_Vector& md_items);
   void reset();
-  void traduire_indice_local_vers_global(const ArrOfInt& indices_locaux, ArrOfInt& indices_globaux, int n) const;
-  int traduire_indice_global_vers_local(const ArrOfInt& indices_globaux, ArrOfInt& indices_locaux) const;
-  int traduire_espace_virtuel(IntVect& tableau) const;
+  void traduire_indice_local_vers_global(const ArrOfInt& indices_locaux, ArrOfTID& indices_globaux, int n) const;
+  int traduire_indice_global_vers_local(const ArrOfTID& indices_globaux, ArrOfInt& indices_locaux) const;
+  int traduire_espace_virtuel(IntTab& tableau) const;
 
-  static int chercher_table_inverse(const IntTab& table_inverse,
-                                    const int sommet_global);
+  int chercher_table_inverse(const trustIdType sommet_global) const;
 
 private:
   // Metadata des indices qu'on va renumeroter :
   MD_Vector md_items_;
-  int premier_indice_global_ = -100;
+  trustIdType premier_indice_global_ = -100;
   // Tableau distribue (avec espaces virtuels et items communs)
   // contenant pour toutes les entites a indexer  (reelles et virtuelles)
   // un indice global.
   // (si type_table_==SOMMETS, table_[i] est l'indice global du sommet i)
-  IntVect table_;
+  TIDVect table_;
   // Table permettant d'inverser la numerotation, classee par ordre
   // croissant de l'indice global :
   // * colonne 0 : l'indice global de l'entite
   // * colonne 1 : l'indice local de l'entite
-  IntTab table_inverse_;
+  TIDTab table_inverse_;
 };
 
 /*! @brief Initialise le dictionnaire Precontition:
@@ -1512,12 +1432,11 @@ void Traduction_Indice_Global_Local::initialiser(const MD_Vector& md_items)
   table_.reset();
   MD_Vector_tools::creer_tableau_distribue(md_items, table_);
 
-  const int nb_entites = md_items.valeur().get_nb_items_tot();
-  const int decal = mppartial_sum(nb_entites);
+  const int nb_entites = md_items->get_nb_items_tot();
+  const trustIdType decal = Process::mppartial_sum(nb_entites);
   premier_indice_global_ = decal;
 
-  int i;
-  for (i = 0; i < nb_entites; i++)
+  for (int i = 0; i < nb_entites; i++)
     table_[i] = i + decal;
   table_.echange_espace_virtuel();
 
@@ -1527,17 +1446,16 @@ void Traduction_Indice_Global_Local::initialiser(const MD_Vector& md_items)
   const int nb_entites_tot = table_.size_totale();
   table_inverse_.resize(0, 2);
 
-  for (i = 0; i < nb_entites_tot; i++)
+  for (int i = 0; i < nb_entites_tot; i++)
     {
       if (table_[i] != i + decal)
         table_inverse_.append_line(table_[i], i);
     }
   // insure se plaint .. regarder si il a raison
   if (table_inverse_.size_array()>0)
-    qsort(table_inverse_.addr(),
-          table_inverse_.dimension(0),
-          2 * sizeof(int),
-          fct_tri_table_inverse);
+    {
+      tri_lexicographique_tableau(table_inverse_);
+    }
 }
 
 void Traduction_Indice_Global_Local::reset()
@@ -1554,27 +1472,26 @@ void Traduction_Indice_Global_Local::reset()
  *   La table_inverse ne doit pas avoir d'espace virtuel.
  *
  */
-int Traduction_Indice_Global_Local::chercher_table_inverse(const IntTab& table_inverse,
-                                                           const int sommet_global)
+int Traduction_Indice_Global_Local::chercher_table_inverse(const trustIdType sommet_global) const
 {
   // Algorithme : recherche par dichotomie:
   int imin = 0;
-  int imax = table_inverse.dimension(0) - 1;
+  int imax = table_inverse_.dimension(0) - 1;
   // Si un seul element dans la table, on ne passe pas dans while
   //        (donc initialisation a table_inverse(0, 0))
   // Sinon, si aucun element, il ne faut pas que valeur == sommet_global,
   //        sinon, valeur quelconque, elle sera ecrasee dans le while.
-  int valeur;
+  trustIdType valeur;
   if (imax == 0)
-    valeur = table_inverse(0, 0);
+    valeur = table_inverse_(0, 0);
   else
     valeur = sommet_global - 1;
 
   while (imax > imin)
     {
       const int milieu = (imin + imax) >> 1; // (min+max)/2
-      valeur = table_inverse(milieu, 0);
-      const int compare = valeur - sommet_global;
+      valeur = table_inverse_(milieu, 0);
+      const trustIdType compare = valeur - sommet_global;
       if (compare < 0)
         imin = milieu + 1;
       else if (compare > 0)
@@ -1583,9 +1500,9 @@ int Traduction_Indice_Global_Local::chercher_table_inverse(const IntTab& table_i
         imin = imax = milieu;
     }
   int resu = -1;
-  valeur = table_inverse(imin, 0);
+  valeur = table_inverse_(imin, 0);
   if (valeur == sommet_global)
-    resu = table_inverse(imin, 1);
+    resu = static_cast<int>(table_inverse_(imin, 1)); // 2nd col always an int
   return resu;
 }
 
@@ -1597,15 +1514,13 @@ int Traduction_Indice_Global_Local::chercher_table_inverse(const IntTab& table_i
  *    si indices_locaux[i] < 0 alors indices_globaux[i] = -1
  *
  */
-void Traduction_Indice_Global_Local::traduire_indice_local_vers_global(
-  const ArrOfInt& indices_locaux,
-  ArrOfInt& indices_globaux,
-  int nb_items_a_traiter) const
+void Traduction_Indice_Global_Local::traduire_indice_local_vers_global(const ArrOfInt& indices_locaux,
+                                                                       ArrOfTID& indices_globaux, int nb_items_a_traiter) const
 {
   for (int i = 0; i < nb_items_a_traiter; i++)
     {
       const int i_loc = indices_locaux[i];
-      const int i_glob = (i_loc < 0) ? -1 : table_[i_loc];
+      const trustIdType i_glob = (i_loc < 0) ? -1 : table_[i_loc];
       indices_globaux[i] = i_glob;
     }
 }
@@ -1615,9 +1530,8 @@ void Traduction_Indice_Global_Local::traduire_indice_local_vers_global(
  * @param (indices_globaux) le tableau des indices globaux a traduire
  * @param (indices_locaux) en sortie, les indices locaux ou -1 si l'indice global n'a pas ete trouve. Valeur de retour: nombre d'indices non trouves (indices globaux qui ne correspondent a aucun indice local).
  */
-int Traduction_Indice_Global_Local::traduire_indice_global_vers_local(
-  const ArrOfInt& indices_globaux,
-  ArrOfInt& indices_locaux) const
+int Traduction_Indice_Global_Local::traduire_indice_global_vers_local(const ArrOfTID& indices_globaux,
+                                                                      ArrOfInt& indices_locaux) const
 {
   assert(indices_globaux.size_array() == indices_locaux.size_array());
   int i;
@@ -1626,7 +1540,7 @@ int Traduction_Indice_Global_Local::traduire_indice_global_vers_local(
   const int size_table = table_.size_array();
   for (i = 0; i < nb_indices; i++)
     {
-      const int i_glob = indices_globaux[i];
+      const trustIdType i_glob = indices_globaux[i];
       int i_loc;
       if (i_glob < 0)
         {
@@ -1637,11 +1551,11 @@ int Traduction_Indice_Global_Local::traduire_indice_global_vers_local(
       else
         {
           // On teste si l'item n'est pas renumerote
-          i_loc = i_glob - premier_indice_global_;
+          i_loc = static_cast<int>(i_glob - premier_indice_global_); // the diff is local, hence small
           if (i_loc < 0 || i_loc >= size_table || table_[i_loc] != i_glob)
             {
               // non, il faut inverser la table:
-              i_loc = chercher_table_inverse(table_inverse_, i_glob);
+              i_loc = chercher_table_inverse(i_glob);
             }
           if (i_loc < 0)
             nb_erreurs++;
@@ -1663,12 +1577,19 @@ int Traduction_Indice_Global_Local::traduire_indice_global_vers_local(
  *   (par exemple, le sommet reference n'existe pas sur le processeur voisin)
  *
  */
-int Traduction_Indice_Global_Local::traduire_espace_virtuel(IntVect& tableau) const
+int Traduction_Indice_Global_Local::traduire_espace_virtuel(IntTab& tab) const
 {
-  // On cree une copie du tableau, dans laquelle on met les indices globaux:
-  IntVect indices_globaux;
-  // Ne copier que la structure
-  indices_globaux.copy(tableau, RESIZE_OPTIONS::NOCOPY_NOINIT);
+  // Create a copy of the tab in which we will store global indices
+  // Can not use 'copy' since value types are different (int vs TID), so this a bit clumsy:
+  // (TODO provide 'from_int_to_tid' in TRUSTTab.h)
+  TIDTab ind_glob_tab;
+  ArrOfInt sz(tab.nb_dim());
+  for (int i=0; i < tab.nb_dim(); i++) sz[i] = tab.dimension_tot(i);
+  ind_glob_tab.resize(sz, RESIZE_OPTIONS::NOCOPY_NOINIT);
+  ind_glob_tab.set_md_vector(tab.get_md_vector());
+
+  IntVect& tableau = tab; // tab seen as a Vect.
+  TIDVect& indices_globaux = ind_glob_tab;
 
   const int nb_items_reels    = tableau.size_reelle();
   const int nb_items_tot      = tableau.size_totale();
@@ -1680,7 +1601,7 @@ int Traduction_Indice_Global_Local::traduire_espace_virtuel(IntVect& tableau) co
   indices_globaux.echange_espace_virtuel();
 
   // On retraduit uniquement les items virtuels du "tableau" en indices locaux:
-  ArrOfInt src;
+  ArrOfTID src;
   ArrOfInt dest;
   src.ref_array(indices_globaux, nb_items_reels /*debut*/, nb_items_virtuels /*taille*/);
   dest.ref_array(tableau, nb_items_reels /*debut*/, nb_items_virtuels /*taille*/);
@@ -1706,8 +1627,18 @@ void Scatter::construire_espace_virtuel_traduction(const MD_Vector& md_indice,
                                                    IntTab& tableau,
                                                    const int error_is_fatal)
 {
-  if (tableau.dimension_tot(0) != md_indice.valeur().get_nb_items_reels()
-      && (tableau.dimension_tot(0) != md_indice.valeur().get_nb_items_tot()))
+  if(Process::is_sequential())
+    {
+      // MD_Vector is a MD_Vector_seq:
+      assert( dynamic_cast<const MD_Vector_seq *>(&md_indice.valeur()) != nullptr);
+      // The array should still get its (dummy sequential) MD_Vector, otherwise it will remain null.
+      if (!(tableau.get_md_vector() == md_indice))
+        tableau.set_md_vector(md_indice);
+      return;
+    }
+
+  if (tableau.dimension_tot(0) != md_indice->get_nb_items_reels()
+      && (tableau.dimension_tot(0) != md_indice->get_nb_items_tot()))
     {
       Cerr << "[PE " << Process::me()
            << "] Error in Scatter::construire_espace_virtuel_traduction\n"
@@ -1724,8 +1655,7 @@ void Scatter::construire_espace_virtuel_traduction(const MD_Vector& md_indice,
     MD_Vector_tools::creer_tableau_distribue(md_indice, tableau, RESIZE_OPTIONS::COPY_NOINIT);
 
   // Remplissage des valeurs vituelles du "tableau"
-  const int nb_erreurs =
-    dictionnaire_indices.traduire_espace_virtuel(tableau);
+  const int nb_erreurs = dictionnaire_indices.traduire_espace_virtuel(tableau);
 
   if (nb_erreurs > 0 && error_is_fatal)
     {
@@ -1779,7 +1709,7 @@ void Scatter::reordonner_faces_de_joint(Domaine& dom)
 
   schema_comm.begin_comm();
   // Envoi des faces de joint, traduites en indices de sommets globaux
-  IntTab faces_num_global;
+  TIDTab faces_num_global;
 
   for (i_joint = 0; i_joint < nb_joints; i_joint++)
     {
@@ -1842,7 +1772,7 @@ void Scatter::reordonner_faces_de_joint(Domaine& dom)
  */
 static void calculer_liste_complete_sommets_joint(const Joint& joint, ArrOfInt& liste_sommets)
 {
-  liste_sommets = joint.joint_item(Joint::SOMMET).items_communs();
+  liste_sommets = joint.joint_item(JOINT_ITEM::SOMMET).items_communs();
 #if 0
 
   // On prend tous les sommets des faces de joint:
@@ -1953,14 +1883,14 @@ static void calculer_liste_complete_aretes_joint(const Joint& joint, ArrOfInt& l
   array_trier_retirer_doublons(liste_aretes);
 }
 
-static void calculer_liste_complete_items_joint(const Joint& joint, const Joint::Type_Item type_item, ArrOfInt& liste_items)
+static void calculer_liste_complete_items_joint(const Joint& joint, const JOINT_ITEM type_item, ArrOfInt& liste_items)
 {
   switch(type_item)
     {
-    case Joint::SOMMET:
+    case JOINT_ITEM::SOMMET:
       calculer_liste_complete_sommets_joint(joint, liste_items);
       break;
-    case Joint::ARETE:
+    case JOINT_ITEM::ARETE:
       calculer_liste_complete_aretes_joint(joint, liste_items);
       break;
     default:
@@ -2002,7 +1932,7 @@ void Scatter::corriger_espace_distant_elements_perio(Domaine& dom,
                                    connectivite_som_elem,
                                    0 /* ne pas inclure les sommets virtuels */);
 
-  const int nb_som_face = dom.type_elem().nb_som_face();
+  const int nb_som_face = dom.type_elem()->nb_som_face();
   ArrOfInt une_face(nb_som_face);
   ArrOfInt elems_voisins;
 
@@ -2067,7 +1997,7 @@ void Scatter::corriger_espace_distant_elements_perio(Domaine& dom,
           // dans les elements jumeaux, ajouter l'autre jumeau dans les elements distants
           for (int i_joint = 0; i_joint < nb_joints; i_joint++)
             {
-              ArrOfInt& elements_distants = dom.joint(i_joint).set_joint_item(Joint::ELEMENT).set_items_distants();
+              ArrOfInt& elements_distants = dom.joint(i_joint).set_joint_item(JOINT_ITEM::ELEMENT).set_items_distants();
               int n = elements_distants.size_array();
               // Marquer les elements distants existants:
               int i;
@@ -2102,7 +2032,7 @@ void Scatter::corriger_espace_distant_elements_perio(Domaine& dom,
   // Dernier tri des elements distants dans l'ordre croissant
   for (int i_joint = 0; i_joint < nb_joints; i_joint++)
     {
-      ArrOfInt& elements_distants = dom.joint(i_joint).set_joint_item(Joint::ELEMENT).set_items_distants();
+      ArrOfInt& elements_distants = dom.joint(i_joint).set_joint_item(JOINT_ITEM::ELEMENT).set_items_distants();
 
       elements_distants.ordonne_array();
     }
@@ -2188,7 +2118,7 @@ void Scatter::calculer_espace_distant_elements(Domaine& dom)
         const Joint& joint = dom.joint(i_joint);
         const int pe = joint.PEvoisin();
         liste_pe_voisins[i_joint] = pe;
-        const ArrOfInt& sommets_joint = joint.joint_item(Joint::SOMMET).items_communs();
+        const ArrOfInt& sommets_joint = joint.joint_item(JOINT_ITEM::SOMMET).items_communs();
         liste_sommets[pe] = sommets_joint;
       }
   }
@@ -2213,7 +2143,7 @@ void Scatter::calculer_espace_distant_elements(Domaine& dom)
       for (int ijoint = 0; ijoint < nbjoints; ijoint++)
         {
           const Joint& joint = dom.joint(ijoint);
-          const ArrOfInt& sommets_joint = joint.joint_item(Joint::SOMMET).items_communs();
+          const ArrOfInt& sommets_joint = joint.joint_item(JOINT_ITEM::SOMMET).items_communs();
           const int n = sommets_joint.size_array();
           for (int i = 0; i < n; i++)
             {
@@ -2228,7 +2158,7 @@ void Scatter::calculer_espace_distant_elements(Domaine& dom)
         {
           const Joint& joint = dom.joint(ijoint);
           const int pe = joint.PEvoisin();
-          const IntTab& renum_sommets = joint.joint_item(Joint::SOMMET).renum_items_communs();
+          const IntTab& renum_sommets = joint.joint_item(JOINT_ITEM::SOMMET).renum_items_communs();
           const int n = renum_sommets.dimension(0);
           for (int i = 0; i < n; i++)
             {
@@ -2369,23 +2299,23 @@ void Scatter::calculer_espace_distant_elements(Domaine& dom)
     // par l'algorithme sequentiel.
     // Pour l'instant, l'algorithme parallele a l'air de fonctionner sans probleme
     // je desactive ce test. (Benoit Mathieu)
-    int erreur = 0;
+    bool erreur = false;
     const int nbjoints = dom.nbjoints();
     for (int i = 0; i < nbjoints; i++)
       {
         Joint& joint = dom.joint(i);
         const int pe = joint.PEvoisin();
-        if (!(joint.joint_item(Joint::ELEMENT).items_distants() == elements_distants[pe]))
+        if (!(joint.joint_item(JOINT_ITEM::ELEMENT).items_distants() == elements_distants[pe]))
           {
             Cerr << "Error in Scatter, PE " << Process::me() << finl;
             Process::Journal() << "Error scatter, remote elements pe " << pe << finl
-                               << " Splitting algorithm: " << joint.joint_item(Joint::ELEMENT).items_distants()
+                               << " Splitting algorithm: " << joint.joint_item(JOINT_ITEM::ELEMENT).items_distants()
                                << " Scatter algorithm  : " << elements_distants[pe] << finl;
 
-            erreur = 1;
+            erreur = true;
           }
       }
-    if (mp_sum(erreur))
+    if (mp_or(erreur))
       Process::exit();
 #else
     // Stockage du resultat
@@ -2394,19 +2324,14 @@ void Scatter::calculer_espace_distant_elements(Domaine& dom)
       {
         Joint& joint = dom.joint(i);
         const int pe = joint.PEvoisin();
-        joint.set_joint_item(Joint::ELEMENT).set_items_distants() = elements_distants[pe];
+        joint.set_joint_item(JOINT_ITEM::ELEMENT).set_items_distants() = elements_distants[pe];
       }
 #endif
   }
 }
 
-static int fct_cmp_coord_dimension = -1;
-static double fct_cmp_coord_epsilon = -1.;
-
-static inline True_int fct_cmp_coordonnees(const double * s1, const double *s2)
+static inline True_int fct_cmp_coordonnees(const double * s1, const double *s2, int dim, const double epsilon)
 {
-  const int dim = fct_cmp_coord_dimension;
-  const double epsilon = fct_cmp_coord_epsilon;
   assert(dim==2 || dim==3);
   if (s1[0] < s2[0] - epsilon)
     return -1;
@@ -2424,21 +2349,6 @@ static inline True_int fct_cmp_coordonnees(const double * s1, const double *s2)
     return 1;
   else
     return 0;
-}
-
-static const DoubleTab * fct_cmp_coord_tableau = 0;
-// Fonction de comparaison pour le tri d'un tableau d'indirection vers
-// des coordonnees de sommets. Fonction appelee par qsort.
-// ptr1 et ptr2 sont des adresses de deux entiers dans le tableau "index"
-// Les coordonnees comparees sont dans le tableau *fct_cmp_coord_tableau
-static True_int fct_cmp_index_coord(const void * ptr1, const void * ptr2)
-{
-  const int i1 = *(const int *)ptr1;
-  const int i2 = *(const int *)ptr2;
-  const double * s1 = & (*fct_cmp_coord_tableau)(i1,0);
-  const double * s2 = & (*fct_cmp_coord_tableau)(i2,0);
-  const True_int resu = fct_cmp_coordonnees(s1, s2);
-  return resu;
 }
 
 /*! @brief Construit le tableau "correspondance" tel que Pour 0 <= i < sommets2.
@@ -2460,12 +2370,6 @@ static True_int fct_cmp_index_coord(const void * ptr1, const void * ptr2)
 int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab& sommets2,
                                      ArrOfInt& correspondance, const double epsilon)
 {
-  // Methode non threadsafe a cause des static. On teste
-  if (fct_cmp_coord_tableau)
-    {
-      Cerr << "Thread error in Chercher_Correspondance" << finl;
-      exit();
-    }
   const int nb_sommets1 = sommets1.dimension(0);
   const int nb_sommets2 = sommets2.dimension(0);
   // Precondition necessaire pour fct_cmp_index_coord
@@ -2477,10 +2381,6 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
       correspondance = -1;
       return nb_sommets2;
     }
-
-  fct_cmp_coord_tableau   = &sommets1;
-  fct_cmp_coord_dimension = sommets1.dimension(1);
-  fct_cmp_coord_epsilon   = epsilon;
 
   // Tableau d'indirection trie, tel que les coordonnees sommets1(index[i], .) soient
   // tiees dans l'ordre lexicographique.
@@ -2499,9 +2399,7 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
   //   y==z (a epsilon pres)
   //  mais x!=z
   // Donc la recherche par dichotomie peut echouer par la suite.
-
-  qsort(index.addr(), nb_sommets1, sizeof(int),
-        fct_cmp_index_coord);
+  tri_lexicographique_tableau_indirect(sommets1, index);
 
   // Construction du tableau de correspondance tel que
   //   sommet1(correspondance[i], ...) == sommet2(i, ...)
@@ -2509,6 +2407,7 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
   int nb_echec_dichotomie = 0;
   {
     int i;
+    int nb_dim = sommets1.dimension(1);
     for (i = 0; i < nb_sommets2; i++)
       {
         const double * s2 = & sommets2(i,0);
@@ -2524,7 +2423,7 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
             const int milieu = (imin + imax) >> 1; // (min+max)/2
             k = index[milieu];
             const double * s1 = & sommets1(k, 0);
-            resu_cmp = fct_cmp_coordonnees(s1, s2);
+            resu_cmp = fct_cmp_coordonnees(s1, s2, nb_dim, epsilon);
             switch(resu_cmp)
               {
               case -1:
@@ -2542,7 +2441,7 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
           {
             k = index[imin];
             const double * s1 = & sommets1(k, 0);
-            resu_cmp = fct_cmp_coordonnees(s1, s2);
+            resu_cmp = fct_cmp_coordonnees(s1, s2, nb_dim, epsilon);
           }
         if (resu_cmp == 0)
           {
@@ -2557,7 +2456,7 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
             for (j = 0; j < nb_sommets1; j++)
               {
                 const double * s1 = & sommets1(j,0);
-                resu_cmp = fct_cmp_coordonnees(s1, s2);
+                resu_cmp = fct_cmp_coordonnees(s1, s2, nb_dim, epsilon);
                 if (resu_cmp == 0)
                   break;
               }
@@ -2570,9 +2469,6 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
         correspondance[i] = num_sommet;
       }
   }
-  fct_cmp_coord_dimension = 0;
-  fct_cmp_coord_epsilon   = -1.;
-  fct_cmp_coord_tableau   = 0;
 
   if (nb_echec_dichotomie > 0)
     Process::Journal() << "Chercher_Correspondance Dichotomy failure rate "
@@ -2585,14 +2481,14 @@ int Scatter::Chercher_Correspondance(const DoubleTab& sommets1, const DoubleTab&
  *
  */
 
-void Scatter::construire_correspondance_items_par_coordonnees(Joints& joints, const Joint::Type_Item type_item, const DoubleTab& coord_items)
+void Scatter::construire_correspondance_items_par_coordonnees(Joints& joints, const JOINT_ITEM type_item, const DoubleTab& coord_items)
 {
   switch(type_item)
     {
-    case Joint::SOMMET:
+    case JOINT_ITEM::SOMMET:
       ;
       break;
-    case Joint::ARETE:
+    case JOINT_ITEM::ARETE:
       ;
       break;
     default:
@@ -2712,7 +2608,7 @@ void Scatter::construire_correspondance_items_par_coordonnees(Joints& joints, co
                 for (int k2 = 0; k2 < dim; k2++)
                   Cerr << coord_locaux(i, k2) << " ";
                 Cerr << finl << "was not found in the joint with the PE " << PEvoisin << finl;
-                if (type_item==3)
+                if (type_item==JOINT_ITEM::ARETE)
                   {
                     Cerr << "The searching algorithm of the isolated edges on a joint" << finl;
                     Cerr << "does not work yet in some cases. Two isolated nodes of a joint (example below" << finl;
@@ -2761,7 +2657,7 @@ void Scatter::construire_correspondance_items_par_coordonnees(Joints& joints, co
   }
 }
 
-/*! @brief Construction des tableaux joint_item(Joint::SOMMET).
+/*! @brief Construction des tableaux joint_item(JOINT_ITEM::SOMMET).
  *
  * items_communs de tous les joints du domaine(0) du domaine dom
  *
@@ -2769,10 +2665,10 @@ void Scatter::construire_correspondance_items_par_coordonnees(Joints& joints, co
 
 void Scatter::construire_correspondance_sommets_par_coordonnees(Domaine& dom)
 {
-  construire_correspondance_items_par_coordonnees(dom.faces_joint(), Joint::SOMMET, dom.coord_sommets());
+  construire_correspondance_items_par_coordonnees(dom.faces_joint(), JOINT_ITEM::SOMMET, dom.coord_sommets());
 }
 
-/*! @brief Construction des tableaux joint_item(Joint::ARETE).
+/*! @brief Construction des tableaux joint_item(JOINT_ITEM::ARETE).
  *
  * items_communs de tous les joints du domaine
  *
@@ -2780,21 +2676,7 @@ void Scatter::construire_correspondance_sommets_par_coordonnees(Domaine& dom)
 
 void Scatter::construire_correspondance_aretes_par_coordonnees(Domaine_VF& zvf)
 {
-  construire_correspondance_items_par_coordonnees(zvf.domaine().faces_joint(), Joint::ARETE, zvf.xa());
-}
-
-static void init_simple_md_vector(MD_Vector_std& md, const int n)
-{
-  md.nb_items_tot_ = n;
-  md.nb_items_reels_ = n;
-  md.nb_items_seq_tot_ = n;
-  md.nb_items_seq_local_ = n;
-  md.blocs_items_to_sum_.resize_array(2, RESIZE_OPTIONS::NOCOPY_NOINIT);
-  md.blocs_items_to_sum_[0] = 0;
-  md.blocs_items_to_sum_[1] = n;
-  md.blocs_items_to_compute_.resize_array(2, RESIZE_OPTIONS::NOCOPY_NOINIT);
-  md.blocs_items_to_compute_[0] = 0;
-  md.blocs_items_to_compute_[1] = n;
+  construire_correspondance_items_par_coordonnees(zvf.domaine().faces_joint(), JOINT_ITEM::ARETE, zvf.xa());
 }
 
 /*! @brief Pour un item geometrique "type_item", remplit le champ nb_items_virtuels_ des joints en fonction du nombre d'items distants :
@@ -2804,7 +2686,7 @@ static void init_simple_md_vector(MD_Vector_std& md, const int n)
  *
  */
 void Scatter::calculer_nb_items_virtuels(Joints& joints,
-                                         const Joint::Type_Item type_item)
+                                         const JOINT_ITEM type_item)
 {
   Schema_Comm schema_comm;
   const int nb_joints = joints.size();
@@ -2839,31 +2721,41 @@ void Scatter::calculer_nb_items_virtuels(Joints& joints,
   schema_comm.end_comm();
 }
 
-/*! @brief cree des descripteurs sequentiels pour les tableaux sommets et elements du domaine (necessaire car Scatter n'est
- *  pas appele pour les domaines en sequentiel)
+/*! @brief Create parallel descriptors for the vertex and element arrays of the domain (necessary because Scatter is
+ *  never invoked in sequential).
+ *
+ *  In 64bit the corresponding number of items might be big. This is here the main justification for the need of the class
+ *  MD_Vector_seq which unique useful argument is the total number of items (with type trustIdType).
+ *  Alternative would have been to make all members of MD_Vector_std compatible with trustIdType ...
  */
-void Scatter::init_sequential_domain(Domaine& dom)
+template <typename _SIZE_>
+void Scatter::init_sequential_domain(Domaine_32_64<_SIZE_>& dom)
 {
-  MD_Vector_std mdstd;
+  MD_Vector_seq mdseq_som(dom.les_sommets().dimension(0));
   MD_Vector md;
-  const int nbsom = dom.nb_som();
-  init_simple_md_vector(mdstd, nbsom);
-  md.copy(mdstd);
+  md.copy(mdseq_som);
   dom.les_sommets().set_md_vector(md);
-
-  const int nb_elem = dom.nb_elem();
-  init_simple_md_vector(mdstd, nb_elem);
-  md.copy(mdstd);
+  MD_Vector_seq mdseq_elem(dom.les_elems().dimension(0));
+  md.copy(mdseq_elem);
   dom.les_elems().set_md_vector(md);
 }
 
 /*! @brief methode utilisee par les interpretes qui modifient le domaine (sequentiel), detruit les descripteurs
  *  des sommets et elements pour permettre la modification de ces tableaux.
  */
-void Scatter::uninit_sequential_domain(Domaine& dom)
+template <typename _SIZE_>
+void Scatter::uninit_sequential_domain(Domaine_32_64<_SIZE_>& dom)
 {
   MD_Vector md; // descripteur nul
   dom.les_sommets().set_md_vector(md);
   dom.les_elems().set_md_vector(md);
 }
 
+
+// Explicit instanciation
+template void Scatter::init_sequential_domain(Domaine_32_64<int>& dom);
+template void Scatter::uninit_sequential_domain(Domaine_32_64<int>& dom);
+#if INT_is_64_ == 2
+template void Scatter::init_sequential_domain(Domaine_32_64<trustIdType>& dom);
+template void Scatter::uninit_sequential_domain(Domaine_32_64<trustIdType>& dom);
+#endif

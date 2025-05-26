@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,17 +18,16 @@
 
 #include <TRUST_Ref.h>
 
+
 class Convection_Diffusion_Temperature;
 class Navier_Stokes_std;
 class Champ_Don_base;
 class Probleme_base;
 class Domaine_VF;
-class Champ_Don;
 class Entree;
 
 class Terme_Source_inc_th
 {
-
 public:
   void associer_eqn(const Navier_Stokes_std&) ;
   void associer_eqn(const Convection_Diffusion_Temperature&) ;
@@ -37,9 +36,9 @@ public:
   void mettre_a_jour(double temps) { }
 
 protected :
-  REF(Navier_Stokes_std) eq_hydraulique_;
-  REF(Convection_Diffusion_Temperature) eq_thermique_;
-  REF(Champ_Don) beta_t_;
+  OBS_PTR(Navier_Stokes_std) eq_hydraulique_;
+  OBS_PTR(Convection_Diffusion_Temperature) eq_thermique_;
+  OBS_PTR(Champ_Don_base) beta_t_;
   int impr;
   Entree& lire_donnees(Entree& );
 };

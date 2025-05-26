@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,8 @@
 #include <TRUSTLists.h>
 #include <TRUSTTab.h>
 #include <algorithm>
+#include <kokkos++.h>
+#include <TRUSTArray_kokkos.tpp>
 
 /*! @brief Classe Matrice_Morse Represente une matrice M (creuse), non necessairement carree
  *
@@ -93,21 +95,21 @@ public :
   void set_symmetric( const int );
   int get_symmetric( ) const { return symetrique_; }
 
-  IntVect& get_set_tab1( void )
+  IntVect& get_set_tab1()
   {
     is_stencil_up_to_date_ = false ;
     return tab1_ ;
   }
-  IntVect& get_set_tab2( void )
+  IntVect& get_set_tab2()
   {
     is_stencil_up_to_date_ = false ;
     return tab2_ ;
   }
-  DoubleVect& get_set_coeff( void ) { return coeff_ ; }
+  DoubleVect& get_set_coeff() { return coeff_ ; }
 
-  const IntVect& get_tab1( void ) const { return tab1_ ; }
-  const IntVect& get_tab2( void ) const { return tab2_ ; }
-  const DoubleVect& get_coeff( void ) const { return coeff_ ; }
+  const IntVect& get_tab1() const { return tab1_ ; }
+  const IntVect& get_tab2() const { return tab2_ ; }
+  const DoubleVect& get_coeff() const { return coeff_ ; }
 
   int nb_vois(int i) const
   {
@@ -115,7 +117,7 @@ public :
   }
 
   //methode pour nettoyer la matrice.
-  void clean();
+  void clean() override;
 
   // operateurs :
   // 0<=i,j<=n-1
@@ -178,11 +180,12 @@ public :
   void formeF() ;
 
   bool has_same_morse_matrix_structure(const Matrice_Morse&) const;
-  bool check_morse_matrix_structure( void ) const;
-  bool check_sorted_morse_matrix_structure( void ) const;
-  void assert_check_morse_matrix_structure( void ) const;
-  void assert_check_sorted_morse_matrix_structure( void ) const;
+  bool check_morse_matrix_structure() const;
+  bool check_sorted_morse_matrix_structure() const;
+  void assert_check_morse_matrix_structure() const;
+  void assert_check_sorted_morse_matrix_structure() const;
   void sort_stencil();
+  bool is_sorted_stencil() const;
   bool is_diagonal();
 
   mutable int morse_matrix_structure_has_changed_; // Flag if matrix structure changes
@@ -261,5 +264,70 @@ inline double& Matrice_Morse::operator()(int i, int j)
   return coeff_[0];     // On ne passe jamais ici
 }
 
+// Kokkos: First (and quick) implementation of a Matrix view. Future: Kokkos kernels ?
+#ifdef KOKKOS
+struct Matrice_Morse_View
+{
+  CIntArrView tab1_v;
+  CIntArrView tab2_v;
+  mutable DoubleArrView coeff_v;
+  int symetrique_ = 0;
+  int sorted_ = 0;
+  void set(Matrice_Morse& matrice)
+  {
+    tab1_v = matrice.get_tab1().view_ro();
+    tab2_v = matrice.get_tab2().view_ro();
+    coeff_v = matrice.get_set_coeff().view_rw();
+    symetrique_ = matrice.get_symmetric();
+    sorted_ = matrice.sorted_;
+  }
+  // Replace double &operator()(int i, int j) by several dedicated function for better performance and fix HSA error on adastra (zero_ on host)
+  KOKKOS_INLINE_FUNCTION
+  double& operator()(int i, int j) const
+  {
+    if (symetrique_!=2 || i!=j) Process::Kokkos_exit("Not implemented yet in Matrice_Morse_View::operator()");
+    return coeff_v(tab1_v(i)-1);
+  }
+
+  KOKKOS_INLINE_FUNCTION
+  void atomic_add(int i, int j, double coeff) const { add(i,j,coeff,true); }
+
+  KOKKOS_INLINE_FUNCTION
+  void add(int i, int j, double coeff, bool atomic=false) const
+  {
+    if (symetrique_==2 && i!=j)
+      return; // Pour Matrice_Morse_Diag, on ne verifie pas si la case est definie et l'on renvoie 0
+    else if ((symetrique_==1) && ((j-i)<0))
+      {
+        // std::swap(i,j) refused by HIP:  reference to __host__ function 'swap<int>' in __host__ __device__ function
+        // Kokkos::kokkos_swap(i,j); refused by old Kokkos 3.7 (C++14)
+        int k = j;
+        j = i;
+        i = k;
+      }
+    int k1=tab1_v(i)-1;
+    int k2=tab1_v(i+1)-1;
+    /* ToDo Kokkos for faster access:
+    if (sorted_)
+      {
+        int k = (int) (std::lower_bound(tab2_.addr() + k1, tab2_.addr() + k2, j + 1) - tab2_.addr());
+        if (k < k2 && tab2_v[k] == j + 1)
+          return coeff_v[k];
+      }
+    else */
+    for (int k=k1; k<k2; k++)
+      if (tab2_v(k)-1 == j)
+        {
+          if (atomic) Kokkos::atomic_add(&coeff_v(k), coeff);
+          else coeff_v(k) += coeff;
+          return;
+        }
+#ifndef NDEBUG
+    printf("Error Matrice_Morse::operator(%d, %d) not defined!\n", (True_int)i, (True_int)j);
+    Process::Kokkos_exit("Error");
+#endif
+  }
+};
+#endif
 #endif
 

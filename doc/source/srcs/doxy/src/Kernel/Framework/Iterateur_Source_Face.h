@@ -81,13 +81,13 @@ DoubleTab& Iterateur_Source_Face<_TYPE_>::ajouter(DoubleTab& resu) const
   if (equation_divisee_par_rho())
     {
       const Milieu_base& milieu = la_zcl->equation().milieu();
-      const Champ_base& rho = milieu.masse_volumique().valeur();
+      const Champ_base& rho = milieu.masse_volumique();
       if (sub_type(Champ_Uniforme, rho))
-        coef = rho(0, 0);
+        coef = rho.valeurs()(0, 0);
       else
         {
           const DoubleTab& val_rho = rho.valeurs();
-          const IntTab& face_vois = le_dom.valeur().face_voisins();
+          const IntTab& face_vois = le_dom->face_voisins();
           const DoubleVect& volumes = ref_cast(Domaine_VF,le_dom.valeur()).volumes();
           coef = 0.;
           for (int fac = 0; fac < nb_faces_tot; fac++)
@@ -130,7 +130,7 @@ DoubleTab& Iterateur_Source_Face<_TYPE_>::ajouter_faces_bords(const int ncomp, D
   for (int num_cl = 0; num_cl < le_dom->nb_front_Cl(); num_cl++)
     {
       const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       const int ndeb = le_bord.num_premiere_face(), nfin = ndeb + le_bord.nb_faces();
       if ((sub_type(Dirichlet, la_cl.valeur())) || (sub_type(Dirichlet_homogene, la_cl.valeur()))) { /* Do nothing */ }
       else

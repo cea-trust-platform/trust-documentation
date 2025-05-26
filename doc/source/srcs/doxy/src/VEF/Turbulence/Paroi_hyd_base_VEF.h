@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,16 +29,12 @@ class Paroi_hyd_base_VEF: public Turbulence_paroi_base
   Declare_base(Paroi_hyd_base_VEF);
 public:
 
-  void associer(const Domaine_dis&, const Domaine_Cl_dis&) override;
+  void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&) override;
   void init_lois_paroi_();
   DoubleTab& corriger_derivee_impl(DoubleTab& d) const override;
   inline const ArrOfInt& face_keps_imposee() const { return face_keps_imposee_; }
-  void imprimer_premiere_ligne_ustar(int boundaries_, const LIST(Nom) &boundaries_list, const Nom& nom_fichier_) const override;
-  void imprimer_ustar_mean_only(Sortie&, int, const LIST(Nom)&, const Nom&) const override;
 
 protected:
-  REF(Domaine_VEF) le_dom_VEF;
-  REF(Domaine_Cl_VEF) le_dom_Cl_VEF;
   IntVect face_keps_imposee_; // avec descripteur parallele
   int flag_face_keps_imposee_ = 0;
 };

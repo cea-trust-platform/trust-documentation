@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,13 +13,14 @@
 *
 *****************************************************************************/
 
-#include <PlaqThVDF.h>
-#include <Probleme_base.h>
-#include <Milieu_base.h>
-#include <Champ_front_calc.h>
 #include <Convection_Diffusion_Temperature.h>
 #include <Modele_turbulence_scal_base.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Champ_front_calc.h>
+#include <Probleme_base.h>
+#include <Milieu_base.h>
 #include <Domaine_VDF.h>
+#include <PlaqThVDF.h>
 
 Implemente_instanciable(PlaqThVDF,"Plaque_Thermique_VDF",Echange_global_impose);
 
@@ -33,26 +34,26 @@ Entree& PlaqThVDF::readOn(Entree& s )
   if (app_domains.size() == 0) app_domains = { Motcle("Thermique"), Motcle("Neutronique"), Motcle("fraction_massique"), Motcle("indetermine") };
 
   s >> h;
-  T_ext().typer("Champ_front_calc");
+  le_champ_front.typer("Champ_front_calc");
   return s;
 }
 
 void PlaqThVDF::mettre_a_jour(double )
 {
   const Equation_base& eqn = mon_dom_cl_dis->equation();
-  const Domaine_VDF& le_dom_VDF=ref_cast(Domaine_VDF, eqn.domaine_dis().valeur());
+  const Domaine_VDF& le_dom_VDF=ref_cast(Domaine_VDF, eqn.domaine_dis());
   const Front_VF& front= ref_cast(Front_VF,frontiere_dis());
 
   const Milieu_base& le_milieu=eqn.probleme().milieu();
-  h/=(le_milieu.masse_volumique()(0,0)*le_milieu.capacite_calorifique()(0,0));
+  h/=(le_milieu.masse_volumique().valeurs()(0,0)*le_milieu.capacite_calorifique().valeurs()(0,0));
 
   // Calcul de himp :
   const RefObjU& modele_turbulence = eqn.get_modele(TURBULENCE);
   if (modele_turbulence.non_nul() && sub_type(Modele_turbulence_scal_base,modele_turbulence.valeur()))
     {
       const Modele_turbulence_scal_base& modele = ref_cast(Modele_turbulence_scal_base,modele_turbulence.valeur());
-      const Turbulence_paroi_scal& loipar = ref_cast(Turbulence_paroi_scal,modele.loi_paroi());
-      Champ_front_calc& ch=ref_cast(Champ_front_calc, T_ext().valeur());
+      const Turbulence_paroi_scal_base& loipar = modele.loi_paroi();
+      Champ_front_calc& ch=ref_cast(Champ_front_calc, T_ext());
       ch.creer(eqn.probleme().le_nom(),frontiere_dis().le_nom(),eqn.inconnue().le_nom());
       //const Milieu_base& le_milieu=eqn.probleme().milieu();
       h_imp_.typer("Champ_front_uniforme");
@@ -73,16 +74,16 @@ void PlaqThVDF::mettre_a_jour(double )
           // double e2 = loipar.d_equiv(nbfs2+face);
           int local_face=le_dom_VDF.front_VF(boundary_index).num_local_face(face);
           int local_face2=le_dom_VDF.front_VF(boundary_index).num_local_face(nbfs2+face);
-          double e1 = loipar.valeur().equivalent_distance(boundary_index,local_face);
-          double e2 = loipar.valeur().equivalent_distance(boundary_index,local_face2);
+          double e1 = loipar.equivalent_distance(boundary_index,local_face);
+          double e2 = loipar.equivalent_distance(boundary_index,local_face2);
           tab(face,0) = tab(nbfs2+face,0) =
-                          2./(1./h+e1/le_milieu.diffusivite()(0,0)
-                              +e2/le_milieu.diffusivite()(0,0));
+                          2./(1./h+e1/le_milieu.diffusivite().valeurs()(0,0)
+                              +e2/le_milieu.diffusivite().valeurs()(0,0));
         }
     }
   else if (sub_type(Convection_Diffusion_Temperature,eqn))
     {
-      Champ_front_calc& ch = ref_cast(Champ_front_calc,T_ext().valeur());
+      Champ_front_calc& ch = ref_cast(Champ_front_calc,T_ext());
       ch.creer(eqn.probleme().le_nom(),frontiere_dis().le_nom(),
                eqn.inconnue().le_nom());
       //const Milieu_base& le_milieu=eqn.probleme().milieu();
@@ -92,13 +93,13 @@ void PlaqThVDF::mettre_a_jour(double )
       h_imp_->fixer_nb_comp(1);
       double e1 = le_dom_VDF.dist_norm_bord(front.num_premiere_face());
       double e2 = le_dom_VDF.dist_norm_bord(front.nb_faces()/2);
-      tab(0,0) = 2./(1./h+e1/le_milieu.diffusivite()(0,0)
-                     +e2/le_milieu.diffusivite()(0,0));
+      tab(0,0) = 2./(1./h+e1/le_milieu.diffusivite().valeurs()(0,0)
+                     +e2/le_milieu.diffusivite().valeurs()(0,0));
     }
 
   //Calcul de T_ext :
-  const DoubleTab& Temp= eqn.inconnue()->valeurs();
-  DoubleTab& tab= T_ext()->valeurs();
+  const DoubleTab& Temp= eqn.inconnue().valeurs();
+  DoubleTab& tab= T_ext().valeurs();
   tab.resize(front.nb_faces(),1);
   int face, el1, el2;
   int premiere = front.num_premiere_face();

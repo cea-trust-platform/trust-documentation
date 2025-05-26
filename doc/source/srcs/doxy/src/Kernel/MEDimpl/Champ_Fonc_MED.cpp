@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -162,7 +162,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
               Cerr << "It is not parallelized yet... So we use MED mesh, which is not optimal." << finl;
               Cerr << "Try suppress use_existing_domain option." << finl;
               //Process::exit();
-              use_existing_domain_ = 0;
+              use_existing_domain_ = false;
             }
         }
     }
@@ -194,6 +194,8 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
 
               root_um->checkGeoEquivalWith(new_um, /* levOfCheck=  */ 12, Objet_U::precision_geom, dnup1, dnup2);
               //MCAuto<DataArrayIdType> dnu1(dnup1), dnu2(dnup2);
+              if (dnup2) dnup2->decrRef();
+              if (dnup1) dnup1->decrRef();
             }
           catch(INTERP_KERNEL::Exception& e)
             {
@@ -295,7 +297,7 @@ Entree& Champ_Fonc_MED::readOn(Entree& is)
       else // Cas ou le maillage .med suit la numerotation du maillage decoupe
         {
           int nb_item = le_champ().valeurs().dimension(0);
-          int first_item = mppartial_sum(nb_item);
+          trustIdType first_item = mppartial_sum(nb_item);
           for (int i=0; i<nb_item; i++)
             filter.push_back(first_item);
         }
@@ -366,7 +368,7 @@ void Champ_Fonc_MED::lire(double t, int given_it)
       // last_time_only_ specifie dans le jeu de donnees ou non
       double tmax = temps_sauv_[nb_dt - 1];
       double dt = temps_sauv_[nb_dt - 1];
-      if (((nb_dt == 1) && (!est_egal(dt, t))) || ((last_time_only_ == 1) && (!est_egal(tmax, t))))
+      if (((nb_dt == 1) && (!est_egal(dt, t))) || ((last_time_only_) && (!est_egal(tmax, t))))
         {
           Cout << "We assume that the field " << fieldName << " is stationary." << finl;
           search_field = false;
@@ -585,7 +587,7 @@ void Champ_Fonc_MED::lire_donnees_champ(const std::string& fileName, const std::
       Cerr << "ERROR reading MED field! Not a MEDCouplingFieldDouble!!" << finl;
       Process::exit(-1);
     }
-  size = field->getNumberOfTuplesExpected();
+  size = (int)field->getNumberOfTuplesExpected();
   nbcomp = (int) field->getNumberOfComponents();
 
 //  nbcomp = (int)MEDCoupling::GetComponentsNamesOfField(fileName,fieldName).size();
@@ -617,7 +619,7 @@ const Domaine_dis_base& Champ_Fonc_MED::domaine_dis_base() const
   return domainebidon_inst;
 }
 
-const ArrOfDouble& Champ_Fonc_MED::get_saved_times(void) const
+const ArrOfDouble& Champ_Fonc_MED::get_saved_times() const
 {
   return temps_sauv_;
 }

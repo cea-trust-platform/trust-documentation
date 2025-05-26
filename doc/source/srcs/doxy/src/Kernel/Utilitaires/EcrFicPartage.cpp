@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -22,19 +22,13 @@
 extern Stat_Counter_Id IO_EcrireFicPartageBin_counter_;
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(EcrFicPartage,"EcrFicPartage",SFichier);
-Entree& EcrFicPartage::readOn(Entree& s)
-{
-  throw;
-}
+Entree& EcrFicPartage::readOn(Entree& s) { throw; }
+Sortie& EcrFicPartage::printOn(Sortie& s) const { throw; }
 
-Sortie& EcrFicPartage::printOn(Sortie& s) const
-{
-  throw;
-}
 EcrFicPartage::EcrFicPartage() : SFichier()
 {
   obuffer_ptr_ = new OBuffer;
-  set_bin(0);
+  set_bin(false);
 }
 
 /*! @brief Ouvre le fichier avec les parametres mode et prot donnes Ces parametres sont les parametres de la methode open standard
@@ -43,7 +37,8 @@ EcrFicPartage::EcrFicPartage() : SFichier()
 EcrFicPartage::EcrFicPartage(const char* name,IOS_OPEN_MODE mode)
 {
   obuffer_ptr_ = new OBuffer;
-  set_bin(0);
+  set_bin(false);
+  obuffer_ptr_->set_64b(this->is_64b());
 
   ouvrir(name, mode);
 }
@@ -108,7 +103,7 @@ void EcrFicPartage::close()
     }
 #ifndef NDEBUG
   // Y a-t-il un processeur sur lequel il reste des donnees
-  const int maxbuflen = mp_sum(buflen);
+  const trustIdType maxbuflen = mp_sum(buflen);
   if (maxbuflen > 0)
     syncfile();
 #endif
@@ -290,31 +285,33 @@ Sortie& EcrFicPartage::operator <<(const char* ob)
 Sortie& EcrFicPartage::operator <<(const std::string& str) { return operator_template<std::string>(str);}
 Sortie& EcrFicPartage::operator <<(const Separateur& s) { return operator_template<Separateur>(s);}
 Sortie& EcrFicPartage::operator <<(const Objet_U& ob) { return operator_template<Objet_U>(ob);}
-Sortie& EcrFicPartage::operator <<(const int ob) { return operator_template<int>(ob);}
-Sortie& EcrFicPartage::operator <<(const unsigned int ob) { return operator_template<unsigned int>(ob);}
+Sortie& EcrFicPartage::operator <<(const True_int ob) { return operator_template<True_int>(ob);}
+Sortie& EcrFicPartage::operator <<(const unsigned ob) { return operator_template<unsigned>(ob);}
 Sortie& EcrFicPartage::operator <<(const float ob) { return operator_template<float>(ob);}
 Sortie& EcrFicPartage::operator <<(const double ob) { return operator_template<double>(ob);}
-
-#ifndef INT_is_64_
 Sortie& EcrFicPartage::operator <<(const long ob) { return operator_template<long>(ob);}
+Sortie& EcrFicPartage::operator <<(const long long ob) { return operator_template<long long>(ob);}
 Sortie& EcrFicPartage::operator <<(const unsigned long ob) { return operator_template<unsigned long>(ob);}
-#endif
 
-int EcrFicPartage::put(const unsigned* ob, int n, int pas) { return put_template<unsigned>(ob,n,pas); }
-int EcrFicPartage::put(const int* ob, int n, int pas) { return put_template<int>(ob,n,pas); }
-int EcrFicPartage::put(const float* ob, int n, int pas) { return put_template<float>(ob,n,pas); }
-int EcrFicPartage::put(const double* ob, int n, int pas) { return put_template<double>(ob,n,pas); }
 
-#ifndef INT_is_64_
-int EcrFicPartage::put(const long* ob, int n, int pas) { return put_template<long>(ob,n,pas); }
-#endif
+int EcrFicPartage::put(const unsigned* ob, std::streamsize n, std::streamsize pas) { return put_template<unsigned>(ob,n,pas); }
+int EcrFicPartage::put(const True_int* ob, std::streamsize n, std::streamsize pas) { return put_template<True_int>(ob,n,pas); }
+int EcrFicPartage::put(const long* ob, std::streamsize n, std::streamsize pas) { return put_template<long>(ob,n,pas); }
+int EcrFicPartage::put(const long long* ob, std::streamsize n, std::streamsize pas) { return put_template<long long>(ob,n,pas); }
+int EcrFicPartage::put(const float* ob, std::streamsize n, std::streamsize pas) { return put_template<float>(ob,n,pas); }
+int EcrFicPartage::put(const double* ob, std::streamsize n, std::streamsize pas) { return put_template<double>(ob,n,pas); }
 
-int EcrFicPartage::set_bin(int bin)
+
+void EcrFicPartage::set_bin(bool bin)
 {
-  assert(bin==0 || bin==1);
-  bin_ = bin;
+  SFichier::set_bin(bin);
   get_obuffer().set_bin(bin_);
-  return bin_;
+}
+
+void EcrFicPartage::set_64b(bool is64)
+{
+  SFichier::set_64b(is64);
+  get_obuffer().set_64b(is64);
 }
 
 Sortie& EcrFicPartage::flush() { return (*this); }

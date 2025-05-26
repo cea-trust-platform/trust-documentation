@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,7 @@ Sortie& Champ_Fonc_Tabule_P0_VDF::printOn(Sortie& s) const { return s << que_sui
 
 Entree& Champ_Fonc_Tabule_P0_VDF::readOn(Entree& s) { return s; }
 
-void Champ_Fonc_Tabule_P0_VDF::associer_param(const VECT(REF(Champ_base)) &les_champs, const Table& une_table)
+void Champ_Fonc_Tabule_P0_VDF::associer_param(const VECT(OBS_PTR(Champ_base)) &les_champs, const Table& une_table)
 {
   les_ch_param = les_champs;
   la_table = une_table;
@@ -49,15 +49,17 @@ void Champ_Fonc_Tabule_P0_VDF::mettre_a_jour(double t)
 
   // Estimate the field parameter on cells:
   for (int i = 0; i < nb_param; i++)
-    les_ch_param[i].valeur().valeur_aux_elems(centres_de_gravites, les_polys, val_params_aux_elems[i]);
+    les_ch_param[i]->valeur_aux_elems(centres_de_gravites, les_polys, val_params_aux_elems[i]);
   // Compute the field according to the parameter field
   if (table.isfonction() != 2)
     {
       const int nbcomp = mes_valeurs.dimension(1);
+      std::vector<double> vals;
+      vals.reserve(nb_param); // Pre-allocate space once
       for (int num_elem = 0; num_elem < nb_elem; num_elem++)
         for (int ncomp = 0; ncomp < nbcomp; ncomp++)
           {
-            std::vector<double> vals;
+            vals.clear();
             for (int n = 0; n < nb_param; n++)
               vals.push_back(val_params_aux_elems[n](num_elem, les_ch_param[n]->valeurs().dimension(1) == 1 ? 0 : ncomp));
             mes_valeurs(num_elem, ncomp) = table.val(vals, ncomp);

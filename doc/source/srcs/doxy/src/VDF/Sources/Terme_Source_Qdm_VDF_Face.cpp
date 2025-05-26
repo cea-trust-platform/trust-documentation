@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,7 +21,7 @@
 #include <Equation_base.h>
 #include <Pb_Multiphase.h>
 #include <Domaine_Cl_VDF.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Milieu_base.h>
 #include <Periodique.h>
 #include <Dirichlet.h>
@@ -35,19 +35,19 @@ Sortie& Terme_Source_Qdm_VDF_Face::printOn(Sortie& s) const { return s << que_su
 Entree& Terme_Source_Qdm_VDF_Face::readOn(Entree& s)
 {
   s >> la_source;
-  if (la_source->nb_comp() != equation().inconnue().valeur().nb_comp())
+  if (la_source->nb_comp() != equation().inconnue().nb_comp())
     {
       Cerr << "Erreur a la lecture du terme source de type " << que_suis_je() << finl;
-      Cerr << "le champ source doit avoir " << equation().inconnue().valeur().nb_comp() << " composantes" << finl;
+      Cerr << "le champ source doit avoir " << equation().inconnue().nb_comp() << " composantes" << finl;
       exit();
     }
   return s;
 }
 
-void Terme_Source_Qdm_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Qdm_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 }
 
 void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& resu, const tabs_t& semi_impl) const
@@ -63,7 +63,8 @@ void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& re
   const DoubleTab* alp = sub_type(Pb_Multiphase, equation().probleme()) ? &ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe() : nullptr;
   const DoubleTab* rho = alp ? &equation().milieu().masse_volumique().passe() : nullptr;
 
-  const int cR = alp ? ((*rho).dimension_tot(0) == 1) : 0, nb_comp = equation().inconnue().valeurs().line_size();
+  const int cR = alp ? ((*rho).dimension_tot(0) == 1) : 0;
+  const int nb_comp = equation().inconnue().valeurs().line_size();
 
   double vol;
   int ndeb, nfin, ncomp, num_face, elem1, elem2;
@@ -83,7 +84,7 @@ void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& re
             {
               if (alp) Process::exit("Terme_Source_Qdm_VDF_Face : periodic CL not yet available for Pb_Multiphase !");
 
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 
@@ -97,7 +98,7 @@ void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& re
             }
           else if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 
@@ -164,7 +165,7 @@ void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& re
 
           if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 
@@ -190,7 +191,7 @@ void Terme_Source_Qdm_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& re
             {
               if (alp) Process::exit("Terme_Source_Qdm_VDF_Face : periodic CL not yet available for Pb_Multiphase !");
 
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 

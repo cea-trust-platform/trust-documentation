@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 Implemente_instanciable_sans_constructeur_ni_destructeur(Interprete_bloc,"Interprete_bloc",Liste_bloc);
 
 // Voir Interprete_bloc::interprete_courant()
-static REF(Interprete_bloc) interprete_courant_;
+static OBS_PTR(Interprete_bloc) interprete_courant_;
 
 /*! @brief renvoie l'interprete_bloc en train d'etre lu dans le jeu de donnees.
  *
@@ -192,7 +192,7 @@ Entree& Interprete_bloc::interpreter_bloc(Entree& is, Bloc_Type bloc_type, int v
                   if (!export_object || !pere_.non_nul())
                     ajouter(nom_objet, objet);
                   else
-                    pere_.valeur().ajouter(nom_objet, objet);
+                    pere_->ajouter(nom_objet, objet);
                 }
               is.set_error_action(Entree::ERROR_CONTINUE);
             }
@@ -232,7 +232,7 @@ int Interprete_bloc::objet_local_existant(const Nom& nom)
  */
 Objet_U& Interprete_bloc::ajouter(const Nom& nom, DerObjU& ob)
 {
-  Journal(3) << "Interprete::ajouter(" << nom << ") de type " << ob.valeur().que_suis_je() << finl;
+  Journal(3) << "Interprete::ajouter(" << nom << ") de type " << ob->que_suis_je() << finl;
   if (les_noms_.search(nom) >= 0)
     {
       Cerr << "Error in Interprete::ajouter: object " << nom << " already exists." << finl;
@@ -251,7 +251,7 @@ Objet_U& Interprete_bloc::ajouter(const Nom& nom, DerObjU& ob)
  */
 Objet_U& Interprete_bloc::objet_global(const Nom& nom)
 {
-  REF(Interprete_bloc) ptr(interprete_courant());
+  OBS_PTR(Interprete_bloc) ptr(interprete_courant());
   while (ptr.non_nul())
     {
       Interprete_bloc& interp = ptr.valeur();
@@ -273,7 +273,7 @@ Objet_U& Interprete_bloc::objet_global(const Nom& nom)
  */
 int Interprete_bloc::objet_global_existant(const Nom& nom)
 {
-  REF(Interprete_bloc) ptr(interprete_courant());
+  OBS_PTR(Interprete_bloc) ptr(interprete_courant());
   while (ptr.non_nul())
     {
       Interprete_bloc& interp = ptr.valeur();

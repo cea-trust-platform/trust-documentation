@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,7 +14,7 @@
 *****************************************************************************/
 
 #include <Parametre_diffusion_implicite.h>
-#include <Solveur_Implicite_Base.h>
+#include <Solveur_Implicite_base.h>
 #include <Schema_Euler_explicite.h>
 #include <Schema_Implicite_base.h>
 #include <Source_dep_inco_base.h>
@@ -32,10 +32,12 @@
 #include <Equation_base.h>
 #include <Statistiques.h>
 #include <Milieu_base.h>
+#include <TRUST_2_PDI.h>
+#include <Domaine_VF.h>
 #include <SolveurSys.h>
+#include <Domaine_VF.h>
 #include <Operateur.h>
 #include <EChaine.h>
-#include <Domaine_VF.h>
 #include <Avanc.h>
 #include <Debog.h>
 #include <Param.h>
@@ -44,8 +46,15 @@ extern Stat_Counter_Id assemblage_sys_counter_;
 extern Stat_Counter_Id diffusion_implicite_counter_;
 extern Stat_Counter_Id source_counter_;
 
+// XD condinit objet_lecture nul 0 Initial condition.
+// XD attr nom chaine nom 0 Name of initial condition field.
+// XD attr ch field_base ch 0 Type field and the initial values.
+
+// XD condinits listobj condinits -1 condinit 0 Initial conditions.
+
 Implemente_base_sans_constructeur(Equation_base,"Equation_base",Objet_U);
 // XD eqn_base mor_eqn eqn_base -3 Basic class for equations.
+/* Attributes further down in the cpp: */
 
 Equation_base::Equation_base()
 {
@@ -67,7 +76,7 @@ int Equation_base::equation_non_resolue() const
   if (str.compare(str2)==0)
     {
       Nom name = eq_non_resolue_input_.getName();
-      int eq_non_resolue_int = mon_probleme.valeur().getOutputIntValue(name);
+      int eq_non_resolue_int = mon_probleme->getOutputIntValue(name);
       return eq_non_resolue_int;
     }
   else
@@ -80,11 +89,11 @@ int Equation_base::equation_non_resolue() const
 
 /*! @brief Renvoie le domaine discretisee associee a l'equation.
  *
- * @return (Domaine_dis&) le domaine discretisee asscoiee a l'equation
+ * @return (Domaine_dis_base&) le domaine discretisee asscoiee a l'equation
  * @throws l'objet domaine discretisee (Domaine_dis) est invalide,
  * probleme associe non discretise.
  */
-Domaine_dis& Equation_base::domaine_dis()
+Domaine_dis_base& Equation_base::domaine_dis()
 {
   if (!le_dom_dis.non_nul())
     {
@@ -100,11 +109,11 @@ Domaine_dis& Equation_base::domaine_dis()
  *
  * (version const)
  *
- * @return (Domaine_dis&) le domaine discretisee asssociee a l'equation
+ * @return (Domaine_dis_base&) le domaine discretisee asssociee a l'equation
  * @throws l'objet domaine discretisee (Domaine_dis) est invalide,
  * probleme associe non discretise.
  */
-const Domaine_dis& Equation_base::domaine_dis() const
+const Domaine_dis_base& Equation_base::domaine_dis() const
 {
   if (!le_dom_dis.non_nul())
     {
@@ -116,7 +125,6 @@ const Domaine_dis& Equation_base::domaine_dis() const
   return le_dom_dis.valeur();
 }
 
-
 /*! @brief Complete la construction (initialisation) des objets associes a l'equation.
  *
  *     Complete les sources, associe l'equation a l'inconnue complete les
@@ -124,7 +132,7 @@ const Domaine_dis& Equation_base::domaine_dis() const
  *     Voir les methodes Source_base::completer(),
  *                       Operateur_base::completer()
  *                       Domaine_Cl_dis_base::completer()
- *                       Domaine_Cl_dis_base::completer(const Domaine_dis& )
+ *                       Domaine_Cl_dis_base::completer(const Domaine_dis_base& )
  *
  */
 void Equation_base::completer()
@@ -133,15 +141,15 @@ void Equation_base::completer()
   if (le_dom_Cl_dis.non_nul())
     le_dom_Cl_dis->completer();
 
-  inconnue()->associer_domaine_cl_dis(le_dom_Cl_dis);
+  inconnue().associer_domaine_cl_dis(le_dom_Cl_dis);
 
-  if (mon_probleme.valeur().is_coupled())
+  if (mon_probleme->is_coupled())
     {
       bool err = false;
       int nb_cl = le_dom_Cl_dis->nb_cond_lim();
       for (int i=0; i<nb_cl; i++)
         {
-          const Cond_lim_base& la_cl = le_dom_Cl_dis.valeur().les_conditions_limites(i);
+          const Cond_lim_base& la_cl = le_dom_Cl_dis->les_conditions_limites(i);
           const Frontiere& la_frontiere = la_cl.frontiere_dis().frontiere();
 
           bool raccord_found = false;
@@ -158,8 +166,8 @@ void Equation_base::completer()
             {
               Cerr << "====================================================================" << finl;
               Cerr << "Boundary " << la_frontiere.le_nom() << " should be a raccord" << finl;
-              Cerr << "Add in your data file between the definition and the partition of the domain " << mon_probleme.valeur().domaine().le_nom() << " : " << finl;
-              Cerr << "Modif_bord_to_raccord " << mon_probleme.valeur().domaine().le_nom() << " " << la_frontiere.le_nom() << finl;
+              Cerr << "Add in your data file between the definition and the partition of the domain " << mon_probleme->domaine().le_nom() << " : " << finl;
+              Cerr << "Modif_bord_to_raccord " << mon_probleme->domaine().le_nom() << " " << la_frontiere.le_nom() << finl;
               err = true;
             }
         }
@@ -180,8 +188,8 @@ void Equation_base::completer()
   for(int i=0; i<nb_op; i++)
     operateur(i).completer();
 
-  if (solv_masse().non_nul())  // [ABN]: In case of Front-Tracking, mass solver mass might be uninitialized ...
-    solv_masse().valeur().completer();
+  if (solveur_masse.non_nul())  // [ABN]: In case of Front-Tracking, mass solver mass might be uninitialized ...
+    solv_masse().completer();
 
   les_sources.completer();
   schema_temps().completer();
@@ -259,6 +267,7 @@ void Equation_base::set_param(Param& param)
   param.ajouter_non_std("ecrire_fichier_xyz_valeur",(this)); // XD attr ecrire_fichier_xyz_valeur ecrire_fichier_xyz_valeur ecrire_fichier_xyz_valeur 1 This keyword is used to write the values of a field only for some boundaries in a text file
   param.ajouter("parametre_equation",&parametre_equation_); // XD attr parametre_equation parametre_equation_base parametre_equation 1 Keyword used to specify additional parameters for the equation
   param.ajouter_non_std("equation_non_resolue",(this)); // XD attr equation_non_resolue chaine equation_non_resolue 1 The equation will not be solved while condition(t) is verified if equation_non_resolue keyword is used. Exemple: The Navier-Stokes equations are not solved between time t0 and t1. NL2 Navier_Sokes_Standard NL2 { equation_non_resolue (t>t0)*(t<t1) }
+  param.ajouter_non_std("rename_equation|renommer_equation",(this)); // XD attr renommer_equation chaine rename_equation 1 Rename the equation with a specific name.
 }
 
 int Equation_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
@@ -283,6 +292,13 @@ int Equation_base::lire_motcle_non_standard(const Motcle& mot, Entree& is)
     {
       xyz_field_values_file_.associer_eqn(*this);
       is >> xyz_field_values_file_;
+      return 1;
+    }
+  else if (mot=="rename_equation|renommer_equation")
+    {
+      Cerr << "Equation " << nom_ << " renamed to : ";
+      is >> nom_;
+      Cerr << nom_ << finl;
       return 1;
     }
   else if (mot=="equation_non_resolue")
@@ -361,20 +377,20 @@ Entree& Equation_base::lire_cond_init(Entree& is)
     }
   is >> nom;
   motlu = nom;
-  if (motlu != Motcle(inconnue()->le_nom()))
+  if (motlu != Motcle(inconnue().le_nom()))
     {
       Cerr << nom << " is not the name of the unknown "
-           << inconnue()->le_nom() << finl;
+           << inconnue().le_nom() << finl;
       exit();
     }
-  Champ_Don ch_init;
+  OWN_PTR(Champ_Don_base) ch_init;
   is >> ch_init;
-  const int nb_comp = ch_init.nb_comp();
+  const int nb_comp = ch_init->nb_comp();
   verifie_ch_init_nb_comp(inconnue(),nb_comp);
 
-  //Cerr<<"inconnue().valeur().que_suis_je() = "<<inconnue().valeur().que_suis_je()<<finl;
+  //Cerr<<"inconnue().que_suis_je() = "<<inconnue().que_suis_je()<<finl;
 
-  inconnue()->affecter(ch_init.valeur());
+  inconnue().affecter(ch_init.valeur());
   is >> nom;
   motlu = nom;
   if(motlu!=Motcle("}"))
@@ -401,7 +417,7 @@ Entree& Equation_base::lire_cl(Entree& is)
     {
       Cerr << "Error while reading boundaries conditions : " <<
            que_suis_je() << finl;
-      Cerr << "The Domaine_Cl_dis is empty ..." << finl;
+      Cerr << "The Domaine_Cl_dis_base is empty ..." << finl;
       exit();
     }
   is >> le_dom_Cl_dis.valeur();
@@ -418,6 +434,20 @@ int Equation_base::sauvegarder(Sortie& os) const
   return inconnue().sauvegarder(os);
 }
 
+/*! @brief for PDI IO: retrieve name, type and dimensions of the data to save/restore.
+ * This has to be overrode for all the equations that either:
+ * - have extra fields (ie in addition to the unknown) or extra scalars to save/restore.
+ * - want to save the unknown but with a different name
+ * These data will then be written in a YAML file, to initialize PDI.
+ * They have to be shared with PDI afterwards, when they need to be read/written (via TRUST_2_PDI)
+ *
+ */
+std::vector<YAML_data> Equation_base::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = inconnue().data_a_sauvegarder();
+  return data;
+}
+
 /*! @brief On reprend l'inconnue a partir d'un flot d'entree.
  *
  * [ON CHERCHE L'INCONNUE PAR SON NOM]
@@ -430,12 +460,15 @@ int Equation_base::sauvegarder(Sortie& os) const
  */
 int Equation_base::reprendre(Entree& fich)
 {
-  double temps = schema_temps().temps_courant();
-  Nom field_tag(inconnue().le_nom());
-  field_tag += inconnue().valeur().que_suis_je();
-  field_tag += probleme().domaine().le_nom();
-  field_tag += Nom(temps,probleme().reprise_format_temps());
-  avancer_fichier(fich, field_tag);
+  if(!TRUST_2_PDI::is_PDI_restart())
+    {
+      double temps = schema_temps().temps_courant();
+      Nom field_tag(inconnue().le_nom());
+      field_tag += inconnue().que_suis_je();
+      field_tag += probleme().domaine().le_nom();
+      field_tag += Nom(temps,probleme().reprise_format_temps());
+      avancer_fichier(fich, field_tag);
+    }
   inconnue().reprendre(fich);
   return 1;
 }
@@ -490,8 +523,12 @@ void Equation_base::imprimer(Sortie& os) const
 DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
 {
   derivee = 0.;
+
   DoubleTrav secmem(derivee);
   // secmem = sum(operators) + sources + equation specific terms
+
+
+  derivee_en_temps_inco_sources(secmem);
   const double time_factor = get_time_factor();
 
   bool calcul_explicite = false;
@@ -516,6 +553,8 @@ DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
     }
   else
     {
+      verify_scheme();
+
       // Add all explicit operators
       for(int i=0; i<nombre_d_operateurs(); i++)
         if(operateur(i).l_op_base().get_decal_temps()!=1)
@@ -538,7 +577,7 @@ DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
     {
       // Store dI/dt(n) = M-1 secmem :
       derivee_en_temps().valeurs()=secmem;
-      solveur_masse.appliquer(derivee_en_temps().valeurs());
+      solveur_masse->appliquer(derivee_en_temps().valeurs());
       schema_temps().modifier_second_membre((*this),secmem); // Change secmem for some schemes (eg: Adams_Bashforth)
     }
 
@@ -546,7 +585,7 @@ DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
 
   if (implicite_==0)
     {
-      solveur_masse.appliquer(secmem); // M-1 * secmem
+      solveur_masse->appliquer(secmem); // M-1 * secmem
       if (schema_temps().diffusion_implicite() && !calcul_explicite)
         {
           // Solve: (1/dt + M-1*A)*dI = M-1 * secmem
@@ -578,7 +617,7 @@ DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
             op.set_matrice().typer("Matrice_Morse");
           if(op.get_decal_temps()==1)
             {
-              //if (op.set_matrice().valeur().nb_lignes()<2)
+              //if (op.set_matrice()->nb_lignes()<2)
               {
                 Matrice_Morse& matrice=ref_cast(Matrice_Morse,op.set_matrice().valeur());
                 op.dimensionner(matrice);
@@ -643,6 +682,7 @@ DoubleTab& Equation_base::derivee_en_temps_inco(DoubleTab& derivee)
       Cerr << "Contact TRUST support." << finl;
       Process::exit();
     }
+
   return derivee;
 }
 
@@ -700,7 +740,7 @@ void Equation_base::associer_pb_base(const Probleme_base& pb)
   int nb_op = nombre_d_operateurs();
   for(int i=0; i<nb_op; i++)
     operateur(i).associer_eqn(*this);
-  solveur_masse.associer_eqn(*this);
+
 }
 
 /*! @brief Discretise l'equation.
@@ -712,32 +752,41 @@ void Equation_base::associer_pb_base(const Probleme_base& pb)
  */
 void Equation_base::discretiser()
 {
-  discretisation().domaine_Cl_dis(domaine_dis(), le_dom_Cl_dis);
+  Cerr << "Discretizing of the boundary conditions... ";
+  le_dom_Cl_dis.typer(discretisation().domaine_cl_dis_type());
+  le_dom_Cl_dis->associer(domaine_dis());
+  Cerr << " OK " << finl;
+
   le_dom_Cl_dis->associer_eqn(*this);
   le_dom_Cl_dis->associer_inconnue(inconnue());
 
-  solveur_masse.typer();
-  solveur_masse->associer_domaine_dis_base(domaine_dis().valeur());
+  /*
+   * XXX : Elie Saikali : pour typer correctement le solveur_masse ...
+   */
+  Nom typ = discretisation().get_name_of_type_for("Solveur_Masse", "??" /* rien */, *this);
+  solveur_masse.typer(typ);
+  solveur_masse->associer_eqn(*this);
+  solveur_masse->associer_domaine_dis_base(domaine_dis());
   solveur_masse->associer_domaine_cl_dis_base(le_dom_Cl_dis.valeur());
 
   if (calculate_time_derivative())
     {
       Motcle directive("temperature");
-      if (inconnue().valeur().nature_du_champ()==vectoriel)
+      if (inconnue().nature_du_champ()==vectoriel)
         directive="vitesse";
 
       Nom nom("derivee_en_temps_");
-      nom += inconnue().valeur().le_nom();
+      nom += inconnue().le_nom();
 
-      Nom unite(inconnue().valeur().unites()[0]);
+      Nom unite(inconnue().unites()[0]);
       unite += "/s";
 
-      discretisation().discretiser_champ(directive,domaine_dis().valeur(),nom,unite,
-                                         inconnue().valeur().nb_comp(),
+      discretisation().discretiser_champ(directive,domaine_dis(),nom,unite,
+                                         inconnue().nb_comp(),
                                          schema_temps().nb_valeurs_temporelles(),
-                                         schema_temps().temps_courant(),derivee_en_temps());
+                                         schema_temps().temps_courant(),derivee_en_temps_);
 
-      champs_compris_.ajoute_champ(derivee_en_temps());
+      champs_compris_.ajoute_champ(derivee_en_temps_);
     }
 }
 void Equation_base::associer_milieu_equation()
@@ -788,9 +837,9 @@ const Schema_Temps_base& Equation_base::schema_temps() const
 
 /*! @brief Associe le domaine discretisee a l'equation.
  *
- * @param (Domaine_dis& z) le domaine discretisee a associee
+ * @param (Domaine_dis_base& z) le domaine discretisee a associee
  */
-void Equation_base::associer_domaine_dis(const Domaine_dis& z)
+void Equation_base::associer_domaine_dis(const Domaine_dis_base& z)
 {
   le_dom_dis=z;
 }
@@ -813,7 +862,7 @@ void Equation_base::mettre_a_jour(double temps)
 
   // On tourne la roue des CLs
   // Update the boundary condition:
-  if (temps > schema_temps().temps_courant()) domaine_Cl_dis()->avancer(temps);
+  if (temps > schema_temps().temps_courant()) domaine_Cl_dis().avancer(temps);
 }
 
 //mise a jour de champ_conserve / champ_convecte : appele par Probleme_base::mettre_a_jour() apres avoir mis a jour le milieu
@@ -837,7 +886,7 @@ void Equation_base::abortTimeStep()
 {
   for (int i=0; i<nombre_d_operateurs(); i++)
     operateur(i).l_op_base().abortTimeStep();
-  inconnue()->abortTimeStep();
+  inconnue().abortTimeStep();
   if (champ_conserve_.non_nul()) champ_conserve_->abortTimeStep();
   if (champ_convecte_.non_nul()) champ_convecte_->abortTimeStep();
 }
@@ -852,7 +901,7 @@ void Equation_base::resetTime(double time)
   le_dom_Cl_dis->resetTime(time);
   for (int i=0; i<nombre_d_operateurs(); i++)
     operateur(i).l_op_base().resetTime(time);
-  inconnue()->resetTime(time);
+  inconnue().resetTime(time);
   if (champ_conserve_.non_nul()) champ_conserve_->resetTime(time);
   if (champ_convecte_.non_nul()) champ_convecte_->resetTime(time);
 }
@@ -873,7 +922,7 @@ void Equation_base::valider_iteration()
  */
 int Equation_base::preparer_calcul()
 {
-  solveur_masse.valeur().preparer_calcul();
+  solveur_masse->preparer_calcul();
   int nb_op=nombre_d_operateurs();
   for(int i=0; i<nb_op; i++)
     {
@@ -882,7 +931,7 @@ int Equation_base::preparer_calcul()
     }
   initialise_residu();
   double temps=schema_temps().temps_courant();
-  inconnue()->verifie_valeurs_cl();
+  inconnue().verifie_valeurs_cl();
   inconnue().changer_temps(temps);
   if (calculate_time_derivative()) derivee_en_temps().changer_temps(temps);
   le_dom_Cl_dis->initialiser(temps);
@@ -910,7 +959,7 @@ int Equation_base::preparer_calcul()
 /*! @brief Allocation et initialisation de l'inconnue et des CLs jusqu'a present+dt.
  *
  *   + autres initialisations pour les calculs sur le prochain
- *     pas de temps : operateurs, solveur_masse.
+ *     pas de temps : operateurs, solveur_masse->
  *
  * @return (0 en cas d'erreur, 1 sinon)
  */
@@ -927,22 +976,22 @@ bool Equation_base::initTimeStep(double dt)
     {
       double tps=sch.temps_futur(i);
       // Mise a jour du temps dans l'inconnue
-      inconnue()->changer_temps_futur(tps,i);
+      inconnue().changer_temps_futur(tps,i);
       if (champ_conserve_.non_nul()) champ_conserve_->changer_temps_futur(tps,i);
       if (champ_convecte_.non_nul()) champ_convecte_->changer_temps_futur(tps,i);
-      if (calculate_time_derivative()) derivee_en_temps()->changer_temps_futur(tps,i);
+      if (calculate_time_derivative()) derivee_en_temps().changer_temps_futur(tps,i);
 
-      inconnue()->futur(i)=inconnue()->valeurs();
+      inconnue().futur(i)=inconnue().valeurs();
       if (champ_conserve_.non_nul()) champ_conserve_->futur(i) = champ_conserve().valeurs();
       if (champ_convecte_.non_nul()) champ_convecte_->futur(i) = champ_convecte().valeurs();
-      if (calculate_time_derivative()) derivee_en_temps()->futur(i)=derivee_en_temps()->valeurs();
+      if (calculate_time_derivative()) derivee_en_temps().futur(i)=derivee_en_temps().valeurs();
 
       // Mise a jour du temps dans les CL
-      domaine_Cl_dis()->changer_temps_futur(tps,i);
+      domaine_Cl_dis().changer_temps_futur(tps,i);
     }
 
   // Mise a jour du temps par defaut des CLs
-  domaine_Cl_dis()->set_temps_defaut(sch.temps_defaut());
+  domaine_Cl_dis().set_temps_defaut(sch.temps_defaut());
 
   // Mise a jour des operateurs
   for(int i=0; i<nombre_d_operateurs(); i++)
@@ -950,7 +999,7 @@ bool Equation_base::initTimeStep(double dt)
 
   // Mise a jour du solveur masse au temps present
   if (solveur_masse.non_nul())
-    solveur_masse.mettre_a_jour(temps_present);
+    solveur_masse->mettre_a_jour(temps_present);
 
   return true;
 }
@@ -969,7 +1018,7 @@ bool Equation_base::updateGivenFields()
       domaine_Cl_dis().mettre_a_jour(tps);
     }
   // Calcul du taux d'accroissement des CLs entre les temps present et futur.
-  domaine_Cl_dis()->calculer_derivee_en_temps(temps_present,temps_futur);
+  domaine_Cl_dis().calculer_derivee_en_temps(temps_present,temps_futur);
 
   //MaJ des operateurs
   for (int i = 0; i < nombre_d_operateurs(); i++)
@@ -982,7 +1031,6 @@ bool Equation_base::updateGivenFields()
   return true;
 }
 
-
 /*! @brief Renvoie la discretisation associee a l'equation.
  *
  * @return (Discretisation_base&) a discretisation associee a l'equation
@@ -992,8 +1040,7 @@ const Discretisation_base& Equation_base::discretisation() const
 {
   if(!mon_probleme.non_nul())
     {
-      Cerr << "Error : " << que_suis_je()
-           << "has not been associated to a problem ! " << finl;
+      Cerr << "Error : " << que_suis_je() << " has not been associated to a problem ! " << finl;
       exit();
     }
   return mon_probleme->discretisation();
@@ -1001,119 +1048,147 @@ const Discretisation_base& Equation_base::discretisation() const
 
 void Equation_base::creer_champ(const Motcle& motlu)
 {
-// pour recuperer une equation const !!!!!
-
-  const Equation_base& me_const =(*this);
-  const Nom& nom_inco=me_const.inconnue()->le_nom();
+  const Equation_base& me_const = (*this); // pour recuperer une equation const !!!!!
+  const Nom& nom_inco = me_const.inconnue().le_nom();
   Nom inco(nom_inco);
   inco += "_residu";
   if (motlu == Motcle(inco))
-    {
-      if (!field_residu_.non_nul())
-        {
-          discretisation().residu(domaine_dis(),inconnue(),field_residu_);
-          champs_compris_.ajoute_champ(field_residu_);
-        }
-    }
+    if (!field_residu_.non_nul())
+      {
+        discretisation().residu(domaine_dis(), inconnue(), field_residu_);
+        champs_compris_.ajoute_champ(field_residu_);
+      }
 
-  int nb_op = nombre_d_operateurs();
-  for (int i=0; i<nb_op; i++)
-    {
-      if (operateur(i).op_non_nul())
-        operateur(i).l_op_base().creer_champ(motlu);
-    }
+  for (int i = 0; i < nombre_d_operateurs(); i++)
+    if (operateur(i).op_non_nul())
+      operateur(i).l_op_base().creer_champ(motlu);
 
-  for (auto& itr : les_sources)
+  for (auto &itr : les_sources)
     if (itr.non_nul())
       itr->creer_champ(motlu);
 }
 
+bool Equation_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  Nom inco_residu(inconnue().le_nom());
+  inco_residu += "_residu";
+
+  if (nom == Motcle(inco_residu))
+    {
+      ref_champ = Equation_base::get_champ(nom);
+      return true;
+    }
+
+  for (const auto &itr : list_champ_combi)
+    if (itr->le_nom() == nom)
+      {
+        ref_champ = Equation_base::get_champ(nom);
+        return true;
+      }
+
+  if (champs_compris_.has_champ(nom, ref_champ))
+    return true;
+
+  if (milieu().has_champ(nom, ref_champ))
+    return true;
+
+  for (int i = 0; i < nombre_d_operateurs(); i++)
+    if (operateur(i).op_non_nul())
+      if (operateur(i).l_op_base().has_champ(nom, ref_champ))
+        return true;
+
+  for (const auto &itr : les_sources)
+    if (itr.non_nul())
+      if (itr->has_champ(nom, ref_champ))
+        return true;
+
+  return false; /* rien trouve */
+}
+
+bool Equation_base::has_champ(const Motcle& nom) const
+{
+  Nom inco_residu(inconnue().le_nom());
+  inco_residu += "_residu";
+
+  if (nom == Motcle(inco_residu))
+    return true;
+
+  for (const auto &itr : list_champ_combi)
+    if (itr->le_nom() == nom)
+      return true;
+
+  if (champs_compris_.has_champ(nom))
+    return true;
+
+  if (milieu().has_champ(nom))
+    return true;
+
+  for (int i = 0; i < nombre_d_operateurs(); i++)
+    if (operateur(i).op_non_nul())
+      if (operateur(i).l_op_base().has_champ(nom))
+        return true;
+
+  for (const auto &itr : les_sources)
+    if (itr.non_nul())
+      if (itr->has_champ(nom))
+        return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Equation_base::get_champ(const Motcle& nom) const
 {
-  Nom inco_residu (inconnue()->le_nom());
+  Nom inco_residu(inconnue().le_nom());
   inco_residu += "_residu";
-  if(nom == Motcle(inco_residu))
+  if (nom == Motcle(inco_residu))
     {
-      Champ_Fonc_base& ch=ref_cast_non_const(Champ_Fonc_base,field_residu_.valeur());
+      Champ_Fonc_base& ch = ref_cast_non_const(Champ_Fonc_base, field_residu_.valeur());
       double temps_init = schema_temps().temps_init();
-      if (((ch.temps()!=inconnue()->temps()) || (ch.temps()==temps_init)) && (inconnue()->mon_equation_non_nul()))
-        {
-          ch.mettre_a_jour(inconnue()->temps());
-        }
-    }
-  else
-    {
-      for (const auto& itr : list_champ_combi)
-        {
-          const Champ_Fonc& ch = itr;
-          if (ch.le_nom()==nom && ch.temps()!=inconnue()->temps())
-            ref_cast_non_const( Champ_Fonc,ch).mettre_a_jour(inconnue()->temps());
-        }
-    }
-  try
-    {
-      return champs_compris_.get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-
+      if (((ch.temps() != inconnue().temps()) || (ch.temps() == temps_init)) && (inconnue().mon_equation_non_nul()))
+        ch.mettre_a_jour(inconnue().temps());
     }
 
-  try
-    {
-      return milieu().get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
-  int nb_op = nombre_d_operateurs();
-  for (int i=0; i<nb_op; i++)
-    {
-      if (operateur(i).op_non_nul())
-        try
-          {
-            return operateur(i).l_op_base().get_champ(nom);
-          }
-        catch (Champs_compris_erreur&)
-          {
+  for (const auto &itr : list_champ_combi)
+    if (itr->le_nom() == nom && itr->temps() != inconnue().temps())
+      ref_cast_non_const(Champ_Fonc_base,itr.valeur()).mettre_a_jour(inconnue().temps());
 
-          }
-    }
+  OBS_PTR(Champ_base) ref_champ;
 
-  for (const auto& itr : les_sources)
-    {
-      if (itr.non_nul())
-        try
-          {
-            return itr->get_champ(nom);
-          }
-        catch (Champs_compris_erreur&)
-          {
+  if (champs_compris_.has_champ(nom, ref_champ))
+    return ref_champ;
 
-          }
-    }
-  throw Champs_compris_erreur();
+  if (milieu().has_champ(nom, ref_champ))
+    return ref_champ;
+
+  for (int i = 0; i < nombre_d_operateurs(); i++)
+    if (operateur(i).op_non_nul())
+      if (operateur(i).l_op_base().has_champ(nom, ref_champ))
+        return ref_champ;
+
+  for (const auto &itr : les_sources)
+    if (itr.non_nul())
+      if (itr->has_champ(nom, ref_champ))
+        return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
-void Equation_base::get_noms_champs_postraitables(Noms& noms,Option opt) const
+void Equation_base::get_noms_champs_postraitables(Noms& noms, Option opt) const
 {
-  if (opt==DESCRIPTION)
-    Cerr<<que_suis_je()<<" : "<<champs_compris_.liste_noms_compris()<<finl;
+  if (opt == DESCRIPTION)
+    Cerr << que_suis_je() << " : " << champs_compris_.liste_noms_compris() << finl;
   else
     noms.add(champs_compris_.liste_noms_compris());
-  milieu().get_noms_champs_postraitables(noms,opt);
-  int nb_op = nombre_d_operateurs();
-  for (int i=0; i<nb_op; i++)
-    {
-      if (operateur(i).op_non_nul())
-        operateur(i).l_op_base().get_noms_champs_postraitables(noms,opt);
-    }
 
-  for (const auto& itr : les_sources)
+  milieu().get_noms_champs_postraitables(noms, opt);
+  for (int i = 0; i < nombre_d_operateurs(); i++)
+    if (operateur(i).op_non_nul())
+      operateur(i).l_op_base().get_noms_champs_postraitables(noms, opt);
+
+  for (const auto &itr : les_sources)
     if (itr.non_nul())
-      itr->get_noms_champs_postraitables(noms,opt);
+      itr->get_noms_champs_postraitables(noms, opt);
 }
-
 
 /*! @brief Calcul du prochain pas de temps.
  *
@@ -1142,7 +1217,7 @@ double Equation_base::calculer_pas_de_temps() const
       else
         dt_op = DMAXFLOAT;
 
-      Debog::verifier("Equation_base::calculer_pas_de_temps dt_op 0 ",dt_op);
+//      Debog::verifier("Equation_base::calculer_pas_de_temps dt_op 0 ",dt_op);
 
       Debog::verifier("Equation_base::calculer_pas_de_temps dt ",dt);
       const Operateur_base& op=operateur(i).l_op_base();
@@ -1164,7 +1239,7 @@ double Equation_base::calculer_pas_de_temps() const
             dt = (dt_op < dt ? dt_op : dt);
         }
 
-      Debog::verifier("Equation_base::calculer_pas_de_temps dt_op 1 ",dt_op);
+//      Debog::verifier("Equation_base::calculer_pas_de_temps dt_op 1 ",dt_op);
       if (le_schema_en_temps->limpr())
         {
           if (i == 0)
@@ -1297,6 +1372,10 @@ void Equation_base::verifie_ch_init_nb_comp(const Champ_Inc_base& ch_ref, const 
           exit();
         }
     }
+  else if (nature==basis_function)
+    {
+      // Todo DG implement some check for size ?
+    }
   else
     {
       Cerr<<"The nature of the field is not recognized"<<finl;
@@ -1331,8 +1410,9 @@ DoubleTab& Equation_base::derivee_en_temps_conv(DoubleTab& secmem, const DoubleT
       Cout << "Convection Semi Implicite: Number of Sub-Cycles : " << nstep << " with dt_loc = " << dt_loc << " dt =" << dt << finl ;
 
       secmem = 0;
-      DoubleTab solution_loc(solution) ;
-      DoubleTab derivee;
+      DoubleTrav solution_loc(solution);
+      solution_loc = solution;
+      DoubleTrav derivee;
       derivee.copy(secmem, RESIZE_OPTIONS::NOCOPY_NOINIT);
       for (int i=0; i<nstep; i++)
         {
@@ -1344,7 +1424,7 @@ DoubleTab& Equation_base::derivee_en_temps_conv(DoubleTab& secmem, const DoubleT
           // Si ce n'est pas la derniere iteration:
           if (i+1 < nstep)
             {
-              solveur_masse.appliquer(derivee);
+              solveur_masse->appliquer(derivee);
               solution_loc.ajoute(dt_loc, derivee, VECT_REAL_ITEMS);
               solution_loc.echange_espace_virtuel();
             }
@@ -1399,11 +1479,13 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
           Process::exit();
         }
       statistiques().begin_count(assemblage_sys_counter_);
-      DoubleTab present(solution); // I(n)
+      DoubleTrav present(solution); // I(n)
+      present = solution;
       // On multiplie secmem par M (qui etait divise par M avant l'appel...)
-      DoubleTab copie(secmem);
+      DoubleTrav copie(secmem);
+      copie = secmem;
       secmem = 0;
-      solveur_masse.ajouter_masse(1, secmem, copie);
+      solveur_masse->ajouter_masse(1, secmem, copie);
       // Build matrix A:
       Matrice_Morse& matrice = ref_cast(Parametre_diffusion_implicite, parametre_equation().valeur()).matrice();
       if (matrice.ordre()==0) dimensionner_matrice(matrice);
@@ -1456,11 +1538,14 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
       // Le nombre maximal d'iteration peut etre desormais borne par niter_max_diff_impl
       int nmax = le_schema_en_temps->niter_max_diffusion_implicite();
 
-      DoubleTab p(solution);
+      DoubleTrav p(solution);
       p = 0;
-      DoubleTab phiB(p); // la partie Bord de l'operateur.
-      DoubleTab resu(p);
-      DoubleTab merk(solution);
+      DoubleTrav phiB(p); // la partie Bord de l'operateur.
+      phiB = 0;
+      DoubleTrav resu(p);
+      resu = 0;
+      DoubleTrav merk(solution);
+      merk = solution;
       double aCKN = 1; // Crank - Nicholson -> 0.5
 
       // Calcul de la matrice Diagonale
@@ -1499,10 +1584,8 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
       // Preconditionnement
       /////////////////////
       double dt = le_schema_en_temps->pas_de_temps();
-      Matrice_Morse_Diag diag;
       if (precond_diag)
         {
-          // ToDo OpenMP or Kokkos precond_diag
           statistiques().begin_count(assemblage_sys_counter_);
           const int nb_case = inconnue().valeurs().dimension_tot(0);
           const int nb_comp = inconnue().valeurs().line_size();
@@ -1513,28 +1596,50 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
               Cerr << "size_totale = " << n << finl;
               exit();
             }
-          diag.dimensionne_diag(n);
-          operateur(0).l_op_base().contribuer_a_avec(inconnue().valeurs(), diag);
+          if (diag_.ordre()==1) diag_.dimensionne_diag(n);
+          diag_.clean(); // Set to 0
+          operateur(0).l_op_base().contribuer_a_avec(inconnue().valeurs(), diag_);
           for (int i = 0; i < size_s; i++)
             if (marq[i])
-              sources()(i).valeur().contribuer_a_avec(inconnue().valeurs(), diag);
+              sources()(i)->contribuer_a_avec(inconnue().valeurs(), diag_);
           // La diagonale est proportionnelle au volume de controle....
           // Il faut appliquer le solveur_masse
-          DoubleTab tempo(inconnue().valeurs());
-          for (int ca = 0; ca < nb_case; ca++)
-            for (int ncp = 0; ncp < nb_comp; ncp++)
-              tempo(ca, ncp) = diag(ca * nb_comp + ncp, ca * nb_comp + ncp);
-          solveur_masse.appliquer(tempo);
-          tempo.echange_espace_virtuel();
-          // On inverse... // Crank - Nicholson
-          // La matrice correspond a - la jacobienne (pour avoir un plus justement, GF)
-          for (int ca = 0; ca < nb_case; ca++)
+          DoubleTrav tab_tempo(inconnue().valeurs());
+          {
+            Matrice_Morse_View diag; // ToDo Kokkos CMatrice_Morse_View diag = diag_.view_ro();
+            diag.set(diag_);
+            DoubleTabView tempo = tab_tempo.view_wo();
+            start_gpu_timer(__KERNEL_NAME__);
+            Kokkos::parallel_for(__KERNEL_NAME__,
+                                 Kokkos::RangePolicy<>(0, nb_case), KOKKOS_LAMBDA(
+                                   const int ca)
             {
-              double tmp = (size_terme_mul ? terme_mul(ca) : 1) / dt;
+              for (int ncp = 0; ncp < nb_comp; ncp++)
+                tempo(ca, ncp) = diag(ca * nb_comp + ncp, ca * nb_comp + ncp);
+            });
+            end_gpu_timer(__KERNEL_NAME__);
+          }
+          solveur_masse->appliquer(tab_tempo);
+          tab_tempo.echange_espace_virtuel();
+          {
+            // On inverse... // Crank - Nicholson
+            // La matrice correspond a - la jacobienne (pour avoir un plus justement, GF)
+            CDoubleTabView tempo = tab_tempo.view_ro();
+            CDoubleTabView terme_mul_v = terme_mul.view_ro();
+            Matrice_Morse_View diag;  // ToDo Kokkos Matrice_Morse_View diag = diag_.view_rw();
+            diag.set(diag_);
+            start_gpu_timer(__KERNEL_NAME__);
+            Kokkos::parallel_for(__KERNEL_NAME__,
+                                 Kokkos::RangePolicy<>(0, nb_case), KOKKOS_LAMBDA(
+                                   const int ca)
+            {
+              double tmp = (size_terme_mul ? terme_mul_v(ca, 0) : 1) / dt;
               for (int ncpa = 0; ncpa < nb_comp; ncpa++)
                 diag(ca * nb_comp + ncpa, ca * nb_comp + ncpa) = 1. / (tmp + tempo(ca, ncpa) * aCKN);
-            }
-          statistiques().end_count(assemblage_sys_counter_);
+            });
+            end_gpu_timer(__KERNEL_NAME__);
+            statistiques().end_count(assemblage_sys_counter_);
+          }
         }
       // On utilise p pour calculer phiB :
       operateur(0).ajouter(p, phiB);
@@ -1545,15 +1650,18 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
               ref_cast(Source_dep_inco_base, sources()(i).valeur()).ajouter_(p, phiB);
         }
       statistiques().begin_count(diffusion_implicite_counter_);
-      solveur_masse.appliquer(phiB);
+      solveur_masse->appliquer(phiB);
       // phiB *= aCKN;  // Crank - Nicholson
       // fait maintenant avant l'appel
-      //solveur_masse.appliquer(secmem);
+      //solveur_masse->appliquer(secmem);
 
-      DoubleTab sol;
+      DoubleTrav sol;
       if (size_terme_mul)
         {
           sol = solution;
+          ToDo_Kokkos("critical for IBC");
+          //operator_multiply(sol, term_mul);
+          // tab_multiply_any_shape(sol, terme_mul);
           for (int i = 0; i < size_terme_mul; i++)
             sol(i) *= terme_mul(i);
         }
@@ -1572,18 +1680,19 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
               ref_cast(Source_dep_inco_base, sources()(i).valeur()).ajouter_(solution, resu);
         }
       statistiques().begin_count(diffusion_implicite_counter_);
-      solveur_masse.appliquer(resu);
+      solveur_masse->appliquer(resu);
       resu.echange_espace_virtuel();
       resu *= -1.;
       resu.ajoute(1. / dt, sol, VECT_REAL_ITEMS);
 
-      DoubleTab residu(resu); // residu = Ax
+      DoubleTrav residu(resu); // residu = Ax
+      residu = resu;
       residu -= secmem;      // residu = Ax-B
-      DoubleTab z;
+      DoubleTrav z;
       if (precond_diag)
         {
           z = residu;
-          diag.multvect(residu, z); // z = D-1(Ax-B)
+          diag_.multvect(residu, z); // z = D-1(Ax-B)
         }
       else
         z.ref(residu); // z = Ax-B
@@ -1593,7 +1702,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
       /* Calcul different de initial_residual:
          DoubleTab tmp(secmem);
          if (precond_diag)
-         diag.multvect(secmem, tmp);
+         diag_.multvect(secmem, tmp);
          else
          tmp.ref(secmem);
          double initial_residual = mp_carre_norme_vect(tmp) ; // =||B|| ou ||D-1.B|| */
@@ -1627,7 +1736,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
                     ref_cast(Source_dep_inco_base, sources()(i).valeur()).ajouter_(p, resu);
               }
             statistiques().begin_count(diffusion_implicite_counter_);
-            solveur_masse.appliquer(resu);
+            solveur_masse->appliquer(resu);
             //resu *= aCKN ;  // Crank - Nicholson
             resu.echange_espace_virtuel();
 
@@ -1647,7 +1756,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
             residu.ajoute(alfa, resu, VECT_REAL_ITEMS);
 
             if (precond_diag)
-              diag.multvect(residu, z); // preconditionnement par diag^(-1)
+              diag_.multvect(residu, z); // preconditionnement par diag^(-1)
             // sinon z=residu
 
             residual = mp_carre_norme_vect(z);
@@ -1702,7 +1811,7 @@ void Equation_base::Gradient_conjugue_diff_impl(DoubleTrav& secmem, DoubleTab& s
         {
           for (int i = 0; i < size_s; i++)
             if (marq[i])
-              ref_cast(Source_dep_inco_base, sources()(i).valeur()).ajouter_(inconnue()->valeurs(), resu);
+              ref_cast(Source_dep_inco_base, sources()(i).valeur()).ajouter_(inconnue().valeurs(), resu);
         }
       // Since 1.6.8 returns dI/dt:
       solution/=dt;
@@ -1814,11 +1923,11 @@ void Equation_base::dimensionner_matrice_sans_mem(Matrice_Morse& matrice)
 
   //  ... then the mass solver ...
   if (!isInit)
-    solv_masse().valeur().dimensionner(matrice);
+    solv_masse().dimensionner(matrice);
   else
     {
       Matrice_Morse mat2;
-      solv_masse().valeur().dimensionner(mat2);
+      solv_masse().dimensionner(mat2);
       matrice += mat2; // this only works if the matrix has been given its overall size first
     }
 
@@ -1929,8 +2038,8 @@ int Equation_base::has_interface_blocs() const
   int ok = 1;
   /* operateurs, masse, sources */
   for (int op = 0; op < nombre_d_operateurs(); op++) ok &= operateur(op).l_op_base().has_interface_blocs();
-  ok &= solv_masse().valeur().has_interface_blocs();
-  for (int i = 0; i < les_sources.size(); i++) ok &= les_sources(i).valeur().has_interface_blocs();
+  ok &= solv_masse().has_interface_blocs();
+  for (int i = 0; i < les_sources.size(); i++) ok &= les_sources(i)->has_interface_blocs();
   return ok;
 }
 
@@ -1940,8 +2049,8 @@ void Equation_base::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_i
   /* operateurs, masse, sources */
   int nb = nombre_d_operateurs();
   for (int op = 0; op < nb; op++) operateur(op).l_op_base().dimensionner_blocs(matrices, semi_impl);
-  solv_masse().valeur().dimensionner_blocs(matrices);
-  for (int i = 0; i < les_sources.size(); i++) les_sources(i).valeur().dimensionner_blocs(matrices, semi_impl);
+  solv_masse().dimensionner_blocs(matrices);
+  for (int i = 0; i < les_sources.size(); i++) les_sources(i)->dimensionner_blocs(matrices, semi_impl);
 }
 
 void Equation_base::assembler_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
@@ -1957,12 +2066,12 @@ void Equation_base::assembler_blocs(matrices_t matrices, DoubleTab& secmem, cons
 
   statistiques().begin_count(source_counter_);
   for (int i = 0; i < les_sources.size(); i++)
-    les_sources(i).valeur().ajouter_blocs(matrices, secmem, semi_impl);
+    les_sources(i)->ajouter_blocs(matrices, secmem, semi_impl);
 
   statistiques().end_count(source_counter_);
 
   statistiques().begin_count(assemblage_sys_counter_);
-  if (!(discretisation().is_polymac_family() || probleme().que_suis_je() == "Pb_Multiphase"))
+  if (!(discretisation().is_polymac_family() || probleme().que_suis_je().debute_par("Pb_Multiphase") || que_suis_je().debute_par("Equation_flux")))
     {
       const std::string& nom_inco = inconnue().le_nom().getString();
       Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
@@ -1974,7 +2083,7 @@ void Equation_base::assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab&
 {
   statistiques().begin_count(assemblage_sys_counter_);
   assembler_blocs(matrices, secmem, semi_impl);
-  solv_masse().valeur().set_penalisation_flag(0);
+  solv_masse().set_penalisation_flag(0);
   schema_temps().ajouter_blocs(matrices, secmem, *this);
 
   if (!discretisation().is_polymac_family())
@@ -1990,9 +2099,11 @@ void Equation_base::assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab&
 void Equation_base::init_champ_conserve() const
 {
   if (champ_conserve_.non_nul()) return; //deja fait
-  int Nt = inconnue()->nb_valeurs_temporelles(), Nl = inconnue().valeurs().size_reelle_ok() ? inconnue().valeurs().dimension(0) : -1, Nc = inconnue().valeurs().line_size();
+  int Nt = inconnue().nb_valeurs_temporelles(),
+      Nl = inconnue().valeurs().size_reelle_ok() ? inconnue().valeurs().dimension(0) : -1,
+      Nc = inconnue().valeurs().line_size();
   //champ_conserve_ : meme type / support que l'inconnue
-  discretisation().creer_champ(champ_conserve_, domaine_dis().valeur(), inconnue().valeur().que_suis_je(), "N/A", "N/A", Nc, Nl, Nt, schema_temps().temps_courant());
+  discretisation().creer_champ(champ_conserve_, domaine_dis(), inconnue().que_suis_je(), "N/A", "N/A", Nc, Nl, Nt, schema_temps().temps_courant());
   champ_conserve_->associer_eqn(*this);
   auto nom_fonc = get_fonc_champ_conserve();
   champ_conserve_->nommer(nom_fonc.first);
@@ -2003,7 +2114,7 @@ void Equation_base::init_champ_conserve() const
 void Equation_base::calculer_champ_conserve(const Objet_U& obj, DoubleTab& val, DoubleTab& bval, tabs_t& deriv)
 {
   const Equation_base& eqn = ref_cast(Equation_base, obj);
-  const Champ_base *coeff = eqn.solv_masse().valeur().has_coefficient_temporel() ? &eqn.get_champ(eqn.solv_masse().valeur().get_name_of_coefficient_temporel()) : nullptr; //coeff temporel
+  const Champ_base *coeff = eqn.solv_masse().has_coefficient_temporel() ? &eqn.get_champ(eqn.solv_masse().get_name_of_coefficient_temporel()) : nullptr; //coeff temporel
   const Champ_Inc_base& inco = eqn.inconnue();
   ConstDoubleTab_parts part(inco.valeurs());
   //valeur du champ lui-meme
@@ -2078,10 +2189,10 @@ Nom Equation_base::expression_residu()
       else
         {
           // Champ multiscalaire
-          if (inconnue()->nom_compo(0)[0]!=inconnue()->nom_compo(size-1)[0])
+          if (inconnue().nom_compo(0)[0]!=inconnue().nom_compo(size-1)[0])
             {
               // Exemple, champ K_Eps
-              tmp+=(Motcle)inconnue()->nom_compo(i)[0];
+              tmp+=(Motcle)inconnue().nom_compo(i)[0];
             }
           else
             {
@@ -2111,7 +2222,7 @@ void Equation_base::set_residuals(const DoubleTab& residual)
 {
   if(field_residu_.non_nul())
     {
-      DoubleTab& tab = field_residu_.valeur().valeurs();
+      DoubleTab& tab = field_residu_->valeurs();
       if (tab.dimension_tot(0) == residual.dimension_tot(0))
         tab = residual;
       else

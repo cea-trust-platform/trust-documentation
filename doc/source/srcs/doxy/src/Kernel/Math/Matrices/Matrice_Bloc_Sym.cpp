@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -50,7 +50,7 @@ Sortie& Matrice_Bloc_Sym::imprimer(Sortie& os) const
   int i,j;
   for(i=0; i<N_; i++)
     for(j=i; j<M_; j++)
-      (*this).get_bloc(i,j).valeur().imprimer(os);
+      (*this).get_bloc(i,j)->imprimer(os);
   return os;
 }
 
@@ -63,7 +63,7 @@ Sortie& Matrice_Bloc_Sym::imprimer_formatte(Sortie& os) const
           os<<"----------"<<finl;
           os<<"Bloc ("<<i<<","<<j<<"):"<<finl;
           os<<"----------"<<finl;
-          (*this).get_bloc(i,j).valeur().imprimer_formatte(os);
+          (*this).get_bloc(i,j)->imprimer_formatte(os);
         }
     }
   return os;
@@ -532,7 +532,7 @@ void Matrice_Bloc_Sym::get_symmetric_stencil_and_coefficients( IntTab&      sten
     }
 }
 
-bool Matrice_Bloc_Sym::check_symmetric_block_matrix_structure( void ) const
+bool Matrice_Bloc_Sym::check_symmetric_block_matrix_structure() const
 {
   const int nb_line_blocks   = nb_bloc_lignes( );
   const int nb_column_blocks = nb_bloc_colonnes( );
@@ -570,7 +570,7 @@ bool Matrice_Bloc_Sym::check_symmetric_block_matrix_structure( void ) const
   return true;
 }
 
-void Matrice_Bloc_Sym::assert_check_symmetric_block_matrix_structure( void ) const
+void Matrice_Bloc_Sym::assert_check_symmetric_block_matrix_structure() const
 {
 #ifndef NDEBUG
   if ( ! ( check_symmetric_block_matrix_structure( ) ) )

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2023, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@ class Fluide_sodium_liquide: public Fluide_reel_base
 
   std::map<std::string, std::array<double, 2>> unknown_range() const override
   {
-    return { { "temperature", { 371 - 273.15, 2503.7 - 273.15 } } }; //de la temperature de solidification au pt tricritique
+    return { { "temperature", { 371 - 273.15, 1503.7 - 273.15 } } }; //de la temperature de solidification au pt tricritique
   }
 
 protected :
@@ -44,6 +44,17 @@ protected :
   inline void beta_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { BETAL(T,res,ncomp,id); } // passe pas P
   inline void mu_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { MuL(T,res,ncomp,id); } // passe pas P
   inline void lambda_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { LambdaL(T,res,ncomp,id); } // passe pas P
+
+  void rho_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void dP_rho_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void dh_rho_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void T_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void dP_T_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void dh_T_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void cp_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void beta_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void mu_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
+  void lambda_h_(const SpanD T, const SpanD P, SpanD res, int ncomp = 1, int id = 0) const override { Cerr << "Fluide_sodium_liquide::" << __func__ << " NOT CODED ! " << finl; throw; }
 };
 
 #endif /* Fluide_sodium_liquide_included */

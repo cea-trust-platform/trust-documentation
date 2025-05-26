@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -32,8 +32,8 @@
  *   #include <Type_base.h>
  *   TRUST_Deriv<Type_base>
  *
- *   Creation d'un objet de type DERIV(Type_base) :
- *    DERIV(Type_base) deriv_type; // deriv_type est encore un pointeur nul
+ *   Creation d'un objet de type OWN_PTR(Type_base) :
+ *    OWN_PTR(Type_base) deriv_type; // deriv_type est encore un pointeur nul
  *
  *   On suppose que la classe Type_Derive derive de Type_base et est instanciable:
  *    class Type_Derive : Type_base
@@ -52,15 +52,13 @@
  *   L'instance de Type_Derive est detruite si on appelle a nouveau "typer()"
  *   ou si l'objet deriv_type est detruit.
  *
- *   Exemples :
- *    Equation_base     Operateur_Diff_base  ... ( <=> Type_base )
- *    Navier_Stokes_std Op_Diff_VDF_var_Face     ( <=> Type_derive )
- *    Equation          Operateur_Diff           ( <=> DERIV(Type_base) )
- *
  */
 
-// MACRO to replace DERIV(THECLASS) by Deriv_THECLASS & keep previous syntax for some developers
-#define DERIV(_TYPE_) TRUST_Deriv<_TYPE_>
+// MACRO to replace OWN_PTR(THECLASS) by Deriv_THECLASS & keep previous syntax for some developers
+#define DERIV(_TYPE_) \
+  static_assert(false, "The old DERIV MACRO is now deprecated. Please use OWN_PTR instead.")
+
+#define OWN_PTR(_TYPE_) TRUST_Deriv<_TYPE_>
 
 template<typename _CLASSE_>
 class TRUST_Deriv: public Objet_U_ptr
@@ -92,25 +90,39 @@ protected:
 private:
   _CLASSE_ *pointeur_ = nullptr;
 
+  /* XXX Elie Saikali : interdit de l'appeler ! */
+  void nommer(const Nom&) override { /* NON PAS POSSIBLE */ }
+  int reprendre(Entree&) override { return -100; /* NON PAS POSSIBLE */ }
+  int sauvegarder(Sortie&) const override { return -100; /* NON PAS POSSIBLE */ }
+
 public:
   ~TRUST_Deriv() { detach(); }
   TRUST_Deriv() :  Objet_U_ptr(), pointeur_(nullptr) { }
-  TRUST_Deriv(const TRUST_Deriv& t) : Objet_U_ptr(), pointeur_(nullptr)
+  TRUST_Deriv(const TRUST_Deriv& t) : TRUST_Deriv()
   {
     if (t.non_nul()) recopie(t.valeur());
+  }
+
+  TRUST_Deriv(const _CLASSE_& t) : TRUST_Deriv()
+  {
+    recopie(t);
   }
 
   inline const _CLASSE_& valeur() const
   {
     assert(pointeur_ != nullptr);
+#ifndef TRUST_USE_GPU
     assert(get_Objet_U_ptr_check() || 1);
+#endif
     return *pointeur_;
   }
 
   inline _CLASSE_& valeur()
   {
     assert(pointeur_ != nullptr);
+#ifndef TRUST_USE_GPU
     assert(get_Objet_U_ptr_check() || 1);
+#endif
     return *pointeur_;
   }
 
@@ -156,6 +168,36 @@ public:
     const Type_info * type_info = _CLASSE_::info();
     return *type_info; /* type de base accepte par la ref */
   }
+
+  Entree& typer_lire_simple(Entree& is, const char* msg = "??")
+  {
+    return typer_lire(is, "??", msg);
+  }
+
+  Entree& typer_lire(Entree& is, const char* b = "??", const char* msg = "??")
+  {
+    Nom type, base;
+
+    if (strcmp(msg, "??") != 0)
+      Cerr << msg << " ";
+
+    if (strcmp(b, "??") != 0)
+      base = b;
+
+    is >> type; // On lit le type :-)
+
+    if (base != "??")
+      type = base + type;
+
+    typer(type); // on type :-)
+
+    if (strcmp(msg, "??") != 0)
+      Cerr << valeur().que_suis_je() << finl;
+
+    is >> valeur(); // et on lit la classe :-)
+
+    return is;
+  }
 };
 
 /* ======================================================= *
@@ -163,7 +205,7 @@ public:
  * ======================================================= */
 
 /*! @brief classe TRUST_Deriv_Objet_U est quasiment identique a TRUST_Deriv<Objet_U>
- *  sauf qu'elle ne contient pas les operateurs de conversion de DERIV(Objet_U) en Objet_U.
+ *  sauf qu'elle ne contient pas les operateurs de conversion de OWN_PTR(Objet_U) en Objet_U.
  *
  *  Il existe 3 methodes supplementaires :
  *

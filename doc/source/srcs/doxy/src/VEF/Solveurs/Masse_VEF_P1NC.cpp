@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -52,108 +52,111 @@ Entree& Masse_VEF_P1NC::readOn(Entree& s)
 //////////////////////////////////////////////////////////////
 
 
-DoubleTab& Masse_VEF_P1NC::appliquer_impl(DoubleTab& sm) const
+DoubleTab& Masse_VEF_P1NC::appliquer_impl(DoubleTab& tab_sm) const
 {
   const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,le_dom_Cl_VEF.valeur());
   const Domaine_VEF& domaine_VEF = le_dom_VEF.valeur();
-  const DoubleVect& volumes_entrelaces = domaine_VEF.volumes_entrelaces();
-  const DoubleVect& volumes_entrelaces_Cl = domaine_Cl_VEF.volumes_entrelaces_Cl();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
-  const DoubleVect& porosite_face = equation().milieu().porosite_face();
+  const DoubleVect& tab_volumes_entrelaces = domaine_VEF.volumes_entrelaces();
+
   int nfa = domaine_VEF.nb_faces();
   int num_std = domaine_VEF.premiere_face_std();
   int num_int = domaine_VEF.premiere_face_int();
-  int nbcomp = sm.line_size();
+  int nbcomp = tab_sm.line_size();
 
-  if (nfa != sm.dimension(0))
+  if (nfa != tab_sm.dimension(0))
     {
       Cerr << "erreur dans Masse_VEF_P1NC : ";
       Cerr << "nombre de faces :  " << nfa
-           << " taille du second membre : " << sm.dimension(0) << finl;
+           << " taille du second membre : " << tab_sm.dimension(0) << finl;
       exit();
     }
+
   // On traite les faces standard qui ne portent pas de conditions aux limites
-  bool kernelOnDevice = sm.checkDataOnDevice();
-  const double * porosite_face_addr = mapToDevice(porosite_face, "", kernelOnDevice);
-  const double * volumes_entrelaces_addr = mapToDevice(volumes_entrelaces, "", kernelOnDevice);
-  double * sm_addr = computeOnTheDevice(sm, "", kernelOnDevice);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice && computeOnDevice)
-  for (int face=num_std; face<nfa; face++)
-    for (int comp=0; comp<nbcomp; comp++)
-      sm_addr[face*nbcomp+comp] /= (volumes_entrelaces_addr[face]*porosite_face_addr[face]);
-  end_gpu_timer(kernelOnDevice, "Face loop (std) in Masse_VEF_P1NC::appliquer_impl");
+  CDoubleArrView porosite_face = equation().milieu().porosite_face().view_ro();
+  CDoubleArrView volumes_entrelaces = tab_volumes_entrelaces.view_ro();
+  DoubleTabView sm = tab_sm.view_rw();
+
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       Kokkos::MDRangePolicy<Kokkos::Rank<2>>({num_std,0}, {nfa,nbcomp}),
+                       KOKKOS_LAMBDA(int face, int comp)
+  {
+    sm(face, comp) /= (volumes_entrelaces(face) * porosite_face(face));
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
   // On traite les faces non standard
   // les faces des bord sont des faces non standard susceptibles de porter des C.L
   // les faces internes non standard ne portent pas de C.L
 
   // On traite les conditions aux limites
-  copyPartialFromDevice(sm, 0, domaine_VEF.premiere_face_int() * nbcomp, "sm on boundary");
-  for (int n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
-    {
+  CIntTabView face_voisins = domaine_VEF.face_voisins().view_ro();
+  CDoubleTabView normales = domaine_VEF.face_normales().view_ro();
+  CDoubleArrView volumes_entrelaces_Cl = domaine_Cl_VEF.volumes_entrelaces_Cl().view_ro();
 
+  start_gpu_timer(__KERNEL_NAME__);
+  for (int n_bord = 0; n_bord < domaine_VEF.nb_front_Cl(); n_bord++)
+    {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int num2 = num1 + le_bord.nb_faces();
 
-      if ( (sub_type(Dirichlet,la_cl.valeur()))
-           ||
-           (sub_type(Dirichlet_homogene,la_cl.valeur()))
-         )
+      if ((sub_type(Dirichlet,la_cl.valeur())) ||
+          (sub_type(Dirichlet_homogene,la_cl.valeur())))
         // Pour les faces de Dirichlet on met sm a 0
-        for (int face=num1; face<num2; face++)
-          for (int comp=0; comp<nbcomp; comp++)
-            sm(face,comp) =0;
-      else
-
-        if ((sub_type(Symetrie,la_cl.valeur()))&&(domaine_Cl_VEF.equation().inconnue()->nature_du_champ()==vectoriel))
+        Kokkos::parallel_for(__KERNEL_NAME__,
+                             range_1D(num1, num2),
+                             KOKKOS_LAMBDA(const int face)
+        {
+          for (int comp = 0; comp < nbcomp; comp++)
+            sm(face, comp) = 0;
+        });
+      else if ((sub_type(Symetrie,la_cl.valeur())) && (domaine_Cl_VEF.equation().inconnue().nature_du_champ()==vectoriel))
+        {
+          Kokkos::parallel_for(__KERNEL_NAME__,
+                               range_1D(num1, num2),
+                               KOKKOS_LAMBDA(const int face)
           {
-            const DoubleTab& normales = domaine_VEF.face_normales();
-            for (int face=num1; face<num2; face++)
+            double psc = 0;
+            double surf = 0;
+            for (int comp = 0; comp < nbcomp; comp++)
               {
-                double psc=0;
-                double surf=0;
-                for (int comp=0; comp<nbcomp; comp++)
-                  {
-                    psc+=sm(face,comp)*normales(face,comp);
-                    surf+=normales(face,comp)*normales(face,comp);
-                  }
-                psc/=surf;
-                for(int comp=0; comp<dimension; comp++)
-                  {
-                    sm(face,comp)-=psc*normales(face,comp);
-                    sm(face,comp) /= (volumes_entrelaces_Cl(face)*
-                                      porosite_face(face));
-                  }
+                psc += sm(face,comp) * normales(face,comp);
+                surf += normales(face,comp) * normales(face,comp);
               }
-          }
-
-        else
-
-          for (int face=num1; face<num2; face++)
-            {
-              int elem = face_voisins(face,0);
-              if ( elem == -1 )
-                {
-                  elem = face_voisins(face,1);
-                }
-              for (int comp=0; comp<nbcomp; comp++)
-                sm(face,comp) /= (volumes_entrelaces_Cl(face)*porosite_face(face));
-            }
+            psc /= surf;
+            for(int comp = 0; comp < nbcomp; comp++)
+              {
+                sm(face,comp) -= psc * normales(face,comp);
+                sm(face,comp) /= (volumes_entrelaces_Cl(face) *
+                                  porosite_face(face));
+              }
+          });
+        }
+      else
+        Kokkos::parallel_for(__KERNEL_NAME__,
+                             range_1D(num1, num2),
+                             KOKKOS_LAMBDA(const int face)
+        {
+          int elem = face_voisins(face,0);
+          if (elem == -1) elem = face_voisins(face,1);
+          for (int comp = 0; comp < nbcomp; comp++)
+            sm(face,comp) /= (volumes_entrelaces_Cl(face) * porosite_face(face));
+        });
     }
-  copyPartialToDevice(sm, 0, domaine_VEF.premiere_face_int() * nbcomp, "sm on boundary");  // On traite les faces internes non standard
-  kernelOnDevice = sm.checkDataOnDevice();
-  const double * volumes_entrelaces_Cl_addr = mapToDevice(volumes_entrelaces_Cl, "", kernelOnDevice);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice && computeOnDevice)
-  for (int face=num_int; face<num_std; face++)
-    for (int comp=0; comp<nbcomp; comp++)
-      sm_addr[face*nbcomp+comp] /= (volumes_entrelaces_Cl_addr[face]*porosite_face_addr[face]);
-  end_gpu_timer(kernelOnDevice, "Face loop (non-std) in Masse_VEF_P1NC::appliquer_impl");
-  //sm.echange_espace_virtuel();
-  //Debog::verifier("Masse_VEF_P1NC::appliquer, sm=",sm);
-  return sm;
+  end_gpu_timer(__KERNEL_NAME__);
+
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       range_2D({num_int,0}, {num_std,nbcomp}),
+                       KOKKOS_LAMBDA(int face, int comp)
+  {
+    sm(face,comp) /= (volumes_entrelaces_Cl(face) * porosite_face(face));
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
+  //tab_sm.echange_espace_virtuel();
+  //Debog::verifier("Masse_VEF_P1NC::appliquer, tab_sm=",tab_sm);
+  return tab_sm;
 }
 
 
@@ -171,10 +174,10 @@ void Masse_VEF_P1NC::associer_domaine_cl_dis_base(const Domaine_Cl_dis_base& le_
 
 Matrice_Base& Masse_VEF_P1NC::ajouter_masse(double dt, Matrice_Base& matrice, int penalisation) const
 {
-  if (penalisation||(le_dom_Cl_VEF.valeur().equation().inconnue()->nature_du_champ()!=vectoriel))
+  if (penalisation||(le_dom_Cl_VEF->equation().inconnue().nature_du_champ()!=vectoriel))
     return Solveur_Masse_base::ajouter_masse(dt,matrice,penalisation);
   // Sinon on modifie temporairement la nature du champ pour que appliquer_impl ne projette pas sur n.
-  Champ_Inc_base& inco=ref_cast_non_const( Champ_Inc_base,le_dom_Cl_VEF.valeur().equation().inconnue().valeur());
+  Champ_Inc_base& inco=ref_cast_non_const( Champ_Inc_base,le_dom_Cl_VEF->equation().inconnue());
   inco.fixer_nature_du_champ(multi_scalaire);
   Solveur_Masse_base::ajouter_masse(dt,matrice,penalisation);
   inco.fixer_nature_du_champ(vectoriel);
@@ -186,11 +189,11 @@ Matrice_Base& Masse_VEF_P1NC::ajouter_masse(double dt, Matrice_Base& matrice, in
 
 DoubleTab& Masse_VEF_P1NC::ajouter_masse(double dt, DoubleTab& x, const DoubleTab& y, int penalisation) const
 {
-  if (penalisation||(le_dom_Cl_VEF.valeur().equation().inconnue()->nature_du_champ()!=vectoriel))
+  if (penalisation||(le_dom_Cl_VEF->equation().inconnue().nature_du_champ()!=vectoriel))
     return Solveur_Masse_base::ajouter_masse(dt,x,y,penalisation);
 
   // Sinon on modifie temporairement la nature du champ pour que appliquer_impl ne projette pas sur n.
-  Champ_Inc_base& inco=ref_cast_non_const( Champ_Inc_base,le_dom_Cl_VEF.valeur().equation().inconnue().valeur());
+  Champ_Inc_base& inco=ref_cast_non_const( Champ_Inc_base,le_dom_Cl_VEF->equation().inconnue());
   inco.fixer_nature_du_champ(multi_scalaire);
   Solveur_Masse_base::ajouter_masse(dt,x,y,penalisation);
   inco.fixer_nature_du_champ(vectoriel);

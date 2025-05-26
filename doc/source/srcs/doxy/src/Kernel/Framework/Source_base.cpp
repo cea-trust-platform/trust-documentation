@@ -81,19 +81,19 @@ void Source_base::resetTime(double t)
 /*! @brief Met a jour les references internes a l'objet Source_base.
  *
  * Appelle 2 methodes virtuelles pures protegees:
- *        Source_base::associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis&)
+ *        Source_base::associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base&)
  *        Source_base::associer_pb(const Probleme_base&)
  *
  */
 void Source_base::completer()
 {
   const Equation_base& eqn = equation();
-  const Domaine_dis& zdis= eqn.domaine_dis();
-  const Domaine_Cl_dis& zcldis = eqn.domaine_Cl_dis();
+  const Domaine_dis_base& zdis= eqn.domaine_dis();
+  const Domaine_Cl_dis_base& zcldis = eqn.domaine_Cl_dis();
   associer_domaines(zdis, zcldis);
   associer_pb(eqn.probleme());
   // Initialize the bilan_ array:
-  bilan_.resize(eqn.inconnue().valeur().nb_comp());
+  bilan_.resize(eqn.inconnue().nb_comp());
   bilan_=0;
 }
 
@@ -127,30 +127,31 @@ void Source_base::associer_champ_rho(const Champ_base& champ_rho)
  * )
  *
  */
-int Source_base::a_pour_Champ_Fonc(const Motcle& mot,
-                                   REF(Champ_base)& ch_ref) const
+int Source_base::a_pour_Champ_Fonc(const Motcle& mot, OBS_PTR(Champ_base) &ch_ref) const
 {
   // La classe de base ne comprend aucun motcle
   return 0;
-}
-
-void Source_base::creer_champ(const Motcle& motlu)
-{
 }
 
 const Champ_base& Source_base::get_champ(const Motcle& nom) const
 {
   return champs_compris_.get_champ(nom);
 }
-bool Source_base::has_champ(const Motcle& nom, REF(Champ_base)& ref_champ) const
+
+bool Source_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
 {
   return champs_compris_.has_champ(nom, ref_champ);
 }
 
-void Source_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+bool Source_base::has_champ(const Motcle& nom) const
 {
-  if (opt==DESCRIPTION)
-    Cerr<<que_suis_je()<<" : "<<champs_compris_.liste_noms_compris()<<finl;
+  return champs_compris_.has_champ(nom);
+}
+
+void Source_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
+{
+  if (opt == DESCRIPTION)
+    Cerr << que_suis_je() << " : " << champs_compris_.liste_noms_compris() << finl;
   else
     nom.add(champs_compris_.liste_noms_compris());
 }
@@ -179,8 +180,7 @@ int Source_base::impr(Sortie& os) const
       else
         {
           int flag=je_suis_maitre();
-          //SFichier Flux;
-          if (!Flux.is_open()) ouvrir_fichier(Flux,"",flag);
+          ouvrir_fichier(Flux,"",flag);
           const Probleme_base& pb=equation().probleme();
           const Schema_Temps_base& sch=pb.schema_temps();
           double temps=sch.temps_courant();

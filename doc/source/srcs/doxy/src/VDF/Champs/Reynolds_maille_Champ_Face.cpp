@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,7 +15,7 @@
 
 #include <Reynolds_maille_Champ_Face.h>
 #include <Champ_Face_VDF.h>
-#include <Champ_Don.h>
+
 #include <Domaine_VDF.h>
 
 Implemente_instanciable(Reynolds_maille_Champ_Face, "Reynolds_maille_Champ_Face", Champ_Fonc_Face_VDF);
@@ -24,7 +24,7 @@ Sortie& Reynolds_maille_Champ_Face::printOn(Sortie& s) const { return s << que_s
 
 Entree& Reynolds_maille_Champ_Face::readOn(Entree& s) { return s; }
 
-void Reynolds_maille_Champ_Face::associer_champ(const Champ_Face_VDF& la_vitesse, const Champ_Don& la_viscosite_cinematique)
+void Reynolds_maille_Champ_Face::associer_champ(const Champ_Face_VDF& la_vitesse, const Champ_Don_base& la_viscosite_cinematique)
 {
   vitesse_ = la_vitesse;
   nu_ = la_viscosite_cinematique;

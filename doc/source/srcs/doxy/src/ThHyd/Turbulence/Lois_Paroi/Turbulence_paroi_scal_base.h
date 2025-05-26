@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,18 +17,16 @@
 #define Turbulence_paroi_scal_base_included
 
 #include <Champs_compris_interface.h>
+#include <Champ_Fonc_base.h>
 #include <Champs_compris.h>
-#include <Champ_Fonc.h>
 #include <TRUSTVects.h>
-#include <Champ_Inc.h>
 #include <TRUST_Ref.h>
 
 class Modele_turbulence_scal_base;
+class Domaine_Cl_dis_base;
+class Domaine_dis_base;
 class Probleme_base;
 class EcrFicPartage;
-class Domaine_Cl_dis;
-class Champ_Don;
-class Domaine_dis;
 class Domaine_VF;
 
 /*! @brief Classe Turbulence_paroi_scal_base Classe de base pour la hierarchie des classes representant les modeles
@@ -42,28 +40,39 @@ class Domaine_VF;
  */
 class Turbulence_paroi_scal_base: public Champs_compris_interface, public Objet_U
 {
-
   Declare_base_sans_constructeur(Turbulence_paroi_scal_base);
-
 public:
   Turbulence_paroi_scal_base() : nb_impr_(0), calcul_ldp_en_flux_impose_(0), Prdt_sur_kappa_(2.12) { }
+
+  static void typer_lire_turbulence_paroi_scal(OWN_PTR(Turbulence_paroi_scal_base)&, const Modele_turbulence_scal_base&, Entree& );
+
+  /* XXX Elie Saikali : re-mets ici et pas dans Objet_U */
+  int sauvegarder(Sortie& os) const override { return 0; }
+  int reprendre(Entree& is) override { return 1; }
+  virtual std::vector<YAML_data> data_a_sauvegarder() const { return std::vector<YAML_data>(); }
+
   inline void associer_modele(const Modele_turbulence_scal_base&);
-  virtual void associer(const Domaine_dis&, const Domaine_Cl_dis&)=0;
+  virtual void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&)=0;
   virtual void completer() { }
   virtual int init_lois_paroi() =0;
-  inline int calculer_scal(Champ_Fonc&);
   virtual int calculer_scal(Champ_Fonc_base&) =0;
+  virtual void compute_nusselt() const =0;
   virtual void imprimer_nusselt(Sortie&) const
   {
     Cerr << "imprimer_nusselt non code pour " << que_suis_je() << finl;
   }
+  void imprimer_premiere_ligne_nusselt(int, const LIST(Nom)&, const Nom&) const;
+  void imprimer_nusselt_mean_only(Sortie&, int, const LIST(Nom)&, const Nom&) const;
 
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
   // Ecriture dans un fichier separe de u_star, Cisaillement_paroi etc...
   void ouvrir_fichier_partage(EcrFicPartage&, const Nom&) const;
+  void ouvrir_fichier_partage(EcrFicPartage&, const Nom&, const Nom&) const;
   inline const int& get_flag_calcul_ldp_en_flux_impose() const { return calcul_ldp_en_flux_impose_; }
 
   virtual bool use_equivalent_distance() const;
@@ -92,8 +101,8 @@ public:
   }
 
 protected:
-  REF(Modele_turbulence_scal_base) mon_modele_turb_scal;
-  mutable int nb_impr_;        // Compteur d'impression
+  OBS_PTR(Modele_turbulence_scal_base) mon_modele_turb_scal;
+  mutable int nb_impr_ = 0, nb_impr0_ = 0;                        // Compteur d'impression
   int calcul_ldp_en_flux_impose_; // flag defenissant si on utilise la ldp en flux impose 0 par defaut
   double Prdt_sur_kappa_;         // Constante dans la loi de paroi
   inline double T_plus(double y_plus, double Pr);
@@ -111,7 +120,11 @@ protected:
   // de equivalent_distance_, on utilise tableau par bord et
   // chaque tableau est dimensionne au nombre de faces de
   // bord totales (reelles+virtuelles)
+  mutable DoubleTab tab_; // Array containing the Nusset fields
+  int nb_fields_ = 6; // Number of Nusselt fields
 
+  OBS_PTR(Domaine_VF) le_dom_dis_;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl_dis_;
 private:
 
   Champs_compris champs_compris_;
@@ -137,16 +150,6 @@ inline double Turbulence_paroi_scal_base::T_plus(double y_plus, double Pr)
 inline void Turbulence_paroi_scal_base::associer_modele(const Modele_turbulence_scal_base& le_modele)
 {
   mon_modele_turb_scal = le_modele;
-}
-
-/*! @brief Simple appel a int calculer_scal(Champ_Fonc_base& ).
- *
- * @param (Champ_Fonc& ch)
- * @return (int) code de retour propage
- */
-inline int Turbulence_paroi_scal_base::calculer_scal(Champ_Fonc& ch)
-{
-  return calculer_scal(ch.valeur());
 }
 
 #endif

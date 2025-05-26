@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,25 +21,28 @@
 #include <Champ_P1NC.h>
 #include <Periodique.h>
 #include <TRUSTLists.h>
-#include <Champ_Don.h>
+
 #include <Solv_GCP.h>
 #include <Symetrie.h>
 #include <Domaine.h>
 #include <SSOR.h>
 
 Implemente_instanciable(Op_Dift_VEF_P1NCP1B_Face, "Op_Dift_VEF_P1NCP1B_P1NC", Op_Dift_VEF_base);
+// XD diffusion_p1ncp1b diffusion_deriv p1ncp1b 1 not_set
+
+// XD difusion_p1b diffusion_deriv p1b 0 not_set
 
 Sortie& Op_Dift_VEF_P1NCP1B_Face::printOn(Sortie& s) const { return s << que_suis_je(); }
 
 Entree& Op_Dift_VEF_P1NCP1B_Face::readOn(Entree& s) { return s; }
 
-void Op_Dift_VEF_P1NCP1B_Face::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis, const Champ_Inc& ch_transporte)
+void Op_Dift_VEF_P1NCP1B_Face::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis, const Champ_Inc_base& ch_transporte)
 {
-  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis.valeur());
-  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_cl_dis.valeur());
-  inconnue_ = ref_cast(Champ_P1NC, ch_transporte.valeur());
+  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis);
+  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_cl_dis);
+  inconnue_ = ref_cast(Champ_P1NC, ch_transporte);
   solveur.typer("Solv_GCP");
-  Precond p;
+  OWN_PTR(Precond_base) p;
   p.typer("SSOR");
   ref_cast(Solv_GCP,solveur.valeur()).set_precond(p);
   solveur.nommer("diffusion_solver");
@@ -186,7 +189,7 @@ DoubleTab& Op_Dift_VEF_P1NCP1B_Face::calculer_gradient_som(const DoubleTab& vit,
       {
         if (!sub_type(Periodique, la_cl.valeur()))
           {
-            const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+            const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
             int num1 = le_bord.num_premiere_face();
             int num2 = num1 + le_bord.nb_faces();
             for (face = num1; face < num2; face++)
@@ -273,7 +276,7 @@ DoubleTab& Op_Dift_VEF_P1NCP1B_Face::corriger_div_pour_Cl(DoubleTab& div) const
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       {
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         int num1 = le_bord.num_premiere_face();
         int num2 = num1 + le_bord.nb_faces();
         if (sub_type(Periodique, la_cl.valeur()))
@@ -388,7 +391,7 @@ DoubleTab& Op_Dift_VEF_P1NCP1B_Face::calculer_divergence_som(double nu, const Do
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       {
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         int num1 = le_bord.num_premiere_face();
         int num2 = num1 + le_bord.nb_faces();
         if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
@@ -411,7 +414,7 @@ DoubleTab& Op_Dift_VEF_P1NCP1B_Face::calculer_divergence_som(double nu, const Do
 DoubleTab& Op_Dift_VEF_P1NCP1B_Face::ajouter(const DoubleTab& inconnue, DoubleTab& resu) const
 {
   const Domaine_VEF& domaine_VEF = domaine_vef();
-  const DoubleTab& nu_turb = diffusivite_turbulente()->valeurs();
+  const DoubleTab& nu_turb = diffusivite_turbulente().valeurs();
   const double nu = diffusivite(0);
   const int nb_elem_tot = domaine_VEF.domaine().nb_elem_tot(), nb_som_tot = domaine_VEF.domaine().nb_som_tot();
 

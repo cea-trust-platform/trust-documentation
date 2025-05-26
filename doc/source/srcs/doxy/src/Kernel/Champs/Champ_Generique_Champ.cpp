@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -58,22 +58,23 @@ int Champ_Generique_Champ::lire_motcle_non_standard(const Motcle& mot, Entree& i
 }
 void Champ_Generique_Champ::mettre_a_jour(double temps)
 {
-  champ_.mettre_a_jour(temps);
+  champ_->mettre_a_jour(temps);
 }
 /*! @brief Voir Champ_Generique_base::get_champ.
  *
  * Ici, l'espace_stockage n'est pas utilise, le champ existe deja
  *
  */
-const Champ_base& Champ_Generique_Champ::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Champ::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  return champ_.valeur();
+  return champ_;
 }
 
 const Champ_base& Champ_Generique_Champ::get_ref_champ_base() const
 {
   return champ_.valeur();
 }
+
 void Champ_Generique_Champ::reset()
 {
   champ_.detach();

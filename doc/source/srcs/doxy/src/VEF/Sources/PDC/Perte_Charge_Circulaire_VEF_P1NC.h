@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -56,7 +56,7 @@ public:
   {
     diam_hydr->mettre_a_jour(temps);
     diam_hydr_ortho->mettre_a_jour(temps);
-    v.mettre_a_jour(temps);
+    v->mettre_a_jour(temps);
   }
 
 protected:
@@ -68,10 +68,10 @@ protected:
                            double& coeff_ortho,double& coeff_long,double& u_l,
                            DoubleVect& v_valeur) const override;
 private:
-  Champ_Don diam_hydr_ortho;
+  OWN_PTR(Champ_Don_base) diam_hydr_ortho;
   mutable Parser_U lambda_ortho;
   mutable DoubleVect v_valeur;
-  Champ_Don v;//!< Vecteur directeur de la perte de charge.
+  OWN_PTR(Champ_Don_base) v;//!< Vecteur directeur de la perte de charge.
 };
 
 #endif

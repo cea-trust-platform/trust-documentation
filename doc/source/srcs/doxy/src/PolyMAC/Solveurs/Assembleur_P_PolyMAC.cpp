@@ -63,7 +63,7 @@ int Assembleur_P_PolyMAC::assembler_mat(Matrice& la_matrice, const DoubleVect& d
   const Domaine_PolyMAC& domaine = ref_cast(Domaine_PolyMAC, le_dom_PolyMAC.valeur());
   const IntTab& e_f = domaine.elem_faces(), &f_e = domaine.face_voisins();
   const DoubleVect& fs = domaine.face_surfaces(), &pf = mon_equation->milieu().porosite_face(), &pe = mon_equation->milieu().porosite_elem(), &ve = domaine.volumes();
-  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, mon_equation->inconnue().valeur());
+  const Champ_Face_PolyMAC& ch = ref_cast(Champ_Face_PolyMAC, mon_equation->inconnue());
   int i, j, k, e, f, fb, n_f, ne = domaine.nb_elem(), ne_tot = domaine.nb_elem_tot(), nf = domaine.nb_faces(), nf_tot = domaine.nb_faces_tot(), na_tot =
                                                                                                                           dimension < 3 ? domaine.domaine().nb_som_tot() : domaine.domaine().nb_aretes_tot(), infoo;
   domaine.init_m2(), ch.fcl();
@@ -230,7 +230,7 @@ int Assembleur_P_PolyMAC::modifier_secmem(DoubleTab& secmem)
     {
       const Cond_lim_base& la_cl_base = le_dom_cl.les_conditions_limites(i).valeur();
       const Front_VF& la_front_dis = ref_cast(Front_VF, la_cl_base.frontiere_dis());
-      const Champ_front_base& champ_front = la_cl_base.champ_front().valeur();
+      const Champ_front_base& champ_front = la_cl_base.champ_front();
       int ndeb = la_front_dis.num_premiere_face();
       int nfin = ndeb + la_front_dis.nb_faces();
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,7 +20,7 @@
 #include <Domaine_Cl_EF.h>
 #include <Domaine_EF.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 
 /*! @brief class Op_Grad_EF
  *
@@ -37,7 +37,7 @@ class Op_Grad_EF : public Operateur_Grad_base
 
 public:
 
-  void associer(const Domaine_dis& , const Domaine_Cl_dis&,const Champ_Inc&) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base&,const Champ_Inc_base&) override;
   DoubleTab& ajouter(const DoubleTab& ,  DoubleTab& ) const override;
   DoubleTab& calculer(const DoubleTab& , DoubleTab& ) const override;
   int impr(Sortie& os) const override;
@@ -45,9 +45,11 @@ public:
   void calculer_flux_bords() const override;
 
 protected:
-  REF(Domaine_EF) le_dom_EF;
-  REF(Domaine_Cl_EF) la_zcl_EF;
-  Champ_Don int_P_bord_;
+  void ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl_EF& domaine_Cl_EF) const;
+
+  OBS_PTR(Domaine_EF) le_dom_EF;
+  OBS_PTR(Domaine_Cl_EF) la_zcl_EF;
+  OWN_PTR(Champ_Don_base) int_P_bord_;
 
 };
 

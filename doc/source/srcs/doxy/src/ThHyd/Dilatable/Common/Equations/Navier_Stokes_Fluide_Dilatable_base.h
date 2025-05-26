@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,11 @@
 #define Navier_Stokes_Fluide_Dilatable_base_included
 
 #include <Navier_Stokes_Fluide_Dilatable_Proto.h>
+#include <Source_Masse_Fluide_Dilatable_base.h>
 #include <TRUSTTabs_forward.h>
 #include <Navier_Stokes_std.h>
-#include <Champ_Inc.h>
-#include <Champ_Don.h>
+
+
 
 class Matrice_Morse;
 
@@ -47,15 +48,19 @@ class Navier_Stokes_Fluide_Dilatable_base : public Navier_Stokes_std, public Nav
   Declare_base(Navier_Stokes_Fluide_Dilatable_base);
 
 public :
-  void discretiser() override;
+  int lire_motcle_non_standard(const Motcle& mot, Entree& is) override;
   int preparer_calcul() override;
-  const Champ_Don& diffusivite_pour_transport() const override;
+  void set_param(Param& param) override;
+  void discretiser() override;
+  const Champ_Don_base& diffusivite_pour_transport() const override;
   const Champ_base& diffusivite_pour_pas_de_temps() const override;
   const Champ_base& vitesse_pour_transport() const override;
 
   // Methodes virtuelles
   DoubleTab& derivee_en_temps_inco(DoubleTab& ) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void completer() override;
   void assembler( Matrice_Morse& mat_morse, const DoubleTab& present, DoubleTab& secmem) override ;
   void assembler_avec_inertie( Matrice_Morse& mat_morse, const DoubleTab& present, DoubleTab& secmem) override ;
@@ -64,7 +69,24 @@ public :
   bool initTimeStep(double dt) override;
 
   // Methodes inlines
-  inline const Champ_Inc& rho_la_vitesse() const override { return rho_la_vitesse_; }
+  inline void mettre_a_jour(double temps) override
+  {
+    Navier_Stokes_std::mettre_a_jour(temps);
+    if (source_masse_.non_nul())
+      source_masse_->mettre_a_jour(temps);
+  }
+
+  inline const Champ_Inc_base& rho_la_vitesse() const override { return rho_la_vitesse_; }
+
+  inline bool has_source_masse() const { return source_masse_.non_nul(); }
+  inline const Source_Masse_Fluide_Dilatable_base& source_masse() const
+  {
+    assert(source_masse_.non_nul());
+    return source_masse_.valeur();
+  }
+
+protected:
+  OWN_PTR(Source_Masse_Fluide_Dilatable_base) source_masse_;
 };
 
 #endif /* Navier_Stokes_Fluide_Dilatable_base_included */

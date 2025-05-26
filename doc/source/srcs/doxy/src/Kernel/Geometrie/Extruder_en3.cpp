@@ -22,6 +22,7 @@
 #include <Param.h>
 
 Implemente_instanciable_sans_constructeur(Extruder_en3,"Extruder_en3",Interprete_geometrique_base);
+// XD extruder_en3 extruder extruder_en3 1 Class to create a 3D tetrahedral/hexahedral mesh (a prism is cut in 3) from a 2D triangular/quadrangular mesh. The names of the boundaries (by default, devant (front) and derriere (back)) may be edited by the keyword nom_cl_devant and nom_cl_derriere. If 'null' is written for nom_cl, then no boundary condition is generated at this place. NL2 Recommendation : to ensure conformity between meshes (in case of fluid/solid coupling) it is recommended to extrude all the domains at the same time.
 
 Extruder_en3::Extruder_en3():
   NZ_(-1),
@@ -58,11 +59,11 @@ Entree& Extruder_en3::interpreter_(Entree& is)
   int nb_dom=0;
   Noms noms_dom;
   Param param(que_suis_je());
-  param.ajouter("domaine",&noms_dom,Param::REQUIRED);
+  param.ajouter("domaine",&noms_dom,Param::REQUIRED);  // XD attr domaine listchaine domain_name 0 List of the domains
   param.ajouter("nb_tranches",&NZ_,Param::REQUIRED);
   param.ajouter_arr_size_predefinie("direction",&direction_,Param::REQUIRED);
-  param.ajouter("nom_cl_devant",&nom_dvt_);
-  param.ajouter("nom_cl_derriere",&nom_derriere_);
+  param.ajouter("nom_cl_devant",&nom_dvt_);         // XD attr nom_cl_devant chaine nom_cl_devant 1 New name of the first boundary.
+  param.ajouter("nom_cl_derriere",&nom_derriere_);  // XD attr nom_cl_derriere chaine nom_cl_derriere 1 New name of the second boundary.
   param.lire_avec_accolades_depuis(is);
   nb_dom=noms_dom.size();
 
@@ -111,7 +112,7 @@ void Extruder_en3::extruder(Domaine& dom, const IntVect& num)
       Faces les_faces;
       {
         // bloc a factoriser avec Domaine_VF.cpp :
-        Type_Face type_face = dom.type_elem().type_face(0);
+        Type_Face type_face = dom.type_elem()->type_face(0);
         les_faces.typer(type_face);
         les_faces.associer_domaine(dom);
 
@@ -324,7 +325,7 @@ void Extruder_en3::construire_bords(Domaine& dom, Faces& les_faces, int oldnbsom
       Bord& devant = dom.faces_bord().add(Bord());
       devant.nommer(nom_dvt_);
       Faces& les_faces_dvt=devant.faces();
-      les_faces_dvt.typer(Faces::triangle_3D);
+      les_faces_dvt.typer(Type_Face::triangle_3D);
 
       IntTab som_dvt(oldsz, 3);
       les_faces_dvt.voisins().resize(oldsz, 2);
@@ -353,7 +354,7 @@ void Extruder_en3::construire_bords(Domaine& dom, Faces& les_faces, int oldnbsom
       Bord& derriere = dom.faces_bord().add(Bord());
       derriere.nommer(nom_derriere_);
       Faces& les_faces_der=derriere.faces();
-      les_faces_der.typer(Faces::triangle_3D);
+      les_faces_der.typer(Type_Face::triangle_3D);
 
       IntTab som_der(oldsz, 3);
       les_faces_der.voisins().resize(oldsz, 2);
@@ -416,7 +417,7 @@ void Extruder_en3::construire_bord_lateral(Faces& les_faces_du_bord, Faces& les_
         }
     }
 
-  les_faces_du_bord.typer(Faces::triangle_3D);
+  les_faces_du_bord.typer(Type_Face::triangle_3D);
   les_faces_du_bord.les_sommets().ref(les_sommets);
   les_faces_du_bord.voisins().resize(2*nb_faces*NZ_, 2);
   les_faces_du_bord.voisins()=-1;

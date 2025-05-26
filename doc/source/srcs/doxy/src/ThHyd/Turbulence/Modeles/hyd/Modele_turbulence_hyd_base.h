@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,12 +17,10 @@
 #define Modele_turbulence_hyd_base_included
 
 #include <Support_Champ_Masse_Volumique.h>
-#include <Turbulence_paroi.h>
+#include <Turbulence_paroi_base.h>
 
 class Schema_Temps_base;
-class Domaine_Cl_dis;
 class Equation_base;
-class Domaine_dis;
 class Motcle;
 class Param;
 
@@ -45,13 +43,14 @@ class Modele_turbulence_hyd_base: public Objet_U, public Support_Champ_Masse_Vol
 {
   Declare_base(Modele_turbulence_hyd_base);
 public:
-  inline const Champ_Fonc& viscosite_turbulente() const { return la_viscosite_turbulente_; }
-  inline Champ_Fonc& viscosite_turbulente() { return la_viscosite_turbulente_; }
+  inline const Champ_Fonc_base& viscosite_turbulente() const { return la_viscosite_turbulente_; }
+  inline Champ_Fonc_base& viscosite_turbulente() { return la_viscosite_turbulente_; }
   inline Equation_base& equation();
   inline const Equation_base& equation() const;
-  inline const Turbulence_paroi& loi_paroi() const { return loipar_; }
-  inline Turbulence_paroi& loi_paroi() { return loipar_; }
-  bool utiliser_loi_paroi() const { return loi_paroi().non_nul() ? loipar_->use_shear() : false; }
+  inline const Turbulence_paroi_base& loi_paroi() const { return loipar_.valeur(); }
+  inline Turbulence_paroi_base& loi_paroi() { return loipar_.valeur(); }
+  bool utiliser_loi_paroi() const { return loipar_.non_nul() ? loipar_->use_shear() : false; }
+  bool has_loi_paroi_hyd() const { return loipar_.non_nul(); }
   virtual bool calcul_tenseur_Re(const DoubleTab& nu_turb, const DoubleTab& grad, DoubleTab& Re) const { return false; }
   virtual void set_param(Param& param);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
@@ -59,23 +58,25 @@ public:
   virtual bool initTimeStep(double dt);
   virtual void mettre_a_jour(double) =0;
   virtual void discretiser();
-  void discretiser_visc_turb(const Schema_Temps_base&, Domaine_dis&, Champ_Fonc&) const;
-  void discretiser_corr_visc_turb(const Schema_Temps_base&, Domaine_dis&, Champ_Fonc&) const;
-  void discretiser_K(const Schema_Temps_base&, Domaine_dis&, Champ_Fonc&) const; // Utilise par les modeles de tubulence dans TrioCFD
+  void discretiser_visc_turb(const Schema_Temps_base&, Domaine_dis_base&, OWN_PTR(Champ_Fonc_base)&) const;
+  void discretiser_corr_visc_turb(const Schema_Temps_base&, Domaine_dis_base&, OWN_PTR(Champ_Fonc_base)&) const;
+  void discretiser_K(const Schema_Temps_base&, Domaine_dis_base&, OWN_PTR(Champ_Fonc_base)&) const; // Utilise par les modeles de tubulence dans TrioCFD
   virtual void completer() { /* Do nothing */ }
   void associer_eqn(const Equation_base&);
-  virtual void associer(const Domaine_dis&, const Domaine_Cl_dis&) { /* Do nothing */ }
+  virtual void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&) { /* Do nothing */ }
   int reprendre(Entree&) override;
 
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
-
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   inline Champs_compris& champs_compris() { return champs_compris_; }
 
   virtual void imprimer(Sortie&) const;
   void a_faire(Sortie&) const;
   int sauvegarder(Sortie&) const override;
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
 
   int limpr_ustar(double, double, double, double) const;
   inline double get_Cmu() const { return LeCmu_; }
@@ -85,9 +86,9 @@ public:
 
 protected:
   double LeCmu_ = CMU;
-  Champ_Fonc la_viscosite_turbulente_, wall_length_;
-  REF(Equation_base) mon_equation_;
-  Turbulence_paroi loipar_;
+  OWN_PTR(Champ_Fonc_base)  la_viscosite_turbulente_, wall_length_;
+  OBS_PTR(Equation_base) mon_equation_;
+  OWN_PTR(Turbulence_paroi_base)loipar_;
   double dt_impr_ustar_  = 1.e20, dt_impr_ustar_mean_only_  = 1.e20;
   int boundaries_ = 0;
   LIST(Nom) boundaries_list_;
@@ -96,8 +97,8 @@ protected:
 
 private:
   double XNUTM_ = 1.E8, dt_diff_sur_dt_conv_ = -1;
-  int calcul_borne_locale_visco_turb_ = 0;
-  Champ_Fonc corr_visco_turb_;
+  bool calcul_borne_locale_visco_turb_ = false;
+  OWN_PTR(Champ_Fonc_base)  corr_visco_turb_;
   DoubleVect borne_visco_turb_;
 };
 

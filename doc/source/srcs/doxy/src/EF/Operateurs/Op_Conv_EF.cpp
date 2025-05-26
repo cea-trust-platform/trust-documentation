@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -179,7 +179,7 @@ DoubleTab& Op_Conv_EF::ajouter_sous_cond_dim2_nbn4_nbdim1(const DoubleTab& trans
 
 DoubleTab& Op_Conv_EF::ajouter_sous_cond(const DoubleTab& transporte, DoubleTab& resu, int btd_impl, int hourglass_impl, int centre_impl) const
 {
-  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis());
   int nb_som_elem = domaine_ef.domaine().nb_som_elem();
   int nb_compo = transporte.line_size();
 
@@ -206,7 +206,7 @@ void Op_Conv_EF::ajouter_contribution_sous_cond(const DoubleTab& transporte, Mat
                              equation().probleme().get_champ("masse_volumique").valeurs());
   int is_not_rho_unif = (rho_elem.size() == 1 ? 0 : 1);
 
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   int nb_comp = transporte.line_size();
   const DoubleVect& volumes_thilde= domaine_ef.volumes_thilde();
   const DoubleVect& volumes= domaine_ef.volumes();
@@ -343,7 +343,7 @@ double Op_Conv_EF::calculer_dt_stab() const
                              equation().probleme().get_champ("masse_volumique").valeurs());
   int is_not_rho_unif = (rho_elem.size() == 1 ? 0 : 1);
 
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   const DoubleVect& valeurs_diffusivite = ref_cast(Operateur_Diff_base,equation().operateur(0).l_op_base()).diffusivite().valeurs();
   int is_not_lambda_unif = (valeurs_diffusivite.size() == 1 ? 0 : 1);
 
@@ -353,6 +353,7 @@ double Op_Conv_EF::calculer_dt_stab() const
     {
       if (&valeurs_diffusivite_p == &valeurs_diffusivite)
         autre_eq=1;
+      if (equation().probleme().nombre_d_equations() <= 1) autre_eq=0;
     }
   const DoubleVect& valeurs_diffusivite_2 = ref_cast(Operateur_Diff_base,equation().probleme().equation(autre_eq).operateur(0).l_op_base()).diffusivite().valeurs();
 
@@ -463,7 +464,7 @@ double Op_Conv_EF::calculer_dt_stab() const
   min_dx_=mp_min(min_dx_);
   max_ue_=mp_max(max_ue_);
   coefficient_correcteur_supg_.dimensionner(1,1);
-  coefficient_correcteur_supg_(0,0)=min_dx_/max_ue_;
+  coefficient_correcteur_supg_.valeurs()(0,0)=min_dx_/max_ue_;
   double dt_stab=dt_l;
   dt_stab = Process::mp_min(dt_stab);
   // astuce pour contourner le type const de la methode
@@ -486,7 +487,24 @@ void Op_Conv_EF::contribue_au_second_membre_a_la_diffusion(DoubleTab& resu ) con
 
 const Champ_base& Op_Conv_EF::get_champ(const Motcle& nom) const
 {
-  if (nom=="coefficient_correcteur_supg")
+  if (nom == "coefficient_correcteur_supg")
     return coefficient_correcteur_supg_;
   return Op_Conv_EF_base::get_champ(nom);
+}
+
+bool Op_Conv_EF::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (nom == "coefficient_correcteur_supg")
+    {
+      ref_champ = coefficient_correcteur_supg_;
+      return true;
+    }
+  return Op_Conv_EF_base::has_champ(nom, ref_champ);
+}
+
+bool Op_Conv_EF::has_champ(const Motcle& nom) const
+{
+  if (nom == "coefficient_correcteur_supg")
+    return true;
+  return Op_Conv_EF_base::has_champ(nom);
 }

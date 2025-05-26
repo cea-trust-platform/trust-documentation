@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,8 +37,6 @@ Implemente_instanciable_sans_constructeur(Partitionneur_Ptscotch,"Partitionneur_
 
 Partitionneur_Ptscotch::Partitionneur_Ptscotch()
 {
-  nb_parties_ = -1;
-  use_weights_ = 0;
 }
 
 Sortie& Partitionneur_Ptscotch::printOn(Sortie& os) const
@@ -100,13 +98,13 @@ void Partitionneur_Ptscotch::construire_partition(IntVect& elem_part, int& nb_pa
   if (nb_parties_ == 1)
     {
 
-      int nb_elem = ref_domaine_.valeur().nb_elem();
+      int nb_elem = ref_domaine_->nb_elem();
       elem_part.resize_array(nb_elem);
       elem_part = 0;
       return;
     }
 
-  if (ref_domaine_.valeur().nb_elem() == 0)
+  if (ref_domaine_->nb_elem() == 0)
     return;
 
   Cerr << "Partitionneur_Ptscotch::construire_partition" << finl;
@@ -119,8 +117,8 @@ void Partitionneur_Ptscotch::construire_partition(IntVect& elem_part, int& nb_pa
                                    graph_elements_perio);
 
 
-  const int n = ref_domaine_.valeur().nb_elem();
-  int* partition = new int[n];
+  const int n = ref_domaine_->nb_elem();
+  SCOTCH_Num* partition = new SCOTCH_Num[n];
 
   SCOTCH_randomReset();
   SCOTCH_Dgraph scotch_graph;
@@ -138,19 +136,17 @@ void Partitionneur_Ptscotch::construire_partition(IntVect& elem_part, int& nb_pa
                      graph.adjncy.addr(),        // edgeloctab[edgelocnbr], global indexes of edges
                      graph.edgegsttab.addr(),   // edgegsttab            , optional, should be computed internally, set to zero
                      0); // edloloctab            , graph edges loads, set to zero
-
   SCOTCH_Strat scotch_strategy;
   SCOTCH_stratInit(&scotch_strategy);
 
   SCOTCH_dgraphPart(&scotch_graph,nb_parties_,&scotch_strategy,partition);
 
-
   SCOTCH_stratExit(&scotch_strategy);
   SCOTCH_dgraphExit(&scotch_graph);
 
-  MD_Vector_tools::creer_tableau_distribue(ref_domaine_.valeur().md_vector_elements(), elem_part);
+  MD_Vector_tools::creer_tableau_distribue(ref_domaine_->md_vector_elements(), elem_part);
   for (int i = 0; i < n; i++)
-    elem_part[i] = partition[i];
+    elem_part[i] = static_cast<int>(partition[i]);  // partition[i] is a a proc number...
 
   delete [] partition;
 
@@ -169,7 +165,6 @@ void Partitionneur_Ptscotch::construire_partition(IntVect& elem_part, int& nb_pa
   Cerr << "Correction elem0 on processor 0" << finl;
   corriger_elem0_sur_proc0(elem_part);
   elem_part.echange_espace_virtuel();
-
 #endif
 }
 

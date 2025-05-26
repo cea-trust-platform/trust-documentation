@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Fluide_Weakly_Compressible.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Source_WC_Chaleur.h>
 #include <Schema_Temps_base.h>
 #include <Equation_base.h>
@@ -54,7 +55,7 @@ DoubleTab& Source_WC_Chaleur::ajouter_(DoubleTab& resu) const
   if (dt_ <= 0.) return resu; // On calcul pas ce terme source si dt<=0
 
   Fluide_Weakly_Compressible& FWC = ref_cast_non_const(Fluide_Weakly_Compressible,le_fluide.valeur());
-  DoubleTab& Ptot = FWC.pression_th_tab(), Ptot_n = FWC.pression_thn_tab(); // present & passe
+  DoubleTab& Ptot = FWC.pression_th_tab(), &Ptot_n = FWC.pression_thn_tab(); // present & passe
 
   Ptot.echange_espace_virtuel();
 
@@ -78,11 +79,11 @@ DoubleTab& Source_WC_Chaleur::ajouter_(DoubleTab& resu) const
 const DoubleTab& Source_WC_Chaleur::correct_grad_boundary(const Domaine_VF& domaine, DoubleTab& grad_Ptot) const
 {
   // We dont have a CL for Ptot => we apply explicitly to have a null gradient on the boundary ...
-  const Domaine_Cl_dis& domaine_cl = mon_equation->domaine_Cl_dis();
+  const Domaine_Cl_dis_base& domaine_cl = mon_equation->domaine_Cl_dis();
   for (int n_bord=0; n_bord<domaine.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_cl.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       // recuperer face et remplace gradient par 0
       const int ndeb = le_bord.num_premiere_face(), nfin = ndeb + le_bord.nb_faces();
       for (int num_face=ndeb; num_face<nfin; num_face++) grad_Ptot(num_face,0) = 0.;

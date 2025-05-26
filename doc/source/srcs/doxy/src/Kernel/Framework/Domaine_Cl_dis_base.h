@@ -16,11 +16,10 @@
 #ifndef Domaine_Cl_dis_base_included
 #define Domaine_Cl_dis_base_included
 
-#include <Domaine_dis.h>
 #include <Conds_lim.h>
 #include <TRUST_Ref.h>
-
-class Champ_Inc;
+#include <MorEqn.h>
+#include <Domaine_forward.h>
 
 /*! @brief classe Domaine_Cl_dis_base Les objets Domaine_Cl_dis_base representent les conditions aux limites
  *
@@ -32,7 +31,7 @@ class Champ_Inc;
  *      reference par Domaine_Cl_dis_base.
  *      Domaine_Cl_dis_base a un membre representant les conditions aux limites.
  *
- * @sa MorEqn Conds_lim Cond_lim_base, Classe abstraite., Methodes abstraites:, void completer(const Domaine_dis& ), void imposer_cond_lim(Champ_Inc& )
+ * @sa MorEqn Conds_lim Cond_lim_base, Classe abstraite., Methodes abstraites:, void completer(const Domaine_dis_base& ), void imposer_cond_lim(Champ_Inc_base& )
  */
 class Domaine_Cl_dis_base : public MorEqn, public Objet_U
 {
@@ -53,14 +52,16 @@ public:
   void             resetTime(double time);
   void             completer();
   int           contient_Cl(const Nom&);
-  Domaine_dis&        domaine_dis();
-  const Domaine_dis&  domaine_dis() const;
+  Domaine_dis_base&        domaine_dis();
+  const Domaine_dis_base&  domaine_dis() const;
   Domaine&            domaine();
   const Domaine&      domaine() const;
 
+  virtual void associer(const Domaine_dis_base& ddb) { /* Does nothing by default */ }
+
   virtual int   calculer_coeffs_echange(double temps);
-  // !SC : passage du Champ_Inc n'est plus necessaire car il y a une ref maintenant
-  virtual void     imposer_cond_lim(Champ_Inc&,double ) = 0;
+  // !SC : passage du OWN_PTR(Champ_Inc_base) n'est plus necessaire car il y a une ref maintenant
+  virtual void     imposer_cond_lim(Champ_Inc_base&,double ) = 0;
   int           nb_faces_Cl() const;
 
   virtual const Cond_lim& la_cl_de_la_face(int num_face) const;
@@ -77,16 +78,16 @@ public:
   virtual int initialiser(double temps);
   inline const Nom& le_nom() const override;
 
-  virtual void associer_inconnue(const Champ_Inc&);
-  virtual const Champ_Inc& inconnue() const;
-  virtual Champ_Inc& inconnue();
+  virtual void associer_inconnue(const Champ_Inc_base&);
+  virtual const Champ_Inc_base& inconnue() const;
+  virtual Champ_Inc_base& inconnue();
 
 protected:
 
   Nom nom_;
   Conds_lim  les_conditions_limites_;
-  REF(Champ_Inc) mon_inconnue;
-  virtual void completer(const Domaine_dis& ) = 0;
+  OBS_PTR(Champ_Inc_base) mon_inconnue;
+  virtual void completer(const Domaine_dis_base& ) = 0;
 };
 
 inline const Nom& Domaine_Cl_dis_base::le_nom() const

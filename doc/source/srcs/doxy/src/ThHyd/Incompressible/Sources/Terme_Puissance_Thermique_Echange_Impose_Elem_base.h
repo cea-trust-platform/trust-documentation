@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,11 +18,12 @@
 
 #include <Source_base.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
 #include <Parser_U.h>
+#include <Champ_Don_base.h>
 
 class Domaine_Cl_dis_base;
 class Probleme_base;
+class Champ_Don_base;
 
 class Terme_Puissance_Thermique_Echange_Impose_Elem_base: public Source_base
 {
@@ -38,10 +39,10 @@ public:
   int initialiser(double temps) override;
 
 protected:
-  REF(Domaine_VF) le_dom;
-  REF(Domaine_Cl_dis_base) le_dom_Cl;
-  Champ_Don himp_,Text_;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  OBS_PTR(Domaine_VF) le_dom;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl;
+  OWN_PTR(Champ_Don_base) himp_,Text_;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
   // PID controler
   int regul_ = 0;
   Parser_U pow_cible_, Kp_, Ki_, Kd_;

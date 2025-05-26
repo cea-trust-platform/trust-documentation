@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Probleme_Couple_included
 
 #include <TRUSTTabs_forward.h>
-#include <Schema_Temps.h>
+#include <Schema_Temps_base.h>
 #include <Couplage_U.h>
 #include <TRUST_Ref.h>
 
@@ -84,6 +84,7 @@ public :
   virtual void discretiser(Discretisation_base&);
   inline virtual void mettre_a_jour_modele_rayo(double temps);
   void initialize() override;
+  void sauver() const override;
 
 protected:
 
@@ -93,7 +94,7 @@ protected:
   ArrOfInt groupes;
 
   // Liste des schemas clones
-  VECT(Schema_Temps) sch_clones;
+  VECT(OWN_PTR(Schema_Temps_base)) sch_clones;
 };
 
 inline void Probleme_Couple::mettre_a_jour_modele_rayo(double temps)
@@ -103,6 +104,5 @@ inline void Probleme_Couple::mettre_a_jour_modele_rayo(double temps)
   Cerr<<"We should not pass through here"<<finl;
   exit();
 }
-
 
 #endif

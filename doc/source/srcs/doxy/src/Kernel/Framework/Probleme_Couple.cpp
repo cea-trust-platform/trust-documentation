@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,8 +21,18 @@
 #include <Milieu_base.h>
 #include <TRUSTTabs.h>
 #include <Domaine_VF.h>
+#include <TRUST_2_PDI.h>
+#include <Ecrire_YAML.h>
 
 Implemente_instanciable(Probleme_Couple,"Probleme_Couple",Couplage_U);
+// XD coupled_problem pb_gen_base probleme_couple -1 This instruction causes a probleme_couple type object to be created. This type of object has an associated problem list, that is, the coupling of n problems among them may be processed. Coupling between these problems is carried out explicitly via conditions at particular contact limits. Each problem may be associated either with the Associate keyword or with the Read/groupes keywords. The difference is that in the first case, the four problems exchange values then calculate their timestep, rather in the second case, the same strategy is used for all the problems listed inside one group, but the second group of problem exchange values with the first group of problems after the first group did its timestep. So, the first case may then also be written like this: NL2 Probleme_Couple pbc NL2 Read pbc { groupes { { pb1 , pb2 , pb3 , pb4 } } } NL2 There is a physical environment per problem (however, the same physical environment could be common to several problems). NL2 Each problem is resolved in a domain. NL2 Warning : Presently, coupling requires coincident meshes. In case of non-coincident meshes, boundary condition \'paroi_contact\' in VEF returns error message (see paroi_contact for correcting procedure).
+// XD attr groupes list_list_nom groupes 1 { groupes { { pb1 , pb2 } , { pb3 , pb4 } } }
+// XD ref domaine_2 domaine
+// XD ref pb_1 Pb_base
+// XD ref pb_2 Pb_base
+// XD ref pb_3 Pb_base
+// XD ref pb_4 Pb_base
+// XD ref scheme_2 schema_temps_base
 
 ///////////////////////////////////////////////
 //                                           //
@@ -75,7 +85,7 @@ bool Probleme_Couple::solveTimeStep()
         // on propage un certain nombre de choses vers les clones
         for (int i=1; i<sch_clones.size(); i++)
           {
-            sch_clones[i].facteur_securite_pas()=schema_temps().facteur_securite_pas();
+            sch_clones[i]->facteur_securite_pas()=schema_temps().facteur_securite_pas();
             sch_clones[i]->set_stationnaire_atteint()=schema_temps().stationnaire_atteint();
             sch_clones[i]->residu()=schema_temps().residu();
           }
@@ -298,7 +308,7 @@ void Probleme_Couple::associer_sch_tps_base(Schema_Temps_base& sch)
     {
       sch_clones[i]=sch; // Clonage du schema
       Probleme_base& pb=ref_cast(Probleme_base,probleme(i));
-      pb.associer_sch_tps_base(sch_clones[i]); // association
+      pb.associer_sch_tps_base(sch_clones[i].valeur()); // association
       //On attribue la valeur 1 a schema_impr_ pour le schema du probleme 0
       //et 0 pour les autres. Un seul schema doit imprimer.
       if (i!=0) pb.schema_temps().schema_impr()=0;
@@ -354,5 +364,45 @@ void Probleme_Couple::discretiser(Discretisation_base& dis)
       Probleme_base& pb=ref_cast(Probleme_base,probleme(i));
       pb.discretiser(dis);
     }
+}
+
+
+void Probleme_Couple::sauver() const
+{
+  Ecrire_YAML yaml_file;
+  bool pdi_format = false;
+  Nom yaml_fname;
+  for (int i=0; i<nb_problemes(); i++)
+    {
+      const Probleme_base& pb=ref_cast(Probleme_base,probleme(i));
+      const Nom& format = pb.checkpoint_format();
+      if(Motcle(format) == "pdi")
+        {
+          if(i>0 && pb.yaml_filename() != yaml_fname)
+            {
+              Cerr << "Probleme_Couple::sauver() Error! You have provided different yaml files for each of your problems to initialize PDI. It has to be the same. " << finl;
+              Process::exit();
+            }
+          yaml_fname = pb.yaml_filename();
+          const Nom& fname = pb.checkpoint_filename();
+          yaml_file.add_pb_base(pb, fname);
+          pdi_format = true;
+        }
+    }
+  // we need to initialize PDI with a yaml file that contains the information of all the problems with a PDI checkpoint format
+  // (allows to initialize PDI once for all checkpoints and not multiple times)
+  if(pdi_format && !TRUST_2_PDI::is_PDI_initialized())
+    {
+      if(yaml_fname == "??")
+        {
+          yaml_fname = Nom("save_") + le_nom() + Nom(".yml");
+          yaml_file.write_checkpoint_file(yaml_fname.getString());
+        }
+      TRUST_2_PDI::init(yaml_fname.getString());
+    }
+
+  for(int i=0; i<nb_problemes(); i++)
+    ref_cast(Probleme_base,probleme(i)).sauver();
+
 }
 

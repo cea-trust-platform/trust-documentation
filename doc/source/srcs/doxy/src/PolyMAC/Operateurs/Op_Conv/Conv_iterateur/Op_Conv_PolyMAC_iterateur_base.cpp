@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,11 +14,11 @@
 *****************************************************************************/
 
 #include <Op_Conv_PolyMAC_iterateur_base.h>
-#include <TRUSTTrav.h>
+#include <Modifier_pour_fluide_dilatable.h>
 #include <Discretisation_base.h>
 #include <Probleme_base.h>
-#include <Champ.h>
-#include <Modifier_pour_fluide_dilatable.h>
+#include <TRUSTTrav.h>
+
 
 Implemente_base(Op_Conv_PolyMAC_iterateur_base, "Op_Conv_PolyMAC_iterateur_base", Operateur_Conv_base);
 
@@ -40,21 +40,15 @@ inline void eval_fluent(const double psc, const int num1, const int num2, Double
     fluent[num1] -= psc;
 }
 
-///////////////////////////////////////////////////////////////////////////////////
-//
-//    Implementation de fonctions de la classe Op_Conv_PolyMAC_iterateur_base
-//
-///////////////////////////////////////////////////////////////////////////////////
-
 double Op_Conv_PolyMAC_iterateur_base::calculer_dt_stab() const
 {
-  const Domaine_PolyMAC& domaine_PolyMAC = iter->domaine();
-  const Domaine_Cl_PolyMAC& domaine_Cl_PolyMAC = iter->domaine_Cl();
+  const Domaine_PolyMAC& domaine_PolyMAC = iter_->domaine();
+  const Domaine_Cl_PolyMAC& domaine_Cl_PolyMAC = iter_->domaine_Cl();
   const IntTab& face_voisins = domaine_PolyMAC.face_voisins();
   const DoubleVect& volumes = domaine_PolyMAC.volumes();
   const DoubleVect& face_surfaces = domaine_PolyMAC.face_surfaces();
   const DoubleVect& vit_associe = vitesse().valeurs();
-  const DoubleVect& vit = (vitesse_pour_pas_de_temps_.non_nul() ? vitesse_pour_pas_de_temps_.valeur().valeurs() : vit_associe);
+  const DoubleVect& vit = (vitesse_pour_pas_de_temps_.non_nul() ? vitesse_pour_pas_de_temps_->valeurs() : vit_associe);
   DoubleTab fluent;
   // fluent est initialise a zero par defaut:
   domaine_PolyMAC.domaine().creer_tableau_elements(fluent);
@@ -73,7 +67,7 @@ double Op_Conv_PolyMAC_iterateur_base::calculer_dt_stab() const
       if ( sub_type(Dirichlet_entree_fluide,la_cl.valeur()) || sub_type(Neumann_sortie_libre, la_cl.valeur()))
 
         {
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           num1 = le_bord.num_premiere_face();
           num2 = num1 + le_bord.nb_faces();
           for (face = num1; face < num2; face++)
@@ -121,15 +115,15 @@ double Op_Conv_PolyMAC_iterateur_base::calculer_dt_stab() const
 }
 
 // cf Op_Conv_PolyMAC_iterateur_base::calculer_dt_stab() pour choix de calcul de dt_stab
-void Op_Conv_PolyMAC_iterateur_base::calculer_pour_post(Champ& espace_stockage, const Nom& option, int comp) const
+void Op_Conv_PolyMAC_iterateur_base::calculer_pour_post(Champ_base& espace_stockage, const Nom& option, int comp) const
 {
   if (Motcle(option) == "stabilite")
     {
-      DoubleTab& es_valeurs = espace_stockage->valeurs();
+      DoubleTab& es_valeurs = espace_stockage.valeurs();
       es_valeurs = 1.e30;
 
-      const Domaine_PolyMAC& domaine_PolyMAC = iter->domaine();
-      const Domaine_Cl_PolyMAC& domaine_Cl_PolyMAC = iter->domaine_Cl();
+      const Domaine_PolyMAC& domaine_PolyMAC = iter_->domaine();
+      const Domaine_Cl_PolyMAC& domaine_Cl_PolyMAC = iter_->domaine_Cl();
       const IntTab& face_voisins = domaine_PolyMAC.face_voisins();
       const DoubleVect& volumes = domaine_PolyMAC.volumes();
       const DoubleVect& face_surfaces = domaine_PolyMAC.face_surfaces();
@@ -153,7 +147,7 @@ void Op_Conv_PolyMAC_iterateur_base::calculer_pour_post(Champ& espace_stockage, 
           if ( sub_type(Dirichlet_entree_fluide,la_cl.valeur()) || sub_type(Neumann_sortie_libre, la_cl.valeur()))
 
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               num1 = le_bord.num_premiere_face();
               num2 = num1 + le_bord.nb_faces();
               for (face = num1; face < num2; face++)
@@ -208,14 +202,14 @@ Motcle Op_Conv_PolyMAC_iterateur_base::get_localisation_pour_post(const Nom& opt
 void Op_Conv_PolyMAC_iterateur_base::completer()
 {
   Operateur_base::completer();
-  iter->completer_();
+  iter_->completer_();
 }
 void Op_Conv_PolyMAC_iterateur_base::associer_domaine_cl_dis(const Domaine_Cl_dis_base& zcl)
 {
-  iter->associer_domaine_cl_dis(zcl);
+  iter_->associer_domaine_cl_dis(zcl);
 }
 
 int Op_Conv_PolyMAC_iterateur_base::impr(Sortie& os) const
 {
-  return iter->impr(os);
+  return iter_->impr(os);
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,7 +34,7 @@ static void multiplier_ou_diviser(DoubleVect& x, const DoubleVect& y, int divise
 // Modif B.M: on ne remplit que la partie reelle du tableau.
 void multiplier_diviser_rho(DoubleVect& tab, const Fluide_Dilatable_base& le_fluide, int diviser)
 {
-  const Domaine_VF& zvf = ref_cast(Domaine_VF, le_fluide.vitesse().valeur().domaine_dis_base());
+  const Domaine_VF& zvf = ref_cast(Domaine_VF, le_fluide.vitesse().domaine_dis_base());
   // Descripteurs des tableaux aux elements et aux faces:
   const Domaine& domaine = zvf.domaine();
   const MD_Vector& md_elem = domaine.les_elems().get_md_vector();
@@ -44,7 +44,7 @@ void multiplier_diviser_rho(DoubleVect& tab, const Fluide_Dilatable_base& le_flu
   if (tab.get_md_vector() == md_faces_bord)
     {
       const DoubleTab& rho = ref_cast(Fluide_Dilatable_base,le_fluide).rho_discvit();
-      DoubleVect rho_bord;
+      DoubleTrav rho_bord;
       // B.M. je cree une copie sinon il faut truander les tests sur les tailles dans multiply_any_shape
       // ou creer un DoubleTab qui pointe sur rho...
       zvf.creer_tableau_faces_bord(rho_bord, RESIZE_OPTIONS::NOCOPY_NOINIT);
@@ -70,24 +70,26 @@ void multiplier_diviser_rho(DoubleVect& tab, const Fluide_Dilatable_base& le_flu
   if (tab.get_md_vector() == md_elem && rho.get_md_vector() == md_faces)
     {
       // Il faut calculer rho aux elements
-      const DoubleTab& tab_rho = le_fluide.masse_volumique().valeurs();
-      DoubleVect rho_elem;
-      domaine.creer_tableau_elements(rho_elem, RESIZE_OPTIONS::NOCOPY_NOINIT);
+      DoubleTrav tab_rho_elem;
+      domaine.creer_tableau_elements(tab_rho_elem, RESIZE_OPTIONS::NOCOPY_NOINIT);
       const int nb_elem_tot = domaine.nb_elem_tot();
-      const IntTab& elem_faces = zvf.elem_faces();
-      const int nfe = elem_faces.dimension(1);
+      const int nfe = zvf.elem_faces().dimension(1);
       const double facteur = 1. / nfe;
-      for (int elem = 0; elem < nb_elem_tot; elem++)
-        {
-          double x = 0.;
-          for (int face = 0; face < nfe; face++)
-            {
-              int f = elem_faces(elem, face);
-              x += tab_rho[f];
-            }
-          rho_elem[elem] = x * facteur;
-        }
-      multiplier_ou_diviser(tab, rho_elem, diviser);
+      CDoubleArrView tab_rho = static_cast<const DoubleVect&>(le_fluide.masse_volumique().valeurs()).view_ro();
+      CIntTabView elem_faces = zvf.elem_faces().view_ro();
+      DoubleArrView rho_elem = static_cast<DoubleVect&>(tab_rho_elem).view_wo();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem_tot, KOKKOS_LAMBDA(const int elem)
+      {
+        double x = 0.;
+        for (int face = 0; face < nfe; face++)
+          {
+            int f = elem_faces(elem, face);
+            x += tab_rho[f];
+          }
+        rho_elem[elem] = x * facteur;
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+      multiplier_ou_diviser(tab, tab_rho_elem, diviser);
       return;
     }
 
@@ -138,7 +140,7 @@ void correction_nut_et_cisaillement_paroi_si_qc(Modele_turbulence_hyd_base& mod)
       multiplier_diviser_rho(nut, le_fluide, 0 /* multiplier */);
 
       // 2  On modifie le ciasaillement paroi
-      const DoubleTab& cisaillement_paroi = mod.loi_paroi().valeur().Cisaillement_paroi();
+      const DoubleTab& cisaillement_paroi = mod.loi_paroi().Cisaillement_paroi();
       DoubleTab& cisaillement = ref_cast_non_const(DoubleTab, cisaillement_paroi);
       multiplier_diviser_rho(cisaillement, le_fluide, 0 /* multiplier */);
       cisaillement.echange_espace_virtuel();

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,12 +15,11 @@
 
 #ifndef Frottement_interfacial_Rusche_included
 #define Frottement_interfacial_Rusche_included
+
 #include <Frottement_interfacial_base.h>
-#include <Correlation.h>
+#include <Correlation_base.h>
 
 /*! @brief classe Frottement_interfacial_Rusche coefficients de frottement interfacial d'un ecoulement a bulles en prennant en compte la densite
- *
- *
  *
  */
 class Frottement_interfacial_Rusche : public Frottement_interfacial_base
@@ -35,7 +34,7 @@ protected:
 
   int n_l = -1; //liquid phase
   double K1_ = 3.64, K2_ = 0.864 ;
-  Correlation frottement_bulle_seule_ ;
+  OWN_PTR(Correlation_base) frottement_bulle_seule_ ;
 };
 
-#endif
+#endif /* Frottement_interfacial_Rusche_included */

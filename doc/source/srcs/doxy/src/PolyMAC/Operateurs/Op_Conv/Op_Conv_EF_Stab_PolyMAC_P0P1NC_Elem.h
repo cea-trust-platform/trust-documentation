@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem_included
 
 #include <Op_Conv_PolyMAC_base.h>
-#include <Matrice_Morse.h>
+class Matrice_Morse;
 
 /*! @brief : class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem
  *
@@ -49,15 +49,15 @@ public :
 
   void mettre_a_jour(double temps) override;
 
-  double alpha = 1.0; //alpha = 0 -> centre, alpha = 1 -> amont
+  double alpha_ = 1.0; //alpha = 0 -> centre, alpha = 1 -> amont
 
 protected :
   /* si operateur de convection de Masse_Multiphase */
-  std::vector<Champ_Inc> cc_phases_; //flux massiques (kg/m2/s)
+  std::vector<OWN_PTR(Champ_Inc_base)> cc_phases_; //flux massiques (kg/m2/s)
   Motcles noms_cc_phases_; //leurs noms
-  std::vector<Champ_Inc> vd_phases_; //vitesses debitantes
+  std::vector<OWN_PTR(Champ_Inc_base)> vd_phases_; //vitesses debitantes
   Motcles noms_vd_phases_; //leurs noms
-  std::vector<Champ_Inc> x_phases_; //titres par phase
+  std::vector<OWN_PTR(Champ_Inc_base)> x_phases_; //titres par phase
   Motcles noms_x_phases_; //leurs noms
 };
 

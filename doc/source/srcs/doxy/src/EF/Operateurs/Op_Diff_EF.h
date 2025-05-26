@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,13 +18,13 @@
 #define Op_Diff_EF_included
 
 #include <Op_Diff_EF_base.h>
-#include <Matrice_Morse.h>
 #include <Op_EF_base.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 
 class Domaine_Cl_EF;
 class Domaine_EF;
+class Matrice_Morse;
 
 /*! @brief class Op_Diff_EF Cette classe represente l'operateur de diffusion
  *
@@ -64,7 +64,7 @@ protected :
   int transpose_;   // vaurt zero si on ne veut pas calculer grad u transpose
   int transpose_partout_ ; // vaut 1 si on veut calculer grad_u_transpose meme au bord
   int nouvelle_expression_;
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Champ_base) diffusivite_;
 
   DoubleTab& ajouter_scalaire_dim3_nbn_8(const DoubleTab&, DoubleTab&) const;
   DoubleTab& ajouter_scalaire_dim2_nbn_4(const DoubleTab&, DoubleTab&) const;
@@ -91,7 +91,7 @@ DoubleTab& Op_Diff_EF::ajouter_scalaire_template(const DoubleTab& tab_inconnue, 
 {
   static constexpr bool IS_GEN = (_T_ == AJOUTE_SCAL::GEN), IS_D3_8 = (_T_ == AJOUTE_SCAL::D3_8), IS_D2_4 = (_T_ == AJOUTE_SCAL::D2_4);
 
-  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis());
 
   const int N = IS_GEN ? resu.line_size() : 1;
   const int nb_som_elem = IS_D3_8 ? 8 : ( IS_D2_4 ? 4 : domaine_ef.domaine().nb_som_elem() /* IS_GEN */);
@@ -153,7 +153,7 @@ DoubleTab& Op_Diff_EF::ajouter_vectoriel_template(const DoubleTab& tab_inconnue,
 {
   static constexpr bool IS_GEN = (_T_ == AJOUTE_VECT::GEN), IS_D3_8 = (_T_ == AJOUTE_VECT::D3_8), IS_D2_4 = (_T_ == AJOUTE_VECT::D2_4);
 
-  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis());
 
   const int N = IS_D3_8 ? 3 : (IS_D2_4 ? 2 : resu.line_size() /* IS_GEN */);
   const int const_dimension = IS_GEN ? Objet_U::dimension : N;

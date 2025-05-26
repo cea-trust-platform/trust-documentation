@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,6 +20,7 @@
 #include <TRUST_Ref.h>
 
 class Comm_Group;
+class Stat_Counter_Id;
 
 //GF comm_incl inclu mpi.h mais il est plus facile de faire un atelier
 // ou l on change le mpi si on passe par ce fichier intermediaire
@@ -48,6 +49,10 @@ public:
   void mp_collective_op(const float *x, float *resu, const Collective_Op *op, int n) const override;
   void mp_collective_op(const int *x, int *resu, int n, Collective_Op op) const override;
   void mp_collective_op(const int *x, int *resu, const Collective_Op *op, int n) const override;
+#if INT_is_64_ == 2
+  void mp_collective_op(const trustIdType *x, trustIdType *resu, int n, Collective_Op op) const override;
+  void mp_collective_op(const trustIdType *x, trustIdType *resu, const Collective_Op *op, int n) const override;
+#endif
 
   void barrier(int tag) const override;
   void send_recv_start(const ArrOfInt& send_list,
@@ -68,12 +73,16 @@ public:
 
 #ifdef MPI_
   void init_group_trio();
+  void init_comm_on_numa_node();
+  void init_comm_on_node_master();
+  int get_node_id() const;
   void free();
+  void free_all();
   void all_to_allv(const void *src_buffer, int *send_data_size, int *send_data_offset,
                    void *dest_buffer, int *recv_data_size, int *recv_data_offset) const;
   static void set_trio_u_world(MPI_Comm world);
   static MPI_Comm get_trio_u_world();
-  static void set_must_mpi_initialize(int flag);
+  static void set_must_mpi_initialize(bool flag);
 
   void ptop_send_recv(const void * send_buf, int send_buf_size, int send_proc,
                       void * recv_buf, int recv_buf_size, int recv_proc) const;
@@ -83,13 +92,24 @@ public:
 protected:
   void init_group(const ArrOfInt& pe_list) override;
   void internal_collective(const int *x, int *resu, int nx, const Collective_Op *op, int nop, int level) const;
+#if INT_is_64_ == 2
+  void internal_collective(const trustIdType *x, trustIdType *resu, int nx, const Collective_Op *op, int nop, int level) const;
+#endif
   void internal_collective(const double *x, double *resu, int nx, const Collective_Op *op, int nop, int level) const;
   void internal_collective(const float *x, float *resu, int nx, const Collective_Op *op, int nop, int level) const;
-  int  mppartial_sum(int x) const;
 
 private:
+  // TYP_IDX = 1: int, 2: long, 3: double, 4 :float
+  // [ABN] Can not use a MPI datatype directly because in OpenMPI for example this type is too complex to be used as a template parameter.
+  template <typename _TYPE_, int TYP_IDX>
+  void mp_collective_op_template(const _TYPE_ *x, _TYPE_ *resu, int n, Comm_Group::Collective_Op op,
+                                 const Stat_Counter_Id& cnt_sum_id,
+                                 const Stat_Counter_Id& cnt_min_id,
+                                 const Stat_Counter_Id& cnt_max_id) const;
+  trustIdType mppartial_sum_impl(trustIdType x) const;
+
   // Voir set_must_mpi_initialize() et init_group_trio()
-  static int must_mpi_initialize_;
+  static bool must_mpi_initialize_;
   // Le groupe trio_u global est associe a ce communicateur
   //  (different de MPI_COMM_WORLD pour du couplage par exemple)
   static MPI_Comm trio_u_world_;
@@ -103,7 +123,7 @@ private:
   MPI_Comm  mpi_comm_; // Handle sur le communicateur mpi
 
   int must_finalize_; // Faut-il le faire dans le destructeur ?
-  REF(Comm_Group) groupe_pere_;
+  OBS_PTR(Comm_Group) groupe_pere_;
 #endif
 };
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,19 +13,16 @@
 *
 *****************************************************************************/
 
-#include <Champ_front_synt.h>
 #include <Frontiere_dis_base.h>
-#include <Frontiere.h>
+#include <Schema_Temps_base.h>
 #include <Navier_Stokes_std.h>
-#include <Domaine_VF.h>
-#include <Fluide_base.h>
+#include <Champ_front_synt.h>
 #include <Champ_Uniforme.h>
-#include <Schema_Temps.h>
-
+#include <Fluide_base.h>
+#include <Domaine_VF.h>
+#include <Frontiere.h>
 #include <random>
-
 #include <string>
-
 
 Implemente_instanciable(Champ_front_synt,"Champ_front_synt",Ch_front_var_instationnaire_dep);
 
@@ -227,24 +224,24 @@ void Champ_front_synt::mettre_a_jour(double temps)
 {
 
   // Acceder a l'equation depuis l'inconnue, ensuite acceder au milieu
-  const Equation_base& equ = ref_inco_.valeur().equation();
+  const Equation_base& equ = ref_inco_->equation();
   const Milieu_base& mil = equ.milieu();
 
   /*
     Cerr << "*************************************************" << finl;
-    Cerr << "mil = " << mil.masse_volumique().valeur()(0,0) << finl;
+    Cerr << "mil = " << mil.masse_volumique()(0,0) << finl;
     Cerr << "temps = " << equ.inconnue().temps() << finl;
     Cerr << "dt = " << equ.schema_temps().pas_de_temps() << finl;
     Cerr << "visco cinematique = " << ref_cast(Fluide_base,mil).viscosite_cinematique().valeur()(0,0) << finl;
-    Cerr << "visco dynamique = " << ref_cast(Fluide_base,mil).viscosite_dynamique().valeur()(0,0) << finl;
+    Cerr << "visco dynamique = " << ref_cast(Fluide_base,mil).viscosite_dynamique()(0,0) << finl;
     Cerr << "*************************************************" << finl;
 
-    const Champ_Don& visco = ref_cast(Fluide_base,mil).viscosite_dynamique();
+    const Champ_Don_base& visco = ref_cast(Fluide_base,mil).viscosite_dynamique();
     if (sub_type(Champ_Uniforme,visco.valeur()))
       Cerr << "visco dynamique = " << visco(0,0) << finl;
     else
       {
-        const DoubleTab& val_visco = visco.valeur().valeurs();
+        const DoubleTab& val_visco = visco->valeurs();
         Cerr << "valeurs viscosite = " << val_visco << finl;\
       }
   */
@@ -253,7 +250,7 @@ void Champ_front_synt::mettre_a_jour(double temps)
   /// 	   donnees d'initialisation        ///
   ////////////////////////////////////////////
 
-  double visc = ref_cast(Fluide_base,mil).viscosite_cinematique().valeur()(0,0);
+  double visc = ref_cast(Fluide_base,mil).viscosite_cinematique().valeurs()(0,0);
   const Front_VF& front = ref_cast(Front_VF,la_frontiere_dis.valeur());
   int nb_face = front.nb_faces(); // real only
   const Faces& tabFaces = front.frontiere().faces(); // recuperation des faces
@@ -270,7 +267,7 @@ void Champ_front_synt::mettre_a_jour(double temps)
     sum_aire += aireFaces[i];
 
   sum_aire = mp_sum(sum_aire);
-  double dmin = sqrt( sum_aire / mp_sum(nb_face) ) ; // on prend la racine de l'aire moyenne des faces d'entree pour avoir une taille de maille caracteristique
+  double dmin = sqrt( sum_aire / mp_sum_as_double(nb_face) ) ; // on prend la racine de l'aire moyenne des faces d'entree pour avoir une taille de maille caracteristique
 
   //double Uref = 0.; // vitesse de reference = norme du vecteur moyenne
   //for (int i=0; i<moyenne.size_reelle(); i++) Uref += moyenne(i)*moyenne(i);

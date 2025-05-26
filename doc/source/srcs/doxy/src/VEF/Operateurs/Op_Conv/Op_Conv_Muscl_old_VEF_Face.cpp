@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,17 +19,13 @@
 #include <Periodique.h>
 
 Implemente_instanciable_sans_constructeur(Op_Conv_Muscl_old_VEF_Face,"Op_Conv_Muscl_old_VEF_P1NC",Op_Conv_VEF_base);
+// XD convection_muscl_old convection_deriv muscl_old 0 Only for VEF discretization.
 
-
-//// printOn
-//
 Sortie& Op_Conv_Muscl_old_VEF_Face::printOn(Sortie& s ) const
 {
   return s << que_suis_je() ;
 }
 
-//// readOn
-//
 Entree& Op_Conv_Muscl_old_VEF_Face::readOn(Entree& s )
 {
   return s ;
@@ -96,9 +92,8 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
   int premiere_face_int = domaine_VEF.premiere_face_int();
   int nfac = domaine.nb_faces_elem();
   int nsom = domaine.nb_som_elem();
-  int nb_som_facette = domaine.type_elem().nb_som_face();
+  int nb_som_facette = domaine.type_elem()->nb_som_face();
   double inverse_nb_som_facette=1./nb_som_facette;
-  DoubleVect& fluent_ = fluent;
   DoubleTab& vecteur_face_facette = ref_cast_non_const(Domaine_VEF,domaine_VEF).vecteur_face_facette();
 
   // Pour le traitement de la convection on distingue les polyedres
@@ -111,7 +106,7 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
   // En bref pour un polyedre le traitement de la convection depend
   // du type (triangle, tetraedre ...) et du nombre de faces de Dirichlet.
 
-  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem().valeur();
+  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem();
   int istetra=0;
   Nom nom_elem=type_elemvef.que_suis_je();
   if ((nom_elem=="Tetra_VEF")||(nom_elem=="Tri_VEF"))
@@ -134,7 +129,7 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -155,7 +150,7 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           //          const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -387,14 +382,14 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
           const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
             {
               psc =0;
               for (i=0; i<dimension; i++)
-                psc += la_vitesse(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
+                psc += la_vitesse.valeurs()(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
               if (psc>0)
                 if (ncomp_ch_transporte == 1)
                   {
@@ -427,7 +422,7 @@ DoubleTab& Op_Conv_Muscl_old_VEF_Face::ajouter(const DoubleTab& transporte,
       else if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());

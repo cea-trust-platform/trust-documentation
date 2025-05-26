@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,9 +20,10 @@
 
 class Schema_Comm_Vecteurs_Static_Data;
 
-/*! @brief Classe outil utilisee notamment par les methodes MD_Vector::echange_espace_virtuel() Permet d'echanger avec d'autres processeurs des blocs d'ints ou de double
+/*! @brief Classe outil utilisee notamment par les methodes MD_Vector::echange_espace_virtuel()
  *
- *   accessibles par des tableaux dans lesquels on lit et on ecrit directement
+ * Permet d'echanger avec d'autres processeurs des blocs d'ints ou de double
+ * accessibles par des tableaux dans lesquels on lit et on ecrit directement
  *   (contrairement a Schema_Comm qui utilise readOn et printOn, plus lent).
  *   Pour des raisons de performances, la communication est separee en deux parties
  *   - definition des tailles de buffers (permet d'allouer a l'avance les bufffers
@@ -63,8 +64,10 @@ public:
 
   void end_init();
   void begin_comm(bool bufferOnDevice=false);
-  void exchange(bool bufferOnDevice=false);
+  void exchange();
   void end_comm();
+
+  static void CleanMyStaticViews();
 
 protected:
   inline void add(int pe, int size, ArrOfInt& procs, ArrOfInt& buf_sizes, int align_size);
@@ -84,6 +87,8 @@ protected:
   int sorted_ = 1;
   // Taille du buffer requis pour ce schema
   int min_buf_size_ = -1;
+  // Buffer packing/uncpacking on device:
+  bool bufferOnDevice_ = false;
   // Support GPU par MPI:
   bool use_gpu_aware_mpi_ = false;
 
@@ -91,11 +96,15 @@ protected:
   Status status_;
 
   // Le buffer global est-il en cours d'utilisation ?
-  static int buffer_locked_;
+  static bool buffer_locked_;
   // Zones temporaires de lecture/ecriture, renvoyees par get_next... et qui pointent dans buffer_
   static ArrOfDouble tmp_area_double_;
   static ArrOfFloat tmp_area_float_;
   static ArrOfInt tmp_area_int_;
+#if INT_is_64_ == 2
+  static ArrOfTID tmp_area_tid_;
+#endif
+
   // Classe contenant des tableaux malloc (pour destruction automatique en fin d'execution)
   static Schema_Comm_Vecteurs_Static_Data sdata_;
 };
@@ -121,9 +130,14 @@ public:
 
 // Taille en bytes d'un bloc de sz ints, arrondi aux 8 octets superieurs
 #ifdef INT_is_64_
-#define BLOCSIZE_INT(sz) (sz<<3)
+#if INT_is_64_ == 1
+#define BLOCSIZE_INT(sz) (sz<<3)   // == sz*8
 #else
-#define BLOCSIZE_INT(sz) (sz<<2)
+#define BLOCSIZE_INT(sz) (sz<<2)   // == sz*4
+#define BLOCSIZE_TID(sz) (sz<<3)   // == sz*8
+#endif
+#else
+#define BLOCSIZE_INT(sz) (sz<<2)   // == sz*4
 #endif
 
 #define BLOCSIZE_DOUBLE(sz) (sz<<3)
@@ -145,6 +159,15 @@ inline void Schema_Comm_Vecteurs::add(int pe, int size, ArrOfInt& procs, ArrOfIn
   x = ((x + align_size - 1) & (~(align_size - 1))) + size; // Padding before block
 }
 
+inline void Schema_Comm_Vecteurs::CleanMyStaticViews()
+{
+#ifdef KOKKOS //If Kokkos is defined, we can clear the views
+  tmp_area_double_.CleanMyView();
+  tmp_area_float_.CleanMyView();
+  tmp_area_int_.CleanMyView();
+#endif
+  return;
+}
 template<>
 inline void Schema_Comm_Vecteurs::add_send_area_template<int>(int pe, int size)
 {
@@ -181,6 +204,20 @@ inline void Schema_Comm_Vecteurs::add_recv_area_template<float>(int pe, int size
   add(pe, BLOCSIZE_FLOAT(size), recv_procs_, recv_buf_sizes_, sizeof(float));
 }
 
+#if INT_is_64_ == 2
+template<>
+inline void Schema_Comm_Vecteurs::add_send_area_template<trustIdType>(int pe, int size)
+{
+  add(pe, BLOCSIZE_TID(size), send_procs_, send_buf_sizes_, sizeof(trustIdType));
+}
+
+template<>
+inline void Schema_Comm_Vecteurs::add_recv_area_template<trustIdType>(int pe, int size)
+{
+  add(pe, BLOCSIZE_TID(size), recv_procs_, recv_buf_sizes_, sizeof(trustIdType));
+}
+#endif
+
 /*! @brief renvoie un tableau contenant les "size" valeurs suivantes recues du processeur pe lors de la communication en cours.
  *
  *   Attention:
@@ -197,8 +234,23 @@ inline ArrOfInt& Schema_Comm_Vecteurs::get_next_area_template<int>(int pe, int s
   // attention a l'arithmetique de pointeurs, ajout d'une taille en octets
   sdata_.buf_pointers_[pe] += BLOCSIZE_INT(size);
   tmp_area_int_.ref_data(bufptr, size);
+  tmp_area_int_.set_data_location(bufferOnDevice_ ? DataLocation::Device : DataLocation::HostOnly);
   return tmp_area_int_;
 }
+
+#if INT_is_64_ == 2
+template<>
+inline ArrOfTID& Schema_Comm_Vecteurs::get_next_area_template<trustIdType>(int pe, int size)
+{
+  ALIGN_SIZE(sdata_.buf_pointers_[pe], sizeof(trustIdType));
+  assert(check_next_area(pe, BLOCSIZE_TID(size)));
+  trustIdType *bufptr = (trustIdType *) (sdata_.buf_pointers_[pe]);
+  // attention a l'arithmetique de pointeurs, ajout d'une taille en octets
+  sdata_.buf_pointers_[pe] += BLOCSIZE_TID(size);
+  tmp_area_tid_.ref_data(bufptr, size);
+  return tmp_area_tid_;
+}
+#endif
 
 template<>
 inline ArrOfDouble& Schema_Comm_Vecteurs::get_next_area_template<double>(int pe, int size)
@@ -209,6 +261,7 @@ inline ArrOfDouble& Schema_Comm_Vecteurs::get_next_area_template<double>(int pe,
   // attention a l'arithmetique de pointeurs, ajout d'une taille en octets
   sdata_.buf_pointers_[pe] += BLOCSIZE_DOUBLE(size);
   tmp_area_double_.ref_data(bufptr, size);
+  tmp_area_double_.set_data_location(bufferOnDevice_ ? DataLocation::Device : DataLocation::HostOnly);
   if (check_comm_vector)
     {
 #ifndef NDEBUG
@@ -229,6 +282,7 @@ inline ArrOfFloat& Schema_Comm_Vecteurs::get_next_area_template<float>(int pe, i
   // attention a l'arithmetique de pointeurs, ajout d'une taille en octets
   sdata_.buf_pointers_[pe] += BLOCSIZE_FLOAT(size);
   tmp_area_float_.ref_data(bufptr, size);
+  tmp_area_float_.set_data_location(bufferOnDevice_ ? DataLocation::Device : DataLocation::HostOnly);
   return tmp_area_float_;
 }
 

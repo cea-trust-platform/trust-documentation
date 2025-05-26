@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,6 +13,7 @@
 *
 *****************************************************************************/
 
+#include <Domaine_Cl_dis_base.h>
 #include <Discretisation_base.h>
 #include <Dirichlet_homogene.h>
 #include <Format_Post_base.h>
@@ -20,6 +21,7 @@
 #include <Equation_base.h>
 #include <Probleme_base.h>
 #include <Schema_Comm.h>
+#include <Domaine_VF.h>
 #include <Champ_base.h>
 #include <TRUSTVects.h>
 #include <TRUSTTrav.h>
@@ -27,29 +29,14 @@
 #include <TRUSTList.h>
 #include <Symetrie.h>
 #include <strings.h>
-#include <Domaine_VF.h>
 
 Implemente_base_sans_constructeur(Champ_base,"Champ_base",Field_base);
 
-/*! @brief Surcharge Objet_U::printOn(Sortie&) Imprime le nom du champ sur un flot de sortie.
- *
- * @param (Sortie& os) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Champ_base::printOn(Sortie& os) const
 {
   return os << le_nom() << finl;
 }
 
-
-/*! @brief Lecture du nom d'un champ sur un flot d'entree.
- *
- * Format:
- *       nom_du_champ
- *
- * @param (Entree& is) un flot d'entree
- * @return (Entree&) le flot d'entree modifie
- */
 Entree& Champ_base::readOn(Entree& is)
 {
   return is >> nom_;
@@ -145,6 +132,60 @@ double Champ_base::valeur_a_elem_compo(const DoubleVect&, int ,int ) const
   return 0;
 }
 
+/*! @brief Cette methode, generique mais lente (calcul des centres de gravite, remplissage les_poly, utilisation des fonctions de forme dans le Champ discretise)
+ * peut etre surchargee par le champ dicretise pour une implementation beaucoup plus rapide
+ */
+DoubleTab& Champ_base::valeur_aux_centres_de_gravite(const Domaine& dom, DoubleTab& les_valeurs) const
+{
+#ifdef TRUST_USE_GPU
+  Cerr << "Warning, try to implement a " << que_suis_je() << "::valeur_aux_centres_de_gravite() for a faster compute." << finl;
+#endif
+  int nb_elem = les_valeurs.dimension(0);
+  DoubleTrav positions(nb_elem, dimension);
+  if(sub_type(Champ_Inc_base, *this))
+    {
+      const Domaine_VF& zvf = ref_cast(Domaine_VF,ref_cast(Champ_Inc_base, *this).domaine_dis_base());
+      // PL: ToDo Kokkos kernel host garde car bug difficile a trouver (cas decroissance_ktau_jdd1 avec TrioCFD):
+      // stencil.append_line() alloue de la memoire via un resize() sur une memoire HOST deja allouee sur le DEVICE !
+      // Probablement, une memoire DEVICE non correctement desallouee dans un mecanisme PolyMAC non utilise en VEF...
+      if (zvf.xp().isDataOnDevice())
+        {
+          // Pour eviter un resize par nb_elem_tot par appel a xp()
+          CDoubleTabView xp = zvf.xp().view_ro();
+          DoubleTabView positions_v = positions.view_wo();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+          Kokkos::MDRangePolicy < Kokkos::Rank < 2 >> ({ 0, 0 },
+          {nb_elem, dimension}), KOKKOS_LAMBDA(
+            const int i,
+            const int j)
+          {
+            positions_v(i, j) = xp(i, j);
+          });
+          end_gpu_timer(__KERNEL_NAME__);
+        }
+      else
+        {
+          for (int i=0; i<nb_elem; i++)
+            for (int k=0; k<dimension ; k++)
+              positions(i,k) = zvf.xp(i,k);
+        }
+    }
+  else
+    {
+      dom.calculer_centres_gravite(positions);
+    }
+
+  IntTrav les_polys(nb_elem);
+  IntArrView les_polys_v = static_cast<ArrOfInt&>(les_polys).view_wo();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(const int i)
+  {
+    les_polys_v(i) = i;
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
+  return valeur_aux_elems(positions, les_polys, les_valeurs);
+}
+
 /*! @brief Provoque une erreur ! Doit etre surchargee par les classes derivees
  *
  *     non virtuelle pure par commodite de developpement !
@@ -162,17 +203,6 @@ DoubleTab& Champ_base::valeur_aux(const DoubleTab& ,
   Cerr << "::valeur_aux(const DoubleTab& ,DoubleTab& ) is not coded " << finl ;
   exit();
   return les_valeurs;
-}
-
-DoubleTab& Champ_base::valeur_aux_centres_de_gravite(const DoubleTab& positions,
-                                                     DoubleTab& les_valeurs) const
-{
-  IntVect les_polys(positions.dimension(0));
-  int sz = positions.dimension(0);
-  for (int i=0; i<sz; i++)
-    les_polys(i) = i;
-
-  return valeur_aux_elems(positions, les_polys, les_valeurs);
 }
 
 /*! @brief Idem que valeur_aux(const DoubleTab &, DoubleTab &), mais calcule uniquement la composante compo du champ.
@@ -413,8 +443,15 @@ void Champ_base::corriger_unite_nom_compo()
     }
 }
 
+DoubleTab& Champ_base::eval_elem(DoubleTab& tab_valeurs) const
+{
+  Process::exit("This function is only for DG");
 
-int Champ_base::calculer_valeurs_elem_post(DoubleTab& les_valeurs,int nb_elem,Nom& nom_post,const Domaine& dom) const
+  return tab_valeurs;
+}
+
+
+void Champ_base::calculer_valeurs_elem_post(DoubleTab& les_valeurs,int nb_elem,Nom& nom_post,const Domaine& dom) const
 {
   //nom_post=le_nom();
   Nom nom_dom=dom.le_nom();
@@ -428,30 +465,20 @@ int Champ_base::calculer_valeurs_elem_post(DoubleTab& les_valeurs,int nb_elem,No
       nom_dom_inc=ref_cast(Champ_Fonc_base, *this).domaine().le_nom();
     }
 
-  int nb_elem_PE = mppartial_sum(nb_elem);
 
-  DoubleTab centres_de_gravites(nb_elem, dimension);
-
-  les_valeurs.resize(nb_elem, nb_compo_);
+  bool isChamp_basis_function_DG = (que_suis_je() == ("Champ_Elem_DG") || que_suis_je() == ("Champ_Fonc_P1_DG"));
+  if (isChamp_basis_function_DG)
+    les_valeurs.resize(nb_elem, 1);
+  else
+    les_valeurs.resize(nb_elem, nb_compo_);
 
   if(nom_dom==nom_dom_inc)
     {
-
-      if(sub_type(Champ_Inc_base, *this) )
-        {
-          const Domaine_VF& zvf = ref_cast(Domaine_VF,ref_cast(Champ_Inc_base, *this).domaine_dis_base());
-          // Pour eviter un resize par nb_elem_tot par appel a xp()
-          for (int i=0; i<nb_elem; i++)
-            for (int k=0; k<dimension ; k++)
-              centres_de_gravites(i,k) = zvf.xp(i,k);
-        }
-      else
-        dom.calculer_centres_gravite(centres_de_gravites);
-
-      valeur_aux_centres_de_gravite(centres_de_gravites,les_valeurs);
+      valeur_aux_centres_de_gravite(dom, les_valeurs);
     }
   else
     {
+      DoubleTrav centres_de_gravites(nb_elem, dimension);
       dom.calculer_centres_gravite(centres_de_gravites);
       valeur_aux(centres_de_gravites, les_valeurs);
     }
@@ -459,6 +486,8 @@ int Champ_base::calculer_valeurs_elem_post(DoubleTab& les_valeurs,int nb_elem,No
 
   if((axi) && (nb_compo_==dimension))
     {
+      DoubleTrav centres_de_gravites(nb_elem, dimension);
+      dom.calculer_centres_gravite(centres_de_gravites);
       double teta, vR, vT;
       for (int num_elem=0; num_elem<nb_elem; num_elem++)
         {
@@ -472,10 +501,9 @@ int Champ_base::calculer_valeurs_elem_post(DoubleTab& les_valeurs,int nb_elem,No
 
   nom_post+= Nom("_elem_");
   nom_post+= nom_dom;
-  return nb_elem_PE;
-
 }
-int Champ_base::calculer_valeurs_elem_compo_post(DoubleTab& les_valeurs,int ncomp,int nb_elem,Nom& nom_post,const Domaine& dom) const
+
+void Champ_base::calculer_valeurs_elem_compo_post(DoubleTab& les_valeurs,int ncomp,int nb_elem,Nom& nom_post,const Domaine& dom) const
 {
   //nom_post=nom_compo(ncomp);
   Nom nom_dom=dom.le_nom();
@@ -488,16 +516,14 @@ int Champ_base::calculer_valeurs_elem_compo_post(DoubleTab& les_valeurs,int ncom
     {
       nom_dom_inc=ref_cast(Champ_Fonc_base, *this).domaine().le_nom();
     }
-
-  int nb_elem_PE = mppartial_sum(nb_elem);
-
-  DoubleTab centres_de_gravites(nb_elem, dimension);
+  ToDo_Kokkos("Critical; rewrite as Champ_base::calculer_valeurs_elem_post");
+  DoubleTrav centres_de_gravites(nb_elem, dimension);
   les_valeurs.resize(nb_elem);
   if(nom_dom==nom_dom_inc)
     {
       if(sub_type(Champ_Inc_base, *this) )
         {
-          const Domaine_VF& zvf = ref_cast(Domaine_VF,ref_cast(Champ_Inc_base, *this).equation().domaine_dis().valeur());
+          const Domaine_VF& zvf = ref_cast(Domaine_VF,ref_cast(Champ_Inc_base, *this).equation().domaine_dis());
           // Pour eviter un resize par nb_elem_tot par appel a xp()
           for (int i=0; i<nb_elem; i++)
             for (int k=0; k<dimension; k++)
@@ -522,8 +548,6 @@ int Champ_base::calculer_valeurs_elem_compo_post(DoubleTab& les_valeurs,int ncom
     }
   nom_post+= Nom("_elem_");
   nom_post+= nom_dom;
-  //
-  return nb_elem_PE;
 }
 
 // Ajoute la contribution des autres processeurs a valeurs et compteur
@@ -543,7 +567,7 @@ inline void add_sommets_communs(const Domaine& dom, DoubleTab& les_valeurs, IntT
     {
       const Joint& joint = joints[i_joint];
       const int PEvoisin = joint.PEvoisin();
-      const Joint_Items& joint_item = joint.joint_item(Joint::SOMMET);
+      const Joint_Items& joint_item = joint.joint_item(JOINT_ITEM::SOMMET);
       const ArrOfInt& sommets_communs = joint_item.items_communs();
 
       // Tableaux temporaires
@@ -623,7 +647,7 @@ inline void add_sommets_communs(const Domaine& dom, DoubleTab& les_valeurs, IntT
     }
 }
 
-int Champ_base::calculer_valeurs_som_post(DoubleTab& les_valeurs,int nb_som,Nom& nom_post,const Domaine& dom) const
+void Champ_base::calculer_valeurs_som_post(DoubleTab& les_valeurs,int nb_som,Nom& nom_post,const Domaine& dom) const
 {
   Nom nom_dom=dom.le_nom();
   Nom nom_dom_inc= dom.le_nom();
@@ -635,7 +659,6 @@ int Champ_base::calculer_valeurs_som_post(DoubleTab& les_valeurs,int nb_som,Nom&
     {
       nom_dom_inc=ref_cast(Champ_Fonc_base, *this).domaine().le_nom();
     }
-  int nb_som_PE = mppartial_sum(nb_som);
 
   const DoubleTab& coord_sommets=dom.coord_sommets() ;
 
@@ -692,7 +715,7 @@ int Champ_base::calculer_valeurs_som_post(DoubleTab& les_valeurs,int nb_som,Nom&
             IntTab compteur(dom.nb_som());
             compteur = 0;
 
-            const Domaine_Cl_dis& zcl=eqn.domaine_Cl_dis();
+            const Domaine_Cl_dis_base& zcl=eqn.domaine_Cl_dis();
             int nb_cond_lim=zcl.nb_cond_lim(),num_cl;
             for (num_cl=0; num_cl<nb_cond_lim; num_cl++)
               {
@@ -820,13 +843,12 @@ int Champ_base::calculer_valeurs_som_post(DoubleTab& les_valeurs,int nb_som,Nom&
 
   nom_post+= Nom("_som_");
   nom_post+= nom_dom;
-  return nb_som_PE;
 }
-int Champ_base::calculer_valeurs_som_compo_post(DoubleTab& les_valeurs,int ncomp,int nb_som,Nom& nom_post,const Domaine& dom,int appliquer_cl) const
+
+void Champ_base::calculer_valeurs_som_compo_post(DoubleTab& les_valeurs,int ncomp,int nb_som,Nom& nom_post,const Domaine& dom,int appliquer_cl) const
 {
   Nom nom_dom=dom.le_nom();
   Nom nom_dom_inc= dom.le_nom();
-  int nb_som_PE = mppartial_sum(nb_som);
   if(sub_type(Champ_Inc_base, *this) )
     {
       nom_dom_inc=ref_cast(Champ_Inc_base, *this).domaine().le_nom();
@@ -872,7 +894,7 @@ int Champ_base::calculer_valeurs_som_compo_post(DoubleTab& les_valeurs,int ncomp
               IntTab compteur(dom.nb_som());
               compteur = 0;
               int num_cl;
-              const Domaine_Cl_dis& zcl=eqn.domaine_Cl_dis();
+              const Domaine_Cl_dis_base& zcl=eqn.domaine_Cl_dis();
               int nb_cond_lim=zcl.nb_cond_lim();
               for (num_cl=0; num_cl<nb_cond_lim; num_cl++)
                 {
@@ -930,9 +952,7 @@ int Champ_base::calculer_valeurs_som_compo_post(DoubleTab& les_valeurs,int ncomp
     }
   nom_post+= Nom("_som_");
   nom_post+= nom_dom;
-  return  nb_som_PE;
 }
-
 
 int Champ_base::completer_post_champ(const Domaine& dom,const int is_axi,const Nom& loc_post,
                                      const Nom& le_nom_champ_post,Format_Post_base& format) const

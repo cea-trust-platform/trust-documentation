@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,15 +34,15 @@ class Traitement_particulier_NS_VEF : public Traitement_particulier_NS_base
 public :
 
   void associer_eqn(const Equation_base& ) override;
-  inline void preparer_calcul_particulier(void) override ;
+  inline void preparer_calcul_particulier() override ;
   virtual inline void traitement_particulier_debut_mettre_a_jour(double&);
   virtual inline void traitement_particulier_fin_mettre_a_jour(double&) ;
-  inline void sauver_stat(void) const override;
-  inline void reprendre_stat(void) override ;
-  inline void post_traitement_particulier(void) override ;
+  inline void sauver_stat() const override;
+  inline void reprendre_stat() override ;
+  inline void post_traitement_particulier() override ;
   void en_cours_de_resolution(int , DoubleTab& ,DoubleTab& ,double) override ;
   Entree& lire(Entree& ) override;
-  virtual int a_pour_Champ_Fonc(const Motcle& mot, REF(Champ_base)& ch_ref) const ;
+  virtual int a_pour_Champ_Fonc(const Motcle& mot, OBS_PTR(Champ_base)& ch_ref) const ;
   virtual int comprend_champ(const Motcle& mot) const ;
 
   /////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ inline void Traitement_particulier_NS_VEF::en_cours_de_resolution(int nb_op, Dou
 }
 
 inline int Traitement_particulier_NS_VEF::a_pour_Champ_Fonc(const Motcle& mot,
-                                                            REF(Champ_base)& ch_ref) const
+                                                            OBS_PTR(Champ_base)& ch_ref) const
 {
   return 0 ;
 }

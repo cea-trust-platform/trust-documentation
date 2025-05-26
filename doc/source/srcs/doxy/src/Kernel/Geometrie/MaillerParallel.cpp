@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -354,11 +354,11 @@ static void find_joint_faces(const Domaine& domaine, IntTab& faces)
   const IntTab& elements = domaine.les_elems();
   const int nb_som = domaine.nb_som();
   construire_connectivite_som_elem(nb_som, elements, som_elem, 0 /* do not include virtual elements */);
-  const int nb_som_faces = domaine.type_elem().valeur().nb_som_face();
+  const int nb_som_faces = domaine.type_elem()->nb_som_face();
   faces.resize(0, nb_som_faces);
 
   IntTab faces_element_reference;
-  domaine.type_elem().valeur().get_tab_faces_sommets_locaux(faces_element_reference);
+  domaine.type_elem()->get_tab_faces_sommets_locaux(faces_element_reference);
   const int nb_faces_elem = faces_element_reference.dimension(0);
   // Mark faces of elements that are on a boundary
   const int nb_elem = elements.dimension(0);
@@ -454,8 +454,8 @@ static void auto_build_joints(Domaine& domaine, const int epaisseur_joint)
             joint.associer_domaine(domaine);
             joint.affecte_epaisseur(epaisseur_joint);
             joint.affecte_PEvoisin(pe);
-            joint.faces().typer(domaine.type_elem().valeur().type_face());
-            ArrOfInt& sommets_joint = joint.set_joint_item(Joint::SOMMET).set_items_communs();
+            joint.faces().typer(domaine.type_elem()->type_face());
+            ArrOfInt& sommets_joint = joint.set_joint_item(JOINT_ITEM::SOMMET).set_items_communs();
             sommets_joint.resize_array(n, RESIZE_OPTIONS::NOCOPY_NOINIT);
             for (i = 0; i < n; i++)
               sommets_joint[i] = boundary_nodes_index[list[i]];
@@ -489,7 +489,7 @@ static void auto_build_joints(Domaine& domaine, const int epaisseur_joint)
         const int n = list.size_array();
         if (n > 0)
           {
-            REF(Joint) ref_joint;
+            OBS_PTR(Joint) ref_joint;
             int ii;
             for (ii = 0; ii < domaine.faces_joint().size(); ii++)
               {
@@ -507,10 +507,10 @@ static void auto_build_joints(Domaine& domaine, const int epaisseur_joint)
                 joint.associer_domaine(domaine);
                 joint.affecte_epaisseur(epaisseur_joint);
                 joint.affecte_PEvoisin(pe);
-                joint.faces().typer(domaine.type_elem().valeur().type_face());
+                joint.faces().typer(domaine.type_elem()->type_face());
                 ref_joint = joint;
               }
-            Faces& les_faces = ref_joint.valeur().faces();
+            Faces& les_faces = ref_joint->faces();
             les_faces.dimensionner(n);
             IntTab& faces_sommets = les_faces.les_sommets();
             for (ii = 0; ii < n; ii++)
@@ -540,7 +540,7 @@ Entree& MaillerParallel::interpreter(Entree& is)
   ArrOfInt nb_noeuds;
   ArrOfInt decoupage;
   int   epaisseur_joint;
-  ArrOfInt perio(3);
+  bool perio[3];
   Noms fonctions_coord(3);
   Noms nom_bords_min(3);
   Noms nom_bords_max(3);
@@ -552,30 +552,30 @@ Entree& MaillerParallel::interpreter(Entree& is)
   nom_bords_max[2] = "zmax";
   Noms fichier_coord(3);
   IntTab mapping;
-  {
-    Param param(que_suis_je());
-    param.ajouter("domain", &nom_domaine, Param::REQUIRED); // XD_ADD_P ref_domaine the name of the domain to mesh (it must be an empty domain object).
-    param.ajouter("nb_nodes", &nb_noeuds, Param::REQUIRED); // XD_ADD_P listentier dimension defines the spatial dimension (currently only dimension=3 is supported), and nX, nY and nZ defines the total number of nodes in the mesh in each direction.
-    param.ajouter("splitting", &decoupage, Param::REQUIRED); // XD_ADD_P listentier dimension is the spatial dimension and npartsX, npartsY and npartsZ are the number of parts created. The product of the number of parts must be equal to the number of processors used for the computation.
-    param.ajouter("ghost_thickness", &epaisseur_joint, Param::REQUIRED); // XD_ADD_P entier the number of ghost cells (equivalent to the epaisseur_joint parameter of Decouper.
-    param.ajouter_flag("perio_x", &perio[0]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
-    param.ajouter_flag("perio_y", &perio[1]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
-    param.ajouter_flag("perio_z", &perio[2]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
-    param.ajouter("function_coord_x", &fonctions_coord[0]); // XD_ADD_P chaine By default, the meshing algorithm creates nX nY nZ coordinates ranging between 0 and 1 (eg a unity size box). If function_coord_x} is specified, it is used to transform the [0,1] segment to the coordinates of the nodes. funcX must be a function of the x variable only.
-    param.ajouter("function_coord_y", &fonctions_coord[1]); // XD_ADD_P chaine like function_coord_x for y
-    param.ajouter("function_coord_z", &fonctions_coord[2]); // XD_ADD_P chaine like function_coord_x for z
-    param.ajouter("file_coord_x", &fichier_coord[0]); // XD_ADD_P chaine Keyword to read the Nx floating point values used as nodes coordinates in the file.
-    param.ajouter("file_coord_y", &fichier_coord[1]); // XD_ADD_P chaine idem file_coord_x for y
-    param.ajouter("file_coord_z", &fichier_coord[2]); // XD_ADD_P chaine idem file_coord_x for z
-    param.ajouter("boundary_xmin", &nom_bords_min[0]); // XD_ADD_P chaine the name of the boundary at the minimum X direction. If it not provided, the default boundary names are xmin, xmax, ymin, ymax, zmin and zmax. If the mesh is periodic in a given direction, only the MIN boundary name is used, for both sides of the box.
-    param.ajouter("boundary_xmax", &nom_bords_max[0]); // XD_ADD_P chaine not_set
-    param.ajouter("boundary_ymin", &nom_bords_min[1]); // XD_ADD_P chaine not_set
-    param.ajouter("boundary_ymax", &nom_bords_max[1]); // XD_ADD_P chaine not_set
-    param.ajouter("boundary_zmin", &nom_bords_min[2]); // XD_ADD_P chaine not_set
-    param.ajouter("boundary_zmax", &nom_bords_max[2]); // XD_ADD_P chaine not_set
-    param.ajouter("mapping", &mapping);
-    param.lire_avec_accolades(is);
-  }
+
+  Param param(que_suis_je());
+  param.ajouter("domain", &nom_domaine, Param::REQUIRED); // XD_ADD_P ref_domaine the name of the domain to mesh (it must be an empty domain object).
+  param.ajouter("nb_nodes", &nb_noeuds, Param::REQUIRED); // XD_ADD_P listentier dimension defines the spatial dimension (currently only dimension=3 is supported), and nX, nY and nZ defines the total number of nodes in the mesh in each direction.
+  param.ajouter("splitting", &decoupage, Param::REQUIRED); // XD_ADD_P listentier dimension is the spatial dimension and npartsX, npartsY and npartsZ are the number of parts created. The product of the number of parts must be equal to the number of processors used for the computation.
+  param.ajouter("ghost_thickness", &epaisseur_joint, Param::REQUIRED); // XD_ADD_P entier the number of ghost cells (equivalent to the epaisseur_joint parameter of Decouper.
+  param.ajouter_flag("perio_x", &perio[0]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+  param.ajouter_flag("perio_y", &perio[1]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+  param.ajouter_flag("perio_z", &perio[2]); // XD_ADD_P rien change the splitting method to provide a valid mesh for periodic boundary conditions.
+  param.ajouter("function_coord_x", &fonctions_coord[0]); // XD_ADD_P chaine By default, the meshing algorithm creates nX nY nZ coordinates ranging between 0 and 1 (eg a unity size box). If function_coord_x} is specified, it is used to transform the [0,1] segment to the coordinates of the nodes. funcX must be a function of the x variable only.
+  param.ajouter("function_coord_y", &fonctions_coord[1]); // XD_ADD_P chaine like function_coord_x for y
+  param.ajouter("function_coord_z", &fonctions_coord[2]); // XD_ADD_P chaine like function_coord_x for z
+  param.ajouter("file_coord_x", &fichier_coord[0]); // XD_ADD_P chaine Keyword to read the Nx floating point values used as nodes coordinates in the file.
+  param.ajouter("file_coord_y", &fichier_coord[1]); // XD_ADD_P chaine idem file_coord_x for y
+  param.ajouter("file_coord_z", &fichier_coord[2]); // XD_ADD_P chaine idem file_coord_x for z
+  param.ajouter("boundary_xmin", &nom_bords_min[0]); // XD_ADD_P chaine the name of the boundary at the minimum X direction. If it not provided, the default boundary names are xmin, xmax, ymin, ymax, zmin and zmax. If the mesh is periodic in a given direction, only the MIN boundary name is used, for both sides of the box.
+  param.ajouter("boundary_xmax", &nom_bords_max[0]); // XD_ADD_P chaine not_set
+  param.ajouter("boundary_ymin", &nom_bords_min[1]); // XD_ADD_P chaine not_set
+  param.ajouter("boundary_ymax", &nom_bords_max[1]); // XD_ADD_P chaine not_set
+  param.ajouter("boundary_zmin", &nom_bords_min[2]); // XD_ADD_P chaine not_set
+  param.ajouter("boundary_zmax", &nom_bords_max[2]); // XD_ADD_P chaine not_set
+  param.ajouter("mapping", &mapping);
+  param.lire_avec_accolades(is);
+
 
   ArrsOfDouble coord_ijk(3);
   for (int dir=0; dir<3; dir++)
@@ -732,7 +732,7 @@ Entree& MaillerParallel::interpreter(Entree& is)
       Cerr << "MaillerParallel::construire_domaine  erreur" << finl;
       exit();
     }
-  elem.valeur().associer_domaine(domaine);
+  elem->associer_domaine(domaine);
 
   BlocData data;
   Noms liste_bords_perio;
@@ -771,7 +771,7 @@ Entree& MaillerParallel::interpreter(Entree& is)
     {
       Bord& bord = bords[num_bord];
       bord.associer_domaine(domaine);
-      bord.faces().typer(domaine.type_elem().valeur().type_face());
+      bord.faces().typer(domaine.type_elem()->type_face());
       // important pour dimensionner le linesize du tableau des faces pour les frontieres vides
       bord.faces().dimensionner(0);
     }
@@ -837,7 +837,7 @@ Entree& MaillerParallel::interpreter(Entree& is)
       statistiques().begin_count(stats);
 
       Scatter::construire_correspondance_sommets_par_coordonnees(domaine);
-      Scatter::calculer_renum_items_communs(domaine.faces_joint(), Joint::SOMMET);
+      Scatter::calculer_renum_items_communs(domaine.faces_joint(), JOINT_ITEM::SOMMET);
 
       statistiques().end_count(stats);
       maxtime = mp_max(statistiques().last_time(stats));

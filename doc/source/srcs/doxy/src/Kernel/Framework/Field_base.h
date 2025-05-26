@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,7 +24,7 @@
  * It handles all the generic aspect of a field:
  *      - its name and synonyms
  *      - its number and names of components
- *      - its nature (scalar, vectorial, multi_scalar)
+ *      - its nature (scalar, vectorial, multi_scalar, basis_function)
  *      - the units associated to each component
  *
  *
@@ -32,7 +32,7 @@
  */
 
 // Definition of the nature of a field:
-enum Nature_du_champ { scalaire, multi_scalaire, vectoriel };
+enum Nature_du_champ { scalaire, multi_scalaire, vectoriel, basis_function };
 
 class Field_base : public Objet_U
 {
@@ -47,7 +47,7 @@ public:
 
   // Synonyms management
   inline const Noms& get_synonyms() const { return noms_synonymes_; }
-  inline void add_synonymous(const Nom& nom) { noms_synonymes_.add(nom); }
+  inline virtual void add_synonymous(const Nom& nom) { noms_synonymes_.add(nom); }
 
   // Component management
   virtual int nb_comp() const { return nb_compo_ ; } // Renvoie le nombre de composantes du champ.

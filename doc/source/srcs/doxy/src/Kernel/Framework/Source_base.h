@@ -19,22 +19,22 @@
 #include <Champs_compris_interface.h>
 #include <TRUSTTabs_forward.h>
 #include <Interface_blocs.h>
+
 #include <Champs_compris.h>
 #include <Matrice_Bloc.h>
-#include <MorEqn.h>
 #include <SFichier.h>
-#include <Champ_Don.h>
+#include <MorEqn.h>
 
 class Probleme_base;
-class Domaine_dis;
-class Domaine_Cl_dis;
 class Matrice_Morse;
+class Domaine_dis_base;
+class Domaine_Cl_dis_base;
+class Champ_Don_base;
 
 /*! @brief classe Source_base Un objet Source_base est un terme apparaissant au second membre d'une
  *
  *      equation. Cette classe est la base de la hierarchie des Sources, une
  *      source est un morceau d'equation donc Source_base herite de MorEqn.
- *
  *
  */
 
@@ -55,10 +55,10 @@ public:
   virtual void contribuer_au_second_membre(DoubleTab&) const;
   virtual int impr(Sortie& os) const;
   // temporaire : associer_domaines sera rendue publique
-  inline void associer_domaines_public(const Domaine_dis& zdis, const Domaine_Cl_dis& zcldis) { associer_domaines(zdis,zcldis); }
+  inline void associer_domaines_public(const Domaine_dis_base& zdis, const Domaine_Cl_dis_base& zcldis) { associer_domaines(zdis,zcldis); }
   virtual int initialiser(double temps);
   virtual void associer_champ_rho(const Champ_base& champ_rho);
-  virtual int a_pour_Champ_Fonc(const Motcle& mot, REF(Champ_base) &ch_ref) const;
+  virtual int a_pour_Champ_Fonc(const Motcle& mot, OBS_PTR(Champ_base) &ch_ref) const;
   virtual void contribuer_jacobienne(Matrice_Bloc&, int) const { }
 
   /* interface {dimensionner,ajouter}_blocs -> cf Equation_base.h */
@@ -68,9 +68,10 @@ public:
 
   //Methodes de l interface des champs postraitables
   /////////////////////////////////////////////////////
-  void creer_champ(const Motcle& motlu) override;
+  void creer_champ(const Motcle& motlu) override { }
   const Champ_base& get_champ(const Motcle& nom) const override;
-  virtual bool has_champ(const Motcle& nom, REF(Champ_base) &ref_champ) const;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
   /////////////////////////////////////////////////////
 
@@ -86,11 +87,11 @@ public:
   inline Champs_compris& champs_compris() { return champs_compris_; }
 
   // Liste des champs des sources:
-  const LIST(REF(Champ_Don))& champs_don() const { return champs_don_; }
+  const LIST(OBS_PTR(Champ_Don_base))& champs_don() const { return champs_don_; }
 
 protected:
 
-  virtual void associer_domaines(const Domaine_dis&, const Domaine_Cl_dis&) =0;
+  virtual void associer_domaines(const Domaine_dis_base&, const Domaine_Cl_dis_base&) =0;
   virtual void associer_pb(const Probleme_base&) =0;
   int col_width_ = 0;
   Nom out_;                  // Nom du fichier .out pour l'impression
@@ -99,7 +100,7 @@ protected:
   mutable DoubleVect bilan_; // Vecteur contenant les valeurs du terme source dans le domaine
   mutable SFichier Flux;
   Champs_compris champs_compris_;
-  LIST(REF(Champ_Don)) champs_don_;
+  LIST(OBS_PTR(Champ_Don_base)) champs_don_;
 };
 
 #endif /* Source_base_included */

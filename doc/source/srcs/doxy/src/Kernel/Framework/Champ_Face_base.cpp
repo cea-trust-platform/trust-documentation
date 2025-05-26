@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,10 +13,11 @@
 *
 *****************************************************************************/
 
+#include <Domaine_Cl_dis_base.h>
 #include <Dirichlet_homogene.h>
 #include <Neumann_homogene.h>
 #include <Champ_Face_base.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Periodique.h>
 #include <Dirichlet.h>
 #include <Symetrie.h>
@@ -38,7 +39,7 @@ void Champ_Face_base::init_fcl() const
   fcl_.resize(domaine.nb_faces_tot(), 3);
   for (n = 0; n < cls.size(); n++)
     {
-      const Front_VF& fvf = ref_cast(Front_VF, cls[n].frontiere_dis());
+      const Front_VF& fvf = ref_cast(Front_VF, cls[n]->frontiere_dis());
       int idx = sub_type(Neumann, cls[n].valeur())
                 + 2 * sub_type(Navier, cls[n].valeur())
                 + 3 * sub_type(Dirichlet, cls[n].valeur()) + 3 * sub_type(Neumann_homogene, cls[n].valeur())

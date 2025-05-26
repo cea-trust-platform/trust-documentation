@@ -27,8 +27,8 @@ Entree& Terme_Puissance_Thermique_VDF_base::readOn(Entree& s )
   const Equation_base& eqn = equation();
   Terme_Puissance_Thermique::lire_donnees(s,eqn);
   champs_compris_.ajoute_champ(la_puissance);
-  champs_don_.add(la_puissance);
-  champs_don_.add(la_puissance_lu);
+  if (la_puissance.non_nul()) champs_don_.add(la_puissance.valeur());
+  if (la_puissance_lu.non_nul()) champs_don_.add(la_puissance_lu.valeur());
   Nom name_file("Puissance_Thermique");
   modify_name_file(name_file);
   set_fichier(name_file);
@@ -36,11 +36,11 @@ Entree& Terme_Puissance_Thermique_VDF_base::readOn(Entree& s )
   return s ;
 }
 
-void Terme_Puissance_Thermique_VDF_base::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Terme_Puissance_Thermique_VDF_base::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-  iter->associer_domaines(zvdf,zclvdf);
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+  iter_->associer_domaines(zvdf,zclvdf);
 }
 
 int Terme_Puissance_Thermique_VDF_base::initialiser(double temps)

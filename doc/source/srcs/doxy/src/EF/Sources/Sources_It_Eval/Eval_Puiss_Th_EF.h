@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <Evaluateur_Source_EF_Som.h>
 #include <Champ_Uniforme.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 #include <TRUSTTab.h>
 
 class Eval_Puiss_Th_EF: public Evaluateur_Source_EF_Som
@@ -27,16 +27,16 @@ class Eval_Puiss_Th_EF: public Evaluateur_Source_EF_Som
 public:
   void completer() override { Evaluateur_Source_EF_Som::completer(); }
   void mettre_a_jour() override { }
-  inline void associer_champs(const Champ_Don& );
+  inline void associer_champs(const Champ_Don_base& );
 
   template <typename Type_Double> void calculer_terme_source(const int , Type_Double& source) const;
 
 protected:
-  REF(Champ_Don) la_puissance;
+  OBS_PTR(Champ_Don_base) la_puissance;
   DoubleTab puissance;
 };
 
-inline void Eval_Puiss_Th_EF::associer_champs(const Champ_Don& Q)
+inline void Eval_Puiss_Th_EF::associer_champs(const Champ_Don_base& Q)
 {
   la_puissance = Q;
   puissance.ref(Q.valeurs());
@@ -48,7 +48,7 @@ void Eval_Puiss_Th_EF::calculer_terme_source(const int num_elem, Type_Double& so
   const int size = source.size_array();
   if (size > 1) Process::exit("Eval_Puiss_Th_EF::calculer_terme_source not available for multi-inco !");
 
-  const int k = (sub_type(Champ_Uniforme,la_puissance.valeur().valeur())) ? 0 : num_elem;
+  const int k = (sub_type(Champ_Uniforme, la_puissance.valeur())) ? 0 : num_elem;
   for (int i = 0; i < size; i++) source[i] = puissance(k,i);
 }
 

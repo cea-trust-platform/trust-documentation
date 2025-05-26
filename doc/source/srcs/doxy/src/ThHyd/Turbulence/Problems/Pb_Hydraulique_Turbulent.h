@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,8 +19,6 @@
 #include <Navier_Stokes_Turbulent.h>
 #include <Pb_Fluide_base.h>
 
-class Champ_Fonc;
-
 /*! @brief classe Pb_Hydraulique_Turbulent Cette classe represente un probleme d'hydraulique turbulent dans
  *
  *      lequel on resout les equations de Navier Stokes en regime turbulent
@@ -38,7 +36,7 @@ public:
   int nombre_d_equations() const override;
   const Equation_base& equation(int) const override;
   Equation_base& equation(int) override;
-  inline const Champ_Fonc& viscosite_turbulente() const { return eq_hydraulique.viscosite_turbulente(); }
+  inline const Champ_Fonc_base& viscosite_turbulente() const { return eq_hydraulique.viscosite_turbulente(); }
   void associer_milieu_base(const Milieu_base&) override;
   int verifier() override;
 

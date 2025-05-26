@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,7 +37,7 @@ Entree& Loi_Etat_Multi_GP_base::readOn(Entree& is)
 
 void Loi_Etat_Multi_GP_base::initialiser_inco_ch()
 {
-  const int num = liste_Y(0).valeur().valeurs().size();
+  const int num = liste_Y(0)->valeurs().size();
   masse_mol_mel.resize(num,1);
   calculer_masse_molaire();
   Loi_Etat_base::initialiser_inco_ch();
@@ -55,14 +55,14 @@ void Loi_Etat_Multi_GP_base::calculer_masse_molaire()
  */
 void Loi_Etat_Multi_GP_base::associer_inconnue(const Champ_Inc_base& inconnue)
 {
-  REF(Champ_Inc_base) inco;
+  OBS_PTR(Champ_Inc_base) inco;
   inco = inconnue;
   liste_Y.add(inco);
 }
 
 void Loi_Etat_Multi_GP_base::calculer_Cp()
 {
-  Champ_Don& Cp = le_fluide->capacite_calorifique();
+  Champ_Don_base& Cp = le_fluide->capacite_calorifique();
   DoubleTab& tab_Cp = Cp.valeurs();
   calculer_tab_Cp(tab_Cp);
   tab_Cp.echange_espace_virtuel();
@@ -74,22 +74,22 @@ void Loi_Etat_Multi_GP_base::calculer_Cp()
  */
 void Loi_Etat_Multi_GP_base::calculer_lambda()
 {
-  const Champ_Don& mu = le_fluide->viscosite_dynamique();
+  const Champ_Don_base& mu = le_fluide->viscosite_dynamique();
   const DoubleTab& tab_mu = mu.valeurs();
-  Champ_Don& lambda = le_fluide->conductivite();
+  Champ_Don_base& lambda = le_fluide->conductivite();
   DoubleTab& tab_lambda = lambda.valeurs();
   const DoubleTab& tab_Cp = le_fluide->capacite_calorifique().valeurs();
   int i, n = tab_lambda.size();
 
   //La conductivite est soit un champ uniforme soit calculee a partir de la viscosite dynamique et du Pr
-  if (sub_type(Champ_Fonc_Tabule,lambda.valeur()))
+  if (sub_type(Champ_Fonc_Tabule,lambda))
     {
-      lambda.valeur().mettre_a_jour(temperature_.valeur().temps());
+      lambda.mettre_a_jour(temperature_->temps());
       return;
     }
-  if (!sub_type(Champ_Uniforme,lambda.valeur()))
+  if (!sub_type(Champ_Uniforme,lambda))
     {
-      if (sub_type(Champ_Uniforme,mu.valeur()))
+      if (sub_type(Champ_Uniforme,mu))
         {
           double mu0 = tab_mu(0,0);
           for (i=0 ; i<n ; i++)  tab_lambda(i,0) = mu0 * Cp_ / Pr_;
@@ -106,18 +106,18 @@ void Loi_Etat_Multi_GP_base::calculer_lambda()
  */
 void Loi_Etat_Multi_GP_base::calculer_alpha()
 {
-  const Champ_Don& lambda = le_fluide->conductivite();
+  const Champ_Don_base& lambda = le_fluide->conductivite();
   const DoubleTab& tab_lambda = lambda.valeurs();
-  Champ_Don& alpha=le_fluide->diffusivite();
+  Champ_Don_base& alpha=le_fluide->diffusivite();
   DoubleTab& tab_alpha = le_fluide->diffusivite().valeurs();
   const DoubleTab& tab_rho = le_fluide->masse_volumique().valeurs();
   const DoubleTab& tab_Cp = le_fluide->capacite_calorifique().valeurs();
   int i, n = tab_alpha.size(), isVDF = 0;
-  if (alpha.valeur().que_suis_je()=="Champ_Fonc_P0_VDF") isVDF = 1;
+  if (alpha.que_suis_je()=="Champ_Fonc_P0_VDF") isVDF = 1;
 
   if (isVDF)
     {
-      if (sub_type(Champ_Uniforme,lambda.valeur()))
+      if (sub_type(Champ_Uniforme,lambda))
         {
           double lambda0 = tab_lambda(0,0);
           for (i=0 ; i<n ; i++)  tab_alpha(i,0) = lambda0 / ( tab_rho(i,0) * tab_Cp(i,0) );
@@ -133,7 +133,7 @@ void Loi_Etat_Multi_GP_base::calculer_alpha()
       double rhoelem, Cpelem;
       int face, nfe = elem_faces.line_size();
 
-      if (sub_type(Champ_Uniforme,lambda.valeur()))
+      if (sub_type(Champ_Uniforme,lambda))
         {
           double lambda0 = tab_lambda(0,0);
           for (i=0 ; i<n ; i++)
@@ -194,10 +194,10 @@ double Loi_Etat_Multi_GP_base::calculer_masse_volumique(double P, double T) cons
  */
 void Loi_Etat_Multi_GP_base::calculer_mu()
 {
-  Champ_Don& mu = le_fluide->viscosite_dynamique();
-  if (!sub_type(Champ_Uniforme,mu.valeur()))
+  Champ_Don_base& mu = le_fluide->viscosite_dynamique();
+  if (!sub_type(Champ_Uniforme,mu))
     {
-      if (sub_type(Champ_Fonc_Tabule,mu.valeur())) mu.mettre_a_jour(temperature_.valeur().temps());
+      if (sub_type(Champ_Fonc_Tabule,mu)) mu.mettre_a_jour(temperature_->temps());
       else calculer_mu_wilke();
     }
 }

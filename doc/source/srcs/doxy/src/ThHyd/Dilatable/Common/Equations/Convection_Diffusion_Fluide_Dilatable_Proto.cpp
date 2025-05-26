@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,16 +15,18 @@
 
 #include <Convection_Diffusion_Fluide_Dilatable_base.h>
 #include <Convection_Diffusion_Fluide_Dilatable_Proto.h>
+#include <Navier_Stokes_Fluide_Dilatable_base.h>
 #include <Fluide_Weakly_Compressible.h>
 #include <Convection_Diffusion_std.h>
 #include <EcritureLectureSpecial.h>
 #include <Op_Conv_negligeable.h>
-#include <Schema_Temps_base.h>
 #include <Discretisation_base.h>
+#include <Schema_Temps_base.h>
 #include <Champ_Uniforme.h>
 #include <Probleme_base.h>
 #include <Matrice_Morse.h>
 #include <Statistiques.h>
+#include <TRUST_2_PDI.h>
 #include <TRUSTTrav.h>
 #include <Operateur.h>
 #include <Domaine.h>
@@ -46,14 +48,17 @@ void Convection_Diffusion_Fluide_Dilatable_Proto::calculer_div_rho_u_impl
     }
 
   // on cherche a changer temporairement le domaine_cl
-  Champ_Inc ch_unite = eqn.inconnue();
-  ch_unite->valeurs() = 1.0;
-  ref_cast_non_const(Operateur_Conv_base,op_conv.l_op_base()).associer_champ_temp(ch_unite, true);
+  if (ch_unite_.est_nul())
+    {
+      ch_unite_ = eqn.inconnue();
+      ch_unite_->valeurs() = 1.0;
+    }
+  ref_cast_non_const(Operateur_Conv_base,op_conv.l_op_base()).associer_champ_temp(ch_unite_, true);
 
   if (eqn.discretisation().que_suis_je() != "VDF")
     ref_cast_non_const(Operateur_base,op_conv.l_op_base()).associer_domaine_cl_dis(eqn.domaine_cl_modif());
 
-  op_conv.ajouter(ch_unite->valeurs(), Div);
+  op_conv.ajouter(ch_unite_->valeurs(), Div);
   ref_cast_non_const(Operateur_Conv_base,op_conv.l_op_base()).associer_champ_temp(eqn.inconnue(), false);
 
   if (eqn.discretisation().que_suis_je() != "VDF")
@@ -72,7 +77,7 @@ DoubleTab& Convection_Diffusion_Fluide_Dilatable_Proto::derivee_en_temps_inco_sa
 (Convection_Diffusion_Fluide_Dilatable_base& eqn, DoubleTab& derivee, const bool is_expl)
 {
   /*
-   * ATEENTION : THIS IS A GENERIC METHOD THAT IS USED TO SOLVE EXPLICITLY (OR DIFFUSION IMPLICIT)
+   * ATTENTION : THIS IS A GENERIC METHOD THAT IS USED TO SOLVE EXPLICITLY (OR DIFFUSION IMPLICIT)
    * A THERMAL OR SPECIES CONV/DIFF EQUATION. SO THE VARIABLE CAN EITHER BE THE TEMPERATURE T OR
    * THE MASS FRACTION Y.
    *
@@ -131,7 +136,6 @@ DoubleTab& Convection_Diffusion_Fluide_Dilatable_Proto::derivee_en_temps_inco_sa
   tab_divide_any_shape(derivee, array);
   derivee.echange_espace_virtuel();
 
-
   /*
    * SECOND TERM : convective
    * = - u grad(Y) = [ Y div (rho*u) - div( rho*u*Y ) ] / rho
@@ -157,30 +161,55 @@ DoubleTab& Convection_Diffusion_Fluide_Dilatable_Proto::derivee_en_temps_inco_sa
       tab_divide_any_shape(convection, tab_rho);
     }
 
+  // Complete with special source terms from mass equation (if any)
+  DoubleTrav mass_source_term(derivee);
+  mass_source_term = 0.0;
+
+  const bool has_mass_flux = (sub_type(Navier_Stokes_Fluide_Dilatable_base, fluide_dil.vitesse().equation())) ?
+                             ref_cast(Navier_Stokes_Fluide_Dilatable_base, fluide_dil.vitesse().equation()).has_source_masse() : false;
+
+  if (!is_thermal() && has_mass_flux) /* species equation */
+    {
+      const Source_Masse_Fluide_Dilatable_base& src_masse = ref_cast(Navier_Stokes_Fluide_Dilatable_base, fluide_dil.vitesse().equation()).source_masse();
+      src_masse.ajouter_eq_espece(eqn, fluide_dil, is_expl, mass_source_term);
+    }
+
   /*
    * TOTAL TERM : diffusive + convective + sources
    */
   derivee+=convection;
 
+  // si schema implicite
+  if (!is_expl && has_mass_flux)
+    derivee += mass_source_term; // pour ca on traite le volume par le solveur de masse plus tard ...
+
   if (diffusion_implicite)
     {
       const DoubleTab& Tfutur=eqn.inconnue().futur();
       DoubleTrav secmem(derivee);
-      secmem=derivee;
+      secmem=derivee; // sans contribution terme source
       eqn.solv_masse().appliquer(secmem);
+
+      if (has_mass_flux)
+        secmem += mass_source_term ; // ajoute contribution terme source (deja divise par V)
+
       derivee = Tfutur;
 
-      is_thermal() ? eqn.solv_masse()->set_name_of_coefficient_temporel("rho_cp_comme_T") :
-      eqn.solv_masse()->set_name_of_coefficient_temporel("masse_volumique");
+      is_thermal() ? eqn.solv_masse().set_name_of_coefficient_temporel("rho_cp_comme_T") :
+      eqn.solv_masse().set_name_of_coefficient_temporel("masse_volumique");
 
       eqn.Gradient_conjugue_diff_impl(secmem,derivee);
-      eqn.solv_masse()->set_name_of_coefficient_temporel("no_coeff");
+      eqn.solv_masse().set_name_of_coefficient_temporel("no_coeff");
     }
 
   // 100% explicite
   if (!sch.diffusion_implicite() && is_expl)
     {
       eqn.solv_masse().appliquer(derivee);
+
+      if (has_mass_flux)
+        derivee += mass_source_term; // ajoute contribution terme source (deja divise par V)
+
       derivee.echange_espace_virtuel();
     }
 
@@ -281,7 +310,7 @@ void Convection_Diffusion_Fluide_Dilatable_Proto::assembler_impl
       eqn.operateur(1).l_op_base().contribuer_au_second_membre(conv);
       eqn.sources().ajouter(diff);
       double Cp = -5.;
-      int is_cp_unif= sub_type(Champ_Uniforme,fluide_dil.capacite_calorifique().valeur());
+      int is_cp_unif= sub_type(Champ_Uniforme,fluide_dil.capacite_calorifique());
       const DoubleTab& tab_cp = fluide_dil.capacite_calorifique().valeurs();
       if (is_cp_unif) Cp=tab_cp(0,0);
 
@@ -329,7 +358,7 @@ void Convection_Diffusion_Fluide_Dilatable_Proto::assembler_blocs(Convection_Dif
 
   statistiques().begin_count(source_counter_);
   for (int i = 0; i < eqn.sources().size(); i++)
-    eqn.sources()(i).valeur().ajouter_blocs({{nom_inco, &mat_diff}}, secmem_tmp, semi_impl);
+    eqn.sources()(i)->ajouter_blocs({{nom_inco, &mat_diff}}, secmem_tmp, semi_impl);
   statistiques().end_count(source_counter_);
 
   statistiques().begin_count(assemblage_sys_counter_);
@@ -383,10 +412,23 @@ void Convection_Diffusion_Fluide_Dilatable_Proto::assembler_blocs(Convection_Dif
   if(mat) mat->ajouter_multvect(eqn.inconnue().valeurs(),secmem);
 }
 
-
 /*
  * Methodes statiques
  */
+
+std::vector<YAML_data> Convection_Diffusion_Fluide_Dilatable_Proto::data_a_sauvegarder(const Convection_Diffusion_std& eq, const Fluide_Dilatable_base& fld)
+{
+  std::vector<YAML_data> data = eq.data_a_sauvegarder_base();
+
+  Fluide_Weakly_Compressible& FWC = ref_cast_non_const(Fluide_Weakly_Compressible,fld);
+  OWN_PTR(Champ_Inc_base) p_tab = FWC.inco_chaleur(); // Initialize with same discretization
+  std::string name = eq.probleme().le_nom().getString() + "_Pression_EOS";
+  int nb_dim = p_tab->valeurs().nb_dim();
+  YAML_data pressure(name, "double", nb_dim);
+  data.push_back(pressure);
+  return data;
+}
+
 int Convection_Diffusion_Fluide_Dilatable_Proto::Sauvegarder_WC(Sortie& os,
                                                                 const Convection_Diffusion_std& eq,
                                                                 const Fluide_Dilatable_base& fld)
@@ -395,16 +437,36 @@ int Convection_Diffusion_Fluide_Dilatable_Proto::Sauvegarder_WC(Sortie& os,
   bytes += eq.sauvegarder_base(os); // XXX : voir Convection_Diffusion_std
   EcritureLectureSpecial::is_ecriture_special(special,a_faire);
 
+  Fluide_Weakly_Compressible& FWC = ref_cast_non_const(Fluide_Weakly_Compressible,fld);
   if (a_faire)
     {
-      Fluide_Weakly_Compressible& FWC = ref_cast_non_const(Fluide_Weakly_Compressible,fld);
-      Champ_Inc p_tab = FWC.inco_chaleur(); // Initialize with same discretization
+      OWN_PTR(Champ_Inc_base) p_tab = FWC.inco_chaleur(); // Initialize with same discretization
       p_tab->nommer("Pression_EOS");
       p_tab->valeurs() = FWC.pression_th_tab(); // Use good values
       if (special && Process::is_parallel())
         Cerr << "ATTENTION : For a parallel calculation, the field Pression_EOS is not saved in xyz format ... " << finl;
       else
         bytes += p_tab->sauvegarder(os);
+    }
+  else if (TRUST_2_PDI::is_PDI_checkpoint())
+    {
+      // Different treatment with PDI as the backup will be triggered later, so we can't share a temporary pointer...
+      const DoubleTab& p_th_tab = FWC.pression_th_tab();
+      std::string name = eq.probleme().le_nom().getString() + "_Pression_EOS";
+
+      // Sharing the dimensions of the unknown field with PDI
+      TRUST_2_PDI pdi_interface;
+      pdi_interface.share_TRUSTTab_dimensions(p_th_tab, name, 1 /*write mode*/);
+      // Sharing the unknown field with PDI
+      if( p_th_tab.dimension_tot(0) )
+        pdi_interface.TRUST_start_sharing(name, p_th_tab.addr());
+      else
+        {
+          ArrOfDouble garbage( p_th_tab.nb_dim() );
+          pdi_interface.TRUST_start_sharing(name, garbage.addr());
+        }
+
+      bytes = 8 * p_th_tab.size_array();
     }
 
   return bytes;
@@ -414,7 +476,7 @@ int Convection_Diffusion_Fluide_Dilatable_Proto::Reprendre_WC(Entree& is,
                                                               double temps,
                                                               Convection_Diffusion_std& eq,
                                                               Fluide_Dilatable_base& fld,
-                                                              Champ_Inc& inco,
+                                                              Champ_Inc_base& inco,
                                                               Probleme_base& pb)
 {
   // start resuming
@@ -424,13 +486,9 @@ int Convection_Diffusion_Fluide_Dilatable_Proto::Reprendre_WC(Entree& is,
   Fluide_Weakly_Compressible& FWC = ref_cast(Fluide_Weakly_Compressible,fld);
   FWC.set_resume_flag();
   // resume EOS pressure field
-  Champ_Inc p_tab = inco; // Same discretization normally
-  p_tab->nommer("Pression_EOS");
-  Nom field_tag(p_tab->le_nom());
-  field_tag += p_tab.valeur().que_suis_je();
-  field_tag += pb.domaine().le_nom();
-  field_tag += Nom(temps,pb.reprise_format_temps());
+  OWN_PTR(Champ_Inc_base) p_tab = FWC.inco_chaleur(); // Initialize with same discretization
 
+  p_tab->nommer("Pression_EOS");
   if (EcritureLectureSpecial::is_lecture_special() && Process::is_parallel())
     {
       Cerr << "Error in Convection_Diffusion_Espece_Binaire_WC::reprendre !" << finl;
@@ -439,7 +497,14 @@ int Convection_Diffusion_Fluide_Dilatable_Proto::Reprendre_WC(Entree& is,
     }
   else
     {
-      avancer_fichier(is, field_tag);
+      if(!TRUST_2_PDI::is_PDI_restart())
+        {
+          Nom field_tag(p_tab->le_nom());
+          field_tag += p_tab->que_suis_je();
+          field_tag += pb.domaine().le_nom();
+          field_tag += Nom(temps,pb.reprise_format_temps());
+          avancer_fichier(is, field_tag);
+        }
       p_tab->reprendre(is);
     }
 

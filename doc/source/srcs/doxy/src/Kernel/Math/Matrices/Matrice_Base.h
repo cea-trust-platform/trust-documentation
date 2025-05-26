@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,9 +36,12 @@ class Matrice_Base : public Objet_U
   Declare_base(Matrice_Base);
 
 public :
-  virtual int ordre() const =0;
-  virtual int nb_lignes() const =0;
-  virtual int nb_colonnes() const =0;
+  /// If square matrix, returns number of lines, otherwise 0
+  virtual int ordre() const=0;
+  /// Return local number of lines (=size on the current proc)
+  virtual int nb_lignes() const=0;
+  /// Return local number of columns (=size on the current proc)
+  virtual int nb_colonnes() const=0;
 
   // Methodes pour le calcul de r+=Ax codees dans les classes filles
   virtual DoubleVect& ajouter_multvect_(const DoubleVect& x, DoubleVect& r) const =0;
@@ -62,6 +65,9 @@ public :
 
   virtual void scale(const double x) =0;
 
+  // Mise a zero des valeurs de la matrice
+  virtual void clean() { Process::exit("Matrice_base::clean() not implemented.");};
+
   virtual void get_stencil(IntTab& stencil) const;
 
   virtual void get_symmetric_stencil(IntTab& stencil) const;
@@ -71,12 +77,12 @@ public :
 
   virtual void get_symmetric_stencil_and_coefficients(IntTab& stencil, ArrOfDouble& coefficients) const;
 
-  int get_stencil_size( void ) const ;
-  virtual void build_stencil( void );
+  int get_stencil_size() const ;
+  virtual void build_stencil();
 
   void set_stencil( const IntTab& stencil );
 
-  bool is_stencil_up_to_date( void ) const ;
+  bool is_stencil_up_to_date() const ;
 
 protected:
   bool is_stencil_up_to_date_ = false;

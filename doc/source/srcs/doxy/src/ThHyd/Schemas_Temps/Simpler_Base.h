@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,13 +19,12 @@
 #include <Solveur_non_lineaire.h>
 #include <Parametre_implicite.h>
 #include <TRUSTTabs_forward.h>
-#include <Matrice_Morse.h>
 #include <Nom.h>
 
-class Solveur_Implicite_Base;
+class Solveur_Implicite_base;
 class Schema_Temps_base;
 class Equation_base;
-class Equation;
+class Matrice_Morse;
 class Matrice;
 class Sources;
 class Motcle;
@@ -82,7 +81,7 @@ public :
   virtual void iterer_NS(Equation_base&, DoubleTab& current, DoubleTab& pression, double, Matrice_Morse&, double, DoubleTrav&,int nb_iter,int& converge, int& ok)=0;
 
   void assembler_matrice_pression_implicite(Equation_base& eqn_NS,const Matrice_Morse& matrice,Matrice& matrice_en_pression_2);
-  Parametre_equation& get_and_set_parametre_equation(Equation_base&) override;
+  OWN_PTR(Parametre_equation_base)& get_and_set_parametre_equation(Equation_base&) override;
   Parametre_implicite& get_and_set_parametre_implicite(Equation_base& eqn)
   {
     return ref_cast(Parametre_implicite, get_and_set_parametre_equation(eqn).valeur());

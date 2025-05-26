@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -108,7 +108,7 @@ Entree& Lire_Ideas::interpreter_(Entree& is)
   //
   DoubleTab& coord=dom.les_sommets();
   dom.type_elem().typer("Tetraedre");
-  dom.type_elem().associer_domaine(dom);
+  dom.type_elem()->associer_domaine(dom);
 
   //
   // On commence par transferer les coordonnees
@@ -182,7 +182,7 @@ Entree& Lire_Ideas::interpreter_(Entree& is)
       Bord& nouveau=les_bords.add(Bord());
       //
       nouveau.nommer(nom_bord);
-      nouveau.faces().typer(Faces::triangle_3D);
+      nouveau.faces().typer(Type_Face::triangle_3D);
       //
       nouveau.faces().dimensionner(NGELEM[k]);
       //

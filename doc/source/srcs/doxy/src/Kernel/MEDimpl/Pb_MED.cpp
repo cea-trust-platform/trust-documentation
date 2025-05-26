@@ -121,6 +121,9 @@ Entree& Pbc_MED::readOn(Entree& is )
  */
 Entree& Pb_MED::readOn(Entree& is )
 {
+  // On commence par ca car assoscier de Pb_base est jamais appele
+  save_restart_.assoscier_pb_base(*this);
+
   dis_bidon.typer("VF_inst");
   la_discretisation_=dis_bidon.valeur();
   is >> nom_fic;
@@ -192,12 +195,9 @@ Equation_base& Pb_MED::equation(int i)
 {
   assert(0);
   exit();
-  assert (i==0);
   //pour les compilos
   return Probleme_base::equation("bidon") ;
 }
-
-
 
 int Pb_MED::comprend_champ(const Motcle& mot) const
 {
@@ -227,14 +227,14 @@ void Pb_MED::creer_champ(const Motcle& motlu)
   Cerr<<"Pb_MED::creer_champ "<< motlu<<finl;
   Noms liste_noms;
   get_noms_champs_postraitables(liste_noms);
-  Champ_Fonc toto; // on ajoute toto et on le type apres pour eviter des copies qui ne marchent pas ...
-  Champ_Fonc& le_ch_fonc= champs_fonc_post.add(toto);
+  OWN_PTR(Champ_Fonc_base)  toto; // on ajoute toto et on le type apres pour eviter des copies qui ne marchent pas ...
+  auto& le_ch_fonc= champs_fonc_post.add(toto);
   le_ch_fonc.typer("Champ_Fonc_MED");
   int nbchampmed=nomschampmed.size();
 
   Nom localisation;
   Motcle es;
-  le_ch_fonc.valeur().nommer(motlu);
+  le_ch_fonc->nommer(motlu);
 
   int flag=0;
   Nom test("_");
@@ -258,7 +258,7 @@ void Pb_MED::creer_champ(const Motcle& motlu)
                 localisation="elem";
             }
           Cerr<<"One wishes to read the field "<<es<<" choice "<<localisation<<" readen word in the data set "<<motlu<<finl;
-          le_ch_fonc.valeur().nommer(es);
+          le_ch_fonc->nommer(es);
           flag=1;
         }
     }
@@ -268,12 +268,12 @@ void Pb_MED::creer_champ(const Motcle& motlu)
 
   if (flag)
     {
-      chmed.le_champ().nommer(le_ch_fonc.valeur().le_nom());
+      chmed.le_champ().nommer(le_ch_fonc->le_nom());
       chmed.le_champ().corriger_unite_nom_compo();
       chmed.le_champ().nommer(motlu);
     }
 
-  le_ch_fonc.valeur().nommer(motlu);
+  le_ch_fonc->nommer(motlu);
   chmed.le_champ().nommer(motlu);
   if (!le_ch_fonc.non_nul())
     {
@@ -283,39 +283,66 @@ void Pb_MED::creer_champ(const Motcle& motlu)
     }
 }
 
+bool Pb_MED::has_champ(const Motcle& un_nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  for (const auto &itr : champs_fonc_post)
+    {
+      if (Motcle(itr->le_nom()) == un_nom)
+        {
+          ref_champ = Pb_MED::get_champ(un_nom);
+          return true;
+        }
+      else
+        for (int i = 0; i < itr->nb_comp(); i++)
+          if (Motcle(itr->nom_compo(i)) == un_nom)
+            {
+              ref_champ = Pb_MED::get_champ(un_nom);
+              return true;
+            }
+    }
+
+  return false; /* rien trouve */
+}
+
+bool Pb_MED::has_champ(const Motcle& un_nom) const
+{
+  for (const auto &itr : champs_fonc_post)
+    {
+      if (Motcle(itr->le_nom()) == un_nom)
+        return true;
+      else
+        for (int i = 0; i < itr->nb_comp(); i++)
+          if (Motcle(itr->nom_compo(i)) == un_nom)
+            return true;
+    }
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Pb_MED::get_champ(const Motcle& un_nom) const
 {
-  REF(Champ_base) ref_champ;
-
   double temps_courant = schema_temps().temps_courant();
-  Motcle nom_champ;
-  int ok_post=1;
 
-  for (const auto& itr : champs_fonc_post)
+  for (const auto &itr : champs_fonc_post)
     {
-      Champ_Fonc_MED& ch_med = ref_cast_non_const(Champ_Fonc_MED,itr.valeur());
-      nom_champ = Motcle(itr.le_nom());
-      if ((nom_champ==un_nom) && (ok_post==1))
+      Champ_Fonc_MED& ch_med = ref_cast_non_const(Champ_Fonc_MED, itr.valeur());
+      if (Motcle(itr->le_nom()) == un_nom)
         {
-          ref_champ = itr;
-          if (ch_med.temps()!=temps_courant)
+          if (ch_med.temps() != temps_courant)
             ch_med.mettre_a_jour(temps_courant);
+
           return ch_med.le_champ();
         }
       else
         {
-          int nb_composantes = itr->nb_comp();
-          for (int i=0; i<nb_composantes; i++)
-            {
-              nom_champ = Motcle(itr->nom_compo(i));
-              if ((nom_champ==un_nom) && (ok_post==1))
-                {
-                  ref_champ = itr;
-                  if (ch_med.temps()!=temps_courant)
-                    ch_med.mettre_a_jour(temps_courant);
-                  return ch_med.le_champ();
-                }
-            }
+          for (int i = 0; i < itr->nb_comp(); i++)
+            if (Motcle(itr->nom_compo(i)) == un_nom)
+              {
+                if (ch_med.temps() != temps_courant)
+                  ch_med.mettre_a_jour(temps_courant);
+
+                return ch_med.le_champ();
+              }
         }
     }
 
@@ -323,15 +350,14 @@ const Champ_base& Pb_MED::get_champ(const Motcle& un_nom) const
   Cerr<<"Check the field name to indicate in the post-processing set"<<finl;
   exit();
 
-  //Pour compilation
-  return ref_champ;
+  throw std::runtime_error(std::string("Field ") + un_nom.getString() + std::string(" not found !"));
 }
 
-void Pb_MED::get_noms_champs_postraitables(Noms& noms,Option opt) const
+void Pb_MED::get_noms_champs_postraitables(Noms& noms, Option opt) const
 {
   //La methode surcharge celle de Probleme_base
-  if (opt==DESCRIPTION)
-    Cerr<<"Pb_MED : : "<<nomschampmed<<finl;
+  if (opt == DESCRIPTION)
+    Cerr << "Pb_MED : " << nomschampmed << finl;
   else
     noms.add(nomschampmed);
 }

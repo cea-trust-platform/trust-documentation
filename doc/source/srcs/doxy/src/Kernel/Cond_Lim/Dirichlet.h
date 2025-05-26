@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,7 +35,11 @@ public:
   virtual double val_imp(int i, int j) const;
   virtual double val_imp_au_temps(double temps, int i) const;
   virtual double val_imp_au_temps(double temps, int i, int j) const;
+  const DoubleTab& val_imp(double temps=DMAXFLOAT) const;
+  const DoubleTab& val_imp_au_temps(double temps) const { return val_imp(temps); }
   void verifie_ch_init_nb_comp() const override;
+private:
+  mutable DoubleTab tab_; // Stocke toutes les valeurs sur toutes les faces de la frontiere (pas d'hypothese sur un champ uniforme). Utile pour le GPU.
 };
 
 #endif

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,18 +18,23 @@
 #include <Periodique.h>
 
 Implemente_instanciable(Op_Conv_Centre_EF_VEF_Face,"Op_Conv_Centre_EF_VEF_P1NC",Op_Conv_VEF_base);
-
-
-//// printOn
-//
+// XD bloc_ef objet_lecture nul 0 not_set
+// XD   attr mot1 chaine(into=["transportant_bar","transporte_bar","filtrer_resu","antisym"]) mot1 0 not_set
+// XD   attr val1 entier(into=[0,1]) val1 0 not_set
+// XD   attr mot2 chaine(into=["transportant_bar","transporte_bar","filtrer_resu","antisym"]) mot2 0 not_set
+// XD   attr val2 entier(into=[0,1]) val2 0 not_set
+// XD   attr mot3 chaine(into=["transportant_bar","transporte_bar","filtrer_resu","antisym"]) mot3 0 not_set
+// XD   attr val3 entier(into=[0,1]) val3 0 not_set
+// XD   attr mot4 chaine(into=["transportant_bar","transporte_bar","filtrer_resu","antisym"]) mot4 0 not_set
+// XD   attr val4 entier(into=[0,1]) val4 0 not_set
+// XD convection_ef convection_deriv ef 0 For VEF calculations, a centred convective scheme based on Finite Elements formulation can be called through the following data:NL2 NL2 Convection { EF transportant_bar val transporte_bar val antisym val filtrer_resu val }NL2 NL2 This scheme is 2nd order accuracy (and get better the property of kinetic energy conservation). Due to possible problems of instabilities phenomena, this scheme has to be coupled with stabilisation process (see Source_Qdm_lambdaup).These two last data are equivalent from a theoretical point of view in variationnal writing to : div(( u. grad ub , vb) - (u. grad vb, ub)), where vb corresponds to the filtered reference test functions.NL2 NL2 Remark:NL2 This class requires to define a filtering operator : see solveur_bar
+// XD   attr mot1 chaine(into=["defaut_bar"]) mot1 1 equivalent to transportant_bar 0 transporte_bar 1 filtrer_resu 1 antisym 1
+// XD   attr bloc_ef bloc_ef bloc_ef 1 not_set
 
 Sortie& Op_Conv_Centre_EF_VEF_Face::printOn(Sortie& s ) const
 {
   return s << que_suis_je() ;
 }
-
-//// readOn
-//
 
 Entree& Op_Conv_Centre_EF_VEF_Face::readOn(Entree& s )
 {
@@ -67,7 +72,6 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
 
 
   const DoubleTab& normales_facettes_Cl = domaine_Cl_VEF.normales_facettes_Cl();
-  DoubleVect& fluent_ = fluent;
 
   int nfac = domaine.nb_faces_elem();
   //int nsom = domaine.nb_som_elem();
@@ -124,7 +128,7 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -145,7 +149,7 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
       if (sub_type(Periodique,la_cl.valeur()))
         {
           //          const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -168,7 +172,7 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
   // dans le domaine
 
   // boucle sur les polys
-  const IntTab& KEL=domaine_VEF.type_elem().valeur().KEL();
+  const IntTab& KEL=domaine_VEF.type_elem().KEL();
   for (poly=0; poly<nb_elem_tot; poly++)
     {
 
@@ -237,9 +241,9 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
               for (j=0; j<dimension; j++)
                 {
                   //                   Cerr << "cc[j]=" << cc[j] << finl;
-                  //                   Cerr << "la_vitesse(face[i],j)=" << la_vitesse(face[i],j) << finl;
+                  //                   Cerr << "la_vitesse.valeurs()(face[i],j)=" << la_vitesse.valeurs()(face[i],j) << finl;
 
-                  psc[i]+= la_vitesse(face[i],j)*cc[j]*porosite_face(face[i]);
+                  psc[i]+= la_vitesse.valeurs()(face[i],j)*cc[j]*porosite_face(face[i]);
                 }
               //            Cerr << "psc[" << i << "]=" <<  psc[i] << finl;
             }
@@ -477,7 +481,7 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
                         //                           Cerr << "transporte(autre_num_face(1),comp)=" << transporte(autre_num_face(1),comp) << finl;
                         //                           Cerr << "flux=" << flux << finl;
                         //************Calcul de fluent pour le pas de temps
-                        // f_int = 0.5*cc[comp]*(la_vitesse(num1,comp)+la_vitesse(num2,comp));
+                        // f_int = 0.5*cc[comp]*(la_vitesse.valeurs()(num1,comp)+la_vitesse.valeurs()(num2,comp));
 
                         //  if (f_int>=0.)
                         //                             fluent_[num2] += f_int ;
@@ -595,14 +599,14 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
         {
           ////////////ATTENTION!!!!!!!!!!! Cela correspond a l ancien schema et pas au EF!!
           const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
             {
               pscav =0;
               for (i=0; i<dimension; i++)
-                pscav += la_vitesse(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
+                pscav += la_vitesse.valeurs()(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
               if (pscav>0)
                 if (ncomp_ch_transporte == 1)
                   {
@@ -636,7 +640,7 @@ DoubleTab& Op_Conv_Centre_EF_VEF_Face::ajouter(const DoubleTab& transporte,
       else if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,11 +18,14 @@
 
 #include <Champ_Don_base.h>
 #include <TRUST_Ref.h>
+#include <YAML_data.h>
+#include <Motcle.h>
 
 class Domaine_dis_base;
 class MD_Vector;
 class Domaine_VF;
-class Domaine;
+
+#include <Domaine_forward.h>
 
 /*! @brief classe Champ_Fonc_base Classe de base des champs qui sont fonction d'une grandeur calculee
  *
@@ -38,6 +41,9 @@ public:
   int fixer_nb_valeurs_nodales(int nb_noeuds) override;
   int reprendre(Entree&) override;
   int sauvegarder(Sortie&) const override;
+  inline void set_pdi_name(const Nom& nom) { pdi_name_ = (Motcle)nom; }
+  Nom get_pdi_name() const;
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
 
   Champ_base& affecter_(const Champ_base&) override;
   Champ_base& affecter_compo(const Champ_base&, int compo) override;
@@ -58,7 +64,8 @@ public:
 protected:
   // Par defaut on initialise les valeurs a zero
   virtual void creer_tableau_distribue(const MD_Vector&, RESIZE_OPTIONS = RESIZE_OPTIONS::COPY_INIT);
-  REF(Domaine_VF) le_dom_VF;
+  OBS_PTR(Domaine_VF) le_dom_VF;
+  Nom pdi_name_; // name to use when saving the field with PDI (ensures that the name is unique among all the other fields, as we can't the same data declared multiples times with PDI)
 };
 
 #endif /* Champ_Fonc_base_included */

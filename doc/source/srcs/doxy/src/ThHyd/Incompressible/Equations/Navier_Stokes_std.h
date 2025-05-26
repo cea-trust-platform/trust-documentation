@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,15 +16,13 @@
 #ifndef Navier_Stokes_std_included
 #define Navier_Stokes_std_included
 
-#include <Traitement_particulier_NS.h>
-#include <Navier_Stokes_IBM_impl.h>
+#include <Traitement_particulier_NS_base.h>
+#include <Assembleur_base.h>
 #include <Operateur_Grad.h>
 #include <Operateur_Conv.h>
 #include <Operateur_Diff.h>
 #include <Operateur_Div.h>
-#include <Assembleur.h>
-#include <Champ_Fonc.h>
-#include <Champ_Don.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 
 class Fluide_base;
@@ -54,7 +52,7 @@ class Fluide_base;
  *
  * @sa Equation_base Pb_Hydraulique Pb_Thermohydraulique
  */
-class Navier_Stokes_std : public Equation_base, public Navier_Stokes_IBM_impl
+class Navier_Stokes_std : public Equation_base
 {
   Declare_instanciable_sans_constructeur(Navier_Stokes_std);
 
@@ -82,8 +80,8 @@ public :
   const Operateur_Grad& operateur_gradient() const;
   Operateur_Diff& operateur_diff();
   const Operateur_Diff& operateur_diff() const;
-  const Champ_Inc& inconnue() const override;
-  Champ_Inc& inconnue() override;
+  const Champ_Inc_base& inconnue() const override;
+  Champ_Inc_base& inconnue() override;
   SolveurSys& solveur_pression();
   void discretiser() override;
   virtual void discretiser_vitesse();
@@ -106,7 +104,7 @@ public :
   void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl = {}) const override;
   void assembler_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) const override;
 
-
+  std::vector<YAML_data> data_a_sauvegarder() const override;
   int sauvegarder(Sortie&) const override;
   int reprendre(Entree&) override;
 
@@ -117,17 +115,19 @@ public :
   int preparer_calcul() override;
 
   inline Matrice& matrice_pression() { return matrice_pression_; }
-  inline Assembleur& assembleur_pression() { return assembleur_pression_; }
-  inline Champ_Inc& pression() { return la_pression; }
-  inline Champ_Inc& grad_P() { return gradient_P; }
-  inline const Champ_Inc& grad_P() const { return gradient_P; }
-  inline Champ_Inc& pression_pa() { return la_pression_en_pa; }
-  inline Champ_Inc& div() { return divergence_U; }
-  inline const Champ_Inc& pression() const { return la_pression; }
-  inline const Champ_Inc& pression_pa() const { return la_pression_en_pa; }
-  inline const Champ_Inc& div() const { return divergence_U; }
+  inline OWN_PTR(Assembleur_base)& assembleur_pression() { return assembleur_pression_; }
 
-  virtual const Champ_Don& diffusivite_pour_transport() const;
+  inline bool has_grad_P() const { return gradient_P.non_nul(); }
+  inline Champ_Inc_base& grad_P() { return gradient_P.valeur(); }
+  inline const Champ_Inc_base& grad_P() const { return gradient_P.valeur(); }
+  inline Champ_Inc_base& pression() { return la_pression.valeur(); }
+  inline const Champ_Inc_base& pression() const { return la_pression.valeur(); }
+  inline Champ_Inc_base& pression_pa() { return la_pression_en_pa.valeur(); }
+  inline const Champ_Inc_base& pression_pa() const { return la_pression_en_pa.valeur(); }
+  inline Champ_Inc_base& div() { return divergence_U.valeur(); }
+  inline const Champ_Inc_base& div() const { return divergence_U.valeur(); }
+
+  virtual const Champ_Don_base& diffusivite_pour_transport() const;
   virtual const Champ_base& diffusivite_pour_pas_de_temps() const;
   virtual const Champ_base& vitesse_pour_transport() const;
 
@@ -135,13 +135,15 @@ public :
   /////////////////////////////////////////////////////
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
   /////////////////////////////////////////////////////
 
   const Motcle& domaine_application() const override;
 
-  virtual inline const Champ_Inc& vitesse() const { return la_vitesse; }
-  virtual inline Champ_Inc& vitesse() { return la_vitesse; }
+  virtual inline const Champ_Inc_base& vitesse() const { return la_vitesse.valeur(); }
+  virtual inline Champ_Inc_base& vitesse() { return la_vitesse.valeur(); }
 
   virtual void projeter();
   virtual int projection_a_faire();
@@ -150,38 +152,43 @@ public :
   virtual void calculer_pression_hydrostatique(Champ_base& pression_hydro) const;
   int verif_Cl() const override;
 
-  virtual const Champ_Inc& rho_la_vitesse() const;
+  virtual const Champ_Inc_base& rho_la_vitesse() const;
   inline Operateur_Conv& get_terme_convectif() { return terme_convectif; }
 
   virtual void renewing_jacobians( DoubleTab& derivee );
   virtual void div_ale_derivative( DoubleTrav& derivee_ale, double timestep, DoubleTab& derivee, DoubleTrav& secmemP );
-  virtual void update_pressure_matrix( void );
+  virtual void update_pressure_matrix();
+  void update_y_plus(const DoubleTab& tab) ;
 
 protected:
   virtual void discretiser_assembleur_pression();
-  REF(Fluide_base) le_fluide;
+  virtual void modify_initial_variable() { /* Do nothing */ }
+  virtual void modify_initial_gradP( DoubleTrav& ) { /* Do nothing */ }
 
-  Champ_Inc la_vitesse, la_pression, divergence_U, gradient_P, la_pression_en_pa;
-  Champ_Fonc la_vorticite, grad_u, critere_Q, pression_hydrostatique_, porosite_volumique, combinaison_champ;
-  Champ_Fonc distance_paroi_globale, y_plus, Reynolds_maille, Courant_maille, Taux_cisaillement;
+  OBS_PTR(Fluide_base) le_fluide;
+
+  OWN_PTR(Champ_Inc_base) la_vitesse, la_pression, divergence_U, gradient_P, la_pression_en_pa;
+  OWN_PTR(Champ_Fonc_base)  la_vorticite, grad_u, critere_Q, pression_hydrostatique_, combinaison_champ;
+  OWN_PTR(Champ_Fonc_base)  distance_paroi_globale, y_plus, Reynolds_maille, Courant_maille, Taux_cisaillement;
 
   Operateur_Conv terme_convectif;
   Operateur_Diff terme_diffusif;
   Operateur_Div divergence;
   Operateur_Grad gradient;
   Matrice matrice_pression_;
-  Assembleur assembleur_pression_;
+  OWN_PTR(Assembleur_base) assembleur_pression_;
   SolveurSys solveur_pression_;
 
   int projection_initiale;
   double dt_projection, seuil_projection, seuil_uzawa, max_div_U, seuil_divU, raison_seuil_divU;
   mutable double cumulative_;
 
-  Traitement_particulier_NS le_traitement_particulier;
+  OWN_PTR(Traitement_particulier_NS_base) le_traitement_particulier;
 
   void uzawa(const DoubleTab&, const Matrice_Base&, SolveurSys&, DoubleTab&, DoubleTab&);
   Nom chaine_champ_combi;
   int methode_calcul_pression_initiale_;
+  bool postraiter_gradient_pression_sans_masse_ = false;
   // pour genepi il est important d avoir divu =0 car accumulation d'erreur
   // meme si c'est pas faisable avec tous les schemas
   int div_u_nul_et_non_dsurdt_divu_;

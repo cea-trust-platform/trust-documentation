@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,12 +15,15 @@
 
 #include <Sortie_libre_Gradient_Pression_libre_VEFPreP1B.h>
 #include <Champ_P1_isoP1Bulle.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Navier_Stokes_std.h>
 #include <Champ_Uniforme.h>
 #include <distances_VEF.h>
 #include <Milieu_base.h>
 
 Implemente_instanciable(Sortie_libre_Gradient_Pression_libre_VEFPreP1B, "Frontiere_ouverte_Gradient_Pression_libre_VEFPreP1B", Neumann_sortie_libre);
+// XD frontiere_ouverte_gradient_pression_libre_vefprep1b neumann frontiere_ouverte_gradient_pression_libre_vefprep1b -1 Class for outlet boundary condition in VEF P1B/P1NC like Orlansky.
+
 
 Sortie& Sortie_libre_Gradient_Pression_libre_VEFPreP1B::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -30,10 +33,10 @@ Entree& Sortie_libre_Gradient_Pression_libre_VEFPreP1B::readOn(Entree& is)
   if (supp_discs.size() == 0) supp_discs = { Nom("VEFPreP1B") };
 
   le_champ_front.typer("Champ_front_uniforme");
-  le_champ_front.valeurs().resize(1, dimension);
+  le_champ_front->valeurs().resize(1, dimension);
   le_champ_front->fixer_nb_comp(1);
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   return is;
 }
 
@@ -45,9 +48,9 @@ void Sortie_libre_Gradient_Pression_libre_VEFPreP1B::completer()
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
 
-  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis().valeur());
+  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis());
 
-  const Champ_P1_isoP1Bulle& pression = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression().valeur());
+  const Champ_P1_isoP1Bulle& pression = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression());
 
   const IntTab& face_voisins = mon_dom_VEF.face_voisins();
 
@@ -122,7 +125,7 @@ void Sortie_libre_Gradient_Pression_libre_VEFPreP1B::mettre_a_jour(double temps)
 
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
-  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis().valeur());
+  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis());
   const DoubleTab& face_normale = mon_dom_VEF.face_normales();
   const Front_VF& le_bord = ref_cast(Front_VF, frontiere_dis());
 
@@ -225,23 +228,18 @@ double Sortie_libre_Gradient_Pression_libre_VEFPreP1B::flux_impose(int face) con
 
 double Sortie_libre_Gradient_Pression_libre_VEFPreP1B::flux_impose(int face, int ncomp) const
 {
-  if (ncomp == 0) return flux_impose(face);
-
-  Cerr << "Sortie_libre_Gradient_Pression_libre_VEFPreP1B::flux_impose(int  , int )" << finl;
-  Cerr << "On ne sait imposer que la composante normale du gradient" << finl;
-  Process::exit();
-  return 0.;
+  return flux_impose(face);
 }
 
 double Sortie_libre_Gradient_Pression_libre_VEFPreP1B::Grad_P_lib_VEFPreP1B(int face) const
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique().valeur());
-  double d_rho = rho(0, 0);
-  if (le_champ_front.valeurs().size() == 1)
-    return le_champ_front(0, 0) / d_rho;
-  else if (le_champ_front.valeurs().dimension(1) == 1)
-    return le_champ_front(face, 0) / d_rho;
+  const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique());
+  double d_rho = rho.valeurs()(0, 0);
+  if (le_champ_front->valeurs().size() == 1)
+    return le_champ_front->valeurs()(0, 0) / d_rho;
+  else if (le_champ_front->valeurs().dimension(1) == 1)
+    return le_champ_front->valeurs()(face, 0) / d_rho;
   else
     Cerr << "Sortie_libre_Gradient_Pression_libre_VEFPreP1B::Grad_P_lib_VEFPreP1B() erreur" << finl;
   exit();

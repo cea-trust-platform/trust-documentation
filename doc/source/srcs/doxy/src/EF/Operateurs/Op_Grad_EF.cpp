@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -60,12 +60,12 @@ void Op_Grad_EF::mettre_a_jour(double temps)
 /*! @brief
  *
  */
-void Op_Grad_EF::associer(const Domaine_dis& domaine_dis,
-                          const Domaine_Cl_dis& domaine_Cl_dis,
-                          const Champ_Inc& inc)
+void Op_Grad_EF::associer(const Domaine_dis_base& domaine_dis,
+                          const Domaine_Cl_dis_base& domaine_Cl_dis,
+                          const Champ_Inc_base& inc)
 {
-  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis.valeur());
-  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis.valeur());
+  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis);
+  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis);
   le_dom_EF = zEF;
   la_zcl_EF = zclEF;
   //  const IntTab& face_sommets=zEF.face_sommets();
@@ -77,10 +77,10 @@ void Op_Grad_EF::associer(const Domaine_dis& domaine_dis,
 
 
     {
-      Champ_Don champ_lu;
+      OWN_PTR(Champ_Don_base) champ_lu;
       EChaine ee("champ_fonc_med last_time termes.med MAILLAGE_GENEPI terme_pression_limite_qdm_10 som 0.");
       ee>>champ_lu;
-      int_P_bord_.valeur().affecter(champ_lu);
+      int_P_bord_->affecter(champ_lu);
     }
   }
 #endif
@@ -108,7 +108,7 @@ void test(const DoubleTab& pression, DoubleTab& grad,const Op_Grad_EF&  op)
 
 
 
-void ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl_EF& domaine_Cl_EF, const Champ_Don& int_P_bord_ )
+void Op_Grad_EF::ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl_EF& domaine_Cl_EF) const
 {
   // const IntTab& face_voisins = domaine_EF.face_voisins();
   const DoubleTab& face_normales = domaine_EF.face_normales();
@@ -118,22 +118,20 @@ void ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl
 
   if (int_P_bord_.non_nul())
     {
-      resu+= int_P_bord_.valeurs();
+      resu+= int_P_bord_->valeurs();
     }
   else
-
     {
       const DoubleVect& porosite_sommet = domaine_EF.porosite_sommet();
 
       if (face_sommets.dimension(1)==4)
         {
           ArrOfInt filter(4) ;
-
-
           filter[0] = 0 ;
           filter[1] = 2 ;
           filter[2] = 3 ;
           filter[3] = 1 ;
+
           interface_INITGAUSS init_gauss;
           int npgau=9;
           int nbnn=4;
@@ -153,7 +151,7 @@ void ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl
           for ( int n_bord=0; n_bord<domaine_EF.nb_front_Cl(); n_bord++)
             {
               const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-              const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
               int nfin = le_bord.nb_faces_tot();
               if ( sub_type(Neumann_sortie_libre,la_cl.valeur()) )
@@ -204,7 +202,7 @@ void ajouter_bord(DoubleTab& resu,const Domaine_EF& domaine_EF,const  Domaine_Cl
         for ( int n_bord=0; n_bord<domaine_EF.nb_front_Cl(); n_bord++)
           {
             const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-            const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+            const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
             int nfin = le_bord.nb_faces_tot();
             if ( sub_type(Neumann_sortie_libre,la_cl.valeur()) )
@@ -242,7 +240,7 @@ DoubleTab& Op_Grad_EF::ajouter(const DoubleTab& pression, DoubleTab& grad) const
   grad = 0;
   assert_espace_virtuel_vect(pression);
   Debog::verifier("pression dans Op_Grad_EF",pression);
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
 
 
   const DoubleTab& Bij_thilde=domaine_ef.Bij_thilde();
@@ -279,7 +277,7 @@ DoubleTab& Op_Grad_EF::ajouter(const DoubleTab& pression, DoubleTab& grad) const
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()) )
         continue;
 
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = 0;
       int num2 = + le_bord.nb_faces_tot();
       if (sub_type(Dirichlet,la_cl.valeur()) )
@@ -316,7 +314,7 @@ DoubleTab& Op_Grad_EF::ajouter(const DoubleTab& pression, DoubleTab& grad) const
               }
           }
     }
-  ajouter_bord(grad,domaine_ef,la_zcl_EF.valeur(),int_P_bord_);
+  ajouter_bord(grad,domaine_ef,la_zcl_EF.valeur());
   grad.echange_espace_virtuel();
   return grad;
 }
@@ -335,14 +333,14 @@ void Op_Grad_EF::calculer_flux_bords() const
   const IntTab& face_voisins = domaine_EF.face_voisins();
   const DoubleTab& face_normales = domaine_EF.face_normales();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std,equation());
-  const Champ_P0_EF& la_pression_P0 = ref_cast(Champ_P0_EF,eqn_hydr.pression_pa().valeur());
+  const Champ_P0_EF& la_pression_P0 = ref_cast(Champ_P0_EF,eqn_hydr.pression_pa());
   const DoubleTab& pression_P0 = la_pression_P0.valeurs();
   if (flux_bords_.size_array()==0) flux_bords_.resize(domaine_EF.nb_faces_bord(),dimension);
   flux_bords_ = 0.;
   for (int n_bord=0; n_bord<domaine_EF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
       for (int face=ndeb; face<nfin; face++)
@@ -367,12 +365,9 @@ int Op_Grad_EF::impr(Sortie& os) const
   int face;
   const ArrOfDouble& c_grav=le_dom_EF->domaine().cg_moments();
   int flag=je_suis_maitre();
-  //SFichier Flux_grad;
-  if (!Flux_grad.is_open()) ouvrir_fichier(Flux_grad,"",flag);
-  //SFichier Flux_grad_moment;
-  if (!Flux_grad_moment.is_open()) ouvrir_fichier( Flux_grad_moment,"moment",impr_mom&&flag);
-  //SFichier Flux_grad_sum;
-  if (!Flux_grad_sum.is_open()) ouvrir_fichier(Flux_grad_sum,"sum",impr_sum&&flag);
+  ouvrir_fichier(Flux_grad,"",flag);
+  ouvrir_fichier( Flux_grad_moment,"moment",impr_mom&&flag);
+  ouvrir_fichier(Flux_grad_sum,"sum",impr_sum&&flag);
   EcrFicPartage Flux_grad_face;
   ouvrir_fichier_partage(Flux_grad_face,"",impr_bord);
   if (je_suis_maitre())
@@ -384,7 +379,7 @@ int Op_Grad_EF::impr(Sortie& os) const
   for ( n_bord=0; n_bord<domaine_EF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
@@ -491,7 +486,7 @@ int Op_Grad_EF::impr(Sortie& os) const
   for ( n_bord=0; n_bord<domaine_EF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();

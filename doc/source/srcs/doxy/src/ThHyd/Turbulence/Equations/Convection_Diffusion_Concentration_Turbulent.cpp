@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -61,6 +61,18 @@ int Convection_Diffusion_Concentration_Turbulent::lire_motcle_non_standard(const
     }
   else
     return Convection_Diffusion_Concentration::lire_motcle_non_standard(mot, is);
+}
+
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
+ *
+ */
+std::vector<YAML_data> Convection_Diffusion_Concentration_Turbulent::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data = Convection_Diffusion_Concentration::data_a_sauvegarder();
+  std::vector<YAML_data> turb = Convection_Diffusion_Turbulent::data_a_sauvegarder();
+  data.insert(data.end(), turb.begin(), turb.end());
+  return data;
 }
 
 /*! @brief Sauvergarde de l'equation sur un flot de sortie.
@@ -125,26 +137,42 @@ void Convection_Diffusion_Concentration_Turbulent::creer_champ(const Motcle& mot
     le_modele_turbulence->creer_champ(motlu);
 }
 
-const Champ_base& Convection_Diffusion_Concentration_Turbulent::get_champ(const Motcle& nom) const
+bool Convection_Diffusion_Concentration_Turbulent::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
 {
-
-  try
-    {
-      return Convection_Diffusion_Concentration::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+  if (Convection_Diffusion_Concentration::has_champ(nom, ref_champ))
+    return true;
 
   if (le_modele_turbulence.non_nul())
-    try
-      {
-        return le_modele_turbulence->get_champ(nom);
-      }
-    catch (Champs_compris_erreur&)
-      {
-      }
-  throw Champs_compris_erreur();
+    if (le_modele_turbulence->has_champ(nom, ref_champ))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+bool Convection_Diffusion_Concentration_Turbulent::has_champ(const Motcle& nom) const
+{
+  if (Convection_Diffusion_Concentration::has_champ(nom))
+    return true;
+
+  if (le_modele_turbulence.non_nul())
+    if (le_modele_turbulence->has_champ(nom))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+const Champ_base& Convection_Diffusion_Concentration_Turbulent::get_champ(const Motcle& nom) const
+{
+  OBS_PTR(Champ_base) ref_champ;
+
+  if (Convection_Diffusion_Concentration::has_champ(nom, ref_champ))
+    return ref_champ;
+
+  if (le_modele_turbulence.non_nul())
+    if (le_modele_turbulence->has_champ(nom, ref_champ))
+      return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 void Convection_Diffusion_Concentration_Turbulent::get_noms_champs_postraitables(Noms& nom, Option opt) const

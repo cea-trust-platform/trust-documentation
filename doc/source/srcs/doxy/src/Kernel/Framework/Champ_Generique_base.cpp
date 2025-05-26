@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,13 @@
 #include <Param.h>
 
 Implemente_base(Champ_Generique_base,"Champ_Generique_base",Objet_U);
+// XD champ_generique_base objet_u champ_generique_base 1 not_set
+
+// XD definition_champ objet_lecture nul 0 Keyword to create new complex field for advanced postprocessing.
+// XD   attr name chaine name 0 The name of the new created field.
+// XD   attr champ_generique champ_generique_base champ_generique 0 not_set
+
+// XD definition_champs listobj nul 1 definition_champ 0 List of definition champ
 
 Sortie& Champ_Generique_base::printOn(Sortie& os) const
 {
@@ -55,7 +62,7 @@ int Champ_Generique_base::get_dimension() const
   // On n'arrive jamais ici
 }
 
-/*! @brief Renvoie le temps du Champ_Generique.
+/*! @brief Renvoie le temps du Champ_Generique_base.
  *
  */
 double Champ_Generique_base::get_time() const
@@ -292,7 +299,7 @@ const Domaine_dis_base& Champ_Generique_base::get_ref_domaine_dis_base() const
 {
   const Objet_U& ob = interprete().objet(nom_pb_);
   const Probleme_base& pb = ref_cast(Probleme_base,ob);
-  const Domaine_dis_base& domaine_dis = pb.domaine_dis().valeur();
+  const Domaine_dis_base& domaine_dis = pb.domaine_dis();
   return domaine_dis;
 }
 
@@ -304,9 +311,37 @@ const Domaine_Cl_dis_base& Champ_Generique_base::get_ref_zcl_dis_base() const
   throw Champ_Generique_erreur("INVALID");
 }
 
+bool Champ_Generique_base::has_champ_post(const Motcle& nom) const
+{
+  Motcle nom_champ;
+
+  const Noms nom_champ_post = get_property("nom");
+  nom_champ = Motcle(nom_champ_post[0]);
+  if (nom_champ == nom)
+    return true;
+
+  const Noms syno = get_property("synonyms");
+  for (int i = 0; i < syno.size(); i++)
+    {
+      nom_champ = Motcle(syno[i]);
+      if (nom_champ == nom)
+        return true;
+    }
+
+  const Noms composantes = get_property("composantes");
+  for (const auto &itr : composantes)
+    {
+      nom_champ = Motcle(itr);
+      if (nom_champ == nom)
+        return true;
+    }
+
+  return false; /* rien trouve */
+}
+
 const Champ_Generique_base& Champ_Generique_base::get_champ_post(const Motcle& nom) const
 {
-  REF(Champ_Generique_base) ref_champ;
+  OBS_PTR(Champ_Generique_base) ref_champ;
 
   Motcle nom_champ;
   const Noms nom_champ_post = get_property("nom");
@@ -345,7 +380,7 @@ const Champ_Generique_base& Champ_Generique_base::get_champ_post(const Motcle& n
       }
   }
 
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 int Champ_Generique_base::comprend_champ_post(const Motcle& identifiant) const

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,10 +20,18 @@
 #include <Domaine_Cl_VDF.h>
 #include <Array_tools.h>
 #include <Periodique.h>
-
+#include <Matrix_tools.h>
 #include <Domaine_VDF.h>
 
-void Op_VDF_Elem::dimensionner(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& le_dom_cl, Matrice_Morse& la_matrice) const
+void Op_VDF_Elem::dimensionner(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& le_dom_cl, Matrice_Morse& la_matrice, const bool multi_scalar_diff) const
+{
+  if (multi_scalar_diff)
+    dimensionner_multiscalar(le_dom, le_dom_cl, la_matrice, multi_scalar_diff);
+  else
+    dimensionner_old(le_dom, le_dom_cl, la_matrice);
+}
+
+void Op_VDF_Elem::dimensionner_old(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& le_dom_cl, Matrice_Morse& la_matrice) const
 {
   // Dimensionnement de la matrice qui devra recevoir les coefficients provenant de la convection, de la diffusion pour le cas des elements.
   // Cette matrice a une structure de matrice morse.
@@ -59,7 +67,7 @@ void Op_VDF_Elem::dimensionner(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& 
       if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
           const int numdeb = la_front_dis.num_premiere_face(), nfaces = la_front_dis.nb_faces();
           int ind_face_global;
           IntVect fait(nfaces);
@@ -115,7 +123,7 @@ void Op_VDF_Elem::dimensionner(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& 
       if (sub_type(Periodique,la_cl.valeur()) )
         {
           const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
           const int numdeb = la_front_dis.num_premiere_face(), nfaces = la_front_dis.nb_faces();
           IntVect fait(nfaces);
           fait = 0;
@@ -141,6 +149,27 @@ void Op_VDF_Elem::dimensionner(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& 
             }
         }
     }
+}
+
+void Op_VDF_Elem::dimensionner_multiscalar(const Domaine_VDF& le_dom, const Domaine_Cl_VDF& le_dom_cl, Matrice_Morse& la_matrice, const bool multi_scalar_diff) const
+{
+  const DoubleTab& inco = le_dom_cl.equation().inconnue().valeurs();
+  const int ne = le_dom.nb_elem_tot(), M = inco.line_size();
+  const IntTab& f_e = le_dom.face_voisins(), &e_f = le_dom.elem_faces();
+
+  IntTab sten(0, 2);
+
+  for (int e = 0; e < ne; e++)
+    for (int i = 0, f, n; i < e_f.dimension(1); i++)
+      if ((f = e_f(e, i)) >= 0)
+        for (int j = 0; j < 2; j++)
+          if ((n = f_e(f, j)) >= 0)
+            for (int k = 0; k < M; k++)
+              for (int m = (multi_scalar_diff ? 0 : k); m < (multi_scalar_diff ? M : k + 1); m++)
+                sten.append_line(M * e + k, M * n + m);
+
+  tableau_trier_retirer_doublons(sten);
+  Matrix_tools::allocate_morse_matrix(inco.size_totale(), inco.size_totale(), sten, la_matrice);
 }
 
 void Op_VDF_Elem:: modifier_pour_Cl(const Domaine_VDF& , const Domaine_Cl_VDF& , Matrice_Morse& , DoubleTab& ) const { /* Do nothing */ }

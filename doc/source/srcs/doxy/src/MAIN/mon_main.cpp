@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,23 +34,21 @@
 
 #include <kokkos++.h>
 
-
 // Initialisation des compteurs, dans stat_counters.cpp
 extern void declare_stat_counters();
 extern void end_stat_counters();
 extern Stat_Counter_Id temps_total_execution_counter_;
 extern Stat_Counter_Id initialisation_calcul_counter_;
 
-mon_main::mon_main(int verbose_level, int journal_master, int journal_shared, Nom log_directory, bool apply_verification, int disable_stop)
+mon_main::mon_main(int verbose_level, bool journal_master, Nom log_directory, bool apply_verification, bool disable_stop)
 {
   verbose_level_ = verbose_level;
   journal_master_ = journal_master;
-  journal_shared_ = journal_shared;
   log_directory_ = log_directory;
   apply_verification_ = apply_verification;
   // Creation d'un journal temporaire qui ecrit dans Cerr
-  init_journal_file(verbose_level, 0, 0 /* filename = 0 => Cerr */, 0 /* append */);
-  trio_began_mpi_=0;
+  init_journal_file(verbose_level, 0 /* filename = 0 => Cerr */, 0 /* append */);
+  trio_began_mpi_=false;
   disable_stop_=disable_stop;
   change_disable_stop(disable_stop);
 }
@@ -61,7 +59,7 @@ bool error_handlers = true;
 #else
 bool error_handlers = false;
 #endif
-static int init_petsc(True_int argc, char **argv, int with_mpi,int& trio_began_mpi_)
+static int init_petsc(True_int argc, char **argv, bool with_mpi,bool& trio_began_mpi_)
 {
 #ifdef PETSCKSP_H
   static char help[] = "TRUST may solve linear systems with Petsc library.\n\n" ;
@@ -116,14 +114,14 @@ static int init_petsc(True_int argc, char **argv, int with_mpi,int& trio_began_m
   if (!flag)
     {
       MPI_Init(&argc,&argv);
-      trio_began_mpi_=1;
+      trio_began_mpi_=true;
     }
 #endif
 #endif
   return 1;
 }
 
-static int init_parallel_mpi(DERIV(Comm_Group) & groupe_trio)
+static int init_parallel_mpi(OWN_PTR(Comm_Group) & groupe_trio)
 {
 #ifdef MPI_
   groupe_trio.typer("Comm_Group_MPI");
@@ -136,33 +134,65 @@ static int init_parallel_mpi(DERIV(Comm_Group) & groupe_trio)
 #endif
 }
 
+static void instantiate_node_mpi(OWN_PTR(Comm_Group) & ngrp, OWN_PTR(Comm_Group) & mgrp, int with_mpi)
+{
+  if (with_mpi)
+    {
+      ngrp.typer("Comm_Group_MPI");
+      mgrp.typer("Comm_Group_MPI");
+    }
+  else
+    {
+      ngrp.typer("Comm_Group_NoParallel");
+      mgrp.typer("Comm_Group_NoParallel");
+    }
+}
+
+static void init_node_mpi(OWN_PTR(Comm_Group) & ngrp)
+{
+#ifdef MPI_
+  assert(ngrp.non_nul());
+  Comm_Group_MPI& mpi_on_node = ref_cast(Comm_Group_MPI, ngrp.valeur());
+  mpi_on_node.init_comm_on_numa_node();
+#endif
+}
+
+static void init_node_masters(OWN_PTR(Comm_Group) & master)
+{
+#ifdef MPI_
+  assert(master.non_nul());
+  Comm_Group_MPI& mm = ref_cast(Comm_Group_MPI, master.valeur());
+  mm.init_comm_on_node_master();
+#endif
+}
+
 ///////////////////////////////////////////////////////////
 // Desormais Petsc/MPI_Initialize et Petsc/MPI_Finalize
 // sont dans un seul fichier: mon_main
 // On ne doit pas en voir ailleurs !
 //////////////////////////////////////////////////////////
-void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int check_enabled, int with_petsc)
+void mon_main::init_parallel(const int argc, char **argv, bool with_mpi, bool check_enabled, bool with_petsc)
 {
-  // Kokkos initialisation
-  True_int argc2 = argc;
-  Kokkos::initialize( argc2, argv );
-
+  bool init_kokkos_before_mpi = (getenv("KOKKOS_AFTER_MPI") == nullptr);
+  // https://kokkos.org/kokkos-core-wiki/ProgrammingGuide/Initialization.html say after !
+  if (init_kokkos_before_mpi)
+    {
+      // Kokkos initialization
+      True_int argc2 = argc;
+      Kokkos::initialize(argc2, argv);
+    }
   Nom arguments_info="";
   arguments_info +="Kokkos initialized!\n";
 
 #ifdef TRUST_USE_CUDA
   //init_cuda(); Desactive car crash crash sur topaze ToDo OpenMP
 #endif
-  // Variable pour desactiver le calcul sur GPU et ainsi facilement comparer avec le meme binaire
-  // les performances sur CPU et sur GPU. Utilisee par rocALUTION et les kernels OpenMP:
-  Objet_U::computeOnDevice = getenv("TRUST_DISABLE_DEVICE") == nullptr ? true : false;
-
-  int must_mpi_initialize = 1;
-  if (with_petsc != 0)
+  bool must_mpi_initialize = true;
+  if (with_petsc)
     {
       if (init_petsc(argc, argv, with_mpi,trio_began_mpi_))
         {
-          must_mpi_initialize = 0; // Deja fait par Petsc
+          must_mpi_initialize = false; // Deja fait par Petsc
           arguments_info += "Petsc initialization succeeded.\n";
         }
       else
@@ -177,8 +207,8 @@ void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int chec
 #ifdef MPI_
   Comm_Group_MPI::set_must_mpi_initialize(must_mpi_initialize);
 #else
-  // GF pour eviter warning
-  if (must_mpi_initialize>10) abort();
+  // avoid variable 'must_mpi_initialize' set but not used error when MPI disabled
+  if (must_mpi_initialize) abort();
 #endif
   // ***************** Initialisation du parallele *************************
   Comm_Group::set_check_enabled(check_enabled);
@@ -192,14 +222,12 @@ void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int chec
         }
     }
   else
-    {
-      groupe_trio_.typer("Comm_Group_NoParallel");
-    }
+    groupe_trio_.typer("Comm_Group_NoParallel");
 
   // Initialisation des groupes de communication.
   PE_Groups::initialize(groupe_trio_);
   arguments_info += "Parallel engine initialized : ";
-  arguments_info += groupe_trio_.valeur().que_suis_je();
+  arguments_info += groupe_trio_->que_suis_je();
   arguments_info += " with ";
   arguments_info += Nom(Process::nproc());
   arguments_info += " processors\n";
@@ -207,6 +235,20 @@ void mon_main::init_parallel(const int argc, char **argv, int with_mpi, int chec
   if (Process::je_suis_maitre())
     Cerr << arguments_info;
 
+  // the node group is instantiated here, so that it's done only once (necessary with ICoCo)
+  // however, it is initialized later, as it involves communication operations, which require statistics to be initialized first...
+  instantiate_node_mpi(node_group_, node_master_, with_mpi);
+
+  if (!init_kokkos_before_mpi)
+    {
+      // Kokkos initialization
+      True_int argc2 = argc;
+      Kokkos::initialize(argc2, argv);
+      if (Process::je_suis_maitre())
+        Cerr << "Kokkos initialized after MPI !" << finl;
+    }
+  if (Process::je_suis_maitre())
+    Cerr << "You can run --kokkos-help option." << finl;
 }
 
 void mon_main::finalize()
@@ -216,9 +258,17 @@ void mon_main::finalize()
   TClearable::Clear_all();
 
 #ifdef MPI_
-  // MPI_Group_free before MPI_Finalize
+  // MPI_Group_free before MPI_Finalize (not freeing comm as we can not free MPI_COMM_WORLD)
   if (sub_type(Comm_Group_MPI,groupe_trio_.valeur()))
     ref_cast(Comm_Group_MPI,groupe_trio_.valeur()).free();
+
+  if (sub_type(Comm_Group_MPI,node_master_.valeur()))
+    ref_cast(Comm_Group_MPI,node_master_.valeur()).free_all(); // free comm + group
+
+  if (sub_type(Comm_Group_MPI,node_group_.valeur()))
+    ref_cast(Comm_Group_MPI,node_group_.valeur()).free_all(); // free comm + group
+
+
 #endif
 #ifdef PETSCKSP_H
   // On PetscFinalize que si c'est necessaire
@@ -290,7 +340,7 @@ void mon_main::dowork(const Nom& nom_du_cas)
       }
     Process::barrier(); // Otherwise, non-master processes try to write .log file before mkdir is done
     Nom filename = log_directory_ + nom_du_cas;
-    if (Process::nproc() > 1 && !journal_shared_)
+    if (Process::nproc() > 1)
       {
         filename += "_";
         char s[20];
@@ -306,16 +356,22 @@ void mon_main::dowork(const Nom& nom_du_cas)
     // Dans le cas ou l'option "-journal" est specifiee
     if (verbose_level_ < 0)
       {
-        if (!journal_shared_ && !journal_master_ && Process::force_single_file(Process::nproc(), nom_du_cas+".log"))
+        if (!journal_master_ && Process::force_single_file(Process::nproc(), nom_du_cas+".log"))
           verbose_level_ = 0;
         else
           verbose_level_ = 1;
       }
 
-    init_journal_file(verbose_level_, journal_shared_,filename, 0 /* append=0 */);
-    if(journal_shared_) Process::Journal() << "\n[Proc " << Process::me() << "] : ";
+    init_journal_file(verbose_level_,filename, 0 /* append=0 */);
     Process::Journal() << "Journal logging started" << finl;
   }
+
+#ifdef TRUST_USE_GPU
+  // PL: It will be better to do it sooner (near Cuda init or Kokkos init) but need stat and journal initialized
+  // Soon obsolete:
+  init_device();
+  self_test();
+#endif
 
   Nom nomfic( nom_du_cas );
   nomfic += ".stop";
@@ -334,6 +390,16 @@ void mon_main::dowork(const Nom& nom_du_cas)
 #include <instancie_appel_c.h>
       Cerr<<"Fin chargement des modules "<<finl;
     }
+
+  // initializing communicators on node
+  if (Process::is_parallel())
+    init_node_mpi(node_group_);
+  PE_Groups::initialize_node(node_group_);
+
+  // Node_master needs node_group to be initialized first
+  if (Process::is_parallel())
+    init_node_masters(node_master_);
+  PE_Groups::initialize_node_master(node_master_);
 
   Cout<< " " << finl;
   Cout<< " * * * * * * * * * * * * * * * * * * * * * * * * * * * *     " << finl;
@@ -432,4 +498,6 @@ mon_main::~mon_main()
   // on peut arreter maintenant que l'on a arrete les journaux
   PE_Groups::finalize();
   groupe_trio_.detach();
+  node_group_.detach();
+
 }

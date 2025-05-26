@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -43,7 +43,7 @@ inline int Traitement_particulier_NS_Pression_VDF::comprend_champ(const Motcle& 
 }
 
 int Traitement_particulier_NS_Pression_VDF::a_pour_Champ_Fonc(const Motcle& mot,
-                                                              REF(Champ_base)& ch_ref) const
+                                                              OBS_PTR(Champ_base)& ch_ref) const
 {
   if (mot == "Pression_porosite")
     {
@@ -131,23 +131,23 @@ void Traitement_particulier_NS_Pression_VDF::post_traitement_particulier()
 
 void Traitement_particulier_NS_Pression_VDF::post_traitement_particulier_calcul_pression()
 {
-  const Domaine_VDF& zvdf=ref_cast(Domaine_VDF, mon_equation->domaine_dis().valeur());
+  const Domaine_VDF& zvdf=ref_cast(Domaine_VDF, mon_equation->domaine_dis());
   const DoubleVect& porosite_face = mon_equation->milieu().porosite_face();
   int i;
   int nb_face = zvdf.nb_faces();
-  Champ_Inc gradient_P;
-  Champ_Inc la_pression = mon_equation->pression();
+  OWN_PTR(Champ_Inc_base) gradient_P = mon_equation->grad_P();
+
   Operateur_Div divergence = mon_equation->operateur_divergence();
   Operateur_Grad gradient = mon_equation->operateur_gradient();
   SolveurSys solveur_pression_ = mon_equation->solveur_pression();
 
-  DoubleTab& pression=la_pression.valeurs();
+  DoubleTab& pression=mon_equation->pression().valeurs();
   DoubleTrav inc_pre(pression);
   DoubleTrav secmem(pression);
-  gradient.calculer(la_pression.valeurs(),gradient_P.valeurs());
+  gradient.calculer(mon_equation->pression().valeurs(),gradient_P->valeurs());
 
   //on veut BM-1Bt(spi*Pression)
-  DoubleTab& grad=gradient_P.valeurs();
+  DoubleTab& grad=gradient_P->valeurs();
   mon_equation->solv_masse().appliquer(grad);
   DoubleTab& grad_temp = grad;
   for(i=0; i<nb_face; i++)

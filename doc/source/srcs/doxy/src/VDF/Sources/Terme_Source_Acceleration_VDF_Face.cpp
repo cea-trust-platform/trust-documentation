@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #include <Navier_Stokes_std.h>
 #include <Champ_Fonc_P0_VDF.h>
 #include <Milieu_base.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Domaine_Cl_VDF.h>
 #include <Periodique.h>
 #include <Domaine_VDF.h>
@@ -43,13 +43,13 @@ Entree& Terme_Source_Acceleration_VDF_Face::readOn(Entree& s )
  * aux domaines et domaine_cl
  *
  */
-void Terme_Source_Acceleration_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                           const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Acceleration_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                           const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
   if (je_suis_maitre())
     Cerr << "Terme_Source_Acceleration_VDF_Face::associer_domaines" << finl;
-  le_dom_VDF_    = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF_ = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF_    = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF_ = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 }
 
 /*! @brief Fonction outil pour Terme_Source_Acceleration_VDF_Face::ajouter Ajout des contributions d'une liste contigue de faces du terme source de translation:
@@ -69,7 +69,7 @@ static void TSAVDF_ajouter_liste_faces(const int premiere_face, const int dernie
                                        const DoubleVect& porosite_surf,
                                        const IntVect&     orientation,
                                        const IntTab&      face_voisins,
-                                       const REF(Champ_base) & ref_rho,
+                                       const OBS_PTR(Champ_base) & ref_rho,
                                        const DoubleTab&   terme_source,
                                        DoubleTab& s_face,
                                        DoubleTab& resu)
@@ -130,7 +130,7 @@ void Terme_Source_Acceleration_VDF_Face::ajouter_blocs(matrices_t matrices, Doub
   const DoubleVect& porosite_surf      = equation().milieu().porosite_face();
   const DoubleVect& volumes_entrelaces = domaine_VDF.volumes_entrelaces();
 
-  DoubleTab& s_face = get_set_terme_source_post().valeur().valeurs();
+  DoubleTab& s_face = get_set_terme_source_post().valeurs();
   s_face = 0.;
 
   // Calcul de la_source_ en fonction des champs d'acceleration et de la
@@ -148,12 +148,12 @@ void Terme_Source_Acceleration_VDF_Face::ajouter_blocs(matrices_t matrices, Doub
       // Si face de Dirichlet ou de Symetrie on ne fait rien
       // Si face de Neumann on calcule la contribution au terme source
       const Cond_lim& la_cl = domaine_Cl_VDF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       const int ndeb = le_bord.num_premiere_face();
       const int nfin = ndeb + le_bord.nb_faces();
       TSAVDF_ajouter_liste_faces(ndeb, nfin,
                                  volumes_entrelaces,
-                                 le_dom_VDF_.valeur().volumes(),
+                                 le_dom_VDF_->volumes(),
                                  porosite_surf,
                                  orientation,
                                  face_voisins,
@@ -170,7 +170,7 @@ void Terme_Source_Acceleration_VDF_Face::ajouter_blocs(matrices_t matrices, Doub
     const int nfin = domaine_VDF.nb_faces();
     TSAVDF_ajouter_liste_faces(ndeb, nfin,
                                volumes_entrelaces,
-                               le_dom_VDF_.valeur().volumes(),
+                               le_dom_VDF_->volumes(),
                                porosite_surf,
                                orientation,
                                face_voisins,
@@ -187,7 +187,7 @@ void Terme_Source_Acceleration_VDF_Face::ajouter_blocs(matrices_t matrices, Doub
         if (sub_type(Periodique,la_cl.valeur()))
           {
             const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-            const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+            const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
             int nb_faces_bord=le_bord.nb_faces();
             ArrOfInt fait(nb_faces_bord);
             fait = 0;
@@ -230,7 +230,7 @@ const DoubleTab& Terme_Source_Acceleration_VDF_Face::calculer_vitesse_faces(
   const IntTab&      faces_voisins = domaine_VDF.face_voisins();
   const DoubleVect& volumes       = domaine_VDF.volumes();  // volumes des elements
   const IntTab&      elem_faces    = domaine_VDF.elem_faces();
-  const DoubleTab&   v_faces  = get_eq_hydraulique().inconnue()->valeurs();
+  const DoubleTab&   v_faces  = get_eq_hydraulique().inconnue().valeurs();
   const int       dim      = Objet_U::dimension;
   const int       nb_faces = v_faces.dimension(0);
   v_faces_stockage.resize(nb_faces, dim);

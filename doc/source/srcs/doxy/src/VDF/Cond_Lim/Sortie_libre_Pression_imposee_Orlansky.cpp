@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Sortie_libre_Pression_imposee_Orlansky.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Navier_Stokes_std.h>
 #include <Champ_Face_VDF.h>
 #include <Champ_P0_VDF.h>
@@ -21,6 +22,8 @@
 #include <Debog.h>
 
 Implemente_instanciable(Sortie_libre_Pression_imposee_Orlansky, "Frontiere_ouverte_Pression_imposee_Orlansky", Neumann_sortie_libre);
+// XD frontiere_ouverte_pression_imposee_orlansky neumann frontiere_ouverte_pression_imposee_orlansky -1 This boundary condition may only be used with VDF discretization. There is no reference for pressure for this boundary condition so it is better to add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two cells (for symetry in a channel) of the boundary where Orlansky conditions are imposed.
+
 
 Sortie& Sortie_libre_Pression_imposee_Orlansky::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -30,9 +33,9 @@ Entree& Sortie_libre_Pression_imposee_Orlansky::readOn(Entree& s)
   if (supp_discs.size() == 0) supp_discs = { Nom("VDF") };
 
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   le_champ_front.typer("Champ_front_uniforme");
-  le_champ_front.valeurs().resize(1, dimension);
+  le_champ_front->valeurs().resize(1, dimension);
   le_champ_front->fixer_nb_comp(1);
   return s;
 }
@@ -43,9 +46,9 @@ void Sortie_libre_Pression_imposee_Orlansky::completer()
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
-  const Domaine_VDF& domaine_vdf = ref_cast(Domaine_VDF, eqn.domaine_dis().valeur());
-  const Champ_P0_VDF& pression = ref_cast(Champ_P0_VDF, eqn_hydr.pression().valeur());
-  const Champ_Face_VDF& vitesse = ref_cast(Champ_Face_VDF, eqn_hydr.inconnue().valeur());
+  const Domaine_VDF& domaine_vdf = ref_cast(Domaine_VDF, eqn.domaine_dis());
+  const Champ_P0_VDF& pression = ref_cast(Champ_P0_VDF, eqn_hydr.pression());
+  const Champ_Face_VDF& vitesse = ref_cast(Champ_Face_VDF, eqn_hydr.inconnue());
   //  const IntTab& face_voisins  = domaine_vdf.face_voisins();
   //  const DoubleVect& volumes_entrelaces = domaine_vdf.volumes_entrelaces();
   //  const DoubleVect& face_surfaces = domaine_vdf.face_surfaces();
@@ -58,8 +61,8 @@ void Sortie_libre_Pression_imposee_Orlansky::completer()
   int nb_faces_loc = le_bord.nb_faces();
   //  int ndeb = le_bord.num_premiere_face();
 
-  le_champ_front.valeurs().resize(nb_faces_loc);
-  le_champ_ext.valeurs().resize(nb_faces_loc, dimension);
+  le_champ_front->valeurs().resize(nb_faces_loc);
+  le_champ_ext->valeurs().resize(nb_faces_loc, dimension);
   VPhiP.resize(nb_faces_loc);
   VPhiV.resize(nb_faces_loc, dimension);
   pression_temps_moins_un.resize(nb_faces_loc);
@@ -93,8 +96,8 @@ void Sortie_libre_Pression_imposee_Orlansky::mettre_a_jour(double temps)
   int ndeb = le_bord.num_premiere_face();
   int nb_faces_loc = le_bord.nb_faces();
 
-  DoubleTab& pre_bord = le_champ_front.valeurs();
-  DoubleTab& vit_ext = le_champ_ext.valeurs();
+  DoubleTab& pre_bord = le_champ_front->valeurs();
+  DoubleTab& vit_ext = le_champ_ext->valeurs();
   const Domaine_VDF& zvdf = ref_cast(Domaine_VDF, pression_interne->domaine_dis_base());
   const DoubleTab& pre = pression_interne->valeurs();
   const DoubleTab& vitesse = vitesse_interne->valeurs();
@@ -204,7 +207,7 @@ void Sortie_libre_Pression_imposee_Orlansky::mettre_a_jour(double temps)
 
 double Sortie_libre_Pression_imposee_Orlansky::flux_impose(int face) const
 {
-  return le_champ_front.valeurs()(face);
+  return le_champ_front->valeurs()(face);
 }
 
 double Sortie_libre_Pression_imposee_Orlansky::flux_impose(int face, int ncomp) const

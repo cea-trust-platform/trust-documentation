@@ -17,8 +17,8 @@
 #include <Champ_Fonc_Elem_PolyMAC.h>
 #include <Frottement_impose_base.h>
 #include <Champ_Face_PolyMAC_P0.h>
-#include <Domaine_Cl_dis.h>
-#include <Champ_Fonc.h>
+
+
 #include <Dirichlet.h>
 #include <EChaine.h>
 

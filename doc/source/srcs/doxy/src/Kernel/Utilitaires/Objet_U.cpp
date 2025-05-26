@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,7 +27,6 @@ int Objet_U::axi=0;
 int Objet_U::bidim_axi=0;
 int Objet_U::static_obj_counter_=0;
 int Objet_U::DEACTIVATE_SIGINT_CATCH=0;
-bool Objet_U::computeOnDevice=true;
 Interprete* Objet_U::l_interprete=0;
 
 int Objet_U::disable_TU=0; // Flag to disable or not the writing of the .TU files
@@ -107,7 +106,6 @@ const Nom& Objet_U::que_suis_je() const
   return get_info()->name();
 }
 
-
 /*! @brief Lecture des parametres de type non simple d'un objet_U a partir d'un flot d'entree.
  *
  * @param (Motcle& motlu) le nom du terme a lire
@@ -116,30 +114,9 @@ const Nom& Objet_U::que_suis_je() const
  */
 int Objet_U::lire_motcle_non_standard(const Motcle& motlu, Entree& is)
 {
-  Cerr<<"lire_motcle_non_standard not coded by "<<que_suis_je()<<finl;
-  exit();
+  Cerr << "The method " << __func__ << " must be overloaded in " << que_suis_je() << " !!!!" << finl;
+  Process::exit();
   return -1;
-}
-
-/*! @brief Reprise d'un Objet_U sur un flot d'entree Methode a surcharger : retourne toujours 1 dans cette implementation
- *
- * @param (Entree&) flot d'entree a utiliser pour la reprise
- * @return (int) code de retour
- */
-int Objet_U::reprendre(Entree& )
-{
-  return 1;
-}
-
-
-/*! @brief Sauvegarde d'un Objet_U sur un flot de sortie Methode a surcharger : retourne toujours 1 dans cette implementation
- *
- * @param (Sortie&) flot de sortie a utiliser pour la sauvegarde
- * @return (int) code de retour
- */
-int Objet_U::sauvegarder(Sortie& ) const
-{
-  return 0;
 }
 
 /*! @brief Donne des informations sur le type de l'Objet_U
@@ -243,15 +220,6 @@ Interprete& Objet_U::interprete()
   return interprete_bidon();
 }
 
-
-/*! @brief Donne un nom a l'Objet_U Methode virtuelle a surcharger
- *
- * @param (const Nom&) le nom a affectuer a l'Objet_U
- */
-void Objet_U::nommer(const Nom&)
-{
-}
-
 /*! @brief retourne x.
  *
  * est_egal_a(y)
@@ -352,4 +320,40 @@ const Nom& Objet_U::le_nom() const
 {
   static Nom inconnu="neant";
   return inconnu;
+}
+
+/*! @brief Donne un nom a l'Objet_U Methode virtuelle a surcharger
+ *
+ * @param (const Nom&) le nom a affectuer a l'Objet_U
+ */
+void Objet_U::nommer(const Nom&)
+{
+}
+
+/*! @brief Reprise d'un Objet_U sur un flot d'entree Methode a surcharger
+ *
+ * @param (Entree&) flot d'entree a utiliser pour la reprise
+ * @return (int) code de retour
+ */
+int Objet_U::reprendre(Entree&)
+{
+#ifndef LATATOOLS
+  Cerr << "The method " << __func__ << " must be overloaded in " << que_suis_je() << " !!!!" << finl;
+  Process::exit();
+#endif
+  return 1;
+}
+
+/*! @brief Sauvegarde d'un Objet_U sur un flot de sortie Methode a surcharger
+ *
+ * @param (Sortie&) flot de sortie a utiliser pour la sauvegarde
+ * @return (int) code de retour
+ */
+int Objet_U::sauvegarder(Sortie& ) const
+{
+#ifndef LATATOOLS
+  Cerr << "The method " << __func__ << " must be overloaded in " << que_suis_je() << " !!!!" << finl;
+  Process::exit();
+#endif
+  return 0;
 }

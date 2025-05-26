@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #include <fstream>
 #include <iostream>
 #include <Lapack.h>
+#include <Matrice_Morse.h>
 
 Implemente_instanciable_sans_constructeur(Matrice_Dense,"Matrice_Dense",Matrice_Base);
 
@@ -60,7 +61,7 @@ Sortie& Matrice_Dense::imprimer_formatte( Sortie& s ) const
 }
 
 
-Matrice_Dense::Matrice_Dense( void )
+Matrice_Dense::Matrice_Dense()
 {
   dimensionner( 0 , 0 );
 }
@@ -335,6 +336,18 @@ void Matrice_Dense::scale( const double x )
 }
 
 
+void Matrice_Dense::clean()
+{
+  const int nb_lines = nb_lignes( );
+  const int nb_cols  = nb_colonnes( );
+  for(int i=0; i<nb_lines; i++)
+    {
+      for(int j=0; j<nb_cols; j++)
+        {
+          Matrix_( i , j ) = 0. ;
+        }
+    }
+}
 
 void Matrice_Dense::get_stencil( IntTab& stencil ) const
 {
@@ -343,7 +356,6 @@ void Matrice_Dense::get_stencil( IntTab& stencil ) const
   const int nb_cols  = nb_colonnes( );
 
   stencil.resize( 0, 2 );
-
 
   for(int i=0; i<nb_lines; i++)
     {
@@ -354,7 +366,6 @@ void Matrice_Dense::get_stencil( IntTab& stencil ) const
     }
 
   const int new_size = stencil.dimension( 0 );
-
   stencil.resize( new_size, 2 );
 
 }
@@ -377,8 +388,11 @@ void Matrice_Dense::inverse()
   const int nbLines = nb_lignes();
   const int nbCols = nb_colonnes();
   int infoerr = 0;
-  ArrOfInt ipiv(nbLines);
-  ArrOfDouble work(nbLines);
+  if (ipiv.size_array()!=nbLines)
+    {
+      ipiv.resize(nbLines);
+      work.resize(nbLines);
+    }
 
   if (nbLines != nbCols)
     {
@@ -392,6 +406,47 @@ void Matrice_Dense::inverse()
   F77NAME(DGETRI)(&nbLines, Matrix_.addr(), &nbLines, ipiv.addr(), work.addr(), &nbLines, &infoerr);
   assert(infoerr == 0);
 
+  return;
+}
+
+/*! @brief Solves the linear system A*x = b using LU factorization
+ *
+ * This method solves a system of linear equations using LAPACK routines:
+ * - DGETRF for LU factorization
+ * - DGETRS for solving the system using the factored matrix
+ *
+ * @param[in]  b  Right-hand side vector of the system
+ * @param[out] x  Solution vector of the system
+ *
+ * @pre The matrix must be square
+ * @pre The size of vectors b and x must match the matrix dimensions
+ *
+ * @throw Process::exit if LU factorization or solve step fails
+ */
+void Matrice_Dense::solve(const ArrOfDouble& b, ArrOfDouble& x)
+{
+  const int nbLines = nb_lignes();
+  const int nbCols = nb_colonnes();
+  int infoerr = 0;
+  if (ipiv.size_array()!=nbLines)
+    {
+      ipiv.resize(nbLines);
+      work.resize(nbLines);
+    }
+
+  if (nbLines != nbCols)
+    {
+      Cerr << "Error in Matrice_Dense::inverse" << finl;
+      Cerr << "The matrix is not a square matrix !" << finl;
+      Process::abort( );
+    }
+  F77NAME(DGETRF)(&nbLines, &nbLines, Matrix_.addr(), &nbLines, ipiv.addr(), &infoerr);
+  if (infoerr != 0) Process::exit("Error DGETRF in Matrice_Dense::solve");
+  char trans = 'T';
+  x = b;
+  int nb_rhs=1;
+  F77NAME(DGETRS)(&trans, &nbLines, &nb_rhs, Matrix_.addr(), &nbLines, ipiv.addr(), x.addr(), &nbLines, &infoerr);
+  if (infoerr != 0) Process::exit("Error DGETRS in Matrice_Dense::solve");
   return;
 }
 
@@ -417,3 +472,32 @@ void Matrice_Dense::multiplyToRight(const Matrice_Dense& B, Matrice_Dense& RES) 
     }
   return;
 }
+
+Matrice_Dense operator+(const Matrice_Dense& A, const Matrice_Dense& B)
+{
+  assert( A.nb_lignes() == B.nb_lignes() );
+  assert( A.nb_colonnes() == B.nb_colonnes() );
+  Matrice_Dense resu(A.nb_lignes(), A.nb_colonnes());
+  for (int i=0; i<A.nb_lignes(); i++)
+    {
+      for (int j=0; j<A.nb_colonnes(); j++)
+        {
+          resu.set_coefficient(i,j,A(i,j)+B(i,j));
+        }
+    }
+  return resu;
+}
+
+Matrice_Dense operator*(const double& a, const Matrice_Dense& B)
+{
+  Matrice_Dense resu(B.nb_lignes(), B.nb_colonnes());
+  for (int i=0; i<B.nb_lignes(); i++)
+    {
+      for (int j=0; j<B.nb_colonnes(); j++)
+        {
+          resu.set_coefficient(i,j,a*B(i,j));
+        }
+    }
+  return resu;
+}
+

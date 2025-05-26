@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,17 +21,10 @@
 
 Implemente_base(Op_Conv_AmontNew_VEF_Face,"Op_Conv_AmontNew_VEF_P1NC",Op_Conv_VEF_base);
 
-
-//// printOn
-//
-
 Sortie& Op_Conv_AmontNew_VEF_Face::printOn(Sortie& s ) const
 {
   return s << que_suis_je() ;
 }
-
-//// readOn
-//
 
 Entree& Op_Conv_AmontNew_VEF_Face::readOn(Entree& s )
 {
@@ -78,7 +71,6 @@ static inline void convbis(const double psc,const int num1,const int num2,
 
 DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, DoubleTab& resu) const
 {
-  DoubleVect& fluent_ = fluent;
   const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
   const Domaine_VEF& domaine_VEF = le_dom_vef.valeur();
   const Champ_Inc_base& la_vitesse=vitesse_.valeur();
@@ -88,7 +80,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
   const DoubleTab& facette_normales = domaine_VEF.facette_normales();
   const DoubleVect& porosite_face = equation().milieu().porosite_face();
   const Domaine& domaine = domaine_VEF.domaine();
-  const Elem_VEF& type_elem=domaine_VEF.type_elem();
+  const Elem_VEF_base& type_elem=domaine_VEF.type_elem();
   const int nfa7 = type_elem.nb_facette();
   int nb_faces_tot=domaine_VEF.nb_faces_tot();
   int nb_elem_tot = domaine_VEF.nb_elem_tot();
@@ -255,13 +247,13 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
   // calcul des flux ...
   int nfac = domaine.nb_faces_elem();
   int nsom = domaine.nb_som_elem();
-  int nb_som_facette = domaine.type_elem().nb_som_face();
+  int nb_som_facette = domaine.type_elem()->nb_som_face();
   const Elem_geom_base& elem_geom = domaine.type_elem().valeur();
   if ( sub_type(Hexaedre_VEF,elem_geom))
     {
       Process::exit();
     }
-  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem().valeur();
+  const Elem_VEF_base& type_elemvef= domaine_VEF.type_elem();
   int istetra=0;
   Nom nom_elem=type_elemvef.que_suis_je();
   if ((nom_elem=="Tetra_VEF")||(nom_elem=="Tri_VEF"))
@@ -296,7 +288,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           nb_faces_perio += le_bord.nb_faces();
         }
     }
@@ -315,7 +307,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
       if (sub_type(Periodique,la_cl.valeur()))
         {
           //          const Periodique& la_cl_perio = (Periodique&) la_cl.valeur();
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
@@ -357,9 +349,9 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
       // on conserve cette partie
       for (j=0; j<dimension; j++)
         {
-          vs[j] = la_vitesse(face[0],j)*porosite_face(face[0]);
+          vs[j] = la_vitesse.valeurs()(face[0],j)*porosite_face(face[0]);
           for (i=1; i<nfac; i++)
-            vs[j]+= la_vitesse(face[i],j)*porosite_face(face[i]);
+            vs[j]+= la_vitesse.valeurs()(face[i],j)*porosite_face(face[i]);
         }
 
       // calcul de la vitesse aux sommets des polyedres
@@ -370,7 +362,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
           for (j=0; j<nsom; j++)
             {
               for (int ncomp=0; ncomp<Objet_U::dimension; ncomp++)
-                vsom(j,ncomp) =vs[ncomp] - Objet_U::dimension*la_vitesse(face[j],ncomp)*porosite_face(face[j]);
+                vsom(j,ncomp) =vs[ncomp] - Objet_U::dimension*la_vitesse.valeurs()(face[j],ncomp)*porosite_face(face[j]);
             }
         }
       else
@@ -408,7 +400,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
 
           // On traite le ou les sommets qui sont aussi des sommets du polyedre
 
-          const IntTab& KEL=type_elem->KEL();
+          const IntTab& KEL=type_elem.KEL();
           for (i=0; i<nb_som_facette-1; i++)
             {
               psc =0;
@@ -488,14 +480,14 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
         {
           const Neumann_sortie_libre& la_sortie_libre =
             ref_cast(Neumann_sortie_libre, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           for (num_face=num1; num_face<num2; num_face++)
             {
               psc =0;
               for (i=0; i<dimension; i++)
-                psc += la_vitesse(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
+                psc += la_vitesse.valeurs()(num_face,i)*face_normales(num_face,i)*porosite_face(num_face);
               if (psc>0)
                 if (ncomp_ch_transporte == 1)
                   {
@@ -528,7 +520,7 @@ DoubleTab& Op_Conv_AmontNew_VEF_Face::ajouter(const DoubleTab& transporte, Doubl
       else if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& la_cl_perio =  ref_cast(Periodique, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
           IntVect fait(le_bord.nb_faces());

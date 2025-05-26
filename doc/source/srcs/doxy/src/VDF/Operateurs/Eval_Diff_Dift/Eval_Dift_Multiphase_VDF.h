@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,13 +16,14 @@
 #ifndef Eval_Dift_Multiphase_VDF_included
 #define Eval_Dift_Multiphase_VDF_included
 
+#include <Correlation_base.h>
 #include <Eval_Dift_VDF.h>
-#include <Correlation.h>
+#include <Pb_Multiphase.h>
 
 class Eval_Dift_Multiphase_VDF : public Eval_Dift_VDF
 {
 public:
-  void associer_corr(const Correlation& c ) { corr_ = c; is_multi_ = 1; /* XXX */ }
+  void associer_corr(const Correlation_base& c ) { corr_ = c; is_multi_ = 1; /* XXX */ }
 
   inline void mettre_a_jour() override
   {
@@ -38,7 +39,7 @@ public:
     const int cR = rho.dimension(0) == 1;
     tab_diffusivite_turbulente = nu_t_;
 
-    if (need_alpha_rho_)
+    if (need_alpha_rho_ && sub_type(Pb_Multiphase, ref_probleme_.valeur()))
       {
         for (int e = 0; e < nu_t_->dimension(0); e++)
           for (int n = 0; n < nu_t_->dimension(1); n++)
@@ -57,19 +58,19 @@ public:
     return tab_diffusivite_turbulente;
   }
 
-  const Champ_Fonc& diffusivite_turbulente() const { throw; }
+  const Champ_Fonc_base& diffusivite_turbulente() const { throw; }
   const DoubleTab& tab_nu_t() const { return nu_t_.valeur(); }
 
-  void associer_diff_turb(const Champ_Fonc& diff_turb) { throw; }
+  void associer_diff_turb(const Champ_Fonc_base& diff_turb) { throw; }
 
-  void associer_loipar(const Turbulence_paroi_scal& loi_paroi) override { throw; }
+  void associer_loipar(const Turbulence_paroi_scal_base& loi_paroi) override { throw; }
 
   // pour CRTP : TODO : appel depuis eval mere
-  inline const Correlation& get_corr() const { return corr_; }
+  inline const Correlation_base& get_corr() const { return corr_; }
 
 protected:
-  REF(Correlation) corr_; //attention REF + DERIV => 2 valeur() deso
-  REF(DoubleTab) nu_t_;
+  OBS_PTR(Correlation_base) corr_;
+  OBS_PTR(DoubleTab) nu_t_;
   bool need_alpha_rho_ = true, tab_diff_turb_first_update_ = true;
 };
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,6 +26,17 @@
 #include <Probleme_base.h>
 
 Implemente_instanciable(Simpler,"Simpler",Simple);
+// XD simpler solveur_implicite_base simpler 1 Simpler method for incompressible systems.
+// XD attr seuil_convergence_implicite floattant seuil_convergence_implicite 0 Keyword to set the value of the convergence criteria for the resolution of the implicit system build to solve either the Navier_Stokes equation (only for Simple and Simpler algorithms) or a scalar equation. It is adviced to use the default value (1e6) to solve the implicit system only once by time step. This value must be decreased when a coupling between problems is considered.
+// XD attr seuil_convergence_solveur floattant seuil_convergence_solveur 1 value of the convergence criteria for the resolution of the implicit system build by solving several times per time step the Navier_Stokes equation and the scalar equations if any. This value MUST be used when a coupling between problems is considered (should be set to a value typically of 0.1 or 0.01).
+// XD attr seuil_generation_solveur floattant seuil_generation_solveur 1 Option to create a GMRES solver and use vrel as the convergence threshold (implicit linear system Ax=B will be solved if residual error ||Ax-B|| is lesser than vrel).
+// XD attr seuil_verification_solveur floattant seuil_verification_solveur 1 Option to check if residual error ||Ax-B|| is lesser than vrel after the implicit linear system Ax=B has been solved.
+// XD attr seuil_test_preliminaire_solveur floattant seuil_test_preliminaire_solveur 1 Option to decide if the implicit linear system Ax=B should be solved by checking if the residual error ||Ax-B|| is bigger than vrel.
+// XD attr solveur solveur_sys_base solveur 1 Method (different from the default one, Gmres with diagonal preconditioning) to solve the linear system.
+// XD attr no_qdm rien no_qdm 1 Keyword to not solve qdm equation (and turbulence models of these equation).
+// XD attr nb_it_max entier nb_it_max 1 Keyword to set the maximum iterations number for the Gmres.
+// XD attr controle_residu rien controle_residu 1 Keyword of Boolean type (by default 0). If set to 1, the convergence occurs if the residu suddenly increases.
+
 
 Sortie& Simpler::printOn(Sortie& os ) const
 {
@@ -187,7 +198,7 @@ void Simpler::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pressio
       eqnNS.assembler_avec_inertie(matrice,current,resu);
     }
 
-  le_solveur_.valeur().reinit();
+  le_solveur_->reinit();
 
   //Resolution du systeme : D[Uk-1]UPk = E[Uk-1]Uk-1 + Sv + Ss -BtPk-1 + (M/dt)Uk-1
   //matrice = A[Uk-1] = D - E avec D partie diagonale de A
@@ -200,14 +211,14 @@ void Simpler::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pressio
   Matrice& matrice_en_pression_2 = eqnNS.matrice_pression();
   assembler_matrice_pression_implicite(eqnNS,matrice,matrice_en_pression_2);
   SolveurSys& solveur_pression_ = eqnNS.solveur_pression();
-  solveur_pression_.valeur().reinit();
+  solveur_pression_->reinit();
 
   //Calcul de BUPk
   divergence.calculer(correction_en_vitesse,secmem);
   secmem *= -1;
   secmem.echange_espace_virtuel();
   if (nb_ite==1)
-    eqnNS.assembleur_pression().valeur().modifier_secmem(secmem);
+    eqnNS.assembleur_pression()->modifier_secmem(secmem);
 
   //Resolution du systeme (BD-1Bt)P*_k = BUPk
   //correction_en_pression = P*_k ; secmem = BUPk
@@ -217,10 +228,10 @@ void Simpler::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pressio
   //Calcul de Pk = Pk-1 + P*_k
   operator_add(pression, correction_en_pression, VECT_ALL_ITEMS);
 
-  eqnNS.assembleur_pression().valeur().modifier_solution(pression);
+  eqnNS.assembleur_pression()->modifier_solution(pression);
 
   //Calcul de Bt P*_k et ajustement de resu a -Bt Pk
-  gradient.valeur().multvect(correction_en_pression,gradP);
+  gradient->multvect(correction_en_pression,gradP);
   resu -= gradP;
   resu.echange_espace_virtuel();
   Debog::verifier("Simpler::iterer_NS resu",resu);

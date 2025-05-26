@@ -17,11 +17,11 @@
 #define Modele_turbulence_hyd_0_eq_base_included
 
 #include <Modele_turbulence_hyd_base.h>
+
+
 #include <TRUST_Ref.h>
 
 class Domaine_Cl_dis_base;
-class Domaine_Cl_dis;
-class Domaine_dis;
 class Domaine_VF;
 
 /*! @brief Classe Modele_turbulence_hyd_0_eq_base Classe de base des modeles a 0 equation
@@ -35,27 +35,27 @@ public:
   void set_param(Param& param) override;
   int reprendre(Entree& is) override { return 1; }
   int comprend_mot(const Motcle& mot) const;
-  int a_pour_Champ_Fonc(const Motcle& mot, REF(Champ_base) &ch_ref) const;
+  int a_pour_Champ_Fonc(const Motcle& mot, OBS_PTR(Champ_base) &ch_ref) const;
   int comprend_champ(const Motcle& mot) const;
 
-  void associer(const Domaine_dis&, const Domaine_Cl_dis&) override;
+  void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&) override;
 
   void completer() override;
   void mettre_a_jour(double) override;
   void discretiser() override;
-  virtual Champ_Fonc& calculer_viscosite_turbulente()=0;
+  virtual Champ_Fonc_base& calculer_viscosite_turbulente()=0;
   virtual void calculer_energie_cinetique_turb()=0;
   void imprimer(Sortie&) const override;
-  inline virtual Champ_Fonc& energie_cinetique_turbulente() { return energie_cinetique_turb_; }
-  inline virtual const Champ_Fonc& energie_cinetique_turbulente() const { return energie_cinetique_turb_; }
+  inline virtual Champ_Fonc_base& energie_cinetique_turbulente() { return energie_cinetique_turb_; }
+  inline virtual const Champ_Fonc_base& energie_cinetique_turbulente() const { return energie_cinetique_turb_; }
 
 protected:
-  Champ_Fonc energie_cinetique_turb_;
-  mutable Champ_Inc K_eps_sortie_;
+  OWN_PTR(Champ_Fonc_base)  energie_cinetique_turb_;
+  mutable OWN_PTR(Champ_Inc_base) K_eps_sortie_;
   Nom fichier_K_eps_sortie_;
 
-  REF(Domaine_VF) le_dom_VF_;
-  REF(Domaine_Cl_dis_base) le_dom_Cl_;
+  OBS_PTR(Domaine_VF) le_dom_VF_;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl_;
 };
 
 #endif /* Modele_turbulence_hyd_0_eq_base_included */

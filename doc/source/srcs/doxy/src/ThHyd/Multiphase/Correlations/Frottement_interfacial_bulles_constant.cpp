@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,6 +16,7 @@
 #include <Frottement_interfacial_bulles_constant.h>
 #include <Pb_Multiphase.h>
 #include <TRUSTTab.h>
+#include <Milieu_MUSIG.h>
 
 Implemente_instanciable(Frottement_interfacial_bulles_constant, "Frottement_interfacial_bulles_constant", Frottement_interfacial_base);
 
@@ -39,9 +40,24 @@ Entree& Frottement_interfacial_bulles_constant::readOn(Entree& is)
     if (pbm->nom_phase(n).debute_par("liquide") && (n_l < 0 || pbm->nom_phase(n).finit_par("continu")))  n_l = n;
   if (n_l < 0) Process::exit(que_suis_je() + " : liquid phase not found!");
 
-  if ((r_bulle_<0.) && (!pbm->has_champ("diametre_bulles"))) Process::exit(que_suis_je() + " : there must be a bubble diameter defined in the problem or a bubble radius defined in the force !");
+  // Traitement milieu MUSIG (phase dispersee)
+  const Milieu_MUSIG *milMusig = sub_type(Milieu_MUSIG, pbm->milieu()) ? &ref_cast(Milieu_MUSIG, pbm->milieu()) : nullptr;
+  if (milMusig)
+    {
+      for (int k = 0; k < pbm->nb_phases(); k++)
+        {
+          if (milMusig->has_carrier_gas(k)) n_l = k;
+          if (milMusig->has_carrier_liquid(k)) n_l = k;
+        }
+    }
 
   return is;
+}
+
+void Frottement_interfacial_bulles_constant::completer()
+{
+  const Pb_Multiphase *pbm = sub_type(Pb_Multiphase, pb_.valeur()) ? &ref_cast(Pb_Multiphase, pb_.valeur()) : nullptr;
+  if ((r_bulle_<0.) && (!pbm->has_champ("diametre_bulles"))) Process::exit(que_suis_je() + " : there must be a bubble diameter defined in the problem or a bubble radius defined in the force !");
 }
 
 void Frottement_interfacial_bulles_constant::coefficient(const DoubleTab& alpha, const DoubleTab& p, const DoubleTab& T,

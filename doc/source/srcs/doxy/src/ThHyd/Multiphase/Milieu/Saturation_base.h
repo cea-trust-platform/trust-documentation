@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,8 +34,10 @@ public:
 
   void mettre_a_jour(double ) override;
 
-  Champ_Don& get_Tsat_champ() { return ch_Tsat_; }
-  const Champ_Don& get_Tsat_champ() const { return ch_Tsat_; }
+  void discretiser_Tsat(const Nom& Tsat_nom, double temps);
+
+  Champ_Don_base& get_Tsat_champ() { return ch_Tsat_; }
+  const Champ_Don_base& get_Tsat_champ() const { return ch_Tsat_; }
 
   DoubleTab& get_Tsat_tab() { return ch_Tsat_->valeurs(); }
   const DoubleTab& get_Tsat_tab() const { return ch_Tsat_->valeurs(); }
@@ -52,8 +54,9 @@ public:
   void dP_Hvs(const SpanD P, SpanD res, int ncomp = 1, int ind = 0) const;
 
   virtual void get_sigma(const SpanD T, const SpanD P, SpanD sig , int ncomp = 1, int ind = 0) const final;
+  virtual void get_sigma_h(const SpanD H, const SpanD P, SpanD sig , int ncomp = 1, int ind = 0) const final;
 
-  // methods particuliers par application pour gagner en performance : utilise dans Pb_Multiphase (pour le moment !)
+  // methodes particulieres par application pour gagner en performance : utilisees dans Pb_Multiphase (pour le moment !)
   virtual void compute_all_flux_interfacial_pb_multiphase(const SpanD P, MSatSpanD , int ncomp = 1, int ind = 0) const;
 
   // Methods that can be called if point-to-point calculation is required
@@ -70,7 +73,7 @@ public:
 
 protected:
   double P_ref_ = -1, T_ref_ = -1;
-  Champ_Don ch_Tsat_;
+  OWN_PTR(Champ_Don_base) ch_Tsat_;
 
 private:
   typedef void(Saturation_base::*function_span_generic)(const SpanD , SpanD , int , int ) const;

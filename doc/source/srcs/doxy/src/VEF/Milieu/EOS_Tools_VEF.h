@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,11 @@
 #define EOS_Tools_VEF_included
 
 #include <EOS_Tools_base.h>
+
 #include <TRUST_Ref.h>
+#include <TRUSTVect.h>
 
 class Fluide_Dilatable_base;
-class Domaine_Cl_dis;
 class Domaine_VEF;
 
 /*! @brief classe EOS_Tools_VEF Cette classe et specifique a discretisation de type VEF.
@@ -35,7 +36,7 @@ public :
   const DoubleTab& rho_discvit() const override;
   const DoubleTab& rho_face_n() const override;
   const DoubleTab& rho_face_np1() const override;
-  void associer_domaines(const Domaine_dis&,const Domaine_Cl_dis&) override;
+  void associer_domaines(const Domaine_dis_base&,const Domaine_Cl_dis_base&) override;
   void divu_discvit(const DoubleTab& , DoubleTab& ) override;
   double moyenne_vol(const DoubleTab&) const override;
   void secmembre_divU_Z(DoubleTab& ) const override;
@@ -43,8 +44,9 @@ public :
   inline const Fluide_Dilatable_base& le_fluide() const { return le_fluide_.valeur(); }
 
 protected :
-  REF(Domaine_VEF) le_dom;
-  REF(Domaine_Cl_dis) le_dom_Cl;
+  OBS_PTR(Domaine_VEF) le_dom;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl;
+  DoubleVect un_;
 };
 
 #endif /* EOS_Tools_VEF_included */

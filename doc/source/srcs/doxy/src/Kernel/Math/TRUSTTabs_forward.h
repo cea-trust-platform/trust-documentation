@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,20 +16,43 @@
 #ifndef TRUSTTabs_forward_included
 #define TRUSTTabs_forward_included
 
-template <typename _TYPE_> class TRUSTArray;
-using ArrOfInt = TRUSTArray<int>;
-using ArrOfDouble = TRUSTArray<double>;
-using ArrOfFloat = TRUSTArray<float>;
+#include <arch.h>
 
-template<typename _TYPE_> class TRUSTVect;
-using IntVect = TRUSTVect<int>;
-using DoubleVect = TRUSTVect<double>;
-using FloatVect = TRUSTVect<float>;
+template <typename _SIZE_> class ArrOfBit_32_64;
+using ArrOfBit = ArrOfBit_32_64<int>;
 
-template<typename _TYPE_> class TRUSTTab;
-using IntTab = TRUSTTab<int>;
-using DoubleTab = TRUSTTab<double>;
-using FloatTab = TRUSTTab<float>;
+template <typename _TYPE_, typename _SIZE_=int> class TRUSTArray;
+using ArrOfDouble = TRUSTArray<double, int>;
+using ArrOfFloat = TRUSTArray<float, int>;
+using ArrOfInt = TRUSTArray<int, int>;
+using ArrOfTID = TRUSTArray<trustIdType, int>;
+
+using BigArrOfDouble = TRUSTArray<double, trustIdType>;
+using BigArrOfFloat = TRUSTArray<float, trustIdType>;
+using BigArrOfInt = TRUSTArray<int, trustIdType>;
+using BigArrOfTID = TRUSTArray<trustIdType, trustIdType>;
+
+template<typename _TYPE_, typename _SIZE_=int> class TRUSTVect;
+using DoubleVect = TRUSTVect<double, int>;
+using FloatVect = TRUSTVect<float, int>;
+using IntVect = TRUSTVect<int, int>;
+using TIDVect = TRUSTVect<trustIdType, int>;
+
+using BigDoubleVect = TRUSTVect<double, trustIdType>;
+using BigIntVect = TRUSTVect<int, trustIdType>;
+using BigTIDVect = TRUSTVect<trustIdType, trustIdType>;
+
+template<typename _TYPE_, typename _SIZE_=int> class TRUSTTab;
+using DoubleTab = TRUSTTab<double, int>;
+using FloatTab = TRUSTTab<float, int>;
+using IntTab = TRUSTTab<int, int>;
+
+using TIDTab = TRUSTTab<trustIdType, int>;
+
+using BigDoubleTab = TRUSTTab<double, trustIdType>;
+using BigFloatTab = TRUSTTab<float, trustIdType>;
+using BigIntTab = TRUSTTab<int, trustIdType>;
+using BigTIDTab = TRUSTTab<trustIdType, trustIdType>;
 
 template<typename _TYPE_> class TRUSTTrav;
 using IntTrav = TRUSTTrav<int>;
@@ -39,11 +62,31 @@ using FloatTrav = TRUSTTrav<float>;
 // previous VECT macros :-)
 // TODO : FIXME : Add float typedefs ...
 template<typename _TYPE_> class TRUST_Vector;
-using ArrsOfDouble = TRUST_Vector<TRUSTArray<double>>; // remplace VECT(ArrOfDouble)
-using ArrsOfInt = TRUST_Vector<TRUSTArray<int>>; // remplace VECT(ArrOfInt)
-using DoubleVects = TRUST_Vector<TRUSTVect<double>>; // remplace VECT(DoubleVect)
-using IntVects = TRUST_Vector<TRUSTVect<int>>; // remplace VECT(IntVect)
-using DoubleTabs = TRUST_Vector<TRUSTTab<double>>; // remplace VECT(DoubleTab)
-using IntTabs = TRUST_Vector<TRUSTTab<int>>; // remplace VECT(IntTab)
+using ArrsOfDouble = TRUST_Vector<TRUSTArray<double, int>>; // remplace VECT(ArrOfDouble)
+using ArrsOfInt = TRUST_Vector<TRUSTArray<int, int>>; // remplace VECT(ArrOfInt)
+using DoubleVects = TRUST_Vector<TRUSTVect<double, int>>; // remplace VECT(DoubleVect)
+using IntVects = TRUST_Vector<TRUSTVect<int, int>>; // remplace VECT(IntVect)
+using DoubleTabs = TRUST_Vector<TRUSTTab<double, int>>; // remplace VECT(DoubleTab)
+using IntTabs = TRUST_Vector<TRUSTTab<int, int>>; // remplace VECT(IntTab)
+
+
+//
+// Handy 'using' clauses used in all the class templatized on the 32/64b aspect (Domaine, Octree, Elem_geom, etc.)
+//
+template <typename _SIZE_> using ArrOfInt_T = TRUSTArray<_SIZE_, _SIZE_>;      // either an ArrOfInt (32 bits) or a BigArrOfTID (64b)
+template <typename _SIZE_> using IntVect_T = TRUSTVect<_SIZE_, _SIZE_>;       // either an IntVect (32 bits) or a BigTIDVect (64b)
+template <typename _SIZE_> using IntTab_T = TRUSTTab<_SIZE_, _SIZE_>;         // either an IntTab (32 bits) or a BigTIDTab (64b)
+template <typename _TYPE_> using SmallArrOfTID_T = TRUSTArray<_TYPE_, int>;    // a small array of identifiers (small even in 64b)
+template <typename _TYPE_> using BigArrOfInt_T = TRUSTArray<int, _TYPE_>;    // a big array, but always storing small values (rarely used ...)
+template <typename _TYPE_> using BigIntVect_T = TRUSTVect<int, _TYPE_>;      // a big vect, but always storing small values (rarely used ...)
+
+template <typename _SIZE_> using ArrOfDouble_T= TRUSTArray<double, _SIZE_>;
+template <typename _SIZE_> using DoubleVect_T = TRUSTVect<double, _SIZE_>;
+template <typename _SIZE_> using DoubleTab_T = TRUSTTab<double, _SIZE_>;         // either an DoubleTab (32 bits) or a BigDoubleTab (64b)
+
+template <typename _SIZE_> using FloatVect_T = TRUSTVect<float, _SIZE_>;
+
+template <typename _SIZE_> using ArrsOfInt_T = TRUST_Vector<TRUSTArray<_SIZE_, _SIZE_>>;
+template <typename _SIZE_> using DoubleTabs_T = TRUST_Vector<TRUSTTab<double, _SIZE_>>;
 
 #endif /* TRUSTTabs_forward_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,17 +16,8 @@
 #ifndef Perte_Charge_PolyMAC_included
 #define Perte_Charge_PolyMAC_included
 
-#include <Terme_Source_Qdm.h>
-#include <Source_base.h>
-#include <TRUST_Ref.h>
-#include <Parser_U.h>
-
-class Domaine_Cl_PolyMAC;
-class Domaine_PolyMAC;
-class Champ_Inc_base;
-class Sous_Domaine;
-class Fluide_base;
-class Param;
+#include <Perte_Charge_Gen.h>
+#include <Domaine_PolyMAC.h>
 
 //! Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces
 /**
@@ -39,68 +30,17 @@ class Param;
    et Perte_Charge_PolyMAC_P1NC.
 */
 
-class Perte_Charge_PolyMAC : public Source_base, public Terme_Source_Qdm
+class Perte_Charge_PolyMAC : public Perte_Charge_Gen
 {
   Declare_base(Perte_Charge_PolyMAC);
 public:
   DoubleTab& ajouter(DoubleTab& ) const override; //!< Appelle perte_charge pour chaque face ou cela est necessaire
   void contribuer_a_avec(const DoubleTab&, Matrice_Morse&) const override ;
-  DoubleTab& calculer(DoubleTab& ) const override ;
 
-  void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl = {}) const override { } //rien
   void ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) const override;
 
-  void associer_pb(const Probleme_base&) override;  //!< associe le_fluide et la_vitesse
-  void completer() override;
+  const Domaine_PolyMAC& le_dom_poly()  const  { return ref_cast(Domaine_PolyMAC, le_dom_vf_.valeur()); }
 
-protected:
-  virtual void set_param(Param& param);
-  int lire_motcle_non_standard(const Motcle&, Entree&) override;
-  void associer_domaines(const Domaine_dis&,const Domaine_Cl_dis&) override;   //!< associe le_dom_PolyMAC et le_dom_Cl_PolyMAC
-
-  //! Appele pour chaque face par ajouter()
-  /**
-     Utilise les intermediaires de calcul : u, norme_u, dh_valeur, reynolds
-     Retourne le resultat calcule dans p_charge.
-
-     Avantage : bonne factorisation.
-     Inconvenient : cout de l'appel d'une methode virtuelle a
-     l'interieur d'une boucle.
-
-     \param u La vitesse a la face courante. 2 ou 3 composantes
-     \param pos toto
-     \param t titi
-     \param norme_u La norme de la vitesse a la face courante
-     \param dh Le diametre hydraulique a la face courante (tire de diam_hydr)
-     \param nu la viscosite cinematique
-     \param reynolds Le nombre de reynolds a la face courante : norme_u * dh_valeur / nu
-     \param coeff_ortho coefficient dans la direction orthogonale
-     \param coeff_long coefficient dans la direction longitudinale
-     \param u_l vitesse dans la direction longitudinale
-     \param v_valeur direction_longitudinale p_charge a 2 ou 3 composantes
-     La perte de charge vaut -coeff_long*u_l*v_valeur -coeff_ortho(u -u_v*v_valeur)
-  */
-  virtual void coeffs_perte_charge(const DoubleVect& u, const DoubleVect& pos,
-                                   double t, double norme_u, double dh, double nu, double reynolds,
-                                   double& coeff_ortho, double& coeff_long, double& u_l, DoubleVect& v_valeur) const = 0;
-
-  //! Diametre hydraulique utilise dans le calcul de la perte de charge
-  Champ_Don diam_hydr;
-  //! Fluide associe au probleme
-  REF(Fluide_base) le_fluide;
-  //! Vitesse associee a l'equation resolue
-  REF(Champ_Inc_base) la_vitesse;
-  //! Domaine dans laquelle s'applique la perte de charge
-  REF(Domaine_PolyMAC) le_dom_PolyMAC;
-  REF(Domaine_Cl_PolyMAC) le_dom_Cl_PolyMAC;
-
-  // Cas d'une sous-domaine
-  bool sous_domaine = false; //!< Le terme est-il limite a une sous-domaine ?
-  Nom nom_sous_domaine; //!< Nom de la sous-domaine, initialise dans readOn()
-  REF(Sous_Domaine) le_sous_domaine; //!< Initialise dans completer()
-  int implicite_ = 1;
-
-  mutable Parser_U lambda;
 };
 
 #endif /* Perte_Charge_PolyMAC_included */

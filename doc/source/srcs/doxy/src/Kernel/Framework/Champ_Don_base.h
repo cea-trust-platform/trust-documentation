@@ -26,7 +26,7 @@
  *      mais peuvent etre variables dans le temps dans l'espace
  *      fonctions d'autres champs ...
  *
- * @sa Champ_base Champ_Don Champ_Fonc
+ * @sa Champ_base OWN_PTR(Champ_Don_base) Champ_Fonc_base
  */
 class Champ_Don_base : public Champ_base
 {
@@ -42,10 +42,13 @@ public:
   int sauvegarder(Sortie&) const override;
   void resetTime(double time) override;
 
-  DoubleTab& valeurs() override;
-  const DoubleTab& valeurs() const override;
+  /*! @brief Surcharge Champ_base::valeurs() Renvoie le tableau des valeurs
+   *
+   * @return (DoubleTab&) le tableau des valeurs du champs
+   */
+  inline DoubleTab& valeurs() override { return valeurs_; }
+  const inline DoubleTab& valeurs() const override { return valeurs_; }
 
-  Champ_base& affecter_(const Champ_base&) override;
   Champ_base& affecter_compo(const Champ_base&, int) override;
 
   virtual int initialiser(const double temps);
@@ -62,6 +65,10 @@ public:
 
 protected :
   DoubleTab valeurs_;
+
+  /* XXX Elie Saikali : je rendre cette methode protected ! Interdit de l'appeler en public */
+  Champ_base& affecter_(const Champ_base&) override;
+
 private:
   bool instationnaire_ = false; // Par defaut champ stationnaire
 };

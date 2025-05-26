@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -99,7 +99,7 @@ DoubleTab& Op_Conv_EF_VEF_P1NC::ajouter(const DoubleTab& transporte_2,
   const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
   const Champ_P1NC& la_vitesse=ref_cast( Champ_P1NC, vitesse_.valeur());
   const DoubleTab& vitesse_face_absolue=la_vitesse.valeurs();
-  const Champ_P1NC& ch=ref_cast(Champ_P1NC,mon_equation->inconnue().valeur());
+  const Champ_P1NC& ch=ref_cast(Champ_P1NC,mon_equation->inconnue());
 
   const IntTab& elem_faces = domaine_VEF.elem_faces();
   const IntTab& face_voisins = domaine_VEF.face_voisins();
@@ -111,7 +111,6 @@ DoubleTab& Op_Conv_EF_VEF_P1NC::ajouter(const DoubleTab& transporte_2,
   assert(nb_faces_elem==(dimension+1));
   {
     // calcul de la CFL.
-    DoubleVect& fluent_ = fluent;
     double psc;
     // On remet a zero le tableau qui sert pour
     // le calcul du pas de temps de stabilite
@@ -211,7 +210,7 @@ DoubleTab& Op_Conv_EF_VEF_P1NC::ajouter(const DoubleTab& transporte_2,
   for (int n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int nb_faces_bord_tot=le_bord.nb_faces_tot();
       int num10 = 0, num20 = le_bord.nb_faces_tot();
 
@@ -313,7 +312,7 @@ DoubleTab& Op_Conv_EF_VEF_P1NC::ajouter(const DoubleTab& transporte_2,
       for (int n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
         {
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int nb_faces_b=le_bord.nb_faces();
           int num2 = num1 + nb_faces_b;

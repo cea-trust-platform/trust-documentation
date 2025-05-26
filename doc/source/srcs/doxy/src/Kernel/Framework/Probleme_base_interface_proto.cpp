@@ -14,10 +14,11 @@
 *****************************************************************************/
 
 #include <Probleme_base_interface_proto.h>
+#include <Domaine_Cl_dis_base.h>
 #include <ICoCoExceptions.h>
 #include <Probleme_base.h>
 #include <Postraitement.h>
-#include <Equation.h>
+#include <Equation_base.h>
 #include <Debog.h>
 
 using ICoCo::WrongArgument;
@@ -72,7 +73,7 @@ bool Probleme_base_interface_proto::initTimeStep_impl(Probleme_base& pb, double 
   // Calculs coeffs echange sur l'instant sur lequel doivent agir les operateurs.
   double tps = pb.schema_temps().temps_defaut();
   for (int i = 0; i < pb.nombre_d_equations(); i++)
-    pb.equation(i).domaine_Cl_dis()->calculer_coeffs_echange(tps);
+    pb.equation(i).domaine_Cl_dis().calculer_coeffs_echange(tps);
 
   dt_validated = false;
   dt_defined = true;
@@ -91,7 +92,7 @@ bool Probleme_base_interface_proto::solveTimeStep_impl(Probleme_base& pb)
   // Calculs coeffs echange sur l'instant sur lequel doivent agir les operateurs.
   double tps = pb.schema_temps().temps_defaut();
   for (int i = 0; i < pb.nombre_d_equations(); i++)
-    pb.equation(i).domaine_Cl_dis()->calculer_coeffs_echange(tps);
+    pb.equation(i).domaine_Cl_dis().calculer_coeffs_echange(tps);
 
   return ok;
 }
@@ -110,7 +111,7 @@ bool Probleme_base_interface_proto::iterateTimeStep_impl(Probleme_base& pb, bool
   // Calculs coeffs echange sur l'instant sur lequel doivent agir les operateurs.
   double tps = pb.schema_temps().temps_defaut();
   for (int i = 0; i < pb.nombre_d_equations(); i++)
-    pb.equation(i).domaine_Cl_dis()->calculer_coeffs_echange(tps);
+    pb.equation(i).domaine_Cl_dis().calculer_coeffs_echange(tps);
 
   return ok;
 }
@@ -245,24 +246,24 @@ void Probleme_base_interface_proto::getOutputFieldsNames_impl(const Probleme_bas
         {
           const Liste_Champ_Generique& liste_champ = ref_cast(Postraitement,pb.postraitements()(i).valeur()).champs_post_complet();
           for (int ii = 0; ii < liste_champ.size(); ii++)
-            noms.add(liste_champ(ii).valeur().get_nom_post());
+            noms.add(liste_champ(ii)->get_nom_post());
         }
     }
 }
 
-REF(Field_base) Probleme_base_interface_proto::findInputField_impl(const Probleme_base& pb, const Nom& name) const
+OBS_PTR(Field_base) Probleme_base_interface_proto::findInputField_impl(const Probleme_base& pb, const Nom& name) const
 {
   // WEC : there should be a better way to scan the list
   for (int i = 0; i < input_fields.size(); i++)
     if (input_fields[i]->le_nom() == name) return input_fields[i];
 
-  REF(Field_base) ch;
+  OBS_PTR(Field_base) ch;
   return ch;
 }
 
-REF(Champ_Generique_base) Probleme_base_interface_proto::findOutputField_impl(const Probleme_base& pb, const Nom& name) const
+OBS_PTR(Champ_Generique_base) Probleme_base_interface_proto::findOutputField_impl(const Probleme_base& pb, const Nom& name) const
 {
-  REF(Champ_Generique_base) ch;
+  OBS_PTR(Champ_Generique_base) ch;
   if (pb.comprend_champ_post(name)) ch = pb.get_champ_post(name);
   return ch;
 }

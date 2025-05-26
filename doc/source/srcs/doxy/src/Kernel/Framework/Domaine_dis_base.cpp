@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,14 +13,13 @@
 *
 *****************************************************************************/
 
-#include <Domaine_dis_base.h>
-#include <Frontiere_dis_base.h>
-#include <Domaine.h>
-#include <Sous_Domaine.h>
-#include <Sous_domaine_dis.h>
-#include <Sous_domaines_dis.h>
-#include <Probleme_base.h>
+#include <Build_Map_to_Structured.h>
 #include <Discretisation_base.h>
+#include <Frontiere_dis_base.h>
+#include <Domaine_dis_base.h>
+#include <Probleme_base.h>
+#include <Sous_Domaine.h>
+#include <Domaine.h>
 
 Implemente_base(Domaine_dis_base,"Domaine_dis_base",Objet_U);
 
@@ -39,14 +38,14 @@ int Domaine_dis_base::nombre_de_sous_domaines_dis() const
   return les_sous_domaines_dis.size();
 }
 
-const Sous_domaine_dis& Domaine_dis_base::sous_domaine_dis(int i) const
+const Sous_domaine_dis_base& Domaine_dis_base::sous_domaine_dis(int i) const
 {
-  return les_sous_domaines_dis[i];
+  return les_sous_domaines_dis[i].valeur();
 }
 
-Sous_domaine_dis& Domaine_dis_base::sous_domaine_dis(int i)
+Sous_domaine_dis_base& Domaine_dis_base::sous_domaine_dis(int i)
 {
-  return les_sous_domaines_dis[i];
+  return les_sous_domaines_dis[i].valeur();
 }
 
 /*! @brief Associe un Domaine a l'objet.
@@ -166,9 +165,11 @@ void Domaine_dis_base::discretiser_root(const Nom& typ)
   else
     discretiser_no_face();
 
+  if (Build_Map_to_Structured::BUILD_MAP_TO_STRUCTURED)
+    build_map_mc_Cmesh(face_ok); /* ici pour avoir l'info sur face_normals */
+
   // Remplit les sous_domaines_dis, les type, et leur associe les domaine_dis et les sous_domaine correspondantes.
-  Sous_domaines_dis& sszd = sous_domaines_dis();
-  sszd.dimensionner(dom.nb_ss_domaines());
+  les_sous_domaines_dis.dimensionner(dom.nb_ss_domaines());
 
   for (int i=0; i<dom.nb_ss_domaines(); i++)
     {
@@ -185,28 +186,49 @@ void Domaine_dis_base::discretiser_root(const Nom& typ)
 
 void Domaine_dis_base::creer_champ(const Motcle& motlu, const Probleme_base& pb)
 {
-  if (motlu == "VOLUME_MAILLE" && volume_maille().est_nul())
+  if (motlu == "VOLUME_MAILLE" && volume_maille_.est_nul())
     {
-      pb.discretisation().volume_maille(pb.schema_temps(), pb.domaine_dis(), const_cast<Champ_Fonc&>(volume_maille()));
-      champs_compris_.ajoute_champ(volume_maille().valeur());
+      pb.discretisation().volume_maille(pb.schema_temps(), pb.domaine_dis(), volume_maille_);
+      champs_compris_.ajoute_champ(volume_maille_);
     }
-  else if (motlu == "MESH_NUMBERING" && mesh_numbering().est_nul())
+  else if (motlu == "MESH_NUMBERING" && mesh_numbering_.est_nul())
     {
-      pb.discretisation().mesh_numbering(pb.schema_temps(), pb.domaine_dis(), const_cast<Champ_Fonc&>(mesh_numbering()));
-      champs_compris_.ajoute_champ(mesh_numbering().valeur());
+      pb.discretisation().mesh_numbering(pb.schema_temps(), pb.domaine_dis(), mesh_numbering_);
+      champs_compris_.ajoute_champ(mesh_numbering_);
     }
 }
+
 const Champ_base& Domaine_dis_base::get_champ(const Motcle& un_nom) const
 {
-  if (un_nom=="VOLUME_MAILLE")
+  if (un_nom == "VOLUME_MAILLE")
+    return volume_maille();
+  else if (un_nom == "MESH_NUMBERING")
+    return mesh_numbering();
+
+  throw std::runtime_error(std::string("Field ") + un_nom.getString() + std::string(" not found !"));
+}
+
+bool Domaine_dis_base::has_champ(const Motcle& un_nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (un_nom == "VOLUME_MAILLE")
     {
-      return volume_maille().valeur();
+      ref_champ = volume_maille();
+      return true;
     }
-  else if (un_nom=="MESH_NUMBERING")
+  else if (un_nom == "MESH_NUMBERING")
     {
-      return mesh_numbering().valeur();
+      ref_champ = mesh_numbering();
+      return true;
     }
-  throw Champs_compris_erreur();
+  return false;
+}
+
+bool Domaine_dis_base::has_champ(const Motcle& un_nom) const
+{
+  if (un_nom == "VOLUME_MAILLE" || un_nom == "MESH_NUMBERING")
+    return true;
+  else
+    return false;
 }
 
 void Domaine_dis_base::get_noms_champs_postraitables(Noms& nom,Option opt) const

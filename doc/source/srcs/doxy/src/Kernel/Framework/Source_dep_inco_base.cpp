@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,19 +17,12 @@
 #include <Equation_base.h>
 
 Implemente_base(Source_dep_inco_base,"Source_dep_inco_base",Source_base);
-
-
-//// printOn
-//
+// XD Source_dep_inco_base source_base Source_dep_inco_bases -1 Basic class of source terms depending of inknown.
 
 Sortie& Source_dep_inco_base::printOn(Sortie& s ) const
 {
   return s ;
 }
-
-
-//// readOn
-//
 
 Entree& Source_dep_inco_base::readOn(Entree& s )
 {
@@ -43,7 +36,7 @@ DoubleTab& Source_dep_inco_base::ajouter(DoubleTab& secmem) const
       ajouter_blocs({}, secmem);
       return secmem;
     }
-  return ajouter_(equation().inconnue()->valeurs(),secmem);
+  return ajouter_(equation().inconnue().valeurs(),secmem);
 }
 DoubleTab& Source_dep_inco_base::calculer(DoubleTab& resu) const
 {

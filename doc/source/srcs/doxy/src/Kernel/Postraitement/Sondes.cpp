@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,9 @@
 #include <Postraitement.h>
 #include <Sondes.h>
 
-Implemente_instanciable(Sondes, "Sondes|Probes", LIST(DERIV(Sonde)));
+Implemente_instanciable(Sondes, "Sondes|Probes", LIST(OWN_PTR(Sonde)));
+// XD sondes listobj nul 1 sonde 0 List of probes.
+
 
 Sortie& Sondes::printOn(Sortie& s ) const { return s ; }
 
@@ -61,10 +63,15 @@ Entree& Sondes::readOn(Entree& s )
       exit();
     }
   set_noms_champs_postraitables();
+
+  const bool is_ijk = mon_post->que_suis_je() == "Postprocessing_IJK";
   while (motlu != accolade_fermee)
     {
-      DERIV(Sonde) une_sonde;
-      une_sonde.typer("Sonde");
+      OWN_PTR(Sonde) une_sonde;
+      if(is_ijk)
+        une_sonde.typer("Sonde_IJK");
+      else
+        une_sonde.typer("Sonde");
       une_sonde->nommer(motlu);
       une_sonde->associer_post(mon_post.valeur());
       s >> une_sonde.valeur();
@@ -111,14 +118,14 @@ void Sondes::clear_cache()
   sourceNoms.reset();
 }
 
-REF(Champ_base) Sondes::get_from_cache(REF(Champ_Generique_base)& mon_champ, const Nom& nom_champ_lu_)
+OBS_PTR(Champ_base) Sondes::get_from_cache(OBS_PTR(Champ_Generique_base)& mon_champ, const Nom& nom_champ_lu_)
 {
   mon_champ->fixer_identifiant_appel(nom_champ_lu_);
   int num = sourceNoms.rang(nom_champ_lu_);
   if (num < 0)
     {
-      Champ espace_stockage;
-      const Champ_base& ma_source = ref_cast(Champ_base, mon_champ->get_champ(espace_stockage));
+      OWN_PTR(Champ_base) espace_stockage;
+      const Champ_base& ma_source = mon_champ->get_champ(espace_stockage);
       sourceList.add(ma_source);
       espaceStockageList.add(espace_stockage);
       sourceNoms.add(nom_champ_lu_);

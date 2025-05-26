@@ -18,7 +18,7 @@
 #include <Connectivite_som_elem.h>
 #include <Domaine_Cl_PolyMAC.h>
 #include <MD_Vector_base.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Pb_Multiphase.h>
 
 Implemente_instanciable(Champ_Elem_PolyMAC_P0P1NC,"Champ_Elem_PolyMAC_P0P1NC",Champ_Elem_PolyMAC);
@@ -53,7 +53,7 @@ void Champ_Elem_PolyMAC_P0P1NC::init_auxiliary_variables()
       {
         DoubleTab& vals = futur(n);
         vals.set_md_vector(MD_Vector()); //on enleve le MD_Vector...
-        vals.resize_dim0(domaine.mdv_elems_faces.valeur().get_nb_items_tot()); //...on dimensionne a la bonne taille...
+        vals.resize_dim0(domaine.mdv_elems_faces->get_nb_items_tot()); //...on dimensionne a la bonne taille...
         vals.set_md_vector(domaine.mdv_elems_faces); //...et on remet le bon MD_Vector
         /* initialisation des variables aux faces : par celle de l'elem amont */
         for (int f = 0, ne_tot = domaine.nb_elem_tot(); f < domaine.nb_faces(); f++)

@@ -48,14 +48,14 @@ void Op_Grad_VDF_Face::calculer_flux_bords() const
   flux_bords_ = 0.;
   const Domaine_Cl_VDF& zclvdf = la_zcl_vdf.valeur();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std,equation());
-  const Champ_P0_VDF& la_pression_P0 = ref_cast(Champ_P0_VDF,eqn_hydr.pression_pa().valeur());
+  const Champ_P0_VDF& la_pression_P0 = ref_cast(Champ_P0_VDF,eqn_hydr.pression_pa());
   const DoubleTab& pression_P0 = la_pression_P0.valeurs();
   const DoubleVect& face_surfaces = zvdf.face_surfaces();
   int nb_bord = zvdf.nb_front_Cl();
   for (int n_bord=0; n_bord<nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = zclvdf.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
       for (int face=ndeb; face<nfin; face++)
@@ -95,7 +95,7 @@ int Op_Grad_VDF_Face::impr(Sortie& os) const
   for (int n_bord=0; n_bord<nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = zclvdf.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int impr_boundary = (zvdf.domaine().bords_a_imprimer_sum().contient(le_bord.le_nom()) ? 1 : 0);
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
@@ -139,12 +139,9 @@ int Op_Grad_VDF_Face::impr(Sortie& os) const
   // Write the boundary fluxes:
   if (je_suis_maitre())
     {
-      //SFichier Flux_grad;
-      if (!Flux_grad.is_open()) ouvrir_fichier(Flux_grad,"",1);
-      //SFichier Flux_grad_moment;
-      if (!Flux_grad_moment.is_open()) ouvrir_fichier(Flux_grad_moment,"moment",impr_mom);
-      //SFichier Flux_grad_sum;
-      if (!Flux_grad_sum.is_open()) ouvrir_fichier(Flux_grad_sum,"sum",impr_sum);
+      ouvrir_fichier(Flux_grad,"",1);
+      ouvrir_fichier(Flux_grad_moment,"moment",impr_mom);
+      ouvrir_fichier(Flux_grad_sum,"sum",impr_sum);
       Flux_grad.add_col(sch.temps_courant());
       if (impr_mom) Flux_grad_moment.add_col(sch.temps_courant());
       if (impr_sum) Flux_grad_sum.add_col(sch.temps_courant());
@@ -194,7 +191,7 @@ int Op_Grad_VDF_Face::impr(Sortie& os) const
       for (int n_bord=0; n_bord<nb_bord; n_bord++)
         {
           const Cond_lim& la_cl = zclvdf.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           if (zvdf.domaine().bords_a_imprimer().contient(le_bord.le_nom()))
@@ -227,7 +224,7 @@ void Op_Grad_VDF_Face::dimensionner_blocs(matrices_t matrices, const tabs_t& sem
   const Domaine_VDF& zvdf = le_dom_vdf.valeur();
   IntTab sten(0, 2);
 
-  const Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, equation().inconnue().valeur());
+  const Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, equation().inconnue());
   const DoubleTab& vit = ch.valeurs(), &press = le_champ_inco.non_nul() ? le_champ_inco->valeurs() : ref_cast(Navier_Stokes_std, equation()).pression().valeurs();
   const int N = vit.line_size(), M = press.line_size();
   Matrice_Morse *mat = matrices["pression"], mat2;
@@ -263,7 +260,7 @@ void Op_Grad_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, con
   for (int n_bord = 0; n_bord < zvdf.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = zclvdf.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       const int ndeb = le_bord.num_premiere_face(), nfin = ndeb + le_bord.nb_faces();
 
       if ( sub_type(Neumann_sortie_libre,la_cl.valeur()) )

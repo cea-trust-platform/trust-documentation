@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,18 +16,18 @@
 #ifndef Navier_Stokes_Turbulent_included
 #define Navier_Stokes_Turbulent_included
 
+#include <Modele_turbulence_hyd_base.h>
 #include <Navier_Stokes_std.h>
-#include <Modele_turbulence_hyd.h>
+#include <YAML_data.h>
 
-class Champ_Fonc;
 
 /*! @brief classe Navier_Stokes_Turbulent Cette classe represente l'equation de la dynamique pour un fluide
  *
  *      visqueux verifiant la condition d'incompressibilite div U = 0 avec
  *      modelisation de la turbulence.
- *      Un membre de type Modele_turbulence_hyd representera le modele de turbulence.
+ *      Un membre de type OWN_PTR(Modele_turbulence_hyd_base)  representera le modele de turbulence.
  *
- * @sa Navier_Stokes_std Modele_turbulence_hyd Pb_Hydraulique_Turbulent, Pb_Thermohydraulique_Turbulent
+ * @sa Navier_Stokes_std OWN_PTR(Modele_turbulence_hyd_base)  Pb_Hydraulique_Turbulent, Pb_Thermohydraulique_Turbulent
  */
 class Navier_Stokes_Turbulent: public Navier_Stokes_std
 {
@@ -36,19 +36,22 @@ class Navier_Stokes_Turbulent: public Navier_Stokes_std
 public:
   void set_param(Param& titi) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
-  inline const Champ_Fonc& viscosite_turbulente() const { return le_modele_turbulence.viscosite_turbulente(); }
-  inline const Modele_turbulence_hyd& modele_turbulence() const { return le_modele_turbulence; }
+  inline const Champ_Fonc_base& viscosite_turbulente() const { return le_modele_turbulence->viscosite_turbulente(); }
+  inline const Modele_turbulence_hyd_base& modele_turbulence() const { return le_modele_turbulence.valeur(); }
+  std::vector<YAML_data> data_a_sauvegarder() const override;
   int sauvegarder(Sortie&) const override;
   int reprendre(Entree&) override;
   int preparer_calcul() override;
   bool initTimeStep(double dt) override;
   void mettre_a_jour(double) override;
   void completer() override;
-  const Champ_Don& diffusivite_pour_transport() const override;
+  const Champ_Don_base& diffusivite_pour_transport() const override;
   const Champ_base& diffusivite_pour_pas_de_temps() const override;
 
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
 
   void imprimer(Sortie&) const override;
@@ -58,7 +61,10 @@ public:
 
 protected:
   Entree& lire_op_diff_turbulent(Entree& is);
-  Modele_turbulence_hyd le_modele_turbulence;
+  OWN_PTR(Modele_turbulence_hyd_base)  le_modele_turbulence;
+
+private:
+  int typer_lire_mod_turb_hyd(Entree& s);
 };
 
 #endif /* Navier_Stokes_Turbulent_included */

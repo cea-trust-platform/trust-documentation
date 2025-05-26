@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #define MD_Vector_included
 
 #include <MD_Vector_base.h>
-#include <TRUST_Deriv.h>
+#include <memory>
 
 // Options for arithmetic operations on vectors (mp_min_vect_local, apply_operator, etc...)
 //  VECT_SEQUENTIAL_ITEMS: compute requested operation only on sequential items (real items that are not received from another processor)
@@ -25,15 +25,15 @@
 //  VECT_ALL_ITEMS: compute requested operation on all items (this is equivalent to a call to the Array class operator)
 enum Mp_vect_options { VECT_SEQUENTIAL_ITEMS, VECT_REAL_ITEMS, VECT_ALL_ITEMS };
 
-/*! @brief : Cette classe est un DERIV mais l'objet pointe est partage entre plusieurs
+/*! @brief : Cette classe est un OWN_PTR mais l'objet pointe est partage entre plusieurs
  *
  *   instances de cette classe. L'objet pointe ne peut etre accede qu'en "const"
  *    et n'est accessible que par des instances de MD_Vector. Donc
  *    il n'existe pas de moyen d'y acceder en "non const" autrement qu'avec un cast.
  *   La methode attach() et le constructeur par copie rattachent le pointeur a une
  *    instance existante deja attachee a un pointeur.
- *   La methode attach_detach() s'approprie l'objet pointe par le DERIV et detache
- *    l'objet du DERIV. C'est la seule facon de "construire" les objets MD_Vector
+ *   La methode attach_detach() s'approprie l'objet pointe par le OWN_PTR et detache
+ *    l'objet du OWN_PTR. C'est la seule facon de "construire" les objets MD_Vector
  *    (evite une copie, et permet d'assurer que le MD_Vect ne peut plus etre modifie
  *     une fois que qu'il a ete attache a un MD_Vector)
  *   ATTENTION: la securite de la methode repose
@@ -49,9 +49,9 @@ class MD_Vector
 public:
   MD_Vector() {}
   inline MD_Vector(const MD_Vector&);
-  inline ~MD_Vector();
   inline MD_Vector& operator=(const MD_Vector&);
   inline void attach(const MD_Vector&);
+  inline void detach();
 
   int non_nul() const
   {
@@ -62,8 +62,6 @@ public:
 #endif
   }
 
-  inline void detach();
-
 #ifndef LATATOOLS
   void copy(const MD_Vector_base&);
 
@@ -73,73 +71,49 @@ public:
     return *ptr_;
   }
 
+  inline const MD_Vector_base* operator ->() const { assert(ptr_); return ptr_.get(); }
+
   int operator==(const MD_Vector&) const;
   int operator!=(const MD_Vector&) const;
 
 private:
-  void detach_();
-  void attach_(const MD_Vector&);
-  const MD_Vector_base *ptr_ = 0;
+  std::shared_ptr<MD_Vector_base> ptr_;
 #endif
 };
 
-/*! @brief constructeur par copie, associe le pointeur au meme objet que la source et incremente le compteur de references, partie inline pour traiter
- *
- *   le cas ou la source est nulle
- *
+/*! @brief constructeur par copie, associe le pointeur au meme objet que la source
  */
 inline MD_Vector::MD_Vector(const MD_Vector& src)
 {
-#ifndef LATATOOLS
-  if (src.ptr_)
-    attach_(src);
-#endif
+  attach(src);
 }
 
-/*! @brief Detache le pointeur de l'objet pointe et decremente le compteur de ref.
- *
- * Si le compteur est nul, detruit l'objet.
- *
+/*! @brief Detache le pointeur de l'objet pointe
  */
 inline void MD_Vector::detach()
 {
 #ifndef LATATOOLS
-  if (ptr_) detach_();
+  ptr_ = nullptr;
 #endif
 }
 
-/*! @brief Detache le pointeur et attache au meme objet que src, puis incremente le compteur de ref (si le pointeur est non nul).
- *
+/*! @brief Detache le pointeur et attache au meme objet que src.
  */
 inline void MD_Vector::attach(const MD_Vector& src)
 {
 #ifndef LATATOOLS
   if (this == &src)
-    return; // sinon a.attach(a) risque de detruire le pointeur !
-  if (ptr_) detach_();
-  if (src.ptr_) attach_(src);
+    return; // sinon ligne suivante detruit le pointeur ?
+  ptr_ = src.ptr_;
 #endif
 }
 
 /*! @brief idem que attach(src)
- *
  */
 inline MD_Vector& MD_Vector::operator=(const MD_Vector& src)
 {
   attach(src);
   return *this;
-}
-
-/*! @brief detache le pointeur s'il n'est pas nul.
- *
- * inline pour ne pas penaliser les tableaux non distribues.
- *
- */
-inline MD_Vector::~MD_Vector()
-{
-#ifndef LATATOOLS
-  if (ptr_) detach_();
-#endif
 }
 
 #endif

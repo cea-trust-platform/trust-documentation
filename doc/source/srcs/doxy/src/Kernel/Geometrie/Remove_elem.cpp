@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,7 +21,7 @@
 #include <Param.h>
 
 Implemente_instanciable(Remove_elem, "Remove_elem", Interprete_geometrique_base);
-// XD remove_elem interprete remove_elem -1 Keyword to remove element from a VDF mesh (named domaine_name), either from an explicit list of elements or from a geometric condition defined by a condition f(x,y)>0 in 2D and f(x,y,z)>0 in 3D. All the new borders generated are gathered in one boundary called : newBord (to rename it, use RegroupeBord keyword. To split it to different boundaries, use DecoupeBord_Pour_Rayonnement keyword). Example of a removed zone of radius 0.2 centered at (x,y)=(0.5,0.5): NL2 Remove_elem dom { fonction $0.2*0.2-(x-0.5)^2-(y-0.5)^2>0$ } NL2 Warning : the thickness of removed zone has to be large enough to avoid singular nodes as decribed below : \includepng{{removeelem.png}}{{11.234}}
+// XD remove_elem interprete remove_elem -1 Keyword to remove element from a VDF mesh (named domaine_name), either from an explicit list of elements or from a geometric condition defined by a condition f(x,y)>0 in 2D and f(x,y,z)>0 in 3D. All the new borders generated are gathered in one boundary called : newBord (to rename it, use RegroupeBord keyword. To split it to different boundaries, use DecoupeBord_Pour_Rayonnement keyword). Example of a removed zone of radius 0.2 centered at (x,y)=(0.5,0.5): NL2 Remove_elem dom { fonction $0.2*0.2-(x-0.5)^2-(y-0.5)^2>0$ } NL2 Warning : the thickness of removed zone has to be large enough to avoid singular nodes as decribed below : \includepng{{removeelem.jpeg}}{{11.234}}
 // XD  attr domaine ref_domaine domain 0 Name of domain
 // XD  attr bloc remove_elem_bloc bloc 0 not_set
 
@@ -313,18 +313,18 @@ void Remove_elem::remove_elem_(Domaine& dom)
           {
             Faces& les_faces = itr.faces();
             if (dimension == 2)
-              les_faces.typer(Faces::segment_2D);
+              les_faces.typer(Type_Face::segment_2D);
             else
-              les_faces.typer(Faces::quadrangle_3D);
+              les_faces.typer(Type_Face::quadrangle_3D);
             recreer_faces(dom, les_faces, som_face);
           }
         Cerr << " addition of a new boundary issued from removed elements" << finl;
         Bord& new_bord = dom.faces_bord().add(Bord());
         new_bord.nommer("newBord");
         if (dimension == 2)
-          new_bord.typer_faces(Faces::segment_2D);
+          new_bord.typer_faces(Type_Face::segment_2D);
         else
-          new_bord.typer_faces(Faces::quadrangle_3D);
+          new_bord.typer_faces(Type_Face::quadrangle_3D);
         Faces& les_faces = new_bord.faces();
         creer_faces(dom, les_faces, som_face);
       }
@@ -336,9 +336,9 @@ void Remove_elem::remove_elem_(Domaine& dom)
           {
             Faces& les_faces = itr.faces();
             if (dimension == 2)
-              les_faces.typer(Faces::segment_2D);
+              les_faces.typer(Type_Face::segment_2D);
             else
-              les_faces.typer(Faces::quadrangle_3D);
+              les_faces.typer(Type_Face::quadrangle_3D);
             recreer_faces(dom, les_faces, som_face);
           }
       }

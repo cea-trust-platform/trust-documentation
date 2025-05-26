@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,13 +21,14 @@
 #include <Domaine_Cl_VEF.h>
 #include <Equation_base.h>
 #include <Modele_turbulence_scal_base.h>
-
 #include <Neumann_paroi.h>
 #include <Neumann_homogene.h>
 #include <Discretisation_base.h>
 #include <Synonyme_info.h>
 
 Implemente_instanciable(Champ_Generique_Tparoi_VEF,"Tparoi_VEF",Champ_Gen_de_Champs_Gen);
+// XD tparoi_vef champ_post_de_champs_post tparoi_vef -1 This keyword is used to post process (only for VEF discretization) the temperature field with a slight difference on boundaries with Neumann condition where law of the wall is applied on the temperature field. nom_pb is the problem name and field_name is the selected field name. A keyword (temperature_physique) is available to post process this field without using Definition_champs.
+
 Add_synonym(Champ_Generique_Tparoi_VEF,"Champ_Post_Tparoi_VEF");
 
 Sortie& Champ_Generique_Tparoi_VEF::printOn(Sortie& s ) const
@@ -42,10 +43,10 @@ Entree& Champ_Generique_Tparoi_VEF::readOn(Entree& s )
   return s ;
 }
 
-const Champ_base& Champ_Generique_Tparoi_VEF::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Tparoi_VEF::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ_without_evaluation(source_espace_stockage);
 
   const Domaine_dis_base& domaine_dis = get_ref_domaine_dis_base();
@@ -58,19 +59,19 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ_without_evaluation(Champ
   double temps;
   temps=0.;
 
-  Champ_Fonc espace_stockage_fonc;
+  OWN_PTR(Champ_Fonc_base)  espace_stockage_fonc;
   const Discretisation_base&  discr = get_discretisation();
   Motcle directive = get_directive_pour_discr();
   discr.discretiser_champ(directive,domaine_dis,nature_source,noms,unites,nb_comp,temps,espace_stockage_fonc);
   espace_stockage = espace_stockage_fonc;
 
 
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
-const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ(source_espace_stockage);
 
   const Domaine_dis_base& domaine_dis = get_ref_domaine_dis_base();
@@ -83,7 +84,7 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) 
   double temps;
   temps=0.;
 
-  Champ_Fonc espace_stockage_fonc;
+  OWN_PTR(Champ_Fonc_base)  espace_stockage_fonc;
   const Discretisation_base&  discr = get_discretisation();
   Motcle directive = get_directive_pour_discr();
   discr.discretiser_champ(directive,domaine_dis,nature_source,noms,unites,nb_comp,temps,espace_stockage_fonc);
@@ -101,18 +102,18 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) 
   if ( modele_turbulence.non_nul() && sub_type(Modele_turbulence_scal_base,modele_turbulence.valeur()))
     {
       const Modele_turbulence_scal_base& mod_turb_scal = ref_cast(Modele_turbulence_scal_base,modele_turbulence.valeur());
-      const Turbulence_paroi_scal& loiparth = mod_turb_scal.loi_paroi();
+      const Turbulence_paroi_scal_base& loiparth = mod_turb_scal.loi_paroi();
 
-      if( loiparth.valeur().use_equivalent_distance() )
+      if( loiparth.use_equivalent_distance() )
         {
           // const Paroi_scal_hyd_base_VEF& paroi_scal_vef = ref_cast(Paroi_scal_hyd_base_VEF,loiparth.valeur());
 
-          const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF,my_eqn.domaine_dis().valeur());
+          const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF,my_eqn.domaine_dis());
           const IntTab& elem_faces = domaine_VEF.elem_faces();
           const DoubleVect& vol = domaine_VEF.volumes();
           const IntTab& face_voisins = domaine_VEF.face_voisins();
           const DoubleTab& face_normale = domaine_VEF.face_normales();
-          const Domaine_Cl_VEF& domaine_Cl_VEF=ref_cast(Domaine_Cl_VEF,my_eqn.domaine_Cl_dis().valeur());
+          const Domaine_Cl_VEF& domaine_Cl_VEF=ref_cast(Domaine_Cl_VEF,my_eqn.domaine_Cl_dis());
           int nb_dim_pb=Objet_U::dimension;
           DoubleVect le_mauvais_gradient(nb_dim_pb);
           int nb_front=domaine_VEF.nb_front_Cl();
@@ -120,7 +121,7 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) 
             {
               const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
               const Cond_lim_base& cl_base=la_cl.valeur();
-              const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
 
               // Les lois de parois ne s'appliquent qu'aux cas ou la CL
               // est de type temperature imposee, car dans les autres cas
@@ -130,20 +131,21 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) 
                 {
                   ldp_appli=1;
                   // if (paroi_scal_vef.get_flag_calcul_ldp_en_flux_impose() )
-                  if (loiparth.valeur().get_flag_calcul_ldp_en_flux_impose() )
+                  if (loiparth.get_flag_calcul_ldp_en_flux_impose() )
                     ldp_appli=0;
                 }
 
               if (ldp_appli)
                 {
                   // const DoubleVect& d_equiv = paroi_scal_vef.equivalent_distance(n_bord);
-                  const DoubleVect& d_equiv = loiparth.valeur().equivalent_distance(n_bord);
+                  const DoubleVect& d_equiv = loiparth.equivalent_distance(n_bord);
                   // d_equiv contient la distance equivalente pour le bord
                   // Dans d_equiv, pour les faces qui ne sont pas paroi_fixe (eg periodique, symetrie, etc...)
                   // il y a la distance geometrique grace a l'initialisation du tableau dans la loi de paroi.
 
                   int num1 = 0;
                   int num2 = le_bord.nb_faces_tot();
+                  ToDo_Kokkos("boundary");
                   for (int ind_face=num1; ind_face<num2; ind_face++)
                     {
                       // Tf est la temperature fluide moyenne dans le premier element
@@ -195,7 +197,7 @@ const Champ_base& Champ_Generique_Tparoi_VEF::get_champ(Champ& espace_stockage) 
   DoubleTab& espace_valeurs = espace_stockage->valeurs();
   espace_valeurs.echange_espace_virtuel();
 
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
 const Noms Champ_Generique_Tparoi_VEF::get_property(const Motcle& query) const

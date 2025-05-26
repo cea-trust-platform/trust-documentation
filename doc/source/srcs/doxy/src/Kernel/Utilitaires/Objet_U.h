@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,7 +53,7 @@ class Motcle;
  *        buffer memoire, buffer de communication parallele).
  *        Il faut donc toujours implementer les methodes readOn et printOn
  *      Un Objet_U d'un type quelconque peut etre instancie grace a une
- *       chaine de caracteres qui l'identifie (que_suis_je()), voir DERIV::typer
+ *       chaine de caracteres qui l'identifie (que_suis_je()), voir OWN_PTR::typer
  *      Un Objet_U peut etre "sauvegarde" ou "repris" sur disque (au sens sauvegarde
  *       et reprise d'un calcul). Ces operations sont differentes de readOn/printOn
  *       car elles permettent eventuellement une redistribution des donnees paralleles
@@ -83,10 +83,15 @@ public:
   virtual const Nom& le_nom() const;
   static double precision_geom;
 
+  virtual void       nommer(const Nom&);
+  virtual int    reprendre(Entree& ) ;
+  virtual int    sauvegarder(Sortie& ) const;
+
+
 #ifndef LATATOOLS            // All the below is not needed in lata_tools:
   int        get_object_id() const;
 
-  // Elie Saikali : add to this to statically test if class templates are REF/DERIV or normal !
+  // Elie Saikali : add to this to statically test if class templates are REF/OWN_PTR or normal !
   static constexpr bool HAS_POINTER = false;
 
   static int dimension;
@@ -102,15 +107,12 @@ public:
   static const Type_info*  info();
 
   const Nom&         que_suis_je() const;
-  virtual void       nommer(const Nom&);
   const char*        le_type() const;
 
   friend int     operator ==(const Objet_U&, const Objet_U&);
   friend int     operator !=(const Objet_U&, const Objet_U&);
   virtual int    change_num(const int* const );
   virtual int lire_motcle_non_standard(const Motcle& motlu, Entree& is);
-  virtual int    reprendre(Entree& ) ;
-  virtual int    sauvegarder(Sortie& ) const;
   virtual int    associer_(Objet_U&) ;
   const Interprete& interprete() const;
   Interprete& interprete();
@@ -120,7 +122,7 @@ public:
 
   static int disable_TU; // Flag to disable the writing of the .TU files
   static bool stat_per_proc_perf_log; // Flag to enable the writing of the statistics detailed per processor in _csv.TU file
-  static bool computeOnDevice; // Flag pour activer/desactiver calcul sur GPU
+
 protected:
   Objet_U();
   Objet_U(const Objet_U&);

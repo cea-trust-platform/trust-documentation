@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #include <Terme_Source_Qdm_VEF_Face.h>
 #include <Champ_Uniforme.h>
 #include <Domaine.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Domaine_VEF.h>
 #include <Domaine_Cl_VEF.h>
 #include <Periodique.h>
@@ -63,11 +63,11 @@ void Terme_Source_Qdm_VEF_Face::associer_pb(const Probleme_base& )
   ;
 }
 
-void Terme_Source_Qdm_VEF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                  const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_Qdm_VEF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                  const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis.valeur());
-  le_dom_Cl_VEF = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis.valeur());
+  le_dom_VEF = ref_cast(Domaine_VEF, domaine_dis);
+  le_dom_Cl_VEF = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis);
 }
 
 
@@ -236,8 +236,8 @@ DoubleTab& Terme_Source_Qdm_VEF_Face::ajouter(DoubleTab& resu) const
         assert(0);
 
       // Calcul du terme source aux points d'integration :
-      la_source.valeur().valeur_aux_elems(les_positions,les_polygones,
-                                          valeurs_source);
+      la_source->valeur_aux_elems(les_positions,les_polygones,
+                                  valeurs_source);
       bool RT = sub_type(VEF_discretisation, equation().discretisation()) && (ref_cast(VEF_discretisation, equation().discretisation()).get_alphaRT() );
       if (!RT)
         {
@@ -340,7 +340,7 @@ DoubleTab& Terme_Source_Qdm_VEF_Face::ajouter(DoubleTab& resu) const
         if (sub_type(Periodique,la_cl.valeur()))
           {
             const Periodique& la_cl_perio = ref_cast(Periodique,la_cl.valeur());
-            const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+            const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
             int nb_faces_bord=le_bord.nb_faces();
             IntVect fait(nb_faces_bord);
             fait = 0;

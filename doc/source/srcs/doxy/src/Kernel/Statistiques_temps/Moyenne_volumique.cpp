@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -238,7 +238,7 @@ void Moyenne_volumique::eval_filtre(const DoubleTab& coords, ArrOfDouble& result
  */
 int Moyenne_volumique::get_champ(const Nom& nom_pb,
                                  const Nom& nom_champ,
-                                 REF(Champ_base) & ref_champ)
+                                 OBS_PTR(Champ_base) & ref_champ)
 {
   Probleme_base& pb = ref_cast(Probleme_base, objet(nom_pb));
   // Le champ est-il defini dans les postraitements (statistiques) ?
@@ -253,13 +253,13 @@ int Moyenne_volumique::get_champ(const Nom& nom_pb,
           const int nstat = stats.size();
           for (int i_stat = 0; i_stat < nstat; i_stat++)
             {
-              Motcle tmp(stats[i_stat].valeur().le_nom() );
+              Motcle tmp(stats[i_stat]->le_nom() );
 
               if (tmp == mc_nom_champ)
                 {
                   Operateur_Statistique_tps_base& stat = stats[i_stat].valeur();
-                  ref_cast_non_const(DoubleTab, stat.integrale().valeurs()) = stat.calculer_valeurs();
-                  ref_champ = stat.integrale();
+                  ref_cast_non_const(DoubleTab, stat.integrale().le_champ_calcule().valeurs()) = stat.calculer_valeurs();
+                  ref_champ = stat.integrale().le_champ_calcule();
                   return 1;
                 }
             }
@@ -289,8 +289,8 @@ void Moyenne_volumique::traiter_champs(const Motcles& noms_champs,
   if (nb_champs == 0)
     return;
 
-  REF(Champ_base) ref_champ;
-  REF(Domaine_VF) ref_domaine_vf;
+  OBS_PTR(Champ_base) ref_champ;
+  OBS_PTR(Domaine_VF) ref_domaine_vf;
   int i_champ;
   // ************************************
   // Calcul du nombre total de composantes et de ref_domaine_vf
@@ -436,7 +436,7 @@ Entree& Moyenne_volumique::interpreter(Entree& is)
   int localisation = id_elem; // par defaut
   Motcle format_post("lata_v1");
   Nom nom_fichier_post;
-  DERIV(Format_Post_base) fichier_post;
+  OWN_PTR(Format_Post_base) fichier_post;
   param.ajouter("nom_pb", & nom_pb, Param::REQUIRED); // XD_ADD_P ref_Pb_base name of the problem where the source fields will be searched.
   param.ajouter("nom_domaine", & nom_dom, Param::REQUIRED); // XD_ADD_P ref_domaine name of the destination domain (for example, it can be a coarser mesh, but for optimal performance in parallel, the domain should be split with the same algorithm as the computation mesh, eg, same tranche parameters for example)
   param.ajouter("noms_champs", & noms_champs, Param::REQUIRED); // XD_ADD_P listchaine name of the source fields (these fields must be accessible from the postraitement) N source_field1 source_field2 ... source_fieldN
@@ -460,9 +460,9 @@ Entree& Moyenne_volumique::interpreter(Entree& is)
       return is;
     }
   Cerr << "Writing of the post-processing domain : " << nom_dom << finl;
-  REF(Champ_base) ref_champ;
+  OBS_PTR(Champ_base) ref_champ;
   get_champ(nom_pb, noms_champs[0], ref_champ);
-  const double temps = ref_champ.valeur().temps();
+  const double temps = ref_champ->temps();
   if (!fichier_post.non_nul())
     {
       if (nom_fichier_post == "??")
@@ -482,7 +482,7 @@ Entree& Moyenne_volumique::interpreter(Entree& is)
           nom_fichier_post = nom_du_cas();
         }
       fichier_post.typer(Motcle("FORMAT_POST_") + format_post);
-      fichier_post.valeur().initialize(nom_fichier_post, 1 /* binaire */, "SIMPLE");
+      fichier_post->initialize(nom_fichier_post, 1 /* binaire */, "SIMPLE");
     }
   else
     {
@@ -649,7 +649,7 @@ void Moyenne_volumique::calculer_convolution(const Domaine_VF& domaine_source,
   const int dim = Objet_U::dimension;
   const int nbproc = Process::nproc();
   const int nb_coords_to_compute = coords_to_compute.dimension(0);
-  const int nb_coords_max = ::mp_max(nb_coords_to_compute);
+  const int nb_coords_max = mp_max(nb_coords_to_compute);
 
   int nb_comp;
   nb_comp = champ_source.line_size();

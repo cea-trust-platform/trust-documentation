@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,11 +19,10 @@
 #include <Echange_externe_impose.h>
 #include <TRUSTTabs_forward.h>
 #include <TRUST_Ref.h>
-class Champ_Inc;
 
 class Domaine_PolyMAC;
 class Front_VF;
-class Faces;
+#include <Domaine_forward.h>
 
 //  Outre le champ_front representant la temperature de paroi,
 //  cette classe possede un autre champ_front avec autant de valeurs
@@ -38,8 +37,8 @@ public :
   void update_coeffs();
   void update_delta() const;
   void mettre_a_jour(double ) override;
-  inline Champ_front& T_autre_pb() { return T_autre_pb_; }
-  inline const Champ_front& T_autre_pb() const { return T_autre_pb_; }
+  inline Champ_front_base& T_autre_pb() { return T_autre_pb_; }
+  inline const Champ_front_base& T_autre_pb() const { return T_autre_pb_; }
   inline const Nom& nom_autre_pb() const { return nom_autre_pb_; }
 
   //item(i, j) : indice du j-ieme item dont on a besoin pour la face i de la frontiere
@@ -53,7 +52,7 @@ protected :
   int stab_ = 0; //1 si on utilise la stabilisation de Le Potier
   mutable int coeffs_a_jour_ = 0, delta_a_jour_ = 0; //dernier temps auquel on a mis a jour les coeffs
   double h_paroi = -123.;
-  Champ_front T_autre_pb_;
+  OWN_PTR(Champ_front_base) T_autre_pb_;
   Nom nom_autre_pb_;
 };
 

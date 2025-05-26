@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,7 +20,7 @@
 #include <Domaine_PolyMAC.h>
 #include <EcrFicPartage.h>
 #include <Probleme_base.h>
-#include <Champ.h>
+
 
 Implemente_base(Op_Conv_PolyMAC_base, "Op_Conv_PolyMAC_base", Operateur_Conv_base);
 
@@ -37,10 +37,10 @@ void Op_Conv_PolyMAC_base::associer_domaine_cl_dis(const Domaine_Cl_dis_base& zc
   la_zcl_poly_ = ref_cast(Domaine_Cl_PolyMAC, zcl);
 }
 
-void Op_Conv_PolyMAC_base::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& zcl, const Champ_Inc&)
+void Op_Conv_PolyMAC_base::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& zcl, const Champ_Inc_base&)
 {
-  le_dom_poly_ = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  la_zcl_poly_ = ref_cast(Domaine_Cl_PolyMAC, zcl.valeur());
+  le_dom_poly_ = ref_cast(Domaine_PolyMAC, domaine_dis);
+  la_zcl_poly_ = ref_cast(Domaine_Cl_PolyMAC, zcl);
 }
 
 int Op_Conv_PolyMAC_base::impr(Sortie& os) const
@@ -65,7 +65,7 @@ int Op_Conv_PolyMAC_base::impr(Sortie& os) const
   for (int num_cl = 0; num_cl < nb_front_Cl; num_cl++)
     {
       const Cond_lim& la_cl = la_zcl_poly_->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       for (face = ndeb; face < nfin; face++)
@@ -95,15 +95,9 @@ int Op_Conv_PolyMAC_base::impr(Sortie& os) const
 
   if (je_suis_maitre())
     {
-      //SFichier Flux;
-      if (!Flux.is_open())
-        ouvrir_fichier(Flux, "", 1);
-      //SFichier Flux_moment;
-      if (!Flux_moment.is_open())
-        ouvrir_fichier(Flux_moment, "moment", impr_mom);
-      //SFichier Flux_sum;
-      if (!Flux_sum.is_open())
-        ouvrir_fichier(Flux_sum, "sum", impr_sum);
+      ouvrir_fichier(Flux, "", 1);
+      ouvrir_fichier(Flux_moment, "moment", impr_mom);
+      ouvrir_fichier(Flux_sum, "sum", impr_sum);
       Flux.add_col(sch.temps_courant());
       if (impr_mom)
         Flux_moment.add_col(sch.temps_courant());
@@ -145,9 +139,9 @@ int Op_Conv_PolyMAC_base::impr(Sortie& os) const
       ouvrir_fichier_partage(Flux_face, "", impr_bord);
       for (int num_cl = 0; num_cl < nb_front_Cl; num_cl++)
         {
-          const Frontiere_dis_base& la_fr = la_zcl_poly_->les_conditions_limites(num_cl).frontiere_dis();
+          const Frontiere_dis_base& la_fr = la_zcl_poly_->les_conditions_limites(num_cl)->frontiere_dis();
           const Cond_lim& la_cl = la_zcl_poly_->les_conditions_limites(num_cl);
-          const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl->frontiere_dis());
           int ndeb = frontiere_dis.num_premiere_face();
           int nfin = ndeb + frontiere_dis.nb_faces();
           if (mon_dom.bords_a_imprimer().contient(la_fr.le_nom()))

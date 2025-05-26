@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,8 +34,8 @@ DoubleTab& Op_Dift_VEF_Face::ajouter(const DoubleTab& inconnue_org, DoubleTab& r
 {
   remplir_nu(nu_); // On remplit le tableau nu car ajouter peut se faire avant le premier pas de temps
 
-  const DoubleTab& nu_turb = diffusivite_turbulente()->valeurs();
-  DoubleTab nu, nu_turb_m, tab_inconnue;
+  const DoubleTab& nu_turb = diffusivite_turbulente().valeurs();
+  DoubleTrav nu, nu_turb_m, tab_inconnue;
   const int nb_comp = resu.line_size();
 
   // On dimensionne et initialise le tableau des bilans de flux:
@@ -59,7 +59,7 @@ DoubleTab& Op_Dift_VEF_Face::ajouter(const DoubleTab& inconnue_org, DoubleTab& r
   Debog::verifier("Op_Dift_VEF_Face::ajouter inconnue_org", inconnue_org);
   Debog::verifier("Op_Dift_VEF_Face::ajouter inconnue", inconnue);
 
-  if (equation().inconnue()->nature_du_champ() == vectoriel)
+  if (equation().inconnue().nature_du_champ() == vectoriel)
     {
       fill_grad_Re<Type_Champ::VECTORIEL>(inconnue, resu, nu, nu_turb);
       ajouter_bord_gen<Type_Champ::VECTORIEL>(inconnue, resu, flux_bords_, nu, nu_turb);
@@ -81,7 +81,7 @@ void Op_Dift_VEF_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Morse& m
   modifier_matrice_pour_periodique_avant_contribuer(matrice, equation());
   remplir_nu(nu_); // On remplit le tableau nu car l'assemblage d'une matrice avec ajouter_contribution peut se faire avant le premier pas de temps
 
-  const DoubleTab& nu_turb_ = diffusivite_turbulente()->valeurs();
+  const DoubleTab& nu_turb_ = diffusivite_turbulente().valeurs();
   DoubleTab nu, nu_turb;
 
   int marq = phi_psi_diffuse(equation());
@@ -94,7 +94,7 @@ void Op_Dift_VEF_Face::contribuer_a_avec(const DoubleTab& inco, Matrice_Morse& m
   DoubleVect porosite_eventuelle(equation().milieu().porosite_face());
   if (!marq) porosite_eventuelle = 1;
 
-  if (equation().inconnue()->nature_du_champ() == vectoriel)
+  if (equation().inconnue().nature_du_champ() == vectoriel)
     {
       ajouter_contribution_bord_gen<Type_Champ::VECTORIEL>(inco, matrice, nu, nu_turb, porosite_eventuelle);
       ajouter_contribution_interne_gen<Type_Champ::VECTORIEL>(inco, matrice, nu, nu_turb, porosite_eventuelle);
@@ -118,9 +118,9 @@ void Op_Dift_VEF_Face::contribuer_au_second_membre(DoubleTab& resu) const
   const int nb_faces = domaine_VEF.nb_faces(), nb_comp = resu.line_size();
 
   // On traite les faces bord
-  if (equation().inconnue()->nature_du_champ() == vectoriel)
+  if (equation().inconnue().nature_du_champ() == vectoriel)
     {
-      const DoubleTab& nu_turb = diffusivite_turbulente()->valeurs(), &inconnue_org = equation().inconnue().valeurs();
+      const DoubleTab& nu_turb = diffusivite_turbulente().valeurs(), &inconnue_org = equation().inconnue().valeurs();
       DoubleTab nu, nu_turb_m, tab_inconnue;
 
       int marq = phi_psi_diffuse(equation());
@@ -139,7 +139,7 @@ void Op_Dift_VEF_Face::contribuer_au_second_membre(DoubleTab& resu) const
       Champ_P1NC::calcul_gradient(inconnue, grad, domaine_Cl_VEF);
       DoubleTab gradsa(grad);
 
-      if (le_modele_turbulence.valeur().utiliser_loi_paroi())
+      if (le_modele_turbulence->utiliser_loi_paroi())
         Champ_P1NC::calcul_duidxj_paroi(grad, nu, nu_turb, tau_tan_, domaine_Cl_VEF);
 
       grad -= gradsa;
@@ -165,7 +165,7 @@ void Op_Dift_VEF_Face::contribuer_au_second_membre(DoubleTab& resu) const
       if (sub_type(Neumann_paroi, la_cl.valeur()))
         {
           const Neumann_paroi& la_cl_paroi = ref_cast(Neumann_paroi, la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           const int ndeb = le_bord.num_premiere_face(), nfin = ndeb + le_bord.nb_faces();
           for (int face = ndeb; face < nfin; face++)
             for (int comp = 0; comp < nb_comp; comp++)
@@ -176,7 +176,7 @@ void Op_Dift_VEF_Face::contribuer_au_second_membre(DoubleTab& resu) const
           if (resu.line_size() == 1)
             {
               const Echange_externe_impose& la_cl_paroi = ref_cast(Echange_externe_impose, la_cl.valeur());
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               const int ndeb = le_bord.num_premiere_face(), nfin = ndeb + le_bord.nb_faces();
               for (int face = ndeb; face < nfin; face++)
                 resu[face] += la_cl_paroi.h_imp(face - ndeb) * (la_cl_paroi.T_ext(face - ndeb)) * domaine_VEF.face_surfaces(face);

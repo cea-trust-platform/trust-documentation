@@ -16,12 +16,15 @@
 #include <Terme_Puissance_Thermique.h>
 #include <Probleme_base.h>
 #include <Milieu_base.h>
-#include <Champ.h>
+
 #include <Equation_base.h>
 #include <Champ_Uniforme.h>
 #include <Champ_Fonc_Tabule.h>
 #include <Discretisation_base.h>
 #include <Champ_val_tot_sur_vol_base.h>
+
+// XD puissance_thermique source_base puissance_thermique 0 Class to define a source term corresponding to a volume power release in the energy equation.
+// XD attr ch field_base ch 0 Thermal power field type. To impose a volume power on a domain sub-area, the Champ_Uniforme_Morceaux (partly_uniform_field) type must be used. NL2 Warning : The volume thermal power is expressed in W.m-3 in 3D (in W.m-2 in 2D). It is a power per volume unit (in a porous media, it is a power per fluid volume unit).
 
 /*! @brief Lit le terme de puissance thermique a partir d'un flot d'entree et d une equation pour eventuellement
  *
@@ -48,7 +51,7 @@ void Terme_Puissance_Thermique::lire_donnees(Entree& is,const Equation_base& eqn
   is >> ch_puissance_lu;
   const int nb_comp = ch_puissance_lu.nb_comp();
 
-  eqn.probleme().discretisation().discretiser_champ(eqn.discretisation().is_polymac_family() ? "temperature" : "champ_elem", eqn.domaine_dis(), "pp", "1",nb_comp,0., la_puissance);
+  eqn.probleme().discretisation().discretiser_champ((eqn.discretisation().is_polymac_family() || eqn.discretisation().is_dg())  ? "temperature" : "champ_elem", eqn.domaine_dis(), "pp", "1",nb_comp,0., la_puissance);
   la_puissance_lu->fixer_nb_comp(nb_comp);
   if (ch_puissance_lu.le_nom()=="anonyme") ch_puissance_lu.nommer("Puissance_volumique");
 
@@ -57,16 +60,16 @@ void Terme_Puissance_Thermique::lire_donnees(Entree& is,const Equation_base& eqn
   // PL: Il faut faire nommer_completer_champ_physique les 2 champs (plantage sinon pour une puissance de type Champ_fonc_tabule)
   eqn.discretisation().nommer_completer_champ_physique(eqn.domaine_dis(),ch_puissance_lu.le_nom(),"W/m3",la_puissance_lu,eqn.probleme());
   eqn.discretisation().nommer_completer_champ_physique(eqn.domaine_dis(),ch_puissance_lu.le_nom(),"W/m3",la_puissance,eqn.probleme());
-  la_puissance.valeur().valeurs() = 0;
-  la_puissance.valeur().affecter(ch_puissance_lu);
+  la_puissance->valeurs() = 0;
+  la_puissance->affecter(ch_puissance_lu);
 }
 
 void Terme_Puissance_Thermique::initialiser_champ_puissance(const Equation_base& eqn)
 {
   if (sub_type(Champ_val_tot_sur_vol_base,la_puissance_lu.valeur()))
     {
-      const Domaine_dis_base& zdis = eqn.domaine_dis().valeur();
-      const Domaine_Cl_dis_base& zcldis = eqn.domaine_Cl_dis().valeur();
+      const Domaine_dis_base& zdis = eqn.domaine_dis();
+      const Domaine_Cl_dis_base& zcldis = eqn.domaine_Cl_dis();
       Champ_val_tot_sur_vol_base& champ_puis = ref_cast(Champ_val_tot_sur_vol_base,la_puissance_lu.valeur());
       champ_puis.evaluer(zdis,zcldis);
     }
@@ -74,8 +77,8 @@ void Terme_Puissance_Thermique::initialiser_champ_puissance(const Equation_base&
 
 void Terme_Puissance_Thermique::mettre_a_jour(double temps)
 {
-  la_puissance_lu.mettre_a_jour(temps);
-  la_puissance.valeur().affecter(la_puissance_lu.valeur());
+  la_puissance_lu->mettre_a_jour(temps);
+  la_puissance->affecter(la_puissance_lu.valeur());
 }
 
 void Terme_Puissance_Thermique::resetTime(double temps)

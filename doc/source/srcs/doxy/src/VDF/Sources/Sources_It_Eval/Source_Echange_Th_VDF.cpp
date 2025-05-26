@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,19 +36,19 @@ Entree& Source_Echange_Th_VDF::readOn(Entree& s)
   return s;
 }
 
-void Source_Echange_Th_VDF::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Source_Echange_Th_VDF::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis.valeur());
-  iter->associer_domaines(zvdf, zclvdf);
-  Eval_Echange_Himp_VDF_Elem& eval = static_cast<Eval_Echange_Himp_VDF_Elem&> (iter->evaluateur());
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF,domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF,domaine_cl_dis);
+  iter_->associer_domaines(zvdf, zclvdf);
+  Eval_Echange_Himp_VDF_Elem& eval = static_cast<Eval_Echange_Himp_VDF_Elem&> (iter_->evaluateur());
   eval.associer_domaines(zvdf, zclvdf );
 }
 
 void Source_Echange_Th_VDF::associer_pb(const Probleme_base& pb)
 {
-  REF(Equation_base) eqn;
-  Eval_Echange_Himp_VDF_Elem& eval = static_cast<Eval_Echange_Himp_VDF_Elem&> (iter->evaluateur());
+  OBS_PTR(Equation_base) eqn;
+  Eval_Echange_Himp_VDF_Elem& eval = static_cast<Eval_Echange_Himp_VDF_Elem&> (iter_->evaluateur());
   bool eq_OK = false;
 
   for (int i = 0; i < pb_voisin->nombre_d_equations(); i++)

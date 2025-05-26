@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,6 +15,7 @@
 
 #include <Solveur_Masse_Elem_proto.h>
 #include <Op_Diff_negligeable.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Champ_Inc_P0_base.h>
 #include <Equation_base.h>
 #include <Probleme_base.h>
@@ -47,8 +48,10 @@ DoubleTab& Solveur_Masse_Elem_proto::appliquer_impl_proto(DoubleTab& sm) const
   /* partie elem */
   for (e = 0; e < ne_tot; e++)
     for (n = 0; n < N; n++)
-      if (der(e, n) > 1e-10) sm(e, n) /= pe(e) * ve(e) * der(e, n);
-      else sm(e, n) = 0; //cas d'une evanescence
+      if (std::abs(der(e, n)) > 1e-10)
+        sm(e, n) /= pe(e) * ve(e) * der(e, n);
+      else
+        sm(e, n) = 0; //cas d'une evanescence
 
   return sm;
 }
@@ -68,7 +71,7 @@ void Solveur_Masse_Elem_proto::dimensionner_blocs_proto(matrices_t matrices, con
         const DoubleTab& col = solv_mass_->equation().probleme().get_champ(i_m.first.c_str()).valeurs(); //tableau de l'inconnue par rapport a laquelle on derive
         int m, M = col.line_size();
 
-        IntTrav stencil(0, 2);
+        IntTab stencil(0, 2);
 
 
         for (e = 0; e < ne; e++)
@@ -83,8 +86,8 @@ void Solveur_Masse_Elem_proto::ajouter_blocs_proto(matrices_t matrices, DoubleTa
 {
   const Domaine_VF& domaine = le_dom_.valeur();
   const Champ_Inc_base& cc = solv_mass_->equation().champ_conserve();
-  const Conds_lim& cls = solv_mass_->equation().domaine_Cl_dis()->les_conditions_limites();
-  const IntTab& fcl = ref_cast(Champ_Inc_P0_base, solv_mass_->equation().inconnue().valeur()).fcl(), &f_e = domaine.face_voisins();
+  const Conds_lim& cls = solv_mass_->equation().domaine_Cl_dis().les_conditions_limites();
+  const IntTab& fcl = ref_cast(Champ_Inc_P0_base, solv_mass_->equation().inconnue()).fcl(), &f_e = domaine.face_voisins();
   const DoubleTab& present = cc.valeurs(), &passe = cc.passe();
   const DoubleVect& ve = domaine.volumes(), &pe = solv_mass_->equation().milieu().porosite_elem(), &fs = domaine.face_surfaces();
   int e, f, n, N = cc.valeurs().line_size(), ne = domaine.nb_elem();

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,10 +14,11 @@
 *****************************************************************************/
 
 #include <Source_Generique_P0_Elem.h>
+#include <Domaine_Cl_dis_base.h>
+
 #include <Synonyme_info.h>
 #include <Equation_base.h>
 #include <Milieu_base.h>
-#include <Domaine_Cl_dis.h>
 #include <Domaine_VF.h>
 
 Implemente_instanciable(Source_Generique_P0_Elem,"Source_Generique_VDF_P0_VDF",Source_Generique_base);
@@ -31,19 +32,18 @@ Sortie& Source_Generique_P0_Elem::printOn(Sortie& os) const
 
 Entree& Source_Generique_P0_Elem::readOn(Entree& is)
 {
-  Source_Generique_base::readOn(is);
-  return is;
+  return Source_Generique_base::readOn(is);
 }
 
 DoubleTab& Source_Generique_P0_Elem::ajouter(DoubleTab& resu) const
 {
-  Champ espace_stockage;
+  OWN_PTR(Champ_base) espace_stockage;
   const Champ_base& champ_calc = ch_source_->get_champ(espace_stockage);
   const DoubleTab& valeurs_calc = champ_calc.valeurs();
 
   int nb_elem = le_dom->nb_elem();
   const DoubleVect& vol = le_dom->volumes();
-  const DoubleVect& poro_vol = le_dom_cl->valeur().equation().milieu().porosite_elem();
+  const DoubleVect& poro_vol = le_dom_cl->equation().milieu().porosite_elem();
 
   for (int elem = 0; elem<nb_elem; elem++)
     resu(elem) += valeurs_calc(elem)*vol(elem)*poro_vol(elem);
@@ -52,10 +52,10 @@ DoubleTab& Source_Generique_P0_Elem::ajouter(DoubleTab& resu) const
   return resu;
 }
 
-void Source_Generique_P0_Elem::associer_domaines(const Domaine_dis& domaine_dis,
-                                                 const Domaine_Cl_dis& zcl_dis)
+void Source_Generique_P0_Elem::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                 const Domaine_Cl_dis_base& zcl_dis)
 {
-  le_dom = ref_cast(Domaine_VF,domaine_dis.valeur());
+  le_dom = ref_cast(Domaine_VF,domaine_dis);
   le_dom_cl = zcl_dis;
 }
 

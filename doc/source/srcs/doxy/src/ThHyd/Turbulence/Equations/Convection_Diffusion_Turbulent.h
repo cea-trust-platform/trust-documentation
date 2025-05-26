@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,9 +16,10 @@
 #ifndef Convection_Diffusion_Turbulent_included
 #define Convection_Diffusion_Turbulent_included
 
-#include <Modele_turbulence_scal.h>
+#include <Modele_turbulence_scal_base.h>
 #include <Equation_base.h>
-class Champ_Fonc;
+#include <TRUST_Deriv.h>
+
 class Operateur_Diff;
 
 /*! @brief classe Convection_Diffusion_Turbulent Cette classe represente la convection-diffusion d'une ou plusieurs
@@ -41,6 +42,7 @@ public :
   void completer();
   virtual bool initTimeStep(double dt);
   int preparer_calcul();
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
   virtual int sauvegarder(Sortie&) const;
   virtual int reprendre(Entree&);
   virtual void mettre_a_jour(double);
@@ -48,7 +50,7 @@ public :
 
 protected:
   Entree& lire_op_diff_turbulent(Entree&, const Equation_base&, Operateur_Diff&);
-  Modele_turbulence_scal le_modele_turbulence;
+  OWN_PTR(Modele_turbulence_scal_base) le_modele_turbulence;
 };
 
 #endif /* Convection_Diffusion_Turbulent_included */

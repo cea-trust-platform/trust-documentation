@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,8 +17,8 @@
 #define Operateur_Diff_base_included
 
 #include <Support_Champ_Masse_Volumique.h>
+#include <Correlation_base.h>
 #include <Operateur_base.h>
-#include <Correlation.h>
 #include <TRUST_Ref.h>
 
 class Champ_base;
@@ -30,7 +30,7 @@ class Champ_base;
  *     discretisation et du type du champ de diffusivite. Ces variantes
  *     donneront lieu a des classes filles de Operateur_Diff_base.
  *
- * @sa Operateur_base Operateur_Diff, Classe abstraite, Methode abstraite, void associer_diffusivite(const Champ_Don& ), const Champ_Don_base& diffusivite() const
+ * @sa Operateur_base Operateur_Diff, Classe abstraite, Methode abstraite, void associer_diffusivite(const Champ_Don_base& ), const Champ_Don_base& diffusivite() const
  */
 class Operateur_Diff_base  : public Operateur_base,
   public Support_Champ_Masse_Volumique
@@ -44,15 +44,14 @@ public:
 
   //liste d'Op_Diff de problemes resolus simultanement (thermique monolithique)
   mutable std::vector<const Operateur_Diff_base *> op_ext;
-  virtual void init_op_ext() const {}    //remplissage de op_ext (ne peut pas etre fait dans completer(), trop tot)
+  virtual void init_op_ext() const { op_ext = { this }; }    //remplissage de op_ext (ne peut pas etre fait dans completer(), trop tot)
 
   virtual bool is_turb() const { return false; }
-  virtual const Correlation* correlation_viscosite_turbulente() const { return nullptr; }
+  virtual const Correlation_base* correlation_viscosite_turbulente() const { return nullptr; }
 
 protected:
   virtual const Champ_base& diffusivite_pour_pas_de_temps() const;
-
-  REF(Champ_base) diffusivite_pour_pas_de_temps_;
+  OBS_PTR(Champ_base) diffusivite_pour_pas_de_temps_;
 };
 
 #endif

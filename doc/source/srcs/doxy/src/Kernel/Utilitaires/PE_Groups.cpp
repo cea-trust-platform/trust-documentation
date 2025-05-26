@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,10 +21,14 @@
 // (voir Comm_Group::enter_group() Comm_Group::current_group() Comm_Group::exit_group() )
 // Le haut de la pile est toujours groupe_TRUST(), fourni a initialize()
 // groups[0] pointe sur groupe_trio.
-static REF(Comm_Group) groups[100];
+static OBS_PTR(Comm_Group) groups[100];
 static int ngroups = 0;
 static int max_ngroups = 100;
 const Comm_Group * PE_Groups::current_group_ = 0;
+// node group is an isolated variable from all the other groups as it is only used for IO purposes
+// and might be used throughout the code together with other groups
+static OBS_PTR(Comm_Group) node_group;
+static OBS_PTR(Comm_Group) node_master;
 
 int PE_Groups::check_current_group()
 {
@@ -44,7 +48,7 @@ int PE_Groups::check_current_group()
  *   Il faut ensuite appeler enter_group() et exit_group() (autant de fois qu'on veut)
  *
  */
-void PE_Groups::create_group(const ArrOfInt& liste_pe, DERIV(Comm_Group) & group, int force_Comm_Group_NoParallel)
+void PE_Groups::create_group(const ArrOfInt& liste_pe, OWN_PTR(Comm_Group) & group, int force_Comm_Group_NoParallel)
 {
   if (liste_pe.size_array()==1 && force_Comm_Group_NoParallel)
     {
@@ -54,9 +58,26 @@ void PE_Groups::create_group(const ArrOfInt& liste_pe, DERIV(Comm_Group) & group
   else
     {
       // On cree un groupe du meme type que le groupe_TRUST
-      group.typer(groups[0].valeur().que_suis_je());
+      group.typer(groups[0]->que_suis_je());
     }
-  group.valeur().init_group(liste_pe);
+  group->init_group(liste_pe);
+}
+
+/*! @brief Initialisation d'un nouveau groupe de processeurs deja instantie (utilisation possible n'importe ou dans le code)
+ *
+ *   Il faut l'appeler simultanement sur tous les processeurs du groupe current_group()
+ *   avec le meme tableau liste_pe. liste_pe est la liste des rangs dans le groupe
+ *   courant des processeurs que l'on veut inclure dans le groupe. Le premier de la
+ *   liste sera le maitre du groupe. La liste ne doit pas comporter de doublon et
+ *   doit contenir au moins un processeur.
+ *   La methode type et initialize l'objet group.
+ *   Il faut ensuite appeler enter_group() et exit_group() (autant de fois qu'on veut)
+ *
+ */
+void PE_Groups::init_group(const ArrOfInt& liste_pe, OWN_PTR(Comm_Group) & group)
+{
+  assert(group.non_nul());
+  group->init_group(liste_pe);
 }
 
 /*! @brief Si le processeur local appartient au groupe, le groupe courant pour ce processeur devient "group" et on renvoie 1, sinon on renvoie 0.
@@ -165,6 +186,24 @@ const Comm_Group& PE_Groups::groupe_TRUST()
   return groups[0].valeur();
 }
 
+/*! @brief Renvoie une reference au groupe sur les noeuds
+ *
+ */
+const Comm_Group& PE_Groups::get_node_group()
+{
+  assert(node_group.non_nul());
+  return node_group.valeur();
+}
+
+/*! @brief Renvoie le groupe contenant le maitre de mon noeud
+ *
+ */
+const Comm_Group& PE_Groups::get_node_master()
+{
+  assert(node_master.non_nul());
+  return node_master.valeur();
+}
+
 /*! @brief Methode a appeler au debut de l'execution (MAIN.
  *
  * cpp) Elle initialise current_group() avec groupe_trio_u
@@ -178,6 +217,23 @@ void PE_Groups::initialize(const Comm_Group& groupe_trio_u)
   current_group_ = &groupe_trio_u;
 }
 
+/*! @brief Methode a appeler apres l'initialisation de trio_u_world et l'initialisation des compteurs statistiques de TRUST
+ */
+void PE_Groups::initialize_node(const Comm_Group& ngrp)
+{
+  assert(node_group.est_nul());
+  node_group = ngrp;
+}
+
+/*! @brief Methode a appeler apres l'initialisation de trio_u_world et de node_group et l'initialisation des compteurs statistiques de TRUST
+ */
+void PE_Groups::initialize_node_master(const Comm_Group& ngrp)
+{
+  assert(node_master.est_nul());
+  node_master = ngrp;
+}
+
+
 /*! @brief Methode a appeler en fin d'execution, une fois qu'on est revenu dans le groupe_TRUST() et juste avant de detruire de Comm_Group
  *
  *   principal.
@@ -189,7 +245,10 @@ void PE_Groups::finalize()
   groups[0].reset();
   ngroups = 0;
   current_group_ = 0;
+  node_group.reset();
+  node_master.reset();
 }
+
 const int& PE_Groups::get_nb_groups()
 {
   return ngroups ;

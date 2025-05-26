@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #ifndef Masse_VDF_base_included
 #define Masse_VDF_base_included
 
-#include <Solveur_Masse.h>
+#include <Solveur_Masse_base.h>
 #include <TRUST_Ref.h>
 
 class Domaine_Cl_VDF;
@@ -35,8 +35,8 @@ public:
 
 protected:
   mutable double penalisation_matrice_, penalisation_secmem_;
-  REF(Domaine_Cl_VDF) le_dom_Cl_VDF;
-  REF(Domaine_VDF) le_dom_VDF;
+  OBS_PTR(Domaine_Cl_VDF) le_dom_Cl_VDF;
+  OBS_PTR(Domaine_VDF) le_dom_VDF;
 };
 
 #endif /* Masse_VDF_base_included */

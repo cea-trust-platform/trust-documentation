@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,35 +16,38 @@
 #ifndef Reorienter_tetraedres_included
 #define Reorienter_tetraedres_included
 
-
+#include <Reorienter_triangles.h> // To have "enum Sens_Orient"
+#include <Domaine.h>
+#include <Domaine_forward.h>
 
 /*! @brief class Reorienter_tetra Balaye les tetraedres du maillage pour qu'ils soient directs.
  *
- *
- *
  * @sa Interprete
  */
-
-#include <Interprete_geometrique_base.h>
-#include <Domaine.h>
-
-class Domaine;
-
-class Reorienter_tetraedres : public Interprete_geometrique_base
+template <typename _SIZE_>
+class Reorienter_tetraedres_32_64 : public Interprete_geometrique_base_32_64<_SIZE_>
 {
-  Declare_instanciable(Reorienter_tetraedres);
+  Declare_instanciable_32_64(Reorienter_tetraedres_32_64);
 
 public :
+  using int_t = _SIZE_;
+  using IntTab_t = IntTab_T<_SIZE_>;
+  using DoubleTab_t = DoubleTab_T<_SIZE_>;
+
+  using Domaine_t = Domaine_32_64<_SIZE_>;
 
   Entree& interpreter_(Entree&) override;
-  void reorienter(Domaine&) const;
+  void reorienter(Domaine_t&) const;
 
 protected :
-  enum Sens {DIRECT , INDIRECT};
 
-  Reorienter_tetraedres::Sens test_orientation_tetra(IntTab& les_elems, int ielem, const DoubleTab& coord_sommets) const;
-  Reorienter_tetraedres::Sens reorienter_tetra(IntTab& les_elems, int ielem) const;
+  Sens_Orient test_orientation_tetra(IntTab_t& les_elems, int_t ielem, const DoubleTab_t& coord_sommets) const;
+  Sens_Orient reorienter_tetra(IntTab_t& les_elems, int_t ielem) const;
 };
+
+using Reorienter_tetraedres = Reorienter_tetraedres_32_64<int>;
+using Reorienter_tetraedres_64 = Reorienter_tetraedres_32_64<trustIdType>;
+
 
 #endif
 

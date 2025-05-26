@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,19 +19,23 @@
 #include <Equation_base.h>
 
 Implemente_instanciable(Neumann_sortie_libre, "Frontiere_ouverte", Neumann_val_ext);
+// XD frontiere_ouverte neumann frontiere_ouverte -1 Boundary outlet condition on the boundary called bord (edge) (diffusion flux zero). This condition must be associated with a boundary outlet hydraulic condition.
+// XD attr var_name chaine(into=["T_ext","C_ext","Y_ext","K_Eps_ext","K_Omega_ext","Fluctu_Temperature_ext","Flux_Chaleur_Turb_ext","V2_ext","a_ext","tau_ext","k_ext","omega_ext","H_ext"]) var_name 0 Field name.
+// XD attr ch front_field_base ch 0 Boundary field type.
+
 
 Sortie& Neumann_sortie_libre::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
 /*! @brief Type le_champ_front en "Champ_front_uniforme".
  *
  * Lit les valeurs du champ exterieur si les conditions
- *     aux limites sont specifiees: "T_ext", "C_ext", "Y_ext", "K_Eps_ext" ou "F_M_ext"
+ *     aux limites sont specifiees: "T_ext","C_ext","Y_ext","K_Eps_ext","Fluctu_Temperature_ext","Flux_Chaleur_Turb_ext","V2_ext","a_ext","tau_ext","k_ext","omega_ext","H_ext"
  *     Produit une erreur sinon.
  *
  * @param (Entree& s) un flot d'entree
  * @return (Entree& s) le flot d'entree modifie
  * @throws type de champ exterieur non reconnu,
- * les types reconnus sont: "T_ext", "C_ext", "Y_ext", "K_Eps_ext" ou "F_M_ext"
+ * les types reconnus sont: "T_ext","C_ext","Y_ext","K_Eps_ext","Fluctu_Temperature_ext","Flux_Chaleur_Turb_ext","V2_ext","a_ext","tau_ext","k_ext","omega_ext","H_ext"
  */
 Entree& Neumann_sortie_libre::readOn(Entree& s)
 {
@@ -46,7 +50,7 @@ Entree& Neumann_sortie_libre::readOn(Entree& s)
                   };
 
   Motcle motlu;
-  Motcles les_motcles(15);
+  Motcles les_motcles(16);
   {
     les_motcles[0] = "T_ext";
     les_motcles[1] = "C_ext";
@@ -63,6 +67,7 @@ Entree& Neumann_sortie_libre::readOn(Entree& s)
     les_motcles[12] = "k_WIT_ext";
     les_motcles[13] = "a_i_ext";
     les_motcles[14] = "K_Omega_ext";
+    les_motcles[15] = "H_ext"; // enthalpie
   }
   s >> motlu;
   int rang = les_motcles.search(motlu);
@@ -90,7 +95,7 @@ void Neumann_sortie_libre::verifie_ch_init_nb_comp() const
   if (le_champ_front.non_nul())
     {
       const Equation_base& eq = domaine_Cl_dis().equation();
-      const int nb_comp = le_champ_front.valeur().nb_comp();
+      const int nb_comp = le_champ_front->nb_comp();
 
       if ((que_suis_je() == "Frontiere_ouverte") || (que_suis_je() == "Frontiere_ouverte_rayo_semi_transp") || (que_suis_je() == "Frontiere_Ouverte_Rayo_transp")
           || (que_suis_je() == "Sortie_libre_temperature_imposee_H"))
@@ -111,10 +116,10 @@ void Neumann_sortie_libre::verifie_ch_init_nb_comp() const
  */
 double Neumann_sortie_libre::val_ext(int i) const
 {
-  if (le_champ_ext.valeurs().size() == 1)
-    return le_champ_ext(0, 0);
-  else if (le_champ_ext.valeurs().dimension(1) == 1)
-    return le_champ_ext(i, 0);
+  if (le_champ_ext->valeurs().size() == 1)
+    return le_champ_ext->valeurs()(0, 0);
+  else if (le_champ_ext->valeurs().dimension(1) == 1)
+    return le_champ_ext->valeurs()(i, 0);
   else
     {
       Cerr << "Neumann_sortie_libre::val_ext" << finl;
@@ -147,20 +152,37 @@ void Neumann_sortie_libre::associer_fr_dis_base(const Frontiere_dis_base& fr)
  */
 double Neumann_sortie_libre::val_ext(int i, int j) const
 {
-  if (le_champ_ext.valeurs().dimension(0) == 1)
-    return le_champ_ext(0, j);
+  if (le_champ_ext->valeurs().dimension(0) == 1)
+    return le_champ_ext->valeurs()(0, j);
   else
-    return le_champ_ext(i, j);
+    return le_champ_ext->valeurs()(i, j);
+}
+
+const DoubleTab& Neumann_sortie_libre::val_ext() const
+{
+  const Front_VF& le_bord = ref_cast(Front_VF, frontiere_dis());
+  int nb_faces_tot = le_bord.nb_faces_tot();
+  if (nb_faces_tot>0)
+    {
+      if (val_ext_.dimension(0) != nb_faces_tot)
+        val_ext_.resize(nb_faces_tot, le_champ_ext->valeurs().dimension(1));
+      int size = val_ext_.dimension(0);
+      int nb_comp = val_ext_.dimension(1);
+      for (int i = 0; i < size; i++)
+        for (int j = 0; j < nb_comp; j++)
+          val_ext_(i, j) = val_ext(i, j);
+    }
+  return val_ext_;
 }
 
 const DoubleTab& Neumann_sortie_libre::tab_ext() const
 {
-  return le_champ_ext.valeurs();
+  return le_champ_ext->valeurs();
 }
 
 DoubleTab& Neumann_sortie_libre::tab_ext()
 {
-  return le_champ_ext.valeurs();
+  return le_champ_ext->valeurs();
 }
 
 void Neumann_sortie_libre::fixer_nb_valeurs_temporelles(int nb_cases)

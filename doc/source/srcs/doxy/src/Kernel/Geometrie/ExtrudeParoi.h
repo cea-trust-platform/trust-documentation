@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 
 #include <Interprete_geometrique_base.h>
 #include <TRUSTTabs_forward.h>
-class Domaine;
+#include <Domaine_forward.h>
 
 /*! @brief Classe ExtrudeParoi Cette classe est un interprete qui sert a lire et executer
  *
@@ -45,7 +45,7 @@ protected:
   Nom nom_front;
   int nb_couche;
   ArrOfDouble epaisseur;
-  int type;                             //0 (par defaut): epaisseur relative - 1 : epaisseur absolue
+  bool type = false; // false (par defaut) : epaisseur relative | true : epaisseur absolue
   int projection_normale_bord;
 
 private:

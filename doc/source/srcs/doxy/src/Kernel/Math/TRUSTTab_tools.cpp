@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,151 +15,95 @@
 
 #include <TRUSTTab.h>
 #include <TRUSTTab_tools.tpp>
+#include <MD_Vector_seq.h>
 #include <limits>
 
-// ToDo OpenMP: porter boucle mais mp_norme_tab semble pas utilise
-template <typename _T_>
-void local_carre_norme_tab(const TRUSTTab<_T_>& tableau, TRUSTArray<_T_>& norme_colonne)
+template <typename _TYPE_>
+void local_carre_norme_tab(const TRUSTTab<_TYPE_>& tableau, TRUSTArray<_TYPE_>& norme_colonne)
 {
   norme_colonne = 0.;
-  const TRUSTArray<int>& blocs = tableau.get_md_vector().valeur().get_items_to_sum();
-  const int nblocs = blocs.size_array() >> 1;
-  const TRUSTVect<_T_>& vect = tableau;
-  const int lsize = vect.line_size();
+
+  const TRUSTVect<_TYPE_,int>& vect = tableau;
+  const int lsize = vect.line_size(), vect_size_tot = vect.size_totale();
   assert(lsize == norme_colonne.size_array());
-  for (int ibloc = 0; ibloc < nblocs; ibloc++)
+
+  int nblocs_left;
+  Block_Iter<int> bloc_itr = ::determine_blocks(VECT_SEQUENTIAL_ITEMS, tableau.get_md_vector(), vect_size_tot, lsize, nblocs_left);
+
+  for (; nblocs_left; nblocs_left--)
     {
-      const int begin_bloc = blocs[ibloc], end_bloc = blocs[ibloc+1];
+      const int begin_bloc = (*(bloc_itr++)), end_bloc = (*(bloc_itr++));
       for (int i = begin_bloc; i < end_bloc; i++)
         {
           int k = i * lsize;
           for (int j = 0; j < lsize; j++)
             {
-              const _T_ x = vect[k++];
+              const _TYPE_ x = vect[k++];
               norme_colonne[j] += x*x;
             }
         }
     }
 }
 
-template <typename _T_>
-void local_max_abs_tab(const TRUSTTab<_T_>& tableau, TRUSTArray<_T_>& max_colonne)
+namespace
 {
-  max_colonne = std::numeric_limits<_T_>::min();
-  const TRUSTArray<int>& blocs = tableau.get_md_vector().valeur().get_items_to_compute();
-  const int nblocs = blocs.size_array() >> 1;
-  const TRUSTVect<_T_>& vect = tableau;
-  const int lsize = vect.line_size();
+template <typename ExecSpace, typename _TYPE_>
+void local_max_abs_tab_kernel(const TRUSTTab<_TYPE_>& tableau, TRUSTArray<_TYPE_>& max_colonne)
+{
+  const TRUSTVect<_TYPE_,int>& vect = tableau;
+  const int lsize = vect.line_size(), vect_size_tot = vect.size_totale();
+  assert(lsize == max_colonne.size_array());
+
+  int nblocs_left;
+  Block_Iter<int> bloc_itr = ::determine_blocks(VECT_REAL_ITEMS, tableau.get_md_vector(), vect_size_tot, lsize, nblocs_left);
+
   for (int j = 0; j < lsize; j++) max_colonne[j] = 0;
   assert(lsize == max_colonne.size_array());
-  bool kernelOnDevice = vect.checkDataOnDevice();
-  const _T_* vect_addr = mapToDevice(vect, "", kernelOnDevice);
-  _T_* max_colonne_addr = computeOnTheDevice(max_colonne, "", kernelOnDevice);
-  start_gpu_timer();
-  for (int ibloc = 0; ibloc < nblocs; ibloc++)
+
+  auto tableau_view= tableau.template view_ro<2, ExecSpace>();
+  auto max_colonne_view= max_colonne.template view_rw<1, ExecSpace>();
+
+  for (; nblocs_left; nblocs_left--)
     {
-      const int begin_bloc = blocs[ibloc], end_bloc = blocs[ibloc+1];
-      // Necessaire de faire un test sur lsize le compilateur crayCC OpenMP ne supporte pas la reduction sur tableau avec taille dynamique...
-      if (lsize==1)
+      const int begin_bloc = (*(bloc_itr++)), end_bloc = (*(bloc_itr++));
+      if (begin_bloc<end_bloc) // very important: empty bloc at the end would erase max_colonne
         {
-          if (kernelOnDevice)
+          Kokkos::RangePolicy<ExecSpace> policy(begin_bloc, end_bloc);
+
+          for (int j=0; j<lsize; j++) //Outer loop
             {
-              #pragma omp target teams distribute parallel for reduction(max:max_colonne_addr[0:1])
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-          else
-            {
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-        }
-      else if (lsize==2)
-        {
-          if (kernelOnDevice)
-            {
-              #pragma omp target teams distribute parallel for reduction(max:max_colonne_addr[0:2])
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-          else
-            {
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-        }
-      else if (lsize==3)
-        {
-          if (kernelOnDevice)
-            {
-              #pragma omp target teams distribute parallel for reduction(max:max_colonne_addr[0:3])
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-          else
-            {
-              for (int i = begin_bloc; i < end_bloc; i++)
-                {
-                  int k = i * lsize;
-                  for (int j = 0; j < lsize; j++)
-                    {
-                      const _T_ x = std::fabs(vect_addr[k++]);
-                      max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-                    }
-                }
-            }
-        }
-      else
-        for (int i = begin_bloc; i < end_bloc; i++)
-          {
-            int k = i * lsize;
-            for (int j = 0; j < lsize; j++)
+              if (timer) start_gpu_timer(__KERNEL_NAME__);
+              Kokkos::parallel_reduce(policy,
+                                      KOKKOS_LAMBDA(const int i, _TYPE_& local_max)
               {
-                const _T_ x = std::fabs(vect_addr[k++]);
-                max_colonne_addr[j] = (x > max_colonne_addr[j]) ? x : max_colonne_addr[j];
-              }
-          }
-      copyFromDevice(max_colonne, "max_colonne in local_max_abs_tab"); // ToDo OpenMP pourquoi necessaire ? Est ce a cause des ecritures put(addr[]) ?
+                const _TYPE_ x = Kokkos::fabs(tableau_view(i,j));
+                local_max = Kokkos::fmax(local_max, x);
+              },
+              //Reduce in a subview, enabled by specifying execspace in the reducer !
+              Kokkos::Max<_TYPE_, ExecSpace>(Kokkos::subview(max_colonne_view,j)));
+
+              bool kernelOnDevice = is_default_exec_space<ExecSpace>;
+              if (timer) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
+            }
+        }
     }
-  end_gpu_timer(kernelOnDevice, "local_max_abs_tab(x)");
 }
 
-template void local_carre_norme_tab<double>(const TRUSTTab<double>& tableau, TRUSTArray<double>& norme_colonne);
-template void local_carre_norme_tab<float>(const TRUSTTab<float>& tableau, TRUSTArray<float>& norme_colonne);
-template void local_max_abs_tab<double>(const TRUSTTab<double>& tableau, TRUSTArray<double>& max_colonne);
-template void local_max_abs_tab<float>(const TRUSTTab<float>& tableau, TRUSTArray<float>& max_colonne);
+}
+
+template <typename _TYPE_>
+void local_max_abs_tab(const TRUSTTab<_TYPE_>& tableau, TRUSTArray<_TYPE_>& max_colonne)
+{
+  max_colonne = std::numeric_limits<_TYPE_>::min();
+  bool kernelOnDevice = tableau.checkDataOnDevice();
+
+  if (kernelOnDevice)
+    local_max_abs_tab_kernel<Kokkos::DefaultExecutionSpace, _TYPE_>(tableau, max_colonne);
+  else
+    local_max_abs_tab_kernel<Kokkos::DefaultHostExecutionSpace, _TYPE_>(tableau, max_colonne);
+}
+
+template void local_carre_norme_tab<double>(const TRUSTTab<double,int>& tableau, TRUSTArray<double,int>& norme_colonne);
+template void local_carre_norme_tab<float>(const TRUSTTab<float,int>& tableau, TRUSTArray<float,int>& norme_colonne);
+template void local_max_abs_tab<double>(const TRUSTTab<double,int>& tableau, TRUSTArray<double,int>& max_colonne);
+template void local_max_abs_tab<float>(const TRUSTTab<float,int>& tableau, TRUSTArray<float,int>& max_colonne);

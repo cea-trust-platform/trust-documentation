@@ -39,15 +39,15 @@ void Loi_Fermeture_Test::set_param(Param& param)
 void Loi_Fermeture_Test::mettre_a_jour(double temps)
 {
   assert(status_ == COMPLET);
-  champ_test_.valeurs()=temps*coef_;
-  champ_test_.valeur().changer_temps(temps);
+  champ_test_->valeurs()=temps*coef_;
+  champ_test_->changer_temps(temps);
 }
 void Loi_Fermeture_Test::discretiser(const Discretisation_base& dis)
 {
   Loi_Fermeture_base::discretiser(dis);
   const Probleme_base& pb = mon_probleme();
   const double temps = pb.schema_temps().temps_courant();
-  const Domaine_dis_base& le_dom_dis = pb.domaine_dis().valeur();
+  const Domaine_dis_base& le_dom_dis = pb.domaine_dis();
 
 
   dis.discretiser_champ("CHAMP_ELEM", le_dom_dis,"test_time", "s",1 /* nb composantes par defaut */,temps, champ_test_);

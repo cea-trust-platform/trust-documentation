@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,7 +21,7 @@
 #include <Probleme_base.h>
 #include <TRUST_Vector.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 #include <Parser_U.h>
 #include <Domaine.h>
 
@@ -61,7 +61,7 @@ public :
   inline const Champ_Don_base& gravite() const { return la_gravite_.valeur(); }
   inline int verification() const { return verif_; }
   inline double Scalaire0(int i) const { return Scalaire0_[i]; }
-  inline const Champ_Don& beta() const { return beta_.valeur(); }
+  inline const Champ_Don_base& beta() const { return beta_.valeur(); }
   inline const Convection_Diffusion_std& equation_scalaire() const { return equation_scalaire_.valeur(); }
   DoubleTab& calculer(DoubleTab& resu) const override
   {
@@ -76,19 +76,19 @@ public :
         Scalaire0_[i] = fct_Scalaire0_[i].eval();
       }
   }
-  inline const ArrOfDouble getScalaire0() const { return Scalaire0_; }
+  inline const ArrOfDouble& getScalaire0() const { return Scalaire0_; }
 
 protected :
   void set_param(Param& param);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
 
-  REF(Champ_Don_base) la_gravite_;
+  OBS_PTR(Champ_Don_base) la_gravite_;
   int verif_=1;
   ArrOfDouble Scalaire0_; // T0=Scalaire0_(0) ou C0(i)=Scalaire0_(i)
   Nom NomScalaire_; // Temperature ou Concentration
   VECT(Parser_U) fct_Scalaire0_;
-  REF(Champ_Don) beta_;
-  REF(Convection_Diffusion_std) equation_scalaire_;
+  OBS_PTR(Champ_Don_base) beta_;
+  OBS_PTR(Convection_Diffusion_std) equation_scalaire_;
   inline void check() const;
 };
 
@@ -139,18 +139,20 @@ inline double valeur(const DoubleTab& valeurs_champ, int elem1, int elem2, const
         return 0.5*(valeurs_champ(elem1,compo)+valeurs_champ(elem2,compo));
     }
 }
-// ToDo OpenMP factorize
-inline double valeur_addr(const double* valeurs_champ, int valeurs_champ_dimension0, int nb_dim, int elem1, int elem2, const int compo, int nb_compo)
+KOKKOS_INLINE_FUNCTION
+double valeur(CDoubleTabView valeurs_champ, int valeurs_champ_dimension0, int nb_dim, int elem1, int elem2, const int compo, int nb_compo)
 {
   if (valeurs_champ_dimension0==1)
-    return valeurs_champ[compo]; // Champ uniforme
+    return valeurs_champ(compo,0); // Champ uniforme
   else
     {
-      if (elem2<0) elem2 = elem1; // face frontiere
-      if (nb_dim==1)
-        return 0.5*(valeurs_champ[elem1]+valeurs_champ[elem2]);
+      if (elem2 < 0) elem2 = elem1; // face frontiere
+      if (nb_dim == 1)
+        return 0.5*(valeurs_champ(elem1,0)+valeurs_champ(elem2,0));
       else
-        return 0.5*(valeurs_champ[elem1*nb_compo+compo]+valeurs_champ[elem2*nb_compo+compo]);
+        return 0.5*(valeurs_champ(elem1,compo)+valeurs_champ(elem2,compo));
     }
 }
+
 #endif
+

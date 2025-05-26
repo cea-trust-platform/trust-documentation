@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,13 +13,13 @@
 *
 *****************************************************************************/
 
+#include <Convection_Diffusion_Temperature_base.h>
 #include <Echange_contact_VDF.h>
 #include <Op_Diff_VDF_base.h>
 #include <Champ_front_calc.h>
 #include <Eval_Diff_VDF.h>
 #include <Pb_Multiphase.h>
 #include <TRUSTTrav.h>
-#include <Champ_Don.h>
 #include <Operateur.h>
 #include <Motcle.h>
 
@@ -32,20 +32,32 @@ void Op_Diff_VDF_base::completer()
 {
   Operateur_base::completer();
   // Certains operateurs (Axi) n'ont pas d'iterateurs en VDF... Encore une anomalie dans la conception a corriger un jour !
-  if (iter.non_nul())
+  if (iter_.non_nul())
     {
-      iter->completer_();
-      const Champ_Inc_base& cc = le_champ_inco.non_nul() ? le_champ_inco->valeur() : equation().inconnue();
-      iter->associer_champ_convecte_ou_inc(cc, nullptr);
-      iter->set_name_champ_inco(le_champ_inco.non_nul() ? nom_inconnue() : cc.le_nom().getString());
-      iter->set_convective_op_pb_type(false /* diff op */, sub_type(Pb_Multiphase, equation().probleme()));
+      const bool is_pb_multi = sub_type(Pb_Multiphase, equation().probleme());
+
+      iter_->completer_();
+      const Champ_Inc_base& cc = le_champ_inco.non_nul() ? le_champ_inco.valeur() : equation().inconnue();
+      iter_->associer_champ_convecte_ou_inc(cc, nullptr);
+      iter_->set_name_champ_inco(le_champ_inco.non_nul() ? nom_inconnue() : cc.le_nom().getString());
+      iter_->set_convective_op_pb_type(false /* diff op */, is_pb_multi);
+      iter_->set_multiscalar_diff(equation().diffusion_multi_scalaire());
+      if (is_pb_multi && sub_type(Convection_Diffusion_Temperature_base, equation()))
+        {
+          const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
+          if (pbm.has_correlation("Flux_parietal"))
+            {
+              iter_->associer_correlation_flux_parietal(pbm.get_correlation("Flux_parietal"));
+              iter_->creer_champ_T_paroi_pour_flux_parietal();
+            }
+        }
     }
 }
 
 int Op_Diff_VDF_base::impr(Sortie& os) const
 {
   // Certains operateurs (Axi) n'ont pas d'iterateurs en VDF... Encore une anomalie dans la conception a corriger un jour !
-  return (iter.non_nul()) ? iter->impr(os) : 0;
+  return (iter_.non_nul()) ? iter_->impr(os) : 0;
 }
 
 /*! @brief calcule la contribution de la diffusion, la range dans resu
@@ -59,8 +71,8 @@ DoubleTab& Op_Diff_VDF_base::calculer(const DoubleTab& inco, DoubleTab& resu) co
 
 void Op_Diff_VDF_base::init_op_ext() const
 {
-  const Domaine_VDF& zvdf = iter->domaine();
-  const Domaine_Cl_VDF& zclvdf = iter->domaine_Cl();
+  const Domaine_VDF& zvdf = iter_->domaine();
+  const Domaine_Cl_VDF& zclvdf = iter_->domaine_Cl();
   op_ext = { this };      //le premier op_ext est l'operateur local
 
   for (int n_bord = 0; n_bord < zvdf.nb_front_Cl(); n_bord++)
@@ -69,7 +81,7 @@ void Op_Diff_VDF_base::init_op_ext() const
       if (sub_type(Echange_contact_VDF, la_cl.valeur()))
         {
           const Echange_contact_VDF& cl = ref_cast(Echange_contact_VDF, la_cl.valeur());
-          const Champ_front_calc& ch = ref_cast(Champ_front_calc, cl.T_autre_pb().valeur());
+          const Champ_front_calc& ch = ref_cast(Champ_front_calc, cl.T_autre_pb());
           const Equation_base& o_eqn = ch.equation();
           const Op_Diff_VDF_base *o_diff = &ref_cast(Op_Diff_VDF_base, o_eqn.operateur(0).l_op_base());
 
@@ -87,11 +99,11 @@ void Op_Diff_VDF_base::ajoute_terme_pour_axi(matrices_t matrices, DoubleTab& sec
     {
       const std::string& nom_inco = equation().inconnue().le_nom().getString();
       Matrice_Morse* mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
-      const DoubleTab& inco = semi_impl.count(nom_inco) ? semi_impl.at(nom_inco) : equation().inconnue().valeur().valeurs();
+      const DoubleTab& inco = semi_impl.count(nom_inco) ? semi_impl.at(nom_inco) : equation().inconnue().valeurs();
 
       if (Objet_U::bidim_axi == 1)
         {
-          const Domaine_VDF& zvdf = iter->domaine();
+          const Domaine_VDF& zvdf = iter_->domaine();
           const DoubleTab& xv = zvdf.xv();
           const IntVect& ori = zvdf.orientation();
           const IntTab& face_voisins = zvdf.face_voisins();
@@ -101,7 +113,7 @@ void Op_Diff_VDF_base::ajoute_terme_pour_axi(matrices_t matrices, DoubleTab& sec
           Nom nom_eq = equation().que_suis_je();
           if ((nom_eq == "Navier_Stokes_standard") || (nom_eq == "Navier_Stokes_QC") || (nom_eq == "Navier_Stokes_FT_Disc") || (nom_eq == "QDM_Multiphase"))
             {
-              const Eval_Diff_VDF& eval = dynamic_cast<const Eval_Diff_VDF&>(iter->evaluateur());
+              const Eval_Diff_VDF& eval = dynamic_cast<const Eval_Diff_VDF&>(iter_->evaluateur());
               const Champ_base& ch_diff = eval.get_diffusivite();
               const DoubleTab& tab_diffusivite = ch_diff.valeurs();
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,12 +18,8 @@
 
 #include <TRUST_Ref.h>
 #include <TRUSTTab.h>
-
-class Domaine;
-class Static_Int_Lists;
-class Faces;
-class Frontiere;
-class Groupe_Faces;
+#include <Domaine_forward.h>
+#include <Static_Int_Lists.h>
 
 /*! @brief classe outil pour construire les faces d'un domaine
  * (utilisee uniquement pour creer les tableau des faces reelles)
@@ -36,7 +32,10 @@ public:
   void reset();
   void creer_faces_reeles(Domaine& domaine, const Static_Int_Lists& connect_som_elem, Faces& les_faces, IntTab& elem_faces);
 
-  static int chercher_face_element(const IntTab& les_elements, const IntTab& faces_element_reference, const ArrOfInt& une_face, const int elem);
+  // This static method is also used by 64b objects like Raffiner_Simplexes:
+  template <typename _SIZE_>
+  static int chercher_face_element(const IntTab_T<_SIZE_>& elem_som, const IntTab& faces_element_ref,
+                                   const SmallArrOfTID_T<_SIZE_>& une_face, const _SIZE_ elem);
 
 private:
   static int ajouter_une_face(const ArrOfInt& une_face, const int elem0, const int elem1, IntTab& faces_sommets, IntTab& faces_voisins);
@@ -66,8 +65,8 @@ private:
   IntTab faces_element_reference_old_;
   int is_polyedre_;
   // pour check_erreur_faces :
-  REF(Domaine)   ref_domaine_;
-  REF(IntTab) faces_sommets_;
-  REF(IntTab) face_elem_;
+  OBS_PTR(Domaine)   ref_domaine_;
+  OBS_PTR(IntTab) faces_sommets_;
+  OBS_PTR(IntTab) face_elem_;
 };
 #endif

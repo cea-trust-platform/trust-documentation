@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,15 +17,15 @@
 #define Op_Diff_VEF_base_included
 
 #include <Operateur_Diff_base.h>
+
 #include <Domaine_VEF.h>
+
 #include <Op_VEF_Face.h>
 #include <Milieu_base.h>
 #include <TRUST_Ref.h>
 
 class Domaine_Cl_VEF;
-class Domaine_Cl_dis;
 class Champ_Inc_base;
-class Domaine_dis;
 class Sortie;
 
 /*! @brief class Op_Diff_VEF_base
@@ -41,13 +41,15 @@ class Op_Diff_VEF_base : public Operateur_Diff_base, public Op_VEF_Face
 public:
 
   int impr(Sortie& os) const override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& ,const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& ,const Champ_Inc_base& ) override;
 
   template <typename _TYPE_>
   double viscA(int face_i, int face_j, int num_elem, const _TYPE_& diffu) const;
+  template <typename _TYPE_>
+  KOKKOS_INLINE_FUNCTION double viscA(int face_i, int face_j, int num_elem, const _TYPE_& diffu, CIntTabView face_voisins_v, CDoubleTabView face_normales_v, CDoubleArrView inverse_volumes_v) const;
 
   double calculer_dt_stab() const override;
-  void calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const override;
   Motcle get_localisation_pour_post(const Nom& option) const override;
   virtual void remplir_nu(DoubleTab&) const;
   int phi_psi_diffuse(const Equation_base& eq) const;
@@ -57,21 +59,21 @@ public:
 
 protected:
 
-  REF(Domaine_VEF) le_dom_vef;
-  REF(Domaine_Cl_VEF) la_zcl_vef;
-  REF(Champ_Inc_base) inconnue_;
+  OBS_PTR(Domaine_VEF) le_dom_vef;
+  OBS_PTR(Domaine_Cl_VEF) la_zcl_vef;
+  OBS_PTR(Champ_Inc_base) inconnue_;
   //DoubleVect porosite_face;
   mutable DoubleTab nu_;
 
 private:
   template<typename _TYPE_> std::enable_if_t< std::is_same<_TYPE_, double>::value , double>
-  inline diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu; }
+  KOKKOS_INLINE_FUNCTION diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu; }
 
   template<typename _TYPE_> std::enable_if_t< std::is_same<_TYPE_, TRUSTTab<double>>::value , double>
-  inline diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu(num_elem, k * dimension + l); }
+  KOKKOS_INLINE_FUNCTION diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu(num_elem, k * dimension + l); }
 
   template<typename _TYPE_> std::enable_if_t< std::is_same<_TYPE_, TRUSTArray<double>>::value , double>
-  inline diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu[k * dimension + l]; }
+  KOKKOS_INLINE_FUNCTION diffu__(const int k, const int l, const int num_elem, const _TYPE_ &diffu) const { return diffu[k * dimension + l]; }
 };
 
 // ATTENTION le diffu intervenant dans les fonctions n'est que LOCAL (on appelle d_nu apres)
@@ -105,4 +107,27 @@ inline double Op_Diff_VEF_base::viscA(int i, int j, int num_elem, const _TYPE_ &
     return DSiSj * inverse_volumes(num_elem);
 }
 
+template<typename _TYPE_>
+KOKKOS_INLINE_FUNCTION double Op_Diff_VEF_base::viscA(int i, int j, int num_elem, const _TYPE_ &diffu, CIntTabView face_voisins_v, CDoubleTabView face_normales_v, CDoubleArrView inverse_volumes_v) const
+{
+  constexpr bool is_double = std::is_same<_TYPE_, double>::value;
+  int dim = (int)face_normales_v.extent(1);
+  double DSiSj = 0.;
+  if (is_double)
+    {
+      for (int k = 0; k < dim; k++)
+        DSiSj += diffu__(k, k, num_elem, diffu) * face_normales_v(i, k) * face_normales_v(j, k);
+    }
+  else
+    {
+      for (int k = 0; k < dim; k++)
+        for (int l = 0; l < dim; l++)
+          DSiSj += diffu__(k, l, num_elem, diffu) * face_normales_v(i, k) * face_normales_v(j, l);
+    }
+
+  if ((face_voisins_v(i, 0) == face_voisins_v(j, 0)) || (face_voisins_v(i, 1) == face_voisins_v(j, 1)))
+    return -DSiSj * inverse_volumes_v(num_elem);
+  else
+    return DSiSj * inverse_volumes_v(num_elem);
+}
 #endif /* Op_Diff_VEF_base_included */

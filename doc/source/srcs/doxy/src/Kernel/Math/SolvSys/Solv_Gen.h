@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,12 +16,13 @@
 #ifndef Solv_Gen_included
 #define Solv_Gen_included
 
-#include <Precond.h>
-#include <SolvElem.h>
-#include <Matrice_Morse.h>
+#include <SolvElem_base.h>
 #include <solv_iteratif.h>
-class Param;
+#include <Precond_base.h>
+#include <TRUST_Deriv.h>
 
+class Matrice_Morse;
+class Param;
 #define _SEUIL_Gen_ 1e-12
 
 class Solv_Gen : public solv_iteratif
@@ -34,10 +35,10 @@ public :
   {
     return resoudre_systeme(M, A, B);
   }
-  inline SolvElem& le_solveur_elem() { return le_solveur_elem_; }
-  inline const SolvElem& le_solveur_elem() const { return le_solveur_elem_; }
-  inline const Precond& get_precond() const { return le_precond_; }
-  inline void set_precond(const Precond& pre ) { le_precond_ = pre; }
+  inline OWN_PTR(SolvElem_base)& le_solveur_elem() { return le_solveur_elem_; }
+  inline const OWN_PTR(SolvElem_base)& le_solveur_elem() const { return le_solveur_elem_; }
+  inline const OWN_PTR(Precond_base)& get_precond() const { return le_precond_; }
+  inline void set_precond(const OWN_PTR(Precond_base)& pre ) { le_precond_ = pre; }
   void reinit() override;
 
 protected :
@@ -45,9 +46,12 @@ protected :
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   int solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, const DoubleVect& secmem, DoubleVect& solution);
 
-  Precond le_precond_;
-  SolvElem le_solveur_elem_;
-  int nb_it_max_, nb_it_max_flag, force_;
+  OWN_PTR(Precond_base) le_precond_;
+  OWN_PTR(SolvElem_base) le_solveur_elem_;
+  int nb_it_max_ = 1000000;
+  int nb_it_max_flag = 0;
+  bool force_ = false;
+
 };
 
 #endif /* Solv_Gen_included */

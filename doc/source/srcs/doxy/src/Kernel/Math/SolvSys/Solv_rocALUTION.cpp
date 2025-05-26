@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,8 +24,12 @@
 #include <MD_Vector_composite.h>
 #include <Device.h>
 #include <stat_counters.h>
+#include <Array_tools.h>
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(Solv_rocALUTION, "Solv_rocALUTION", Solv_Externe);
+// XD rocalution petsc rocalution 0 Solver via rocALUTION API
+// XD attr solveur chaine solveur 0 not_set
+// XD attr option_solveur bloc_lecture option_solveur 0 not_set
 
 // printOn
 Sortie& Solv_rocALUTION::printOn(Sortie& s ) const
@@ -511,11 +515,11 @@ double residual(const Matrice_Base& a, const DoubleVect& b, const DoubleVect& x)
 }
 double residual_device(const GlobalMatrix<double>& a, const GlobalVector<double>& b, const GlobalVector<double>& x, GlobalVector<double>& e)
 {
-  if (Objet_U::computeOnDevice) statistiques().begin_count(gpu_library_counter_);
+  statistiques().begin_count(gpu_library_counter_);
   a.Apply(x, &e);
   e.ScaleAdd(-1.0, b);
   double norm = e.Norm();
-  if (Objet_U::computeOnDevice) statistiques().end_count(gpu_library_counter_);
+  statistiques().end_count(gpu_library_counter_);
   return norm;
 }
 #endif
@@ -525,13 +529,13 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
 #ifdef ROCALUTION_ROCALUTION_HPP_
   if (write_system_) save++;
   double tick;
-  bool gpu = computeOnDevice && _rocalution_available_accelerator();
+  bool gpu = _rocalution_available_accelerator();
   bool solutionOnDevice = x.isDataOnDevice();
   bool keepDataOnDevice = gpu && solutionOnDevice;
   if (!keepDataOnDevice)
     {
-      b.checkDataOnHost();
-      x.checkDataOnHost();
+      b.ensureDataOnHost();
+      x.ensureDataOnHost();
     }
 #ifdef MPI_
   MPI_Comm comm;
@@ -570,7 +574,7 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
       if (write_system_) write_matrix(mat);
 
       // Fixe le nombre d'iterations max:
-      ls->InitMaxIter(nb_rows_tot_);
+      ls->InitMaxIter(std::min((int)nb_rows_tot_, (int)10000));
     }
   else
     {
@@ -594,11 +598,11 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
   tick = rocalution_time();
   auto N = pm.GetGlobalNrow();
   int size=b.size_array();
-  if (rhs_host.size_array()==0)
+  if (rhs_.size_array()==0)
     {
       // Allocation initiale
-      sol_host.resize(size);
-      rhs_host.resize(size);
+      lhs_.resize(size);
+      rhs_.resize(size);
       sol.SetParallelManager(pm);
       rhs.SetParallelManager(pm);
       e.SetParallelManager(pm);
@@ -606,43 +610,33 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
       rhs.Allocate("rhs", N);
       e.Allocate("e", N);
     }
-  const double * x_addr        = keepDataOnDevice ? mapToDevice(x)               : x.addr();
-  const double * b_addr        = keepDataOnDevice ? mapToDevice(b)               : b.addr();
-  const int * index_addr       = keepDataOnDevice ? mapToDevice(index_)          : index_.addr();
-  double * sol_host_addr       = keepDataOnDevice ? computeOnTheDevice(sol_host) : sol_host.addr();
-  double * rhs_host_addr       = keepDataOnDevice ? computeOnTheDevice(rhs_host) : rhs_host.addr();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (keepDataOnDevice)
-  for (int i=0; i<size; i++)
-    if (index_addr[i]!=-1)
-      {
-        sol_host_addr[index_addr[i]] = x_addr[i];
-        rhs_host_addr[index_addr[i]] = b_addr[i];
-      }
-  end_gpu_timer(keepDataOnDevice, "Solv_rocALUTION::Update_vectors");
 
   if (keepDataOnDevice)
     {
+      Update_lhs_rhs<Kokkos::DefaultExecutionSpace>(b, x);
       // Les vecteurs rocALUTION sont deplaces sur le device pour une mise a jour sur le device (optimal)
       if (gpu) statistiques().begin_count(gpu_copytodevice_counter_);
       sol.MoveToAccelerator();
       rhs.MoveToAccelerator();
       e.MoveToAccelerator();
       if (gpu) statistiques().end_count(gpu_copytodevice_counter_, 3 * (int)sizeof(double) * nb_rows_);
-      sol.GetInterior().CopyFromData(addrOnDevice(sol_host));
-      rhs.GetInterior().CopyFromData(addrOnDevice(rhs_host));
+      sol.GetInterior().CopyFromData(addrOnDevice(lhs_));
+      rhs.GetInterior().CopyFromData(addrOnDevice(rhs_));
     }
   else
     {
+      Update_lhs_rhs<Kokkos::DefaultHostExecutionSpace>(b, x);
       // Les vecteurs sont remplis sur le host puis deplaces vers le device
-      sol.GetInterior().CopyFromData(sol_host_addr);
-      rhs.GetInterior().CopyFromData(rhs_host_addr);
+      sol.GetInterior().CopyFromData(lhs_.addr());
+      rhs.GetInterior().CopyFromData(rhs_.addr());
       if (gpu) statistiques().begin_count(gpu_copytodevice_counter_);
       sol.MoveToAccelerator();
       rhs.MoveToAccelerator();
       e.MoveToAccelerator();
       if (gpu) statistiques().end_count(gpu_copytodevice_counter_, 3 * (int)sizeof(double) * nb_rows_);
     }
+
+
   Cout << "[rocALUTION] Time to build and move vectors on device: " << (rocalution_time() - tick) / 1e6 << finl;
 
   if (write_system_) write_vectors(rhs, sol);
@@ -710,7 +704,8 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
   if (keepDataOnDevice)
     {
       // Les vecteurs sont mis a jour entre eux sur le device (optimal)
-      sol.GetInterior().CopyToData(addrOnDevice(sol_host));
+      sol.GetInterior().CopyToData(addrOnDevice(lhs_));
+      Update_solution<Kokkos::DefaultExecutionSpace>(x);
     }
   else
     {
@@ -718,17 +713,9 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
       if (gpu) statistiques().begin_count(gpu_copyfromdevice_counter_);
       sol.MoveToHost();
       if (gpu) statistiques().end_count(gpu_copyfromdevice_counter_, (int)sizeof(double) * nb_rows_);
-      sol.GetInterior().CopyToData(sol_host_addr);
+      sol.GetInterior().CopyToData(lhs_.addr());
+      Update_solution<Kokkos::DefaultHostExecutionSpace>(x);
     }
-  double * xx_addr = keepDataOnDevice ? computeOnTheDevice(x) : x.addr();
-  start_gpu_timer();
-#ifndef TRUST_USE_CUDA
-  #pragma omp target teams distribute parallel for if (keepDataOnDevice)
-#endif
-  for (int i=0; i<size; i++)
-    if (index_addr[i]!=-1)
-      xx_addr[i] = sol_host_addr[index_addr[i]];
-  end_gpu_timer(keepDataOnDevice, "Solv_rocALUTION::Update_solution");
   x.echange_espace_virtuel();
   if (first_solve_) res_final = residual(a, b, x); // Securite a la premiere resolution
 #ifndef NDEBUG
@@ -759,7 +746,7 @@ int Solv_rocALUTION::resoudre_systeme(const Matrice_Base& a, const DoubleVect& b
   //e.Clear();
   if (nb_iter>1) first_solve_ = false;
   Cout << "[rocALUTION] Time to get solution: " << (rocalution_time() - tick) / 1e6 << finl;
-  if (solutionOnDevice) mapToDevice(x,"Send x back to device after rocALUTION");
+  if (solutionOnDevice) mapToDevice(x);
   return nb_iter;
 #else
   Process::exit("Sorry, rocALUTION solvers not available with this build.");
@@ -775,7 +762,20 @@ void Solv_rocALUTION::Create_objects(const Matrice_Morse& csr)
   const ArrOfInt& tab2 = csr.get_tab2();
   const ArrOfDouble& coeff = csr.get_coeff();
   const MD_Vector_base& mdv = renum_.get_md_vector().valeur();
-  const MD_Vector_std& md = sub_type(MD_Vector_composite, mdv) ? ref_cast(MD_Vector_composite, mdv).global_md_ : ref_cast(MD_Vector_std, mdv);
+
+  const MD_Vector_std *tmp_p = nullptr;
+  if (Process::is_parallel())
+    {
+      if (sub_type(MD_Vector_composite, mdv))
+        {
+          const MD_Vector_mono * pp = & ref_cast(MD_Vector_composite, mdv).global_md();
+          tmp_p = dynamic_cast<const MD_Vector_std *>(pp);
+          assert(tmp_p != nullptr); // always MD_Vector_std in parallel mode
+        }
+      else
+        tmp_p = &ref_cast(MD_Vector_std, mdv);
+    }
+
   if (local_renum_.size_array()==0) // ToDo OpenMP: bug a trouver sur ce tableau et son utilisation dans rocALUTION pour P1/P1Bulle
     {
       int size = items_to_keep_.size_array();
@@ -806,12 +806,16 @@ void Solv_rocALUTION::Create_objects(const Matrice_Morse& csr)
       renum_.ecrit(Journal());
       Journal() << "Provisoire local_renum_=" << finl;
       local_renum_.ecrit(Journal());
-      Journal() << "Provisoire items_to_send_:" << finl;
-      md.items_to_send_.ecrire(Journal());
-      Journal() << "Provisoire items_to_recv_:" << finl;
-      md.items_to_recv_.ecrire(Journal());
-      Journal() << "Provisoire blocs_to_recv_:" << finl;
-      md.blocs_to_recv_.ecrire(Journal());
+      if (Process::is_parallel())
+        {
+          const MD_Vector_std& md = *tmp_p;
+          Journal() << "Provisoire items_to_send_:" << finl;
+          md.items_to_send().ecrire(Journal());
+          Journal() << "Provisoire items_to_recv_:" << finl;
+          md.items_to_recv().ecrire(Journal());
+          Journal() << "Provisoire blocs_to_recv_:" << finl;
+          md.blocs_to_recv().ecrire(Journal());
+        }
     }
   std::vector<int> tab1_c, ghost_tab1_c;
   std::vector<int> tab2_c, ghost_tab2_c;
@@ -864,42 +868,43 @@ void Solv_rocALUTION::Create_objects(const Matrice_Morse& csr)
 
   if (Process::is_parallel())
     {
-      int boundary_nnz = md.items_to_send_.get_data().size_array();
+      const MD_Vector_std& md = *tmp_p;
+      int boundary_nnz = md.items_to_send().get_data().size_array();
 
       // Renum items_to_send et la tri:
       std::vector<True_int> renum_items_to_send_;
-      for (int pe = 0; pe < md.items_to_send_.get_nb_lists(); pe++)
+      for (int pe = 0; pe < md.items_to_send().get_nb_lists(); pe++)
         {
           ArrOfInt items_pe;
-          md.items_to_send_.copy_list_to_array(pe, items_pe);
+          md.items_to_send().copy_list_to_array(pe, items_pe);
           int size = items_pe.size_array();
           for (int i = 0; i < size; i++)
-            items_pe[i] = local_renum_[md.items_to_send_(pe, i)];
-          items_pe.array_trier_retirer_doublons();
+            items_pe[i] = local_renum_[md.items_to_send()(pe, i)];
+          array_trier_retirer_doublons(items_pe);
           // Argh, pas specifie dans la doc mais il fallait que BoundaryIndex soit triee (ToDo le dire au support rocALUTIION pour la doc...)
           for (True_int i=0; i<size; i++)
             renum_items_to_send_.push_back(items_pe[i]);
         }
       pm.SetBoundaryIndex(boundary_nnz, &renum_items_to_send_[0]);
-      int neighbors = md.pe_voisins_.size_array();
+      int neighbors = md.pe_voisins().size_array();
       std::vector<True_int> recv;
       for (int i=0; i<neighbors; i++)
-        recv.push_back(md.pe_voisins_[i]);
+        recv.push_back(md.pe_voisins()[i]);
       std::vector<True_int> recv_offset;
       True_int offset = 0;
       recv_offset.push_back(offset);
       // items virtuels communs:
-      assert(md.items_to_recv_.get_nb_lists() == neighbors);
-      assert(md.blocs_to_recv_.get_nb_lists() == neighbors);
+      assert(md.items_to_recv().get_nb_lists() == neighbors);
+      assert(md.blocs_to_recv().get_nb_lists() == neighbors);
       // Nb items recus:
-      for (int pe = 0; pe < md.blocs_to_recv_.get_nb_lists(); pe++)
+      for (int pe = 0; pe < md.blocs_to_recv().get_nb_lists(); pe++)
         {
-          offset += md.items_to_recv_.get_list_size(pe); // nb items virtuels communs
-          const int nblocs = md.blocs_to_recv_.get_list_size(pe) / 2;
+          offset += md.items_to_recv().get_list_size(pe); // nb items virtuels communs
+          const int nblocs = md.blocs_to_recv().get_list_size(pe) / 2;
           for (int ibloc = 0; ibloc < nblocs; ibloc++)
             {
-              const int jdeb = md.blocs_to_recv_(pe, ibloc * 2);
-              const int jfin = md.blocs_to_recv_(pe, ibloc * 2 + 1);
+              const int jdeb = md.blocs_to_recv()(pe, ibloc * 2);
+              const int jfin = md.blocs_to_recv()(pe, ibloc * 2 + 1);
               offset += jfin - jdeb; // nb items virtuels non communs
             }
           recv_offset.push_back(offset);
@@ -907,10 +912,10 @@ void Solv_rocALUTION::Create_objects(const Matrice_Morse& csr)
       pm.SetReceivers(neighbors, &recv[0], &recv_offset[0]);
       std::vector<True_int> sender;
       std::vector<True_int> send_offset;
-      for (int i=0; i<md.pe_voisins_.size_array(); i++)
-        sender.push_back(md.pe_voisins_[i]);
-      for (int i=0; i<md.items_to_send_.get_index().size_array(); i++)
-        send_offset.push_back(md.items_to_send_.get_index()[i]);
+      for (int i=0; i<md.pe_voisins().size_array(); i++)
+        sender.push_back(md.pe_voisins()[i]);
+      for (int i=0; i<md.items_to_send().get_index().size_array(); i++)
+        send_offset.push_back(md.items_to_send().get_index()[i]);
       pm.SetSenders(neighbors, &sender[0], &send_offset[0]);
       if (debug) pm.WriteFileASCII("pm");
     }
@@ -958,9 +963,9 @@ void Solv_rocALUTION::Create_objects(const Matrice_Morse& csr)
   assert(mat.Check());
 #endif
   tick = rocalution_time();
-  if (Objet_U::computeOnDevice) statistiques().begin_count(gpu_copytodevice_counter_);
+  statistiques().begin_count(gpu_copytodevice_counter_);
   mat.MoveToAccelerator(); // Important: move mat to device so after ls is built on device (best for performance)
-  if (Objet_U::computeOnDevice) statistiques().end_count(gpu_copytodevice_counter_, (int)(sizeof(int)*(N+nnz)+sizeof(double)*nnz));
+  statistiques().end_count(gpu_copytodevice_counter_, (int)(sizeof(int)*(N+nnz)+sizeof(double)*nnz));
   Cout << "[rocALUTION] Time to copy matrix on device: " << (rocalution_time() - tick) / 1e6 << finl;
 
   tick = rocalution_time();

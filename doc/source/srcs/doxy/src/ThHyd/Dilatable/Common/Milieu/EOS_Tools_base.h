@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,8 +21,8 @@
 #include <Objet_U.h>
 
 class Fluide_Dilatable_base;
-class Domaine_Cl_dis;
-class Domaine_dis;
+class Domaine_dis_base;
+class Domaine_Cl_dis_base;
 
 /*! @brief classe Abstraite EOS_Tools_base
  *
@@ -38,14 +38,14 @@ public :
   virtual const DoubleTab& rho_discvit() const=0;
   virtual const DoubleTab& rho_face_n() const=0;
   virtual const DoubleTab& rho_face_np1() const=0;
-  virtual void associer_domaines(const Domaine_dis&,const Domaine_Cl_dis&) =0;
+  virtual void associer_domaines(const Domaine_dis_base&,const Domaine_Cl_dis_base&) =0;
   virtual void divu_discvit(const DoubleTab&, DoubleTab&)=0;
   virtual void secmembre_divU_Z(DoubleTab& ) const =0;
   virtual void calculer_rho_face_np1(const DoubleTab& rho)=0;
   virtual double moyenne_vol(const DoubleTab&) const =0;
 
 protected :
-  REF(Fluide_Dilatable_base) le_fluide_;
+  OBS_PTR(Fluide_Dilatable_base) le_fluide_;
 };
 
 #endif /* EOS_Tools_base_included */

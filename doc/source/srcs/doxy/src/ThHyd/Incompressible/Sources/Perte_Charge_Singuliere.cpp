@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,6 +36,12 @@ extern void convert_to(const char *s, double& ob);
  * @return (Entree&) le flot d'entree modifie
  * @throws mot cle inattendu, on attendait "KX","KY", "KZ" ou "K"
  */
+// XD perte_charge_singuliere source_base perte_charge_singuliere 1 Source term that is used to model a pressure loss over a surface area (transition through a grid, sudden enlargement) defined by the faces of elements located on the intersection of a subzone named subzone_name and a X,Y, or Z plane located at X,Y or Z = location.
+// XD  attr dir chaine(into=["kx","ky","kz","K"]) dir 0 KX, KY or KZ designate directional pressure loss coefficients for respectively X, Y or Z direction. Or in the case where you chose a target flow rate with regul. Use K for isotropic pressure loss coefficient
+// XD  attr coeff floattant coeff 1 Value (float) of friction coefficient (KX, KY, KZ).
+// XD  attr regul bloc_lecture regul 1 option to have adjustable K with flowrate target  NL2 { K0 valeur_initiale_de_k deb debit_cible eps intervalle_variation_mutiplicatif}.
+// XD  attr surface bloc_lecture surface 0 Three syntaxes are possible for the surface definition block: NL2 For VDF and VEF: { X|Y|Z = location subzone_name } NL2 Only for VEF: { Surface surface_name }. NL2 For polymac { Surface surface_name Orientation champ_uniforme }
+
 Entree& Perte_Charge_Singuliere::lire_donnees(Entree& is)
 {
   Motcle motlu;
@@ -113,7 +119,7 @@ void Perte_Charge_Singuliere::lire_surfaces(Entree& is, const Domaine& le_domain
   int nfe = zvf.domaine().nb_faces_elem();
   IntTab face_tab; //1 for faces in the surface
   zvf.creer_tableau_faces(face_tab);
-  Champ_Don orientation;
+  OWN_PTR(Champ_Don_base) orientation;
 
   int algo=-1;
   Motcle method;
@@ -344,7 +350,7 @@ void Perte_Charge_Singuliere::lire_surfaces(Entree& is, const Domaine& le_domain
       compteur = nb_faces;
     }
 
-  int faces_found=mp_somme_vect(face_tab);
+  trustIdType faces_found=mp_somme_vect(face_tab);
   if (faces_found==0)
     {
       Cerr << "Error in Perte_Charge_Singuliere::lire_surfaces" << finl;
@@ -361,7 +367,7 @@ void Perte_Charge_Singuliere::lire_surfaces(Entree& is, const Domaine& le_domain
       DoubleTrav xvf(compteur, Objet_U::dimension), ori(compteur, Objet_U::dimension);
       for (int i = 0; i < compteur; i++)
         for (int j = 0; j < Objet_U::dimension; j++) xvf(i, j) = xv(les_faces(i), j);
-      orientation.valeur().valeur_aux(xvf, ori);
+      orientation->valeur_aux(xvf, ori);
       for (int i = 0; i < compteur; i++)
         {
           double scal = 0;
@@ -373,7 +379,7 @@ void Perte_Charge_Singuliere::lire_surfaces(Entree& is, const Domaine& le_domain
 
 double Perte_Charge_Singuliere::calculate_Q(const Equation_base& eqn, const IntVect& num_faces, const IntVect& sgn) const
 {
-  const Domaine_VF& zvf = ref_cast(Domaine_VF, eqn.domaine_dis().valeur());
+  const Domaine_VF& zvf = ref_cast(Domaine_VF, eqn.domaine_dis());
   const DoubleTab& vit = eqn.inconnue().valeurs(),
                    &fac = sub_type(Pb_Multiphase, eqn.probleme()) ? ref_cast(Pb_Multiphase, eqn.probleme()).equation_masse().champ_conserve().passe()
                           : eqn.probleme().get_champ("masse_volumique").valeurs(); // get_champ pour flica5 car la masse volumique n'est pas dans le milieu...
@@ -400,8 +406,12 @@ void Perte_Charge_Singuliere::update_K(const Equation_base& eqn, double deb, Dou
   if (!regul_) return;
   double t = eqn.probleme().schema_temps().temps_courant(), dt = eqn.probleme().schema_temps().pas_de_temps();
   deb_cible_.setVar(0, t), eps_.setVar(0, t);
-  double deb_cible = deb_cible_.eval(), eps = eps_.eval(), f_min = std::pow(1 - eps, dt), f_max = std::pow(1 + eps, dt); //bande de variation de K
-  K_ *= std::min(std::max(std::pow(std::fabs(deb) / deb_cible, 2), f_min), f_max);
+  double deb_cible = deb_cible_.eval();
+  if (std::abs(deb_cible) > 1e-10)
+    {
+      const double eps = eps_.eval(), error = (deb - deb_cible) / deb_cible;
+      K_ += dt * eps * error;
+    }
 
   //pour le fichier de suivi : seulement sur le maitre, car Source_base::imprimer() fait une somme sur les procs
   if (!Process::me()) bilan(0) = K_, bilan(1) = deb, bilan(2) = deb_cible;

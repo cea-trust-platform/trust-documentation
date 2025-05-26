@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,8 +16,7 @@
 #ifndef Cond_lim_base_included
 #define Cond_lim_base_included
 
-#include <Champ_front.h>
-#include <Champ_Inc.h>
+#include <Champ_front_base.h>
 #include <TRUST_Ref.h>
 #include <Motcle.h>
 #include <vector>
@@ -25,13 +24,12 @@
 class Discretisation_base;
 class Domaine_Cl_dis_base;
 class Equation_base;
-class Champ_Inc;
 
 /*! @brief classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes conditions aux limites (Dirichlet, Neumann ...).
  *
  *      Un objet condition aux limite sert a definir, pour une equation donnee, les conditions aux limites a appliquer sur une frontiere d'un domaine.
  *      Chaque objet Cond_lim_base contient une reference vers l'objet Domaine_Cl_dis_base dont il fait partie.
- *      Chaque objet contient egalement un objet Champ_front contenant les valeurs a imposer sur la frontiere.
+ *      Chaque objet contient egalement un objet OWN_PTR(Champ_front_base) contenant les valeurs a imposer sur la frontiere.
  *
  * @sa Cond_lim Domaine_Cl_dis_base Frontiere_dis_base, Classe abstraite dont toutes les objets representant des conditions, aux limites doivent deriver.,
  *     Methode abstraite:, int compatible_avec_eqn(const Equation_base&) const
@@ -52,8 +50,8 @@ public:
   inline Domaine_Cl_dis_base& domaine_Cl_dis();
   inline const Domaine_Cl_dis_base& domaine_Cl_dis() const;
   virtual void associer_domaine_cl_dis_base(const Domaine_Cl_dis_base&);
-  inline Champ_front& champ_front();
-  inline const Champ_front& champ_front() const;
+  inline Champ_front_base& champ_front();
+  inline const Champ_front_base& champ_front() const;
 
   virtual void set_temps_defaut(double temps);
   virtual void fixer_nb_valeurs_temporelles(int nb_cases);
@@ -61,7 +59,7 @@ public:
   virtual void champ_front(int, DoubleVect&) const;
   virtual int compatible_avec_eqn(const Equation_base&) const ;
   virtual int compatible_avec_discr(const Discretisation_base&) const;
-  virtual void injecter_dans_champ_inc(const Champ_Inc&) const;
+  virtual void injecter_dans_champ_inc(const Champ_Inc_base&) const;
 
   virtual int a_mettre_a_jour_ss_pas_dt();
 
@@ -76,8 +74,8 @@ public:
 protected:
   std::vector<Motcle> app_domains;
   std::vector<Nom> supp_discs;
-  Champ_front le_champ_front;
-  REF(Domaine_Cl_dis_base) mon_dom_cl_dis;
+  OWN_PTR(Champ_front_base) le_champ_front;
+  OBS_PTR(Domaine_Cl_dis_base) mon_dom_cl_dis;
   void err_pas_compatible(const Equation_base&) const;
   void err_pas_compatible(const Discretisation_base&) const;
 
@@ -91,7 +89,7 @@ protected:
  */
 inline Frontiere_dis_base& Cond_lim_base::frontiere_dis()
 {
-  return le_champ_front.frontiere_dis();
+  return le_champ_front->frontiere_dis();
 }
 
 /*! @brief Renvoie la frontiere discretisee a laquelle les conditions aux limites s'appliquent.
@@ -102,7 +100,7 @@ inline Frontiere_dis_base& Cond_lim_base::frontiere_dis()
  */
 inline const Frontiere_dis_base& Cond_lim_base::frontiere_dis() const
 {
-  return le_champ_front.frontiere_dis();
+  return le_champ_front->frontiere_dis();
 }
 
 /*! @brief Renvoie le domaine des conditions aux limites discretisee dont l'objet fait partie.
@@ -125,12 +123,12 @@ inline const Domaine_Cl_dis_base& Cond_lim_base::domaine_Cl_dis() const
   return mon_dom_cl_dis.valeur();
 }
 
-inline Champ_front& Cond_lim_base::champ_front()
+inline Champ_front_base& Cond_lim_base::champ_front()
 {
   return le_champ_front;
 }
 
-inline const Champ_front& Cond_lim_base::champ_front() const
+inline const Champ_front_base& Cond_lim_base::champ_front() const
 {
   return le_champ_front;
 }

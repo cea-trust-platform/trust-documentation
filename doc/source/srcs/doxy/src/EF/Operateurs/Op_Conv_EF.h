@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,7 +45,7 @@ public:
 
   double calculer_dt_stab() const override ;
 
-  //virtual void remplir_fluent(DoubleVect& ) const;
+  //virtual void remplir_fluent() const;
   // Methodes pour l implicite.
   inline void dimensionner(Matrice_Morse& matrice) const override { Op_EF_base::dimensionner(le_dom_EF.valeur(),la_zcl_EF.valeur(), matrice); }
   inline void modifier_pour_Cl(Matrice_Morse& matrice, DoubleTab& secmem) const override { Op_EF_base::modifier_pour_Cl(le_dom_EF.valeur(),la_zcl_EF.valeur(), matrice, secmem); }
@@ -62,6 +62,8 @@ public:
   void completer() override;
   double get_btd() const { return btd_; }
   const Champ_base& get_champ(const Motcle& nom) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
 protected:
   double hourglass;
@@ -109,7 +111,6 @@ DoubleTab& Op_Conv_EF::ajouter_sous_cond_template(const DoubleTab& transporte, D
   if ((btd_impl == 1) && (hourglass_impl == 1) && (centre_impl == 1))
     return resu;
 
-  DoubleVect& fluent_ = fluent;
 
   const Champ_Inc_base& la_vitesse = vitesse_.valeur();
   const DoubleTab& G = la_vitesse.valeurs();

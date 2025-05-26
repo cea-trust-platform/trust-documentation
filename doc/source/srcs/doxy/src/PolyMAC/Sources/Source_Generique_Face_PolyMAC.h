@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -27,12 +27,12 @@ class Source_Generique_Face_PolyMAC: public Source_Generique_base
   Declare_instanciable(Source_Generique_Face_PolyMAC);
 public:
   DoubleTab& ajouter(DoubleTab&) const override;
-  void associer_domaines(const Domaine_dis&, const Domaine_Cl_dis&) override;
+  void associer_domaines(const Domaine_dis_base&, const Domaine_Cl_dis_base&) override;
   Nom localisation_source() override;
 
 protected:
-  REF(Domaine_PolyMAC) le_dom_PolyMAC;
-  REF(Domaine_Cl_PolyMAC) la_zcl_PolyMAC;
+  OBS_PTR(Domaine_PolyMAC) le_dom_PolyMAC;
+  OBS_PTR(Domaine_Cl_PolyMAC) la_zcl_PolyMAC;
 };
 
 class Source_Generique_Face_PolyMAC_P0P1NC: public Source_Generique_Face_PolyMAC

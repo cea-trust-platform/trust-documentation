@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,6 +17,7 @@
 #include <Matrice_Base.h>
 #include <Matrice_Morse_Sym.h>
 #include <Matrice_Bloc_Sym.h>
+#include <Device.h>
 
 Implemente_base_sans_constructeur_ni_destructeur(Solv_Externe,"Solv_Externe",SolveurSys_base);
 
@@ -36,7 +37,7 @@ Entree& Solv_Externe::readOn(Entree& is)
 void Solv_Externe::construit_renum(const DoubleVect& b)
 {
   // Initialisation du tableau items_to_keep_ si ce n'est pas deja fait
-  nb_items_to_keep_ = MD_Vector_tools::get_sequential_items_flags(b.get_md_vector(), items_to_keep_, b.line_size());
+  nb_items_to_keep_ = b.get_md_vector()->get_sequential_items_flags(items_to_keep_, b.line_size());
 
   // Compute important value:
   secmem_sz_ = b.size_totale();
@@ -58,15 +59,14 @@ void Solv_Externe::construit_renum(const DoubleVect& b)
   int cpt=0;
   int size=items_to_keep_.size_array();
   renum_ = INT_MAX; //pour crasher si le MD_Vector est incoherent
-  ArrOfInt& renum_array = renum_;  // tableau vu comme lineaire
+  ArrOfTID& renum_array = renum_;  // tableau vu comme lineaire
   for(int i=0; i<size; i++)
-    {
-      if(items_to_keep_[i])
-        {
-          renum_array[i]=cpt+decalage_local_global_;
-          cpt++;
-        }
-    }
+    if(items_to_keep_[i])
+      {
+        renum_array[i]=cpt+decalage_local_global_;
+        cpt++;
+      }
+
   renum_.echange_espace_virtuel();
   // Construction de index_
   index_.resize(size);
@@ -84,7 +84,7 @@ void Solv_Externe::construit_renum(const DoubleVect& b)
     }
   // Construction de ix
   size=b.size_array();
-  int colonne_globale=decalage_local_global_;
+  trustIdType colonne_globale=decalage_local_global_;
   ix.resize(size);
   for (int i=0; i<size; i++)
     if (items_to_keep_[i])
@@ -130,14 +130,14 @@ void Solv_Externe::construit_matrice_morse_intermediaire(const Matrice_Base& la_
   else if (sub_type(Matrice_Morse, la_matrice))
     {
       // Exemple : matrice implicite
-      matrice_symetrique_ = 0;
+      matrice_symetrique_ = false;
     }
   else if (sub_type(Matrice_Bloc, la_matrice))
     {
       // Exemple : matrice de pression en VDF
       const Matrice_Bloc& matrice_bloc = ref_cast(Matrice_Bloc, la_matrice);
       if (!sub_type(Matrice_Morse_Sym, matrice_bloc.get_bloc(0, 0).valeur()))
-        matrice_symetrique_ = 0;
+        matrice_symetrique_ = false;
       else
         {
           // Pour un solveur direct, operation si la matrice n'est pas definie (en incompressible VDF, rien n'etait fait...)
@@ -153,3 +153,60 @@ void Solv_Externe::construit_matrice_morse_intermediaire(const Matrice_Base& la_
       exit();
     }
 }
+
+void Solv_Externe::Create_lhs_rhs_onDevice()
+{
+  lhs_.resize(nb_rows_);
+  rhs_.resize(nb_rows_);
+}
+
+template<typename ExecSpace>
+void Solv_Externe::Update_lhs_rhs(const DoubleVect& tab_b, DoubleVect& tab_x)
+{
+  const unsigned int size = tab_b.size_array();
+  auto x = tab_x.template view_ro<1, ExecSpace>();
+  auto b = tab_b.template view_ro<1, ExecSpace>();
+  auto index = static_cast<const ArrOfInt&>(index_).template view_ro<1, ExecSpace>();
+  auto lhs = lhs_.template view_wo<1, ExecSpace>();
+  auto rhs = rhs_.template view_wo<1, ExecSpace>();
+  Kokkos::RangePolicy<ExecSpace> policy(0, size);
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), policy, KOKKOS_LAMBDA(
+                         const int i)
+  {
+    int ind = index[i];
+    if (ind != -1)
+      {
+        lhs[ind] = x[i];
+        rhs[ind] = b[i];
+      }
+  });
+  static constexpr bool kernelOnDevice = !std::is_same<ExecSpace, Kokkos::DefaultHostExecutionSpace>::value;
+  end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
+}
+
+template<typename ExecSpace>
+void Solv_Externe::Update_solution(DoubleVect& tab_x)
+{
+  const unsigned int size = tab_x.size_array();
+  auto index = static_cast<const ArrOfInt&>(index_).template view_ro<1, ExecSpace>();
+  auto lhs = lhs_.template view_ro<1, ExecSpace>();
+  auto x = tab_x.template view_wo<1, ExecSpace>();
+  Kokkos::RangePolicy<ExecSpace> policy(0, size);
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), policy, KOKKOS_LAMBDA(
+                         const int i)
+  {
+    int ind = index[i];
+    if (ind != -1)
+      x[i] = lhs[ind];
+  });
+  static constexpr bool kernelOnDevice = !std::is_same<ExecSpace, Kokkos::DefaultHostExecutionSpace>::value;
+  end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
+}
+
+#ifdef TRUST_USE_GPU
+template void Solv_Externe::Update_lhs_rhs<Kokkos::DefaultExecutionSpace>(const DoubleVect&, DoubleVect&);
+template void Solv_Externe::Update_solution<Kokkos::DefaultExecutionSpace>(DoubleVect&);
+#endif
+template void Solv_Externe::Update_lhs_rhs<Kokkos::DefaultHostExecutionSpace>(const DoubleVect&, DoubleVect&);
+template void Solv_Externe::Update_solution<Kokkos::DefaultHostExecutionSpace>(DoubleVect&);
+

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -58,11 +58,11 @@ void Force_Centrifuge_VDF_Face_Axi::associer_pb(const Probleme_base& )
   Cerr << "Force_Centrifuge_VDF_Face_Axi::associer_pb" << finl;
 }
 
-void Force_Centrifuge_VDF_Face_Axi::associer_domaines(const Domaine_dis& domaine_dis,
-                                                      const Domaine_Cl_dis& domaine_Cl_dis)
+void Force_Centrifuge_VDF_Face_Axi::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                      const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  const Domaine_VDF& zvdf = ref_cast(Domaine_VDF, domaine_dis);
+  const Domaine_Cl_VDF& zclvdf = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
   le_dom_VDF = zvdf;
   le_dom_Cl_VDF = zclvdf;
   elem_faces.ref(zvdf.elem_faces());
@@ -120,7 +120,7 @@ void Force_Centrifuge_VDF_Face_Axi::ajouter_blocs(matrices_t matrices, DoubleTab
 
       if (sub_type(Neumann_sortie_libre,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -176,7 +176,7 @@ DoubleTab& Force_Centrifuge_VDF_Face_Axi::calculer(DoubleTab& resu) const
 void Force_Centrifuge_VDF_Face_Axi::completer()
 {
   Source_base::completer();
-  la_vitesse = ref_cast(Champ_Face_VDF,equation().inconnue().valeur());
+  la_vitesse = ref_cast(Champ_Face_VDF,equation().inconnue());
 
 }
 

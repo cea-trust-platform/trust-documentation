@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,14 +34,19 @@ class PE_Groups
 {
 public:
   inline static const Comm_Group& current_group();
-  static void create_group(const ArrOfInt& liste_pe, DERIV(Comm_Group) &group, int force_Comm_Group_NoParallel = 0);
+  static void create_group(const ArrOfInt& liste_pe, OWN_PTR(Comm_Group) &group, int force_Comm_Group_NoParallel = 0);
+  static void init_group(const ArrOfInt& liste_pe, OWN_PTR(Comm_Group) &group);
   static int enter_group(const Comm_Group& group);
   static void exit_group();
   static const int& get_nb_groups();
   static int rank_translate(int rank, const Comm_Group& group, const Comm_Group& dest_group = current_group());
   static const Comm_Group& groupe_TRUST();
+  static const Comm_Group& get_node_group();
+  static const Comm_Group& get_node_master();
 
   static void initialize(const Comm_Group& groupe_trio_u);
+  static void initialize_node(const Comm_Group& ngrp);
+  static void initialize_node_master(const Comm_Group& ngrp);
   static void finalize();
 
 private:

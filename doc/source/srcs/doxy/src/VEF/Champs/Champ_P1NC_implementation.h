@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -36,6 +36,16 @@ public:
 
   int fixer_nb_valeurs_nodales(int);
 
+  KOKKOS_INLINE_FUNCTION double fonction_forme_2D_v(double x, double y, int le_poly, int face, CIntTabView sommet_poly, CDoubleTabView coord) const
+  {
+    return 1 - 2 * coord_barycentrique_P1_triangle(sommet_poly, coord, x, y, le_poly, face);
+  }
+
+  KOKKOS_INLINE_FUNCTION double fonction_forme_3D_v(double x, double y, double z, int le_poly, int face, CIntTabView sommet_poly, CDoubleTabView coord) const
+  {
+    return 1 - 3 * coord_barycentrique_P1_tetraedre(sommet_poly, coord, x, y, z, le_poly, face);
+  }
+
   inline double fonction_forme_2D(double x, double y, int le_poly, int face, const IntTab& sommet_poly, const DoubleTab& coord) const
   {
     return 1 - 2 * coord_barycentrique_P1_triangle(sommet_poly, coord, x, y, le_poly, face);
@@ -60,6 +70,8 @@ public:
   DoubleVect& valeur_a_elem(const DoubleVect& position, DoubleVect& val, int le_poly) const override;
   // Retourne la valeur de la composante ncomp du champ interpole aux coordonnees position de l'element le_poly
   double valeur_a_elem_compo(const DoubleVect& position, int le_poly, int ncomp) const override;
+  // Retourne dans valeurs les valeurs du champ interpolees aux centres de gravite
+  DoubleTab& valeur_aux_centres_de_gravite(const Domaine&, DoubleTab& valeurs) const;
   // Retourne dans valeurs les valeurs du champ interpolees aux coordonnees positions des elements les_polys
   DoubleTab& valeur_aux_elems(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& valeurs) const override;
   // Retourne les valeurs de la composante ncomp du champ interpolees aux coordonnees positions des elements les_polys
@@ -70,6 +82,8 @@ public:
   DoubleVect& valeur_aux_sommets_compo(const Domaine& dom, DoubleVect& ch_som, int ncomp) const override;
   // Retourne la valeur de la composante ncomp du champ au sommet num_som sur l'element le_poly
   double valeur_a_sommet_compo(int num_som, int le_poly, int ncomp) const;
+  KOKKOS_INLINE_FUNCTION
+  double valeur_a_sommet_compo(int num_som, int num_elem, int ncomp, CIntTabView elem_faces, CIntTabView sommet_elem, CDoubleTabView ch) const;
 
   DoubleTab& valeur_aux_elems_smooth(const DoubleTab& positions, const IntVect& les_polys, DoubleTab& valeurs);
   DoubleVect& valeur_aux_elems_compo_smooth(const DoubleTab& positions, const IntVect& les_polys, DoubleVect& valeurs, int ncomp);

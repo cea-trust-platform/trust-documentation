@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -248,6 +248,8 @@ double norm_3D_vit1(const DoubleTab& vit,int fac,int num1,
   return norm_vit;
 }
 
+
+
 double norm_3D_vit1(const DoubleTab& vit,int fac,int num1,int num2,int num3,
                     const Domaine_VEF& domaine,
                     double& val1,double& val2,double& val3)
@@ -482,6 +484,8 @@ double distance_3D(int fac,int elem,const Domaine_VEF& domaine)
 
   return std::fabs(r0*(x1-x0)+r1*(y1-y0)+r2*(z1-z0));
 }
+
+
 
 DoubleVect& calcul_longueur_filtre(DoubleVect& longueur_filtre, const Motcle& methode, const Domaine_VEF& domaine)
 {

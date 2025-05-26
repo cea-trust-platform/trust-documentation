@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -133,7 +133,7 @@ DoubleTab& Op_Diff_EF::ajouter(const DoubleTab& tab_inconnue, DoubleTab& resu) c
   int nb_som_elem=domaine_ef.domaine().nb_som_elem();
 
   int N = resu.line_size();
-  Nature_du_champ nat= equation().inconnue().valeur().nature_du_champ();
+  Nature_du_champ nat= equation().inconnue().nature_du_champ();
   if (nat==vectoriel)
     {
       if ((dimension==3)&&(nb_som_elem==8))
@@ -212,7 +212,7 @@ DoubleTab& Op_Diff_EF::ajouter_new(const DoubleTab& tab_inconnue, DoubleTab& res
 
   const int N = resu.line_size();
   ArrOfInt marqueur_neuman;
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   if(N > 1)
     remplir_marqueur_sommet_neumann( marqueur_neuman,domaine_ef,la_zcl_EF.valeur(),transpose_partout_ );
 
@@ -296,7 +296,7 @@ void Op_Diff_EF::ajouter_contribution(const DoubleTab& transporte, Matrice_Morse
   remplir_nu(nu_);
 
   const int N = transporte.line_size();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   const DoubleVect& volumes_thilde= domaine_ef.volumes_thilde();
   const DoubleVect& volumes= domaine_ef.volumes();
 
@@ -348,7 +348,7 @@ void Op_Diff_EF::ajouter_contribution_new(const DoubleTab& transporte, Matrice_M
   remplir_nu(nu_);
 
   const int N = transporte.line_size();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   //const DoubleVect& volumes_thilde= domaine_ef.volumes_thilde();
   const DoubleVect& volumes= domaine_ef.volumes();
 
@@ -407,7 +407,7 @@ void Op_Diff_EF::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,  i
   flux_bords_=0.;
   // const DoubleTab& tab_inconnue=equation().inconnue().valeurs();
   // on parcourt toutes les faces de bord et on calcule lambda*gradT
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
   const IntTab& face_voisins=domaine_ef.face_voisins();
   const DoubleTab& bij=domaine_ef.Bij();
   int nb_som_elem=domaine_ef.domaine().nb_som_elem();
@@ -457,7 +457,7 @@ void Op_Diff_EF::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,  i
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -514,8 +514,8 @@ void Op_Diff_EF::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,  i
           if (contrib_interne)
             {
               const Echange_interne_global_parfait& la_cl_paroi = ref_cast(Echange_interne_global_parfait, la_cl.valeur());
-              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-              const IntTab& fmap = Text.face_map();
+              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+              const IntVect& fmap = Text.face_map();
               std::vector<bool> hit(nfin-ndeb);
               std::fill(hit.begin(), hit.end(), false);
               for (int face=ndeb; face<nfin; face++)
@@ -575,8 +575,8 @@ void Op_Diff_EF::ajouter_bords(const DoubleTab& tab_inconnue,DoubleTab& resu,  i
           for (int face=ndeb; face<nfin; face++)
             {
               double h=la_cl_paroi.h_imp(face-ndeb);
-              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-              const IntTab& fmap = Text.face_map();
+              const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+              const IntVect& fmap = Text.face_map();
               int opp_face = fmap(face-ndeb)+ndeb;
 
               double tm=0.0;
@@ -657,7 +657,7 @@ void Op_Diff_EF::ajouter_contributions_bords(Matrice_Morse& matrice ) const
 {
   const Domaine_Cl_EF& domaine_Cl_EF = la_zcl_EF.valeur();
   const Domaine_EF& domaine_EF = le_dom_EF.valeur();
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
 
   const IntTab& face_sommets=domaine_ef.face_sommets();
   int nb_som_face=domaine_ef.nb_som_face();
@@ -677,7 +677,7 @@ void Op_Diff_EF::ajouter_contributions_bords(Matrice_Morse& matrice ) const
   for (n_bord=0; n_bord<nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_EF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -709,8 +709,8 @@ void Op_Diff_EF::ajouter_contributions_bords(Matrice_Morse& matrice ) const
       else if (sub_type(Echange_interne_global_parfait, la_cl.valeur()))
         {
           const Echange_interne_global_parfait& la_cl_paroi = ref_cast(Echange_interne_global_parfait, la_cl.valeur());
-          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-          const IntTab& fmap = Text.face_map();
+          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+          const IntVect& fmap = Text.face_map();
           std::vector<bool> hit(nfin-ndeb);
           std::fill(hit.begin(), hit.end(), false);
           for (int face=ndeb; face<nfin; face++)
@@ -759,8 +759,8 @@ void Op_Diff_EF::ajouter_contributions_bords(Matrice_Morse& matrice ) const
       else if (sub_type(Echange_interne_global_impose, la_cl.valeur()))
         {
           const Echange_interne_global_impose& la_cl_paroi = ref_cast(Echange_interne_global_impose, la_cl.valeur());
-          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext().valeur());
-          const IntTab& fmap = Text.face_map();
+          const Champ_front_calc_interne& Text = ref_cast(Champ_front_calc_interne, la_cl_paroi.T_ext());
+          const IntVect& fmap = Text.face_map();
           const DoubleVect& surface_gap = la_cl_paroi.surface_gap();
           for (int face=ndeb; face<nfin; face++)
             {

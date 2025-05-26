@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,11 +17,11 @@
 #define EOS_Tools_VDF_included
 
 #include <EOS_Tools_base.h>
+
 #include <TRUST_Ref.h>
 #include <TRUSTTab.h>
 
 class Fluide_Dilatable_base;
-class Domaine_Cl_dis;
 class Domaine_VDF;
 
 /*! @brief classe EOS_Tools_VDF Cette classe et specifique a discretisation de type VDF.
@@ -34,7 +34,7 @@ class EOS_Tools_VDF: public EOS_Tools_base
   Declare_instanciable(EOS_Tools_VDF);
 public :
   const DoubleTab& rho_discvit() const override;
-  void associer_domaines(const Domaine_dis&,const Domaine_Cl_dis&) override;
+  void associer_domaines(const Domaine_dis_base&,const Domaine_Cl_dis_base&) override;
   void divu_discvit(const DoubleTab&, DoubleTab&) override;
   void secmembre_divU_Z(DoubleTab& ) const override;
   void mettre_a_jour(double temps) override;
@@ -45,8 +45,8 @@ public :
   inline const Fluide_Dilatable_base& le_fluide() const { return le_fluide_.valeur(); }
 
 protected :
-  REF(Domaine_VDF) le_dom;
-  REF(Domaine_Cl_dis) le_dom_Cl;
+  OBS_PTR(Domaine_VDF) le_dom;
+  OBS_PTR(Domaine_Cl_dis_base) le_dom_Cl;
   DoubleTab tab_rho_face, tab_rho_face_demi, tab_rho_face_np1;
 };
 

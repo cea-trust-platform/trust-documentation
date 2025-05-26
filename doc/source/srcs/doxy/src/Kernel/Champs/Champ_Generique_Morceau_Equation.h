@@ -22,7 +22,7 @@
 class Equation_base;
 class MorEqn;
 
-/*! @brief class Champ_Generique_Morceau_Equation Champ destine a post-traiter une quantite liee a un morceau d equation
+/*! @brief class Champ_Generique_Morceau_Equation OWN_PTR(Champ_base) destine a post-traiter une quantite liee a un morceau d equation
  *
  *  Consulter la hierarchie de MorEqn pour connaitre les morceaux d equation
  *  Syntaxe a respecter pour jdd
@@ -52,12 +52,12 @@ public:
   const Noms get_property(const Motcle& query) const override;
   Entity  get_localisation(const int index = -1) const override;
   const   Motcle             get_directive_pour_discr() const override;
-  const Champ_base&  get_champ(Champ& espace_stockage) const override;
-  const Champ_base&  get_champ_without_evaluation(Champ& espace_stockage) const override;
+  const Champ_base&  get_champ(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base&  get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const override;
 
-  Champ_Fonc& creer_espace_stockage(const Nature_du_champ& nature,
-                                    const int nb_comp,
-                                    Champ_Fonc& es_tmp) const override;
+  OWN_PTR(Champ_Fonc_base)& creer_espace_stockage(const Nature_du_champ& nature,
+                                                  const int nb_comp,
+                                                  OWN_PTR(Champ_Fonc_base)& es_tmp) const override;
   const MorEqn& morceau() const;
   MorEqn& morceau();
   void completer(const Postraitement_base& post) override;
@@ -69,7 +69,7 @@ protected:
   Nom type_morceau_;                //type du morceau d equation (ex : Operateur)
   Nom option_;                      //Pour selectionner la quantite a postraiter
   int compo_;                            //Pour identifier la composante a recuperer pour l option flux_bords
-  REF(Equation_base) ref_eq_;       //REF vers l equation qui porte le morceau
+  OBS_PTR(Equation_base) ref_eq_;       //REF vers l equation qui porte le morceau
   Motcle  localisation_;            //localisation correspondant au support du champ postraite
   Nom unite_;                 //unite du champ obtenu (a specifier par l'utilisateur)
 

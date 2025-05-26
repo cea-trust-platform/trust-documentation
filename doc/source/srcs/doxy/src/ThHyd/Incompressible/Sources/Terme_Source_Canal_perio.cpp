@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@
 #include <Param.h>
 
 Implemente_base_sans_constructeur_ni_destructeur(Terme_Source_Canal_perio,"Terme_Source_Canal_perio",Source_base);
-
+// XD canal_perio source_base canal_perio 1 Momentum source term to maintain flow rate. The expression of the source term is: NL2 S(t) = (2*(Q(0) - Q(t))-(Q(0)-Q(t-dt))/(coeff*dt*area) NL2 NL2 Where: NL2 coeff=damping coefficient NL2 area=area of the periodic boundary NL2 Q(t)=flow rate at time t NL2 dt=time step NL2 NL2 Three files will be created during calculation on a datafile named DataFile.data. The first file contains the flow rate evolution. The second file is useful for resuming a calculation with the flow rate of the previous stopped calculation, and the last one contains the pressure gradient evolution: NL2 -DataFile_Channel_Flow_Rate_ProblemName_BoundaryName NL2 -DataFile_Channel_Flow_Rate_repr_ProblemName_BoundaryName NL2 -DataFile_Pressure_Gradient_ProblemName_BoundaryName
 
 Terme_Source_Canal_perio::Terme_Source_Canal_perio():
   direction_ecoulement_(-1),
@@ -79,11 +79,11 @@ Entree& Terme_Source_Canal_perio::readOn(Entree& is )
 void Terme_Source_Canal_perio::set_param(Param& param)
 {
   param.ajouter_non_std("direction_ecoulement",(this));
-  param.ajouter("u_etoile",&u_etoile);
-  param.ajouter("coeff",&coeff);
-  param.ajouter("h",&h);
-  param.ajouter("bord",&bord_periodique_);
-  param.ajouter_non_std("debit_impose",(this));
+  param.ajouter("u_etoile",&u_etoile);                     // XD attr u_etoile floattant u_etoile 1 not_set
+  param.ajouter("coeff",&coeff);                           // XD attr coeff floattant coeff 1 Damping coefficient (optional, default value is 10).
+  param.ajouter("h",&h);                                   // XD attr h floattant h 1 Half heigth of the channel.
+  param.ajouter("bord",&bord_periodique_);                 // XD attr bord chaine bord 0 The name of the (periodic) boundary normal to the flow direction.
+  param.ajouter_non_std("debit_impose",(this));            // XD attr debit_impose floattant debit_impose 1 Optional option to specify the aimed flow rate Q(0). If not used, Q(0) is computed by the code after the projection phase, where velocity initial conditions are slighlty changed to verify incompressibility.
   param.ajouter_non_std("velocity_weighting",(this));
 }
 
@@ -131,14 +131,14 @@ void Terme_Source_Canal_perio::completer()
       set_fichier("Canal_perio");
       set_description("Energy source term = Integral(P*dv) [W]");
     }
-  int nb_bords = equation().domaine_dis().valeur().nb_front_Cl();
+  int nb_bords = equation().domaine_dis().nb_front_Cl();
   for (int n_bord=0; n_bord<nb_bords; n_bord++)
     {
-      const Cond_lim& la_cl = equation().domaine_Cl_dis().valeur().les_conditions_limites(n_bord);
+      const Cond_lim& la_cl = equation().domaine_Cl_dis().les_conditions_limites(n_bord);
       if (sub_type(Periodique,la_cl.valeur()))
         {
           const Periodique& perio = ref_cast(Periodique,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           if ( bord_periodique_ == le_bord.le_nom() ) // Le bord periodique est specifie
             {
               if (perio.est_periodique_selon_un_axe())
@@ -283,14 +283,14 @@ double Terme_Source_Canal_perio::compute_heat_flux() const
     }
   // Loop on boundaries to evaluate total heat flux:
   double heat_flux=0;
-  int nb_bords = equation().domaine_dis().valeur().nb_front_Cl();
+  int nb_bords = equation().domaine_dis().nb_front_Cl();
   for (int n_bord=0; n_bord<nb_bords; n_bord++)
     {
-      const Cond_lim& la_cl = equation().domaine_Cl_dis().valeur().les_conditions_limites(n_bord);
+      const Cond_lim& la_cl = equation().domaine_Cl_dis().les_conditions_limites(n_bord);
       if (sub_type(Neumann_paroi,la_cl.valeur()))
         {
           // Loop on boundary faces with imposed flux condition (Neumann)
-          const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = frontiere_dis.num_premiere_face();
           int nfin = ndeb + frontiere_dis.nb_faces();
           for (int num_face=ndeb; num_face<nfin; num_face++)
@@ -306,7 +306,7 @@ ArrOfDouble Terme_Source_Canal_perio::source_convection_diffusion(double debit_e
   // Compute heat_flux:
   double heat_flux = compute_heat_flux();
 
-  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF,equation().domaine_dis().valeur());
+  const Domaine_VF& domaine_vf = ref_cast(Domaine_VF,equation().domaine_dis());
   const double volume = domaine_vf.domaine().volume_total();
   int size = domaine_vf.nb_faces();
   ArrOfDouble s(size);

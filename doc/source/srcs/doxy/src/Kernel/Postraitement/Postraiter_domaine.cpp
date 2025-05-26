@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,9 +14,11 @@
 *****************************************************************************/
 
 #include <Postraiter_domaine.h>
+#include <Domaine_dis_cache.h>
+#include <Domaine_dis_base.h>
+#include <Format_Post_base.h>
 #include <communications.h>
 #include <Sous_Domaine.h>
-#include <Format_Post.h>
 #include <Param.h>
 
 Implemente_instanciable(Postraiter_domaine, "Postraiter_domaine", Interprete_geometrique_base);
@@ -183,6 +185,7 @@ Entree& Postraiter_domaine::interpreter_(Entree& is)
   param.ajouter("binaire", &format_binaire_); // XD_ADD_P entier(into=[0,1]) Binary (binaire 1) or ASCII (binaire 0) may be used. By default, it is 0 for LATA and only ASCII is available for LML and only binary is available for MED.
   ecrire_frontiere_ = 1;
   param.ajouter("ecrire_frontiere", &ecrire_frontiere_); // XD_ADD_P entier(into=[0,1]) This option will write (if set to 1, the default) or not (if set to 0) the boundaries as fields into the file (it is useful to not add the boundaries when writing a domain extracted from another domain)
+  param.ajouter("dual", &dual_); // XD_ADD_P entier(into=[0,1]) This option indicates whether the original mesh (default) or the dual one (the one used for postprocessing of field faces) is to be written.
   nom_pdb = "NOM_DU_CAS";
   param.ajouter("fichier|file", &nom_pdb); // XD_ADD_P chaine The file name can be changed with the fichier option.
   // desactive l'ecriture des joints pratique pour comparer parallele et sequentielle
@@ -212,10 +215,10 @@ Entree& Postraiter_domaine::interpreter_(Entree& is)
   if (format_post_ == "lata_v2")
     format_post_ = "lata";
 
-  // On deplace la boucle sur les domaines lus
   ecrire(nom_pdb);
   return is;
 }
+
 int Postraiter_domaine::lire_motcle_non_standard(const Motcle& motcle, Entree& is)
 {
   if (motcle == "domaines")
@@ -259,8 +262,8 @@ void Postraiter_domaine::ecrire(Nom& nom_pdb)
 
   Nom type("Format_Post_");
   type += format_post_;
-  Format_Post post_typer;
-  post_typer.typer_direct(type);
+  OWN_PTR(Format_Post_base) post_typer;
+  post_typer.typer(type.getChar());
   Format_Post_base& post = ref_cast(Format_Post_base, post_typer.valeur());
 
   post.set_postraiter_domain(); // XXX utile pour CGNS ... sinon ca fait rien
@@ -291,7 +294,14 @@ void Postraiter_domaine::ecrire(Nom& nom_pdb)
       int reprise = 0;
       double t_init = 0.;
       post.preparer_post(dom.le_nom(), est_le_premie_post, reprise, t_init);
-      post.ecrire_domaine(dom, est_le_premie_post);
+      if(dual_)
+        {
+          const OBS_PTR(Domaine_dis_base) dom_dis = Domaine_dis_cache::Build_or_get("Domaine_VF_inst", dom);
+          post.ecrire_domaine_dis(dom, dom_dis, est_le_premie_post);
+          post.ecrire_domaine_dual(dom, est_le_premie_post);
+        }
+      else
+        post.ecrire_domaine(dom, est_le_premie_post);
     }
 
   post.ecrire_temps(0.);
@@ -306,7 +316,6 @@ void Postraiter_domaine::ecrire(Nom& nom_pdb)
 
       compteur = -1;
       post.init_ecriture(0., -1., est_le_premie_post, dom);
-
     }
   int moi = Process::me();
   if (joint_non_ecrit_)
@@ -359,7 +368,7 @@ void Postraiter_domaine::ecrire(Nom& nom_pdb)
               for (int i = 0; i < nb_raccords; i++)
                 {
                   num = i + nglob;
-                  Nom nom_fr = dom.raccord(i).valeur().le_nom();
+                  Nom nom_fr = dom.raccord(i)->le_nom();
                   if (je_suis_maitre())
                     envoyer(nom_fr, 0, -1, 11);
                   else
@@ -452,8 +461,8 @@ void Postraiter_domaine::ecrire(Nom& nom_pdb)
                   Process::exit();
                 }
             }
-          int subdomaine_cells = mp_sum(cell);
-          Cerr << "We handle of the subdomaine " << i << " who have " << subdomaine_cells << " cells." << finl;
+          trustIdType subdomaine_cells = mp_sum(cell);
+          Cerr << "We handle the subdomain #" << i << " which has " << subdomaine_cells << " cells." << finl;
           Faces bidon;
           Nom nom_post;
           nom_post = "Sous_Domaine_";

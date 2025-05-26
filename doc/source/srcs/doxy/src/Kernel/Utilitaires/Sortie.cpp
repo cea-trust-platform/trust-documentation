@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,6 +23,14 @@
 const Separateur finl(Separateur::ENDL);
 const Separateur tspace(Separateur::SPACE);
 
+Sortie::Sortie() :
+  AbstractIO(),
+  col_width_(-1)
+{
+  // Constructor does **not** instanciate ostream_ - typically done in derived classes
+}
+
+
 void Sortie::setf(IOS_FORMAT code)
 {
   if(ostream_)
@@ -35,7 +43,7 @@ void Sortie::precision(int pre)
     ostream_->precision(pre);
 }
 
-Sortie::Sortie(ostream& os)
+Sortie::Sortie(ostream& os) : Sortie()
 {
   if(os.rdbuf())
     ostream_ = std::make_unique<ostream>(os.rdbuf());
@@ -43,7 +51,7 @@ Sortie::Sortie(ostream& os)
     Process::exit();
 }
 
-Sortie::Sortie(const Sortie& os)
+Sortie::Sortie(const Sortie& os) : Sortie()
 {
   if (os.has_ostream())
     {
@@ -90,21 +98,20 @@ int Sortie::add_col(const char * ob)
   return ostream_->good();
 }
 
-int Sortie::put(const unsigned * ob, int n, int nb_col) { return put_template<unsigned>(ob,n,nb_col); }
-int Sortie::put(const int * ob, int n, int nb_col) { return put_template<int>(ob,n,nb_col); }
-int Sortie::put(const float * ob, int n, int nb_col) { return put_template<float>(ob,n,nb_col); }
-int Sortie::put(const double * ob, int n, int nb_col) { return put_template<double>(ob,n,nb_col); }
+int Sortie::put(const unsigned * ob, std::streamsize n, std::streamsize nb_col) { return put_template<unsigned>(ob,n,nb_col); }
+int Sortie::put(const True_int * ob, std::streamsize n, std::streamsize nb_col) { return put_template<True_int>(ob,n,nb_col); }
+int Sortie::put(const long * ob, std::streamsize n, std::streamsize nb_col) { return put_template<long>(ob,n,nb_col); }
+int Sortie::put(const long long * ob, std::streamsize n, std::streamsize nb_col) { return put_template<long long>(ob,n,nb_col); }
+int Sortie::put(const float * ob, std::streamsize n, std::streamsize nb_col) { return put_template<float>(ob,n,nb_col); }
+int Sortie::put(const double * ob, std::streamsize n, std::streamsize nb_col) { return put_template<double>(ob,n,nb_col); }
 
-Sortie& Sortie::operator<<(const unsigned int ob) { return operator_template<unsigned int>(ob); }
-Sortie& Sortie::operator<<(const int ob) { return operator_template<int>(ob); }
+Sortie& Sortie::operator<<(const unsigned ob) { return operator_template<unsigned>(ob); }
+Sortie& Sortie::operator<<(const True_int ob) { return operator_template<True_int>(ob); }
 Sortie& Sortie::operator<<(const float ob) { return operator_template<float>(ob); }
 Sortie& Sortie::operator<<(const double ob) { return operator_template<double>(ob); }
-
-#ifndef INT_is_64_
 Sortie& Sortie::operator<<(const long ob) { return operator_template<long>(ob); }
+Sortie& Sortie::operator<<(const long long ob) { return operator_template<long long>(ob); }
 Sortie& Sortie::operator<<(const unsigned long ob) { return operator_template<unsigned long>(ob); }
-int Sortie::put(const long * ob, int n, int nb_col) { return put_template<long>(ob,n,nb_col); }
-#endif
 
 Sortie& Sortie::operator <<(ostream& (*f)(ostream&))
 {
@@ -130,7 +137,6 @@ Sortie& Sortie::operator <<(ios& (*f)(ios&))
 
 Sortie& Sortie::flush()
 {
-  //   get_ostream().flush();
   ostream_->flush();
   return *this;
 }
@@ -146,13 +152,15 @@ Sortie& Sortie::operator<<(const Separateur& ob)
       switch (ob.get_type())
         {
         case Separateur::ENDL:
-          // On ecrit "\n" et pas endl...
-          // C'est peut-etre une mauvaise idee
-          //(*ostream_) << '\n';
+          // endl = '\n' + flush
+#if defined(__CYGWIN__) || defined(MICROSOFT)
           // GF pb sous windows avec ancienne ligne
           (*ostream_)<<endl;
-          // Flush (important pour les fichiers de log)
-          ostream_->flush();
+#else
+          (*ostream_) << '\n';
+#endif
+          // Flush eventuel (surcharge possible par Sortie_Fichier_base::flush())
+          flush();
           break;
         case Separateur::SPACE:
           (*ostream_) << ' ';
@@ -244,9 +252,8 @@ Sortie& Sortie::operator <<(const std::string& str) { return (*this) << str.c_st
  *   des retours a la ligne lors du syncfile suivant).
  *
  */
-int Sortie::set_bin(int bin)
+void Sortie::set_bin(bool bin)
 {
-  assert(bin==0 || bin==1);
   bin_ = bin;
   if (ostream_)
     {
@@ -254,6 +261,93 @@ int Sortie::set_bin(int bin)
       assert(0);
       Process::exit();
     }
-  return bin_;
 }
 
+/*! @brief Methode de bas niveau pour ecrire un tableau d'ints ou reels dans le stream.
+ *
+ * Dans l'implementation de la classe de base, on ecrit dans ostream_.
+ *   En binaire on utilise ostream::write(), en ascii ostream::operato<<()
+ *   En ascii, on revient a la ligne chaque fois qu'on a ecrit "nb_col" valeurs et a la fin du tableau.
+ *   Valeur de retour : ostream_->good()
+ *
+ */
+template<typename _TYPE_>
+int Sortie::put_template(const _TYPE_ *ob, std::streamsize n, std::streamsize nb_col)
+{
+  assert(n >= 0);
+  if (bin_)
+    {
+      if (must_convert<_TYPE_>())
+        {
+          // Need to cast, use '>>' operator  - see doc in operator_template<>
+          for (int i = 0; i < n; i++) (*this) << ob[i];
+        }
+      else
+        {
+          // In binary, optimized block writing:
+          std::streamsize sz = sizeof(_TYPE_);
+          sz *= n;
+          ostream_->write((const char*) ob, sz);
+        }
+    }
+  else
+    {
+      std::streamsize j = nb_col;
+      for (std::streamsize i = 0; i < n; i++)
+        {
+          (*ostream_) << (ob[i]) << (' ');
+          j--;
+          if (j <= 0)
+            {
+              (*ostream_) << (endl);
+              j = nb_col;
+            }
+        }
+      // Si on n'a pas fini pas un retour a la ligne, en ajouter un
+      if (j != nb_col && n > 0) (*ostream_) << (endl);
+
+      ostream_->flush();
+    }
+  return ostream_->good();
+}
+
+// Explicit instanciations
+template int Sortie::put_template(const unsigned *ob, std::streamsize n, std::streamsize nb_col);
+template int Sortie::put_template(const True_int *ob, std::streamsize n, std::streamsize nb_col);
+template int Sortie::put_template(const long *ob, std::streamsize n, std::streamsize nb_col);
+template int Sortie::put_template(const long long *ob, std::streamsize n, std::streamsize nb_col);
+template int Sortie::put_template(const float *ob, std::streamsize n, std::streamsize nb_col);
+template int Sortie::put_template(const double *ob, std::streamsize n, std::streamsize nb_col);
+
+/*! @brief Methode de bas niveau pour ecrire un int ou flottant dans le stream.
+ *
+ * Dans l'implementation de la classe de base, on ecrit dans ostream_.
+ *   En binaire on utilise ostream::write(), en ascii ostream::operator<<()
+ *
+ */
+template<typename _TYPE_>
+Sortie& Sortie::operator_template(const _TYPE_ &ob)
+{
+  if (bin_)
+    {
+      if (this->must_convert<_TYPE_>())
+        {
+          trustIdType val = static_cast<trustIdType>(ob);
+          ostream_->write((char*) &val, sizeof(trustIdType));
+        }
+      else
+        ostream_->write((char*) &ob, sizeof(_TYPE_));
+    }
+  else
+    (*ostream_) << ob;
+  return *this;
+}
+
+// Explicit instanciations
+template Sortie& Sortie::operator_template(const unsigned& ob);
+template Sortie& Sortie::operator_template(const True_int& ob);
+template Sortie& Sortie::operator_template(const long& ob);
+template Sortie& Sortie::operator_template(const long long& ob);
+template Sortie& Sortie::operator_template(const float& ob);
+template Sortie& Sortie::operator_template(const double& ob);
+template Sortie& Sortie::operator_template(const unsigned long& ob);

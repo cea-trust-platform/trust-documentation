@@ -13,36 +13,35 @@
 *
 *****************************************************************************/
 
+#include <Champ_Generique_Interpolation.h>
 #include <Champ_Generique_Extraction.h>
 #include <Champ_Generique_refChamp.h>
-#include <Domaine_VF.h>
-#include <Postraitement.h>
-#include <Discretisation_base.h>
-#include <Domaine_dis_cache.h>
-#include <TRUST_Deriv.h>
-#include <Domaine.h>
-#include <Equation_base.h>
 #include <Champ_front_uniforme.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Discretisation_base.h>
 #include <Dirichlet_homogene.h>
+#include <Domaine_dis_cache.h>
+#include <Equation_base.h>
 #include <NettoieNoeuds.h>
+#include <Postraitement.h>
 #include <Synonyme_info.h>
+#include <TRUST_Deriv.h>
+#include <Domaine_VF.h>
+#include <Cond_lim.h>
+#include <Domaine.h>
 #include <Param.h>
-#include <Champ_Generique_Interpolation.h>
 
 Implemente_instanciable_sans_constructeur(Champ_Generique_Extraction,"Extraction",Champ_Gen_de_Champs_Gen);
+// XD extraction champ_post_de_champs_post extraction -1 To create a surface field (values at the boundary) of a volume field
+
 Add_synonym(Champ_Generique_Extraction,"Champ_Post_Extraction");
 
-/*! @brief voir reset()
- *
- */
 Champ_Generique_Extraction::Champ_Generique_Extraction()
 {
-  // valeurs par defaut
   reset();
   methode_="trace";
 }
 
-//cf Champ_Gen_de_Champs_Gen::readOn
 Entree& Champ_Generique_Extraction::readOn(Entree& is)
 {
   Champ_Gen_de_Champs_Gen::readOn(is);
@@ -55,9 +54,6 @@ Entree& Champ_Generique_Extraction::readOn(Entree& is)
   return is;
 }
 
-/*! @brief appel invalide
- *
- */
 Sortie& Champ_Generique_Extraction::printOn(Sortie& os) const
 {
   exit();
@@ -71,14 +67,14 @@ Sortie& Champ_Generique_Extraction::printOn(Sortie& os) const
 void Champ_Generique_Extraction::set_param(Param& param)
 {
   Champ_Gen_de_Champs_Gen::set_param(param);
-  param.ajouter("domaine",&dom_extrac_,Param::REQUIRED);
-  param.ajouter("nom_frontiere",&nom_fr_,Param::REQUIRED);
-  param.ajouter("methode",&methode_);
+  param.ajouter("domaine",&dom_extrac_,Param::REQUIRED);   // XD attr domaine ref_domaine domaine 0 name of the volume field
+  param.ajouter("nom_frontiere",&nom_fr_,Param::REQUIRED); // XD attr nom_frontiere chaine nom_frontiere 0 boundary name where the values of the volume field will be picked
+  param.ajouter("methode",&methode_);                      // XD attr methode chaine(into=["trace","champ_frontiere"]) methode 1 name of the extraction method (trace by_default or champ_frontiere)
 }
 
 //Renvoie la directive (champ_elem, champ_sommets, champ_face ou pression)
 //pour lancer la discretisation de l espace de stockage rendu par
-//la methode get_champ() du Champ_Generique qui a lance l appel de cette methode
+//la methode get_champ() du Champ_Generique_base qui a lance l appel de cette methode
 const Motcle Champ_Generique_Extraction::get_directive_pour_discr() const
 {
   Motcle directive;
@@ -86,24 +82,24 @@ const Motcle Champ_Generique_Extraction::get_directive_pour_discr() const
   return directive;
 }
 
-const Champ_base& Champ_Generique_Extraction::get_champ_without_evaluation(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Extraction::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_base& source = get_source(0).get_champ_without_evaluation(source_espace_stockage);
   Nature_du_champ nature_source = source.nature_du_champ();
   int nb_comp = source.nb_comp();
 
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 /*! @brief Extraction des valeurs d un champ (trace ou champ frontiere) sur un bord du domaine
  *
  */
-const Champ_base& Champ_Generique_Extraction::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Extraction::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
 {
 
-  Champ source_espace_stockage;
+  OWN_PTR(Champ_base) source_espace_stockage;
   const Champ_Generique_base& source = get_source(0);
   const Champ_base& source_stockage = source.get_champ(source_espace_stockage);
 
@@ -169,9 +165,9 @@ const Champ_base& Champ_Generique_Extraction::get_champ(Champ& espace_stockage) 
   //le Domaine discretise a associer n est actuellement pas disponible
   //On associe pas de domaine_discretisee et on ne fixe pas nb_valeurs_nodales
   espace_stockage.typer(type_espace_stockage);
-  ////espace_stockage->associer_domaine_dis_base(domaine_dis);
+  ////espace_stockage.associer_domaine_dis_base(domaine_dis);
   espace_stockage->fixer_nb_comp(nb_comp);
-  ////espace_stockage->fixer_nb_valeurs_nodales(nb_ddl);
+  ////espace_stockage.fixer_nb_valeurs_nodales(nb_ddl);
   espace_stockage->fixer_nature_du_champ(nature_source);
 
   DoubleTab& espace_valeurs = espace_stockage->valeurs();
@@ -186,22 +182,22 @@ const Champ_base& Champ_Generique_Extraction::get_champ(Champ& espace_stockage) 
     {
       int num_bord =  domaine_dis_source.rang_frontiere(nom_fr_);
       const Champ_Inc_base& source_inconnue = ref_cast(Champ_Inc_base,source_stockage);
-      const Champ_front& champ_fr =  source_inconnue.equation().domaine_Cl_dis().les_conditions_limites(num_bord)->champ_front();
+      const Champ_front_base& champ_fr =  source_inconnue.equation().domaine_Cl_dis().les_conditions_limites(num_bord)->champ_front();
 
-      if (sub_type(Champ_front_uniforme,champ_fr.valeur()))
+      if (sub_type(Champ_front_uniforme,champ_fr))
         {
           for (int j = 0; j < N; j++)
             for (int i=0; i<nb_ddl; i++)
-              espace_valeurs(i,j) = champ_fr.valeur()(0,j);
+              espace_valeurs(i,j) = champ_fr.valeurs()(0,j);
         }
       else
-        espace_valeurs = champ_fr->valeurs();
+        espace_valeurs = champ_fr.valeurs();
     }
 
   //L espace de stockage n a pas actuellement d espace virtuel
   ////espace_valeurs.echange_espace_virtuel();
 
-  return espace_stockage.valeur();
+  return espace_stockage;
 }
 
 const Noms Champ_Generique_Extraction::get_property(const Motcle& query) const
@@ -269,7 +265,7 @@ void Champ_Generique_Extraction::completer(const Postraitement_base& post)
     {
       if (sub_type(Champ_Generique_refChamp,source))
         {
-          Champ source_espace_stockage;
+          OWN_PTR(Champ_base) source_espace_stockage;
           const Champ_base& source_stockage = source.get_champ(source_espace_stockage);
           if (!sub_type(Champ_Inc_base,source_stockage))
             {
@@ -323,18 +319,18 @@ void Champ_Generique_Extraction::completer(const Postraitement_base& post)
   int nb_som_faces = zvf_source.nb_som_face();
 
   Nom type_elem;
-  if (type_face_source==Faces::segment_2D || type_face_source==Faces::segment_2D_axi)
+  if (type_face_source==Type_Face::segment_2D || type_face_source==Type_Face::segment_2D_axi)
     type_elem = "Segment"; // Pour MC2
-  else if (type_face_source==5)
+  else if (type_face_source==Type_Face::quadrilatere_2D_axi)
     type_elem = "Segment"; // Pour MC2
-  else if (type_face_source==Faces::quadrangle_3D)
+  else if (type_face_source==Type_Face::quadrangle_3D)
     type_elem = "Quadrangle";
-  else if (type_face_source==Faces::triangle_3D)
+  else if (type_face_source==Type_Face::triangle_3D)
     type_elem = "Triangle";
-  else if (type_face_source==Faces::point_1D)
+  else if (type_face_source==Type_Face::point_1D)
     type_elem = "Point";
   //Cas suivant possible en parallele
-  else if ((type_face_source==Faces::vide_0D) && (nb_faces==0))
+  else if ((type_face_source==Type_Face::vide_0D) && (nb_faces==0))
     {
       if (source.get_discretisation().is_vdf())
         type_elem = "Rectangle";
@@ -348,7 +344,7 @@ void Champ_Generique_Extraction::completer(const Postraitement_base& post)
     }
   else
     {
-      Cerr<<"The type of faces of the boundary name "<<nom_fr_<<" is neither type Faces::quadrangle_3D nor Faces::triangle_3D"<<finl;
+      Cerr<<"The type of faces of the boundary name "<<nom_fr_<<" is neither type Type_Face::quadrangle_3D nor Type_Face::triangle_3D"<<finl;
       Cerr<<"We do not realize the extraction"<<finl;
       exit();
     }
@@ -404,10 +400,7 @@ void Champ_Generique_Extraction::get_copy_domain(Domaine& domain) const
 const Domaine_dis_base& Champ_Generique_Extraction::get_ref_domaine_dis_base() const
 {
   if (domaine_.non_nul())
-    {
-      const Domaine_dis_base& domaine_dis = le_dom_dis.valeur().valeur();
-      return  domaine_dis;
-    }
+    return  le_dom_dis.valeur();
   else
     {
       Cerr<<"There is no domain associated to this Champ_Generique_Extraction"<<finl;

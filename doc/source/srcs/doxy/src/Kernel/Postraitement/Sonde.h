@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,7 +26,7 @@ class Operateur_Statistique_tps_base;
 class Champ_Generique_base;
 class Postraitement;
 class Champ_base;
-class Domaine;
+#include <Domaine_forward.h>
 
 /*! @brief classe Sonde Cette classe permet d'effectuer l'evolution d'un champ au cours du temps.
  *
@@ -46,9 +46,9 @@ public :
   Sonde();
   Sonde(const Nom& );
   void associer_post(const Postraitement& );
-  void initialiser();
+  virtual void initialiser();
   virtual void mettre_a_jour(double temps, double tinit);
-  void postraiter();
+  virtual void postraiter();
   void ouvrir_fichier();
   virtual void completer();
   inline void fermer_fichier();
@@ -70,39 +70,61 @@ public :
   void ajouter_bords(const DoubleTab& coords_bords);
   void init_bords();
   void mettre_a_jour_bords();
+  void resetTime(double time) { nb_bip = time/periode; };
 
 protected :
+  /** Retrieve the domain to be used for the probe */
+  virtual const Domaine& get_domaine_geom() const;
+  /** Retrieve the field names - overriden in IJK */
+  virtual const Noms get_noms_champ() const;
+  /** Retrieve the number of component for the field - overriden in IJK */
+  virtual int get_nb_compo_champ() const;
+  /** Retrieve the current time for the field - overriden in IJK */
+  virtual double get_temps_champ() const;
+  /** Should exit if invalid type for a probe - overriden for IJK */
+  virtual void validate_type(const Motcle& loc) const { }
+  /** Should exit if invalid position has been set for a probe - overriden for IJK */
+  virtual void validate_position() const { }
+  virtual void create_champ_generique(Entree& is, const Motcle& motlu);
+  /** Fix probe position - used by IJK */
+  virtual void fix_probe_position() { }
+  /** Fix probe position when keyword grav or gravcl is used */
+  virtual void fix_probe_position_grav();
+  /** Fill the array 'valeurs_locales' used by each proc to store prob local values */
+  virtual void fill_local_values();
+  /** Update the underlying field source if needed */
+  virtual void update_source(double un_temps);
 
-  REF(Postraitement) mon_post;
-  Nom nom_;                               // le nom de la sonde
-  Nom nom_fichier_;                       // le nom du fichier contenant la sonde
-  int dim;                                // la dimension de la sone (point:0,segment:1,plan:2,volume:3)
-  REF(Champ_Generique_base) mon_champ;
-  REF(Operateur_Statistique_tps_base) operateur_statistique_;        // Reference vers un operateur statistique eventuel
-  int ncomp;                              // Numero de la composante a sonder
-  // Si ncomp = -1 la sonde s'applique a toutes les
-  // composantes du champ
-  DoubleTab les_positions_sondes_initiales_;    // les coordonnees des sondes ponctuelles initiales
-  DoubleTab les_positions_sondes_;        // les coordonnees des sondes sur tout le domaine apres deplacement (uniquement sur le maitre)
-  DoubleTab les_positions_;       // les coordonnees des sondes locales sur chaque proc
-  int numero_elem_;                       // vaut -1 si pas defini et vaut le numero de l'elem sur le maitre
-  IntVect elem_;                          // les elements contenant les sondes ponctuelles locales
-  double periode;                         // periode d'echantillonnage
-  // cles pour typage des sondes (sondes redefinies aux noeuds ou d'apres les valeurs aux sommets ou au centre de gravite ou aux sommets)
+  OBS_PTR(Postraitement) mon_post;
+  Nom nom_;                               ///< le nom de la sonde
+  Nom nom_fichier_;                       ///< le nom du fichier contenant la sonde
+  int dim;                                ///< la dimension de la sone (point:0,segment:1,plan:2,volume:3)
+  OBS_PTR(Champ_Generique_base) mon_champ;
+  OBS_PTR(Operateur_Statistique_tps_base) operateur_statistique_;        // Reference vers un operateur statistique eventuel
+  /** Numero de la composante a sonder. Si ncomp = -1 la sonde s'applique a toutes les
+   * composantes du champ */
+  int ncomp;
+  DoubleTab les_positions_sondes_initiales_;   ///< les coordonnees des sondes ponctuelles initiales
+  DoubleTab les_positions_sondes_;             ///< les coordonnees des sondes sur tout le domaine apres deplacement (uniquement sur le maitre)
+  DoubleTab les_positions_;               ///< les coordonnees des sondes locales sur chaque proc
+  int numero_elem_;                       ///< vaut -1 si pas defini et vaut le numero de l'elem sur le maitre
+  IntVect elem_;                          ///< les elements contenant les sondes ponctuelles locales
+  double periode;                         ///< periode d'echantillonnage
+  /** cles pour typage des sondes (sondes redefinies aux noeuds ou d'apres les valeurs aux sommets ou au centre de gravite ou aux sommets)
+   */
   bool nodes,chsom,grav,gravcl,som;
-  DoubleTab valeurs_locales,valeurs_sur_maitre;     // valeurs_locales les valeurs sur chaque proc, valeurs_sur_maitre les valeurs regroupes sur le maitre
+  DoubleTab valeurs_locales,valeurs_sur_maitre;     ///< valeurs_locales les valeurs sur chaque proc, valeurs_sur_maitre les valeurs regroupes sur le maitre
   double nb_bip;
   SFichier le_fichier_;
   Motcle nom_champ_lu_;
-  ArrsOfInt participant ;            // vecteur d'ArrOfInt sur le maitre ; participant[pe][i] -> le ieme point sur pe correspond  la  participant [pe][i]  eme position
-  int reprise;                            // si reprise=0, on cree la sonde, sinon on ecrit a la suite
+  ArrsOfInt participant ;            // sur le maitre: participant[pe][i] -> le ieme point sur pe correspond  la  participant [pe][i]  eme position
   Nom type_;
   int orientation_faces_;
 
   // Traitement des bords (option "gravcl")
-  ArrOfInt faces_bords_;                  // array containing the indices of the boundary faces hit by the probe
-  IntTab rang_cl_;                        // for a given face, index of the CL that this face bears
-  int nbre_points1 = -1,nbre_points2 = -1,nbre_points3 = -1;        // faire des sonde_segment,sonde_plan,etc...
+  ArrOfInt faces_bords_;                  ///< array containing the indices of the boundary faces hit by the probe
+  IntTab rang_cl_;                        ///< for a given face, index of the CL that this face bears
+  int nbre_points1 = -1,nbre_points2 = -1,nbre_points3 = -1;        ///< faire des sonde_segment,sonde_plan,etc...
 };
 
 

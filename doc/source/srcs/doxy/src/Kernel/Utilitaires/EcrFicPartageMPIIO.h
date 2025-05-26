@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,76 +34,34 @@ public:
   int ouvrir(const char* name,IOS_OPEN_MODE mode=ios::out) override;
   void close();
   // Useless with MPIIO:
-  inline Sortie& lockfile() override
-  {
-    return *this;
-  };
-  inline Sortie& unlockfile() override
-  {
-    return *this;
-  };
-  inline Sortie& syncfile() override
-  {
-    return *this;
-  };
-  inline Sortie& flush() override
-  {
-    return *this;
-  };
+  inline Sortie& lockfile() override { return *this; }
+  inline Sortie& unlockfile() override { return *this; }
+  inline Sortie& syncfile() override { return *this; }
+  inline Sortie& flush() override { return *this; }
 
   // Check method when using some public methods:
   void check();
 
   Sortie& operator <<(const Separateur& ob) override;
-  Sortie& operator <<(const int ob) override;
-  Sortie& operator <<(const unsigned int ob) override;
-#ifndef INT_is_64_
-  Sortie& operator <<(const long ob) override
-  {
-    Cerr << "EcrFicPartageMPIIO::operator<<(...) not implemented." << finl;
-    exit();
-    return *this;
-  };
-  Sortie& operator <<(const unsigned long ob) override
-  {
-    Cerr << "EcrFicPartageMPIIO::operator<<(...) not implemented." << finl;
-    exit();
-    return *this;
-  };
-#endif
+
+  Sortie& operator <<(const True_int ob) override;
+  Sortie& operator <<(const unsigned ob) override;
+  Sortie& operator <<(const long ob) override;
+  Sortie& operator <<(const long long ob) override;
+  Sortie& operator <<(const unsigned long ob) override;
+
   Sortie& operator <<(const float ob) override;
   Sortie& operator <<(const double ob) override;
   Sortie& operator <<(const Objet_U& ob) override;
   Sortie& operator <<(const char* ob) override;
   Sortie& operator <<(const std::string& str) override;
-  int put(const unsigned* ob, int n, int pas) override
-  {
-    return put(MPI_UNSIGNED, ob, n);
-  }
-  int put(const int* ob, int n, int pas) override
-  {
-#ifdef INT_is_64_
-    return put(MPI_LONG, ob, n);
-#else
-    return put(MPI_INT, ob, n);
-#endif
-  }
-#ifndef INT_is_64_
-  int put(const long* ob, int n, int pas) override
-  {
-    Cerr << "EcrFicPartageMPIIO::put(...) not implemented." << finl;
-    exit();
-    return 1;
-  };
-#endif
-  int put(const float* ob, int n, int pas) override
-  {
-    return put(MPI_FLOAT, ob, n);
-  }
-  int put(const double* ob, int n, int pas) override
-  {
-    return put(MPI_DOUBLE, ob, n);
-  }
+
+  int put(const unsigned* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const True_int* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const long* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const long long* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const float* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const double* ob, std::streamsize n, std::streamsize pas) override;
 
 private:
   void write(MPI_Datatype, const void*);
@@ -113,4 +71,5 @@ private:
   MPI_Offset disp_; // Displacement of the individual pointers (in bytes)
 #endif
 };
+
 #endif

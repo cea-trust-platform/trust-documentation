@@ -22,6 +22,7 @@
 #include <Param.h>
 
 Implemente_instanciable_sans_constructeur(Extruder, "Extruder", Interprete_geometrique_base);
+// XD extruder interprete extruder 1 Class to create a 3D tetrahedral/hexahedral mesh (a prism is cut in 14) from a 2D triangular/quadrangular mesh.
 
 Extruder::Extruder() { direction.resize(3, RESIZE_OPTIONS::NOCOPY_NOINIT); }
 
@@ -45,9 +46,9 @@ Entree& Extruder::interpreter_(Entree& is)
 {
   Nom nom_dom;
   Param param(que_suis_je());
-  param.ajouter("domaine",&nom_dom,Param::REQUIRED);
-  param.ajouter("nb_tranches",&NZ,Param::REQUIRED);
-  param.ajouter_arr_size_predefinie("direction",&direction,Param::REQUIRED);
+  param.ajouter("domaine",&nom_dom,Param::REQUIRED);  // XD attr domaine ref_domaine domain_name 0 Name of the domain.
+  param.ajouter("nb_tranches",&NZ,Param::REQUIRED);   // XD attr nb_tranches entier nb_tranches 0 Number of elements in the extrusion direction.
+  param.ajouter_arr_size_predefinie("direction",&direction,Param::REQUIRED); // XD attr direction troisf direction 0 Direction of the extrude operation.
   param.lire_avec_accolades_depuis(is);
   associer_domaine(nom_dom);
   Scatter::uninit_sequential_domain(domaine());
@@ -95,7 +96,7 @@ void Extruder::extruder(Domaine& dom)
       //domaine.creer_faces(les_faces);
       {
         // bloc a factoriser avec Domaine_VF.cpp :
-        Type_Face type_face = dom.type_elem().type_face(0);
+        Type_Face type_face = dom.type_elem()->type_face(0);
         les_faces.typer(type_face);
         les_faces.associer_domaine(dom);
 
@@ -362,7 +363,7 @@ void Extruder::traiter_faces_dvt(Faces& les_faces_bord, Faces& les_faces, int ol
         }
     }
 
-  les_faces_bord.typer(Faces::triangle_3D);
+  les_faces_bord.typer(Type_Face::triangle_3D);
   les_faces_bord.les_sommets().ref(les_sommets);
   les_faces_bord.voisins().resize(4*size_2D*NZ, 2);
   les_faces_bord.voisins()=-1;
@@ -393,7 +394,7 @@ void Extruder::extruder_dvt(Domaine& dom, Faces& les_faces, int oldnbsom, int ol
   Bord& devant = dom.faces_bord().add(Bord());
   devant.nommer("devant");
   Faces& les_faces_dvt=devant.faces();
-  les_faces_dvt.typer(Faces::triangle_3D);
+  les_faces_dvt.typer(Type_Face::triangle_3D);
 
   IntTab som_dvt(oldsz, 3);
   les_faces_dvt.voisins().resize(oldsz, 2);
@@ -402,7 +403,7 @@ void Extruder::extruder_dvt(Domaine& dom, Faces& les_faces, int oldnbsom, int ol
   Bord& derriere = dom.faces_bord().add(Bord());
   derriere.nommer("derriere");
   Faces& les_faces_der=derriere.faces();
-  les_faces_der.typer(Faces::triangle_3D);
+  les_faces_der.typer(Type_Face::triangle_3D);
 
   IntTab som_der(oldsz, 3);
   les_faces_der.voisins().resize(oldsz, 2);
@@ -443,7 +444,7 @@ void Extruder::extruder_hexa(Domaine& dom)
   Faces les_faces;
   {
     // bloc a factoriser avec Domaine_VF.cpp :
-    Type_Face type_face = dom.type_elem().type_face(0);
+    Type_Face type_face = dom.type_elem()->type_face(0);
     les_faces.typer(type_face);
     les_faces.associer_domaine(dom);
 
@@ -562,7 +563,7 @@ void Extruder::traiter_faces_dvt_hexa(Faces& les_faces_bord, int oldnbsom)
         }
     }
 
-  les_faces_bord.typer(Faces::quadrangle_3D);
+  les_faces_bord.typer(Type_Face::quadrangle_3D);
   les_faces_bord.les_sommets().ref(les_sommets);
   les_faces_bord.voisins().resize(size_2D*NZ, 2);
   les_faces_bord.voisins()=-1;
@@ -590,7 +591,7 @@ void Extruder::extruder_dvt_hexa(Domaine& dom, Faces& les_faces, int oldnbsom, i
   Bord& devant = dom.faces_bord().add(Bord());
   devant.nommer("devant");
   Faces& les_faces_dvt=devant.faces();
-  les_faces_dvt.typer(Faces::quadrangle_3D);
+  les_faces_dvt.typer(Type_Face::quadrangle_3D);
 
   IntTab som_dvt(oldsz, 4);
   les_faces_dvt.voisins().resize(oldsz, 2);
@@ -599,7 +600,7 @@ void Extruder::extruder_dvt_hexa(Domaine& dom, Faces& les_faces, int oldnbsom, i
   Bord& derriere = dom.faces_bord().add(Bord());
   derriere.nommer("derriere");
   Faces& les_faces_der=derriere.faces();
-  les_faces_der.typer(Faces::quadrangle_3D);
+  les_faces_der.typer(Type_Face::quadrangle_3D);
 
   IntTab som_der(oldsz, 4);
   les_faces_der.voisins().resize(oldsz, 2);

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -40,8 +40,8 @@ class Op_Diff_VEFP1NCP1B_Face : public Op_Diff_VEF_Face
 public:
 
   Op_Diff_VEFP1NCP1B_Face();
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& ,
-                const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& ,
+                const Champ_Inc_base& ) override;
   void completer() override;
 
   //Methodes pour l'explicite

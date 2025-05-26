@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,13 +25,8 @@
 #include <Param.h>
 #include <TRUSTVects.h>
 
-Implemente_instanciable_sans_constructeur(ExtrudeBord,"ExtrudeBord",Interprete_geometrique_base);
+Implemente_instanciable(ExtrudeBord,"ExtrudeBord",Interprete_geometrique_base);
 // XD extrudebord interprete extrudebord 1 Class to generate an extruded mesh from a boundary of a tetrahedral or an hexahedral mesh. NL2 Warning: If the initial domain is a tetrahedral mesh, the boundary will be moved in the XY plane then extrusion will be applied (you should maybe use the Transformer keyword on the final domain to have the domain you really want). You can use the keyword Postraiter_domaine to generate a lata|med|... file to visualize your initial and final meshes. NL2 This keyword can be used for example to create a periodic box extracted from a boundary of a tetrahedral or a hexaedral mesh. This periodic box may be used then to engender turbulent inlet flow condition for the main domain.NL2 Note that ExtrudeBord in VEF generates 3 or 14 tetrahedra from extruded prisms.
-ExtrudeBord::ExtrudeBord()
-{
-  hexa_old=0;
-  Trois_Tetra=0;
-}
 
 Sortie& ExtrudeBord::printOn(Sortie& os) const
 {
@@ -71,7 +66,7 @@ Entree& ExtrudeBord::interpreter_(Entree& is)
 
   const Domaine& dom=domaine();
 
-  if (dom.nb_som_elem()==8 && (hexa_old == 1))
+  if (dom.nb_som_elem()==8 && (hexa_old))
     extruder_hexa_old(nom_front, nom_dom_surfacique, vect_dir, nbpas);
   else if (dom.nb_som_elem()==4 || dom.nb_som_elem()==8)
     extruder_bord(nom_front, nom_dom_surfacique, vect_dir, nbpas);
@@ -128,7 +123,7 @@ void ExtrudeBord::extruder_bord(Nom& nom_front, Nom& nom_dom_surfacique, DoubleV
 
     }
 
-  if (Trois_Tetra==1)  // Evolution de la methode Extrude bord pour l'adapter a 3tetra
+  if (Trois_Tetra)  // Evolution de la methode Extrude bord pour l'adapter a 3tetra
     {
       Extruder_en3 extr3;
       extr3.setNbTranches(nbpas);
@@ -146,7 +141,7 @@ void ExtrudeBord::extruder_bord(Nom& nom_front, Nom& nom_dom_surfacique, DoubleV
           // exit();
         }
     }
-  else if (Vingt_Tetra==1)
+  else if (Vingt_Tetra)
     {
       Extruder_en20 extr;
       extr.setNbTranches(nbpas);

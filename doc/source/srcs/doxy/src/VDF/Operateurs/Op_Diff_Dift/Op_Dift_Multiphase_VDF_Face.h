@@ -34,13 +34,13 @@ public:
   void mettre_a_jour(double ) override;
   void preparer_calcul() override;
   void modifier_mu(DoubleTab& ) const { throw; }
-  void associer_diffusivite_turbulente(const Champ_Fonc& ch) = delete;
+  void associer_diffusivite_turbulente(const Champ_Fonc_base& ch) = delete;
 
   double calculer_dt_stab() const override;
   bool is_turb() const override { return true; }
-  const Correlation* correlation_viscosite_turbulente() const override { return &corr_; }
+  const Correlation_base* correlation_viscosite_turbulente() const override { return &(corr_.valeur()); }
 
-  inline void associer(const Domaine_dis& zd, const Domaine_Cl_dis& zcd, const Champ_Inc& ch) override
+  inline void associer(const Domaine_dis_base& zd, const Domaine_Cl_dis_base& zcd, const Champ_Inc_base& ch) override
   {
     associer_impl<Type_Operateur::Op_DIFT_MULTIPHASE_FACE, Eval_Dift_Multiphase_VDF_Face>(zd, zcd, ch);
   }

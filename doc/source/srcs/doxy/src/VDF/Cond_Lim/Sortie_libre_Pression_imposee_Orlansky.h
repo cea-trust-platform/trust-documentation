@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ class Domaine_VDF;
  *  Cette classe derive de la classe Neumann_sortie_libre
  *
  *     Elle represente une frontiere ouverte avec condition de gradient de pression impose.
- *     L'objet de type Champ_front le_champ_front contient le gradient impose. La fonction flux_impose() renvoie une valeur de pression
+ *     L'objet de type OWN_PTR(Champ_front_base) le_champ_front contient le gradient impose. La fonction flux_impose() renvoie une valeur de pression
  *     a l'exterieur calculee a partir du gradient de pression impose et de la pression a l'interieur du domaine.
  *
  */
@@ -42,9 +42,9 @@ public:
   double flux_impose(int, int) const override;
 
 protected:
-  REF(Domaine_VDF) le_dom_VDF;
-  REF(Champ_P0_VDF) pression_interne;
-  REF(Champ_Face_VDF) vitesse_interne;
+  OBS_PTR(Domaine_VDF) le_dom_VDF;
+  OBS_PTR(Champ_P0_VDF) pression_interne;
+  OBS_PTR(Champ_Face_VDF) vitesse_interne;
 
   DoubleVect pression_temps_moins_un, pression_temps_moins_deux;
   DoubleVect pression_moins_un_temps_moins_un, pression_moins_un_temps_moins_deux;

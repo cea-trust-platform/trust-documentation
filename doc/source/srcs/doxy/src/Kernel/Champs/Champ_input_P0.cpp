@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,6 +25,8 @@
 #include <Domaine_VF.h>
 
 Implemente_instanciable(Champ_input_P0,"Champ_input_P0",Champ_Fonc_P0_base);
+// XD champ_input_p0 champ_input_base champ_input_p0 1 not_set
+
 
 using ICoCo::WrongArgument;
 
@@ -126,7 +128,7 @@ void Champ_input_P0::getTemplate(TrioField& afield) const
     {
       afield._nodes_per_elem = zvf.elem_faces().dimension(1) * (zvf.face_sommets().dimension(1) + 1); //un -1 apres chaque face
       int *p = afield._connectivity = new int[afield._nb_elems * afield._nodes_per_elem];
-      for (int i = 0, j, k, e, f, s; i < (mon_sous_domaine.non_nul() ? mon_sous_domaine.valeur().nb_elem_tot() : zvf.nb_elem()); i++)
+      for (int i = 0, j, k, e, f, s; i < (mon_sous_domaine.non_nul() ? mon_sous_domaine->nb_elem_tot() : zvf.nb_elem()); i++)
         {
           if (mon_sous_domaine.non_nul() && mon_sous_domaine.valeur()[i] >= zvf.nb_elem()) continue; //element non reel du sous-domaine -> on saute
           e = mon_sous_domaine.non_nul() ? mon_sous_domaine.valeur()[i] : i; //numero de l'element

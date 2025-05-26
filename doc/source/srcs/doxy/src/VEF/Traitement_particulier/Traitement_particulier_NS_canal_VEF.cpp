@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -114,7 +114,7 @@ void Traitement_particulier_NS_canal_VEF::calculer_moyenne_spatiale_vitesse_rho_
   double c;
 
   const Fluide_base& le_fluide = ref_cast(Fluide_base,mon_equation->milieu());
-  const DoubleTab& visco_dyn = le_fluide.viscosite_dynamique()->valeurs();
+  const DoubleTab& visco_dyn = le_fluide.viscosite_dynamique().valeurs();
   const DoubleTab& tab_rho_face = le_fluide.masse_volumique().valeurs();
   int taille_mu=visco_dyn.dimension(0);
   int taille_rho=tab_rho_face.dimension(0);
@@ -226,7 +226,7 @@ void Traitement_particulier_NS_canal_VEF::calculer_moyenne_spatiale_Temp(DoubleT
   const Domaine_dis_base& zdisbase=mon_equation->inconnue().domaine_dis_base();
   const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdisbase);
   const DoubleTab& xv = domaine_VEF.xv();
-  const DoubleTab& temperature = Temp.valeur().valeurs();
+  const DoubleTab& temperature = Temp->valeurs();
   const DoubleTab& vitesse = mon_equation->inconnue().valeurs();
   double y,u,v,wl,T;
   int nb_faces = domaine_VEF.nb_faces();

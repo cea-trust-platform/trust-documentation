@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,7 @@ Sortie& Milieu_MUSIG::printOn(Sortie& os) const { return Objet_U::printOn(os); }
 Entree& Milieu_MUSIG::readOn( Entree& is )
 {
   int i = 0;
-  std::vector<std::pair<std::string, int>> especes; // string pour phase_nom. int : 0 pour liquide et 1 pour gaz
+  std::vector<std::pair<std::string, int>> especes; // string for phase_nom. int : 0 for liquid and 1 for gas
   Nom mot;
   is >> mot;
   if (mot != "{")
@@ -34,8 +34,8 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
 
   for (is >> mot; mot != "}"; is >> mot)
     {
-      if (Motcle(mot) == "POROSITES_CHAMP") is >> porosites_champ;
-      else if (Motcle(mot) == "DIAMETRE_HYD_CHAMP") is >> diametre_hyd_champ;
+      if (Motcle(mot) == "POROSITES_CHAMP") is >> ch_porosites_;
+      else if (Motcle(mot) == "DIAMETRE_HYD_CHAMP") is >> ch_diametre_hyd_;
       else if (Motcle(mot) == "POROSITES")
         {
           Cerr << "You should use porosites_champ and not porosites ! Call the 911 !" << finl;
@@ -46,22 +46,22 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
           Cerr << que_suis_je() << " : gravity should not be defined in Pb_Multiphase ! Use source_qdm if you want gravity in QDM equation !" << finl;
           Process::exit();
         }
-      else if (!mot.debute_par("saturation") && !mot.debute_par("interface")) // on ajout les phases
+      else if (!mot.debute_par("saturation") && !mot.debute_par("interface")) // add phases
         {
           Nom nomPhase(mot);
 
           Cerr << "Milieu_MUSIG : ajout la phase " << mot << " ... " << finl;
-          Fluide fluide;
-          is >> fluide;
+          OWN_PTR(Fluide_base) fluide;
+          fluide.typer_lire_simple(is, "Typing the fluid medium ...");
 
-          if(fluide.valeur().que_suis_je() == "Fluide_MUSIG")
+          if(fluide->que_suis_je() == "Fluide_MUSIG")
             {
               Fluide_MUSIG& fluide_cast = ref_cast(Fluide_MUSIG,fluide.valeur());
-              for(int k =0; k<fluide_cast.getNbSubPhase(); k++)
+              for(int k =0; k<fluide_cast.get_NbSubPhase(); k++)
                 {
-                  Fluide subFluide(fluide_cast.getFluide());
+                  OWN_PTR(Fluide_base) subFluide(fluide_cast.get_Fluide());
 
-                  if (subFluide->get_porosites_champ().non_nul())
+                  if (subFluide->has_porosites())
                     {
                       Cerr << que_suis_je() + " : porosity should be defined only once in the milieu_composite block, not in " + subFluide->que_suis_je() << finl;
                       Process::exit();
@@ -83,12 +83,12 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
                     }
                   noms_phases_.add(nomPhase+"_"+std::to_string(k));
                   subFluide->set_id_composite(i++);
-                  subFluide->nommer(nomPhase+"_"+std::to_string(k)); // XXX
-                  fluides.push_back(subFluide);
-                  std::vector<int> lineIndex;
-                  lineIndex.push_back((int)fluides.size()-1);
-                  lineIndex.push_back((int)fluidesMUSIG_.size());
-                  lineIndex.push_back(k);
+                  subFluide->nommer(nomPhase);
+                  fluides_.push_back(subFluide);
+                  std::array<int,3> lineIndex;
+                  lineIndex[0]=(int)fluides_.size()-1;
+                  lineIndex[1]=(int)fluidesMUSIG_.size();
+                  lineIndex[2]=k;
                   indexMilieuToIndexFluide_.push_back(lineIndex);
                   especes.push_back(check_fluid_name(subFluide->le_nom()));
 
@@ -97,7 +97,7 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
             }
           else
             {
-              if (fluide->get_porosites_champ().non_nul())
+              if (fluide->has_porosites())
                 {
                   Cerr << que_suis_je() + " : porosity should be defined only once in the milieu_composite block, not in " + fluide->que_suis_je() << finl;
                   Process::exit();
@@ -121,28 +121,27 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
               noms_phases_.add(nomPhase);
               fluide->set_id_composite(i++);
               fluide->nommer(nomPhase); // XXX
-              fluides.push_back(fluide);
-
-              std::vector<int> lineIndex;
-              lineIndex.push_back((int)fluides.size()-1);
-              lineIndex.push_back(-1);
-              lineIndex.push_back(-1);
+              fluides_.push_back(fluide);
+              std::array<int,3> lineIndex;
+              lineIndex[0]=(int)fluides_.size()-1;
+              lineIndex[1]=-1;
+              lineIndex[2]=-1;
               indexMilieuToIndexFluide_.push_back(lineIndex);
               especes.push_back(check_fluid_name(fluide->le_nom()));
             }
 
         }
-      else if (mot.debute_par("saturation")) // on ajout la saturation
+      else if (mot.debute_par("saturation")) // add saturation
         {
           has_saturation_ = true;
           Cerr << "Milieu_composite : ajout la saturation " << mot << " ... " << finl;
-          is >> sat_lu;
+          sat_lu_.typer_lire_simple(is, "Typing the saturation ...");
         }
       else // on ajout l'interface
         {
           has_interface_ = true;
           Cerr << "Milieu_composite : ajout l'interface " << mot << " ... " << finl;
-          is >> inter_lu;
+          inter_lu_.typer_lire_simple(is, "Typing the interface ...");
         }
     }
 
@@ -153,8 +152,8 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
       Process::exit();
     }
 
-  // Traitement pour les interfaces
-  const int N = (int)fluides.size();
+  // Interface treatment
+  const int N = (int)fluides_.size();
   for (int n = 0; n < N; n++)
     {
       std::vector<Interface_base *> inter;
@@ -165,43 +164,138 @@ Entree& Milieu_MUSIG::readOn( Entree& is )
 
           if (pn != pm && (has_interface() || (espn == espm && has_saturation())))
             {
-              Cerr << "Interface between fluid " << n << " : " << fluides[n]->le_nom() << " and " << m << " : " << fluides[m]->le_nom() << finl;
-              inter.push_back(&ref_cast(Interface_base, has_saturation_ ? sat_lu.valeur() : inter_lu.valeur()));
+              Cerr << "Interface between fluid " << n << " : " << fluides_[n]->le_nom() << " and " << m << " : " << fluides_[m]->le_nom() << finl;
+              inter.push_back(&ref_cast(Interface_base, has_saturation_ ? sat_lu_.valeur() : inter_lu_.valeur()));
               const Saturation_base *sat = sub_type(Saturation_base, *inter.back()) ? &ref_cast(Saturation_base, *inter.back()) : nullptr;
-              if (sat && sat->get_Pref() > 0) // pour loi en e = e0 + cp * (T - T0)
+              if (sat && sat->get_Pref() > 0) // for an EOS of the type:  e = e0 + cp * (T - T0)
                 {
                   const double hn = pn ? sat->Hvs(sat->get_Pref()) : sat->Hls(sat->get_Pref()),
                                hm = pm ? sat->Hvs(sat->get_Pref()) : sat->Hls(sat->get_Pref()),
                                T0 = sat->Tsat(sat->get_Pref());
-                  fluides[n]->set_h0_T0(hn, T0), fluides[m]->set_h0_T0(hm, T0);
+                  fluides_[n]->set_h0_T0(hn, T0), fluides_[m]->set_h0_T0(hm, T0);
                 }
             }
           else inter.push_back(nullptr);
         }
-      tab_interface.push_back(inter);
+      tab_interface_.push_back(inter);
     }
 
   return is;
 }
 
-double Milieu_MUSIG::getDiameter(int iPhaseMilieu)
+double Milieu_MUSIG::get_Diameter_Inf(int iPhaseMilieu) const
 {
-  std::vector<int> index = indexMilieuToIndexFluide_[iPhaseMilieu];
+  std::array<int,3> index = indexMilieuToIndexFluide_[iPhaseMilieu];
   double diametre = -1;
   if(index[2] < 0)
     {
-      Cerr << que_suis_je() + " : the function getDiameter is only available with FluideMusig" << finl;
+      Cerr << que_suis_je() + " : the function get_Diameter is only available with FluideMusig" << finl;
       Process::exit();
     }
 
   Fluide_MUSIG fluideMUSIG = fluidesMUSIG_[index[1]];
 
-  if(fluideMUSIG.getdiametres().size()<1)
+  if(fluideMUSIG.get_Diametres().size()<1)
     {
       Cerr << que_suis_je() + " : you need to define diameters for this fluideMusig" << finl;
       Process::exit();
     }
-  diametre = fluideMUSIG.getdiametres()[index[2]];
+  diametre = fluideMUSIG.get_Diametres()[index[2]];
+
+  // A decommenter si verification du tableau indexMilieuToIndexFluide_
+  // std::vector<int> indexPhase;
+  // const int N = (int)fluides_.size();
+  // for (int n = 0; n < N; n++)
+  //   {
+  //     indexPhase = indexMilieuToIndexFluide_[n];
+  //     cout << "Phase N° "<< indexPhase[0] << " Nom Phase " << noms_phases_[n]<< endl;
+  //     cout << "  Fluide N° "<< indexPhase[1] << " Nom Fluide " << fluides_[n].le_nom()<< endl;
+  //     cout << "  Index Fluide Musig N° "<< indexPhase[2] << endl;
+  //     cout << endl;
+  //   }
+
+  // A decommenter si necessaire
+  //const int N = (int)fluides_.size();
+  // for (int k = 0; k < N; k++)
+  //   {
+  //     int phase = fluides_[k].le_nom().debute_par("gaz_dispersee");
+  //     Nom espece = phase ? fluides_[k].le_nom().getSuffix("gaz_") : fluides_[k].le_nom().getSuffix("liquide_");
+  //     cout << "nom " << espece << endl;
+  //   }
 
   return diametre;
+}
+
+double Milieu_MUSIG::get_Diameter_Sup(int iPhaseMilieu) const
+{
+  std::array<int,3> index = indexMilieuToIndexFluide_[iPhaseMilieu];
+  double diametre = -1;
+  if(index[2] < 0)
+    {
+      Cerr << que_suis_je() + " : the function get_Diameter is only available with FluideMusig" << finl;
+      Process::exit();
+    }
+
+  Fluide_MUSIG fluideMUSIG = fluidesMUSIG_[index[1]];
+
+  if(fluideMUSIG.get_Diametres().size()<1)
+    {
+      Cerr << que_suis_je() + " : you need to define diameters for this fluideMusig" << finl;
+      Process::exit();
+    }
+  diametre = fluideMUSIG.get_Diametres()[index[2]+1];
+
+  return diametre;
+}
+
+double Milieu_MUSIG::get_Diameter_Sauter(int iPhaseMilieu) const
+{
+  double diametre = -1;
+
+  double dInf = get_Diameter_Inf(iPhaseMilieu);
+  double dSup = get_Diameter_Sup(iPhaseMilieu);
+
+  diametre = dInf;
+  if (dSup != dInf) diametre = (dSup-dInf)/log(dSup/dInf);
+
+  // test
+  // if (iPhaseMilieu == 1) diametre = get_Diameter_Inf(1);
+  // if (iPhaseMilieu == 2) diametre = get_Diameter_Inf(1);
+  // if (iPhaseMilieu == 3) diametre = get_Diameter_Sup(3);
+
+  if ((diametre < dInf) || (diametre > dSup))
+    {
+      Cerr << que_suis_je() + " : Diam Sauter < dInf or Diam Sauter > dSup of phase =" << iPhaseMilieu << finl;
+      Process::exit();
+    }
+
+  return diametre;
+}
+
+bool Milieu_MUSIG::has_dispersed_gas(int k) const
+{
+  bool dispersedGas = false;
+  if (fluides_[k].le_nom().debute_par("gaz_dispersee")) dispersedGas = true;
+  return dispersedGas;
+}
+
+bool Milieu_MUSIG::has_dispersed_liquid(int k) const
+{
+  bool dispersedLiquid = false;
+  if (fluides_[k].le_nom().debute_par("liquide_dispersee")) dispersedLiquid = true;
+  return dispersedLiquid;
+}
+
+bool Milieu_MUSIG::has_carrier_liquid(int k) const
+{
+  bool carrierLiquid = false;
+  if (fluides_[k].le_nom().debute_par("liquide_continu")) carrierLiquid = true;
+  return carrierLiquid;
+}
+
+bool Milieu_MUSIG::has_carrier_gas(int k) const
+{
+  bool carrierGas = false;
+  if (fluides_[k].le_nom().debute_par("gaz_continu")) carrierGas = true;
+  return carrierGas;
 }

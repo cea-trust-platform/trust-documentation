@@ -21,7 +21,7 @@
 #include <string>
 
 Implemente_instanciable( Champ_Parametrique, "Champ_Parametrique", Champ_Don_base );
-// XD Champ_Parametrique champ_don_base Champ_Parametrique 0 Parametric field
+// XD Champ_Parametrique champ_don_base Champ_Parametrique 1 Parametric field
 
 Sortie& Champ_Parametrique::printOn(Sortie& os) const { return Champ_Don_base::printOn(os); }
 
@@ -46,13 +46,13 @@ Entree& Champ_Parametrique::readOn(Entree& is)
   if (motlu!="{") Process::exit("Waiting { !");
   while (motlu!="}")
     {
-      Champ_Don ch;
+      OWN_PTR(Champ_Don_base) ch;
       fic >> ch;
       champs_.add(ch);
-      //Cerr << "[Parameter] Reading: " << ch.valeur().que_suis_je() << finl;
+      //Cerr << "[Parameter] Reading: " << ch->que_suis_je() << finl;
       fic >> motlu;
       // Pour eviter de surcharger plusieurs methodes de Champ_Don_base:
-      fixer_nb_comp(ch.nb_comp());
+      fixer_nb_comp(ch->nb_comp());
     }
   // On fixe le premier parametre:
   Sortie_Fichier_base::set_root(newCompute());
@@ -69,10 +69,10 @@ std::string Champ_Parametrique::newCompute() const
       if (index_)
         {
           previous_field = " from ";
-          previous_field += champ().valeur().que_suis_je();
+          previous_field += champ().que_suis_je();
         }
       index_++;
-      Nom next_field = champ().valeur().que_suis_je();
+      Nom next_field = champ().que_suis_je();
       Cerr << "[Parameter] Updating field" << previous_field << " to " << next_field << finl;
       return Champ_Parametrique::dirnameCompute(index_);
     }

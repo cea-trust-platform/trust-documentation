@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,8 +21,9 @@
 #include <Device.h>
 #include <Debog.h>
 
-void Discretisation_tools::nodes_to_cells(const Champ_base& Hn,  Champ_base& He)
+void Discretisation_tools::nodes_to_cells(const Champ_base& Hn, Champ_base& He)
 {
+  ToDo_Kokkos("critical for EF but not used in TRUST...");
   const DoubleTab& tabHn=Hn.valeurs();
   DoubleTab& tabHe=He.valeurs();
   const Domaine_dis_base& domaine_dis_base=He.domaine_dis_base();
@@ -47,9 +48,9 @@ void Discretisation_tools::nodes_to_cells(const Champ_base& Hn,  Champ_base& He)
   tabHe*=inv_nb_som_elem;
   tabHe.echange_espace_virtuel();
 }
-void Discretisation_tools::cells_to_nodes(const Champ_base& He,  Champ_base& Hn)
+void Discretisation_tools::cells_to_nodes(const Champ_base& He, Champ_base& Hn)
 {
-
+  ToDo_Kokkos("critical for EF");
   DoubleTab& tabHn=Hn.valeurs();
   const DoubleTab& tabHe=He.valeurs();
   Debog::verifier("elno entreee",tabHe);
@@ -83,8 +84,9 @@ void Discretisation_tools::cells_to_nodes(const Champ_base& He,  Champ_base& Hn)
   tabHn.echange_espace_virtuel();
   Debog::verifier("elno sortie",tabHn);
 }
-void Discretisation_tools::faces_to_cells(const Champ_base& Hf,  Champ_base& He)
+void Discretisation_tools::faces_to_cells(const Champ_base& Hf, Champ_base& He)
 {
+  ToDo_Kokkos("critical but seems not used by TRUST...");
   const DoubleTab& tabHf=Hf.valeurs();
   DoubleTab& tabHe=He.valeurs();
   const Domaine_dis_base& domaine_dis_base=He.domaine_dis_base();
@@ -109,58 +111,67 @@ void Discretisation_tools::faces_to_cells(const Champ_base& Hf,  Champ_base& He)
   tabHe*=inv_nb_face_elem;
   tabHe.echange_espace_virtuel();
 }
-void Discretisation_tools::cells_to_faces(const Champ_base& He,  Champ_base& Hf)
+
+// Exemple of a dynamic kernel (can run on host or device)
+template<typename ExecSpace>
+void cells_to_faces_kernel(const Domaine_VF& domaine_vf, const DoubleTab& tabHe, DoubleTab& tab_vol_tot, DoubleTab& tabHf)
+{
+  static constexpr bool kernelOnDevice = !std::is_same<ExecSpace, Kokkos::DefaultHostExecutionSpace>::value;
+  int nb_elem_tot  = domaine_vf.nb_elem_tot();
+  int nb_face_elem = domaine_vf.elem_faces().dimension(1);
+  auto elem_faces  = domaine_vf.elem_faces().template view_ro<2, ExecSpace>();
+  auto volumes     = domaine_vf.volumes().template view_ro<1, ExecSpace>();
+  auto He_v        = static_cast<const ArrOfDouble&>(tabHe).template view_ro<1, ExecSpace>();
+  auto vol_tot     = static_cast<ArrOfDouble&>(tab_vol_tot).template view_rw<1, ExecSpace>();
+  auto Hf_v        = static_cast<ArrOfDouble&>(tabHf).template view_rw<1, ExecSpace>();
+  Kokkos::MDRangePolicy<ExecSpace, Kokkos::Rank<2>> policy({0, 0}, {nb_elem_tot, nb_face_elem});
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), policy, KOKKOS_LAMBDA(const int ele, const int s)
+  {
+    int face = elem_faces(ele, s);
+    double volume_elem = volumes(ele);
+    Kokkos::atomic_add(&Hf_v(face), He_v(ele) * volume_elem);
+    Kokkos::atomic_add(&vol_tot(face), volume_elem);
+  });
+  end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
+}
+
+void Discretisation_tools::cells_to_faces(const Champ_base& He, Champ_base& Hf)
 {
   DoubleTab& tabHf=Hf.valeurs();
   const DoubleTab& tabHe=He.valeurs();
-  Debog::verifier("element_face entreee",tabHe);
+  Debog::verifier("element_face entree",tabHe);
   assert_espace_virtuel_vect(tabHe);
   const Domaine_dis_base& domaine_dis_base=He.domaine_dis_base();
   const Domaine_VF& domaine_vf= ref_cast(Domaine_VF,domaine_dis_base);
   // en realite on fait P1B vers face
   //assert(tabHe.dimension_tot(0)==domaine_dis_base.nb_elem_tot());
   assert(tabHf.dimension_tot(0)==domaine_vf.nb_faces_tot());
-
-  const IntTab& elem_faces=domaine_vf.elem_faces();
-  const DoubleVect& volumes=domaine_vf.volumes();
   const DoubleVect& volumes_entrelaces=domaine_vf.volumes_entrelaces();
 
   tabHf=0;
-  int nb_face_elem=elem_faces.dimension(1);
-  int nb_elem_tot=domaine_dis_base.nb_elem_tot();
 
   // TODO : FIXME
   // XXX : codage pas coherent... a voir : volumes ou volumes_entrelaces ???
   if (tabHe.line_size() == 1)
     {
-      int nb_faces = domaine_vf.nb_faces();
-      DoubleTrav vol_tot(tabHf);
+      DoubleTrav tab_vol_tot(tabHf);
       // Lancement de ce kernel multi-discretisation et copie de donnees selon conditions (les deux tableaux doivent etre deja sur le device)
       bool kernelOnDevice = tabHf.checkDataOnDevice(tabHe);
-      // ToDo OpenMP : merge two loops in one parallel region
-      const int* elem_faces_addr = mapToDevice(elem_faces, "", kernelOnDevice);
-      const double* volumes_addr = mapToDevice(volumes, "", kernelOnDevice);
-      const double* tabHe_addr   = mapToDevice(tabHe, "", kernelOnDevice);
-      double* vol_tot_addr       = computeOnTheDevice(vol_tot, "", kernelOnDevice);
-      double* tabHf_addr         = computeOnTheDevice(tabHf, "", kernelOnDevice);
-      start_gpu_timer();
-      #pragma omp target teams distribute parallel for if (kernelOnDevice)
-      for (int ele = 0; ele < nb_elem_tot; ele++)
-        for (int s = 0; s < nb_face_elem; s++)
-          {
-            int face = elem_faces_addr[ele * nb_face_elem + s];
-            #pragma omp atomic
-            tabHf_addr[face] += tabHe_addr[ele] * volumes_addr[ele];
-            #pragma omp atomic
-            vol_tot_addr[face] += volumes_addr[ele];
-          }
-      #pragma omp target teams distribute parallel for if (kernelOnDevice)
-      for (int face = 0; face < nb_faces; face++)
-        tabHf_addr[face] /= vol_tot_addr[face];
-      end_gpu_timer(kernelOnDevice, "Discretisation_tools::cells_to_faces (2 loops)");
+      if (kernelOnDevice)
+        cells_to_faces_kernel<Kokkos::DefaultExecutionSpace>(domaine_vf, tabHe, tab_vol_tot, tabHf);
+      else
+        cells_to_faces_kernel<Kokkos::DefaultHostExecutionSpace>(domaine_vf, tabHe, tab_vol_tot, tabHf);
+
+      // Hf /= vol_tot
+      tab_divide_any_shape(tabHf, tab_vol_tot, VECT_REAL_ITEMS);
     }
   else
     {
+      int nb_face_elem=domaine_vf.elem_faces().dimension(1);
+      int nb_elem_tot=domaine_dis_base.nb_elem_tot();
+      const IntTab& elem_faces = domaine_vf.elem_faces();
+      const DoubleVect& volumes = domaine_vf.volumes();
+      ToDo_Kokkos("critical");
       // TODO : factorize these cases ...
       if (tabHf.nb_dim()==1)
         {
@@ -210,33 +221,47 @@ void Discretisation_tools::cells_to_faces(const Champ_base& He,  Champ_base& Hf)
   Debog::verifier("element_face sortie",tabHf);
 }
 
-void Discretisation_tools::cells_to_faces(const Domaine_VF& dom_vf, const DoubleTab& tab_elem, DoubleTab& tab_face)
+void Discretisation_tools::cells_to_faces(const Domaine_VF& domaine_vf, const DoubleTab& tab_elem, DoubleTab& tab_face)
 {
-  const DoubleVect& vol = dom_vf.volumes(), &volumes_entrelaces = dom_vf.volumes_entrelaces();
-  const IntTab& elem_faces = dom_vf.elem_faces();
-  const int nb_face_elem = elem_faces.line_size(), nb_comp = tab_face.line_size();
+  const int nb_face_elem = domaine_vf.elem_faces().line_size(), nb_comp = tab_face.line_size();
 
-  assert(tab_elem.dimension_tot(0) == dom_vf.nb_elem_tot() && tab_face.dimension_tot(0) == dom_vf.nb_faces_tot());
+  assert(tab_elem.dimension_tot(0) == domaine_vf.nb_elem_tot() && tab_face.dimension_tot(0) == domaine_vf.nb_faces_tot());
   assert(tab_elem.line_size() == nb_comp);
-  assert (dom_vf.que_suis_je() == "Domaine_VEF"); // TODO FIXME
+  if (domaine_vf.que_suis_je() != "Domaine_VEF")
+    Process::exit("Discretisation_tools::cells_to_faces limited to VEF."); // TODO FIXME
+
   tab_face = 0.;
-  for (int ele = 0; ele < dom_vf.nb_elem_tot(); ele++)
-    for (int s = 0; s < nb_face_elem; s++)
-      {
-        const int face = elem_faces(ele, s);
-        for (int comp = 0; comp < nb_comp; comp++)
-          tab_face(face, comp) += tab_elem(ele, comp) * vol(ele);
-      }
-
-  for (int f = 0; f < dom_vf.nb_faces(); f++)
+  int nb_elem_tot = domaine_vf.nb_elem_tot();
+  auto elem_faces = domaine_vf.elem_faces().view_ro();
+  auto volumes    = domaine_vf.volumes().view_ro();
+  auto tab_elem_v = tab_elem.view_ro();
+  auto tab_face_v = tab_face.view_rw();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), range_2D({0, 0}, {nb_elem_tot, nb_face_elem}), KOKKOS_LAMBDA(const int ele, const int s)
+  {
+    int face = elem_faces(ele, s);
+    double volume_elem = volumes(ele);
     for (int comp = 0; comp < nb_comp; comp++)
-      tab_face(f, comp) /= volumes_entrelaces(f) * nb_face_elem;
+      Kokkos::atomic_add(&tab_face_v(face, comp), tab_elem_v(ele, comp) * volume_elem);
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 
+  CDoubleArrView volumes_entrelaces = domaine_vf.volumes_entrelaces().view_ro();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), range_2D({0, 0}, {domaine_vf.nb_faces(), nb_comp}), KOKKOS_LAMBDA(const int f, const int comp)
+  {
+    tab_face_v(f, comp) /= volumes_entrelaces(f) * nb_face_elem;
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
+  // tab_face /= volumes_entrelaces * nb_face_elem :
+  // PL: comprends pas, ecarts sur les cas thermal_coupling_on_coincident_domain_jddX avec:
+  // tab_face*=nb_face_elem;
+  // tab_divide_any_shape(tab_face, volumes_entrelaces, VECT_REAL_ITEMS);
   tab_face.echange_espace_virtuel();
 }
 
 void Discretisation_tools::faces_to_cells(const Domaine_VF& domaine_vf, const DoubleTab& tab_face, DoubleTab& tab_elem)
 {
+  ToDo_Kokkos("critical but seems not used by TRUST");
   const IntTab& elem_faces = domaine_vf.elem_faces();
   const int nb_face_elem = elem_faces.dimension(1), nb_elem = domaine_vf.nb_elem(), nb_comp = tab_face.line_size();;
   assert(tab_elem.dimension_tot(0) == domaine_vf.nb_elem_tot() && tab_face.dimension_tot(0) == domaine_vf.nb_faces_tot());

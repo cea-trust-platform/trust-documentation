@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,23 +13,18 @@
 *
 *****************************************************************************/
 
+#include <arch.h>
 #include <TRUSTArray.h>
 #include <string.h>
-
-// Ajout d'un flag par appel a end_gpu_timer peut etre couteux (creation d'une string)
-#ifdef _OPENMP
-static bool timer=true;
-#else
-static bool timer=false;
-#endif
+#include <DeviceMemory.h>
 
 // TRUSTArray kernels for device moved in .cpp file to avoid multiple definition during link
-template <typename _TYPE_>
-Sortie&  TRUSTArray<_TYPE_>::printOn(Sortie& os) const
+template <typename _TYPE_, typename _SIZE_>
+Sortie& TRUSTArray<_TYPE_, _SIZE_>::printOn(Sortie& os) const
 {
 #ifndef LATATOOLS
-  this->checkDataOnHost();
-  int sz = size_array();
+  this->ensureDataOnHost();
+  _SIZE_ sz = size_array();
   os << sz << finl;
   if (sz > 0)
     {
@@ -40,11 +35,11 @@ Sortie&  TRUSTArray<_TYPE_>::printOn(Sortie& os) const
   return os;
 }
 
-template <typename _TYPE_>
-Entree&  TRUSTArray<_TYPE_>::readOn(Entree& is)
+template <typename _TYPE_, typename _SIZE_>
+Entree&  TRUSTArray<_TYPE_, _SIZE_>::readOn(Entree& is)
 {
 #ifndef LATATOOLS
-  int sz;
+  _SIZE_ sz;
   is >> sz;
   if (sz >= 0)
     {
@@ -70,10 +65,12 @@ Entree&  TRUSTArray<_TYPE_>::readOn(Entree& is)
  * Same as resize_array() with less checks.
  *
  * This is also where we deal with the STORAGE::TEMP_STORAGE capability, i.e. the Trav arrays.
- * There memory is taken from a shared pool (TRUSTTravPool)
+ * There memory is taken from a shared pool (TRUSTTravPool). This kind of array should never be
+ * used in 64bits, since Trav are meaningful when inside the timestepping (so the 32bit world after the
+ * Scatter isntruction).
  */
-template <typename _TYPE_>
-void TRUSTArray<_TYPE_>::resize_array_(int new_size, RESIZE_OPTIONS opt)
+template <typename _TYPE_, typename _SIZE_>
+void TRUSTArray<_TYPE_, _SIZE_>::resize_array_(_SIZE_ new_size, RESIZE_OPTIONS opt)
 {
   assert(new_size >= 0);
 
@@ -90,17 +87,21 @@ void TRUSTArray<_TYPE_>::resize_array_(int new_size, RESIZE_OPTIONS opt)
 
       // First allocation - memory space should really be malloc'd:
       if(storage_type_ == STORAGE::TEMP_STORAGE)
-        mem_ = TRUSTTravPool<_TYPE_>::GetFreeBlock(new_size);
+        mem_ = TRUSTTravPool<_TYPE_>::GetFreeBlock((int)new_size);
       else
         mem_ = std::make_shared<Vector_>(Vector_(new_size));
 
-      if(opt == RESIZE_OPTIONS::COPY_INIT)
-        std::fill(mem_->begin(), mem_->end(), (_TYPE_) 0);
+      span_ = Span_(*mem_);
 
       // We should never have to worry about device allocation here:
-      assert(get_data_location() == DataLocation::HostOnly);
-      span_ = Span_(*mem_);
-      data_location_ = std::make_shared<DataLocation>(DataLocation::HostOnly);
+      if (isAllocatedOnDevice(mem_->data()))
+        data_location_ = std::make_shared<DataLocation>(DataLocation::Device);
+      else
+        data_location_ = std::make_shared<DataLocation>(DataLocation::HostOnly);
+
+      if(opt == RESIZE_OPTIONS::COPY_INIT)
+        operator=((_TYPE_)0); // To initialize on device or host
+      //std::fill(mem_->begin(), mem_->end(), (_TYPE_) 0);
     }
   else
     {
@@ -108,60 +109,67 @@ void TRUSTArray<_TYPE_>::resize_array_(int new_size, RESIZE_OPTIONS opt)
       // array must not be shared! (also checked in resize_array()) ... but, still, we allow passing here (i.e. no assert)
       // only if we keep the same size_array(). This is for example invoked by TRUSTTab when just changing the overall shape of
       // the array without modifying the total number of elems ...
-      int sz_arr = size_array();
+      _SIZE_ sz_arr = size_array();
       if(new_size != sz_arr) // Yes, we compare to the span's size
         {
           assert(ref_count() == 1);  // from here on, we *really* should not be shared
 
           if (storage_type_ == STORAGE::TEMP_STORAGE)
             {
+              // No 64b Trav:
+              assert( (std::is_same<trustIdType, int>::value || !std::is_same<_SIZE_, trustIdType>::value) );
+
               // Resize of a Trav: if the underlying mem_ is already big enough, just update the span, and possibly fill with 0
               // else, really increase memory allocation using the TRUSTTravPool.
-              int mem_sz = (int)mem_->size();
+              _SIZE_ mem_sz = (_SIZE_)mem_->size();
               if (new_size <= mem_sz)
                 {
                   // Cheat, simply update the span (up or down)
                   span_ = Span_(span_.begin(), span_.begin()+new_size);
                   // Possibly set to 0 extended part:
                   if (new_size > sz_arr && opt == RESIZE_OPTIONS::COPY_INIT)
-                    std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
+                    {
+                      ensureDataOnHost();
+                      std::fill(span_.begin() + sz_arr, span_.end(), (_TYPE_) 0);
+                    }
                 }
               else  // Real size increase of the underlying std::vector
                 {
-                  // No Trav resize (from non null size!) on GPU for now:
-                  assert(get_data_location() == DataLocation::HostOnly);
-
                   // ResizeBlock
-                  mem_ = TRUSTTravPool<_TYPE_>::ResizeBlock(mem_, new_size);
+                  mem_ = TRUSTTravPool<_TYPE_>::ResizeBlock(mem_, (int)new_size);
                   span_ = Span_(*mem_);
                   if (opt == RESIZE_OPTIONS::COPY_INIT)
-                    std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
+                    {
+                      ensureDataOnHost();
+                      std::fill(span_.begin() + sz_arr, span_.end(), (_TYPE_) 0);
+                    }
                 }
             }
           else  // Normal (non Trav) arrays
             {
-              _TYPE_ * prev_ad = span_.data(); // before resize!
-              Span_ prev_span = span_;
+#ifndef LATATOOLS
+              bool onDevice = isAllocatedOnDevice(*this);
+              if (onDevice)
+                {
+                  // ToDo Kokkos: resize on device is not optimal for the moment as it makes 2 copy D2H and H2D
+                  copyFromDevice(*this); // Force copie sur le host
+                  _TYPE_ * prev_ad = span_.data(); // before resize!
+                  deleteOnDevice(prev_ad, sz_arr); // Delete current block
+                  set_data_location(DataLocation::HostOnly);
+                }
+#endif
               mem_->resize(new_size);
               span_ = Span_(*mem_);
               // Possibly set to 0 extended part, since we have a custom Vector allocator not doing it by default (TVAlloc):
-              if (new_size > sz_arr && opt == RESIZE_OPTIONS::COPY_INIT && get_data_location() == DataLocation::HostOnly)
+              if (new_size > sz_arr && opt == RESIZE_OPTIONS::COPY_INIT)
                 std::fill(span_.begin()+sz_arr, span_.end(), (_TYPE_) 0);
-              if(get_data_location() != DataLocation::HostOnly && new_size > sz_arr)
-                if (prev_ad != span_.begin())
-                  // hiiiic, when sizing up and down an array we might end up not changing the block at all!
-                  // TODO find a nicer way to spot this ... TODO device allocation should be based on real underlying block
-                  // size, not size_array() as it is now ...
-                  {
-                    // Allocate new (bigger) block on device:
-                    allocateOnDevice(*this);
-                    // Copy data (use a dummy TRUSTArray just because of inject_array API)
-                    TRUSTArray<_TYPE_> dummy_src;
-                    dummy_src.span_ = prev_span;
-                    inject_array(dummy_src, sz_arr);
-                    // Delete former block
-                    deleteOnDevice(prev_ad, sz_arr);
-                  }
+#ifndef LATATOOLS
+              if (onDevice)
+                {
+                  // Re-allocate and copy on device:
+                  mapToDevice(*this);
+                }
+#endif
             }
         }
     }
@@ -171,14 +179,14 @@ void TRUSTArray<_TYPE_>::resize_array_(int new_size, RESIZE_OPTIONS opt)
 *    Les autres elements de (*this) sont inchanges.
 
 * @param  const ArrOfDouble& m: le tableau a utiliser, doit etre different de *this !
-* @param int nb_elements: nombre d'elements a copier, nb_elements >= -1. Si nb_elements==-1, on copie tout le tableau m. Valeurs par defaut: -1
-* @param int first_element_dest. Valeurs par defaut: 0
-* @param int first_element_source. Valeurs par defaut: 0
+* @param _SIZE_ nb_elements: nombre d'elements a copier, nb_elements >= -1. Si nb_elements==-1, on copie tout le tableau m. Valeurs par defaut: -1
+* @param _SIZE_ first_element_dest. Valeurs par defaut: 0
+* @param _SIZE_ first_element_source. Valeurs par defaut: 0
 * @return ArrOfDouble& : *this
 * @throw Sort en erreur si la taille du tableau m est plus grande que la taille de tableau this.
 */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& source, int nb_elements, int first_element_dest, int first_element_source)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::inject_array(const TRUSTArray& source, _SIZE_ nb_elements, _SIZE_ first_element_dest, _SIZE_ first_element_source)
 {
   assert(&source != this && nb_elements >= -1);
   assert(first_element_dest >= 0 && first_element_source >= 0);
@@ -190,132 +198,273 @@ TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::inject_array(const TRUSTArray& source, i
 
   if (nb_elements > 0)
     {
-      _TYPE_ * addr_dest = span_.data() + first_element_dest;
       bool kernelOnDevice = checkDataOnDevice(source);
-      const _TYPE_ * addr_source = (mapToDevice(source, "", kernelOnDevice)) + first_element_source;
+      if (timer && nb_elements>100) start_gpu_timer(__KERNEL_NAME__);
       if (kernelOnDevice)
         {
-          start_gpu_timer();
-          #pragma omp target teams distribute parallel for if (computeOnDevice)
-          for (int i = 0; i < nb_elements; i++)
-            addr_dest[i] = addr_source[i];
-          if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::inject_array");
+#ifndef LATATOOLS
+          const auto addr_source = source.view_ro<1>();
+          auto addr_dest = view_rw<1>();
+          Kokkos::parallel_for(__KERNEL_NAME__, nb_elements, KOKKOS_LAMBDA(const _SIZE_ i) { addr_dest[first_element_dest+i] = addr_source[first_element_source+i]; });
+#endif
         }
       else
         {
           // PL: On utilise le memcpy car c'est VRAIMENT plus rapide (10% +vite sur RNR_G20)
+          const _TYPE_ * addr_source = source.span_.data() + first_element_source;
+          _TYPE_ * addr_dest = span_.data() + first_element_dest;
           memcpy(addr_dest, addr_source, nb_elements * sizeof(_TYPE_));
+#ifdef TRUST_USE_GPU
+          if (DeviceMemory::warning(nb_elements) && Process::je_suis_maitre())
+            Cerr << "[Host] Filling a large TRUSTArray (" << nb_elements << " items) which is slow during a GPU run! Set a breakpoint to fix." << finl;
+#endif
         }
+      if (timer && nb_elements>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
     }
   return *this;
 }
 
+template<typename _TYPE_, typename _SIZE_>
+template<typename _TAB_>
+void TRUSTArray<_TYPE_, _SIZE_>::ref_conv_helper_(_TAB_& out) const
+{
+  out.detach_array();
+  // Same as 'attach_array()', but since we are crossing templates parameters, we can not call it directly:
+  out.mem_ = mem_;
+  out.span_ = span_;
+  out.data_location_ = data_location_;
+  out.storage_type_ = storage_type_;
+}
+
+/*! Conversion methods - from a small array (_SIZE_=int) of TID (_TYPE_=trustIdType), return a big one (_SIZE_=trustIdType).
+ * No data copied! This behaves somewhat like a ref_array. Used in LATA stuff notably. Not implemented for _TYPE_=double or float
+ * (because never needed).
+ */
+template<>
+void TRUSTArray<trustIdType, int>::ref_as_big(TRUSTArray<trustIdType,trustIdType>& out) const
+{
+  ref_conv_helper_(out);
+}
+
+template<typename _TYPE_, typename _SIZE_>
+void TRUSTArray<_TYPE_,_SIZE_>::ref_as_big(TRUSTArray<_TYPE_,trustIdType>& out) const
+{
+  // Should no be used for anything else than specialisations listed above.
+  assert(false);
+  Process::exit("TRUSTArray<>::ref_as_big() should not be used with those current template types.");
+}
+
+/*! Conversion methods - from a big array (_SIZE_=trustIdType), return a small one (_SIZE_=int).
+ * Overflow is detected in debug if array is too big to be fit into _SIZE_=int.
+ * No data copied! This behaves somewhat like a ref_array. Used in LATA stuff and FT notably.
+ */
+template<>
+void TRUSTArray<float, trustIdType>::ref_as_small(TRUSTArray<float, int>& out) const
+{
+  // Check size fits in 32bits:
+  assert(size_array() < std::numeric_limits<int>::max());
+  ref_conv_helper_(out);
+}
+
+template<>
+void TRUSTArray<int, trustIdType>::ref_as_small(TRUSTArray<int, int>& out) const
+{
+  // Check size fits in 32bits:
+  assert(size_array() < std::numeric_limits<int>::max());
+  ref_conv_helper_(out);
+}
+
+template<typename _TYPE_, typename _SIZE_>
+void TRUSTArray<_TYPE_,_SIZE_>::ref_as_small(TRUSTArray<_TYPE_, int>& out) const
+{
+  // Should no be used for anything else than specialisations listed above.
+  assert(false);
+  Process::exit("TRUSTArray<>::ref_as_big() should not be used with those current template types.");
+}
+
+/*! Conversion from a BigArrOfTID to an ArrOfInt. Careful, it always does a copy! It is your responsibility
+ * to invoke it only when necessary (typically you should avoid this when trustIdType == int ...)
+ */
+template<>
+void TRUSTArray<trustIdType,trustIdType>::from_tid_to_int(TRUSTArray<int, int>& out) const
+{
+  // Not too big?
+  assert(size_array() < std::numeric_limits<int>::max());
+  int sz_int = (int)size_array(); // we may cast!
+  out.resize_array_(sz_int);  // the one with '_' skipping the checks, so we can be called from Tab too
+  if (sz_int)
+    {
+      // All values within int range?
+      assert((   *std::min_element(span_.begin(), span_.end()) > std::numeric_limits<int>::min()  ));
+      assert((   *std::max_element(span_.begin(), span_.end()) < std::numeric_limits<int>::max()  ));
+    }
+  // Yes, copy:
+  std::copy(span_.begin(), span_.end(), out.span_.begin());
+}
+
+template<typename _TYPE_, typename _SIZE_>
+void TRUSTArray<_TYPE_,_SIZE_>::from_tid_to_int(TRUSTArray<int, int>& out) const
+{
+  // Should no be used for anything else than specialisations listed above.
+  assert(false);
+  Process::exit("TRUSTArray<>::from_tid_to_int() should not be used with those current template types.");
+}
+
+
 /** Remplit le tableau avec la x en parametre (x est affecte a toutes les cases du tableau)
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator=(_TYPE_ x)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator=(_TYPE_ x)
 {
-  const int n = size_array();
-  _TYPE_ *data = span_.data();
+  const _SIZE_ size = size_array();
   bool kernelOnDevice = checkDataOnDevice();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for (int i = 0; i < n; i++) data[i] = x;
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator=(_TYPE_ x)");
+  if (timer && size>100) start_gpu_timer(__KERNEL_NAME__);
+  if (kernelOnDevice)
+    {
+#ifndef LATATOOLS
+      auto data = view_rw<1>();
+      Kokkos::parallel_for(__KERNEL_NAME__, size, KOKKOS_LAMBDA(const int i) { data[i] = x; });
+#endif
+    }
+  else
+    {
+      _TYPE_ *data = span_.data();
+      for (_SIZE_ i = 0; i < size; i++) data[i] = x;
+    }
+  if (timer && size>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
   return *this;
 }
 
 /** Addition case a case sur toutes les cases du tableau : la taille de y doit etre au moins egale a la taille de this
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator+=(const TRUSTArray& y)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator+=(const TRUSTArray& y)
 {
   assert(size_array()==y.size_array());
-  _TYPE_* dx = span_.data();
-  const _TYPE_* dy = y.span_.data();
+  _SIZE_ size = size_array();
   bool kernelOnDevice = checkDataOnDevice(y);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for (int i = 0; i < size_array(); i++) dx[i] += dy[i];
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const TRUSTArray& y)");
+  if (timer && size>100) start_gpu_timer(__KERNEL_NAME__);
+  if (kernelOnDevice)
+    {
+#ifndef LATATOOLS
+      const auto dy = y.view_ro<1>();
+      auto dx = view_rw<1>();
+      Kokkos::parallel_for(__KERNEL_NAME__, size, KOKKOS_LAMBDA(const _SIZE_ i) { dx[i] += dy[i]; });
+#endif
+    }
+  else
+    {
+      const _TYPE_* dy = y.span_.data();
+      _TYPE_* dx = span_.data();
+      for (_SIZE_ i = 0; i < size; i++) dx[i] += dy[i];
+    }
+  if (timer && size>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
   return *this;
 }
 
 /** Ajoute la meme valeur a toutes les cases du tableau
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator+=(const _TYPE_ dy)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator+=(const _TYPE_ dy)
 {
-  _TYPE_ * data = span_.data();
+  _SIZE_ size = size_array();
   bool kernelOnDevice = checkDataOnDevice();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for(int i = 0; i < size_array(); i++) data[i] += dy;
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator+=(const _TYPE_ dy)");
+  if (timer && size>100) start_gpu_timer(__KERNEL_NAME__);
+  if (kernelOnDevice)
+    {
+#ifndef LATATOOLS
+      auto data = view_rw<1>();
+      Kokkos::parallel_for(__KERNEL_NAME__, size, KOKKOS_LAMBDA(const _SIZE_ i) { data[i] += dy; });
+#endif
+    }
+  else
+    {
+      _TYPE_ *data = span_.data();
+      for(_SIZE_ i = 0; i < size; i++) data[i] += dy;
+    }
+  if (timer && size>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
   return *this;
 }
 
 /** Soustraction case a case sur toutes les cases du tableau : tableau de meme taille que *this
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator-=(const TRUSTArray& y)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator-=(const TRUSTArray& y)
 {
   assert(size_array() == y.size_array());
-  _TYPE_ * data = span_.data();
-  const _TYPE_ * data_y = y.span_.data();
+  _SIZE_ size = size_array();
   bool kernelOnDevice = checkDataOnDevice(y);
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for (int i = 0; i < size_array(); i++) data[i] -= data_y[i];
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const TRUSTArray& y)");
+  if (timer && size>100) start_gpu_timer(__KERNEL_NAME__);
+  if (kernelOnDevice)
+    {
+#ifndef LATATOOLS
+      auto data = view_rw<1>();
+      const auto data_y = y.view_ro<1>();
+      Kokkos::parallel_for(__KERNEL_NAME__, size, KOKKOS_LAMBDA(const _SIZE_ i) { data[i] -= data_y[i]; });
+#endif
+    }
+  else
+    {
+      _TYPE_ * data = span_.data();
+      const _TYPE_ * data_y = y.span_.data();
+      for (_SIZE_ i = 0; i < size; i++) data[i] -= data_y[i];
+    }
+  if (timer && size>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
   return *this;
 }
 
 /** soustrait la meme valeur a toutes les cases
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator-=(const _TYPE_ dy)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator-=(const _TYPE_ dy)
 {
-  _TYPE_ * data = span_.data();
-  bool kernelOnDevice = checkDataOnDevice();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for(int i = 0; i < size_array(); i++) data[i] -= dy;
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator-=(const _TYPE_ dy)");
+  operator+=(-dy);
   return *this;
 }
 
 /** muliplie toutes les cases par dy
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator*= (const _TYPE_ dy)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator*= (const _TYPE_ dy)
 {
-  _TYPE_ * data = span_.data();
+  _SIZE_ size = size_array();
   bool kernelOnDevice = checkDataOnDevice();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for(int i=0; i < size_array(); i++) data[i] *= dy;
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator*= (const _TYPE_ dy)");
+  if (timer && size>100) start_gpu_timer(__KERNEL_NAME__);
+  if (kernelOnDevice)
+    {
+#ifndef LATATOOLS
+      auto data = view_rw<1>();
+      Kokkos::parallel_for(__KERNEL_NAME__, size, KOKKOS_LAMBDA(const _SIZE_ i) { data[i] *= dy; });
+#endif
+    }
+  else
+    {
+      _TYPE_ *data = span_.data();
+      for(_SIZE_ i=0; i < size; i++) data[i] *= dy;
+    }
+  if (timer && size>100) end_gpu_timer(__KERNEL_NAME__, kernelOnDevice);
   return *this;
 }
 
 /** divise toutes les cases par dy (pas pour TRUSTArray<int>)
  */
-template <typename _TYPE_>
-TRUSTArray<_TYPE_>& TRUSTArray<_TYPE_>::operator/= (const _TYPE_ dy)
+template <typename _TYPE_, typename _SIZE_>
+TRUSTArray<_TYPE_, _SIZE_>& TRUSTArray<_TYPE_, _SIZE_>::operator/= (const _TYPE_ dy)
 {
-  if (std::is_same<_TYPE_,int>::value) throw;
-  const _TYPE_ i_dy = 1 / dy;
-  _TYPE_ * data = span_.data();
-  bool kernelOnDevice = checkDataOnDevice();
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (kernelOnDevice)
-  for(int i=0; i < size_array(); i++) data[i] *= i_dy;
-  if (timer) end_gpu_timer(kernelOnDevice, "TRUSTArray<_TYPE_>::operator/= (const _TYPE_ dy)");
+  if (std::is_integral<_TYPE_>::value) throw;  // division should not be called on integral types.
+  operator*=(1/dy);
   return *this;
 }
 
 // Pour instancier les methodes templates dans un .cpp
-template class TRUSTArray<double>;
-template class TRUSTArray<int>;
-template class TRUSTArray<float>;
+template class TRUSTArray<double, int>;
+template class TRUSTArray<int, int>;
+template class TRUSTArray<float, int>;
+
+#if INT_is_64_ == 2
+template class TRUSTArray<double, trustIdType>;
+template class TRUSTArray<int, trustIdType>;
+template class TRUSTArray<trustIdType, trustIdType>;
+template class TRUSTArray<trustIdType, int>;
+template class TRUSTArray<float, trustIdType>;
+#endif

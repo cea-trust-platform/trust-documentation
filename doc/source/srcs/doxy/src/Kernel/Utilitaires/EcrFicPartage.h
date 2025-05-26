@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -49,29 +49,28 @@ public:
   int get_precision() override;
 
   Sortie& flush() override;
-  int set_bin(int bin) override;
+  void set_bin(bool bin) override;
+  void set_64b(bool is64) override;
 
   Sortie& operator <<(const char* ob) override;
   Sortie& operator <<(const Objet_U& ob) override;
   Sortie& operator <<(const std::string& ob) override;
   Sortie& operator <<(const Separateur& ) override;
 
-  Sortie& operator <<(const unsigned int ob) override;
-  Sortie& operator <<(const int ob) override;
+  Sortie& operator <<(const True_int ob) override;
+  Sortie& operator <<(const unsigned ob) override;
+  Sortie& operator <<(const long ob) override;
+  Sortie& operator <<(const long long ob) override;
+  Sortie& operator <<(const unsigned long ob) override;
   Sortie& operator <<(const float ob) override;
   Sortie& operator <<(const double ob) override;
-#ifndef INT_is_64_
-  Sortie& operator <<(const long ob) override;
-  Sortie& operator <<(const unsigned long ob) override;
-#endif
 
-  int put(const unsigned* ob, int n, int pas) override;
-  int put(const int* ob, int n, int pas) override;
-  int put(const float* ob, int n, int pas) override;
-  int put(const double* ob, int n, int pas) override;
-#ifndef INT_is_64_
-  int put(const long* ob, int n, int pas) override;
-#endif
+  int put(const unsigned* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const True_int* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const long* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const long long* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const float* ob, std::streamsize n, std::streamsize pas) override;
+  int put(const double* ob, std::streamsize n, std::streamsize pas) override;
 
 protected:
   Nom nom_fic_;
@@ -81,7 +80,7 @@ private:
   OBuffer * obuffer_ptr_ = nullptr; // Pointeur : permet de ne pas inclure OBuffer.h
 
   template <typename _TYPE_>
-  int put_template(const _TYPE_* ob, int n, int pas)
+  int put_template(const _TYPE_* ob, std::streamsize n, std::streamsize pas)
   {
     get_obuffer().put(ob,n,pas);
     return 1;

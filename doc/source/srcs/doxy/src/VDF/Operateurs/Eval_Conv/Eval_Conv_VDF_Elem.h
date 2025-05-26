@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -53,7 +53,7 @@ public:
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Dirichlet_entree_fluide&, Type_Double&, Type_Double& ) const;
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Neumann_sortie_libre&, Type_Double&, Type_Double& ) const;
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Periodique&, Type_Double&, Type_Double& ) const;
-  template <typename Type_Double> inline void coeffs_face(const int, const int, const int, const int, const Echange_externe_impose&, Type_Double&, Type_Double& ) const { /* Do nothing */ }
+  template <typename Type_Double> inline void coeffs_face(const DoubleTab&, const int, const int, const int, const int, const Echange_externe_impose&, Type_Double&, Type_Double& ) const { /* Do nothing */ }
   template <typename Type_Double> inline void coeffs_faces_interne(const int, Type_Double&, Type_Double& ) const;
 
   // contribution de la derivee en vitesse d'une equation scalaire

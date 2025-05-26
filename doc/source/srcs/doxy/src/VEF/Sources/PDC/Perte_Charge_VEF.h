@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,6 +20,7 @@
 #include <Source_base.h>
 #include <TRUST_Ref.h>
 #include <Parser_U.h>
+#include <Champ_Don_base.h>
 
 class Sous_domaine_VF;
 class Domaine_Cl_VEF;
@@ -53,7 +54,7 @@ public:
 protected:
   virtual void set_param(Param& param);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
-  void associer_domaines(const Domaine_dis&,const Domaine_Cl_dis&) override;   //!< associe le_dom_VEF et le_dom_Cl_VEF
+  void associer_domaines(const Domaine_dis_base&,const Domaine_Cl_dis_base&) override;   //!< associe le_dom_VEF et le_dom_Cl_VEF
 
   //! Appele pour chaque face par ajouter()
   /**
@@ -83,19 +84,19 @@ protected:
                                    double& u_l, DoubleVect& v_valeur) const=0;
 
   //! Diametre hydraulique utilise dans le calcul de la perte de charge
-  Champ_Don diam_hydr;
+  OWN_PTR(Champ_Don_base) diam_hydr;
   //! Fluide associe au probleme
-  REF(Fluide_base) le_fluide;
+  OBS_PTR(Fluide_base) le_fluide;
   //! Vitesse associee a l'equation resolue
-  REF(Champ_Inc_base) la_vitesse;
+  OBS_PTR(Champ_Inc_base) la_vitesse;
   //! Domaine dans laquelle s'applique la perte de charge
-  REF(Domaine_VEF) le_dom_VEF;
-  REF(Domaine_Cl_VEF) le_dom_Cl_VEF;
+  OBS_PTR(Domaine_VEF) le_dom_VEF;
+  OBS_PTR(Domaine_Cl_VEF) le_dom_Cl_VEF;
 
   // Cas d'un sous-domaine
   bool sous_domaine=false; //!< Le terme est-il limite a un sous-domaine ?
   Nom nom_sous_domaine; //!< Nom du sous-domaine, initialise dans readOn()
-  REF(Sous_domaine_VF) le_sous_domaine_dis; //!< Initialise dans completer()
+  OBS_PTR(Sous_domaine_VF) le_sous_domaine_dis; //!< Initialise dans completer()
   int implicite_;
 
   mutable Parser_U lambda;

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,7 +13,6 @@
 *
 *****************************************************************************/
 
-
 #ifndef Op_Diff_VEF_Face_included
 #define Op_Diff_VEF_Face_included
 
@@ -22,7 +21,6 @@
 #include <Champ_base.h>
 #include <TRUST_Ref.h>
 
-class Champ_Inc;
 
 /*! @brief class Op_Diff_VEF_Face Cette classe represente l'operateur de diffusion
  *
@@ -33,9 +31,7 @@ class Champ_Inc;
 class Op_Diff_VEF_Face : public Op_Diff_VEF_base
 {
   Declare_instanciable_sans_constructeur(Op_Diff_VEF_Face);
-
 public:
-
   Op_Diff_VEF_Face();
   void associer_diffusivite(const Champ_base& ) override;
   void completer() override;
@@ -78,7 +74,7 @@ public:
 protected :
 
 
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Champ_base) diffusivite_;
   mutable DoubleTab grad_;  // grad
 
   //DoubleVect porosite_face;
@@ -106,7 +102,7 @@ inline void Op_Diff_VEF_Face::modifier_pour_Cl(Matrice_Morse& matrice, DoubleTab
 inline void Op_Diff_VEF_Face::contribuer_a_avec(const DoubleTab& inco,
                                                 Matrice_Morse& matrice) const
 {
-  const Champ_base& inconnue = equation().inconnue().valeur();
+  const Champ_base& inconnue = equation().inconnue();
   const Nature_du_champ nature_champ = inconnue.nature_du_champ();
   if (nature_champ!=multi_scalaire)
     ajouter_contribution(inco, matrice);

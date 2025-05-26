@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -73,7 +73,7 @@ DoubleTab& Masse_PolyMAC_Elem::appliquer_impl(DoubleTab& sm) const
 void Masse_PolyMAC_Elem::dimensionner(Matrice_Morse& matrix) const
 {
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
-  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue().valeur());
+  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue());
   int e, f, ne_tot = domaine.nb_elem_tot(), nf_tot = domaine.nb_faces_tot(), n, N = ch.valeurs().line_size();
   const bool only_ne = (matrix.nb_lignes() == ne_tot);
 
@@ -97,7 +97,7 @@ void Masse_PolyMAC_Elem::dimensionner(Matrice_Morse& matrix) const
 DoubleTab& Masse_PolyMAC_Elem::ajouter_masse(double dt, DoubleTab& secmem, const DoubleTab& inco, int penalisation) const
 {
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
-  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue().valeur());
+  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue());
   const Conds_lim& cls = le_dom_Cl_PolyMAC->les_conditions_limites();
   const DoubleVect& ve = domaine.volumes(), &pe = equation().milieu().porosite_elem(), &fs = domaine.face_surfaces();
   int e, f, ne_tot = domaine.nb_elem_tot(), n, N = inco.line_size();
@@ -115,7 +115,7 @@ DoubleTab& Masse_PolyMAC_Elem::ajouter_masse(double dt, DoubleTab& secmem, const
   for (f = 0; secmem.dimension_tot(0) > ne_tot && f < domaine.nb_faces(); f++)
     if (ch.fcl()(f, 0) == 4)
       for (n = 0; n < N; n++) //Neumann_paroi
-        secmem(N * (ne_tot + f) + n) -= fs(f) * ref_cast(Neumann_paroi, cls[ch.fcl()(f, 1)].valeur()).flux_impose(ch.fcl()(f, 2), n);
+        secmem(N * (ne_tot + f) + n) += fs(f) * ref_cast(Neumann_paroi, cls[ch.fcl()(f, 1)].valeur()).flux_impose(ch.fcl()(f, 2), n);
     else if (ch.fcl()(f, 0) == 6)
       for (n = 0; n < N; n++) //Dirichlet
         secmem(N * (ne_tot + f) + n) += ref_cast(Dirichlet, cls[ch.fcl()(f, 1)].valeur()).val_imp(ch.fcl()(f, 2), n);
@@ -126,7 +126,7 @@ DoubleTab& Masse_PolyMAC_Elem::ajouter_masse(double dt, DoubleTab& secmem, const
 Matrice_Base& Masse_PolyMAC_Elem::ajouter_masse(double dt, Matrice_Base& matrice, int penalisation) const
 {
   const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
-  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue().valeur());
+  const Champ_Elem_PolyMAC& ch = ref_cast(Champ_Elem_PolyMAC, equation().inconnue());
   const DoubleVect& ve = domaine.volumes(), &pe = equation().milieu().porosite_elem();
   int e, f, ne_tot = domaine.nb_elem_tot(), n, N = ch.valeurs().line_size();
   Matrice_Morse& mat = ref_cast(Matrice_Morse, matrice);

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,7 @@
 
 #include <assert.h>
 #include <string>
+#include <arch.h>
 class Stat_Counter_Id;
 class Stat_Results;
 class Stat_Internals;
@@ -69,7 +70,7 @@ public:
    * @count Parameter that count the number of time the counter has been used between begin_count and end_count. By default equal to 1.
    * @param track_comm Indicate if the user want to record the communication associated with the counter, set to true by default
    */
-  inline void end_count(const Stat_Counter_Id& counter_id, int quantity = 0, int count = 1, bool track_comm = true);
+  inline void end_count(const Stat_Counter_Id& counter_id, trustIdType quantity = 0, int count = 1, bool track_comm = true);
 
 
   /*! @brief Give the last interval of time the counter has been used
@@ -191,7 +192,7 @@ public:
 protected:
   // Les deux fonctions suivantes peuvent etre appelees sur un seul processeur
   void begin_count_(const int id_);
-  void end_count_(const int id_, int quantity, int count);
+  void end_count_(const int id_, trustIdType quantity, int count);
   int debug_level_;
   Stat_Internals * stat_internals;
   double total_time_;
@@ -207,7 +208,7 @@ class Stat_Counter_Id
 {
 public:
   Stat_Counter_Id() : id_(-1), level_(-1) {};
-  int initialized(void) const
+  int initialized() const
   {
     return id_ >= 0;
   };
@@ -230,6 +231,11 @@ protected:
 // Utiliser la methode d'acces statistiques()
 class Statistiques;
 extern Statistiques * les_statistiques_trio_U_nom_long_pour_decourager_l_utilisation_directe;
+
+inline bool statistiques_enabled()
+{
+  return les_statistiques_trio_U_nom_long_pour_decourager_l_utilisation_directe;
+}
 
 inline Statistiques& statistiques()
 {
@@ -263,6 +269,7 @@ public:
   inline void reset();
 
 };
+
 inline void Statistiques::begin_count(const Stat_Counter_Id& counter_id, bool track_comm)
 {
   assert(counter_id.initialized());
@@ -271,9 +278,6 @@ inline void Statistiques::begin_count(const Stat_Counter_Id& counter_id, bool tr
       begin_count_(counter_id.id_);
       if(track_comm) begin_communication_tracking(counter_id.id_);
     }
-
-
-
 }
 
 /*! @brief Arret du compteur counter_id.
@@ -285,7 +289,7 @@ inline void Statistiques::begin_count(const Stat_Counter_Id& counter_id, bool tr
  *
  */
 inline void Statistiques::end_count(const Stat_Counter_Id& counter_id,
-                                    int quantity,
+                                    trustIdType quantity,
                                     int count,
                                     bool track_comm)
 {
@@ -295,11 +299,7 @@ inline void Statistiques::end_count(const Stat_Counter_Id& counter_id,
       end_count_(counter_id.id_, quantity, count);
       if(track_comm) end_communication_tracking(counter_id.id_);
     }
-
-
-
 }
-
 
 inline void Stat_Results::reset()
 {

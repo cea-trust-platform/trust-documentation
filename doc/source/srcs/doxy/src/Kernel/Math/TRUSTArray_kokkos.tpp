@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,136 +18,142 @@
 
 #include <TRUSTArray.h>
 
-// Create internal DualView member, and populate it with current host data
-template<typename _TYPE_>
-inline void TRUSTArray<_TYPE_>::init_view_arr() const
+#ifdef KOKKOS
+
+//Deduce dimensions from shape and internal values
+//To be later used in View_Types.h's createView.
+template<typename _TYPE_, typename _SIZE_>
+template <int _SHAPE_>
+std::array<_SIZE_, 4> TRUSTArray<_TYPE_, _SIZE_>::getDims() const
 {
-  long ze_dim = this->size_array();
+  // The accessors should never be called with the wrong _SHAPE_
+  bool flattened = check_flattened<_SHAPE_>();
 
-  // Do we need to re-init?
-  bool is_init = dual_view_init_;
-  if(is_init && dual_view_arr_.h_view.is_allocated())
-    // change of alloc or resize triggers re-init (for now - resize could be done better)
-    if (dual_view_arr_.h_view.data() != this->data() || dual_view_arr_.view_device().data() != addrOnDevice(*this) ||
-        (long) dual_view_arr_.extent(0) != ze_dim)
-      is_init = false;
+  // If flattened, use size_array() for the first dimension,
+  // otherwise use dimension_tot(0)
+  _SIZE_ dimension_tot_0 = flattened ? this->size_array() : this->dimension_tot(0);
 
-  if (is_init) return;
-  dual_view_init_ = true;
+//Useful when casting a 1D Tab into a multi-D View !
+  return { dimension_tot_0,
+           nb_dim_ > 1 ? this->dimension_tot(1) : 0,
+           nb_dim_ > 2 ? this->dimension_tot(2) : 0,
+           nb_dim_ > 3 ? this->dimension_tot(3) : 0
+         };
 
-  using t_host = typename DualViewArr<_TYPE_>::t_host;  // Host type
-  using t_dev = typename DualViewArr<_TYPE_>::t_dev;    // Device type
-  //using size_type = typename DualViewArr<_TYPE_>::size_type;
-
-  //const std::string& nom = this->le_nom().getString();
-
-  // Re-use already TRUST allocated data:
-  t_host host_view = t_host(const_cast<_TYPE_ *>(this->data()), ze_dim);
-  // Empty view on device - just a memory allocation:
-  //t_dev device_view = t_dev(nom, ze_dim);
-  t_dev device_view;
-#ifdef _OPENMP
-  // Device memory is allocated with OpenMP: ToDo replace by allocate ?
-  mapToDevice(*this, "Kokkos init_view_arr()");
-  device_view = t_dev(const_cast<_TYPE_ *>(addrOnDevice(*this)), ze_dim);
-#else
-  device_view = create_mirror_view_and_copy(Kokkos::DefaultExecutionSpace::memory_space(), host_view);
-#endif
-
-  // Dual view is made as an assembly of the two views:
-  dual_view_arr_ = DualViewArr<_TYPE_>(device_view, host_view);
-
-  // Mark data modified on host so it will be sync-ed to device later on:
-  dual_view_arr_.template modify<host_mirror_space>();
 }
 
-template<typename _TYPE_>
-inline ConstViewArr<_TYPE_> TRUSTArray<_TYPE_>::view_ro() const
+// Create internal DeviceView member
+template<typename _TYPE_, typename _SIZE_>
+template<int _SHAPE_>
+inline void TRUSTArray<_TYPE_,_SIZE_>::init_device_view() const
 {
-  // Init if necessary
-  init_view_arr();
-#ifdef _OPENMP
-  mapToDevice(*this, "Kokkos TRUSTArray::view_ro()");
-#else
-  // Copy to device if needed (i.e. if modify() was called):
-  dual_view_arr_.template sync<memory_space>();
-#endif
-  // return *device* view:
-  return dual_view_arr_.view_device();
+
+  const auto& device_view = get_device_view<_SHAPE_>();
+
+  auto dims = this->getDims<_SHAPE_>();
+
+  // change of alloc or resize triggers re-init (for now - resize could be done better)
+  if(device_view.data() == addrOnDevice(*this) &&
+      (long) device_view.extent(0) == dims[0] &&
+      (_SHAPE_ >= 2 && (long) device_view.extent(1) == dims[1]) &&
+      (_SHAPE_ >= 3 && (long) device_view.extent(2) == dims[2]) &&
+      (_SHAPE_ >= 4 && (long) device_view.extent(3) == dims[3]) )
+    return;
+
+  mapToDevice(*this); // Device memory is allocated
+  auto& mutable_device_view = const_cast<DeviceView<_TYPE_, _SHAPE_>&>(device_view);
+  mutable_device_view = createView<DeviceView<_TYPE_, _SHAPE_>, _TYPE_, _SHAPE_, _SIZE_>(const_cast<_TYPE_ *>(addrOnDevice(*this)), dims);
 }
 
-template<typename _TYPE_>
-inline ViewArr<_TYPE_> TRUSTArray<_TYPE_>::view_wo()
+//Check if the internal value of nb_dim_ (that can be >1 if the Array is a Tab) is compatible with the _SHAPE_
+//argument of the accessors. Morevover, it returns true if you are trying to flatten a Tab into an array, or false otherwise
+template<typename _TYPE_, typename _SIZE_>
+template<int _SHAPE_>
+bool TRUSTArray<_TYPE_,_SIZE_>::check_flattened() const
 {
-  // Init if necessary
-  init_view_arr();
-#ifdef _OPENMP
-  computeOnTheDevice(*this, "Kokkos TRUSTArray<_TYPE_>::view_wo()"); // ToDo allouer sans copie ?
+  //Trying to represent a TRUSTArray with a multi-D View
+#ifndef NDEBUG
+  bool is_array = std::string(typeid(*this).name()).find("TRUSTArray") != std::string::npos;;
+  assert(not(is_array && _SHAPE_>1));
 #endif
-  // Mark the (device) data as modified, so that the next sync() (to host) will copy:
-  dual_view_arr_.template modify<memory_space>();
-  // return *device* view:
-  return dual_view_arr_.view_device();
+
+  //Mismatch in multi-D Tab dimension and accessor _SHAPE_ value !
+  assert((not(this->nb_dim_>1 && _SHAPE_>1 && _SHAPE_ != this->nb_dim_)));
+
+  // The Tab accessor can sometime be called with _SHAPE_ == 1.
+  // For instance, this can happen when a vect operation is called on a Tab
+  // In this case, we want the View to be flattened with the first dimension as the total size of the tab
+  // Otherwise, this would give a 1D View of dimension equal to the first dimension of the Tab (typically <)
+  // When true is returned, we do a 1D view with dimension size_array(). This is always what we want with _SHAPE_=1
+  return (_SHAPE_==1);
 }
 
-template<typename _TYPE_>
-inline ViewArr<_TYPE_> TRUSTArray<_TYPE_>::view_rw()
+///////////// Read-Only ////////////////////////////
+// Device version (GPU / CPU compiled)
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, ConstView<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_ro() const
 {
-  // Init if necessary
-  init_view_arr();
-#ifdef _OPENMP
-  computeOnTheDevice(*this, "Kokkos TRUSTArray::view_rw()");
-#else
-  // Copy to device (if needed) ...
-  dual_view_arr_.template sync<memory_space>();
-  // ... and mark the (device) data as modified, so that the next sync() (to host) will copy:
-  dual_view_arr_.template modify<memory_space>();
-#endif
-  // return *device* view:
-  return dual_view_arr_.view_device();
+  this->template init_device_view<_SHAPE_>();
+  mapToDevice(*this);
+  return get_device_view<_SHAPE_>();
 }
 
-template<typename _TYPE_>
-inline void TRUSTArray<_TYPE_>::sync_to_host() const
+// GPU compiled, host view version
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, ConstHostView<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_ro() const
 {
-#ifdef _OPENMP
-  Process::exit("ToDo");
-#endif
-  // Copy to host (if needed) ...
-  dual_view_arr_.template sync<host_mirror_space>();
+  auto dims = this->getDims<_SHAPE_>();
+  return createView<ConstHostView<_TYPE_, _SHAPE_>, _TYPE_, _SHAPE_, _SIZE_>(this->addr(), dims);
 }
 
-template<typename _TYPE_>
-inline void TRUSTArray<_TYPE_>::modified_on_host() const
+
+//////////// Write-only ////////////////////////////
+// Device version (GPU / CPU compiled)
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, View<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_wo()
 {
-#ifdef _OPENMP
-  Process::exit("ToDo");
-#endif
-  // Mark modified on host side:
-  if(dual_view_init_)
-    dual_view_arr_.template modify<host_mirror_space>();
+  this->template init_device_view<_SHAPE_>();
+  computeOnTheDevice(*this);
+  return get_device_view<_SHAPE_>();
 }
 
-// Methode de debug
-template<typename _TYPE_>
-void debug_device_view(const ViewArr<_TYPE_> view_tab, TRUSTArray<_TYPE_>& tab, int max_size=-1)
+// GPU compiled, host view version
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, HostView<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_wo()
 {
-#ifndef LATATOOLS
-  assert(view_tab.data()==addrOnDevice(tab)); // Verifie meme adress
-  Cout << "View size=" << view_tab.size() << finl;
-  int size = max_size;
-  if (size==-1) size = view_tab.extent(0);
-  Kokkos::parallel_for(size, KOKKOS_LAMBDA(const int i)
-  {
-    printf("[Kokkos]: %p [%2ld]=%e\n", view_tab.data(), i, view_tab(i));
-  });
-  Cout << "Tab size=" << tab.size_array() << finl;
-  assert(view_tab.size()==tab.size_array());
-  _TYPE_ *ptr = tab.data();
-  #pragma omp target teams distribute parallel for
-  for (int i=0; i<size; i++)
-    printf("[OpenMP]: %p [%2ld]=%e\n", ptr, i, ptr[i]);
-#endif
+  auto dims = this->getDims<_SHAPE_>();
+  return createView<HostView<_TYPE_, _SHAPE_>, _TYPE_, _SHAPE_, _SIZE_>(this->addr(), dims);
+}
+
+//////////// Read-Write ////////////////////////////
+// Device version (GPU / CPU compiled)
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<is_default_exec_space<EXEC_SPACE>, View<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_rw()
+{
+  this->template init_device_view<_SHAPE_>();
+  computeOnTheDevice(*this);
+  return get_device_view<_SHAPE_>();
+}
+// GPU compiled, host view version
+template<typename _TYPE_, typename _SIZE_>  // this one first!!
+template<int _SHAPE_, typename EXEC_SPACE>
+inline std::enable_if_t<gpu_enabled_is_host_exec_space<EXEC_SPACE>, HostView<_TYPE_,_SHAPE_> >
+TRUSTArray<_TYPE_,_SIZE_>::view_rw()
+{
+  auto dims = this->getDims<_SHAPE_>();
+  return createView<HostView<_TYPE_, _SHAPE_>, _TYPE_, _SHAPE_, _SIZE_>(this->addr(), dims);
 }
 
 #endif
+#endif
+

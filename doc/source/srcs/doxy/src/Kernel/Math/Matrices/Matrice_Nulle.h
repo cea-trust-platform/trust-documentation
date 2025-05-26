@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,6 +31,8 @@ public :
   DoubleVect& ajouter_multvectT_(const DoubleVect& x, DoubleVect& r) const override;
   DoubleTab& ajouter_multTab_(const DoubleTab& x, DoubleTab& r) const override;
 
+  void clean() override;
+
   void scale(const double x) override;
   void get_stencil(IntTab& stencil) const override;
   void get_symmetric_stencil(IntTab& stencil) const override;
@@ -38,7 +40,7 @@ public :
   void get_symmetric_stencil_and_coefficients(IntTab& stencil, ArrOfDouble& coefficients) const override;
 
 public:
-  Matrice_Nulle(void);
+  Matrice_Nulle();
   Matrice_Nulle(int order);
   Matrice_Nulle(int nb_lines, int nb_columns);
 

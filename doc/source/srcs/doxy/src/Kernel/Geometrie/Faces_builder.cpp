@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,7 +15,6 @@
 
 #include <Connectivite_som_elem.h>
 #include <EcrFicCollecteBin.h>
-#include <Static_Int_Lists.h>
 #include <Elem_geom_base.h>
 #include <Poly_geom_base.h>
 #include <communications.h>
@@ -23,7 +22,6 @@
 #include <Faces_builder.h>
 #include <Domaine.h>
 #include <Scatter.h>
-#include <Faces2.h>
 #include <stdio.h>
 #include <vector>
 #include <array>
@@ -76,7 +74,7 @@ void Faces_builder::creer_faces_reeles(Domaine& domaine,
       is_polyedre_=1;
     }
   else
-    domaine.type_elem().valeur().get_tab_faces_sommets_locaux(faces_element_reference_old_);
+    domaine.type_elem()->get_tab_faces_sommets_locaux(faces_element_reference_old_);
   // Tableau de taille (nb_faces, nb_sommets par face),
   // pour chaque face, les indices de ses sommets dans le domaine.
   // L'ordre des sommets est celui donne par l'element de reference,
@@ -200,7 +198,7 @@ void Faces_builder::creer_faces_reeles(Domaine& domaine,
         // Les faces de joint sont dans le meme ordre en local et sur le voisin.
         Joint& joint = joints[i];
         ArrOfInt& indices_faces =
-          joint.set_joint_item(Joint::FACE).set_items_communs();
+          joint.set_joint_item(JOINT_ITEM::FACE).set_items_communs();
         const int nb_faces  = joint.nb_faces();
         indices_faces.resize_array(nb_faces);
         const int num_premiere_face = joint.num_premiere_face();
@@ -274,7 +272,7 @@ void Faces_builder::check_erreur_faces(const char * message,
         << " elem1 elem2 = neighbouring element number\n"
         << "facenumber som1 (x1 y1 z1) som2 (x2 y2 z2) [som3 (x3 y3 z3)...] elem1 elem2" << finl;
       char s[1000];
-      const DoubleTab& coord = ref_domaine_.valeur().coord_sommets();
+      const DoubleTab& coord = ref_domaine_->coord_sommets();
       const IntTab&     faces = faces_sommets_.valeur();
       const IntTab&     face_elem = face_elem_.valeur();
       const int dim = Objet_U::dimension;
@@ -327,29 +325,22 @@ int Faces_builder::ajouter_une_face(const ArrOfInt& une_face,
   return num_new_face;
 }
 
-int Faces_builder::chercher_face_element(const IntTab&    elem_som,
-                                         const IntTab&    faces_element_ref,
-                                         const ArrOfInt& une_face,
-                                         const int     elem)
+template <typename _SIZE_>
+int Faces_builder::chercher_face_element(const IntTab_T<_SIZE_>&    elem_som,
+                                         const IntTab& faces_element_ref,
+                                         const SmallArrOfTID_T<_SIZE_>& une_face,
+                                         const _SIZE_     elem)
 {
-#ifdef old
-#ifndef NDEBUG
-  ArrOfInt sommets_element(8);
-#else
-  int sommets_element[8];
-#endif
-#endif
+  const int nb_faces_element = faces_element_ref.dimension(0);
+  const int nb_sommets_par_face = faces_element_ref.dimension(1);
 
-  const int nb_faces_element          = faces_element_ref.dimension(0);
-  const int nb_sommets_par_face       = faces_element_ref.dimension(1);
-
-  int i_face, i_som, i_som2;
+  int i_face, i_som2, i_som;
   for (i_face = 0; i_face < nb_faces_element; i_face++)
     {
       for (i_som = 0; i_som < nb_sommets_par_face; i_som++)
         {
           const int sommet_elem_ref = faces_element_ref(i_face, i_som);
-          int sommet_domaine ;
+          _SIZE_ sommet_domaine ;
           if (sommet_elem_ref==-1)
             sommet_domaine=-1;
           else
@@ -368,6 +359,13 @@ int Faces_builder::chercher_face_element(const IntTab&    elem_som,
   else
     return i_face;
 }
+
+// Explicit instanciation
+template int Faces_builder::chercher_face_element(const IntTab_T<int>& elem_som, const IntTab& faces_element_ref, const SmallArrOfTID_T<int>& une_face, const int elem);
+#if INT_is_64_ == 2
+template int Faces_builder::chercher_face_element(const IntTab_T<trustIdType>& elem_som, const IntTab& faces_element_ref, const SmallArrOfTID_T<trustIdType>& une_face, const trustIdType elem);
+#endif
+
 const IntTab& Faces_builder::faces_element_reference(int elem) const
 {
   if (is_polyedre_==1 && les_elements_ptr_->dimension(0))

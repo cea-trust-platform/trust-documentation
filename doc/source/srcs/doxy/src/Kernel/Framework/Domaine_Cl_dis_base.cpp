@@ -13,29 +13,19 @@
 *
 *****************************************************************************/
 
+#include <Cond_lim_utilisateur_base.h>
 #include <Domaine_Cl_dis_base.h>
-#include <Equation_base.h>
 #include <Frontiere_dis_base.h>
 #include <Schema_Temps_base.h>
-#include <Cond_lim_utilisateur_base.h>
+#include <Equation_base.h>
 #include <Probleme_base.h>
 
 Implemente_base(Domaine_Cl_dis_base,"Domaine_Cl_dis_base",Objet_U);
 
-
-/*! @brief Surcharge Objet_U::printOn(Sortie&) NE FAIT RIEN
- *
- *     A surcharger dans les classes derivees.
- *     Imprime les conditions aux limites discretisees sur un flot de sortie
- *
- * @param (Sortie& os) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Domaine_Cl_dis_base::printOn(Sortie& os) const
 {
   return os;
 }
-
 
 /*! @brief Surcharge Objet_U::readOn(Sortie&) Lit les conditions aux limites discretisees a partir d'un flot d'entree
  *
@@ -52,7 +42,7 @@ Sortie& Domaine_Cl_dis_base::printOn(Sortie& os) const
 Entree& Domaine_Cl_dis_base::readOn(Entree& is)
 {
   assert(mon_equation.non_nul());
-  const Domaine& ledomaine=equation().domaine_dis()->domaine();
+  const Domaine& ledomaine=equation().domaine_dis().domaine();
   Motcle accolade_ouverte("{");
   Motcle accolade_fermee("}");
   Nom nomlu;
@@ -117,8 +107,7 @@ Entree& Domaine_Cl_dis_base::readOn(Entree& is)
           //les_conditions_limites(rang)=(*sa);
           delete sa;
         }
-      les_conditions_limites(rang)->
-      associer_fr_dis_base(domaine_dis().frontiere_dis(rang));
+      les_conditions_limites(rang)->associer_fr_dis_base(domaine_dis().frontiere_dis(rang));
 
       //Test pour empecher l utilisation de 'Raccord_distant_homogene' en calcul sequentiel
       const Frontiere& frontiere=ledomaine.frontiere(rang);
@@ -134,7 +123,7 @@ Entree& Domaine_Cl_dis_base::readOn(Entree& is)
     }
   if (nb_clim!=n)
     {
-      domaine_dis()->ecrire_noms_bords(Cerr);
+      domaine_dis().ecrire_noms_bords(Cerr);
       Cerr << "It misses " << n-nb_clim << " boundaries conditions " << finl;
       Cerr << "We read " << nb_clim << " boundaries conditions " << finl;
       Cerr << "We waited " << n << " boundary conditions " << finl;
@@ -152,7 +141,6 @@ Entree& Domaine_Cl_dis_base::readOn(Entree& is)
   return is;
 }
 
-
 /*! @brief Renvoie 1 si l'objet contient une condition aux limites du Nom specifie.
  *
  *     Renvoie 0 sinon.
@@ -167,19 +155,17 @@ int Domaine_Cl_dis_base::contient_Cl(const Nom& type)
   return 0;
 }
 
-
 /*! @brief Renvoie une reference sur le domaine discretisee associee aux conditions aux limites.
  *
  * Cette Domaine_dis est associee au travers de l'equation
  *     associee et pas directement a l'objet Domaine_Cl_dis_base.
  *
- * @return (Domaine_dis&) le domaine discretisee associee a l'equation associe aux conditions aux limites.
+ * @return (Domaine_dis_base&) le domaine discretisee associee a l'equation associe aux conditions aux limites.
  */
-Domaine_dis& Domaine_Cl_dis_base::domaine_dis()
+Domaine_dis_base& Domaine_Cl_dis_base::domaine_dis()
 {
   return equation().domaine_dis();
 }
-
 
 /*! @brief Renvoie une reference sur le domaine discretisee associee aux conditions aux limites.
  *
@@ -187,13 +173,12 @@ Domaine_dis& Domaine_Cl_dis_base::domaine_dis()
  *     associee et pas directement a l'objet Domaine_Cl_dis_base.
  *     (version const)
  *
- * @return (Domaine_dis&) le domaine discretisee associee a l'equation associe aux conditions aux limites.
+ * @return (Domaine_dis_base&) le domaine discretisee associee a l'equation associe aux conditions aux limites.
  */
-const Domaine_dis& Domaine_Cl_dis_base::domaine_dis() const
+const Domaine_dis_base& Domaine_Cl_dis_base::domaine_dis() const
 {
   return equation().domaine_dis();
 }
-
 
 /*! @brief Change le i-eme temps futur de toutes les CLs.
  *
@@ -268,7 +253,6 @@ void Domaine_Cl_dis_base::mettre_a_jour_ss_pas_dt(double temps)
     }
 }
 
-
 /*! @brief Initialise les CLs Contrairement aux methodes mettre_a_jour, les methodes
  *
  *     initialiser des CLs ne peuvent pas dependre de l'exterieur
@@ -280,8 +264,6 @@ int Domaine_Cl_dis_base::initialiser(double temps)
 {
   return les_conditions_limites_.initialiser(temps);
 }
-
-
 
 /*! @brief Calcul des coefficients d'echange pour les problemes couples thermiques
  *
@@ -312,7 +294,7 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_face_reelle(int
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
-      const Frontiere& fr=les_conditions_limites(i).frontiere_dis().frontiere();
+      const Frontiere& fr=les_conditions_limites(i)->frontiere_dis().frontiere();
       if (face_globale>=fr.num_premiere_face() && face_globale < fr.num_premiere_face()+fr.nb_faces())
         {
           face_locale=face_globale-fr.num_premiere_face();
@@ -322,7 +304,6 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_face_reelle(int
   assert(0); // la face ne porte pas de CL
   return les_conditions_limites(0).valeur(); // Pour compilo
 }
-
 
 /*! @brief Renvoie la condition limite associee a une face virtuelle donnee.
  *
@@ -334,7 +315,7 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_face_virtuelle(
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
-      const Frontiere& fr=les_conditions_limites(i).frontiere_dis().frontiere();
+      const Frontiere& fr=les_conditions_limites(i)->frontiere_dis().frontiere();
       const ArrOfInt& faces_virt=fr.get_faces_virt();
       for (int j=0; j<faces_virt.size_array(); j++)
         if (face_globale==faces_virt[j])
@@ -356,7 +337,7 @@ Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_frontiere(Nom frontie
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
-      const Frontiere& fr=les_conditions_limites(i).frontiere_dis().frontiere();
+      const Frontiere& fr=les_conditions_limites(i)->frontiere_dis().frontiere();
       if (fr.le_nom()==frontiere)
         return les_conditions_limites(i).valeur();
     }
@@ -374,7 +355,7 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_frontiere(Nom f
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
-      const Frontiere& fr=les_conditions_limites(i).frontiere_dis().frontiere();
+      const Frontiere& fr=les_conditions_limites(i)->frontiere_dis().frontiere();
       if (fr.le_nom()==frontiere)
         return les_conditions_limites(i).valeur();
     }
@@ -383,8 +364,6 @@ const Cond_lim_base& Domaine_Cl_dis_base::condition_limite_de_la_frontiere(Nom f
   return les_conditions_limites(0).valeur(); // Pour compilo
 }
 
-
-
 /*! @brief Calcule le taux d'accroissement des CLs instationnaires entre t1 et t2.
  *
  */
@@ -392,11 +371,10 @@ void Domaine_Cl_dis_base::calculer_derivee_en_temps(double t1, double t2)
 {
   for (int i=0; i<nb_cond_lim(); i++)
     {
-      Champ_front_base& champ=les_conditions_limites(i)->champ_front().valeur();
+      Champ_front_base& champ=les_conditions_limites(i)->champ_front();
       if (champ.instationnaire()) champ.calculer_derivee_en_temps(t1,t2);
     }
 }
-
 
 /*! @brief Renvoie la i-ieme condition aux limites.
  *
@@ -410,7 +388,6 @@ const Cond_lim& Domaine_Cl_dis_base::les_conditions_limites(int i) const
   return les_conditions_limites_[i];
 }
 
-
 /*! @brief Renvoie la i-ieme condition aux limites.
  *
  * @param (int i) le rang de la i-ieme condition aux limites
@@ -421,7 +398,6 @@ Cond_lim& Domaine_Cl_dis_base::les_conditions_limites(int i)
   return les_conditions_limites_[i];
 }
 
-
 /*! @brief Renvoie le tableaux des conditions aux limites.
  *
  * @return (Conds_lim&) le tableau des conditions aux limites
@@ -430,7 +406,6 @@ Conds_lim& Domaine_Cl_dis_base::les_conditions_limites()
 {
   return les_conditions_limites_;
 }
-
 
 /*! @brief Renvoie le tableaux des conditions aux limites.
  *
@@ -442,7 +417,6 @@ const Conds_lim& Domaine_Cl_dis_base::les_conditions_limites() const
 {
   return les_conditions_limites_;
 }
-
 
 /*! @brief Renvoie le nombre de conditions aux limites.
  *
@@ -506,17 +480,17 @@ void Domaine_Cl_dis_base::nommer(const Nom& un_nom)
   nom_ = un_nom;
 }
 
-void Domaine_Cl_dis_base::associer_inconnue(const Champ_Inc& inco)
+void Domaine_Cl_dis_base::associer_inconnue(const Champ_Inc_base& inco)
 {
   mon_inconnue=inco;
 }
 
-const Champ_Inc& Domaine_Cl_dis_base::inconnue() const
+const Champ_Inc_base& Domaine_Cl_dis_base::inconnue() const
 {
   return mon_inconnue;
 }
 
-Champ_Inc& Domaine_Cl_dis_base::inconnue()
+Champ_Inc_base& Domaine_Cl_dis_base::inconnue()
 {
   return mon_inconnue;
 }

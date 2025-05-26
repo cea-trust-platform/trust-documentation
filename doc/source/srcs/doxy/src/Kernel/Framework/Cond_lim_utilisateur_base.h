@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ class Cond_lim;
  */
 class Cond_lim_utilisateur_base  : public Cond_lim_base
 {
-  Declare_base_sans_constructeur(Cond_lim_utilisateur_base);
+  Declare_base(Cond_lim_utilisateur_base);
 public:
   void lire(Entree&,Equation_base&,const Nom& nom_bord);
   virtual void complement(Nom&);
@@ -44,75 +44,13 @@ public:
   }
 
   Cond_lim& la_cl();
-  Cond_lim_utilisateur_base();
   int is_pb_rayo();
 
   virtual void ecrire(const Nom&);
 protected :
-  Cond_lim* la_cl_;
-  REF(Equation_base) mon_equation;
+  Cond_lim* la_cl_ = nullptr;
+  OBS_PTR(Equation_base) mon_equation;
   Nom nom_bord_;
-};
-
-class cl_timp: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(cl_timp);
-public:
-  void complement(Nom& ) override;
-};
-
-class paroi_adiabatique: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_adiabatique);
-public:
-  void complement(Nom& nom ) override;
-};
-
-class paroi_flux_impose: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_flux_impose);
-public:
-  void complement(Nom& nom) override;
-};
-
-class paroi_contact: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_contact);
-public:
-  void complement(Nom& nom) override;
-private:
-  Nom nom_autre_pb,nom_autre_bord;
-};
-
-class paroi_contact_rayo: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_contact_rayo);
-public:
-  void complement(Nom& nom) override;
-private:
-  Nom nom_autre_pb, nom_autre_bord;
-  Motcle type_rayo;
-};
-
-class paroi_contact_fictif: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_contact_fictif);
-public:
-  void complement(Nom& nom) override;
-private:
-  Nom nom_autre_pb, nom_autre_bord;
-  double conduct_fictif = -100., ep_fictif = -100.;
-};
-
-class paroi_contact_fictif_rayo: public Cond_lim_utilisateur_base
-{
-  Declare_instanciable(paroi_contact_fictif_rayo);
-public:
-  void complement(Nom& nom) override;
-private:
-  Nom nom_autre_pb, nom_autre_bord;
-  Motcle type_rayo;
-  double conduct_fictif = -100., ep_fictif = -100.;
 };
 
 #endif /* Cond_lim_utilisateur_base_included */

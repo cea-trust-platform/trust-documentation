@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,13 +31,13 @@ class Source_Darcy_VEF_Face: public Terme_Source_VEF_base
 {
   Declare_instanciable_sans_constructeur(Source_Darcy_VEF_Face);
 public:
-  Source_Darcy_VEF_Face() : Terme_Source_VEF_base(Iterateur_Source_VEF_Face<Eval_Darcy_VEF_Face>()) { }
+  Source_Darcy_VEF_Face() : Terme_Source_VEF_base(Iterateur_Source_VEF_Face<Eval_Darcy_VEF_Face_View>()) { }
   void set_param(Param& param);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   void associer_pb(const Probleme_base&) override;
-  void associer_domaines(const Domaine_dis&, const Domaine_Cl_dis&) override;
+  void associer_domaines(const Domaine_dis_base&, const Domaine_Cl_dis_base&) override;
   void mettre_a_jour(double temps) override { }
-  inline Eval_Darcy_VEF_Face& eval() { return static_cast<Eval_Darcy_VEF_Face&> (iter->evaluateur()); }
+  inline Eval_Darcy_VEF_Face& eval() { return static_cast<Eval_Darcy_VEF_Face&> (iter_->evaluateur()); }
 };
 
 #endif /* Source_Darcy_VEF_Face_included */

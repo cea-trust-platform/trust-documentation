@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -63,12 +63,7 @@ void Marqueur_Lagrange_base::discretiser(const Probleme_base& pb, const  Discret
 void Marqueur_Lagrange_base::mettre_a_jour(double temps)
 {
   calculer_valeurs_champs();
-  densite_particules_.changer_temps(temps);
-}
-
-void Marqueur_Lagrange_base::creer_champ(const Motcle& motlu)
-{
-
+  densite_particules_->changer_temps(temps);
 }
 
 const Champ_base& Marqueur_Lagrange_base::get_champ(const Motcle& nom) const
@@ -76,11 +71,20 @@ const Champ_base& Marqueur_Lagrange_base::get_champ(const Motcle& nom) const
   return champs_compris_.get_champ(nom);
 }
 
-void Marqueur_Lagrange_base::get_noms_champs_postraitables(Noms& nom,Option opt) const
+void Marqueur_Lagrange_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
-  if (opt==DESCRIPTION)
-    Cerr<<" Marqueur_Lagrange_base : "<<champs_compris_.liste_noms_compris()<<finl;
+  if (opt == DESCRIPTION)
+    Cerr << " Marqueur_Lagrange_base : " << champs_compris_.liste_noms_compris() << finl;
   else
     nom.add(champs_compris_.liste_noms_compris());
 }
 
+bool Marqueur_Lagrange_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  return champs_compris_.has_champ(nom, ref_champ);
+}
+
+bool Marqueur_Lagrange_base::has_champ(const Motcle& nom) const
+{
+  return champs_compris_.has_champ(nom);
+}

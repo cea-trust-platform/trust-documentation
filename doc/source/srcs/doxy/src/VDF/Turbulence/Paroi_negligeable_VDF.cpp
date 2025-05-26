@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #include <Paroi_negligeable_VDF.h>
 #include <Dirichlet_paroi_fixe.h>
 #include <Modele_turbulence_hyd_base.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Champ_Face_VDF.h>
 #include <Champ_Uniforme.h>
 #include <Domaine_Cl_VDF.h>
@@ -44,15 +44,15 @@ int Paroi_negligeable_VDF::calculer_hyd(DoubleTab& tab_k_eps)
       int ndeb, nfin, elem, ori, l_unif;
       double norm_tau, u_etoile, norm_v = 0, dist, val0, val1, val2, d_visco = 0, visco = 1.;
 
-      const Domaine_VDF& domaine_VDF = le_dom_VDF.valeur();
+      const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_dis_.valeur());
       const IntTab& face_voisins = domaine_VDF.face_voisins();
       const IntVect& orientation = domaine_VDF.orientation();
       const Fluide_base& le_fluide = ref_cast(Fluide_base, eqn_hydr.milieu());
-      const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-      const DoubleTab& tab_visco = ch_visco_cin->valeurs();
+      const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+      const DoubleTab& tab_visco = ch_visco_cin.valeurs();
       const DoubleTab& vit = eqn_hydr.inconnue().valeurs();
 
-      if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+      if (sub_type(Champ_Uniforme, ch_visco_cin))
         {
           visco = tab_visco(0, 0);
           l_unif = 1;
@@ -62,11 +62,11 @@ int Paroi_negligeable_VDF::calculer_hyd(DoubleTab& tab_k_eps)
 
       for (int n_bord = 0; n_bord < domaine_VDF.nb_front_Cl(); n_bord++)
         {
-          const Cond_lim& la_cl = le_dom_Cl_VDF->les_conditions_limites(n_bord);
+          const Cond_lim& la_cl = le_dom_Cl_dis_->les_conditions_limites(n_bord);
 
           if (sub_type(Dirichlet_paroi_fixe, la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 
@@ -120,15 +120,15 @@ int Paroi_negligeable_VDF::calculer_hyd(DoubleTab& tab_nu_t, DoubleTab& tab_k)
       int ndeb, nfin, elem, ori, l_unif;
       double norm_tau, u_etoile, norm_v = 0, dist, val0, val1, val2, d_visco = 0, visco = 1.;
 
-      const Domaine_VDF& domaine_VDF = le_dom_VDF.valeur();
+      const Domaine_VDF& domaine_VDF = ref_cast(Domaine_VDF, le_dom_dis_.valeur());
       const IntTab& face_voisins = domaine_VDF.face_voisins();
       const IntVect& orientation = domaine_VDF.orientation();
       const Fluide_base& le_fluide = ref_cast(Fluide_base, eqn_hydr.milieu());
-      const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-      const DoubleTab& tab_visco = ch_visco_cin->valeurs();
+      const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+      const DoubleTab& tab_visco = ch_visco_cin.valeurs();
       const DoubleTab& vit = eqn_hydr.inconnue().valeurs();
 
-      if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+      if (sub_type(Champ_Uniforme, ch_visco_cin))
         {
           visco = tab_visco(0, 0);
           l_unif = 1;
@@ -138,11 +138,11 @@ int Paroi_negligeable_VDF::calculer_hyd(DoubleTab& tab_nu_t, DoubleTab& tab_k)
 
       for (int n_bord = 0; n_bord < domaine_VDF.nb_front_Cl(); n_bord++)
         {
-          const Cond_lim& la_cl = le_dom_Cl_VDF->les_conditions_limites(n_bord);
+          const Cond_lim& la_cl = le_dom_Cl_dis_->les_conditions_limites(n_bord);
 
           if (sub_type(Dirichlet_paroi_fixe, la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               ndeb = le_bord.num_premiere_face();
               nfin = ndeb + le_bord.nb_faces();
 

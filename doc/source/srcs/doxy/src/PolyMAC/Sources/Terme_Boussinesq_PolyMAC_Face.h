@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -38,9 +38,9 @@ public:
   void check_multiphase_compatibility() const override { }
 
 protected:
-  REF(Domaine_PolyMAC) le_dom_PolyMAC;
-  REF(Domaine_Cl_PolyMAC) le_dom_Cl_PolyMAC;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  OBS_PTR(Domaine_PolyMAC) le_dom_PolyMAC;
+  OBS_PTR(Domaine_Cl_PolyMAC) le_dom_Cl_PolyMAC;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
 };
 
 #endif /* Terme_Boussinesq_PolyMAC_Face_included */

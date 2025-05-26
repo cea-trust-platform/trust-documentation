@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,9 +18,9 @@
 
 #include <TRUST_Ref.h>
 #include <Nom.h>
+#include <Domaine_forward.h>
 
 class Domaine_dis_base;
-class Frontiere;
 
 /*! @brief classe Frontiere_dis_base Classe representant une frontiere discretisee.
  *
@@ -45,8 +45,8 @@ public :
 
 protected :
 
-  REF(Frontiere) la_frontiere;
-  REF(Domaine_dis_base) le_dom_dis;
+  OBS_PTR(Frontiere) la_frontiere;
+  OBS_PTR(Domaine_dis_base) le_dom_dis;
 };
 
 #endif

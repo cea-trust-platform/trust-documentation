@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -61,11 +61,13 @@ EcrFicPartageMPIIO::~EcrFicPartageMPIIO()
 {
   close();
 }
+
 #ifdef MPI_
 EcrFicPartageMPIIO::EcrFicPartageMPIIO(const char* name,IOS_OPEN_MODE mode)
 {
   ouvrir(name, mode);
 }
+
 int EcrFicPartageMPIIO::ouvrir(const char* name,IOS_OPEN_MODE mode)
 {
   MPI_Comm mpi_comm;
@@ -99,6 +101,7 @@ int EcrFicPartageMPIIO::ouvrir(const char* name,IOS_OPEN_MODE mode)
     }*/
   return 1;
 }
+
 void EcrFicPartageMPIIO::close()
 {
   if (mpi_file_) MPI_File_close(&mpi_file_);
@@ -128,9 +131,37 @@ void EcrFicPartageMPIIO::check()
 // Function write used in all the operator<< to avoid to duplicate the code
 void EcrFicPartageMPIIO::write(MPI_Datatype MPI_TYPE, const void* ob)
 {
+  // See explanations in Entree::operator_template() to understand
+  // the conversions made here:
+  bool convert = false;
+  if (MPI_TYPE == MPI_INT || MPI_TYPE == MPI_UNSIGNED)
+    convert = this->must_convert<int>();
+
+  MPI_Datatype MPI_TYPE2 = MPI_TYPE;
+  const void * ob2 = ob;
+  long l_val = 0;
+  unsigned long u_val = 0;
+  if(convert)
+    {
+      if (MPI_TYPE == MPI_INT)
+        {
+          l_val = *(static_cast<const True_int *>(ob)); // upcast
+          MPI_TYPE2 = MPI_LONG;
+          ob2 = &l_val;
+
+        }
+      else if (MPI_TYPE == MPI_UNSIGNED)
+        {
+          u_val = *(static_cast<const unsigned *>(ob)); // upcast
+          MPI_TYPE2 = MPI_UNSIGNED_LONG;
+          ob2 = &u_val;
+        }
+      else
+        Process::exit("EcrFicPartageMPIIO::write() -- Unexpected type!!");
+    }
   True_int size;
-  MPI_Type_size(MPI_TYPE, &size);
-  MPI_File_write(mpi_file_, (void*)ob, 1, MPI_TYPE, &mpi_status_);
+  MPI_Type_size(MPI_TYPE2, &size);
+  MPI_File_write(mpi_file_, ob2, 1, MPI_TYPE2, &mpi_status_);
   disp_+=size;
   check();
 }
@@ -171,28 +202,46 @@ Sortie& EcrFicPartageMPIIO::operator <<(const std::string& str)
   return (*this) << str.c_str();
 }
 
-Sortie& EcrFicPartageMPIIO::operator <<(const int ob)
+Sortie& EcrFicPartageMPIIO::operator <<(const True_int ob)
 {
   if (bin_)
-    {
-#ifdef INT_is_64_
-      write(MPI_LONG, &ob);
-#else
-      write(MPI_INT, &ob);
-#endif
-    }
+    write(MPI_INT, &ob);
   else
     (*this)<<std::to_string(ob).c_str();
   return *this;
 }
-Sortie& EcrFicPartageMPIIO::operator <<(const unsigned int ob)
+
+Sortie& EcrFicPartageMPIIO::operator <<(const unsigned ob)
 {
   if (bin_)
-#ifdef INT_is_64_
-    write(MPI_UNSIGNED_LONG, &ob);
-#else
     write(MPI_UNSIGNED, &ob);
-#endif
+  else
+    (*this)<<std::to_string(ob).c_str();
+  return *this;
+}
+
+Sortie& EcrFicPartageMPIIO::operator <<(const long ob)
+{
+  if (bin_)
+    write(MPI_LONG, &ob);
+  else
+    (*this)<<std::to_string(ob).c_str();
+  return *this;
+}
+
+Sortie& EcrFicPartageMPIIO::operator <<(const long long ob)
+{
+  if (bin_)
+    write(MPI_LONG_LONG, &ob);
+  else
+    (*this)<<std::to_string(ob).c_str();
+  return *this;
+}
+
+Sortie& EcrFicPartageMPIIO::operator <<(const unsigned long ob)
+{
+  if (bin_)
+    write(MPI_UNSIGNED_LONG, &ob);
   else
     (*this)<<std::to_string(ob).c_str();
   return *this;
@@ -221,6 +270,47 @@ Sortie& EcrFicPartageMPIIO::operator <<(const Objet_U& ob)
   return *this;
 }
 
+int EcrFicPartageMPIIO::put(const unsigned* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  if (is_64b_)
+    Process::exit("EcrFicPartageMPIIO::put() not implemented for cross bitness (writing 'int' in a 64b file for example!");
+  return put(MPI_UNSIGNED, ob, (True_int)n);
+}
+
+int EcrFicPartageMPIIO::put(const True_int* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  if (is_64b_)
+    Process::exit("EcrFicPartageMPIIO::put() not implemented for cross bitness (writing 'int' in a 64b file for example!");
+  return put(MPI_INT, ob, (True_int)n);
+}
+
+int EcrFicPartageMPIIO::put(const long* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  return put(MPI_LONG, ob, (True_int)n);
+}
+
+int EcrFicPartageMPIIO::put(const long long* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  return put(MPI_LONG_LONG, ob, (True_int)n);
+}
+
+int EcrFicPartageMPIIO::put(const float* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  return put(MPI_FLOAT, ob, (True_int)n);
+}
+
+int EcrFicPartageMPIIO::put(const double* ob, std::streamsize n, std::streamsize pas)
+{
+  assert(n < std::numeric_limits<True_int>::max());
+  return put(MPI_DOUBLE, ob, (True_int)n);
+}
+
+
 // Function used for different MPI_Type
 // Good info/examples on MPI-IO:
 // See page 213: http://www.idris.fr/data/cours/parallel/mpi/IDRIS_MPI_cours_couleurs.pdf
@@ -245,7 +335,7 @@ int EcrFicPartageMPIIO::put(MPI_Datatype MPI_TYPE, const void* ob, int n)
 
   // Before collecting operations, update disp_ on all processes:
   envoyer_broadcast(disp_, 0);
-  MPI_Offset disp_me = disp_ + mppartial_sum(n) * sizeof_etype;
+  MPI_Offset disp_me = disp_ + Process::mppartial_sum(n) * sizeof_etype;
   // ROMIO hints:
   if (Process::nproc()>1024)
     {

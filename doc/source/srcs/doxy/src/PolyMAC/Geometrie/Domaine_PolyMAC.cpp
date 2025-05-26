@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,27 +17,28 @@
 #include <MD_Vector_composite.h>
 #include <Domaine_Cl_PolyMAC.h>
 #include <Domaine_PolyMAC.h>
-#include <Segment_poly.h>
+#include <Option_PolyMAC.h>
 #include <Quadrangle_VEF.h>
 #include <Option_PolyMAC.h>
 #include <Poly_geom_base.h>
-#include <Quadri_poly.h>
 #include <communications.h>
 #include <TRUSTTab_parts.h>
-#include <Tetra_poly.h>
-#include <Hexaedre_VEF.h>
-#include <Hexa_poly.h>
+#include <Segment_poly.h>
 #include <Matrix_tools.h>
+#include <Hexaedre_VEF.h>
 #include <Statistiques.h>
-#include <Tri_poly.h>
+#include <Quadri_poly.h>
 #include <Array_tools.h>
 #include <TRUSTLists.h>
+#include <Tetra_poly.h>
 #include <Rectangle.h>
 #include <Tetraedre.h>
+#include <Hexa_poly.h>
 #include <TRUSTList.h>
 #include <Hexaedre.h>
 #include <Triangle.h>
 #include <EFichier.h>
+#include <Tri_poly.h>
 #include <Segment.h>
 #include <Domaine.h>
 #include <Scatter.h>
@@ -116,9 +117,87 @@ void Domaine_PolyMAC::calculer_volumes_entrelaces()
   volumes_entrelaces_dir_.echange_espace_virtuel();
 }
 
-void Domaine_PolyMAC::remplir_elem_faces()
+void Domaine_PolyMAC::init_equiv() const
 {
-  creer_faces_virtuelles_non_std();
+  const IntTab& e_f = elem_faces(), &f_e = face_voisins();
+  const DoubleTab& nf = face_normales();
+  const DoubleVect& fs = face_surfaces(); //, &vf = volumes_entrelaces();
+  int i, j, e1, e2, f1, f2, d, D = dimension, ok;
+
+  IntTrav ntot, nequiv;
+  creer_tableau_faces(ntot);
+  creer_tableau_faces(nequiv);
+  equiv_.resize(nb_faces_tot(), 2, e_f.dimension(1));
+  equiv_ = -1;
+
+  Cerr << domaine().le_nom() << " : intializing equiv... " ;
+
+  const bool is_polymac = (que_suis_je() == "Domaine_PolyMAC");
+
+  for (int f = 0; f < nb_faces_tot(); f++)
+    if ((e1 = f_e(f, 0)) >= 0 && (e2 = f_e(f, 1)) >= 0)
+      for (i = 0; i < e_f.dimension(1) && (f1 = e_f(e1, i)) >= 0; i++)
+        for (j = 0, ntot(f)++; j < e_f.dimension(1) && (f2 = e_f(e2, j)) >= 0; j++)
+          {
+            if (!is_polymac || (is_polymac && Option_PolyMAC::MAILLAGE_VDF))
+              if (std::fabs(std::fabs(dot(&nf(f1, 0), &nf(f2, 0)) / (fs(f1) * fs(f2))) - 1) > 1e-6)
+                continue; //normales colineaires?
+
+            // XXX Elie Saikali
+            // Options pour forcer le calcul du tableau equiv
+            // car le test ne marche pas si le maillage est hexa, conforme et non-uniforme
+            if (Option_PolyMAC::MAILLAGE_VDF)
+              {
+                bool aligned = true;
+                const int orn_f1 = orientation(f1), orn_f2 = orientation(f2);
+                const bool same_orn = (orn_f1 == orn_f2);
+                ok = 1; // pour gnu ...
+
+                if (same_orn)
+                  for (d = 0; d < D; d++)
+                    if (d != orn_f1)
+                      if ((xv_(f1, d) != xv_(f2, d)) )
+                        {
+                          aligned = false;
+                          break;
+                        }
+
+                if (same_orn && aligned && ( f1 != f2 ))
+                  {
+                    // on cherche si f1 et f2 trouve le meme elem
+                    int ee1 = f_e(f1, 0), ee2 = f_e(f1, 1);
+
+                    for (int ii = 0; ii < e_f.dimension(1); ii++)
+                      {
+                        int ff1 = ee1 >= 0 ? e_f(ee1, ii) : -1;
+                        int ff2 = ee2 >= 0 ? e_f(ee2, ii) : -1;
+
+                        if (f2 == ff1 || f2 == ff2)
+                          {
+                            ok = 1;
+                            break;
+                          }
+                        else
+                          ok = 0;
+                      }
+                  }
+                else
+                  for (ok = 1, d = 0; d < D; d++)
+                    ok &= std::fabs((xv_(f1, d) - xp_(e1, d)) - (xv_(f2, d) - xp_(e2, d))) < 1e-12; //xv - xp identiques?
+              }
+            else
+              for (ok = 1, d = 0; d < D; d++)
+                ok &= std::fabs((xv_(f1, d) - xp_(e1, d)) - (xv_(f2, d) - xp_(e2, d))) < (is_polymac ? 1.e-6 /* XXX Elie Saikali : comme avant pour le moment */ : 1e-12); //xv - xp identiques?
+
+            if (!ok)
+              continue;
+
+            equiv_(f, 0, i) = f2;
+            equiv_(f, 1, j) = f1;
+            nequiv(f)++; //si oui, on a equivalence
+          }
+
+  Cerr << mp_somme_vect_as_double(nequiv) * 100. / mp_somme_vect_as_double(ntot) << "% equivalent faces!" << finl;
 }
 
 void Domaine_PolyMAC::modifier_pour_Cl(const Conds_lim& conds_lim)
@@ -202,73 +281,6 @@ void Domaine_PolyMAC::modifier_pour_Cl(const Conds_lim& conds_lim)
   //		      l'appel a marquer_faces_double_contrib s'effectue dans cette methode
   //		      afin de pouvoir beneficier de conds_lim.
   Domaine_VF::marquer_faces_double_contrib(conds_lim);
-}
-
-
-/*! @brief creation de l'espace distant pour les faces virtuelles; creation du tableau des faces virtuelles de bord
- *
- */
-void Domaine_PolyMAC::creer_faces_virtuelles_non_std()
-
-{
-  ind_faces_virt_non_std_.resize_array(314);
-  ind_faces_virt_non_std_ = -999;
-#if 0
-  int i,j,id_joint;
-  int nb_faces_front=premiere_face_int();
-  int nb_faces_virt=domaine().ind_faces_virt_bord().size_array();
-
-
-  // Constitution du tableau des indices de faces
-  // virtuelles non standards.
-  int prem_face_std=premiere_face_std();
-  IntVect ind_faces_nstd(nb_faces_non_std());
-  IntVect ind_faces(nb_faces_);
-  const VectEsp_Virt& vev_id_f = ind_faces.renvoi_espaces_virtuels();
-
-  for(j=0; j<nb_faces_; j++)
-    ind_faces[j]=j;
-  for(j=premiere_face_int(); j<prem_face_std; j++)
-    ind_faces_nstd[j]=j;
-
-  for(id_joint=0; id_joint<nb_joints(); id_joint++)
-    {
-      Joint& le_joint = joint(id_joint);
-      int PEvoisin=le_joint.PEvoisin();
-      const ArrOfInt& edf=le_joint.esp_dist_faces();
-
-      int nbfd = edf.size_array();
-      ind_faces.ajoute_espace_distant(PEvoisin,edf);
-      ArrOfInt tempo(nbfd);
-      int cpt=0;
-      for(i=0; i<nbfd; i++)
-        if((edf[i]<prem_face_std)&&(edf[i]>=nb_faces_front))
-          tempo[cpt++]=edf[i];
-      tempo.resize_array(cpt);
-      ind_faces_nstd.ajoute_espace_distant(PEvoisin,tempo);
-    }
-  ind_faces.echange_espace_virtuel();
-  ind_faces_nstd.echange_espace_virtuel();
-
-  const VectEsp_Virt& vev_id_fnstd =
-    ind_faces_nstd.renvoi_espaces_virtuels();
-  ind_faces_virt_non_std_.resize_array(nb_faces_virt);
-  for(id_joint=0; id_joint<nb_joints(); id_joint++)
-    {
-      int deb=vev_id_f[id_joint].deb();
-      int fin=deb+vev_id_f[id_joint].nb();
-      int deb_b=vev_id_fnstd[id_joint].deb();
-      int fin_b=deb_b+vev_id_fnstd[id_joint].nb();
-      for(i=deb_b; i<fin_b; i++)
-        {
-          for(j=deb; j<fin; j++)
-            if(ind_faces[j]==ind_faces_nstd[i])
-              break;
-          assert(j<fin);
-          ind_faces_virt_non_std_[j-nb_faces_]=i;
-        }
-    }
-#endif
 }
 
 //stabilisation des matrices m1 et m2 de PolyMAC
@@ -456,7 +468,7 @@ void Domaine_PolyMAC::init_m2_new() const
 {
   const IntTab& e_f = elem_faces();
   const DoubleVect& fs = face_surfaces(), &ve = volumes();
-  int i, j, e, n_f, ctr[3] = {0, 0, 0 }, n_tot = Process::mp_sum(nb_elem());
+  int i, j, e, n_f, ctr[3] = {0, 0, 0 };
   double spectre[4] = { DBL_MAX, DBL_MAX, 0, 0 }; //vp min (partie consistante, partie stab), vp max (partie consistante, partie stab)
 
   if (is_init["w2"]) return;
@@ -515,10 +527,11 @@ void Domaine_PolyMAC::init_m2_new() const
         }
 
   CRIMP(m2d), CRIMP(m2i), CRIMP(m2j), CRIMP(m2c), CRIMP(w2i), CRIMP(w2j), CRIMP(w2c);
-  Cerr << 100. * Process::mp_sum(ctr[0]) / n_tot << "% diag " << 100. * Process::mp_sum(ctr[1]) / n_tot << "% sym "
-       << 100. * Process::mp_sum(ctr[2]) / n_tot << "% sparse lambda : " << Process::mp_min(spectre[0]) << " / "
+  double n_tot = Process::mp_sum_as_double(nb_elem());
+  Cerr << 100. * Process::mp_sum_as_double(ctr[0]) / n_tot << "% diag " << 100. * Process::mp_sum_as_double(ctr[1]) / n_tot << "% sym "
+       << 100. * Process::mp_sum_as_double(ctr[2]) / n_tot << "% sparse lambda : " << Process::mp_min(spectre[0]) << " / "
        << Process::mp_min(spectre[1]) << " -> " << Process::mp_max(spectre[2])
-       << " / " << Process::mp_max(spectre[3]) << " width : " << mp_somme_vect(nnz) * 1. / mp_somme_vect(nef) << finl;
+       << " / " << Process::mp_max(spectre[3]) << " width : " << mp_somme_vect_as_double(nnz) * 1. / mp_somme_vect_as_double(nef) << finl;
   is_init["w2"] = 1;
 }
 
@@ -527,7 +540,7 @@ void Domaine_PolyMAC::init_m2_osqp() const
   const IntTab& f_e = face_voisins(), &e_f = elem_faces(), &f_s = face_sommets();
   const DoubleVect& fs = face_surfaces(), &ve = volumes();
   const DoubleTab& nf = face_normales();
-  int i, j, e, f, s, n_f, ctr[3] = {0, 0, 0 }, n_tot = Process::mp_sum(nb_elem()), infoo = 0;
+  int i, j, e, f, s, n_f, ctr[3] = {0, 0, 0 }, infoo = 0;
   double spectre[4] = { DBL_MAX, DBL_MAX, 0, 0 }; //vp min (partie consistante, partie stab), vp max (partie consistante, partie stab)
   char uplo = 'U';
 
@@ -593,10 +606,11 @@ void Domaine_PolyMAC::init_m2_osqp() const
     }
 
   CRIMP(m2d), CRIMP(m2i), CRIMP(m2j), CRIMP(m2c), CRIMP(w2i), CRIMP(w2j), CRIMP(w2c);
-  Cerr << 100. * Process::mp_sum(ctr[0]) / n_tot << "% diag " << 100. * Process::mp_sum(ctr[1]) / n_tot << "% sym "
-       << 100. * Process::mp_sum(ctr[2]) / n_tot << "% sparse lambda : " << Process::mp_min(spectre[0]) << " / "
+  double n_tot = Process::mp_sum_as_double(nb_elem());
+  Cerr << 100. * Process::mp_sum_as_double(ctr[0]) / n_tot << "% diag " << 100. * Process::mp_sum_as_double(ctr[1]) / n_tot << "% sym "
+       << 100. * Process::mp_sum_as_double(ctr[2]) / n_tot << "% sparse lambda : " << Process::mp_min(spectre[0]) << " / "
        << Process::mp_min(spectre[1]) << " -> " << Process::mp_max(spectre[2])
-       << " / " << Process::mp_max(spectre[3]) << " width : " << mp_somme_vect(nnz) * 1. / mp_somme_vect(nef) << finl;
+       << " / " << Process::mp_max(spectre[3]) << " width : " << mp_somme_vect_as_double(nnz) * 1. / mp_somme_vect_as_double(nef) << finl;
   is_init["w2"] = 1;
 }
 

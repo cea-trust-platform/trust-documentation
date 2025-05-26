@@ -13,37 +13,31 @@
 *
 *****************************************************************************/
 
-#include <Domaine_EF.h>
+#include <interface_INITGAUSS.h>
+#include <interface_CALCULBIJ.h>
+#include <Domaine_Cl_dis_base.h>
+#include <Quadrangle_VEF.h>
 #include <Domaine_Cl_EF.h>
+#include <Equation_base.h>
+#include <Hexaedre_VEF.h>
+#include <Milieu_base.h>
+#include <Domaine_EF.h>
+#include <Periodique.h>
+#include <Segment_EF.h>
 #include <Rectangle.h>
+#include <Tetraedre.h>
+#include <Quadri_EF.h>
 #include <Hexaedre.h>
 #include <Triangle.h>
-#include <Segment.h>
-#include <Tetraedre.h>
-#include <Quadrangle_VEF.h>
-#include <Hexaedre_VEF.h>
-#include <Periodique.h>
-#include <Tri_EF.h>
-#include <Segment_EF.h>
 #include <Tetra_EF.h>
-#include <Quadri_EF.h>
+#include <EFichier.h>
+#include <Segment.h>
 #include <Hexa_EF.h>
 #include <Domaine.h>
 #include <Scatter.h>
-#include <Domaine_Cl_dis_base.h>
-#include <Equation_base.h>
-#include <Milieu_base.h>
-#include <Scatter.h>
-#include <EFichier.h>
+#include <Tri_EF.h>
 
-#include <interface_INITGAUSS.h>
-#include <interface_CALCULBIJ.h>
-
-Implemente_instanciable(Domaine_EF,"Domaine_EF",Domaine_VF);
-
-
-//// printOn
-//
+Implemente_instanciable(Domaine_EF, "Domaine_EF", Domaine_VF);
 
 Sortie& Domaine_EF::ecrit(Sortie& os) const
 {
@@ -51,7 +45,7 @@ Sortie& Domaine_EF::ecrit(Sortie& os) const
   os << "____ h_carre "<<finl;
   os << h_carre << finl;
   os << "____ type_elem_ "<<finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << "____ nb_elem_std_ "<<finl;
   os << nb_elem_std_ << finl;
   os << "____ volumes_entrelaces_ "<<finl;
@@ -65,15 +59,12 @@ Sortie& Domaine_EF::ecrit(Sortie& os) const
   return os;
 }
 
-//// printOn
-//
-
 Sortie& Domaine_EF::printOn(Sortie& os) const
 {
   Domaine_VF::printOn(os);
 
   os << h_carre << finl;
-  os << type_elem_ << finl;
+  os << type_elem_.valeur() << finl;
   os << nb_elem_std_ << finl;
   os << volumes_entrelaces_ << finl;
   os << face_normales_ << finl;
@@ -84,14 +75,30 @@ Sortie& Domaine_EF::printOn(Sortie& os) const
   return os;
 }
 
-//// readOn
-//
-
 Entree& Domaine_EF::readOn(Entree& is)
 {
   Domaine_VF::readOn(is);
   is >> h_carre;
-  is >> type_elem_;
+
+  /* read type_elem */
+  {
+    Nom type;
+    is >> type;
+    if (type == "Tri_EF")
+      type_elem_ = Tri_EF();
+    else if (type == "Tetra_EF")
+      type_elem_ = Tetra_EF();
+    else if (type == "Quadri_EF")
+      type_elem_ = Quadri_EF();
+    else if (type == "Hexa_EF")
+      type_elem_ = Hexa_EF();
+    else
+      {
+        Cerr << type << " n'est pas un Elem_EF !" << finl;
+        Process::exit();
+      }
+  }
+
   is >> nb_elem_std_ ;
   is >> volumes_entrelaces_ ;
   is >> face_normales_ ;
@@ -108,7 +115,7 @@ void Domaine_EF::calculer_IPhi(const Domaine_Cl_dis_base& zcl)
   int nb_som_elem=domaine().nb_som_elem();
   IPhi_.resize(nbelem,nb_som_elem);
   domaine().creer_tableau_elements(IPhi_);
-  //  Scatter::creer_tableau_distribue(domaine().domaine(), Joint::ELEMENT, IPhi_);
+  //  Scatter::creer_tableau_distribue(domaine().domaine(), JOINT_ITEM::ELEMENT, IPhi_);
   IPhi_thilde_=IPhi_;
   double rap=1./domaine().nb_som_elem();
 
@@ -129,7 +136,7 @@ void Domaine_EF::calculer_IPhi(const Domaine_Cl_dis_base& zcl)
 void Domaine_EF::calculer_volumes_sommets(const Domaine_Cl_dis_base& zcl)
 {
   //  volumes_sommets_thilde_.resize(nb_som());
-  //Scatter::creer_tableau_distribue(domaine().domaine(), Joint::SOMMET, volumes_sommets_thilde_);
+  //Scatter::creer_tableau_distribue(domaine().domaine(), JOINT_ITEM::SOMMET, volumes_sommets_thilde_);
 //  domaine().creer_tableau_sommets(volumes_sommets_thilde_);
 
   calculer_IPhi(zcl);
@@ -247,7 +254,7 @@ void Domaine_EF::reordonner(Faces& les_faces)
     const int nb_faces_front = domaine().nb_faces_frontiere();
     dom.creer_tableau_elements(rang_elem_non_std_);
     //    rang_elem_non_std_.resize(nb_elements);
-    //    Scatter::creer_tableau_distribue(dom, Joint::ELEMENT, rang_elem_non_std_);
+    //    Scatter::creer_tableau_distribue(dom, JOINT_ITEM::ELEMENT, rang_elem_non_std_);
     rang_elem_non_std_ = -1;
     int nb_elems_non_std = 0;
     // D'abord on marque les elements non standards avec rang_elem_non_std_[i] = 0
@@ -281,17 +288,35 @@ void Domaine_EF::reordonner(Faces& les_faces)
 
 void Domaine_EF::typer_elem(Domaine& domaine_geom)
 {
-  const Elem_geom_base& type_elem_geom = domaine_geom.type_elem().valeur();
-
-  if (sub_type(Rectangle,type_elem_geom))
-    {
-      domaine_geom.typer("Quadrangle");
-    }
-  else if (sub_type(Hexaedre,type_elem_geom))
+  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
+  if (sub_type(Rectangle, elem_geom))
+    domaine_geom.typer("Quadrangle");
+  else if (sub_type(Hexaedre, elem_geom))
     domaine_geom.typer("Hexaedre_VEF");
 
-  const Elem_geom_base& elem_geom = domaine_geom.type_elem().valeur();
-  type_elem_.typer(elem_geom.que_suis_je());
+  const Nom& type_elem_geom = domaine_geom.type_elem()->que_suis_je();
+  Nom type;
+
+  if (type_elem_geom == "Triangle")
+    type = "Tri_EF";
+  else if (type_elem_geom == "Tetraedre")
+    type = "Tetra_EF";
+  else if (type_elem_geom == "Quadrangle")
+    type = "Quadri_EF";
+  else if (type_elem_geom == "Hexaedre_VEF")
+    type = "Hexa_EF";
+  else if (type_elem_geom == "Segment")
+    type = "Segment_EF";
+  else if (type_elem_geom == "Segment_axi")
+    type = "Segment_EF_axi";
+  else if (type_elem_geom == "Point")
+    type = "Point_EF";
+  else
+    {
+      Cerr << "probleme de typage dans Domaine_EF::typer_elem => type geometrique : " << type_elem_geom << finl;
+      Process::exit();
+    }
+  type_elem_.typer(type);
 }
 
 void Domaine_EF::verifie_compatibilite_domaine()
@@ -408,7 +433,7 @@ void Domaine_EF::discretiser()
     const int n = nb_faces();
     face_normales_.resize(n, dimension);
     // const Domaine & dom = domaine();
-    //    Scatter::creer_tableau_distribue(dom, Joint::FACE, face_normales_);
+    //    Scatter::creer_tableau_distribue(dom, JOINT_ITEM::FACE, face_normales_);
     creer_tableau_faces(face_normales_);
     const IntTab& face_som = face_sommets();
     const IntTab& face_vois = face_voisins();
@@ -416,9 +441,9 @@ void Domaine_EF::discretiser()
     const int n_tot = nb_faces_tot();
     for (num_face = 0; num_face < n_tot; num_face++)
       {
-        type_elem_.normale(num_face,
-                           face_normales_,
-                           face_som, face_vois, elem_face, domaine_geom);
+        type_elem_->normale(num_face,
+                            face_normales_,
+                            face_som, face_vois, elem_face, domaine_geom);
       }
   }
 
@@ -675,10 +700,6 @@ void Domaine_EF::calculer_volumes_entrelaces()
     }
   volumes_entrelaces_.echange_espace_virtuel();
 }
-void Domaine_EF::remplir_elem_faces()
-{
-  creer_faces_virtuelles_non_std();
-}
 
 void Domaine_EF::modifier_pour_Cl(const Conds_lim& conds_lim)
 {
@@ -775,72 +796,5 @@ void Domaine_EF::modifier_pour_Cl(const Conds_lim& conds_lim)
   //		      l'appel a marquer_faces_double_contrib s'effectue dans cette methode
   //		      afin de pouvoir beneficier de conds_lim.
   Domaine_VF::marquer_faces_double_contrib(conds_lim);
-}
-
-
-/*! @brief creation de l'espace distant pour les faces virtuelles; creation du tableau des faces virtuelles de bord
- *
- */
-void Domaine_EF::creer_faces_virtuelles_non_std()
-
-{
-  ind_faces_virt_non_std_.resize_array(314);
-  ind_faces_virt_non_std_ = -999;
-#if 0
-  int i,j,id_joint;
-  int nb_faces_front=premiere_face_int();
-  int nb_faces_virt=domaine().ind_faces_virt_bord().size_array();
-
-
-  // Constitution du tableau des indices de faces
-  // virtuelles non standards.
-  int prem_face_std=premiere_face_std();
-  IntVect ind_faces_nstd(nb_faces_non_std());
-  IntVect ind_faces(nb_faces_);
-  const VectEsp_Virt& vev_id_f = ind_faces.renvoi_espaces_virtuels();
-
-  for(j=0; j<nb_faces_; j++)
-    ind_faces[j]=j;
-  for(j=premiere_face_int(); j<prem_face_std; j++)
-    ind_faces_nstd[j]=j;
-
-  for(id_joint=0; id_joint<nb_joints(); id_joint++)
-    {
-      Joint& le_joint = joint(id_joint);
-      int PEvoisin=le_joint.PEvoisin();
-      const ArrOfInt& edf=le_joint.esp_dist_faces();
-
-      int nbfd = edf.size_array();
-      ind_faces.ajoute_espace_distant(PEvoisin,edf);
-      ArrOfInt tempo(nbfd);
-      int cpt=0;
-      for(i=0; i<nbfd; i++)
-        if((edf[i]<prem_face_std)&&(edf[i]>=nb_faces_front))
-          tempo[cpt++]=edf[i];
-      tempo.resize_array(cpt);
-      ind_faces_nstd.ajoute_espace_distant(PEvoisin,tempo);
-    }
-  ind_faces.echange_espace_virtuel();
-  ind_faces_nstd.echange_espace_virtuel();
-
-  const VectEsp_Virt& vev_id_fnstd =
-    ind_faces_nstd.renvoi_espaces_virtuels();
-  ind_faces_virt_non_std_.resize_array(nb_faces_virt);
-  for(id_joint=0; id_joint<nb_joints(); id_joint++)
-    {
-      int deb=vev_id_f[id_joint].deb();
-      int fin=deb+vev_id_f[id_joint].nb();
-      int deb_b=vev_id_fnstd[id_joint].deb();
-      int fin_b=deb_b+vev_id_fnstd[id_joint].nb();
-      for(i=deb_b; i<fin_b; i++)
-        {
-          for(j=deb; j<fin; j++)
-            if(ind_faces[j]==ind_faces_nstd[i])
-              break;
-          assert(j<fin);
-          ind_faces_virt_non_std_[j-nb_faces_]=i;
-        }
-    }
-#endif
 }
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,7 +20,7 @@
 #include <Probleme_base.h>
 #include <TRUSTTrav.h>
 #include <Discretisation_base.h>
-#include <Champ.h>
+
 
 Implemente_base(Op_Conv_EF_base,"Op_Conv_EF_base",Operateur_Conv_base);
 
@@ -78,7 +78,7 @@ double Op_Conv_EF_base::calculer_dt_stab() const
   const Domaine_EF& domaine_EF = le_dom_EF.valeur();
   const DoubleVect& volumes_entrelaces = domaine_EF.volumes_entrelaces();
   const DoubleVect& volumes_entrelaces_Cl = domaine_Cl_EF.volumes_entrelaces_Cl();
-  remplir_fluent(fluent);
+  remplir_fluent();
 
 
   double dt_face,dt_stab =1.e30;
@@ -96,7 +96,7 @@ double Op_Conv_EF_base::calculer_dt_stab() const
   ;
       else
   {
-    const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+    const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
     int ndeb = le_bord.num_premiere_face();
     int nfin = ndeb + le_bord.nb_faces();
     for (int num_face=ndeb; num_face<nfin; num_face++) {
@@ -134,13 +134,13 @@ double Op_Conv_EF_base::calculer_dt_stab() const
 
 //calcul des valeurs du pas de temps de stabilite de l operateur pour postraitement
 //-discretisation de l espace de stockage (aux faces)
-//	espace_stockage nomme "localisation" pour completer le Champ_Generique
+//	espace_stockage nomme "localisation" pour completer le Champ_Generique_base
 //	espace_stockage nomme "??" sinon
 //-calcul des valeurs
 //-verifie en debug la compatibilite avec dt_stab considere pour le calcul
 // cf Op_Conv_EF_base::calculer_dt_stab() pour choix de calcul de dt_stab
 
-void Op_Conv_EF_base::calculer_pour_post(Champ& espace_stockage,const Nom& option,int) const
+void Op_Conv_EF_base::calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int) const
 {
   Cerr<<__FILE__<<(int)__LINE__<<" dt_stab mal code "<<finl;
   exit();
@@ -153,12 +153,12 @@ void Op_Conv_EF_base::associer_domaine_cl_dis(const Domaine_Cl_dis_base& domaine
   la_zcl_EF = zclEF;
 }
 
-void Op_Conv_EF_base::associer(const Domaine_dis& domaine_dis,
-                               const Domaine_Cl_dis& domaine_cl_dis,
-                               const Champ_Inc& )
+void Op_Conv_EF_base::associer(const Domaine_dis_base& domaine_dis,
+                               const Domaine_Cl_dis_base& domaine_cl_dis,
+                               const Champ_Inc_base& )
 {
-  const Domaine_EF& zEF = ref_cast(Domaine_EF,domaine_dis.valeur());
-  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF,domaine_cl_dis.valeur());
+  const Domaine_EF& zEF = ref_cast(Domaine_EF,domaine_dis);
+  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF,domaine_cl_dis);
 
   le_dom_EF = zEF;
   la_zcl_EF = zclEF;
@@ -189,7 +189,7 @@ DoubleTab& Op_Conv_EF_base::calculer(const DoubleTab& transporte,
   resu = 0;
   return ajouter(transporte,resu);
 }
-void Op_Conv_EF_base::remplir_fluent(DoubleVect& ) const
+void Op_Conv_EF_base::remplir_fluent() const
 {
   // Remplissage du tableau fluent par appel a ajouter
   // C'est cher mais au moins cela corrige (en attendant

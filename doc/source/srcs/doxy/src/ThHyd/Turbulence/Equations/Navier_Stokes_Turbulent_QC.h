@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,15 +19,13 @@
 #include <Navier_Stokes_Fluide_Dilatable_Proto.h>
 #include <Navier_Stokes_Turbulent.h>
 
-class Champ_Fonc;
-
 /*! @brief classe Navier_Stokes_Turbulent Cette classe represente l'equation de la dynamique pour un fluide
  *
  *      visqueux verifiant la condition d'incompressibilite div U = 0 avec
  *      modelisation de la turbulence.
- *      Un membre de type Modele_turbulence_hyd representera le modele de turbulence.
+ *      Un membre de type OWN_PTR(Modele_turbulence_hyd_base)  representera le modele de turbulence.
  *
- * @sa Navier_Stokes_Turbulent Modele_turbulence_hyd Pb_Thermohydraulique_Turbulent_QC
+ * @sa Navier_Stokes_Turbulent OWN_PTR(Modele_turbulence_hyd_base)  Pb_Thermohydraulique_Turbulent_QC
  */
 class Navier_Stokes_Turbulent_QC: public Navier_Stokes_Turbulent, public Navier_Stokes_Fluide_Dilatable_Proto
 {
@@ -45,10 +43,12 @@ public:
   DoubleTab& derivee_en_temps_inco(DoubleTab&) override;
   void assembler(Matrice_Morse& mat_morse, const DoubleTab& present, DoubleTab& secmem) override;
   void assembler_avec_inertie(Matrice_Morse& mat_morse, const DoubleTab& present, DoubleTab& secmem) override;
-  inline const Champ_Inc& rho_la_vitesse() const override { return rho_la_vitesse_; }
+  inline const Champ_Inc_base& rho_la_vitesse() const override { return rho_la_vitesse_; }
   void discretiser() override;
   const Champ_base& get_champ(const Motcle& nom) const override;
-  const Champ_Don& diffusivite_pour_transport() const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
+  const Champ_Don_base& diffusivite_pour_transport() const override;
 };
 
 #endif /* Navier_Stokes_Turbulent_QC_included */

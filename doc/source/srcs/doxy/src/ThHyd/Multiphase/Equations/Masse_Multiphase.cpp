@@ -33,14 +33,16 @@ Sortie& Masse_Multiphase::printOn(Sortie& is) const { return Equation_base::prin
 
 Entree& Masse_Multiphase::readOn(Entree& is)
 {
-  assert(l_inco_ch.non_nul());
-  assert(le_fluide.non_nul());
-  terme_convectif.associer_eqn(*this), evanescence.associer_eqn(*this);
+  assert(l_inco_ch_.non_nul());
+  assert(le_fluide_.non_nul());
+  terme_convectif.associer_eqn(*this), evanescence_.associer_eqn(*this);
 
   Equation_base::readOn(is);
 
   terme_convectif.set_fichier("Debit");
   terme_convectif.set_description((Nom)"Mass flow rate=Integral(-alpha*rho*u*ndS) [kg/s] if SI units used");
+
+  champs_compris_.ajoute_champ(l_inco_ch_);
 
   // Special treatment for Pb_Multiphase_HEM
   // We enforce the presence of a source term related to the interfacial flux automatically.
@@ -48,7 +50,7 @@ Entree& Masse_Multiphase::readOn(Entree& is)
     {
       int check_source_FICC(0);
       for (int ii = 0; ii < sources().size(); ii++)
-        if (sources()(ii).valeur().que_suis_je().debute_par("Flux_interfacial"))
+        if (sources()(ii)->que_suis_je().debute_par("Flux_interfacial"))
           check_source_FICC = 1;
       if (check_source_FICC == 0)
         {
@@ -70,7 +72,7 @@ void Masse_Multiphase::set_param(Param& param)
 
 int Masse_Multiphase::lire_motcle_non_standard(const Motcle& mot, Entree& is)
 {
-  if (mot=="evanescence") is >> evanescence;
+  if (mot=="evanescence") is >> evanescence_;
   else return Convection_Diffusion_std::lire_motcle_non_standard(mot, is);
   return 1;
 }
@@ -98,13 +100,13 @@ Operateur& Masse_Multiphase::operateur(int i)
 void Masse_Multiphase::dimensionner_matrice_sans_mem(Matrice_Morse& matrice)
 {
   Equation_base::dimensionner_matrice_sans_mem(matrice);
-  evanescence.valeur().dimensionner(matrice);
+  evanescence_->dimensionner(matrice);
 }
 
 int Masse_Multiphase::has_interface_blocs() const
 {
   int ok = Convection_Diffusion_std::has_interface_blocs();
-  if (evanescence.non_nul()) ok &= evanescence.valeur().has_interface_blocs();
+  if (evanescence_.non_nul()) ok &= evanescence_->has_interface_blocs();
   return ok;
 }
 
@@ -112,13 +114,13 @@ int Masse_Multiphase::has_interface_blocs() const
 void Masse_Multiphase::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
   Equation_base::dimensionner_blocs(matrices, semi_impl);
-  if (evanescence.non_nul()) evanescence.valeur().dimensionner_blocs(matrices, semi_impl);
+  if (evanescence_.non_nul()) evanescence_->dimensionner_blocs(matrices, semi_impl);
 }
 
 void Masse_Multiphase::assembler_blocs_avec_inertie(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl)
 {
   Equation_base::assembler_blocs_avec_inertie(matrices, secmem, semi_impl);
-  if (evanescence.non_nul()) evanescence.valeur().ajouter_blocs(matrices, secmem, semi_impl);
+  if (evanescence_.non_nul()) evanescence_->ajouter_blocs(matrices, secmem, semi_impl);
 }
 
 /*! @brief Associe un milieu physique a l'equation, le milieu est en fait caste en Fluide_base
@@ -138,18 +140,40 @@ void Masse_Multiphase::associer_milieu_base(const Milieu_base& un_milieu)
 void Masse_Multiphase::completer()
 {
   Equation_base::completer();
-  terme_convectif.valeur().check_multiphase_compatibility();
+  terme_convectif->check_multiphase_compatibility();
 
-  const Domaine_dis& zdis = domaine_dis();
+  const Domaine_dis_base& zdis = domaine_dis();
   if (discretisation().is_vdf())
     {
       // initialiser l'operateur grad SI VDF
       Op_Grad_.associer_eqn(*this);
       Op_Grad_.typer();
       Op_Grad_.l_op_base().associer_eqn(*this);
-      const Domaine_Cl_dis& zcl = domaine_Cl_dis();
-      const Champ_Inc& inco = inconnue();
+      const Domaine_Cl_dis_base& zcl = domaine_Cl_dis();
+      const Champ_Inc_base& inco = inconnue();
       Op_Grad_->associer(zdis, zcl, inco);
+    }
+
+  verifier_somme_alpha();
+}
+
+void Masse_Multiphase::verifier_somme_alpha()
+{
+  const DoubleTab& vals = l_inco_ch_->valeurs();
+  const int ne = vals.dimension(0), nl = vals.line_size();
+  DoubleVect vals_somme(ne);
+  vals_somme = 0.;
+
+  for (int i = 0; i < ne; i++)
+    for (int j = 0; j < nl; j++)
+      vals_somme(i) += vals(i, j);
+
+  const double min_a = mp_min_vect(vals_somme), max_a = mp_max_vect(vals_somme);
+
+  if (min_a < 1. - 1.e-12 || max_a > 1. + 1.e-12)
+    {
+      Cerr << "WHAT ?? The sum of the void fraction (per cell) is not 1 !!!! You should do something !" << finl;
+      Process::exit();
     }
 }
 
@@ -164,11 +188,11 @@ void Masse_Multiphase::discretiser()
   Cerr << "Volume fraction discretization" << finl;
   //On utilise temperature pour la directive car discretisation identique
   const Pb_Multiphase& pb = ref_cast(Pb_Multiphase, probleme());
-  dis.discretiser_champ("temperature",domaine_dis(),"alpha","sans_dimension", pb.nb_phases(),nb_valeurs_temp,temps,l_inco_ch);
-  l_inco_ch.valeur().fixer_nature_du_champ(pb.nb_phases() == 1 ? scalaire : pb.nb_phases() == dimension ? vectoriel : multi_scalaire); //pfft
+  dis.discretiser_champ("temperature",domaine_dis(),"alpha","sans_dimension", pb.nb_phases(),nb_valeurs_temp,temps,l_inco_ch_);
+  l_inco_ch_->fixer_nature_du_champ(pb.nb_phases() == 1 ? scalaire : pb.nb_phases() == dimension ? vectoriel : multi_scalaire); //pfft
   for (int i = 0; i < pb.nb_phases(); i++)
-    l_inco_ch.valeur().fixer_nom_compo(i, Nom("alpha_") + pb.nom_phase(i));
-  champs_compris_.ajoute_champ(l_inco_ch);
+    l_inco_ch_->fixer_nom_compo(i, Nom("alpha_") + pb.nom_phase(i));
+  champs_compris_.ajoute_champ(l_inco_ch_);
   Equation_base::discretiser();
 
   Cerr << "Masse_Multiphase::discretiser() ok" << finl;
@@ -208,12 +232,12 @@ Milieu_base& Masse_Multiphase::milieu()
  */
 const Fluide_base& Masse_Multiphase::fluide() const
 {
-  if (le_fluide.est_nul())
+  if (le_fluide_.est_nul())
     {
       Cerr << "You forgot to associate the fluid to the problem named " << probleme().le_nom() << finl;
       Process::exit();
     }
-  return le_fluide.valeur();
+  return le_fluide_.valeur();
 }
 
 
@@ -224,8 +248,8 @@ const Fluide_base& Masse_Multiphase::fluide() const
  */
 Fluide_base& Masse_Multiphase::fluide()
 {
-  assert(le_fluide.non_nul());
-  return le_fluide.valeur();
+  assert(le_fluide_.non_nul());
+  return le_fluide_.valeur();
 }
 
 /*! @brief Renvoie le nom du domaine d'application de l'equation.
@@ -247,13 +271,13 @@ const Motcle& Masse_Multiphase::domaine_application() const
 void Masse_Multiphase::associer_fluide(const Fluide_base& un_fluide)
 {
   assert(sub_type(Fluide_base,un_fluide));
-  le_fluide = ref_cast(Fluide_base,un_fluide);
+  le_fluide_ = ref_cast(Fluide_base,un_fluide);
 }
 
 void Masse_Multiphase::calculer_alpha_rho(const Objet_U& obj, DoubleTab& val, DoubleTab& bval, tabs_t& deriv)
 {
   const Equation_base& eqn = ref_cast(Equation_base, obj);
-  const Champ_base& ch_rho = eqn.milieu().masse_volumique().valeur();
+  const Champ_base& ch_rho = eqn.milieu().masse_volumique();
   const Champ_Inc_base& ch_alpha = eqn.inconnue(), *pch_rho = sub_type(Champ_Inc_base, ch_rho) ? &ref_cast(Champ_Inc_base, ch_rho) : nullptr;
   const DoubleTab& alpha = ch_alpha.valeurs(), &rho = ch_rho.valeurs();
   int i, nl = val.dimension_tot(0), n, N = val.line_size(), cR = sub_type(Champ_Uniforme, ch_rho);
@@ -264,7 +288,7 @@ void Masse_Multiphase::calculer_alpha_rho(const Objet_U& obj, DoubleTab& val, Do
 
   /* valeur aux bords */
   /* on ne peut utiliser valeur_aux_bords que si ch_rho a un domaine_dis_base */
-  ch_rho.a_un_domaine_dis_base() ? bval = ch_rho.valeur_aux_bords() : ch_rho.valeur_aux(ref_cast(Domaine_VF, eqn.domaine_dis().valeur()).xv_bord(), bval);
+  ch_rho.a_un_domaine_dis_base() ? bval = ch_rho.valeur_aux_bords() : ch_rho.valeur_aux(ref_cast(Domaine_VF, eqn.domaine_dis()).xv_bord(), bval);
   tab_multiply_any_shape(bval, ch_alpha.valeur_aux_bords(), VECT_ALL_ITEMS);
 
   /* derivees */

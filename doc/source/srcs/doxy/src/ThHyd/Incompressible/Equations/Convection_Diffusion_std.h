@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,14 +16,14 @@
 #ifndef Convection_Diffusion_std_included
 #define Convection_Diffusion_std_included
 
+#include <Schema_Temps_base.h>
 #include <Operateur_Conv.h>
 #include <Operateur_Diff.h>
 #include <Equation_base.h>
-#include <Schema_Temps.h>
 #include <TRUST_Ref.h>
 
+
 class Champ_Inc_base;
-class Champ_Don;
 
 /*! @brief classe Convection_Diffusion_std Cette classe est la base des equations modelisant le transport
  *
@@ -37,7 +37,7 @@ class Champ_Don;
  *          certains termes de l'equation (le terme diffusif,
  *          le terme convectif,tel ou tel terme source).
  *
- * @sa Equation_base, Classe abstraite, Methodes abstraites:, Entree& lire(const Motcle&, Entree&), const Champ_Inc& inconnue() const, Champ_Inc& inconnue()
+ * @sa Equation_base, Classe abstraite, Methodes abstraites:, Entree& lire(const Motcle&, Entree&), const Champ_Inc_base& inconnue() const, Champ_Inc_base& inconnue()
  */
 class Convection_Diffusion_std : public Equation_base
 {
@@ -52,18 +52,19 @@ public :
   Operateur& operateur(int) override;
   inline void associer_vitesse(const Champ_base& );
   inline const Champ_Inc_base& vitesse_transportante() const;
-  const Champ_Inc& inconnue() const override =0;
-  Champ_Inc& inconnue() override =0;
-  virtual const Champ_Don& diffusivite_pour_transport() const;
+  const Champ_Inc_base& inconnue() const override =0;
+  Champ_Inc_base& inconnue() override =0;
+  virtual const Champ_Don_base& diffusivite_pour_transport() const;
   virtual const Champ_base& diffusivite_pour_pas_de_temps() const;
   virtual const Champ_base& vitesse_pour_transport() const;
   // E. Saikali : Methodes utiles pour un heritage V
   int sauvegarder_base(Sortie&) const;
   int reprendre_base(Entree&);
+  std::vector<YAML_data> data_a_sauvegarder_base() const;
 
 protected :
 
-  REF(Champ_Inc_base) la_vitesse_transportante;
+  OBS_PTR(Champ_Inc_base) la_vitesse_transportante;
   Operateur_Conv terme_convectif;
   Operateur_Diff terme_diffusif;
 };
@@ -71,7 +72,7 @@ protected :
 
 /*! @brief Renvoie une reference sur le champ representant la vitesse transportante.
  *
- * @return (Champ_Inc&) le champ representant la vitesse transportante
+ * @return (Champ_Inc_base&) le champ representant la vitesse transportante
  */
 inline const Champ_Inc_base& Convection_Diffusion_std::vitesse_transportante() const
 {
@@ -81,7 +82,7 @@ inline const Champ_Inc_base& Convection_Diffusion_std::vitesse_transportante() c
 
 /*! @brief Associe la vitesse transportante a l'equation.
  *
- * @param (Champ_Inc& vit) le champ a affecter a la vitesse transportante
+ * @param (Champ_Inc_base& vit) le champ a affecter a la vitesse transportante
  */
 inline void Convection_Diffusion_std::associer_vitesse(const Champ_base& vit)
 {

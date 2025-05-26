@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Source_Frottement_interfacial_base_included
 
 #include <Sources_Multiphase_base.h>
-#include <Correlation.h>
+#include <Correlation_base.h>
 
 /*! @brief Classe Source_Frottement_interfacial_base
  *
@@ -37,11 +37,11 @@ public :
   void completer() override;
 
 protected:
-  Correlation correlation_; //correlation donnant le coeff de frottement interfacial
+  OWN_PTR(Correlation_base) correlation_; //correlation donnant le coeff de frottement interfacial
   double a_res_ = -1., dv_min = 0.01, beta_ = 1.;
   int exp_res = 2 ;
 
-  virtual void dimensionner_blocs_aux(IntTrav&) const = 0;
+  virtual void dimensionner_blocs_aux(IntTab&) const { /* Do nothing */ }
 };
 
 #endif /* Source_Frottement_interfacial_base_included */

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -57,10 +57,10 @@ inline void Iterateur_VDF_Face<_TYPE_>::multiply_by_rho_if_hydraulique(DoubleTab
   /* Modif B.Mathieu pour front-tracking: masse_volumique() invalide en f.t.*/
   if (nom_eqn.debute_par("Navier_Stokes") && nom_eqn != "Navier_Stokes_Melange" && nom_eqn != "Navier_Stokes_FT_Disc")
     {
-      const Champ_base& rho = la_zcl->equation().milieu().masse_volumique().valeur();
+      const Champ_base& rho = la_zcl->equation().milieu().masse_volumique();
       if (sub_type(Champ_Uniforme, rho))
         {
-          const double coef = rho(0, 0);
+          const double coef = rho.valeurs()(0, 0);
           const int nb_faces_bord = le_dom->nb_faces_bord();
           for (int face = 0; face < nb_faces_bord; face++)
             for (int k = 0; k < tab_flux_bords.line_size(); k++) tab_flux_bords(face, k) *= coef;
@@ -85,7 +85,7 @@ int Iterateur_VDF_Face<_TYPE_>::impr(Sortie& os) const
   for (int num_cl = 0; num_cl < nb_front_Cl; num_cl++)
     {
       const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face(), nfin = ndeb + frontiere_dis.nb_faces(), periodicite = (type_cl(la_cl) == periodique ? 1 : 0);
       for (face = ndeb; face < nfin; face++)
         {
@@ -118,15 +118,9 @@ int Iterateur_VDF_Face<_TYPE_>::impr(Sortie& os) const
   mp_sum_for_each_item(flux_bords2);
   if (je_suis_maitre())
     {
-      //SFichier Flux;
-      if (!Flux.is_open())
-        op_base->ouvrir_fichier(Flux, "", 1);
-      //SFichier Flux_moment;
-      if (!Flux_moment.is_open())
-        op_base->ouvrir_fichier(Flux_moment, "moment", impr_mom);
-      //SFichier Flux_sum;
-      if (!Flux_sum.is_open())
-        op_base->ouvrir_fichier(Flux_sum, "sum", impr_sum);
+      op_base->ouvrir_fichier(Flux, "", 1);
+      op_base->ouvrir_fichier(Flux_moment, "moment", impr_mom);
+      op_base->ouvrir_fichier(Flux_sum, "sum", impr_sum);
       Flux.add_col(sch.temps_courant());
       if (impr_mom)
         Flux_moment.add_col(sch.temps_courant());
@@ -175,9 +169,9 @@ int Iterateur_VDF_Face<_TYPE_>::impr(Sortie& os) const
       op_base->ouvrir_fichier_partage(Flux_face, "", impr_bord);
       for (int num_cl = 0; num_cl < nb_front_Cl; num_cl++)
         {
-          const Frontiere_dis_base& la_fr = la_zcl->les_conditions_limites(num_cl).frontiere_dis();
+          const Frontiere_dis_base& la_fr = la_zcl->les_conditions_limites(num_cl)->frontiere_dis();
           const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-          const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& frontiere_dis = ref_cast(Front_VF, la_cl->frontiere_dis());
           int ndeb = frontiere_dis.num_premiere_face(), nfin = ndeb + frontiere_dis.nb_faces();
           if (mon_dom.bords_a_imprimer().contient(la_fr.le_nom()))
             {

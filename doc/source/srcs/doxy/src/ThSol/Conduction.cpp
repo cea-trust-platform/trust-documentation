@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,42 +13,25 @@
 *
 *****************************************************************************/
 
+#include <Frontiere_dis_base.h>
+#include <Discret_Thermique.h>
+#include <Probleme_base.h>
 #include <Conduction.h>
 #include <Solide.h>
-#include <Discret_Thermique.h>
-#include <Frontiere_dis_base.h>
-#include <Probleme_base.h>
 #include <Param.h>
-
 
 Implemente_instanciable(Conduction,"Conduction",Equation_base);
 // XD Conduction eqn_base Conduction -1 Heat equation.
 
-/*! @brief Ecrit le type de l'equation sur un flot de sortie.
- *
- * @param (Sortie& s) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Conduction::printOn(Sortie& s ) const
 {
   return s << que_suis_je() << finl;
 }
 
-/*! @brief cf Equation_base::readOn(Entree&)
- *
- * @param (Entree& is) un flot d'entree
- * @return (Entree&) le flot d'entree modifie
- * @throws terme diffusif non specifie
- */
 Entree& Conduction::readOn(Entree& is )
 {
   Equation_base::readOn(is);
-
-  //Nom unite;
-  //if (dimension+bidim_axi==2) unite="[W/m]";
-  //else unite="[W]";
   terme_diffusif.set_fichier("Diffusion_chaleur");
-  //terme_diffusif.set_description((Nom)"Conduction heat transfer rate=Integral(lambda*grad(T)*ndS) "+unite);
   terme_diffusif.set_description((Nom)"Conduction heat transfer rate=Integral(lambda*grad(T)*ndS) [W] if SI units used");
   return is;
 }
@@ -101,9 +84,9 @@ int Conduction::lire_motcle_non_standard(const Motcle& mot, Entree& is)
           type+=discr;
           Cerr << type << finl;
           le_traitement_particulier.typer(type);
-          le_traitement_particulier.associer_eqn(*this);
-          le_traitement_particulier.lire(is);
-          le_traitement_particulier.preparer_calcul_particulier();
+          le_traitement_particulier->associer_eqn(*this);
+          le_traitement_particulier->lire(is);
+          le_traitement_particulier->preparer_calcul_particulier();
           return 1;
         }
       else
@@ -119,7 +102,7 @@ int Conduction::lire_motcle_non_standard(const Motcle& mot, Entree& is)
 }
 
 // retourne la *conductivite* et non la diffusivite comme dans Conduction
-const Champ_Don& Conduction::diffusivite_pour_transport() const
+const Champ_Don_base& Conduction::diffusivite_pour_transport() const
 {
   return milieu().conductivite();
 }
@@ -260,58 +243,90 @@ const Solide& Conduction::solide() const
 
 void Conduction::creer_champ(const Motcle& motlu)
 {
+  if (motlu == "temperature_paroi" || motlu == "wall_temperature")
+    {
+      if (temperature_paroi_.est_nul())
+        {
+          const Discret_Thermique& dis = ref_cast(Discret_Thermique, discretisation());
+          dis.t_paroi(domaine_dis(), domaine_Cl_dis(), la_temperature, temperature_paroi_);
+          champs_compris_.ajoute_champ(temperature_paroi_);
+        }
+    }
+
   Equation_base::creer_champ(motlu);
-  /*  if (motlu == "temperature_paroi")
-      {
-        if (!temperature_paroi.non_nul())
-          {
-            const Discret_Thermique& dis=ref_cast(Discret_Thermique, discretisation());
-            dis.t_paroi(domaine_dis(),domaine_Cl_dis(),*this,temperature_paroi);
-            champs_compris_.ajoute_champ(temperature_paroi);
-          }
-      } */
+}
+
+bool Conduction::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (nom == "temperature_paroi" || nom == "wall_temperature")
+    {
+      ref_champ = Conduction::get_champ(nom);
+      return true;
+    }
+
+  if (Equation_base::has_champ(nom, ref_champ))
+    return true;
+
+  if (le_traitement_particulier.non_nul())
+    if (le_traitement_particulier->has_champ(nom, ref_champ))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+bool Conduction::has_champ(const Motcle& nom) const
+{
+  if (nom == "temperature_paroi" || nom == "wall_temperature")
+    return true;
+
+  if (Equation_base::has_champ(nom))
+    return true;
+
+  if (le_traitement_particulier.non_nul())
+    if (le_traitement_particulier->has_champ(nom))
+      return true;
+
+  return false; /* rien trouve */
 }
 
 const Champ_base& Conduction::get_champ(const Motcle& nom) const
 {
-  /*
-    if (nom=="rho_cp")
-      {
-        const Champ_base& rho_cp=solide().get_rho_cp();
-        return rho_cp;
-      }
-  */
-  try
-    {
-      return Equation_base::get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
+  OBS_PTR(Champ_base) ref_champ;
 
+  if (nom == "temperature_paroi" || nom == "wall_temperature")
+    {
+      double temps_init = schema_temps().temps_init();
+      Champ_Fonc_base& ch_tp = ref_cast_non_const(Champ_Fonc_base, temperature_paroi_.valeur());
+      if (((ch_tp.temps() != la_temperature->temps()) || (ch_tp.temps() == temps_init)) && ((la_temperature->mon_equation_non_nul())))
+        ch_tp.mettre_a_jour(la_temperature->temps());
+      return champs_compris_.get_champ(nom);
     }
+
+  if (Equation_base::has_champ(nom, ref_champ))
+    return ref_champ;
 
   if (le_traitement_particulier.non_nul())
-    try
-      {
-        return le_traitement_particulier->get_champ(nom);
-      }
-    catch (Champs_compris_erreur&)
-      {
+    if (le_traitement_particulier->has_champ(nom, ref_champ))
+      return ref_champ;
 
-      }
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
-void Conduction::get_noms_champs_postraitables(Noms& nom,Option opt) const
+void Conduction::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
-  Equation_base::get_noms_champs_postraitables(nom,opt);
-  if (opt==DESCRIPTION)
-    Cerr<<"Conduction : "<<champs_compris_.liste_noms_compris()<<finl;
+  Equation_base::get_noms_champs_postraitables(nom, opt);
+
+  Noms noms_compris = champs_compris_.liste_noms_compris();
+  noms_compris.add("TEMPERATURE_PAROI");
+  noms_compris.add("WALL_TEMPERATURE");
+
+  if (opt == DESCRIPTION)
+    Cerr << "Conduction : " << noms_compris << finl;
   else
-    nom.add(champs_compris_.liste_noms_compris());
+    nom.add(noms_compris);
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier->get_noms_champs_postraitables(nom,opt);
+    le_traitement_particulier->get_noms_champs_postraitables(nom, opt);
 }
 
 /*! @brief Renvoie le milieu solide associe a l'equation.
@@ -339,7 +354,6 @@ int Conduction::impr(Sortie& os) const
   return Equation_base::impr(os);
 }
 
-
 /*! @brief Renvoie le nom du domaine d'application de l'equation.
  *
  * Ici "Thermique".
@@ -357,7 +371,5 @@ void Conduction::mettre_a_jour(double temps)
   Equation_base::mettre_a_jour(temps);
 
   if (le_traitement_particulier.non_nul())
-    le_traitement_particulier.post_traitement_particulier();
+    le_traitement_particulier->post_traitement_particulier();
 }
-
-

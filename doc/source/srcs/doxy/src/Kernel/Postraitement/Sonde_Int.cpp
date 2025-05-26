@@ -60,7 +60,7 @@ Entree& Sonde_Int::readOn(Entree& is )
     {
       if (liste_noms[i]==motlu)
         {
-          REF(IntVect) ref_tab;
+          OBS_PTR(IntVect) ref_tab;
           if (pb.a_pour_IntVect(motlu,ref_tab))
             mon_tableau = ref_tab;
           else
@@ -483,15 +483,9 @@ void Sonde_Int::postraiter(double un_temps)
               for(int i=0; i<n1; i++)
                 for(k=0; k<n2; k++)
                   {
-#ifdef INT_is_64_
-                    val_max = std::max(labs(valeurs(i,k)),labs(valeurs_pe(i,k)));
-                    if(val_max==(labs(valeurs_pe(i,k))))
+                    val_max = std::max(std::abs(valeurs(i,k)),std::abs(valeurs_pe(i,k)));
+                    if(val_max==(std::abs(valeurs_pe(i,k))))
                       valeurs(i,k)=valeurs_pe(i,k);
-#else
-                    val_max = std::max(abs(valeurs(i,k)),abs(valeurs_pe(i,k)));
-                    if(val_max==(abs(valeurs_pe(i,k))))
-                      valeurs(i,k)=valeurs_pe(i,k);
-#endif
                   }
             }
 
@@ -571,15 +565,9 @@ void Sonde_Int::postraiter(double un_temps)
 
               for(int i=0; i<valeurs.dimension(0); i++)
                 {
-#ifdef INT_is_64_
-                  val_max = std::max(labs(valeurs(i)),labs(valeurs_pe(i)));
-                  if(val_max==(labs(valeurs_pe(i))))
+                  val_max = std::max(std::abs(valeurs(i)), std::abs(valeurs_pe(i)));
+                  if(val_max == std::abs(valeurs_pe(i)))
                     valeurs(i)=valeurs_pe(i);
-#else
-                  val_max = std::max(abs(valeurs(i)),abs(valeurs_pe(i)));
-                  if(val_max==(abs(valeurs_pe(i))))
-                    valeurs(i)=valeurs_pe(i);
-#endif
                 }
             }
           if (dim==0 || dim==1)

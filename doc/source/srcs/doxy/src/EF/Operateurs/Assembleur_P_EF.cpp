@@ -67,7 +67,7 @@ void calculer_inv_volume(DoubleTab& inv_volumes_som, const Domaine_Cl_EF& domain
     {
       DoubleTab marqueur(*doubleT);
       marqueur=1;
-      domaine_Cl_EF.equation().solv_masse().valeur().appliquer_impl(marqueur);
+      domaine_Cl_EF.equation().solv_masse().appliquer_impl(marqueur);
       calculer_inv_volume_special(inv_volumes_som, domaine_Cl_EF,*doubleT,marqueur);
       return;
     }
@@ -330,7 +330,7 @@ int  Assembleur_P_EF::assembler_mat(Matrice& la_matrice,const DoubleVect& volume
           /*
           if (has_P_ref==0)
             {
-              const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
               int face=le_bord.num_premiere_face();
               assert(le_bord.nb_faces()>0);
               elem_ref=face_voisins(face,0);
@@ -341,7 +341,7 @@ int  Assembleur_P_EF::assembler_mat(Matrice& la_matrice,const DoubleVect& volume
     }
   /*
        else {
-        const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
         int num1 = 0;//le_bord.num_premiere_face();
         int num2 =  le_bord.nb_faces_tot();
         // test..........
@@ -486,7 +486,7 @@ int Assembleur_P_EF::modifier_secmem(DoubleTab& secmem)
     {
       const Cond_lim_base& la_cl_base = le_dom_cl.les_conditions_limites(i).valeur();
       const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl_base.frontiere_dis());
-      const Champ_front_base& champ_front = la_cl_base.champ_front().valeur();
+      const Champ_front_base& champ_front = la_cl_base.champ_front();
       int ndeb = la_front_dis.num_premiere_face();
       int nfin = ndeb + la_front_dis.nb_faces();
 
@@ -537,7 +537,7 @@ int Assembleur_P_EF::modifier_solution(DoubleTab& pression)
       // On prend la pression minimale comme pression de reference
       // afin d'avoir la meme pression de reference en sequentiel et parallele
       press_0=DMAXFLOAT;
-      int n,nb_elem=le_dom_EF.valeur().domaine().nb_elem();
+      int n,nb_elem=le_dom_EF->domaine().nb_elem();
       for(n=0; n<nb_elem; n++)
         if (pression[n] < press_0)
           press_0 = pression[n];

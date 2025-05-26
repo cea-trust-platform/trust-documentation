@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,6 @@ ExtrudeParoi::ExtrudeParoi()
 {
   projection_normale_bord=1;
   nb_couche=1;
-  type=0;
   epaisseur.resize_array(1);
   epaisseur[0]=0.5;
 }
@@ -100,10 +99,10 @@ Entree& ExtrudeParoi::interpreter_(Entree& is)
   param.ajouter("domaine",&nom_dom,Param::REQUIRED); // XD_ADD_P ref_domaine Name of the domain.
   param.ajouter("nom_bord",&nom_front,Param::REQUIRED); // XD_ADD_P chaine Name of the (no-slip) boundary for creation of prismatic layers.
   param.ajouter("epaisseur",&epaisseur); // XD_ADD_P list n r1 r2 .... rn : (relative or absolute) width for each layer.
-  param.ajouter_flag("critere_absolu",&type); // XD_ADD_P entier relative (0, the default) or absolute (1) width for each layer.
+  param.ajouter_flag("critere_absolu",&type); // XD_ADD_P rien use absolute width for each layer instead of relative.
   param.ajouter("projection_normale_bord",&projection_normale_bord); // XD_ADD_P rien keyword to project layers on the same plane that contiguous boundaries. defaut values are : epaisseur_relative 1 0.5 projection_normale_bord 1
   param.lire_avec_accolades_depuis(is);
-  epaisseur.array_trier_retirer_doublons();
+  array_trier_retirer_doublons(epaisseur);
   nb_couche=epaisseur.size_array();
   associer_domaine(nom_dom);
   Scatter::uninit_sequential_domain(domaine());
@@ -137,7 +136,7 @@ void ExtrudeParoi::extrude(Domaine& dom)
   //domaine.creer_faces(les_faces);
   {
     // bloc a factoriser avec Domaine_VF.cpp :
-    Type_Face type_face = dom.type_elem().type_face(0);
+    Type_Face type_face = dom.type_elem()->type_face(0);
     lesfaces.typer(type_face);
     lesfaces.associer_domaine(dom);
 
@@ -275,9 +274,9 @@ void ExtrudeParoi::extrude(Domaine& dom)
   calcul_tab_norme(normale_som);
 
   Cerr << "minimum distance node-wall : "<< dmin_som.mp_min_vect()<< finl;
-  if(type==1) Cerr << "thickness of the layer "<< ep_abs[nb_couche-1] << finl;
+  if(type) Cerr << "thickness of the layer "<< ep_abs[nb_couche-1] << finl;
 
-  if(type==1 && (dmin_som.mp_min_vect()<=ep_abs[nb_couche-1]))
+  if(type && (dmin_som.mp_min_vect()<=ep_abs[nb_couche-1]))
     {
       Cerr << "Error !! The thickness of the layer is greater than the minimum distance node-wall" << finl;
       exit();
@@ -423,7 +422,7 @@ void ExtrudeParoi::extrude(Domaine& dom)
     {
       int som=List_som[i];
 
-      if(type==0) // traduction de l'epaisseur relative en epaisseur absolue
+      if(!type) // traduction de l'epaisseur relative en epaisseur absolue
         {
           for(int j=0; j<nb_couche; j++) ep_abs[j]=epaisseur[j]*dmin_som(som);
         }
@@ -545,7 +544,7 @@ void ExtrudeParoi::extrude(Domaine& dom)
     for (auto& itr : dom.faces_bord())
       {
         Faces& lesfacesbord=itr.faces();
-        lesfacesbord.typer(Faces::triangle_3D);
+        lesfacesbord.typer(Type_Face::triangle_3D);
         IntTab& sommets=lesfacesbord.les_sommets();
         if(itr.le_nom()==nom_front)
           {

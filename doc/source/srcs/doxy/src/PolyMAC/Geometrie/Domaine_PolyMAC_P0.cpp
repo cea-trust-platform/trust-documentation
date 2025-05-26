@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,7 +21,6 @@
 #include <Connectivite_som_elem.h>
 #include <MD_Vector_composite.h>
 #include <Dirichlet_homogene.h>
-#include <Option_PolyMAC_P0.h>
 #include <MD_Vector_tools.h>
 #include <Domaine_PolyMAC_P0.h>
 #include <Domaine_Cl_PolyMAC.h>
@@ -80,32 +79,56 @@ void Domaine_PolyMAC_P0::discretiser()
 //stencil face/face : fsten_f([fsten_d(f, 0), fsten_d(f + 1, 0)[)
 void Domaine_PolyMAC_P0::init_stencils() const
 {
-  if (fsten_d.size()) return;
+  if (fsten_d.size())
+    return;
+
   const IntTab& f_s = face_sommets(), &f_e = face_voisins(), &e_s = domaine().les_elems();
-  int i, e, f, s, ne_tot = nb_elem_tot(), ns_tot = domaine().nb_som_tot();
+  const int ne_tot = nb_elem_tot(), ns_tot = domaine().nb_som_tot();
   fsten_d.resize(1);
 
   /* connectivite sommets -> elems / faces de bord */
   std::vector<std::set<int>> som_eb(ns_tot);
-  for (e = 0; e < nb_elem_tot(); e++)
-    for (i = 0; i < e_s.dimension(1) && (s = e_s(e, i)) >= 0; i++) som_eb[s].insert(e);
-  for (f = 0; f < nb_faces_tot(); f++)
+  for (int e = 0; e < nb_elem_tot(); e++)
+    for (int i = 0; i < e_s.dimension(1); i++)
+      {
+        const int s = e_s(e, i);
+        if (s < 0) continue;
+
+        som_eb[s].insert(e);
+      }
+
+  for (int f = 0; f < nb_faces_tot(); f++)
     if (fbord(f) >= 0)
-      for (i = 0; i < f_s.dimension(1) && (s = f_s(f, i)) >= 0; i++) som_eb[s].insert(ne_tot + f);
+      for (int i = 0; i < f_s.dimension(1); i++)
+        {
+          const int s = f_s(f, i);
+          if (s < 0) continue;
+
+          som_eb[s].insert(ne_tot + f);
+        }
 
   std::set<int> f_eb; //sommets de la face f, elems connectes a e par soms, sommets / faces connectes par une face commune
-  for (f = 0; f < nb_faces_tot(); fsten_d.append_line(fsten_eb.size()), f++)
+  for (int f = 0; f < nb_faces_tot(); fsten_d.append_line(fsten_eb.size()), f++)
     if (f_e(f, 0) >= 0 && (fbord(f) >= 0 || f_e(f, 1) >= 0))
       {
         /* connectivite par un sommet de f */
-        for (f_eb.clear(), i = 0; i < f_s.dimension(1) && (s = f_s(f, i)) >= 0; i++)
-          for (auto &&el : som_eb[s]) f_eb.insert(el);
+        f_eb.clear();
+        for (int i = 0; i < f_s.dimension(1); i++)
+          {
+            const int s = f_s(f, i);
+            if (s < 0) continue;
+
+            for (auto &&el : som_eb[s])
+              f_eb.insert(el);
+          }
 
         /* remplissage */
-        for (auto && el : f_eb) fsten_eb.append_line(el);
+        for (auto &&el : f_eb)
+          fsten_eb.append_line(el);
       }
 
-  CRIMP(fsten_d), CRIMP(fsten_eb);
+  CRIMP(fsten_d);
+  CRIMP(fsten_eb);
 }
 
 //pour u.n champ T aux elements, interpole [n_f.grad T]_f (si nu_grad = 0) ou [n_f.nu.grad T]_f
@@ -131,11 +154,17 @@ void Domaine_PolyMAC_P0::fgrad(int N, int is_p, const Conds_lim& cls, const IntT
   const DoubleTab& nf = face_normales(), &xs = domaine().coord_sommets(), &vfd = volumes_entrelaces_dir();
   const DoubleVect& fs = face_surfaces(), &vf = volumes_entrelaces();
   const Static_Int_Lists& s_e = som_elem();
-  int i, i_s, j, k, l, e, f, s, sb, n_f, n_m, n_ef, n_e, n_eb, m, n, ne_tot = nb_elem_tot(), sgn, nw, infoo, d, db, D = dimension, rk, nl, nc, un = 1, il, ok, essai;
+  int i, i_s, j, k, l, e, f, s, sb, n_f, n_m, n_ef, n_e, n_eb, m, n, ne_tot = nb_elem_tot(), sgn, nw, infoo, d, db,
+                                                                     D = dimension, rk, nl, nc, un = 1, il, ok, essai;
+
   unsigned long ll;
+
   double x, eps_g = 1e-6, eps = 1e-10, i3[3][3] = { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 }}, fac[3], vol_s;
+
   init_stencils();
-  phif_e.resize(0), phif_c.resize(fsten_eb.dimension(0), N), phif_c = 0;
+  phif_e.resize(0);
+  phif_c.resize(fsten_eb.dimension(0), N);
+  phif_c = 0;
 
   std::vector<int> s_eb, s_f; //listes d'elements/bord, de faces autour du sommet
   std::vector<double> surf_fs, vol_es; //surfaces partielles des faces connectees au sommet (meme ordre que s_f)
@@ -316,8 +345,8 @@ void Domaine_PolyMAC_P0::fgrad(int N, int is_p, const Conds_lim& cls, const IntT
       }
   /* comptage */
   if (!first_fgrad_) return;
-  int count[3] = { mp_somme_vect(ctr[0]), mp_somme_vect(ctr[1]), mp_somme_vect(ctr[2]) }, tot = count[0] + count[1] + count[2];
-  if (tot)
+  double count[3] = { mp_somme_vect_as_double(ctr[0]), mp_somme_vect_as_double(ctr[1]), mp_somme_vect_as_double(ctr[2]) }, tot = count[0] + count[1] + count[2];
+  if (tot > 1.0e-4)
     Cerr << domaine().le_nom() << "::fgrad(): " << 100. * count[0] / tot << "% MPFA-O "
          << 100. * count[1] / tot << "% MPFA-O(h) " << 100. * count[2] / tot << "% MPFA-SYM" << finl;
   first_fgrad_ = 0;

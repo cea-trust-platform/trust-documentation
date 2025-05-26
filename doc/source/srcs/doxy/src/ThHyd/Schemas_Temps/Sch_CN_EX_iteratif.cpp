@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,7 +20,7 @@
 #include <SFichier.h>
 
 Implemente_instanciable(Sch_CN_EX_iteratif,"Sch_CN_EX_iteratif",Sch_CN_iteratif);
-
+// XD Sch_CN_EX_iteratif Sch_CN_iteratif Sch_CN_EX_iteratif -1 This keyword also describes a Crank-Nicholson method of second order accuracy but here, for scalars, because of instablities encountered when dt>dt_CFL, the Crank Nicholson scheme is not applied to scalar quantities. Scalars are treated according to Euler-Explicite scheme at the end of the CN treatment for velocity flow fields (by doing p Euler explicite under-iterations at dt<=dt_CFL). Parameters are the sames (but default values may change) compare to the Sch_CN_iterative scheme plus a relaxation keyword: niter_min (2 by default), niter_max (6 by default), niter_avg (3 by default), facsec_max (20 by default), seuil (0.05 by default)
 
 Sortie& Sch_CN_EX_iteratif::printOn(Sortie& s) const
 {
@@ -43,7 +43,7 @@ Entree& Sch_CN_EX_iteratif::readOn(Entree& s)
 
 void Sch_CN_EX_iteratif::set_param(Param& param)
 {
-  param.ajouter("omega",&omega);
+  param.ajouter("omega",&omega);  // XD attr omega floattant omega 1 relaxation factor (0.1 by default)
   Sch_CN_iteratif::set_param(param);
 }
 
@@ -97,8 +97,8 @@ bool Sch_CN_EX_iteratif::iterateTimeStepOnNS(int i,bool& converged)
   double dt_final=temps_final-temps_courant();
 
   DoubleTab& present = eqn.inconnue().valeurs();
-  DoubleTab& intermediaire = eqn.inconnue()->valeurs(temps_intermediaire);
-  DoubleTab& final = eqn.inconnue()->valeurs(temps_final);
+  DoubleTab& intermediaire = eqn.inconnue().valeurs(temps_intermediaire);
+  DoubleTab& final = eqn.inconnue().valeurs(temps_final);
 
   DoubleTab dudt(present);
 
@@ -112,7 +112,7 @@ bool Sch_CN_EX_iteratif::iterateTimeStepOnNS(int i,bool& converged)
   // couple thermique VEF avec Chap_front_contact_VEF, meme avant convergence.
   // WEC :  /!\ la vitesse au temps intermediaire
   // n'est pas forcement a divergence nulle.
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_intermediaire);
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_intermediaire);
 
   // Calcul de la derivee dudt pour la valeur intermediaire de l'inconnue.
   // Bidouille : Comme les operateurs prennent par defaut le present,
@@ -186,8 +186,8 @@ bool Sch_CN_EX_iteratif::iterateTimeStepOnOther(int i,bool& converged)
   double dt_2=temps_final-temps_intermediaire;
 
   DoubleTab& present = eqn.inconnue().valeurs();
-  DoubleTab& intermediaire = eqn.inconnue()->valeurs(temps_intermediaire);
-  DoubleTab& final = eqn.inconnue()->valeurs(temps_final);
+  DoubleTab& intermediaire = eqn.inconnue().valeurs(temps_intermediaire);
+  DoubleTab& final = eqn.inconnue().valeurs(temps_final);
 
   DoubleTab dIdt(present); // Pour dimensionner.
 
@@ -219,7 +219,7 @@ bool Sch_CN_EX_iteratif::iterateTimeStepOnOther(int i,bool& converged)
     }
 
   // On impose les CLs au temps intermediaire
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_intermediaire);
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_intermediaire);
 
 
   // Calculs (idem) sur le deuxieme pas de temps
@@ -245,7 +245,7 @@ bool Sch_CN_EX_iteratif::iterateTimeStepOnOther(int i,bool& converged)
   dIdt/=dt_2;
   update_critere_statio(dIdt, eqn);
   // On impose les CLs au temps final
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_final);
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_final);
 
   converged=true;
   return true;

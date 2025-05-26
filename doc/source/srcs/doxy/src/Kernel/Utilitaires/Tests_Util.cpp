@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,14 +18,14 @@ int test_Ref()
 {
   Cerr << "test_Ref" << finl;
   DoubleVect x(5);
-  REF(DoubleVect) xx;                                //Constructeur par defaut.
+  OBS_PTR(DoubleVect) xx;                                //Constructeur par defaut.
   assert(xx.non_nul() == 0);                        //non_nul
-  REF(DoubleVect) yy(x);                        //Constructeur par const T&.
-  REF(DoubleVect) zz(yy);                        //Constructeur par const T&.
+  OBS_PTR(DoubleVect) yy(x);                        //Constructeur par const T&.
+  OBS_PTR(DoubleVect) zz(yy);                        //Constructeur par const T&.
   xx=x;                                        //Operateur = const T&.
   xx=yy;                                        //Operateur = const Deriv<T>&.
   assert(xx->size() == x.size());                //Operateur ->
-  assert(yy.valeur().size() == zz->size());        //valeur()
+  assert(yy->size() == zz->size());        //valeur()
   assert(xx == yy);                                //Operateur ==
   (static_cast<DoubleVect&>(xx))[2]=1;                        //cast
   assert (xx == x);                                //Operateur !=
@@ -41,14 +41,14 @@ int test_Deriv()
 {
   Cerr << "test_Deriv" << finl;
   DoubleVect x(5);
-  DERIV(DoubleVect) xx;                        //Constructeur par defaut.
+  OWN_PTR(DoubleVect) xx;                        //Constructeur par defaut.
   assert(xx.non_nul() == 0);
-  DERIV(DoubleVect) yy(x);                        //Constructeur par const T&.
-  DERIV(DoubleVect) zz(yy);                        //Constructeur par const T&.
+  OWN_PTR(DoubleVect) yy(x);                        //Constructeur par const T&.
+  OWN_PTR(DoubleVect) zz(yy);                        //Constructeur par const T&.
   xx=x;                                        //Operateur = const T&.
   xx=yy;                                        //Operateur = const Deriv<T>&.
   assert(xx->size() == x.size());                //Operateur ->
-  assert(yy.valeur().size() == zz->size());        //valeur()
+  assert(yy->size() == zz->size());        //valeur()
   assert(xx == yy);                                //Operateur ==
   (static_cast<DoubleVect&>(xx))[2]=1;                        //cast
   assert (xx != x);                                //Operateur !=

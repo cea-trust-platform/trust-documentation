@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,10 +41,10 @@ const Domaine_VEF& Op_Grad_VEF_P1B_Face::domaine_vef() const
   return ref_cast(Domaine_VEF, le_dom_vef.valeur());
 }
 
-void Op_Grad_VEF_P1B_Face::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis, const Champ_Inc&)
+void Op_Grad_VEF_P1B_Face::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis, const Champ_Inc_base&)
 {
-  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis.valeur());
-  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis.valeur());
+  le_dom_vef = ref_cast(Domaine_VEF, domaine_dis);
+  la_zcl_vef = ref_cast(Domaine_Cl_VEF, domaine_Cl_dis);
 }
 
 static int chercher_arete(int elem, int somi, int somj, const IntTab& elem_aretes, const IntTab& aretes_som)
@@ -168,192 +168,160 @@ static void verifier(const Op_Grad_VEF_P1B_Face& op, int& init, const Domaine_VE
   r.ecrit(Cerr);
 }
 
-DoubleTab& Op_Grad_VEF_P1B_Face::modifier_grad_pour_Cl(DoubleTab& grad) const
+DoubleTab& Op_Grad_VEF_P1B_Face::modifier_grad_pour_Cl(DoubleTab& tab_grad) const
 {
   const Domaine_VEF& domaine_VEF = domaine_vef();
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
   const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
   const Conds_lim& les_cl = domaine_Cl_VEF.les_conditions_limites();
   int nb_bords = les_cl.size();
-  copyPartialFromDevice(grad, 0, domaine_VEF.premiere_face_int() * dimension, "grad on boundary");
-  start_gpu_timer();
+  int dim = Objet_U::dimension;
   for (int n_bord = 0; n_bord < nb_bords; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       {
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         int num1 = le_bord.num_premiere_face();
         int num2 = num1 + le_bord.nb_faces();
         if (sub_type(Periodique, la_cl.valeur()))
           {
-            //periodicite
             const Periodique& la_cl_perio = ref_cast(Periodique, la_cl.valeur());
-            ArrOfInt fait(le_bord.nb_faces());
-            for (int face = num1; face < num2; face++)
-              {
-                if (!fait[face - num1])
-                  {
-                    int face_associee = num1 + la_cl_perio.face_associee(face - num1);
-                    fait[face - num1] = (fait[face_associee - num1] = 1);
-                    for (int comp = 0; comp < dimension; comp++)
-                      grad(face_associee, comp) = (grad(face, comp) += grad(face_associee, comp));
-                  }
-              }
+            CIntArrView face_associee = la_cl_perio.face_associee().view_ro();
+            DoubleTabView grad = tab_grad.view_rw();
+            Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(num1, num1+le_bord.nb_faces()/2), KOKKOS_LAMBDA(const int face)
+            {
+              int face_ass = num1 + face_associee(face - num1);
+              for (int comp = 0; comp < dim; comp++)
+                {
+                  grad(face, comp) += grad(face_ass, comp);
+                  grad(face_ass, comp) = grad(face, comp);
+                }
+            });
+            end_gpu_timer(__KERNEL_NAME__);
           }
         else
           {
             if (sub_type(Symetrie, la_cl.valeur()))
               {
-                for (int face = num1; face < num2; face++)
-                  {
-                    double psc = 0;
-                    double norm = 0;
-                    int comp;
-                    for (comp = 0; comp < dimension; comp++)
-                      {
-                        psc += grad(face, comp) * face_normales(face, comp);
-                        norm += face_normales(face, comp) * face_normales(face, comp);
-                      }
-                    // psc/=norm; // Fixed bug: Arithmetic exception
-                    if (std::fabs(norm) >= DMINFLOAT)
-                      psc /= norm;
-                    for (comp = 0; comp < dimension; comp++)
-                      grad(face, comp) -= psc * face_normales(face, comp);
-                  }
+                CDoubleTabView face_normales = domaine_VEF.face_normales().view_ro();
+                DoubleTabView grad = tab_grad.view_rw();
+                Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(num1, num2), KOKKOS_LAMBDA(const int face)
+                {
+                  double psc = 0;
+                  double norm = 0;
+                  for (int comp = 0; comp < dim; comp++)
+                    {
+                      psc += grad(face, comp) * face_normales(face, comp);
+                      norm += face_normales(face, comp) * face_normales(face, comp);
+                    }
+                  // psc/=norm; // Fixed bug: Arithmetic exception
+                  if (std::fabs(norm) >= DMINFLOAT)
+                    psc /= norm;
+                  for (int comp = 0; comp < dim; comp++)
+                    grad(face, comp) -= psc * face_normales(face, comp);
+                });
+                end_gpu_timer(__KERNEL_NAME__);
               }
             else if (sub_type(Dirichlet,la_cl.valeur()) || sub_type(Dirichlet_homogene, la_cl.valeur()))
               {
-                for (int face = num1; face < num2; face++)
-                  {
-                    for (int comp = 0; comp < dimension; comp++)
-                      grad(face, comp) = 0;
-                  }
+                DoubleTabView grad = tab_grad.view_wo();
+                Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::MDRangePolicy<Kokkos::Rank<2>>({num1,0}, {num2,dim}), KOKKOS_LAMBDA(const int face, const int comp)
+                {
+                  grad(face, comp) = 0;
+                });
+                end_gpu_timer(__KERNEL_NAME__);
               }
           }
       }
     }
-  end_gpu_timer(0, "Boundary condition on grad in Op_Grad_VEF_P1B_Face::modifier_grad_pour_Cl\n");
-  copyPartialToDevice(grad, 0, domaine_VEF.premiere_face_int() * dimension, "grad on boundary");
-  return grad;
+  return tab_grad;
 }
-DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_elem(const DoubleTab& pre, DoubleTab& grad) const
+
+DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_elem(const DoubleTab& pre, DoubleTab& tab_grad) const
 {
   const Domaine_VEF& domaine_VEF = domaine_vef();
   assert(domaine_VEF.get_alphaE());
   const Domaine& domaine = domaine_VEF.domaine();
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
-  const DoubleVect& porosite_face = equation().milieu().porosite_face();
   const IntTab& elem_faces = domaine_VEF.elem_faces();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
   int nfe = domaine.nb_faces_elem();
   int nb_elem_tot = domaine.nb_elem_tot();
+  CDoubleArrView porosite_face = equation().milieu().porosite_face().view_ro();
+  CDoubleTabView face_normales = domaine_VEF.face_normales().view_ro();
   // Si pas de support P1, on impose Neumann sur P0
   if (domaine_VEF.get_alphaS() == 0)
     {
       const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
       const Conds_lim& les_cl = domaine_Cl_VEF.les_conditions_limites();
       int nb_bords = les_cl.size();
-      copyPartialFromDevice(grad, 0, domaine_VEF.premiere_face_int() * dimension, "grad on boundary");
-      start_gpu_timer();
+      int dim = Objet_U::dimension;
       for (int n_bord = 0; n_bord < nb_bords; n_bord++)
         {
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
           if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
             {
               const Neumann_sortie_libre& la_sortie_libre = ref_cast(Neumann_sortie_libre, la_cl.valeur());
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               int num1 = le_bord.num_premiere_face();
               int num2 = num1 + le_bord.nb_faces();
-              for (int face = num1; face < num2; face++)
-                {
-                  double P_imp = la_sortie_libre.flux_impose(face - num1);
-                  double diff = P_imp;
-                  for (int comp = 0; comp < dimension; comp++)
-                    grad(face, comp) += diff * face_normales(face, comp) * porosite_face(face);
-                }
-            }
-        }
-      end_gpu_timer(0, "Boundary condition on grad in Op_Grad_VEF_P1B_Face::ajouter_elem");
-      copyPartialToDevice(grad, 0, domaine_VEF.premiere_face_int() * dimension, "grad on boundary");
-    }
-  if (getenv("TRUST_DISABLE_KOKKOS") != nullptr)
-    {
-      const int *face_voisins_addr = mapToDevice(face_voisins);
-      const double *porosite_face_addr = mapToDevice(porosite_face);
-      const double *face_normales_addr = mapToDevice(face_normales);
-      const int *elem_faces_addr = mapToDevice(elem_faces);
-      const double *pre_addr = mapToDevice(pre, "pre");
-      double *grad_addr = computeOnTheDevice(grad, "grad");
-      start_gpu_timer();
-      #pragma omp target teams distribute parallel for if (computeOnDevice)
-      for (int elem = 0; elem < nb_elem_tot; elem++)
-        {
-          for (int indice = 0; indice < nfe; indice++)
-            {
-              double pe = pre_addr[elem];
-              int face = elem_faces_addr[nfe * elem + indice];
-              double signe = 1;
-              if (elem != face_voisins_addr[2 * face])
-                signe = -1;
-              for (int comp = 0; comp < dimension; comp++)
-                {
-                  #pragma omp atomic
-                  grad_addr[dimension * face + comp] -=
-                    pe * signe * face_normales_addr[dimension * face + comp] * porosite_face_addr[face];
-                }
-            }
-        }
-      end_gpu_timer(Objet_U::computeOnDevice, "Elem loop in Op_Grad_VEF_P1B_Face::ajouter_elem");
-    }
-  else
-    {
-      CIntTabView face_voisins_v = face_voisins.view_ro();
-      CDoubleArrView porosite_face_v = porosite_face.view_ro();
-      CDoubleTabView face_normales_v = face_normales.view_ro();
-      CIntTabView elem_faces_v = elem_faces.view_ro();
-      CDoubleTabView pre_v = pre.view_ro();
-      DoubleTabView grad_v = grad.view_rw();
-      int dim = Objet_U::dimension;
-
-      auto kern_elem = KOKKOS_LAMBDA(int
-                                     elem)
-      {
-        for (int indice = 0; indice < nfe; indice++)
-          {
-            double pe = pre_v(elem, 0);
-            int face = elem_faces_v(elem, indice);
-            double signe = 1;
-            if (elem != face_voisins_v(face, 0)) signe = -1;
-            for (int comp = 0; comp < dim; comp++)
+              CDoubleTabView flux_impose = la_sortie_libre.flux_impose().view_ro();
+              DoubleTabView grad = tab_grad.view_rw();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(num1, num2), KOKKOS_LAMBDA(const int face)
               {
-                double val = pe * signe * face_normales_v(face, comp) * porosite_face_v(face);
-                Kokkos::atomic_sub(&grad_v(face, comp), val);
-              }
-          }
-      };
-
-      start_gpu_timer();
-      Kokkos::parallel_for("[KOKKOS] Op_Grad_VEF_P1B_Face::ajouter_elem", nb_elem_tot, kern_elem);
-      end_gpu_timer(Objet_U::computeOnDevice, "Elem loop in Op_Grad_VEF_P1B_Face::ajouter_elem");
+                double P_imp = flux_impose(face - num1, 0);
+                double diff = P_imp;
+                for (int comp = 0; comp < dim; comp++)
+                  grad(face, comp) += diff * face_normales(face, comp) * porosite_face(face);
+              });
+              end_gpu_timer(__KERNEL_NAME__);
+            }
+        }
     }
-  return grad;
+
+  CIntTabView face_voisins = domaine_VEF.face_voisins().view_ro();
+  CIntTabView elem_faces_v = elem_faces.view_ro();
+  CDoubleTabView pre_v = pre.view_ro();
+  DoubleTabView grad = tab_grad.view_rw();
+  int dim = Objet_U::dimension;
+
+  auto kern_elem = KOKKOS_LAMBDA(int
+                                 elem)
+  {
+    for (int indice = 0; indice < nfe; indice++)
+      {
+        double pe = pre_v(elem, 0);
+        int face = elem_faces_v(elem, indice);
+        double signe = 1;
+        if (elem != face_voisins(face, 0)) signe = -1;
+        for (int comp = 0; comp < dim; comp++)
+          {
+            double val = pe * signe * face_normales(face, comp) * porosite_face(face);
+            Kokkos::atomic_sub(&grad(face, comp), val);
+          }
+      }
+  };
+
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem_tot, kern_elem);
+  end_gpu_timer(__KERNEL_NAME__);
+
+  return tab_grad;
 }
-DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_som(const DoubleTab& pre, DoubleTab& grad) const
+
+DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_som(const DoubleTab& tab_pre, DoubleTab& tab_grad) const
 {
   const Domaine_VEF& domaine_VEF = domaine_vef();
   assert(domaine_VEF.get_alphaS());
   const Domaine& domaine = domaine_VEF.domaine();
   const Domaine& dom = domaine;
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
-  const DoubleVect& porosite_face = equation().milieu().porosite_face();
-  const IntTab& som_elem = domaine.les_elems();
-  const IntTab& elem_faces = domaine_VEF.elem_faces();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
+  const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
+
+  const DoubleTab& tab_face_normales = domaine_VEF.face_normales();
+  const DoubleVect& tab_porosite_face = equation().milieu().porosite_face();
+  const IntTab& tab_som_elem = domaine.les_elems();
+  const IntTab& tab_elem_faces = domaine_VEF.elem_faces();
+  const IntTab& tab_face_voisins = domaine_VEF.face_voisins();
+
   int nfe = domaine.nb_faces_elem();
   int nps = domaine_VEF.numero_premier_sommet();
   int nb_elem_tot = domaine.nb_elem_tot();
-  int premiere_face_int = domaine_VEF.premiere_face_int();
-  const Domaine_Cl_VEF& domaine_Cl_VEF = la_zcl_vef.valeur();
 
   if (som_.size_array() == 0)
     {
@@ -364,45 +332,44 @@ DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_som(const DoubleTab& pre, DoubleTab& gr
         {
           coeff_som_(el) = calculer_coef_som(el, domaine_Cl_VEF, domaine_VEF);
           for (int indice = 0; indice < nfe; indice++)
-            som_(el, indice) = nps + dom.get_renum_som_perio(som_elem(el, indice));
+            som_(el, indice) = nps + dom.get_renum_som_perio(tab_som_elem(el, indice));
         }
     }
 
-  const int *elem_faces_addr = mapToDevice(elem_faces);
-  const int *face_voisins_addr = mapToDevice(face_voisins);
-  const double *face_normales_addr = mapToDevice(face_normales);
-  const double *porosite_face_addr = mapToDevice(porosite_face);
-  const double *coeff_som_addr = mapToDevice(coeff_som_);
-  const int *som_addr = mapToDevice(som_);
-  const double *pre_addr = mapToDevice(pre, "pre");
-  double *grad_addr = computeOnTheDevice(grad, "grad");
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (computeOnDevice)
-  for (int elem = 0; elem < nb_elem_tot; elem++)
-    {
-      double sigma[3];
-      for (int indice = 0; indice < nfe; indice++)
-        {
-          int face = elem_faces_addr[nfe * elem + indice];
-          double signe = 1;
-          if (elem != face_voisins_addr[face * 2])
-            signe = -1;
+  CIntTabView elem_faces = tab_elem_faces.view_ro();
+  CIntTabView face_voisins = tab_face_voisins.view_ro();
+  CDoubleTabView face_normales = tab_face_normales.view_ro();
+  CDoubleArrView porosite_face = tab_porosite_face.view_ro();
+  CDoubleArrView coeff_som = coeff_som_.view_ro();
+  CIntTabView som_v = som_.view_ro();
+  CDoubleArrView pre = static_cast<const ArrOfDouble&>(tab_pre).view_ro();
+  DoubleTabView grad = tab_grad.view_rw();
+  int dim = Objet_U::dimension;
 
-          for (int comp = 0; comp < dimension; comp++)
-            sigma[comp] = face_normales_addr[face * dimension + comp] * signe;
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       Kokkos::MDRangePolicy<Kokkos::Rank<2>>({0, 0}, {nb_elem_tot, nfe}),
+                       KOKKOS_LAMBDA (int elem, int indice)
+  {
+    int face = elem_faces(elem,indice);
 
-          for (int indice2 = 0; indice2 < nfe; indice2++)
-            {
-              int face2 = elem_faces_addr[elem * nfe + indice2];
-              for (int comp = 0; comp < dimension; comp++)
-                {
-                  #pragma omp atomic
-                  grad_addr[face2 * dimension + comp] -= coeff_som_addr[elem] * pre_addr[som_addr[elem * nfe + indice]] * sigma[comp] * porosite_face_addr[face2];
-                }
-            }
-        }
-    }
-  end_gpu_timer(Objet_U::computeOnDevice, "Elem loop in Op_Grad_VEF_P1B_Face::ajouter_som");
+    double signe = 1;
+    if (elem != face_voisins(face,0))
+      signe = -1;
+
+    double sigma[3];
+    for (int comp = 0; comp < dim; comp++)
+      sigma[comp] = face_normales(face,comp) * signe;
+
+    for (int indice2 = 0; indice2 < nfe; indice2++)
+      {
+        int face2 = elem_faces(elem,indice2);
+        for (int comp = 0; comp < dim; comp++)
+          {
+            Kokkos::atomic_add(&grad(face2,comp), -(coeff_som(elem) * pre(som_v(elem,indice)) * sigma[comp] * porosite_face(face2)));
+          }
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 
   bool has_sortie_libre = false;
   const Conds_lim& les_cl = domaine_Cl_VEF.les_conditions_limites();
@@ -412,38 +379,40 @@ DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_som(const DoubleTab& pre, DoubleTab& gr
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       if (sub_type(Neumann_sortie_libre, la_cl.valeur())) has_sortie_libre = true;
     }
+
   if (has_sortie_libre)
     {
-      copyPartialFromDevice(grad, 0, premiere_face_int * dimension, "grad on boundary");
-      copyPartialFromDevice(pre, nps, nps + dom.nb_som_tot(), "pressure on som");
-      const IntTab& face_sommets = domaine_VEF.face_sommets();
       for (int n_bord = 0; n_bord < nb_bords; n_bord++)
         {
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
           if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
             {
-              const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+              const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
               const Neumann_sortie_libre& sortie_libre = ref_cast(Neumann_sortie_libre, la_cl.valeur());
               int num1 = le_bord.num_premiere_face();
               int num2 = num1 + le_bord.nb_faces();
-              for (int face = num1; face < num2; face++)
-                {
-                  const double P_imp = sortie_libre.flux_impose(face - num1);
-                  for (int indice = 0; indice < (nfe - 1); indice++)
-                    {
-                      int som = nps + dom.get_renum_som_perio(face_sommets(face, indice));
-                      for (int comp = 0; comp < dimension; comp++)
-                        grad(face, comp) -= 1. / dimension * face_normales(face, comp) * (pre(som) - P_imp) *
-                                            porosite_face(face);
-                    }
-                } //fin du if sur "Neumann_sortie_libre"
+              CDoubleTabView flux_impose = sortie_libre.flux_impose().view_ro();
+              CIntTabView face_sommets = domaine_VEF.face_sommets().view_ro();
+              CIntArrView renum_som_perio = dom.get_renum_som_perio().view_ro();
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(num1, num2), KOKKOS_LAMBDA(const int face)
+              {
+                const double P_imp = flux_impose(face - num1, 0);
+                for (int indice = 0; indice < (nfe - 1); indice++)
+                  {
+                    int som = nps + renum_som_perio(face_sommets(face, indice));
+                    for (int comp = 0; comp < dim; comp++)
+                      grad(face, comp) -= 1. / dim * face_normales(face, comp) * (pre(som) - P_imp) *
+                                          porosite_face(face);
+                  }
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
         }
-      copyPartialToDevice(pre, nps, nps + dom.nb_som_tot(), "pressure on som");
-      copyPartialToDevice(grad, 0, premiere_face_int * dimension, "grad on boundary");
     }
-  return grad;
+
+  return tab_grad;
 }
+
 DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_aretes(const DoubleTab& pre, DoubleTab& grad) const
 {
   const Domaine_VEF& domaine_VEF = domaine_vef();
@@ -535,7 +504,7 @@ DoubleTab& Op_Grad_VEF_P1B_Face::ajouter_aretes(const DoubleTab& pre, DoubleTab&
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
       {
-        const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
         int num1 = le_bord.num_premiere_face();
         int num2 = num1 + le_bord.nb_faces();
         if (sub_type(Neumann_sortie_libre, la_cl.valeur()))
@@ -678,7 +647,7 @@ void Op_Grad_VEF_P1B_Face::calculer_flux_bords() const
   //const IntTab& som_elem=le_dom_vef->domaine().les_elems();
   const DoubleTab& face_normales = domaine_VEF.face_normales();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, equation());
-  const Champ_P1_isoP1Bulle& la_pression_P1B = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression_pa().valeur());
+  const Champ_P1_isoP1Bulle& la_pression_P1B = ref_cast(Champ_P1_isoP1Bulle, eqn_hydr.pression_pa());
   // Si on filtre:
   la_pression_P1B.filtrage(domaine_VEF, la_pression_P1B);
   const DoubleVect& pression_P1B = la_pression_P1B.champ_filtre();
@@ -687,73 +656,35 @@ void Op_Grad_VEF_P1B_Face::calculer_flux_bords() const
   bool alphaE = domaine_VEF.get_alphaE();
   bool alphaS = domaine_VEF.get_alphaS();
   int nb_som_par_face = sommets.dimension(1);
+  CIntTabView face_voisins_v = face_voisins.view_ro();
+  CIntTabView sommets_v = sommets.view_ro();
+  CDoubleTabView face_normales_v = face_normales.view_ro();
+  CDoubleArrView pression_P1B_v = pression_P1B.view_ro();
+  DoubleTabView flux_bords_v = flux_bords_.view_wo();
+  int dim = Objet_U::dimension;
 
-  if (getenv("TRUST_DISABLE_KOKKOS") != nullptr)
-    {
-      const int *face_voisins_addr = mapToDevice(face_voisins);
-      const int *sommets_addr = mapToDevice(sommets);
-      const double *face_normales_addr = mapToDevice(face_normales);
-      const double *pression_P1B_addr = mapToDevice(pression_P1B, "pression_P1B_addr");
-      double *flux_bords_addr = computeOnTheDevice(flux_bords_, "flux_bords_");
-      start_gpu_timer();
-      #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
-      for (int face = 0; face < nb_faces_bord; face++)
-        {
-          int elem = face_voisins_addr[face * 2];
-          double pres_tot = 0.;
-          // Contribution de la pression P0
-          if (alphaE)
-            pres_tot += pression_P1B_addr[elem];
-          // Contribution de la pression P1
-          if (alphaS)
-            {
-              double pres_som = 0.;
-              for (int som = 0; som < nb_som_par_face; som++)
-                pres_som += pression_P1B_addr[nps + sommets_addr[face * nb_som_par_face + som]];
-              pres_tot += coeff_P1 * pres_som;
-            }
-          // Calcul de la resultante et du couple de pression
-          for (int i = 0; i < dimension; i++)
-            flux_bords_addr[face * dimension + i] = pres_tot * face_normales_addr[face * dimension + i];
-        }
-      end_gpu_timer(Objet_U::computeOnDevice,
-                    "Boundary face loop on flux_bords in Op_Grad_VEF_P1B_Face::calculer_flux_bords()\n");
-    }
-  else
-    {
-      CIntTabView face_voisins_v = face_voisins.view_ro();
-      CIntTabView sommets_v = sommets.view_ro();
-      CDoubleTabView face_normales_v = face_normales.view_ro();
-      CDoubleArrView pression_P1B_v = pression_P1B.view_ro();
-      DoubleTabView flux_bords_v = flux_bords_.view_wo();
-      int dim = Objet_U::dimension;
-
-      auto kern_flux_bords = KOKKOS_LAMBDA(int
-                                           face)
+  auto kern_flux_bords = KOKKOS_LAMBDA(int
+                                       face)
+  {
+    int elem = face_voisins_v(face, 0);
+    double pres_tot = 0.;
+    // Contribution de la pression P0
+    if (alphaE) pres_tot = pression_P1B_v(elem);
+    // Contribution de la pression P1
+    if (alphaS)
       {
-        int elem = face_voisins_v(face, 0);
-        double pres_tot = 0.;
-        // Contribution de la pression P0
-        if (alphaE) pres_tot = pression_P1B_v(elem);
-        // Contribution de la pression P1
-        if (alphaS)
-          {
-            double pres_som = 0.;
-            for (int som = 0; som < nb_som_par_face; som++)
-              pres_som += pression_P1B_v(nps + sommets_v(face, som));
-            pres_tot += coeff_P1 * pres_som;
-          }
-        // Calcul de la resultante et du couple de pression
-        for (int i = 0; i < dim; i++)
-          flux_bords_v(face, i) = pres_tot * face_normales_v(face, i);
-      };
+        double pres_som = 0.;
+        for (int som = 0; som < nb_som_par_face; som++)
+          pres_som += pression_P1B_v(nps + sommets_v(face, som));
+        pres_tot += coeff_P1 * pres_som;
+      }
+    // Calcul de la resultante et du couple de pression
+    for (int i = 0; i < dim; i++)
+      flux_bords_v(face, i) = pres_tot * face_normales_v(face, i);
+  };
 
-      start_gpu_timer();
-      Kokkos::parallel_for("[KOKKOS] Op_Grad_VEF_P1B_Face::calculer_flux_bords", nb_faces_bord, kern_flux_bords);
-      end_gpu_timer(Objet_U::computeOnDevice,
-                    "Boundary face loop on flux_bords in Op_Grad_VEF_P1B_Face::calculer_flux_bords()\n");
-
-    }
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_faces_bord, kern_flux_bords);
+  end_gpu_timer(__KERNEL_NAME__);
 }
 
 int Op_Grad_VEF_P1B_Face::impr(Sortie& os) const
@@ -785,7 +716,7 @@ int Op_Grad_VEF_P1B_Face::impr(Sortie& os) const
   for (int n_bord = 0; n_bord < nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       int impr_boundary = (domaine_VEF.domaine().bords_a_imprimer_sum().contient(le_bord.le_nom()) ? 1 : 0);
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
@@ -834,16 +765,9 @@ int Op_Grad_VEF_P1B_Face::impr(Sortie& os) const
 
   if (je_suis_maitre())
     {
-      // Open files if needed
-      //SFichier Flux_grad;
-      if (!Flux_grad.is_open())
-        ouvrir_fichier(Flux_grad, "", 1);
-      //SFichier Flux_grad_moment;
-      if (!Flux_grad_moment.is_open())
-        ouvrir_fichier(Flux_grad_moment, "moment", impr_mom);
-      //SFichier Flux_grad_sum;
-      if (!Flux_grad_sum.is_open())
-        ouvrir_fichier(Flux_grad_sum, "sum", impr_sum);
+      ouvrir_fichier(Flux_grad, "", 1);
+      ouvrir_fichier(Flux_grad_moment, "moment", impr_mom);
+      ouvrir_fichier(Flux_grad_sum, "sum", impr_sum);
 
       // Write time
       Flux_grad.add_col(sch.temps_courant());
@@ -901,7 +825,7 @@ int Op_Grad_VEF_P1B_Face::impr(Sortie& os) const
       for (int n_bord = 0; n_bord < nb_bord; n_bord++)
         {
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           int ndeb = le_bord.num_premiere_face();
           int nfin = ndeb + le_bord.nb_faces();
           if (domaine_VEF.domaine().bords_a_imprimer().contient(le_bord.le_nom()))

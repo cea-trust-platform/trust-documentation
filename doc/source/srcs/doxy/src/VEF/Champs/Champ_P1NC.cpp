@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,9 +29,12 @@
 #include <Periodique.h>
 #include <Champ_P1NC.h>
 #include <Operateur.h>
+#include <TRUSTTab.h>
 #include <TRUSTTrav.h>
 #include <SFichier.h>
 #include <Device.h>
+#include <kokkos++.h>
+#include <TRUSTArray_kokkos.tpp>
 
 Implemente_instanciable(Champ_P1NC,"Champ_P1NC",Champ_Inc_base);
 
@@ -63,7 +66,7 @@ int Champ_P1NC::compo_normale_sortante(int num_face) const
 {
   double vit_norm = 0;
   for (int ncomp = 0; ncomp < nb_comp(); ncomp++)
-    vit_norm += (*this)(num_face, ncomp) * domaine_vef().face_normales(num_face, ncomp);
+    vit_norm += valeurs()(num_face, ncomp) * domaine_vef().face_normales(num_face, ncomp);
   return (vit_norm > 0);
 }
 
@@ -72,93 +75,185 @@ DoubleTab& Champ_P1NC::trace(const Frontiere_dis_base& fr, DoubleTab& x, double 
   return Champ_P1NC_implementation::trace(fr, valeurs(tps), x, distant);
 }
 
-void Champ_P1NC::cal_rot_ordre1(DoubleTab& vorticite) const
+void Champ_P1NC::cal_rot_ordre1(DoubleTab& tab_vorticite) const
 {
   const int nb_elem = domaine_vef().nb_elem(), nb_elem_tot = domaine_vef().nb_elem_tot();
-  DoubleTab gradient_elem(nb_elem_tot, dimension, dimension);
-
-  gradient_elem = 0.;
-  vorticite = 0;
-  gradient(gradient_elem);
-  int num_elem;
-
+  DoubleTrav tab_gradient_elem(nb_elem_tot, dimension, dimension);
+  gradient(tab_gradient_elem);
+  CDoubleTabView3 gradient_elem = tab_gradient_elem.view_ro<3>();
   switch(dimension)
     {
     case 2:
       {
-        for (num_elem = 0; num_elem < nb_elem; num_elem++)
-          {
-            vorticite(num_elem) = gradient_elem(num_elem, 1, 0) - gradient_elem(num_elem, 0, 1);
-          }
+        DoubleArrView vorticite = static_cast<DoubleVect&>(tab_vorticite).view_wo();
+        Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(const int num_elem)
+        {
+          vorticite(num_elem) = gradient_elem(num_elem, 1, 0) - gradient_elem(num_elem, 0, 1);
+        });
       }
       break;
     case 3:
       {
-        for (num_elem = 0; num_elem < nb_elem; num_elem++)
-          {
-            vorticite(num_elem, 0) = gradient_elem(num_elem, 2, 1) - gradient_elem(num_elem, 1, 2);
-            vorticite(num_elem, 1) = gradient_elem(num_elem, 0, 2) - gradient_elem(num_elem, 2, 0);
-            vorticite(num_elem, 2) = gradient_elem(num_elem, 1, 0) - gradient_elem(num_elem, 0, 1);
-          }
+        DoubleTabView vorticite = tab_vorticite.view_wo();
+        Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(const int num_elem)
+        {
+          vorticite(num_elem, 0) = gradient_elem(num_elem, 2, 1) - gradient_elem(num_elem, 1, 2);
+          vorticite(num_elem, 1) = gradient_elem(num_elem, 0, 2) - gradient_elem(num_elem, 2, 0);
+          vorticite(num_elem, 2) = gradient_elem(num_elem, 1, 0) - gradient_elem(num_elem, 0, 1);
+        });
       }
     }
-
-  vorticite.echange_espace_virtuel();
+  end_gpu_timer(__KERNEL_NAME__);
+  tab_vorticite.echange_espace_virtuel();
   return;
 }
 
-void calculer_gradientP1NC(const DoubleTab& variable, const Domaine_VEF& domaine_VEF, const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& gradient_elem)
+void calculer_gradientP1NC_2D(const DoubleTab& tab_variable, const Domaine_VEF& domaine_VEF, const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& tab_gradient_elem)
 {
-  const DoubleTab& face_normales = domaine_VEF.face_normales();
+  const DoubleTab& tab_face_normales = domaine_VEF.face_normales();
+  const IntTab& tab_face_voisins = domaine_VEF.face_voisins();
+  const DoubleVect& tab_inverse_volumes = domaine_VEF.inverse_volumes();
+  const ArrOfInt& tab_est_face_bord = domaine_VEF.est_face_bord();
+
+  CDoubleTabView face_normales = tab_face_normales.view_ro();
+  CIntTabView face_voisins = tab_face_voisins.view_ro();
+  CDoubleArrView inverse_volumes = tab_inverse_volumes.view_ro();
+  CDoubleArrView variable = static_cast<const ArrOfDouble&>(tab_variable).view_ro();
+  CIntArrView est_face_bord = tab_est_face_bord.view_ro();
+  DoubleTabView gradient_elem = tab_gradient_elem.view_rw();
+
+  int dimension = Objet_U::dimension;
   const int nb_faces_tot = domaine_VEF.nb_faces_tot();
   const int nb_elem = domaine_VEF.nb_elem_tot();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
-  int dimension = Objet_U::dimension;
-  const int nb_comp = variable.line_size();
 
-  gradient_elem = 0.;
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       nb_faces_tot,
+                       KOKKOS_LAMBDA (int fac)
+  {
+    int type_face = est_face_bord(fac);
 
-  const int * face_voisins_addr = mapToDevice(face_voisins);
-  const double * face_normales_addr = mapToDevice(face_normales);
-  const int * est_face_bord_addr = mapToDevice(domaine_VEF.est_face_bord());
-  const double * variable_addr = mapToDevice(variable,"variable");
-  double * gradient_elem_addr = computeOnTheDevice(gradient_elem, "gradient_elem");
-  start_gpu_timer();
-  #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
-  for (int fac=0; fac<nb_faces_tot; fac++)
-    {
-      double contrib = est_face_bord_addr[fac]==2 ? 0.5 : 1; // Contribution O.5 si fac periodique
-      int elem1 = face_voisins_addr[fac * 2];
-      int elem2 = face_voisins_addr[fac * 2 + 1];
-      for (int icomp = 0; icomp < nb_comp; icomp++)
+    // Faces de bord periodiques
+    if (type_face == 2)
+      {
+        int elem1 = face_voisins(fac, 0);
+        int elem2 = face_voisins(fac, 1);
+
         for (int i = 0; i < dimension; i++)
           {
-            double grad = contrib * face_normales_addr[fac * dimension + i] * variable_addr[fac * nb_comp + icomp];
-            if (elem1 >= 0)
-              #pragma omp atomic
-              gradient_elem_addr[(elem1 * nb_comp + icomp) * dimension + i] += grad;
-            if (elem2 >= 0)
-              #pragma omp atomic
-              gradient_elem_addr[(elem2 * nb_comp + icomp) * dimension + i] -= grad;
+            double grad = 0.5 * face_normales(fac,i) * variable(fac);
+            Kokkos::atomic_add(&gradient_elem(elem1, i), +grad);
+            Kokkos::atomic_add(&gradient_elem(elem2, i), -grad);
           }
-    }
-  end_gpu_timer(Objet_U::computeOnDevice, "Face loop in Champ_P1NC::calculer_gradientP1NC");
-  // ToDo merge in one region the 2 loops
-  const double * inverse_volumes_addr = mapToDevice(domaine_VEF.inverse_volumes());
-  start_gpu_timer();
-  // Parfois un crash du build avec nvc++ recent (par exemple topaze, 22.7. Marche avec 22.1). Supprimer alors le if (Objet_U::computeOnDevice)
-  #pragma omp target teams distribute parallel for if (Objet_U::computeOnDevice)
-  for (int elem=0; elem<nb_elem; elem++)
-    for (int icomp=0; icomp<nb_comp; icomp++)
-      for (int i=0; i<dimension; i++)
-        gradient_elem_addr[(elem*nb_comp+icomp)*dimension+i] *= inverse_volumes_addr[elem];
-  end_gpu_timer(Objet_U::computeOnDevice, "Elem loop in Champ_P1NC::calculer_gradientP1NC");
+      }
+    // Faces de bord non periodiques
+    else if (type_face == 1)
+      {
+        int elem1 = face_voisins(fac,0);
+
+        for (int i = 0; i < dimension; i++)
+          {
+            double grad = face_normales(fac,i) * variable(fac);
+            Kokkos::atomic_add(&gradient_elem(elem1, i), grad);
+          }
+      }
+    // Faces internes
+    else if (type_face == 0)
+      {
+        int elem1 = face_voisins(fac, 0);
+        int elem2 = face_voisins(fac, 1);
+
+        for (int i = 0; i < dimension; i++)
+          {
+            double grad = face_normales(fac,i) * variable(fac);
+            if (elem1 >= 0) Kokkos::atomic_add(&gradient_elem(elem1, i), +grad);
+            if (elem2 >= 0) Kokkos::atomic_add(&gradient_elem(elem2, i), -grad);
+          }
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
+  // Division par le volume de l'element
+  auto vol_div = KOKKOS_LAMBDA (int elem, int i)
+  {
+    gradient_elem(elem, i) *= inverse_volumes(elem);
+  };
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), range_2D({0,0}, {nb_elem,dimension}), vol_div);
+  end_gpu_timer(__KERNEL_NAME__);
+}
+
+void calculer_gradientP1NC_3D(const DoubleTab& tab_variable, const Domaine_VEF& domaine_VEF, const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& tab_gradient_elem)
+{
+  const DoubleTab& tab_face_normales = domaine_VEF.face_normales();
+  const IntTab& tab_face_voisins = domaine_VEF.face_voisins();
+  const DoubleVect& tab_inverse_volumes = domaine_VEF.inverse_volumes();
+  const ArrOfInt& tab_est_face_bord = domaine_VEF.est_face_bord();
+
+  CDoubleTabView face_normales = tab_face_normales.view_ro();
+  CIntTabView face_voisins = tab_face_voisins.view_ro();
+  CDoubleArrView inverse_volumes = tab_inverse_volumes.view_ro();
+  CDoubleTabView variable = tab_variable.view_ro();
+  CIntArrView est_face_bord = tab_est_face_bord.view_ro();
+  DoubleTabView3 gradient_elem = tab_gradient_elem.view_rw<3>();
+
+  const int nb_faces_tot = domaine_VEF.nb_faces_tot();
+  const int nb_elem = domaine_VEF.nb_elem_tot();
+
+  int dimension = Objet_U::dimension;
+  const int nb_comp = tab_variable.line_size();
+
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       nb_faces_tot,
+                       KOKKOS_LAMBDA (int fac)
+  {
+    int type_face = est_face_bord(fac);
+    // type_face 2 periodique
+    double coef = (type_face == 2 ? 0.5 : 1);
+    for (int j=0; j<2; j++)
+      {
+        int elem = face_voisins(fac, j);
+        if (elem >= 0)
+          {
+            for (int icomp = 0; icomp < nb_comp; icomp++)
+              for (int i = 0; i < dimension; i++)
+                {
+                  double grad = coef * face_normales(fac, i) * variable(fac, icomp);
+                  Kokkos::atomic_add(&gradient_elem(elem, icomp, i), grad);
+                }
+            coef*=-1;
+          }
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
+  // Division par le volume de l'element
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       range_3D({0,0,0}, {nb_elem,nb_comp,dimension}),
+                       KOKKOS_LAMBDA (int elem, int icomp, int i)
+  {
+    gradient_elem(elem, icomp, i) *= inverse_volumes(elem);
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+}
+
+void calculer_gradientP1NC(const DoubleTab& tab_variable, const Domaine_VEF& domaine_VEF, const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& tab_gradient_elem)
+{
+  const int nb_comp = tab_variable.line_size();
+  tab_gradient_elem = 0.;
+
+  // Cas du calcul du gradient d'un tableau de vecteurs ou
+  // tableau de scalaires tab_gradient_elem(,,)
+  if (nb_comp != 1 || tab_gradient_elem.nb_dim() == 3)
+    calculer_gradientP1NC_3D(tab_variable, domaine_VEF, domaine_Cl_VEF, tab_gradient_elem);
+  // Cas du calcul du gradient d'un tableau de scalaire dans un
+  // tableau gradient_elem(,)
+  else
+    calculer_gradientP1NC_2D(tab_variable, domaine_VEF, domaine_Cl_VEF, tab_gradient_elem);
 }
 
 void Champ_P1NC::gradient(DoubleTab& gradient_elem) const
 {
   // Calcul du gradient: par exemple gradient de la vitesse pour le calcul de la vorticite
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, equation().domaine_Cl_dis());
   calculer_gradientP1NC(valeurs(), domaine_vef(), domaine_Cl_VEF, gradient_elem);
 
 }
@@ -222,7 +317,7 @@ Champ_base& Champ_P1NC::affecter_(const Champ_base& ch)
 // en vis a vis sont identiques. Pour cela on prend la demi somme des deux valeurs.
 void Champ_P1NC::verifie_valeurs_cl()
 {
-  const Domaine_Cl_dis_base& zcl = equation().domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = equation().domaine_Cl_dis();
   int nb_cl = zcl.nb_cond_lim();
   DoubleTab& ch_tab = valeurs();
   int nb_compo = nb_comp();
@@ -258,33 +353,33 @@ void Champ_P1NC::verifie_valeurs_cl()
   ch_tab.echange_espace_virtuel();
 }
 
-void Champ_P1NC::calcul_critere_Q(DoubleVect& Critere_Q) const
+void Champ_P1NC::calcul_critere_Q(DoubleVect& tab_Critere_Q) const
 {
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, equation().domaine_Cl_dis());
   const int nb_elem = domaine_vef().nb_elem(), nb_elem_tot = domaine_vef().nb_elem_tot();
-  int num_elem, i, j;
-  double crit, deriv1, deriv2;
+  const int dim = Objet_U::dimension;
 
-  DoubleTab gradient_elem(nb_elem_tot, dimension, dimension);
-  gradient_elem = 0.;
-
-  //Champ_P1NC& vit = *this;
+  DoubleTrav tab_gradient_elem(nb_elem_tot, dim, dim);
   const DoubleTab& vitesse = valeurs();
-  Champ_P1NC::calcul_gradient(vitesse, gradient_elem, domaine_Cl_VEF);
+  Champ_P1NC::calcul_gradient(vitesse, tab_gradient_elem, domaine_Cl_VEF);
 
-  for (num_elem = 0; num_elem < nb_elem; num_elem++)
-    {
-      crit = 0.;
-      for (i = 0; i < dimension; i++)
-        for (j = 0; j < dimension; j++)
-          {
-            deriv1 = gradient_elem(num_elem, i, j);
-            deriv2 = gradient_elem(num_elem, j, i);
-
-            crit += -0.25 * deriv1 * deriv2;
-          }
-      Critere_Q[num_elem] = crit;
-    }
+  CDoubleTabView3 gradient_elem = tab_gradient_elem.view_ro<3>();
+  DoubleArrView Critere_Q = tab_Critere_Q.view_rw();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),
+                       range_1D(0, nb_elem), KOKKOS_LAMBDA(
+                         const int num_elem)
+  {
+    double crit = 0.;
+    for (int i = 0; i < dim; i++)
+      for (int j = 0; j < dim; j++)
+        {
+          double deriv1 = gradient_elem(num_elem, i, j);
+          double deriv2 = gradient_elem(num_elem, j, i);
+          crit += -0.25 * deriv1 * deriv2;
+        }
+    Critere_Q[num_elem] = crit;
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 }
 
 void Champ_P1NC::calcul_y_plus(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleVect& y_plus) const
@@ -294,30 +389,28 @@ void Champ_P1NC::calcul_y_plus(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleVect&
   // on n'a qu'a supprimer les valeurs negatives et n'apparaissent
   // que les valeurs aux parois.
 
-  int ndeb, nfin, elem, l_unif;
-  double norm_tau, u_etoile, norm_v = 0, dist = 0, val1, val2, val3, d_visco, visco = 1.;
-  IntVect num(dimension);
+  int ndeb, nfin, l_unif;
+  double visco0 = -1.;
   y_plus = -1.;
 
-  const Champ_P1NC& vit = *this;
-  const IntTab& face_voisins = domaine_vef().face_voisins(), &elem_faces = domaine_vef().elem_faces();
   const Equation_base& eqn_hydr = equation();
   const Fluide_base& le_fluide = ref_cast(Fluide_base, eqn_hydr.milieu());
-  const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-  const DoubleTab& tab_visco = ch_visco_cin->valeurs();
+  const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+  const DoubleTab& tab_visco = ch_visco_cin.valeurs();
 
-  if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+  if (sub_type(Champ_Uniforme, ch_visco_cin))
     {
       if (tab_visco(0, 0) > DMINFLOAT)
-        visco = tab_visco(0, 0);
+        visco0 = tab_visco(0, 0);
       else
-        visco = DMINFLOAT;
+        visco0 = DMINFLOAT;
       l_unif = 1;
     }
   else
     l_unif = 0;
+
   if ((!l_unif) && (tab_visco.local_min_vect() < DMINFLOAT))
-// GF on ne doit pas changer tab_visco ici !
+    // GF on ne doit pas changer tab_visco ici !
     {
       Cerr << " visco <=0 ?" << finl;
       exit();
@@ -345,101 +438,100 @@ void Champ_P1NC::calcul_y_plus(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleVect&
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
 
-      if( sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) || sub_type(Dirichlet_paroi_defilante, la_cl.valeur()) || la_cl.valeur().que_suis_je() == "Frontiere_ouverte_vitesse_imposee_ALE")
+      if( sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) || sub_type(Dirichlet_paroi_defilante, la_cl.valeur()) || la_cl->que_suis_je() == "Frontiere_ouverte_vitesse_imposee_ALE")
         {
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
+          int dim = Objet_U::dimension;
+          int nfac = domaine_vef().domaine().nb_faces_elem();
+          DoubleTrav counter(y_plus.size());
+          CDoubleTabView xp = domaine_vef().xp().view_ro(); // DOUBT: Why defined inside the for loop?
+          CDoubleTabView xv = domaine_vef().xv().view_ro();
+          CDoubleTabView face_normale = domaine_vef().face_normales().view_ro();
+          CIntTabView elem_faces = domaine_vef().elem_faces().view_ro();
+          CIntTabView face_voisins = domaine_vef().face_voisins().view_ro();
+          CDoubleTabView vit = eqn_hydr.inconnue().valeurs().view_ro();  // DOUBT: Is this correct? Original assignment was `const Champ_P1NC& vit = *this;`
+          CDoubleArrView visco = static_cast<const DoubleVect&>(tab_visco).view_ro();
+          CDoubleArrView yp_faces = static_cast<const DoubleVect&>(yplus_faces).view_ro();
+          DoubleArrView y_plus_view = y_plus.view_rw();
+          DoubleArrView counter_view = static_cast<DoubleVect&>(counter).view_wo();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA (const int num_face)
+          {
+            int elem = face_voisins(num_face, 0);
+            y_plus_view(elem) = 0;
+          });
+          end_gpu_timer(__KERNEL_NAME__);
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA (const int num_face)
+          {
+            int num[3] {};
+            double val[3] {};
+            int elem = face_voisins(num_face, 0);
+            if (yplus_already_computed)
+              {
+                // y+ is only defined on faces so we take the face value to put in the element
+                Kokkos::atomic_add(&y_plus_view(elem), yp_faces(num_face));
+              }
+            else
+              {
+                bool ok = false;
+                for (int i = 0; i < dim; i++)
+                  {
+                    num[i] = elem_faces(elem, i);
+                    if (num[i] == num_face && !ok)
+                      {
+                        num[i] = elem_faces(elem, dim);
+                        ok = true;
+                      }
+                  }
 
-          for (int num_face = ndeb; num_face < nfin; num_face++)
-            {
+                double dist = distance(dim, num_face, elem, xp, xv, face_normale);
+                dist *= (dim + 1.) / dim; // pour se ramener a distance paroi / milieu de num[0]-num[1]
+                double norm_v = norm_vit1_lp(dim, vit, num_face, nfac, num, face_normale, val);
+                double d_visco = l_unif ? visco0:visco[elem];
 
-              elem = face_voisins(num_face, 0);
-
-              if (yplus_already_computed)
-                {
-                  // y+ is only defined on faces so we take the face value to put in the element
-                  y_plus(elem) = yplus_faces(num_face);
-                }
-              else
-                {
-
-                  if (dimension == 2)
-                    {
-
-                      num[0] = elem_faces(elem, 0);
-                      num[1] = elem_faces(elem, 1);
-
-                      if (num[0] == num_face)
-                        num[0] = elem_faces(elem, 2);
-                      else if (num[1] == num_face)
-                        num[1] = elem_faces(elem, 2);
-
-                      dist = distance_2D(num_face, elem, domaine_vef());
-                      dist *= 3. / 2.; // pour se ramener a distance paroi / milieu de num[0]-num[1]
-                      norm_v = norm_2D_vit1_lp(vit.valeurs(), num_face, num[0], num[1], domaine_vef(), val1, val2);
-
-                    } // dim 2
-                  else if (dimension == 3)
-                    {
-
-                      num[0] = elem_faces(elem, 0);
-                      num[1] = elem_faces(elem, 1);
-                      num[2] = elem_faces(elem, 2);
-
-                      if (num[0] == num_face)
-                        num[0] = elem_faces(elem, 3);
-                      else if (num[1] == num_face)
-                        num[1] = elem_faces(elem, 3);
-                      else if (num[2] == num_face)
-                        num[2] = elem_faces(elem, 3);
-
-                      dist = distance_3D(num_face, elem, domaine_vef());
-                      dist *= 4. / 3.; // pour se ramener a distance paroi / milieu de num[0]-num[1]-num[2]
-                      norm_v = norm_3D_vit1_lp(vit.valeurs(), num_face, num[0], num[1], num[2], domaine_vef(), val1, val2, val3);
-
-                    } // dim 3
-
-                  if (l_unif)
-                    d_visco = visco;
-                  else
-                    d_visco = tab_visco[elem];
-
-                  // PQ : 01/10/03 : corrections par rapport a la version premiere
-                  norm_tau = d_visco * norm_v / dist;
-                  u_etoile = sqrt(norm_tau);
-                  y_plus(elem) = dist * u_etoile / d_visco;
-
-                } // else yplus already computed
-
-            } // loop on faces
+                // PQ : 01/10/03 : corrections par rapport a la version premiere
+                double norm_tau = d_visco * norm_v / dist;
+                double u_etoile = sqrt(norm_tau);
+                Kokkos::atomic_add(&y_plus_view(elem), dist * u_etoile / d_visco);
+              } // else yplus already computed
+            Kokkos::atomic_add(&counter_view(elem), +1);
+          }); // loop on faces
+          end_gpu_timer(__KERNEL_NAME__);
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(0, y_plus.size()), KOKKOS_LAMBDA (const int elem)
+          {
+            if (counter_view(elem)>0) y_plus_view(elem)/=counter_view(elem);
+          });
+          end_gpu_timer(__KERNEL_NAME__);
 
         } // Fin de paroi fixe
 
     } // Fin boucle sur les bords
 }
 
-void Champ_P1NC::calcul_grad_U(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& grad_u) const
+void Champ_P1NC::calcul_grad_U(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& tab_grad_u) const
 {
   const DoubleTab& u = valeurs();
   const int nb_elem = domaine_vef().nb_elem(), nb_elem_tot = domaine_vef().nb_elem_tot();
 
-  DoubleTab gradient_elem(nb_elem_tot, dimension, dimension);
-  gradient_elem = 0.;
-
-  calculer_gradientP1NC(u, domaine_vef(), domaine_Cl_VEF, gradient_elem);
-
-  for (int elem = 0; elem < nb_elem; elem++)
-    {
-      int comp = 0;
-      for (int i = 0; i < dimension; i++)
-        for (int j = 0; j < dimension; j++)
+  DoubleTrav tab_gradient_elem(nb_elem_tot, dimension, dimension);
+  calculer_gradientP1NC(u, domaine_vef(), domaine_Cl_VEF, tab_gradient_elem);
+  int dim = dimension;
+  CDoubleTabView3 gradient_elem = tab_gradient_elem.view_ro<3>();
+  DoubleTabView grad_u = tab_grad_u.view_wo();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(0, nb_elem), KOKKOS_LAMBDA(const int elem)
+  {
+    int comp = 0;
+    for (int i = 0; i < dim; i++)
+      {
+        for (int j = 0; j < dim; j++)
           {
             grad_u(elem, comp) = gradient_elem(elem, i, j);
             comp++;
           }
-    }
-
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 }
 
 void Champ_P1NC::calcul_grad_T(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& grad_T) const
@@ -507,23 +599,23 @@ void Champ_P1NC::calcul_h_conv(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& 
   for (int n_bord = 0; n_bord < domaine_vef().nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Frontiere_dis_base& la_fr = la_cl.frontiere_dis();
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Frontiere_dis_base& la_fr = la_cl->frontiere_dis();
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
       double h_moy = 0.;
       // Selon les conditions limites
       if (sub_type(Echange_externe_impose, la_cl.valeur()))
         {
-          const Champ_base& rho = equation().milieu().masse_volumique().valeur();
-          const Champ_Don& Cp = equation().milieu().capacite_calorifique();
+          const Champ_base& rho = equation().milieu().masse_volumique();
+          const Champ_Don_base& Cp = equation().milieu().capacite_calorifique();
           int rho_uniforme = (sub_type(Champ_Uniforme,rho) ? 1 : 0);
-          int cp_uniforme = (sub_type(Champ_Uniforme,Cp.valeur()) ? 1 : 0);
+          int cp_uniforme = (sub_type(Champ_Uniforme,Cp) ? 1 : 0);
           for (int num_face = ndeb; num_face < nfin; num_face++)
             {
               int elem = face_voisins(num_face, 0);
-              double rho_cp = (rho_uniforme ? rho(0, 0) : (rho.nb_comp() == 1 ? rho(num_face) : rho(num_face, 0)));
-              rho_cp *= (cp_uniforme ? Cp(0, 0) : (Cp.nb_comp() == 1 ? Cp(num_face) : Cp(num_face, 0)));
+              double rho_cp = (rho_uniforme ? rho.valeurs()(0, 0) : (rho.nb_comp() == 1 ? rho.valeurs()(num_face) : rho.valeurs()(num_face, 0)));
+              rho_cp *= (cp_uniforme ? Cp.valeurs()(0, 0) : (Cp.nb_comp() == 1 ? Cp.valeurs()(num_face) : Cp.valeurs()(num_face, 0)));
               h_conv(elem) = ref_cast(Echange_externe_impose,la_cl.valeur()).h_imp(num_face) * rho_cp;
               h_moy += h_conv(elem);
             }
@@ -557,7 +649,7 @@ void Champ_P1NC::calcul_h_conv(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& 
             }
         }
       h_moy = Process::mp_sum(h_moy);
-      int nb_faces = Process::mp_sum(le_bord.nb_faces());
+      int nb_faces = static_cast<int>(Process::mp_sum(le_bord.nb_faces()));  // a single 'bord' should not have so many faces
       h_moy /= nb_faces;
       if (je_suis_maitre())
         {
@@ -577,18 +669,22 @@ void Champ_P1NC::calcul_h_conv(const Domaine_Cl_VEF& domaine_Cl_VEF, DoubleTab& 
 
 static double norme_L2(const DoubleTab& u, const Domaine_VEF& domaine_VEF)
 {
-  const DoubleVect& volumes = domaine_VEF.volumes_entrelaces();
   const int nb_faces = domaine_VEF.nb_faces();
-  int i = 0;
   double norme = 0;
   int nb_compo_ = u.line_size();
-  for (; i < nb_faces; i++)
-    {
-      double s = 0;
-      for (int j = 0; j < nb_compo_; j++)
-        s += u(i, j) * u(i, j);
-      norme += volumes(i) * s;
-    }
+
+  CDoubleArrView volumes = domaine_VEF.volumes_entrelaces().view_ro(); // DOUBT: reference?
+  CDoubleTabView uview = u.view_ro(); // DOUBT: How to name this variable?
+
+  Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__), nb_faces,
+                          KOKKOS_LAMBDA (const int i, double& s)
+  {
+    for (int j = 0; j < nb_compo_; j++)
+      s += uview(i, j) * uview(i, j);
+    s *= volumes(i);
+  }, norme);
+  end_gpu_timer(__KERNEL_NAME__);
+
   return sqrt(norme);
 }
 double Champ_P1NC::norme_L2(const Domaine& dom) const
@@ -607,8 +703,16 @@ double Champ_P1NC::norme_H1(const Domaine& dom) const
 {
   const Domaine& mon_dom = domaine_vef().domaine();
 
-  double dnorme_H1, norme_H1_comp, int_grad_elem, norme_grad_elem;
-  int face_globale;
+  double dnorme_H1;
+  // DOUBT: dimension?
+  int dim = dimension;
+  const int nb_elem = mon_dom.nb_elem();
+  const int nb_faces_elem = mon_dom.nb_faces_elem();
+  CIntTabView elem_faces = domaine_vef().elem_faces().view_ro();
+  CDoubleTabView face_normales = domaine_vef().face_normales().view_ro();
+  CIntTabView face_voisins = domaine_vef().face_voisins().view_ro();
+  CDoubleTabView tab = valeurs().view_ro();
+  CDoubleArrView volumes = domaine_vef().volumes().view_ro();
 
   //On va calculer la norme H1 d'une inconnue P1NC.
   //L'algorithme tient compte des contraintes suivantes:
@@ -616,32 +720,31 @@ double Champ_P1NC::norme_H1(const Domaine& dom) const
   //  (i.e etre un scalaire ou etre un vecteur)
   //- la dimension du probleme est arbitraire (1, 2 ou 3).
   //ATTENTION: les prismes ne sont pas supportes.
-
   dnorme_H1 = 0.;
-  for (int composante = 0; composante < nb_comp(); composante++) //cas scalaire ou vectoriel
-    {
-      norme_H1_comp = 0.; //pour eviter les accumulations
-      for (int K = 0; K < mon_dom.nb_elem(); K++) //boucle sur les elements
-        {
-          norme_grad_elem = 0.; //pour eviter les accumulations
-          for (int i = 0; i < dimension; i++) //boucle sur la dimension du pb
-            {
-              int_grad_elem = 0.; //pour eviter les accumulations
-              for (int face = 0; face < mon_dom.nb_faces_elem(); face++) //boucle sur les faces d'un "K"
-                {
-                  face_globale = domaine_vef().elem_faces(K, face);
+  Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__), nb_comp(), //cas scalaire ou vectoriel
+                          KOKKOS_LAMBDA (const int composante, double& norme_H1_comp)
+  {
+    for (int K = 0; K < nb_elem; K++) //boucle sur les elements
+      {
+        double norme_grad_elem = 0.; //pour eviter les accumulations
+        for (int i = 0; i < dim; i++) //boucle sur la dimension du pb
+          {
+            double int_grad_elem = 0.; //pour eviter les accumulations
+            for (int face = 0; face < nb_faces_elem; face++) //boucle sur les faces d'un "K"
+              {
+                int face_globale = elem_faces(K, face);
 
-                  int_grad_elem += (valeurs())(face_globale, composante) * domaine_vef().face_normales(face_globale, i) * domaine_vef().oriente_normale(face_globale, K);
-                } //fin du for sur "face"
+                int_grad_elem += tab(face_globale, composante) * face_normales(face_globale, i) * oriente_normale(face_globale, K, face_voisins);
+              } //fin du for sur "face"
 
-              norme_grad_elem += int_grad_elem * int_grad_elem;
-            } //fin du for sur "i"
+            norme_grad_elem += int_grad_elem * int_grad_elem;
+          } //fin du for sur "i"
 
-          norme_H1_comp += norme_grad_elem / domaine_vef().volumes(K);
-        } //fin du for sur "K"
+        norme_H1_comp += norme_grad_elem / volumes(K);
+      } //fin du for sur "K"
 
-      dnorme_H1 += norme_H1_comp;
-    } // fin du for sur "composante"
+  }, dnorme_H1); // fin du for sur "composante"
+  end_gpu_timer(__KERNEL_NAME__);
 
   return sqrt(dnorme_H1);
 }
@@ -667,16 +770,9 @@ DoubleTab& Champ_P1NC::calcul_gradient(const DoubleTab& champ, DoubleTab& gij, c
 
 }
 
-DoubleTab& Champ_P1NC::calcul_duidxj_paroi(DoubleTab& gij, const DoubleTab& nu, const DoubleTab& nu_turb, const DoubleTab& tau_tan, const Domaine_Cl_VEF& domaine_Cl_VEF)
+DoubleTab& Champ_P1NC::calcul_duidxj_paroi(DoubleTab& tab_gij, const DoubleTab& tab_nu, const DoubleTab& tab_nu_turb, const DoubleTab& tab_tau_tan, const Domaine_Cl_VEF& domaine_Cl_VEF)
 {
-
   const Domaine_VEF& domaine_VEF = domaine_Cl_VEF.domaine_vef();
-  const DoubleTab& face_normale = domaine_VEF.face_normales();
-  const IntTab& face_voisins = domaine_VEF.face_voisins();
-
-  const DoubleVect& porosite_face = domaine_Cl_VEF.equation().milieu().porosite_face();
-
-  int i, j, fac, num1;
 
   // On va modifier Sij pour les faces de Dirichlet (Paroi_fixe) si nous n utilisons pas Paroi_negligeable!!!!
   // On aura : (grad u)_f = (grad u) - (grad u . n) x n + (grad u . n)_lp x n
@@ -718,107 +814,86 @@ DoubleTab& Champ_P1NC::calcul_duidxj_paroi(DoubleTab& gij, const DoubleTab& nu, 
 
   const Conds_lim& les_cl = domaine_Cl_VEF.les_conditions_limites();
   int nb_cl = les_cl.size();
-  // Cerr << "On fait une modif aux calculs des gradient a cause de la loi de paroi!!!!" << finl;
-  //        DoubleTrav part1_int(Objet_U::dimension), part1(Objet_U::dimension,Objet_U::dimension), part2(Objet_U::dimension,Objet_U::dimension);
-  DoubleTab P(dimension, dimension);
 
-  // tau_tan could be uninitialized at this point. In such a case,
+  // tab_tau_tan could be uninitialized at this point. In such a case,
   // we can skip the function because the value of gij won't change
-  if (tau_tan.dimension_tot(0) == 0)
-    {
-      return gij;
-    }
+  if (tab_tau_tan.dimension_tot(0) == 0) return tab_gij;
 
   for (int num_cl = 0; num_cl < nb_cl; num_cl++)
     {
       //Boucle sur les bords
       const Cond_lim& la_cl = les_cl[num_cl];
-      const Front_VF& la_front_dis = ref_cast(Front_VF, la_cl.frontiere_dis());
-      int ndeb = la_front_dis.num_premiere_face();
-      int nfin = ndeb + la_front_dis.nb_faces();
-
-      if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) || sub_type(Dirichlet_paroi_defilante, la_cl.valeur()) || la_cl.valeur().que_suis_je() == "Frontiere_ouverte_vitesse_imposee_ALE")
+      if (sub_type(Dirichlet_paroi_fixe,la_cl.valeur()) || sub_type(Dirichlet_paroi_defilante, la_cl.valeur()) || la_cl->que_suis_je() == "Frontiere_ouverte_vitesse_imposee_ALE")
         {
+          const Front_VF& la_front_dis = ref_cast(Front_VF, la_cl->frontiere_dis());
+          int ndeb = la_front_dis.num_premiere_face();
+          int nfin = ndeb + la_front_dis.nb_faces();
+          int dim = Objet_U::dimension;
+          // Boucle sur les faces
+          CDoubleTabView face_normale = domaine_VEF.face_normales().view_ro();
+          CIntTabView face_voisins = domaine_VEF.face_voisins().view_ro();
+          CDoubleArrView porosite_face = domaine_Cl_VEF.equation().milieu().porosite_face().view_ro();
+          CDoubleTabView tau_tan = tab_tau_tan.view_ro();
+          CDoubleArrView nu = static_cast<const ArrOfDouble&>(tab_nu).view_ro();
+          CDoubleArrView nu_turb = static_cast<const ArrOfDouble&>(tab_nu_turb).view_ro();
+          DoubleTabView3 gij = tab_gij.view_rw<3>();
+          Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::RangePolicy<>(ndeb, nfin), KOKKOS_LAMBDA (const int fac)
+          {
+            double P[3][3] {};
+            int num1 = face_voisins(fac, 0);
+            // definition des vecteurs unitaires constituant le repere local
+            // stockes dans la matrice de passage P
+            // vecteur tangentiel (porte par la vitesse tangentielle)
+            double sum = 0.;
+            for (int i = 0; i < dim; i++)
+              sum += tau_tan(fac, i) * tau_tan(fac, i);
+            double norme_tau_tan = sqrt(sum);
+            for (int i = 0; i < dim; i++)
+              P[i][0] = tau_tan(fac, i) / (norme_tau_tan + DMINFLOAT);
 
-          for (fac = ndeb; fac < nfin; fac++)
-            {
-              // Boucle sur les faces
+            // vecteur normal a la paroi
+            sum = 0.;
+            for (int i = 0; i < dim; i++)
+              sum += face_normale(fac, i) * face_normale(fac, i);
+            double norme = sqrt(sum);
 
-              num1 = face_voisins(fac, 0);
+            int signe = -oriente_normale(fac, num1, face_voisins); // orientation vers l'interieur
+            for (int i = 0; i < dim; i++)
+              P[i][1] = signe * face_normale(fac, i) / norme;
 
-              /////////////////////////////////////////////////////////////////
-              // definition des vecteurs unitaires constituant le repere local
-              // stockes dans la matrice de passage P
-              /////////////////////////////////////////////////////////////////
-
-              // vecteur tangentiel (porte par la vitesse tangentielle)
-
-              double norme2_tau_tan = 0.;
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                norme2_tau_tan += tau_tan(fac, i) * tau_tan(fac, i);
-
-              double norme_tau_tan = sqrt(norme2_tau_tan);
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                P(i, 0) = tau_tan(fac, i) / (norme_tau_tan + DMINFLOAT);
-
-              // vecteur normal a la paroi
-
-              double norme2_n = 0.;
-              int signe = -domaine_VEF.oriente_normale(fac, num1); // orientation vers l'interieur
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                norme2_n += face_normale(fac, i) * face_normale(fac, i);
-
-              double norme_n = sqrt(norme2_n);
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                P(i, 1) = signe * face_normale(fac, i) / norme_n;
-
-              // (3D) on complete la base par le deuxieme vecteur tangentiel
-
-              if (Objet_U::dimension == 3)
+            // (3D) on complete la base par le deuxieme vecteur tangentiel
+            if (dim == 3)
+              {
+                P[0][2] = P[1][0] * P[2][1] - P[2][0] * P[1][1];
+                P[1][2] = P[2][0] * P[0][1] - P[0][0] * P[2][1];
+                P[2][2] = P[0][0] * P[1][1] - P[1][0] * P[0][1];
+              }
+            //         determination du terme d(u_t)/dn a enlever
+            //                                                       -1
+            //         terme identifie a l'aide du produit : F =  P . G . P
+            //
+            double dutdn_old = 0.;
+            for (int i = 0; i < dim; i++)
+              for (int j = 0; j < dim; j++)
                 {
-                  P(0, 2) = P(1, 0) * P(2, 1) - P(2, 0) * P(1, 1);
-                  P(1, 2) = P(2, 0) * P(0, 1) - P(0, 0) * P(2, 1);
-                  P(2, 2) = P(0, 0) * P(1, 1) - P(1, 0) * P(0, 1);
+                  double gij_value = Kokkos::atomic_fetch_add(&gij(num1, i, j), 0.0);
+                  dutdn_old += gij_value * P[j][1] * P[i][0];
                 }
 
-              /////////////////////////////////////////////////////////////////
-              //         determination du terme d(u_t)/dn a enlever
-              //                                                       -1
-              //         terme identifie a l'aide du produit : F =  P . G . P
-              //
-              /////////////////////////////////////////////////////////////////
+            //         Correction finale apportee a la matrice G
+            double C = -dutdn_old + norme_tau_tan / (nu[num1] + nu_turb[num1]) * porosite_face(fac);
 
-              double dutdn_old = 0.;
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                for (j = 0; j < Objet_U::dimension; j++)
-                  {
-                    dutdn_old += gij(num1, i, j) * P(j, 1) * P(i, 0);
-                  }
-
-              /////////////////////////////////////////////////////////////////
-              //         Correction finale apportee a la matrice G
-              /////////////////////////////////////////////////////////////////
-
-              double C = -dutdn_old + sqrt(norme2_tau_tan) / (nu[num1] + nu_turb[num1]) * porosite_face(fac);
-
-              // la division par (nu[num1]+nu_turb[num1]) s'impose du fait que l'operateur de diffusion
-              // fait intervenir le produit : (nu[num1]+nu_turb[num1])*g(i,j)
-
-              for (i = 0; i < Objet_U::dimension; i++)
-                for (j = 0; j < Objet_U::dimension; j++)
-                  {
-                    gij(num1, i, j) += C * P(j, 1) * P(i, 0);
-                  }
-            }
+            // la division par (nu[num1]+nu_turb[num1]) s'impose du fait que l'operateur de diffusion
+            // fait intervenir le produit : (nu[num1]+nu_turb[num1])*g(i,j)
+            for (int i = 0; i < dim; i++)
+              for (int j = 0; j < dim; j++)
+                Kokkos::atomic_add(&gij(num1, i, j), C * P[j][1] * P[i][0]);
+          });
+          end_gpu_timer(__KERNEL_NAME__);
         }
     }
 
-  return gij;
+  return tab_gij;
 }
 
 ////////////////////
@@ -830,21 +905,27 @@ DoubleVect& Champ_P1NC::calcul_S_barre(const DoubleTab& la_vitesse, DoubleVect& 
   const int nb_elem = domaine_VEF.nb_elem();
   const int nb_elem_tot = domaine_VEF.nb_elem_tot();
 
-  DoubleTab duidxj(nb_elem_tot, dimension, dimension);
+  DoubleTrav duidxj(nb_elem_tot, dimension, dimension);
 
   Champ_P1NC::calcul_gradient(la_vitesse, duidxj, domaine_Cl_VEF);
 
-  for (int elem = 0; elem < nb_elem; elem++)
-    {
-      double temp = 0.;
-      for (int i = 0; i < dimension; i++)
-        for (int j = 0; j < dimension; j++)
-          {
-            double Sij = 0.5 * (duidxj(elem, i, j) + duidxj(elem, j, i));
-            temp += Sij * Sij;
-          }
-      SMA_barre(elem) = 2. * temp;
-    }
+  int dim = Objet_U::dimension;
+  CDoubleTabView3 duidxj_v = duidxj.view_ro<3>();
+  DoubleArrView SMA_barre_v = SMA_barre.view_wo();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(
+                         const int elem)
+  {
+    double temp = 0.;
+    for (int i = 0; i < dim; i++)
+      for (int j = 0; j < dim; j++)
+        {
+          double Sij = 0.5 * (duidxj_v(elem, i, j) + duidxj_v(elem, j, i));
+          temp += Sij * Sij;
+        }
+    SMA_barre_v(elem) = 2. * temp;
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+
   return SMA_barre;
 }
 

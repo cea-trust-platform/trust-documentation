@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,6 +25,7 @@
 #include <Domaine.h>
 #include <Debog.h>
 #include <Statistiques.h>
+#include <kokkos++.h>
 
 extern Stat_Counter_Id assemblage_sys_counter_;
 extern Stat_Counter_Id source_counter_;
@@ -32,13 +33,20 @@ extern Stat_Counter_Id source_counter_;
 Navier_Stokes_Fluide_Dilatable_Proto::Navier_Stokes_Fluide_Dilatable_Proto() : cumulative_(0) { }
 
 // Multiply density by velocity and return density*velocity (mass flux)
-DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse_impl(const DoubleTab& tab_rho,const DoubleTab& vit,DoubleTab& rhovitesse) const
+DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse_impl(const DoubleTab& tab_rho, const DoubleTab& vit,
+                                                                  DoubleTab& rhovitesse) const
 {
   const int n = vit.dimension(0), ncomp = vit.line_size();
-// ToDo OpenMP or Kokkos
-  for (int i=0 ; i<n ; i++)
+  CDoubleTabView tab_rho_v = tab_rho.view_ro();
+  CDoubleTabView vit_v = vit.view_ro();
+  DoubleTabView rhovitesse_v = rhovitesse.view_wo();
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), n, KOKKOS_LAMBDA(
+                         const int i)
+  {
     for (int j=0 ; j<ncomp ; j++)
-      rhovitesse(i,j) = tab_rho(i,0)*vit(i,j);
+      rhovitesse_v(i, j) = tab_rho_v(i, 0) * vit_v(i, j);
+  });
+  end_gpu_timer(__KERNEL_NAME__);
 
   rhovitesse.echange_espace_virtuel();
   Debog::verifier("Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse : ", rhovitesse);
@@ -48,12 +56,11 @@ DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::rho_vitesse_impl(const DoubleTa
 int Navier_Stokes_Fluide_Dilatable_Proto::impr_impl(const Navier_Stokes_std& eqn,Sortie& os) const
 {
   const Fluide_Dilatable_base& fluide_dil = ref_cast(Fluide_Dilatable_base,eqn.fluide());
-  const DoubleTab& vit = eqn.vitesse().valeurs(), rho = fluide_dil.rho_face_np1();
-  DoubleTab mass_flux(vit);
+  const DoubleTab& vit = eqn.vitesse().valeurs(), &rho = fluide_dil.rho_face_np1();
+  DoubleTrav mass_flux(vit);
   rho_vitesse_impl(rho,vit,mass_flux);
 
-  DoubleTab array;
-  array.copy(eqn.div().valeurs(), RESIZE_OPTIONS::NOCOPY_NOINIT); // init structure uniquement
+  DoubleTrav array(eqn.div().valeurs());
   if (tab_W.get_md_vector().non_nul())
     {
       operator_egal(array, tab_W ); //, VECT_REAL_ITEMS); // initialise
@@ -111,9 +118,10 @@ int Navier_Stokes_Fluide_Dilatable_Proto::impr_impl(const Navier_Stokes_std& eqn
 DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::derivee_en_temps_inco_impl(Navier_Stokes_std& eqn,DoubleTab& vpoint)
 {
   const Fluide_Dilatable_base& fluide_dil=ref_cast(Fluide_Dilatable_base,eqn.milieu());
-  DoubleTab& press = eqn.pression().valeurs(), vit = eqn.vitesse().valeurs();
-  DoubleTab secmem(press);
+  DoubleTab& press = eqn.pression().valeurs(), &vit = eqn.vitesse().valeurs();
+  DoubleTrav secmem(press);
   DoubleTrav inc_pre(press);
+  DoubleTrav rhoU(vit);
 
   if (!tab_W.get_md_vector().non_nul())
     {
@@ -122,23 +130,17 @@ DoubleTab& Navier_Stokes_Fluide_Dilatable_Proto::derivee_en_temps_inco_impl(Navi
       tab_W = 0.;
     }
 
-  DoubleTab rhoU;
-  rhoU.copy(vit, RESIZE_OPTIONS::NOCOPY_NOINIT); // copie la structure
-
   // Get champ gradP
-  REF(Champ_base) gradient_pression;
+  OBS_PTR(Champ_base) gradient_pression;
+  eqn.has_champ("gradient_pression", gradient_pression);
 
-  try
+  if (gradient_pression.est_nul())
     {
-      gradient_pression = eqn.get_champ("gradient_pression");
-    }
-  catch (Champs_compris_erreur&)
-    {
-      Cerr<<" l'equation ne comprend pas gradient_pression "<<finl;
+      Cerr<<"l'equation ne comprend pas gradient_pression "<<finl;
       Process::exit();
     }
 
-  DoubleTab& gradP=gradient_pression.valeur().valeurs();
+  DoubleTab& gradP = gradient_pression->valeurs();
   DoubleTrav Mmoins1grad(gradP);
 
   // We use the incremental pressure-projection algorithm (Chorin)
@@ -169,11 +171,12 @@ void Navier_Stokes_Fluide_Dilatable_Proto::assembler_avec_inertie_impl(const Nav
   eqn.operateur(0).ajouter(secmem);
 
   const Fluide_Dilatable_base& fluide_dil=ref_cast(Fluide_Dilatable_base,eqn.milieu());
-  const DoubleTab& tab_rho_face_np1 = fluide_dil.rho_face_np1(), tab_rho_face_n=fluide_dil.rho_face_n();
+  const DoubleTab& tab_rho_face_np1 = fluide_dil.rho_face_np1(), &tab_rho_face_n=fluide_dil.rho_face_n();
   const int nb_compo = present.line_size();
-  const IntVect& tab1 = mat_morse.get_tab1(), tab2 = mat_morse.get_tab2();
+  const IntVect& tab1 = mat_morse.get_tab1(), &tab2 = mat_morse.get_tab2();
 
   DoubleVect& coeff = mat_morse.get_set_coeff();
+  ToDo_Kokkos("critical for implicit");
   for (int i=0; i<mat_morse.nb_lignes(); i++)
     for (int k=tab1(i)-1; k<tab1(i+1)-1; k++)
       {
@@ -244,7 +247,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::assembler_blocs_avec_inertie(const Na
   statistiques().begin_count(assemblage_sys_counter_);
   const std::string& nom_inco = eqn.inconnue().le_nom().getString();
   Matrice_Morse *mat = matrices.count(nom_inco)?matrices.at(nom_inco):nullptr;
-  const DoubleTab& present = eqn.inconnue()->valeurs();
+  const DoubleTab& present = eqn.inconnue().valeurs();
 
   // ******   avant inertie   ******
   // diffusion en div(mu grad u ) or on veut impliciter en rho * u => on divise les contributions par le rho_face associe
@@ -255,11 +258,12 @@ void Navier_Stokes_Fluide_Dilatable_Proto::assembler_blocs_avec_inertie(const Na
   eqn.operateur(0).l_op_base().ajouter_blocs(matrices, secmem, semi_impl);
 
   const Fluide_Dilatable_base& fluide_dil=ref_cast(Fluide_Dilatable_base,eqn.milieu());
-  const DoubleTab& tab_rho_face_np1 = fluide_dil.rho_face_np1(), tab_rho_face_n=fluide_dil.rho_face_n();
+  const DoubleTab& tab_rho_face_np1 = fluide_dil.rho_face_np1(), &tab_rho_face_n=fluide_dil.rho_face_n();
   const int nb_compo = present.line_size();
-  const IntVect& tab1 = mat->get_tab1(), tab2 = mat->get_tab2();
+  const IntVect& tab1 = mat->get_tab1(), &tab2 = mat->get_tab2();
 
   DoubleVect& coeff = mat->get_set_coeff();
+  ToDo_Kokkos("critical for implicit");
   for (int i=0; i<mat->nb_lignes(); i++)
     for (int k=tab1(i)-1; k<tab1(i+1)-1; k++)
       {
@@ -277,14 +281,14 @@ void Navier_Stokes_Fluide_Dilatable_Proto::assembler_blocs_avec_inertie(const Na
   // sources
   statistiques().begin_count(source_counter_);
   for (int i = 0; i < eqn.sources().size(); i++)
-    eqn.sources()(i).valeur().ajouter_blocs(matrices, secmem, semi_impl);
+    eqn.sources()(i)->ajouter_blocs(matrices, secmem, semi_impl);
   statistiques().end_count(source_counter_);
 
   statistiques().begin_count(assemblage_sys_counter_);
   // on resout en rho u on stocke donc rho u dans present
   rho_vitesse_impl(tab_rho_face_np1,present,ref_cast_non_const(DoubleTab,present));
   mat->ajouter_multvect(present,secmem);
-  eqn.operateur_gradient().valeur().ajouter_blocs(matrices, secmem, semi_impl);
+  eqn.operateur_gradient()->ajouter_blocs(matrices, secmem, semi_impl);
 
   /*
    * contribution a la matrice de l'inertie :
@@ -346,7 +350,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::prepare_and_solve_u_star(Navier_Stoke
                                                                     const Fluide_Dilatable_base& fluide_dil,
                                                                     DoubleTab& rhoU, DoubleTab& vpoint)
 {
-  const DoubleTab& tab_rho_face_n =fluide_dil.rho_face_n(), tab_rho_face_np1=fluide_dil.rho_face_np1();
+  const DoubleTab& tab_rho_face_n =fluide_dil.rho_face_n(), &tab_rho_face_np1=fluide_dil.rho_face_np1();
   const DoubleTab& tab_rho = fluide_dil.rho_discvit(); // rho avec la meme discretisation que la vitesse
   const DoubleTab& vit = eqn.vitesse().valeurs();
 
@@ -392,18 +396,27 @@ void Navier_Stokes_Fluide_Dilatable_Proto::prepare_and_solve_u_star(Navier_Stoke
        * (pratique aussi pour la diffusion implicite)
        */
 
-      eqn.solv_masse()->set_name_of_coefficient_temporel("rho_comme_v");
+      eqn.solv_masse().set_name_of_coefficient_temporel("rho_comme_v");
       eqn.solv_masse().appliquer(secmemV);
       DoubleTrav dr(tab_rho_face_n);
-      // ToDo OpenMP or Kokkos
-      for (int i=0; i<dr.size_totale(); i++)
-        dr(i)=(tab_rho_face_n(i)/tab_rho_face_np1(i)-1.)/dt;
+
+      CDoubleTabView tab_rho_face_n_v = tab_rho_face_n.view_ro();
+      CDoubleTabView tab_rho_face_np1_v = tab_rho_face_np1.view_ro();
+      DoubleTabView dr_v = dr.view_rw();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), dr.size_totale(),
+                           KOKKOS_LAMBDA(
+                             const int i)
+      {
+        dr_v(i, 0) = (tab_rho_face_n_v(i, 0) / tab_rho_face_np1_v(i, 0) - 1.) / dt;
+      });
+      end_gpu_timer(__KERNEL_NAME__);
 
       // on sert de vpoint pour calculer
       rho_vitesse_impl(dr,vit,vpoint);
       secmemV += vpoint;
 
-      DoubleTab delta_u(eqn.inconnue().futur());
+      DoubleTrav delta_u(eqn.inconnue().futur());
+      delta_u = eqn.inconnue().futur();
       eqn.Gradient_conjugue_diff_impl(secmemV, delta_u ) ;
 
       /*
@@ -417,7 +430,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::prepare_and_solve_u_star(Navier_Stoke
       rho_vitesse_impl(tab_rho_face_np1,delta_u,vpoint);
       vpoint -= rhovitesse;
       vpoint /= dt;
-      eqn.solv_masse()->set_name_of_coefficient_temporel("no_coeff");
+      eqn.solv_masse().set_name_of_coefficient_temporel("no_coeff");
     }
   else eqn.solv_masse().appliquer(vpoint);
 
@@ -427,21 +440,20 @@ void Navier_Stokes_Fluide_Dilatable_Proto::prepare_and_solve_u_star(Navier_Stoke
 
 void Navier_Stokes_Fluide_Dilatable_Proto::update_vpoint_on_boundaries(const Navier_Stokes_std& eqn,
                                                                        const Fluide_Dilatable_base& fluide_dil,
-                                                                       DoubleTab& vpoint)
+                                                                       DoubleTab& tab_vpoint)
 {
   // on ajoute durho/dt au bord Dirichlet car les solveur masse a mis a zero
   // NOTE : en incompressible le terme est rajoute par modifier_secmem
   const double dt_ = eqn.schema_temps().pas_de_temps();
-  const DoubleTab& tab_rho_face_n =fluide_dil.rho_face_n(), tab_rho_face_np1=fluide_dil.rho_face_np1();
-  const DoubleTab& vit = eqn.vitesse().valeurs();
-  const Conds_lim& lescl=eqn.domaine_Cl_dis().les_conditions_limites();
-  const IntTab& face_voisins = eqn.domaine_dis().valeur().face_voisins();
-  const int taille = vpoint.line_size();
+  const DoubleTab& tab_rho_face_n = fluide_dil.rho_face_n(), &tab_rho_face_np1=fluide_dil.rho_face_np1();
+  const DoubleTab& tab_vit = eqn.vitesse().valeurs();
+  const Conds_lim& lescl = eqn.domaine_Cl_dis().les_conditions_limites();
+  const IntTab& face_voisins = eqn.domaine_dis().face_voisins();
+  const int taille = tab_vpoint.line_size();
 
   if (taille==1)
     if (orientation_VDF_.size() == 0)
-      orientation_VDF_.ref(ref_cast(Domaine_VF,eqn.domaine_dis().valeur()).orientation());
-
+      orientation_VDF_.ref(ref_cast(Domaine_VF,eqn.domaine_dis()).orientation());
   for (auto& itr : lescl)
     {
       const Cond_lim_base& la_cl_base = itr.valeur();
@@ -453,25 +465,33 @@ void Navier_Stokes_Fluide_Dilatable_Proto::update_vpoint_on_boundaries(const Nav
 
           if (taille==1) // VDF //
             {
+              ToDo_Kokkos("critical");
               for (int num_face=ndeb; num_face<nfin; num_face++)
                 {
                   int n0 = face_voisins(num_face, 0);
                   if (n0 == -1) n0 = face_voisins(num_face, 1);
 
                   // GF en cas de diffsion implicite vpoint!=0 on ignrore l'ancienne valeur
-                  vpoint(num_face)=(diri.val_imp(num_face-ndeb,orientation_VDF_(num_face))*tab_rho_face_np1(num_face)-
-                                    vit(num_face)*tab_rho_face_n(num_face))/dt_;
+                  tab_vpoint(num_face)=(diri.val_imp(num_face-ndeb,orientation_VDF_(num_face))*tab_rho_face_np1(num_face)-
+                                        tab_vit(num_face)*tab_rho_face_n(num_face))/dt_;
                 }
             }
           else // VEF //
             {
-              for (int num_face=ndeb; num_face<nfin; num_face++)
-                for (int jj=0; jj<Objet_U::dimension; jj++)
-                  {
-                    // GF en cas de diffsion implicite vpoint!=0 on ignrore l'ancienne valeur
-                    vpoint(num_face,jj)=(tab_rho_face_np1(num_face)*diri.val_imp(num_face-ndeb,jj)
-                                         -tab_rho_face_n(num_face)*vit(num_face,jj))/dt_;
-                  }
+              int dim = Objet_U::dimension;
+              CDoubleTabView val_imp = diri.val_imp().view_ro();
+              CDoubleArrView rho_face_np1 = static_cast<const ArrOfDouble&>(tab_rho_face_np1).view_ro();
+              CDoubleArrView rho_face_n = static_cast<const ArrOfDouble&>(tab_rho_face_n).view_ro();
+              CDoubleTabView vit = tab_vit.view_ro();
+              DoubleTabView vpoint = tab_vpoint.view_wo();
+              Kokkos::MDRangePolicy<Kokkos::Rank<2>> policy({ndeb, 0}, {nfin, dim});
+              Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), policy, KOKKOS_LAMBDA(const int num_face, const int jj)
+              {
+                // GF en cas de diffusion implicite vpoint!=0 on ignrore l'ancienne valeur
+                vpoint(num_face,jj)=(rho_face_np1(num_face)*val_imp(num_face-ndeb,jj)
+                                     -rho_face_n(num_face)*vit(num_face,jj))/dt_;
+              });
+              end_gpu_timer(__KERNEL_NAME__);
             }
         }
     }
@@ -483,9 +503,9 @@ void Navier_Stokes_Fluide_Dilatable_Proto::solve_pressure_increment(Navier_Stoke
                                                                     DoubleTab& rhoU, DoubleTab& secmem,
                                                                     DoubleTab& inc_pre, DoubleTab& vpoint)
 {
-  const DoubleTab& tab_rho_face_n =fluide_dil.rho_face_n(), tab_rho_face_np1=fluide_dil.rho_face_np1();
+  const DoubleTab& tab_rho_face_n =fluide_dil.rho_face_n(), &tab_rho_face_np1=fluide_dil.rho_face_np1();
   const DoubleTab& vit = eqn.vitesse().valeurs();
-  const double dt_ = eqn.schema_temps().pas_de_temps(),t = eqn.schema_temps().temps_courant();
+  const double dt_ = eqn.schema_temps().pas_de_temps(), t = eqn.schema_temps().temps_courant();
 
   // Resolution pression
   vpoint.echange_espace_virtuel();
@@ -495,8 +515,8 @@ void Navier_Stokes_Fluide_Dilatable_Proto::solve_pressure_increment(Navier_Stoke
 
   // Add source term to vpoint if interfaces
   Probleme_base& prob=eqn.probleme();
-  DoubleTrav vpoint0(vpoint) ;
-  vpoint0 = vpoint ;
+  DoubleTrav vpoint0(vpoint);
+  vpoint0 = vpoint;
   for (int i=0; i<prob.nombre_d_equations(); i++)
     if (sub_type(Transport_Interfaces_base,prob.equation(i)))
       {
@@ -521,7 +541,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::solve_pressure_increment(Navier_Stoke
 
   // On ne fait appel qu une seule fois a assembler dans preparer calcul (au lieu de assembler_QC)
   // Correction du second membre d'apres les conditions aux limites :
-  eqn.assembleur_pression().modifier_secmem(secmem);
+  eqn.assembleur_pression()->modifier_secmem(secmem);
   eqn.solveur_pression().resoudre_systeme(eqn.matrice_pression().valeur(),secmem,inc_pre);
 
 } /* END  solve_pressure_increment */
@@ -542,7 +562,7 @@ void Navier_Stokes_Fluide_Dilatable_Proto::correct_and_compute_u_np1(Navier_Stok
   // On suppose que pression et inc_pre ont leur espace virtuel a jour
   // On fait pression += inc_pre:
   operator_add(press, inc_pre, VECT_ALL_ITEMS);
-  eqn.assembleur_pression().modifier_solution(press);
+  eqn.assembleur_pression()->modifier_solution(press);
 
   // Correction de la vitesse en pression : M-1 Bt P
   eqn.solv_masse().appliquer(gradP);

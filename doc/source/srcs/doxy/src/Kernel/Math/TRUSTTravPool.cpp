@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,6 +21,8 @@
 #include <cassert>
 #include <Process.h>
 #include <EntreeSortie.h>
+#include <Device.h>
+#include <DeviceMemory.h>
 
 /*! The shared pools of memory - visibility: here only.
  *
@@ -31,7 +33,7 @@
 template<typename _TYPE_>
 struct PoolImpl_
 {
-  using ptr_t = std::shared_ptr<typename TRUSTArray<_TYPE_>::Vector_>;
+  using ptr_t = std::shared_ptr<typename TRUSTArray<_TYPE_,int>::Vector_>;
   using list_t = std::list<ptr_t>;
   using pool_t = std::unordered_map<size_t, list_t>;
 
@@ -57,6 +59,9 @@ struct PoolImpl_
 template<> PoolImpl_<int>::pool_t    PoolImpl_<int>::Free_blocks_    = PoolImpl_<int>::pool_t();
 template<> PoolImpl_<float>::pool_t  PoolImpl_<float>::Free_blocks_  = PoolImpl_<float>::pool_t();
 template<> PoolImpl_<double>::pool_t PoolImpl_<double>::Free_blocks_ = PoolImpl_<double>::pool_t();
+#if INT_is_64_ == 2
+template<> PoolImpl_<trustIdType>::pool_t PoolImpl_<trustIdType>::Free_blocks_ = PoolImpl_<trustIdType>::pool_t();
+#endif
 
 #ifndef NDEBUG
 // Need C++17 to have this inline in the class def directly ...
@@ -71,6 +76,13 @@ template<> size_t PoolImpl_<double>::actual_sz_ = 0;
 template<> int PoolImpl_<int>::num_items_ = 0;
 template<> int PoolImpl_<float>::num_items_ = 0;
 template<> int PoolImpl_<double>::num_items_ = 0;
+
+#if INT_is_64_ == 2
+template<> size_t PoolImpl_<trustIdType>::req_sz_ = 0;
+template<> size_t PoolImpl_<trustIdType>::actual_sz_ = 0;
+template<> int PoolImpl_<trustIdType>::num_items_ = 0;
+#endif
+
 #endif
 
 /*! Handy method to get the proper list corresponding to a given size.
@@ -102,7 +114,7 @@ typename PoolImpl_<_TYPE_>::list_t& GetOrCreateList(size_t sz)
 template<typename _TYPE_>
 typename TRUSTTravPool<_TYPE_>::block_ptr_t TRUSTTravPool<_TYPE_>::GetFreeBlock(int sz)
 {
-  using vec_t = typename TRUSTArray<_TYPE_>::Vector_;
+  using vec_t = typename TRUSTArray<_TYPE_,int>::Vector_;
   using ptr_t = typename PoolImpl_<_TYPE_>::ptr_t;
   using lst_t = typename PoolImpl_<_TYPE_>::list_t;
 
@@ -147,7 +159,6 @@ typename TRUSTTravPool<_TYPE_>::block_ptr_t TRUSTTravPool<_TYPE_>::GetFreeBlock(
  *      many times -> the array of size 10 is registered at each destruction (because it was always arrays of size 1 that were
  *      requested ...) -> same mitigation as above.
  *
- *  TODO TODO ABN: Strategy 2 is retained for now, because of PolyMAC which does a lot of stupid 'append_line' on Trav!!
  */
 template<typename _TYPE_>
 typename TRUSTTravPool<_TYPE_>::block_ptr_t TRUSTTravPool<_TYPE_>::ResizeBlock(typename TRUSTTravPool<_TYPE_>::block_ptr_t p, int new_sz)
@@ -156,19 +167,27 @@ typename TRUSTTravPool<_TYPE_>::block_ptr_t TRUSTTravPool<_TYPE_>::ResizeBlock(t
   assert(p->size() > 0);
   assert(new_sz > 0);  // new_sz == 0 should never happen, see TRUSTArray::resize_array_()
 
-//  // Strategy 1
-//  // Get new bigger block
-//  block_ptr_t new_blk = TRUSTTravPool<_TYPE_>::GetFreeBlock(new_sz);
-//  // Copy data
-//  std::copy(p->begin(), p->end(), new_blk->begin());
-//  // Release small block
-//  TRUSTTravPool<_TYPE_>::ReleaseBlock(p);
-//  return new_blk;
-
-  // Strategy 2
-  // Resize ... and that's it!
-  p->resize(new_sz);
-  return p;
+  bool first_strategy = true;
+  // Second strategy may increase memory with a growing pool if DoubleTrav resized several times
+  // in a loop as in Op_Grad_PolyMAC_P0_Face::ajouter_blocs
+  if (first_strategy)
+    {
+      // Strategy 1
+      // Get new bigger block
+      block_ptr_t new_blk = TRUSTTravPool<_TYPE_>::GetFreeBlock(new_sz);
+      // Copy data
+      std::copy(p->begin(), p->end(), new_blk->begin());
+      // Release small block
+      TRUSTTravPool<_TYPE_>::ReleaseBlock(p);
+      return new_blk;
+    }
+  else
+    {
+      // Strategy 2
+      // Resize ... and that's it!
+      p->resize(new_sz);
+      return p;
+    }
 }
 
 /*! Release a block.
@@ -210,6 +229,32 @@ void TRUSTTravPool<_TYPE_>::ReleaseBlock(typename TRUSTTravPool<_TYPE_>::block_p
 }
 
 /*!
+ * Empty the TRUSTTrav pool explicitely.
+ */
+template<typename _TYPE_>
+void TRUSTTravPool<_TYPE_>::ClearPool()
+{
+  using lst_t = typename PoolImpl_<_TYPE_>::list_t;
+
+  auto& ze_pool = PoolImpl_<_TYPE_>::Free_blocks_;
+
+  // Delete GPU allocated memory:
+  for(const auto & kv: ze_pool)
+    {
+      size_t size = kv.first;
+      const lst_t& lst = kv.second;
+      for (auto& mem : lst)
+        {
+          _TYPE_* ptr = mem->data();
+          if(isAllocatedOnDevice(ptr))
+            deleteOnDevice(ptr, (int)size); // Delete the block memory on the device
+        }
+    }
+  // Clear the whole pool (shared_ptr will do the cleaning job):
+  ze_pool.clear();
+}
+
+/*!
  * Debug method printing useful stats.
  */
 template<typename _TYPE_>
@@ -235,9 +280,14 @@ void TRUSTTravPool<_TYPE_>::PrintStats()
 #endif
 }
 
+
 //
 // Explicit instanciations of templates
 //
 template class TRUSTTravPool<double>;
 template class TRUSTTravPool<int>;
 template class TRUSTTravPool<float>;
+
+#if INT_is_64_ == 2
+template class TRUSTTravPool<trustIdType>;
+#endif

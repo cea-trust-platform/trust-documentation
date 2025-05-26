@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -47,13 +47,15 @@ public :
   virtual const Champ_base& get_champ(const Motcle& nom) const=0;
   virtual void get_noms_champs_postraitables(Noms& nom, Option opt=NONE) const=0;
 
+  virtual bool has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const=0;
+  virtual bool has_champ(const Motcle& nom) const=0;
 
   //Pour illustrer la description des methodes faite ci-dessous, on pourra
   //se referer a leur codage dans Probleme_base, Equation_base et Navier_Stokes_std
 
   // la methode creer_champ()
   /////////////////////////////////////////////////////////////////////////////////
-  //Cette methode permet de creer un "champ calcule". Ce champ de type Champ_Fonc
+  //Cette methode permet de creer un "champ calcule". Ce champ de type Champ_Fonc_base
   //(ex : vorticite) est estime uniquement pour etre postraite et ne sert pas a
   //la resolution du probleme.
   //Le probleme delegue a son milieu et ses equations la creation du champ.

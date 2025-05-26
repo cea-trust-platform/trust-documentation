@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,15 +17,14 @@
 #define Op_Dift_EF_Q1_included
 
 #include <Op_Dift_EF_base.h>
-#include <Matrice_Morse.h>
 #include <Op_EF_base.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 
 class Champ_Uniforme;
+class Matrice_Morse;
 class Domaine_Cl_EF;
 class Domaine_EF;
-class Champ_Inc;
 
 /*! @brief class Op_Dift_EF_Q1 Cette classe represente l'operateur de diffusion
  *
@@ -50,7 +49,7 @@ public:
   DoubleTab& ajouter_new(const DoubleTab& ,  DoubleTab& ) const;
   DoubleTab& calculer(const DoubleTab& , DoubleTab& ) const override;
   double calculer_dt_stab() const override;
-  void calculer_pour_post(Champ& espace_stockage,const Nom& option,int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage,const Nom& option,int comp) const override;
   void verifier() const;
   void remplir_nu(DoubleTab&) const override;
   void remplir_marqueur_elem_CL_paroi(ArrOfInt& ,const Domaine_EF& ,const Domaine_Cl_EF& ) const;
@@ -72,7 +71,7 @@ protected :
   int transpose_;   // vaurt zero si on ne veut pas calculer grad u transpose
   int transpose_partout_; // vaut 1 si on veut calculer grad_u_transpose meme au bord
   int nouvelle_expression_;
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Champ_base) diffusivite_;
 
   DoubleTab& ajouter_scalaire_dim3_nbn_8(const DoubleTab&, DoubleTab&) const;
   DoubleTab& ajouter_scalaire_dim2_nbn_4(const DoubleTab&, DoubleTab&) const;
@@ -99,7 +98,7 @@ DoubleTab& Op_Dift_EF_Q1::ajouter_scalaire_template(const DoubleTab& tab_inconnu
 {
   static constexpr bool IS_GEN = (_T_ == AJOUTE_SCAL::GEN), IS_D3_8 = (_T_ == AJOUTE_SCAL::D3_8), IS_D2_4 = (_T_ == AJOUTE_SCAL::D2_4);
 
-  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis());
 
   const int N = IS_GEN ? resu.line_size() : 1;
   const int nb_som_elem = IS_D3_8 ? 8 : ( IS_D2_4 ? 4 : domaine_ef.domaine().nb_som_elem() /* IS_GEN */);
@@ -113,7 +112,7 @@ DoubleTab& Op_Dift_EF_Q1::ajouter_scalaire_template(const DoubleTab& tab_inconnu
   const IntTab& elems = domaine_ef.domaine().les_elems();
 
   remplir_nu(nu_);
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   const double *bij_ptr = bij.addr();
@@ -165,7 +164,7 @@ DoubleTab& Op_Dift_EF_Q1::ajouter_vectoriel_template(const DoubleTab& tab_inconn
 {
   static constexpr bool IS_GEN = (_T_ == AJOUTE_VECT::GEN), IS_D3_8 = (_T_ == AJOUTE_VECT::D3_8), IS_D2_4 = (_T_ == AJOUTE_VECT::D2_4);
 
-  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef = ref_cast(Domaine_EF, equation().domaine_dis());
 
   const int N = IS_D3_8 ? 3 : (IS_D2_4 ? 2 : resu.line_size() /* IS_GEN */);
   const int const_dimension = IS_GEN ? Objet_U::dimension : N;
@@ -184,7 +183,7 @@ DoubleTab& Op_Dift_EF_Q1::ajouter_vectoriel_template(const DoubleTab& tab_inconn
   const IntTab& elems = domaine_ef.domaine().les_elems();
 
   remplir_nu(nu_);
-  DoubleVect diffu_turb(diffusivite_turbulente()->valeurs());
+  DoubleVect diffu_turb(diffusivite_turbulente().valeurs());
   DoubleTab diffu(nu_);
 
   const double *bij_ptr = bij.addr();

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,7 +15,7 @@
 
 #include <Diametre_bulles_constant.h>
 #include <Pb_Multiphase.h>
-#include <Domaine_dis.h>
+
 #include <Discret_Thyd.h>
 #include <Champ_base.h>
 
@@ -31,32 +31,52 @@ Entree& Diametre_bulles_constant::readOn(Entree& is)
 
   Pb_Multiphase& pb = ref_cast(Pb_Multiphase, pb_.valeur());
   int N = pb.nb_phases();
-  const Discret_Thyd& dis=ref_cast(Discret_Thyd,pb.discretisation());
+  const Discret_Thyd& dis = ref_cast(Discret_Thyd, pb.discretisation());
   Noms noms(N), unites(N);
   noms[0] = "diametre_bulles";
   unites[0] = "m";
-  Motcle typeChamp = "champ_elem" ;
-  const Domaine_dis& z = ref_cast(Domaine_dis, pb.domaine_dis());
-  dis.discretiser_champ(typeChamp, z.valeur(), scalaire, noms , unites, N, 0, diametres_);
+  Motcle typeChamp = "champ_elem";
+  const Domaine_dis_base& z = pb.domaine_dis();
+  dis.discretiser_champ(typeChamp, z, scalaire, noms, unites, N, 0, diametres_);
 
   champs_compris_.ajoute_champ(diametres_);
 
   for (int n = 0; n < pb.nb_phases(); n++) //recherche de n_l, n_g : phase {liquide,gaz}_continu en priorite
-    if (pb.nom_phase(n).debute_par("liquide") && (n_l < 0 || pb.nom_phase(n).finit_par("continu")))  n_l = n;
-  if (n_l < 0) Process::exit(que_suis_je() + " : liquid phase not found!");
+    if (pb.nom_phase(n).debute_par("liquide") && (n_l < 0 || pb.nom_phase(n).finit_par("continu")))
+      n_l = n;
+
+  if (n_l < 0)
+    Process::exit(que_suis_je() + " : liquid phase not found!");
 
   DoubleTab& tab_diametres = diametres_->valeurs();
-  for (int i = 0 ; i < tab_diametres.dimension_tot(0) ; i++)
-    for (int n = 0 ; n <N ; n++)
-      if (n!=n_l) tab_diametres(i, n) = d_bulle_;
+  for (int i = 0; i < tab_diametres.dimension_tot(0); i++)
+    for (int n = 0; n < N; n++)
+      if (n != n_l)
+        tab_diametres(i, n) = d_bulle_;
 
   return is;
 }
 
+bool Diametre_bulles_constant::has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const
+{
+  if (nom == "diametre_bulles")
+    return champs_compris_.has_champ(nom, ref_champ);
+
+  return false; /* rien trouve */
+}
+
+bool Diametre_bulles_constant::has_champ(const Motcle& nom) const
+{
+  if (nom == "diametre_bulles")
+    return true;
+
+  return false; /* rien trouve */
+}
+
 const Champ_base& Diametre_bulles_constant::get_champ(const Motcle& nom) const
 {
-  if (nom=="diametre_bulles")
+  if (nom == "diametre_bulles")
     return champs_compris_.get_champ(nom);
 
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }

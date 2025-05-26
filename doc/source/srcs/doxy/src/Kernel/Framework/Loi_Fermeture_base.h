@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,7 +31,7 @@ class Param;
  * Cette classe calcule des champs qui peuvent dependre
  *   de plusieurs inconnues, de grandeurs physiques du milieu etc.
  *   Les champs de la classe sont rendus accessibles a tout le probleme
- *   a travers la methode get_champ() et leur mise a jour est declanchee
+ *   a travers la methode get_champ() et leur mise a jour est declenchee
  *   par le probleme, apres la mise a jour du milieu et des equations.
  *
  */
@@ -49,9 +49,10 @@ public:
     return nom_;
   }
   // Implementation des methodes de Champs_compris_interface:
-  void  creer_champ(const Motcle& motlu) override;
+  void creer_champ(const Motcle& motlu) override { }
   const Champ_base& get_champ(const Motcle& nom) const override;
-  virtual bool has_champ(const Motcle& nom, REF(Champ_base)& ref_champ) const;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom, Option opt=NONE) const override;
   // Nouvelles methodes:
   virtual void associer_pb_base(const Probleme_base&);
@@ -72,7 +73,7 @@ protected:
 private:
   Nom nom_;
   // Prive car ce membre donne acces au probleme non const. On le cache.
-  REF(Probleme_base) mon_probleme_;
+  OBS_PTR(Probleme_base) mon_probleme_;
 
 
 

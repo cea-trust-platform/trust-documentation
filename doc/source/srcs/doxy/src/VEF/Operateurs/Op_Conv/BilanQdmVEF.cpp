@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@ void BilanQdmVEF::bilan_qdm(const DoubleTab& dudt, const Domaine_Cl_VEF& domaine
   for (int n_bord=0; n_bord<nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int nb_faces=le_bord.nb_faces();
       int num2 = num1 + nb_faces;
@@ -89,7 +89,7 @@ void BilanQdmVEF::bilan_qdm(const DoubleTab& dudt, const Domaine_Cl_VEF& domaine
         }
     }// for nbord
   {
-    const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, domaine_Cl_VEF.domaine_dis().valeur());
+    const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, domaine_Cl_VEF.domaine_dis());
     const int prems=domaine_VEF.premiere_face_int();
     const int nb_faces=domaine_VEF.nb_faces_tot();
     for(face=prems; face<nb_faces; face++)
@@ -116,7 +116,7 @@ void BilanQdmVEF::bilan_energie(const DoubleTab& dudt,
   for (int n_bord=0; n_bord<nb_bord; n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = le_bord.num_premiere_face();
       int nb_faces=le_bord.nb_faces();
       int num2 = num1 + nb_faces;
@@ -175,7 +175,7 @@ void BilanQdmVEF::bilan_energie(const DoubleTab& dudt,
         }
     }// for nbord
   {
-    const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, domaine_Cl_VEF.domaine_dis().valeur());
+    const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, domaine_Cl_VEF.domaine_dis());
     const int prems=domaine_VEF.premiere_face_int();
     const int nb_faces=domaine_VEF.nb_faces_tot();
     for(face=prems; face<nb_faces; face++)

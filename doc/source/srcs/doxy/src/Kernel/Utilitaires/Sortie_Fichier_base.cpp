@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,15 +24,8 @@
 
 Implemente_base_sans_constructeur_ni_destructeur(Sortie_Fichier_base,"Sortie_Fichier_base",Objet_U);
 
-Entree& Sortie_Fichier_base::readOn(Entree& s)
-{
-  throw;
-}
-
-Sortie& Sortie_Fichier_base::printOn(Sortie& s) const
-{
-  throw;
-}
+Entree& Sortie_Fichier_base::readOn(Entree& s) { throw; }
+Sortie& Sortie_Fichier_base::printOn(Sortie& s) const { throw; }
 
 Sortie_Fichier_base::Sortie_Fichier_base() : Sortie()
 {
@@ -51,20 +44,12 @@ Sortie_Fichier_base::~Sortie_Fichier_base()
 
 void Sortie_Fichier_base::set_toFlush()
 {
-  char* theValue = getenv("TRIOU_FLUSHFILES");
-  // On fixe une valeur a 0 par defaut pour toFlush_
-  // Elle peut etre changee par la variable d'environnement
-  // On bufferize sur DEC pour accelerer les ecritures .lml, .lata, ...
-#ifdef DECalpha
-  toFlush_ = 0;
-#else
-  toFlush_ = 1;
-#endif
   // Les acces disques ont ete optimises depuis
   // donc par defaut on flushe a nouveau car
   // sinon les sondes pas ecrites...
   // Si lent, mettre export TRIOU_FLUSHFILES=0 dans son sub_file
   toFlush_ = 1;
+  char* theValue = getenv("TRUST_FLUSHFILES");
   if (theValue != nullptr)
     {
       toFlush_=atoi(theValue);
@@ -75,7 +60,7 @@ void Sortie_Fichier_base::set_buffer()
 {
   if (!toFlush_)
     {
-      char* theValue = getenv("TRIOU_BUFFSIZE");
+      char* theValue = getenv("TRUST_BUFFSIZE");
       // On fixe une valeur a 3000000 par defaut pour buffSize
       // Elle peut etre changee par la variable d'environnement
       int buffSize = 3000000;
@@ -88,7 +73,6 @@ void Sortie_Fichier_base::set_buffer()
           size_t internalBuffSize = buffSize;
           internalBuff_ = new char[internalBuffSize];
           ofstream_->rdbuf()->pubsetbuf(internalBuff_,internalBuffSize);
-          toFlush_ = 0;
         }
     }
 }
@@ -149,7 +133,11 @@ int Sortie_Fichier_base::ouvrir(const char* name,IOS_OPEN_MODE mode)
   std::string pathname = root;
   if (!pathname.empty()) pathname+="/";
   pathname += name;
-  if (++counters[pathname]%100==0) Cerr << "Warning, file " << pathname << " has been opened/closed " << counters[pathname] << " times..." << finl;
+  Nom p(pathname);
+  if (++counters[pathname]%100==0 && !p.finit_par(".lata") && !p.finit_par(".lml") && !p.finit_par(".lata_single") && !p.finit_par(".med.index"))
+    {
+      Cerr << "Warning, file " << pathname << " has been opened/closed " << counters[pathname] << " times..." << finl;
+    }
   IOS_OPEN_MODE ios_mod=mode;
   int new_bin=0;
   if (bin_)
@@ -174,12 +162,14 @@ int Sortie_Fichier_base::ouvrir(const char* name,IOS_OPEN_MODE mode)
       Process::exit();
     }
 
-  if (new_bin)
+  if (new_bin && is_64b_)
     {
-#ifdef INT_is_64_
+      // Put the 64b marker when requested by is_64b_ flag
+      // In the new 64b mode the save/restart files can stay in 32b (because they correspond to information saved for each proc, where only
+      // 32b is used).
+      // Lata files on the other hand definitely need this.
       Nom marq("INT64");
       (*this)<<marq;
-#endif
     }
   return 1;
 }

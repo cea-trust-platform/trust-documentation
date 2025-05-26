@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,10 +13,9 @@
 *
 *****************************************************************************/
 
-#include <Dispersion_bulles_VDF.h>
-
 #include <Viscosite_turbulente_base.h>
 #include <Dispersion_bulles_base.h>
+#include <Dispersion_bulles_VDF.h>
 #include <Operateur_Diff_base.h>
 #include <Milieu_composite.h>
 #include <Masse_Multiphase.h>
@@ -39,15 +38,18 @@ Entree& Dispersion_bulles_VDF::readOn(Entree& is)
 void Dispersion_bulles_VDF::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
-  const Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, equation().inconnue().valeur());
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const bool res_en_T = pbm.resolution_en_T();
+  if (!res_en_T) Process::exit("Dispersion_bulles_VDF::ajouter_blocs NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
+  const Champ_Face_VDF& ch = ref_cast(Champ_Face_VDF, equation().inconnue());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const IntTab& f_e = domaine.face_voisins(), &fcl = ch.fcl();
   const DoubleVect& pf = equation().milieu().porosite_face(), &vf = domaine.volumes_entrelaces();
   const DoubleTab& vf_dir = domaine.volumes_entrelaces_dir();
   const DoubleTab& pvit = ch.passe(),
                    &alpha = pbm.equation_masse().inconnue().passe(),
                     &press = ref_cast(QDM_Multiphase, pbm.equation_qdm()).pression().passe(),
-                     &temp  = pbm.equation_energie().inconnue().passe(),
+                     &temp = pbm.equation_energie().inconnue().passe(),
                       &rho   = equation().milieu().masse_volumique().passe(),
                        &mu    = ref_cast(Fluide_base, equation().milieu()).viscosite_dynamique().passe();
   const Milieu_composite& milc = ref_cast(Milieu_composite, equation().milieu());
@@ -57,10 +59,10 @@ void Dispersion_bulles_VDF::ajouter_blocs(matrices_t matrices, DoubleTab& secmem
 
   int N = pvit.line_size() , Np = press.line_size(), nf_tot = domaine.nb_faces_tot(), nf = domaine.nb_faces(), ne_tot = domaine.nb_elem_tot(),  cR = (rho.dimension_tot(0) == 1), cM = (mu.dimension_tot(0) == 1), Nk = (k_turb) ? (*k_turb).dimension(1) : 1;
   DoubleTrav nut(domaine.nb_elem_tot(), N); //viscosite turbulente
-  if (is_turb) ref_cast(Viscosite_turbulente_base, (*ref_cast(Operateur_Diff_base, equation().operateur(0).l_op_base()).correlation_viscosite_turbulente()).valeur()).eddy_viscosity(nut); //remplissage par la correlation
+  if (is_turb) ref_cast(Viscosite_turbulente_base, (*ref_cast(Operateur_Diff_base, equation().operateur(0).l_op_base()).correlation_viscosite_turbulente())).eddy_viscosity(nut); //remplissage par la correlation
 
   // Input-output
-  const Dispersion_bulles_base& correlation_db = ref_cast(Dispersion_bulles_base, correlation_->valeur());
+  const Dispersion_bulles_base& correlation_db = ref_cast(Dispersion_bulles_base, correlation_.valeur());
   Dispersion_bulles_base::input_t in;
   Dispersion_bulles_base::output_t out;
   in.alpha.resize(N), in.T.resize(N), in.p.resize(N), in.rho.resize(N), in.mu.resize(N), in.sigma.resize(N*(N-1)/2), in.k_turb.resize(N), in.nut.resize(N), in.d_bulles.resize(N), in.nv.resize(N, N);
@@ -68,7 +70,7 @@ void Dispersion_bulles_VDF::ajouter_blocs(matrices_t matrices, DoubleTab& secmem
 
   /* Calcul de grad alpha aux faces */
 
-  DoubleTab grad_f_a(nf_tot, N);
+  DoubleTrav grad_f_a(nf_tot, N);
   assert ( alpha.dimension_tot(0) == ne_tot );
   const Masse_Multiphase& eq_alp = ref_cast(Masse_Multiphase, pbm.equation_masse());
   const Operateur_Grad& Op_Grad_alp = eq_alp.operateur_gradient_inconnue();
@@ -100,7 +102,8 @@ void Dispersion_bulles_VDF::ajouter_blocs(matrices_t matrices, DoubleTab& secmem
           {
             Interface_base& sat = milc.get_interface(k,l);
             const int ind_trav = (k*(N-1)-(k-1)*(k)/2) + (l-k-1); // Et oui ! matrice triang sup !
-            for (int i = 0 ; i<ne_tot ; i++) Sigma_tab(i,ind_trav) = sat.sigma(temp(i,k),press(i,k * (Np > 1))) ;
+            for (int i = 0 ; i<ne_tot ; i++)
+              Sigma_tab(i,ind_trav) = res_en_T ? sat.sigma(temp(i,k),press(i,k * (Np > 1))) : sat.sigma_h(temp(i,k),press(i,k * (Np > 1)));
           }
       }
 
@@ -116,7 +119,7 @@ void Dispersion_bulles_VDF::ajouter_blocs(matrices_t matrices, DoubleTab& secmem
               {
                 in.alpha[n]   += vf_dir(f, c)/vf(f) * alpha(e, n);
                 in.p[n]   += vf_dir(f, c)/vf(f) * press(e, n * (Np > 1));
-                in.T[n]   += vf_dir(f, c)/vf(f) * temp(e, n);
+                in.T[n]   += vf_dir(f, c)/vf(f) * temp(e, n); // FIXME si res_en_T
                 in.rho[n] += vf_dir(f, c)/vf(f) * rho(!cR * e, n);
                 in.mu[n]  += vf_dir(f, c)/vf(f) * mu(!cM * e, n);
                 in.nut[n] += is_turb    ? vf_dir(f, c)/vf(f) * nut(e,n) : 0;

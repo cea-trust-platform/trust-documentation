@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,8 +19,6 @@
 template<typename _TYPE_>
 inline void init_parts(TRUSTVect<_TYPE_>& vect, TRUST_Vector<TRUSTTab<_TYPE_>>& parts, TRUSTTab<_TYPE_> *dummy_type_ptr)
 {
-  vect.checkDataOnHost(); // Complique de gerer un TRUSTTab_parts. On fait sur CPU
-
   const MD_Vector& md = vect.get_md_vector();
   TRUSTTab<_TYPE_>* tab_ptr = dynamic_cast<TRUSTTab<_TYPE_>*>(&vect);
   if (! md.non_nul() || !sub_type(MD_Vector_composite, md.valeur()))
@@ -59,26 +57,26 @@ inline void init_parts(TRUSTVect<_TYPE_>& vect, TRUST_Vector<TRUSTTab<_TYPE_>>& 
         }
 
       const MD_Vector_composite& mdata = ref_cast(MD_Vector_composite, md.valeur());
-      const int n = mdata.data_.size();
+      const int n = mdata.nb_parts();
       parts.dimensionner(n);
       for (int i = 0, j; i < n; i++)
         {
           ArrOfInt shape_i;
-          if (mdata.shapes_[i] == 0)
+          if (mdata.get_shape(i) == 0)
             shape_i = shape; //si mdata.shapes_[i] > 0, alors la sous-partie a une dimension mineure en plus
           else
             {
               shape_i.resize(shape.size_array() + 1);
-              shape_i[1] = mdata.shapes_[i];
+              shape_i[1] = mdata.get_shape(i);
               for (j = 1; j < shape.size_array(); j++)
                 shape_i[j + 1] = shape[j];
             }
-          const int offset = mdata.parts_offsets_[i];
-          const MD_Vector& md_part = mdata.data_[i];
-          shape_i[0] = md_part.valeur().get_nb_items_tot();
+          const int offset = mdata.get_part_offset(i);
+          const MD_Vector& md_part = mdata.get_desc_part(i);
+          shape_i[0] = md_part->get_nb_items_tot();
           TRUSTTab<_TYPE_>& part = parts[i];
           // Fait pointer le domaine de memoire sur le sous-tableau (pour l'instant tableau monodimensionnel)
-          part.ref_array(vect, offset * line_size, shape_i[0] * line_size * std::max(mdata.shapes_[i], (int)1)); // int cast necessary for 64b transcription
+          part.ref_array(vect, offset * line_size, shape_i[0] * line_size * std::max(mdata.get_shape(i), (int)1)); // int cast necessary for 64b transcription
           // Change le "shape" du tableau pour mettre le nombre de lignes et de colonnes
           // (nombre total d'items inchange, donc resize autorise)
           part.resize(shape_i);

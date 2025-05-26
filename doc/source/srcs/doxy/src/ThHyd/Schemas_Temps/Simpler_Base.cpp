@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,10 +17,10 @@
 #include <Assembleur_base.h>
 #include <Probleme_base.h>
 #include <Simpler_Base.h>
+#include <Domaine_VF.h>
 #include <TRUSTTrav.h>
 #include <SChaine.h>
 #include <EChaine.h>
-#include <Domaine_VF.h>
 
 Implemente_base_sans_constructeur(Simpler_Base,"Simpler_Base",Solveur_non_lineaire);
 
@@ -173,9 +173,9 @@ Entree& Simpler_Base::readOn(Entree& is )
  * .. si les params sont vides on copie ceux du simpler
  *
  */
-Parametre_equation& Simpler_Base::get_and_set_parametre_equation(Equation_base& eqn)
+OWN_PTR(Parametre_equation_base)& Simpler_Base::get_and_set_parametre_equation(Equation_base& eqn)
 {
-  Parametre_equation& param = eqn.parametre_equation();
+  OWN_PTR(Parametre_equation_base)& param = eqn.parametre_equation();
   if (param.est_nul())
     {
       param.typer("Parametre_implicite");
@@ -235,7 +235,7 @@ void Simpler_Base::assembler_matrice_pression_implicite(Equation_base& eqn_NS,co
       nb_comp = present.dimension(1);
     }
 
-  const Domaine_VF& le_dom = ref_cast(Domaine_VF,eqnNS.domaine_dis().valeur());
+  const Domaine_VF& le_dom = ref_cast(Domaine_VF,eqnNS.domaine_dis());
   if (deux_entrees==0)
     {
       DoubleVect vol2 = le_dom.volumes_entrelaces();
@@ -253,7 +253,7 @@ void Simpler_Base::assembler_matrice_pression_implicite(Equation_base& eqn_NS,co
           vol2[i] = coeff[idiag];
         }
       vol2.echange_espace_virtuel();
-      eqnNS.assembleur_pression().valeur().assembler_mat(matrice_en_pression_2,vol2,1,1);
+      eqnNS.assembleur_pression()->assembler_mat(matrice_en_pression_2,vol2,1,1);
     }
   else
     {
@@ -264,9 +264,9 @@ void Simpler_Base::assembler_matrice_pression_implicite(Equation_base& eqn_NS,co
           vol2(i,c) = matrice(i*nb_comp+c,i*nb_comp+c);
 
       vol2.echange_espace_virtuel();
-      eqnNS.assembleur_pression().valeur().assembler_mat(matrice_en_pression_2,vol2,1,1);
+      eqnNS.assembleur_pression()->assembler_mat(matrice_en_pression_2,vol2,1,1);
     }
 
   SolveurSys& solveur_pression_ = eqnNS.solveur_pression();
-  solveur_pression_.valeur().reinit();
+  solveur_pression_->reinit();
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,20 +21,26 @@
 #include <Param.h>
 
 Implemente_instanciable_sans_constructeur(Solv_Gen,"Solv_Gen",solv_iteratif);
+// XD gen solveur_sys_base gen -1 not_set
+// XD attr solv_elem chaine solv_elem 0 To specify a solver among gmres or bicgstab.
+// XD attr precond precond_base precond 0 The only preconditionner that we can specify is ilu.
+// XD attr seuil floattant seuil 1 Value of the final residue. The solver ceases iterations when the Euclidean residue standard ||Ax-B|| is less than this value. default value 1e-12.
+// XD attr impr rien impr 1 Keyword which is used to request display of the Euclidean residue standard each time this iterates through the conjugated gradient (display to the standard outlet).
+// XD attr save_matrice|save_matrix rien save_matrice 1 To save the matrix in a file.
+// XD attr quiet rien quiet 1 To not displaying any outputs of the solver.
+// XD attr nb_it_max entier nb_it_max 1 Keyword to set the maximum iterations number for the GEN solver.
+// XD attr force rien force 1 Keyword to set ipar[5]=-1 in the GEN solver. This is helpful if you notice that the solver does not perform more than 100 iterations. If this keyword is specified in the datafile, you should provide nb_it_max.
 
 Solv_Gen::Solv_Gen()
 {
   seuil_ = _SEUIL_Gen_;
-  nb_it_max_ = 1000000;
-  nb_it_max_flag = 0;
-  force_ = 0;
 }
 
 void Solv_Gen::reinit()
 {
   if(le_precond_.non_nul())
     {
-      le_precond_.valeur().reinit();
+      le_precond_->reinit();
     }
 }
 
@@ -159,7 +165,7 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
 
   // definition de w : vecteur de travail de taille 9*n
   ArrOfDouble w;
-  le_solveur_elem_.dimensionne_wks(ntot,w);
+  le_solveur_elem_->dimensionne_wks(ntot,w);
 
   // Initialisation
   ipar[0] = 0; //on def tjrs cela pour commencer le calcul
@@ -179,8 +185,9 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
   ipar[2] = 2;
   ipar[3] = w.size_array();; //taille maximale de w
   ipar[4] = 10;
-  int nmax_min = 100;
-  int nmax = std::max(Process::mp_sum(n), nmax_min);
+  const trustIdType nmax_min = 100, nmaxmax=10000000;
+  trustIdType nmax0 = std::max(Process::mp_sum(n), nmax_min);
+  int nmax = static_cast<int>(std::min(nmax0, nmaxmax));
   ipar[5] = nmax; // nb max de produit matrice vect
   // si nb negatif on s arrete a la convergence
   // Si gros calcul (Process::mp_sum(n)>2147483647), specifier nb_it_max et imposer ipar[5] = -1
@@ -193,7 +200,7 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
   fpar[10] = 0; // initialisation du compteur
 
   //solution = 1.0;
-  le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+  le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
   solution.echange_espace_virtuel();
 
   DoubleTab W7, W8;
@@ -227,7 +234,7 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
           // on doit calculer le produit A*u
           //          int ii;
           matrice.multvect(W7, W8);
-          le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+          le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
           solution.echange_espace_virtuel();
         }
       else if(ret==2)
@@ -237,7 +244,7 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
           //             matrice.multvectT(u, s);
           //int ii;
           matrice.multvectT(W7, W8);
-          le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+          le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
           solution.echange_espace_virtuel();
         }
       else if((ret == 3) || (ret == 5))
@@ -245,11 +252,11 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
           // On preconditionne
           //int ii;
           if(sub_type(ILU_SP,le_precond_.valeur()))
-            le_precond_.preconditionner(mat_loc, W7, W8);
+            le_precond_->preconditionner(mat_loc, W7, W8);
           else
-            le_precond_.preconditionner(mat_loc,secmem,solution);
-          //             le_precond_.preconditionner(matrice,secmem,solution);
-          le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+            le_precond_->preconditionner(mat_loc,secmem,solution);
+          //             le_precond_->preconditionner(matrice,secmem,solution);
+          le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
           solution.echange_espace_virtuel();
         }
       else if((ret == 4) || (ret == 6))
@@ -257,18 +264,18 @@ int Solv_Gen::solve(const Matrice_Base& matrice, const Matrice_Base& mat_loc, co
           exit();
           // On preconditionne
           if(sub_type(ILU_SP,le_precond_.valeur()))
-            le_precond_.preconditionner(mat_loc, W7, W8);
+            le_precond_->preconditionner(mat_loc, W7, W8);
           else
-            le_precond_.preconditionner(mat_loc,secmem,solution);
+            le_precond_->preconditionner(mat_loc,secmem,solution);
 
-          le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+          le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
           solution.echange_espace_virtuel();
         }
       else if(ret == 10)
         {
           Cout<<"Case 10"<<finl;
           Cout<<"The predefined stop test is retained"<<finl;
-          le_solveur_elem_.iteration(ntot,secmem,solution,ipar,fpar,w);
+          le_solveur_elem_->iteration(ntot,secmem,solution,ipar,fpar,w);
           solution.echange_espace_virtuel();
         }
       else if(ret > 0)

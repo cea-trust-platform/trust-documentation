@@ -32,17 +32,17 @@ public:
   void get_noms_champs_postraitables(Noms& nom, Option opt = NONE) const override;
   void completer() override;
   void mettre_a_jour(double ) override;
-  void associer_loipar(const Turbulence_paroi_scal& ) { throw; }
-  void associer_diffusivite_turbulente(const Champ_Fonc& ch) { throw; }
+  void associer_loipar(const Turbulence_paroi_scal_base& ) { throw; }
+  void associer_diffusivite_turbulente(const Champ_Fonc_base& ch) { throw; }
 
   bool is_turb() const override { return true; }
   double calculer_dt_stab() const override;
   double alpha_(const int i) const override { throw; }
-  const Correlation* correlation_viscosite_turbulente() const override { return &corr_; }
-  inline const Correlation& correlation() const { return corr_ ;};
+  const Correlation_base* correlation_viscosite_turbulente() const override { return &(corr_.valeur()); }
+  inline const Correlation_base& correlation() const { return corr_.valeur(); }
   inline const DoubleTab& alpha_() const { return tab_alpha_impl<Eval_Dift_Multiphase_VDF_Elem>(); }
 
-  inline void associer(const Domaine_dis& zd, const Domaine_Cl_dis& zcd, const Champ_Inc& ch) override
+  inline void associer(const Domaine_dis_base& zd, const Domaine_Cl_dis_base& zcd, const Champ_Inc_base& ch) override
   {
     associer_impl<Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, Eval_Dift_Multiphase_VDF_Elem>(zd, zcd, ch);
   }

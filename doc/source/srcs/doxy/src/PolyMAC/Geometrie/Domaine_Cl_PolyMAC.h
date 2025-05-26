@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,10 +19,10 @@
 //  Cette classe porte les tableaux qui servent a mettre en oeuvre
 //  les condition aux limites dans la formulation PolyMAC
 #include <Domaine_Cl_dis_base.h>
-#include <Champ_Don.h>
+
+
 
 class Domaine_VF;
-class Champ_Inc;
 
 class Domaine_Cl_PolyMAC : public Domaine_Cl_dis_base
 {
@@ -31,10 +31,9 @@ class Domaine_Cl_PolyMAC : public Domaine_Cl_dis_base
 
 public :
 
-  void associer(const Domaine_VF& ) { }
-  void completer(const Domaine_dis& ) override;
+  void completer(const Domaine_dis_base& ) override;
   int initialiser(double temps) override;
-  void imposer_cond_lim(Champ_Inc&, double) override;
+  void imposer_cond_lim(Champ_Inc_base&, double) override;
 
   int nb_faces_sortie_libre() const;
 

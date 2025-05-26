@@ -15,6 +15,7 @@
 
 #include <Modele_turbulence_hyd_0_eq_base.h>
 #include <Modifier_pour_fluide_dilatable.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Discretisation_base.h>
 #include <Schema_Temps_base.h>
 #include <stat_counters.h>
@@ -44,14 +45,14 @@ void Modele_turbulence_hyd_0_eq_base::discretiser()
   champs_compris_.ajoute_champ(energie_cinetique_turb_);
 }
 
-void Modele_turbulence_hyd_0_eq_base::associer(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
+void Modele_turbulence_hyd_0_eq_base::associer(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VF_ = ref_cast(Domaine_VF, domaine_dis.valeur());
-  le_dom_Cl_ = ref_cast(Domaine_Cl_dis_base, domaine_Cl_dis.valeur());
+  le_dom_VF_ = ref_cast(Domaine_VF, domaine_dis);
+  le_dom_Cl_ = ref_cast(Domaine_Cl_dis_base, domaine_Cl_dis);
 }
 
 int Modele_turbulence_hyd_0_eq_base::a_pour_Champ_Fonc(const Motcle& mot,
-                                                       REF(Champ_base) &ch_ref) const
+                                                       OBS_PTR(Champ_base) &ch_ref) const
 {
   Motcles les_motcles(3);
   {
@@ -135,9 +136,8 @@ void Modele_turbulence_hyd_0_eq_base::completer()
       unit[1] = "m2/s3";
       int nb_case_tempo = 1;
       double temps = mon_equation_->schema_temps().temps_courant();
-      dis.discretiser_champ("CHAMP_ELEM", mon_equation_->domaine_dis().valeur(), scalaire, noms, unit, 2, nb_case_tempo, temps, K_eps_sortie_);
-      K_eps_sortie_.nommer("K_eps_from_nut");
-      K_eps_sortie_.valeur().nommer("K_eps_from_nut");
+      dis.discretiser_champ("CHAMP_ELEM", mon_equation_->domaine_dis(), scalaire, noms, unit, 2, nb_case_tempo, temps, K_eps_sortie_);
+      K_eps_sortie_->nommer("K_eps_from_nut");
       K_eps_sortie_->fixer_unites(unit);
       K_eps_sortie_->fixer_noms_compo(noms);
     }
@@ -148,12 +148,12 @@ void Modele_turbulence_hyd_0_eq_base::mettre_a_jour(double)
   statistiques().begin_count(nut_counter_);
   calculer_viscosite_turbulente();
   calculer_energie_cinetique_turb();
-  loipar_.calculer_hyd(la_viscosite_turbulente_, energie_cinetique_turbulente());
+  loipar_->calculer_hyd(la_viscosite_turbulente_, energie_cinetique_turbulente());
   limiter_viscosite_turbulente();
   if (mon_equation_->probleme().is_dilatable())
     correction_nut_et_cisaillement_paroi_si_qc(*this);
-  energie_cinetique_turb_.valeurs().echange_espace_virtuel();
-  la_viscosite_turbulente_.valeurs().echange_espace_virtuel();
+  energie_cinetique_turb_->valeurs().echange_espace_virtuel();
+  la_viscosite_turbulente_->valeurs().echange_espace_virtuel();
   statistiques().end_count(nut_counter_);
 }
 
@@ -170,9 +170,9 @@ void Modele_turbulence_hyd_0_eq_base::imprimer(Sortie& os) const
 
         //  calcul de K_eps
 
-        DoubleTab& K_Eps = K_eps_sortie_.valeurs();
-        const DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
-        const DoubleTab& wall_length = wall_length_.valeurs();
+        DoubleTab& K_Eps = K_eps_sortie_->valeurs();
+        const DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
+        const DoubleTab& wall_length = wall_length_->valeurs();
         const int nb_elem = K_Eps.dimension(0);
 
         const double Kappa = 0.415;
@@ -207,9 +207,9 @@ void Modele_turbulence_hyd_0_eq_base::imprimer(Sortie& os) const
 
         const Nom& nom_post = K_eps_sortie_.le_nom();
         const Nom& type_elem = dom.type_elem()->que_suis_je();
-        assert(K_eps_sortie_.valeurs().dimension(0) == dom.nb_elem());
+        assert(K_eps_sortie_->valeurs().dimension(0) == dom.nb_elem());
         Ecrire_MED ecr_med(fic, dom);
-        ecr_med.ecrire_champ("CHAMPMAILLE", nom_post, K_eps_sortie_.valeurs(), K_eps_sortie_->unites(), K_eps_sortie_->noms_compo(), type_elem, temps);
+        ecr_med.ecrire_champ("CHAMPMAILLE", nom_post, K_eps_sortie_->valeurs(), K_eps_sortie_->unites(), K_eps_sortie_->noms_compo(), type_elem, temps);
       }
   return Modele_turbulence_hyd_base::imprimer(os);
 }

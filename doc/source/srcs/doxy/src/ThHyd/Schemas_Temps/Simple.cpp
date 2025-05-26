@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -35,6 +35,9 @@
 #include <Discretisation_base.h>
 
 Implemente_instanciable_sans_constructeur(Simple,"Simple",Simpler_Base);
+// XD simple piso simple -1 SIMPLE type algorithm
+// XD attr relax_pression floattant relax_pression 1 Value between 0 and 1 (by default 1), this keyword is used only by the SIMPLE algorithm for relaxing the increment of pressure.
+
 
 Simple::Simple()
 {
@@ -262,11 +265,11 @@ bool Simple::iterer_eqn(Equation_base& eqn,const DoubleTab& inut,DoubleTab& curr
     }
   else
     {
-      solveur.valeur().reinit();
+      solveur->reinit();
       DoubleTrav resu_temp(current); /* residu en increments */
       if (eqn.has_interface_blocs()) /* si assembler_blocs est disponible */
         {
-          if (eqn.discretisation().is_polymac_family())
+          if (eqn.discretisation().is_polymac_family() || eqn.que_suis_je().debute_par("Equation_flux"))
             {
               eqn.assembler_blocs_avec_inertie({{ eqn.inconnue().le_nom().getString(), &matrice }}, resu_temp, { });
               resu = resu_temp;
@@ -309,6 +312,10 @@ bool Simple::iterer_eqn(Equation_base& eqn,const DoubleTab& inut,DoubleTab& curr
             {
               con = 1;
               solveur.resoudre_systeme(matrice,resu,current);
+              if (eqn.positive_unkown())
+                for (int i = 0; i < current.dimension_tot(0); i++)
+                  for (int j = 0; j < current.line_size(); j++)
+                    current(i, j) = std::max(current(i, j), 0.);
               ok = eqn.milieu().check_unknown_range(); //verification que l'inconnue est dans les bornes du milieu
 
               if (ok)
@@ -355,12 +362,12 @@ bool Simple::iterer_eqn(Equation_base& eqn,const DoubleTab& inut,DoubleTab& curr
         Cout<<eqn.que_suis_je()<<" is converged at the implicit iteration "<<nb_iter<<" ( ||uk-uk-1|| = "<<dudt_norme<<" < implicit threshold "<<seuil_convg<<" )"<<finl;
     }
 
-  if(ok && (eqn.discretisation().is_polymac_family() || eqn.probleme().que_suis_je() == "Pb_Multiphase")) eqn.probleme().mettre_a_jour(eqn.schema_temps().temps_courant());
+  if(ok && (eqn.discretisation().is_polymac_family() || eqn.probleme().que_suis_je().debute_par("Pb_Multiphase"))) eqn.probleme().mettre_a_jour(eqn.schema_temps().temps_courant());
   solveur->reinit();
   return (ok && converge==1);
 }
 
-bool Simple::iterer_eqs(LIST(REF(Equation_base)) eqs, int nb_iter, int& ok)
+bool Simple::iterer_eqs(LIST(OBS_PTR(Equation_base)) eqs, int nb_iter, int& ok)
 {
   // on recupere le solveur de systeme lineaire
   Parametre_implicite& param = get_and_set_parametre_implicite(eqs[0]);
@@ -470,7 +477,7 @@ bool Simple::iterer_eqs(LIST(REF(Equation_base)) eqs, int nb_iter, int& ok)
         }
 
   // resolution
-  solveur.valeur().reinit();
+  solveur->reinit();
   solveur.resoudre_systeme(Mglob, residus, inconnues);
   inconnues.echange_espace_virtuel();
 
@@ -492,9 +499,9 @@ bool Simple::iterer_eqs(LIST(REF(Equation_base)) eqs, int nb_iter, int& ok)
         Cout<<eqs[i]->que_suis_je()<<" is converged at the implicit iteration "<<nb_iter<<" ( ||uk-uk-1|| = "<<dudt_norme<<" < implicit threshold "<<seuil_convg<<" )"<<finl;
       eqs[i]->inconnue().futur() = eqs[i]->inconnue().valeurs();
       const double t = eqs[i]->schema_temps().temps_courant() + eqs[i]->schema_temps().pas_de_temps();
-      eqs[i]->domaine_Cl_dis()->imposer_cond_lim(eqs[i]->inconnue(), t);
+      eqs[i]->domaine_Cl_dis().imposer_cond_lim(eqs[i]->inconnue(), t);
       eqs[i]->inconnue().valeurs() = eqs[i]->inconnue().futur();
-      eqs[i]->inconnue().valeur().Champ_base::changer_temps(t);
+      eqs[i]->inconnue().Champ_base::changer_temps(t);
     }
   for(i = 0; i < eqs.size(); i++) eqs[i]->probleme().mettre_a_jour(eqs[i]->schema_temps().temps_courant());
 
@@ -509,7 +516,7 @@ void Simple::calculer_correction_en_vitesse(const DoubleTrav& correction_en_pres
 {
   int deux_entrees = 0;
   if (correction_en_vitesse.nb_dim()==2) deux_entrees = 1;
-  gradient.valeur().multvect(correction_en_pression,gradP);
+  gradient->multvect(correction_en_pression,gradP);
   int nb_comp = 1;
   if(deux_entrees)
     nb_comp = correction_en_vitesse.dimension(1);
@@ -582,7 +589,7 @@ void Simple::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression
       eqnNS.assembler_avec_inertie(matrice,current,resu);
     }
 
-  solveur.valeur().reinit();
+  solveur->reinit();
 
   //Resolution du systeme A[Uk-1]U* = -BtP* + Sv + Ss + (M/dt)Uk-1
   //current = U*
@@ -601,7 +608,7 @@ void Simple::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression
   Matrice& matrice_en_pression_2 = eqnNS.matrice_pression();
   assembler_matrice_pression_implicite(eqnNS,matrice,matrice_en_pression_2);
   SolveurSys& solveur_pression_ = eqnNS.solveur_pression();
-  solveur_pression_.valeur().reinit();
+  solveur_pression_->reinit();
 
   //Calcul de secmem = BU* (en incompressible) BU* -drho/dt (en quasi-compressible)
   if (is_dilat)
@@ -635,7 +642,7 @@ void Simple::iterer_NS(Equation_base& eqn,DoubleTab& current,DoubleTab& pression
   //Correction de la vitesse U = U* + beta_u*U' (beta_u=1)
 
   pression.ajoute(beta_,correction_en_pression);
-  eqnNS.assembleur_pression().valeur().modifier_solution(pression);
+  eqnNS.assembleur_pression()->modifier_solution(pression);
 
   current += correction_en_vitesse;
 

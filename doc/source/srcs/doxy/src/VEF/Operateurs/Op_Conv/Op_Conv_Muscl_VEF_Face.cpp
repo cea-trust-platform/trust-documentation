@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #include <Convection_tools.h>
 
 Implemente_instanciable_sans_constructeur(Op_Conv_Muscl_VEF_Face,"Op_Conv_Muscl_VEF_P1NC",Op_Conv_VEF_Face);
-
+// XD convection_muscl convection_deriv muscl 0 Keyword for muscl scheme in VEF discretization equivalent to generic muscl vanleer 2 for the 1.5 version or later. The previous muscl scheme can be used with the obsolete in future muscl_old keyword.
 
 //// printOn
 //
@@ -34,7 +34,7 @@ Entree& Op_Conv_Muscl_VEF_Face::readOn(Entree& s )
   type_op=muscl;
   LIMITEUR=&vanleer;
   type_lim_int=type_lim_vanleer;
-  ordre=2;
+  ordre_=2;
   return s ;
 }
 

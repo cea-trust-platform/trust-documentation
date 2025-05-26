@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,32 +13,71 @@
 *
 *****************************************************************************/
 
-#include <Postraitement.h>
-#include <EFichier.h>
-#include <Domaine_VF.h>
-#include <Champ_Generique_Interpolation.h>
-#include <Champ_Generique_refChamp.h>
-#include <Champ_Generique_Correlation.h>
-#include <Champ_Generique_Statistiques.h>
-#include <Entree_complete.h>
-#include <EcritureLectureSpecial.h>
-#include <Equation_base.h>
-#include <Discretisation_base.h>
-#include <Operateur_base.h>
-#include <Operateur.h>
-#include <Param.h>
-#include <LecFicDiffuse_JDD.h>
+#include <Champ_Generique_Statistiques_base.h>
 #include <Create_domain_from_sub_domain.h>
-#include <Sous_Domaine.h>
-#include <EChaine.h>
-#include <Interprete_bloc.h>
-#include <communications.h>
+#include <Champ_Generique_Interpolation.h>
+#include <Champ_Generique_Correlation.h>
+#include <Champ_Generique_refChamp.h>
+#include <EcritureLectureSpecial.h>
 #include <communications_array.h>
+#include <Discretisation_base.h>
+#include <LecFicDiffuse_JDD.h>
+#include <Entree_complete.h>
+#include <Interprete_bloc.h>
+#include <Operateur_base.h>
+#include <communications.h>
+#include <Postraitement.h>
+#include <Equation_base.h>
+#include <Sous_Domaine.h>
+#include <TRUST_2_PDI.h>
+#include <Domaine_VF.h>
+#include <Operateur.h>
+#include <EFichier.h>
+#include <EChaine.h>
+#include <Param.h>
+#include <limits>
 
-
-
+static constexpr double DT_NOT_INIT = std::numeric_limits<double>::max();
+static constexpr int NB_NOT_INIT = std::numeric_limits<int>::max();
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(Postraitement,"Postraitement|Post_processing",Postraitement_base);
+// XD corps_postraitement postraitement nul -1 not_set
+
+// XD un_postraitement objet_lecture nul 0 An object of post-processing (with name).
+// XD attr nom chaine nom 0 Name of the post-processing.
+// XD attr post corps_postraitement post 0 Definition of the post-processing.
+
+// XD type_un_post objet_lecture nul 0 not_set
+// XD attr type chaine(into=["postraitement","post_processing"]) type 0 not_set
+// XD attr post un_postraitement post 0 not_set
+
+// XD nom_postraitement objet_lecture nul 0 not_set
+// XD attr nom chaine nom 0 Name of the post-processing.
+// XD attr post postraitement_base post 0 the post
+
+/*! @brief Constructeur par defaut.
+ *
+ * Les frequences de postraitement prennent la valeur
+ *     par defaut 1e6. Et aucun postraitement n'est demande.
+ *
+ */
+Postraitement::Postraitement():
+  est_le_premier_postraitement_pour_nom_fich_(-1), est_le_dernier_postraitement_pour_nom_fich_(-1),
+  dt_post_(DT_NOT_INIT),
+  nb_pas_dt_post_(NB_NOT_INIT),
+  nb_champs_stat_(0),
+  tstat_deb_(-1), tstat_fin_(-1), tstat_dernier_calcul_(-1),
+  lserie_(0),
+  dt_integr_serie_(1.e6),
+  sondes_demande_(false), champs_demande_(false), stat_demande_(false), stat_demande_definition_champs_(false), tableaux_demande_(false),
+  binaire_(-1),
+  nom_fich_(nom_du_cas()),
+  format_("lml"),
+  option_para_("SIMPLE"),
+  suffix_for_reset_(""),  // See resetTime() documentation in this class
+  temps_(-1.), dernier_temps_(-1.)
+{
+}
 
 Postraitement::~Postraitement()
 {
@@ -70,14 +109,14 @@ void Postraitement::postraiter(int forcer)
       if (besoin_postraiter_champs())   traiter_champs();
       if (tableaux_demande_) traiter_tableaux();
     }
-  dernier_temps=mon_probleme->schema_temps().temps_courant();
+  dernier_temps_=mon_probleme->schema_temps().temps_courant();
 
   // Cas des statistiques en serie, il faut traiter APRES le postraitement
   if (lserie_)
     {
-      if (sup_ou_egal(dernier_temps-tstat_deb_,dt_integr_serie_))
+      if (sup_ou_egal(dernier_temps_-tstat_deb_,dt_integr_serie_))
         {
-          tstat_deb_ = dernier_temps;
+          tstat_deb_ = dernier_temps_;
           tstat_dernier_calcul_ = tstat_deb_;
           tstat_fin_ = tstat_deb_ + dt_integr_serie_;
 
@@ -108,11 +147,11 @@ void Postraitement::mettre_a_jour(double temps)
     }
 }
 
-Motcles Postraitement::formats_supportes=Motcles(0);
+Motcles Postraitement::formats_supportes_=Motcles(0);
 LIST(Nom) Postraitement::noms_fichiers_sondes_=LIST(Nom)();
 
 
-inline void nom_fichier(const Postraitement& post, const Champ_Generique_Statistiques& op, const Domaine& dom, Nom& nom_fichier)
+inline void nom_fichier(const Postraitement& post, const OWN_PTR(Champ_Generique_Statistiques_base)& op, const Domaine& dom, Nom& nom_fichier)
 {
   nom_fichier+=".";
   const Entity& loc = op->get_localisation();
@@ -167,7 +206,7 @@ inline int composante(const Nom& le_nom_, const Champ_base& mon_champ)
       int ncomp = les_noms_comp.search(motlu);
       if (ncomp == -1)
         {
-          Cerr << "TRUST error, the Champ_Generique name : " << le_nom_ << finl
+          Cerr << "TRUST error, the Champ_Generique_base name : " << le_nom_ << finl
                << " is neither the field name nor"
                << " one of its components\n";
           Cerr << le_nom_ch << " have for components : " << finl;
@@ -200,16 +239,15 @@ Nom Postraitement::get_nom_localisation(const Entity& loc)
   return loc_post;
 }
 
-int Postraitement::champ_fonc(Motcle& nom_champ, REF(Champ_base)& mon_champ, REF(Operateur_Statistique_tps_base)& operateur_statistique) const
+int Postraitement::champ_fonc(Motcle& nom_champ, OBS_PTR(Champ_base)& mon_champ, OBS_PTR(Operateur_Statistique_tps_base)& operateur_statistique) const
 {
-
   if (comprend_champ_post(nom_champ))
     {
-      const REF(Champ_Generique_base)& champ = get_champ_post(nom_champ);
+      const OBS_PTR(Champ_Generique_base)& champ = get_champ_post(nom_champ);
       if (sub_type(Champ_Generique_Statistiques_base,champ.valeur()))
         {
           const Champ_Generique_Statistiques_base& champ_stat = ref_cast(Champ_Generique_Statistiques_base,champ.valeur());
-          mon_champ = champ_stat.integrale();
+          mon_champ = champ_stat.integrale().le_champ_calcule();
           operateur_statistique = champ_stat.Operateur_Statistique();
           return 1;
         }
@@ -260,18 +298,21 @@ Entree& Postraitement::readOn(Entree& s)
       nom_fich_ += le_nom_du_post;
     }
 
+  dt_post_ = DT_NOT_INIT;
+  nb_pas_dt_post_ = NB_NOT_INIT;
+
   Probleme_base& le_pb = mon_probleme.valeur();
-  le_domaine = le_pb.domaine();
+  le_domaine_ = le_pb.domaine();
 
   Postraitement_base::readOn(s);
 
-  if (Motcle(format) == "MEDFILE")
+  if (Motcle(format_) == "MEDFILE")
     {
       Cerr << "The postprocessing format 'medfile' is not supported since TRUST v1.9.2! Switch to 'med'." << finl;
       Process::exit();
     }
 
-  if (Motcle(format) == "LATA_V1")
+  if (Motcle(format_) == "LATA_V1")
     {
       Cerr << "The postprocessing format 'lata_v1' is not supported since TRUST v1.9.1! Switch to 'lata' (version 2)." << finl;
       Process::exit();
@@ -281,7 +322,7 @@ Entree& Postraitement::readOn(Entree& s)
   std::vector<Motcle> supported = { "CGNS" , "LATA", "SINGLE_LATA", "LATA_V2", "MED", "MED_MAJOR", "LML", "XYZ" };
 
   for (auto &itr : supported)
-    if (Motcle(format) == itr)
+    if (Motcle(format_) == itr)
       {
         is_supported = true;
         break;
@@ -289,60 +330,55 @@ Entree& Postraitement::readOn(Entree& s)
 
   if (!is_supported)
     {
-      Cerr << "The post-processing format " << Motcle(format) << " is not recognized! The recognized formats are : " << finl;
+      Cerr << "The post-processing format " << Motcle(format_) << " is not recognized! The recognized formats are : " << finl;
       for (auto &itr : supported) Cerr << "   - " << itr << finl;
       Process::exit();
     }
 
-  if (Motcle(format) == "MED") format = "med";
+  if (Motcle(format_) == "MED") format_ = "med";
 
-  if (Motcle(format) == "MED_MAJOR") format = "med_major";
+  if (Motcle(format_) == "MED_MAJOR") format_ = "med_major";
 
-  if (Motcle(format) == "LATA_V2") format = "lata";
+  if (Motcle(format_) == "LATA_V2") format_ = "lata";
 
-  if (Motcle(format) == "SINGLE_LATA")
+  if (Motcle(format_) == "SINGLE_LATA")
     {
       is_single_lata = true;
-      format = "lata";
+      format_ = "lata";
     }
 
   nom_fich_ += ".";
-  nom_fich_ += format;
+  nom_fich_ += format_;
 
   // Les sondes sont completees (en effet, si les sondes ont des champs statistiques, on n'a besoin d'avoir
   // lu le bloc statistiques ET le bloc sondes)
   les_sondes_.completer();
 
-  //On type l objet Format_Post
   Nom type_format = "Format_Post_";
-  type_format += format;
-  format_post.typer_direct(type_format);
+  type_format += format_;
+  format_post_.typer(type_format.getChar());
 
   if (is_single_lata)
-    format_post->set_single_lata_option(is_single_lata);
+    format_post_->set_single_lata_option(is_single_lata);
 
   Nom base_name(nom_fich_);
-  base_name.prefix(format);
+  base_name.prefix(format_);
   base_name.prefix(".");
   //format_post->initialize_by_default(base_name);
-  format_post->initialize(base_name, binaire, option_para);
-
-  //Le test de verification a ete simplifie entre la v1.5.1 et la v1.5.2
-  //On simplifie donc la methode test_coherence
-  format_post->test_coherence(champs_demande_, stat_demande_, dt_post_ch_, dt_post_stat_);
+  format_post_->initialize(base_name, binaire_, option_para_);
 
   return s;
 }
 
 static const std::map<std::string, std::string> keyword_dictionnary
 {
-  {"CHAMPS" 		 		 , "FIELDS"},
-  {"STATISTIQUES"   		 , "STATISTICS"},
-  {"STATISTIQUES_EN_SERIE"   , "SERIAL_STATISTICS"},
-  {"SONDES"		 	         , "PROBES"},
-  {"SONDES_MOBILES" 		 , "MOBILE_PROBES"},
-  {"SONDES_INT" 			 , "INT_PROBES"},
-  {"TABLEAUX_INT" 		     , "INT_ARRAYS"}
+  {"CHAMPS",                "FIELDS"},
+  {"STATISTIQUES",          "STATISTICS"},
+  {"STATISTIQUES_EN_SERIE", "SERIAL_STATISTICS"},
+  {"SONDES",                "PROBES"},
+  {"SONDES_MOBILES",        "MOBILE_PROBES"},
+  {"SONDES_INT",            "INT_PROBES"},
+  {"TABLEAUX_INT",          "INT_ARRAYS"}
 };
 
 static Nom translate_keyword(const Nom& french_keyword)
@@ -382,12 +418,24 @@ static EChaineJDD read_and_broadcast_file(const Nom& filename)
   return EChaineJDD(file_content);
 }
 
-static EChaineJDD get_file_content_for_bloc(const Nom& associated_word, Entree& s)
+static EChaineJDD get_file_content_for_bloc(const Nom& associated_word, Entree& s, bool with_acco)
 {
   Nom filename;
-  Param param2(associated_word + "_files");
-  param2.ajouter("fichier|file",&filename,Param::REQUIRED);
-  param2.lire_avec_accolades_depuis(s);
+  if (!with_acco)
+    {
+      Nom motlu;
+      s >> motlu;
+      if (Motcle(motlu) != "fichier|file") Process::exit("'fichier' or 'file' expected!");
+      s >> filename;
+      s >> motlu;
+      if (motlu != "}") Process::exit("'}' expected!");
+    }
+  else
+    {
+      Param param2(associated_word + "_files");
+      param2.ajouter("fichier|file",&filename,Param::REQUIRED);
+      param2.lire_avec_accolades_depuis(s);
+    }
 
   Cerr << "Reading of "<<associated_word<<" from file "<<filename<< finl;
   return read_and_broadcast_file(filename);
@@ -398,10 +446,12 @@ void Postraitement::set_param(Param& param)
 // XD postraitement postraitement_base postraitement -1 An object of post-processing (without name).
 //  attr interfaces champs_posts interfaces 1 Keyword to read all the caracteristics of the interfaces. Different kind of interfaces exist as well as different interface intitialisations.
   param.ajouter("Fichier",&nom_fich_); // XD_ADD_P chaine Name of file.
-  param.ajouter("Format",&format); // XD_ADD_P chaine(into=["lml","lata","single_lata","lata_v2","med","med_major","cgns"]) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
+  param.ajouter("Format",&format_); // XD_ADD_P chaine(into=["lml","lata","single_lata","lata_v2","med","med_major","cgns"]) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
+  param.ajouter_non_std("dt_post",(this)); // XD_ADD_P chaine Field\'s write frequency (as a time period) - can also be specified after the 'field' keyword.
+  param.ajouter("nb_pas_dt_post",&nb_pas_dt_post_, Param::Nature::OPTIONAL); // XD_ADD_P entier Field\'s write frequency (as a number of time steps) - can also be specified after the 'field' keyword.
   param.ajouter_non_std("Domaine",(this)); // XD_ADD_P chaine This optional parameter specifies the domain on which the data should be interpolated before it is written in the output file. The default is to write the data on the domain of the current problem (no interpolation).
   param.ajouter_non_std("Sous_domaine|Sous_zone",(this)); // XD_ADD_P chaine This optional parameter specifies the sub_domaine on which the data should be interpolated before it is written in the output file. It is only available for sequential computation.
-  param.ajouter("Parallele",&option_para); // XD_ADD_P chaine(into=["simple","multiple","mpi-io"]) Select simple (single file, sequential write), multiple (several files, parallel write), or mpi-io (single file, parallel write) for LATA format
+  param.ajouter("Parallele",&option_para_); // XD_ADD_P chaine(into=["simple","multiple","mpi-io"]) Select simple (single file, sequential write), multiple (several files, parallel write), or mpi-io (single file, parallel write) for LATA format
   param.ajouter_non_std("Definition_champs",(this));// XD_ADD_P definition_champs  Keyword to create new or more complex field for advanced postprocessing.
   param.ajouter_non_std("Definition_champs_fichier|Definition_champs_file",(this));// XD_ADD_P definition_champs_fichier Definition_champs read from file.
   param.ajouter_non_std("Sondes|Probes",(this)); // XD_ADD_P sondes Probe.
@@ -420,28 +470,81 @@ void Postraitement::set_param(Param& param)
   param.ajouter_non_std("Statistiques_en_serie|Serial_statistics",(this));// XD_ADD_P stats_serie_posts Statistics between two points not fixed : on period of integration.
   param.ajouter_non_std("Statistiques_en_serie_fichier|Serial_statistics_file",(this));// XD_ADD_P stats_serie_posts_fichier Serial_statistics read from a file
   param.ajouter("suffix_for_reset", &suffix_for_reset_); // XD_ADD_P chaine Suffix used to modify the postprocessing file name if the ICoCo resetTime() method is invoked.
+
+  if ((champs_demande_ || stat_demande_)
+      && dt_post_ == DT_NOT_INIT && nb_pas_dt_post_ == NB_NOT_INIT)
+    {
+      Cerr << "Error while reading the input data for postprocessing :" << finl;
+      Cerr << " -> We expected the keyword 'dt_post' or 'nb_pas_dt_post'" << finl;
+      exit();
+    }
 }
 
+
+// XD bloc_fichier objet_lecture nul 1 Block containing the name of the file
+// XD   attr fichier chaine file 0 File name
+
 // XD sondes_fichier objet_lecture nul 1 Keyword to read probes from a file
-// XD attr fichier chaine file 0 name of file
+// XD   attr fichier|file chaine file 0 name of file
 // XD definition_champs_fichier objet_lecture nul 1 Keyword to read definition_champs from a file
-// XD attr fichier chaine file 0 name of file
+// XD   attr fichier|file chaine file 0 name of file
 
-// XD champs_posts_fichier objet_lecture nul 0 Field\'s write mode.
+// XD champ_a_post objet_lecture nul 0 Field to be post-processed.
+// XD   attr champ chaine champ 0 Name of the post-processed field.
+// XD   attr localisation chaine(into=["elem","som","faces"]) localisation 1 Localisation of post-processed field values: The two available values are elem, som, or faces (LATA format only) used respectively to select field values at mesh centres (CHAMPMAILLE type field in the lml file) or at mesh nodes (CHAMPPOINT type field in the lml file). If no selection is made, localisation is set to som by default.
+// XD champs_a_post listobj nul -1 champ_a_post 0 Fields to be post-processed.
+
+// XD champs_posts objet_lecture nul 0 Field\'s write mode.
 // XD   attr format chaine(into=["binaire","formatte"]) format 1 Type of file.
+// XD   attr mot chaine(into=["dt_post","nb_pas_dt_post"]) mot 1 Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period. it can be specified either here, or at the begining of the postprocessing bloc.
+// XD   attr period chaine period 1 Value of the period which can be like (2.*t).
+// XD   attr champs|fields champs_a_post champs 0 Post-processed fields.
+
+// XD champs_posts_fichier objet_lecture nul 0 Fields read from file.
+// XD   attr format chaine(into=["binaire","formatte"]) format 1 Type of file.
+// XD   attr mot chaine(into=["dt_post","nb_pas_dt_post"]) mot 1 Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
+// XD   attr period chaine period 1 Value of the period which can be like (2.*t).
+// XD   attr fichier bloc_fichier file 0 name of file
+
+// XD stats_posts objet_lecture nul 0 Post-processing for statistics. \input{{statistiques}}
+// XD   attr mot chaine(into=["dt_post","nb_pas_dt_post"]) mot 1 Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
+// XD   attr period chaine period 1 Value of the period which can be like (2.*t).
+// XD   attr champs|fields list_stat_post champs 0 Post-processed fields.
+
+// XD stats_posts_fichier objet_lecture nul 0 Statistics read from file.. \input{{statistiques}}
 // XD   attr mot chaine(into=["dt_post","nb_pas_dt_post"]) mot 0 Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
 // XD   attr period chaine period 0 Value of the period which can be like (2.*t).
-// XD   attr fichier chaine file 0 name of file
+// XD   attr fichier bloc_fichier file 0 name of file
 
-// XD stats_posts_fichier objet_lecture nul 0 Field\'s write mode. \input{{statistiques}}
-// XD   attr mot chaine(into=["dt_post","nb_pas_dt_post"]) mot 0 Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
-// XD   attr period chaine period 0 Value of the period which can be like (2.*t).
-// XD   attr fichier chaine file 0 name of file
-
-// XD stats_serie_posts_fichier objet_lecture nul 0 Post-processing for statistics. \input{{statistiquesseries}}
+// XD stats_serie_posts objet_lecture nul 0 This keyword is used to set the statistics. Average on dt_integr time interval is post-processed every dt_integr seconds. \input{{statistiquesseries}}
 // XD   attr mot chaine(into=["dt_integr"]) mot 0 Keyword is used to set the statistics period of integration and write period.
 // XD   attr dt_integr floattant dt_integr 0 Average on dt_integr time interval is post-processed every dt_integr seconds.
-// XD   attr fichier chaine file 0 name of file
+// XD   attr stat list_stat_post stat 0 not_set
+
+// XD stats_serie_posts_fichier objet_lecture nul 0 This keyword is used to set the statistics read from a file. Average on dt_integr time interval is post-processed every dt_integr seconds. \input{{statistiquesseries}}
+// XD   attr mot chaine(into=["dt_integr"]) mot 0 Keyword is used to set the statistics period of integration and write period.
+// XD   attr dt_integr floattant dt_integr 0 Average on dt_integr time interval is post-processed every dt_integr seconds.
+// XD   attr fichier bloc_fichier file 0 name of file
+
+// XD stat_post_deriv objet_lecture stat_post_deriv 0 not_set
+// XD list_stat_post listobj nul -1 stat_post_deriv 0 Post-processing for statistics
+
+
+
+// XD stat_post_t_deb stat_post_deriv t_deb 0 Start of integration time
+// XD   attr val floattant val 0 not_set
+// XD stat_post_t_fin stat_post_deriv t_fin 0 End of integration time
+// XD   attr val floattant val 0 not_set
+// XD stat_post_moyenne stat_post_deriv moyenne 0 to calculate the average of the field over time
+// XD   attr field chaine field 0 name of the field on which statistical analysis will be performed. Possible keywords are Vitesse (velocity), Pression (pressure), Temperature, Concentration, ...
+// XD   attr localisation chaine(into=["elem","som","faces"]) localisation 1 Localisation of post-processed field value
+// XD stat_post_ecart_type stat_post_deriv ecart_type 0 to calculate the standard deviation (statistic rms) of the field
+// XD   attr field chaine field 0 name of the field on which statistical analysis will be performed. Possible keywords are Vitesse (velocity), Pression (pressure), Temperature, Concentration, ...
+// XD   attr localisation chaine(into=["elem","som","faces"]) localisation 1 Localisation of post-processed field value
+// XD stat_post_correlation stat_post_deriv correlation 0 correlation between the two fields
+// XD   attr first_field chaine first_field 0 first field
+// XD   attr second_field chaine second_field 0 second field
+// XD   attr localisation chaine(into=["elem","som","faces"]) localisation 1 Localisation of post-processed field value
 
 int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
 {
@@ -469,9 +572,23 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
       }
   }
 
+  // Small function to read the dt_post entry potentially using an expression:
+  auto lire_dt = [&]() -> double
+  {
+    Nom expression;
+    s >> expression;
+    fdt_post_.setNbVar(1);
+    fdt_post_.setString(expression);
+    fdt_post_.addVar("t");
+    fdt_post_.parseString();
+    return fdt_post_.eval();
+  };
+
   Motcle motlu;
   Motcle keyword = mot;
   keyword = translate_keyword(keyword.majuscule());
+  bool expect_acco = false;
+
   if (keyword=="Probes")
     {
       Cerr << "Reading of probes" << finl;
@@ -498,44 +615,54 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
       s >> motlu;
       if (motlu == "binaire")
         {
-          binaire=1;
+          binaire_=1;
           s >> motlu;
+          expect_acco = true;
         }
       else if (motlu == "formatte")
         {
-          binaire=0;
+          binaire_=0;
           s >> motlu;
+          expect_acco = true;
         }
 
       if (motlu == "dt_post")
         {
-          Nom expression;
-          s >> expression;
-          fdt_post.setNbVar(1);
-          fdt_post.setString(expression);
-          fdt_post.addVar("t");
-          fdt_post.parseString();
-          dt_post_ch_ = fdt_post.eval();
+          double tmp_dt = lire_dt();
+          if ((dt_post_ != DT_NOT_INIT && tmp_dt != dt_post_)|| nb_pas_dt_post_ != NB_NOT_INIT)
+            {
+              Cerr << "Error: in postprocessing block, 'dt_post' (or 'nb_pas_dt_post') was already set with a different value!" << finl;
+              Cerr << "  -> Set it either only after 'field', or directly at the root of the postprocessing block but not both!" << finl;
+              Process::exit();
+            }
+          dt_post_ = tmp_dt;
+          expect_acco = true;
         }
       else if (motlu == "nb_pas_dt_post")
-        s >> nb_pas_dt_post_;
-      else
         {
-          Cerr << "Error while reading the input data for postprocessing :" << finl;
-          Cerr << "We expected the keyword dt_post or nb_pas_dt_post" << finl;
-          exit();
+          if (dt_post_ != DT_NOT_INIT || nb_pas_dt_post_ != NB_NOT_INIT)
+            {
+              Cerr << "Error: in postprocessing block, 'dt_post' (or 'nb_pas_dt_post') was already set!" << finl;
+              Cerr << "  -> Set it either after 'field' or directly at the root of the postprocessing block but not both!" << finl;
+              Process::exit();
+            }
+          s >> nb_pas_dt_post_;
+          expect_acco = true;
         }
-      //La methode lire_champs_a_postraiter() va generer auatomatiquement un Champ_Generique
+      //La methode lire_champs_a_postraiter() va generer auatomatiquement un Champ_Generique_base
       //en fonction des indications du jeu de donnees (ancienne formulation)
+
+      if (!expect_acco && motlu != "{")
+        Process::exit("We expected { to start the reading of the fields to postprocess!");
 
       if (keyword=="Fields_file")
         {
           Nom associated_word("Fields");
-          EChaineJDD file_content = get_file_content_for_bloc(associated_word, s);
-          lire_champs_a_postraiter(file_content);
+          EChaineJDD file_content = get_file_content_for_bloc(associated_word, s, expect_acco);
+          lire_champs_a_postraiter(file_content, true);
         }
       else
-        lire_champs_a_postraiter(s);
+        lire_champs_a_postraiter(s, expect_acco);
       champs_demande_ = 1;
       return 1;
     }
@@ -546,29 +673,24 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
 
       if (motlu == "dt_post")
         {
-          Nom expression;
-          s >> expression;
-          fdt_post.setNbVar(1);
-          fdt_post.setString(expression);
-          fdt_post.addVar("t");
-          fdt_post.parseString();
-          dt_post_stat_ = fdt_post.eval();
+          double tmp_dt = lire_dt();
+          if ((dt_post_ != DT_NOT_INIT && tmp_dt != dt_post_)|| nb_pas_dt_post_ != NB_NOT_INIT)
+            {
+              Cerr << "Error: in postprocessing block, 'dt_post' (or 'nb_pas_dt_post') was already set with a different value!" << finl;
+              Cerr << "  -> Set it either only after 'field', or directly at the root of the postprocessing block but not both!" << finl;
+              Process::exit();
+            }
+          dt_post_ = tmp_dt;
+          expect_acco = true;
         }
-      else if (motlu == "nb_pas_dt_post")
-        s >> nb_pas_dt_post_;
-      else
-        {
-          Cerr << "Error while reading the input data for statistics postprocessing :" << finl;
-          Cerr << "We expected the keyword dt_post or nb_pas_dt_post" << finl;
-          exit();
-        }
-      //La methode lire_champs_stat_a_postraiter() va generer auatomatiquement un Champ_Generique
+
+      //La methode lire_champs_stat_a_postraiter() va generer auatomatiquement un Champ_Generique_base
       //en fonction des indications du jeu de donnees (ancienne formulation)
 
       if (keyword=="Statistics_file")
         {
           Nom associated_word("Statistics");
-          EChaineJDD file_content = get_file_content_for_bloc(associated_word, s);
+          EChaineJDD file_content = get_file_content_for_bloc(associated_word, s, expect_acco);
           lire_champs_stat_a_postraiter(file_content);
         }
       else
@@ -588,7 +710,7 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
 
       Nom nom_du_domaine;
       s >> nom_du_domaine;
-      le_domaine=ref_cast(Domaine,Interprete::objet(nom_du_domaine));
+      le_domaine_=ref_cast(Domaine,Interprete::objet(nom_du_domaine));
       return 1;
     }
   else if (keyword=="Sous_domaine|Sous_zone")
@@ -632,7 +754,7 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
 
       EChaine IN2(in);
       Interprete_bloc::interprete_courant().interpreter_bloc(IN2, Interprete_bloc::BLOC_EOF, 0);
-      le_domaine=ref_cast(Domaine,Interprete_bloc::objet_global(nom_du_nouveau_dom));
+      le_domaine_=ref_cast(Domaine,Interprete_bloc::objet_global(nom_du_nouveau_dom));
 
       return 1;
     }
@@ -647,19 +769,28 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
     }
   else if (keyword=="Int_array|Int_array_file")
     {
+      //
+      // [ABN] Is someone using this ???
+      //
+
       Cerr << "Reading of integers arrays to be postprocessed "<< finl;
       s >> motlu;
-      if (motlu != "dt_post")
+
+      if (motlu == "dt_post")
         {
-          Cerr << "Error while reading the statistics block:" << finl;
-          Cerr << "We expected the keyword dt_post " << finl;
-          exit();
+          double tmp_dt = lire_dt();
+          if ((dt_post_ != DT_NOT_INIT && tmp_dt != dt_post_)|| nb_pas_dt_post_ != NB_NOT_INIT)
+            {
+              Cerr << "Error: in postprocessing block, 'dt_post' (or 'nb_pas_dt_post') was already set with a different value!" << finl;
+              Cerr << "  -> Set it either only after 'field', or directly at the root of the postprocessing block but not both!" << finl;
+              Process::exit();
+            }
+          dt_post_ = tmp_dt;
         }
-      s >> dt_post_tab;
 
       if (keyword=="Int_array_file")
         {
-          EChaineJDD file_content = get_file_content_for_bloc(Nom("Int_array"), s);
+          EChaineJDD file_content = get_file_content_for_bloc(Nom("Int_array"), s, true);
           lire_tableaux_a_postraiter(file_content);
         }
       else
@@ -679,11 +810,10 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
         }
 
       s >> dt_integr_serie_;
-      dt_post_stat_ = dt_post_ch_;
 
       if (keyword=="Serial_statistics_file")
         {
-          EChaineJDD file_content = get_file_content_for_bloc(Nom("Serial_statistics"), s);
+          EChaineJDD file_content = get_file_content_for_bloc(Nom("Serial_statistics"), s, true);
           lire_champs_stat_a_postraiter(file_content);
         }
       else
@@ -702,8 +832,13 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
   else if (keyword.finit_par("_file"))
     {
       Nom keyword_prefix = keyword.getPrefix("_file");
-      EChaineJDD file_content = get_file_content_for_bloc(keyword_prefix, s);
+      EChaineJDD file_content = get_file_content_for_bloc(keyword_prefix, s, true);
       this->lire_motcle_non_standard(keyword_prefix, file_content);
+      return 1;
+    }
+  else if (keyword=="dt_post")
+    {
+      dt_post_ = lire_dt();
       return 1;
     }
 
@@ -719,41 +854,59 @@ int Postraitement::lire_motcle_non_standard(const Motcle& mot, Entree& s)
 void Postraitement::resetTime(double time, const std::string dirname)
 {
   // Modify output file name
-  Nom name=nom_fich().prefix(format);
+  Nom name=nom_fich().prefix(format_);
   name.prefix(".");
   nom_fich_ = name + suffix_for_reset_;
 
   // And reset all time related members:
-  format_post->resetTime(time, dirname);
+  format_post_->resetTime(time, dirname);
+  les_sondes_.resetTime(time);
   temps_ = -1.;
-  dernier_temps = -1.;
+  dernier_temps_ = -1.;
 }
 
 
-/*! @brief Constructeur par defaut.
- *
- * Les frequences de postraitement prennent la valeur
- *     par defaut 1e6. Et aucun postraitement n'est demande.
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
  *
  */
-Postraitement::Postraitement():
-  est_le_premier_postraitement_pour_nom_fich_(-1), est_le_dernier_postraitement_pour_nom_fich_(-1),
-  dt_post_ch_ (1.e6),
-  dt_post_stat_(1.e6),
-  dt_post_tab(1.e6),
-  nb_pas_dt_post_((int)(pow(2.0,(double)((sizeof(True_int)*8)-1))-1)),
-  nb_champs_stat_(0),
-  tstat_deb_(-1), tstat_fin_(-1), tstat_dernier_calcul_(-1),
-  lserie_(0),
-  dt_integr_serie_(1.e6),
-  sondes_demande_(0), champs_demande_(0), stat_demande_(0), stat_demande_definition_champs_(0),
-  binaire(-1), tableaux_demande_(0),
-  nom_fich_(nom_du_cas()),
-  format("lml"),
-  option_para("SIMPLE"),
-  suffix_for_reset_(""),  // See resetTime() documentation in this class
-  temps_(-1.), dernier_temps(-1.)
+std::vector<YAML_data> Postraitement::data_a_sauvegarder() const
 {
+  std::vector<YAML_data> data;
+  if(stat_demande_ || stat_demande_definition_champs_)
+    {
+      std::string cond = "$temps>" + std::to_string(tstat_deb_);
+      for (const auto& ch_post : champs_post_complet_)
+        {
+          std::vector<YAML_data> post_data = ch_post->data_a_sauvegarder();
+          // adding a condition on every field we just retrieved:
+          // we don't want to save stat fields if we haven't started filling it
+          for (auto& post : post_data)
+            post.set_conditions(cond);
+          data.insert(data.end(), post_data.begin(), post_data.end());
+        }
+      auto add_stat = [&](const std::string& n, const std::string& type)
+      {
+        YAML_data d(n, type);
+        d.set_local(false);
+        d.set_conditions(cond);
+        data.push_back(d);
+      };
+
+      const std::string& pb_name = probleme().le_nom().getString();
+      Nom vide;
+      const Nom& nom_post = le_nom();
+      std::string post_name = (nom_post != "neant") && (nom_post != vide) ? nom_post.getString() + "_" : "";
+
+      std::string stat_name = pb_name + "_" + post_name + "stat_nb_champs";
+      add_stat(stat_name, "int");
+
+      stat_name = pb_name + "_" + post_name + "stat_tdeb";
+      add_stat(stat_name, "double");
+
+      stat_name = pb_name + "_" + post_name + "stat_tend";
+      add_stat(stat_name, "double");
+    }
+  return data;
 }
 
 int Postraitement::sauvegarder(Sortie& os) const
@@ -769,7 +922,6 @@ int Postraitement::sauvegarder(Sortie& os) const
           // en mode ecriture special seul le maitre ecrit l'entete
           int a_faire,special;
           EcritureLectureSpecial::is_ecriture_special(special,a_faire);
-
           if (a_faire)
             {
               //On veut retrouver le nom precedent pour relecture des statistiques (format xyz)
@@ -783,6 +935,21 @@ int Postraitement::sauvegarder(Sortie& os) const
               os << nb_champs_stat_ << finl;
               os << tstat_deb_ << finl;
               os << tstat_dernier_calcul_ << finl ;
+            }
+          else if (TRUST_2_PDI::is_PDI_checkpoint())
+            {
+              TRUST_2_PDI pdi_interface;
+              const std::string& pb_name = probleme().le_nom().getString();
+              Nom vide;
+              const Nom& nom_post = le_nom();
+              std::string post_name = (nom_post != "neant") && (nom_post != vide) ? nom_post.getString() + "_" : "";
+
+              std::string name = pb_name + "_" + post_name + "stat_nb_champs";
+              pdi_interface.TRUST_start_sharing(name, &nb_champs_stat_);
+              name = pb_name + "_" + post_name + "stat_tdeb";
+              pdi_interface.TRUST_start_sharing(name, &tstat_deb_);
+              name = pb_name + "_" + post_name + "stat_tend";
+              pdi_interface.TRUST_start_sharing(name, &tstat_dernier_calcul_);
             }
 
           bytes += champs_post_complet_.sauvegarder(os);
@@ -811,25 +978,39 @@ int Postraitement::reprendre(Entree& is)
 
           if (nb_champs_stat_!=0)
             {
-              Nom bidon;
-              is >> bidon;
-              if (bidon=="fin")
-                {
-                  // Ce test evite un beau segmentation fault a la lecture
-                  // du deuxieme bidon lors d'une sauvegarde/reprise au format binaire
-                  Cerr << "End of the resumption file reached...." << finl;
-                  Cerr << "This file contains no statistics." << finl;
-                  Cerr << "The tinit time of resumption (= " << tinit << " ) must be less" << finl;
-                  Cerr << "than the beginning time, t_deb (= " << tstat_deb_ << " ), of statistics calculation." << finl;
-                  exit();
-                }
-              is >> bidon;
               int n;
-              is >> n;
               double tstat_deb_sauv,temps_derniere_mise_a_jour_stats;
-              is >> tstat_deb_sauv;
-              is >> temps_derniere_mise_a_jour_stats;
+              if (TRUST_2_PDI::is_PDI_restart())
+                {
+                  TRUST_2_PDI pdi_interface;
+                  const std::string& pb_name = probleme().le_nom().getString();
+                  Nom vide;
+                  const Nom& nom_post = le_nom();
+                  std::string post_name = (nom_post != "neant") && (nom_post != vide) ? nom_post.getString() + "_" : "";
 
+                  pdi_interface.read(pb_name + "_" + post_name + "stat_nb_champs", &n);
+                  pdi_interface.read(pb_name + "_" + post_name + "stat_tdeb", &tstat_deb_sauv);
+                  pdi_interface.read(pb_name + "_" + post_name + "stat_tend", &temps_derniere_mise_a_jour_stats);
+                }
+              else
+                {
+                  Nom bidon;
+                  is >> bidon;
+                  if (bidon=="fin")
+                    {
+                      // Ce test evite un beau segmentation fault a la lecture
+                      // du deuxieme bidon lors d'une sauvegarde/reprise au format binaire
+                      Cerr << "End of the resumption file reached...." << finl;
+                      Cerr << "This file contains no statistics." << finl;
+                      Cerr << "The tinit time of resumption (= " << tinit << " ) must be less" << finl;
+                      Cerr << "than the beginning time, t_deb (= " << tstat_deb_ << " ), of statistics calculation." << finl;
+                      exit();
+                    }
+                  is >> bidon;
+                  is >> n;
+                  is >> tstat_deb_sauv;
+                  is >> temps_derniere_mise_a_jour_stats;
+                }
               // Plusieurs cas possibles:
               if (inf_strict(tinit,temps_derniere_mise_a_jour_stats,1.e-5))
                 {
@@ -879,6 +1060,12 @@ int Postraitement::reprendre(Entree& is)
             }
           else  // lecture pour sauter le bloc
             {
+              if(TRUST_2_PDI::is_PDI_restart())
+                {
+                  Cerr << finl << "Problem in the resumption " << finl;
+                  Cerr << "PDI format does not require to navigate through file..." << finl;
+                  Process::exit();
+                }
               Motcle tmp;
               is >> tmp >> tmp;
               int n;
@@ -925,18 +1112,18 @@ void Postraitement::completer_sondes()
  * @return (int) renvoie toujours 1
  * @throws accolade ouvrante attendue
  */
-int Postraitement::lire_champs_a_postraiter(Entree& s)
+int Postraitement::lire_champs_a_postraiter(Entree& s, bool expect_acco)
 {
   Motcle accolade_ouverte("{");
   Motcle accolade_fermee("}");
   Motcle motlu;
   Motcle motlu2;
 
-  s >> motlu;
-  if (motlu != accolade_ouverte)
+  if (expect_acco)
     {
-      Cerr << "We expected { to start to read the fields of postprocessing with the simplified syntax" << finl;
-      exit();
+      s >> motlu;
+      if (motlu != accolade_ouverte)
+        Process::exit("We expected { to start to read the fields of postprocessing with the simplified syntax");
     }
   s >> motlu;
 
@@ -958,7 +1145,7 @@ int Postraitement::lire_champs_a_postraiter(Entree& s)
       int is_champ_predefini = probleme().expression_predefini(motlu,expression);
       if ((is_champ_predefini) && (!comprend_champ_post(motlu)))
         {
-          Champ_Generique champ;
+          OWN_PTR(Champ_Generique_base) champ;
           Entree_complete s_complete(expression,s);
           s_complete>>champ;
           complete_champ(champ,motlu);
@@ -968,7 +1155,7 @@ int Postraitement::lire_champs_a_postraiter(Entree& s)
       if ((motlu2=="elem") || (motlu2=="som") || (motlu2=="faces"))
         {
           //Prise en compte des pb_med
-          if (mon_probleme.valeur().que_suis_je()!="Pb_MED")
+          if (mon_probleme->que_suis_je()!="Pb_MED")
             creer_champ_post(motlu,motlu2,s);
           else
             creer_champ_post_med(motlu,motlu2,s);
@@ -978,10 +1165,10 @@ int Postraitement::lire_champs_a_postraiter(Entree& s)
       else
         {
 
-          //On teste la distinction entre un Champ_Generique a creer par macro (sans som specifie)
-          //et l ajout d un Champ_Generique deja cree (existant dans champs_post_complet_)
+          //On teste la distinction entre un Champ_Generique_base a creer par macro (sans som specifie)
+          //et l ajout d un Champ_Generique_base deja cree (existant dans champs_post_complet_)
           //On va tester si le motlu correpond au nom d un champ porte par le probleme
-          //Si c est le cas on cree un Champ_Generique par macro sinon on va recuperer le Champ_Generique dans la liste complete
+          //Si c est le cas on cree un Champ_Generique_base par macro sinon on va recuperer le Champ_Generique_base dans la liste complete
           //et on l ajoute dans la liste des champs a postraiter
 
           Motcles mots_compare(liste_noms.size());
@@ -1008,8 +1195,8 @@ int Postraitement::lire_champs_a_postraiter(Entree& s)
                   for (int i=0; i<nb_eq; i++)
                     {
                       int nb_morceaux = probleme().equation(i).nombre_d_operateurs_tot();
-                      const Champ_Inc& ch_inco = probleme().equation(i).inconnue();
-                      int nb_compo = ch_inco->nb_comp();
+                      const Champ_Inc_base& ch_inco = probleme().equation(i).inconnue();
+                      int nb_compo = ch_inco.nb_comp();
 
                       int compo;
                       for (int j=0; j<nb_morceaux; j++)
@@ -1129,6 +1316,7 @@ int Postraitement::lire_champs_stat_a_postraiter(Entree& s)
   return 1;
 }
 
+
 /*! @brief On recherche les champs statistiques dans les sources du champ courant
  *
  */
@@ -1171,7 +1359,7 @@ int Postraitement::lire_champs_operateurs(Entree& s)
   Motcle accolade_ouverte("{");
   Motcle accolade_fermee("}");
   Motcle motlu;
-  Champ_Generique champ;
+  OWN_PTR(Champ_Generique_base) champ;
 
   s>>motlu;
   if (motlu != accolade_ouverte)
@@ -1202,22 +1390,22 @@ int Postraitement::lire_champs_operateurs(Entree& s)
   return 1;
 }
 
-void Postraitement::complete_champ(Champ_Generique& champ,const Motcle& motlu)
+void Postraitement::complete_champ(Champ_Generique_base& champ,const Motcle& motlu)
 {
 
-  if (sub_type(Champ_Gen_de_Champs_Gen,champ.valeur()))
+  if (sub_type(Champ_Gen_de_Champs_Gen,champ))
     {
-      const Champ_Gen_de_Champs_Gen& champ_post = ref_cast(Champ_Gen_de_Champs_Gen,champ.valeur());
+      const Champ_Gen_de_Champs_Gen& champ_post = ref_cast(Champ_Gen_de_Champs_Gen,champ);
       cherche_stat_dans_les_sources(champ_post,motlu);
       if (sub_type(Champ_Generique_Statistiques_base,champ_post))
         nb_champs_stat_ += 1;
     }
-  champ->nommer(motlu);
+  champ.nommer(motlu);
   //On teste le nom du champ et de ses sources si elles ont ete specifiees par l utilisateur
   //Methode suivante a reviser ou a ne pas utiliser
   verifie_nom_et_sources(champ);
 
-  Champ_Generique& champ_a_completer = champs_post_complet_.add_if_not(champ);
+  OWN_PTR(Champ_Generique_base)& champ_a_completer = champs_post_complet_.add_if_not(champ);
   champ_a_completer->completer(*this);
 }
 
@@ -1240,7 +1428,7 @@ int Postraitement::lire_tableaux_a_postraiter(Entree& s)
   while (motlu != accolade_fermee)
     {
       // Recherche du tableau a postraiter
-      REF(IntVect) ch_tab;
+      OBS_PTR(IntVect) ch_tab;
       Noms liste_noms;
       mon_probleme->get_noms_champs_postraitables(liste_noms);
 
@@ -1290,26 +1478,26 @@ void Postraitement::init()
   Schema_Temps_base& sch = mon_probleme->schema_temps();
   double temps_courant = sch.temps_courant();
   double tinit = sch.temps_init();
-  Postraitement::formats_supportes=Motcles(4);
-  assert(formats_supportes.size()==4);
-  if(formats_supportes[0]!="lml")
+  Postraitement::formats_supportes_=Motcles(4);
+  assert(formats_supportes_.size()==4);
+  if(formats_supportes_[0]!="lml")
     {
-      formats_supportes[0]="lml";
-      formats_supportes[1]="lata";
-      formats_supportes[2]="med";
-      formats_supportes[3]="xyz";
+      formats_supportes_[0]="lml";
+      formats_supportes_[1]="lata";
+      formats_supportes_[2]="med";
+      formats_supportes_[3]="xyz";
     }
 
-  const Domaine& dom=le_domaine.valeur();
+  const Domaine& dom=le_domaine_.valeur();
   const Nom& nom_du_domaine = dom.le_nom();
-  Nom name=nom_fich().prefix(format);
+  Nom name=nom_fich().prefix(format_);
   name.prefix(".");
   if (besoin_postraiter_champs())
     {
       int reprise = mon_probleme->reprise_effectuee();
-      format_post->modify_file_basename(name, reprise && est_le_premier_postraitement_pour_nom_fich_, tinit);
-      format_post->ecrire_entete(temps_courant, reprise, est_le_premier_postraitement_pour_nom_fich_);
-      format_post->preparer_post(nom_du_domaine, est_le_premier_postraitement_pour_nom_fich_, reprise, tinit);
+      format_post_->modify_file_basename(name, reprise && est_le_premier_postraitement_pour_nom_fich_, tinit);
+      format_post_->ecrire_entete(temps_courant, reprise, est_le_premier_postraitement_pour_nom_fich_);
+      format_post_->preparer_post(nom_du_domaine, est_le_premier_postraitement_pour_nom_fich_, reprise, tinit);
     }
   ////////////////////////////////////////////////////////////////////////
 
@@ -1321,7 +1509,7 @@ void Postraitement::init()
     for (auto& itr : noms_champs_a_post_)
       {
         const Nom& nom_post = itr;
-        const REF(Champ_Generique_base)& champ = get_champ_post(nom_post);
+        const OBS_PTR(Champ_Generique_base)& champ = get_champ_post(nom_post);
 
         int indic_correlation=0;
         if ((sub_type(Champ_Gen_de_Champs_Gen,champ.valeur())))
@@ -1333,38 +1521,27 @@ void Postraitement::init()
 
         if (!indic_correlation)
           {
-
-            Champ espace_stockage;
-            const Champ_base& champ_ecriture = champ->get_champ(espace_stockage);
             Entity loc = champ->get_localisation();
             const Nom loc_post = get_nom_localisation(loc);
             const Noms nom = champ->get_property("nom");
             const Noms composantes = champ->get_property("composantes");
 
-            if (Motcle(loc_post) == "FACES" && Motcle(format).debute_par("lata")==0 && Motcle(format).debute_par("med")==0 && Motcle(format).debute_par("xyz")==0)
+            if (Motcle(loc_post) == "FACES" && Motcle(format_).debute_par("lata")==0 && Motcle(format_).debute_par("med")==0 && Motcle(format_).debute_par("xyz")==0)
               {
-                Cerr<<"The field "<<nom[0]<<" can not be postprocessed to the faces in the format "<<format<<finl;
+                Cerr<<"The field "<<nom[0]<<" can not be postprocessed to the faces in the format "<<format_<<finl;
                 Cerr<<"The postprocessing to the faces is allowed only in the format lata or med"<<finl;
                 exit();
               }
             // PL: Ajout automatique du postraitement aux faces pour PolyMAC_P0P1NC seul, sinon doit etre specifie par FACES
             if (Motcle(loc_post) == "FACES" || champ->get_discretisation().is_polymac_family())
               {
-                REF(Domaine_dis_base) ref_domaine_dis = champ->get_ref_domaine_dis_base();
+                OBS_PTR(Domaine_dis_base) ref_domaine_dis = champ->get_ref_domaine_dis_base();
                 if (ref_domaine_dis.non_nul())
-                  domaine_dis_pour_faces = ref_domaine_dis;
+                  domaine_dis_pour_faces_ = ref_domaine_dis;
               }
-            const Nature_du_champ& nature = champ_ecriture.nature_du_champ();
             if (Motcle(nom_post)== Motcle(nom[0]))
               {
                 le_nom_champ_post = nom[0];
-                /* Sinon le cas Reprise_grossier_fin ne passe pas, en effet on doit pouvoir postraiter K_Eps
-                   if (nature==multi_scalaire)
-                   {
-                   Cerr<<"The field "<<nom[0]<<" is of multi scalar nature."<<finl;
-                   Cerr<<"Only the components of this field may be post-processed."<<finl;
-                   exit();
-                   } */
               }
             else
               {
@@ -1387,10 +1564,11 @@ void Postraitement::init()
                 Cerr<<"The postprocessing to the faces is allowed only for the field naturally localized at the faces."<<finl;
                 exit();
               }
-
+            OWN_PTR(Champ_base) espace_stockage;
+            const Champ_base& champ_ecriture = champ->get_champ_without_evaluation(espace_stockage);
+            const Nature_du_champ& nature = champ_ecriture.nature_du_champ();
             const int nb_compo = champ_ecriture.nb_comp();
-            format_post->completer_post(dom,axi,nature,nb_compo,composantes,loc_post,le_nom_champ_post);
-
+            format_post_->completer_post(dom,axi,nature,nb_compo,composantes,loc_post,le_nom_champ_post);
           }
       }
   }
@@ -1405,36 +1583,36 @@ void Postraitement::init()
   if(!dom.deformable() && besoin_postraiter_champs() && !already_written_domain)
     {
       liste_dom_ecrit.add(token); // on ajoute dans la liste !
-      format_post->ecrire_domaine_dis(dom,domaine_dis_pour_faces,est_le_premier_postraitement_pour_nom_fich_);
+      format_post_->ecrire_domaine_dis(dom,domaine_dis_pour_faces_,est_le_premier_postraitement_pour_nom_fich_);
       // domaine_dis_pour_faces non_nul() si on demande un postraitement d'un champ aux faces:
-      if (domaine_dis_pour_faces.non_nul() && Motcle(format) != "LML")
+      if (domaine_dis_pour_faces_.non_nul() && Motcle(format_) != "LML")
         {
-          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces.valeur());
+          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces_.valeur());
           const IntTab& faces_sommets = domaine_vf.face_sommets();
           const int nb_sommets = dom.nb_som();
           const int nb_faces = faces_sommets.dimension(0);
-          format_post->ecrire_item_int("FACES", /* Identifiant */
-                                       dom.le_nom(),
-                                       dom.le_nom(),
-                                       "FACES", /* localisation */
-                                       "SOMMETS", /* reference */
-                                       faces_sommets,
-                                       nb_sommets);
+          format_post_->ecrire_item_int("FACES", /* Identifiant */
+                                        dom.le_nom(),
+                                        dom.le_nom(),
+                                        "FACES", /* localisation */
+                                        "SOMMETS", /* reference */
+                                        faces_sommets,
+                                        nb_sommets);
 
           const IntTab& elem_faces = domaine_vf.elem_faces();
-          format_post->ecrire_item_int("ELEM_FACES", /* Identifiant */
-                                       dom.le_nom(),
-                                       dom.le_nom(),
-                                       "ELEMENTS", /* localisation */
-                                       "FACES", /* reference */
-                                       elem_faces,
-                                       nb_faces);
+          format_post_->ecrire_item_int("ELEM_FACES", /* Identifiant */
+                                        dom.le_nom(),
+                                        dom.le_nom(),
+                                        "ELEMENTS", /* localisation */
+                                        "FACES", /* reference */
+                                        elem_faces,
+                                        nb_faces);
 
         }
     }
 
-  dernier_temps=mon_probleme->schema_temps().temps_init();
-  format_post->modify_file_basename(name,/*for_restart=*/false ,tinit);
+  dernier_temps_=mon_probleme->schema_temps().temps_init();
+  format_post_->modify_file_basename(name,/*for_restart=*/false ,tinit);
 }
 
 
@@ -1446,10 +1624,10 @@ void Postraitement::finir()
   // Fermeture du fichier si le postraitement des champs etait demande
   if (est_le_dernier_postraitement_pour_nom_fich_ && besoin_postraiter_champs())
     {
-      format_post->finir(est_le_dernier_postraitement_pour_nom_fich_);
-      Nom name=nom_fich().prefix(format);
+      format_post_->finir(est_le_dernier_postraitement_pour_nom_fich_);
+      Nom name=nom_fich().prefix(format_);
       name.prefix(".");
-      format_post->modify_file_basename(name,mon_probleme->reprise_effectuee(),-1);
+      format_post_->modify_file_basename(name,mon_probleme->reprise_effectuee(),-1);
     }
   les_sondes_.fermer_fichiers();
   les_sondes_int_.fermer_fichiers();
@@ -1465,61 +1643,61 @@ void Postraitement::finir()
 int Postraitement::postraiter_champs()
 {
   double temps_courant = mon_probleme->schema_temps().temps_courant();
-  const Domaine& dom=le_domaine.valeur();
+  const Domaine& dom=le_domaine_.valeur();
 
   if (temps_ < temps_courant)
     {
       if (est_le_premier_postraitement_pour_nom_fich_)
-        format_post->ecrire_temps(temps_courant);
+        format_post_->ecrire_temps(temps_courant);
     }
   // We write the time dependant domain here. PL: we write only if fields list is not empty
   if (dom.deformable() && besoin_postraiter_champs())
     {
-      format_post->ecrire_domaine_dis(dom,domaine_dis_pour_faces,est_le_premier_postraitement_pour_nom_fich_);
+      format_post_->ecrire_domaine_dis(dom,domaine_dis_pour_faces_,est_le_premier_postraitement_pour_nom_fich_);
 
-      if (domaine_dis_pour_faces.non_nul())
+      if (domaine_dis_pour_faces_.non_nul())
         {
-          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces.valeur());
+          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces_.valeur());
           const IntTab& faces_sommets = domaine_vf.face_sommets();
           const int nb_sommets = dom.nb_som();
           const int nb_faces = faces_sommets.dimension(0);
-          format_post->ecrire_item_int("FACES", /* Identifiant */
-                                       dom.le_nom(),
-                                       dom.le_nom(),
-                                       "FACES", /* localisation */
-                                       "SOMMETS", /* reference */
-                                       faces_sommets,
-                                       nb_sommets);
+          format_post_->ecrire_item_int("FACES", /* Identifiant */
+                                        dom.le_nom(),
+                                        dom.le_nom(),
+                                        "FACES", /* localisation */
+                                        "SOMMETS", /* reference */
+                                        faces_sommets,
+                                        nb_sommets);
 
           const IntTab& elem_faces = domaine_vf.elem_faces();
-          format_post->ecrire_item_int("ELEM_FACES", /* Identifiant */
-                                       dom.le_nom(),
-                                       dom.le_nom(),
-                                       "ELEMENTS", /* localisation */
-                                       "FACES", /* reference */
-                                       elem_faces,
-                                       nb_faces);
+          format_post_->ecrire_item_int("ELEM_FACES", /* Identifiant */
+                                        dom.le_nom(),
+                                        dom.le_nom(),
+                                        "ELEMENTS", /* localisation */
+                                        "FACES", /* reference */
+                                        elem_faces,
+                                        nb_faces);
 
         }
     }
 
   write_extra_mesh(); // For FT for example, this will write INTERFACES.
 
-  format_post->init_ecriture(temps_courant,temps_,est_le_premier_postraitement_pour_nom_fich_,dom);
+  format_post_->init_ecriture(temps_courant,temps_,est_le_premier_postraitement_pour_nom_fich_,dom);
 
   if (temps_ < temps_courant)
     temps_=temps_courant;
 
   postprocess_field_values();
 
-  format_post->finir_ecriture(temps_courant);
+  format_post_->finir_ecriture(temps_courant);
   return 1;
 }
 
 void Postraitement::postprocess_field_values()
 {
   double temps_courant = mon_probleme->schema_temps().temps_courant();
-  const Domaine& dom=le_domaine.valeur();
+  const Domaine& dom=le_domaine_.valeur();
 
   for (auto& itr : noms_champs_a_post_)
     {
@@ -1528,7 +1706,7 @@ void Postraitement::postprocess_field_values()
       //Etape de calcul
       //Le champ cree est rendu dans champ_ecriture
 
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       const Champ_base& champ_ecriture = champ.get_champ(espace_stockage);
       DoubleTab val_vec;
       bool isChamp_Face_PolyMAC = (champ_ecriture.que_suis_je().debute_par("Champ_Face_PolyMAC") || champ_ecriture.que_suis_je().debute_par("Champ_Fonc_Face_PolyMAC"));
@@ -1558,7 +1736,7 @@ void Postraitement::postprocess_field_values()
 int Postraitement::postraiter_tableaux()
 {
   double temps_courant = mon_probleme->schema_temps().temps_courant();
-  const Domaine& dom=le_domaine.valeur();
+  const Domaine& dom=le_domaine_.valeur();
 
   //Methode ecrire_item_int codee uniquement pour les formats lml et lata
   //Sans doute pas testee par les cas de non regression
@@ -1570,7 +1748,7 @@ int Postraitement::postraiter_tableaux()
     {
       temps_=temps_courant;
       if (est_le_premier_postraitement_pour_nom_fich_)
-        format_post->ecrire_temps(temps_courant);
+        format_post_->ecrire_temps(temps_courant);
     }
 
   auto& list1 = tableaux_a_postraiter_.get_stl_list();
@@ -1588,7 +1766,7 @@ int Postraitement::postraiter_tableaux()
       const IntVect& val = itr1.valeur();
       const int ref_size =0;
 
-      format_post->ecrire_item_int(id_item,id_du_domaine,id_domaine,localisation,reference,val,ref_size);
+      format_post_->ecrire_item_int(id_item,id_du_domaine,id_domaine,localisation,reference,val,ref_size);
 
       ++itr2;
     }
@@ -1608,14 +1786,13 @@ int Postraitement::traiter_champs()
   int nb_pas_dt = sch.nb_pas_dt();
   int ind_pas_dt_post = ind_post(nb_pas_dt);
 
-  if (lpost_champ(temps_courant) || lpost_stat(temps_courant) || ind_pas_dt_post)
+  if (lpost(temps_courant, dt_post_)|| ind_pas_dt_post)
     {
       postraiter_champs();
       if (!ind_pas_dt_post)
         {
-          fdt_post.setVar("t",temps_courant);
-          dt_post_ch_ = fdt_post.eval();
-          dt_post_stat_ = dt_post_ch_;
+          fdt_post_.setVar("t",temps_courant);
+          dt_post_ = fdt_post_.eval();
         }
     }
 
@@ -1626,7 +1803,7 @@ int Postraitement::traiter_tableaux()
 {
   Schema_Temps_base& sch = probleme().schema_temps();
   double temps_courant = sch.temps_courant();
-  if ( lpost_tab(temps_courant) )
+  if ( lpost(temps_courant, dt_post_) )
     postraiter_tableaux();
   return 1;
 }
@@ -1672,45 +1849,60 @@ int Postraitement::postraiter(const Domaine& dom,const Noms& unites,const Noms& 
 
 int Postraitement::postraiter_tableau(const Domaine& dom,const Noms& unites,const Noms& noms_compo,const int ncomp,
                                       const double temps,
-                                      Nom nom_post,const Nom& localisation,const Nom& nature,const DoubleTab& valeurs)
+                                      Nom nom_post,const Nom& localisation,const Nom& nature,const DoubleTab& tab_valeurs)
 {
   const Nom& id_du_domaine = dom.le_nom();
   const Nom& id_champ_ecrit = nom_post;
 
-  const int dim0 = valeurs.dimension(0);
-  const int N = valeurs.line_size();
-  DoubleTab valeurs_tmp(dim0, ncomp == -1 ? N : 1);
-
-  for (int i = 0; i < dim0; i++)
-    if (ncomp == -1)
-      for (int j = 0; j < N; j++)
-        valeurs_tmp(i, j) = valeurs(i, j);
-    else
-      valeurs_tmp(i, 0) = valeurs(i, ncomp);
-
-  const DoubleTab& val_post_ecrit = valeurs_tmp;
-  if (Motcle(format)=="XYZ")
+  const int size = tab_valeurs.dimension(0);
+  const int N = tab_valeurs.line_size();
+  DoubleTrav val_post_ecrit(size, ncomp == -1 ? N : 1);
+  if (tab_valeurs.isDataOnDevice())
+    {
+      CDoubleTabView valeurs = tab_valeurs.view_ro();
+      DoubleTabView val_post = val_post_ecrit.view_wo();
+      Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), size, KOKKOS_LAMBDA(
+                             const int i)
+      {
+        if (ncomp == -1)
+          for (int j = 0; j < N; j++)
+            val_post(i, j) = valeurs(i, j);
+        else
+          val_post(i, 0) = valeurs(i, ncomp);
+      });
+      end_gpu_timer(__KERNEL_NAME__);
+    }
+  else
+    {
+      for (int i = 0; i < size; i++)
+        if (ncomp == -1)
+          for (int j = 0; j < N; j++)
+            val_post_ecrit(i, j) = tab_valeurs(i, j);
+        else
+          val_post_ecrit(i, 0) = tab_valeurs(i, ncomp);
+    }
+  if (Motcle(format_)=="XYZ")
     {
       if (localisation == "SOM")
         {
           const DoubleTab& coord = dom.coord_sommets();
-          format_post->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
+          format_post_->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
         }
       else if (localisation == "ELEM")
         {
           DoubleTab coord;
           dom.calculer_centres_gravite(coord);
-          format_post->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
+          format_post_->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
         }
       else if (localisation == "FACES")
         {
-          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces.valeur());
+          const Domaine_VF& domaine_vf = ref_cast(Domaine_VF, domaine_dis_pour_faces_.valeur());
           const DoubleTab& coord = domaine_vf.xv();
-          format_post->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
+          format_post_->ecrire_champ2(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit,coord);
         }
     }
   else
-    format_post->ecrire_champ(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit);
+    format_post_->ecrire_champ(dom,unites,noms_compo,ncomp,temps,id_champ_ecrit,id_du_domaine,localisation,nature,val_post_ecrit);
   return 1;
 }
 
@@ -1730,10 +1922,19 @@ Nom Postraitement::set_expression_champ(const Motcle& motlu1,const Motcle& motlu
                                         const int trouve)
 {
   Nom ajout("");
-  if (((motlu2!="natif") && (motlu2!="faces") && (motlu3==""))
-      || ((motlu2!="natif") && (motlu3!="")) )
+  if (motlu2 == "natif" || (motlu2 == "faces" && motlu3 == ""))
     {
-
+      if (!trouve)
+        {
+          ajout += " refChamp { Pb_champ ";
+          ajout += probleme().le_nom();
+          ajout += " ";
+          ajout += motlu1;
+          ajout += " }";
+        }
+    }
+  else
+    {
       ajout = "Interpolation { localisation ";
       ajout += motlu2;
 
@@ -1742,7 +1943,7 @@ Nom Postraitement::set_expression_champ(const Motcle& motlu1,const Motcle& motlu
       else if (motlu3=="Ecart_type")
         ajout += " source Ecart_Type { ";
       else if (motlu3=="Correlation")
-        ajout += " source Correlation { ";
+        ajout += " source correlation { ";
 
       if (trouve==1)
         {
@@ -1780,19 +1981,6 @@ Nom Postraitement::set_expression_champ(const Motcle& motlu1,const Motcle& motlu
         }
 
     }
-  else
-    {
-
-      if(!trouve)
-        {
-          ajout += " refChamp { Pb_champ ";
-          ajout += probleme().le_nom();
-          ajout += " ";
-          ajout += motlu1;
-          ajout += " }";
-        }
-    }
-
   return ajout;
 }
 
@@ -1823,7 +2011,7 @@ Nom Postraitement::set_expression_champ(const Motcle& motlu1,const Motcle& motlu
 
 void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,Entree& s)
 {
-  Champ_Generique champ;
+  OWN_PTR(Champ_Generique_base) champ;
   Nom ajout;
   Nom nom_champ, nom_champ_a_post;
 
@@ -1842,70 +2030,31 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
 
   ajout = set_expression_champ(motlu1,motlu2,"","",trouve);
 
-  //A decommenter si choix fait de desactiver les champs discrets correspondants
-  //Meme procedure a faire pour creer_champ_post_stat()
-  //En fait seul gradient_temperature n est cree que pour le postraitement
-  /*
-  //////////////////////////////////////////////////////////////////////////////////////////////////
-  if ((motlu1=="divergence_U") || (motlu1=="gradient_pression") || (motlu1=="gradient_temperature"))
-  {
-  Motcle motlu1_corrige;
-  if (motlu1=="gradient_pression") motlu1_corrige="pression";
-  if (motlu1=="gradient_temperature") motlu1_corrige="temperature";
-  if (motlu1=="divergence_U") motlu1_corrige="vitesse";
-
-  if ((motlu1=="gradient_pression") || (motlu1=="gradient_temperature")) {
-
-  ajout = "Interpolation { localisation ";
-  ajout +=   motlu2;
-  ajout += " source Gradient { source refChamp { Pb_champ ";
-  ajout += mon_probleme->le_nom();
-  ajout += " ";
-  ajout += motlu1_corrige;
-  ajout += " } } }";
-  }
-
-  if (motlu1=="divergence_U") {
-  ajout = "Interpolation { localisation ";
-  ajout +=   motlu2;
-  ajout += " source Divergence { source refChamp { Pb_champ ";
-  ajout += mon_probleme->le_nom();
-  ajout += " ";
-  ajout += motlu1_corrige;
-  ajout += " } } }";
-  }
-  }
-  ////////////////////////////////////////////////////////////////////////////////////////////
-  */
-
   Entree_complete s_complete(ajout,s);
   s_complete>>champ;
 
-  //if ((le_domaine.valeur().le_nom()!=mon_probleme.valeur().domaine().le_nom()) && ((motlu2!="natif"))) {
+  if (le_domaine_->le_nom()!=mon_probleme->domaine().le_nom() && motlu2=="faces")
+    {
+      Cerr << "Post-processing a field on faces on a different domain (" << le_domaine_->le_nom() << ") than compute domain (" << mon_probleme->domaine().le_nom() << ") is not supported yet !" << finl;
+      Cerr << "Switch to som or elem post-processing or post-process on the compute domain." << finl;
+      Process::exit();
+    }
+  //if ((le_domaine->le_nom()!=mon_probleme->domaine().le_nom()) && ((motlu2!="natif"))) {
   {
-
-    if ((motlu2!="natif")&&(motlu2!="faces"))
+    if (sub_type(Champ_Generique_Interpolation,champ.valeur()))
       {
         Champ_Generique_Interpolation& champ_interp = ref_cast(Champ_Generique_Interpolation,champ.valeur());
-        champ_interp.set_domaine(le_domaine.valeur().le_nom());
+        champ_interp.set_domaine(le_domaine_->le_nom());
         // champ_interp.discretiser_domaine(*this);
       }
   }
 
   Nom nom_champ_ref;
-  //A decommenter si suppression champs discrets correspondants
-  /*
-    if ((motlu1=="divergence_U") || (motlu1=="gradient_pression") || (motlu1=="gradient_temperature"))
-    {
-    nom_champ_ref=motlu1;
-    }
-    else {
-  */
   Noms composantes;
   Noms source_compos,source_syno;
   if (trouve==0)
     {
-      REF(Champ_base) champ_ref;
+      OBS_PTR(Champ_base) champ_ref;
       champ_ref = mon_probleme->get_champ(motlu1);
       nom_champ_ref = champ_ref->le_nom();
       source_compos = champ_ref->noms_compo();
@@ -1921,7 +2070,7 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
     }
   else
     {
-      REF(Champ_Generique_base) champ_ref;
+      OBS_PTR(Champ_Generique_base) champ_ref;
       champ_ref=get_champ_post(motlu1);
       nom_champ_ref = champ_ref->get_nom_post();
       source_compos = champ_ref->get_property("composantes");
@@ -1930,34 +2079,15 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
     }
 
 
-  nom_champ = Motcle(nom_champ_ref)+"_"+motlu2+"_"+le_domaine.valeur().le_nom();
+  nom_champ = Motcle(nom_champ_ref)+"_"+motlu2+"_"+le_domaine_->le_nom();
   champ->nommer(nom_champ);
 
   //On nomme la source d un Champ_Generique_Interpolation cree par macro
-  if ((motlu2!="natif") && (motlu2!="faces"))
+  if (sub_type(Champ_Generique_Interpolation,champ.valeur()))
     {
 
       Champ_Generique_Interpolation& champ_post = ref_cast(Champ_Generique_Interpolation,champ.valeur());
       champ_post.nommer_sources(*this);
-
-      //On fixe l attribut compo_ pour le Champ_Generique_Interpolation cree par cette macro
-
-      //A decommenter si suppression des champs discrets
-      /*
-        if ((motlu1=="divergence_U") || (motlu1=="gradient_pression") || (motlu1=="gradient_temperature"))
-        ////Noms source_compos = champ_ref->noms_compo();
-        {
-        if ((motlu1=="gradient_pression") || (motlu1=="gradient_temperature"))
-        {
-        source_compos.dimensionner(dimension);
-        source_compos[0]=nom_champ_ref+"X";
-        source_compos[1]=nom_champ_ref+"Y";
-        if (dimension>2)
-        source_compos[2]=nom_champ_ref+"Z";
-        }
-        }
-        else
-      */
 
       const Nom& nom_dom = champ_post.get_ref_domain().le_nom();
       int nb_comp = source_compos.size();
@@ -1979,24 +2109,24 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
       }
     }
 
-  Champ_Generique& champ_a_completer = champs_post_complet_.add_if_not(champ);
+  OWN_PTR(Champ_Generique_base)& champ_a_completer = champs_post_complet_.add_if_not(champ);
   champ_a_completer->completer(*this);
 
   if (motlu2!="natif")
     {
       if (motlu2!="faces")
-        nom_champ_a_post = motlu1+"_"+motlu2+"_"+le_domaine.valeur().le_nom();
+        nom_champ_a_post = motlu1+"_"+motlu2+"_"+le_domaine_->le_nom();
       else
         //Dans le cas d une localisation aux faces on test s il s agit d une composante ou du champ
         {
           int ncomp = Champ_Generique_base::composante(motlu1,nom_champ_ref,composantes,source_syno);
           if (ncomp==-1)
-            nom_champ_a_post = motlu1+"_"+motlu2+"_"+le_domaine.valeur().le_nom();
+            nom_champ_a_post = motlu1+"_"+motlu2+"_"+le_domaine_->le_nom();
           else
             {
               //On determine le numero de composante
               Nom nume(ncomp);
-              nom_champ_a_post = nom_champ_ref+"_"+motlu2+"_"+le_domaine.valeur().le_nom()+nume;
+              nom_champ_a_post = nom_champ_ref+"_"+motlu2+"_"+le_domaine_->le_nom()+nume;
             }
         }
       if (noms_champs_a_post_.contient(nom_champ_a_post))
@@ -2009,6 +2139,8 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
         noms_champs_a_post_.add(nom_champ_a_post);
     }
 }
+
+
 
 //Creation d un champ generique en fonction des parametres qui sont passes a la methode
 //Cette methode a pour objectif de pouvoir utiliser l ancienne syntaxe dans le jeu de donnees
@@ -2028,7 +2160,7 @@ void Postraitement::creer_champ_post(const Motcle& motlu1,const Motcle& motlu2,E
 void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& motlu2,const Motcle& motlu3,const Motcle&
                                           motlu4,const double t_deb,const double t_fin,Entree& s)
 {
-  Champ_Generique champ;
+  OWN_PTR(Champ_Generique_base) champ;
   Nom ajout;
   Nom nom_champ;
 
@@ -2038,16 +2170,16 @@ void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& mot
       Entree_complete s_complete(ajout,s);
       s_complete>>champ;
 
-      //if (le_domaine.valeur().le_nom()!=mon_probleme.valeur().domaine().le_nom()) {
+      //if (le_domaine->le_nom()!=mon_probleme->domaine().le_nom()) {
       Champ_Generique_Interpolation& champ_interp = ref_cast(Champ_Generique_Interpolation,champ.valeur());
-      champ_interp.set_domaine(le_domaine.valeur().le_nom());
+      champ_interp.set_domaine(le_domaine_->le_nom());
       // champ_interp.discretiser_domaine(*this);
       //}
 
       if (motlu3!="Correlation")
-        nom_champ = motlu3+"_"+motlu1+"_"+motlu2+"_"+le_domaine.valeur().le_nom();
+        nom_champ = motlu3+"_"+motlu1+"_"+motlu2+"_"+le_domaine_->le_nom();
       else
-        nom_champ = motlu3+"_"+motlu1+"_"+motlu4+"_"+motlu2+"_"+le_domaine.valeur().le_nom();
+        nom_champ = motlu3+"_"+motlu1+"_"+motlu4+"_"+motlu2+"_"+le_domaine_->le_nom();
 
       champ->nommer(nom_champ);
 
@@ -2059,7 +2191,7 @@ void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& mot
       Champ_Generique_Statistiques_base& champ_stat = ref_cast(Champ_Generique_Statistiques_base,champ_post.set_source(0));
       const Champ_Generique_refChamp& champ_ref = ref_cast(Champ_Generique_refChamp,champ_stat.get_source(0));
 
-      Champ espace_stockage;
+      OWN_PTR(Champ_base) espace_stockage;
       const Champ_base& champ_discret = champ_ref.get_champ(espace_stockage);
       const Noms& source_compos = champ_discret.noms_compo();
       const Nom& nom_dom = champ_post.get_ref_domain().le_nom();
@@ -2089,17 +2221,18 @@ void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& mot
 
       champ_post.fixer_noms_compo(compo);
       champ_stat.fixer_tdeb_tfin(t_deb,t_fin);
-      Champ_Generique& champ_a_completer = champs_post_complet_.add_if_not(champ);
+      champ_stat.use_source_name_only(true);
+      OWN_PTR(Champ_Generique_base)& champ_a_completer = champs_post_complet_.add_if_not(champ);
       champ_a_completer->completer(*this);
 
-      //On fixe l attribut compo_ pour le Champ_Generique_Interpolation d une Correlation cree par cette macro
+      //On fixe l attribut compo_ pour le Champ_Generique_Interpolation d une correlation cree par cette macro
       /////////////////////////////////////////////////////////////
       if (motlu3=="Correlation")
         {
           Champ_Generique_Interpolation& champ_post_corr = ref_cast(Champ_Generique_Interpolation,champ_a_completer.valeur());
           const Champ_Generique_Correlation& champ_corr = ref_cast(Champ_Generique_Correlation,champ_post_corr.get_source(0));
 
-          const Noms& source_compos_corr = champ_corr.integrale()->noms_compo();
+          const Noms& source_compos_corr = champ_corr.integrale().le_champ_calcule().noms_compo();
           // const Nom& nom_dom = champ_post.get_ref_domain().le_nom();
           int nb_comp_corr = source_compos_corr.size();
           Noms compo_corr(nb_comp_corr);
@@ -2143,7 +2276,7 @@ void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& mot
 }
 
 //Creation d un champ generique en fonction des parametres qui sont passes a la methode
-//Cette methode a pour objectif de creer un Champ_Generique de type Champ_Generique_Morceau_Equation
+//Cette methode a pour objectif de creer un Champ_Generique_base de type Champ_Generique_Morceau_Equation
 //Les etapes sont les suivantes :
 // -creation d une chaine de caracteres pour indiquer le type de champ generique a creer
 // -lecture du champ generique
@@ -2161,11 +2294,11 @@ void Postraitement::creer_champ_post_stat(const Motcle& motlu1,const Motcle& mot
 //
 void Postraitement::creer_champ_post_moreqn(const Motcle& type,const Motcle& option,const int num_eq,const int num_morceau,const int compo,Entree& s)
 {
-  Champ_Generique champ;
+  OWN_PTR(Champ_Generique_base) champ;
   Nom ajout("");
   Nom nom_champ, nom_champ_a_post;
-  const Champ_Inc& ch_inco = mon_probleme->equation(num_eq).inconnue();
-  const Motcle& nom_inco = ch_inco->le_nom();
+  const Champ_Inc_base& ch_inco = mon_probleme->equation(num_eq).inconnue();
+  const Motcle& nom_inco = ch_inco.le_nom();
   Nom nume(num_morceau);
 
   ajout = "Morceau_Equation { type ";
@@ -2240,7 +2373,7 @@ void Postraitement::creer_champ_post_moreqn(const Motcle& type,const Motcle& opt
     }
   champ->nommer(nom_champ);
 
-  Champ_Generique& champ_a_completer = champs_post_complet_.add_if_not(champ);
+  OWN_PTR(Champ_Generique_base)& champ_a_completer = champs_post_complet_.add_if_not(champ);
   champ_a_completer->completer(*this);
   Champ_Gen_de_Champs_Gen& champ_post = ref_cast(Champ_Gen_de_Champs_Gen,champ.valeur());
   champ_post.nommer_sources(*this);
@@ -2284,17 +2417,17 @@ void Postraitement::creer_champ_post_med(const Motcle& motlu1,const Motcle& motl
       Cerr<< "we must change the name "<< motlu1;
       //Cerr<<test_loc_bis<< " "<<test_loc<<finl;
       int ss=champs_post_complet_.size();
-      Nom ancien=champs_post_complet_(ss-1).valeur().get_nom_post();
+      Nom ancien=champs_post_complet_(ss-1)->get_nom_post();
       ancien.suffix(test_loc);
       //Cerr<<ancien<<" ";
       Nom Nouveau(test_loc_bis);
       Nouveau+=ancien;
       Cerr<<" to " <<Nouveau<<finl;
-      champs_post_complet_(ss-1).valeur().nommer(Nouveau);
+      champs_post_complet_(ss-1)->nommer(Nouveau);
       noms_champs_a_post_(noms_champs_a_post_.size()-1)=Nouveau;
     }
   //int ss=champs_post_complet_.size();
-  //Cerr<<champs_post_complet_(ss-1).valeur().get_nom_post()<<finl;
+  //Cerr<<champs_post_complet_(ss-1)->get_nom_post()<<finl;
   //ss=noms_champs_a_post_.size();
   //Cerr<<noms_champs_a_post_(ss-1)<<finl; //exit();
 }
@@ -2308,24 +2441,26 @@ int Postraitement::comprend_champ_post(const Motcle& identifiant) const
   return 0;
 }
 
-const Champ_Generique_base& Postraitement::get_champ_post(const Motcle& nom) const
+bool Postraitement::has_champ_post(const Motcle& nom) const
 {
   for (const auto& itr : champs_post_complet_)
-    {
-      try
-        {
-          return itr->get_champ_post(nom);
-        }
-      catch (Champs_compris_erreur&)
-        {
-        }
-    }
-  //Cerr<<"Field " <<nom<<" not found."<< finl;
-  throw Champs_compris_erreur();
+    if (itr->has_champ_post(nom))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+const Champ_Generique_base& Postraitement::get_champ_post(const Motcle& nom) const
+{
+  for (const auto &itr : champs_post_complet_)
+    if (itr->has_champ_post(nom))
+      return itr->get_champ_post(nom);
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 //Decider de ce que doit faire exactement cette methode ou la supprimer
-void Postraitement::verifie_nom_et_sources(const Champ_Generique& champ)
+void Postraitement::verifie_nom_et_sources(const Champ_Generique_base& champ)
 {
   Noms liste_noms;
   const Probleme_base& Pb = probleme();
@@ -2334,7 +2469,7 @@ void Postraitement::verifie_nom_et_sources(const Champ_Generique& champ)
   Motcles mots_compare(liste_noms.size());
   for (int i=0; i<liste_noms.size(); i++)
     mots_compare[i] = liste_noms[i];
-  const Noms nom = champ->get_property("nom");
+  const Noms nom = champ.get_property("nom");
   const Motcle& nom_champ = nom[0];
 
   if (mots_compare.contient_(nom_champ))

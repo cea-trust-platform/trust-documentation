@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -54,7 +54,7 @@ class Cond_lim_base;
  *      toutes par la methode initialiser.
  *      Dans le cas de champs instationnaires, il y a plusieurs valeurs en temps
  *      et chacune peut etre mise a jour.
- *      Les Champ_front sont divises en :
+ *      Les Champ_front_base sont divises en :
  *       * Champ_front_uniforme, constant dans le temps et l'espace
  *       * Champ_front_instationnaire_base, uniformes en espace mais variables en temps
  *       * Champ_front_var, variables en espace.
@@ -83,6 +83,7 @@ public:
   using Champ_Proto::valeurs;
   inline virtual DoubleTab& valeurs() override;
   inline virtual const DoubleTab& valeurs() const override;
+  virtual bool has_valeurs_au_temps(double temps) const { return true; }
   virtual DoubleTab& valeurs_au_temps(double temps)=0;
   virtual const DoubleTab& valeurs_au_temps(double temps) const = 0;
   virtual const Frontiere_dis_base& frontiere_dis() const;
@@ -110,7 +111,7 @@ protected:
   // n'est pas specifie. Ce sera en particulier
   // celui utilise par les operateurs et les
   // solveurs.
-  REF(Frontiere_dis_base) la_frontiere_dis;
+  OBS_PTR(Frontiere_dis_base) la_frontiere_dis;
   Roue_ptr les_valeurs; // Les valeurs du champ
   DoubleTab Gpoint_; // Derivee en temps des valeurs conditions limites
 private:

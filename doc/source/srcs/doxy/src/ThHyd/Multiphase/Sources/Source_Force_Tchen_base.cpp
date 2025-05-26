@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -40,16 +40,16 @@ Entree& Source_Force_Tchen_base::readOn(Entree& is)
 
 void Source_Force_Tchen_base::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue().valeur());
+  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue());
   if (!matrices.count(ch.le_nom().getString())) return; //rien a faire
 
   Matrice_Morse& mat = *matrices.at(ch.le_nom().getString()), mat2;
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleTab& inco = ch.valeurs();
   const IntTab& fcl = ch.fcl();
 
   /* stencil : diagonal par bloc pour les vitesses aux faces, puis chaque composante des vitesses aux elems */
-  IntTrav stencil(0, 2);
+  IntTab stencil(0, 2);
 
   int N = inco.line_size(), nf = domaine.nb_faces();
 
@@ -70,9 +70,9 @@ void Source_Force_Tchen_base::dimensionner_blocs(matrices_t matrices, const tabs
 
 void Source_Force_Tchen_base::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue().valeur());
+  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue());
   Matrice_Morse *mat = matrices.count(ch.le_nom().getString()) ? matrices.at(ch.le_nom().getString()) : nullptr;
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const IntTab& f_e = domaine.face_voisins(), &fcl = ch.fcl();
   const DoubleVect& pf = equation().milieu().porosite_face(), &vf = domaine.volumes_entrelaces();
   const DoubleTab& inco = ch.valeurs(), &pvit = ch.passe(), &alpha = ref_cast(Pb_Multiphase, equation().probleme()).equation_masse().inconnue().passe(),

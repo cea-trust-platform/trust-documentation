@@ -19,7 +19,7 @@
 #include <Partitionneur_base.h>
 #include <TRUST_Ref.h>
 
-class Domaine;
+#include <Domaine_forward.h>
 
 
 /*! @brief Partition d'un domaine a partir d'un fichier MED contenant un champ donnant, pour chaque element, le numero du processeur auquel cet element est attache.
@@ -39,7 +39,7 @@ public:
 
 protected:
   // Parametres du partitionneur
-  REF(Domaine) ref_domaine_;
+  OBS_PTR(Domaine) ref_domaine_;
   Nom filename_="";
   Nom fieldname_="partition";
 };

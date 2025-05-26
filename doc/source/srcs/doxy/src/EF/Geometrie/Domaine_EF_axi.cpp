@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -92,7 +92,7 @@ void Domaine_EF_axi::calculer_IPhi(const Domaine_Cl_dis_base& zcl)
 
   IPhi_.resize(nbelem,nb_som_elem);
   domaine_axi().creer_tableau_elements(IPhi_);
-  //  Scatter::creer_tableau_distribue(domaine().domaine(), Joint::ELEMENT, IPhi_);
+  //  Scatter::creer_tableau_distribue(domaine().domaine(), JOINT_ITEM::ELEMENT, IPhi_);
   IPhi_thilde_=IPhi_;
 
   const IntTab& les_elems=domaine().les_elems() ;
@@ -125,20 +125,20 @@ void Domaine_EF_axi::calculer_IPhi(const Domaine_Cl_dis_base& zcl)
 void Domaine_EF_axi::remplir_tableau_origine()
 {
   DomaineAxi1d& domax = domaine_axi();
-  const Champ& orig = domax.champ_origine();
 
   origine_repere_.resize(0,Objet_U::dimension-1);
   domax.creer_tableau_elements(origine_repere_);
 
-  if (orig.non_nul())
+  if (domax.has_champ_origine())
     {
+      const Champ_base& orig = domax.champ_origine();
       const DoubleTab& positions = xp();
 
       IntVect les_polys(nb_elem());
       for(int e = 0; e < nb_elem(); e++)
         les_polys(e) = e;
 
-      orig->valeur_aux_elems(positions, les_polys, origine_repere_);
+      orig.valeur_aux_elems(positions, les_polys, origine_repere_);
     }
   else
     origine_repere_=0.;

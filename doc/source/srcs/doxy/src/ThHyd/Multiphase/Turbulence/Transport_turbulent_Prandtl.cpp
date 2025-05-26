@@ -14,7 +14,7 @@
 *****************************************************************************/
 
 #include <Transport_turbulent_Prandtl.h>
-#include <Champ_Don.h>
+
 #include <Param.h>
 
 Implemente_instanciable(Transport_turbulent_Prandtl, "Transport_turbulent_Prandtl", Transport_turbulent_base);

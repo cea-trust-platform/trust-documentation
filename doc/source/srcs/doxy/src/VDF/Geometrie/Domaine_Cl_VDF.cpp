@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,6 @@
 #include <Domaine_VDF.h>
 #include <Periodique.h>
 #include <Option_VDF.h>
-#include <Champ_Inc.h>
 #include <Navier.h>
 #include <Debog.h>
 
@@ -37,19 +36,20 @@ Sortie& Domaine_Cl_VDF::printOn(Sortie& os) const
 
 Entree& Domaine_Cl_VDF::readOn(Entree& is) { return Domaine_Cl_dis_base::readOn(is); }
 
-void Domaine_Cl_VDF::associer(const Domaine_VDF& domaine_vdf)
+void Domaine_Cl_VDF::associer(const Domaine_dis_base& dom_dis)
 {
+  const Domaine_VDF& domaine_vdf = ref_cast(Domaine_VDF, dom_dis);
   type_arete_bord_.resize(domaine_vdf.nb_aretes_bord());
   type_arete_coin_.resize(domaine_vdf.nb_aretes_coin());
   num_Cl_face_.resize(domaine_vdf.nb_faces_bord());
 }
 
-void Domaine_Cl_VDF::completer(const Domaine_dis& un_domaine_dis)
+void Domaine_Cl_VDF::completer(const Domaine_dis_base& un_domaine_dis)
 {
   Cerr << "Domaine_Cl_VDF::completer ..." << finl;
-  if (sub_type(Domaine_VDF,un_domaine_dis.valeur()))
+  if (sub_type(Domaine_VDF,un_domaine_dis))
     {
-      const Domaine_VDF& le_dom_VDF = ref_cast(Domaine_VDF,un_domaine_dis.valeur());
+      const Domaine_VDF& le_dom_VDF = ref_cast(Domaine_VDF,un_domaine_dis);
 
       //  Remplissage du tableau d'entiers type_arete_bord_ + tableau intermediaire : les_faces_Cl
       //  On remplit le tableau d'entiers local les_faces_Cl qui donne la condition aux limites pour chaque face de bord  avec les conventions suivantes :
@@ -196,7 +196,7 @@ void Domaine_Cl_VDF::completer(const Domaine_dis& un_domaine_dis)
       ndeb = le_dom_VDF.premiere_arete_coin();
       nfin = ndeb + le_dom_VDF.nb_aretes_coin();
       int fac1, fac2, fac3, fac4;
-
+      ArrOfInt f(2);
       for (int num_arete = ndeb; num_arete < nfin; num_arete++)
         {
           num_arete_ = num_arete - ndeb;
@@ -207,7 +207,6 @@ void Domaine_Cl_VDF::completer(const Domaine_dis& un_domaine_dis)
           fac3 = le_dom_VDF.Qdm(num_arete_, 2);
           fac4 = le_dom_VDF.Qdm(num_arete_, 3);
 
-          IntVect f(2);
           f = -2;
           int i = 0;
           if (fac1 != -1)
@@ -345,17 +344,16 @@ void Domaine_Cl_VDF::completer(const Domaine_dis& un_domaine_dis)
 /*! @brief Impose les conditions aux limites a la valeur temporelle "temps" du Champ_Inc
  *
  */
-void Domaine_Cl_VDF::imposer_cond_lim(Champ_Inc& ch, double temps)
+void Domaine_Cl_VDF::imposer_cond_lim(Champ_Inc_base& ch, double temps)
 {
   static int init=0;
-  Champ_Inc_base& ch_base=ch.valeur();
-  DoubleTab& ch_tab = ch_base.valeurs(temps);
+  DoubleTab& ch_tab = ch.valeurs(temps);
   const int N = ch_tab.line_size();
-  if (sub_type(Champ_P0_VDF,ch_base)) { /* Do nothing */}
-  else if(ch_base.nature_du_champ()==scalaire) { /* Do nothing */}
-  else if (sub_type(Champ_Face_VDF,ch_base))
+  if (sub_type(Champ_P0_VDF,ch)) { /* Do nothing */}
+  else if(ch.nature_du_champ()==scalaire) { /* Do nothing */}
+  else if (sub_type(Champ_Face_VDF,ch))
     {
-      Champ_Face_VDF& ch_face = ref_cast(Champ_Face_VDF, ch_base);
+      Champ_Face_VDF& ch_face = ref_cast(Champ_Face_VDF, ch);
       const Domaine_VDF& mon_dom_VDF = ch_face.domaine_vdf();
       int ndeb,nfin, num_face;
 
@@ -436,7 +434,7 @@ void Domaine_Cl_VDF::imposer_cond_lim(Champ_Inc& ch, double temps)
     }
   else
     {
-      Cerr << "Le type de Champ_Inc " <<  ch->que_suis_je() << " n'est pas prevu en VDF\n";
+      Cerr << "Le type de OWN_PTR(Champ_Inc_base) " <<  ch.que_suis_je() << " n'est pas prevu en VDF\n";
       exit();
     }
   ch_tab.echange_espace_virtuel();
@@ -460,12 +458,12 @@ int Domaine_Cl_VDF::nb_faces_sortie_libre() const
 
 Domaine_VDF& Domaine_Cl_VDF::domaine_VDF()
 {
-  return ref_cast(Domaine_VDF, domaine_dis().valeur());
+  return ref_cast(Domaine_VDF, domaine_dis());
 }
 
 const Domaine_VDF& Domaine_Cl_VDF::domaine_VDF() const
 {
-  return ref_cast(Domaine_VDF, domaine_dis().valeur());
+  return ref_cast(Domaine_VDF, domaine_dis());
 }
 
 int Domaine_Cl_VDF::nb_faces_bord() const

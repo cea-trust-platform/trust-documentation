@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,8 @@
 #define Op_Conv_EF_Stab_PolyMAC_Face_included
 
 #include <Op_Conv_PolyMAC_base.h>
-#include <Matrice_Morse.h>
+
+class Matrice_Morse;
 
 class Op_Conv_EF_Stab_PolyMAC_Face : public Op_Conv_PolyMAC_base
 {
@@ -33,11 +34,8 @@ public :
   void set_incompressible(const int flag) override;
 
 protected :
-  double alpha = 1; //alpha = 0 -> centre, alpha = 1 -> amont (par defaut, on fait l'amont)
-  DoubleVect porosite_f, porosite_e; //pour F5
-
-private :
-  IntTab equiv_; //equiv(f, i, j) = f2 si la face f1 = e_f(f_e(f, i), j) est equivalente a la face f2 de l'autre cote
+  double alpha_ = 1; //alpha = 0 -> centre, alpha = 1 -> amont (par defaut, on fait l'amont)
+  DoubleVect porosite_f, porosite_e; // pour F5, op sans porosite
 };
 
 class Op_Conv_Amont_PolyMAC_Face : public Op_Conv_EF_Stab_PolyMAC_Face

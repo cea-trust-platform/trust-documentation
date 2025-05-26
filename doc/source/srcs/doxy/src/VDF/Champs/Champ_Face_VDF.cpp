@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -177,7 +177,7 @@ const Champ_Proto& Champ_Face_VDF::affecter(const DoubleTab& v)
 // Cas CL periodique : assure que les valeurs sur des faces periodiques en vis a vis sont identiques. Pour cela on prend la demi somme des deux valeurs.
 void Champ_Face_VDF::verifie_valeurs_cl()
 {
-  const Domaine_Cl_dis_base& zcl = domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = domaine_Cl_dis();
   int nb_cl = zcl.nb_cond_lim();
   DoubleTab& ch_tab = valeurs();
   int ndeb, nfin, num_face;
@@ -219,7 +219,7 @@ void Champ_Face_VDF::verifie_valeurs_cl()
  */
 double Champ_Face_VDF::val_imp_face_bord_private(int face, int comp) const
 {
-  const Domaine_Cl_VDF& zclo = ref_cast(Domaine_Cl_VDF, equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VDF& zclo = ref_cast(Domaine_Cl_VDF, equation().domaine_Cl_dis());
   return Champ_Face_get_val_imp_face_bord_sym(valeurs(), temps(), face, comp, zclo);
 }
 
@@ -242,7 +242,7 @@ int Champ_Face_VDF::compo_normale_sortante(int num_face) const
   // signe vaut  1 si face_voisins(num_face,1) est a l'exterieur
   if (domaine_vdf().face_voisins(num_face, 0) == -1)
     signe = -1;
-  vit_norm = (*this)(num_face) * signe;
+  vit_norm = valeurs()(num_face) * signe;
   return (vit_norm > 0);
 }
 
@@ -327,11 +327,11 @@ void Champ_Face_VDF::calcul_y_plus(DoubleTab& y_plus, const Domaine_Cl_VDF& doma
   const IntVect& orientation = domaine_VDF.orientation();
   const Equation_base& eqn_hydr = equation();
   const Fluide_base& le_fluide = ref_cast(Fluide_base, eqn_hydr.milieu());
-  const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-  const DoubleTab& tab_visco = ch_visco_cin->valeurs();
-  //DoubleTab& tab_visco = ch_visco_cin.valeur().valeurs();
+  const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+  const DoubleTab& tab_visco = ch_visco_cin.valeurs();
+  //DoubleTab& tab_visco = ch_visco_cin.valeurs();
 
-  if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+  if (sub_type(Champ_Uniforme, ch_visco_cin))
     {
       visco = tab_visco(0, 0);
       l_unif = 1;
@@ -373,7 +373,7 @@ void Champ_Face_VDF::calcul_y_plus(DoubleTab& y_plus, const Domaine_Cl_VDF& doma
 
       if (sub_type(Dirichlet_paroi_fixe, la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -431,8 +431,8 @@ void Champ_Face_VDF::calcul_y_plus(DoubleTab& y_plus, const Domaine_Cl_VDF& doma
  */
 DoubleTab& Champ_Face_VDF::calcul_duidxj(const DoubleTab& vitesse, DoubleTab& gij, const Domaine_Cl_VDF& domaine_Cl_VDF) const
 {
-  const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation->inconnue().valeur());
-  const Domaine_Cl_VDF& dclvdf = ref_cast(Domaine_Cl_VDF, vit.domaine_Cl_dis().valeur());
+  const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation->inconnue());
+  const Domaine_Cl_VDF& dclvdf = ref_cast(Domaine_Cl_VDF, vit.domaine_Cl_dis());
   const Domaine_VDF& domaine_VDF = domaine_vdf();
   const int nb_elem = domaine_VDF.domaine().nb_elem_tot(), N = vitesse.line_size();
   const IntTab& face_voisins = domaine_VDF.face_voisins(), &elem_faces = domaine_VDF.elem_faces(), &Qdm = domaine_VDF.Qdm();
@@ -835,7 +835,7 @@ DoubleVect& Champ_Face_VDF::calcul_S_barre_sans_contrib_paroi(const DoubleTab& v
 {
   const int contribution_paroi = 0;
 
-  const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation->inconnue().valeur());
+  const Champ_Face_VDF& vit = ref_cast(Champ_Face_VDF, mon_equation->inconnue());
   const Domaine_VDF& domaine_VDF = domaine_vdf();
   const IntTab& face_voisins = domaine_VDF.face_voisins(), &elem_faces = domaine_VDF.elem_faces(), &Qdm = domaine_VDF.Qdm();
   const IntVect& orientation = domaine_VDF.orientation();
@@ -1339,9 +1339,9 @@ double Champ_Face_get_val_imp_face_bord_sym(const DoubleTab& tab_valeurs, const 
   int face_globale, face_locale;
 
   face_globale = face + domaine_vdf.premiere_face_bord(); // Maintenant numero dans le tableau global des faces.
-  const Domaine_Cl_dis_base& zcl = zclo; //equation().domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = zclo; //equation().domaine_Cl_dis();
   // On recupere la CL associee a la face et le numero local de la face dans la frontiere.
-  //assert(equation().domaine_Cl_dis().valeur()==zclo);
+  //assert(equation().domaine_Cl_dis()==zclo);
 
   const Cond_lim_base& cl = (face < domaine_vdf.nb_faces()) ? zcl.condition_limite_de_la_face_reelle(face_globale, face_locale) : zcl.condition_limite_de_la_face_virtuelle(face_globale, face_locale);
 
@@ -1369,7 +1369,7 @@ double Champ_Face_get_val_imp_face_bord_sym(const DoubleTab& tab_valeurs, const 
         }
     }
 
-  const DoubleTab& vals = cl.champ_front()->valeurs_au_temps(temp);
+  const DoubleTab& vals = cl.champ_front().valeurs_au_temps(temp);
   int face_de_vals = vals.dimension(0) == 1 ? 0 : face_locale;
 
   if (sub_type(Dirichlet_entree_fluide, cl))
@@ -1388,9 +1388,9 @@ double Champ_Face_get_val_imp_face_bord(const double temp, int face, int comp, c
   int face_globale, face_locale;
 
   face_globale = face + domaine_vdf.premiere_face_bord(); // Maintenant numero dans le tableau global des faces.
-  const Domaine_Cl_dis_base& zcl = zclo; //equation().domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = zclo; //equation().domaine_Cl_dis();
   // On recupere la CL associee a la face et le numero local de la face dans la frontiere.
-  //assert(equation().domaine_Cl_dis().valeur()==zclo);
+  //assert(equation().domaine_Cl_dis()==zclo);
 
   const Cond_lim_base& cl = (face < domaine_vdf.nb_faces()) ? zcl.condition_limite_de_la_face_reelle(face_globale, face_locale) : zcl.condition_limite_de_la_face_virtuelle(face_globale, face_locale);
   int ori = domaine_vdf.orientation()(face_globale);
@@ -1407,7 +1407,7 @@ double Champ_Face_get_val_imp_face_bord(const double temp, int face, int comp, c
         }
     }
 
-  const DoubleTab& vals = cl.champ_front()->valeurs_au_temps(temp);
+  const DoubleTab& vals = cl.champ_front().valeurs_au_temps(temp);
   int face_de_vals = vals.dimension(0) == 1 ? 0 : face_locale;
 
   if (sub_type(Dirichlet_entree_fluide, cl))

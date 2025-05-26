@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,9 +19,7 @@
 #include <Liste_Champ_Generique.h>
 #include <TRUST_List.h>
 #include <TRUST_Ref.h>
-
-class Champ_Generique_base;
-class Champ_Fonc;
+#include <Champ_Fonc_base.h>
 
 /*! @brief Classe de base des champs generiques ayant comme source d'autres champs generiques L'utilisation des methodes de la classe repose sur un principe de recursivite
  *
@@ -45,17 +43,16 @@ public:
 
   void set_param(Param& param) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
-  virtual LIST(Champ_Generique)& get_set_sources();
-  virtual Champ_Generique&        get_set_source();
   void   reset() override;
+  std::vector<YAML_data> data_a_sauvegarder() const override;
   int sauvegarder(Sortie& os) const override;
   int reprendre(Entree& is) override;
   void completer(const Postraitement_base& post) override;
   void   mettre_a_jour(double temps) override;
 
-  virtual Champ_Fonc& creer_espace_stockage(const Nature_du_champ& nature,
-                                            const int nb_comp,
-                                            Champ_Fonc& es_tmp) const;
+  virtual OWN_PTR(Champ_Fonc_base)& creer_espace_stockage(const Nature_du_champ& nature,
+                                                          const int nb_comp,
+                                                          OWN_PTR(Champ_Fonc_base)& es_tmp) const;
 
   virtual const Champ_Generique_base&      get_source(int i) const;
   virtual Champ_Generique_base&      set_source(int i) ;
@@ -88,9 +85,13 @@ public:
 
   void nommer_sources(const Postraitement_base& post);
   virtual void nommer_source();
+  void set_parent_name(const Nom& nom) { parent_name_ = nom; }
+  const Nom& get_parent_name() const { return parent_name_; }
+
   int get_info_type_post() const override;
 
   const Champ_Generique_base& get_champ_post(const Motcle& nom) const override;
+  bool has_champ_post(const Motcle& nom) const override;
   int comprend_champ_post(const Motcle& identifiant) const override;
 
   //Methode pour changer t_deb et t_fin pour des reprises de statistiques
@@ -99,17 +100,11 @@ public:
   virtual void fixer_tstat_deb(const double t1,const double t2);
   virtual void lire_bidon(Entree& is) const;
 
-
 protected:
-
+  Nom parent_name_; //Name of the field for which I am the source
+  LIST(OWN_PTR(Champ_Generique_base)) sources_;        //Attribut qui designent les sources de "premier niveau"
   LIST(Nom) noms_sources_ref_;
-  LIST(REF(Champ_Generique_base)) sources_reference_; //permet de creer une source en faisant une reference a un
-  //champ generique deja defini a partir de son nom (noms_ource_ref_)
-
-private:
-  LIST(Champ_Generique) sources_;        //Attribut qui designent les sources de "premier niveau"
-  //Chacune de ses sources est susceptible de posseder une
-  //ou plusieurs sources
+  LIST(OBS_PTR(Champ_Generique_base)) sources_reference_; //permet de creer une source en faisant une reference a un
 };
 
 #endif

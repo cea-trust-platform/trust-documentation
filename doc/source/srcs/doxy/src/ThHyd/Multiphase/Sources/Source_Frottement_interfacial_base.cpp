@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,8 +34,12 @@ Entree& Source_Frottement_interfacial_base::readOn(Entree& is)
   param.lire_avec_accolades_depuis(is);
 
   const Pb_Multiphase& pbm = ref_cast(Pb_Multiphase, equation().probleme());
+
+  const bool res_en_T = pbm.resolution_en_T();
+  if (!res_en_T) Process::exit("Source_Frottement_interfacial_base::readOn NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
   if (pbm.has_correlation("frottement_interfacial")) correlation_ = pbm.get_correlation("frottement_interfacial"); //correlation fournie par le bloc correlation
-  else correlation_.typer_lire(pbm, "frottement_interfacial", is); //sinon -> on la lit
+  else Correlation_base::typer_lire_correlation(correlation_, pbm, "frottement_interfacial", is); //sinon -> on la lit
   return is;
 }
 
@@ -50,15 +54,15 @@ void Source_Frottement_interfacial_base::completer()
 
 void Source_Frottement_interfacial_base::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue().valeur());
+  const Champ_Face_base& ch = ref_cast(Champ_Face_base, equation().inconnue());
   if (!matrices.count(ch.le_nom().getString())) return; //rien a faire
   Matrice_Morse& mat = *matrices.at(ch.le_nom().getString()), mat2;
-  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis().valeur());
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleTab& inco = ch.valeurs();
   const IntTab& fcl = ch.fcl();
 
   /* stencil : diagonal par bloc pour les vitesses aux faces, puis chaque composante des vitesses aux elems */
-  IntTrav stencil(0, 2);
+  IntTab stencil(0, 2);
 
   int f, k, l, N = inco.line_size();
   /* faces */

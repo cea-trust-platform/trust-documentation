@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,19 +17,20 @@
 #define Champ_Inc_base_included
 
 #include <Interface_blocs.h>
+#include <Domaine_forward.h>
+#include <Domaine_VF.h>
 #include <Champ_base.h>
+#include <Domaine_VF.h>
 #include <TRUSTTrav.h>
 #include <TRUST_Ref.h>
-#include <Domaine_VF.h>
 #include <MorEqn.h>
 #include <Roue.h>
+#include <Motcle.h>
 
 class Frontiere_dis_base;
 class Domaine_dis_base;
-class Domaine_Cl_dis;
 class MD_Vector;
-class Domaine_dis;
-class Domaine;
+class YAML_data;
 
 /*! @brief Classe Champ_Inc_base
  *
@@ -43,9 +44,9 @@ class Domaine;
  *       - ses valeurs aux bords (stockees dans un tableau, car le champ n'a pas
  *         de CL associee);
  *
- *      Champ_Inc est un morceaux d'equation car il herite de MorEqn.
+ *      OWN_PTR(Champ_Inc_base) est un morceaux d'equation car il herite de MorEqn.
  *
- * @sa MorEqn Champ_Inc Champ_base Ch_proto Equation_base, Classe abstraite, Methodes abstraites:, const Domaine_dis_base& associer_domaine_dis_base(const Domaine_dis_base&), const Domaine_dis_base& domaine_dis_base() const, DoubleTab& remplir_coord_noeuds(DoubleTab& ) const
+ * @sa MorEqn OWN_PTR(Champ_Inc_base) Champ_base Ch_proto Equation_base, Classe abstraite, Methodes abstraites:, const Domaine_dis_base& associer_domaine_dis_base(const Domaine_dis_base&), const Domaine_dis_base& domaine_dis_base() const, DoubleTab& remplir_coord_noeuds(DoubleTab& ) const
  */
 
 class Champ_Inc_base : public Champ_base, public MorEqn
@@ -61,14 +62,20 @@ public:
   void mettre_a_jour(double temps) override;
   int reprendre(Entree&) override;
   int sauvegarder(Sortie&) const override;
+
   Champ_base& affecter_compo(const Champ_base&, int compo) override;
   void resetTime(double time) override;
 
   // Methodes viruelles pures implementees ici
   Champ_base& affecter_(const Champ_base&) override;
   virtual void verifie_valeurs_cl();
-  DoubleTab& valeurs() override;
-  const DoubleTab& valeurs() const override;
+
+  /*! @brief Renvoie le tableau des valeurs du champ au temps courant.
+   *
+   * @return (DoubleTab&) le tableau des valeurs du champ
+   */
+  inline DoubleTab& valeurs() override { return les_valeurs->valeurs(); }
+  inline const DoubleTab& valeurs() const override { return les_valeurs->valeurs(); }
 
   DoubleVect& valeur_a(const DoubleVect& position, DoubleVect& valeurs) const override;
   DoubleTab& valeur_aux(const DoubleTab& positions, DoubleTab& valeurs) const override;
@@ -89,10 +96,22 @@ public:
   operator DoubleTab& () = delete;
   operator const DoubleTab& () const = delete;
 
-  DoubleTab& futur(int i = 1) override;
-  const DoubleTab& futur(int i = 1) const override;
-  DoubleTab& passe(int i = 1) override;
-  const DoubleTab& passe(int i = 1) const override;
+  /*! @brief Renvoie les valeurs du champs a l'instant t+i.
+   *
+   * @param (int i) le pas de temps futur auquel on veut les valeurs du champ
+   * @return (DoubleTab&) les valeurs du champs a l'instant t+i
+   */
+  inline DoubleTab& futur(int i = 1) override { return les_valeurs->futur(i).valeurs(); }
+  inline const DoubleTab& futur(int i = 1) const override { return les_valeurs->futur(i).valeurs(); }
+
+  /*! @brief Renvoie les valeurs du champs a l'instant t-i.
+   *
+   * @param (int i) le pas de temps passe auquel on veut les valeurs du champ
+   * @return (DoubleTab&) les valeurs du champs a l'instant t-i
+   */
+  inline DoubleTab& passe(int i = 1) override { return les_valeurs->passe(i).valeurs(); }
+  inline const DoubleTab& passe(int i = 1) const override { return les_valeurs->passe(i).valeurs(); }
+
   Champ_Inc_base& avancer(int i = 1);
   Champ_Inc_base& reculer(int i = 1);
 
@@ -101,11 +120,11 @@ public:
   int a_un_domaine_dis_base() const override { return 1; }
 
   virtual void associer_eqn(const Equation_base&);
-  virtual void associer_domaine_cl_dis(const Domaine_Cl_dis&);
+  virtual void associer_domaine_cl_dis(const Domaine_Cl_dis_base&);
   void associer_domaine_dis_base(const Domaine_dis_base&) override;
 
-  const Domaine_Cl_dis& domaine_Cl_dis() const;
-  Domaine_Cl_dis& domaine_Cl_dis();
+  const Domaine_Cl_dis_base& domaine_Cl_dis() const;
+  Domaine_Cl_dis_base& domaine_Cl_dis();
   const Domaine_dis_base& domaine_dis_base() const override { return le_dom_VF.valeur(); }
   const Domaine_VF& domaine_vf() const { return le_dom_VF.valeur(); }
 
@@ -124,7 +143,7 @@ public:
   tabs_t& derivees() { return deriv_; }
   DoubleTab& val_bord() { return val_bord_; }
 
-  //champ dependant d'autres Champ_Inc : reglage de la fonciton de calcul, initialisation de val_bord_
+  //champ dependant d'autres OWN_PTR(Champ_Inc_base) : reglage de la fonciton de calcul, initialisation de val_bord_
   void init_champ_calcule(const Objet_U& obj, fonc_calc_t fonc);
   //pour forcer le calcul de toutes les cases au prochain mettre_a_jour() (normalement fait une seule fois)
   void reset_champ_calcule() { fonc_calc_init_ = 0; }
@@ -142,21 +161,31 @@ public:
   void set_via_ch_fonc_reprise() { via_ch_fonc_reprise_ = true; }
   bool via_ch_fonc_reprise() const { return via_ch_fonc_reprise_; }
 
+  void PDI_save_type(bool b) { PDI_save_type_ = b; }
+  virtual std::vector<YAML_data> data_a_sauvegarder() const;
+  Nom get_PDI_dname() const;
+  void set_PDI_dname(const Nom& name) { PDI_dname_ = (Motcle)name; }
+
 protected:
   // Par defaut on initialise les valeurs a zero
   virtual void creer_tableau_distribue(const MD_Vector&, RESIZE_OPTIONS = RESIZE_OPTIONS::COPY_INIT);
 
-  Roue_ptr les_valeurs;
-  REF(Domaine_Cl_dis) mon_dom_cl_dis;
-  REF(Domaine_VF) le_dom_VF;
 
-  /* pour les champs dependant d'autres Champ_Inc */
+  Roue_ptr les_valeurs;
+  OBS_PTR(Domaine_Cl_dis_base) mon_dom_cl_dis;
+  OBS_PTR(Domaine_VF) le_dom_VF;
+
+  /* pour les champs dependant d'autres OWN_PTR(Champ_Inc_base) */
   fonc_calc_t fonc_calc_;  //fonction de calcul
   int fonc_calc_init_ = 0; //1 une fois qu'on a calcule le champ au moins une fois
   RefObjU obj_calc_; //un objet a passer en argument
   DoubleTab val_bord_;   //valeurs aux bords au temps courant
   tabs_t deriv_;        //derivees au temps courant
   bool bord_fluide_multiphase_ = false, via_ch_fonc_reprise_ = false;
+
+  bool PDI_save_type_ = false; // do we save the type of the unknown in pdi format?
+  Nom PDI_dname_; // For restart with PDI: to use if the name of the dataset we want to read is different from the name of the field
+
 };
 
 #endif /* Champ_Inc_base_included */

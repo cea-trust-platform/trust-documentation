@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,6 +18,9 @@
 #include <Equation_base.h>
 
 Implemente_instanciable(Neumann_sortie_libre_Temp_H, "Sortie_libre_temperature_imposee_H", Neumann_sortie_libre);
+// XD sortie_libre_temperature_imposee_h neumann sortie_libre_temperature_imposee_h 0 Open boundary for heat equation with enthalpy as unknown.
+// XD attr ch front_field_base ch 0 Boundary field type.
+
 
 Sortie& Neumann_sortie_libre_Temp_H::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -48,19 +51,19 @@ void Neumann_sortie_libre_Temp_H::completer()
  */
 double Neumann_sortie_libre_Temp_H::val_ext(int i) const
 {
-  if (le_champ_ext.valeurs().size() == 1)
+  if (le_champ_ext->valeurs().size() == 1)
     {
       if (modifier_val_imp == 1)
-        return le_fluide->calculer_H(le_champ_ext(0, 0));
+        return le_fluide->calculer_H(le_champ_ext->valeurs()(0, 0));
       else
-        return le_champ_ext(0, 0);
+        return le_champ_ext->valeurs()(0, 0);
     }
-  else if (le_champ_ext.valeurs().dimension(1) == 1)
+  else if (le_champ_ext->valeurs().dimension(1) == 1)
     {
       if (modifier_val_imp == 1)
-        return le_fluide->calculer_H(le_champ_ext(i, 0));
+        return le_fluide->calculer_H(le_champ_ext->valeurs()(i, 0));
       else
-        return le_champ_ext(i, 0);
+        return le_champ_ext->valeurs()(i, 0);
     }
   else
     {
@@ -80,18 +83,18 @@ double Neumann_sortie_libre_Temp_H::val_ext(int i) const
  */
 double Neumann_sortie_libre_Temp_H::val_ext(int i, int j) const
 {
-  if (le_champ_ext.valeurs().dimension(0) == 1)
+  if (le_champ_ext->valeurs().dimension(0) == 1)
     {
       if (modifier_val_imp == 1)
-        return le_fluide->calculer_H(le_champ_ext(0, j));
+        return le_fluide->calculer_H(le_champ_ext->valeurs()(0, j));
       else
-        return le_champ_ext(0, j);
+        return le_champ_ext->valeurs()(0, j);
     }
   else
     {
       if (modifier_val_imp == 1)
-        return le_fluide->calculer_H(le_champ_ext(i, j));
+        return le_fluide->calculer_H(le_champ_ext->valeurs()(i, j));
       else
-        return le_champ_ext(i, j);
+        return le_champ_ext->valeurs()(i, j);
     }
 }

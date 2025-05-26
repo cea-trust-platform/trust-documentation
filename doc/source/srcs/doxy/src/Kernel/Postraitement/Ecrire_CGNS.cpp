@@ -14,19 +14,12 @@
 *****************************************************************************/
 
 #include <Comm_Group_MPI.h>
+#include <communications.h>
 #include <Ecrire_CGNS.h>
 #include <Domaine.h>
 #include <unistd.h>
 
 #ifdef HAS_CGNS
-
-#ifdef MPI_
-#ifdef INT_is_64_
-#define MPI_ENTIER MPI_LONG
-#else
-#define MPI_ENTIER MPI_INT
-#endif
-#endif
 
 void Ecrire_CGNS::cgns_set_base_name(const Nom& fn)
 {
@@ -238,7 +231,7 @@ void Ecrire_CGNS::cgns_fill_field_loc_map(const Domaine& domaine, const std::str
                   nom_dom += "_";
                   nom_dom += LOC;
                   Cerr << "Building new CGNS zone to host the field located at : " << LOC << " !" << finl;
-                  Motcle type_e = domaine.type_elem().valeur().que_suis_je();
+                  Motcle type_e = domaine.type_elem()->que_suis_je();
                   if (Process::is_parallel() && (!Option_CGNS::MULTIPLE_FILES || (Option_CGNS::MULTIPLE_FILES && postraiter_domaine_) ))
                     {
                       if (Option_CGNS::PARALLEL_OVER_ZONE || postraiter_domaine_)

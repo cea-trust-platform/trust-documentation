@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -56,7 +56,7 @@ public:
   template <typename BC, typename Type_Double>
   inline void coeffs_face(const int, const int, const BC&, Type_Double& , Type_Double&  ) const { /* Do nothing */ }
 
-  template <typename Type_Double> inline void coeffs_face(const int, const int, const int, const int, const Echange_externe_impose&, Type_Double& , Type_Double&  ) const { /* Do nothing */ }
+  template <typename Type_Double> inline void coeffs_face(const DoubleTab&, const int, const int, const int, const int, const Echange_externe_impose&, Type_Double& , Type_Double&  ) const { /* Do nothing */ }
   template <typename Type_Double> inline void coeffs_faces_interne(const int, Type_Double& , Type_Double&  ) const { /* Do nothing */ }
 
   // A virer un jour .. voir avec le baltik Rayonnement

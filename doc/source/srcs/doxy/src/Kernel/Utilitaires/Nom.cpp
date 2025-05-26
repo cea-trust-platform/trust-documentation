@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,18 +19,11 @@
 #include <math.h>
 #include <algorithm>
 #include <cmath>
-
-int Nom::nb_noms=0;
+#include <kokkos++.h>
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(Nom,"Nom",Objet_U);
-
-int Nom::check_case_non_sensitive_=1;
-
-
-void Nom::sed_check_case_non_sensitive(int i)
-{
-  check_case_non_sensitive_=i;
-}
+// XD nom objet_u nom 0 Class to name the TRUST objects.
+// XD attr mot chaine mot 1 Chain of characters.
 
 /*! @brief Surcharge Objet_U::printOn(Sortie&) Ecriture d'un Nom sur un flot de sortie
  *
@@ -73,7 +66,6 @@ Entree& Nom::readOn(Entree& s)
  */
 Nom::Nom()
 {
-  nb_noms++;
   nom_ = "??";
 }
 
@@ -83,7 +75,6 @@ Nom::Nom()
  */
 Nom::Nom(char c)
 {
-  nb_noms++;
   nom_=c;
 }
 
@@ -94,32 +85,43 @@ Nom::Nom(char c)
  *
  * @param (int i) l'entier a utiliser
  */
-Nom::Nom(int i)
+Nom::Nom(True_int i)
 {
-  nb_noms++;
   nom_ = "";
-  // 20 caracteres suffisent pour stocker n'importe quel entier
-
+  // 22 caracteres suffisent pour stocker n'importe quel entier
   char chaine[22];
-#ifdef INT_is_64_
-  snprintf(chaine, 22, "%ld", i);
-#else
   snprintf(chaine, 22, "%d", i);
-#endif
   operator=(chaine);
 }
+
+Nom::Nom(long i)
+{
+  nom_ = "";
+  // 22 caracteres suffisent pour stocker n'importe quel entier
+  char chaine[22];
+  snprintf(chaine, 22, "%ld", i);
+  operator=(chaine);
+}
+
+Nom::Nom(long long i)
+{
+  nom_ = "";
+  // 22 caracteres suffisent pour stocker n'importe quel entier long long
+  char chaine[22];
+  snprintf(chaine, 22, "%lld", i);
+  operator=(chaine);
+}
+
 /*! @brief Construction d'un nom a partir d'une chaine de caracteres La chaine est copiee
  *
  * @param (const char* nom) la chaine de caracteres a utiliser
  */
 Nom::Nom(const char* nom) : nom_(nom)
 {
-  nb_noms++;
 }
 
 Nom::Nom(const std::string& nom) : nom_(nom)
 {
-  nb_noms++;
 }
 
 
@@ -129,7 +131,6 @@ Nom::Nom(const std::string& nom) : nom_(nom)
  */
 Nom::Nom(const Nom& nom) : Objet_U(nom), nom_(nom.nom_)
 {
-  nb_noms++;
 }
 
 /*! @brief Construction d'un nom a partir d'un flottant La chaine cree est la representation du nombre reel (snprintf)
@@ -138,7 +139,6 @@ Nom::Nom(const Nom& nom) : Objet_U(nom), nom_(nom.nom_)
  */
 Nom::Nom(double le_reel)
 {
-  nb_noms++;
   nom_ = "";
   char la_chaine[80];
   snprintf(la_chaine,80,"%f",le_reel);
@@ -168,7 +168,6 @@ Nom::Nom(double le_reel, const char* format)
 #endif
   nom_ =  la_chaine;
   //delete[] la_chaine;
-  nb_noms++;
 }
 
 
@@ -177,7 +176,6 @@ Nom::Nom(double le_reel, const char* format)
  */
 Nom::~Nom()
 {
-  nb_noms--;
 }
 
 /*! @brief Transforme le nom en majuscules Seules les lettres 'a'-'z' sont modifiees
@@ -524,27 +522,12 @@ Nom::operator const char*() const
 int operator ==(const Nom& un_nom, const char* const un_autre)
 {
   int res_actu=(un_nom.nom_.compare(un_autre)==0);
-#ifndef NDEBUG
-  if ((!res_actu) && (Nom::check_case_non_sensitive_==1))
-    {
-      Nom toto(un_autre);
-      if (toto.majuscule().nom_.compare(un_nom.getChar()) == 0)
-        {
-          Cerr << "Warning: " << un_nom << " and " << un_autre << " are they really different ?" << finl;
-          Cerr << "A test in the code on a string of characters does not seem to take account of the case." << finl;
-          Cerr << "Contact TRUST support by sending your data file of this calculation." << finl;
-          Cerr << finl;
-        }
-    }
-#endif
   return res_actu;
 }
-
 int operator ==(const Nom& un_nom, const Nom& un_autre)
 {
   return (un_nom==un_autre.getChar());
 }
-
 int operator ==(const char* const un_autre, const Nom& un_nom)
 {
   return (un_nom == un_autre);
@@ -570,6 +553,12 @@ int operator !=(const char* const un_autre, const Nom& un_nom)
 {
   return ! (un_autre == un_nom);
 }
+
+bool operator <(const Nom& n1, const Nom& n2)
+{
+  return n1.nom_.compare(n2.nom_) < 0;
+}
+
 
 /*! @brief Renvoie *this;
  *

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,7 @@
 
 class Postraitement_base;
 
-/*! @brief class Champ_Generique_Moyenne Champ destine a post-traiter une moyenne d un champ generique
+/*! @brief class Champ_Generique_Moyenne OWN_PTR(Champ_base) destine a post-traiter une moyenne d un champ generique
  *
  *  La classe porte un operateur statistique "Op_Moyenne"
  *
@@ -50,7 +50,7 @@ public:
 
   inline double temps() const override
   {
-    return Op_Moyenne_.integrale().temps();
+    return Op_Moyenne_.integrale().le_champ_calcule().temps();
   };
   inline const Integrale_tps_Champ& integrale() const override
   {
@@ -60,17 +60,20 @@ public:
   inline const Operateur_Statistique_tps_base& Operateur_Statistique() const override;
   inline Operateur_Statistique_tps_base& Operateur_Statistique() override;
   void completer(const Postraitement_base& post) override;
-
-  const Champ_base&  get_champ(Champ& espace_stockage) const override;
+  const Champ_base& get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const override;
+  const Champ_base& get_champ(OWN_PTR(Champ_base)& espace_stockage) const override;
   void nommer_source() override;
 
   const Champ_Generique_base& get_champ_post(const Motcle& nom) const override;
+  bool has_champ_post(const Motcle& nom) const override;
   int comprend_champ_post(const Motcle& identifiant) const override;
 
 protected:
 
   Op_Moyenne Op_Moyenne_;
 
+private:
+  mutable OWN_PTR(Champ_Fonc_base) espace_stockage_;
 };
 
 

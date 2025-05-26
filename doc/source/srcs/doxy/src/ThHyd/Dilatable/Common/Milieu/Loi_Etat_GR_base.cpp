@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -49,12 +49,12 @@ const Nom Loi_Etat_GR_base::type_fluide() const
  */
 void Loi_Etat_GR_base::initialiser()
 {
-  le_fluide->inco_chaleur()->nommer("enthalpie");
+  le_fluide->inco_chaleur().nommer("enthalpie");
 
   const DoubleTab& tab_H = le_fluide->inco_chaleur().valeurs();
   const DoubleTab& tab_rho = le_fluide->masse_volumique().valeurs();
   int i, n = tab_H.dimension(0);
-  DoubleTab& tab_T = temperature_.valeurs();
+  DoubleTab& tab_T = temperature_->valeurs();
   tab_TempC.resize(n);
   double Pth = le_fluide->pression_th();
   for (i=0 ; i<n ; i++)
@@ -82,12 +82,11 @@ void Loi_Etat_GR_base::initialiser_inco_ch()
 
   DoubleTab& tab_TH = le_fluide->inco_chaleur().valeurs();
   double Pth = le_fluide->pression_th();
-  int som,n = tab_TH.dimension(0);
-  tab_rho_n.resize(n);
-  tab_rho_np1.resize(n);
-
   DoubleTab& tab_rho = le_fluide->masse_volumique().valeurs();
-  if (le_fluide->inco_chaleur()->le_nom() == "enthalpie")
+  tab_rho_n=tab_rho;
+  tab_rho_np1=tab_rho;
+  int som,n = tab_TH.dimension(0);
+  if (le_fluide->inco_chaleur().le_nom() == "enthalpie")
     {
       for (som=0 ; som<n ; som++)
         tab_rho_np1(som) = tab_rho(som,0) = tab_rho_n(som) = calculer_masse_volumique(Pth,tab_TH(som,0));
@@ -112,7 +111,7 @@ void Loi_Etat_GR_base::remplir_T()
 {
   const DoubleTab& tab_H = le_fluide->inco_chaleur().valeurs();
   int i, n = tab_TempC.dimension(0);
-  DoubleTab& tab_T = temperature_.valeurs();
+  DoubleTab& tab_T = temperature_->valeurs();
   double Pth = le_fluide->pression_th();
   for (i=0 ; i<n ; i++)
     {
@@ -149,15 +148,15 @@ void Loi_Etat_GR_base::calculer_Cp()
  */
 void Loi_Etat_GR_base::calculer_lambda()
 {
-  const Champ_Don& mu = le_fluide->viscosite_dynamique();
+  const Champ_Don_base& mu = le_fluide->viscosite_dynamique();
   const DoubleTab& tab_mu = mu.valeurs();
-  Champ_Don& lambda = le_fluide->conductivite();
+  Champ_Don_base& lambda = le_fluide->conductivite();
   DoubleTab& tab_lambda = lambda.valeurs();
 
   int i, n=tab_lambda.size();
-  if (!sub_type(Champ_Uniforme,lambda.valeur()))
+  if (!sub_type(Champ_Uniforme,lambda))
     {
-      if (sub_type(Champ_Uniforme,mu.valeur()))
+      if (sub_type(Champ_Uniforme,mu))
         {
           for (i=0 ; i<n ; i++) tab_lambda(i,0) = tab_mu(0,0) * tab_Cp(i) / Pr_;
         }

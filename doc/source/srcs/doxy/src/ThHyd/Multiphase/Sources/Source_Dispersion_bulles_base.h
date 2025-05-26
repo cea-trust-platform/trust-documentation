@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Source_Dispersion_bulles_base_included
 
 #include <Sources_Multiphase_base.h>
-#include <Correlation.h>
+#include <Correlation_base.h>
 #include <TRUST_Ref.h>
 
 /*! @brief Classe Source_Dispersion_bulles_base
@@ -34,16 +34,16 @@ class Source_Dispersion_bulles_base: public Sources_Multiphase_base
 {
   Declare_base(Source_Dispersion_bulles_base);
 public :
-  void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl = {}) const override;
+  void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl = {}) const override { }
   void ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl = {}) const override = 0;
-  const Correlation& correlation() const {return correlation_;};
+  const Correlation_base& correlation() const { return correlation_.valeur(); }
 
 protected:
-  REF(Correlation) correlation_; //correlation donnant le coeff de dispersion turbulente
+  OBS_PTR(Correlation_base) correlation_; //correlation donnant le coeff de dispersion turbulente
   int is_turb = 0;
   double beta_ = 1.; // To adjust the force in .data
 
-  virtual void dimensionner_blocs_aux(IntTrav&) const = 0;
+  virtual void dimensionner_blocs_aux(IntTab&) const = 0;
 };
 
 #endif /* Source_Dispersion_bulles_base_included */

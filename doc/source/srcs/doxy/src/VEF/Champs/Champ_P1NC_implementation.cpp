@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -29,9 +29,10 @@
 #include <Domaine.h>
 #include <Debog.h>
 #include <SSOR.h>
+#include <kokkos++.h>
+#include <TRUSTArray_kokkos.tpp>
 
-
-static int methode_calcul_valeurs_sommets = 2 ;
+static int methode_calcul_valeurs_sommets_static = 2 ;
 
 // -1 moyenne des faces
 // 1 moyenne des sommets sans min/max
@@ -43,7 +44,7 @@ Champ_P1NC_implementation::Champ_P1NC_implementation()
   filtrer_L2_deja_appele_=0;
   // definition des types de solveurs par defaut (sinon, lecture dans solveur.bar)
   solveur_L2.typer("Solv_GCP");
-  Precond p;
+  OWN_PTR(Precond_base) p;
   p.typer("SSOR");
   ref_cast(Solv_GCP,solveur_L2.valeur()).set_precond(p);
   solveur_L2.nommer("solveur_L2");
@@ -69,7 +70,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
   const DoubleTab& ch = cha.valeurs();
 
   const Domaine_VEF& domaine_VEF = cha.domaine_vef();
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, cha.equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, cha.equation().domaine_Cl_dis());
   const IntTab& elem_som = dom.les_elems();
   double mijK, miiK;
   DoubleTab& vit_som=cha.ch_som();
@@ -165,7 +166,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
         {
           //for n_bord
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int face;
           int num1 = 0;
           int num2 = le_bord.nb_faces_tot();
@@ -194,7 +195,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
         {
           //for n_bord
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int face;
           int num1 = 0;
           int num2 = le_bord.nb_faces_tot();
@@ -270,7 +271,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
     {
       //for n_bord
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int nb_faces_bord = le_bord.nb_faces();
       int num1 = 0;
       int num2 = le_bord.nb_faces_tot();
@@ -355,7 +356,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
     {
       //for n_bord
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = 0;
       int num2 = le_bord.nb_faces_tot();
 
@@ -388,7 +389,7 @@ DoubleTab& valeur_P1_L2(Champ_P1NC& cha, const Domaine& dom)
     {
       //for n_bord
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = 0;
       int num2 = le_bord.nb_faces_tot();
 
@@ -709,7 +710,7 @@ valeur_P1_H1(const Champ_P1NC& cha,
   const DoubleTab& ch = cha.valeurs();
   const Domaine_VEF& domaine_VEF = cha.domaine_vef();
   const DoubleTab& normales=domaine_VEF.face_normales();
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, cha.equation().domaine_Cl_dis().valeur());
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, cha.equation().domaine_Cl_dis());
   const IntTab& elem_som = domaine.les_elems();
   const IntTab& elem_faces=domaine_VEF.elem_faces();
   double mijK;
@@ -792,7 +793,7 @@ valeur_P1_H1(const Champ_P1NC& cha,
         {
           //for n_bord
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
 
@@ -850,7 +851,7 @@ valeur_P1_H1(const Champ_P1NC& cha,
         {
           //for n_bord
           const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           int num1 = le_bord.num_premiere_face();
           int num2 = num1 + le_bord.nb_faces();
 
@@ -953,17 +954,17 @@ void Champ_P1NC_implementation::filtrer_L2(DoubleTab& valeurs) const
           if (modele_turbulence.non_nul() && sub_type(Modele_turbulence_hyd_base,modele_turbulence.valeur()))
             {
               const Modele_turbulence_hyd_base& mod_turb = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur());
-              const Turbulence_paroi& loipar = mod_turb.loi_paroi();
+              const Turbulence_paroi_base& loipar = mod_turb.loi_paroi();
               DoubleTab tau_tan;
 
-              if (loipar.non_nul() && loipar.valeur().use_shear() )
+              if (mod_turb.utiliser_loi_paroi())
                 {
-                  tau_tan.ref(loipar->Cisaillement_paroi());
+                  tau_tan.ref(loipar.Cisaillement_paroi());
 
                   //  Interpolation des vitesses a la paroi
 
                   const Domaine_VEF& domaine_VE_chF = ch_inc_P1NC.domaine_vef();
-                  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,ch_inc_P1NC.equation().domaine_Cl_dis().valeur());
+                  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,ch_inc_P1NC.equation().domaine_Cl_dis());
                   const Conds_lim& les_cl = domaine_Cl_VEF.les_conditions_limites();
                   const Domaine& domchF = domaine_VE_chF.domaine();
                   const IntTab& face_voisins = domaine_VE_chF.face_voisins();
@@ -980,7 +981,7 @@ void Champ_P1NC_implementation::filtrer_L2(DoubleTab& valeurs) const
                     {
                       //Boucle sur les bords
                       const Cond_lim& la_cl = les_cl[num_cl];
-                      const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+                      const Front_VF& la_front_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
                       int ndeb = 0;
                       int nfin = la_front_dis.nb_faces_tot();
 
@@ -1123,7 +1124,7 @@ void Champ_P1NC_implementation::filtrer_resu(DoubleTab& resu) const
     }
 
   const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,
-                                                  cha.equation().domaine_Cl_dis().valeur());
+                                                  cha.equation().domaine_Cl_dis());
   const Domaine_VEF& domaine_VEF = domaine_vef();
   const DoubleVect& volumes_entrelaces= domaine_VEF.volumes_entrelaces();
   const Domaine& dom =domaine_VEF.domaine();
@@ -1143,7 +1144,7 @@ void Champ_P1NC_implementation::filtrer_resu(DoubleTab& resu) const
     for (n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
       {
         const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-        const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+        const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
         int nb_faces_tot_bord=le_bord.nb_faces_tot();
         int nb_faces_bord = le_bord.nb_faces();
         int num1 = 0;
@@ -1234,7 +1235,7 @@ void Champ_P1NC_implementation::filtrer_resu(DoubleTab& resu) const
   for (n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = domaine_Cl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int num1 = 0;
       int num2 = le_bord.nb_faces_tot() ;
 
@@ -1370,19 +1371,81 @@ valeur_a_elem_compo(const DoubleVect& position, int le_poly, int ncomp) const
   return val;
 }
 
+/**
+* @brief Computes values at the centers of gravity for a P1NC field
+        *
+        * This method calculates the values of a P1NC field at the centers of gravity
+        * of the mesh elements. For each component of the field, it averages the values
+        * from the faces of each polygon.
+*
+* @param[in,out] val DoubleTab that will store the computed values.
+*                    Must have 1 or 2 dimensions.
+*                    If 1D, it will be resized to (dimension_tot(0), 1).
+*
+* @return Reference to the modified val DoubleTab containing computed values
+*
+* @throws Process::exit() if val has more than 2 dimensions
+*
+* @note Implementation uses GPU parallelization through Kokkos
+* @note For each polygon, the value is computed as average of D+1 face values,
+        *       where D is the spatial dimension
+*/
+DoubleTab& Champ_P1NC_implementation::valeur_aux_centres_de_gravite(const Domaine& dom, DoubleTab& val) const
+{
+  const Champ_base& cha = le_champ();
+  int nb_compo_ = cha.nb_comp();
+  const DoubleTab& ch = cha.valeurs();
+  const Domaine_VEF& domaine_VEF = domaine_vef();
+  if (domaine_VEF.domaine() != dom) Process::exit("Error, you must use valeur_aux_centres_de_gravite() on the whole discretized mesh.");
+  if (val.nb_dim() > 2)
+    {
+      Cerr << "Erreur TRUST dans Champ_P1NC_implementation::valeur_aux_elems()\n";
+      Cerr << "Le DoubleTab val a plus de 2 entrees\n";
+      Process::exit();
+    }
+
+  // TODO : FIXME
+  // For FT the resize should be done in its good position and not here ...
+  if (val.nb_dim() == 1) val.resize(val.dimension_tot(0), 1);
+
+  int D = Objet_U::dimension;
+  int nb_elem = val.dimension(0);
+  CDoubleTabView ch_v = ch.view_ro();
+  CIntTabView elem_faces_v = domaine_VEF.elem_faces().view_ro();
+  DoubleTabView val_v = val.view_wo();
+  // Warning collapsing here introduce an overhead if nb_compo_ = 1 si ideally 2 kernels should we written according to nb_compo_!
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), nb_elem, KOKKOS_LAMBDA(const int le_poly)
+  {
+    for(int ncomp=0; ncomp<nb_compo_; ncomp++)
+      {
+        double sum = 0;
+        for (int i = 0; i < D + 1; i++)
+          {
+            int face = elem_faces_v(le_poly, i);
+            sum += ch_v(face, ncomp);
+          }
+        val_v(le_poly, ncomp) = sum / (D + 1);
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
+  return val;
+}
 
 DoubleTab& Champ_P1NC_implementation::
 valeur_aux_elems(const DoubleTab& positions,
                  const IntVect& les_polys,
                  DoubleTab& val) const
 {
+  if (les_polys.size() == 0) return val;
+  const Domaine_VEF& domaine_VEF = domaine_vef();
+#ifdef TRUST_USE_GPU
+  if (les_polys.size()==domaine_VEF.nb_elem())
+    Cerr << "Warning, Champ_P1NC_implementation::valeur_aux_elems(...) called whereas call to Champ_P1NC_implementation::valeur_aux_centres_de_gravite(...) could be more efficient!" << finl;
+#endif
   const Champ_base& cha=le_champ();
   int nb_compo_=cha.nb_comp();
-  int face;
-  double xs,ys,zs;
   const DoubleTab& ch = cha.valeurs();
 
-  const Domaine_VEF& domaine_VEF = domaine_vef();
   const Domaine& domaine_geom = get_domaine_geom();
   const DoubleTab& coord = domaine_geom.coord_sommets();
   const IntTab& sommet_poly = domaine_geom.les_elems();
@@ -1397,32 +1460,40 @@ valeur_aux_elems(const DoubleTab& positions,
   // For FT the resize should be done in its good position and not here ...
   if (val.nb_dim() == 1 ) val.resize(val.dimension_tot(0),1);
 
-  int le_poly, D = Objet_U::dimension;
-  const IntTab& elem_faces=domaine_VEF.elem_faces();
-
-  for(int rang_poly=0; rang_poly<les_polys.size(); rang_poly++)
-    {
-      le_poly=les_polys(rang_poly);
-      if (le_poly == -1)
+  int D = Objet_U::dimension;
+  CIntTabView sommet_poly_v = sommet_poly.view_ro();
+  CDoubleTabView coord_v = coord.view_ro();
+  CDoubleTabView ch_v = ch.view_ro();
+  CIntTabView elem_faces_v = domaine_VEF.elem_faces().view_ro();
+  CDoubleTabView positions_v = positions.view_ro();
+  CIntArrView les_polys_v = les_polys.view_ro();
+  DoubleTabView val_v = val.view_wo();
+  // Warning collapsing here introduce an overhead if nb_compo_ = 1 si ideally 2 kernels should we written according to nb_compo_!
+  Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__),les_polys.size(), KOKKOS_LAMBDA(
+                         const int rang_poly)
+  {
+    int le_poly=les_polys_v(rang_poly);
+    if (le_poly == -1)
+      for(int ncomp=0; ncomp<nb_compo_; ncomp++)
+        val_v(rang_poly, ncomp) = 0;
+    else
+      {
         for(int ncomp=0; ncomp<nb_compo_; ncomp++)
-          val(rang_poly, ncomp) = 0;
-      else
-        {
-          for(int ncomp=0; ncomp<nb_compo_; ncomp++)
-            {
-              val(rang_poly, ncomp) = 0;
-              xs = positions(rang_poly,0);
-              ys = positions(rang_poly,1);
-              zs = (D == 3) ? positions(rang_poly,2) : 0;
-              for (int i = 0; i < D + 1; i++)
-                {
-                  face = elem_faces(le_poly, i);
-                  val(rang_poly, ncomp) += ch(face, ncomp) *
-                                           ((D == 2) ? fonction_forme_2D(xs, ys, le_poly, i, sommet_poly, coord) : fonction_forme_3D(xs, ys, zs, le_poly, i, sommet_poly, coord));
-                }
-            }
-        }
-    }
+          {
+            val_v(rang_poly, ncomp) = 0;
+            double xs = positions_v(rang_poly,0);
+            double ys = positions_v(rang_poly,1);
+            double zs = (D == 3) ? positions_v(rang_poly,2) : 0;
+            for (int i = 0; i < D + 1; i++)
+              {
+                int face = elem_faces_v(le_poly, i);
+                val_v(rang_poly, ncomp) += ch_v(face, ncomp) *
+                                           ((D == 2) ? fonction_forme_2D_v(xs, ys, le_poly, i, sommet_poly_v, coord_v) : fonction_forme_3D_v(xs, ys, zs, le_poly, i, sommet_poly_v, coord_v));
+              }
+          }
+      }
+  });
+  end_gpu_timer(__KERNEL_NAME__);
   return val;
 }
 
@@ -1431,6 +1502,7 @@ valeur_aux_elems_compo(const DoubleTab& positions,
                        const IntVect& les_polys,
                        DoubleVect& val,int ncomp) const
 {
+  if (les_polys.size() == 0) return val;
   int les_polys_size = les_polys.size();
   const Champ_base& cha=le_champ();
   double xs,ys,zs;
@@ -1593,92 +1665,98 @@ valeur_aux_elems_compo_smooth(const DoubleTab& positions,
 
 DoubleTab& Champ_P1NC_implementation::
 valeur_aux_sommets(const Domaine& dom,
-                   DoubleTab& champ_som) const
+                   DoubleTab& tab_champ_som) const
 {
   int nb_som = dom.nb_som_tot();
-  int nb_som_return = champ_som.dimension_tot(0);
-
-  const Champ_base& cha=le_champ();
-  const DoubleTab& ch = cha.valeurs();
-  int nb_compo_=cha.nb_comp();
-  ArrOfInt compteur(nb_som);
+  int nb_som_return = tab_champ_som.dimension_tot(0);
+  int nb_compo_ = le_champ().nb_comp();
+  IntTrav tab_compteur(nb_som);
 
   const Domaine_VEF& domaine_VEF = domaine_vef();
   assert(domaine_vef().domaine()==dom);
-
-  if ( methode_calcul_valeurs_sommets>0)
+  if (methode_calcul_valeurs_sommets_static>0)
     {
       int nb_elem_tot = dom.nb_elem_tot();
       int nb_som_elem = dom.nb_som_elem();
 
-      const IntTab& elem_faces = domaine_VEF.elem_faces();
+      DoubleTrav tab_min_som(nb_som,nb_compo_) ;
+      DoubleTrav tab_max_som(nb_som,nb_compo_) ;
 
-      DoubleTab min_som(nb_som,nb_compo_) ;
-      DoubleTab max_som(nb_som,nb_compo_) ;
-      int ncomp, face_adj,face_glob;
-      int num_elem,num_som,j;
-
-      champ_som = 0;
-      compteur = 0;
-      for (j=0; j<nb_som; j++)
-        for (int k = 0; k < nb_compo_; k++ )
-          {
-            min_som(j,k) = 1.e+30 ;
-            max_som(j,k) = 1.e-30 ;
-          }
-
-      for (num_elem=0; num_elem<nb_elem_tot; num_elem++)
+      tab_min_som = 1.e+30;
+      tab_max_som = 1.e-30; // ToDo bug ? tab_max_som = -1.e+30
+      if (getenv("TRUST_FIX_P1NC_POST_SOM")!=nullptr) tab_max_som = -1.e+30;
+      tab_compteur = 0;
+      tab_champ_som = 0.;
+      // Loop on elem (~30ms -> ~8ms by using parallelism on the 2 nested loops with MDRangePolicy)
+      {
+        CIntTabView elem_faces = domaine_VEF.elem_faces().view_ro();
+        CIntTabView sommet_elem = dom.les_elems().view_ro();
+        CDoubleTabView ch = le_champ().valeurs().view_ro();
+        IntArrView compteur = static_cast<ArrOfInt&>(tab_compteur).view_rw();
+        DoubleTabView champ_som = tab_champ_som.view_rw();
+        DoubleTabView min_som = tab_min_som.view_rw();
+        DoubleTabView max_som = tab_max_som.view_rw();
+        Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::MDRangePolicy<Kokkos::Rank<2>>({0,0}, {nb_elem_tot,nb_som_elem}), KOKKOS_LAMBDA(
+                               const int num_elem, const int j)
         {
-          for (j=0; j<nb_som_elem; j++)
+          int num_som = sommet_elem(num_elem, j);
+          if (num_som < nb_som_return)
             {
-              num_som = dom.sommet_elem(num_elem,j);
-              if(num_som < nb_som_return)
+              Kokkos::atomic_inc(&compteur(num_som));
+              for (int ncomp = 0; ncomp < nb_compo_; ncomp++)
                 {
-                  compteur[num_som]++;
-                  for (ncomp=0; ncomp<nb_compo_; ncomp++)
+                  Kokkos::atomic_add(&champ_som(num_som, ncomp), valeur_a_sommet_compo(num_som, num_elem, ncomp, elem_faces, sommet_elem, ch));
+                  for (int face_adj = 0; face_adj < nb_som_elem; face_adj++)
                     {
-                      champ_som(num_som,ncomp) += valeur_a_sommet_compo(num_som,num_elem,ncomp);
-                      for(face_adj=0; face_adj<nb_som_elem; face_adj ++)
+                      if (face_adj != j)
                         {
-                          if (face_adj != j )
-                            {
-                              face_glob = elem_faces(num_elem, face_adj);
-                              min_som(num_som,ncomp) = std::min ( ch(face_glob,ncomp),min_som(num_som,ncomp) ) ;
-                              max_som(num_som,ncomp) = std::max ( ch(face_glob,ncomp),max_som(num_som,ncomp) ) ;
-                            }
+                          int face_glob = elem_faces(num_elem, face_adj);
+                          Kokkos::atomic_min(&min_som(num_som, ncomp), ch(face_glob, ncomp));
+                          Kokkos::atomic_max(&max_som(num_som, ncomp), ch(face_glob, ncomp));
                         }
                     }
                 }
             }
-        }
-      for (num_som=0; num_som<nb_som_return; num_som++)
-        for (ncomp=0; ncomp<nb_compo_; ncomp++)
-          {
-            champ_som(num_som,ncomp) /= compteur[num_som];
-            if ( methode_calcul_valeurs_sommets>1)
-              {
-                if ( champ_som(num_som,ncomp) < min_som(num_som,ncomp) )
-                  {
-                    champ_som(num_som,ncomp) = min_som(num_som,ncomp) ;
-                  }
-                if ( champ_som(num_som,ncomp) > max_som(num_som,ncomp) )
-                  {
-                    champ_som(num_som,ncomp) = max_som(num_som,ncomp) ;
-                  }
-              }
-          }
+        });
+        end_gpu_timer(__KERNEL_NAME__);
+      }
+      // Loop on nodes (~0.2ms, no gain by collapsing the 2 nested loops...)
+      {
+        int methode_calcul_valeurs_sommets = methode_calcul_valeurs_sommets_static; // Kokkos kernels can't use static var on device
+        CDoubleTabView min_som = tab_min_som.view_ro();
+        CDoubleTabView max_som = tab_max_som.view_ro();
+        CIntArrView compteur = static_cast<ArrOfInt&>(tab_compteur).view_ro();
+        DoubleTabView champ_som = tab_champ_som.view_rw();
+        Kokkos::parallel_for(start_gpu_timer(__KERNEL_NAME__), Kokkos::MDRangePolicy<Kokkos::Rank<2>>({0,0}, {nb_som_return,nb_compo_}), KOKKOS_LAMBDA(
+                               const int num_som, const int ncomp)
+        {
+          if (compteur(num_som)>0)
+            {
+              champ_som(num_som, ncomp) /= compteur(num_som);
+              if (methode_calcul_valeurs_sommets > 1)
+                {
+                  if (champ_som(num_som, ncomp) < min_som(num_som, ncomp))
+                    champ_som(num_som, ncomp) = min_som(num_som, ncomp);
+                  if (champ_som(num_som, ncomp) > max_som(num_som, ncomp))
+                    champ_som(num_som, ncomp) = max_som(num_som, ncomp);
+                }
+            }
+        });
+        end_gpu_timer(__KERNEL_NAME__);
+      }
     }
   else
     {
-      assert(methode_calcul_valeurs_sommets==-1);
-      champ_som = 0;
-      compteur = 0;
+      assert(methode_calcul_valeurs_sommets_static==-1);
+      tab_champ_som = 0;
+      tab_compteur = 0;
       int nb_comp=nb_compo_;
       int nb_faces_tot=domaine_VEF.nb_faces_tot();
       int nb_som_face=domaine_VEF.nb_som_face();
       const IntTab& face_sommets=domaine_VEF.face_sommets();
-      int face;
-      for(face=0; face<nb_faces_tot; face++)
+      const DoubleTab& ch = le_champ().valeurs();
+      ToDo_Kokkos("critical"); // but never used !
+      for(int face=0; face<nb_faces_tot; face++)
         {
 
           for(int isom=0; isom<nb_som_face; isom++)
@@ -1686,9 +1764,9 @@ valeur_aux_sommets(const Domaine& dom,
               int som1=face_sommets(face,isom);
               if (som1<nb_som_return)
                 {
-                  compteur[som1]++;
+                  tab_compteur[som1]++;
                   for(int k=0; k<nb_comp; k++)
-                    champ_som(som1,k)+=ch(face,k);
+                    tab_champ_som(som1,k)+=ch(face,k);
                 }
             }
         }
@@ -1697,27 +1775,44 @@ valeur_aux_sommets(const Domaine& dom,
       for (int num_som=0; num_som<nb_som_return; num_som++)
         for (int ncomp=0; ncomp<nb_compo_; ncomp++)
           {
-            champ_som(num_som,ncomp) /= compteur[num_som];
+            tab_champ_som(num_som,ncomp) /= tab_compteur[num_som];
           }
     }
-  return champ_som;
+  return tab_champ_som;
 }
 
-double Champ_P1NC_implementation::valeur_a_sommet_compo(int num_som, int le_poly, int ncomp) const
+double Champ_P1NC_implementation::valeur_a_sommet_compo(int num_som, int num_elem, int ncomp) const
 {
-  //Cerr << "Champ_P1NC_implementation::valeur_a_sommet_compo" << finl;
-  int face=-1;
   const IntTab& elem_faces = domaine_vef().elem_faces();
-  const IntTab& sommet_poly = get_domaine_geom().les_elems();
+  const IntTab& sommet_elem = get_domaine_geom().les_elems();
   const DoubleTab& ch = le_champ().valeurs();
   double val=0;
-  if (le_poly != -1)
+  if (num_elem != -1)
     {
       for (int i=0; i< Objet_U::dimension+1; i++)
         {
-          face = elem_faces(le_poly,i);
-          if (sommet_poly(le_poly,i)==num_som)
+          int face = elem_faces(num_elem,i);
+          if (sommet_elem(num_elem,i)==num_som)
             val -= (Objet_U::dimension-1)*ch(face, ncomp);
+          else
+            val += ch(face, ncomp);
+        }
+    }
+  return val;
+}
+
+KOKKOS_INLINE_FUNCTION
+double Champ_P1NC_implementation::valeur_a_sommet_compo(int num_som, int num_elem, int ncomp, CIntTabView elem_faces, CIntTabView sommet_elem, CDoubleTabView ch) const
+{
+  double val=0;
+  if (num_elem != -1)
+    {
+      int nb_som = (int)sommet_elem.extent(1);
+      for (int i=0; i<nb_som; i++)
+        {
+          int face = elem_faces(num_elem,i);
+          if (sommet_elem(num_elem,i)==num_som)
+            val -= (nb_som-2)*ch(face, ncomp);
           else
             val += ch(face, ncomp);
         }
@@ -1760,7 +1855,7 @@ valeur_aux_sommets_compo(const Domaine& dom,
   int nb_som = dom.nb_som();
 
   IntVect compteur(nb_som);
-  if (methode_calcul_valeurs_sommets>0)
+  if (methode_calcul_valeurs_sommets_static>0)
     {
       int nb_elem_tot = dom.nb_elem_tot();
       int nb_som_elem = dom.nb_som_elem();
@@ -1810,7 +1905,7 @@ valeur_aux_sommets_compo(const Domaine& dom,
       for (num_som=0; num_som<nb_som; num_som++)
         {
           champ_som(num_som) /= compteur[num_som];
-          if (methode_calcul_valeurs_sommets>1)
+          if (methode_calcul_valeurs_sommets_static>1)
             {
               if ( champ_som(num_som) < min_som(num_som) ) champ_som(num_som) = min_som(num_som) ;
               if ( champ_som(num_som) > max_som(num_som) ) champ_som(num_som) = max_som(num_som) ;
@@ -1875,7 +1970,7 @@ int Champ_P1NC_implementation::remplir_coord_noeuds_et_polys(DoubleTab& position
   const IntTab& face_voisins=zvef.face_voisins();
   int nb_faces=zvef.nb_faces();
   polys.resize(nb_faces);
-
+  ToDo_Kokkos("critical");
   for(int i= 0; i< nb_faces; i++)
     {
       polys(i)=face_voisins(i, 0);

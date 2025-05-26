@@ -13,9 +13,10 @@
 *
 *****************************************************************************/
 
+#include <Domaine_Cl_dis_base.h>
+#include <Equation_base.h>
 #include <Champ_Q1NC.h>
 #include <Periodique.h>
-#include <Equation.h>
 #include <Debog.h>
 
 Implemente_instanciable(Champ_Q1NC,"Champ_Q1NC",Champ_Inc_base);
@@ -32,7 +33,7 @@ Entree& Champ_Q1NC::readOn(Entree& s)
 // en vis a vis sont identiques. Pour cela on prend la demi somme des deux valeurs.
 void Champ_Q1NC::verifie_valeurs_cl()
 {
-  const Domaine_Cl_dis_base& zcl = equation().domaine_Cl_dis().valeur();
+  const Domaine_Cl_dis_base& zcl = equation().domaine_Cl_dis();
   int nb_cl = zcl.nb_cond_lim();
   DoubleTab& ch_tab = valeurs();
   int nb_compo = nb_comp();
@@ -72,7 +73,7 @@ int Champ_Q1NC::compo_normale_sortante(int num_face) const
 {
   double vit_norm = 0;
   for (int ncomp = 0; ncomp < nb_comp(); ncomp++)
-    vit_norm += (*this)(num_face, ncomp) * domaine_vef().face_normales(num_face, ncomp);
+    vit_norm += valeurs()(num_face, ncomp) * domaine_vef().face_normales(num_face, ncomp);
   return (vit_norm > 0);
 }
 

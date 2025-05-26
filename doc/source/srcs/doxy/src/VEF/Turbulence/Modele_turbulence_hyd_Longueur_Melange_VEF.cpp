@@ -94,15 +94,15 @@ int Modele_turbulence_hyd_Longueur_Melange_VEF::lire_motcle_non_standard(const M
     return Modele_turbulence_hyd_Longueur_Melange_base::lire_motcle_non_standard(mot, is);
 }
 
-Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_viscosite_turbulente()
+Champ_Fonc_base& Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_viscosite_turbulente()
 {
   const double Kappa = 0.415;
   double Cmu = CMU;
 
   double temps = mon_equation_->inconnue().temps();
   const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF, le_dom_VF_.valeur());
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
-  DoubleVect& k = energie_cinetique_turb_.valeurs();
+  DoubleTab& visco_turb = la_viscosite_turbulente_->valeurs();
+  DoubleVect& k = energie_cinetique_turb_->valeurs();
   const int nb_elem = domaine_VEF.nb_elem();
   const int nb_elem_tot = domaine_VEF.nb_elem_tot();
   const DoubleTab& xp = domaine_VEF.xp();
@@ -177,7 +177,7 @@ Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_viscosite_turbu
       {
         calculer_f_amortissement();
 
-        const DoubleTab& wall_length = wall_length_.valeurs();
+        const DoubleTab& wall_length = wall_length_->valeurs();
 
         for (int elem = 0; elem < nb_elem; elem++)
           {
@@ -198,16 +198,16 @@ Champ_Fonc& Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_viscosite_turbu
 
   Debog::verifier("Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_viscosite_turbulente visco_turb 1", visco_turb);
 
-  la_viscosite_turbulente_.changer_temps(temps);
+  la_viscosite_turbulente_->changer_temps(temps);
 
-  wall_length_.changer_temps(temps);
+  wall_length_->changer_temps(temps);
   return la_viscosite_turbulente_;
 }
 
 void Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_Sij2()
 {
   const DoubleTab& la_vitesse = mon_equation_->inconnue().valeurs();
-  const Champ_P1NC& ch = ref_cast(Champ_P1NC, mon_equation_->inconnue().valeur());
+  const Champ_P1NC& ch = ref_cast(Champ_P1NC, mon_equation_->inconnue());
   const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF, le_dom_Cl_.valeur());
   const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF, le_dom_VF_.valeur());
   const int nb_elem = domaine_VEF.nb_elem_tot();
@@ -241,7 +241,7 @@ void Modele_turbulence_hyd_Longueur_Melange_VEF::lire_distance_paroi()
   // PQ : 25/02/04 recuperation de la distance a la paroi dans Wall_length.xyz
 
   const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF, le_dom_VF_.valeur());
-  DoubleTab& wall_length = wall_length_.valeurs();
+  DoubleTab& wall_length = wall_length_->valeurs();
   wall_length = -1.;
 
   LecFicDiffuse fic;
@@ -291,13 +291,13 @@ void Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_f_amortissement()
 
   const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF, le_dom_VF_.valeur());
   const int nb_elem = domaine_VEF.nb_elem();
-  DoubleTab& wall_length = wall_length_.valeurs();
+  DoubleTab& wall_length = wall_length_->valeurs();
   int nb_face_elem = domaine_VEF.domaine().nb_faces_elem();
   const IntTab& elem_faces = domaine_VEF.elem_faces();
 
   const Fluide_base& le_fluide = ref_cast(Fluide_base, mon_equation_->milieu());
-  const Champ_Don& ch_visco_cin = le_fluide.viscosite_cinematique();
-  const DoubleTab& tab_visco = ch_visco_cin->valeurs();
+  const Champ_Don_base& ch_visco_cin = le_fluide.viscosite_cinematique();
+  const DoubleTab& tab_visco = ch_visco_cin.valeurs();
   const DoubleTab& vit = mon_equation_->inconnue().valeurs();
 
   f_amortissement_.resize(nb_elem);
@@ -312,7 +312,7 @@ void Modele_turbulence_hyd_Longueur_Melange_VEF::calculer_f_amortissement()
   double visco = -1;
   int l_unif;
 
-  if (sub_type(Champ_Uniforme, ch_visco_cin.valeur()))
+  if (sub_type(Champ_Uniforme, ch_visco_cin))
     {
       visco = std::max(tab_visco(0, 0), DMINFLOAT);
       l_unif = 1;

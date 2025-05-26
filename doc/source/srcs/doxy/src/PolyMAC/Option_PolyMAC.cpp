@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,9 +20,11 @@
 Implemente_instanciable(Option_PolyMAC,"Option_PolyMAC",Interprete);
 
 // XD Option_PolyMAC interprete Option_PolyMAC 1 Class of PolyMAC options.
-// XD attr use_osqp rien use_osqp 1 Flag to use the old formulation of the M2 matrix provided by the OSQP library
 
 int Option_PolyMAC::USE_NEW_M2 = 1;
+int Option_PolyMAC::MAILLAGE_VDF = 0;
+int Option_PolyMAC::INTERP_VE1 = 0;
+int Option_PolyMAC::TRAITEMENT_AXI = 0;
 
 Sortie& Option_PolyMAC::printOn(Sortie& os) const { return Interprete::printOn(os); }
 
@@ -31,14 +33,25 @@ Entree& Option_PolyMAC::readOn(Entree& is) { return Interprete::readOn(is); }
 Entree& Option_PolyMAC::interpreter(Entree& is)
 {
   Param param(que_suis_je());
-  param.ajouter_non_std("use_osqp",(this)); // chaine Use the new formulation of the M2 matrix
+  param.ajouter_non_std("use_osqp",(this)); // XD_ADD_P rien Flag to use the old formulation of the M2 matrix provided by the OSQP library. Only useful for PolyMAC version.
+  param.ajouter_non_std("maillage_vdf|vdf_mesh",(this)); // XD_ADD_P rien Flag used to force the calculation of the equiv tab.
+  param.ajouter_non_std("interp_ve1",(this)); // XD_ADD_P rien Flag to enable a first-order face-to-element velocity interpolation. By default, it is not activated which means a second order interpolation. Only useful for PolyMAC_P0 version.
+  param.ajouter_non_std("traitement_axi",(this)); // XD_ADD_P rien Flag used to relax the time-step stability criterion in case of a thin slice geometry while modelling an axi-symetrical case. Only useful for PolyMAC_P0 version.
   param.lire_avec_accolades_depuis(is);
   return is;
 }
 
 int Option_PolyMAC::lire_motcle_non_standard(const Motcle& mot, Entree& is)
 {
-  if (mot=="use_osqp") USE_NEW_M2 = 0;
-  else return -1;
+  if (mot == "use_osqp")
+    USE_NEW_M2 = 0;
+  else if (mot == "maillage_vdf" || mot == "vdf_mesh")
+    MAILLAGE_VDF = 1;
+  else if (mot == "interp_ve1")
+    INTERP_VE1 = 1;
+  else if (mot == "traitement_axi")
+    TRAITEMENT_AXI = 1;
+  else
+    return -1;
   return 1;
 }

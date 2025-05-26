@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,9 +13,9 @@
 *
 *****************************************************************************/
 
-#include <Op_Dift_EF_base.h>
-#include <Modele_turbulence_scal.h>
+#include <Modele_turbulence_scal_base.h>
 #include <Navier_Stokes_std.h>
+#include <Op_Dift_EF_base.h>
 
 Implemente_base_sans_constructeur(Op_Dift_EF_base,"Op_Dift_EF_base",Op_Diff_EF_base);
 
@@ -44,15 +44,14 @@ void Op_Dift_EF_base::mettre_a_jour(double )
 {
   if (sub_type(Navier_Stokes_std,equation())) // on traite l'hydraulique
     {
-      if ( le_modele_turbulence->loi_paroi().non_nul())
-        if (le_modele_turbulence->loi_paroi()->use_shear())
-          {
-            // Modif BM: on ne prend la ref que si le tableau a ete initialise, sinon ca bloque
-            // l'initialisation
-            const DoubleTab& tab = le_modele_turbulence->loi_paroi().valeur().Cisaillement_paroi();
-            if (tab.size_array() > 0)
-              tau_tan_.ref(tab);
-          }
+      if ( le_modele_turbulence->utiliser_loi_paroi())
+        {
+          // Modif BM: on ne prend la ref que si le tableau a ete initialise, sinon ca bloque
+          // l'initialisation
+          const DoubleTab& tab = le_modele_turbulence->loi_paroi().Cisaillement_paroi();
+          if (tab.size_array() > 0)
+            tau_tan_.ref(tab);
+        }
     }
 }
 
@@ -65,14 +64,14 @@ void Op_Dift_EF_base::completer()
   if (modele_turbulence.non_nul() && sub_type(Modele_turbulence_hyd_base,modele_turbulence.valeur()))
     {
       const Modele_turbulence_hyd_base& mod_turb = ref_cast(Modele_turbulence_hyd_base,modele_turbulence.valeur());
-      const Champ_Fonc& viscosite_turbulente = mod_turb.viscosite_turbulente();
+      const Champ_Fonc_base& viscosite_turbulente = mod_turb.viscosite_turbulente();
       associer_diffusivite_turbulente(viscosite_turbulente);
       associer_modele_turbulence(mod_turb);
     }
   else if (sub_type(Modele_turbulence_scal_base,modele_turbulence.valeur()))
     {
       const Modele_turbulence_scal_base& modele_turbulence_scalaire = ref_cast(Modele_turbulence_scal_base,modele_turbulence.valeur());
-      const Champ_Fonc& conductivite_turbulente = modele_turbulence_scalaire.conductivite_turbulente();
+      const Champ_Fonc_base& conductivite_turbulente = modele_turbulence_scalaire.conductivite_turbulente();
       associer_diffusivite_turbulente(conductivite_turbulente);
     }
   else

@@ -14,19 +14,12 @@
 *****************************************************************************/
 
 #include <Domaine_dis_cache.h>
+#include <communications.h>
 #include <TRUST_2_CGNS.h>
 #include <Domaine_VF.h>
 #include <Domaine.h>
 
 #ifdef HAS_CGNS
-
-#ifdef MPI_
-#ifdef INT_is_64_
-#define MPI_ENTIER MPI_LONG
-#else
-#define MPI_ENTIER MPI_INT
-#endif /* INT_is_64_ */
-#endif /* MPI_ */
 
 std::string TRUST_2_CGNS::remove_slash_linkfile(std::string& linkfile)
 {
@@ -225,8 +218,8 @@ void TRUST_2_CGNS::fill_global_infos_poly(const bool is_polyedre)
   if (is_polyedre)
     {
       const Nom dom_poly("Domaine_PolyMAC");
-      const Domaine_dis& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
-      const Domaine_VF& vf = ref_cast(Domaine_VF, domaine_dis.valeur());
+      const Domaine_dis_base& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
+      const Domaine_VF& vf = ref_cast(Domaine_VF, domaine_dis);
       const IntTab& fs = vf.face_sommets(), &ef = vf.elem_faces();
 
       const int nb_fs = fs.dimension(0), nb_ef = ef.dimension(0);
@@ -459,8 +452,8 @@ int TRUST_2_CGNS::convert_connectivity_nface(std::vector<cgsize_t>& econ, std::v
 {
   assert (dom_trust_.non_nul());
   const Nom dom_poly("Domaine_PolyMAC");
-  const Domaine_dis& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
-  const Domaine_VF& vf = ref_cast (Domaine_VF, domaine_dis.valeur());
+  const Domaine_dis_base& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
+  const Domaine_VF& vf = ref_cast (Domaine_VF, domaine_dis);
   const IntTab& ef = vf.elem_faces();
 
   eoff.push_back(0); // first index = > 0 !
@@ -502,8 +495,8 @@ int TRUST_2_CGNS::convert_connectivity_ngon(std::vector<cgsize_t>& econ, std::ve
   if (is_polyedre)
     {
       const Nom dom_poly("Domaine_PolyMAC");
-      const Domaine_dis& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
-      const Domaine_VF& vf = ref_cast(Domaine_VF, domaine_dis.valeur());
+      const Domaine_dis_base& domaine_dis = Domaine_dis_cache::Build_or_get_poly_post(dom_poly, dom_trust_.valeur());
+      const Domaine_VF& vf = ref_cast(Domaine_VF, domaine_dis);
       const IntTab& fs = vf.face_sommets();
 
       eoff.push_back(0); // first index = > 0 !

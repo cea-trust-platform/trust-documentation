@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,7 @@
 #ifndef Solveur_Masse_EF_included
 #define Solveur_Masse_EF_included
 
-#include <Solveur_Masse.h>
+#include <Solveur_Masse_base.h>
 #include <TRUST_Ref.h>
 
 class Domaine_Cl_EF;
@@ -39,8 +39,8 @@ public:
 
 private:
 
-  REF(Domaine_EF) le_dom_EF;
-  REF(Domaine_Cl_EF) le_dom_Cl_EF;
+  OBS_PTR(Domaine_EF) le_dom_EF;
+  OBS_PTR(Domaine_Cl_EF) le_dom_Cl_EF;
 };
 
 #endif

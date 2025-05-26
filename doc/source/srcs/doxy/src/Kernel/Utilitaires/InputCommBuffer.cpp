@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,15 +16,18 @@
 #include <InputCommBuffer.h>
 #include <OutputCommBuffer.h>
 #include <assert.h>
+
 InputCommBuffer::InputCommBuffer()
 {
   set_error_action(ERROR_CONTINUE);
   bin_ = 1;
+  // Communication buffer should never try to convert int into long:
+  avoid_conversion_ = true;
   memorysize_ = 16;
   size_ = 0;
   // On alloue toujours quelque chose (create_stream a besoin d'un octet au moins
   // pour creer un stream de taille nulle)
-  buffer_ = new char[memorysize_];
+  buffer_ = new char[memorysize_]();
   stream_ = 0;
 }
 
@@ -45,7 +48,7 @@ char * InputCommBuffer::reserve_buffer(int bufsize)
     {
       delete[] buffer_;
       memorysize_ = size_ * 2;
-      buffer_ = new char[memorysize_];
+      buffer_ = new char[memorysize_]();
     }
   return buffer_;
 }

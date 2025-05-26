@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,7 +18,7 @@
 
 #include <Champs_compris_interface.h>
 #include <Champs_compris.h>
-#include <Champ_Don.h>
+#include <Champ_Don_base.h>
 #include <TRUST_Ref.h>
 
 class Fluide_Dilatable_base;
@@ -36,12 +36,15 @@ class Loi_Etat_base : public Objet_U, public Champs_compris_interface
   Declare_base_sans_constructeur(Loi_Etat_base);
 
 public :
+  friend class Fluide_Quasi_Compressible;
+  friend class Fluide_Weakly_Compressible;
+
   Loi_Etat_base();
   void assoscier_probleme(const Probleme_base& pb);
   void mettre_a_jour(double);
   void calculer_nu();
-  Champ_Don& ch_temperature();
-  const Champ_Don& ch_temperature() const;
+  Champ_Don_base& ch_temperature();
+  const Champ_Don_base& ch_temperature() const;
 
   // Methodes virtuelles
   virtual void associer_fluide(const Fluide_Dilatable_base&);
@@ -59,10 +62,13 @@ public :
   virtual double Drho_DT(double,double) const ;
   virtual double De_DP(double,double) const ;
   virtual double De_DT(double,double) const ;
+
   //Methodes de l interface des champs postraitables
   const Champ_base& get_champ(const Motcle& nom) const override;
-  void creer_champ(const Motcle& motlu) override;
+  void creer_champ(const Motcle& motlu) override { }
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
 
   // Methodes virtuelles pure
   const virtual Nom type_fluide() const =0;
@@ -74,15 +80,15 @@ public :
 
   // Methodes inlines
   inline Champs_compris& champs_compris() { return champs_compris_; }
-  inline const DoubleTab& temperature() const { return ch_temperature().valeurs(); }
+  inline const DoubleTab& temperature() const { return temperature_->valeurs(); }
   inline const DoubleTab& rho_n() const { return tab_rho_n; }
   inline const DoubleTab& rho_np1() const { return tab_rho_np1; }
   inline double Prandt() const { return Pr_; }
 
 protected :
-  REF(Fluide_Dilatable_base) le_fluide;
-  REF(Probleme_base) le_prob_;
-  Champ_Don temperature_;
+  OBS_PTR(Fluide_Dilatable_base) le_fluide;
+  OBS_PTR(Probleme_base) le_prob_;
+  OWN_PTR(Champ_Don_base) temperature_;
   DoubleTab tab_rho_n, tab_rho_np1;    //rho a l'etape precedente et l'etape suivante
   double Pr_;
   int debug;

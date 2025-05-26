@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -50,7 +50,7 @@ Entree& Extraire_plan::interpreter_(Entree& is)
   Nom nom_pb;
   Nom nom_dom;
   ArrOfDouble origine,point1,point2,point3;
-  int triangle;
+  bool triangle = false;
   double epaisseur;
   Param param(que_suis_je());
   param.ajouter("domaine",&nom_dom,Param::REQUIRED); // XD_ADD_P ref_domaine domain name
@@ -62,7 +62,8 @@ Entree& Extraire_plan::interpreter_(Entree& is)
   param.ajouter_flag("triangle",&triangle); // XD_ADD_P rien not_set
   param.ajouter("epaisseur",&epaisseur,Param::REQUIRED); // XD_ADD_P floattant thickness
 
-  int via_extraire_surface=0, inverse_condition_element;
+  bool via_extraire_surface = false;
+  bool inverse_condition_element = false;
   param.ajouter_flag("via_extraire_surface",&via_extraire_surface); // XD_ADD_P rien not_set
   param.ajouter_flag("inverse_condition_element",&inverse_condition_element); // XD_ADD_P rien not_set
 
@@ -165,10 +166,10 @@ Entree& Extraire_plan::interpreter_(Entree& is)
       exit();
     }
   Probleme_base& pb=ref_cast(Probleme_base, objet(nom_pb));
-  const Domaine_VF& domaine_vf=ref_cast(Domaine_VF,pb.domaine_dis().valeur());
+  const Domaine_VF& domaine_vf=ref_cast(Domaine_VF,pb.domaine_dis());
   dom.les_sommets()=domaine_vf.domaine().les_sommets();
   const DoubleTab& coord=dom.les_sommets();
-  const Nom& type_elem=domaine_vf.domaine().type_elem().valeur().que_suis_je();
+  const Nom& type_elem=domaine_vf.domaine().type_elem()->que_suis_je();
   if (type_elem==Motcle("Tetraedre"))
     dom.typer("Triangle");
   else
@@ -233,7 +234,7 @@ Entree& Extraire_plan::interpreter_(Entree& is)
       int pe_voisin=joint_temp.PEvoisin();
       if (pe_voisin<me())
         {
-          const IntTab& indices_faces_joint = joint_temp.joint_item(Joint::FACE).renum_items_communs();
+          const IntTab& indices_faces_joint = joint_temp.joint_item(JOINT_ITEM::FACE).renum_items_communs();
           const int nb_faces_j = indices_faces_joint.dimension(0);
           for (int j = 0; j < nb_faces_j; j++)
             {

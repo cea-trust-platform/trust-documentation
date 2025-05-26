@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,7 @@
 #include <Ch_front_var_stationnaire.h>
 #include <TRUST_Ref.h>
 
-class Domaine;
+#include <Domaine_forward.h>
 
 /*! @brief classe Champ_front_lu Classe derivee de Champ_front_var qui represente les
  *
@@ -39,7 +39,7 @@ public:
   int is_bin(Nom name);
 
 protected :
-  REF(Domaine) mon_domaine;
+  OBS_PTR(Domaine) mon_domaine;
   Nom nom_fic;
 };
 

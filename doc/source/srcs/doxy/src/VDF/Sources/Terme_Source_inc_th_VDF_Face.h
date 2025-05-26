@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,11 +21,11 @@
 #include <Source_base.h>
 #include <TRUST_Ref.h>
 
+
 class Convection_Diffusion_Temperature;
 class Navier_Stokes_std;
 class Probleme_base;
 class Domaine_Cl_VDF;
-class Champ_Don;
 class Domaine_VDF;
 
 /*! @brief class Terme_Source_inc_th_VDF_Face Cette classe permet de conserver le debit dans une simulation
@@ -42,8 +42,8 @@ class Terme_Source_inc_th_VDF_Face : public Source_base, public Terme_Source_inc
 public :
   void associer_pb(const Probleme_base& ) override;
   DoubleTab& calculer(DoubleTab& ) const override;
-  /*    virtual const Champ_Don& beta() const =0; */
-  inline const Champ_Don& beta() const ;
+  /*    virtual const Champ_Don_base& beta() const =0; */
+  inline const Champ_Don_base& beta() const ;
   void mettre_a_jour(double temps) override
   {
     Terme_Source_inc_th::mettre_a_jour(temps);
@@ -60,18 +60,20 @@ public :
 
 protected :
 
-  REF(Domaine_VDF) le_dom_VDF;
-  REF(Domaine_Cl_VDF) le_dom_Cl_VDF;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  OBS_PTR(Domaine_VDF) le_dom_VDF;
+  OBS_PTR(Domaine_Cl_VDF) le_dom_Cl_VDF;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
   /*    void calculer_cell_cent_vel(DoubleTab& ); */
   /*    void calculer_debit_ES(double& ,double&,double&  ) const; */
   /*    void calculer_debit(double& ,double& ) const; */
 
 
 };
-#endif
-inline const Champ_Don& Terme_Source_inc_th_VDF_Face::beta() const
+
+inline const Champ_Don_base& Terme_Source_inc_th_VDF_Face::beta() const
 {
   return beta_t_.valeur();
 }
+
+#endif
 

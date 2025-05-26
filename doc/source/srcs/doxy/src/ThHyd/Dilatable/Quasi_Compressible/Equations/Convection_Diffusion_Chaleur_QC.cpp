@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -123,7 +123,7 @@ void Convection_Diffusion_Chaleur_QC::calculer_div_u_ou_div_rhou(DoubleTab& Div)
       // Compute Div([rho]u) with Divergence operator
       const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std,probleme().equation(0));
       const DoubleTab& pression = eqn_hydr.pression().valeurs();
-      const Champ_Inc& vitesse = eqn_hydr.inconnue();
+      const Champ_Inc_base& vitesse = eqn_hydr.inconnue();
 
       // Div = Div([rho]u) located on pressure nodes:
       DoubleTab Div_on_pressure_nodes(pression);

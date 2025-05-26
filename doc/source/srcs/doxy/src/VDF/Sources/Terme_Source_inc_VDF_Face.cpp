@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -60,11 +60,11 @@ void Terme_Source_inc_VDF_Face::associer_pb(const Probleme_base& pb)
     }
 }
 
-void Terme_Source_inc_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                  const Domaine_Cl_dis& domaine_Cl_dis)
+void Terme_Source_inc_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                  const Domaine_Cl_dis_base& domaine_Cl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis.valeur());
-  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF, domaine_dis);
+  le_dom_Cl_VDF = ref_cast(Domaine_Cl_VDF, domaine_Cl_dis);
 }
 
 // void Terme_Source_inc_VDF_Face::mettre_a_jour(double temps)
@@ -112,7 +112,7 @@ void Terme_Source_inc_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
   // Exemple XTOF
   //   Cerr << " debut de parallel " << finl;
   DoubleTab cell_cent_vel(0,dimension);
-  le_dom_VDF.valeur().domaine().creer_tableau_elements(cell_cent_vel);
+  le_dom_VDF->domaine().creer_tableau_elements(cell_cent_vel);
   //    DoubleTrav toto(cell_cent_vel);
   DoubleTab temp1(cell_cent_vel);
   DoubleTab temp2(cell_cent_vel);
@@ -965,7 +965,7 @@ void Terme_Source_inc_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
         {
 
           //const Neumann_sortie_libre& la_cl_neumann = ref_cast(Neumann_sortie_libre,la_cl.valeur());
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 
@@ -991,7 +991,7 @@ void Terme_Source_inc_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
         { /* Do nothing */}
       else if (sub_type(Periodique,la_cl.valeur()))
         {
-          const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
           ndeb = le_bord.num_premiere_face();
           nfin = ndeb + le_bord.nb_faces();
 

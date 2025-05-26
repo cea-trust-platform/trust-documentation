@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,9 +15,12 @@
 
 #include <Champ_Generique_Statistiques_base.h>
 #include <Operateur_Statistique_tps_base.h>
+#include <TRUST_2_PDI.h>
 #include <Param.h>
 
 Implemente_base_sans_constructeur(Champ_Generique_Statistiques_base,"Champ_Generique_Statistiques_base",Champ_Gen_de_Champs_Gen);
+
+// XD champ_post_statistiques_base champ_post_de_champs_post champ_post_statistiques_base -1 not_set
 
 Champ_Generique_Statistiques_base::Champ_Generique_Statistiques_base()
 {
@@ -25,25 +28,16 @@ Champ_Generique_Statistiques_base::Champ_Generique_Statistiques_base()
   tstat_fin_ = -1;
 }
 
-/*! @brief Imprime le nom et le type de l'operateur sur un flot de sortie.
- *
- * @param (Sortie& s) un flot de sortie
- * @return (Sortie&) le flot de sortie modifie
- */
 Sortie& Champ_Generique_Statistiques_base::printOn(Sortie& s ) const
 {
   return s << que_suis_je() << " " << le_nom();
 }
 
-//cf Champ_Gen_de_Champs_Gen::readOn
 Entree& Champ_Generique_Statistiques_base::readOn(Entree& s )
 {
-  Champ_Gen_de_Champs_Gen::readOn(s);
-  return s ;
+  return Champ_Gen_de_Champs_Gen::readOn(s);
 }
 
-// t_deb : temps de debut des statistiques
-// t_fin : temps de fin des statistiques
 void Champ_Generique_Statistiques_base::set_param(Param& param)
 {
   Champ_Gen_de_Champs_Gen::set_param(param);
@@ -52,8 +46,8 @@ void Champ_Generique_Statistiques_base::set_param(Param& param)
   //ex : Postraitement::creer_champ_post_stat()
   //Mais specification obligatoire a conserver dans la doc pour l utilisateur
   //qui specifie son champ statistique de facon standard dans definition_champs.
-  param.ajouter("t_deb",&tstat_deb_);
-  param.ajouter("t_fin",&tstat_fin_);
+  param.ajouter("t_deb",&tstat_deb_); // XD attr t_deb floattant t_deb 0 Start of integration time
+  param.ajouter("t_fin",&tstat_fin_); // XD attr t_fin floattant t_fin 0 End of integration time
 }
 
 int Champ_Generique_Statistiques_base::completer_post_statistiques(const Domaine& dom,const int is_axi,Format_Post_base& format)
@@ -73,7 +67,7 @@ int Champ_Generique_Statistiques_base::completer_post_statistiques(const Domaine
       exit();
     }
 
-  Champ espace_stockage_source;
+  OWN_PTR(Champ_base) espace_stockage_source;
   const Champ_base& source = integrale().le_champ()->get_champ(espace_stockage_source);
   source.completer_post_champ(dom,is_axi,localisation,nom_post,format);
   return 1;
@@ -84,6 +78,19 @@ void Champ_Generique_Statistiques_base::fixer_tdeb_tfin(const double t_deb,const
 {
   tstat_deb_ = t_deb;
   tstat_fin_ = t_fin;
+}
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the field to save/restore
+ *
+ */
+std::vector<YAML_data> Champ_Generique_Statistiques_base::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data;
+  std::vector<YAML_data> ch = Champ_Gen_de_Champs_Gen::data_a_sauvegarder();
+  std::vector<YAML_data> stat = Operateur_Statistique().data_a_sauvegarder();
+  data.insert(data.end(), ch.begin(), ch.end());
+  data.insert(data.end(), stat.begin(), stat.end());
+  return data;
 }
 
 int Champ_Generique_Statistiques_base::sauvegarder(Sortie& os) const
@@ -97,8 +104,11 @@ int Champ_Generique_Statistiques_base::sauvegarder(Sortie& os) const
 int Champ_Generique_Statistiques_base::reprendre(Entree& is)
 {
   Champ_Gen_de_Champs_Gen::reprendre(is);
-  Nom bidon;
-  is >> bidon >> bidon; // On saute l'identificateur et le type des champs
+  if(!TRUST_2_PDI::is_PDI_restart())
+    {
+      Nom bidon;
+      is >> bidon >> bidon; // On saute l'identificateur et le type des champs
+    }
   Operateur_Statistique().reprendre(is);
   return 1;
 }

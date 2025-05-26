@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,6 +19,7 @@
 #include <TRUST_List.h>
 #include <TRUST_Ref.h>
 #include <Noms.h>
+#include <IJK_Field_forward.h>
 #include <unordered_map>
 
 class Champ_base;
@@ -27,30 +28,26 @@ class Champ_base;
  *
  *      Operateur, Source, Traitement_particulier.
  *
+ * Parametrized by the type of field: typically Champ_base or IJK_Field_double
  */
-
-class Champs_compris : public Objet_U
+template<typename FIELD_TYPE>
+class Champs_compris_T
 {
-  Declare_instanciable(Champs_compris);
 public :
   // Return the field if found, otherwise raises.
-  virtual const Champ_base& get_champ(const Motcle& nom) const;
+  const FIELD_TYPE& get_champ(const Motcle& nom) const;
   // Same thing, but without raising:
-  virtual bool has_champ(const Motcle& nom, REF(Champ_base)& ref_champ) const;
-  virtual void ajoute_champ(const Champ_base& champ);
-  virtual const Noms liste_noms_compris() const;
+  bool has_champ(const Motcle& nom, OBS_PTR(FIELD_TYPE)& ref_champ) const;
+  bool has_champ(const Motcle& nom) const;
+  void ajoute_champ(const FIELD_TYPE& champ);
+  const Noms liste_noms_compris() const;
   void clear_champs_compris() { liste_champs_.clear(); }
 
 protected :
-  std::unordered_map<std::string, REF(Champ_base)> liste_champs_;
+  std::unordered_map<std::string, OBS_PTR(FIELD_TYPE)> liste_champs_;
 };
 
-// ToDo commenter pour supprimer totalement les exceptions dans Flica5 ou TRUST:
-class Champs_compris_erreur
-{
-public:
-  inline Champs_compris_erreur() {}
-};
+using Champs_compris = Champs_compris_T<Champ_base>;
+using Champs_compris_IJK_base = Champs_compris_T<IJK_Field_double>;
 
 #endif /* Champs_compris_included */
-

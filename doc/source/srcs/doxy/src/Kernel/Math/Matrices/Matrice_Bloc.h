@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -18,8 +18,10 @@
 
 #include <TRUSTTabs_forward.h>
 #include <Matrice_Base.h>
-#include <TRUSTLists.h>
 #include <Matrice.h>
+#include <TRUSTLists.h>
+#include <vector>
+#include <TRUST_Vector.h>
 
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
@@ -50,9 +52,9 @@ class Matrice_Bloc : public Matrice_Base
   Declare_instanciable_sans_constructeur(Matrice_Bloc);
 
 public :
-  int ordre( void ) const override;
-  int nb_lignes( void ) const override;
-  int nb_colonnes( void ) const override;
+  int ordre() const override;
+  int nb_lignes() const override;
+  int nb_colonnes() const override;
 
   // Methodes pour le calcul de r+=Ax codees dans les classes filles
   DoubleVect& ajouter_multvect_( const DoubleVect& x, DoubleVect& r ) const override;
@@ -61,6 +63,8 @@ public :
 
   // multiplication par un scalaire
   void scale( const double x ) override;
+  // mise a zero des valeurs de la matrice
+  void clean() override;
 
   void get_stencil( IntTab& stencil ) const override;
   void get_stencil_and_coefficients(IntTab& stencil, ArrOfDouble& coefficients) const override;
@@ -78,7 +82,7 @@ public :
   virtual const Matrice& get_bloc( int i, int j ) const;
   virtual Matrice& get_bloc( int i, int j );
 
-  void build_stencil( void ) override;
+  void build_stencil() override;
 
 public :
   // Constructeurs :
@@ -86,7 +90,7 @@ public :
 
   // Acces aux caracteristiques du vecteur blocs_
   int dim( int d ) const;                // si d=0 => N_   si d=1 => M_
-  int nb_bloc_lignes( void ) const;            // retourne N_
+  int nb_bloc_lignes() const;            // retourne N_
   int nb_bloc_colonnes(void ) const;           // retourne M_
 
   // Remplissage par une matrice morse symetrique
@@ -107,17 +111,20 @@ public :
 
   Matrice_Bloc& operator *=( double x);
 
-  bool check_block_matrix_structure( void ) const;
+  bool check_block_matrix_structure() const;
 
-  void assert_check_block_matrix_structure( void ) const;
+  void assert_check_block_matrix_structure() const;
 
 protected :
   VECT(Matrice) blocs_;           // les blocs de la matrices source A
+  std::vector<Matrice_Base*> blocs_non_nuls_;     // les blocs non nuls
   int N_;                       // 1ere dim de A
   int M_;                       // 2eme dim de A
   int nb_blocs_;                   // nb total des blocs de A (= N_ * M_)
 
   ArrOfInt offsets_;
+  std::vector<int> line_offsets_;
+  std::vector<int> column_offsets_;
 
   template<typename _TAB_T_, typename _VAL_T_>
   void get_stencil_coeff_templ( IntTab& stencil, _TAB_T_& coeff_sp) const;

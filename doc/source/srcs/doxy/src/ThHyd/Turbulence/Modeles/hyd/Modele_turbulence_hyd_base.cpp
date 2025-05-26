@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,12 +25,14 @@
 #include <Postraitement.h>
 #include <Equation_base.h>
 #include <Probleme_base.h>
+#include <TRUST_2_PDI.h>
 #include <Operateur.h>
 #include <Domaine.h>
 #include <Param.h>
 #include <Debog.h>
 
 Implemente_base(Modele_turbulence_hyd_base, "Modele_turbulence_hyd_base", Objet_U);
+// XD modele_turbulence_hyd_deriv objet_lecture modele_turbulence_hyd_deriv -1 Basic class for turbulence model for Navier-Stokes equations.
 
 Sortie& Modele_turbulence_hyd_base::printOn(Sortie& s) const { return s << que_suis_je() << " " << le_nom(); }
 
@@ -57,7 +59,7 @@ Entree& Modele_turbulence_hyd_base::readOn(Entree& is)
   // Verifications
   // Cas ou Correction_visco_turb_pour_controle_pas_de_temps_parametre est lu sans Correction_visco_turb_pour_controle_pas_de_temps
   if (dt_diff_sur_dt_conv_ != -1)
-    calcul_borne_locale_visco_turb_ = 1;
+    calcul_borne_locale_visco_turb_ = true;
   // Cas ou Correction_visco_turb_pour_controle_pas_de_temps sans Correction_visco_turb_pour_controle_pas_de_temps_parametre
   else if (calcul_borne_locale_visco_turb_)
     dt_diff_sur_dt_conv_ = 1;
@@ -72,12 +74,12 @@ Entree& Modele_turbulence_hyd_base::readOn(Entree& is)
 
 void Modele_turbulence_hyd_base::set_param(Param& param)
 {
-  param.ajouter_non_std("turbulence_paroi", (this), Param::REQUIRED);
-  param.ajouter_non_std("dt_impr_ustar", (this));
-  param.ajouter_non_std("dt_impr_ustar_mean_only", (this));
-  param.ajouter("nut_max", &XNUTM_);
-  param.ajouter_flag("Correction_visco_turb_pour_controle_pas_de_temps", &calcul_borne_locale_visco_turb_);
-  param.ajouter("Correction_visco_turb_pour_controle_pas_de_temps_parametre", &dt_diff_sur_dt_conv_);
+  param.ajouter_non_std("turbulence_paroi", (this), Param::REQUIRED); // XD attr turbulence_paroi turbulence_paroi_base turbulence_paroi 1 Keyword to set the wall law.
+  param.ajouter_non_std("dt_impr_ustar", (this));                     // XD attr dt_impr_ustar floattant dt_impr_ustar 1 This keyword is used to print the values (U +, d+, u$\star$) obtained with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers to the printing period, this value is expressed in seconds.
+  param.ajouter_non_std("dt_impr_ustar_mean_only", (this));           // XD attr dt_impr_ustar_mean_only dt_impr_ustar_mean_only dt_impr_ustar_mean_only 1 This keyword is used to print the mean values of u* ( obtained with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don\'t use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on which you want to calculate the mean values of u*, then you have to specify their names.
+  param.ajouter("nut_max", &XNUTM_);                                  // XD attr nut_max floattant nut_max 1 Upper limitation of turbulent viscosity (default value 1.e8).
+  param.ajouter_flag("Correction_visco_turb_pour_controle_pas_de_temps", &calcul_borne_locale_visco_turb_); // XD attr correction_visco_turb_pour_controle_pas_de_temps rien correction_visco_turb_pour_controle_pas_de_temps 1 Keyword to set a limitation to low time steps due to high values of turbulent viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction of turbulent viscosity: it should be 1. on the whole domain.
+  param.ajouter("Correction_visco_turb_pour_controle_pas_de_temps_parametre", &dt_diff_sur_dt_conv_);       // XD attr correction_visco_turb_pour_controle_pas_de_temps_parametre floattant correction_visco_turb_pour_controle_pas_de_temps_parametre 1 Keyword to set a limitation to low time steps due to high values of turbulent viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective time-step is higher or equal to the given value [0-1]
   //param.ajouter_condition("not(is_read_dt_impr_ustar_mean_only_and_is_read_dt_impr_ustar)","only one of dt_impr_ustar_mean_only and dt_impr_ustar can be used");
 }
 
@@ -87,95 +89,92 @@ int Modele_turbulence_hyd_base::lire_motcle_non_standard(const Motcle& mot, Entr
   int retval = 1;
   if (mot == "turbulence_paroi")
     {
-      loipar_.associer_modele(*this);
-      is >> loipar_;
+      Turbulence_paroi_base::typer_lire_turbulence_paroi(loipar_, *this, is);
       is >> loipar_.valeur();
     }
-  else if (loipar_.valeur().que_suis_je() != "negligeable_VDF" && loipar_.valeur().que_suis_je() != "negligeable_VEF" && !loipar_.valeur().que_suis_je().debute_par("negligeable_PolyMAC_P0P1NC"))
+  else if (mot == "dt_impr_ustar")
     {
-      if (mot == "dt_impr_ustar")
+      if (loipar_->que_suis_je().contient("negligeable"))
+        Process::exit("Please remove dt_impr_ustar option if the wall law is of Negligeable type.");
+      is >> dt_impr_ustar_;
+    }
+  else if (mot == "dt_impr_ustar_mean_only")
+    {
+      if (loipar_->que_suis_je().contient("negligeable"))
+        Process::exit("Please remove dt_impr_ustar option if the wall law is of Negligeable type.");
+      // XD dt_impr_ustar_mean_only objet_lecture nul 1 not_set
+      // XD attr dt_impr floattant dt_impr 0 not_set
+      // XD attr boundaries listchaine boundaries 1 not_set
+      Nom accolade_ouverte = "{";
+      Nom accolade_fermee = "}";
+      nom_fichier_ = Objet_U::nom_du_cas() + "_" + equation().probleme().le_nom() + "_ustar_mean_only";
+      Domaine& dom = equation().probleme().domaine();
+      LIST(Nom) nlistbord_dom;                      //!< liste stockant tous les noms de frontiere du domaine
+      int nbfr = dom.nb_front_Cl();
+      for (int b = 0; b < nbfr; b++)
         {
-          is >> dt_impr_ustar_;
+          Frontiere& org = dom.frontiere(b);
+          nlistbord_dom.add(org.le_nom());
         }
-      else if (mot == "dt_impr_ustar_mean_only")
+      is >> motlu;
+      if (motlu != accolade_ouverte)
         {
-          Nom accolade_ouverte = "{";
-          Nom accolade_fermee = "}";
-          nom_fichier_ = Objet_U::nom_du_cas() + "_" + equation().probleme().le_nom() + "_ustar_mean_only";
-          Domaine& dom = equation().probleme().domaine();
-          LIST(Nom) nlistbord_dom;                      //!< liste stockant tous les noms de frontiere du domaine
-          int nbfr = dom.nb_front_Cl();
-          for (int b = 0; b < nbfr; b++)
+          Cerr << motlu << " is not a keyword understood by " << que_suis_je() << " in lire_motcle_non_standard" << finl;
+          Cerr << "A specification of kind : dt_impr_ustar_mean_only { dt_impr periode [boundaries nb_boundaries boundary_name1 boundary_name2 ... ] } was expected." << finl;
+          exit();
+        }
+      is >> motlu;
+      if (motlu != "dt_impr")
+        {
+          Cerr << "We expected dt_impr..." << finl;
+          exit();
+        }
+      is >> dt_impr_ustar_mean_only_;
+
+      is >> motlu; // boundaries ou accolade_fermee ou pasbon
+      if (motlu != accolade_fermee)
+        {
+          if (motlu == "boundaries")
             {
-              Frontiere& org = dom.frontiere(b);
-              nlistbord_dom.add(org.le_nom());
+              boundaries_ = 1;
+              int nb_bords = 0;
+              Nom nom_bord_lu;
+
+              // read boundaries number
+              is >> nb_bords;
+              if (nb_bords != 0)
+                {
+                  // read boundaries
+                  for (int i = 0; i < nb_bords; i++)
+                    {
+                      is >> nom_bord_lu;
+                      boundaries_list_.add(Nom(nom_bord_lu));
+                      //  verif nom bords
+                      if (!nlistbord_dom.contient(boundaries_list_[i]))
+                        {
+                          Cerr << "Problem in the dt_impr_ustar_mean_only instruction:" << finl;
+                          Cerr << "The boundary named '" << boundaries_list_[i] << "' is not a boundary of the domain " << dom.le_nom() << "." << finl;
+                          exit();
+                        }
+                    }
+                }
+              // lecture accolade fermee
+              is >> motlu;
+              if (motlu != accolade_fermee)
+                {
+                  Cerr << "Problem in the dt_impr_ustar_mean_only instruction:" << finl;
+                  Cerr << "TRUST wants to read a '" << accolade_fermee << "' but find '" << motlu << "'!!" << finl;
+                  exit();
+                }
             }
-          is >> motlu;
-          if (motlu != accolade_ouverte)
+          else
             {
               Cerr << motlu << " is not a keyword understood by " << que_suis_je() << " in lire_motcle_non_standard" << finl;
               Cerr << "A specification of kind : dt_impr_ustar_mean_only { dt_impr periode [boundaries nb_boundaries boundary_name1 boundary_name2 ... ] } was expected." << finl;
               exit();
             }
-          is >> motlu;
-          if (motlu != "dt_impr")
-            {
-              Cerr << "We expected dt_impr..." << finl;
-              exit();
-            }
-          is >> dt_impr_ustar_mean_only_;
-
-          is >> motlu; // boundaries ou accolade_fermee ou pasbon
-          if (motlu != accolade_fermee)
-            {
-              if (motlu == "boundaries")
-                {
-                  boundaries_ = 1;
-                  int nb_bords = 0;
-                  Nom nom_bord_lu;
-
-                  // read boundaries number
-                  is >> nb_bords;
-                  if (nb_bords != 0)
-                    {
-                      // read boundaries
-                      for (int i = 0; i < nb_bords; i++)
-                        {
-                          is >> nom_bord_lu;
-                          boundaries_list_.add(Nom(nom_bord_lu));
-                          //  verif nom bords
-                          if (!nlistbord_dom.contient(boundaries_list_[i]))
-                            {
-                              Cerr << "Problem in the dt_impr_ustar_mean_only instruction:" << finl;
-                              Cerr << "The boundary named '" << boundaries_list_[i] << "' is not a boundary of the domain " << dom.le_nom() << "." << finl;
-                              exit();
-                            }
-                        }
-                    }
-                  // lecture accolade fermee
-                  is >> motlu;
-                  if (motlu != accolade_fermee)
-                    {
-                      Cerr << "Problem in the dt_impr_ustar_mean_only instruction:" << finl;
-                      Cerr << "TRUST wants to read a '" << accolade_fermee << "' but find '" << motlu << "'!!" << finl;
-                      exit();
-                    }
-                }
-              else
-                {
-                  Cerr << motlu << " is not a keyword understood by " << que_suis_je() << " in lire_motcle_non_standard" << finl;
-                  Cerr << "A specification of kind : dt_impr_ustar_mean_only { dt_impr periode [boundaries nb_boundaries boundary_name1 boundary_name2 ... ] } was expected." << finl;
-                  exit();
-                }
-            }
-        } // fin dt_impr_ustar_mean_only
-      else
-        {
-          Cerr << "Please remove dt_impr_ustar option if the wall law is of Negligeable type." << finl;
-          exit();
         }
-    } // fin loi paroi negligeable
-
+    } // fin dt_impr_ustar_mean_only
   else
     retval = -1;
 
@@ -199,7 +198,7 @@ void Modele_turbulence_hyd_base::associer_eqn(const Equation_base& eqn)
 void Modele_turbulence_hyd_base::lire_distance_paroi()
 {
   // PQ : 25/02/04 recuperation de la distance a la paroi dans Wall_length.xyz
-  DoubleTab& wall_length = wall_length_.valeurs();
+  DoubleTab& wall_length = wall_length_->valeurs();
   wall_length = -1.;
 
   LecFicDiffuse fic;
@@ -231,11 +230,11 @@ void Modele_turbulence_hyd_base::discretiser()
   discretiser_corr_visc_turb(mon_equation_->schema_temps(), mon_equation_->domaine_dis(), corr_visco_turb_);
   champs_compris_.ajoute_champ(corr_visco_turb_);
   const Discretisation_base& dis = ref_cast(Discretisation_base, mon_equation_->discretisation());
-  dis.discretiser_champ("champ_elem", mon_equation_->domaine_dis().valeur(), "distance_paroi", "m", 1, mon_equation_->schema_temps().temps_courant(), wall_length_);
+  dis.discretiser_champ("champ_elem", mon_equation_->domaine_dis(), "distance_paroi", "m", 1, mon_equation_->schema_temps().temps_courant(), wall_length_);
   champs_compris_.ajoute_champ(wall_length_);
 }
 
-void Modele_turbulence_hyd_base::discretiser_visc_turb(const Schema_Temps_base& sch, Domaine_dis& z, Champ_Fonc& ch) const
+void Modele_turbulence_hyd_base::discretiser_visc_turb(const Schema_Temps_base& sch, Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const
 {
   int is_dilat = equation().probleme().is_dilatable();
   if (!is_dilat)
@@ -245,21 +244,21 @@ void Modele_turbulence_hyd_base::discretiser_visc_turb(const Schema_Temps_base& 
   Nom nom = (is_dilat == 1) ? "viscosite_dynamique_turbulente" : "viscosite_turbulente";
   Nom unite = (is_dilat == 1) ? "kg/(m.s)" : "m2/s";
   const Discretisation_base& dis = mon_equation_->discretisation();
-  dis.discretiser_champ("champ_elem", z.valeur(), nom, unite, 1, sch.temps_courant(), ch);
+  dis.discretiser_champ("champ_elem", z, nom, unite, 1, sch.temps_courant(), ch);
 }
 
-void Modele_turbulence_hyd_base::discretiser_corr_visc_turb(const Schema_Temps_base& sch, Domaine_dis& z, Champ_Fonc& ch) const
+void Modele_turbulence_hyd_base::discretiser_corr_visc_turb(const Schema_Temps_base& sch, Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const
 {
   Cerr << "Turbulent viscosity correction field discretization" << finl;
   const Discretisation_base& dis = mon_equation_->discretisation();
-  dis.discretiser_champ("champ_elem", z.valeur(), "corr_visco_turb", "adimensionnel", 1, sch.temps_courant(), ch);
+  dis.discretiser_champ("champ_elem", z, "corr_visco_turb", "adimensionnel", 1, sch.temps_courant(), ch);
 }
 
-void Modele_turbulence_hyd_base::discretiser_K(const Schema_Temps_base& sch, Domaine_dis& z, Champ_Fonc& ch) const
+void Modele_turbulence_hyd_base::discretiser_K(const Schema_Temps_base& sch, Domaine_dis_base& z, OWN_PTR(Champ_Fonc_base)& ch) const
 {
   Cerr << "Kinetic turbulent energy field discretisation" << finl;
   const Discretisation_base& dis = mon_equation_->discretisation();
-  dis.discretiser_champ("champ_elem", z.valeur(), "K", "m2/s2", 1, sch.temps_courant(), ch);
+  dis.discretiser_champ("champ_elem", z, "K", "m2/s2", 1, sch.temps_courant(), ch);
 }
 
 /*! @brief Prepare le calcul.
@@ -273,7 +272,7 @@ int Modele_turbulence_hyd_base::preparer_calcul()
 {
   int res = 1;
   if (loipar_.non_nul())
-    res = loipar_.init_lois_paroi();
+    res = loipar_->init_lois_paroi();
 
   bool contient_distance_paroi = false;
 
@@ -294,7 +293,7 @@ int Modele_turbulence_hyd_base::preparer_calcul()
                 }
             }
         }
-  loipar_.imprimer_premiere_ligne_ustar(boundaries_, boundaries_list_, nom_fichier_);
+  loipar_->imprimer_premiere_ligne_ustar(boundaries_, boundaries_list_, nom_fichier_);
   return res;
 }
 
@@ -311,28 +310,44 @@ void Modele_turbulence_hyd_base::creer_champ(const Motcle& motlu)
     }
 }
 
-const Champ_base& Modele_turbulence_hyd_base::get_champ(const Motcle& nom) const
+bool Modele_turbulence_hyd_base::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
 {
-  try
-    {
-      return champs_compris_.get_champ(nom);
-    }
-  catch (Champs_compris_erreur&)
-    {
-    }
+  if (champs_compris_.has_champ(nom, ref_champ))
+    return true;
 
   if (loipar_.non_nul())
-    {
-      try
-        {
-          return loipar_->get_champ(nom);
-        }
-      catch (Champs_compris_erreur&)
-        {
-        }
-    }
-  throw Champs_compris_erreur();
+    if (loipar_->has_champ(nom, ref_champ))
+      return true;
+
+  return false; /* rien trouve */
 }
+
+bool Modele_turbulence_hyd_base::has_champ(const Motcle& nom) const
+{
+  if (champs_compris_.has_champ(nom))
+    return true;
+
+  if (loipar_.non_nul())
+    if (loipar_->has_champ(nom))
+      return true;
+
+  return false; /* rien trouve */
+}
+
+const Champ_base& Modele_turbulence_hyd_base::get_champ(const Motcle& nom) const
+{
+  OBS_PTR(Champ_base) ref_champ;
+
+  if (champs_compris_.has_champ(nom, ref_champ))
+    return ref_champ;
+
+  if (loipar_.non_nul())
+    if (loipar_->has_champ(nom, ref_champ))
+      return ref_champ;
+
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
+}
+
 void Modele_turbulence_hyd_base::get_noms_champs_postraitables(Noms& nom, Option opt) const
 {
   if (opt == DESCRIPTION)
@@ -354,9 +369,9 @@ void Modele_turbulence_hyd_base::imprimer(Sortie& os) const
   double temps_courant = sch.temps_courant();
   double dt = sch.pas_de_temps();
   if (loipar_.non_nul() && limpr_ustar(temps_courant, sch.temps_precedent(), dt, dt_impr_ustar_))
-    loipar_.imprimer_ustar(os);
+    loipar_->imprimer_ustar(os);
   if (loipar_.non_nul() && limpr_ustar(temps_courant, sch.temps_precedent(), dt, dt_impr_ustar_mean_only_))
-    loipar_.imprimer_ustar_mean_only(os, boundaries_, boundaries_list_, nom_fichier_);
+    loipar_->imprimer_ustar_mean_only(os, boundaries_, boundaries_list_, nom_fichier_);
 }
 
 int Modele_turbulence_hyd_base::limpr_ustar(double temps_courant, double temps_prec, double dt, double dt_ustar) const
@@ -378,6 +393,20 @@ int Modele_turbulence_hyd_base::limpr_ustar(double temps_courant, double temps_p
     }
 }
 
+
+/*! @brief for PDI IO: retrieve name, type and dimensions of the fields to save/restore
+ *
+ */
+std::vector<YAML_data> Modele_turbulence_hyd_base::data_a_sauvegarder() const
+{
+  std::vector<YAML_data> data;
+  if (loipar_.non_nul())
+    {
+      data = loipar_->data_a_sauvegarder();
+    }
+  return data;
+}
+
 /*! @brief Sauvegarde le modele de turbulence sur un flot de sortie.
  *
  * Sauvegarde le type de l'objet.
@@ -392,7 +421,7 @@ int Modele_turbulence_hyd_base::sauvegarder(Sortie& os) const
     {
       loipar_->sauvegarder(os);
     }
-  else  // OC: pour le bas Re, on ecrit negligeable => pas de pb a faire ceci ?
+  else if(!TRUST_2_PDI::is_PDI_checkpoint())  // OC: pour le bas Re, on ecrit negligeable => pas de pb a faire ceci ?
     {
       const Discretisation_base& discr = mon_equation_->discretisation();
       Nom nom_discr = discr.que_suis_je();
@@ -440,9 +469,8 @@ void Modele_turbulence_hyd_base::limiter_viscosite_turbulente()
 {
   // On initial
   int size = viscosite_turbulente().valeurs().size();
-  DoubleTab& visco_turb = la_viscosite_turbulente_.valeurs();
   if (borne_visco_turb_.size() == 0)
-    borne_visco_turb_ = visco_turb; //.resize(size);
+    borne_visco_turb_ = la_viscosite_turbulente_->valeurs();
   borne_visco_turb_ = XNUTM_;
   if (calcul_borne_locale_visco_turb_ && (equation().schema_temps().nb_pas_dt() != 0 || equation().probleme().reprise_effectuee()))
     {
@@ -455,21 +483,29 @@ void Modele_turbulence_hyd_base::limiter_viscosite_turbulente()
   int nb_elem = equation().domaine_dis().domaine().nb_elem();
   assert(nb_elem == size);
   int compt = 0;
-  Debog::verifier("Modele_turbulence_hyd_base::limiter_viscosite_turbulente la_viscosite_turbulente before", la_viscosite_turbulente_.valeurs());
-  for (int elem = 0; elem < nb_elem; elem++)
-    {
-      if (visco_turb(elem) > borne_visco_turb_(elem))
-        {
-          compt++;
-          corr_visco_turb_.valeurs()(elem) = borne_visco_turb_(elem) / visco_turb(elem);
-          visco_turb(elem) = borne_visco_turb_(elem);
-        }
-      else
-        corr_visco_turb_.valeurs()(elem) = 1.;
-    }
-  corr_visco_turb_.changer_temps(mon_equation_->inconnue().temps());
-  visco_turb.echange_espace_virtuel();
-  Debog::verifier("Modele_turbulence_hyd_base::limiter_viscosite_turbulente la_viscosite_turbulente after", la_viscosite_turbulente_.valeurs());
+  Debog::verifier("Modele_turbulence_hyd_base::limiter_viscosite_turbulente la_viscosite_turbulente before", la_viscosite_turbulente_->valeurs());
+
+  CDoubleArrView borne_visco_turb = borne_visco_turb_.view_ro();
+  DoubleArrView corr_visco_turb = static_cast<DoubleVect&>(corr_visco_turb_->valeurs()).view_wo();
+  DoubleArrView visco_turb = static_cast<DoubleVect&>(la_viscosite_turbulente_->valeurs()).view_rw();
+  // Remplissage des tableaux de travail:
+  Kokkos::parallel_reduce(start_gpu_timer(__KERNEL_NAME__),
+                          Kokkos::RangePolicy<>(0, nb_elem), KOKKOS_LAMBDA(
+                            const int elem, int& compt_)
+  {
+    if (visco_turb(elem) > borne_visco_turb(elem))
+      {
+        compt_++;
+        corr_visco_turb(elem) = borne_visco_turb(elem) / visco_turb(elem);
+        visco_turb(elem) = borne_visco_turb(elem);
+      }
+    else
+      corr_visco_turb(elem) = 1.;
+  }, Kokkos::Sum<int>(compt));
+  end_gpu_timer(__KERNEL_NAME__);
+  corr_visco_turb_->changer_temps(mon_equation_->inconnue().temps());
+  la_viscosite_turbulente_->valeurs().echange_espace_virtuel();
+  Debog::verifier("Modele_turbulence_hyd_base::limiter_viscosite_turbulente la_viscosite_turbulente after", la_viscosite_turbulente_->valeurs());
 
   // On imprime
   int imprimer_compt = 0;
@@ -492,7 +528,7 @@ void Modele_turbulence_hyd_base::limiter_viscosite_turbulente()
   if (imprimer_compt)
     {
       // PL: optimization to avoid 2 mp_sum instead 1:
-      ArrOfInt tmp(2);
+      ArrOfTID tmp(2);
       tmp[0] = compt;
       tmp[1] = size;
       mp_sum_for_each_item(tmp);

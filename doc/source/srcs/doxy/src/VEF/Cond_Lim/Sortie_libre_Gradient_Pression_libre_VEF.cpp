@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,6 +14,7 @@
 *****************************************************************************/
 
 #include <Sortie_libre_Gradient_Pression_libre_VEF.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Navier_Stokes_std.h>
 #include <Champ_Uniforme.h>
 #include <distances_VEF.h>
@@ -22,6 +23,8 @@
 #include <Domaine_VEF.h>
 
 Implemente_instanciable(Sortie_libre_Gradient_Pression_libre_VEF, "Frontiere_ouverte_Gradient_Pression_libre_VEF", Neumann_sortie_libre);
+// XD frontiere_ouverte_gradient_pression_libre_vef neumann frontiere_ouverte_gradient_pression_libre_vef -1 Class for outlet boundary condition in VEF like Orlansky. There is no reference for pressure for theses boundary conditions so it is better to add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two cells (for symmetry in a channel) of the boundary where Orlansky conditions are imposed.
+
 
 Sortie& Sortie_libre_Gradient_Pression_libre_VEF::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -31,10 +34,10 @@ Entree& Sortie_libre_Gradient_Pression_libre_VEF::readOn(Entree& s)
   if (supp_discs.size() == 0) supp_discs = { Nom("VEF") };
 
   le_champ_front.typer("Champ_front_uniforme");
-  le_champ_front.valeurs().resize(1, dimension);
+  le_champ_front->valeurs().resize(1, dimension);
   le_champ_front->fixer_nb_comp(1);
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   return s;
 }
 
@@ -45,9 +48,9 @@ void Sortie_libre_Gradient_Pression_libre_VEF::completer()
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
 
-  //  const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF,eqn.domaine_dis().valeur());
+  //  const Domaine_VEF& le_dom_VEF = ref_cast(Domaine_VEF,eqn.domaine_dis());
 
-  const Champ_P0_VEF& pression = ref_cast(Champ_P0_VEF, eqn_hydr.pression().valeur());
+  const Champ_P0_VEF& pression = ref_cast(Champ_P0_VEF, eqn_hydr.pression());
 
   pression_interne = pression;
 
@@ -67,7 +70,7 @@ int Sortie_libre_Gradient_Pression_libre_VEF::initialiser(double temps)
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
   //      const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std,eqn);
-  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis().valeur());
+  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis());
   const IntTab& face_voisins = mon_dom_VEF.face_voisins();
   //      const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_dom_cl_dis.valeur());
   //      const DoubleVect& volumes_entrelaces_Cl = domaine_Cl_VEF.volumes_entrelaces_Cl();
@@ -127,13 +130,13 @@ double Sortie_libre_Gradient_Pression_libre_VEF::flux_impose(int face) const
   const Domaine_Cl_dis_base& le_dom_Cl = domaine_Cl_dis();
   const Equation_base& eqn = le_dom_Cl.equation();
   const Navier_Stokes_std& eqn_hydr = ref_cast(Navier_Stokes_std, eqn);
-  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis().valeur());
+  const Domaine_VEF& mon_dom_VEF = ref_cast(Domaine_VEF, eqn.domaine_dis());
   const IntTab& face_voisins = mon_dom_VEF.face_voisins();
   //  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_dom_cl_dis.valeur());
   //  const Front_VF& le_bord = ref_cast(Front_VF,frontiere_dis());
   const IntTab& elem_faces = mon_dom_VEF.elem_faces();
   const DoubleTab& face_normales = mon_dom_VEF.face_normales();
-  const Champ_P0_VEF& pre = ref_cast(Champ_P0_VEF, eqn_hydr.pression().valeur());
+  const Champ_P0_VEF& pre = ref_cast(Champ_P0_VEF, eqn_hydr.pression());
 
   double Pimp, diff, grad;
 
@@ -153,7 +156,7 @@ double Sortie_libre_Gradient_Pression_libre_VEF::flux_impose(int face) const
       elem2 = face_voisins(face_face_adj, 0);
       if (elem2 != elem1)
         {
-          diff = pre(elem2) - pre(elem1);
+          diff = pre.valeurs()(elem2) - pre.valeurs()(elem1);
 
           for (int comp = 0; comp < dimension; comp++)
             {
@@ -182,12 +185,12 @@ double Sortie_libre_Gradient_Pression_libre_VEF::flux_impose(int face, int ncomp
 double Sortie_libre_Gradient_Pression_libre_VEF::Grad_P_lib_VEF(int face) const
 {
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
-  const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique().valeur());
-  double d_rho = rho(0, 0);
-  if (le_champ_front.valeurs().size() == 1)
-    return le_champ_front(0, 0) / d_rho;
-  else if (le_champ_front.valeurs().line_size() == 1)
-    return le_champ_front(face, 0) / d_rho;
+  const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique());
+  double d_rho = rho.valeurs()(0, 0);
+  if (le_champ_front->valeurs().size() == 1)
+    return le_champ_front->valeurs()(0, 0) / d_rho;
+  else if (le_champ_front->valeurs().line_size() == 1)
+    return le_champ_front->valeurs()(face, 0) / d_rho;
   else
     Cerr << "Sortie_libre_Gradient_Pression_libre_VEF::Grad_P_lib_VEF() erreur" << finl;
   exit();

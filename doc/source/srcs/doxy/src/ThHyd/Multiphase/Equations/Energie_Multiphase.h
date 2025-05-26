@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,10 +16,8 @@
 #ifndef Energie_Multiphase_included
 #define Energie_Multiphase_included
 
-#include <Convection_Diffusion_std.h>
+#include <Convection_Diffusion_Temperature_base.h>
 #include <Operateur_Evanescence.h>
-#include <Fluide_base.h>
-#include <TRUST_Ref.h>
 
 /*! @brief classe Energie_Multiphase Cas particulier de Convection_Diffusion_std pour un fluide quasi conpressible
  *
@@ -29,28 +27,17 @@
  *
  * @sa Conv_Diffusion_std Convection_Diffusion_Temperature
  */
-class Energie_Multiphase : public Convection_Diffusion_std
+class Energie_Multiphase : public Convection_Diffusion_Temperature_base
 {
-  Declare_instanciable_sans_constructeur(Energie_Multiphase);
-
+  Declare_instanciable(Energie_Multiphase);
 public :
-
-  Energie_Multiphase();
   void set_param(Param& param) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
 
-  void associer_fluide(const Fluide_base& );
-  inline const Champ_Inc& inconnue() const override;
-  inline Champ_Inc& inconnue() override;
+  inline const Champ_Inc_base& inconnue() const override;
+  inline Champ_Inc_base& inconnue() override;
   void discretiser() override;
-  const Milieu_base& milieu() const override;
-  const Fluide_base& fluide() const;
-  Fluide_base& fluide();
-  Milieu_base& milieu() override;
-  void associer_milieu_base(const Milieu_base& ) override;
   int impr(Sortie& os) const override;
-  const Champ_Don& diffusivite_pour_transport() const override;
-  const Champ_base& diffusivite_pour_pas_de_temps() const override;
   void dimensionner_matrice_sans_mem(Matrice_Morse& matrice) override;
 
   /*
@@ -88,31 +75,26 @@ public :
 
 protected :
 
-  Champ_Inc l_inco_ch;
-  Operateur_Evanescence evanescence;
-  REF(Fluide_base) le_fluide;
+  OWN_PTR(Champ_Inc_base) l_inco_ch_;
+  Operateur_Evanescence evanescence_;
 };
-
-
-
 
 /*! @brief Renvoie le champ inconnue representant l'inconnue (T ou H) (version const)
  *
- * @return (Champ_Inc&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
+ * @return (Champ_Inc_base&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
  */
-inline const Champ_Inc& Energie_Multiphase::inconnue() const
+inline const Champ_Inc_base& Energie_Multiphase::inconnue() const
 {
-  return l_inco_ch;
+  return l_inco_ch_;
 }
-
 
 /*! @brief Renvoie le champ inconnue representant l'inconnue (T ou H)
  *
- * @return (Champ_Inc&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
+ * @return (Champ_Inc_base&) le champ inconnue representant la temperature (GP) ou l'enthalpie (GR)
  */
-inline Champ_Inc& Energie_Multiphase::inconnue()
+inline Champ_Inc_base& Energie_Multiphase::inconnue()
 {
-  return l_inco_ch;
+  return l_inco_ch_;
 }
 
-#endif
+#endif /* Energie_Multiphase_included */

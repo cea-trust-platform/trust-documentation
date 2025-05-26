@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,7 +24,11 @@
 #include <dlsinterf.h>
 #include <Constituant.h>
 
+// XD reactions listobj nul 1 reaction 1 list of reactions
+
 Implemente_instanciable(Chimie,"Chimie",Objet_U);
+// XD chimie objet_u chimie 1 Keyword to describe the chmical reactions
+
 
 Sortie& Chimie::printOn(Sortie& os) const
 {
@@ -36,10 +40,10 @@ Sortie& Chimie::printOn(Sortie& os) const
 Entree& Chimie::readOn(Entree& is)
 {
   Param param(que_suis_je());
-  param.ajouter("reactions",&reactions_,Param::REQUIRED);
-  param.ajouter("modele_micro_melange",&modele_micro_melange_);
-  param.ajouter("constante_modele_micro_melange",&constante_modele_micro_melange_);
-  param.ajouter("espece_en_competition_micro_melange",&espece_en_competition_micro_melange_);
+  param.ajouter("reactions",&reactions_,Param::REQUIRED);                           // XD attr reactions reactions reactions 0 list of reactions
+  param.ajouter("modele_micro_melange",&modele_micro_melange_);                     // XD attr modele_micro_melange entier modele_micro_melange 1 modele_micro_melange (0 by default)
+  param.ajouter("constante_modele_micro_melange",&constante_modele_micro_melange_); // XD attr constante_modele_micro_melange floattant constante_modele_micro_melange 1 constante of modele (1 by default)
+  param.ajouter("espece_en_competition_micro_melange",&espece_en_competition_micro_melange_);  // XD attr espece_en_competition_micro_melange chaine espece_en_competition_micro_melange 1 espece in competition in reactions
   param.lire_avec_accolades_depuis(is);
   return is;
 
@@ -60,7 +64,7 @@ double Chimie::calculer_pas_de_temps() const
   // double dt_n=pb_->schema_temps().pas_de_temps();
   // filtre Butterworth :
   //        alpha=1    -> pas de filtre
-  //        alpha->0   -> tres filtre
+  //        alpha.0   -> tres filtre
   // double alpha_Butterworth=1.;
   // return (dt_n*(1.-alpha_Butterworth)+alpha_Butterworth*dt);
   return dt;
@@ -99,9 +103,9 @@ void  Chimie::completer(const Probleme_base& pb)
         {
           const Convection_Diffusion_Concentration& eq= ref_cast(Convection_Diffusion_Concentration,pb.equation(n));
           masses_molaires[nb]=eq.masse_molaire();
-          alias[nb]=eq.inconnue().valeur().le_nom();
-          REF(Champ_Inc_base) inco;
-          inco = eq.inconnue().valeur();
+          alias[nb]=eq.inconnue().le_nom();
+          OBS_PTR(Champ_Inc_base) inco;
+          inco = eq.inconnue();
           liste_C_.add(inco);
           nb++;
         }
@@ -147,7 +151,7 @@ void  Chimie::completer(const Probleme_base& pb)
     }
   if (liste_Y_.size()>0)
     {
-      Puissance_volumique_=(liste_Y_[0].valeur().valeurs()); // dimensionnement du tableau...
+      Puissance_volumique_=(liste_Y_[0]->valeurs()); // dimensionnement du tableau...
       Puissance_volumique_=0.;
     }
   else
@@ -203,11 +207,11 @@ void  Chimie::mettre_a_jour(double temps)
             }
 
           for (int i=0; i<liste_C_.size(); i++)
-            liste_C_[i].valeur().valeurs().echange_espace_virtuel();
+            liste_C_[i]->valeurs().echange_espace_virtuel();
           return;
         }
       const int vef = (int)pb_->discretisation().is_vef();
-      Domaine_VF& zvf = ref_cast(Domaine_VF,liste_C_[0].valeur().equation().domaine_dis().valeur());
+      Domaine_VF& zvf = ref_cast(Domaine_VF,liste_C_[0]->equation().domaine_dis());
 
       const IntTab& face_voisins = zvf.face_voisins();
       const ArrOfDouble& volume=zvf.volumes();
@@ -289,9 +293,9 @@ void  Chimie::mettre_a_jour(double temps)
           if (modele_micro_melange_>0)
             {
 
-              const DoubleTab& visc_turb=liste_C_[0].valeur().equation().probleme().get_champ("viscosite_turbulente").valeurs();
+              const DoubleTab& visc_turb=liste_C_[0]->equation().probleme().get_champ("viscosite_turbulente").valeurs();
               tau_mel=visc_turb;
-              const DoubleTab& D_moleculaire = ref_cast(Convection_Diffusion_Concentration,liste_C_[0].valeur().equation()).constituant().diffusivite_constituant().valeurs();
+              const DoubleTab& D_moleculaire = ref_cast(Convection_Diffusion_Concentration,liste_C_[0]->equation()).constituant().diffusivite_constituant().valeurs();
               double D_mol=0.;
               if (D_moleculaire.dimension(0) == 1)
                 D_mol = D_moleculaire(0, 0);
@@ -309,7 +313,7 @@ void  Chimie::mettre_a_jour(double temps)
                 }
               tau_mel.echange_espace_virtuel();
             }
-          int nb_elem=liste_C_[0].valeur().valeurs().size();
+          int nb_elem=liste_C_[0]->valeurs().size();
           ArrOfDouble C(nbc);
 
           for (int elem=0; elem<nb_elem; elem++)
@@ -332,7 +336,7 @@ void  Chimie::mettre_a_jour(double temps)
               // recuperation des valeurs initiales
               for (int i=0; i<nbc; i++)
                 {
-                  C[i]=liste_C_[i].valeur().valeurs()(elem);
+                  C[i]=liste_C_[i]->valeurs()(elem);
 
                 }
               for (int i=0; i<nbc; i++)
@@ -359,10 +363,10 @@ void  Chimie::mettre_a_jour(double temps)
               F77NAME(DLSODECHIMIES)(&nbc, C.addr(),&t, &tout,&tau_melange, &itol, &rtol, &atol, rwork.addr(), &lrw, iwork.addr(), &liw);
               // mise a jour des inconnues
               for (int i=0; i<liste_C_.size(); i++)
-                liste_C_[i].valeur().valeurs()(elem)=C[i];
+                liste_C_[i]->valeurs()(elem)=C[i];
             }
           for (int i=0; i<liste_C_.size(); i++)
-            liste_C_[i].valeur().valeurs().echange_espace_virtuel();
+            liste_C_[i]->valeurs().echange_espace_virtuel();
           return;
         }
       // on calcule le nb_sous_pas_temps_max
@@ -395,7 +399,7 @@ void  Chimie::mettre_a_jour(double temps)
 
       ArrOfDouble C(nbc),C_tmp(nbc), proportion_eq(nbr_directe);
 
-      int nb_elem=liste_C_[0].valeur().valeurs().size();
+      int nb_elem=liste_C_[0]->valeurs().size();
       for (int elem=0; elem<nb_elem; elem++)
         {
 
@@ -403,7 +407,7 @@ void  Chimie::mettre_a_jour(double temps)
           // recuperation des valeurs initiales
           for (int i=0; i<nbc; i++)
             {
-              C[i]=liste_C_[i].valeur().valeurs()(elem);
+              C[i]=liste_C_[i]->valeurs()(elem);
             }
           for (int n=0; n<nb_sous_pas_de_temps_reaction_max; n++)
             {
@@ -514,12 +518,12 @@ void  Chimie::mettre_a_jour(double temps)
             }
           // reaction.reagir(liste_C_,dt_chimie);
           for (int i=0; i<liste_C_.size(); i++)
-            liste_C_[i].valeur().valeurs()(elem)=C[i];
+            liste_C_[i]->valeurs()(elem)=C[i];
 
         }
 
       for (int i=0; i<liste_C_.size(); i++)
-        liste_C_[i].valeur().valeurs().echange_espace_virtuel();
+        liste_C_[i]->valeurs().echange_espace_virtuel();
 
       return;
     }
@@ -528,18 +532,46 @@ void  Chimie::mettre_a_jour(double temps)
 
 }
 
-const Champ_base& Chimie::get_champ(const Motcle& nom) const
+bool Chimie::has_champ(const Motcle& nom, OBS_PTR(Champ_base)& ref_champ) const
 {
-  int nb_reac=reactions_.size();
-  for (int i=0; i<nb_reac; i++)
+  for (int i = 0; i < reactions_.size(); i++)
     {
       Nom test("omega_");
-      test+=Nom(i);
-      if (nom==test)
+      test += Nom(i);
+      if (nom == test)
+        {
+          ref_champ = reactions_[i].get_omega();
+          return true;
+        }
+    }
+
+  return false; /* rien trouve */
+}
+
+bool Chimie::has_champ(const Motcle& nom) const
+{
+  for (int i = 0; i < reactions_.size(); i++)
+    {
+      Nom test("omega_");
+      test += Nom(i);
+      if (nom == test)
+        return true;
+    }
+
+  return false; /* rien trouve */
+}
+
+const Champ_base& Chimie::get_champ(const Motcle& nom) const
+{
+  for (int i = 0; i < reactions_.size(); i++)
+    {
+      Nom test("omega_");
+      test += Nom(i);
+      if (nom == test)
         return reactions_[i].get_omega();
     }
 
-  throw Champs_compris_erreur();
+  throw std::runtime_error(std::string("Field ") + nom.getString() + std::string(" not found !"));
 }
 
 void Chimie::get_noms_champs_postraitables(Noms& nom,Option opt) const

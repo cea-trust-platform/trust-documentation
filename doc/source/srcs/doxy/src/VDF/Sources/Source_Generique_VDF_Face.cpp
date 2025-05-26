@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #include <Dirichlet_homogene.h>
 #include <Equation_base.h>
 #include <Domaine_Cl_VDF.h>
-#include <Domaine_Cl_dis.h>
+
 #include <Milieu_base.h>
 #include <Dirichlet.h>
 #include <Domaine_VDF.h>
@@ -38,7 +38,7 @@ Entree& Source_Generique_VDF_Face::readOn(Entree& is)
 
 void Source_Generique_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  Champ espace_stockage;
+  OWN_PTR(Champ_base) espace_stockage;
   const Champ_base& champ_calc = ch_source_->get_champ(espace_stockage);
   const DoubleTab& valeurs_calc = champ_calc.valeurs();
 
@@ -52,7 +52,7 @@ void Source_Generique_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
   for (int num_cl = 0; num_cl < nb_front_cl; num_cl++)
     {
       const Cond_lim& la_cl = la_zcl_VDF->les_conditions_limites(num_cl);
-      const Front_VF& le_bord = ref_cast(Front_VF, la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF, la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
       if ((sub_type(Dirichlet, la_cl.valeur())) || (sub_type(Dirichlet_homogene, la_cl.valeur()))) { /* Do nothing */ }
@@ -69,11 +69,11 @@ void Source_Generique_VDF_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
   secmem.echange_espace_virtuel();
 }
 
-void Source_Generique_VDF_Face::associer_domaines(const Domaine_dis& domaine_dis,
-                                                  const Domaine_Cl_dis& zcl_dis)
+void Source_Generique_VDF_Face::associer_domaines(const Domaine_dis_base& domaine_dis,
+                                                  const Domaine_Cl_dis_base& zcl_dis)
 {
-  le_dom_VDF = ref_cast(Domaine_VDF,domaine_dis.valeur());
-  la_zcl_VDF = ref_cast(Domaine_Cl_VDF,zcl_dis.valeur());
+  le_dom_VDF = ref_cast(Domaine_VDF,domaine_dis);
+  la_zcl_VDF = ref_cast(Domaine_Cl_VDF,zcl_dis);
 }
 
 Nom Source_Generique_VDF_Face::localisation_source()

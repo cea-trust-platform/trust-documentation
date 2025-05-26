@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,12 +15,13 @@
 
 #include <Champ_Generique_Correlation.h>
 #include <Champ_Generique_Moyenne.h>
-#include <Schema_Temps.h>
-#include <Postraitement.h>
 #include <Discretisation_base.h>
+#include <Schema_Temps_base.h>
+#include <Postraitement.h>
 #include <Synonyme_info.h>
 
 Implemente_instanciable(Champ_Generique_Correlation,"Champ_Post_Statistiques_Correlation|Correlation",Champ_Generique_Statistiques_base);
+// XD correlation champ_post_statistiques_base correlation -1 to calculate the correlation between the two fields.
 
 Sortie& Champ_Generique_Correlation::printOn(Sortie& s ) const
 {
@@ -29,8 +30,7 @@ Sortie& Champ_Generique_Correlation::printOn(Sortie& s ) const
 
 Entree& Champ_Generique_Correlation::readOn(Entree& s )
 {
-  Champ_Generique_Statistiques_base::readOn(s);
-  return s ;
+  return Champ_Generique_Statistiques_base::readOn(s);
 }
 
 void Champ_Generique_Correlation::completer(const Postraitement_base& post)
@@ -87,30 +87,47 @@ void Champ_Generique_Correlation::completer(const Postraitement_base& post)
       Cerr<<get_property("nom")[0]<<finl;
       exit();
     }
-  Op_Correlation_.completer(Pb);
+
+  Nom prefix = Pb.le_nom() + "_";
+  if(post.le_nom() != "??" && post.le_nom() != "neant")
+    prefix += post.le_nom() +"_";
+  if(parent_name_ != "??" && !use_source_name_only_)
+    prefix += parent_name_ + "_";
+  Op_Correlation_.completer(Pb, prefix);
 }
 
-const Champ_base& Champ_Generique_Correlation::get_champ(Champ& espace_stockage) const
+const Champ_base& Champ_Generique_Correlation::get_champ_without_evaluation(OWN_PTR(Champ_base)& espace_stockage) const
 {
-  int nb_comp = integrale().valeur().nb_comp();
+  int nb_comp = integrale().le_champ_calcule().nb_comp();
   //Nature_du_champ nature_source = source.nature_du_champ();
   //Pas completement exact car il y a le cas de la correlation vecteur-vecteur et dans
   //ce cas c est un tenseur qui est manipule (la nature n est pas scalaire ou vectorielle)
   Nature_du_champ nature_source = (nb_comp==1)?scalaire:vectoriel;
-  Champ_Fonc es_tmp;
+  OWN_PTR(Champ_Fonc_base)  es_tmp;
   espace_stockage = creer_espace_stockage(nature_source,nb_comp,es_tmp);
+  return espace_stockage;
+}
 
-  DoubleTab& tab_correlation = espace_stockage.valeurs();
+const Champ_base& Champ_Generique_Correlation::get_champ(OWN_PTR(Champ_base)& espace_stockage) const
+{
+  int nb_comp = integrale().le_champ_calcule().nb_comp();
+  //Nature_du_champ nature_source = source.nature_du_champ();
+  //Pas completement exact car il y a le cas de la correlation vecteur-vecteur et dans
+  //ce cas c est un tenseur qui est manipule (la nature n est pas scalaire ou vectorielle)
+  Nature_du_champ nature_source = (nb_comp==1)?scalaire:vectoriel;
+  if (espace_stockage_.est_nul())
+    creer_espace_stockage(nature_source,nb_comp,espace_stockage_);
+  else
+    espace_stockage_->changer_temps(temps());
+  DoubleTab& tab_correlation = espace_stockage_->valeurs();
   tab_correlation = Op_Correlation_.calculer_valeurs();
   tab_correlation.echange_espace_virtuel();
-  return espace_stockage.valeur();
+  return espace_stockage_;
 }
 
 const Noms Champ_Generique_Correlation::get_property(const Motcle& query) const
 {
-
   //Creation des composantes serait a faire de maniere dynamique (Correlation_...)
-
   Motcles motcles(2);
   motcles[0] = "unites";
   motcles[1] = "composantes";
@@ -120,7 +137,7 @@ const Noms Champ_Generique_Correlation::get_property(const Motcle& query) const
     {
     case 0:
       {
-        const Noms noms_unites = integrale()->unites();
+        const Noms noms_unites = integrale().le_champ_calcule().unites();
         return noms_unites;
       }
     case 1:
@@ -154,7 +171,7 @@ const Noms Champ_Generique_Correlation::get_property(const Motcle& query) const
           }
         */
 
-        const Noms noms_compo = integrale()->noms_compo();
+        const Noms noms_compo = integrale().le_champ_calcule().noms_compo();
         return noms_compo;
       }
     }
@@ -165,6 +182,7 @@ const Noms Champ_Generique_Correlation::get_property(const Motcle& query) const
 //"Correlation_"+nom_champ_source_1+nom_champ_source_2
 void Champ_Generique_Correlation::nommer_source()
 {
+
   if (nom_post_=="??")
     {
       Nom nom_post_source, nom_champ_source_1, nom_champ_source_2;
@@ -180,6 +198,7 @@ void Champ_Generique_Correlation::nommer_source()
       nommer(nom_post_source);
     }
 }
+
 //Renvoie 1 si tenseur a post-traiter, sinon 0
 int Champ_Generique_Correlation::get_info_type_post() const
 {
@@ -199,8 +218,7 @@ const Motcle Champ_Generique_Correlation::get_directive_pour_discr() const
   if (support_corr==1)
     directive = "champ_elem";
   else
-    directive = Op_Correlation_.la_moyenne_a().integrale().le_champ().valeur().get_directive_pour_discr();
+    directive = Op_Correlation_.la_moyenne_a().integrale().le_champ()->get_directive_pour_discr();
 
   return directive;
 }
-

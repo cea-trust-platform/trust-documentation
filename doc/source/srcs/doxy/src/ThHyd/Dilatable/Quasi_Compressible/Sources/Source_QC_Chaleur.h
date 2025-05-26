@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,11 +17,10 @@
 #define Source_QC_Chaleur_included
 
 #include <Source_Chaleur_Fluide_Dilatable_base.h>
+
 #include <TRUST_Ref.h>
 
 class Fluide_Quasi_Compressible;
-class Domaine_Cl_dis;
-class Domaine_dis;
 
 /*! @brief class Source_QC_Chaleur
  *
@@ -35,12 +34,10 @@ class Domaine_dis;
 class Source_QC_Chaleur : public Source_Chaleur_Fluide_Dilatable_base
 {
   Declare_base(Source_QC_Chaleur);
-
 public:
   DoubleTab& ajouter(DoubleTab& ) const override;
 protected:
   virtual DoubleTab& ajouter_(DoubleTab& ) const;
-
 };
 
 #endif /* Source_QC_Chaleur_included */

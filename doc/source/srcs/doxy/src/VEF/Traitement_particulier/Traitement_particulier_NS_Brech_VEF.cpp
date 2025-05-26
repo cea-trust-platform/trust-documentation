@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,7 +45,7 @@ Entree& Traitement_particulier_NS_Brech_VEF::readOn(Entree& is)
   }
 
   int Traitement_particulier_NS_Brech_VEF::a_pour_Champ_Fonc(const Motcle& mot,
-  REF(Champ_base)& ch_ref) const
+  OBS_PTR(Champ_base)& ch_ref) const
   {
   if (mot == "Richardson")
   {
@@ -235,8 +235,8 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_flu
       DoubleTab valeurs_(taille,3) ;
 
       // Modifs VB pour prise en compte rho et calcul du flux enthalpique + Tmoy
-      REF(Champ_base) rch1 ;
-      REF(Champ_Inc_base) l_inco ;
+      OBS_PTR(Champ_base) rch1 ;
+      OBS_PTR(Champ_Inc_base) l_inco ;
       const Probleme_base& pb = mon_equation->probleme();
       /*
         pb.a_pour_Champ_Inc("Temperature", rch1 ) ;
@@ -312,11 +312,11 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_flu
       const Domaine& domaine=zdis.domaine();
       IntVect les_polys(coord_trace.dimension(0));
       domaine.chercher_elements(coord_trace, les_polys);
-      mon_equation->inconnue()->valeur_aux_elems(coord_trace, les_polys, valeurs_);
+      mon_equation->inconnue().valeur_aux_elems(coord_trace, les_polys, valeurs_);
 
       // Modifs VB pour prise en compte rho et calcul du flux enthalpique + Tmoy
-      mon_equation->fluide().masse_volumique()->valeur_aux_elems(coord_trace, les_polys, rho_);
-      mon_equation->fluide().capacite_calorifique()->valeur_aux_elems(coord_trace, les_polys, cp_);
+      mon_equation->fluide().masse_volumique().valeur_aux_elems(coord_trace, les_polys, rho_);
+      mon_equation->fluide().capacite_calorifique().valeur_aux_elems(coord_trace, les_polys, cp_);
       temp.valeur_aux_elems(coord_trace, les_polys, temper_);
       // Fin Modifs VB
 
@@ -375,12 +375,12 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_flu
 
 void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_Richardson()
 {
-  const Domaine_dis& zdis=mon_equation->domaine_dis();
-  const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdis.valeur());
-  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis().valeur() );
+  const Domaine_dis_base& zdis=mon_equation->domaine_dis();
+  const Domaine_VEF& domaine_VEF=ref_cast(Domaine_VEF, zdis);
+  const Domaine_Cl_VEF& domaine_Cl_VEF = ref_cast(Domaine_Cl_VEF,mon_equation->domaine_Cl_dis() );
 
-  REF(Champ_base) rch1 ;
-  REF(Champ_Inc_base) l_inco ;
+  OBS_PTR(Champ_base) rch1 ;
+  OBS_PTR(Champ_Inc_base) l_inco ;
 
   const Probleme_base& pb = mon_equation->probleme();
   /*
@@ -428,12 +428,10 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_Richardson
 
 void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_pression()
 {
-  const Domaine_VEF& zvef=ref_cast(Domaine_VEF, mon_equation->domaine_dis().valeur());
+  const Domaine_VEF& zvef=ref_cast(Domaine_VEF, mon_equation->domaine_dis());
   const DoubleVect& porosite_face = mon_equation->milieu().porosite_face();
   int i,comp;
   int nb_face = zvef.nb_faces();
-  //Champ_Inc la_pression = mon_equation->pression();
-  //Champ_Inc la_vitesse =  mon_equation->vitesse();
   Operateur_Div divergence = mon_equation->operateur_divergence();
   Operateur_Grad gradient = mon_equation->operateur_gradient();
   SolveurSys solveur_pression_ = mon_equation->solveur_pression();
@@ -457,8 +455,6 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_pre
   //on veut BM-1Bt(psi*Pression)
   mon_equation->solv_masse().appliquer(gradP);
 
-  //DoubleTrav grad_temp(la_vitesse.valeurs());
-  //DoubleTrav grad_temp(vitesse);
   DoubleTab grad_temp(vitesse);
   for(i=0; i<nb_face; i++)
     {
@@ -469,9 +465,6 @@ void Traitement_particulier_NS_Brech_VEF::post_traitement_particulier_calcul_pre
   divergence.calculer(grad_temp, secmem);
   secmem *= -1; // car div =-B
   solveur_pression_.resoudre_systeme(mon_equation->matrice_pression().valeur(),secmem, inc_pre);
-  // solveur_pression_.resoudre_systeme(mon_equation->matrice_pression().valeur(),secmem, inc_pre, la_pression.valeur());
-  // Cerr << "la pression " << pression << finl;
-  //Cerr << "inc_pre " << inc_pre << finl;
 
   DoubleVect& la_pression_porosite = ch_p.valeurs();
   la_pression_porosite = inc_pre ;
@@ -556,7 +549,7 @@ calculer_terme_production_K(const Domaine_VEF& domaine_VEF,const Domaine_Cl_VEF&
   for (n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = zcl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -705,7 +698,7 @@ calculer_terme_destruction_K(const Domaine_VEF& domaine_VEF,
   for (n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = zcl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 
@@ -756,7 +749,7 @@ calculer_terme_destruction_K(const Domaine_VEF& domaine_VEF,
   for (n_bord=0; n_bord<domaine_VEF.nb_front_Cl(); n_bord++)
     {
       const Cond_lim& la_cl = zcl_VEF.les_conditions_limites(n_bord);
-      const Front_VF& le_bord = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& le_bord = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = le_bord.num_premiere_face();
       int nfin = ndeb + le_bord.nb_faces();
 

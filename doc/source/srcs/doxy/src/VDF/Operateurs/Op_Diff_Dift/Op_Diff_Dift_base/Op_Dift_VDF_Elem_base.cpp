@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -31,9 +31,9 @@ Entree& Op_Dift_VDF_Elem_base::readOn(Entree& s ) { return s ; }
 double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem() const
 {
   double dt_stab, coef = -1.e10;
-  const Domaine_VDF& domaine_VDF = iter->domaine();
+  const Domaine_VDF& domaine_VDF = iter_->domaine();
   const IntTab& elem_faces = domaine_VDF.elem_faces();
-  const DoubleVect& alpha_t = diffusivite_turbulente()->valeurs();
+  const DoubleVect& alpha_t = diffusivite_turbulente().valeurs();
   bool is_concentration = (equation().que_suis_je().debute_par("Convection_Diffusion_Concentration") || equation().que_suis_je().debute_par("Convection_Diffusion_Espece"));
 
   ArrOfInt numfa(2*dimension);
@@ -43,8 +43,8 @@ double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem() const
       double rcp = 1.;
       if (!is_concentration)
         {
-          const int Ccp = sub_type(Champ_Uniforme, mon_equation->milieu().capacite_calorifique().valeur());
-          const int Cr = sub_type(Champ_Uniforme, mon_equation->milieu().masse_volumique().valeur());
+          const int Ccp = sub_type(Champ_Uniforme, mon_equation->milieu().capacite_calorifique());
+          const int Cr = sub_type(Champ_Uniforme, mon_equation->milieu().masse_volumique());
           const DoubleTab& tab_Cp = mon_equation->milieu().capacite_calorifique().valeurs(), tab_r = mon_equation->milieu().masse_volumique().valeurs();
           rcp = tab_r(Cr ? 0 : elem, 0) * tab_Cp(Ccp ? 0 : elem, 0);
         }
@@ -80,9 +80,9 @@ double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem() const
 double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem_axi() const
 {
   double dt_stab, coef = -1.e10;
-  const Domaine_VDF& domaine_VDF = iter->domaine();
+  const Domaine_VDF& domaine_VDF = iter_->domaine();
   const IntTab& elem_faces = domaine_VDF.elem_faces();
-  const DoubleVect& alpha_t = diffusivite_turbulente()->valeurs();
+  const DoubleVect& alpha_t = diffusivite_turbulente().valeurs();
   double alpha_local,h_x,h_y,h_z;
 
   if (dimension == 2)
@@ -118,9 +118,9 @@ double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem_axi() const
 double Op_Dift_VDF_Elem_base::calculer_dt_stab_elem_var_axi() const
 {
   double dt_stab, coef = -1.e10;
-  const Domaine_VDF& domaine_VDF = iter->domaine();
+  const Domaine_VDF& domaine_VDF = iter_->domaine();
   const IntTab& elem_faces = domaine_VDF.elem_faces();
-  const DoubleVect& alpha_t = diffusivite_turbulente()->valeurs();
+  const DoubleVect& alpha_t = diffusivite_turbulente().valeurs();
   const int D = dimension;
 
   IntVect numfa(2 * D);
@@ -150,6 +150,6 @@ void Op_Dift_VDF_Elem_base::dimensionner_blocs(matrices_t matrices, const tabs_t
   if (!matrices.count(nom_inco) || semi_impl.count(nom_inco)) return; //semi-implicite ou pas de bloc diagonal -> rien a faire
 
   Matrice_Morse *mat = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr, mat2;
-  Op_VDF_Elem::dimensionner(iter->domaine(), iter->domaine_Cl(), mat2);
+  Op_VDF_Elem::dimensionner(iter_->domaine(), iter_->domaine_Cl(), mat2, equation().diffusion_multi_scalaire());
   mat->nb_colonnes() ? *mat += mat2 : *mat = mat2;
 }

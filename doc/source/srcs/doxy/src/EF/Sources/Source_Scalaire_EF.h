@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,7 +17,7 @@
 #define Source_Scalaire_EF_included
 
 #include <Source_base.h>
-#include <Champ_Don.h>
+
 #include <TRUST_Ref.h>
 
 class Probleme_base;
@@ -41,10 +41,10 @@ public:
 
 protected:
 
-  REF(Domaine_EF) le_dom_EF;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  OBS_PTR(Domaine_EF) le_dom_EF;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
 
-  Champ_Don la_source_,la_source_lu_;
+  OWN_PTR(Champ_Don_base) la_source_,la_source_lu_;
 };
 
 #endif

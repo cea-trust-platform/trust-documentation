@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -30,7 +30,7 @@ class Champ_base;
  *
  * @sa Operateur_Conv_base Operateur
  */
-class Operateur_Conv  : public Operateur, public DERIV(Operateur_Conv_base)
+class Operateur_Conv  : public Operateur, public OWN_PTR(Operateur_Conv_base)
 {
   Declare_instanciable(Operateur_Conv);
 public :
@@ -47,7 +47,7 @@ public :
   void associer_norme_vitesse(const Champ_base&);
 protected :
 
-  REF(Champ_base) la_vitesse;
+  OBS_PTR(Champ_base) la_vitesse;
 };
 
 /*! @brief Renvoie l'objet sous-jacent upcaste en Operateur_base
@@ -69,7 +69,7 @@ inline const Operateur_base& Operateur_Conv::l_op_base() const
 
 /*! @brief Associe la vitesse (en tant que vitesse transportante) a l'operateur de convection.
  *
- * @param (Champ_Inc& vit) le champ inconnue representant la vitesse
+ * @param (Champ_Inc_base& vit) le champ inconnue representant la vitesse
  * @return le champ inconnue representant la vitesse transportante
  */
 inline void Operateur_Conv::associer_vitesse(const Champ_base& vit)
@@ -79,7 +79,7 @@ inline void Operateur_Conv::associer_vitesse(const Champ_base& vit)
 
 /*! @brief Renvoie la vitesse transportante de l'operateur
  *
- * @return (Champ_Inc&) le champ inconnue representant la vitesse transportante
+ * @return (Champ_Inc_base&) le champ inconnue representant la vitesse transportante
  */
 inline const Champ_base& Operateur_Conv::vitesse() const
 {
@@ -94,7 +94,7 @@ inline const Champ_base& Operateur_Conv::vitesse() const
  */
 inline void Operateur_Conv::typer(const Nom& a_type)
 {
-  DERIV(Operateur_Conv_base)::typer(a_type);
+  OWN_PTR(Operateur_Conv_base)::typer(a_type);
 }
 
 inline int Operateur_Conv::op_non_nul() const

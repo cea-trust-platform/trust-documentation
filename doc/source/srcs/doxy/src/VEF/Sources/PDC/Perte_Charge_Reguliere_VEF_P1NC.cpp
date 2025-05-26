@@ -122,7 +122,7 @@ void Perte_Charge_Reguliere_VEF_P1NC::remplir_num_faces(Nom& un_nom_sous_domaine
 DoubleTab& Perte_Charge_Reguliere_VEF_P1NC::ajouter(DoubleTab& resu) const
 {
   //Cerr << " Perte_Charge_Reguliere_VEF_P1NC::ajouter " << finl;
-  const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF,equation().domaine_dis().valeur());
+  const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF,equation().domaine_dis());
   const DoubleVect& volumes_entrelaces = domaine_VEF.volumes_entrelaces();
   const DoubleVect& porosite_face = equation().milieu().porosite_face();
   const DoubleTab& vit = la_vitesse->valeurs();
@@ -132,15 +132,15 @@ DoubleTab& Perte_Charge_Reguliere_VEF_P1NC::ajouter(DoubleTab& resu) const
   double Cf,CK,Reynolds;
   int numfa,n0,n1;
 
-  const Champ_Don& nu = le_fluide->viscosite_cinematique();
+  const Champ_Don_base& nu = le_fluide->viscosite_cinematique();
   const DoubleTab& visco = nu.valeurs();
   double d_visco=-1;
   int l_visco_unif=0;
 
-  if (sub_type(Champ_Uniforme,nu.valeur()))
+  if (sub_type(Champ_Uniforme,nu))
     {
-      const Champ_Uniforme& ch_nu = ref_cast(Champ_Uniforme,nu.valeur());
-      d_visco = ch_nu(0,0);
+      const Champ_Uniforme& ch_nu = ref_cast(Champ_Uniforme,nu);
+      d_visco = ch_nu.valeurs()(0,0);
       l_visco_unif = 1;
     }
 
@@ -203,7 +203,7 @@ DoubleTab& Perte_Charge_Reguliere_VEF_P1NC::ajouter(DoubleTab& resu) const
 void  Perte_Charge_Reguliere_VEF_P1NC::contribuer_a_avec(const DoubleTab&, Matrice_Morse& matrice) const
 {
   //Cerr << " Perte_Charge_Reguliere_VEF_P1NC::ajouter " << finl;
-  const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF,equation().domaine_dis().valeur());
+  const Domaine_VEF& domaine_VEF = ref_cast(Domaine_VEF,equation().domaine_dis());
   const DoubleVect& volumes_entrelaces = domaine_VEF.volumes_entrelaces();
   const DoubleVect& porosite_face = equation().milieu().porosite_face();
   const DoubleTab& vit = la_vitesse->valeurs();
@@ -213,15 +213,15 @@ void  Perte_Charge_Reguliere_VEF_P1NC::contribuer_a_avec(const DoubleTab&, Matri
   double Cf,CK,Reynolds;
   int numfa,n0,n1;
 
-  const Champ_Don& nu = le_fluide->viscosite_cinematique();
+  const Champ_Don_base& nu = le_fluide->viscosite_cinematique();
   const DoubleTab& visco = nu.valeurs();
   double d_visco=-1;
   int l_visco_unif=0;
 
-  if (sub_type(Champ_Uniforme,nu.valeur()))
+  if (sub_type(Champ_Uniforme,nu))
     {
-      const Champ_Uniforme& ch_nu = ref_cast(Champ_Uniforme,nu.valeur());
-      d_visco = ch_nu(0,0);
+      const Champ_Uniforme& ch_nu = ref_cast(Champ_Uniforme,nu);
+      d_visco = ch_nu.valeurs()(0,0);
       l_visco_unif = 1;
     }
 

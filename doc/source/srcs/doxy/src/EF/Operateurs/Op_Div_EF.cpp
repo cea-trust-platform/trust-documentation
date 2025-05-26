@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -45,19 +45,19 @@ Entree& Op_Div_EF::readOn(Entree& s)
 /*! @brief
  *
  */
-void Op_Div_EF::associer(const Domaine_dis& domaine_dis,
-                         const Domaine_Cl_dis& domaine_Cl_dis,
-                         const Champ_Inc&)
+void Op_Div_EF::associer(const Domaine_dis_base& domaine_dis,
+                         const Domaine_Cl_dis_base& domaine_Cl_dis,
+                         const Champ_Inc_base&)
 {
-  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis.valeur());
-  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis.valeur());
+  const Domaine_EF& zEF = ref_cast(Domaine_EF, domaine_dis);
+  const Domaine_Cl_EF& zclEF = ref_cast(Domaine_Cl_EF, domaine_Cl_dis);
   le_dom_EF = zEF;
   la_zcl_EF = zclEF;
 }
 
 DoubleTab& Op_Div_EF::ajouter(const DoubleTab& vit, DoubleTab& div) const
 {
-  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis().valeur());
+  const Domaine_EF& domaine_ef=ref_cast(Domaine_EF,equation().domaine_dis());
 
 
   const DoubleTab& Bij_thilde=domaine_ef.Bij_thilde();
@@ -115,8 +115,7 @@ int Op_Div_EF::impr(Sortie& os) const
 {
 
   const int impr_bord=(le_dom_EF->domaine().bords_a_imprimer().est_vide() ? 0:1);
-  //SFichier Flux_div;
-  if (!Flux_div.is_open()) ouvrir_fichier(Flux_div,"",je_suis_maitre());
+  ouvrir_fichier(Flux_div,"",je_suis_maitre());
   EcrFicPartage Flux_face;
   ouvrir_fichier_partage(Flux_face,"",impr_bord);
   const Schema_Temps_base& sch = equation().probleme().schema_temps();
@@ -132,7 +131,7 @@ int Op_Div_EF::impr(Sortie& os) const
     {
       flux_bord=0;
       const Cond_lim& la_cl = la_zcl_EF->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       for (int face=ndeb; face<nfin; face++)
@@ -163,9 +162,9 @@ int Op_Div_EF::impr(Sortie& os) const
 
   for (int num_cl=0; num_cl<le_dom_EF->nb_front_Cl(); num_cl++)
     {
-      const Frontiere_dis_base& la_fr = la_zcl_EF->les_conditions_limites(num_cl).frontiere_dis();
+      const Frontiere_dis_base& la_fr = la_zcl_EF->les_conditions_limites(num_cl)->frontiere_dis();
       const Cond_lim& la_cl = la_zcl_EF->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       if (le_dom_EF->domaine().bords_a_imprimer().contient(la_fr.le_nom()))

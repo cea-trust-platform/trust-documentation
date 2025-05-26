@@ -14,13 +14,15 @@
 *****************************************************************************/
 
 #include <Reordonner_faces_periodiques.h>
-#include <Domaine_Cl_dis.h>
+#include <Domaine_Cl_dis_base.h>
+
+#include <Domaine_VF.h>
 #include <Periodique.h>
 #include <Domaine.h>
-#include <Domaine_VF.h>
 #include <Scatter.h>
 
 Implemente_instanciable(Periodique, "Periodique", Cond_lim_base);
+// XD periodic condlim_base periodique -1 1). For Navier-Stokes equations, this keyword is used to indicate that the horizontal inlet velocity values are the same as the outlet velocity values, at every moment. As regards meshing, the inlet and outlet edges bear the same name.; 2). For scalar transport equation, this keyword is used to set a periodic condition on scalar. The two edges dealing with this periodic condition bear the same name.
 
 Sortie& Periodique::printOn(Sortie& s) const { return s << que_suis_je() << finl; }
 
@@ -37,7 +39,7 @@ void Periodique::completer()
 
   // Recherche de la direction de periodicite:
   ArrOfDouble erreur;
-  int ok = Reordonner_faces_periodiques::check_faces_periodiques(frontiere, direction_perio_, erreur, 1 /* verbose */);
+  int ok = Reordonner_faces_periodiques::check_faces_periodiques(frontiere, direction_perio_, erreur, true /* verbose */);
   if (!ok)
     exit();
 
@@ -65,7 +67,7 @@ void Periodique::completer()
 
   // Creation d'un tableau d'indices parallele sur toutes les faces frontieres
   IntTab tab_face_associee;
-  const Domaine_VF& domainevf = ref_cast(Domaine_VF, domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VF& domainevf = ref_cast(Domaine_VF, domaine_Cl_dis().domaine_dis());
   domainevf.creer_tableau_faces_bord(tab_face_associee, RESIZE_OPTIONS::NOCOPY_NOINIT);
   tab_face_associee = -1;
 
@@ -96,7 +98,7 @@ void Periodique::completer()
   const int nb_faces_front_tot = tab_face_associee.size_totale();
   ArrOfInt index(nb_faces_front_tot);
   index = -2;
-  const int nb_faces_domaine = domaine_Cl_dis().domaine_dis().valeur().face_sommets().dimension(0);
+  const int nb_faces_domaine = domaine_Cl_dis().domaine_dis().face_sommets().dimension(0);
   for (i = 0; i < nb_faces_virt; i++)
     {
       const int face_domaine = frontiere.face_virt(i); // Indice d'une face du domaine

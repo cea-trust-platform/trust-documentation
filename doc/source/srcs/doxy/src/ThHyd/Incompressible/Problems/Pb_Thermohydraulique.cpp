@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -24,6 +24,7 @@ Implemente_instanciable(Pb_Thermohydraulique, "Pb_Thermohydraulique", Pb_Hydraul
 // XD   attr fluide_ostwald fluide_ostwald fluide_ostwald 1 The fluid medium associated with the problem (only one possibility).
 // XD   attr fluide_sodium_liquide fluide_sodium_liquide fluide_sodium_liquide 1 The fluid medium associated with the problem (only one possibility).
 // XD   attr fluide_sodium_gaz fluide_sodium_gaz fluide_sodium_gaz 1 The fluid medium associated with the problem (only one possibility).
+// XD   attr correlations bloc_lecture correlations 1 List of correlations used in specific source terms (i.e. interfacial flux,  interfacial friction, ...)
 // XD   attr navier_stokes_standard navier_stokes_standard navier_stokes_standard 1 Navier-Stokes equations.
 // XD   attr convection_diffusion_temperature convection_diffusion_temperature convection_diffusion_temperature 1 Energy equation (temperature diffusion convection).
 
@@ -40,8 +41,15 @@ Entree& Pb_Thermohydraulique::readOn(Entree& is) { return Pb_Hydraulique::readOn
  */
 const Equation_base& Pb_Thermohydraulique::equation(int i) const
 {
-  if (i == 1) return eq_thermique;
-  return Pb_Hydraulique::equation(i);
+  if (i == 0) return eq_hydraulique;
+  else if (i == 1) return eq_thermique;
+  else if (i < 2 + eq_opt_.size() && i > 1) return eq_opt_[i - 2].valeur();
+  else
+    {
+      Cerr << "Pb_Thermohydraulique::equation() : Wrong equation number" << i << "!" << finl;
+      Process::exit();
+    }
+  return eq_hydraulique;
 }
 
 /*! @brief Renvoie l'equation d'hydraulique de type Navier_Stokes_std si i=0 Renvoie l'equation de la thermique de type
@@ -53,8 +61,15 @@ const Equation_base& Pb_Thermohydraulique::equation(int i) const
  */
 Equation_base& Pb_Thermohydraulique::equation(int i)
 {
-  if (i == 1) return eq_thermique;
-  return Pb_Hydraulique::equation(i);
+  if (i == 0) return eq_hydraulique;
+  else if (i == 1) return eq_thermique;
+  else if (i < 2 + eq_opt_.size() && i > 1) return eq_opt_[i - 2].valeur();
+  else
+    {
+      Cerr << "Pb_Thermohydraulique::equation() : Wrong equation number" << i << "!" << finl;
+      Process::exit();
+    }
+  return eq_hydraulique;
 }
 
 /*! @brief Associe le milieu au probleme Le milieu doit etre de type fluide incompressible
@@ -76,14 +91,14 @@ void Pb_Thermohydraulique::associer_milieu_base(const Milieu_base& mil)
  * Le test se fait sur les conditions
  *     aux limites discretisees de chaque equation.
  *     Appel la fonction de librairie hors classe:
- *       tester_compatibilite_hydr_thermique(const Domaine_Cl_dis&,const Domaine_Cl_dis&)
+ *       tester_compatibilite_hydr_thermique(const Domaine_Cl_dis_base&,const Domaine_Cl_dis_base&)
  *
  * @return (int) code de retour propage
  */
 int Pb_Thermohydraulique::verifier()
 {
-  const Domaine_Cl_dis& domaine_Cl_hydr = eq_hydraulique.domaine_Cl_dis();
-  const Domaine_Cl_dis& domaine_Cl_th = eq_thermique.domaine_Cl_dis();
+  const Domaine_Cl_dis_base& domaine_Cl_hydr = eq_hydraulique.domaine_Cl_dis();
+  const Domaine_Cl_dis_base& domaine_Cl_th = eq_thermique.domaine_Cl_dis();
   return tester_compatibilite_hydr_thermique(domaine_Cl_hydr,domaine_Cl_th);
 }
 

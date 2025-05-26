@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -28,7 +28,7 @@ class Op_Dift_VDF_Face_Axi_base : public Op_Dift_VDF_Face_base
 public:
   double calculer_dt_stab() const override;
   void completer() override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& ,const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& ,const Champ_Inc_base& ) override;
   void associer_modele_turbulence(const Modele_turbulence_hyd_base& );
   void mettre_a_jour(double ) override;
   void contribue_au_second_membre(DoubleTab& ) const;
@@ -36,16 +36,16 @@ public:
 
   inline void contribuer_a_avec(const DoubleTab& inco, Matrice_Morse& matrice) const override { ajouter_contribution(inco, matrice); }
   inline void contribuer_au_second_membre(DoubleTab& resu) const override { contribue_au_second_membre(resu); }
-  inline void associer_loipar(const Turbulence_paroi& ) { /* do nothing */}
-  inline void associer_diffusivite_turbulente(const Champ_Fonc& visc_turb) { Op_Diff_Turbulent_base::associer_diffusivite_turbulente(visc_turb);}
+  inline void associer_loipar(const Turbulence_paroi_base& ) { /* do nothing */}
+  inline void associer_diffusivite_turbulente(const Champ_Fonc_base& visc_turb) { Op_Diff_Turbulent_base::associer_diffusivite_turbulente(visc_turb);}
   inline void dimensionner(Matrice_Morse& matrice) const override { Op_VDF_Face::dimensionner(le_dom_vdf.valeur(), la_zcl_vdf.valeur(), matrice); }
   inline void modifier_pour_Cl(Matrice_Morse& matrice, DoubleTab& secmem) const override { Op_VDF_Face::modifier_pour_Cl( le_dom_vdf.valeur(), la_zcl_vdf.valeur(), matrice,  secmem); }
 
 protected:
-  REF(Modele_turbulence_hyd_base) le_modele_turbulence;
-  REF(Champ_Face_VDF) inconnue;
-  REF(Domaine_VDF) le_dom_vdf;
-  REF(Domaine_Cl_VDF) la_zcl_vdf;
+  OBS_PTR(Modele_turbulence_hyd_base) le_modele_turbulence;
+  OBS_PTR(Champ_Face_VDF) inconnue;
+  OBS_PTR(Domaine_VDF) le_dom_vdf;
+  OBS_PTR(Domaine_Cl_VDF) la_zcl_vdf;
   IntVect orientation, type_arete_bord;
   IntTab Qdm, face_voisins, elem_faces;
   DoubleVect surface, volumes_entrelaces, porosite;

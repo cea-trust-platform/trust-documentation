@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -21,15 +21,13 @@
 #include <Op_Diff_VEF_base.h>
 #include <TRUST_Ref.h>
 
-class Modele_turbulence_scal_base;
-
 class Op_Dift_VEF_base : public Op_Diff_VEF_base, public Op_Diff_Turbulent_base
 {
   Declare_base(Op_Dift_VEF_base);
 public:
 
   double calculer_dt_stab() const override;
-  void calculer_pour_post(Champ& espace_stockage, const Nom& option, int comp) const override;
+  void calculer_pour_post(Champ_base& espace_stockage, const Nom& option, int comp) const override;
 
   void associer_diffusivite(const Champ_base& diffu) override { diffusivite_ = diffu; }
   inline const Champ_base& diffusivite() const override { return diffusivite_.valeur(); }
@@ -52,15 +50,15 @@ public:
   void calculer_borne_locale(DoubleVect& ,double ,double ) const override;
   void associer_modele_turbulence(const Modele_turbulence_hyd_base& );
   void mettre_a_jour(double temps) override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& , const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& , const Champ_Inc_base& ) override;
   void completer() override;
 
   const DoubleTab& get_tau_tan() const { return tau_tan_; }
   const Modele_turbulence_hyd_base& get_modele_turbulence() const { return le_modele_turbulence.valeur(); }
 
 protected:
-  REF(Modele_turbulence_hyd_base) le_modele_turbulence; // A deplacer dans Op_Diff_turb ?
-  REF(Champ_base) diffusivite_;
+  OBS_PTR(Modele_turbulence_hyd_base) le_modele_turbulence; // A deplacer dans Op_Diff_turb ?
+  OBS_PTR(Champ_base) diffusivite_;
   DoubleTab tau_tan_;
 
   double calculer_dt_stab_P1NCP1B() const;

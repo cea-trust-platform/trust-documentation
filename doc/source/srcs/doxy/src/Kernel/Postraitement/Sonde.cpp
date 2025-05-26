@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -15,13 +15,14 @@
 
 #include <Champ_Generique_Interpolation.h>
 #include <Champ_Generique_refChamp.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Entree_complete.h>
+
 #include <communications.h>
 #include <Champ_Inc_base.h>
 #include <Postraitement.h>
-#include <Domaine_Cl_dis.h>
-#include <sys/stat.h>
 #include <Domaine_VF.h>
+#include <sys/stat.h>
 #include <Sonde.h>
 
 Implemente_instanciable_sans_constructeur_ni_destructeur(Sonde,"Sonde",Objet_U);
@@ -32,6 +33,8 @@ Implemente_instanciable_sans_constructeur_ni_destructeur(Sonde,"Sonde",Objet_U);
 // XD attr mperiode chaine(into=["periode"]) mperiode 0 Keyword to set the sampled field measurement frequency.
 // XD attr prd floattant prd 0 Period value. Every prd seconds, the field value calculated at the previous time step is written to the nom_sonde.son file.
 // XD attr type sonde_base type 0 Type of probe.
+
+// XD sonde_base objet_lecture sonde_base 0 Basic probe. Probes refer to sensors that allow a value or several points of the domain to be monitored over time. The probes may be a set of points defined one by one (keyword Points) or a set of points evenly distributed over a straight segment (keyword Segment) or arranged according to a layout (keyword Plan) or according to a parallelepiped (keyword Volume). The fields allow all the values of a physical value on the domain to be known at several moments in time.
 
 // XD segmentfacesx sonde_base segmentfacesx 0 Segment probe where points are moved to the nearest x faces
 // XD attr nbr entier nbr 0 Number of probe points of the segment, evenly distributed.
@@ -55,6 +58,53 @@ Implemente_instanciable_sans_constructeur_ni_destructeur(Sonde,"Sonde",Objet_U);
 // XD attr teta1 floattant teta1 0 not_set
 // XD attr teta2 floattant teta2 0 not_set
 
+// XD un_point objet_lecture nul 0 A point.
+// XD attr pos listf pos 0 Point coordinates.
+
+// XD listpoints listobj nul 0 un_point 0 Points.
+// XD points sonde_base points 0 Keyword to define the number of probe points. The file is arranged in columns.
+// XD attr points listpoints points 0 Probe points.
+
+// XD numero_elem_sur_maitre sonde_base numero_elem_sur_maitre 0 Keyword to define a probe at the special element. Useful for min/max sonde.
+// XD attr numero entier numero 0 element number
+
+// XD segmentpoints points segmentpoints 0 This keyword is used to define a probe segment from specifics points. The nom_champ field is sampled at ns specifics points.
+
+// XD position_like sonde_base position_like 0 Keyword to define a probe at the same position of another probe named autre_sonde.
+// XD attr autre_sonde chaine autre_sonde 0 Name of the other probe.
+
+// XD plan sonde_base plan 0 Keyword to set the number of probe layout points. The file format is type .lml
+// XD attr nbr entier nbr 0 Number of probes in the first direction.
+// XD attr nbr2 entier nbr2 0 Number of probes in the second direction.
+// XD attr point_deb un_point point_deb 0 First point defining the angle. This angle should be positive.
+// XD attr point_fin un_point point_fin 0 Second point defining the angle. This angle should be positive.
+// XD attr point_fin_2 un_point point_fin_2 0 Third point defining the angle. This angle should be positive.
+
+// XD volume sonde_base volume 0 Keyword to define the probe volume in a parallelepiped passing through 4 points and the number of probes in each direction.
+// XD attr nbr entier nbr 0 Number of probes in the first direction.
+// XD attr nbr2 entier nbr2 0 Number of probes in the second direction.
+// XD attr nbr3 entier nbr3 0 Number of probes in the third direction.
+// XD attr point_deb un_point point_deb 0 Point of origin.
+// XD attr point_fin un_point point_fin 0 Point defining the first direction (from point of origin).
+// XD attr point_fin_2 un_point point_fin_2 0 Point defining the second direction (from point of origin).
+// XD attr point_fin_3 un_point point_fin_3 0 Point defining the third direction (from point of origin).
+
+// XD circle sonde_base circle 0 Keyword to define several probes located on a circle.
+// XD attr nbr entier nbr 0 Number of probes between teta1 and teta2 (angles given in degrees).
+// XD attr point_deb un_point point_deb 0 Center of the circle.
+// XD attr direction entier(into=[0,1,2]) direction 1 Axis normal to the circle plane (0:x axis, 1:y axis, 2:z axis).
+// XD attr radius floattant radius 0 Radius of the circle.
+// XD attr theta1 floattant theta1 0 First angle.
+// XD attr theta2 floattant theta2 0 Second angle.
+
+// XD circle_3 sonde_base circle_3 0 Keyword to define several probes located on a circle (in 3-D space).
+// XD attr nbr entier nbr 0 Number of probes between teta1 and teta2 (angles given in degrees).
+// XD attr point_deb un_point point_deb 0 Center of the circle.
+// XD attr direction entier(into=[0,1,2]) direction 0 Axis normal to the circle plane (0:x axis, 1:y axis, 2:z axis).
+// XD attr radius floattant radius 0 Radius of the circle.
+// XD attr theta1 floattant theta1 0 First angle.
+// XD attr theta2 floattant theta2 0 Second angle.
+
 static int fichier_sondes_cree=0;
 static SFichier fichier_sondes;
 
@@ -74,7 +124,6 @@ Sonde::Sonde(const Nom& nom)  :
   gravcl(false),  // Valeurs aux centres de gravite (comme grav) mais avec ajout eventuel des valeurs aux bords via domaine Cl du champ post-traite
   som(false),
   nb_bip(0.),
-  reprise(0),
   orientation_faces_(-1)
 {}
 
@@ -135,7 +184,7 @@ void Sonde::completer()
     {
       if (nom_macro==Motcle(nom_champ_lu_))
         {
-          REF(Champ_base) champ_ref = Pb.get_champ(nom_champ_lu_);
+          OBS_PTR(Champ_base) champ_ref = Pb.get_champ(nom_champ_lu_);
           const Nom& nom_champ_base = champ_ref->le_nom();
           const Noms& compos_base = champ_ref->noms_compo();
           int ncomposante = Champ_Generique_base::composante(nom_champ_lu_,nom_champ_base,compos_base,champ_ref->get_synonyms());
@@ -228,38 +277,8 @@ Entree& Sonde::readOn(Entree& is)
   // Affectation du nom du champ
   nom_champ_lu_ = motlu;
 
-  //Creation des Champ_Generique_refChamp necessaire pour l initialisation de la REF a Champ_Generique_base
-  //Si le champ demande est un Champ_base connu du probleme on cree le Champ_Generique_refChamp correspondant
-  Probleme_base& Pb = mon_post->probleme();
-  const Motcles& noms_champs_postraitables = mon_post->les_sondes().get_noms_champs_postraitables();
-  if (noms_champs_postraitables.contient_(nom_champ_lu_))
-    {
-      Pb.creer_champ(nom_champ_lu_);
-      //On va creer un Champ_Generique_refChamp dont le nom a pour base
-      //le nom du champ auquel on fait reference et non pas une composante de ce champ
-      REF(Champ_base) champ_ref = Pb.get_champ(nom_champ_lu_);
-      const Nom& le_nom_champ = champ_ref->le_nom();
-      const Motcle nom_domaine = mon_post->domaine()->le_nom();
-      Motcle identifiant;
-
-      identifiant = Motcle(le_nom_champ)+"_natif_"+nom_domaine;
-      if (!mon_post->comprend_champ_post(identifiant))
-        {
-          mon_post->creer_champ_post(le_nom_champ,"natif",is);
-        }
-    }
-  else
-    {
-      Nom expression;
-      int is_champ_predefini = Pb.expression_predefini(motlu,expression);
-      if ((is_champ_predefini) && (!mon_post->comprend_champ_post(nom_champ_lu_)))
-        {
-          Champ_Generique champ;
-          Entree_complete s_complete(expression,is);
-          s_complete>>champ;
-          mon_post->complete_champ(champ,nom_champ_lu_);
-        }
-    }
+  validate_position();
+  create_champ_generique(is, motlu);
 
   // Lecture des caracteristiques de la sonde
   IntVect fait(2);
@@ -301,6 +320,9 @@ Entree& Sonde::readOn(Entree& is)
           Cerr << les_motcles;
           exit();
         }
+
+      if(rang != 0)
+        validate_type(motlu); // restrict valid localisation for IJK notably
 
       switch(rang)
         {
@@ -364,29 +386,28 @@ Entree& Sonde::readOn(Entree& is)
             DoubleVect origine(dimension);
             DoubleVect extremite(dimension);
             DoubleVect dx(dimension);
-            int i=0,j=0;
             is >> nbre_points;
             les_positions_sondes_initiales_.resize(nbre_points,dimension);
 
-            for (; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               {
                 is >> origine(i);
                 type_+=" ";
                 type_+=(Nom)origine(i);
               }
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               {
                 is >> extremite(i);
                 type_+=" ";
                 type_+=(Nom)extremite(i);
               }
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               if (rang2==6)
                 dx(i)=(extremite(i))/(nbre_points-1);
               else
                 dx(i)=(extremite(i)-origine(i))/(nbre_points-1);
-            for (i=0; i<nbre_points; i++)
-              for (j=0; j<dimension; j++)
+            for (int i=0; i<nbre_points; i++)
+              for (int j=0; j<dimension; j++)
                 les_positions_sondes_initiales_(i,j)=origine(j)+i*dx(j);
             break;
           }
@@ -403,35 +424,34 @@ Entree& Sonde::readOn(Entree& is)
             DoubleVect extremite2(dimension);
             DoubleVect dx1(dimension);
             DoubleVect dx2(dimension);
-            int i=0,j=0,k=0;
             is >> nbre_points1;
             is >> nbre_points2;
             nbre_points=nbre_points1*nbre_points2;
             les_positions_sondes_initiales_.resize(nbre_points,dimension);
 
-            for (; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> origine(i);
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> extremite1(i);
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> extremite2(i);
             if (rang2==7)
               {
-                for (i=0; i<dimension; i++)
+                for (int i=0; i<dimension; i++)
                   dx1(i)=(extremite1(i))/(nbre_points1-1);
-                for (i=0; i<dimension; i++)
+                for (int i=0; i<dimension; i++)
                   dx2(i)=(extremite2(i))/(nbre_points2-1);
               }
             else
               {
-                for (i=0; i<dimension; i++)
+                for (int i=0; i<dimension; i++)
                   dx1(i)=(extremite1(i)-origine(i))/(nbre_points1-1);
-                for (i=0; i<dimension; i++)
+                for (int i=0; i<dimension; i++)
                   dx2(i)=(extremite2(i)-origine(i))/(nbre_points2-1);
               }
-            for (i=0; i<nbre_points1; i++)
-              for (j=0; j<nbre_points2; j++)
-                for (k=0; k<dimension; k++)
+            for (int i=0; i<nbre_points1; i++)
+              for (int j=0; j<nbre_points2; j++)
+                for (int k=0; k<dimension; k++)
                   les_positions_sondes_initiales_(i*nbre_points2+j,k)=origine(k)+i*dx1(k)+j*dx2(k);
             break;
           }
@@ -449,31 +469,30 @@ Entree& Sonde::readOn(Entree& is)
             ArrOfDouble dx1(dimension);
             ArrOfDouble dx2(dimension);
             ArrOfDouble dx3(dimension);
-            int i=0,j=0,k=0;
             is >> nbre_points1;
             is >> nbre_points2;
             is >> nbre_points3;
             nbre_points=nbre_points1*nbre_points2*nbre_points3;
             les_positions_sondes_initiales_.resize(nbre_points,dimension);
 
-            for (; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> origine[i];
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> extremite1[i];
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> extremite2[i];
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               is >> extremite3[i];
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               dx1[i]=(extremite1[i]-origine[i])/(nbre_points1-1);
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               dx2[i]=(extremite2[i]-origine[i])/(nbre_points2-1);
-            for (i=0; i<dimension; i++)
+            for (int i=0; i<dimension; i++)
               dx3[i]=(extremite3[i]-origine[i])/(nbre_points3-1);
-            for (i=0; i<nbre_points1; i++)
-              for (j=0; j<nbre_points2; j++)
+            for (int i=0; i<nbre_points1; i++)
+              for (int j=0; j<nbre_points2; j++)
                 for (int m=0; m<nbre_points3; m++)
-                  for (k=0; k<dimension; k++)
+                  for (int k=0; k<dimension; k++)
                     les_positions_sondes_initiales_(i+j*nbre_points1+m*nbre_points1*nbre_points2,k)=origine[k]+i*dx1[k]+j*dx2[k]+m*dx3[k];
             break;
           }
@@ -648,6 +667,42 @@ Entree& Sonde::readOn(Entree& is)
   return is;
 }
 
+/** Creation des Champ_Generique_refChamp necessaire pour l initialisation de la REF a Champ_Generique_base
+ * Si le champ demande est un Champ_base connu du probleme on cree le Champ_Generique_refChamp correspondant
+ */
+void Sonde::create_champ_generique(Entree& is, const Motcle& motlu)
+{
+  Probleme_base& Pb = mon_post->probleme();
+  const Motcles& noms_champs_postraitables = mon_post->les_sondes().get_noms_champs_postraitables();
+  if (noms_champs_postraitables.contient_(nom_champ_lu_))
+    {
+      Pb.creer_champ(nom_champ_lu_);
+      //On va creer un Champ_Generique_refChamp dont le nom a pour base
+      //le nom du champ auquel on fait reference et non pas une composante de ce champ
+      OBS_PTR(Champ_base) champ_ref = Pb.get_champ(nom_champ_lu_);
+      const Nom& le_nom_champ = champ_ref->le_nom();
+      const Motcle nom_domaine = mon_post->domaine()->le_nom();
+      Motcle identifiant;
+
+      identifiant = Motcle(le_nom_champ)+"_natif_"+nom_domaine;
+      if (!mon_post->comprend_champ_post(identifiant))
+        {
+          mon_post->creer_champ_post(le_nom_champ,"natif",is);
+        }
+    }
+  else
+    {
+      Nom expression;
+      int is_champ_predefini = Pb.expression_predefini(motlu,expression);
+      if ((is_champ_predefini) && (!mon_post->comprend_champ_post(nom_champ_lu_)))
+        {
+          OWN_PTR(Champ_Generique_base) champ;
+          Entree_complete s_complete(expression,is);
+          s_complete>>champ;
+          mon_post->complete_champ(champ,nom_champ_lu_);
+        }
+    }
+}
 
 /*! @brief Associer le postraitement a la sonde.
  *
@@ -666,6 +721,59 @@ void Sonde::associer_post(const Postraitement& le_post)
     }
 }
 
+const Domaine& Sonde::get_domaine_geom() const
+{
+  return mon_champ->get_ref_domain();
+}
+
+const Noms Sonde::get_noms_champ() const
+{
+  return mon_champ->get_property("nom");
+}
+
+int Sonde::get_nb_compo_champ() const
+{
+  const Noms noms_comp = mon_champ->get_property("composantes");
+  Motcle directive = mon_champ->get_directive_pour_discr();
+  int nb_comp = (directive == "temperature" || directive == "champ_elem_DG") ? 1 : noms_comp.size();
+  return nb_comp;
+}
+
+double Sonde::get_temps_champ() const
+{
+  // TODO ABN : when is it different from Pb::temps_courant ?? Inc fields maybe ?
+  return mon_champ->get_time();
+}
+
+void Sonde::fix_probe_position_grav()
+{
+  int nbre_points_tot = les_positions_sondes_.dimension(0);
+  DoubleTab coords_bords(2,dimension);
+  for (int idim=0; idim<dimension; idim++)
+    {
+      coords_bords(0,idim) = les_positions_sondes_(0,idim);
+      coords_bords(1,idim) = les_positions_sondes_(nbre_points_tot-1,idim);
+    }
+
+  Cerr<<"The location of the probe named "<<nom_<<" are modified (to centers of gravity). Check the .log files to see the new location."<<finl;
+  const Domaine_VF& domaineVF = ref_cast(Domaine_VF,mon_champ->get_ref_domaine_dis_base());
+  const DoubleTab& xp = domaineVF.xp();
+  for (int i=0; i<nbre_points_tot; i++)
+    {
+      if(elem_[i]!=-1)
+        {
+          Journal()<<"The point " << i << " of the probe "<<nom_<<" is moved:";
+          for (int dir=0; dir<dimension; dir++)
+            {
+              Journal() << " x(" << dir << "): " << les_positions_sondes_(i,dir) << " -> " << xp(elem_[i],dir);
+              les_positions_sondes_(i,dir)=xp(elem_[i],dir);
+            }
+          Journal() << finl;
+        }
+    }
+  if (gravcl)
+    ajouter_bords(coords_bords);
+}
 
 /*! @brief Initialise la sonde.
  *
@@ -684,7 +792,7 @@ void Sonde::initialiser()
   if(elem_.size() != nbre_points_tot)
     elem_.resize(nbre_points_tot);
 
-  const Domaine& domaine_geom = mon_champ->get_ref_domain();
+  const Domaine& domaine_geom = get_domaine_geom();
 
   if (numero_elem_==-1)
     {
@@ -739,39 +847,10 @@ void Sonde::initialiser()
     if (tmp[i]==-1)
       Cerr << "WARNING: The point number " << i+1 << " of the probe named " << nom_ << " is outside the computational domain " << domaine_geom.le_nom() << finl;
 
-  // Probes may be moved to cog, face, vertex:
-  const Domaine& domaine = mon_champ->get_ref_domain();
-  const Noms nom_champ = mon_champ->get_property("nom");
+  const Noms noms_champ = get_noms_champ();
 
   if (grav || gravcl)
-    {
-      DoubleTab coords_bords(2,dimension);
-      for (int idim=0; idim<dimension; idim++)
-        {
-          coords_bords(0,idim) = les_positions_sondes_(0,idim);
-          coords_bords(1,idim) = les_positions_sondes_(nbre_points_tot-1,idim);
-        }
-
-      Cerr<<"The location of the probe named "<<nom_<<" are modified (to centers of gravity). Check the .log files to see the new location."<<finl;
-      const Domaine_VF& domaineVF = ref_cast(Domaine_VF,mon_champ->get_ref_domaine_dis_base());
-      const DoubleTab& xp = domaineVF.xp();
-      for (int i=0; i<nbre_points_tot; i++)
-        {
-          if(elem_[i]!=-1)
-            {
-              Journal()<<"The point " << i << " of the probe "<<nom_<<" is moved:";
-              for (int dir=0; dir<dimension; dir++)
-                {
-                  Journal() << " x(" << dir << "): " << les_positions_sondes_(i,dir) << " -> " << xp(elem_[i],dir);
-                  les_positions_sondes_(i,dir)=xp(elem_[i],dir);
-                }
-              Journal() << finl;
-            }
-        }
-
-      if (gravcl)
-        ajouter_bords(coords_bords);
-    }
+    fix_probe_position_grav();
   else if (nodes)
     {
       const Domaine_VF& domaineVF = ref_cast(Domaine_VF,mon_champ->get_ref_domaine_dis_base());
@@ -787,12 +866,12 @@ void Sonde::initialiser()
           Motcle dom_interp=mon_champ->get_ref_domain().le_nom();
           Cerr << finl;
           Cerr << "Error in your probe : " << nom_ << finl;
-          Cerr << "You can not project to nodes, the field " << nom_champ[0] << finl;
+          Cerr << "You can not project to nodes, the field " << noms_champ[0] << finl;
           Cerr << "which is interpolated on the domain " << dom_interp << finl;
           exit();
         }
       Cerr<<"The location of the probe named "<<nom_<<" are modified (to faces). Check the .log files to see the new location."<<finl;
-      const int nfaces_par_element = domaine.nb_faces_elem() ;
+      const int nfaces_par_element = domaine_geom.nb_faces_elem() ;
       for (int i=0; i<nbre_points_tot; i++)
         {
           double dist_min=DMAXFLOAT;
@@ -837,14 +916,14 @@ void Sonde::initialiser()
           Motcle dom_interp=mon_champ->get_ref_domain().le_nom();
           Cerr << finl;
           Cerr << "Error in your probe : " << nom_ << finl;
-          Cerr << "You can not project to vertexes, the field " << nom_champ[0] << finl;
+          Cerr << "You can not project to vertexes, the field " << noms_champ[0] << finl;
           Cerr << "which is interpolated on the domain " << dom_interp << finl;
           exit();
         }
       Cerr<<"The location of the probe named "<<nom_<<" are modified (to vertexes). Check the .log files to see the new location."<<finl;
-      const IntTab& sommet_elem = domaine.les_elems();
-      const int sommets_par_element = domaine.les_elems().dimension(1);
-      const DoubleTab& coord = domaine.les_sommets();
+      const IntTab& sommet_elem = domaine_geom.les_elems();
+      const int sommets_par_element = domaine_geom.les_elems().dimension(1);
+      const DoubleTab& coord = domaine_geom.les_sommets();
       for (int i=0; i<nbre_points_tot; i++)
         {
           double dist_min=DMAXFLOAT;
@@ -874,6 +953,11 @@ void Sonde::initialiser()
             }
         }
     }
+
+  // See if some positions should be modified (to elem with "grav" for instance)
+  // Should be done before supprime_doublons, because it may create duplicated values.
+  fix_probe_position();
+
   bool supprime_doublons = true; // Nouveaute 1.8.4 (unicite des points de sondes)
   if (mon_post->DeprecatedKeepDuplicatedProbes) supprime_doublons = false; // option a garder car besoin pour P-E de garder les sondes dupliquees en 1.9.3
   ArrOfInt doublon(elem_.size_array());
@@ -908,8 +992,7 @@ void Sonde::initialiser()
     }
 
   // chaque processeur a regarde s'il avait le point
-  // le maitre construit un tableau (prop) determinant qui
-  // va donner la valeur au maitre
+  // le maitre construit un tableau (prop) determinant qui va donner la valeur au maitre
   // Le maitre construit aussi le ArrsOfInt participant
   // lui donnant pour un proc les differents elements de celui-ci
   IntVect prop(elem_);
@@ -989,7 +1072,7 @@ void Sonde::initialiser()
         }
     }
 #ifndef NDEBUG
-  int test=mp_sum(nbre_points);
+  int test = static_cast<int>(mp_sum(nbre_points));
   //cerr << "Remove " << Process::me() << " " << nbre_points << " " << nbre_points_tot << " = " << test << endl;
   if (je_suis_maitre()) assert(test==nbre_points_tot);
 #endif
@@ -1004,8 +1087,7 @@ void Sonde::initialiser()
     {
       if (ncomp == -1)
         {
-          const Noms noms_comp = mon_champ->get_property("composantes");
-          int nb_comp = noms_comp.size();
+          int nb_comp = get_nb_compo_champ();
           valeurs_sur_maitre.resize(nbre_points_tot,nb_comp);
         }
       else
@@ -1014,8 +1096,7 @@ void Sonde::initialiser()
   // Dimensionnement de valeurs_locales
   if (ncomp == -1)
     {
-      const Noms noms_comp = mon_champ->get_property("composantes");
-      int nb_comp = noms_comp.size();
+      int nb_comp = get_nb_compo_champ();
       valeurs_locales.resize(nbre_points,nb_comp);
     }
   else
@@ -1030,233 +1111,222 @@ void Sonde::initialiser()
  */
 void Sonde::ouvrir_fichier()
 {
-  if (je_suis_maitre())
+  if (je_suis_maitre() && !le_fichier_.is_open())
     {
-      if (!le_fichier_.is_open())
+      struct stat f;
+      int reprise = !stat(nom_fichier_, &f) && mon_post->probleme().reprise_effectuee();
+      if (reprise)
         {
-          //struct stat f {}; Pb sur 4.8.5
-          struct stat f;
-          const char *sonde_file = nom_fichier_;
-          if (stat(sonde_file, &f))
-            reprise = 0;
-          else if (reprise == 0)
-            reprise = mon_post->probleme().reprise_effectuee();
-
-          if (reprise == 0)
-            le_fichier_.ouvrir(nom_fichier_);
-          else
-            le_fichier_.ouvrir(nom_fichier_, ios::app);
-
+          // Reprise d'un calcul, on ecrit a la suite:
+          le_fichier_.ouvrir(nom_fichier_, ios::app);
           le_fichier_.setf(ios::scientific);
           le_fichier_.precision(8);
         }
-      SFichier& s = le_fichier_;
-      // Ecriture de l'en tete des fichiers sondes :
-      if ((dim==0 || dim==1) && reprise==0)
+      else
         {
-          reprise=1;
-          const DoubleTab& p=les_positions_sondes();
-          int nbre_points = les_positions_sondes_.dimension(0);
-          s << "# " << nom_fichier_ << finl;
-          s << "# Temps";
-          for(int i=0; i<nbre_points; i++)
+          // Demarrage calcul ou fichier inexistant:
+          le_fichier_.ouvrir(nom_fichier_);
+          le_fichier_.setf(ios::scientific);
+          le_fichier_.precision(8);
+          // Ecriture en tete:
+          SFichier& s = le_fichier_;
+          // Ecriture de l'en tete des fichiers sondes :
+          if (dim == 0 || dim == 1)
             {
-              s << " x= " << p(i,0) << " y= " << p(i,1) ;
-              if (dimension==3) fichier() << " z= " << p(i,2) ;
+              const DoubleTab& p = les_positions_sondes();
+              int nbre_points = les_positions_sondes_.dimension(0);
+              s << "# " << nom_fichier_ << finl;
+              s << "# Temps";
+              for (int i = 0; i < nbre_points; i++)
+                {
+                  s << " x= " << p(i, 0) << " y= " << p(i, 1);
+                  if (dimension == 3) fichier() << " z= " << p(i, 2);
+                }
+              s << finl;
+              if (mon_champ.non_nul())
+                {
+                  const Noms unites = mon_champ->get_property("unites");
+                  s << "# Champ " << nom_champ_lu_ << " [" << unites[ncomp == -1 ? 0 : ncomp] << "]" << finl;
+                }
+              else
+                s << "# Champ " << nom_champ_lu_ << " [??]" << finl;
+              s << "# Type " << get_type() << finl;
             }
-          s << finl;
-          if (mon_champ.non_nul())
-            {
-              const Noms unites = mon_champ->get_property("unites");
-              s << "# Champ " << nom_champ_lu_ << " [" << unites[ncomp == -1 ? 0 : ncomp] << "]" << finl;
-            }
+          // Ecriture de l'en tete des fichiers plan :
           else
-            s << "# Champ " << nom_champ_lu_ << " [??]" << finl;
-          s << "# Type " << get_type() << finl;
-        }
-      // Ecriture de l'en tete des fichiers plan :
-      if (dim>1 && reprise==0)
-        {
-          reprise=1;
-          s << "TRUST   Version1  01/09/96" << finl;
-          s << nom_du_cas() << finl;
-          s << "TRUST" << finl;
-          s << "GRILLE";
-          const DoubleTab& p = les_positions_sondes();
-          // Nouveau on ajoute des informations pour Run_sonde
-          s << " " << get_type() << " " << nom_champ_lu_ << " " << nbre_points1 << " " << nbre_points2;
-          for (int j=0; j<dimension; j++) s << " " << p(0,j);
-          for (int j=0; j<dimension; j++) s << " " << p((nbre_points1-1)*nbre_points2,j);
-          for (int j=0; j<dimension; j++) s << " " << p(nbre_points2-1,j);
-          s << finl;
-          Nom nom_grille("Grille");
-          Nom nom_topologie("Topologie");
-          nom_grille += "_";
-          nom_grille += nom_;
-          nom_topologie += "_";
-          nom_topologie += nom_;
-          int k,kn;
-          int nbre_points = les_positions_sondes_.dimension(0);
-          if (dim==2)
             {
-              double xn=0.,yn=0.,zn=0.,norme=0.;
-              int p1=1 ,p_nbre_points2=nbre_points2;
-              while (p(0,0)==p(p1,0) && p(0,1)==p(p1,1) && p(0,2)==p(p1,2))
+              s << "TRUST   Version1  01/09/96" << finl;
+              s << nom_du_cas() << finl;
+              s << "TRUST" << finl;
+              s << "GRILLE";
+              const DoubleTab& p = les_positions_sondes();
+              // Nouveau on ajoute des informations pour Run_sonde
+              s << " " << get_type() << " " << nom_champ_lu_ << " " << nbre_points1 << " " << nbre_points2;
+              for (int j = 0; j < dimension; j++) s << " " << p(0, j);
+              for (int j = 0; j < dimension; j++) s << " " << p((nbre_points1 - 1) * nbre_points2, j);
+              for (int j = 0; j < dimension; j++) s << " " << p(nbre_points2 - 1, j);
+              s << finl;
+              Nom nom_grille("Grille");
+              Nom nom_topologie("Topologie");
+              nom_grille += "_";
+              nom_grille += nom_;
+              nom_topologie += "_";
+              nom_topologie += nom_;
+              int k, kn;
+              int nbre_points = les_positions_sondes_.dimension(0);
+              if (dim == 2)
                 {
-                  p1+=1;
-                  assert(p1<nbre_points);
-                }
-              while (p(0,0)==p(p_nbre_points2,0) && p(0,1)==p(p_nbre_points2,1) && p(0,2)==p(p_nbre_points2,2))
-                {
-                  p_nbre_points2+=1;
-                  assert(p_nbre_points2<nbre_points);
-                }
-              while (p(p1,0)==p(p_nbre_points2,0) && p(p1,1)==p(p_nbre_points2,1) && p(p1,2)==p(p_nbre_points2,2))
-                {
-                  p_nbre_points2+=1;
-                  assert(p_nbre_points2<nbre_points);
-                }
-
-              if (dimension==3)
-                {
-                  xn=(p(p1,2)-p(0,2))*(p(p_nbre_points2,1)-p(0,1))
-                     -(p(p1,1)-p(0,1))*(p(p_nbre_points2,2)-p(0,2));
-                  yn=(p(p1,0)-p(0,0))*(p(p_nbre_points2,2)-p(0,2))
-                     -(p(p1,2)-p(0,2))*(p(p_nbre_points2,0)-p(0,0));
-                }
-              else if (dimension==2)
-                {
-                  xn=0.;
-                  yn=0.;
-                }
-              zn=(p(p1,1)-p(0,1))*(p(p_nbre_points2,0)-p(0,0))
-                 -(p(p1,0)-p(0,0))*(p(p_nbre_points2,1)-p(0,1));
-              norme=std::fabs(xn)+std::fabs(yn)+std::fabs(zn);
-              xn/=norme;
-              yn/=norme;
-              zn/=norme;
-              s << nom_grille << " 3 " << 2*nbre_points << finl;
-              int i;
-              for(i=0; i<nbre_points; i++)
-                {
-                  s << p(i,0) << " " << p(i,1) ;
-                  if (dimension==3) fichier() << " " << p(i,2) << finl;
-                  else if (dimension==2) s << " 0." << finl;
-                }
-              for(i=0; i<nbre_points; i++)
-                {
-                  s << p(i,0)+xn << " " << p(i,1)+yn ;
-                  if (dimension==3) s << " " << p(i,2)+zn << finl;
-                  else if (dimension==2) s << " " << zn << finl;
-                }
-              s << "TOPOLOGIE" << finl;
-              s << nom_topologie << " " << nom_grille << finl;
-              s << "MAILLE" << finl;
-              s << (nbre_points1-1)*(nbre_points2-1) << finl;
-              for(int j=0; j<nbre_points2-1; j++)
-                for(i=0; i<nbre_points1-1; i++)
-                  {
-                    k=j*nbre_points1+i+1;
-                    kn=k+nbre_points;
-                    s << "VOXEL8 " << k << " " << k+1 << " ";
-                    s<< k+nbre_points1 << " " << k+nbre_points1+1;
-                    s<< " " << kn << " " << kn+1 << " " << kn+nbre_points1;
-                    s  << " " << kn+nbre_points1+1 << finl;
-                  }
-              s << "FACE" << finl;
-              s << "0" << finl;
-            }
-          else if (dim==3)
-            {
-              const DoubleTab& pbis=les_positions_sondes();
-              s << nom_grille << " 3 " << nbre_points << finl;
-              int i;
-              for(i=0; i<nbre_points; i++)
-                {
-                  s << pbis(i,0) << " " << pbis(i,1) ;
-                  s << " " << pbis(i,2) << finl;
-                }
-              s << "TOPOLOGIE" << finl;
-              s << nom_topologie << " " << nom_grille << finl;
-              s << "MAILLE" << finl;
-              s << (nbre_points1-1)*(nbre_points2-1)*(nbre_points3-1) << finl;
-              for(int m=0; m<nbre_points3-1; m++)
-                for(int j=0; j<nbre_points2-1; j++)
-                  for(i=0; i<nbre_points1-1; i++)
+                  double xn = 0., yn = 0., zn = 0., norme = 0.;
+                  int p1 = 1, p_nbre_points2 = nbre_points2;
+                  while (p(0, 0) == p(p1, 0) && p(0, 1) == p(p1, 1) && p(0, 2) == p(p1, 2))
                     {
-                      k=m*nbre_points2*nbre_points1+j*nbre_points1+i+1;
-                      kn=k+nbre_points2*nbre_points1;
-                      s << "VOXEL8 " << k << " " << k+1 << " ";
-                      s  << k+nbre_points1 << " " << k+nbre_points1+1;
-                      s  << " " << kn << " " << kn+1 << " " << kn+nbre_points1;
-                      s  << " " << kn+nbre_points1+1 << finl;
+                      p1 += 1;
+                      assert(p1 < nbre_points);
                     }
-              s << "FACE" << finl;
-              s << "0" << finl;
+                  while (p(0, 0) == p(p_nbre_points2, 0) && p(0, 1) == p(p_nbre_points2, 1) &&
+                         p(0, 2) == p(p_nbre_points2, 2))
+                    {
+                      p_nbre_points2 += 1;
+                      assert(p_nbre_points2 < nbre_points);
+                    }
+                  while (p(p1, 0) == p(p_nbre_points2, 0) && p(p1, 1) == p(p_nbre_points2, 1) &&
+                         p(p1, 2) == p(p_nbre_points2, 2))
+                    {
+                      p_nbre_points2 += 1;
+                      assert(p_nbre_points2 < nbre_points);
+                    }
+
+                  if (dimension == 3)
+                    {
+                      xn = (p(p1, 2) - p(0, 2)) * (p(p_nbre_points2, 1) - p(0, 1))
+                           - (p(p1, 1) - p(0, 1)) * (p(p_nbre_points2, 2) - p(0, 2));
+                      yn = (p(p1, 0) - p(0, 0)) * (p(p_nbre_points2, 2) - p(0, 2))
+                           - (p(p1, 2) - p(0, 2)) * (p(p_nbre_points2, 0) - p(0, 0));
+                    }
+                  else if (dimension == 2)
+                    {
+                      xn = 0.;
+                      yn = 0.;
+                    }
+                  zn = (p(p1, 1) - p(0, 1)) * (p(p_nbre_points2, 0) - p(0, 0))
+                       - (p(p1, 0) - p(0, 0)) * (p(p_nbre_points2, 1) - p(0, 1));
+                  norme = std::fabs(xn) + std::fabs(yn) + std::fabs(zn);
+                  xn /= norme;
+                  yn /= norme;
+                  zn /= norme;
+                  s << nom_grille << " 3 " << 2 * nbre_points << finl;
+                  int i;
+                  for (i = 0; i < nbre_points; i++)
+                    {
+                      s << p(i, 0) << " " << p(i, 1);
+                      if (dimension == 3) fichier() << " " << p(i, 2) << finl;
+                      else if (dimension == 2) s << " 0." << finl;
+                    }
+                  for (i = 0; i < nbre_points; i++)
+                    {
+                      s << p(i, 0) + xn << " " << p(i, 1) + yn;
+                      if (dimension == 3) s << " " << p(i, 2) + zn << finl;
+                      else if (dimension == 2) s << " " << zn << finl;
+                    }
+                  s << "TOPOLOGIE" << finl;
+                  s << nom_topologie << " " << nom_grille << finl;
+                  s << "MAILLE" << finl;
+                  s << (nbre_points1 - 1) * (nbre_points2 - 1) << finl;
+                  for (int j = 0; j < nbre_points2 - 1; j++)
+                    for (i = 0; i < nbre_points1 - 1; i++)
+                      {
+                        k = j * nbre_points1 + i + 1;
+                        kn = k + nbre_points;
+                        s << "VOXEL8 " << k << " " << k + 1 << " ";
+                        s << k + nbre_points1 << " " << k + nbre_points1 + 1;
+                        s << " " << kn << " " << kn + 1 << " " << kn + nbre_points1;
+                        s << " " << kn + nbre_points1 + 1 << finl;
+                      }
+                  s << "FACE" << finl;
+                  s << "0" << finl;
+                }
+              else if (dim == 3)
+                {
+                  const DoubleTab& pbis = les_positions_sondes();
+                  s << nom_grille << " 3 " << nbre_points << finl;
+                  int i;
+                  for (i = 0; i < nbre_points; i++)
+                    {
+                      s << pbis(i, 0) << " " << pbis(i, 1);
+                      s << " " << pbis(i, 2) << finl;
+                    }
+                  s << "TOPOLOGIE" << finl;
+                  s << nom_topologie << " " << nom_grille << finl;
+                  s << "MAILLE" << finl;
+                  s << (nbre_points1 - 1) * (nbre_points2 - 1) * (nbre_points3 - 1) << finl;
+                  for (int m = 0; m < nbre_points3 - 1; m++)
+                    for (int j = 0; j < nbre_points2 - 1; j++)
+                      for (i = 0; i < nbre_points1 - 1; i++)
+                        {
+                          k = m * nbre_points2 * nbre_points1 + j * nbre_points1 + i + 1;
+                          kn = k + nbre_points2 * nbre_points1;
+                          s << "VOXEL8 " << k << " " << k + 1 << " ";
+                          s << k + nbre_points1 << " " << k + nbre_points1 + 1;
+                          s << " " << kn << " " << kn + 1 << " " << kn + nbre_points1;
+                          s << " " << kn + nbre_points1 + 1 << finl;
+                        }
+                  s << "FACE" << finl;
+                  s << "0" << finl;
+                }
             }
         }
     }
 }
 
+void Sonde::update_source(double un_temps)
+{
+  // Mecanisme de cache du champ Source derriere le champ postraite (mon_champ)
+  // Implemente au niveau de Sondes
+  OBS_PTR(Champ_base) ma_source = mon_post->les_sondes().get_from_cache(mon_champ, nom_champ_lu_);
+  ma_source->mettre_a_jour(un_temps);
+}
 
 /*! @brief Effectue une mise a jour en temps de la sonde effectue le postraitement.
  *
- * @param (double temps) le temps de mise a jour
+ * @param (double un_temps) le temps de mise a jour
  * @param (double tinit) le temps initial de la sonde
  */
 void Sonde::mettre_a_jour(double un_temps, double tinit)
 {
-  // La mise a jour du champ est a supprimer car elle doit deja etre faite dans Post::mettre_a_jour()
-  double temps_courant = mon_champ->get_time();
+  double temps_courant = get_temps_champ();
   double dt=mon_post->probleme().schema_temps().pas_de_temps();
   double nb;
+
   // Le *(1+Objet_U::precision_geom) est pour eviter des erreurs d'arrondi selon les machines
+  // 21/01/25 : remplacement de Objet_U::precision_geom par 1e-15 (issue des patch M3D) suite bttrust #242895
+  // car precision_geom est un parametre que l'utilisateur peut changer via jdd
   if (periode<=dt)
     nb=nb_bip+1.;
   else
-    modf(temps_courant*(1+Objet_U::precision_geom)/periode, &nb);
+    modf(temps_courant*(1+1e-15)/periode, &nb);
 
   // On doit ecrire les sondes
   if (nb>nb_bip)
     {
-      // Mecanisme de cache du champ Source derriere le champ postraite (mon_champ)
-      // Implemente au niveau de Sondes
-      REF(Champ_base) ma_source = mon_post->les_sondes().get_from_cache(mon_champ, nom_champ_lu_);
-//      Champ espace_stockage;
-//      Champ_base& ma_source_mod = ref_cast_non_const(Champ_base,mon_champ->get_champ(espace_stockage));
-//        ma_source_mod.mettre_a_jour(un_temps);
-      ma_source.valeur().mettre_a_jour(un_temps);
+      update_source(un_temps);
 
       // Si le maillage est deformable il faut reconstruire les sondes
       if (mon_post->les_sondes().get_update_positions())
         {
           if (mon_post->probleme().domaine().deformable())
-            {
-              // Fait desormais dans ::initialiser:
-              //if (les_positions_sondes_initiales_.dimension(0) > 0)
-              //    les_positions_sondes_ = les_positions_sondes_initiales_;
-              initialiser();
-            }
+            initialiser();
         }
       nb_bip=nb;
-      reprise=1;
       postraiter();
     }
 }
 
 
-/*! @brief Effectue un postraitement.
- *
- * Calcul les valeurs du champ aux position demandees
- *     et les imprime sur le fichier associe.
- *
- */
-void Sonde::postraiter()
+void Sonde::fill_local_values()
 {
   // Mecanisme de cache du champ Source derriere le champ postraite (mon_champ)
   // Implemente au niveau de Sondes
-  REF(Champ_base) ma_source = mon_post->les_sondes().get_from_cache(mon_champ, nom_champ_lu_);
-
+  OBS_PTR(Champ_base) ma_source = mon_post->les_sondes().get_from_cache(mon_champ, nom_champ_lu_);
   if (chsom)
     {
       Champ_base& ma_source_mod =ref_cast_non_const(Champ_base,ma_source.valeur());
@@ -1268,10 +1338,21 @@ void Sonde::postraiter()
   else
     {
       if (ncomp == -1)
-        ma_source.valeur().valeur_aux_elems(les_positions(),elem_, valeurs_locales);
+        ma_source->valeur_aux_elems(les_positions(),elem_, valeurs_locales);
       else
-        ma_source.valeur().valeur_aux_elems_compo(les_positions(),elem_,valeurs_locales, ncomp);
+        ma_source->valeur_aux_elems_compo(les_positions(),elem_,valeurs_locales, ncomp);
     }
+}
+
+/*! @brief Effectue un postraitement.
+ *
+ * Calcul les valeurs du champ aux position demandees
+ *     et les imprime sur le fichier associe.
+ *
+ */
+void Sonde::postraiter()
+{
+  fill_local_values();
 
   if (gravcl)
     mettre_a_jour_bords();
@@ -1396,26 +1477,23 @@ void Sonde::init_bords()
   if (sub_type(Champ_Generique_refChamp,mon_champ.valeur()))
     {
       Probleme_base& Pb = mon_post->probleme();
-      REF(Champ_base) chref = Pb.get_champ(nom_champ_lu_);
+      OBS_PTR(Champ_base) chref = Pb.get_champ(nom_champ_lu_);
       const Champ_Inc_base& ch_inc = ref_cast(Champ_Inc_base,chref.valeur());
-      const Domaine_Cl_dis& zcl = ch_inc.domaine_Cl_dis();
+      const Domaine_Cl_dis_base& zcl = ch_inc.domaine_Cl_dis();
 
-      if (zcl.non_nul())
+      for (int iface=0; iface<nbf; iface++)
         {
-          for (int iface=0; iface<nbf; iface++)
+          int face = faces_bords_[iface];
+          for (int icl=0; icl<zcl.nb_cond_lim(); icl++)
             {
-              int face = faces_bords_[iface];
-              for (int icl=0; icl<zcl.nb_cond_lim(); icl++)
+              const Cond_lim& cl = zcl.les_conditions_limites(icl);
+              const Front_VF& le_bord = ref_cast(Front_VF,cl->frontiere_dis());
+              const int ndeb = le_bord.num_premiere_face();
+              const int nfin = ndeb + le_bord.nb_faces();
+              for (int i=ndeb; i<nfin; i++)
                 {
-                  const Cond_lim& cl = zcl.les_conditions_limites(icl);
-                  const Front_VF& le_bord = ref_cast(Front_VF,cl.frontiere_dis());
-                  const int ndeb = le_bord.num_premiere_face();
-                  const int nfin = ndeb + le_bord.nb_faces();
-                  for (int i=ndeb; i<nfin; i++)
-                    {
-                      if (i==face)
-                        rang_cl_[iface] = icl;
-                    }
+                  if (i==face)
+                    rang_cl_[iface] = icl;
                 }
             }
         }
@@ -1471,44 +1549,41 @@ void Sonde::mettre_a_jour_bords()
   if (sub_type(Champ_Generique_refChamp,mon_champ.valeur()))
     {
       Probleme_base& Pb = mon_post->probleme();
-      REF(Champ_base) chref = Pb.get_champ(nom_champ_lu_);
+      OBS_PTR(Champ_base) chref = Pb.get_champ(nom_champ_lu_);
       const Champ_Inc_base& ch_inc = ref_cast(Champ_Inc_base,chref.valeur());
-      const Domaine_Cl_dis& zcl = ch_inc.domaine_Cl_dis();
+      const Domaine_Cl_dis_base& zcl = ch_inc.domaine_Cl_dis();
       const DoubleTab& vals_ch = ch_inc.valeurs();
-      if (zcl.non_nul())
+      const Domaine_VF& domaineVF = ref_cast(Domaine_VF,mon_champ->get_ref_domaine_dis_base());
+      const IntTab& face_voisins = domaineVF.face_voisins();
+
+      int nbval = valeurs_locales.dimension(0);
+
+      for (int iface=0; iface<faces_bords_.size_array(); iface++)
         {
-          const Domaine_VF& domaineVF = ref_cast(Domaine_VF,mon_champ->get_ref_domaine_dis_base());
-          const IntTab& face_voisins = domaineVF.face_voisins();
+          int face = faces_bords_[iface];
+          int icl = rang_cl_[iface];
+          const Cond_lim& cl = zcl.les_conditions_limites(icl);
+          const Front_VF& le_bord = ref_cast(Front_VF,cl->frontiere_dis());
+          const int ndeb = le_bord.num_premiere_face();
+          DoubleVect valcl;
+          cl->champ_front().valeurs_face(face-ndeb,valcl);
 
-          int nbval = valeurs_locales.dimension(0);
-
-          for (int iface=0; iface<faces_bords_.size_array(); iface++)
+          if (valcl.size() == 0)
             {
-              int face = faces_bords_[iface];
-              int icl = rang_cl_[iface];
-              const Cond_lim& cl = zcl.les_conditions_limites(icl);
-              const Front_VF& le_bord = ref_cast(Front_VF,cl.frontiere_dis());
-              const int ndeb = le_bord.num_premiere_face();
-              DoubleVect valcl;
-              cl->champ_front()->valeurs_face(face-ndeb,valcl);
+              int elem0 = face_voisins(face,0);
+              int elem1 = face_voisins(face,1);
 
-              if (valcl.size() == 0)
-                {
-                  int elem0 = face_voisins(face,0);
-                  int elem1 = face_voisins(face,1);
-
-                  if (elem0 != -1)
-                    valeurs_locales(nbval-1) = vals_ch[elem0];
-                  else
-                    valeurs_locales(0) = vals_ch[elem1];
-                }
+              if (elem0 != -1)
+                valeurs_locales(nbval-1) = vals_ch[elem0];
               else
-                {
-                  if (face_voisins(face,0) != -1)
-                    valeurs_locales(nbval-1) = valcl[0];
-                  else
-                    valeurs_locales(0) = valcl[0];
-                }
+                valeurs_locales(0) = vals_ch[elem1];
+            }
+          else
+            {
+              if (face_voisins(face,0) != -1)
+                valeurs_locales(nbval-1) = valcl[0];
+              else
+                valeurs_locales(0) = valcl[0];
             }
         }
     }

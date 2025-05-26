@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,14 +16,15 @@
 #ifndef Conduction_included
 #define Conduction_included
 
-#include <Traitement_particulier_Solide.h>
+#include <Traitement_particulier_Solide_base.h>
+#include <Schema_Temps_base.h>
 #include <Operateur_Diff.h>
 #include <Equation_base.h>
-#include <Schema_Temps.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
 
+
 class Milieu_base;
-class Champ_Don;
 class Solide;
 
 /*! @brief Classe Conduction Cette classe represente l'equation d'evolution
@@ -38,11 +39,8 @@ class Solide;
  */
 class Conduction : public Equation_base
 {
-
   Declare_instanciable_sans_constructeur(Conduction);
-
 public:
-
   Conduction();
   void set_param(Param&) override;
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
@@ -55,14 +53,14 @@ public:
   int nombre_d_operateurs() const override;
   const Operateur& operateur(int) const override;
   Operateur& operateur(int) override;
-  inline const Champ_Inc& inconnue() const override;
-  inline Champ_Inc& inconnue() override;
+  inline const Champ_Inc_base& inconnue() const override;
+  inline Champ_Inc_base& inconnue() override;
   void discretiser() override;
   int impr(Sortie& os) const override;
 
   const Motcle& domaine_application() const override;
   void mettre_a_jour(double temps) override;
-  virtual const Champ_Don& diffusivite_pour_transport() const;
+  virtual const Champ_Don_base& diffusivite_pour_transport() const;
   virtual const Champ_base& diffusivite_pour_pas_de_temps() const;
 
   //Methodes de l interface des champs postraitables
@@ -71,48 +69,36 @@ public:
   void creer_champ(const Motcle& motlu) override;
   const Champ_base& get_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   /////////////////////////////////////////////////////
 
 private :
-
-  REF(Solide) le_solide;
-  Champ_Inc la_temperature;
+  OBS_PTR(Solide) le_solide;
+  OWN_PTR(Champ_Inc_base) la_temperature;
+  OWN_PTR(Champ_Fonc_base) temperature_paroi_;
   Operateur_Diff terme_diffusif;
 
 protected :
-
-  Traitement_particulier_Solide le_traitement_particulier;
-//  Champ_Fonc temperature_paroi;
-
-
+  OWN_PTR(Traitement_particulier_Solide_base) le_traitement_particulier;
 };
 
-/*! @brief Renvoie le champ inconnue de l'equation, i.
+/*! @brief Renvoie le champ inconnue de l'equation, i. e. la temperature.
  *
- * e. la temperature.
- *
- * @return (Champ_Inc&) le champ inconnue de l'equation: la temperature
+ * @return (Champ_Inc_base&) le champ inconnue de l'equation: la temperature
  */
-inline Champ_Inc& Conduction::inconnue()
+inline Champ_Inc_base& Conduction::inconnue()
 {
   return la_temperature;
 }
 
-
-/*! @brief Renvoie le champ inconnue de l'equation, i.
+/*! @brief Renvoie le champ inconnue de l'equation, i. e. la temperature. (version const)
  *
- * e. la temperature.
- *     (version const)
- *
- * @return (Champ_Inc&) le champ inconnue de l'equation: la temperature
+ * @return (Champ_Inc_base&) le champ inconnue de l'equation: la temperature
  */
-inline const Champ_Inc& Conduction::inconnue() const
+inline const Champ_Inc_base& Conduction::inconnue() const
 {
   return la_temperature;
 }
 
-
-
-#endif
-
-
+#endif /* Conduction_included */

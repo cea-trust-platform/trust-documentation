@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -44,7 +44,7 @@ void Champ_Ostwald_VDF::calculer_mu(DoubleTab& mu_tab)
 
   for (int i = 0; i < nb_valeurs_nodales(); i++)
     {
-      if (sub_type(Champ_Uniforme, mon_fluide_->consistance().valeur()))
+      if (sub_type(Champ_Uniforme, mon_fluide_->consistance()))
         {
           const double d_k = mon_fluide_->consistance().valeurs()(0, 0);
           if (mu_tab[i] < 1.E-4)

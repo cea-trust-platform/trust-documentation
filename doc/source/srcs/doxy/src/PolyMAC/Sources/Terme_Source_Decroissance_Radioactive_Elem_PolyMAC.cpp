@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -14,8 +14,8 @@
 *****************************************************************************/
 
 #include <Terme_Source_Decroissance_Radioactive_Elem_PolyMAC.h>
-#include <Domaine_PolyMAC.h>
-#include <Domaine_Cl_dis.h>
+#include <Domaine_VF.h>
+
 #include <Equation_base.h>
 #include <Synonyme_info.h>
 #include <Probleme_base.h>
@@ -28,6 +28,8 @@ Add_synonym(Terme_Source_Decroissance_Radioactive_Elem_PolyMAC, "Decroissance_Ra
 Add_synonym(Terme_Source_Decroissance_Radioactive_Elem_PolyMAC, "radioactive_decay_Elem_PolyMAC_P0P1NC");
 Add_synonym(Terme_Source_Decroissance_Radioactive_Elem_PolyMAC, "radioactive_decay_Elem_PolyMAC_P0");
 Add_synonym(Terme_Source_Decroissance_Radioactive_Elem_PolyMAC, "radioactive_decay_Elem_PolyMAC");
+// XD radioactive_decay source_base radioactive_decay 0 Radioactive decay source term of the form $-\lambda_i c_i$, where $0 \leq i \leq N$, N is the number of component of the constituent, $c_i$ and $\lambda_i$ are the concentration and the decay constant of the i-th component of the constituant.
+// XD attr val list val 0 n is the number of decay constants to read (int), and val1, val2... are the decay constants (double)
 
 Sortie& Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::printOn(Sortie& s) const { return s << que_suis_je(); }
 
@@ -41,10 +43,10 @@ Entree& Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::readOn(Entree& s)
     {
       s >> lambda_tmp;
       Cerr << "lambda lu : " << lambda_tmp << finl;
-      lambda.push_back(lambda_tmp);
+      lambda_.push_back(lambda_tmp);
     }
 
-  const int N = equation().inconnue().valeurs().line_size(), ng = (int)lambda.size();
+  const int N = equation().inconnue().valeurs().line_size(), ng = (int)lambda_.size();
   if (N != ng)
     {
       Cerr << "Terme_Source_Decroissance_Radioactive_Elem_PolyMAC : inconsistency between the number of radioactive decay constants ( " << ng
@@ -54,24 +56,17 @@ Entree& Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::readOn(Entree& s)
   return s ;
 }
 
-void Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_Cl_dis)
-{
-  Cerr << " Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::associer_domaines " << finl;
-  le_dom_PolyMAC = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-}
-
 void Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  const Domaine_VF& domaine = le_dom_PolyMAC.valeur();
   const DoubleTab& inco = equation().inconnue().valeurs();
-  const int ne = domaine.nb_elem(), N = inco.line_size();
+  const int ne = equation().domaine_dis().nb_elem(), N = inco.line_size();
   std::string nom_inco = equation().inconnue().le_nom().getString();
 
   for (auto &&n_m : matrices)
     if (n_m.first == nom_inco)
       {
         Matrice_Morse& mat = *n_m.second, mat2;
-        IntTrav sten(0, 2);
+        IntTab sten(0, 2);
 
         for (int e = 0; e < ne; e++)
           for (int n = 0; n < N; n++)
@@ -84,17 +79,17 @@ void Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::dimensionner_blocs(matr
 
 void Terme_Source_Decroissance_Radioactive_Elem_PolyMAC::ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const
 {
-  const Domaine_VF& domaine = le_dom_PolyMAC.valeur();
+  const Domaine_VF& domaine = ref_cast(Domaine_VF, equation().domaine_dis());
   const DoubleVect& pe = equation().milieu().porosite_elem(), &ve = domaine.volumes();
   const DoubleTab& c = equation().inconnue().valeurs();
   std::string nom_inco = equation().inconnue().le_nom().getString();
   Matrice_Morse *Mc = matrices.count(nom_inco) ? matrices.at(nom_inco) : nullptr;
-  const int N = c.line_size();
+  const int N = c.line_size(), ne = domaine.nb_elem();
 
-  for (int e = 0; e < domaine.nb_elem(); e++)
+  for (int e = 0; e < ne; e++)
     for (int l = 0; l < N; l++)
       {
-        const double fac = pe(e) * ve(e) * lambda[l];
+        const double fac = pe(e) * ve(e) * lambda_[l];
         secmem(e, l) -= fac * c(e, l);
         if (Mc)
           (*Mc)(N * e + l, N * e + l) += fac;

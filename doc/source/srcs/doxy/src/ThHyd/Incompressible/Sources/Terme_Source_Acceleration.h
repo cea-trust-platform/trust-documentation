@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,15 +16,16 @@
 #ifndef Terme_Source_Acceleration_included
 #define Terme_Source_Acceleration_included
 
+#include <Champ_Fonc_base.h>
 #include <Source_base.h>
-#include <Champ_Fonc.h>
-#include <Champ_Don.h>
+
 #include <TRUST_Ref.h>
 #include <Motcle.h>
 
 class Navier_Stokes_std;
 class Probleme_base;
 class Domaine_VF;
+class Champ_Don_base;
 
 class Terme_Source_Acceleration : public Source_base
 {
@@ -35,14 +36,16 @@ public:
   Terme_Source_Acceleration();
   void associer_pb(const Probleme_base&) override;
   DoubleTab& calculer(DoubleTab&) const override;
-  int a_pour_Champ_Fonc(const Motcle& mot, REF(Champ_base) &ch_ref) const override;
-  inline const Champ_Don& champ_vitesse() const { return champ_vitesse_; }
-  inline const Champ_Don& omega() const { return omega_; }
+  int a_pour_Champ_Fonc(const Motcle& mot, OBS_PTR(Champ_base) &ch_ref) const override;
+  inline const Champ_Don_base& champ_vitesse() const { return champ_vitesse_; }
+  bool has_champ_vitesse() const { return champ_vitesse_.non_nul(); }
+  inline const Champ_Don_base& omega() const { return omega_; }
+  bool has_omega() const { return omega_.non_nul(); }
 
 protected:
   virtual void lire_data(Entree& s);
   virtual const Champ_Fonc_base& get_terme_source_post() const;
-  virtual Champ_Fonc& get_set_terme_source_post() const;
+  virtual Champ_Fonc_base& get_set_terme_source_post() const;
   virtual const DoubleTab& calculer_vitesse_faces(DoubleTab& stockage) const = 0;
   const DoubleTab& calculer_la_source(DoubleTab& src_faces) const;
   virtual const Navier_Stokes_std& get_eq_hydraulique() const;
@@ -53,33 +56,33 @@ private:
 // Le terme source, homogene a d/dt(rho*v) et discretise comme la vitesse,
 // stocke pour pouvoir etre postraite.
 // Il est calcule par ajouter() (voir commentaires dans a_pour_champ_fonc)
-  mutable Champ_Fonc terme_source_post_;
+  mutable OWN_PTR(Champ_Fonc_base)  terme_source_post_;
 
   // **********************************************************************
   // champ de vitesse impose au repere mobile (lu optionnellement
   // dans le jeu de donnees, non utilise par le terme source mais potentiellement
   // pour le code pour calculer la vitesse dans le repere fixe)
-  Champ_Don champ_vitesse_;
+  OWN_PTR(Champ_Don_base) champ_vitesse_;
 
   // champ d'acceleration impose (lu dans le jeu de donnees)
-  // Champ_Don lu dans le jeu de donnees, homogene a d/dt(v) en m/(s^2).
+  // OWN_PTR(Champ_Don_base) lu dans le jeu de donnees, homogene a d/dt(v) en m/(s^2).
   // Ce doit etre un champ vectoriel uniforme a "dimension" composantes.
   // Si champ_acceleration.non_nul()==0, c'est qu'on n'en a pas mis
   // dans le jeu de donnees.
-  Champ_Don champ_acceleration_;
+  OWN_PTR(Champ_Don_base) champ_acceleration_;
 
   // champ de rotation instationnaire:
   // Les trois champs suivants peuvent etre nuls (omega_.non_nul()==0).
 
   // Vitesse de rotation: champ uniforme a trois composantes
   // (attention: en 2D, vecteur oriente selon Z)
-  Champ_Don omega_;
+  OWN_PTR(Champ_Don_base) omega_;
   // Derivee de la vitesse de rotation par rapport au temps:
   //  champ uniforme a trois composantes
-  Champ_Don domegadt_;
+  OWN_PTR(Champ_Don_base) domegadt_;
   // Position du centre de rotation:
   //  champ uniforme a "dimension" composantes
-  Champ_Don centre_rotation_;
+  OWN_PTR(Champ_Don_base) centre_rotation_;
 
 
   enum Option_TSA { TERME_COMPLET, CORIOLIS_SEUL, ENTRAINEMENT_SEUL };

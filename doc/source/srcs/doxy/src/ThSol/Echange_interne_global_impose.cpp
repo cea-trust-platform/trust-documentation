@@ -83,14 +83,14 @@ void Echange_interne_global_impose::completer()
 {
   Nom nom_pb(domaine_Cl_dis().equation().probleme().le_nom());
   Nom nom_bord(frontiere_dis().le_nom());
-  Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext().valeur());
+  Champ_front_calc_interne& t_ext = ref_cast(Champ_front_calc_interne, T_ext());
 
   t_ext.creer(nom_pb, nom_bord, "temperature");
 
   Echange_global_impose::completer();
 
   const Front_VF& fvf = ref_cast(Front_VF, frontiere_dis());
-  const Domaine_VF& zvf = ref_cast(Domaine_VF, domaine_Cl_dis().domaine_dis().valeur());
+  const Domaine_VF& zvf = ref_cast(Domaine_VF, domaine_Cl_dis().domaine_dis());
 
   frontiere_dis().frontiere().creer_tableau_faces(surface_gap_, RESIZE_OPTIONS::NOCOPY_NOINIT);
 
@@ -100,7 +100,7 @@ void Echange_interne_global_impose::completer()
       const DomaineAxi1d& domax = ref_cast(DomaineAxi1d,zvf.domaine());
       const IntTab& face_voisins = zvf.face_voisins();
       const DoubleTab& xv = zvf.xv();
-      const IntTab& fmap = t_ext.face_map();
+      const IntVect& fmap = t_ext.face_map();
       for (int i=0; i<fvf.nb_faces(); i++)
         {
           int iopp = fmap(i);

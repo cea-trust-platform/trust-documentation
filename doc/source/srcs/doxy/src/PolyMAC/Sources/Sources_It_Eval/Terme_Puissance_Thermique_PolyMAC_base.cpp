@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -34,11 +34,11 @@ Entree& Terme_Puissance_Thermique_PolyMAC_base::readOn(Entree& s)
   return s;
 }
 
-void Terme_Puissance_Thermique_PolyMAC_base::associer_domaines(const Domaine_dis& domaine_dis, const Domaine_Cl_dis& domaine_cl_dis)
+void Terme_Puissance_Thermique_PolyMAC_base::associer_domaines(const Domaine_dis_base& domaine_dis, const Domaine_Cl_dis_base& domaine_cl_dis)
 {
-  const Domaine_PolyMAC& zvdf = ref_cast(Domaine_PolyMAC, domaine_dis.valeur());
-  const Domaine_Cl_PolyMAC& zclvdf = ref_cast(Domaine_Cl_PolyMAC, domaine_cl_dis.valeur());
-  iter->associer_domaines(zvdf, zclvdf);
+  const Domaine_PolyMAC& zvdf = ref_cast(Domaine_PolyMAC, domaine_dis);
+  const Domaine_Cl_PolyMAC& zclvdf = ref_cast(Domaine_Cl_PolyMAC, domaine_cl_dis);
+  iter_->associer_domaines(zvdf, zclvdf);
 }
 
 int Terme_Puissance_Thermique_PolyMAC_base::initialiser(double temps)

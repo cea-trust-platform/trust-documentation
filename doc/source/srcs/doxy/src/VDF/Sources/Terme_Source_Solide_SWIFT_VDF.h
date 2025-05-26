@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -25,7 +25,7 @@
  */
 #include <Source_base.h>
 #include <TRUST_Ref.h>
-#include <Champ_Don.h>
+
 
 class Probleme_base;
 class Conduction;
@@ -42,7 +42,7 @@ public :
   void mettre_a_jour(double temps) override { }
 
   void associer_pb(const Probleme_base& ) override;
-  void associer_domaines(const Domaine_dis& ,const Domaine_Cl_dis& ) override;
+  void associer_domaines(const Domaine_dis_base& ,const Domaine_Cl_dis_base& ) override;
 
   inline void dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const override {}
   void ajouter_blocs(matrices_t matrices, DoubleTab& secmem, const tabs_t& semi_impl) const override;
@@ -52,10 +52,10 @@ public :
   };
 
 protected :
-  REF(Probleme_base) pb_swift;
-  REF(Probleme_base) pb_corse;
-  REF(Conduction) eq_swift;
-  REF(Conduction) eq_corse;
+  OBS_PTR(Probleme_base) pb_swift;
+  OBS_PTR(Probleme_base) pb_corse;
+  OBS_PTR(Conduction) eq_swift;
+  OBS_PTR(Conduction) eq_corse;
 
   double tau = -123.;                                // tau est la constante de temps du forcage.
 

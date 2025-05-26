@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,9 +16,10 @@
 #ifndef TRUSTSchema_RK_included
 #define TRUSTSchema_RK_included
 
-#include <type_traits>
+#include <Domaine_Cl_dis_base.h>
 #include <Schema_Temps_base.h>
-#include <Equation.h>
+#include <Equation_base.h>
+#include <type_traits>
 
 using ARR1 = std::array<double, 1>; // OK je sais mais bon ... ne demande pas alors :-)
 using ARR2 = std::array<double, 2>;
@@ -128,6 +129,7 @@ private:
   // DANGER : SHOULD NOT GO HERE
   template<Ordre_RK _O_ = _ORDRE_> std::enable_if_t<_O_ == Ordre_RK::UN || _O_ == Ordre_RK::RATIO_DEUX, int>
   faire_un_pas_de_temps_eqn_base_generique(Equation_base& eq) { throw; } // From VTABLE
+  DoubleTabs ki_;
 };
 
 // XXX : CAN BE REMOVED WHEN WE PASS TO C++17

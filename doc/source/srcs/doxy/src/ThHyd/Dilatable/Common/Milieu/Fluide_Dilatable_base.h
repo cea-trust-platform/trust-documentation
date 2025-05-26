@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,14 +16,16 @@
 #ifndef Fluide_Dilatable_base_included
 #define Fluide_Dilatable_base_included
 
+#include <EDO_Pression_th_base.h>
+#include <EOS_Tools_base.h>
+
+#include <Loi_Etat_base.h>
 #include <Fluide_base.h>
+#include <TRUST_Deriv.h>
 #include <TRUST_Ref.h>
-#include <Champ_Inc.h>
-#include <EOS_Tools.h>
-#include <Loi_Etat.h>
+
 
 class Probleme_base;
-class Domaine_Cl_dis;
 
 /*! @brief classe Fluide_Dilatable_base Cette classe represente un d'un fluide dilatable,
  *
@@ -34,10 +36,8 @@ class Domaine_Cl_dis;
 
 class Fluide_Dilatable_base : public Fluide_base
 {
-  Declare_base_sans_constructeur(Fluide_Dilatable_base);
-
+  Declare_base(Fluide_Dilatable_base);
 public :
-  Fluide_Dilatable_base();
   void verifier_coherence_champs(int& err,Nom& message) override;
   void set_Cp(double);
   void update_rho_cp(double temps) override;
@@ -47,11 +47,11 @@ public :
   int initialiser(const double temps) override;
 
   const DoubleTab& temperature() const;
-  const Champ_Don& ch_temperature() const;
-  Champ_Don& ch_temperature();
+  const Champ_Don_base& ch_temperature() const;
+  Champ_Don_base& ch_temperature();
 
   virtual void calculer_pression_tot();
-  virtual void preparer_pas_temps();
+  void preparer_pas_temps();
   void abortTimeStep() override;
   void set_param(Param& param) override;
   void discretiser(const Probleme_base& pb, const  Discretisation_base& dis) override;
@@ -60,30 +60,43 @@ public :
   void preparer_calcul() override;
   virtual void completer(const Probleme_base&);
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
+  virtual void checkTraitementPth(const Domaine_Cl_dis_base&);
+  void prepare_pressure_edo();
+  virtual void write_mean_edo(double);
+  virtual void write_header_edo();
 
   // Virtuelles pure
-  virtual void checkTraitementPth(const Domaine_Cl_dis&)=0;
-  virtual void prepare_pressure_edo()=0;
-  virtual void write_mean_edo(double )=0;
   virtual void secmembre_divU_Z(DoubleTab& ) const=0;
+  virtual void Resoudre_EDO_PT()=0;
 
   // Methodes de l interface des champs postraitables
   const Champ_base& get_champ(const Motcle& nom) const override;
+  void creer_champ(const Motcle& motlu) override;
+  bool has_champ(const Motcle& nom, OBS_PTR(Champ_base) &ref_champ) const override;
+  bool has_champ(const Motcle& nom) const override;
   void get_noms_champs_postraitables(Noms& nom,Option opt=NONE) const override;
 
   // Methodes inlines
   inline const Nom type_fluide() const { return loi_etat_->type_fluide(); }
-  inline const Loi_Etat& loi_etat() const { return loi_etat_; }
-  inline Loi_Etat&  loi_etat() { return loi_etat_; }
-  inline const Champ_Inc& inco_chaleur() const { return inco_chaleur_.valeur(); }
-  inline Champ_Inc& inco_chaleur() { return inco_chaleur_.valeur(); }
-  inline const Champ_Inc& vitesse() const { return vitesse_.valeur(); }
-  inline const Champ_Don& pression_tot() const { return pression_tot_; }
-  inline Champ_Don& pression_tot() { return pression_tot_; }
-  inline const Champ_Don& mu_sur_Schmidt() const { return mu_sur_Sc; }
-  inline Champ_Don& mu_sur_Schmidt() { return mu_sur_Sc; }
-  inline const Champ_Don& nu_sur_Schmidt() const { return nu_sur_Sc; }
-  inline Champ_Don& nu_sur_Schmidt() { return nu_sur_Sc; }
+  inline const OWN_PTR(Loi_Etat_base)& loi_etat() const { return loi_etat_; }
+  inline OWN_PTR(Loi_Etat_base)&  loi_etat() { return loi_etat_; }
+  inline const Champ_Inc_base& inco_chaleur() const { return ch_inco_chaleur_.valeur(); }
+  inline Champ_Inc_base& inco_chaleur() { return ch_inco_chaleur_.valeur(); }
+  inline const Champ_Inc_base& vitesse() const { return ch_vitesse_.valeur(); }
+  inline const Champ_Don_base& pression_tot() const { return ch_pression_tot_; }
+  inline Champ_Don_base& pression_tot() { return ch_pression_tot_; }
+  inline const Champ_Don_base& mu_sur_Schmidt() const { return ch_mu_sur_Sc; }
+  inline Champ_Don_base& mu_sur_Schmidt() { return ch_mu_sur_Sc; }
+  inline const Champ_Don_base& nu_sur_Schmidt() const { return ch_nu_sur_Sc; }
+  inline Champ_Don_base& nu_sur_Schmidt() { return ch_nu_sur_Sc; }
+  inline const Champ_Don_base& source_masse_espece() const { assert (ch_source_masse_esp_.non_nul()); return ch_source_masse_esp_; }
+  inline Champ_Don_base& source_masse_espece() { assert (ch_source_masse_esp_.non_nul()); return ch_source_masse_esp_; }
+  inline const Champ_Don_base& source_masse_projection() const { assert (ch_source_masse_proj_.non_nul()); return ch_source_masse_proj_; }
+  inline Champ_Don_base& source_masse_projection() { assert (ch_source_masse_proj_.non_nul()); return ch_source_masse_proj_; }
+
+  inline bool has_source_masse_espece_champ() const { return ch_source_masse_esp_.non_nul(); }
+  inline bool has_source_masse_projection_champ() const { return ch_source_masse_proj_.non_nul(); }
+
   inline const  DoubleTab& rho_n() const { return loi_etat_->rho_n(); }
   inline const  DoubleTab& rho_np1() const { return loi_etat_->rho_np1(); }
   inline void calculer_coeff_T();
@@ -96,11 +109,12 @@ public :
   inline void calculer_mu_sur_Sc() { loi_etat_-> calculer_mu_sur_Sc(); }
   inline void calculer_nu_sur_Sc() { loi_etat_-> calculer_nu_sur_Sc(); }
   inline void calculer_masse_volumique() { loi_etat_->calculer_masse_volumique(); }
-  inline void set_pression_th(double Pth) { Pth_n = Pth_ = Pth; }
-  inline int getTraitementPth() const { return traitement_PTh; }
+  inline void set_pression_th(double Pth) { Pth_n_ = Pth_ = Pth; }
+  inline int getTraitementPth() const { return traitement_PTh_; }
   inline double pression_th() const { return Pth_; } // Pression thermodynamique
-  inline double pression_thn() const { return Pth_n; } // Pression thermodynamique a l'etape precedente
-  inline double pression_th1() const { return Pth1; } // Pression thermodynamique calculee pour conserver la masse
+  inline const double& get_pression_th() const { return Pth_; } // Reference to pression thermodynamique (for PDI, can't share a copy...)
+  inline double pression_thn() const { return Pth_n_; } // Pression thermodynamique a l'etape precedente
+  inline double pression_th1() const { return Pth1_; } // Pression thermodynamique calculee pour conserver la masse
   inline double calculer_H(double hh) const { return loi_etat_->calculer_H(Pth_,hh); }
 
   // Methodes inlines from EOS_Tools
@@ -112,15 +126,22 @@ public :
   inline void divu_discvit(DoubleTab& secmem1, DoubleTab& secmem2) { eos_tools_->divu_discvit(secmem1,secmem2); }
   inline double moyenne_vol(const DoubleTab& A) const { return eos_tools_->moyenne_vol(A); }
 
+  bool is_dilatable() const override { return true; }
+
 protected :
   virtual void remplir_champ_pression_tot(int n, const DoubleTab& PHydro, DoubleTab& PTot) = 0;
-  int traitement_PTh; // flag pour le traitement de la pression thermo
-  double Pth_, Pth_n, Pth1;
-  REF(Champ_Inc) inco_chaleur_, vitesse_, pression_;
-  REF(Probleme_base) le_probleme_;
-  Champ_Don pression_tot_,mu_sur_Sc,nu_sur_Sc,rho_gaz,rho_comme_v;
-  Loi_Etat loi_etat_;
-  EOS_Tools eos_tools_;
+  void completer_edo(const Probleme_base& );
+
+  int traitement_PTh_ = 0; // flag pour le traitement de la pression thermo
+  double Pth_ = -1., Pth_n_ = -1., Pth1_ = -1.;
+  OBS_PTR(Champ_Inc_base) ch_inco_chaleur_, ch_vitesse_, ch_pression_;
+  OBS_PTR(Probleme_base) le_probleme_;
+  OWN_PTR(Champ_Don_base) ch_pression_tot_, ch_mu_sur_Sc, ch_nu_sur_Sc, ch_rho_gaz_, ch_rho_comme_v_;
+  OWN_PTR(Champ_Don_base) ch_source_masse_esp_, ch_source_masse_proj_; /* si besoin */
+  OWN_PTR(Loi_Etat_base) loi_etat_;
+  OWN_PTR(EOS_Tools_base) eos_tools_;
+  OWN_PTR(EDO_Pression_th_base) EDO_Pth_;
+  Nom output_file_;
 };
 
 inline void Fluide_Dilatable_base::calculer_coeff_T()

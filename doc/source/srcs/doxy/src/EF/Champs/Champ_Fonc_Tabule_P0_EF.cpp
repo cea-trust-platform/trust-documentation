@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,7 +23,7 @@ Sortie& Champ_Fonc_Tabule_P0_EF::printOn(Sortie& s) const { return s << que_suis
 
 Entree& Champ_Fonc_Tabule_P0_EF::readOn(Entree& s) { return s; }
 
-void Champ_Fonc_Tabule_P0_EF::associer_param(const VECT(REF(Champ_base)) &les_champs, const Table& une_table)
+void Champ_Fonc_Tabule_P0_EF::associer_param(const VECT(OBS_PTR(Champ_base)) &les_champs, const Table& une_table)
 {
   les_ch_param = les_champs;
   la_table = une_table;
@@ -31,10 +31,8 @@ void Champ_Fonc_Tabule_P0_EF::associer_param(const VECT(REF(Champ_base)) &les_ch
 
 void Champ_Fonc_Tabule_P0_EF::mettre_a_jour(double t)
 {
-  const Domaine_VF& zvf = le_dom_VF.valeur();
-  const Table& table = la_table.valeur();
   DoubleTab& mes_valeurs = valeurs();
-  int nb_elem = zvf.nb_elem(), nb_elem_tot = zvf.nb_elem_tot(), nb_param = les_ch_param.size();
+  int nb_elem = le_dom_VF->nb_elem(), nb_elem_tot = le_dom_VF->nb_elem_tot(), nb_param = les_ch_param.size();
   DoubleTabs val_params_aux_elems;
   for (int i = 0; i < nb_param; i++)
     {
@@ -42,24 +40,33 @@ void Champ_Fonc_Tabule_P0_EF::mettre_a_jour(double t)
       DoubleTab vp(nb_elem_tot, les_ch_param[i]->valeurs().dimension(1));
       val_params_aux_elems.add(vp);
     }
-  const DoubleTab& centres_de_gravites = zvf.xp();
+  const DoubleTab& centres_de_gravites = le_dom_VF->xp();
   IntVect les_polys(nb_elem_tot);
   for (int elem = 0; elem < nb_elem_tot; elem++)
     les_polys(elem) = elem;
 
   // Estimate the field parameter on cells:
   for (int i = 0; i < nb_param; i++)
-    les_ch_param[i].valeur().valeur_aux_elems(centres_de_gravites, les_polys, val_params_aux_elems[i]);
+    les_ch_param[i]->valeur_aux_elems(centres_de_gravites, les_polys, val_params_aux_elems[i]);
   // Compute the field according to the parameter field
-  const int nbcomp = mes_valeurs.dimension(1);
-  for (int num_elem = 0; num_elem < nb_elem; num_elem++)
-    for (int ncomp = 0; ncomp < nbcomp; ncomp++)
-      {
-        std::vector<double> vals;
-        for (int n = 0; n < nb_param; n++)
-          vals.push_back(val_params_aux_elems[n](num_elem, les_ch_param[n]->valeurs().dimension(1) == 1 ? 0 : ncomp));
-        mes_valeurs(num_elem, ncomp) = table.val(vals, ncomp);
-      }
+  if (la_table->isfonction() != 2)
+    {
+      const int nbcomp = mes_valeurs.dimension(1);
+      std::vector<double> vals;
+      vals.reserve(nb_param); // Pre-allocate space once
+      for (int num_elem = 0; num_elem < nb_elem; num_elem++)
+        for (int ncomp = 0; ncomp < nbcomp; ncomp++)
+          {
+            vals.clear();
+            for (int n = 0; n < nb_param; n++)
+              vals.push_back(val_params_aux_elems[n](num_elem, les_ch_param[n]->valeurs().dimension(1) == 1 ? 0 : ncomp));
+            mes_valeurs(num_elem, ncomp) = la_table->val(vals, ncomp);
+          }
+    }
+  else
+    {
+      la_table->valeurs(val_params_aux_elems[0], centres_de_gravites, t, mes_valeurs);
+    }
 
   Champ_Fonc_base::mettre_a_jour(t);
 }

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -37,24 +37,23 @@ Sortie& Domaine_Cl_PolyMAC::printOn(Sortie& os) const { return os; }
 
 Entree& Domaine_Cl_PolyMAC::readOn(Entree& is) { return Domaine_Cl_dis_base::readOn(is); }
 
-void Domaine_Cl_PolyMAC::completer(const Domaine_dis& )
+void Domaine_Cl_PolyMAC::completer(const Domaine_dis_base& )
 {
   modif_perio_fait_ = 0;
 }
 
-void Domaine_Cl_PolyMAC::imposer_cond_lim(Champ_Inc& ch, double temps)
+void Domaine_Cl_PolyMAC::imposer_cond_lim(Champ_Inc_base& ch, double temps)
 {
 
-  Champ_Inc_base& ch_base = ch.valeur();
-  DoubleTab& ch_tab = ch_base.valeurs(temps);
+  DoubleTab& ch_tab = ch.valeurs(temps);
   int n, N = ch_tab.line_size();
 
-  if (sub_type(Champ_Inc_P0_base, ch_base)) { /* Do nothing */ }
-  else if (ch_base.nature_du_champ() == scalaire) { /* Do nothing */ }
-  else if (sub_type(Champ_Face_PolyMAC_P0P1NC, ch_base) || sub_type(Champ_Face_PolyMAC, ch_base))
+  if (sub_type(Champ_Inc_P0_base, ch)) { /* Do nothing */ }
+  else if (ch.nature_du_champ() == scalaire) { /* Do nothing */ }
+  else if (sub_type(Champ_Face_PolyMAC_P0P1NC, ch) || sub_type(Champ_Face_PolyMAC, ch))
     {
-      Champ_Face_base& ch_face = ref_cast(Champ_Face_base, ch_base);
-      const Domaine_VF& ma_domaine_VF = ch_face.domaine_vf();
+      Champ_Face_base& ch_face = ref_cast(Champ_Face_base, ch);
+      const Domaine_VF& mon_dom_VF = ch_face.domaine_vf();
       int ndeb, nfin, num_face;
 
       for (int i = 0; i < nb_cond_lim(); i++)
@@ -111,8 +110,8 @@ void Domaine_Cl_PolyMAC::imposer_cond_lim(Champ_Inc& ch, double temps)
                     // vn
                     double vn = 0;
                     for (int d = 0; d < dimension; d++)
-                      vn += ma_domaine_VF.face_normales(num_face, d) * la_cl_diri.val_imp_au_temps(temps,num_face-ndeb, N * d + n);
-                    vn /= ma_domaine_VF.face_surfaces(num_face);
+                      vn += mon_dom_VF.face_normales(num_face, d) * la_cl_diri.val_imp_au_temps(temps,num_face-ndeb, N * d + n);
+                    vn /= mon_dom_VF.face_surfaces(num_face);
                     ch_tab(num_face, n) = vn;
                   }
             }
@@ -139,7 +138,7 @@ void Domaine_Cl_PolyMAC::imposer_cond_lim(Champ_Inc& ch, double temps)
     }
   else
     {
-      Cerr << "Le type de Champ_Inc " << ch->que_suis_je() << " n'est pas prevu en PolyMAC family " << finl;
+      Cerr << "Le type de OWN_PTR(Champ_Inc_base) " << ch.que_suis_je() << " n'est pas prevu en PolyMAC family " << finl;
       Process::exit();
     }
   ch_tab.echange_espace_virtuel();
@@ -169,7 +168,7 @@ int Domaine_Cl_PolyMAC::initialiser(double temps)
 
   if (nb_bord_periodicite() > 0)
     {
-      Cerr << " La periodicite n'est pas code !!!" << finl;
+      Cerr << " La periodicite n'est pas codee !!!" << finl;
       Process::exit();
     }
   return 1;
@@ -177,10 +176,10 @@ int Domaine_Cl_PolyMAC::initialiser(double temps)
 
 Domaine_VF& Domaine_Cl_PolyMAC::domaine_vf()
 {
-  return ref_cast(Domaine_VF, domaine_dis().valeur());
+  return ref_cast(Domaine_VF, domaine_dis());
 }
 
 const Domaine_VF& Domaine_Cl_PolyMAC::domaine_vf() const
 {
-  return ref_cast(Domaine_VF, domaine_dis().valeur());
+  return ref_cast(Domaine_VF, domaine_dis());
 }

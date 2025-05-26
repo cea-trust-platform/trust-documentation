@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -20,6 +20,9 @@
 #include <Equation_base.h>
 
 Implemente_instanciable_sans_constructeur(Sortie_libre_pression_imposee, "Frontiere_ouverte_pression_imposee", Neumann_sortie_libre);
+// XD frontiere_ouverte_pression_imposee neumann frontiere_ouverte_pression_imposee -1 Imposed pressure condition at the open boundary called bord (edge). The imposed pressure field is expressed in Pa.
+// XD attr ch front_field_base ch 0 Boundary field type.
+
 
 Sortie_libre_pression_imposee::Sortie_libre_pression_imposee() : d_rho(-123.) { }
 
@@ -31,7 +34,7 @@ Entree& Sortie_libre_pression_imposee::readOn(Entree& s)
 
   s >> le_champ_front;
   le_champ_ext.typer("Champ_front_uniforme");
-  le_champ_ext.valeurs().resize(1, dimension);
+  le_champ_ext->valeurs().resize(1, dimension);
   return s;
 }
 
@@ -46,10 +49,10 @@ void Sortie_libre_pression_imposee::completer()
   const Milieu_base& mil = mon_dom_cl_dis->equation().milieu();
   if (sub_type(Fluide_Incompressible,mil) && mon_dom_cl_dis->equation().que_suis_je() != "QDM_Multiphase")
     {
-      if (sub_type(Champ_Uniforme, mil.masse_volumique().valeur()))
+      if (sub_type(Champ_Uniforme, mil.masse_volumique()))
         {
-          const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique().valeur());
-          d_rho = rho(0, 0);
+          const Champ_Uniforme& rho = ref_cast(Champ_Uniforme, mil.masse_volumique());
+          d_rho = rho.valeurs()(0, 0);
         }
       else
         {
@@ -93,16 +96,16 @@ double Sortie_libre_pression_imposee::flux_impose(int i, int j) const
   assert(!est_egal(d_rho, -123.));
   if (d_rho == -1)
     {
-      const Champ_base& rho = mil.masse_volumique().valeur();
-      rho_ = rho(i);
+      const Champ_base& rho = mil.masse_volumique();
+      rho_ = rho.valeurs()(i);
     }
   else
     rho_ = d_rho;
 
-  if (le_champ_front.valeurs().dimension(0) == 1)
-    return le_champ_front(0, j) / rho_;
-  else if (j < le_champ_front.valeurs().dimension(1))
-    return le_champ_front(i, j) / rho_;
+  if (le_champ_front->valeurs().dimension(0) == 1)
+    return le_champ_front->valeurs()(0, j) / rho_;
+  else if (j < le_champ_front->valeurs().dimension(1))
+    return le_champ_front->valeurs()(i, j) / rho_;
   else
     Cerr << "Sortie_libre_pression_imposee::flux_impose erreur" << finl;
   Process::exit();

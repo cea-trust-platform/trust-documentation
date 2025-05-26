@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -32,7 +32,9 @@ class Nom : public Objet_U
   Declare_instanciable_sans_constructeur_ni_destructeur(Nom);
 public:
   Nom();                                         // construit "??"
-  Nom(int i);                                // Nom(485)="485"
+  Nom(True_int i);                                // Nom(485)="485"
+  Nom(long i);                                    // Nom(485)="485"
+  Nom(long long i);                                    // Nom(485)="485"
   Nom(const char* nom);
   Nom(const std::string& nom);
   Nom(const Nom&);
@@ -78,6 +80,9 @@ public:
   friend int operator !=(const Nom& , const Nom& ) ;
   friend int operator ==(const char* const, const Nom&) ;
   friend int operator !=(const char* const, const Nom&) ;
+  // so that Nom (and Motcle) can be used as a key in std::map :
+  friend bool operator <(const Nom&, const Nom&) ;
+
   inline bool contient(const Nom& nom) const
   {
     std::size_t found = nom_.find(nom.nom_);
@@ -87,13 +92,9 @@ public:
   inline const std::string& getString() const  {    return nom_;   }
   inline std::string& getString()  {  return nom_;   }
 
-  static void sed_check_case_non_sensitive(int i) ;
 protected :
 
-  static int nb_noms;
   std::string nom_;
-
-  static int check_case_non_sensitive_; // pour descativer dans ==
 };
 
 #endif // NOM_H

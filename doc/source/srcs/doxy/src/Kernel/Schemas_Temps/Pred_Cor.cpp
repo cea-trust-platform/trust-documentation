@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,22 +13,17 @@
 *
 *****************************************************************************/
 
-#include <Pred_Cor.h>
+#include <Domaine_Cl_dis_base.h>
 #include <Operateur_Conv.h>
+#include <Pred_Cor.h>
 
 Implemente_instanciable(Pred_Cor,"Schema_Predictor_Corrector",Schema_Temps_base);
-
-
-//     printOn()
-/////
+// XD schema_predictor_corrector schema_temps_base schema_predictor_corrector -1 This is the predictor-corrector scheme (second order). It is more accurate and economic than MacCormack scheme. It gives best results with a second ordre convective scheme like quick, centre (VDF).
 
 Sortie& Pred_Cor::printOn(Sortie& s) const
 {
   return  Schema_Temps_base::printOn(s);
 }
-
-//// readOn
-//
 
 Entree& Pred_Cor::readOn(Entree& s)
 {
@@ -100,7 +95,7 @@ int Pred_Cor::faire_un_pas_de_temps_eqn_base(Equation_base& eqn)
 
   // Etape PREDICTOR
 
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
 
   // On tourne la roue pour que les operateurs utilisent les champs au temps futur
   eqn.inconnue().avancer();
@@ -126,7 +121,7 @@ int Pred_Cor::faire_un_pas_de_temps_eqn_base(Equation_base& eqn)
   xipls1  *= dt_;
   xipls1  += xi ;
 
-  eqn.domaine_Cl_dis()->imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
+  eqn.domaine_Cl_dis().imposer_cond_lim(eqn.inconnue(),temps_courant()+pas_de_temps());
   update_critere_statio(dudtpls1, eqn);
 
   return 1;

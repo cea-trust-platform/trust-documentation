@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -17,14 +17,14 @@
 #include <Operateurs_Statistique_tps.h>
 #include <EcritureLectureSpecial.h>
 #include <Postraitement.h>
+#include <TRUST_2_PDI.h>
 
-
-Implemente_instanciable(Operateurs_Statistique_tps,"Operateurs_Statistique_tps",LIST(Operateur_Statistique_tps));
+Implemente_instanciable(Operateurs_Statistique_tps,"Operateurs_Statistique_tps",LIST(OWN_PTR(Operateur_Statistique_tps_base)));
 
 Sortie& Operateurs_Statistique_tps::printOn(Sortie& s ) const { return s << que_suis_je() << " " << le_nom(); }
 Entree& Operateurs_Statistique_tps::readOn(Entree& s) { return s; }
 
-inline const Operateur_Statistique_tps& recherche(Operateurs_Statistique_tps& op, const Nom& champ, const Motcle& motlu)
+inline const OWN_PTR(Operateur_Statistique_tps_base)& recherche(Operateurs_Statistique_tps& op, const Nom& champ, const Motcle& motlu)
 {
   for (auto &itr : op)
     {
@@ -47,8 +47,8 @@ int Operateurs_Statistique_tps::sauvegarder(Sortie& os) const
   if (a_faire)
     {
       Nom mon_ident(que_suis_je());
-      mon_ident += mon_post->probleme().domaine().le_nom();
-      double temps = mon_post->probleme().schema_temps().temps_courant();
+      mon_ident += mon_post_->probleme().domaine().le_nom();
+      double temps = mon_post_->probleme().schema_temps().temps_courant();
       mon_ident += Nom(temps, "%e");
       os << mon_ident << finl;
       os << que_suis_je() << finl;
@@ -59,7 +59,7 @@ int Operateurs_Statistique_tps::sauvegarder(Sortie& os) const
 
   int bytes = 0;
   for (const auto &itr : *this)
-    bytes += itr.sauvegarder(os);
+    bytes += itr->sauvegarder(os);
 
   if (a_faire) os.flush();
   return bytes;
@@ -69,28 +69,43 @@ int Operateurs_Statistique_tps::sauvegarder(Sortie& os) const
 int Operateurs_Statistique_tps::reprendre(Entree& is)
 {
   //Cerr << "Operateurs_Statistique_tps::reprendre" << finl;
-  if (mon_post.non_nul())
+  if (mon_post_.non_nul())
     {
-      Nom bidon;
-      is >> bidon;
-      if (bidon=="fin")
-        {
-          // Ce test evite un beau segmentation fault a la lecture
-          // du deuxieme bidon lors d'une sauvegarde/reprise au format binaire
-          Cerr << "The end of the restarting file is reached." << finl;
-          Cerr << "This file does not contain statistics." << finl;
-          Cerr << "The restarting time tinit must therefore be lower" << finl;
-          Cerr << "than the statistics begining time t_deb." << finl;
-          exit();
-        }
-      is >> bidon;
-      int n;
-      is >> n;
       double tstat_deb_sauv,temps_derniere_mise_a_jour_stats;
-      is >> tstat_deb_sauv;
-      is >> temps_derniere_mise_a_jour_stats;
+      if(TRUST_2_PDI::is_PDI_restart())
+        {
+          TRUST_2_PDI pdi_interface;
+          const std::string& pb_name = mon_post_->probleme().le_nom().getString();
+          Nom vide;
+          const Nom& nom_post = mon_post_->le_nom();
+          std::string post_name = (nom_post != "neant") && (nom_post != vide) ? nom_post.getString() + "_" : "";
+          std::string name = pb_name + "_" + post_name + "stat_tdeb";
+          pdi_interface.read(name, &tstat_deb_sauv);
+          name = pb_name + "_" + post_name + "stat_tend";
+          pdi_interface.read(name, &temps_derniere_mise_a_jour_stats);
+        }
+      else
+        {
+          Nom bidon;
+          is >> bidon;
+          if (bidon=="fin")
+            {
+              // Ce test evite un beau segmentation fault a la lecture
+              // du deuxieme bidon lors d'une sauvegarde/reprise au format binaire
+              Cerr << "The end of the restarting file is reached." << finl;
+              Cerr << "This file does not contain statistics." << finl;
+              Cerr << "The restarting time tinit must therefore be lower" << finl;
+              Cerr << "than the statistics begining time t_deb." << finl;
+              exit();
+            }
+          is >> bidon;
+          int n;
+          is >> n;
+          is >> tstat_deb_sauv;
+          is >> temps_derniere_mise_a_jour_stats;
+        }
       //Cerr << "temps_derniere_mise_a_jour_stats" << temps_derniere_mise_a_jour_stats << finl;
-      double tinit = mon_post->probleme().schema_temps().temps_courant();
+      double tinit = mon_post_->probleme().schema_temps().temps_courant();
 
       // Plusieurs cas possibles:
       if (inf_strict(tinit,temps_derniere_mise_a_jour_stats,1.e-5))
@@ -112,17 +127,20 @@ int Operateurs_Statistique_tps::reprendre(Entree& is)
           Cerr << "Statistics are not restarted and therefore the statistics calculation" << finl;
           Cerr << "will restart a t_deb =" << this->dernier()->tstat_deb() << finl;
 
-          Nom bidon2;
-          double dbidon;
-          DoubleTab tab_bidon;
-          auto& list = get_stl_list();
-          for (auto&& itr = list.begin(); itr != list.end(); ) // On saute les champs
+          if(!TRUST_2_PDI::is_PDI_restart())
             {
-              is >> bidon2 >> bidon2;
-              is >> dbidon;
-              tab_bidon.reset(); // sinon erreur sur la taille dans lit()
-              tab_bidon.jump(is);
-              ++itr;
+              Nom bidon2;
+              double dbidon;
+              DoubleTab tab_bidon;
+              auto& list = get_stl_list();
+              for (auto&& itr = list.begin(); itr != list.end(); ) // On saute les champs
+                {
+                  is >> bidon2 >> bidon2;
+                  is >> dbidon;
+                  tab_bidon.reset(); // sinon erreur sur la taille dans lit()
+                  tab_bidon.jump(is);
+                  ++itr;
+                }
             }
         }
       else // tinit=>temps_derniere_mise_a_jour_stats : on fait la reprise
@@ -130,16 +148,23 @@ int Operateurs_Statistique_tps::reprendre(Entree& is)
           Nom bidon2;
           for (auto &itr : *this)
             {
-              is >> bidon2 >> bidon2; // On saute l'identificateur et le type des champs
-              itr.reprendre(is);
+              if(!TRUST_2_PDI::is_PDI_restart())
+                is >> bidon2 >> bidon2; // On saute l'identificateur et le type des champs
+              itr->reprendre(is);
             }
           // On modifie l'attribut tstat_deb_ des champs pour tenir compte de la reprise
           for (auto &itr : *this)
-            itr.fixer_tstat_deb(tstat_deb_sauv,temps_derniere_mise_a_jour_stats);
+            itr->fixer_tstat_deb(tstat_deb_sauv,temps_derniere_mise_a_jour_stats);
         }
     }
   else  // lecture pour sauter le bloc
     {
+      if(TRUST_2_PDI::is_PDI_restart())
+        {
+          Cerr << "Problem in the resumption of Operateurs_Statistique_tps" << finl;
+          Cerr << "PDI format does not require to navigate through file..." << finl;
+          Process::exit();
+        }
       int n;
       is >> n;
       double tstat_deb_sauv,temps_derniere_mise_a_jour_stats;

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -19,7 +19,6 @@
 #include <Terme_Puissance_Thermique_VDF_base.h>
 #include <Iterateur_Source_Elem.h>
 #include <Eval_Dirac_VDF_Elem.h>
-#include <Modele_Permeabilite.h>
 
 /*! @brief class Source_Dirac_VDF_Elem Cette classe represente un  terme source de Dirac.
  *
@@ -30,7 +29,7 @@ class Source_Dirac_VDF_Elem : public Terme_Puissance_Thermique_VDF_base
 public:
   Source_Dirac_VDF_Elem() : Terme_Puissance_Thermique_VDF_base(Iterateur_Source_Elem<Eval_Dirac_VDF_Elem>()), nb_dirac(0) { }
   void associer_pb(const Probleme_base& ) override;
-  void associer_domaines(const Domaine_dis&, const Domaine_Cl_dis& ) override;
+  void associer_domaines(const Domaine_dis_base&, const Domaine_Cl_dis_base& ) override;
   void mettre_a_jour(double temps) override { Terme_Puissance_Thermique::mettre_a_jour(temps); }
 
 protected:

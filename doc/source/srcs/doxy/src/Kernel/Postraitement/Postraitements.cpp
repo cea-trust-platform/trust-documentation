@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,7 +16,21 @@
 #include <Postraitements.h>
 #include <Postraitement.h>
 
-Implemente_instanciable(Postraitements,"Postraitements|Post_processings",LIST(DERIV(Postraitement_base)));
+Implemente_instanciable(Postraitements,"Postraitements|Post_processings",LIST(OWN_PTR(Postraitement_base)));
+// XD postraitements listobj postraitements -1 un_postraitement 0 Keyword to use several results files. List of objects of post-processing (with name).
+
+// XD type_postraitement_ft_lata objet_lecture nul 0 not_set
+// XD attr type chaine(into=["postraitement_ft_lata","postraitement_lata"]) type 0 not_set
+// XD attr nom chaine nom 0 Name of the post-processing.
+// XD attr bloc chaine bloc 0 not_set
+
+// XD un_postraitement_spec objet_lecture nul 0 An object of post-processing (with type +name).
+// XD attr type_un_post type_un_post type_un_post 1 not_set
+// XD attr type_postraitement_ft_lata type_postraitement_ft_lata type_postraitement_ft_lata 1 not_set
+
+// XD liste_post listobj liste_post -1 un_postraitement_spec 0 Keyword to use several results files. List of objects of post-processing (with name)
+
+// XD liste_post_ok listobj liste_post_ok -1 nom_postraitement 0 Keyword to use several results files. List of objects of post-processing (with name)
 
 Entree& Postraitements::readOn(Entree& s)
 {
@@ -28,7 +42,7 @@ Sortie& Postraitements::printOn(Sortie& s) const
 {
   for (const auto& itr : *this)
     {
-      const Postraitement_base& post = itr.valeur(); // valeur() car DERIV
+      const Postraitement_base& post = itr.valeur(); // valeur() car OWN_PTR
       s << post;
     }
   return s;
@@ -104,16 +118,18 @@ int Postraitements::lire_postraitements(Entree& is, const Motcle& motlu, const P
   if (lerang == 0)
     {
       // Creation et lecture d'un postraitement unique standard
-      DERIV(Postraitement_base) & post = add( DERIV(Postraitement_base)() );
+      OWN_PTR(Postraitement_base) & post = add( OWN_PTR(Postraitement_base)() );
       if (mon_pb.que_suis_je() == "Pb_STT")
-        {
-          post.typer("Postraitement_STT");
-        }
+        post.typer("Postraitement_STT");
+      else if (mon_pb.que_suis_je().debute_par("Probleme_FT_Disc_gen"))
+        post.typer("Postraitement_ft_lata");
+      else if (mon_pb.que_suis_je().contient("_IJK"))
+        post.typer("Postprocessing_IJK");
+      else if (mon_pb.que_suis_je().debute_par("Probleme_FT_Disc_gen"))
+        post.typer("Postraitement_ft_lata");
       else
-        {
-          post.typer("Postraitement");
-        }
-      post.valeur().associer_nom_et_pb_base("neant", mon_pb);
+        post.typer("Postraitement");
+      post->associer_nom_et_pb_base("neant", mon_pb);
       is >> post.valeur();
     }
   else if (lerang == 1 || lerang == 2 || lerang == 3 )
@@ -163,9 +179,9 @@ int Postraitements::lire_postraitements(Entree& is, const Motcle& motlu, const P
             }
           list_nom_post.add_if_not(nom_du_post);
 
-          DERIV(Postraitement_base) & post = add( DERIV(Postraitement_base)() );
+          OWN_PTR(Postraitement_base) & post = add( OWN_PTR(Postraitement_base)() );
           post.typer(type);
-          post.valeur().associer_nom_et_pb_base(nom_du_post, mon_pb);
+          post->associer_nom_et_pb_base(nom_du_post, mon_pb);
           is >> post.valeur();
           /*
           // Check if statistic block is defined several times

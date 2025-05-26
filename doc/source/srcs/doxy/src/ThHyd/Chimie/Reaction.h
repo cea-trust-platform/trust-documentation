@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -16,9 +16,9 @@
 #ifndef Reaction_included
 #define Reaction_included
 
+#include <Champ_Fonc_base.h>
 #include <TRUST_Vector.h>
 #include <TRUSTArray.h>
-#include <Champ_Fonc.h>
 #include <TRUST_List.h>
 #include <TRUST_Ref.h>
 
@@ -34,7 +34,7 @@ public:
   friend class Chimie;
   void completer(const Motcles& list_var,const ArrOfDouble& masse_molaire);
 
-  void reagir(VECT(REF(Champ_Inc_base))& liste_c,const double deltat) const;
+  void reagir(VECT(OBS_PTR(Champ_Inc_base))& liste_c,const double deltat) const;
   double calcul_proportion_implicite(ArrOfDouble& C_temp,const ArrOfDouble& C0,double deltat, double seuil, double& poroportion_directe ) const;
   void extract_coef(ArrOfDouble& coeff_recactifs,ArrOfDouble& coeff_produits,const Motcles& list_var,const ArrOfDouble& masse_molaire) const;
   double calculer_pas_de_temps() const;
@@ -42,12 +42,12 @@ public:
   inline const Champ_base& get_omega() const
   {
     return omega_.valeur();
-  };
+  }
   void discretiser_omega(const Probleme_base& pb,const Nom&);
   inline  const int& nb_sous_pas_de_temps_reaction() const
   {
     return nb_sous_pas_de_temps_reaction_ ;
-  };
+  }
 protected:
   Nom reactifs_,produits_,activite_;
 
@@ -61,7 +61,7 @@ protected:
   ArrOfDouble coeff_Y_,coeff_stoechio_;
   ArrOfDouble coeff_activite_;
   Motcles save_alias_; //pour verifier que les Yi arrivent dans le meme ordre que lors de l'interpretation de la reaction
-  mutable Champ_Fonc omega_;
+  mutable OWN_PTR(Champ_Fonc_base)  omega_;
 
   mutable double proportion_max_sur_delta_t_=1;
   double proportion_max_admissible_=1e30;

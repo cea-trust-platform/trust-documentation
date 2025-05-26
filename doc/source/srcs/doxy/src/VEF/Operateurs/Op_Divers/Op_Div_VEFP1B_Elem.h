@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -39,7 +39,7 @@ public:
   void degres_liberte() const;
   int impr(Sortie& os) const override;
   void volumique(DoubleTab&) const override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis&,const Champ_Inc&) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base&,const Champ_Inc_base&) override;
 
   // Explicite
   DoubleTab& ajouter(const DoubleTab&, DoubleTab&) const override;
@@ -57,13 +57,15 @@ public:
   void contribuer_au_second_membre(DoubleTab&) const override { }
 
 private:
-  REF(Domaine_VEF) le_dom_vef;
-  REF(Domaine_Cl_VEF) la_zcl_vef;
+  OBS_PTR(Domaine_VEF) le_dom_vef;
+  OBS_PTR(Domaine_Cl_VEF) la_zcl_vef;
 
   void volumique_P0(DoubleTab&) const;
 
-  mutable IntVect nb_degres_liberte;
+  mutable IntVect nb_degres_liberte_;
+  mutable bool corrige_sommets_sans_degre_liberte_ = false;
   mutable IntTab som_;
+  mutable bool som_initialized_ = false;
 };
 
 #endif /* Op_Div_VEFP1B_Elem_included */

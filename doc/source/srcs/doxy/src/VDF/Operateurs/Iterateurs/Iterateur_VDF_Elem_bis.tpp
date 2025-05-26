@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -23,11 +23,11 @@ void  Iterateur_VDF_Elem<_TYPE_>::modifier_flux() const
       && !( sub_type(Operateur_Diff_base,op_base.valeur()) && ref_cast(Operateur_Diff_base,op_base.valeur()).diffusivite().le_nom() == "conductivite" ) )
     {
       DoubleTab& flux_bords=op_base->flux_bords();
-      const Domaine_VDF& le_dom_vdf=ref_cast(Domaine_VDF,op_base->equation().domaine_dis().valeur());
-      const Champ_base& rho = (op_base->equation()).milieu().masse_volumique().valeur();
-      const Champ_Don& Cp = (op_base->equation()).milieu().capacite_calorifique();
+      const Domaine_VDF& le_dom_vdf=ref_cast(Domaine_VDF,op_base->equation().domaine_dis());
+      const Champ_base& rho = (op_base->equation()).milieu().masse_volumique();
+      const Champ_Don_base& Cp = (op_base->equation()).milieu().capacite_calorifique();
       const IntTab& face_voisins=le_dom_vdf.face_voisins();
-      int rho_uniforme = sub_type(Champ_Uniforme,rho) ? 1 : 0, cp_uniforme = sub_type(Champ_Uniforme,Cp.valeur()) ? 1 : 0;
+      int rho_uniforme = sub_type(Champ_Uniforme,rho) ? 1 : 0, cp_uniforme = sub_type(Champ_Uniforme,Cp) ? 1 : 0;
       int is_rho_u=op_base->equation().probleme().is_dilatable();
       if (is_rho_u)
         {
@@ -41,8 +41,8 @@ void  Iterateur_VDF_Elem<_TYPE_>::modifier_flux() const
         for(int k = 0; k < flux_bords.dimension(1); k++)
           {
             int e = (face_voisins(face, 0) != -1) ? face_voisins(face, 0) : face_voisins(face, 1);
-            const double rho_ = (is_rho_u) ? 1.0 : rho(!rho_uniforme * e, k);
-            flux_bords(face, k) *= rho_ * Cp(!cp_uniforme * e, k);
+            const double rho_ = (is_rho_u) ? 1.0 : rho.valeurs()(!rho_uniforme * e, k);
+            flux_bords(face, k) *= rho_ * Cp.valeurs()(!cp_uniforme * e, k);
           }
     }
 }
@@ -50,7 +50,7 @@ void  Iterateur_VDF_Elem<_TYPE_>::modifier_flux() const
 template <class _TYPE_>
 int Iterateur_VDF_Elem<_TYPE_>::impr(Sortie& os) const
 {
-  const Domaine_VDF& le_dom_vdf=ref_cast(Domaine_VDF,op_base.valeur().equation().domaine_dis().valeur());
+  const Domaine_VDF& le_dom_vdf=ref_cast(Domaine_VDF,op_base->equation().domaine_dis());
   const Domaine& madomaine=le_dom->domaine();
   const int impr_bord=(madomaine.bords_a_imprimer().est_vide() ? 0:1);
   const Schema_Temps_base& sch = la_zcl->equation().probleme().schema_temps();
@@ -67,7 +67,7 @@ int Iterateur_VDF_Elem<_TYPE_>::impr(Sortie& os) const
   for (int num_cl=0; num_cl<nb_front_Cl; num_cl++)
     {
       const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       int ndeb = frontiere_dis.num_premiere_face();
       int nfin = ndeb + frontiere_dis.nb_faces();
       int periodicite = (type_cl(la_cl)==periodique?1:0);
@@ -85,7 +85,7 @@ int Iterateur_VDF_Elem<_TYPE_>::impr(Sortie& os) const
   mp_sum_for_each_item(flux_bords2);
   if (je_suis_maitre())
     {
-      if (!Flux.is_open()) op_base->ouvrir_fichier(Flux,"",1);
+      op_base->ouvrir_fichier(Flux,"",1);
       Flux.add_col(temps);
       for (int num_cl=0; num_cl<nb_front_Cl; num_cl++)
         {
@@ -113,9 +113,9 @@ int Iterateur_VDF_Elem<_TYPE_>::impr(Sortie& os) const
       op_base->ouvrir_fichier_partage(Flux_face,"",impr_bord);
       for (int num_cl=0; num_cl<nb_front_Cl; num_cl++)
         {
-          const Frontiere_dis_base& la_fr = la_zcl->les_conditions_limites(num_cl).frontiere_dis();
+          const Frontiere_dis_base& la_fr = la_zcl->les_conditions_limites(num_cl)->frontiere_dis();
           const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-          const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+          const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
           int ndeb = frontiere_dis.num_premiere_face(), nfin = ndeb + frontiere_dis.nb_faces();
           if (madomaine.bords_a_imprimer().contient(la_fr.le_nom()))
             {
@@ -171,7 +171,7 @@ void Iterateur_VDF_Elem<_TYPE_>::contribuer_au_second_membre_bords(const int nco
   for (int num_cl = 0; num_cl < le_dom->nb_front_Cl(); num_cl++)
     {
       const Cond_lim& la_cl = la_zcl->les_conditions_limites(num_cl);
-      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl.frontiere_dis());
+      const Front_VF& frontiere_dis = ref_cast(Front_VF,la_cl->frontiere_dis());
       const int ndeb = frontiere_dis.num_premiere_face(), nfin = ndeb + frontiere_dis.nb_faces();
       switch(type_cl(la_cl))
         {
@@ -253,10 +253,10 @@ void Iterateur_VDF_Elem<_TYPE_>::contribuer_au_second_membre_bords_(const Echang
     {
       Type_Double flux(ncomp);
       int boundary_index=-1;
-      if (le_dom.valeur().front_VF(num_cl).le_nom() == frontiere_dis.le_nom()) boundary_index = num_cl;
+      if (le_dom->front_VF(num_cl).le_nom() == frontiere_dis.le_nom()) boundary_index = num_cl;
       for (int face = ndeb; face < nfin; face++)
         {
-          int local_face=le_dom.valeur().front_VF(boundary_index).num_local_face(face);
+          int local_face=le_dom->front_VF(boundary_index).num_local_face(face);
           flux_evaluateur.secmem_face(boundary_index,face,local_face, cl, ndeb, flux);
           fill_flux_tables_(face,ncomp,1.0 /* coeff */,flux,resu);
         }

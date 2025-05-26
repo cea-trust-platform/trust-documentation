@@ -18,10 +18,8 @@
 
 #include <Modele_turbulence_hyd_Longueur_Melange_base.h>
 
-class Domaine_Cl_dis;
 class Domaine_Cl_VEF;
 class Domaine_VEF;
-class Domaine_dis;
 
 /*! @brief classe Turbulence_hyd_Longueur_Melange_VEF Cette classe correspond a la mise en oeuvre du modele
  *  de longueur de melange en VEF
@@ -37,7 +35,7 @@ public:
   int lire_motcle_non_standard(const Motcle&, Entree&) override;
   void lire_distance_paroi();
   int preparer_calcul() override;
-  Champ_Fonc& calculer_viscosite_turbulente() override;
+  Champ_Fonc_base& calculer_viscosite_turbulente() override;
   void calculer_Sij2();
   void calculer_f_amortissement();
 

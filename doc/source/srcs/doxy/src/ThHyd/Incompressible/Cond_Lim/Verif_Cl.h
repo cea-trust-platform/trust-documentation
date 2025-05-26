@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2022, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -13,15 +13,18 @@
 *
 *****************************************************************************/
 
+#ifndef Verif_Cl_included
+#define Verif_Cl_included
+
 
 #include <Cond_lim.h>
 
 /*! @brief Interface du module ThHyd.
  *
  * Contient 3 fonctions:
- *       int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis& , const Domaine_Cl_dis& )
- *       int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis& , const Domaine_Cl_dis& )
- *       int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis& , const Domaine_Cl_dis& )
+ *       int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& )
+ *       int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& )
+ *       int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& )
  *     qui servent a tester la coherence des conditions aux limites
  *     et les 3 fonctions
  *       int message_erreur_[therm|conc|fraction_massique](const Cond_lim& , const Cond_lim& , int& )
@@ -30,18 +33,16 @@
  * @sa Fonction de librairie hors classe
  */
 
-class Domaine_Cl_dis;
-
-// Fonctions qui servent a tester la coherence des conditions aux limites
-
-int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis& , const Domaine_Cl_dis& );
+int tester_compatibilite_hydr_thermique(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& );
 
 int message_erreur_therm(const Cond_lim& , const Cond_lim& , int& );
 
-int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis& , const Domaine_Cl_dis& )  ;
+int tester_compatibilite_hydr_concentration(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& )  ;
 
 int message_erreur_conc(const Cond_lim& , const Cond_lim& , int& );
 
-int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis& , const Domaine_Cl_dis& );
+int tester_compatibilite_hydr_fraction_massique(const Domaine_Cl_dis_base& , const Domaine_Cl_dis_base& );
 
 int message_erreur_fraction_massique(const Cond_lim& , const Cond_lim& , int& );
+
+#endif /* Verif_Cl_included */

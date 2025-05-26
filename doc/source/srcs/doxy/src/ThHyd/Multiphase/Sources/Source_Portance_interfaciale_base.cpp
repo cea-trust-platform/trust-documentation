@@ -35,13 +35,16 @@ Entree& Source_Portance_interfaciale_base::readOn(Entree& is)
 
   if (!pbm || pbm->nb_phases() == 1) Process::exit(que_suis_je() + " : not needed for single-phase flow!");
 
+  const bool res_en_T = pbm ? pbm->resolution_en_T() : true;
+  if (!res_en_T) Process::exit("Source_Portance_interfaciale_base::readOn NOT YET PORTED TO ENTHALPY EQUATION ! TODO FIXME !!");
+
   for (int n = 0; n < pbm->nb_phases(); n++) //recherche de n_l, n_g : phase {liquide,gaz}_continu en priorite
     if (pbm->nom_phase(n).debute_par("liquide") && (n_l < 0 || pbm->nom_phase(n).finit_par("continu")))  n_l = n;
 
   if (n_l < 0) Process::exit(que_suis_je() + " : liquid phase not found!");
 
   if (pbm->has_correlation("Portance_interfaciale")) correlation_ = pbm->get_correlation("Portance_interfaciale"); //correlation fournie par le bloc correlation
-  else correlation_.typer_lire((*pbm), "Portance_interfaciale", is); //sinon -> on la lit
+  else Correlation_base::typer_lire_correlation(correlation_, (*pbm), "Portance_interfaciale", is); //sinon -> on la lit
 
   pbm->creer_champ("vorticite"); // Besoin de vorticite
 
@@ -60,8 +63,8 @@ void Source_Portance_interfaciale_base::creer_champ(const Motcle& motlu)
         noms[0] = "wobble";
         unites[0] = "none";
         Motcle typeChamp = "champ_elem" ;
-        const Domaine_dis& z = ref_cast(Domaine_dis, pb.domaine_dis());
-        dis.discretiser_champ(typeChamp, z.valeur(), scalaire, noms , unites, N, 0, wobble);
+        const Domaine_dis_base& z = pb.domaine_dis();
+        dis.discretiser_champ(typeChamp, z, scalaire, noms , unites, N, 0, wobble);
         champs_compris_.ajoute_champ(wobble);
       }
   if (motlu == "C_lift")
@@ -74,8 +77,8 @@ void Source_Portance_interfaciale_base::creer_champ(const Motcle& motlu)
         noms[0] = "C_lift";
         unites[0] = "none";
         Motcle typeChamp = "champ_elem" ;
-        const Domaine_dis& z = ref_cast(Domaine_dis, pb.domaine_dis());
-        dis.discretiser_champ(typeChamp, z.valeur(), scalaire, noms , unites, N, 0, C_lift);
+        const Domaine_dis_base& z = pb.domaine_dis();
+        dis.discretiser_champ(typeChamp, z, scalaire, noms , unites, N, 0, C_lift);
         champs_compris_.ajoute_champ(C_lift);
       }
 }

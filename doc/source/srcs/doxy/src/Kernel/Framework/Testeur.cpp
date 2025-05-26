@@ -19,9 +19,8 @@
 #include <Param.h>
 
 Implemente_instanciable(Testeur,"Testeur",Interprete);
-
-
-// printOn et readOn
+// XD testeur interprete testeur 0 not_set
+// XD attr data bloc_lecture data 0 not_set
 
 Sortie& Testeur::printOn(Sortie& s ) const
 {

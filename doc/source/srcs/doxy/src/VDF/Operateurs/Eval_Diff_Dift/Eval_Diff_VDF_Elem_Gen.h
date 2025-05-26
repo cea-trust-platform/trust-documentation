@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -47,7 +47,8 @@ public:
    * These static constexpr bools & Methods that will generalize the implementation almost for all operator classes. The previous MACRO methodology do not exist anymore
    * See their generic declaration later & override them in the derived class if needed to stay coherent with the previous macros
    */
-  static constexpr bool IS_MULTD = true, IS_AXI = false, IS_DEQUIV = false, IS_MODIF_DEQ = false, IS_QUASI = false, IS_ANISO = false, IS_RANS = false;
+  static constexpr bool IS_MULTD = true, IS_AXI = false, IS_DEQUIV = false, IS_MODIF_DEQ = false,
+                        IS_QUASI = false, IS_ANISO = false, IS_RANS = false, IS_MULTI_SCALAR_DIFF = false;
 
   /*
    * XXX XXX XXX : VERY IMPORTANT
@@ -90,7 +91,7 @@ public:
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Periodique&, Type_Double&, Type_Double& ) const;
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Echange_global_impose&, Type_Double&, Type_Double& ) const;
   template <typename Type_Double> inline void coeffs_face(const int, const int, const Dirichlet_paroi_fixe&, Type_Double&, Type_Double& ) const;
-  template <typename Type_Double> inline void coeffs_face(const int, const int, const int, const int, const Echange_externe_impose&, Type_Double&, Type_Double& ) const;
+  template <typename Type_Double> inline void coeffs_face(const DoubleTab&, const int, const int, const int, const int, const Echange_externe_impose&, Type_Double&, Type_Double& ) const;
   template <typename Type_Double> inline void coeffs_faces_interne(const int, Type_Double&, Type_Double& ) const;
 
   // A virer un jour .. voir avec le baltik Rayonnement

@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2024, CEA
+* Copyright (c) 2025, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -48,7 +48,7 @@ void Masse_PolyMAC_P0P1NC_Face::completer()
 // XXX : a voir si on peut utiliser Solveur_Masse_Face_proto::appliquer_impl_proto ...
 DoubleTab& Masse_PolyMAC_P0P1NC_Face::appliquer_impl(DoubleTab& sm) const
 {
-  const Domaine_PolyMAC_P0P1NC& domaine = ref_cast(Domaine_PolyMAC_P0P1NC, le_dom_PolyMAC.valeur());
+  const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
   const IntTab& f_e = domaine.face_voisins();
   const DoubleVect& pf = equation().milieu().porosite_face();
   int i, e, f, n, N = equation().inconnue().valeurs().line_size();
@@ -70,7 +70,7 @@ DoubleTab& Masse_PolyMAC_P0P1NC_Face::appliquer_impl(DoubleTab& sm) const
 
 void Masse_PolyMAC_P0P1NC_Face::dimensionner_blocs(matrices_t matrices, const tabs_t& semi_impl) const
 {
-  IntTrav sten(0, 2);
+  IntTab sten(0, 2);
 
   Solveur_Masse_Face_proto::dimensionner_blocs_proto(matrices, semi_impl, true /* allocate too */, sten);
 }
@@ -83,9 +83,9 @@ void Masse_PolyMAC_P0P1NC_Face::ajouter_blocs(matrices_t matrices, DoubleTab& se
 //sert a imposer les CLs de Dirichlet en multiphase (ou la variation de P_bord ne permet de corriger que v_melange)
 DoubleTab& Masse_PolyMAC_P0P1NC_Face::corriger_solution(DoubleTab& x, const DoubleTab& y, int incr) const
 {
-  const Domaine_PolyMAC_P0P1NC& domaine = ref_cast(Domaine_PolyMAC_P0P1NC, le_dom_PolyMAC.valeur());
+  const Domaine_PolyMAC& domaine = le_dom_PolyMAC.valeur();
   const Conds_lim& cls = le_dom_Cl_PolyMAC->les_conditions_limites();
-  const IntTab& fcl = ref_cast(Champ_Face_PolyMAC_P0P1NC, equation().inconnue().valeur()).fcl();
+  const IntTab& fcl = ref_cast(Champ_Face_PolyMAC_P0P1NC, equation().inconnue()).fcl();
   const DoubleTab& nf = domaine.face_normales(), &vit = equation().inconnue().valeurs();
   const DoubleVect& fs = domaine.face_surfaces();
   int f, n, N = x.line_size(), d, D = dimension;

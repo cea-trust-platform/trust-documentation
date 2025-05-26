@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -41,7 +41,7 @@ class Op_Conv_Amont_PolyMAC_Elem: public Op_Conv_PolyMAC_iterateur_base, public 
 public:
 
   Op_Conv_Amont_PolyMAC_Elem();
-  void associer(const Domaine_dis&, const Domaine_Cl_dis&, const Champ_Inc&) override;
+  void associer(const Domaine_dis_base&, const Domaine_Cl_dis_base&, const Champ_Inc_base&) override;
   void associer_vitesse(const Champ_base&) override;
   const Champ_base& vitesse() const override;
   Champ_base& vitesse() override;
@@ -64,17 +64,17 @@ inline Op_Conv_Amont_PolyMAC_Elem::Op_Conv_Amont_PolyMAC_Elem(const Iterateur_Po
  */
 inline void Op_Conv_Amont_PolyMAC_Elem::dimensionner(Matrice_Morse& matrice) const
 {
-  Op_PolyMAC_Elem::dimensionner(iter->domaine(), iter->domaine_Cl(), matrice);
+  Op_PolyMAC_Elem::dimensionner(iter_->domaine(), iter_->domaine_Cl(), matrice);
 }
 
 inline void Op_Conv_Amont_PolyMAC_Elem::dimensionner_bloc_vitesse(Matrice_Morse& matrice) const
 {
-  Op_PolyMAC_Elem::dimensionner_bloc_vitesse(iter->domaine(), iter->domaine_Cl(), matrice);
+  Op_PolyMAC_Elem::dimensionner_bloc_vitesse(iter_->domaine(), iter_->domaine_Cl(), matrice);
 }
 
 inline void Op_Conv_Amont_PolyMAC_Elem::modifier_pour_Cl(Matrice_Morse& matrice, DoubleTab& secmem) const
 {
-  Op_PolyMAC_Elem::modifier_pour_Cl(iter->domaine(), iter->domaine_Cl(), matrice, secmem);
+  Op_PolyMAC_Elem::modifier_pour_Cl(iter_->domaine(), iter_->domaine_Cl(), matrice, secmem);
 }
 
 #endif

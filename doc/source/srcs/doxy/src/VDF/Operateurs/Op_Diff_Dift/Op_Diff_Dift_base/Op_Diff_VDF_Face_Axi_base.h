@@ -1,5 +1,5 @@
 /****************************************************************************
-* Copyright (c) 2023, CEA
+* Copyright (c) 2024, CEA
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -26,7 +26,7 @@ class Op_Diff_VDF_Face_Axi_base : public Op_Diff_VDF_Face_base
   Declare_base(Op_Diff_VDF_Face_Axi_base);
 public:
   double calculer_dt_stab() const override;
-  void associer(const Domaine_dis& , const Domaine_Cl_dis& , const Champ_Inc& ) override;
+  void associer(const Domaine_dis_base& , const Domaine_Cl_dis_base& , const Champ_Inc_base& ) override;
   DoubleTab& calculer(const DoubleTab& , DoubleTab& ) const override;
 
   inline void mettre_a_jour(double temps) override { }
@@ -37,9 +37,9 @@ public:
 
 protected:
   static constexpr double deux_pi = M_PI*2.0;
-  REF(Champ_Face_VDF) inconnue;
-  REF(Domaine_VDF) le_dom_vdf;
-  REF(Domaine_Cl_VDF) la_zcl_vdf;
+  OBS_PTR(Champ_Face_VDF) inconnue;
+  OBS_PTR(Domaine_VDF) le_dom_vdf;
+  OBS_PTR(Domaine_Cl_VDF) la_zcl_vdf;
   IntVect orientation, type_arete_bord;
   IntTab Qdm, face_voisins, elem_faces;
   DoubleVect surface, volumes_entrelaces, porosite;
