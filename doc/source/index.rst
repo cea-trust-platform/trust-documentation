@@ -45,6 +45,7 @@ Here are some useful links that you can visit too:
 .. toctree::
    :maxdepth: 1
 
-   srcs/generic/index
-   srcs/num_meth/index
-   srcs/reference/index
+   _srcs_processed/generic/index
+   _srcs_processed/num_meth/index
+   _srcs_processed/reference/index
+
