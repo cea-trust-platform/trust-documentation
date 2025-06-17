@@ -1,15 +1,17 @@
-VDF discretisation
-==================
+rst
+The Finite Volume Difference (VDF) Discretization
+=================================================
 
-The VDF discretisation is based on the Marker And Cell approach proposed in [HW65]_ and [HA68]_. This discretisation can only be used on Cartesian mesh.
+The VDF discretization (class ``VDF_discretisation`` and alias ``VDF``) is the simplest and most efficient discretization of the TRUST platform. This discretization is compatible with conform mesh with hexahedral type of elements. Attention: do not confuse between a hexahedral mesh and a cartesian mesh. The VDF mesh is not structured and does not follow the IJK indexing!
 
-When using VDF, the pressure is located at the cell :math:`e` whereas the normal component of the velocity is located at the face :math:`f`, see Figure :numref:`fig:scheme_VDF`
+As stated by its name, the VDF is a conservative finite volume scheme of Marker-and-Cell (MAC) type. The discretization of each term of the equation is performed by integrating over a control volume. The diffusion gradient terms are approximated by a linear difference equation. All scalars are stored at the center of each control volume except the velocity field which is defined on a staggered mesh.
 
-.. figure:: ./FIGURES/VDF-cut.png
-        :name: fig:scheme_VDF
-        :width: 400
-	:align: center
-	:alt: Unknowns in VDF
-	
-	Location of the unknowns in VDF
-	 
+This discretization **supports** 2D axi-symmetrical configurations and **is compatible** with ``Pb_Multiphase``.
+
+
+.. figure:: ./FIGURES/vdf_staggered_grid.png
+   :align: center
+   :width: 600px
+   :alt: Grille décalée VDF 2D avec description détaillée
+   
+   *Grille décalée 2D zoomée - Description VDF : scalaires stockés au centre des cellules (points noirs), composante de vitesse x-horizontale aux faces horizontales de la cellule (point vert), composante de vitesse y-horizontale aux faces verticales de la cellule (point rouge). Les volumes de contrôle pointillés verts et rouges sont utilisés pour résoudre les équations des composantes de vitesse horizontale (verte) et verticale (rouge).*
