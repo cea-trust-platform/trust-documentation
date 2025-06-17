@@ -214,6 +214,8 @@ where :math:`\vec{n_1}` and :math:`\vec{n_2}` are the outward unit normal vector
 
 A core assumption of the MPFA method is to suppose that :math:`G^{\text{MPFA}}([p]_e)` is constant on each :math:`S_{e,i}`. When enforcing the continuity across the sub-faces that are linked by a vertex of the primal mesh, auxiliary variables can be substitute by cells unknowns.
 
+The MPFA methods are impemented in :code:`Domaine_PolyMAC_P0::fgrad`.
+
 Incompressible Navier Stokes
 ----------------------------
 
@@ -235,7 +237,7 @@ The momentum equation is discretised at the face:
 
 -  For the convective term:
 
-   -  Approximate the value of the velocity at the cell:
+   -  Approximate the value of the velocity at the cell, see :code:`Champ_Face_PolyMAC_P0::update_ve`:
 
       .. math:: [u]_e = \frac{1}{|e|} \sum _{f \in F_e} |f| [u]_f x_{e \rightarrow f}.
 
@@ -263,17 +265,39 @@ The momentum equation is discretised at the face:
 
    .. math:: \Delta u = \nabla \cdot ( \nabla u + \left(\nabla u)^{\intercal} \right) )
 
--  Then a second order interpolation is used to compute the velocity at the cell.
+-  Then a second order interpolation is used to compute the velocity at the cell, see :code:`Champ_Face_PolyMAC_P0::init_ve2` and :code:`Champ_Face_PolyMAC_P0::update_ve2`:
 
--  Afterwards, we compute:
+  - First, introducing :math:`n_f` the outward normal of face :math:`f`, one can write the series expansion:
 
-   .. math::
+    .. math::
 
-      [\nabla \cdot ( \mu _e \left((\nabla u) + (\nabla u)^{\intercal}\right)) ]_e = \sum_{f} |f|  (G^{\text{MPFA}} ([u]_e) \\ + \left(G^{\text{MPFA}} ([u]_e))\right) ^{\intercal} \cdot \vec{n}_f.
+       u_f \cdot n_f \approx \left( u_e + (\nabla u)_e \cdot (x_f - x_e) \right) \cdot n_f
 
--  Finally, we interpolate the diffusion term at the face in the same fashion as for the convective term. The main difference is that a second order interpolator has to be used when projecting the velocity to the center.
+  - Then considering the stencil composed of the faces that share a vertex of :math:`e`, called :math:`\mathcal{F}^v_e`, one can obtain the following system:
 
-Some details regarding the discretisation of a two-phase flow model of the Ishii familly :cite:p:`I75` are given in :cite:p:`GG22`.
+    .. math::
+
+       A \cdot U_e = U_{\mathcal{F}^v_e}
+
+    where each line :math:`i` corresponds to the equation for the :math:`i^{th}` face of :math:`\mathcal{F}^v_e`. :math:`A` is a matrix of geometrical quantities, :math:`U_e` stores the components of :math:`u_e` and :math:`(\nabla u)_e`, and :math:`U_{\mathcal{F}^v_e}` the value of :math:`u_f` at the face.
+
+  - However, there is a large number of equations relative to the number of unknowns. To solve this problem, we use a least squares method to find the solution that minimizes:
+
+    .. math::
+
+       \min _{U_e} \sum _{f\in\mathcal{F}^v_e} \frac{1}{\|x_e - x_f\|} (A(f) U_e - u_f)^2
+
+    where :math:`A(f)` corresponds to the line of :math:`A` associated with face :math:`f`. This equation is solved using the ``dgelsy`` method of the **LAPACK** library.
+
+- Afterwards, we compute:
+
+  .. math::
+
+     \left[\nabla \cdot \left( \mu_e \left((\nabla u) + (\nabla u)^{\intercal}\right)\right)\right]_e = \sum_{f} |f| \left(G^{\text{MPFA}} ([u]_e) + \left(G^{\text{MPFA}} ([u]_e)\right)^{\intercal}\right) \cdot \vec{n}_f.
+
+- Eventually, we interpolate the diffusion term at the face in the same fashion as for the convective term.
+
+Some details regarding the discretisation of a two-phase flow model of the Ishii familly [I75]_ are given in [GG22]_.
 
 PolyMAC_P0_P1_NC
 ================
