@@ -22,53 +22,52 @@ Bracketing
 One-liners
 ----------
 
-* for loops and if statement should be on separate lines 
+* For loops and if statement should be on separate lines 
 
 Comments
 --------
 
-* a doxygen type comment must be added at the beginning of each method, so that the automaticaly generated documentation stays up to date. Here is an example:
+* A doxygen type comment must be added at the beginning of each method, so that the automaticaly generated documentation stays up to date. Here is an example:
 
 .. code-block:: cpp
 
-	/**
- 	* @brief Computes field gradient interpolation at faces while preserving constant fields
+	/*! @brief Computes field gradient interpolation at faces while preserving constant fields
  	*
- 	* This method computes the interpolation [n_f.grad T]_f (if nu_grad = 0) or [n_f.nu.grad T]_f
- 	* while exactly preserving fields satisfying [nu grad T]_e = constant.
- 	* It uses MPFA (Multi-Point Flux Approximation) methods with three strategies:
- 	*       - Attempt 0: Standard MPFA-O
- 	*       - Attempt 1: MPFA-O with continuity points optimized for symmetry
- 	*       - Attempt 2: Symmetric MPFA if previous attempts fail (coercive but not always consistent, especially on complex meshes)
- 	*
- 	* @param N             Number of field components
- 	* @param is_p          Pressure field indicator (1 for pressure, 0 otherwise)
- 	*                      Controls Neumann/Dirichlet inversion for boundary conditions
+	* This method computes the interpolation [n_f.grad T]_f (if nu_grad = 0) or [n_f.nu.grad T]_f
+	* while exactly preserving fields satisfying [nu grad T]_e = constant.
+	* It uses MPFA (Multi-Point Flux Approximation) methods with three strategies:
+	*       - Attempt 0: Standard MPFA-O
+	*       - Attempt 1: MPFA-eta: variant of MPFA-O where auxiliary variables are not in the barycenter of the face
+	*       - Attempt 2: Symmetric MPFA if previous attempts fail (coercive but not always consistent, especially on complex meshes)
+	*
+	* @param N             Number of field components
+	* @param is_p          Pressure field indicator (1 for pressure, 0 otherwise)
+	*                      Controls Neumann/Dirichlet inversion for boundary conditions
 	* @param cls           Domain boundary conditions
- 	* @param fcl           Boundary condition data
- 	*                      fcl(f, 0/1/2): (BC type, BC index, index within BC)
- 	*                      See Champ_{P0,Face}_PolyMAC_P0 for format
- 	* @param nu            Element diffusivity (optional, can be nullptr)
- 	*                      Array nu(e, n, ..) for element e and component n
- 	* @param som_ext       List of vertices to exclude from processing (optional)
- 	*                      Example: direct treatment of Echange_Contact in Op_Diff_PolyMAC_P0_Elem
- 	* @param virt          Virtual faces indicator (1 to include, 0 otherwise)
- 	* @param full_stencil  Complete stencil indicator (1 for full dimensioning)
- 	*
- 	* @param[out] phif_d   Start/end indices in phif_{e,c} / phif_{pe,pc}
- 	*                      phif_d(f, 0/1): flux indices at face f in interval
- 	*                      [phif_d(f, 0/1), phif_d(f + 1, 0/1)[
- 	* @param[out] phif_e   Element indices in stencil for each contribution
- 	*                      phif_e(i): element index for i-th contribution
- 	* @param[out] phif_c   Stencil coefficients
- 	*                      phif_c(i, n, c): coefficient for element i, component n, contribution c
- 	*                      Contains local indices/coefficients (without Echange_contact)
- 	*                      and diagonal terms (independent components)
- 	*
- 	* @note The method checks positivity of bilinear form eigenvalues to ensure scheme stability and choose the MPFA method accordingly
- 	*
- 	* @note The method returns also a percentage of which MPFA method is used. Be careful of the validity of the solution if the percentage of MPFA-sym is high
- 	*
+	* @param fcl           Boundary condition data
+	*                      fcl(f, 0/1/2): (BC type, BC index, index within BC)
+	*                      See Champ_{P0,Face}_PolyMAC_P0 for format
+	* @param nu            Element diffusivity (optional, can be nullptr)
+	*                      Array nu(e, n, ..) for element e and component n
+	* @param som_ext       List of vertices to exclude from processing (optional)
+	*                      Example: direct treatment of Echange_Contact in Op_Diff_PolyMAC_P0_Elem
+	* @param virt          Virtual faces indicator (1 to include, 0 otherwise)
+	* @param full_stencil  Complete stencil indicator (1 for full dimensioning)
+	*
+	* @param[out] phif_d   Start/end indices in phif_{e,c} / phif_{pe,pc}
+	*                      phif_d(f, 0/1): flux indices at face f in interval
+	*                      [phif_d(f, 0/1), phif_d(f + 1, 0/1)[
+	* @param[out] phif_e   Element indices in stencil for each contribution
+	*                      phif_e(i): element index for i-th contribution
+	* @param[out] phif_c   Stencil coefficients
+	*                      phif_c(i, n, c): coefficient for element i, component n, contribution c
+	*                      Contains local indices/coefficients (without Echange_contact)
+	*                      and diagonal terms (independent components)
+	*
+	* @note The method checks positivity of bilinear form eigenvalues to ensure scheme stability and choose the MPFA method accordingly
+	*
+	* @note The method returns also a percentage of which MPFA method is used. Be careful of the validity of the solution if the percentage of MPFA-sym is high
+	*
 	* @note Special handling for different boundary condition types:
  	*       - Dirichlet/Neumann
  	*       - Imposed global/external friction
@@ -77,6 +76,8 @@ Comments
  	*/
 	void Domaine_PolyMAC_P0::fgrad(int N, int is_p, const Conds_lim& cls, const IntTab& fcl, const DoubleTab *nu, const IntTab *som_ext, int virt, int full_stencil, IntTab& phif_d, IntTab& phif_e, DoubleTab& phif_c) const
 	
+
+
 Doxygen Commands Reference
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -136,9 +137,34 @@ Best Practices
 Verification and Validation
 ---------------------------
 
-* Check that your developments do not break anything that already exists by running from your $TRUST_ROOT folder : make_ctest_optim && make_ctest_debug
+* Check that your developments do not break anything that already exists by running: 
+.. code-block:: bash
+
+	cd $TRUST_ROOT
+	make ctest_optim && make ctest_debug
+
 * Each new development must come with a validation form or a test case before requesting a pull request
-* You can also use unit tests for testing parts of your code
+* You can also use unit tests for testing parts of your code, see ``$TRUST_ROOT/tests/UnitTests`` for examples
+
+Git
+~~~
+
+TRUST uses Git for versioning. Here are some good practices regarding Git when you are a TRUST developer:
+
+* When you start a new development, create a branch that starts with your initials, then a slash then the name of your development.
+* Commit messages on your branch should follow this pattern:
+
+  .. code-block:: bash
+
+     [Name_of_your_dev] A brief message that highlights the modifications you want to commit
+
+     If needed, a longer message that gives more details regarding your development.
+
+* Squash your work commits so that the branch history remains clean and each commit compiles separately.
+* Do not use ``git merge``; for TRUST, we use ``git rebase``.
+* Try to rebase regularly onto the origin/next branch; it will save you quite some time before integration.
+* When writing your pull request, ensure that you are extensive in the description of what you have done, it will make the life of the reviewer easier.
+
  
 
  
