@@ -136,7 +136,12 @@ Best Practices
 Verification and Validation
 ---------------------------
 
-* Check that your developments do not break anything that already exists by running from your $TRUST_ROOT folder : make_ctest_optim && make_ctest_debug
+* Check that your developments do not break anything that already exists by running: 
+.. code-block:: bash
+
+	cd $TRUST_ROOT
+	make ctest_optim && make ctest_debug
+
 * Each new development must come with a validation form or a test case before requesting a pull request
 * You can also use unit tests for testing parts of your code
  
