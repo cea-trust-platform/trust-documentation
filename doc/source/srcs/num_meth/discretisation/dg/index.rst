@@ -22,16 +22,22 @@ SIP method have been chosen as it is more performent than mixte DG method for ex
 
 Before introducing the SIP formulation, the following definitions are needed. 
 Considring a face :math:`f` shared by two cells :math:`e_1` and :math:`e_2`, let us first introduce the interface average of a quantity :math:`y`
+
 .. math::
+
    \{ y \}_f (x) = \frac{1}{2} \left( y|_{e_1} (x) +  y|_{e_2} \right)
 
 Then, we introduce the interface jump:
+
 .. math::
-   \[ y \]_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+
+   {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
 If the normal of f is defined as the normal that goes :math:`e_1` to :math:`e_2`
+
 .. math::
-   \[ y \]_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+
+   {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
 Otherwise.
 

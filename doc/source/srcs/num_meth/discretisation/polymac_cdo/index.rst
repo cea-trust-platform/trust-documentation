@@ -14,7 +14,7 @@ center of each control volume
 :math:`cv \in \{\mathcal{C},\mathcal{F}, \mathcal{E}, \mathcal{V} \}`
 corresponding respectively to the cells, the faces, the egdes and the
 points localization, called :math:`x_{cv}` has to be introduce. Then we
-introduce (see Figure `[Dual_Polymac] <#Dual_Polymac>`__):
+introduce (see Figure :numref:`fig:dual_mesh_polymacold`):
 
 -  | The dual cell :math:`\widetilde{\mathcal{V}}` is located at the
      center of gravity of the cell : :math:`x_{c}`.
@@ -27,6 +27,14 @@ introduce (see Figure `[Dual_Polymac] <#Dual_Polymac>`__):
    links the gravity center of all of the neighbouring cells
    :math:`x_{c}`, the gravity center of all of the neighbouring faces
    :math:`x_{f}` and the gravity center of the edge :math:`x_{e}`.
+   
+.. figure:: ./FIGURES/Dual_mesh_PolyMAC.png
+  :name: fig:dual_mesh_polymacold
+  :width: 800
+  :align: center
+  :alt: Dual mesh of PolyMAC
+  
+  Dual mesh of PolyMAC.
 
 Location of the unknowns
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -50,15 +58,15 @@ CDO scheme
 The CDO scheme is based on a set of exact operators that allow you to
 switch from one location to another on the primal and dual mesh.
 
-Figure `1.1 <#fig:CDO_path>`__ summarized the different projection
+Figure :numref:`fig:projectionCDO` summarized the different projection
 between control volumes in CDO. It is useful to keep it in mind when one
 want to discretised an equation on a specific control volume.
 
-.. figure:: FIGURES/CDO_scheme_bonelle.png
-   :alt: Paths between primal and dual mesh entities and corresponding
-   operators
-   :name: fig:CDO_path
-   :width: 90.0%
+.. figure:: ./FIGURES/CDO.png
+  :name: fig:projectionCDO
+  :width: 800
+  :align: center
+  :alt: Projection scheme using CDO approach 
 
    Paths between primal and dual mesh entities and corresponding
    operators
@@ -88,7 +96,7 @@ the dual mesh
 Discrete gradient
 ^^^^^^^^^^^^^^^^^
 
-.. math:: \text{GRAD}:\mathcal{V} \rightarrow \mathcal{E}, \hspace{1cm} \forall e \in \mathcal{E}, \forall \mathbf{p} \in \mathcal{V}, \hspace{1cm}, \text{GRAD}(\mathbf{p})|_{\tilde{e}} = \sum_{\tilde{v} \in V_{e}} \iota_{v,e}p_{v},
+.. math:: \text{GRAD}:\mathcal{V} \rightarrow \mathcal{E}, \hspace{1cm} \forall e \in \mathcal{E}, \forall \mathbf{p} \in \mathcal{V}, \hspace{1cm} \text{GRAD}(\mathbf{p})|_{\tilde{e}} = \sum_{\tilde{v} \in V_{e}} \iota_{v,e}p_{v},
 
 where :math:`V_{e} := \{v \in V | v \subset \partial e \}` and
 :math:`\iota_{v,e} = +1` if :math:`\tau_{e}` points towards :math:`v`,
@@ -170,8 +178,8 @@ then the local Hodge operator can be generically defined by:
 .. math:: \left.H_{\alpha}^{\mathcal{X}_c\widetilde{\mathcal{Y}}_c}\right|_{x',\tilde{y}(x)} := \int_c l_{x,c}(\overline{x})\alpha l_{x',c}(\overline{x}) \quad \forall x,x' \in X_c
 
 We choose here according to description in Bonelle thesis
-:raw-latex:`\cite{bonelle2014}` (section 7.3.1) and in Codecasa et al.
-:raw-latex:`\cite{codecasa2010}` the Piecewise constant non-conforming
+[B14]_ (section 7.3.1) and in Codecasa et al.
+[CST10]_ the Piecewise constant non-conforming
 reconstruction.
 
 .. math:: L_{\mathcal{X}_c} := C_{\mathcal{X}_c} + \hat{S}_{\mathcal{X}_c}((\mathbb{I}_{\mathcal{X}_c} - R_{\mathcal{X}_c} C_{\mathcal{X}_c}))
@@ -187,7 +195,7 @@ Then the local reconstruction of the circulation
 :math:`\{\underline{l}_{e,c}\}_{e\in E_c}` on the piecewise partition
 volume :math:`p_{e',c}, \ e' \in E_{c}` corresponding to the subvolume
 of the cell attached to the edge :math:`e'`, the center of the cell and
-the center of the adjacent face (Figure `1.2 <#fig:partition>`__). It
+the center of the adjacent face (Figure :numref:`fig:partition`). It
 written:
 
 .. math:: \underline{l}_{e,c}|_{p_{e',c}} = \frac{\beta}{|p_{e,c}|} \underline{\tilde{f}}_c(e) \delta_{e,e'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{f}}_c(e') \otimes \underline{e'}}{|p_{e',c}|}\right)\frac{\underline{\tilde{f}}(e)}{|c|}
@@ -196,7 +204,7 @@ Then the local reconstruction of the flux
 :math:`\{\underline{l}_{f,c}\}_{f\in F_c}` on the piecewise partition
 volume :math:`p_{f',c}, \ f' \in F_{c}` corresponding to the subvolume
 of the cell attached to the face :math:`f'`, and the center of the cell
-(Figure `1.2 <#fig:partition>`__). It written:
+(Figure :numref:`fig:partition`). It written:
 
 .. math:: \underline{l}_{f,c}|_{p_{f',c}} = \frac{\beta}{|p_{f,c}|} \underline{\tilde{e}}_c(f) \delta_{f,f'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{e}}_c(f') \otimes \underline{f'}}{|p_{f',c}|}\right)\frac{\underline{\tilde{e}}(f)}{|c|}
 
@@ -205,11 +213,10 @@ The choice for the :math:`\beta` parameter must be
 while the choice :math:`\beta = \frac{1}{\sqrt{dim}}` corresponds to the
 choice made in SUSHI schemes
 
-.. figure:: FIGURES/subvolume.png
-   :alt: partitioning of the cell into elementary sub-volumes attached
-   to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
-   :name: fig:partition
-   :width: 90.0%
+.. figure:: ./FIGURES/subvolume.png
+  :name: fig:partition
+  :alt: partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
+  :width: 800
 
    partitioning of the cell into elementary sub-volumes attached to face
    :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
@@ -220,13 +227,13 @@ Additional reconstruction operator
 A first-order reconstruction mapping operator
 :math:`\mathbb{R} : \mathcal{F} \rightarrow \mathcal{V}` will be used in
 the convection operator for the Navier-Stokes equation
-`1.2.5 <#sec:NS_equation>`__ to interpolate a vector :math:`\phi`
+:sec:`sec:NS_equation` to interpolate a vector :math:`\phi`
 expressed along the normal of the faces to the center of the cell using
-the formula (1) from :raw-latex:`\cite{Basumatary2014}`.
+the formula (1) from [BNM14]_.
 
 .. math::
-
-   \label{eq:reconstruction_operator}
+  :label: eq:reconstruction_operator
+    
    \phi_e = \frac{1}{|e|}\sum_{f \in e}|f|\phi_f(\vec{x}_f - \vec{x}_e)
 
 Elliptic equations
@@ -290,7 +297,7 @@ forces.
 where :math:`p` is the pressure, :math:`\underline{u}` the velocity and
 :math:`\underline{f}` the external load.
 
-Bonelle thesis :raw-latex:`\cite{bonelle2014}` chooses to formulated the
+Bonelle thesis [B14]_ chooses to formulated the
 Stokes equations with the :math:`\underline{\text{curl}}` operator using
 the identity
 :math:`-\underline{\Delta} \underline{u} = \underline{\nabla} \times \underline{\nabla} \times \underline{u} - \underline{\nabla} ( \nabla \cdot \underline{u})`
@@ -421,17 +428,18 @@ leads to:
 .. math::
 
    \begin{cases}
-           -\mu^{-1} \underline{\omega}^* +  \underline{\nabla} \times (\rho^{-1}\underline{\phi}) &= \underline{0}, \\
-           \partial_t (\rho^{-1} \underline{\phi}) + \nabla \cdot \left(  (\rho^{-1} \phi) \otimes (\rho^{-1}\phi) \right) + \rho^{-1} \underline{\nabla} \times \underline{\omega}^* + \underline{\nabla} p^* &= \underline{f}^* \\
+      -\mu^{-1} \underline{\omega}^{*} +  \underline{\nabla} \times (\rho^{-1}\underline{\phi}) &= \underline{0}, \\
+           \partial_t (\rho^{-1} \underline{\phi}) + \nabla \cdot \left(  (\rho^{-1} \phi) \otimes (\rho^{-1}\phi) \right) + \rho^{-1} \underline{\nabla} \times \underline{\omega}^{*} + \underline{\nabla} p^{*} &= \underline{f}^{*} \\
            \underline{\nabla} \cdot \underline{\phi} &= 0
-       \end{cases}
+    \end{cases}
 
 
-   The cell-based pressure scheme is:
+The cell-based pressure scheme is:
 
-   Find $(\mathbf{p}^*,\phi,\mathbf{\omega}^*) \in \widetilde{\mathcal{V}} \times \mathcal{F} \times \mathcal{E}$
+Find :math:`(\mathbf{p}^*,\phi,\mathbf{\omega}^*) \in \widetilde{\mathcal{V}} \times \mathcal{F} \times \mathcal{E}`
 
-   \begin{equation}
+.. math::
+
    \begin{cases}
    -H_{\mu^{-1}}^{\mathcal{E}\widetilde{\mathcal{F}}} (\mathbf{\omega}^*) + \widetilde{CURL} \cdot H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}}(\phi) &= 0_{\widetilde{\mathcal{F}}}, \\
    H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}} \cdot CURL(\mathbf{\omega}^*) + \partial_t H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}}(\phi) + CONV(\phi) \phi + \widetilde{GRAD}(\mathbf{p}^*) &= S(\rho,\underline{f}^*), \\
@@ -462,22 +470,24 @@ with :math:`\widetilde{\mathbb{G}} = - \mathbb{D}^{T}` and
 :math:`\widetilde{\mathbb{C}} \cdot H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}} = H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}} \cdot \mathbb{C}`
 
 The non linear convection term :math:`CONV` described in
-:raw-latex:`\cite{Beltman2018}` is computing on the using the
-reconstruction operator
-`[eq:reconstruction_operator] <#eq:reconstruction_operator>`__
+[BAK18]_ is computing on the using the
+reconstruction operator :eq:`reconstruction_operator`
 
 .. math::
 
    \begin{aligned}
-   _v &= \frac{1}{|e|} \sum _{f \in F_e} |f| [{u} \otimes {u}]_f \\
-                                                                           &\simeq \frac{1}{|e|} \sum _{f \in F_e} |f| [u]_f \left( \alpha \left( \gamma [u]_{e_{up}} + \left(1-\gamma \right) [u]_{e_{down}} \right) \right. \notag \\ & \quad \left. + (1-\alpha) \left( \frac{[u]_{e_{up}} +[u]_{e_{down}}}{2} \right) \right),\end{aligned}
+   {[\nabla \cdot (  u\otimes u)]}_v &= \frac{1}{|e|} \sum _{f \in F_e} |f| [{u} \otimes {u}]_f \\
+                                                                           &\simeq \frac{1}{|e|} \sum _{f \in F_e} |f| [u]_f \left( \alpha \left( \gamma [u]_{e_{up}} + \left(1-\gamma \right) [u]_{e_{down}} \right) \right. \notag \\ & \quad \left. + (1-\alpha) \left( \frac{[u]_{e_{up}} +[u]_{e_{down}}}{2} \right) \right),
+                                                                           \end{aligned}
 
 with :math:`\alpha \in [0,1]` and :math:`\gamma \in \{0,1\}` such that
 :math:`\gamma =1` if :math:`[u_f]\geq 0` and :math:`0` otherwise.
 
 This convective terms must be localized on the dual face:
 
-.. math:: _{\tilde{f}} = \lambda_{e,f} [\nabla \cdot (u \otimes u)]_{e} + \lambda_{e',f} [\nabla \cdot (u \otimes u)]_{e'}
+.. math:: 
+
+     {[\nabla \cdot (u\otimes u)]}_{\tilde{f}} = \lambda_{e,f} [\nabla \cdot (u \otimes u)]_{e} + \lambda_{e',f} [\nabla \cdot (u \otimes u)]_{e'}
 
 with the penalty coefficient
 :math:`\lambda_{e,f} = \frac{ |\vec{x}_{e' \rightarrow f}|}{|\vec{x}_{e' \rightarrow f}| + |\vec{x}_{e \rightarrow f}|}`

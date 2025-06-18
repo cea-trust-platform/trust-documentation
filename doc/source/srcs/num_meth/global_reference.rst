@@ -45,7 +45,7 @@ Spatial Discretisation References
 
 .. [EGH07] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "A new finite volume scheme for anisotropic diffusion problems on general grids: convergence analysis." - *Comptes rendus. Mathematique* - (2007) - Vol 344, no. 6 - 403--406.
 
-.. [HW07] Hesthaven, J. S. and Warburton, T. - "Nodal Discontinuous Galerkin Methods: Algorithms, Analysis, and Applications" - 2007 - Springer  
+.. [HW07] Hesthaven, J. S. and Warburton, T. - "Nodal Discontinuous Galerkin Methods: Algorithms, Analysis, and Applications" - (2007) - Springer  
 
 .. [APM08] Agelas Leo, Di Pietro Daniele Antonio, and Masson Roland. - "A symmetric and coercive finite volume scheme for multiphase porous media flow with applications in the oil industry." - *Finite volumes for complex applications V* - (2008) - 35--52.
 
@@ -55,9 +55,11 @@ Spatial Discretisation References
 
 .. [EGH10] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "Discretization of heterogeneous and anisotropic diffusion problems on general nonconforming meshes SUSHI: a scheme using stabilization and hybrid interfaces." - *IMA Journal of Numerical Analysis* - (2010) - Vol 30, no. 4 - 1009--1043 - Oxford University Press.
 
-.. [EdP12] Ern, A., and Di Pietro, D. - "Mathematical Aspects of Discontinuous Galerkin Methods" - 2012 - Springer  
+.. [CST10] Lorenzo Codecasa, Ruben Specogna, and Francesco Trevisan. - "A new set of basis functions for the discrete geometric approach." - *Journal of Computational Physics* - (2010) - Vol 229, no. 19 - 7401--7410.
 
-.. [CKS12] Cockburn, B., Karniadakis, G. E., and Shu, C. W. - "Discontinuous Galerkin Methods: Theory, Computation and Applications" - 2012 - Springer
+.. [EdP12] Ern, A., and Di Pietro, D. - "Mathematical Aspects of Discontinuous Galerkin Methods" - (2012) - Springer  
+
+.. [CKS12] Cockburn, B., Karniadakis, G. E., and Shu, C. W. - "Discontinuous Galerkin Methods: Theory, Computation and Applications" - (2012) - Springer
 
 .. [LMS14] Lipnikov Konstantin, Manzini Gianmarco, and Shashkov Mikhail. - "Mimetic finite difference method." - *Journal of Computational Physics* - (2014) - Vol 257 - 1163--1227 - Elsevier.
 
@@ -67,11 +69,16 @@ Spatial Discretisation References
 
 .. [D14] Droniou Jerome. - "Finite volume schemes for diffusion equations: introduction to and review of modern methods." - *Mathematical Models and Methods in Applied Sciences* - (2014) - Vol 24, no. 08 - 1575--1619 - World Scientific.
 
+.. [BNM14] Mantulal Basumatary, Ganesh Natarajan, and Subhash C Mishra. - "Defect correction based velocity reconstruction for physically consistent simulations of non-Newtonian flows on unstructured grids." - *Journal of Computational Physics* - (2014) - Vol 272 - 227--244 - Elsevier. 
+
 .. [BO17] Boyer Franck, and Omnes Pascal - "Benchmark Proposal for the FVCA8 Conference: Finite Volume Methods for the Stokes and Navier--Stokes Equations." - *Finite Volumes for Complex Applications VIII-Methods and Theoretical Aspects: FVCA 8, Lille, France, June 2017* - (2017) - 59--71 - Springer.
 
 .. [lP17] Le Potier Christophe - "Construction et developpement de nouveaux schemas pour des problemes elliptiques ou paraboliques." - Habilitation à diriger des recherches, Université Paris-Est - (2017).
 
 .. [DEG18] Droniou, Jerome, Eymard Robert, Gallouet Thierry, Guichard Cindy, and Herbin Raphaele. - *The gradient discretisation method*. - (2018) - Vol. 82. - Springer.
+
+.. [BAK18] R. Beltman, M.J.H. Anthonissen, and B. Koren. - "Conservative polytopal mimetic discretization of the incompressible Navier–Stokes equations." - *Journal of Computational and Applied Mathematics* - (2018) - Vol 340 - 443--473.
+
 
 .. [M20] Milani, Riccardo. - "Compatible Discrete Operator schemes for the unsteady incompressible Navier--Stokes equations." - PhD thesis - Université Paris-Est - (2020).
 
