@@ -45,6 +45,8 @@ Spatial Discretisation References
 
 .. [EGH07] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "A new finite volume scheme for anisotropic diffusion problems on general grids: convergence analysis." - *Comptes rendus. Mathematique* - (2007) - Vol 344, no. 6 - 403--406.
 
+.. [HW07] Hesthaven, J. S. and Warburton, T. - "Nodal Discontinuous Galerkin Methods: Algorithms, Analysis, and Applications" - 2007 - Springer  
+
 .. [APM08] Agelas Leo, Di Pietro Daniele Antonio, and Masson Roland. - "A symmetric and coercive finite volume scheme for multiphase porous media flow with applications in the oil industry." - *Finite volumes for complex applications V* - (2008) - 35--52.
 
 .. [AM08] Agelas L., and Masson R. - "Convergence of the finite volume MPFA O scheme for heterogeneous anisotropic diffusion problems on general meshes." - *Acad. Sci. Paris, Ser. I 346* - (2008).
@@ -52,6 +54,10 @@ Spatial Discretisation References
 .. [DEG10] Droniou, J., Eymard, R., Gallouët, T., & Herbin, R. - "A unified approach to mimetic finite difference, hybrid finite volume and mixed finite volume methods." - *Mathematical Models and Methods in Applied Sciences* - (2010) - Vol 20 - 265--295 - World Scientific.
 
 .. [EGH10] Eymard Robert, Gallouet Thierry, and Herbin Raphaele. - "Discretization of heterogeneous and anisotropic diffusion problems on general nonconforming meshes SUSHI: a scheme using stabilization and hybrid interfaces." - *IMA Journal of Numerical Analysis* - (2010) - Vol 30, no. 4 - 1009--1043 - Oxford University Press.
+
+.. [EdP12] Ern, A., and Di Pietro, D. - "Mathematical Aspects of Discontinuous Galerkin Methods" - 2012 - Springer  
+
+.. [CKS12] Cockburn, B., Karniadakis, G. E., and Shu, C. W. - "Discontinuous Galerkin Methods: Theory, Computation and Applications" - 2012 - Springer
 
 .. [LMS14] Lipnikov Konstantin, Manzini Gianmarco, and Shashkov Mikhail. - "Mimetic finite difference method." - *Journal of Computational Physics* - (2014) - Vol 257 - 1163--1227 - Elsevier.
 
