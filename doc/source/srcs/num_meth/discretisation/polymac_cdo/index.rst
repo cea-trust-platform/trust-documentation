@@ -14,7 +14,7 @@ center of each control volume
 :math:`cv \in \{\mathcal{C},\mathcal{F}, \mathcal{E}, \mathcal{V} \}`
 corresponding respectively to the cells, the faces, the egdes and the
 points localization, called :math:`x_{cv}` has to be introduce. Then we
-introduce (see Figure :numref:`fig:dual_mesh_polymacold`):
+introduce (see Figure :numref:`dual_mesh`):
 
 -  | The dual cell :math:`\widetilde{\mathcal{V}}` is located at the
      center of gravity of the cell : :math:`x_{c}`.
@@ -27,9 +27,9 @@ introduce (see Figure :numref:`fig:dual_mesh_polymacold`):
    links the gravity center of all of the neighbouring cells
    :math:`x_{c}`, the gravity center of all of the neighbouring faces
    :math:`x_{f}` and the gravity center of the edge :math:`x_{e}`.
-   
+  
+.. _dual_mesh:
 .. figure:: ./FIGURES/Dual_mesh_PolyMAC.png
-  :name: fig:dual_mesh_polymacold
   :width: 800
   :align: center
   :alt: Dual mesh of PolyMAC
@@ -58,18 +58,17 @@ CDO scheme
 The CDO scheme is based on a set of exact operators that allow you to
 switch from one location to another on the primal and dual mesh.
 
-Figure :numref:`fig:projectionCDO` summarized the different projection
+Figure :numref:`projectionCDO` summarized the different projection
 between control volumes in CDO. It is useful to keep it in mind when one
 want to discretised an equation on a specific control volume.
 
+.. _projectionCDO:
 .. figure:: ./FIGURES/CDO.png
-  :name: fig:projectionCDO
-  :width: 800
-  :align: center
-  :alt: Projection scheme using CDO approach 
+   :width: 800
+   :align: center
 
-   Paths between primal and dual mesh entities and corresponding
-   operators
+   Paths between primal and dual mesh entities and corresponding operators.
+
 
 Operators can be classified into 2 types:
 
@@ -204,7 +203,7 @@ Then the local reconstruction of the flux
 :math:`\{\underline{l}_{f,c}\}_{f\in F_c}` on the piecewise partition
 volume :math:`p_{f',c}, \ f' \in F_{c}` corresponding to the subvolume
 of the cell attached to the face :math:`f'`, and the center of the cell
-(Figure :numref:`fig:partition`). It written:
+(Figure :numref:`partition`). It written:
 
 .. math:: \underline{l}_{f,c}|_{p_{f',c}} = \frac{\beta}{|p_{f,c}|} \underline{\tilde{e}}_c(f) \delta_{f,f'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{e}}_c(f') \otimes \underline{f'}}{|p_{f',c}|}\right)\frac{\underline{\tilde{e}}(f)}{|c|}
 
@@ -213,28 +212,28 @@ The choice for the :math:`\beta` parameter must be
 while the choice :math:`\beta = \frac{1}{\sqrt{dim}}` corresponds to the
 choice made in SUSHI schemes
 
+.. _partition:
 .. figure:: ./FIGURES/subvolume.png
   :name: fig:partition
   :alt: partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
   :width: 800
 
-   partitioning of the cell into elementary sub-volumes attached to face
-   :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
+  partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
 
 Additional reconstruction operator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A first-order reconstruction mapping operator
 :math:`\mathbb{R} : \mathcal{F} \rightarrow \mathcal{V}` will be used in
-the convection operator for the Navier-Stokes equation
-:sec:`sec:NS_equation` to interpolate a vector :math:`\phi`
+the convection operator for the Navier-Stokes equations
+(see :ref:`sec:NS_equation`) to interpolate a vector :math:`\phi`
 expressed along the normal of the faces to the center of the cell using
 the formula (1) from [BNM14]_.
 
 .. math::
   :label: eq:reconstruction_operator
     
-   \phi_e = \frac{1}{|e|}\sum_{f \in e}|f|\phi_f(\vec{x}_f - \vec{x}_e)
+  \phi_e = \frac{1}{|e|}\sum_{f \in e}|f|\phi_f(\vec{x}_f - \vec{x}_e)
 
 Elliptic equations
 ~~~~~~~~~~~~~~~~~~
@@ -471,7 +470,7 @@ with :math:`\widetilde{\mathbb{G}} = - \mathbb{D}^{T}` and
 
 The non linear convection term :math:`CONV` described in
 [BAK18]_ is computing on the using the
-reconstruction operator :eq:`reconstruction_operator`
+reconstruction operator :eq:`eq:reconstruction_operator`
 
 .. math::
 
