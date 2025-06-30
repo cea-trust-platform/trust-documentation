@@ -20,12 +20,12 @@ DG methods have been thouroughly studied in the litterature, see for example [HW
 Galerkin Methods are new in TRUST code. A Symmetric Interior Penalty (SIP) has been implemented for solving Non-Stationary Heat Equation. 
 SIP method have been chosen as it is more performent than mixte DG method for example whan considering method of first and second order.
 
-Before introducing the SIP formulation, the following definitions are needed. 
+Before introducing the SIP formulation, the following definitions are needed, see Figure :numref:`fig:def_jump_average`. 
 Considring a face :math:`f` shared by two cells :math:`e_1` and :math:`e_2`, let us first introduce the interface average of a quantity :math:`y`
 
 .. math::
 
-   \{ y \}_f (x) = \frac{1}{2} \left( y|_{e_1} (x) +  y|_{e_2} \right)
+   \{\{ y \}\}_f (x) = \frac{1}{2} \left( y|_{e_1} (x) +  y|_{e_2} \right)
 
 Then, we introduce the interface jump:
 
@@ -33,13 +33,21 @@ Then, we introduce the interface jump:
 
    {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
-If the normal of f is defined as the normal that goes :math:`e_1` to :math:`e_2`
+ff the normal of f is defined from :math:`e_1` to :math:`e_2`, and otherwise:
 
 .. math::
 
    {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
-Otherwise.
+   
+.. figure:: ./FIGURES/scheme_jump_average.png
+   :name: fig:def_jump_average
+   :align: center
+   :height: 10cm
+
+   Definition of the average and jump notations, see [HW07]_
+
+ 
 
 
 SIP DG Method for the Poisson Problem
