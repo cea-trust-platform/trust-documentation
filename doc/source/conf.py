@@ -97,6 +97,11 @@ html_css_files = ['_static/custom.css']
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'
 
+# Bibliography
+bibtex_bibfiles = ['biblio.bib']  # Bib file
+bibtex_default_style = 'alpha'  # Bib style
+
+
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
 
