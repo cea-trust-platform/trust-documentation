@@ -31,17 +31,26 @@ author = 'TRUST team'
 # ones.
 pygments_style = 'sphinx'
 extensions = [
-    'sphinx.ext.autodoc',
-    # 'numpydoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.coverage',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.graphviz',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.autosectionlabel',
-    'sphinx.ext.napoleon' ]
- # ]
+    # Core documentation generation
+    'sphinx.ext.autodoc',          # Auto-generate docs from Python docstrings
+    'sphinx.ext.autosummary',      # Generate summary tables for modules/packages
+    'sphinx.ext.napoleon',         # Parse Google/NumPy style docstrings
+    # 'numpydoc',                  # Alternative NumPy docstring parser 
+    # Cross-referencing and linking
+    'sphinx.ext.intersphinx',      # Link to other Sphinx documentation projects
+    'sphinx.ext.autosectionlabel', # Auto-generate labels for all sections
+    # Code testing and quality
+    'sphinx.ext.doctest',          # Test code examples in docstrings
+    'sphinx.ext.coverage',         # Generate documentation coverage reports
+    # Visualization and diagrams
+    'sphinx.ext.graphviz',         # Embed Graphviz diagrams in documentation
+    # Conditional content
+    'sphinx.ext.ifconfig',         # Include/exclude content based on configuration
+    # Markup and formatting
+    'myst_parser',                 # Support for Markdown (MyST) syntax
+    # Bibliography and citations
+    'sphinxcontrib.bibtex',        # Handle bibliographic references and citations
+]
 
 numfig = True
 
@@ -75,14 +84,15 @@ exclude_patterns = [ "srcs" ]
 # html_theme = 'alabaster'
 #html_theme = 'sphinx_rtd_theme'
 # html_theme = 'default'
-html_theme = 'sphinx_material'
+#html_theme = 'sphinx_material'
+html_theme = 'sphinx_book_theme'
 #html_theme = 'pydata_sphinx_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_css_files = ['custom.css']
+html_css_files = ['_static/custom.css']
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'

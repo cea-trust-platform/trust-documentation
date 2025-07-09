@@ -13,3 +13,31 @@ dependencies:
   - ipywidgets
   - graphviz
 
+
+name: rtd38
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - doxygen=1.9.8
+  - sphinx-material
+  - numpy
+  - matplotlib
+  - scipy
+  - pandas
+  - ipywidgets
+  - graphviz
+  
+  # Sphinx extensions (native extensions are included with sphinx)
+  - sphinx  # Make sure sphinx is explicitly listed
+  
+  # Third-party extensions that need to be installed
+  - myst-parser              # for myst_parser extension
+  - sphinxcontrib-bibtex     # for sphinxcontrib.bibtex extension
+  
+  # Alternative: install via pip if not available in conda
+  - pip
+  - pip:
+    - sphinxcontrib-bibtex   # if conda version doesn't work
+    - myst-parser           # if conda version doesn't work
