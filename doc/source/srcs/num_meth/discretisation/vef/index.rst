@@ -9,7 +9,7 @@ Finite Volume Element method
 ----------------------------
 
 Core Idea
-~~~~~~~~~
+^^^^^^^^^
 
 First, let's consider the following instationary problem, with the velocity :math:`\boldsymbol{u}` a flux term
 :math:`\boldsymbol{F}` and a source term :math:`\boldsymbol{S}`.
@@ -33,11 +33,11 @@ The expression of the flux term depends on the equation : :math:`\boldsymbol{F} 
    Control volume for velocity
 
 Finite Volume Approach
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the barycentric center of the face :math:`f`. The control volume :math:`\omega_f` is the polygon which links the vertex of the face :math:`\boldsymbol{f}` with the barycenters of the two tetrahedron that share the face :math:`\boldsymbol{f}`. Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity :math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and :math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of the right side hand term. Let's discretize the evolution term such that :
 
-.. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f| ~ \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
+.. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f| ^ \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
 
 Let's pose :math:`\boldsymbol{F}^m = \boldsymbol{F}(t^n)` or
 :math:`\boldsymbol{F}(t^{n+1})` or of combination of the two depending
@@ -59,7 +59,7 @@ Finite Element basis.
 
 
 Finite Element Basis
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Historically, the VEF method was presented with the Crouzeix-Raviart basis.
 The full vector of the velocity is evaluated at the center of the faces of each tetrahedron. Within each cell, the pressure is a constant evaluated by its value at the center of the cell. Let's pose

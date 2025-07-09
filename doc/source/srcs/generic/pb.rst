@@ -9,7 +9,7 @@ Depending on your choosed problem type, you will have a different set of equatio
 Here is a summary of some selected problems. For documentation and for complete problem sets, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
 
 Incompressible problems
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 **TRUST** solves Navier-Stokes equations with/without the heat equation for an incompressible fluid:
 
@@ -92,7 +92,7 @@ In your data file, you will have:
    }
 
 Quasi-Compressible problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **TRUST** solves Navier-Stokes equations with/without heat equation for quasi-compressible fluid:
 
@@ -158,7 +158,7 @@ In your data file, you will have:
    }
 
 Weakly-Compressible problem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **TRUST** solves Navier-Stokes equations with/without heat equation for weakly-compressible fluid:
 
@@ -224,7 +224,7 @@ In your data file, you will have:
    }
 
 Conduction problem
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 For this kind of problems, **TRUST** solves the heat equation:
 
@@ -267,7 +267,7 @@ In your data file, you will have:
    }
 
 Coupled problems
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 With **TRUST**, we can couple problems. We will explain here the method for two problems but you can couple as many problems as you want.
 
@@ -517,7 +517,7 @@ But you can also create a list of post-processings with **Post_processings** key
 Have a look at the `Post-Processing <https://cea-trust-platform.github.io/classes/post-processing>`__ section on the TRUST's website.
 
 Field names
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 -  **Existing & predefined fields**
 
@@ -700,7 +700,7 @@ Field names
 You can find other examples in the **TRUST**\ & **TrioCFD** user slides in the section "Post processing description".
 
 Post-processing blocks
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 There are three methods to post-process in **TRUST**: using probes, fields or making statistics.
 
@@ -818,7 +818,7 @@ There are three methods to post-process in **TRUST**: using probes, fields or ma
    For complete syntax, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
 
 Post-process location
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 You can use location keywords to specify where you want to post-process your fields in order to avoid interpolations on your post-processed fields.
 

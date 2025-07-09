@@ -13,6 +13,19 @@ build:
 
 conda:
   environment: doc/environment.yml
+  
+  
+apt_packages:
+  - doxygen
+
+build:
+  jobs:
+    pre-build: 
+      - git clone --branch ma-branche https://github.com/mon-utilisateur/mon-depot.git
+      - cd mon-depot
+      # Construire la documentation Doxygen
+      - doxygen Doxyfile
+      - cd ..
 
 # Build documentation in the "docs/" directory with Sphinx (which itself will call doxygen)
 sphinx:

@@ -109,7 +109,7 @@ To launch a calculation with **TRUST**, you need to write a "data file" which is
 .. _dataset:
 
 Data File Example: Base Blocks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Here is the template of a basic sequential data file:
 
@@ -284,7 +284,7 @@ Here is the template of a basic sequential data file:
    End
 
 Basic Rules
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 There is no line concept in **TRUST**.
 
@@ -297,7 +297,7 @@ Data files uses ``blocks``. They may be defined using the braces:
    }
 
 Objects Notion
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 **Objects** are created in the data set as follows:
 
@@ -328,7 +328,7 @@ More abstract object types also exist:
 -  A **Uniform_field** to define, for example, the gravity field.
 
 Interpretor Notion
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 **Interprete** (interpretor) type objects are then used to handle the created objects with the following syntax:
 
@@ -345,7 +345,7 @@ Interpretors allow some operations to be carried out on objects.
 Currently available general interpretors include **Read**, **Read_file**, **Ecrire** (Write), **Ecrire_fichier** (Write_file), **Associate**.
 
 Example
-~~~~~~~
+^^^^^^^
 
 A data set to write Ok on screen:
 
@@ -356,7 +356,7 @@ A data set to write Ok on screen:
    Ecrire a_name     # Write a_name on screen #
 
 Important Remarks
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 #. To insert *comments* in the data set, use # .. # (or /\* ... \*/), the character # must always be enclosed by blanks.
 
@@ -389,7 +389,7 @@ the following command:
    Loading personal configuration /$path_to_my_home_directory/.perso_TRUST.env
 
 Sequential Calculation
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 You can run your sequential calculation:
 
@@ -458,7 +458,7 @@ Here is a panel of available options:
    -convert_data datafile        : Convert a data file to the new 1.9.1 syntax (milieu, interfaces, read_med and champ_fonc_med).
 
 Parallel Calculation
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 To run a parallel calculation, you must do two runs:
 

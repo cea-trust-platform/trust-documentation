@@ -81,14 +81,14 @@ Notice the presence of the tags
 in the data file of section :ref:`dataset`. This is useful for parallel calculation if well placed in datafile (see section :ref:`Parallel calculation`).
 
 Allowed meshes
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 **TRUST** allows all types of meshes if the appropriate spatial discretization is used. See the `Discretizations <https://cea-trust-platform.github.io/classes/discretizations>`__ section on the TRUST's website.
 
 .. https://cea-trust-platform.github.io/classes/discretizations
 
 Import a mesh file
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 If your mesh was generated with an external tool like `SALOME <http://www.salome-platform.org>`__ (open source software), `ICEM <http://resource.ansys.com/Products/Other+Products/ANSYS+ICEM+CFD>`__ (commercial software), `Gmsh <http://gmsh.info/>`__ (open source software, included in **TRUST** package) or `Cast3M <http://www-cast3m.cea.fr/>`__ (CEA software), then you must use one of the following keywords into your data file:
 
@@ -103,7 +103,7 @@ If you want to learn how to build a mesh with SALOME or Gmsh and read it with **
 You can have a look too at the `Pre-Processing <https://cea-trust-platform.github.io/classes/pre-processing>`__ section of the TRUST's website.
 
 Quickly create a mesh
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 Here is an example of a simple geometry (of non complex channel type) using the internal tool of **TRUST**:
 
@@ -144,7 +144,7 @@ To use this mesh in your data file, you just have to add the previous block in y
    **Do not forget the semicolon at the end of the line!**
 
 Transform mesh within the data file
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can also make transformations on your mesh after the **"Mailler"** or **"Read_"** command, using the following keywords:
 
@@ -171,7 +171,7 @@ For other commands, see the section ``interprete`` of the TRUST Reference Manual
    All theses keywords work on all mesh file formats (i.e. also for **\*.geo** or **\*.bin** or **\*.med** files).
 
 Test your mesh
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 The keyword **Discretiser_domaine** (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretiserdomaine>`__) is useful to discretize the domain (faces will be created) without defining a problem. Indeed, you can create a minimal data file, post-process your mesh in lata format (for example) and visualize it with VisIt.
 
@@ -240,7 +240,7 @@ Now you can choose your time scheme to solve your problem. For this you must spe
    Read my_time_scheme { ... }
 
 Some available time schemes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The time schemes available in the TRUST platform are summarized on the TRUST's website in the `Temporal schemes <https://cea-trust-platform.github.io/classes/temporal-schemes>`__ section.
 
@@ -267,7 +267,7 @@ For other schemes, see `doc here <https://raw.githubusercontent.com/cea-trust-pl
    You can treat implicitly the diffusion/viscous operators in a TRUST calculation. For that, you should activate the **diffusion_implicite** keyword in your explicit time scheme.
 
 Calculation stopping condition
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You must specify at least one stopping condition for you simulation. It can be:
 
@@ -338,7 +338,7 @@ Objects association and discretization
 --------------------------------------
 
 Association
-~~~~~~~~~~~
+^^^^^^^^^^^
 
 Until now, we have created some objects, now we must associate them together. For this, we must use the **Associate** interpretor (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#associate>`__):
 
@@ -351,7 +351,7 @@ Until now, we have created some objects, now we must associate them together. Fo
 .. _disc:
 
 Discretization
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 Then you must discretize your domain using the **Discretize** interpretor (`doc here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#discretize>`__):
 

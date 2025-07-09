@@ -41,7 +41,7 @@ To run a parallel calculation, you must:
 .. _decjdd:
 
 The different blocks
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Different blocks appear in the data file.
 
@@ -97,7 +97,7 @@ Different blocks appear in the data file.
 .. _makePARdata:
 
 Partitionning: "Assisted" method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Here we will use the **trust -partition datafile** command line to make the partitioning step. We consider that you have correctly add the "#" in your *my_data_file.data* file with the partitioning block and cutting block.
 
@@ -140,7 +140,7 @@ For more information, you can do the exercise of the `TRUST Tutorial <https://gi
 .. _partitioner:
 
 **TRUST** available partitioning tools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In **TRUST**, you can make partitioning with:
 
@@ -201,7 +201,7 @@ square divided in Figure 4 into three slices following the x direction with **Tr
 For more information, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
 
 Overlapping width value
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 To make the partitioning, you will have to specify the *overlapping width value*. This value corresponds to the thickness of the virtual ghost zone (data known by one processor though not owned by it) i.e. the number of vertices or elements on the remote sub-domain known by the local sub-domain (see Figure 5).
 
@@ -227,7 +227,7 @@ Running a Parallel Calculation
 ------------------------------
 
 On a PC
-~~~~~~~
+^^^^^^^
 
 To launch the calculation, you have to run the calculation by the usual command completed by the number of processors needed:
 
@@ -240,7 +240,7 @@ and *procs_number* is the number of processors used. In fact it is the same as t
 You can see the **TRUST**\ & **TrioCFD** user slides in the "Parallel calculation" section for more information. Also work the exercises in the `TRUST Tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__.
 
 On a cluster
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 You must submit your job in a queue system. For this, you must have a submission file. **TRUST** can create a submission file for you **on clusters on which the support team has done installations**. 
 
@@ -297,7 +297,7 @@ Useful Information
 ------------------
 
 Modify the mesh
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 If you want to modify your mesh, you have two possibilities:
 
@@ -324,7 +324,7 @@ Then run the parallel calculation normally, on the new *DOM_000n*\ **.Zones** fi
    > trust PAR_my_data_file procs_number
 
 Modify calculation parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 If you want to modify the calculation parameters, you can modify:
 
