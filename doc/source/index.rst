@@ -1,5 +1,6 @@
+###################
 TRUST Documentation
-===================
+###################
 
 .. figure:: https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true
    :alt: image description
@@ -20,7 +21,9 @@ This page provides:
 
 - **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__
 
-- **TRUST Coding Guidelines** can be found there: :ref:`TRUST Coding Guidelines`
+- **TRUST Coding Guidelines** can be found there: :ref:`TRUST Developers Guidelines`
+
+- **Global Bibliography** can be found here :ref:`References`
 
 **You can use the search bar located on the top right of your screen to lookup any keyword, or item in the generic guide. Use the dedicated Doxygen search box for C++ classes.**
 
@@ -36,6 +39,7 @@ Here are some useful links that you can visit too:
 
 -----
 
+Do not forget to cite TRUST if you use it, see: https://cea-trust-platform.github.io/cite.html
 
 **Table Of Contents**
 
@@ -48,4 +52,6 @@ Here are some useful links that you can visit too:
    _srcs_processed/generic/index
    _srcs_processed/num_meth/index
    _srcs_processed/reference/index
+   _srcs_processed/dev_guidelines/index
+   references
 

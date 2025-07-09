@@ -17,12 +17,11 @@ sys.path.insert(0, os.path.abspath('..'))
 # for trust utils python docstrings
 sys.path.insert(0, os.path.abspath('./srcs/trustutils/python_cloned_srcs/'))
 
-
-
 # -- Project information -----------------------------------------------------
 
-project = 'TRUST Documentation'
+project = 'TRUST'
 author = 'TRUST team'
+# copyright = f'{datetime.now().year}, CEA'
 
 # -- General configuration ---------------------------------------------------
 
@@ -31,17 +30,26 @@ author = 'TRUST team'
 # ones.
 pygments_style = 'sphinx'
 extensions = [
-    'sphinx.ext.autodoc',
-    # 'numpydoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.coverage',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.graphviz',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.autosectionlabel',
-    'sphinx.ext.napoleon' ]
- # ]
+    # Core documentation generation
+    'sphinx.ext.autodoc',          # Auto-generate docs from Python docstrings
+    'sphinx.ext.autosummary',      # Generate summary tables for modules/packages
+    'sphinx.ext.napoleon',         # Parse Google/NumPy style docstrings
+    # 'numpydoc',                  # Alternative NumPy docstring parser 
+    # Cross-referencing and linking
+    'sphinx.ext.intersphinx',      # Link to other Sphinx documentation projects
+    'sphinx.ext.autosectionlabel', # Auto-generate labels for all sections
+    # Code testing and quality
+    'sphinx.ext.doctest',          # Test code examples in docstrings
+    'sphinx.ext.coverage',         # Generate documentation coverage reports
+    # Visualization and diagrams
+    'sphinx.ext.graphviz',         # Embed Graphviz diagrams in documentation
+    # Conditional content
+    'sphinx.ext.ifconfig',         # Include/exclude content based on configuration
+    # Markup and formatting
+    'myst_parser',                 # Support for Markdown (MyST) syntax
+    # Bibliography and citations
+    'sphinxcontrib.bibtex',        # Handle bibliographic references and citations
+]
 
 numfig = True
 
@@ -49,6 +57,9 @@ htmlhelp_basename = 'TRUST Documentation'
 
 # To show or not private members
 autodoc_default_options = {     "members": True,     "undoc-members": True,     "private-members": False  }
+# Myst extensions
+myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence",]
+myst_heading_anchors=1
 
 # generate autosummary even if no references
 numpydoc_show_class_members = False
@@ -64,7 +75,7 @@ templates_path = ['_templates']
 # The sources that will effectively be used are in 'srcs_processed' where the substitution of the :code: tags has been done:
 exclude_patterns = [ "srcs" ]
 
-# master_doc = 'index'
+master_doc = 'index'
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -75,17 +86,35 @@ exclude_patterns = [ "srcs" ]
 # html_theme = 'alabaster'
 #html_theme = 'sphinx_rtd_theme'
 # html_theme = 'default'
-html_theme = 'sphinx_material'
+#html_theme = 'sphinx_material'
+html_theme = 'sphinx_book_theme'
 #html_theme = 'pydata_sphinx_theme'
+
+html_theme_options = {
+    "show_toc_level": 2,
+    "navigation_depth": 4,
+    "includehidden": True, 
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_css_files = ['custom.css']
+html_css_files = ['_static/custom.css']
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'
+
+# Bibliography
+bibtex_bibfiles = [os.path.join(os.path.dirname(__file__), 'biblio.bib')]
+bibtex_default_style = 'alpha'  # Bib style
+bibtex_reference_style = 'author_year'
+
+# To avoid cache error
+suppress_warnings = ["config.cache"]
+
+# To allow mardown pages
+source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp

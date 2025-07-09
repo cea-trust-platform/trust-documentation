@@ -3,17 +3,17 @@ Introduction
 
 In the TRUST code, different numerical schemes are availabe to the user : VDF, VEF and the PolyMAC family.
 
--  The VDF discretisation is based on the Marker and Cell scheme presented in [HW65]_.
+-  The VDF discretisation is based on the Marker and Cell scheme presented in :cite:p:`HW65`.
 
--  The VEF discretisation is based on the Crouzeix-Raviart element method.
+-  The VEF discretisation is based on the Crouzeix-Raviart element method :cite:p:`Emonot1992`.
 
-The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in TRUST. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in [HW65]_ to complex grids:
+The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in TRUST. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in :cite:p:`HW65` to complex grids:
 
--  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in [B14]_ and [M20]_. 
+-  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in :cite:p:`Bonelle2014` and :cite:p:`Milani2020`. 
 
--  PolyMACP0 : based on MPFA approach, such as the one presented in [AM08]_, [D14]_ and [lP17]_.
+-  PolyMACP0 : based on MPFA approach, such as the one presented in :cite:p:`AM08`, :cite:p:`D14` and :cite:p:`LePotier2017`.
 
--  PolyMACP0P1NC : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in [EGH07]_ and [EGH10]_.
+-  PolyMACP0P1NC : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`DEGH10`.
 
 Thereafter, for each method the core ideas and the main steps for the discretisation of the incompressible Navier-Stokes equation are presented. For now, the PolyMAC and PolyMAC_P0 parts are completed, the others are a work in progress.
 
@@ -37,3 +37,9 @@ The set of cells will be called :math:`E`. The set of faces of a peculiar cell :
 .. math:: [x]_{cv} = \frac{1}{|cv|} \int_{cv} x \, \text{d}\, (cv)
 
 where :math:`|\cdot|` will be a global measure operator over the considered control volume. For example, :math:`|e|` refers to the volume of the cell :math:`e`, :math:`|f|` to the surface of the face :math:`f` and :math:`|\sigma|` to the length of the edge :math:`\sigma`. Unknown :math:`u` refers to the velocity and :math:`p` refers to the pressure.
+
+Bibliographie
+-------------
+
+.. bibliography::
+    :filter: docname == env.docname

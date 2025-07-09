@@ -1,5 +1,5 @@
 TRUST Generic Guide
-===================
+*******************
 
 .. figure:: https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true
    :alt: image description
