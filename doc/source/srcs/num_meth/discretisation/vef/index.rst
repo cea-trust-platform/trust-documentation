@@ -1,15 +1,15 @@
 VEF
 ===
 
-Initially introduced in [LM89]_, *Volume Element Finis -VEF-* (Finite Volume Element) method is a variant of the standard finite element
-and finite volume methods. The formalism developed in [E92]_ was subsequently used for the implementation of
+Initially introduced in :cite:p:`LM89`, *Volume Element Finis -VEF-* (Finite Volume Element) method is a variant of the standard finite element
+and finite volume methods. The formalism developed in :cite:p:`Emonot1992` was subsequently used for the implementation of
 this method in the TRUST code.
 
 Finite Volume Element method
 ----------------------------
 
 Core Idea
-~~~~~~~~~
+^^^^^^^^^
 
 First, let's consider the following instationary problem, with the velocity :math:`\boldsymbol{u}` a flux term
 :math:`\boldsymbol{F}` and a source term :math:`\boldsymbol{S}`.
@@ -33,11 +33,11 @@ The expression of the flux term depends on the equation : :math:`\boldsymbol{F} 
    Control volume for velocity
 
 Finite Volume Approach
-~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 
 Given a tetrahedral mesh :math:`\mathcal{T}_h`, we define the points :math:`\boldsymbol{x}_f` as the barycentric center of the face :math:`f`. The control volume :math:`\omega_f` is the polygon which links the vertex of the face :math:`\boldsymbol{f}` with the barycenters of the two tetrahedron that share the face :math:`\boldsymbol{f}`. Let :math:`\boldsymbol{u}_f^m` be the approximation of the velocity :math:`\boldsymbol{u}` at the node :math:`\boldsymbol{x}_f` and :math:`\Delta t^{n,n+1} \boldsymbol{S}_f^{n, n+1}` the approximation of the right side hand term. Let's discretize the evolution term such that :
 
-.. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f| ~ \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
+.. math:: \int_{\omega_f} \boldsymbol{u}^{m} \mathrm{d}\boldsymbol{V} \approx |\omega_f|  \boldsymbol{u}_f^m \qquad m \in \{n, n+1\}
 
 Let's pose :math:`\boldsymbol{F}^m = \boldsymbol{F}(t^n)` or
 :math:`\boldsymbol{F}(t^{n+1})` or of combination of the two depending
@@ -59,7 +59,7 @@ Finite Element basis.
 
 
 Finite Element Basis
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Historically, the VEF method was presented with the Crouzeix-Raviart basis.
 The full vector of the velocity is evaluated at the center of the faces of each tetrahedron. Within each cell, the pressure is a constant evaluated by its value at the center of the cell. Let's pose
@@ -96,7 +96,7 @@ written with the finite element basis :
    \int_{\partial\omega_f} \boldsymbol{F} = \underset{f' \in \mathcal{I}_{\text{f}}}{\sum} \boldsymbol{u}_{f'} \int_{\partial\omega_{f}} \boldsymbol{\nabla} \phi_{f'} \cdot \boldsymbol{n} d\boldsymbol{s}
        + \underset{k \in \mathcal{I}_K}{\sum} p_k \int_{\partial\omega_f \cap K_k}  \boldsymbol{n} d\boldsymbol{s}
 
-Note that the finite element basis :math:`(\phi_f)_{f\in \mathcal{I}_f}` can be express with the help of barycentric coordinate (see [CR73]_) and its gradient is constant per tetrahedron: :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see [E92]_, p27).
+Note that the finite element basis :math:`(\phi_f)_{f\in \mathcal{I}_f}` can be express with the help of barycentric coordinate (see :cite:p:`CR73`) and its gradient is constant per tetrahedron: :math:`(\nabla\phi_f)_T = \frac{1}{|T|}\int_{\partial T} \boldsymbol{n}d\boldsymbol{s}` (see :cite:p:`Emonot1992`, p27).
 
 Thus, the discrete gradient of the velocity writes:
 
@@ -202,13 +202,13 @@ Mathematical properties
 -----------------------
 
 
-according to [H03]_, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form`:
+according to :cite:p:`Heib2003`, there are two methods for analyzing the scheme based on the formulation :eq:`variational_form`:
 
 -  The first involves directly analyzing the scheme. It enables to prove the uniform continuity of the bilinear forms, the ellipticity of :math:`a_h^V`, and establishing the inf-sup conditions.
 
 -  The second involves demonstrating the equivalence of assembly
    matrices derived from FEM and VEF for the same given functional
-   spaces. Thus, numerical scheme can be analyze with the FEM formalism which is well-known for Navier-Stokes equation with Crouzeix-Raviart elements (see [CR73]_). 
+   spaces. Thus, numerical scheme can be analyze with the FEM formalism which is well-known for Navier-Stokes equation with Crouzeix-Raviart elements (see :cite:p:`CR73`). 
    
 
 Using these equivalence properties, the Finite Volume Element scheme satisfies the FEM properties:
@@ -219,12 +219,12 @@ Using these equivalence properties, the Finite Volume Element scheme satisfies t
 - **Convergence rate for pressure**: The pressure approximation converges with order 1 in the :math:`L^2` norm.
 - **Convergence rate for velocity**: The velocity approximation converges with order 2 in the :math:`\boldsymbol{L^2}` norm, provided that :math:`\Omega` is convex.
 
-A summary of the Crouzeix-Raviart FEM properties is presented in [Br14]_. However parasite currents for low velocities can appear when using the VEF approach, see [F06]_.
+A summary of the Crouzeix-Raviart FEM properties is presented in :cite:p:`B14`. However parasite currents for low velocities can appear when using the VEF approach, see :cite:p:`Fortin2006`.
 
 New Finite element basis
 ------------------------
 
-In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in [H03]_ and [F06]_ and implemented in TRUST code under the name VEF - :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
+In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in :cite:p:`Heib2003` and :cite:p:`Fortin2006` and implemented in TRUST code under the name VEF - :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
 The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. 
 This add a new control volume for the mass conservation. :numref:`fig:triangle_vef` represents the two control volumes for the two pressure unknows:
 
@@ -240,8 +240,17 @@ This add a new control volume for the mass conservation. :numref:`fig:triangle_v
 
 
 
-The stability of this new finite element basis is proved in [JCS23]_ and the inf-sup condtion in [F06]_. This scheme is the most used VEF discretization in TRUST. 
+The stability of this new finite element basis is proved in :cite:p:`JCS23` and the inf-sup condtion in :cite:p:`Fortin2006`. This scheme is the most used VEF discretization in TRUST. 
 
-  .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in [PJ24] - .
+  .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in :cite:p:`PJ24` - .
 
   .. but some studies have been done in Pnc/P0 due to implementation and mathematical analysis facilities.  
+  
+  
+References
+----------
+
+.. bibliography::
+   :style: alpha
+   :filter: docname == env.docname
+  

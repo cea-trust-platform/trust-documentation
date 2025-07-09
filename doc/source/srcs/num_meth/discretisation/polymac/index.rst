@@ -34,7 +34,7 @@ PolyMAC introduces a rather complex dual mesh. To do so, the gravity center of e
 Location of the unknowns
 ------------------------
 
-In PolyMAC, unknowns are discretised according to their "physical" properties, see [B14]_. A circulation is discretised over an edge, a flux over a face, a potential over the dual cell. Therefore we have:
+In PolyMAC, unknowns are discretised according to their "physical" properties, see :cite:p:`Bonelle2014`. A circulation is discretised over an edge, a flux over a face, a potential over the dual cell. Therefore we have:
 
 -  The pressure :math:`p` is stored at the dual cell:
    :math:`[p]_{\tilde{e}} = p(x_{e},t)`.
@@ -81,7 +81,7 @@ Exact discrete operators
 Interpolation
 -------------
 
-According to [P00]_, on can write the following first order interpolations:
+According to :cite:p:`P00`, on can write the following first order interpolations:
 
 .. math:: 
    :label: Pold_I_u
@@ -108,7 +108,7 @@ We then choose the following definition for the Hodge operators, that project un
    
    [\omega]_{\tilde{\sigma}} = |\tilde{\sigma}| \left( [\omega]_{e_{up}} \left( x_{\sigma} - x_{e_{up}} \right) + [\omega]_{e_{down}} \left( x_{\sigma} - x_{e_{down}}\right) \right)  
 
-Other defintions of Hodge operators exist in the literature, see [B14]_.
+Other defintions of Hodge operators exist in the literature, see :cite:p:`Bonelle2014`.
   
 Projections between control volumes when using CDO
 --------------------------------------------------
@@ -181,11 +181,11 @@ MPFA methods
 
 Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
 
--  The MPFA-O method presented in [A02]_, [AM08]_, [D14]_
+-  The MPFA-O method presented in :cite:p:`A02`, :cite:p:`AM08`, :cite:p:`D14`
 
--  The MPFA-O(:math:`\eta`) method presented in [ER98]_
+-  The MPFA-O(:math:`\eta`) method presented in :cite:p:`ER98`
 
--  The MPFA-symm method presented in [lP05a]_, [lP05b]_, [lP17]_
+-  The MPFA-symm method presented in :cite:p:`lP05a`, :cite:p:`lP05b`, :cite:p:`LePotier2017`
 
 The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :numref:`fig:scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :numref:`fig:scheme_mpfa` is as follows:
 
@@ -273,11 +273,17 @@ The momentum equation is discretised at the face:
 
 -  Finally, we interpolate the diffusion term at the face in the same fashion as for the convective term. The main difference is that a second order interpolator has to be used when projecting the velocity to the center.
 
-
-Some details regarding the discretisation of a two-phase flow model of the Ishii familly [I75]_ are given in [GG22]_.
+Some details regarding the discretisation of a two-phase flow model of the Ishii familly :cite:p:`I75` are given in :cite:p:`GG22`.
 
 PolyMAC_P0_P1_NC
 ================
 
 
-PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in [EGH07]_ and [EGH10]_. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see [DEG10]_.
+PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEG10`.
+
+References
+==========
+
+.. bibliography::
+   :style: alpha
+   :filter: cited
