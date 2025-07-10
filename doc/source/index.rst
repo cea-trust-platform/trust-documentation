@@ -39,7 +39,7 @@ Here are some useful links that you can visit too:
 
 -----
 
-Do not forget to cite TRUST if you use it, see: :any:`https://cea-trust-platform.github.io/cite.html`
+Do not forget to cite TRUST if you use it, see: https://cea-trust-platform.github.io/cite.html
 
 **Table Of Contents**
 
