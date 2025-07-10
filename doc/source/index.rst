@@ -23,6 +23,8 @@ This page provides:
 
 - **TRUST Coding Guidelines** can be found there: :ref:`TRUST Developers Guidelines`
 
+- **Global Bibliography** can be found here :ref:`References`
+
 **You can use the search bar located on the top right of your screen to lookup any keyword, or item in the generic guide. Use the dedicated Doxygen search box for C++ classes.**
 
 ----
@@ -37,6 +39,7 @@ Here are some useful links that you can visit too:
 
 -----
 
+Do not forget to cite TRUST if you use it, see: :any:`https://cea-trust-platform.github.io/cite.html`
 
 **Table Of Contents**
 
@@ -50,4 +53,5 @@ Here are some useful links that you can visit too:
    _srcs_processed/num_meth/index
    _srcs_processed/reference/index
    _srcs_processed/dev_guidelines/index
+   references
 

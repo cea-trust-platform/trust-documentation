@@ -104,6 +104,7 @@ html_favicon = 'favicon.ico'
 # Bibliography
 bibtex_bibfiles = ['biblio.bib']  # Bib file
 bibtex_default_style = 'alpha'  # Bib style
+bibtex_reference_style = 'author_year'
 
 # To avoid cache error
 suppress_warnings = ["config.cache"]
