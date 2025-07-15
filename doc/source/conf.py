@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.abspath('./srcs/trustutils/python_cloned_srcs/'))
 
 project = 'TRUST Documentation'
 author = 'TRUST team'
+# copyright = f'{datetime.now().year}, CEA'
 
 # -- General configuration ---------------------------------------------------
 
@@ -58,6 +59,9 @@ htmlhelp_basename = 'TRUST Documentation'
 
 # To show or not private members
 autodoc_default_options = {     "members": True,     "undoc-members": True,     "private-members": False  }
+# Myst extensions
+myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence",]
+myst_heading_anchors=1
 
 # generate autosummary even if no references
 numpydoc_show_class_members = False
@@ -101,6 +105,11 @@ html_favicon = 'favicon.ico'
 bibtex_bibfiles = ['biblio.bib']  # Bib file
 bibtex_default_style = 'alpha'  # Bib style
 
+# To avoid cache error
+suppress_warnings = ["config.cache"]
+
+# To allow mardown pages
+source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
