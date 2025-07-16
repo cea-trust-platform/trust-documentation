@@ -37,3 +37,9 @@ The set of cells will be called :math:`E`. The set of faces of a peculiar cell :
 .. math:: [x]_{cv} = \frac{1}{|cv|} \int_{cv} x \, \text{d}\, (cv)
 
 where :math:`|\cdot|` will be a global measure operator over the considered control volume. For example, :math:`|e|` refers to the volume of the cell :math:`e`, :math:`|f|` to the surface of the face :math:`f` and :math:`|\sigma|` to the length of the edge :math:`\sigma`. Unknown :math:`u` refers to the velocity and :math:`p` refers to the pressure.
+
+Bibliographie
+-------------
+
+.. bibliography::
+    :filter: docname == env.docname

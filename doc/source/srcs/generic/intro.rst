@@ -81,11 +81,12 @@ The project starts in 1994 and improved versions were built ever since:
 
 - **2015 :** v1.7 - Separation TRUST & TrioCFD + switch to open source
 
-- **2019 :** v1.8 - New polyheadral discretization (PolyMAC)
+- **2019 :** v1.8 - New polyheadral discretization (PolyMAC) + Multiphase problem + Weakly Compressible model
 
-- **2021 :** v1.8.4 - Multiphase problem + Weakly Compressible model
+- **2022 :** v1.9.0 - Modern C++ code (templates, CRTP, ...) + remove MACROS + support GPU (NVidia/AMD) 
 
-- **2022 ... :** Modern C++ code (templates, CRTP, ...), support GPU (NVidia/AMD), remove MACROS, ...
+- **2025 :** v1.9.6 - Unified version to handle 32-64b integers + VEF discretisation supported on GPU
+
 
 Data File
 ---------

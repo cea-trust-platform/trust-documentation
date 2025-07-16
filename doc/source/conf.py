@@ -17,11 +17,9 @@ sys.path.insert(0, os.path.abspath('..'))
 # for trust utils python docstrings
 sys.path.insert(0, os.path.abspath('./srcs/trustutils/python_cloned_srcs/'))
 
-
-
 # -- Project information -----------------------------------------------------
 
-project = 'TRUST Documentation'
+project = 'TRUST'
 author = 'TRUST team'
 # copyright = f'{datetime.now().year}, CEA'
 
@@ -102,7 +100,7 @@ html_css_files = ['_static/custom.css']
 html_favicon = 'favicon.ico'
 
 # Bibliography
-bibtex_bibfiles = ['biblio.bib']  # Bib file
+bibtex_bibfiles = [os.path.join(os.path.dirname(__file__), 'biblio.bib')]
 bibtex_default_style = 'alpha'  # Bib style
 bibtex_reference_style = 'author_year'
 
