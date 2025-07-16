@@ -414,7 +414,7 @@ or
 
 Here is a panel of available options:
 
-::
+.. code-block:: console
 
    Usage: trust [option] datafile [nb_cpus] [1>file.out] [2>file.err]
    Where option may be:
@@ -425,6 +425,7 @@ Here is a panel of available options:
    -html                         : Access to the doxygen documentation.
    -config nedit|vim|emacs|gedit : Configure nedit or vim or emacs or gedit with TRUST keywords.
    -edit                         : Edit datafile.
+   -trustify                     : Check the datafile's keywords with trustify.
    -xcheck                       : Check the datafile's keywords with xdata.
    -xdata                        : Check and run the datafile's keywords with xdata.
    -partition                    : Partition the mesh to prepare a parallel calculation (Creation of the .Zones files).
@@ -438,8 +439,10 @@ Here is a panel of available options:
    -clean                        : Clean the current directory from all the generated files by TRUST.
    -search keywords              : Know the list of test cases from the data bases which contain keywords.
    -copy                         : Copy the test case datafile from the TRUST database under the present directory.
-   -check|-ctest all|testcase|list            : Check|ctest the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
-   -check|-ctest function|class|class::method : Check|ctest the non regression of a list of tests cases covering a function, a class or a class method.
+   -check all|testcase|list            : Check the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+   -check function|class|class::method : Check the non regression of a list of tests cases covering a function, a class or a class method.
+   -ctest all|testcase|list            : ctest the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+   -ctest function|class|class::method : ctest the non regression of a list of tests cases covering a function, a class or a class method.
    -gdb                          : Run under gdb debugger.
    -valgrind                     : Run under valgrind.
    -valgrind_strict              : Run under valgrind with no suppressions.
@@ -447,7 +450,7 @@ Here is a panel of available options:
    -massif                       : Run massif tool (heap profile) from valgrind.
    -heaptrack                    : Run heaptrack (heap profile). Better than massif.
    -advisor                      : Run advisor tool (vectorization).
-   -vtune                        : Run vtune tool (profiling).
+   -vtune                        : Run vtune tool (profiling). Best profiler tool.
    -perf                         : Run perf tool (profiling).
    -trace                        : Run traceanalyzer tool (MPI profiling).
    -create_sub_file              : Create a submission file only.
@@ -457,6 +460,8 @@ Here is a panel of available options:
    -c ncpus                      : Use ncpus CPUs allocated per task for a parallel calculation.
    datafile -help_trust          : Print options of TRUST_EXECUTABLE [CASE[.data]] [options].
    -convert_data datafile        : Convert a data file to the new 1.9.1 syntax (milieu, interfaces, read_med and champ_fonc_med).
+   -quiet                        : Runs the TRUST case without producing any output on the terminal (stdout and stderr are redirected to /dev/null).
+
 
 Parallel Calculation
 ^^^^^^^^^^^^^^^^^^^^
