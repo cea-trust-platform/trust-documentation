@@ -1,7 +1,4 @@
----
-title: "Temporal schemes"
-weight: 4
----
+## Temporal schemes
 
 It is mendatory to define a time integration scheme in order to perform a TRUST calculation. Solving a stationary problem is currently not possible (work in progress in a private application but not yet finalized). 
 
@@ -15,7 +12,7 @@ The stability of the time scheme can be controled in a TRUST's data file by the 
 
 Here is the list of the time integration schemes available in the platform.
 
-# Explicit schemes
+### Explicit schemes
 
 - **Euler Scheme**
 
@@ -45,7 +42,7 @@ computational work than linear ones, they can have some other properties, such a
 	- The C++ class is `Schema_Adams_Bashforth_order_3`. This is the Adams Bashforth third order scheme.
 
 
-# Implicit schemes
+### Implicit schemes
 
 - **Euler Scheme**
 
@@ -63,7 +60,7 @@ computational work than linear ones, they can have some other properties, such a
 
 	Two available C++ classes are available: `Schema_Backward_Differentiation_order_2 ` and `Schema_Backward_Differentiation_order_3 `.
 
-# Semi-Implicit schemes
+### Semi-Implicit schemes
 
 - **Predictor Corrector**
 

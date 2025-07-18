@@ -1,7 +1,4 @@
----
-title: "Post-Processing"
-weight: 7
----
+## Post-Processing
 
 Do you know that CFD refers to Colorful Fluid Dynamics ? OK, it is not exactly that but ... it can be !
 
@@ -11,17 +8,17 @@ All this is done via the TRUST C++ classes: `Post_processing` or `Post_processin
 
 In both cases (whatever which class you use, `Post_processing` or `Post_processings`) you can define the following.
 
-# Probes
+### Probes
 
 This is done by the C++ class `Sonde` or `Sondes` (list of probes). You can request spatial/temporal variation/evolution of any field (should be known by TRUST). The values can be extracted at a single point in space, at a segment of points or in a plane.
 
 **Attention:** The probe coordinates should be given in Cartesian coordinates (X, Y, Z) even in axisymmetric cases.
 
-# Define New Fields (Advanced Fields)
+### Define New Fields (Advanced Fields)
 
 This is done by the C++ class `Definition_champs`. In this block, you can create new complex fields for advanced post-processings. For example, post-process custom quantities not directly available from the datafile (average of a field, error between TRUST and analytical solution, ...).
 
-# Write Fields
+### Write Fields
 
 This is done by the C++ class `Fields` or `Champs`. Here you can specify the frequency by the keyword `dt_post`. For example, the following syntax is used to post-process (and therefore visualize) the pressure (at center of the elements) each 1000 **physical seconds** of the simulation.
 
@@ -46,7 +43,7 @@ or
 
 **Remark 2:** Remember fields location for each discretization! If you specify in post-processing block for a field a different location than where it is computed, values will be interpolated.
 
-# List of Existing and Pre-defined Fields
+### List of Existing and Pre-defined Fields
 
 Here is a list of post-processable fields, but it is not the only ones!
 
@@ -109,7 +106,7 @@ Here is a list of post-processable fields, but it is not the only ones!
 | Total force along Y                        | Total\_force\_y                  | $kg.m^2.s^{-1}$          |
 | Total force along Z                        | Total\_force\_z                  | $kg.m^2.s^{-1}$          |
 
-# Complete Post-Processing Example
+### Complete Post-Processing Example
 
 Here is a complete post-processing example taken from the TRUST's `upwind` test case.
 

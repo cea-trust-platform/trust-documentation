@@ -1,7 +1,4 @@
----
-title: "Solvers"
-weight: 8
----
+## Solvers
 
 Linear matricial systems appear basically with a form of **AX = B** at two stages in the code resolution algorithm: when dealing with the Elleptic pressure Poisson equation at first, and when dealing with the implicit resolution at second (either diffusion implicit or a full implicit time integration scheme).
 
@@ -13,7 +10,7 @@ In cases where the user asks to treat implicitly the diffusion operator in an ex
 
 If a pure implicit scheme is used in a TRUST calculation, an implicit solver **must** be defined too. This is done via the keyword `Solveur` that reads a solver inherited from the base class `Solveur_Implicite_Base`. In such case, a solver from `SolveurSys_base` will be read inside this bloc. Click **[here](https://cea-trust-platform.github.io/TRUST_Doxygen.github.io/html/classSolveur__Implicite__Base.html)** to see the Doxygen documentation of the `Solveur_Implicite_Base` class.
 
-# Linear Solvers
+### Linear Solvers
 
 **Direct home-coded solvers**
 
@@ -57,7 +54,7 @@ If a pure implicit scheme is used in a TRUST calculation, an implicit solver **m
 
 - `rocALUTION`: Solver via rocALUTION API.
 
-# Pre-Conditioners
+### Pre-Conditioners
 
 **Home-coded pre-conditioners**
 
@@ -89,7 +86,7 @@ If the **CLI** solver is used from PETSc, the user has acces to the following pr
 Petsc documentation to try other options).
 	
 	
-# Implicit Solvers
+### Implicit Solvers
 
 Here are the available C++ class aliases that can be used in the situation where the time scheme is the implicit scheme. These Solvers allow the equation diffusion and convection operators to be set as implicit terms.
 
@@ -115,7 +112,7 @@ pressure reduction resolution. See **[FH Harlow](https://www.sciencedirect.com/s
 
 - `Solveur_U_P`: Similar to simple.
 
-# Hints
+### Hints
 
 Use the following when possible
 
@@ -141,7 +138,7 @@ Use the following when possible
 	
 	- Use GMRES or BI-CGSTAB with diagonal preconditioning (Generally faster than previous TRUST versions).
 
-# Selected Examples
+### Selected Examples
 
 **Pressure solver examples**
 	

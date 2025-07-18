@@ -1,7 +1,4 @@
----
-title: "Discretizations"
-weight: 2
----
+## Discretizations
 
 Solving a TRUST problem requires the user to select a certain discretization which allows the code to pass the treated equations from a continuous to a discretized form.
 
@@ -9,7 +6,7 @@ TRUST supports mainly four discretizations, all derived from the C++ class `Disc
 
 The choice of the discretization is dependent on the mesh type and (can be, not always ...) on the problem. Here are the available discretizations in the TRUST platform.
 
-# The Finite Volume Difference (VDF) discretization
+### The Finite Volume Difference (VDF) discretization
 
 The VDF discretization (class `VDF_discretisation` and alias `VDF`) is the simplest and the most efficient discretization of the TRUST plaform. This discretization is compatible with conform mesh with hexahedral type of elements. Attention: do not confuse between a hexahedral mesh and a cartesian mesh. The VDF mesh is not structured and does not follow the IJK indexing !
 
@@ -29,7 +26,7 @@ td, th {
 |*2D staggered grid zoomed VDF description: scalars stored at the cell center (black points), x−horizontal velocity component at the horizontal faces of the cell (green point), y−horizontal velocity component at the vertical faces of the cell (red point). Green and red dotted control volumes are used to solve the horizontal (green) and vertical (red) velocity components equations.* |
 
 
-# The Finite Element Volume (VEF) discretization
+### The Finite Element Volume (VEF) discretization
 
 The VEF discretization (classes `VEF_discretisation` and alias `VEFPreP1B`) is used when the mesh is conform but with tetrahedral elements (triangles in 2D). This numerical scheme combines finite volume and finite elements to integrate in conservative form all conservation equations over the control volumes belonging to the calculation domain.
 
@@ -44,7 +41,7 @@ This discretization **does not** support 2D axi-symetrical configurations and **
 | <img src="https://github.com/cea-trust-platform/cea-trust-platform.github.io/blob/master/images/illustrations/vef.jpg?raw=true" alt="VEF" width="700"/> |
 |*2D zoomed VEF description: scalars (except pressure) and velocity vector field are stored at the centers of the faces (red arrows). Pressure at the center of each triangle and at the vertices (black points).* |
 
-# The PolyMAC-series discretization
+### The PolyMAC-series discretization
 
 The PolyMAC discretization is a series of Marker-and-Cell (MAC) schemes that can handle any type of mesh (non-conform, non-orthogonal, poly-hedral types, ...). The numerical description of this schemes is quite complex and depends on the employed version. Here is a summary of the PolyMAC versions available in the TRUST platform. This discretization (with all versions) **does not** support 2D axi-symetrical configurations but **is** compatible with `Pb_Multiphase` (in fact it was the first discretization for which Multiphase Problem was available).
 
@@ -89,6 +86,6 @@ The PolyMAC discretization is a series of Marker-and-Cell (MAC) schemes that can
 |*Examples of computational domains/meshes used with the PolyMAC discretization.* |
 
 
-# The Finite Element (EF) discretization
+### The Finite Element (EF) discretization
 
 The EF discretization (class `EF_discretisation`) implements a classical finite element method. This discretization supports 1D mesh types. This discretization **supports** 2D axi-symetrical configuration, but **is not** compatible with `Pb_Multiphase`.

@@ -1,7 +1,5 @@
----
-title: "Boundary Conditions"
-weight: 6
----
+## Boundary Conditions
+
 
 There is no sense to talk about numerical simulations without talking about the boundary conditions ! In order to close the discretized the system, consistent boundary conditions must be defined.
 
@@ -9,7 +7,7 @@ The platform TRUST implements a huge number of boundary conditions (BC) that all
 
 Here is a short summary of the available classes aliases that can be used to define your BC's in a TRUST simulation.
 
-# Dirichlet-type Boundary Conditions
+### Dirichlet-type Boundary Conditions
 
 - Fluid Inlet BCs
 
@@ -61,7 +59,7 @@ used to set a symmetry condition on scalar on the boundary named bord (edge).
 	- `Periodique`: For Navier-Stokes equations, this keyword is used to indicate that the horizontal inlet velocity values are the same as the outlet velocity values, at every moment. As regards meshing, the inlet and outlet edges bear the same name. For scalar transport equation, this keyword is used to set a periodic
 condition on scalar. The two edges dealing with this periodic condition bear the same name.
 
-# Neumann-type Boundary Conditions
+### Neumann-type Boundary Conditions
 
 - Wall BCs
 	
@@ -87,7 +85,7 @@ condition on scalar. The two edges dealing with this periodic condition bear the
 
 	- `Frontiere_ouverte_vitesse_imposee_sortie`: Sub-class for velocity boundary condition. The imposed velocity field at the open boundary is vectorial and the imposed velocity values are expressed in m.s-1.
 
-# Coupling-type Boundary Conditions
+### Coupling-type Boundary Conditions
 
 - `Echange_couplage_thermique`: Thermal coupling boundary condition.
 
@@ -100,7 +98,7 @@ media (no mesh, no domain associated), and coupling is performed by considering 
 
 - `Echange_contact_VDF`: Boundary condition type to model the heat flux between two problems. Important: the name of the boundaries in the two problems should be the same.
 
-# Robin-type Boundary Conditions
+### Robin-type Boundary Conditions
 
 - `Echange_externe_impose`: External type exchange condition with a heat exchange coefficient and an imposed external temperature.
 

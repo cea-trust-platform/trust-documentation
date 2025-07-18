@@ -1,7 +1,4 @@
----
-title: "Spatial schemes"
-weight: 3
----
+## Spatial schemes
 
 The spatial discretization of each term in a given equation is carried out in the TRUST platform by whjat we call the **operators** (operators for convective terms, diffusion, gradient, divergence, ...) It is important to keep in mind that all these operators are **dependent** of the employed discretization; in particular on the variables localisation.
 
@@ -13,7 +10,7 @@ In what follows, the available convective operator schemes are summarized.
 
 **Attention:** TRUST allows the user to neglect the operator contribution. This can be done by using the C++ alias `Negligeable` in the concevtion and/or diffusion bloc.
 
-# Finite Volume Difference (VDF) Schemes
+### Finite Volume Difference (VDF) Schemes
 
 - **Upwind scheme**
 
@@ -27,7 +24,7 @@ In what follows, the available convective operator schemes are summarized.
 
 	The C++ alias is `Quick`. This is the third order Quadratic Upstream Interpolation for Convective Kinematics (Quick) scheme.
 
-# Finite Element Volume (VEF) Schemes
+### Finite Element Volume (VEF) Schemes
 
 - **Upwind scheme**
 
@@ -49,7 +46,7 @@ In what follows, the available convective operator schemes are summarized.
 
 	The C++ alias is `Muscl`. This is the second order Monotonic Upstream-centered Scheme for Conservation Laws (MUSCL) scheme.
 
-# PolyMAC-series Schemes
+### PolyMAC-series Schemes
 
 - **Upwind scheme**
 

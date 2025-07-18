@@ -1,7 +1,4 @@
----
-title: "Problems"
-weight: 1
----
+## Problems
 
 The problem is one on the basic TRUST classes (known as `Probleme_base` in the C++ code). It is impossible to run a TRUST computation without defining explicitly what problem you want to solve. 
 
@@ -23,11 +20,11 @@ Once all is defined, the user can define his post-processing flields and probes 
 
 Here is a short summary of all the problems available in TRUST platform.
 
-# Conduction Problem
+### Conduction Problem
 
 The C++ class is `Pb_Conduction`. The heat equation is only considered in this problem. The medium and the equation should be respectively `Solide` and `Conduction`.
 
-# Hydraulic Problems
+### Hydraulic Problems
 
 In all cases, the medium should be `Fluide_Incompressible` or `Fluide_Ostwald`. An additional `Constituant` medium should be **secondly** defined if you ask for a problem with concentration.
 
@@ -44,7 +41,7 @@ In all cases, the medium should be `Fluide_Incompressible` or `Fluide_Ostwald`. 
 	The C++ class is `Pb_Hydraulique_Concentration_Scalaires_Passifs`. The equations considered in this problem are the Navier-Stokes, the convection/diffusion constituant and a list of additional passive-scalar equations (respectively `Navier_Stokes_standard`, `Convection_Diffusion_Concentration` and a list of additional `Convection_Diffusion_Concentration` equations).
 
 
-# Thermal Hydraulic Problems
+### Thermal Hydraulic Problems
 
 In all cases, the medium should be `Fluide_Incompressible` or `Fluide_Ostwald`. An additional `Constituant` medium should be **secondly** defined if you ask for a problem with concentration.
 
@@ -64,11 +61,12 @@ In all cases, the medium should be `Fluide_Incompressible` or `Fluide_Ostwald`. 
 
 	The C++ class is `Pb_Thermohydraulique_Concentration_Scalaires_Passifs`. Here, the treated equations are the following: the Navier-Stokes, the temperature convection-diffusion, the convection/diffusion constituant equation and a list of additional passive-scalar equations (respectively `Navier_Stokes_standard`, `Convection_Diffusion_Temperature`, `Convection_Diffusion_Concentration` and a list of additional `Convection_Diffusion_Concentration` equations).
 
-# Low Mach Number Problems
+### Low Mach Number Problems
 
 The Mach number Ma = u / c measures the ratio of the bulk velocity to the local speed of sound. Typically for Ma < 0.1, the compressibility effects can be neglected and the physical problem may be reduced by using a Low Mach Number (LMN) formulation. In such cases, the aspect of the problem orients towards simulating a mass variation rather than capturing and solving for the acoustic waves. This is basically the main hypothesis of a LMN approximation where all acoustic waves are filtered out.
 
-Following a single scale asymptotic analysis referring to the Mach number, the zero Mach order equations are considered where the total pressure is decomposed into a thermodynamic pressure and a hydrodynamic pressure that fluctuatesin an order of Ma2. Note that the hydrodynamic pressure is much smaller than the thermodynamic one. The hydrodynamic pressure alone is used in the momentum equation, while the thermodynamic is used in the equation of state.
+Following a single scale asymptotic analysis referring to the Mach number, the zero Mach order equations are considered where the total pressure is decomposed into a thermodynamic pressure and a hydrodynamic pressure that fluctuates
+in an order of Ma2. Note that the hydrodynamic pressure is much smaller than the thermodynamic one. The hydrodynamic pressure alone is used in the momentum equation, while the thermodynamic is used in the equation of state.
 
 TRUST offers two LMN modelisations; either a Weakly-Compressible (WC) or a Quasi-Compressible (QC) models. The main difference between both models is that the QC model considers a space-uniform thermodynamic pressure. This is not the case in th WC model where the total pressure, which is space/time varying, is used in the equation of state. The last can have a great impact in some situations as the pressure drop and/or the hydro-static pressure can influence significantly the density variation.
 
@@ -92,7 +90,7 @@ Here are the available LMN problems in the TRUST platform. In all cases, either 
 	
 	Besides, in `Pb_Thermohydraulique_Especes_WC`, the Navier-Stokes and temperature convection-diffusion equations are solved together with N - 1 additional mass-fractions equations; equations`Navier_Stokes_WC `,  `Convection_Diffusion_Chaleur_WC` and N - 1 additional `Convection_Diffusion_Espece_Multi_WC` equations.. The last mass fraction of species N is deduced from the fact of the unity of the sum of the N mass fractions. 
 	
-# Multi-Phase Problem
+### Multi-Phase Problem
 
 The C++ class is `Pb_Multiphase`. This problem allows the resolution of N-phases via a model of 3N equations.
 
@@ -104,7 +102,7 @@ Afterwards, the reading of the equations starts. In `Pb_Multiphase`, the equatio
 
 The coupling between all equations is done in a strong way; ie: a single matrix for all equations is used. This problem is available with all versions of the PolyMAC discretizations and with VDF. Calling **EOS** (private CEA/EDF project) and **[CoolProp](http://www.coolprop.org/)** to compute the Thermo-Physical Properties is possible for this problem via the `TPPI` interface.
 
-# Coupled Problems
+### Coupled Problems
 
 There are two ways to solve coupled problems with TRUST: either using `Probleme_Couple` or via the Interface of Code Coupling **([ICoCo](https://github.com/cea-trust-platform/icoco-coupling))** and `ProblemeTrio`.
 
@@ -113,12 +111,12 @@ In `Probleme_Couple`, the user has to define the contact boundary/volume between
 On the other hand, the user is to write his own coupling algorithm when using ICoCo. In practice, this can be done either by writing a C++ supervisor to manage the coupling, or via its python interface available in TRUST, thanks to the swig wrapper !
 
 
-# Complete Problem Examples
+### Complete Problem Examples
 
 Here a list of problem blocs taken from selected TRUST test cases. Have a look on these test cases available in `$TRUST_ROOT/tests`.
 
 ---
-## Conduction
+#### Conduction
 
 Bloc taken from TRUST's `docond_VEF` test case.
 
@@ -165,7 +163,7 @@ Bloc taken from TRUST's `docond_VEF` test case.
 	}
 	
 ---
-## Thermal Hydraulic Problem
+#### Thermal Hydraulic Problem
 
 Bloc taken from TRUST's `Source_Generique_PolyMAC` test case.
 
@@ -235,7 +233,7 @@ Bloc taken from TRUST's `Source_Generique_PolyMAC` test case.
 	}
 	
 ---
-## Multi-Phase Problem
+### Multi-Phase Problem
 
 Bloc taken from TRUST's `CoolProp_water_BICUBIC_HEOS_with_sat` test case. Attention this test case needs a TRUST version linked with the CoolProp library.
 
