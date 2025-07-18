@@ -13,6 +13,8 @@ This page provides:
 
 - **TRUST Generic Guide** can be found there: :ref:`TRUST Generic Guide`
 
+- **TRUST User Guide** can be found there: :ref:`TRUST User Guide`
+
 - **TRUST Numerical Methods Documentation** can be found there: :ref:`TRUST Numerical Methods`
 
 - **TRUST Keyword Reference Manual** can be found there: :ref:`TRUST Keyword Reference Manual`
@@ -50,6 +52,7 @@ Do not forget to cite TRUST if you use it, see: https://cea-trust-platform.githu
    :maxdepth: 1
 
    _srcs_processed/generic/index
+   _srcs_processed/user_guide/index
    _srcs_processed/num_meth/index
    _srcs_processed/reference/index
    _srcs_processed/dev_guidelines/index

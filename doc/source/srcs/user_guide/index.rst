@@ -1,0 +1,19 @@
+TRUST User Guide
+****************
+
+You can found here some more precise informations regarding available options in TRUST:
+
+.. toctree::
+    :maxdepth: 1
+    
+    problems
+    boundary-conditions
+    solvers
+    discretizations
+    temporal-schemes
+    spatial-schemes
+    post-processing
+    pre-processing
+    
+    
+    
