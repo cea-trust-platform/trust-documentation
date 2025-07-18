@@ -9,6 +9,7 @@ This discretization **supports** 2D axi-symmetrical configurations and **is comp
 
 
 .. figure:: ./FIGURES/VDF-cut.png
+   :name: fig:scheme-vdf
    :align: center
    :width: 600px
    :alt: Grille décalée VDF 2D avec description détaillée
