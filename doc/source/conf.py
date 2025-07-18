@@ -53,6 +53,7 @@ extensions = [
 ]
 
 numfig = True
+
 numfig_secnum_depth = 2
 
 htmlhelp_basename = 'TRUST Documentation'

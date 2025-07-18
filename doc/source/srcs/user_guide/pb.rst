@@ -431,7 +431,7 @@ Then you may specify your boundary conditions like:
 
 It is important to specify here that **TRUST will not accept any boundary conditions by default.**
 
-You can find help for boundary conditions in the `Boundary Conditions <https://cea-trust-platform.github.io/classes/boundary-conditions>`__ section on the TRUST's website. 
+You can find help for boundary conditions in the :ref:`Boundary conditions in TRUST` section. 
 
 Here is a list of the most used boundary conditions:
 
