@@ -56,21 +56,17 @@ numfig = True
 
 htmlhelp_basename = 'TRUST Documentation'
 
-# To show or not private members
-autodoc_default_options = {     "members": True,     "undoc-members": True,     "private-members": False  }
-# Myst extensions
-myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence",]
-myst_heading_anchors=1
+# To show or not private members -
+autodoc_default_options = {"members": True, "undoc-members": True, "private-members": False}
 
-# For math formula
+# Myst extensions
+myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence"]
+myst_heading_anchors = 1
+
+# For math formula 
 mathjax3_config = {
     'tex': {
-        'inlineMath': [['$', '$'], ['\\(', '\\)']],
-        'displayMath': [['$$', '$$'], ['\\[', '\\]']],
         'packages': ['base', 'ams', 'amsfonts', 'amssymb', 'noerrors', 'noundefined', 'autoload'],
-        'macros': {
-            'llbracket': '\\left[\\!\\left[',
-            'rrbracket': '\\right]\\!\\right]',
     }
 }
 
@@ -86,7 +82,7 @@ templates_path = ['_templates']
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 # The sources that will effectively be used are in 'srcs_processed' where the substitution of the :code: tags has been done:
-exclude_patterns = [ "srcs" ]
+exclude_patterns = ["srcs"]
 
 master_doc = 'index'
 # -- Options for HTML output -------------------------------------------------
@@ -106,7 +102,6 @@ html_theme = 'sphinx_book_theme'
 html_theme_options = {
     "show_toc_level": 2,
     "navigation_depth": 4,
-    "includehidden": True, 
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -126,7 +121,7 @@ bibtex_reference_style = 'author_year'
 # To avoid cache error
 suppress_warnings = ["config.cache"]
 
-# To allow mardown pages
+# To allow markdown pages
 source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
@@ -158,4 +153,3 @@ if 1:
     import deref_code
     deref_code.do_the_job(build_dir)
     print("@@@ Done processing RST files!")
-

@@ -31,19 +31,18 @@ Then, we introduce the interface jump:
 
 .. math::
 
-   {\llbracket y \rrbracket}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+   { [[ y ]]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
 ff the normal of f is defined from :math:`e_1` to :math:`e_2`, and otherwise:
 
 .. math::
 
-   {\llbracket y \rrbracket}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+   {[[ y ]]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
    
 .. figure:: ./FIGURES/scheme_jump_average.png
    :name: fig:def_jump_average
-   :align: center
-   :height: 10cm
+   :class: custom-image-class
 
    Definition of the average and jump notations, see :cite:p:`HW07`
 
@@ -103,7 +102,7 @@ The stencil of the SIP DG method is rather small, as only element-wise interacti
 
 .. image:: FIGURES/mesh_DG.png
    :alt: Example of a mesh
-   :align: center
+   :class: custom-image-class
 
 The stability parameter :math:`\eta` is not closed by default. A method has been added for automatically computing it in order to ensure coercivity.
 
