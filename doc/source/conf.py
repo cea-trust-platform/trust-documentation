@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.autodoc',          # Auto-generate docs from Python docstrings
     'sphinx.ext.autosummary',      # Generate summary tables for modules/packages
     'sphinx.ext.napoleon',         # Parse Google/NumPy style docstrings
+    'sphinx.ext.mathjax',          # For math environments based on latex
     # 'numpydoc',                  # Alternative NumPy docstring parser 
     # Cross-referencing and linking
     'sphinx.ext.intersphinx',      # Link to other Sphinx documentation projects
@@ -60,6 +61,18 @@ autodoc_default_options = {     "members": True,     "undoc-members": True,     
 # Myst extensions
 myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence",]
 myst_heading_anchors=1
+
+# For math formula
+mathjax3_config = {
+    'tex': {
+        'inlineMath': [['$', '$'], ['\\(', '\\)']],
+        'displayMath': [['$$', '$$'], ['\\[', '\\]']],
+        'packages': ['base', 'ams', 'amsfonts', 'amssymb', 'noerrors', 'noundefined', 'autoload'],
+        'macros': {
+            'llbracket': '\\left[\\!\\left[',
+            'rrbracket': '\\right]\\!\\right]',
+    }
+}
 
 # generate autosummary even if no references
 numpydoc_show_class_members = False

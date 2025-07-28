@@ -1,7 +1,7 @@
-PolyMAC_P0
-==========
+PolyMAC_MPFA
+============
 
-Unlike PolyMAC, PolyMACP0 does not introduce the vorticity. Moreover, no
+Unlike PolyMAC, PolyMAC_MPFA (previously named PolyMAC_P0) does not introduce the vorticity. Moreover, no
 complex dual mesh is explicitly needed. The location of the unknowns is
 described in :numref:`fig:location_unknowns_p0`.
 
@@ -20,11 +20,11 @@ MPFA methods
 
 Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
 
--  The MPFA-O method presented in [A02]_, [AM08]_, [D14]_
+-  The MPFA-O method presented in :cite:p:`A02`, :cite:p:`AM08`, :cite:p:`D14`
 
--  The MPFA-O(:math:`\eta`) method presented in [ER98]_
+-  The MPFA-O(:math:`\eta`) method presented in :cite:p:`ER98`
 
--  The MPFA-symm method presented in [lP05a]_, [lP05b]_, [lP17]_
+-  The MPFA-symm method presented in :cite:p:`LP05a`, :cite:p:`LP05b`, :cite:p:`LePotier2017`
 
 The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :numref:`fig:scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :numref:`fig:scheme_mpfa` is as follows:
 
@@ -53,7 +53,7 @@ where :math:`\vec{n_1}` and :math:`\vec{n_2}` are the outward unit normal vector
 
 A core assumption of the MPFA method is to suppose that :math:`G^{\text{MPFA}}([p]_e)` is constant on each :math:`S_{e,i}`. When enforcing the continuity across the sub-faces that are linked by a vertex of the primal mesh, auxiliary variables can be substitute by cells unknowns.
 
-The MPFA methods are impemented in :code:`Domaine_PolyMAC_P0::fgrad`.
+The MPFA methods are impemented in Domaine_PolyMAC_P0::fgrad.
 
 Incompressible Navier Stokes
 ----------------------------
@@ -76,7 +76,7 @@ The momentum equation is discretised at the face:
 
 -  For the convective term:
 
-   -  Approximate the value of the velocity at the cell, see :code:`Champ_Face_PolyMAC_P0::update_ve`:
+   -  Approximate the value of the velocity at the cell:
 
       .. math:: [u]_e = \frac{1}{|e|} \sum _{f \in F_e} |f| [u]_f x_{e \rightarrow f}.
 
@@ -104,7 +104,7 @@ The momentum equation is discretised at the face:
 
    .. math:: \Delta u = \nabla \cdot ( \nabla u + \left(\nabla u)^{\intercal} \right) )
 
--  Then a second order interpolation is used to compute the velocity at the cell, see :code:`Champ_Face_PolyMAC_P0::init_ve2` and :code:`Champ_Face_PolyMAC_P0::update_ve2`:
+-  Then a second order interpolation is used to compute the velocity at the cell, see:
 
   - First, introducing :math:`n_f` the outward normal of face :math:`f`, one can write the series expansion:
 
@@ -136,10 +136,10 @@ The momentum equation is discretised at the face:
 
 - Eventually, we interpolate the diffusion term at the face in the same fashion as for the convective term.
 
-Some details regarding the discretisation of a two-phase flow model of the Ishii familly [I75]_ are given in [GG22]_.
+Some details regarding the discretisation of a two-phase flow model of the Ishii familly :cite:p:`I75` are given in :cite:p:`GG22`.
 
 PolyMAC_P0_P1_NC
 ================
 
 
-PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in [EGH07]_ and [EGH10]_. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see [DEG10]_.
+PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEGH10`.

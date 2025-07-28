@@ -1,9 +1,9 @@
-Galerkin Discontinuous Methods
+Discontinuous Galerkin Methods
 ==============================
 
 Discontinuous Galerkin (DG) methods form a class of finite element methods particularly suited for solving partial differential equations. Unlike standard continuous Galerkin methods, DG allows for discontinuities between elements, providing greater flexibility and robustness, especially for complex geometries or highly dynamic phenomena.
 
-DG methods have been thouroughly studied in the litterature, see for example [HW07]_, [EdP12]_ or [CKS12]_ , yet it remains an important field of study. 
+DG methods have been thouroughly studied in the litterature, see for example :cite:p:`HW07`, :cite:p:`EDP12` or :cite:p:`CKS12` , yet it remains an important field of study. 
 
 **Advantages and Challenges of DG Methods**
 
@@ -31,13 +31,13 @@ Then, we introduce the interface jump:
 
 .. math::
 
-   {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+   {\llbracket y \rrbracket}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
 ff the normal of f is defined from :math:`e_1` to :math:`e_2`, and otherwise:
 
 .. math::
 
-   {\[ y \]}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
+   {\llbracket y \rrbracket}_f (x) = y|_{e_1} (x) -  y|_{e_2} 
    
    
 .. figure:: ./FIGURES/scheme_jump_average.png
@@ -45,7 +45,7 @@ ff the normal of f is defined from :math:`e_1` to :math:`e_2`, and otherwise:
    :align: center
    :height: 10cm
 
-   Definition of the average and jump notations, see [HW07]_
+   Definition of the average and jump notations, see :cite:p:`HW07`
 
  
 
@@ -55,7 +55,7 @@ SIP DG Method for the Poisson Problem
 
    
    
-First, let us present the SIP DG formulation for the Poisson equation, see [EdP12]_ for more details.
+First, let us present the SIP DG formulation for the Poisson equation, see :cite:p:`EDP12` for more details.
 
 **Mathematical formulation:**
 
@@ -67,15 +67,17 @@ We aim to find :math:`u \in H^1_0(\Omega)` such that:
 
 **Discrete bilinear form:**
 
-Defining :math:`N_{e_n}` the number of neibourg elements of an element :math:`e` and :math:`e_n ^i` with :math:`i \in [0,N_{e_n}` the neibourg elements of :math:`e` with the convention,
-:math:`e_n ^i = e`, we introduce the discrete bilinear form:
+Defining :math:`N_{e_n}` the number of neighbour elements of an element :math:`e` and :math:`e_n^i` with :math:`i \in [0,N_{e_n}]` the neighbour elements of :math:`e` with the convention :math:`e_n^0 = e`, we introduce the discrete bilinear form:
 
 .. math::
+   :nowrap:
 
-   a_{dg}(u_h, v_h) &= \sum_{\ell=0}^{N_{e_n} |k|_\ell \int_{e_n ^\ell} \nabla u_h \cdot \nabla v_h \\
+   \begin{align}
+   a_{dg}(u_h, v_h) &= \sum_{\ell=0}^{N_{e_n}} |k|_\ell \int_{e_n^\ell} \nabla u_h \cdot \nabla v_h \\
    &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{ \nabla u_h \}_f \cdot \vec{n}_f [v_h] \\
    &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{ \nabla v_h \}_f \cdot \vec{n}_f [u_h] \\
    &\quad + \sum_{f \in F_e} \frac{\eta}{h_e} \int_{f} [u_h]_f[v_h]_f
+   \end{align}
 
 where :math:`h_e` is a geometrical parameter that corresponds to the diameter of the circumscribed circle of :math:`e`.
 
@@ -99,7 +101,7 @@ The stencil of the SIP DG method is rather small, as only element-wise interacti
 
 **Example mesh:**
 
-.. image:: images/mesh_placeholder.png
+.. image:: FIGURES/mesh_DG.png
    :alt: Example of a mesh
    :align: center
 

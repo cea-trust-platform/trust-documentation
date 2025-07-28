@@ -177,8 +177,8 @@ then the local Hodge operator can be generically defined by:
 .. math:: \left.H_{\alpha}^{\mathcal{X}_c\widetilde{\mathcal{Y}}_c}\right|_{x',\tilde{y}(x)} := \int_c l_{x,c}(\overline{x})\alpha l_{x',c}(\overline{x}) \quad \forall x,x' \in X_c
 
 We choose here according to description in Bonelle thesis
-[B14]_ (section 7.3.1) and in Codecasa et al.
-[CST10]_ the Piecewise constant non-conforming
+:cite:p:`Bonelle2014` (section 7.3.1) and in Codecasa et al.
+:cite:p:`CST10` the Piecewise constant non-conforming
 reconstruction.
 
 .. math:: L_{\mathcal{X}_c} := C_{\mathcal{X}_c} + \hat{S}_{\mathcal{X}_c}((\mathbb{I}_{\mathcal{X}_c} - R_{\mathcal{X}_c} C_{\mathcal{X}_c}))
@@ -199,8 +199,7 @@ written:
 
 .. math:: \underline{l}_{e,c}|_{p_{e',c}} = \frac{\beta}{|p_{e,c}|} \underline{\tilde{f}}_c(e) \delta_{e,e'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{f}}_c(e') \otimes \underline{e'}}{|p_{e',c}|}\right)\frac{\underline{\tilde{f}}(e)}{|c|}
 
-Then the local reconstruction of the flux
-:math:`\{\underline{l}_{f,c}\}_{f\in F_c}` on the piecewise partition
+Then the local reconstruction of the flux :math:`\{\underline{l}_{f,c}\}_{f\in F_c}` on the piecewise partition
 volume :math:`p_{f',c}, \ f' \in F_{c}` corresponding to the subvolume
 of the cell attached to the face :math:`f'`, and the center of the cell
 (Figure :numref:`partition`). It written:
@@ -228,7 +227,7 @@ A first-order reconstruction mapping operator
 the convection operator for the Navier-Stokes equations
 (see :ref:`sec:NS_equation`) to interpolate a vector :math:`\phi`
 expressed along the normal of the faces to the center of the cell using
-the formula (1) from [BNM14]_.
+the formula (1) from :cite:p:`BNM14`.
 
 .. math::
   :label: eq:reconstruction_operator
@@ -296,7 +295,7 @@ forces.
 where :math:`p` is the pressure, :math:`\underline{u}` the velocity and
 :math:`\underline{f}` the external load.
 
-Bonelle thesis [B14]_ chooses to formulated the
+Bonelle thesis :cite:p:`Bonelle2014` chooses to formulated the
 Stokes equations with the :math:`\underline{\text{curl}}` operator using
 the identity
 :math:`-\underline{\Delta} \underline{u} = \underline{\nabla} \times \underline{\nabla} \times \underline{u} - \underline{\nabla} ( \nabla \cdot \underline{u})`
@@ -469,7 +468,7 @@ with :math:`\widetilde{\mathbb{G}} = - \mathbb{D}^{T}` and
 :math:`\widetilde{\mathbb{C}} \cdot H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}} = H_{\rho^{-1}}^{\mathcal{F}\widetilde{\mathcal{E}}} \cdot \mathbb{C}`
 
 The non linear convection term :math:`CONV` described in
-[BAK18]_ is computing on the using the
+:cite:p:`BAK18` is computing on the using the
 reconstruction operator :eq:`eq:reconstruction_operator`
 
 .. math::
