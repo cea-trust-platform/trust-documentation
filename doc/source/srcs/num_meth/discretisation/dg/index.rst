@@ -73,9 +73,9 @@ Defining :math:`N_{e_n}` the number of neighbour elements of an element :math:`e
 
    \begin{align}
    a_{dg}(u_h, v_h) &= \sum_{\ell=0}^{N_{e_n}} |k|_\ell \int_{e_n^\ell} \nabla u_h \cdot \nabla v_h \\
-   &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{ \nabla u_h \}_f \cdot \vec{n}_f [v_h] \\
-   &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{ \nabla v_h \}_f \cdot \vec{n}_f [u_h] \\
-   &\quad + \sum_{f \in F_e} \frac{\eta}{h_e} \int_{f} [u_h]_f[v_h]_f
+   &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{\{ \nabla u_h \}\}_f \cdot \vec{n}_f [[v_h]] \\
+   &\quad - \sum_{f \in F_e} \int_{f} |k|_f \{\{ \nabla v_h \}\}_f \cdot \vec{n}_f [[u_h]] \\
+   &\quad + \sum_{f \in F_e} \frac{\eta}{h_e} \int_{f} [[u_h]]_f[[v_h]]_f
    \end{align}
 
 where :math:`h_e` is a geometrical parameter that corresponds to the diameter of the circumscribed circle of :math:`e`.
@@ -92,17 +92,19 @@ The stencil of the SIP DG method is rather small, as only element-wise interacti
 
    \mathbf{K} = \begin{bmatrix}
    \mathbf{K}_{1,1} & \mathbf{K}_{1,2} & 0 & \cdots & \\
-   \mathbf{K}_{1,2}^T & \mathbf{K}_{2,2} & \mathbf{K}_{2,3} & \cdots & \mathbf{K}_{2,N_T} \\
-   0 & \mathbf{K}_{2,3}^T & \mathbf{K}_{3,3} & \cdots & \\
+   \mathbf{K}_{1,2}^e & \mathbf{K}_{2,2} & \mathbf{K}_{2,3} & \cdots & \mathbf{K}_{2,N_E} \\
+   0 & \mathbf{K}_{2,3}^e & \mathbf{K}_{3,3} & \cdots & \\
    \vdots & & & \ddots & \\
-   & \mathbf{K}_{2,N_T}^T & & & \mathbf{K}_{N_T,N_T}
+   & \mathbf{K}_{2,N_E}^e & & & \mathbf{K}_{N_E,N_E}
    \end{bmatrix}
 
 **Example mesh:**
 
-.. image:: FIGURES/mesh_DG.png
-   :alt: Example of a mesh
+.. figure:: FIGURES/mesh_DG.png
+   :name: fig:example_mesh_DG
    :class: custom-image-class
+   
+   Possible mesh with the Discontinuous Galerkin discretisation
 
 The stability parameter :math:`\eta` is not closed by default. A method has been added for automatically computing it in order to ensure coercivity.
 

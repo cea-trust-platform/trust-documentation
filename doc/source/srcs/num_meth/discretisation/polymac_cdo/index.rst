@@ -11,30 +11,29 @@ Dual Mesh
 
 PolyMAC introduces a rather complex dual mesh. To do so, the gravity
 center of each control volume
-:math:`cv \in \{\mathcal{C},\mathcal{F}, \mathcal{E}, \mathcal{V} \}`
+:math:`cv \in \{ E, F, \Sigma, V \}`
 corresponding respectively to the cells, the faces, the egdes and the
 points localization, called :math:`x_{cv}` has to be introduce. Then we
-introduce (see Figure :numref:`dual_mesh`):
+introduce (see Figure :numref:`fig:dual_mesh_cdo`):
 
--  | The dual cell :math:`\widetilde{\mathcal{V}}` is located at the
+-  | The dual cell :math:`\widetilde{v}` is located at the
      center of gravity of the cell : :math:`x_{c}`.
 
--  | The dual face :math:`\widetilde{\mathcal{E}}` is the line that
+-  | The dual face :math:`\widetilde{\sigma}` is the line that
      links the gravity center of the face :math:`x_f` to the gravity
      center of the neighbour cells of the face.
 
--  The dual edge :math:`\widetilde{\mathcal{F}}` is the surface that
+-  The dual edge :math:`F` is the surface that
    links the gravity center of all of the neighbouring cells
-   :math:`x_{c}`, the gravity center of all of the neighbouring faces
-   :math:`x_{f}` and the gravity center of the edge :math:`x_{e}`.
+   :math:`x_{e}`, the gravity center of all of the neighbouring faces
+   :math:`x_{f}` and the gravity center of the edge :math:`x_{\sigma}`.
+
+.. _fig:dual_mesh_cdo:
+
+.. figure:: FIGURES/Dual_mesh_PolyMAC.png
+   :class: custom-image-class
   
-.. _dual_mesh:
-.. figure:: ./FIGURES/Dual_mesh_PolyMAC.png
-  :width: 800
-  :align: center
-  :alt: Dual mesh of PolyMAC
-  
-  Dual mesh of PolyMAC.
+   Dual mesh of PolyMAC.
 
 Location of the unknowns
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -58,14 +57,14 @@ CDO scheme
 The CDO scheme is based on a set of exact operators that allow you to
 switch from one location to another on the primal and dual mesh.
 
-Figure :numref:`projectionCDO` summarized the different projection
+Figure :numref:`fig:projectioncdo` summarized the different projection
 between control volumes in CDO. It is useful to keep it in mind when one
 want to discretised an equation on a specific control volume.
 
-.. _projectionCDO:
-.. figure:: ./FIGURES/CDO.png
-   :width: 800
-   :align: center
+.. _fig:projectioncdo:
+
+.. figure:: FIGURES/CDO.png
+   :class: custom-image-class
 
    Paths between primal and dual mesh entities and corresponding operators.
 
@@ -194,7 +193,7 @@ Then the local reconstruction of the circulation
 :math:`\{\underline{l}_{e,c}\}_{e\in E_c}` on the piecewise partition
 volume :math:`p_{e',c}, \ e' \in E_{c}` corresponding to the subvolume
 of the cell attached to the edge :math:`e'`, the center of the cell and
-the center of the adjacent face (Figure :numref:`fig:partition`). It
+the center of the adjacent face (Figure :numref:`fig:partition_cdo`). It
 written:
 
 .. math:: \underline{l}_{e,c}|_{p_{e',c}} = \frac{\beta}{|p_{e,c}|} \underline{\tilde{f}}_c(e) \delta_{e,e'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{f}}_c(e') \otimes \underline{e'}}{|p_{e',c}|}\right)\frac{\underline{\tilde{f}}(e)}{|c|}
@@ -202,7 +201,7 @@ written:
 Then the local reconstruction of the flux :math:`\{\underline{l}_{f,c}\}_{f\in F_c}` on the piecewise partition
 volume :math:`p_{f',c}, \ f' \in F_{c}` corresponding to the subvolume
 of the cell attached to the face :math:`f'`, and the center of the cell
-(Figure :numref:`partition`). It written:
+(Figure :numref:`fig:partition_cdo`). It written:
 
 .. math:: \underline{l}_{f,c}|_{p_{f',c}} = \frac{\beta}{|p_{f,c}|} \underline{\tilde{e}}_c(f) \delta_{f,f'} + \left(\mathbb{I} - \beta \frac{\underline{\tilde{e}}_c(f') \otimes \underline{f'}}{|p_{f',c}|}\right)\frac{\underline{\tilde{e}}(f)}{|c|}
 
@@ -211,13 +210,12 @@ The choice for the :math:`\beta` parameter must be
 while the choice :math:`\beta = \frac{1}{\sqrt{dim}}` corresponds to the
 choice made in SUSHI schemes
 
-.. _partition:
-.. figure:: ./FIGURES/subvolume.png
-  :name: fig:partition
-  :alt: partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
-  :width: 800
+.. _fig:partition_cdo:
 
-  partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
+.. figure:: FIGURES/subvolume.png
+   :width: 90%
+
+   Partitioning of the cell into elementary sub-volumes attached to face :math:`p_{f,c}` (left) and to edge :math:`p_{e,c}` (right)
 
 Additional reconstruction operator
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
