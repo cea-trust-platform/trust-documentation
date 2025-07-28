@@ -185,7 +185,7 @@ Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
 
 -  The MPFA-O(:math:`\eta`) method presented in :cite:p:`ER98`
 
--  The MPFA-symm method presented in :cite:p:`lP05a`, :cite:p:`lP05b`, :cite:p:`LePotier2017`
+-  The MPFA-symm method presented in :cite:p:`LP05a`, :cite:p:`LP05b`, :cite:p:`LePotier2017`
 
 The choice of the method is based on a coercivity condition. Let’s briefly introduce the core ideas of gradient approximation using MPFA methods. First, a dual mesh is constructed. An exemple of dual mesh for a tringular mesh is presented in :numref:`fig:scheme_mpfa`, where the red dot are the primal vertices and black lines the primal faces. The procedure to build the dual mesh in :numref:`fig:scheme_mpfa` is as follows:
 
@@ -279,7 +279,7 @@ PolyMAC_P0_P1_NC
 ================
 
 
-PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEG10`.
+PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEGH10`.
 
 References
 ==========

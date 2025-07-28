@@ -1,4 +1,4 @@
-## Problems
+## Problems types in TRUST
 
 The problem is one on the basic TRUST classes (known as `Probleme_base` in the C++ code). It is impossible to run a TRUST computation without defining explicitly what problem you want to solve. 
 

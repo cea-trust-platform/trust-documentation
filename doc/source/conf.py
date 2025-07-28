@@ -52,7 +52,7 @@ extensions = [
 ]
 
 numfig = True
-
+autosectionlabel_prefix_document = False
 htmlhelp_basename = 'TRUST Documentation'
 
 # To show or not private members

@@ -1,4 +1,4 @@
-## Boundary Conditions
+## Boundary conditions in TRUST
 
 
 There is no sense to talk about numerical simulations without talking about the boundary conditions ! In order to close the discretized the system, consistent boundary conditions must be defined.

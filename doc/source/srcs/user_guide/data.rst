@@ -24,7 +24,7 @@ You have to define the problem type that you wish to solve.
    
    Pb_type my_problem
 
-You can find all the available **TRUST** problems via `this link <https://cea-trust-platform.github.io/classes/problems>`__.
+You can find all the available **TRUST** problems at :ref:`Problems types in TRUST`
 
 .. https://cea-trust-platform.github.io/classes/problems
 

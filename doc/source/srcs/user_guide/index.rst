@@ -1,19 +1,26 @@
 TRUST User Guide
 ****************
 
-You can found here some more precise informations regarding available options in TRUST:
+.. figure:: https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true
+   :alt: image description
+   :width: 600px
+   :align: center
+
+You will find here the TRUST user guide, giving you a brief overview on how to use TRUST (working principles, brief syntax and tools overview). It will help you to get started, more details are given in the :ref:`TRUST General Guide`.
+
+**Do not forget that you can use the research bar located on the top right of your screen to quickly lookup a precise element or keyword.**
+
+**Table Of Contents**
+
 
 .. toctree::
-    :maxdepth: 1
-    
-    problems
-    boundary-conditions
-    solvers
-    discretizations
-    temporal-schemes
-    spatial-schemes
-    post-processing
-    pre-processing
-    
-    
-    
+    :maxdepth: 2
+
+    intro
+    data
+    pb
+    end_data
+    post_process
+    para
+    refs
+ 
