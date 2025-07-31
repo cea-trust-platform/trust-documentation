@@ -14,27 +14,45 @@ center of each control volume
 :math:`cv \in \{ E, F, \Sigma, V \}`
 corresponding respectively to the cells, the faces, the egdes and the
 points localization, called :math:`x_{cv}` has to be introduce. Then we
-introduce (see Figure :numref:`fig:dual_mesh_cdo`):
+introduce:
 
 -  | The dual cell :math:`\widetilde{v}` is located at the
-     center of gravity of the cell : :math:`x_{c}`.
+     center of gravity of the cell : :math:`x_{c}`, see Figure :numref:`fig:dual_cell_cdo`.
 
 -  | The dual face :math:`\widetilde{\sigma}` is the line that
      links the gravity center of the face :math:`x_f` to the gravity
-     center of the neighbour cells of the face.
+     center of the neighbour cells of the face, see Figure :numref:`fig:dual_face_cdo`.
 
 -  The dual edge :math:`F` is the surface that
    links the gravity center of all of the neighbouring cells
    :math:`x_{e}`, the gravity center of all of the neighbouring faces
-   :math:`x_{f}` and the gravity center of the edge :math:`x_{\sigma}`.
+   :math:`x_{f}` and the gravity center of the edge :math:`x_{\sigma}`, see Figure :numref:`fig:dual_edge_cdo`.
 
-.. _fig:dual_mesh_cdo:
+.. _fig:dual_cell_cdo:
 
-.. figure:: FIGURES/Dual_mesh_PolyMAC.png
+.. figure:: FIGURES/Dual_cell.png
+   :class: custom-image-class
+   
+   Dual cell when using PolyMAC_CDO
+  
+
+  
+.. _fig:dual_face_cdo:
+
+.. figure:: FIGURES/Dual_face.png
    :class: custom-image-class
   
-   Dual mesh of PolyMAC.
+   Dual face when using PolyMAC_CDO
 
+
+.. _fig:dual_edge_cdo:
+
+.. figure:: FIGURES/Dual_edge.png
+   :class: custom-image-class
+   
+   Dual edge when using PolyMAC_CDO
+   
+   
 Location of the unknowns
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
