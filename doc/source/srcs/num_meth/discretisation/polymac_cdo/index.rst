@@ -23,7 +23,7 @@ introduce:
      links the gravity center of the face :math:`x_f` to the gravity
      center of the neighbour cells of the face, see Figure :numref:`fig:dual_face_cdo`.
 
--  The dual edge :math:`F` is the surface that
+-  The dual edge :math:`\widetilde{f}` is the surface that
    links the gravity center of all of the neighbouring cells
    :math:`x_{e}`, the gravity center of all of the neighbouring faces
    :math:`x_{f}` and the gravity center of the edge :math:`x_{\sigma}`, see Figure :numref:`fig:dual_edge_cdo`.
@@ -61,13 +61,13 @@ properties. A circulation is discretised over an edge, a flux over a
 face, a potential over the dual cell. Therefore we have:
 
 -  The pressure :math:`p` is stored at the dual cell:
-   :math:`p_{\tilde{v}} = p(x_{c},t)`.
+   :math:`p_{\tilde{v}} = p(x_{ev},t)`.
 
 -  The normal component of the velocity with respect to a face :math:`f`
    is stored as: :math:`v_{f} = \frac{1}{|f|} \int u \cdot n dS`.
 
--  The tangential vorticity with respect to an edge :math:`e` is stored
-   as: :math:`\omega_{e} = \frac{1}{|e|} \int \omega \cdot \tau dl`.
+-  The tangential vorticity with respect to an edge :math:`\sigma` is stored
+   as: :math:`\omega_{\sigma} = \frac{1}{|\sigma|} \int \omega \cdot \tau dl`.
 
 CDO scheme
 ----------
@@ -112,19 +112,19 @@ the dual mesh
 Discrete gradient
 ^^^^^^^^^^^^^^^^^
 
-.. math:: \text{GRAD}:\mathcal{V} \rightarrow \mathcal{E}, \hspace{1cm} \forall e \in \mathcal{E}, \forall \mathbf{p} \in \mathcal{V}, \hspace{1cm} \text{GRAD}(\mathbf{p})|_{\tilde{e}} = \sum_{\tilde{v} \in V_{e}} \iota_{v,e}p_{v},
+.. math:: \text{GRAD}:{V} \rightarrow \mathcal{\Sigma}, \hspace{1cm} \forall \sigma \in \Sigma, \forall \mathbf{p} \in V, \hspace{1cm} \text{GRAD}(\mathbf{p})|_{\tilde{\sigma}} = \sum_{\tilde{v} \in V_{\sigma}} \iota_{v,\sigma}p_{v},
 
-where :math:`V_{e} := \{v \in V | v \subset \partial e \}` and
-:math:`\iota_{v,e} = +1` if :math:`\tau_{e}` points towards :math:`v`,
-:math:`\iota_{v,e} = -1` otherwise
+where :math:`V_{\sigma} := \{v \in V | v \subset \partial \sigma \}` and
+:math:`\iota_{v,\sigma} = +1` if :math:`\tau_{\sigma}` points towards :math:`v`,
+:math:`\iota_{v,\sigma} = -1` otherwise
 
-.. math:: \widetilde{\text{GRAD}}:\widetilde{\mathcal{V}} \rightarrow \widetilde{\mathcal{E}}, \hspace{1cm} \forall \tilde{e} \in \widetilde{\mathcal{E}}, \forall \mathbf{p} \in \widetilde{\mathcal{V}}, \hspace{1cm} \widetilde{\text{GRAD}}(\mathbf{p})|_{\tilde{e}} = \sum_{\tilde{v} \in \widetilde{V}_{\tilde{e}}} \iota_{\tilde{v},\tilde{e}}p_{\tilde{v}}
+.. math:: \widetilde{\text{GRAD}}:\widetilde{{V}} \rightarrow \widetilde{{\Sigma}}, \hspace{1cm} \forall \tilde{\sigma} \in \widetilde{\mathcal{\Sigma}}, \forall \mathbf{p} \in \widetilde{\mathcal{V}}, \hspace{1cm} \widetilde{\text{GRAD}}(\mathbf{p})|_{\tilde{\sigma}} = \sum_{\tilde{v} \in \widetilde{V}_{\tilde{\sigma}}} \iota_{\tilde{v},\tilde{\sigma}}p_{\tilde{v}}
 
 where
-:math:`\widetilde{V}_{\tilde{e}} := \{\tilde{v} \in \widetilde{V} | \tilde{v} \subset \partial \tilde{e} \}`
-and :math:`\iota_{\tilde{v},\tilde{e}} = +1` if :math:`\tau_{\tilde{e}}`
+:math:`\widetilde{V}_{\tilde{\sigma}} := \{\tilde{v} \in \widetilde{V} | \tilde{v} \subset \partial \tilde{\sigma} \}`
+and :math:`\iota_{\tilde{v},\tilde{\sigma}} = +1` if :math:`\tau_{\tilde{\sigma}}`
 points towards :math:`\tilde{v}`,
-:math:`\iota_{\tilde{v},\tilde{e}} = -1` otherwise
+:math:`\iota_{\tilde{v},\tilde{\sigma}} = -1` otherwise
 
 Discrete divergence
 ^^^^^^^^^^^^^^^^^^^
