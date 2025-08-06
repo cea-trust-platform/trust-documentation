@@ -13,12 +13,6 @@ dependencies:
   - ipywidgets
   - graphviz
   - sphinx>=4.0,<7.0
-  - sphinx-book-theme 
-  - myst-parser              # for myst_parser extension
-  - sphinxcontrib-bibtex     # for sphinxcontrib.bibtex extension
-  
-  # Alternative: install via pip if not available in conda
-  - pip
-  - pip:
-    - sphinxcontrib-bibtex   # if conda version doesn't work
-    - myst-parser           # if conda version doesn't work
+  - sphinx-book-theme
+  - myst-parser
+  - sphinxcontrib-bibtex
