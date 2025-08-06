@@ -61,10 +61,6 @@ htmlhelp_basename = 'TRUST Documentation'
 # To show or not private members -
 autodoc_default_options = {"members": True, "undoc-members": True, "private-members": False}
 
-# Myst extensions
-myst_enable_extensions = ["dollarmath", "amsmath", "colon_fence"]
-myst_heading_anchors = 1
-
 # For math formula 
 mathjax3_config = {
     'tex': {
@@ -124,7 +120,27 @@ bibtex_reference_style = 'author_year'
 suppress_warnings = ["config.cache"]
 
 # To allow markdown pages
-source_suffix = {'.rst': 'restructuredtext', '.md': 'markdown'}
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
+
+# Myst configuration
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist", 
+    "dollarmath",
+    "html_admonition",
+    "html_image",
+    "substitution",
+    "tasklist"
+]
+myst_heading_anchors = 1
+
+rst_prolog = """
+.. role:: blue
+   :class: blue-text
+"""
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp

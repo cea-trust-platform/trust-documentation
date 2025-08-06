@@ -11,9 +11,11 @@ Hi there 👋 and welcome to the **TRUST documentation** page !
 
 This page provides:
 
-- **TRUST Generic Guide** can be found there: :ref:`TRUST User Guide`
+- **TRUST User Guide** can be found there: :ref:`TRUST User Guide`
 
-- **TRUST User Guide** can be found there: :ref:`TRUST General Guide`
+- **TRUST General Guide** can be found there: :ref:`TRUST General Guide`
+
+- **TRUST Tutorials** can be found there: :ref:`TRUST Tutorials`
 
 - **TRUST Numerical Methods Documentation** can be found there: :ref:`TRUST Numerical Methods`
 
@@ -45,14 +47,12 @@ Do not forget to cite TRUST if you use it, see: https://cea-trust-platform.githu
 
 **Table Of Contents**
 
-
-(please take a look at the links above - the below is just used for PDF generation, and does not list everything)
-
 .. toctree::
    :maxdepth: 1
 
    _srcs_processed/user_guide/index
    _srcs_processed/general_guide/index
+   _srcs_processed/tutorials/index
    _srcs_processed/num_meth/index
    _srcs_processed/reference/index
    _srcs_processed/dev_guidelines/index
