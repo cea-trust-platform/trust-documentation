@@ -1,16 +1,18 @@
 User tutorials
 ==============
 
-In this section, you can find tutorials for TRUST users:
+In this section, you can find tutorials for TRUST users. Start by creating a repository that will store each and every tutorials:
+```
+mkdir TRUST_TUTORIALS
+```
 
 .. toctree::
    :maxdepth: 1
 
-   Tuto_TRUST_user.md
-.. obstacle.md
-.. heat_transfer.md
-.. dilatable_flow.md
-.. periodic_channel.md
-.. tank_filling.md
-.. triocfd.md
-.. validation_form.md
+   obstacle.md
+   heat_transfer.md
+   dilatable_flow.md
+   periodic_channel.md
+..   tank_filling.md
+   triocfd.md
+   validation_form.md

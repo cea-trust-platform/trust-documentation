@@ -5,3 +5,8 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+.blue-text {
+    color: #003366; /* bleu foncé */
+    font-weight: bold; /* optionnel */
+}

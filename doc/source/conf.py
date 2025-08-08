@@ -131,10 +131,16 @@ myst_enable_extensions = [
     "deflist", 
     "dollarmath",
     "html_admonition",
+    "html_image",
     "substitution",
-    "tasklist",
+    "tasklist"
 ]
 myst_heading_anchors = 1
+
+rst_prolog = """
+.. role:: blue
+   :class: blue-text
+"""
 
 # Generating doxygen from here - this will run first, before RST processing from sphinx:
 import subprocess as sp
