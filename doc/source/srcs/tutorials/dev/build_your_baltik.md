@@ -53,8 +53,8 @@ $ git commit -m "Initial commit"
     
 Remark: If you are not able to commit files, you should first configure your username and email in git with :
 ```
-git config - -global user.name `Your Name`\
-git config - -global user.email you@example.com
+$git config - -global user.name `Your Name`\
+$git config - -global user.email you@example.com
 ```
 
 -   Display your working tree status:
@@ -300,7 +300,7 @@ Entree& Class::interpreter(Entree& is)
 {
 int opt = 0;
 Nom pb_name;
-Cerr <‌< "Reading parameters of A from a stream (cin or file)" <‌< finl;
+Cerr << "Reading parameters of A from a stream (cin or file)" << finl;
 Param param(que_suis_je());
 // Register parameters to be read:
 param.ajouter("option",&opt);
@@ -309,7 +309,6 @@ param.ajouter("problem",&pb_name,Param::REQUIRED);
 // if unknown keyword is read or if braces are not found at the
 // beginning and the end:
 param.lire_avec_accolades_depuis(is);
-...
 return is;
 }
 
@@ -319,7 +318,7 @@ return is;
 - Add a print at the end of the method `interpreter(Entree&)` and find how to print the domain name:
 
 ```cpp
-Cerr <‌< "Option number " <‌< option_number <‌< " has been read on the domain named " <‌< ??? <‌< finl;
+Cerr << "Option number " << option_number << " has been read on the domain named " << ??? << finl;
 ```
 
 Then build et run your case in debug:
@@ -358,7 +357,7 @@ Look for help inside the `Domaine`, `Bord`, `Frontiere` classes in Eclipse or in
 
 Print these information in the terminal:
 ```cpp
-Cerr <‌< "The boundary named " <‌< ??? <‌< " has " <‌< ??? <‌< "faces." <‌< finl;
+Cerr << "The boundary named " << ??? << " has " << ??? << "faces." << finl;
 ```
 
 Afterwards, compute the sum of the control volumes of a domain discretized in VEF. Information about control volumes is in the `Domaine_VF` class (discretized domain) which can't be accessed from the domain, but only from the problem.
@@ -378,7 +377,7 @@ my_first_class { domain dom option 0 problem pb }
 - Print the size of the control volumes array with something like:
 
 ```cpp
-Cerr <‌< control_volumes.size() <‌< finl;
+Cerr << control_volumes.size() << finl;
 ```
 
 Where `control_volumes` is a **DoubleVect** returned by the `Domaine_VF::volumes_entrelaces()` method.
@@ -471,11 +470,11 @@ You can also add some more printings, and here is how:
 
 - Add these lines after `Process::imprimer_ram_totale(1);` :
 ```cpp
-std::cout << `Hello World to cout.` << std::endl;
-std::cerr << `Hello World to cerr.` << std::endl;
-Cout << `Hello World to Cout.` << finl;
-Cerr << `Hello World to Cerr.` << finl;
-Process::Journal() << `Hello World to Journal.` << finl;*
+std::cout << "Hello World to cout." << std::endl;
+std::cerr << "Hello World to cerr." << std::endl;
+Cout << "Hello World to Cout." << finl;
+Cerr << "Hello World to Cerr." << finl;
+Process::Journal() << "Hello World to Journal." << finl;
 ```
 
 Then, in a terminal, rebuild the code:
@@ -586,296 +585,204 @@ $ meld Cx.TU PAR_Cx.TU &
 $ meld Cx_csv.TU PAR_Cx_csv.TU & 
 ```
 
--   Copy a debog test case:
-    `$ cd $project_directory/build `
-    `$ trust -copy Debog_VEF `
-    `$ cd Debog_VEF `
+### Debog test cases
 
--   Open the Debog_VEF.data file and search the `Debog` command.
-
--   Sequential run:
-    `$ trust Debog_VEF `
-
--   You get `seq` and `faces` files.
-
--   Partitionning step and creation of the parallel data file:
-    `$ trust -partition Debog_VEF 2 `
-
--   Verify the parallel data file, you must have now `Debog pb seq
-    faces 1.e-6 **1**`.
-
--   Run in parallel:
-    `$ trust PAR_Debog_VEF 2 `
-
--   You get debog\*.log and DEBOG files.
-
--   If a value of an array differs between the two calculations and the
-    difference is greater than 1.e-6 then `ERROR` message appears in
-    the log files else we will get `OK` (cf debog.log).\
-
--   Add a debog instruction in your file mon_main.cpp located in
-    \$project_directory/Trust_fixes, after the `Hello world` prints
-    put:
-    `double var = 2.5;`
-    `Debog::verifier("- Debog test message",var);`
-
--   Do not forget to add the `#include \<Debog.h\>`!
-
--   Then compile and do the sequential run.
-
--   You can see a first message.
-
--   Then do the parallel run and check the debog.log file.
-
--   Becarefull the debog instruction in the data file must be between
-    the `Discretize` and `Read pb` lines.
-
--   For more information:
+In TRUST, there are also deog test cases, such as `Debog_VEF`. Copy this test case to see what it does:
 ```
-$ trust -doc &
-$\rightarrow$ Open the TRUST Generic Guide
-$\rightarrow$ Click onto the TRUST Reference Manual
-$\rightarrow$ Search for `Debog` keyword.
+$ cd $project_directory/build 
+$ trust -copy Debog_VEF 
+$ cd Debog_VEF 
 ```
+
+The, open `the Debog_VEF.data` file and search the `Debog` command. You can also try it by running a sequential calculation:
+```
+$ trust Debog_VEF 
+```
+
+You should get two new files: `seq` and `faces`.
+
+Then let's try a parallel run to see the differences:
+```
+$ trust -partition Debog_VEF 2 
+$ trust PAR_Debog_VEF 2
+```
+Verifyr the data file, you should have now:
+```
+Debog pb seq faces 1.e-6 **1**
+```
+
+Moreover, you should also get a debog\*.log and other DEBOG files netx to your data file.
+
+Inside the log file, you will have the message `ERROR`  if the difference of an array value between you sequential and parallel run is greater than 1.e-6. Otherwise, you will have read `OK`.
+
+You can add a debog instruction in your file mon_main.cpp located in `\$project_directory/Trust_fixes`. After the `Hello world` prints put:
+```cpp
+double var = 2.5;
+Debog::verifier("- Debog test message",var);
+```
+**Do not forget to add the `#include \<Debog.h\>`!**
+
+Then re-compile and do run sequential calculation and a parallel calculation and check thedebog.log file. Becarefull the debog instruction in the data file must be between the `Discretize` and `Read pb` lines.
+
+For more information, go check the {TRUST Reference Manual}`../../reference/index.rst` and search for the Debog Keyword.
 
 
 ## Validation form and test cases
 
-### New share/Validation/Rapports_automatiques
+For each of your new deceloppement in TRUST, if you want them to be integrated, tt is mandatory to create a validation form. They are based on Jupyter Notebooks. Let's try to create one.
 
--   Go the the directory where to create your notebook:
-    `$ cd $project_directory`
-    `$ cd share/Validation/Rapports_automatiques`
+First, go the the directory where to notekook are stored:
+```
+$ cd $project_directory
+$ cd share/Validation/Rapports_automatiques
+```
+Now, create a new directory for your new validation form:
+```
+$ mkdir -p upwind/src
+```
+Then, add the following files:
+```
+$ cp MY_FIRST_BALTIK/upwind/upwind.data upwind/src
+$ cp MY_FIRST_BALTIK/upwind/upwind.geo upwind/src
+```
+To create the Jupyter Notebook, run the following:
+```
+$ cd upwind
+$ trust -jupyter
+```
 
--   Create a new directory for your new validation form:
-    `$ mkdir -p upwind/src`
+Now you should have a upwind.ipynb file, i.e. a new Jupyter notebook. Do not forget to add it to your git repository.
 
--   Add the needed files (data file, mesh & .ipynb file):
-    `$ cp MY_FIRST_BALTIK/upwind/upwind.data upwind/src`
-    `$ cp MY_FIRST_BALTIK/upwind/upwind.geo upwind/src`
+You can now run the validation for by doing:
+```
+$ cd upwind
+$ Run_fiche
+```
+Or even build directly a PDF report from the notebook:
+```
+$ Run_fiche -export_pdf
+```
 
--   Create a new Jupyter validation form:
-    `$ cd upwind`
-    `$ trust -jupyter`
+You can now add it to the non-regression test case base:
+```
+$ cd $project_directory
+$ make check_optim
+```
 
--   Now you have a upwind.ipynb file (i.e. a new Jupyter notebook).
+Howevern you can see error occuring in  PAR_upwind_jdd1. Let us fix that error.
 
--   Add it to your git repository:
-    `$ git add upwind`
-    `$ git commit -m "New validation notebook"`
-
--   Run this Jupyter notebook:
-    `$ cd upwind/`
-    `$ Run_fiche`
-
--   Build directly a PDF report from the notebook:
-    `$ Run_fiche -export_pdf`
-
--   Open the pdf report:
-    `$ evince build/rapport.pdf &`
-
-
-###Validation test case
-
--   Create automatically the non-regression test case:
-    `$ cd $project_directory`
-    `$ make check_optim`
-    *Creation of upwind_jdd1*\
-    *Creation of upwind_jdd1/lien_fiche_validation*\
-    *Extracting test case (upwind.data) \...End.*\
-    *Creation of the file upwind_jdd1.lml.gz*\
-    *\...*\
-
--   $\rightarrow$ You can see in the report table that PAR_upwind_jdd1
-    has crashed: `CORE` message.\
-
--   Lets check the git status before solving this problem:
-    `$ git status -uno`
-
--   A new test case based on your validation form has been created in
-    the directory:
-    \$project_directory/tests/Reference/Validation/upwind_jdd1
-
--   Now we want to correct the error, so copy the test case:
+First, copy the test case:
+```
     `$ cd $project_directory/build`
     `$ trust -copy upwind_jdd1`
-    ERROR\...
+```
 
--   We have to re-run the configure script to take into account the new
-    test case:
-    `$ cd $project_directory`
-    `$ ./configure`
-    `$ cd build`
-    `$ trust -copy upwind_jdd1`
+An error should occur. It is because it has not been taken into account in the `./configure`, so you need to do it again and do again the previous step.
 
--   Now we will analyse the error:
-    `$ cd upwind_jdd1`
-    `$ trust -partition upwind_jdd1`
-    `$ trust PAR_upwind_jdd1 2`
+Now, you have to re-run the configure script to take into account the newtest case:
+```
+$ cd $project_directory
+$ ./configure
+$ cd build
+$ trust -copy upwind_jdd1
+```
+And analyse the error:
+```
+$ cd upwind_jdd1
+$ trust -partition upwind_jdd1
+$ trust PAR_upwind_jdd1 2
+```
+Correct the data file PAR_upwind_jdd1.data and re-run it.
 
--   Correct the data file PAR_upwind_jdd1.data and re-run it.
+If it works, update the data file in `\$project_directory/share/Validation/Rapports_automatiques/upwind/src\`: (`Scatter ../upwind/DOM.Zones dom` $\rightarrow$ `ScatterDOM.Zones dom`)
 
--   If it's ok, update the data file in
-    \$project_directory/share/Validation/Rapports_automatiques/upwind/src\
-    (`Scatter ../upwind/DOM.Zones dom` $\rightarrow$ `Scatter
-    DOM.Zones dom`)\
+Then, relaunch the last test cases which did not run:
+```
+$ cd $project_directory
+$ make check_last_pb_optim
+```
+Do not forget to add it to you git project.
 
--   To Relaunch the last test cases which do not run:
-    `$ cd $project_directory`
-    `$ make check_last_pb_optim`
-
--   Add this non-regression test in configuration:
-    `$ git status -uno`
-    `$ git add tests/Reference/Validation/upwind_jdd1/upwind_jdd1.data`
-
--   Commit the modifications on your git repository:
-    `$ git commit -m "New reference test"`
-    `$ git log`
-
--   To run all the non regression tests with a optimized binary:
-    `$ make check_all_optim`
-
--   To run all the non regression tests with a debug binary:
-    `$ make check_all_debug`
-
--   To create an archive to share your work:
-    `$ make distrib`
-    `$ ls`
-
--   You have now an archive in tar.gz format of your baltik project.
-
-
-## Code coverage exercise
-
-
--   We want to run test cases using rational Runge-Kutta scheme of ordre
-    2.
-
-    -   For this go to the Doxygen documentation of RRK2 class to see
-        the methods of this class.
-
-    -   Use the `trust -check function\|class\|class::method` command
-        to find and launch tests cases.
-
-    -   For example:
-        `$ trust -check RRK2::RRK2`
-
+Eventually, run all the non regression tests with a optimized binary:
+```
+$ make check_all_optim
+```
+You can also do it in debug:
+```
+$ make check_all_debug
+```
 
 ## Tools
 
 ### Debug with GDB
 
-With Eclipse: Run a test case with GDB:
-$\rightarrow$ `Debug As` and `Debug configurations\...` from
-`my_project`\
-$\rightarrow$ in `Arguments`, `Program arguments:" upwind\
-$\rightarrow$ `Working directory:" MY_FIRST_BALTIK/upwind/\
-$\rightarrow$ `Apply` and `Debug`\
-For more information about GDB commands, refer to the help menu.\
+GDB is a vital tool for each and every TRUST developper. It will help you a lot for debugging. You can use it from Eclipse or with th terminal:
 
-Or in a terminal:
+- Run a test case with GDB using Eclipse IDE:
+$\rightarrow$ `Debug As` and `Debug configurations\...` from `my_project`
 
--   Run a test case with GDB:
-    `$ cd MY_FIRST_BALTIK/upwind/`
-    `$ exec=$exec_debug trust -gdb upwind`
+$\rightarrow$ in `Arguments`, `Program arguments:" upwind
 
--   You are now in GDB.
+$\rightarrow$ `Working directory:" MY_FIRST_BALTIK/upwind/
 
--   Add a breakpoint and stop into the SSOR preconditionner:
-    `(gdb) break SSOR::ssor`
+$\rightarrow$ `Apply` and `Debug`
 
--   Run the test case:
-    `(gdb) run upwind`
+For more information about GDB commands, refer to the help menu.
 
--   Have a look at the stack\
-    `(gdb) where`
+- GDB with a terminal:
 
--   Go to the next instruction:
-    `(gdb) n`
-
--   Print an array:
-    `(gdb) print tab1`
-
--   Or print matrice.tab1\_ if `optimized out` message printed:
-    `(gdb) print tab1[10]`
-
--   Print only a value of an array:
-    `(gdb) dumpint tab1 `[`# Dump the array`]{style="color: blue"}\
-    `(gdb) print tab1.size_array() `[`# Array size`]{style="color: blue"}\
-    `(gdb) up`
-    `(gdb) list 100`
-
--   Print lines after the 100th line:
-    `(gdb) print matrice`
-    `(gdb) print matrice.que_suis_je() `[`# Kind of matrix ?`]{style="color: blue"}\
-    `(gdb) print matrice.que_suis_je().nom_ `[`# Kind of matrix ?`]{style="color: blue"}
-    `(gdb) up 6 `[`# Move up 6 levels`]{style="color: blue"}\
-    `(gdb) list 865`
-
--   Print others variables:
-    `(gdb) `[`# Pressure field`]{style="color: blue"}\
-    `(gdb) print la_pression->que_suis_je().nom_`
-    `(gdb) `[`# Pressure values (DoubleTab)`]{style="color: blue"}\
-    `(gdb) print la_pression->valeurs()`
-    `(gdb) `[`# DoubleTab dimension`]{style="color: blue"}\
-    `(gdb) print la_pression->valeurs().nb_dim()`
-    `(gdb) `[`# Dump the field values`]{style="color: blue"}\
-    `(gdb) pttab la_pression->valeurs()`
+Run a test case with GDB:
+```
+$ cd MY_FIRST_BALTIK/upwind/
+$ exec=$exec_debug trust -gdb upwind
+```
+You are now in GDB.
 
 
 ### Find memory bugs with valgrind
 
--   Run a test case with Valgrind:
-    `$ cd $project_directory`
-    `$ source env_my_project.sh`
-    `$ cd build/Cx/`
-    `$ VALGRIND=1 trust Cx`
-
--   The Valgrind messages appear on the screen with the beginning of
-    each line the same number. For example:
-    `$ ==26645== ...`
-
--   The last line indicates if errors have occurred. An example with 0
-    error:
-    `$ ==26645== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)`
-
-```{=html}
-<!-- -->
+An other usefull tool is valgrind. It will help you find memory leaks. To use valgrind with TRUST, you need to do as follows:
 ```
--   Now we will modify the sources in your baltik project to generate a
-    Valgrind error on the Cx test case.\
+$ cd $project_directory
+$ source env_my_project.sh
+$ cd build/Cx/
+$ trust -valgrind Cx
+```
+The Valgrind messages appear on the screen with the beginning of each line the same number. For example:
+```
+$ ==26645== ...
+```
+The simulation will take way more time. The last line indicates if errors have occurred. An example with 0 error:
+```
+$ ==26645== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
 
--   Edit the `my_first_class.cpp` file and remove initialization the
-    following line (before computing the sum of control volumes):
+Now we will modify the sources in your baltik project to generate a Valgrind error on the Cx test case:
+
+-   Edit the `my_first_class.cpp` file and remove the following line (before computing the sum of control volumes):
+```cpp
     double sum = 0;
-
+```
 -   Edit `my_first_class.h` and add in protected:
+``` cpp
     double sum; // do not initialize it to 0
-
--   Rebuild your project and run the test case:
-    `$ cd $project_directory`
-    `$ make debug optim`
-    `$ cd build/Cx/`
-    `$ exec=$exec_opt trust Cx # in mode optim, no error!`
-    `$ exec=$exec_debug trust Cx # in mode debug, no error too`
-    `$ VALGRIND=1 exec=$exec_opt trust Cx # in mode valgrind`
-    Valgrind detects that there is a `Conditional jump or move depends
-    on uninitialised value(s)`\
-    On the other hand, in this case, there are errors.\
-    `$ ==28400== ERROR SUMMARY: 772 errors from 114 contexts`
-    `NB: In valgrind+debug mode, you’ll get the file+line number `
+```
+-   Rebuild your project and run the test case in optim, debug and with valgrind. The two first run will not spot any error, but valgrind will find one.
 
 
 ## Solutions and going further
 
 
--   You can find the commented solution of the exercise:
-    `$ cd $TRUST_ROOT/doc/TRUST/exercices/my_first_class`
+You can find the commented solution of the exercise:
+```
+$ cd $TRUST_ROOT/doc/TRUST/exercices/my_first_class
+```
 
--   You can practice on a tutorial:
-    `$ cd $TRUST_ROOT/doc/TRUST/exercices/`
-    `$ evince equation_convection_diffusion/rapport.pdf &`
-
+You can practice on another tutorial:
+```
+$ cd $TRUST_ROOT/doc/TRUST/exercices/
+$ evince equation_convection_diffusion/rapport.pdf &
+```
 
 
 
