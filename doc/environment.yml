@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
+  - python=3.10
   - doxygen=1.9.8
   - sphinx-material
   - numpy
@@ -12,7 +12,8 @@ dependencies:
   - pandas
   - ipywidgets
   - graphviz
-  - sphinx>=4.0,<7.0
-  - sphinx-book-theme
+  - sphinx>=7.0,<8.0  
+  - sphinx-book-theme>=1.1.2  
   - myst-parser
   - sphinxcontrib-bibtex
+
