@@ -1,9 +1,9 @@
-name: rtd38
+name: trust-doc
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
+  - python=3.10
   - doxygen=1.9.8
   - sphinx-material
   - numpy
@@ -12,13 +12,8 @@ dependencies:
   - pandas
   - ipywidgets
   - graphviz
-  - sphinx>=4.0,<7.0
-  - sphinx-book-theme 
-  - myst-parser              # for myst_parser extension
-  - sphinxcontrib-bibtex     # for sphinxcontrib.bibtex extension
-  
-  # Alternative: install via pip if not available in conda
-  - pip
-  - pip:
-    - sphinxcontrib-bibtex   # if conda version doesn't work
-    - myst-parser           # if conda version doesn't work
+  - sphinx>=7.0,<8.0  
+  - sphinx-book-theme>=1.1.2  
+  - myst-parser
+  - sphinxcontrib-bibtex
+

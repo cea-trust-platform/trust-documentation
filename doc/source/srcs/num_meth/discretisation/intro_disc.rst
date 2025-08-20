@@ -38,8 +38,8 @@ The set of cells will be called :math:`E`. The set of faces of a peculiar cell :
 
 where :math:`|\cdot|` will be a global measure operator over the considered control volume. For example, :math:`|e|` refers to the volume of the cell :math:`e`, :math:`|f|` to the surface of the face :math:`f` and :math:`|\sigma|` to the length of the edge :math:`\sigma`. Unknown :math:`u` refers to the velocity and :math:`p` refers to the pressure.
 
-Bibliographie
--------------
+References
+----------
 
 .. bibliography::
     :filter: docname == env.docname
