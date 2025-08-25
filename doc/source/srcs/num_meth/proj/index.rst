@@ -1,7 +1,7 @@
 Projection methods
 ==================
 
-Initially introduced in [C67]_ - [T69]_, pressure projection methods are a way to separate pressure and velocity unknowns. 
+Initially introduced in :cite:`C67` - :cite:`T69`, pressure projection methods are a way to separate pressure and velocity unknowns. 
 These methods are usefull to improve calculation performances, especially when the degrees of freedom are high.
 
 The idea of these methods has two main steps:
@@ -17,7 +17,7 @@ In TRUST code, several projection methods have been implemented:
 * The PISO algorithm
 
 Note these methods introduce a splitting error, which can be neglected comparing to the error due to monolitical resolution of the velocity-presure sytem with bad condition number with a lot of degrees of freedom.
-An overview of projection method for incompressible flows is well presented in [GMS06]_ and performance comparison is presented in [JJA07]_.   
+An overview of projection method for incompressible flows is well presented in :cite:`GMS06` and performance comparison is presented in :cite:`JJA07`.   
 
 
 Initial system 
@@ -63,7 +63,7 @@ Chorin algorithm
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-The first projection method was proposed by [C67]_ and [T69]_. In this algorithm, the pressure is not taken for the intermediate velocity.
+The first projection method was proposed by :cite:`C67` and :cite:`T69`. In this algorithm, the pressure is not taken for the intermediate velocity.
 
 
 Step 1 : velocity prediction 
@@ -188,7 +188,7 @@ Note that the reconstructed system is the same as the Chorin algorithm, but the 
 SIMPLE algorithm 
 ~~~~~~~~~~~~~~~~
 
-Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by [PS72]_, it is quite similar to Chorin projection 
+Semi-Implicit Method for Pressure Linked Equations (SIMPLE) is a second projection method proposed by :cite:`PS72`, it is quite similar to Chorin projection 
 method with pressure increment, except that the mass matrix :math:`\mathbb{M}/\delta t^n` at step 2 and 3 is replaced by the addition of  :math:`\mathbb{M}/\delta t^n` and the diagonal matrix of the convection diffusion matrix. We note:
 
 .. math:: 
@@ -218,7 +218,7 @@ The reconstructed system obtain by summing the two steps is quite similar to the
     \mathbb{B} U^{n+1} = 0.
     \end{aligned}
 
-Implementations details can be found in :code:`Simple.h`. 
+Implementations details can be found in Simple.h 
 
 To reduce the importance of the intermediate velocity has been proposed a pre-compute pressure step with the SIMPLER algorithm. 
 
@@ -264,7 +264,7 @@ The system comes from the continuity equation
 
 ..    \mathbb{D}(U^n) U^{n+1} - E(U^n)U^n + \mathbb{B}^t P^{n+1} = F^{n+1}. 
 
-Implementations details can be found in :code:`Simpler.h`. 
+Implementations details can be found in Simpler.h. 
 
 
 Step 1 : SIMPLE algorithm on :math:`(U^{n+1}, P^{n+1})` 
@@ -295,7 +295,7 @@ Note that the pressure is not updated between step 0 and step 1, only the veloci
 
 PISO algorithm 
 ~~~~~~~~~~~~~~~
-The Pressure-Implicit with Splitting of Operators algorithm (PISO) was proposed in [I83]_. It is a two steps projection method which is a SIMPLE algorithm with a 
+The Pressure-Implicit with Splitting of Operators algorithm (PISO) was proposed in :cite:`I83`. It is a two steps projection method which is a SIMPLE algorithm with a 
 second step which consider the non diagonal part of the convection-diffusion matrix :math:`\mathbb{A}`.
  
 Step 1 : SIMPLE algorithm
@@ -337,7 +337,7 @@ Finally, update the velocity and the pressure fields at the next time step.
     U^{n+1} = \mathbb{E_A}U^{p1} - \mathbb{B}^t \delta P^{p2}\\
     P^{n+1} =   P^{p1} + \delta P^{p2}
 
-Algebraic details are presented in [I83]_ or in :code:`Piso.h`
+Algebraic details are presented in :cite:`I83` or in Piso.h
 
 .. Uzawa algorithm ? 
 .. ~~~~~~~~~~~~~~~~~
