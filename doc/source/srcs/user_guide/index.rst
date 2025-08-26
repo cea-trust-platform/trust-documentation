@@ -16,11 +16,7 @@ You will find here the TRUST user guide, giving you a brief overview on how to u
 .. toctree::
     :maxdepth: 2
 
-    intro
-    data
-    pb
-    end_data
-    post_process
-    para
-    refs
+    physics_data/index
+    num_meth/index
+    references/index
  

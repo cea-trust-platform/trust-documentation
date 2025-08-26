@@ -7,31 +7,24 @@ TRUST Documentation
    :width: 600px
    :align: center
 
-Hi there 👋 and welcome to the **TRUST documentation** page !
+Hi there 👋 and welcome to the **TRUST documentation** page ! 
 
-This page provides:
+TRUST is a High Performance Computing (HPC) thermohydraulic engine for Computational Fluid Dynamics (CFD) developed at the Departement of System and Structure Modelisation (DM2S) of the French Atomic Energy Commission (CEA).
 
-- **TRUST User Guide** can be found there: :ref:`TRUST User Guide`
+The software was primaly design for solving incompressible single phase flows. You can now also use it for solving mutltiphase flow problems.
 
-- **TRUST General Guide** can be found there: :ref:`TRUST General Guide`
+TRUST is also progessively ported to support GPU accelearation, using the `Kokkos <https://kokkos.org/kokkos-core-wiki/>` library. It has been selected to be a demonstrator of the `CExA <https://cexa-project.org/>` project. 
 
-- **TRUST Tutorials** can be found there: :ref:`TRUST Tutorials`
+When speaking of the TRUST code, we use the world plateform as it is the base of other CEA code, called BALTIKS. Those codes have various applications around thermohydraulic problems. `TrioCFD<https://triocfd.cea.fr/>` is one of those BALTIKS. 
+If you want to use TRUST for a specific application, you can create your own BALTIK by following this tutorial :doc:`_srcs_processed/tutorials/dev/build_your_baltik.md`
 
-- **TRUST Numerical Methods Documentation** can be found there: :ref:`TRUST Numerical Methods`
+After this brief introduction, it is time for you to get started with trust. Go to the quick start guide :doc:`_srcs_processed\quick_start\index.rst` that will help you set up TRUST and run first test case.
 
-- **TRUST Keyword Reference Manual** can be found there: :ref:`TRUST Keyword Reference Manual`
+You can then find the :doc:`_srcs_processed\user_guide\index.rst` that will help you navigate between the different options you will need for creating, running and post-processing a test case. It lists the available options in TRUST and give you some advice depending on your application.
 
-- **TRUST Tools Documentation** can be found there: :ref:`TRUST Tools Documentation`
+If you want a more active introduction to TRUST, feel free to try the different user tutorials :doc:`_srcs_processed\user_tutorials\index.rst`.
 
-- **TRUST C++ API Documentation** can be found there: `TRUST C++ API <./doxy/index.html>`__
-
-- **TRUST Coding Guidelines** can be found there: :ref:`TRUST Developers Guidelines`
-
-- **Global Bibliography** can be found here :ref:`References`
-
-**You can use the search bar located on the top right of your screen to lookup any keyword, or item in the generic guide. Use the dedicated Doxygen search box for C++ classes.**
-
-----
+Eventually, if you want to join the adventure and developp in TRUST, you can find some help and guidlines in the Develloper Corner :doc:`_srcs_processed\dev_corner\index.rst`.
 
 Here are some useful links that you can visit too:
 
@@ -41,20 +34,15 @@ Here are some useful links that you can visit too:
 
 - :TRUST Support: trust@cea.fr
 
------
-
 Do not forget to cite TRUST if you use it, see: https://cea-trust-platform.github.io/cite.html
 
-**Table Of Contents**
-
 .. toctree::
-   :maxdepth: 1
+   :hidden:
+   :maxdepth: 2
 
-   _srcs_processed/user_guide/index
+   _srcs_processed/quick_start/index
    _srcs_processed/general_guide/index
-   _srcs_processed/tutorials/index
-   _srcs_processed/num_meth/index
-   _srcs_processed/reference/index
-   _srcs_processed/dev_guidelines/index
+   _srcs_processed/user_tutorials/index
+   _srcs_processed/dev_corner/index
    references
 
