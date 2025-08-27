@@ -1,5 +1,15 @@
 # Tank filling 
 
+This tutorials aims at running a simulation of the tank filling test case, see :numref:`fig:periodicchannel`.
+
+```{figure} FIGURES/tank2D.png
+:class: custom-image-class
+:name: fig:periodicchannel
+:alt: tank2D
+
+Geometry of the 2D tank case
+```
+
 
 cl
 & **Fluid**: Colored water
@@ -36,14 +46,8 @@ cl
 
 -   Edit the data file and modify the fluid characteristics to the previous ones ($\mu, \rho, D$).
 
--   We want to modify the geometry of this problem to the previous picture. So we want to create 3 blocks like:
-
-```{figure} FIGURES/tank2D.png
-:class: custom-image-class
-:alt: tank2D
-
-Geometry of the 2D tank case
-```
+-   We want to modify the geometry of this problem to the previous picture. So we want to create 3 blocks like
+-   
 
 -   Create the corresponding mesh with 3 blocks (start with $dx=dy=0.2cm$ which gives a total nodes number $Nx=51$ and $Ny=121$).
 

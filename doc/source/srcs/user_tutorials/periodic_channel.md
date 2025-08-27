@@ -21,7 +21,7 @@ As always when you use TRUST, start by loading your TRUST environment, [see](../
 
 The case we will play with in this tutorial is called `P1toP1Bulle` in the TRUST repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
-$ trust -copy P1toP1Bulle
+trust -copy P1toP1Bulle
 ```
 
 Open the P1toP1Bulle.data file and use **RegroupeBord** keyword to merge Entree and Sortie boundaries into a single one named periox.

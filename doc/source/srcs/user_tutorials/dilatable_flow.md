@@ -4,14 +4,14 @@ As always when you use TRUST, start by loading your TRUST environment, [see](../
 
 The case we will play with in this tutorial is called `TP_Temp_QC_VEF` in the TRUST repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
-$ trust -copy TP_Temp_QC_VEF
+trust -copy TP_Temp_QC_VEF
 ```
 
 Then, open the [TRUST Reference](../../reference/index.rst) in another tab, as it will be useful to search for keywords in this exercise.
 
 Edit the data file with your favorite editor. **Gedit** is recommended because you can [configure](../index.rst) it to recognize the TRUST syntax:
 ```
-$ gedit TP_Temp_QC_VEF.data &
+gedit TP_Temp_QC_VEF.data &
 ```
 
 You will make several changes in the `.data` file:
@@ -76,12 +76,12 @@ Use the **implicite** solver and specify **facsec** and **facsec\_max** paramete
 
 Run again the calculation with this time scheme using the `evol` tool or with:
 ```
-$ trust TP_Temp_QC_VEF.data 1$>$TP_Temp_QC_VEF.out 2$>$TP_Temp_QC_VEF.err
+trust TP_Temp_QC_VEF.data 1$>$TP_Temp_QC_VEF.out 2$>$TP_Temp_QC_VEF.err
 ```
 
 You can edit the files containing information about the time steps and residuals evolution for each equation:
 ```
-$ gedit TP_Temp_QC_VEF.dt_ev &
+gedit TP_Temp_QC_VEF.dt_ev &
 ```
 
 If everything seems working, try to enhance the convergence speed of the implicit solver with the value of **seuil\_convergence\_implicite** keyword. 
@@ -91,11 +91,11 @@ We want to resume the calculation. To do so, change the **tinit** value within t
 
 Then, restart the calculation with:
 ```
-$ trust TP_Temp_QC_VEF.data 1$>$TP_Temp_QC_VEF.out 2$>$TP_Temp_QC_VEF.err
+trust TP_Temp_QC_VEF.data 1$>$TP_Temp_QC_VEF.out 2$>$TP_Temp_QC_VEF.err
 ```
 or
 ```
-$ trust -evol TP_Temp_QC_VEF.data &
+trust -evol TP_Temp_QC_VEF.data &
 ``` 
 The `evol` option automatically creates the .out file.
 

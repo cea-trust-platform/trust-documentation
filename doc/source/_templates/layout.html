@@ -1,0 +1,12 @@
+{% extends "!layout.html" %}
+
+{% block sidebar_primary %}
+  {{ super() }}
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+    <div class="sidebar-bottom-logo">
+      <img src="{{ pathto('_static/FIGURES/ISAS_logo.png', 1) }}"
+           alt="Secondary TRUST Logo"
+           class="sidebar-logo-bottom">
+    </div>
+  </div>
+{% endblock %}

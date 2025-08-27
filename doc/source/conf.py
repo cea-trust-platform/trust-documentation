@@ -53,10 +53,16 @@ extensions = [
 ]
 
 numfig = True
-
 numfig_secnum_depth = 2
+numfig_format = {
+    'figure': 'Figure %s',
+    'table': 'Table %s',
+    'code-block': 'Code %s',
+}
 
 htmlhelp_basename = 'TRUST Documentation'
+
+autosectionlabel_prefix_document = True
 
 # To show or not private members -
 autodoc_default_options = {"members": True, "undoc-members": True, "private-members": False}
@@ -72,9 +78,6 @@ mathjax3_config = {
 numpydoc_show_class_members = False
 autosummary_generate = False
 autosummary_imported_members = False
-
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -102,9 +105,24 @@ html_theme_options = {
     "navigation_depth": 4,
     "collapse_navigation": False, 
     "navigation_with_keys": True,  
+    "show_navbar_depth": 2,
+    "show_prev_next": True,
+    "home_page_in_toc": True,
     "logo": {
-        "image_light": "https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true",
-    }
+        "image_light": "_static/FIGURES/logo_trust.gif",
+        "text":"Documentation",
+        }
+    ,
+    "repository_url": "https://github.com/cea-trust-platform/trust-code",
+    "repository_branch": "master",
+    "use_repository_button": True,
+    "use_edit_page_button": False,  # True si tu veux permettre l'édition directe
+    "use_issues_button": True,      # True pour afficher un lien vers les issues
+    "use_download_button": True,    # True pour permettre le téléchargement
+    
+    # Search and content options
+    "use_sidenotes": True,          # Pour de meilleures annotations
+    "show_toc_level": 2,           # Profondeur d'affichage dans la TOC
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -115,6 +133,9 @@ html_css_files = ['custom.css']
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'
+
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ['_templates']
 
 # Bibliography
 bibtex_bibfiles = [os.path.join(os.path.dirname(__file__), 'biblio.bib')]
@@ -138,9 +159,16 @@ myst_enable_extensions = [
     "html_admonition",
     "html_image",
     "substitution",
-    "tasklist"
+    "tasklist",
+    "attrs_inline",
+    "attrs_block"
 ]
 myst_heading_anchors = 1
+
+extlinks = {
+    'github': ('https://github.com/cea-trust-platform/trust-code/%s', 'GitHub: %s'),
+    'trust': ('https://trust-platform.org/%s', 'TRUST: %s'),
+}
 
 rst_prolog = """
 .. role:: blue

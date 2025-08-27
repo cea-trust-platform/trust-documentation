@@ -14,9 +14,9 @@ As always when you use TRUST, start by loading your TRUST environment, [see](../
 The case we will play with in this tutorial is called `docond` in the TRUST repository. Start by copying it in your folder:
 
 ```
-$ trust -copy docond
-$ mv docond Coupling_VDF
-$ cd Coupling_VDF
+trust -copy docond
+mv docond Coupling_VDF
+cd Coupling_VDF
 ```
 Then edit the `.data` file and check the fluid and solid characteristics.
 
@@ -24,7 +24,7 @@ This coupled problem is constituted by 2 domains of calculation. Those two domai
 
 Now open your data file with `evol` tool:
 ```
-$ trust -evol docond &
+trust -evol docond &
 ```
 
 Click on `Edit data` and modify the data file to have the 2 domains on a mesh of 40x40 cells ($\Delta x= \Delta y=0.025m$).
@@ -54,12 +54,12 @@ Substitute the keyword VDF to VEFPreP1B.
 
 Close the `evol` tool and run the calculation with:
 ```
-$ trust docond
+trust docond
 ```
 
 Now, open again the `evol` tool:
 ```
-$ trust -evol docond
+trust -evol docond
 ```
 
 Select $Ri=\max_{pb1}(|dT/dt|)$, $Ri=\max_{pb2} (|dT/dt|)$, $Ri=\max_{pb2}(|dV/dt|)$, $residu=max|Ri|$ with `Ctrl` button and click on `Plot on same`.
@@ -76,7 +76,7 @@ In order to accelerate the calculation, by implicit the diffusive term of each e
 
 Run again the calculation without any option:
 ```
-$ trust docond
+trust docond
 ```
 
 Eventually, use a fully implicit scheme by suppressing **diffusion\_implicite**), then substituting **Scheme\_Euler\_Explicit** by **Scheme\_Euler\_implicit** and adding the Implicit solver `**solveur implicite**".
@@ -91,5 +91,5 @@ Your block should look like:
 Run again the calculation:
 
 ```
-$ trust -evol docond
+trust -evol docond
 ```
