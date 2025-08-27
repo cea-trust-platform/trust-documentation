@@ -7,6 +7,16 @@
 }
 
 .blue-text {
-    color: #003366; /* bleu foncé */
-    font-weight: bold; /* optionnel */
+    color: #003366; 
+    font-weight: bold; 
+}
+
+.bd-sidebar .bd-toc-item ul.nav li.toctree-l1 > a {
+    font-weight: bold !important;
+}
+
+.bd-sidebar .bd-toc-item ul.nav li.toctree-l2 > a,
+nav.bd-links ul.nav.bd-sidenav li.toctree-l2 > a.reference.internal {
+    font-weight: normal;
+    font-size: 0.95em;
 }

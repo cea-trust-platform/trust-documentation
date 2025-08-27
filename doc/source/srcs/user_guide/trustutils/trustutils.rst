@@ -1,4 +1,4 @@
-trustutils package
+Trustutils packages
 ===================
 
 .. toctree::

@@ -1,4 +1,4 @@
-stats package
+Stats packages
 ==============
 
 .. toctree::

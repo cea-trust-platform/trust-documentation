@@ -100,13 +100,18 @@ html_theme = 'sphinx_book_theme'
 html_theme_options = {
     "show_toc_level": 2,
     "navigation_depth": 4,
+    "collapse_navigation": False, 
+    "navigation_with_keys": True,  
+    "logo": {
+        "image_light": "https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true",
+    }
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-html_css_files = ['_static/custom.css']
+html_css_files = ['custom.css']
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'

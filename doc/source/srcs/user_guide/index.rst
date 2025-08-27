@@ -1,10 +1,10 @@
-TRUST User Guide
-****************
-
 .. figure:: https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true
    :alt: image description
    :width: 600px
    :align: center
+
+TRUST User Guide
+****************
 
 You will find here the TRUST user guide, giving you a brief overview on how to use TRUST (working principles, brief syntax and tools overview). It will help you to get started, more details are given in the :ref:`TRUST General Guide`.
 
@@ -19,4 +19,5 @@ You will find here the TRUST user guide, giving you a brief overview on how to u
     physics_data/index
     num_meth/index
     references/index
+    trustutils/index
  

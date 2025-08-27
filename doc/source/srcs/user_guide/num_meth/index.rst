@@ -1,11 +1,6 @@
 TRUST Numerical Methods
 ***********************
 
-.. figure:: https://github.com/cea-trust-platform/trust-code/blob/master/bin/HTML/logo_trust.gif?raw=true
-   :alt: image description
-   :width: 600px
-   :align: center
-
 You will find here the documentation on TRUST numerical methods. 
 
 Those pages aim at describing the numerical schemes at hand in the TRUST plaform, giving when necessary the academic references

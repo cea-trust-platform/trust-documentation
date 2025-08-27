@@ -1,7 +1,6 @@
-
 # Quick Guide
 
-**The following tutorials require a Linux based computer.**
+**The following tutorials requires a Linux based computer.**
 
 ## How to install TRUST
 
@@ -71,14 +70,14 @@ trust -config gedit|vim|emacs
 ## Flow around an obstacle
 
 
-This first case aims at giving you the basis for launching numerical simulation with TRUST. The test cases is therfore quite simple, so you can getting started with TRUST smoothly.
+This first case aims at giving you the basis for launching numerical simulation with TRUST. The test case is therefore quite simple, so you can get started with TRUST smoothly.
 
 
 ### Geometry and simulation parameters
 
 You can see in {numref}`fig:obstacle` the geometry of the test case.
 
-```{figure} FIGURES/Obstacle.png
+```{figure} ./user_tutorials/FIGURES/Obstacle.png
 :class: custom-image-class
 :name: fig:obstacle
 :alt: obstacle
@@ -86,7 +85,7 @@ You can see in {numref}`fig:obstacle` the geometry of the test case.
 Geometry of the Obstacle case
 ```
 
-The following table summerise the parameters of the simulation:
+The following table summarises the parameters of the simulation:
 
 | **Fluid Properties** | **Value** |
 |:---------------:|:---------------:|
@@ -103,43 +102,44 @@ The following table summerise the parameters of the simulation:
 
 ### Get your test case
 
-When you want to use TRUST, the first thing to do is to load your environnement:
+When you want to use TRUST, the first thing to do is to load your environment:
 
 ```
-$ cd $MY_TRUST_REPO
-$ source env_TRUST.sh
+cd $MY_TRUST_REPO
+source env_TRUST.sh
 ```
 
-If you use TRUST regularly, it will help you to create a command that load your TRUST environnement.
+If you use TRUST regularly, we recommend you to create a command that load your TRUST environment.
 
-Inside your TRUST repository, you can find several, already existing, test cases. You can copy the associated `.data` and mesh files by using:
+Inside your TRUST repository, you can find several, already existing, test cases. You can copy those test cases by using:
 ```
-$ trust -copy case_name
+trust -copy case_name
 ```
 
 For this tutorial, we will play with the Obstacle test case. 
-You can therefore create a copy of this test case:
+Therefore, create first a copy of this test case:
 ```
-$ cd TRUST_tutorials
-$ trust -copy Obstacle
+cd TRUST_tutorials
+trust -copy Obstacle
 ```
 
 The following command will give you a list of the TRUST options
 ```
-$ trust -help
+trust -help
 ```
+
 You can now run the test case:
 ```
-$ trust Obstacle
+trust Obstacle
 ```
 
 ### Probes and parameters
 
-Let us now play with the data file, that drives the simulations. For more details regarding `.data` files go to the [TRUST user guide](../../user_guide/data.rst).
+Let us now play with the data file, that drives the simulations. For more details regarding `.data` files go to the [TRUST user guide](../_srcs_processed/user_guide/data.rst).
 
 First, edit the data file `Obstacle.data` and set the time step to 0.004s:
 ```
-$ gedit Obstacle.data &
+gedit Obstacle.data &
 ```
 
 Then, replace the keyword **format lml** with **format lata** inside the post-processing block in order to use the post-processing tool **VisIt** during and/or at the end of calculation.
@@ -148,9 +148,9 @@ Then, replace the keyword **format lml** with **format lata** inside the post-pr
 
 You can manage you numerical simulation with:
 ```
-$ trust -evol Obstacle &
+trust -evol Obstacle &
 ``` 
-This tool allows to launch calculation and visualize results, "one the flight".
+This tool allows to launch calculation and visualize results "one the flight".
 
 To launch the calculation, click on the button `Start computation!`.
 
@@ -162,17 +162,17 @@ You can now vizualise some values, depeding on you `.data` file:
 
 - You can also visualize the residuals on the same plot, select $Ri = max \left| \frac{dV}{dt} \right|$ and $residu = max \left| Ri \right|$ using the button `Plot on same` or select the two graphs with `Ctrl` button then `plot`.
 
-Close the GUI to quit the ```$ trust -evol ``` tool.
+Close the GUI to quit the ```trust -evol ``` tool.
 
 ### The post processing tool Visit
 
 Clean your results by using:
 ```
-$ trust -clean
+trust -clean
 ```
 Then, relaunch your computation. Once the calculation is finished, visualize the results with VisIt:
 ```
-$  visit &
+ visit &
 ```
 Or by using the `trust -evol` tool and clicking on `Visualisation` on the right menu.
 
@@ -195,7 +195,7 @@ $\diamond$ double click on the item Vector (cf the figure below).
 
 - Then, you can, for example, change the number of vectors being plotted (by default 400, set it to 40000 then click the button `Make default` and save definitively this modification with the menu Options $\rightarrow$ Save Settings). Click `Apply` to update. Then click `Dismiss` to close the window.
 
-```{figure} FIGURES/visit3.jpg
+```{figure} ./user_tutorials/FIGURES/visit3.jpg
 :class: custom-image-class
 :alt: visit
 
@@ -241,7 +241,7 @@ Start by editing the different output (\*.out) files to read the complete balanc
 
 The, we want to edit the data file in order to resume the calculation from where it stopped. So, open it using the `evol` tool: 
 ```
-$ trust -evol Obstacle &
+trust -evol Obstacle &
 ```
 Find the last backup time of the previous calculation in the .err file, or in the bottom right file in the `evol` tool.
 
@@ -264,7 +264,7 @@ In this part, we will se how to add and modify probes and post-processed fields.
 
 Start by editting the data file Obstacle.data:
 ```
-$ gedit Obstacle.data &
+gedit Obstacle.data &
 ```
 
 Then add to the post-processing block of Obstacle.data the following elements:
@@ -279,7 +279,7 @@ Then add to the post-processing block of Obstacle.data the following elements:
         
 -   You can also access locally to useful resources in the TRUST index. Take few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
 ```
-$ trust -index &
+trust -index &
 ```
 
 ## Parallel calculation
@@ -290,11 +290,11 @@ In your Obstacle repository, delete the **reprise** keyword and set **tinit** to
 
 Then create a new repository, called `PARA1`, open it and copy the necessary files:
 ```
-$ mkdir PARA1
-$ cd PARA1
-$ cp ../Obstacle.data DEC_Obstacle.data
-$ cp ../Obstacle.data PAR_Obstacle.data
-$ cp ../Obstacle.geo .
+mkdir PARA1
+cd PARA1
+cp ../Obstacle.data DEC_Obstacle.data
+cp ../Obstacle.data PAR_Obstacle.data
+cp ../Obstacle.geo .
 ```
 The file (`DEC_Obstacle.data`) will be used for partioniing the mesh. To do so, uncomment the block around the **Partition** keyword.
 
@@ -308,12 +308,12 @@ The keyword **zones\_name** is useful to define the name of the files containing
 
 Now, run this edited data file: 
 ```
-$ trust DEC_Obstacle
+trust DEC_Obstacle
 ```
 
 Check that the partitioned mesh files `DOM_0000.Zones` and `DOM_0001.Zones` were generated inside your working directory: 
 ```
-$ ls *.Zones
+ls *.Zones
 ```
 
 Now that you have finished your partition, edit the file `PAR_Obstacle.data` and comment the mesh reading part of you `.data` file, using \# tags of the 'BEGIN/END MESH' comments. Note that you need your \# character to be encircled to other by blank spaces, otherwise your `.data` file will not be functional.
@@ -321,13 +321,13 @@ Now that you have finished your partition, edit the file `PAR_Obstacle.data` and
 Then, uncomment the **Scatter** keyword which will read the partitioned mesh and run a parallel calculation with TRUST:
 
 ```
-$ trust PAR_Obstacle 2
+trust PAR_Obstacle 2
 ```
 
 The post-processing step is identical in sequential or parallel modes. Probes are written into .son files and fields into .lata files. Check by yourself using **Visit**:
 
 ```
-$ **VisIt** -o PAR_Obstacle.lata &
+**VisIt** -o PAR_Obstacle.lata &
 ```
 
 Select the last time step and visualize the blocks with:
@@ -340,6 +340,6 @@ You can visualize a field only on a selected (block) with the menu `Control` $\r
 
 Eventually, visualize probes at the end of the calculation using:
 ```
-$ trust -evol PAR_Obstacle &
+trust -evol PAR_Obstacle &
 ```
 
