@@ -53,10 +53,59 @@
 }
 
 /* ----------------------------------------------------------------------------
-   SIDEBAR BOTTOM LOGO STYLING
+   SIDEBAR BOTTOM LOGO STYLING - CSS ONLY APPROACH
    ---------------------------------------------------------------------------- */
 
-/* Container for the bottom logo */
+/* Logo after table of contents using CSS pseudo-element 
+.bd-sidebar .bd-toc::after {
+    content: "";
+    display: block;
+    width: 90%;
+    height: 100px;
+    background-image: url("../_static/FIGURES/ISAS_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2rem auto 1rem auto;
+    opacity: 0.8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: rgba(248, 249, 250, 0.5);
+    transition: opacity 0.3s ease;
+}
+*/
+.bd-sidebar .bd-toc::after:hover {
+    opacity: 1;
+}
+
+/* Alternative selector if the above doesn't work */
+.bd-sidebar-primary::after {
+    content: "";
+    display: block;
+    width: 90%;
+    height: 100px;
+    background-image: url("../_static/FIGURES/ISAS_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 2rem auto 1rem auto;
+    opacity: 0.8;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: rgba(248, 249, 250, 0.5);
+}
+
+
+/* Dark mode support for sidebar logo area */
+[data-theme="dark"] .bd-sidebar .bd-toc::after,
+[data-theme="dark"] .bd-sidebar-primary::after {
+    border-color: #444;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Container for the bottom logo (if using template approach) */
 .sidebar-bottom-logo {
     text-align: center;
     margin-top: 2rem;
@@ -65,7 +114,7 @@
     background-color: rgba(248, 249, 250, 0.5);
 }
 
-/* Bottom logo image styling */
+/* Bottom logo image styling (if using template approach) */
 .sidebar-logo-bottom {
     max-width: 80%;
     height: auto;
@@ -78,7 +127,7 @@
     opacity: 1;
 }
 
-/* Optional text/link below the logo */
+/* Optional text/link below the logo (if using template approach) */
 .sidebar-logo-text {
     margin-top: 0.5rem;
     font-size: 0.85em;
@@ -95,7 +144,7 @@
     text-decoration: underline;
 }
 
-/* Dark mode support for sidebar logo area */
+/* Dark mode support for sidebar logo area (if using template approach) */
 [data-theme="dark"] .sidebar-bottom-logo {
     border-top-color: #444;
     background-color: rgba(0, 0, 0, 0.3);
@@ -132,6 +181,17 @@
     margin-bottom: 0.8rem;
 }
 
+/* Dark mode support for headings */
+[data-theme="dark"] .bd-content h1, 
+[data-theme="dark"] .bd-content h2 {
+    color: #e8f4fd !important;
+}
+
+[data-theme="dark"] .bd-content h3, 
+[data-theme="dark"] .bd-content h4 {
+    color: #b8d4f1 !important;
+}
+
 /* ----------------------------------------------------------------------------
    CODE BLOCKS AND SYNTAX HIGHLIGHTING
    ---------------------------------------------------------------------------- */
@@ -145,6 +205,12 @@
     border-radius: 0 4px 4px 0;
 }
 
+/* Dark mode support for code blocks */
+[data-theme="dark"] .highlight {
+    background-color: #1e1e1e !important;
+    border-left-color: #74b9ff;
+}
+
 /* Improved inline code visibility */
 code.literal {
     background-color: #e8f4fd;
@@ -155,6 +221,12 @@ code.literal {
     font-size: 0.9em;
 }
 
+/* Dark mode support for inline code */
+[data-theme="dark"] code.literal {
+    background-color: #2d3748 !important;
+    color: #90cdf4 !important;
+}
+
 /* Better styling for code blocks without syntax highlighting */
 pre {
     background-color: #f8f9fa;
@@ -162,6 +234,13 @@ pre {
     border-radius: 4px;
     padding: 1rem;
     overflow-x: auto;
+}
+
+/* Dark mode support for pre blocks */
+[data-theme="dark"] pre {
+    background-color: #1e1e1e !important;
+    border-color: #404040;
+    color: #e8f4fd;
 }
 
 /* ----------------------------------------------------------------------------
@@ -204,6 +283,33 @@ pre {
     font-size: 1em;
 }
 
+/* Dark mode support for admonitions */
+[data-theme="dark"] .admonition.note {
+    background-color: #1a2332;
+    border-left-color: #74b9ff;
+}
+
+[data-theme="dark"] .admonition.warning {
+    background-color: #2d2416;
+    border-left-color: #fdcb6e;
+}
+
+[data-theme="dark"] .admonition.important, 
+[data-theme="dark"] .admonition.danger {
+    background-color: #2d1b1b;
+    border-left-color: #fd79a8;
+}
+
+[data-theme="dark"] .admonition.tip, 
+[data-theme="dark"] .admonition.hint {
+    background-color: #1b2d1b;
+    border-left-color: #00b894;
+}
+
+[data-theme="dark"] .admonition-title {
+    color: #e8f4fd;
+}
+
 /* ----------------------------------------------------------------------------
    TABLE STYLING
    ---------------------------------------------------------------------------- */
@@ -242,6 +348,29 @@ table.docutils tbody tr:hover {
 /* Alternate row coloring for better readability */
 table.docutils tbody tr:nth-child(even) {
     background-color: #fdfdfd;
+}
+
+/* Dark mode support for tables */
+[data-theme="dark"] table.docutils {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] table.docutils th {
+    background-color: #74b9ff;
+    color: #1e1e1e;
+}
+
+[data-theme="dark"] table.docutils td {
+    border-bottom-color: #404040;
+    color: #e8f4fd;
+}
+
+[data-theme="dark"] table.docutils tbody tr:hover {
+    background-color: #2d3748;
+}
+
+[data-theme="dark"] table.docutils tbody tr:nth-child(even) {
+    background-color: #1a202c;
 }
 
 /* ----------------------------------------------------------------------------

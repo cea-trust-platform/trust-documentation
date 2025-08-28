@@ -110,6 +110,7 @@ html_theme_options = {
     "home_page_in_toc": True,
     "logo": {
         "image_light": "_static/FIGURES/logo_trust.gif",
+        "image_dark": "_static/FIGURES/logo_trust.gif",
         "text":"Documentation",
         }
     ,
@@ -134,8 +135,6 @@ html_css_files = ['custom.css']
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'
 
-# Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
 
 # Bibliography
 bibtex_bibfiles = [os.path.join(os.path.dirname(__file__), 'biblio.bib')]
