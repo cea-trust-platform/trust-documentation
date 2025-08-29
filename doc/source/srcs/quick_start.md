@@ -75,7 +75,7 @@ This first case aims at giving you the basis for launching numerical simulation 
 
 ### Geometry and simulation parameters
 
-You can see in {numref}`fig:obstacle` the geometry of the test case.
+You can see in Figure [](fig:obstacle) the geometry of the test case.
 
 ```{figure} ./user_tutorials/FIGURES/Obstacle.png
 :class: custom-image-class

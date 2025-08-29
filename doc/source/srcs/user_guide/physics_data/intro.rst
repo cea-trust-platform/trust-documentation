@@ -375,17 +375,17 @@ Running a Data File
 
 To use **TRUST**, your shell must be "bash". So ensure you are in the right shell:
 
-::
-
-   > echo $0
+.. code-block:: bash
+   
+   echo $0
    /bin/bash
 
 To run your data file, you must initialize the TRUST environment using
 the following command:
 
-::
+.. code-block:: bash
 
-   > source $my_path_to_TRUST_installation/env_TRUST.sh
+   source $my_path_to_TRUST_installation/env_TRUST.sh
    TRUST vX.Y.Z support : trust@cea.fr
    Loading personal configuration /$path_to_my_home_directory/.perso_TRUST.env
 
@@ -394,23 +394,23 @@ Sequential Calculation
 
 You can run your sequential calculation:
 
-::
+.. code-block:: bash
 
-   > cd $my_test_directory
-   > trust [-evol] my_data_file
+   cd $my_test_directory
+   trust [-evol] my_data_file
 
 where "trust" command call the "trust" script. You can have the list of
 its options with:
 
-::
+.. code-block:: bash
 
-   > trust -help
+   trust -help
 
 or
 
-::
+.. code-block:: bash
 
-   > trust -h
+   trust -h
 
 Here is a panel of available options:
 
@@ -507,9 +507,9 @@ We will explain here how to do such work:
 
    Run the ``BuildMeshes.data`` with **TRUST**:
 
-   ::
+   .. code-block:: bash
 
-      > trust BuildMeshes
+      trust BuildMeshes
 
    You may have obtained files named ``DOM_000n*.Zones`` which contains the ’n’ sub-domains.
 
@@ -547,9 +547,9 @@ We will explain here how to do such work:
 
    Run the ``Calculation.data`` file with **TRUST**:
 
-   ::
+   .. code-block:: bash
 
-      > trust Calculation procs_number
+      trust Calculation procs_number
 
    This will read your ``DOM_000n*.Zones`` files. You can see the documentation of the **scatter** keyword in Reference Manual which is available `here <https://raw.githubusercontent.com/cea-trust-platform/trust-code/next/doc/TRUST/TRUST_Reference_Manual.pdf#scatter>`__.
 
