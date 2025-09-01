@@ -50,7 +50,7 @@ Then, modify the fluid characteristics to the one given in the above table ($\mu
 You need than to modify the geometry parameters, so your geometry resembles {numref}`fig:periodicchannel`.
 
 ```{figure} FIGURES/tank2D_2.png
-:width: 60%
+:width: 40%
 :name: fig:periodicchannel_block
 :alt: tank2D_mesh
 
@@ -59,11 +59,11 @@ Mesh blocks og the 2D tank filling case
 
 To do so, you have to create three blocks, starting with $dx=dy=0.2cm$ which gives a total nodes number $Nx=51$ and $Ny=121$, see {numref}`fig:periodicchannel_block`.
 
-    - The first block ,`Block1`, whose origin is (0, 0.03), $Nx=51$, $Ny=106$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.21 m$. Name the wall boundaries Left1, Outlet(=Top1) and Right1. (Don't forget the comma between blocks definitions.)
+- The first block ,`Block1`, whose origin is (0, 0.03), $Nx=51$, $Ny=106$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.21 m$. Name the wall boundaries Left1, Outlet(=Top1) and Right1. (Don't forget the comma between blocks definitions.)
 
-    - The second block, `Block2`, whose origin is (0, 0.02), $Nx=51$, $Ny=6$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.01 m$. Name the wall boundaries Inlet(=Left2) and Right2.
+- The second block, `Block2`, whose origin is (0, 0.02), $Nx=51$, $Ny=6$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.01 m$. Name the wall boundaries Inlet(=Left2) and Right2.
 
-    - The third block, `Block3`, whose origin is (0, 0), $Nx=51$, $Ny=11$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.02 m$. Name the wall boundaries Left3, Bottom3 and Right3.
+- The third block, `Block3`, whose origin is (0, 0), $Nx=51$, $Ny=11$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.02 m$. Name the wall boundaries Left3, Bottom3 and Right3.
 
 Then, define the boundary wall, using the keyword **"RegroupeBord`**. If you need help, go check the [Keywords Reference Manual](../../_srcs_processed/user_guide/reference/index.rst).
 
