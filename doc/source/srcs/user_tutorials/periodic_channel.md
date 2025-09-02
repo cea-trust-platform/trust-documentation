@@ -13,13 +13,13 @@ Geometry of the 3D periodic case
 | **Fluid Properties** | **Value** |
 |:---------------:|:---------------:|
 | $Re$ | 2000|
-| $\rho$ | $2 kg.m^{-3}$|
-| $\mu$ | $0.01 kg.m^{-1}.s^{-1}$|
+| $\rho$ | $2 kg \cdot m^{-3}$|
+| $\mu$ | $0.01 kg \cdot m^{-1} \cdot s^{-1}$|
 | Initial velocity $V0$| $1m/s$|
 
-As always when you use TRUST, start by loading your TRUST environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
 
-The case we will play with in this tutorial is called `P1toP1Bulle` in the TRUST repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
+The case we will play with in this tutorial is called `P1toP1Bulle` in the **TRUST** repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
 trust -copy P1toP1Bulle
 ```

@@ -18,8 +18,8 @@ Geometry of the downward march case
 
 | Property  | Value  |
 |----------|--------|
-| Dynamic viscosity  $μ$ | $3.7 \cdot 10^{-5} kg \cot m^{-1}·s^{-1}$ |
-| Density  $ρ$ | 2 $kg \cdot m^{-3} |
+| Dynamic viscosity  $μ$ | $3.7 \cdot 10^{-5} kg \cdot m^{-1} \cdot s^{-1}$ |
+| Density  $ρ$ | $2 kg \cdot m^{-3}$ |
 | Reynolds number  $Re$ | 54,054   |
 
 
@@ -27,13 +27,13 @@ Geometry of the downward march case
 
 | Location | Velocity | Pressure | k | ε | Notes |
 |----------|----------|----------|---|---|-------|
-| Inlet | U₀ = 1 m·s⁻¹ | - | 10⁻² | 10⁻³ | Imposed velocity, dimensionless k and ε |
-| Outlet | - | P₀ = 0 | 0 | 0 | Constant pressure |
-| Top/Bottom walls | U = 0 | - | Standard flux | Null | No-slip condition |
+| Inlet | $U_0 = 1 m \cdot s^{-1}$ | - | $10^{-2}$ | $10^{-3}$ | Imposed velocity, dimensionless k and ε |
+| Outlet | - | $P_0 = 0$ | 0 | 0 | Constant pressure |
+| Top/Bottom walls | $U = 0$ | - | Standard flux | Null | No-slip condition |
 
 ## TRUST and TrioCFD Environment Setup
 
-The open-source TrioCFD software is a Baltik of TRUST. It is therefore based on TRUST. One of the main application of [TrioCFD](https://triocfd.cea.fr/) is turbulent flow modelling. You will need it for this tutorial. Therefore, we will show you how to link your TRUST environment to the TrioCFD one.
+The open-source TrioCFD software is a Baltik of TRUST. It is therefore based on TRUST. One of the main application of [TrioCFD](https://triocfd.cea.fr/) is turbulent flow modelling. You will need it for this tutorial. Therefore, we will show you how to link your **TRUST** environment to the TrioCFD one.
 
 ### Environment Initialization
 
@@ -47,7 +47,7 @@ baltik_build_configure -execute
 make optim
 make debug 
 ```
-Note that you will need to have build TRUST in optim and debug.
+Note that you will need to have build **TRUST** in optim and debug.
 
 Verification of the environment setup can be done by checking the environment variables:
 ```bash
@@ -91,7 +91,7 @@ Check the TrioCFD Reference Manual to find the appropriate keywords.
 
 Then, add 3 constituents of equal diffusivities ($\alpha = 1 m \cdot s ^{-1}$) in the block problem after the fluid definition)
 
-Define the concentration equation into the problem with the correct initial ($C_1 = C_2 = C_3 = 0) and boundary conditions.
+Define the concentration equation into the problem with the correct initial ($C_1 = C_2 = C_3 = 0$) and boundary conditions.
 Remember that concentrations are a vectors of 3 components.
 
 Use the Schmidt model to close the turbulence model in the concentration equation
@@ -118,7 +118,7 @@ To do so, you will need to use the **Sous_Zone** keyword. To find an example of 
 ```bash
 trust -search Sous_Zone
 ```
-It will give you tha list of TRUST test cases that use this keyword. You can for example edit the `PCR.data` file of the PCR test case.  
+It will give you tha list of **TRUST** test cases that use this keyword. You can for example edit the `PCR.data` file of the PCR test case.  
 
 ### Source Term Implementation
 

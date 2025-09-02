@@ -17,7 +17,7 @@ DG methods have been thouroughly studied in the litterature, see for example :ci
 | High arithmetic intensity     |                                          |
 +-------------------------------+------------------------------------------+
 
-Galerkin Methods are new in TRUST code. A Symmetric Interior Penalty (SIP) has been implemented for solving Non-Stationary Heat Equation. 
+Galerkin Methods are new in **TRUST** code. A Symmetric Interior Penalty (SIP) has been implemented for solving Non-Stationary Heat Equation. 
 SIP method have been chosen as it is more performent than mixte DG method for example whan considering method of first and second order.
 
 Before introducing the SIP formulation, the following definitions are needed, see Figure :numref:`fig:def_jump_average`. 

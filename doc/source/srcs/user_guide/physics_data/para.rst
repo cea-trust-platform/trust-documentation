@@ -23,7 +23,7 @@ Performances
 
 You have to choose a number of processors which is in agreement with the number of cells. So, you can evaluate your speed-up (sequential time/parallel time which must be as close as possible of the number of processors) or efficiency (=1/SpeedUp) to choose the right number of processors.
 
-From our experience, for good performance with **TRUST**, each processor has to treat between 20000 and 30000 cells.
+From our experience, for good performance with **TRUST**, each processor has to treat between **20000 and 30000 cells**.
 
 Partitioning
 ------------

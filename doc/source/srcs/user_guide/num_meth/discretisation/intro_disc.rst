@@ -1,13 +1,13 @@
 Introduction
 ============
 
-In the TRUST code, different numerical schemes are availabe to the user : VDF, VEF and the PolyMAC family.
+In the **TRUST** code, different numerical schemes are availabe to the user : VDF, VEF and the PolyMAC family.
 
 -  The VDF discretisation is based on the Marker and Cell scheme presented in :cite:p:`HW65`.
 
 -  The VEF discretisation is based on the Crouzeix-Raviart element method :cite:p:`Emonot1992`.
 
-The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in TRUST. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in :cite:p:`HW65` to complex grids:
+The PolyMAC discretisation family has been developped since 2018. Three PolyMAC are usable in **TRUST**. They have been built using a Finite Volume (FV) framework on a staggered mesh so as to extend the MAC scheme developped in :cite:p:`HW65` to complex grids:
 
 -  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in :cite:p:`Bonelle2014` and :cite:p:`Milani2020`. 
 

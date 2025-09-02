@@ -1,4 +1,4 @@
-# Quick Guide
+# Quick start
 
 **The following tutorials requires a Linux based computer.**
 
@@ -30,7 +30,7 @@ tar xzf TRUST-1.9.6.tar.gz
 cd TRUST-1.9.6
 ```
 
-Then, you will need to configure TRUST with the good options. To have the option's list, run:
+Then, you will need to configure **TRUST** with the good options. To have the option's list, run:
 ```bash
 ./configure -help
 ```
@@ -43,7 +43,7 @@ As you can see, if you want to run GPU simulations and you have a Nvidia GPU, yo
 ./configure $MY_OPTIONS
 ```
 
-Then, source the TRUST environnement:
+Then, source the **TRUST** environnement:
 
 ```bash
 source env_TRUST.sh
@@ -62,7 +62,7 @@ make
 
 This will take some times but afterwards you should have an up-and-running TRUST. You can use other make options, see `make help`.
 
-As you will see in the following, TRUST use `.data` files. In order too have a more readable `.data`, we recommand the user to run:
+As you will see in the following, **TRUST** use `.data` files. In order too have a more readable `.data`, we recommand the user to run:
 
 ```bash
 trust -config gedit|vim|emacs
@@ -70,7 +70,7 @@ trust -config gedit|vim|emacs
 ## Flow around an obstacle
 
 
-This first case aims at giving you the basis for launching numerical simulation with TRUST. The test case is therefore quite simple, so you can get started with TRUST smoothly.
+This first case aims at giving you the basis for launching numerical simulation with TRUST. The test case is therefore quite simple, so you can get started with **TRUST** smoothly.
 
 
 ### Geometry and simulation parameters
@@ -109,9 +109,9 @@ cd $MY_TRUST_REPO
 source env_TRUST.sh
 ```
 
-If you use TRUST regularly, we recommend you to create a command that load your TRUST environment.
+If you use **TRUST** regularly, we recommend you to create a command that load your **TRUST** environment.
 
-Inside your TRUST repository, you can find several, already existing, test cases. You can copy those test cases by using:
+Inside your **TRUST** repository, you can find several, already existing, test cases. You can copy those test cases by using:
 ```
 trust -copy case_name
 ```
@@ -123,7 +123,7 @@ cd TRUST_tutorials
 trust -copy Obstacle
 ```
 
-The following command will give you a list of the TRUST options
+The following command will give you a list of the **TRUST** options
 ```
 trust -help
 ```
@@ -277,7 +277,7 @@ Then add to the post-processing block of Obstacle.data the following elements:
 
 -   Add the vorticity to the fields to the list of post-processed fields. To find the appropriate keyword, have a look to the [User Guide](../../user_guide/index.rst):
         
--   You can also access locally to useful resources in the TRUST index. Take few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
+-   You can also access locally to useful resources in the **TRUST** index. Take few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
 ```
 trust -index &
 ```

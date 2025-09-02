@@ -9,9 +9,9 @@ This tutorial will help you play with an Heat transfer between liquid and solid 
 Geometry of the heat transfer case
 ```
 
-As always when you use TRUST, start by loading your TRUST environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
 
-The case we will play with in this tutorial is called `docond` in the TRUST repository. Start by copying it in your folder:
+The case we will play with in this tutorial is called `docond` in the **TRUST** repository. Start by copying it in your folder:
 
 ```
 trust -copy docond
@@ -43,7 +43,7 @@ Then post-process the temperature field with **VisIt** tool: `Visualization` but
 
 Change the color tables for the temperature to have the same one on the 2 domains. Close **VisIt**.
 
-We are going to change the discretization of the test case from VDF to VEF. However, the VEF discretisation only works on tetrahedron, you therfore need first to triangulate the domains with the keyword **Trianguler\_H** in your `.data` file (see the [Reference Manual](../../reference/index.rst)).
+We are going to change the discretization of the test case from VDF to VEF. However, the VEF discretisation only works on tetrahedron, you therfore need first to triangulate the domains with the keyword **Trianguler\_H** in your `.data` file (see the [](../user_guide/reference/index.rst)).
 
 Then, give an unstructured aspect to the 2 meshes using the following syntax in you `.data` file:
 ```
@@ -72,16 +72,16 @@ Post-process the results and compare the CPU performances with the VDF discretiz
 
 Check `the docond.out` file to see the time steps for each equation: click on `Edit .out` at the upper right corner of the GUI.
 
-In order to accelerate the calculation, by implicit the diffusive term of each equation with the  **diffusion\_implicite** options in the explicit Euler scheme, check the [User Guide](../../user_guide/index.rst) for help.
+In order to accelerate the calculation, by implicit the diffusive term of each equation with the  **diffusion\_implicite** options in the explicit Euler scheme, check the [](../user_guide/reference/index.rst) for help.
 
 Run again the calculation without any option:
 ```
 trust docond
 ```
 
-Eventually, use a fully implicit scheme by suppressing **diffusion\_implicite**), then substituting **Scheme\_Euler\_Explicit** by **Scheme\_Euler\_implicit** and adding the Implicit solver `**solveur implicite**".
+Eventually, use a fully implicit scheme by suppressing **diffusion\_implicite**), then substituting **Scheme\_Euler\_Explicit** by **Scheme\_Euler\_implicit** and adding the Implicit solver **solveur implicite**.
 
-Have a look at the [Reference Manual](../../reference/index.rst) for the **gmres** options and define, according to the advice given on it, a value for **facsec** and **facsec\_max**.
+Have a look at the [](../user_guide/reference/index.rst) for the **gmres** options and define, according to the advice given on it, a value for **facsec** and **facsec\_max**.
 
 Your block should look like:
 

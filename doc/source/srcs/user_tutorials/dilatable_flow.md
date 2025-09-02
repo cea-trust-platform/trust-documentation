@@ -1,15 +1,15 @@
 # Quasi Compressible flow 
 
-As always when you use TRUST, start by loading your TRUST environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
 
-The case we will play with in this tutorial is called `TP_Temp_QC_VEF` in the TRUST repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
+The case we will play with in this tutorial is called `TP_Temp_QC_VEF` in the **TRUST** repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
 trust -copy TP_Temp_QC_VEF
 ```
 
-Then, open the [TRUST Reference](../../reference/index.rst) in another tab, as it will be useful to search for keywords in this exercise.
+Then, open the [](../user_guide/reference/index.rst) in another tab, as it will be useful to search for keywords in this exercise.
 
-Edit the data file with your favorite editor. **Gedit** is recommended because you can [configure](../index.rst) it to recognize the TRUST syntax:
+Edit the data file with your favorite editor. **Gedit** is recommended because you can [configure](../index.rst) it to recognize the **TRUST** syntax:
 ```
 gedit TP_Temp_QC_VEF.data &
 ```
@@ -38,7 +38,7 @@ Geometry modification the Low Mach case
 
 Save and close your `.data` file.
 
-You can now run the numerical simulation with the TRUST command:
+You can now run the numerical simulation with the **TRUST** command:
 ```
 trust -evol TP_Temp_QC_VEF &
 ```
@@ -72,7 +72,7 @@ You can close **VisIt** for now.
 
 Coming back to you `.data` file, substitute the time scheme by an implicit time scheme, like **scheme\_euler\_implicit**.
 
-Use the **implicite** solver and specify **facsec** and **facsec\_max** parameters according to the advice given in the [Reference Manual](../../reference/index.rst) by searching for the **scheme\_euler\_implicit** keyword.
+Use the **implicite** solver and specify **facsec** and **facsec\_max** parameters according to the advice given in the [](../user_guide/reference/index.rst) by searching for the **scheme\_euler\_implicit** keyword.
 
 Run again the calculation with this time scheme using the `evol` tool or with:
 ```

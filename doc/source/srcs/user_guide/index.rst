@@ -14,5 +14,5 @@ You will find here the TRUST user guide, giving you a brief overview on how to u
     physics_data/index
     num_meth/index
     reference/index
-    trustutils/index
+..    trustutils/index
  

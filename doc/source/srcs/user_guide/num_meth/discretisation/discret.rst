@@ -1,7 +1,7 @@
 Spatial discretisations
 =======================
 
-TRUST provides several spatial discretisations. 
+**TRUST** provides several spatial discretisations. 
 
 .. toctree::
     :maxdepth: 2

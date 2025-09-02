@@ -3,7 +3,7 @@ VEF
 
 Initially introduced in :cite:p:`LM89`, *Volume Element Finis -VEF-* (Finite Volume Element) method is a variant of the standard finite element
 and finite volume methods. The formalism developed in :cite:p:`Emonot1992` was subsequently used for the implementation of
-this method in the TRUST code.
+this method in the **TRUST** code.
 
 Finite Volume Element method
 ----------------------------
@@ -224,7 +224,7 @@ A summary of the Crouzeix-Raviart FEM properties is presented in :cite:p:`B14`. 
 New Finite element basis
 ------------------------
 
-In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in :cite:p:`Heib2003` and :cite:p:`Fortin2006` and implemented in TRUST code under the name VEF - :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
+In order to reduce parasite currents (usefull for low viscosities), a pressure enriched basis was studied in :cite:p:`Heib2003` and :cite:p:`Fortin2006` and implemented in **TRUST** code under the name VEF - :math:`\mathbb{P}^{nc}/\mathbb{P}^0+\mathbb{P}^1`.
 The idea is to add pressure unknows :math:`\mathbb{P}^1` at the vertices of each cell. 
 This add a new control volume for the mass conservation. :numref:`fig:triangle_vef` represents the two control volumes for the two pressure unknows:
 
@@ -240,7 +240,7 @@ This add a new control volume for the mass conservation. :numref:`fig:triangle_v
 
 
 
-The stability of this new finite element basis is proved in :cite:p:`JCS23` and the inf-sup condtion in :cite:p:`Fortin2006`. This scheme is the most used VEF discretization in TRUST. 
+The stability of this new finite element basis is proved in :cite:p:`JCS23` and the inf-sup condtion in :cite:p:`Fortin2006`. This scheme is the most used VEF discretization in **TRUST**. 
 
   .. and the main notions of equivalence between finite element formulation and finite volume element formulation are presented in :cite:p:`PJ24` - .
 
