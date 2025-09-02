@@ -2,9 +2,10 @@
 
 CoolProp is an open source ([MIT License](https://github.com/CoolProp/CoolProp/blob/master/LICENSE)) library useful to compute thermo-physical properties for the masses.
 
-A pre-compiled static library of CoolProp is mandatory if a TRUST user wants to use its interface via TRUST.
+A pre-compiled static library of CoolProp is mandatory if a **TRUST** user wants to use its interface via **TRUST**.
 **Warning: On a cluster, if you want to install TRUST with CoolProp, you should install both with the same compilers.**
-Here are the steps that can be followed to obtain a libcoolprop.a
+
+Follow those steps in order to obtain a libcoolprop.a:
 
 ```bash
 # Get the sources archive (version 6.6.0)
@@ -24,13 +25,13 @@ cmake --build .
 # Instead, you can do : make -j all ...
 ```
 
-Once done, **you need to configure TRUST** with the following (maybe additional) option
+Once done, **you need to configure TRUST** with the following (maybe additional) option:
 
 ```bash
 ./configure $OPTIONS -with-coolprop=YOUR_PATH_COOLPROP
 make
 ```
-This configure with make it also possible to access CoolProp via a python module. You can try it
+This configure option make it also possible to access CoolProp via a python module. You can try it:
 
 ```bash
 source env_TRUST.sh

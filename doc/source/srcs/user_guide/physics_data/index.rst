@@ -1,7 +1,7 @@
 TRUST General Guide
 *******************
 
-You can found here some more precise informations regarding available options in TRUST:
+This is the general guide for TRUST users. You can find informations regarding the TRUST in general, the options of a `.data` files and some advices when using TRUST.
 
 .. toctree::
     :maxdepth: 1
@@ -9,15 +9,12 @@ You can found here some more precise informations regarding available options in
     intro
     data
     problems
-    pb
     end_data
     boundary-conditions
     solvers
     temporal-schemes
     spatial-schemes
-    pre-processing
     post-processing
-    post_process
     para
     
     

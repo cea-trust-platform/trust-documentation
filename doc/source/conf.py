@@ -110,7 +110,7 @@ html_theme_options = {
     "home_page_in_toc": True,
     "logo": {
         "image_light": "_static/FIGURES/logo_trust.gif",
-        "image_dark": "_static/FIGURES/logo_trust.gif",
+        "image_dark": "_static/FIGURES/logo.png",
         "text":"Documentation",
         }
     ,

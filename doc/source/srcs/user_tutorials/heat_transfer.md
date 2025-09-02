@@ -9,9 +9,9 @@ This tutorial will help you play with an Heat transfer between liquid and solid 
 Geometry of the heat transfer case
 ```
 
-As always when you use TRUST, start by loading your TRUST environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
 
-The case we will play with in this tutorial is called `docond` in the TRUST repository. Start by copying it in your folder:
+The case we will play with in this tutorial is called `docond` in the **TRUST** repository. Start by copying it in your folder:
 
 ```
 trust -copy docond

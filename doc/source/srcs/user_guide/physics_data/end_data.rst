@@ -1,26 +1,12 @@
-End of the data file
-====================
+Stop and restart
+================
 
-Solve
------
-
-Now that you have finished to specify all your computation parameters, you may add the **Solve** keyword at the end of your data file, in order to solve your problem. 
-
-You may also add the **End** keyword to specify the end of your data file.
-
-.. code-block:: bash
-
-  Solve my_problem
-  End
-
-You can see methods to run your data file in section :ref:`Running a Data File`.
-
-.. _stopfile:
+An important feature when running a simulation is the ability to stop and restart it. This section explain how you can do it with **TRUST**.
 
 Stop a Running Calculation
 --------------------------
 
-Your calculation will automatically stop if it has reached:
+When using **TRUST**, your calculation will automatically stop if it has reached:
 
 -  the end of the calculation time.
 
@@ -80,7 +66,7 @@ with **xyz**: the **.xyz** file is written instead of the **.sauv** files.
 
   sauvegarde_simple binaire|xyz filename .sauv|filename .xyz
 
-For more information, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
+For more information, go see the :doc:`../reference/index`.
 
 Resume
 ------
@@ -111,8 +97,6 @@ You can resume your calculation:
 -  from .sauv file(s) (one file per process): you can only resume the calculation with the **same number of equations** on **the same number of processes**.
 
 -  or from a .xyz file: here you can resume your calculation by **changing the number of equations solved** and/or with a **different number of processes**.
-
-For examples, see the `TRUST tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__.
 
 .. note::
 

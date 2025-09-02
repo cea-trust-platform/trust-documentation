@@ -32,7 +32,7 @@ The following table summerise the parameters of the simulation:
 | Concentration ($C(x,y,t=0)$) | 0 |
 
 
-As always, start by loading your TRUST environment:
+As always, start by loading your **TRUST** environment:
 
 ```bash
 source $MY_TRUST_PATH/env_TRUST.sh
@@ -69,7 +69,7 @@ Then, define the boundary wall, using the keyword **"RegroupeBord`**. If you nee
 
 You could also use **facteurs**, **symx** and **symy** keywords to define a refined mesh near the walls.
 
-After your done with the geometry, change the values in the time scheme to stop the calculation at 1 second, and modify **dt\_min** and **dt\_max** values to let TRUST compute at least one time step.
+After your done with the geometry, change the values in the time scheme to stop the calculation at 1 second, and modify **dt\_min** and **dt\_max** values to let **TRUST** compute at least one time step.
 
 Now, change values for the gravity to $-9.81 m.s^{-2}$ following y-axis. 
 
@@ -138,9 +138,9 @@ The Cholesky method is a direct method that works well on relatively small cases
 
 Run the calculation. 
 
-You should have have an error, and TRUST stop the calculation. You will find a `diagonale\_VEF.decoupage\_som` file in your working directory.
+You should have have an error, and **TRUST** stop the calculation. You will find a `diagonale\_VEF.decoupage\_som` file in your working directory.
 
-As TRUST indicates, to avoid this problem, you can:
+As **TRUST** indicates, to avoid this problem, you can:
 
 - change the **trianguler** keyword to **trianguler\_h**,
 

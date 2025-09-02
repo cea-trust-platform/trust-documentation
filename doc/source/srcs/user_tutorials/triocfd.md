@@ -33,7 +33,7 @@ Geometry of the downward march case
 
 ## TRUST and TrioCFD Environment Setup
 
-The open-source TrioCFD software is a Baltik of TRUST. It is therefore based on TRUST. One of the main application of [TrioCFD](https://triocfd.cea.fr/) is turbulent flow modelling. You will need it for this tutorial. Therefore, we will show you how to link your TRUST environment to the TrioCFD one.
+The open-source TrioCFD software is a Baltik of TRUST. It is therefore based on TRUST. One of the main application of [TrioCFD](https://triocfd.cea.fr/) is turbulent flow modelling. You will need it for this tutorial. Therefore, we will show you how to link your **TRUST** environment to the TrioCFD one.
 
 ### Environment Initialization
 
@@ -47,7 +47,7 @@ baltik_build_configure -execute
 make optim
 make debug 
 ```
-Note that you will need to have build TRUST in optim and debug.
+Note that you will need to have build **TRUST** in optim and debug.
 
 Verification of the environment setup can be done by checking the environment variables:
 ```bash
@@ -118,7 +118,7 @@ To do so, you will need to use the **Sous_Zone** keyword. To find an example of 
 ```bash
 trust -search Sous_Zone
 ```
-It will give you tha list of TRUST test cases that use this keyword. You can for example edit the `PCR.data` file of the PCR test case.  
+It will give you tha list of **TRUST** test cases that use this keyword. You can for example edit the `PCR.data` file of the PCR test case.  
 
 ### Source Term Implementation
 
