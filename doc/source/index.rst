@@ -30,7 +30,7 @@ Here are some useful links that you can visit too:
 
 - :**TRUST** Support: trust@cea.fr
 
-Do not forget to [cite](https://cea-trust-platform.github.io/cite_us/) TRUST.
+Do not forget to `cite <https://cea-trust-platform.github.io/cite_us/>`_ TRUST.
 
 .. toctree::
    :hidden:
