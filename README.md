@@ -12,7 +12,7 @@ To build locally the website, follow the following steps:
 $ git clone https://github.com/cea-trust-platform/trust-documentation.git ./trust_documentation
 ```
 - Create a conda environment based on the `environment.yml` file.
-``` bash 
+``` bash
 $ cd trust_documentation/doc
 $ conda env create -f environment.yml
 $ conda activate trust-doc
