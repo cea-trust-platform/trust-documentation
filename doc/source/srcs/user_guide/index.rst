@@ -16,5 +16,4 @@ If you want to better understand the C++ part of the code, go check the :doc:`_s
     physics_data/index
     num_meth/index
     reference/index
-..    trustutils/index
  
