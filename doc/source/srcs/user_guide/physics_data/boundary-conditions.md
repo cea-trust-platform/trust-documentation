@@ -11,26 +11,26 @@ The platform **TRUST** implements a huge number of boundary conditions (BC). Her
 
 | Boundary Condition Keyword | Description |
 |-------------------|-------------|
-| Frontiere_ouverte_alpha_impose | Imposed void fraction condition at an open boundary called bord (edge) (situation corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
-| Frontiere_ouverte_concentration_imposee | Imposed concentration condition at an open boundary called bord (edge) (situation corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
-| Frontiere_ouverte_fraction_massique_imposee | Imposed mass fraction condition at an open boundary called bord (edge) (situation corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
+| Frontiere_ouverte_alpha_impose | Imposed void fraction condition at an open boundary called *bord* (french for edge) (corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
+| Frontiere_ouverte_concentration_imposee | Imposed concentration condition at an open boundary (corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
+| Frontiere_ouverte_fraction_massique_imposee | Imposed mass fraction condition at an open boundary (corresponding to a fluid inlet). This condition must be associated with an imposed inlet velocity condition. |
+| Frontiere_ouverte_temperature_imposee | Imposed temperature condition at the open boundary (in the case of fluid inlet). This condition must be associated with an imposed inlet velocity condition. The imposed temperature value is expressed in C or K. |
 | Entree_temperature_imposee_H | Particular case of class frontiere_ouverte_temperature_imposee for enthalpy equation. |
-| Frontiere_ouverte_temperature_imposee | Imposed temperature condition at the open boundary called bord (edge) (in the case of fluid inlet). This condition must be associated with an imposed inlet velocity condition. The imposed temperature value is expressed in C or K. |
 | Frontiere_ouverte_vitesse_imposee | Class for velocity-inlet boundary condition. The imposed velocity field at the inlet is vectorial and the imposed velocity values are expressed in m.s-1. |
-| Frontiere_ouverte_rho_u_impose | This keyword is used to designate a condition of imposed mass rate at an open boundary called bord (edge). The imposed mass rate field at the inlet is vectorial and the imposed velocity values are expressed in kg.s-1. This boundary condition can be used only with the dilatable model (Low Mach Number). |
+| Frontiere_ouverte_rho_u_impose | This keyword is used to designate a condition of imposed mass rate at an open boundary . The imposed mass rate field at the inlet is vectorial and the imposed velocity values are expressed in kg.s-1. This boundary condition can be used only with the dilatable model (Low Mach Number). |
 
 ### Dirichlet boundary conditions
 
 | Boundary Condition Keyword | Description |
 |-------------------|-------------|
 | Dirichlet_loi_paroi | Used for Multiphase Problem with wall laws. |
-| Paroi_defilante | Keyword to designate a condition where tangential velocity is imposed on the wall called bord (edge). If the velocity components set by the user is not tangential, projection is used. |
-| Paroi_Knudsen_non_negligeable | Boundary condition for number of Knudsen (Kn) above 0.001 where slip-flow condition appears: the velocity near the wall depends on the shear stress : Kn = l/L with l is the mean-free-path of the molecules and L a characteristic length scale. |
-| Scalaire_impose_paroi | Imposed temperature condition at the wall called bord (edge). |
-| Temperature_imposee_paroi | Imposed temperature condition at the wall called bord (edge). |
-| Paroi_fixe | Keyword to designate a situation of adherence to the wall called bord (edge) (normal and tangential velocity at the edge is zero). |
-| Paroi | Impermeability condition at a wall called bord (edge) (standard flux zero). This condition must be associated with a wall type hydraulic condition (Dirichlet_paroi_fixe). |
-| Paroi_Temperature_imposee | Imposed temperature condition at the wall called bord (edge). |
+| Paroi_defilante | Keyword to designate a condition where tangential velocity is imposed on the wall . If the velocity components set by the user is not tangential, projection is used. |
+| Paroi_Knudsen_non_negligeable | Boundary condition for a Knudsen number (Kn) above 0.001 where slip-flow condition appears: the velocity near the wall depends on the shear stress : Kn = l/L with l is the mean-free-path of the molecules and L a characteristic length scale. |
+| Scalaire_impose_paroi | Imposed temperature condition at the wall. |
+| Temperature_imposee_paroi | Imposed temperature condition at the wall. |
+| Paroi_fixe | Keyword to designate a situation of adherence to the wall (normal and tangential velocity at the edge is zero). |
+| Paroi | Impermeability condition at a wall (standard flux zero). This condition must be associated with a wall type hydraulic condition (Dirichlet_paroi_fixe). |
+| Paroi_Temperature_imposee | Imposed temperature condition at the wall. |
 
 ### Navier boundary conditions
 
@@ -38,7 +38,7 @@ The platform **TRUST** implements a huge number of boundary conditions (BC). Her
 |-------------------|-------------|
 | Frottement_externe_impose | External friction BC used in Multi-Phase problems. |
 | Frottement_global_impose | Global friction BC used in Multi-Phase problems. |
-| Symetrie | For Navier-Stokes equations, this keyword is used to designate a symmetry condition concerning the velocity at the boundary called bord (edge) (normal velocity at the edge equal to zero and tangential velocity gradient at the edge equal to zero). For scalar transport equation, this keyword is used to set a symmetry condition on scalar on the boundary named bord (edge). |
+| Symetrie | For Navier-Stokes equations, this keyword is used to designate a symmetry condition concerning the velocity at the boundary (normal velocity at the edge equal to zero and tangential velocity gradient at the edge equal to zero). For scalar transport equation, this keyword is used to set a symmetry condition on scalar on the boundary. |
 
 ### Periodic boundary conditions
 
@@ -53,16 +53,16 @@ The platform **TRUST** implements a huge number of boundary conditions (BC). Her
 | Boundary Condition Keyword | Description |
 |-------------------|-------------|
 | Neumann_paroi_adiabatique | Adiabatic wall neumann boundary condition. |
-| Paroi_adiabatique | Normal zero flux condition at the wall called bord (edge). |
-| Paroi_flux_impose | Normal flux condition at the wall called bord (edge). The surface area of the flux (W.m-1 in 2D or W.m-2 in 3D) is imposed at the boundary according to the following convention: a positive flux is a flux that enters into the domain according to convention. |
+| Paroi_adiabatique | Normal zero flux condition at the wall. |
+| Paroi_flux_impose | Normal flux condition at the wall. The surface area of the flux (W.m-1 in 2D or W.m-2 in 3D) is imposed at the boundary. |
 
 ### Outlet boundary conditions
 
 | Boundary Condition Keyword | Description |
 |-------------------|-------------|
 | Neumann_sortie_libre_Temp_H | Open boundary for heat equation with enthalpy as unknown. |
-| Frontiere_ouverte_Gradient_Pression_impose | Normal imposed pressure gradient condition on the open boundary called bord (edge). This boundary condition may be only used in VDF discretization. The imposed pressure gradient value is expressed in Pa.m-1. |
-| Frontiere_ouverte_pression_imposee | Imposed pressure condition at the open boundary called bord (edge). The imposed pressure field is expressed in Pa. |
+| Frontiere_ouverte_Gradient_Pression_impose | Normal imposed pressure gradient condition on the open boundary. This boundary condition may be only used in VDF discretization. The imposed pressure gradient value is expressed in Pa.m-1. |
+| Frontiere_ouverte_pression_imposee | Imposed pressure condition at the open boundary. The imposed pressure field is expressed in Pa. |
 | Frontiere_ouverte_Pression_imposee_Orlansky | This boundary condition may only be used with VDF discretization. There is no reference for pressure for this boundary condition so it is better to add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two cells (for symetry in a channel) of the boundary where Orlansky conditions are imposed. |
 | Frontiere_ouverte_Gradient_Pression_libre | Class for outlet boundary condition in VEF like Orlansky. There is no reference for pressure for theses boundary conditions so it is better to add pressure condition (with Frontiere_ouverte_pression_imposee) on one or two cells (for symmetry in a channel) of the boundary where Orlansky conditions are imposed. |
 | Frontiere_ouverte_pression_moyenne_imposee | Class for open boundary with pressure mean level imposed. |

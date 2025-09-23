@@ -43,6 +43,8 @@ As you can see, if you want to run GPU simulations and you have a Nvidia GPU, yo
 ./configure $MY_OPTIONS
 ```
 
+**Remark:** without any option, the `./configure` will create the basic build that embarks MPI. It should be working on each and every Linux based computer.
+
 Then, source the **TRUST** environnement:
 
 ```bash
@@ -54,6 +56,8 @@ To check if it worked, try:
 ```bash
 echo $TRUST_ROOT
 ```
+
+You should see your TRUST install directory.
 
 Eventually, you can compile:
 ```bash
@@ -67,6 +71,68 @@ As you will see in the following, **TRUST** use `.data` files. In order too have
 ```bash
 trust -config gedit|vim|emacs
 ```
+
+
+Now you can use **TRUST**:
+```bash
+trust [option] datafile [nb_cpus] [1>file.out] [2>file.err]
+```
+
+You can have the list of its options with:
+
+```bash
+trust -help
+```
+
+Here is a panel of available options:
+
+- help|-h                      : List options.
+- baltik [baltik_name]         : Instanciate an empty Baltik project.
+- index                        : Access to the TRUST ressource index.
+- doc                          : Access to the TRUST manual (Generic Guide).
+- html                         : Access to the doxygen documentation.
+- config nedit|vim|emacs|gedit : Configure nedit or vim or emacs or gedit with TRUST keywords.
+- edit                         : Edit datafile.
+- trustify                     : Check the datafile's keywords with trustify.
+- xcheck                       : Check the datafile's keywords with xdata.
+- xdata                        : Check and run the datafile's keywords with xdata.
+- partition                    : Partition the mesh to prepare a parallel calculation (Creation of the .Zones files).
+- mesh                         : Visualize the mesh(es) contained in the data file.
+- eclipse-trust                : Generate Eclipse configuration files to import TRUST sources.
+- eclipse-baltik               : Generate Eclipse configuration files to import BALTIK sources (TRUST project should have been configured under Eclipse).
+- probes                       : Monitor the TRUST calculation only.
+- evol                         : Monitor the TRUST calculation (GUI).
+- jupyter                      : Create basic jupyter notebook file.
+- clean                        : Clean the current directory from all the generated files by TRUST.
+- search keywords              : Know the list of test cases from the data bases which contain keywords.
+- copy                         : Copy the test case datafile from the TRUST database under the present directory.
+- check all|testcase|list      : Check the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+- check function|class|class::method : Check the non regression of a list of tests cases covering a function, a class or a class method.
+- ctest all|testcase|list      : ctest the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+- ctest function|class|class::method : ctest the non regression of a list of tests cases covering a function, a class or a class method.
+- gdb                          : Run under gdb debugger.
+- valgrind                     : Run under valgrind.
+- valgrind_strict              : Run under valgrind with no suppressions.
+- callgrind                    : Run callgrind tool (profiling) from valgrind.
+- massif                       : Run massif tool (heap profile) from valgrind.
+- heaptrack                    : Run heaptrack (heap profile). Better than massif.
+- advisor                      : Run advisor tool (vectorization).
+- vtune                        : Run vtune tool (profiling). Best profiler tool.
+- perf                         : Run perf tool (profiling).
+- trace                        : Run traceanalyzer tool (MPI profiling).
+- create_sub_file              : Create a submission file only.
+- prod                         : Create a submission file and submit the job on the main production class with exclusive resource.
+- bigmem                       : Create a submission file and submit the job on the big memory production class.
+- queue queue                  : Create a submission file with the specified queue and submit the job.
+- c ncpus                      : Use ncpus CPUs allocated per task for a parallel calculation.
+- convert_data datafile        : Convert a data file to the new 1.9.1 syntax (milieu, interfaces, read_med and champ_fonc_med).
+- quiet                        : Runs the TRUST case without producing any output on the terminal (stdout and stderr are redirected to /dev/null).
+
+After your datafile naame, you can also add:
+- help_trust          : Print options of TRUST_EXECUTABLE [CASE[.data]] [options].
+
+**Remark:** if you don't specify anything, the code will run a sequential calculation without any options.
+
 ## Flow around an obstacle
 
 
@@ -75,7 +141,7 @@ This first case aims at giving you the basis for launching numerical simulation 
 
 ### Geometry and simulation parameters
 
-You can see in Figure [](fig:obstacle) the geometry of the test case.
+You can see in Figure {numref}`fig:obstacle` the geometry of the test case.
 
 ```{figure} ./user_tutorials/FIGURES/Obstacle.png
 :class: custom-image-class
@@ -135,7 +201,7 @@ trust Obstacle
 
 ### Probes and parameters
 
-Let us now play with the data file, that drives the simulations. For more details regarding `.data` files go to the [TRUST user guide](../_srcs_processed/user_guide/data.rst).
+Let us now play with the data file, that drives the simulations. For more details regarding `.data` files go to the [](user_guide/physics_data/data.md).
 
 First, edit the data file `Obstacle.data` and set the time step to 0.004s:
 ```
@@ -150,7 +216,7 @@ You can manage you numerical simulation with:
 ```
 trust -evol Obstacle &
 ``` 
-This tool allows to launch calculation and visualize results "one the flight".
+This tool allows to launch calculation and visualize results "on the flight".
 
 To launch the calculation, click on the button `Start computation!`.
 
@@ -256,7 +322,7 @@ Save and close the window.
 
 Resume the calculation again with `Start calculation!` button. You can see that values are added to the first probes during the new calculation.
 
-**Remark:** to resume your calculation, you can also use the keyword **resume\_last\_time** instead of **reprise** and only change the **tmax** value (cf [Reference Manual](index.rst)).
+**Remark:** to resume your calculation, you can also use the keyword **resume\_last\_time** instead of **reprise** and only change the **tmax** value (cf [](user_guide/reference/index.rst)).
 
 ### Probes and fields
 
@@ -275,7 +341,7 @@ Then add to the post-processing block of Obstacle.data the following elements:
 
 -   Change fields post-processing period from 1s to 0.5s.
 
--   Add the vorticity to the fields to the list of post-processed fields. To find the appropriate keyword, have a look to the [User Guide](../../user_guide/index.rst):
+-   Add the vorticity to the fields to the list of post-processed fields. To find the appropriate keyword, have a look to the [](user_guide/reference/index.rst):
         
 -   You can also access locally to useful resources in the **TRUST** index. Take few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
 ```
@@ -300,7 +366,7 @@ The file (`DEC_Obstacle.data`) will be used for partioniing the mesh. To do so, 
 
 In this case, the partitioning tool **Metis** is used. We cut in **nb\_parts = 2** blocks.
 
-In the general case, the overlapping width **Larg\_joint** between two parts of the partition have to be defined accordingly with the numerical scheme. For exemple, if you use a VEF discretisation (see [TRUST Numerical Methods](../../num_meth/discretisation/vef/index.rst) for more details regarding this discretisation), you should use **2** for **Larg\_joint** except when partitioning a domain where only the conduction equation will be solved.
+In the general case, the overlapping width **Larg\_joint** between two parts of the partition have to be defined accordingly with the numerical scheme. For exemple, if you use a VEF discretisation (see [](user_guide/num_meth/discretisation/vef/index.rst) for more details regarding this discretisation), you should use **2** for **Larg\_joint** except when partitioning a domain where only the conduction equation will be solved.
 
 The keyword **zones\_name** is useful to define the name of the files containing the partitioned mesh and to write these files.
 

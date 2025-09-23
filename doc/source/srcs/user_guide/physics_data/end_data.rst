@@ -27,13 +27,13 @@ Save
 
 **TRUST** makes automatic backups during the calculation. The unknowns (velocity, temperature,...) are saved in:
 
--  one **.xyz** file, happening:
+-  one **.xyz** file, written:
 
   -  at the end of the calculation.
 
   -  but, user may disable it with the specific keyword **EcritureLectureSpecial 0** added just before the **Solve** keyword.
 
--  one (or several in case of parallel calculation) **.sauv** files, happening:
+-  one (or several in case of parallel calculation) **.sauv** files, written:
 
   -  at the start of the calculation.
 
