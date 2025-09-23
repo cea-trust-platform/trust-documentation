@@ -1,6 +1,3 @@
-# Constituents and turbulent flow, with TrioCFD
-
-
 # TrioCFD Turbulent Flow with Concentration Tutorial
 
 This tutorial demonstrates how to simulate a 2D incompressible turbulent flow with constituent transport using TrioCFD's k-ε model. {numref}`fig:marche` shows the geometry of the test case you will run in this tutorial.

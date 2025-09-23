@@ -1,4 +1,4 @@
-name: rtd38
+name: trust-doc
 channels:
   - conda-forge
   - defaults

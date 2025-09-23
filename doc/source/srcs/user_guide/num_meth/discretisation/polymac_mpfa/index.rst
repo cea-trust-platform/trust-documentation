@@ -141,5 +141,4 @@ Some details regarding the discretisation of a two-phase flow model of the Ishii
 PolyMAC_P0_P1_NC
 ================
 
-
 PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEGH10`.
