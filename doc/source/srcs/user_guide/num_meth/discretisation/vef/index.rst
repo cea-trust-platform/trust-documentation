@@ -246,11 +246,3 @@ The stability of this new finite element basis is proved in :cite:p:`JCS23` and 
 
   .. but some studies have been done in Pnc/P0 due to implementation and mathematical analysis facilities.  
   
-  
-References
-----------
-
-.. bibliography::
-   :style: alpha
-   :filter: docname == env.docname
-  

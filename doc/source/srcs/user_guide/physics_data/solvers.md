@@ -1,8 +1,10 @@
 # Solver and Preconditioners 
 
-Linear matricial systems appear basically with a form of **AX = B** at two stages in the code resolution algorithm: when dealing with the Elliptic pressure Poisson equation at first, and when dealing with the implicit resolution at second (either diffusion implicit or a full implicit time integration scheme).
+Resolution of large sparse linear systems of the form of **AX = B** are required at two stages in resolution algorithm:
+- when dealing with the Elliptic pressure Poisson equation,
+- when dealing with the implicit resolution at second (either diffusion implicit or a full implicit time integration scheme)
 
-The platform TRUST allows the use of a wide range of solvers/preconditioners in order to solve such linear systems. Ttwo types of solvers are mainly available: either home-coded ones or called from external libraries, for example from the open source **[PETSc](https://petsc.org/release/install/license/#doc-license)** library. As stated previously, TRUST has been ported recently to support GPU acceleration (NVidia/AMD). The solvers are the main candidates that benefit from this new advantage.
+The platform TRUST allows the use of a wide range of solvers/preconditioners in order to solve such linear systems. Two types of solvers are mainly available: either part of the TRUST code ones or called from external libraries, for example from the open source **[PETSc](https://petsc.org/release/install/license/#doc-license)** library. As stated previously, TRUST has been ported recently to support GPU acceleration (NVidia/AMD). The solvers were the first parts to be ported to GPU as they represent most of the computational time.
 
 In cases where the user asks to treat implicitly the diffusion operator in an explicit time integration scheme, a Preconditioned Conjugate Gradient (GCP) solver will be used (by default) to solve the implicit matrix. However, it is possible to select a specific solver. These instances are optional and can be inserted in the bloc of each equation.
 
@@ -24,13 +26,13 @@ If a pure implicit scheme is used in a TRUST calculation, an implicit solver **m
 | PETSc GPU | PETSc_GPU | GPU solver via PETSc API. |
 | cuDSS | Cholesky or LU | GPU direct solver for Nvidia only. |
 
-### Direct home-coded solvers
+### Direct **TRUST** internal solvers
 
 | Solver | Description |
 |--------|-------------|
 | Cholesky | Cholesky direct method. |
 
-### Iterative home-coded solvers
+### Iterative **TRUST** internal solvers
 
 | Solver | Description |
 |--------|-------------|
@@ -39,11 +41,11 @@ If a pure implicit scheme is used in a TRUST calculation, an implicit solver **m
 | GEN | Generic solver. |
 
 
-## Pre-Conditioners
+## Preconditioners
 
-### External pre-conditioners
+### External preconditioners
 
-| Pre-conditioner | Parameters | Description |
+| Preconditioner | Parameters | Description |
 |-----------------|------------|-------------|
 | NULL { } | - | No preconditioner used. |
 | DIAG { } | - | Diagonal (Jacobi) preconditioner. |
@@ -52,9 +54,9 @@ If a pure implicit scheme is used in a TRUST calculation, an implicit solver **m
 | SSOR { omega double } | omega (default: 1.5) | Symmetric Successive Over Relaxation algorithm. omega (default value, 1.5) defines the relaxation factor. |
 
 
-### Home-coded pre-conditioners
+### **TRUST** internal preconditioners
 
-| Pre-conditioner | Description |
+| Preconditioner | Description |
 |-----------------|-------------|
 | ILU | Can be only used with the generic GEN solver. |
 | SSOR | Symmetric successive over-relaxation algorithm. |

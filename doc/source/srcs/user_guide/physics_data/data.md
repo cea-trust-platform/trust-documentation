@@ -89,7 +89,7 @@ Ecrire a_name     # Write a_name on screen #
    ```bash
    trust -config gedit|vim|emacs
    ```
--  You can search for a keyword meaning in the [Keyword Reference Guide](../reference/index.rst)
+-  You can search for a keyword meaning in the [](../reference/index.rst)
   
 -  You can search for example of a keyword usage in the pre-existing trust cases thanks to:
 ```bash
@@ -119,7 +119,7 @@ Then, you can launch sequentially your test case by using:
 trust my_test_case.data
 ```
 
-For more informations regarding parallel test case, go to the [Parallel Simulations](para.rst) section.
+For more informations regarding parallel test case, go to the [](para.rst) section.
 
 ## Data file structure
 
@@ -146,7 +146,7 @@ Then, you need to specify the type of problem you want to solve.
 Pb_hydraulique my_problem
 ```
 
-You can find all the available **TRUST** problems at [Trust list of problem](pb.rst).
+You can find all the available **TRUST** problems at [](pb.rst).
 
 Here are some of the available **TRUST** problem types.
 
@@ -196,11 +196,11 @@ Notice the presence of the tags
 # END MESH #
 ```
 
-This is useful for parallel calculation if well placed in the datafile (see section [Parallel calculation](para.rst)).
+This is useful for parallel calculation if well placed in the datafile (see section [](para.rst)).
 
 #### Allowed meshes
 
-**TRUST** allows all types of meshes if the appropriate spatial discretization is used. See the [Spatial scheme](spatial-schemes.md) section for the list of available discretizations and some advices regarding there usage or the [Numerical scheme](../num_meth/discretisation/discret.rst) section for more details regarding the undelying maths. 
+**TRUST** allows all types of meshes if the appropriate spatial discretization is used. See the [](spatial-schemes.md) section for the list of available discretizations and some advices regarding there usage or the [](../num_meth/discretisation/discret.rst) section for more details regarding the undelying maths. 
 
 In your `.data` file, you can either import a pre-existing mesh or build one quickly if your geometry is not that complex.
 
@@ -212,9 +212,9 @@ If your mesh was generated with an external tool like [SALOME](http://www.salome
 
 -  **Read_File** for a binary mesh file from ICEM. 
 
--  for another format, see the [TRUST Reference Manual](../reference/index.rst).
+-  for another format, see the [](../reference/index.rst).
 
-You can have a look too at the [Pre-Processing](post-processing.md) section.
+You can have a look too at the [](post-processing.md) section.
 
 ##### Quickly create a mesh
 
@@ -272,7 +272,7 @@ You can also make transformations on your mesh after the **"Mailler"** or **"Rea
 
 -  **Transformer** to transform the coordinates of the geometry 
 
-For more details regarding this commande, go find them in the [Keyword Reference Manual](../reference/index.rst). There, you will also find other commands, under the `interprete` section.
+For more details regarding this commande, go find them in the [](../reference/index.rst). There, you will also find other commands, under the `interprete` section.
 
 All theses keywords work on all mesh file formats (i.e. also for **\*.geo** or **\*.bin** or **\*.med** files).
 
@@ -323,11 +323,11 @@ trust my_data_file
 visit -o file.lata &
 ```
 
-To see how to use VisIt, look at the first [TRUST quick start](../../quick_start.md).
+To see how to use VisIt, look at the first [](../../quick_start.md).
 
 ### Spatial Discretization
 
-You have to specify a discretization type to run a simulation. See the [Discretizations](spatial-schemes.md). For example, if you want to use the **VDF** discretisation:
+You have to specify a discretization type to run a simulation. See the [](spatial-schemes.md). For example, if you want to use the **VDF** discretisation:
 ```bash
 # Discretization on hexa or tetra mesh #
 VDF my_discretization
@@ -350,7 +350,7 @@ Read my_scheme
 
 #### Some available time schemes
 
-The time schemes available in the **TRUST** platform are summarized in the [Temporal schemes](temporal-schemes.md) section.
+The time schemes available in the **TRUST** platform are summarized in the [](temporal-schemes.md) section.
 
 Here are some available types of explicit schemes:
 
@@ -366,7 +366,7 @@ And also some available types of implicit schemes:
 
 -  **Schema_Adams_Moulton_order_3** 
 
-For other schemes, see the `schematempsbas` section of the [Keyword Reference Manual](../reference/index.rst).
+For other schemes, see the `schematempsbas` section of the [](../reference/index.rst).
 
 **Note:** you can treat implicitly the diffusion/viscous operators in a **TRUST** calculation. For that, you should activate the **diffusion_implicite** keyword in your explicit time scheme.
 
@@ -419,9 +419,9 @@ Read my_problem
 {
 ```
 
-More information regarding this block are given in the [Problem definition](pb.rst).
+More information regarding this block are given in the [](pb.rst).
 
-First, in this block, you will have to specify the type of equations you will solve. Your choices here depend on you problem choice, see the [Keyword Reference Manual](../reference/index.rst):
+First, in this block, you will have to specify the type of equations you will solve. Your choices here depend on you problem choice, see the [](../reference/index.rst):
 ```bash
    # hydraulic problem #
    Navier_Stokes_standard
@@ -451,7 +451,7 @@ Then you will specify the medium or fluid, you must add the following block.
 
 - **Milieu_Composite** 
 
-For other types and more information see the [Keyword Reference Manual](../reference/index.rst).
+For other types and more information see the [](../reference/index.rst).
 
 **Note:** if you want to solve a coupled problem, each medium should be read in the corresponding problem.
 
@@ -474,7 +474,7 @@ The, you need to specify your pressure solver:
             Solveur_Pression solver { ... }
 ```
 
-Go check the [Solver](solvers.md) section to see the options you may use.
+Go check the [](solvers.md) section to see the options you may use.
 
 #### Diffusion, convection and sources
 
@@ -491,9 +491,9 @@ Now you will specify how you will treat the diffusion operator, the convection o
 ```
 In the Diffusion block, you can but **negligeable** to deactivate the diffusion terme. 
 
-In the convection block, you need to specify a spatial scheme. Have a look at the [spatial scheme](spatial-schemes.md) section for a list of the available schemes in **TRUST**.
+In the convection block, you need to specify a spatial scheme. Have a look at the [](spatial-schemes.md) section for a list of the available schemes in **TRUST**.
 
-In the sources block, you will define your source terms. You will need to go check the [Keyword Reference Manual](../reference/index.rst) to pick up the good keyword for your case. Here are some available source terms:
+In the sources block, you will define your source terms. You will need to go check the [](../reference/index.rst) to pick up the good keyword for your case. Here are some available source terms:
 -  **Perte_Charge_Reguliere** type_perte_charge bloc_definition_pertes_charges 
 
 -  **Perte_Charge_Singuliere** **KX \| KY \| KZ** coefficient_value { ... } 
@@ -539,7 +539,7 @@ Here is a list of the most used boundary conditions:
 
 -  Bord **Paroi_flux_impose** boundary_field_type *bloc_lecture_champ* 
 
-To choose your *boundary_field_type* parameters, refer to the [Keyword Reference Manual](../reference/index.rst).
+To choose your *boundary_field_type* parameters, refer to the [](../reference/index.rst).
 
 #### Post-processing
 
@@ -569,7 +569,7 @@ Post_processing
    Statistiques dt_post 1. { ... }
 }
 ```
-The post-processing options are listed in the [Post-processing section](post-processing.md)
+The post-processing options are listed in the [](post-processing.md)
 
 #### Stop and restart 
 If you want to stop or restart your computation, add the following after your post-processing block:

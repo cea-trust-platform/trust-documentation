@@ -16,9 +16,3 @@ This discretization **supports** 2D axi-symmetrical configurations and **is comp
    
    Scheme of a VDF grid: scalars are stored at the center of the elements and normal component of the vorticities at the faces of the element
    
-References
-----------
-
-.. bibliography::
-   :style: alpha
-   :filter: docname == env.docname

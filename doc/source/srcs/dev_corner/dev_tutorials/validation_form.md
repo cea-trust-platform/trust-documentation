@@ -1,6 +1,6 @@
 # Validation form
 
-As detailed in the [Workflow guidlines](../dev_guidelines/workflow_guidlines/index.rst), if you want your new and amazing developpement in TRUST to be integrated, you have to create an associated validation form. The prefered route to build a validation form in TRUST and its baltiks is to build a Jupyter notebook.
+As detailed in the [Workflow guidlines](../dev_guidelines/workflow_guidlines/index.rst), if you want your new and amazing developpements in TRUST to be integrated, you have to create an associated validation form. The prefered route to build a validation form in TRUST and its baltiks is to build a Jupyter notebook.
 
 You can see an example of notebook in: `$TRUST_ROOT/Validation/Rapports_automatiques/Verification/SampleFormJupyter` or run on terminal:
 
@@ -42,7 +42,7 @@ First, let's add the mesh plot in the report. To do so, at end of the notebook, 
 ```
 and the following:
 ```markdown
-fig=visit.Show(`./std.lata`, `Mesh`, `dom`, plotmesh=True title=`Mesh`)
+fig=visit.Show(`./std.lata`, `Mesh`, `dom`, plotmesh=True, title=`Mesh`)
 fig.plot()
 ```
 

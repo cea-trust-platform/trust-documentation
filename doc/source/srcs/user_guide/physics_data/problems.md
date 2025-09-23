@@ -211,11 +211,11 @@ Read pb
 
 ## Low Mach Number Problems
 
-The Mach number Ma = u / c measures the ratio of the bulk velocity to the local speed of sound. Typically for Ma < 0.1, the compressibility effects can be neglected and the physical problem may be reduced by using a Low Mach Number formulation. In such cases, the aspect of the problem orients towards simulating a mass variation rather than capturing and solving for the acoustic waves. This is basically the main hypothesis of a Low Mach Number approximation where all acoustic waves are filtered out.
+The Mach number $Ma = u / c$ measures the ratio of the bulk velocity to the local speed of sound. Typically for $Ma < 0.1$, the compressibility effects can be neglected and the physical problem may be reduced by using a Low Mach Number formulation. In such cases, the aspect of the problem orients towards simulating a mass variation rather than capturing and solving for the acoustic waves. This is basically the main hypothesis of a Low Mach Number approximation where all acoustic waves are filtered out.
 
-Following a single scale asymptotic analysis referring to the Mach number, the zero Mach order equations are considered where the total pressure is decomposed into a thermodynamic pressure and a hydrodynamic pressure that fluctuates in an order of Ma2. Note that the hydrodynamic pressure is much smaller than the thermodynamic one. The hydrodynamic pressure alone is used in the momentum equation, while the thermodynamic is used in the equation of state.
+Following a single scale asymptotic analysis referring to the Mach number, the zero Mach order equations are considered where the total pressure is decomposed into a thermodynamic pressure and a hydrodynamic pressure that fluctuates in an order of $Ma^2$. Note that the hydrodynamic pressure is much smaller than the thermodynamic one. The hydrodynamic pressure alone is used in the momentum equation, while the thermodynamic is used in the equation of state.
 
-TRUST offers two Low Mach Number modelisations; either a Weakly-Compressible (WC) or a Quasi-Compressible (QC) models. The main difference between both models is that the QC model considers a space-uniform thermodynamic pressure. This is not the case in th WC model where the total pressure, which is space/time varying, is used in the equation of state. The last can have a great impact in some situations as the pressure drop and/or the hydro-static pressure can influence significantly the density variation.
+TRUST offers two Low Mach Number modelisations; either a Weakly-Compressible (WC) or a Quasi-Compressible (QC) models. The main difference between both models is that the QC model considers a space-uniform thermodynamic pressure. This is not the case in the WC model where the total pressure, which is space/time varying, is used in the equation of state. The last can have a great impact in some situations as the pressure drop and/or the hydro-static pressure can influence significantly the density variation.
 
 The system of equation associated with Low Mach number problem writes:
 
@@ -248,7 +248,7 @@ Red terms are convective terms and blue terms are diffusive terms.
 **Remark:** The difference between *Hydraulique* and *Thermohydraulique* type of problem is whether the last equation of the system (that drive the temperature) is taken into account or not. If it is taken into account you'll have to use a *Thermohydraulique* type of problem.
 
 
-### Options of WC and QC problems
+### Valid `.data` options for WC and QC problems
 
 | Problem type  | Possible mediums | Possible Equations |
 |---------|-----------|------------------|
@@ -342,13 +342,13 @@ An additional `Correlations` bloc should be **secondly** defined. Each and every
 
 Afterwards, the reading of the equations starts. In `Pb_Multiphase`, the equations solved for each phase are the momentum, mass and energy equations; respectively `QDM_Multiphase`, `Masse_Multiphase` and `Energie_Multiphase`.
 
-The coupling between all equations is done in a strong way: a single matrix for all equations is used to solve the problem. Available discrtisation for this type of problem are **VDF**, **PolyMAC** and **PolyMAC\_P0**. 
+The coupling between all equations is done in a strong way: a single matrix for all equations is used to solve the problem. Available discretisations for this type of problem are **VDF**, **PolyMAC** and **PolyMAC\_P0**. 
 
 You can also call the **EOS** (private CEA/EDF project) and the **[CoolProp](http://www.coolprop.org/)** library to compute the Thermo-Physical Properties via the `TPPI` interface. Check this [tutorial](../../user_tutorials/coolprop.md) for a guide to link CoolProp with **TRUST**.
 
 ### Example of a Pb\_Multiphase block
 
-Here is an example of **Pb\_Multiphase**, taken from the `CoolProp_water_BICUBIC_HEOS_with_sat` test case. Attention this test case needs a TRUST version linked with the CoolProp library.
+Here is an example of **Pb\_Multiphase**, taken from the `CoolProp_water_BICUBIC_HEOS_with_sat` test case. **Warning**: this test case needs a TRUST version linked with the CoolProp library.
 ```bash
 # Read a multiphase problem pb #
 Read pb

@@ -74,6 +74,7 @@ mathjax3_config = {
     }
 }
 
+
 # generate autosummary even if no references
 numpydoc_show_class_members = False
 autosummary_generate = False
