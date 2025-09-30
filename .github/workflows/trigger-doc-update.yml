@@ -1,0 +1,86 @@
+name: Sync Sources and Build Doxygen (Test)
+on:
+  repository_dispatch:
+    types: [source-updated-test]  # Different event type for testing
+  workflow_dispatch:
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout documentation repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Setup Git
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+      - name: Get source branch info
+        run: |
+          echo "Source branch: ${{ github.event.client_payload.source_branch || 'test-auto-doc' }}"
+          echo "SOURCE_BRANCH=${{ github.event.client_payload.source_branch || 'test-auto-doc' }}" >> $GITHUB_ENV
+          
+      - name: Clone source repository (shallow)
+        run: |
+          git clone --depth=1 --branch=${{ env.SOURCE_BRANCH }} https://github.com/your-username/code-repo.git temp-source
+          
+      - name: Sync src folder to test location
+        run: |
+          # Use a test directory to avoid conflicts
+          rm -rf docs/source/cpp-src-test
+          mkdir -p docs/source
+          cp -r temp-source/src docs/source/cpp-src-test
+          rm -rf temp-source
+          
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+          
+      - name: Create basic Doxyfile if not exists
+        run: |
+          cd docs/source/cpp-src-test
+          if [ ! -f "Doxyfile" ]; then
+            cat > Doxyfile << EOF
+          PROJECT_NAME           = "Your C++ Project"
+          PROJECT_VERSION        = "Test"
+          OUTPUT_DIRECTORY       = doxygen-output
+          INPUT                  = .
+          RECURSIVE              = YES
+          GENERATE_HTML          = YES
+          GENERATE_LATEX         = NO
+          HTML_OUTPUT            = html
+          EXTRACT_ALL            = YES
+          EXTRACT_PRIVATE        = YES
+          EXTRACT_STATIC         = YES
+          SHOW_INCLUDE_FILES     = YES
+          GENERATE_TREEVIEW      = YES
+          DISABLE_INDEX          = NO
+          FULL_SIDEBAR           = NO
+          EOF
+          fi
+          
+      - name: Generate Doxygen documentation
+        run: |
+          cd docs/source/cpp-src-test
+          doxygen Doxyfile
+          
+      - name: Move generated docs
+        run: |
+          mkdir -p docs/source/api-test
+          if [ -d "docs/source/cpp-src-test/doxygen-output/html" ]; then
+            cp -r docs/source/cpp-src-test/doxygen-output/html/* docs/source/api-test/
+          fi
+          
+      - name: Commit and push changes
+        run: |
+          git add docs/source/cpp-src-test docs/source/api-test
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "TEST: Update C++ sources and regenerate Doxygen (from ${{ github.event.client_payload.source_commit }})"
+            git push
+          fi
