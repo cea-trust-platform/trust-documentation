@@ -1,8 +1,12 @@
+#name: Sync Sources and Build Doxygen (Test)
+#on:
+#  repository_dispatch:
+#    types: [source-updated-test]  # Different event type for testing
+#  workflow_dispatch:
+
 name: Sync Sources and Build Doxygen (Test)
 on:
-  repository_dispatch:
-    types: [source-updated-test]  # Different event type for testing
-  workflow_dispatch:
+  push:
 
 jobs:
   sync-and-build:
