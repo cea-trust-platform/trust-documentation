@@ -9,6 +9,8 @@ This is the developper corner. If you want to join the team of amazing TRUST dev
     dev_tutorials/index
     dev_guidelines/index
     cpp_api
+    dev_guide/debug
+    dev_guide/stats_profilers
 ..    trustutils/index
 
 
