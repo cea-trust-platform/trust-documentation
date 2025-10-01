@@ -28,7 +28,7 @@ The following table summerise the parameters of the simulation:
 
 | **Initial conditions** | **Value** |
 |:---------------:|:---------------:|
-| Velocity ($V(x,y,t=0)$)| $0 m \cdot s^{-1}|
+| Velocity ($V(x,y,t=0)$)| $0 m \cdot s^{-1}$|
 | Concentration ($C(x,y,t=0)$) | 0 |
 
 
