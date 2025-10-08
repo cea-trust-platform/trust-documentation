@@ -11,62 +11,68 @@ statistics()
 ```
 
 Counters are seperated in two types:
-- the standard counters used default in **TRUST** and identified by a `STD_COUNTERS` key,
+- the standard counters used default in **TRUST** and identified by a `STD_COUNTERS` key (`STD_COUNTERS` is an enum class),
 - custom counters that can be created inside the code and that are identified by a `std::string`. 
 
-`STD_COUNTERS` is an enum class.
-
-| Key | Level | Description | Family | Is_communication | Is_gpu |
-|-----|-------|-------------|--------|------------------|--------|
-| total_execution_time | -1 | Total time | | | |
-| computation_start_up | 0 | Computation start-up | | | |
-| timeloop | 0 | Time loop | | | |
-| backup_file | 0 | Back-up operations | | | |
-| system_solver | 1 | Linear solver resolutions Ax=B | | | |
-| petsc_solver | 2 | Petsc solver | | | |
-| implicit_diffusion | 1 | Solver for implicit diffusion: | | | |
-| compute_dt | 1 | Computation of the time step dt | | | |
-| turbulent_viscosity | 1 | Turbulence model::update | | | |
-| convection | 1 | Convection operator | | | |
-| diffusion | 1 | Diffusion operator | | | |
-| gradient | 1 | Gradient operator | | | |
-| divergence | 1 | Divergence operator | | | |
-| rhs | 1 | Source_terms | | | |
-| postreatment | 1 | Post-treatment operations | | | |
-| restart | 1 | Read file for restart | | | |
-| matrix_assembly | 1 | Nb matrix assembly for implicit scheme: | | | |
-| update_variables | 1 | Update ::mettre_a_jour | | | |
-| mpi_sendrecv | 2 | MPI_send_recv | MPI_sendrecv | true | |
-| mpi_send | 2 | MPI_send | MPI_sendrecv | true | |
-| mpi_recv | 2 | MPI_recv | MPI_sendrecv | true | |
-| mpi_bcast | 2 | MPI_broadcast | MPI_sendrecv | true | |
-| mpi_alltoall | 2 | MPI_alltoall | MPI_sendrecv | true | |
-| mpi_allgather | 2 | MPI_allgather | MPI_sendrecv | true | |
-| mpi_gather | 2 | MPI_gather | MPI_sendrecv | true | |
-| mpi_partialsum | 2 | MPI_partialsum | MPI_allreduce | true | |
-| mpi_sumdouble | 2 | MPI_sumdouble | MPI_allreduce | true | |
-| mpi_mindouble | 2 | MPI_mindouble | MPI_allreduce | true | |
-| mpi_maxdouble | 2 | MPI_maxdouble | MPI_allreduce | true | |
-| mpi_sumfloat | 2 | MPI_sumfloat | MPI_allreduce | true | |
-| mpi_minfloat | 2 | MPI_minfloat | MPI_allreduce | true | |
-| mpi_maxfloat | 2 | MPI_maxfloat | MPI_allreduce | true | |
-| mpi_sumint | 2 | MPI_sumint | MPI_allreduce | true | |
-| mpi_minint | 2 | MPI_minint | MPI_allreduce | true | |
-| mpi_maxint | 2 | MPI_maxint | MPI_allreduce | true | |
-| mpi_barrier | 2 | MPI_barrier | MPI_allreduce | true | |
-| gpu_library | 2 | GPU_library | GPU_library | false | true |
-| gpu_kernel | 2 | GPU_kernel | GPU_kernel | false | true |
-| gpu_copytodevice | 2 | GPU_copyToDevice | GPU_copy | false | true |
-| gpu_copyfromdevice | 2 | GPU_copyFromDevice | GPU_copy | false | true |
-| gpu_malloc_free | 2 | GPU_allocations | GPU_alloc | false | true |
-| interprete_scatter | 2 | Scatter_interprete | None | true | false |
-| virtual_swap | 2 | DoubleVect/IntVect::virtual_swap | None | true | |
-| read_scatter | 2 | Scatter::read_domaine | None | true | |
-| parallel_meshing | 0 | Parallel meshing | | | |
-| IO_EcrireFicPartageBin | 2 | write | IO | | |
-| IO_EcrireFicPartageMPIIO | 2 | MPI_File_write_all | IO | | |
-
 The basic API for counters in **TRUST** is as follows:
+
+### Standard counters
+Here is the list of the standard **TRUST** counters:
+
+| Key | Description | Family | Is_communication | Is_gpu |
+|-----|-------------|--------|------------------|--------|
+| total_execution_time | Total time | None | False | False |
+| computation_start_up | Computation start-up | None | False | False |
+| timeloop | Time loop | None | False | False |
+| backup_file | Back-up operations | None | False | False |
+| system_solver | Linear solver resolutions Ax=B | None | False | False |
+| petsc_solver | Petsc solver | None | False | False |
+| implicit_diffusion | Solver for implicit diffusion: | None | False | False |
+| compute_dt | Computation of the time step dt | None | False | False |
+| turbulent_viscosity | Turbulence model::update | None | False | False |
+| convection | Convection operator | None | False | False |
+| diffusion | Diffusion operator | None | False | False |
+| gradient | Gradient operator | None | False | False |
+| divergence | Divergence operator | None | False | False |
+| rhs | Source_terms | None | False | False |
+| postreatment | Post-treatment operations | None | False | False |
+| restart | Read file for restart | None | False | False |
+| matrix_assembly | Nb matrix assembly for implicit scheme: | None | False | False |
+| update_variables | Update ::mettre_a_jour | None | False | False |
+| mpi_sendrecv | MPI_send_recv | MPI_sendrecv | true | False |
+| mpi_send | MPI_send | MPI_sendrecv | true | False |
+| mpi_recv | MPI_recv | MPI_sendrecv | true | False |
+| mpi_bcast | MPI_broadcast | MPI_sendrecv | true | False |
+| mpi_alltoall | MPI_alltoall | MPI_sendrecv | true | False |
+| mpi_allgather | MPI_allgather | MPI_sendrecv | true | False |
+| mpi_gather | MPI_gather | MPI_sendrecv | true | False |
+| mpi_partialsum | MPI_partialsum | MPI_allreduce | true | False |
+| mpi_sumdouble | MPI_sumdouble | MPI_allreduce | true | False |
+| mpi_mindouble | MPI_mindouble | MPI_allreduce | true | False |
+| mpi_maxdouble | MPI_maxdouble | MPI_allreduce | true | False |
+| mpi_sumfloat | MPI_sumfloat | MPI_allreduce | true | False |
+| mpi_minfloat | MPI_minfloat | MPI_allreduce | true | False |
+| mpi_maxfloat | MPI_maxfloat | MPI_allreduce | true | False |
+| mpi_sumint | MPI_sumint | MPI_allreduce | true | False |
+| mpi_minint | MPI_minint | MPI_allreduce | true | False |
+| mpi_maxint | MPI_maxint | MPI_allreduce | true | False |
+| mpi_barrier | MPI_barrier | MPI_allreduce | true | False |
+| gpu_library | GPU_library | GPU_library | false | true |
+| gpu_kernel | GPU_kernel | GPU_kernel | false | true |
+| gpu_copytodevice | GPU_copyToDevice | GPU_copy | false | true |
+| gpu_copyfromdevice | GPU_copyFromDevice | GPU_copy | false | true |
+| gpu_malloc_free | GPU_allocations | GPU_alloc | false | true |
+| interprete_scatter | Scatter_interprete | None | true | false |
+| virtual_swap | DoubleVect/IntVect::virtual_swap | None | true | False |
+| read_scatter | Scatter::read_domaine | None | true | False |
+| parallel_meshing | Parallel meshing | None | False | False |
+| IO_EcrireFicPartageBin | write | IO | False | False |
+| IO_EcrireFicPartageMPIIO | MPI_File_write_all | IO | False | False |
+
+You can use them whenerver you need to.
+
+### Custom counters
+
 
 
 ## External profilers
