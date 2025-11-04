@@ -1,0 +1,441 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPartitionneur__Tranche__32__64" kind="class" language="C++" prot="public">
+    <compoundname>Partitionneur_Tranche_32_64</compoundname>
+    <basecompoundref refid="classPartitionneur__base__32__64" prot="public" virt="non-virtual">Partitionneur_base_32_64&lt; _SIZE_ &gt;</basecompoundref>
+    <includes local="no">Partitionneur_Tranche.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1adc410c25b6f264eda8d91c36b2f4bc9a" prot="public" static="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt_T</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::ArrOfInt_t =  ArrOfInt_T&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>ArrOfInt_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="36" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1af365836ed497ad2491d0070575412edc" prot="public" static="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">TRUSTVect</ref>&lt; int, _SIZE_ &gt;</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::BigIntVect_ =  TRUSTVect&lt;int, _SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>BigIntVect_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="41" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1ac333ce278405b3dec57cb1e1565394f9" prot="public" static="no">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::Domaine_t =  Domaine_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Domaine_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="39" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1ad6fee4865b85804b92728e53c78da032" prot="public" static="no">
+        <type>_SIZE_</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::int_t =  _SIZE_</definition>
+        <argsstring></argsstring>
+        <name>int_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="35" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1af38bb6e825f9d7b5d3c9f55206965759" prot="public" static="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab_T</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::IntTab_t =  IntTab_T&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>IntTab_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="38" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPartitionneur__Tranche__32__64_1a38f92a70ab3901439456a55489427bcb" prot="public" static="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">IntVect_T</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::IntVect_t =  IntVect_T&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>IntVect_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="37" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPartitionneur__Tranche__32__64_1a7e1f8eab2712a9008daaddb9557f9148" prot="private" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref></type>
+        <definition>ArrOfInt Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::nb_tranches_</definition>
+        <argsstring></argsstring>
+        <name>nb_tranches_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="55" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1ab2afd9f4c059d91bf2a9240e4911c06c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::Declare_instanciable_32_64</definition>
+        <argsstring>(Partitionneur_Tranche_32_64)</argsstring>
+        <name>Declare_instanciable_32_64</name>
+        <param>
+          <type><ref refid="classPartitionneur__Tranche__32__64" kindref="compound">Partitionneur_Tranche_32_64</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1a35732ed017288c6d57cc29017c8c564f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::OBS_PTR</definition>
+        <argsstring>(Domaine_t) ref_domaine_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classPartitionneur__base__32__64_1ac7eefe6a660d79fd9d47a950f58d32c8" kindref="member">Domaine_t</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="51" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1aa789c3f6a958591bff00ba35411ffe68" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::associer_domaine</definition>
+        <argsstring>(const Domaine_t &amp;domaine) override</argsstring>
+        <name>associer_domaine</name>
+        <reimplements refid="classPartitionneur__base__32__64_1a95c978b39afb7cddaf90c65e7201a2ba">associer_domaine</reimplements>
+        <param>
+          <type>const <ref refid="classPartitionneur__base__32__64_1ac7eefe6a660d79fd9d47a950f58d32c8" kindref="member">Domaine_t</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <briefdescription>
+<para>Premiere etape d&apos;initialisation du partitionneur: on associe un domaine. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.cpp" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1ac6b0bb4315f5fc088adba028e9361bb9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::construire_partition</definition>
+        <argsstring>(BigIntVect_ &amp;elem_part, int &amp;nb_parts_tot) const override</argsstring>
+        <name>construire_partition</name>
+        <reimplements refid="classPartitionneur__base__32__64_1adb6341735f096f38a9c666b1c36ec6c1">construire_partition</reimplements>
+        <param>
+          <type><ref refid="classPartitionneur__base__32__64_1ac61b36f1d84064245f9e9a27197a112b" kindref="member">BigIntVect_</ref> &amp;</type>
+          <declname>elem_part</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>nb_parts_tot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.cpp" bodystart="151" bodyend="311"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classTRUSTArray_1ad8448b0280ac71013a30d57a884467d9" compoundref="TRUSTArray_8h" startline="111" endline="111">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::begin</references>
+        <references refid="classDomaine__32__64_1a563f4ac3dcb86ff1b7fc5dfb2856c735" compoundref="Domaine_8h" startline="496" endline="496">Domaine_32_64&lt; _SIZE_ &gt;::calculer_centres_gravite</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classTRUSTArray_1a3e727fdd7efb3949dcab9cbbc67ebace" compoundref="TRUSTArray_8h" startline="112" endline="112">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::end</references>
+        <references refid="classTRUSTArray_1a678fe673d5c62662dcac939687fad90c" compoundref="TRUSTArray_8cpp" startline="193" endline="233">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::inject_array</references>
+        <references refid="classDomaine__32__64_1a92cccd83fdd182cb909d51ff9938eb1b" compoundref="Domaine_8h" startline="128" endline="128">Domaine_32_64&lt; _SIZE_ &gt;::nb_elem</references>
+        <references refid="classTRUSTArray_1afa24187d1b5c32ef0f2014a8a0bdc24f" compoundref="TRUSTArray_8tpp" startline="87" endline="96">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::ref_data</references>
+        <references refid="classTRUSTVect_1ae68bc2c6cfd7016c9c209cddd41e51d4" compoundref="TRUSTVect_8tpp" startline="91" endline="96">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" compoundref="TRUSTArray_8tpp" startline="44" endline="54">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::resize_array</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1ad4537cf7d2ece808498c2c7ab8f3b80b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::initialiser</definition>
+        <argsstring>(const ArrOfInt &amp;nb_tranches)</argsstring>
+        <name>initialiser</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>nb_tranches</declname>
+        </param>
+        <briefdescription>
+<para>Deuxieme etape d&apos;initialisation: on definit le nombre de tranches. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(on peut utiliser readOn a la place). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.cpp" bodystart="78" bodyend="85"/>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1a8ea6474649a7921e860d71af022eb399" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::set_param</definition>
+        <argsstring>(Param &amp;param) override</argsstring>
+        <name>set_param</name>
+        <reimplements refid="classPartitionneur__base__32__64_1ab2226d1b7d068a20cf95dfda6aa00d79">set_param</reimplements>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.cpp" bodystart="56" bodyend="59"/>
+        <references refid="classParam_1adcb07d363043552750b5cbca934ba015" compoundref="Param_8cpp" startline="401" endline="406">Param::ajouter_arr_size_predefinie</references>
+        <references refid="classParam_1aa4ad0ca1d49bc5f2ebc5fc83ee9df384aaf5b6dfac1c5970478525407cc6ac572" compoundref="Param_8h" startline="40">Param::REQUIRED</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classPartitionneur__Tranche__32__64_1acd20e524eeb0fd09ad78bfc238f2ede6" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;::chercher_direction_perio</definition>
+        <argsstring>(const Domaine_t &amp;domaine, const Noms &amp;liste_bords_perio, ArrOfInt &amp;directions_perio)</argsstring>
+        <name>chercher_direction_perio</name>
+        <param>
+          <type>const <ref refid="classPartitionneur__base__32__64_1ac7eefe6a660d79fd9d47a950f58d32c8" kindref="member">Domaine_t</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>liste_bords_perio</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>directions_perio</declname>
+        </param>
+        <briefdescription>
+<para>Remplissage du tableau directions perio a partir des noms des bords periodiques. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pour 0 &lt;= i &lt; <ref refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" kindref="member">Objet_U::dimension</ref> directions_perio[i] vaut 1 s&apos;il existe un bord periodique pour lequel le vecteur delta est dirige dans la direction i. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="47" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.cpp" bodystart="94" bodyend="148"/>
+        <references refid="classReordonner__faces__periodiques__32__64_1a91f128e079d27b50c94b493e7fbd56cd" compoundref="Reordonner__faces__periodiques_8cpp" startline="249" endline="323">Reordonner_faces_periodiques_32_64&lt; _SIZE_ &gt;::check_faces_periodiques</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" compoundref="Objet__U_8h" startline="84">Objet_U::precision_geom</references>
+        <references refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" compoundref="TRUSTArray_8tpp" startline="44" endline="54">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::resize_array</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Partitionneur de domaine en tranches paralleles aux directions de l&apos;espace. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Voir construire_partition </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Partitionneur_base_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classPartitionneur__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classPartitionneur__Tranche__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Partitionneur_base_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classPartitionneur__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>liste_bords_periodiques_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>VECTNom</label>
+      </node>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="6">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Partitionneur_Tranche_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classPartitionneur__Tranche__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Decoupeur/Partitionneur_Tranche.h" bodystart="31" bodyend="56"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>abort</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1adc410c25b6f264eda8d91c36b2f4bc9a" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>ArrOfInt_t</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>associer_</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1aa789c3f6a958591bff00ba35411ffe68" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>bidim_axi</name></member>
+      <member refid="classPartitionneur__base__32__64_1a00bf83052a708cb0ed3ba757d8ac3538" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>BigArrOfInt_</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1af365836ed497ad2491d0070575412edc" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>BigIntVect_</name></member>
+      <member refid="classPartitionneur__base__32__64_1aca961759a555969ef7278e9460b87400" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Bord_t</name></member>
+      <member refid="classPartitionneur__base__32__64_1afe7c4842efdb9225d2ec4a28ac72c284" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>calculer_graphe_connexions_periodiques</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>check_int_overflow</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1acd20e524eeb0fd09ad78bfc238f2ede6" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>chercher_direction_perio</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1ac6b0bb4315f5fc088adba028e9361bb9" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>construire_partition</name></member>
+      <member refid="classPartitionneur__base__32__64_1aff3b61df5597a32708bc9be2f1e2563d" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>corriger_bords_avec_graphe</name></member>
+      <member refid="classPartitionneur__base__32__64_1aaef93453c58b6e58ca99f85a941890d6" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>corriger_bords_avec_liste</name></member>
+      <member refid="classPartitionneur__base__32__64_1a273e3ad0903304a5e9bf010b3aba0a15" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>corriger_elem0_sur_proc0</name></member>
+      <member refid="classPartitionneur__base__32__64_1a2533c5bbe617c21b126627fa76d13126" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>corriger_multiperiodique</name></member>
+      <member refid="classPartitionneur__base__32__64_1a9528878ae88bef4df6310002bad43bb7" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>corriger_sommets_bord</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1ab2afd9f4c059d91bf2a9240e4911c06c" prot="private" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Declare_instanciable_32_64</name></member>
+      <member refid="classPartitionneur__base__32__64_1a60ed7ef5f49bc8992619213ada9d59e7" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>declarer_bords_periodiques</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>disable_TU</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1ac333ce278405b3dec57cb1e1565394f9" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Domaine_t</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>info_obj</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1ad4537cf7d2ece808498c2c7ab8f3b80b" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>initialiser</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1ad6fee4865b85804b92728e53c78da032" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>int_t</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>interprete</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1af38bb6e825f9d7b5d3c9f55206965759" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>IntTab_t</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1a38f92a70ab3901439456a55489427bcb" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>IntVect_t</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>le_type</name></member>
+      <member refid="classPartitionneur__base__32__64_1a0296043a6818c4791b02449e63c02ebe" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classPartitionneur__base__32__64_1aa9d3f36d02031f13e1a25215799d02a3" prot="protected" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>liste_bords_periodiques_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>multiple_files</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1a7e1f8eab2712a9008daaddb9557f9148" prot="private" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>nb_tranches_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Objet_U</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1a35732ed017288c6d57cc29017c8c564f" prot="private" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>self_cast</name></member>
+      <member refid="classPartitionneur__Tranche__32__64_1a8ea6474649a7921e860d71af022eb399" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>set_param</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classPartitionneur__base__32__64_1addfe61815968a727e8d18ce5acda48a0" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>Static_Int_Lists_t</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Partitionneur_Tranche_32_64</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Partitionneur_Tranche_32_64</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

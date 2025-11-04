@@ -1,0 +1,695 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDG__discretisation" kind="class" language="C++" prot="public">
+    <compoundname>DG_discretisation</compoundname>
+    <basecompoundref refid="classDiscret__Thyd" prot="public" virt="non-virtual">Discret_Thyd</basecompoundref>
+    <includes local="no">DG_discretisation.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDG__discretisation_1a60fd411c3dda185f54e43e5ef5b7ee07" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>DG_discretisation::Declare_instanciable</definition>
+        <argsstring>(DG_discretisation)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classDG__discretisation" kindref="compound">DG_discretisation</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="43" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1af606791b2a3622839a36d5063954860f" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::discretiser_champ_fonc_don</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, double temps, Objet_U &amp;champ) const</argsstring>
+        <name>discretiser_champ_fonc_don</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+          <defname>noms</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+          <defname>unites</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> &amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+<para>Idem que <ref refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" kindref="member">DG_discretisation::discretiser_champ</ref>(. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>.. , Champ_Inc) Traitement commun aux champ_fonc et champ_don. Cette methode est privee (passage d&apos;un <ref refid="classObjet__U" kindref="compound">Objet_U</ref> pas propre vu de l&apos;exterieur ...) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="71" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="152" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1a7cbd3ed17c09b3fce20569c1fa86901e" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::modifier_champ_tabule</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_vdf, Champ_Fonc_Tabule &amp;lambda_tab, const VECT(OBS_PTR(Champ_base)) &amp;ch_temper) const override</argsstring>
+        <name>modifier_champ_tabule</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_vdf</declname>
+        </param>
+        <param>
+          <type><ref refid="classChamp__Fonc__Tabule" kindref="compound">Champ_Fonc_Tabule</ref> &amp;</type>
+          <declname>lambda_tab</declname>
+        </param>
+        <param>
+          <type>const VECT(<ref refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)) &amp;</type>
+          <declname>ch_temper</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="72" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="304" bodyend="317"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDG__discretisation_1ab11a5530a51401ed3b5bb0bdc4a6f024" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" kindref="member">type_calcul_du_residu</ref></type>
+        <definition>type_calcul_du_residu DG_discretisation::codage_du_calcul_du_residu</definition>
+        <argsstring>() const override</argsstring>
+        <name>codage_du_calcul_du_residu</name>
+        <reimplements refid="classDiscretisation__base_1ad6333cec25f23f44f36aabb20416ab68">codage_du_calcul_du_residu</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="63" column="32" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" bodystart="63" bodyend="63"/>
+        <references refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0a6da3daf19c0be297ebb5c28e3ad11b2d" compoundref="Discretisation__base_8h" startline="59">Discretisation_base::VIA_CONTRIBUER_AU_SECOND_MEMBRE</references>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1a9fadb63e84a90c76940e3e8e5455d699" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)&amp;champ) const override</argsstring>
+        <name>discretiser_champ</name>
+        <reimplements refid="classDiscretisation__base_1a29462970b0097e5ff1c24309613c1545">discretiser_champ</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+          <defname>noms</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+          <defname>unites</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+<para>Idem que <ref refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" kindref="member">DG_discretisation::discretiser_champ</ref>(. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>.. , Champ_Inc) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="49" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="139" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1afc4a60aef8f66ce57f924db98bcfdbb6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)&amp;champ) const override</argsstring>
+        <name>discretiser_champ</name>
+        <reimplements refid="classDiscretisation__base_1a7a83512f3f7c77c32d80a21bd5e7ea2a">discretiser_champ</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+          <defname>noms</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+          <defname>unites</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+<para>Idem que <ref refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" kindref="member">DG_discretisation::discretiser_champ</ref>(. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>.. , Champ_Inc) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="128" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, int nb_pas_dt, double temps, OWN_PTR(Champ_Inc_base)&amp;champ, const Nom &amp;sous_type=NOM_VIDE) const override</argsstring>
+        <name>discretiser_champ</name>
+        <reimplements refid="classDiscretisation__base_1a509a8f15679dc718615771bdef0782b3">discretiser_champ</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+          <defname>dom_dis</defname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+          <defname>noms</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+          <defname>unites</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_pas_dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>sous_type</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+<para>Discretisation of a field for DG formulation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>TODO, refactor this after stokes. And decide if we want to put this on <ref refid="classOption__DG" kindref="compound">Option_DG</ref> or not</para>
+<para>La directive est un <ref refid="classMotcle" kindref="compound">Motcle</ref> comme &quot;vitesse&quot;, &quot;pression&quot;, &quot;temperature&quot;, &quot;champ_elem&quot; (cree un champ de type P0), ... Cette methode determine le type du champ a creer en fonction du type d&apos;element et de la directive de discretisation. Elle determine ensuite le nombre de ddl et fixe l&apos;ensemble des parametres du champ (type, nb_compo, nb_ddl, nb_pas_dt, nom(s), unite(s) et nature du champ) et associe la Domaine_dis au champ. Voir le code pour avoir la correspondance entre les directives et le type de champ cree. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="54" bodyend="121"/>
+        <references refid="classDiscretisation__base_1a78d39e8085df1f98212b52b5b7ee459f" compoundref="Discretisation__base_8cpp" startline="219" endline="227">Discretisation_base::creer_champ</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" compoundref="Discretisation__base_8h" startline="111">Discretisation_base::DEMANDE_DESCRIPTION</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classOption__DG_1a9985ebbb50315ab6044d809cdce3ffa9" compoundref="Option__DG_8cpp" startline="57" endline="63">Option_DG::Get_order_for</references>
+        <references refid="classOption__DG_1a602046b6bb43089001f96aca4f3242c0" compoundref="Option__DG_8cpp" startline="68" endline="78">Option_DG::Nb_col_from_order</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" compoundref="Discretisation__base_8h" startline="112">Discretisation_base::NOM_VIDE</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classMotcles_1abd4862b9c8552b88a48927e67bd48d9d" compoundref="Motcle_8cpp" startline="321" endline="331">Motcles::search</references>
+        <references refid="classDiscretisation__base_1afc3992b63975458f04f3f898f58e84cf" compoundref="Discretisation__base_8cpp" startline="550" endline="581">Discretisation_base::verifie_sous_type</references>
+        <referencedby refid="classDG__discretisation_1ac47d8b823a0b14ef88b3d45da8f45cb5" compoundref="DG__discretisation_8cpp" startline="394" endline="401">distance_paroi_globale</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1a53f84dc4dccbb271478ddaf4d9e26e64" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::distance_paroi</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>distance_paroi</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+          <defname>sch</defname>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <defname>z</defname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <defname>ch</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="54" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="248" bodyend="261"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1ac47d8b823a0b14ef88b3d45da8f45cb5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::distance_paroi_globale</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const override</argsstring>
+        <name>distance_paroi_globale</name>
+        <reimplements refid="classDiscret__Thyd_1ac4ced1c5b973fd0dbe2938bfa9dfe37d">distance_paroi_globale</reimplements>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+          <defname>sch</defname>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <defname>z</defname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <defname>ch</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="55" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="394" bodyend="401"/>
+        <references refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">discretiser_champ</references>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1a5f9282012c10bf14a28e6510838306dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom DG_discretisation::domaine_cl_dis_type</definition>
+        <argsstring>() const override</argsstring>
+        <name>domaine_cl_dis_type</name>
+        <reimplements refid="classDiscretisation__base_1a771a54326f782563754413afbf2e44b7">domaine_cl_dis_type</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="51" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1ab0d7f5e3ed572a0eb49e20ee64c71654" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom DG_discretisation::get_name_of_type_for</definition>
+        <argsstring>(const Nom &amp;class_operateur, const Nom &amp;type_operateur, const Equation_base &amp;eqn, const OBS_PTR(Champ_base) &amp;champ_sup) const override</argsstring>
+        <name>get_name_of_type_for</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>class_operateur</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type_operateur</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <declname>eqn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>) &amp;</type>
+          <declname>champ_sup</declname>
+        </param>
+        <briefdescription>
+<para>Old copy paste, give the name to fields. Name used to allocate size of matrixes in discretiser. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="65" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="321" bodyend="392"/>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" compoundref="Discretisation__base_8cpp" startline="350" endline="548">Discretisation_base::get_name_of_type_for</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classNom_1acdb0a56b1654b0c37050be0ca9435706" compoundref="Nom_8cpp" startline="275" endline="283">Nom::suffix</references>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1a2517ad8ed229987afb4ca28ba6334a88" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void DG_discretisation::grad_u</definition>
+        <argsstring>(const Domaine_dis_base &amp;z, const Domaine_Cl_dis_base &amp;zcl, const Champ_Inc_base &amp;ch_vitesse, OWN_PTR(Champ_Fonc_base)&amp;ch) const override</argsstring>
+        <name>grad_u</name>
+        <reimplements refid="classDiscret__Thyd_1aadadc7418fd142c41a354b0bb8044431">grad_u</reimplements>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>zcl</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>ch_vitesse</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="62" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.cpp" bodystart="264" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1add64832c66838d76520f46c2e343ce1f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool DG_discretisation::is_dg</definition>
+        <argsstring>() const override</argsstring>
+        <name>is_dg</name>
+        <reimplements refid="classDiscretisation__base_1a2f404ad2c8800e75a39c37964d93f883">is_dg</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="67" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classDG__discretisation_1ad035ecc5eb9ed629354e698db50cd3d3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool DG_discretisation::is_polymac_family</definition>
+        <argsstring>() const override</argsstring>
+        <name>is_polymac_family</name>
+        <reimplements refid="classDiscretisation__base_1ab68dcb966f6651993d3b19bfdb644399">is_polymac_family</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="68" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" bodystart="68" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DG_discretisation</label>
+        <link refid="classDG__discretisation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Discret_Thyd</label>
+        <link refid="classDiscret__Thyd"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Discret_Thermique</label>
+        <link refid="classDiscret__Thermique"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>DG_discretisation</label>
+        <link refid="classDG__discretisation"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>NOM_VIDE</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>DEMANDE_DESCRIPTION</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Discret_Thyd</label>
+        <link refid="classDiscret__Thyd"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Motcle</label>
+        <link refid="classMotcle"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Discret_Thermique</label>
+        <link refid="classDiscret__Thermique"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" line="41" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Geometrie/DG_discretisation.h" bodystart="42" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>associer_</name></member>
+      <member refid="classDiscretisation__base_1aad7284735cd70264a2e9f1ffa5ee73c2" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>check_int_overflow</name></member>
+      <member refid="classDG__discretisation_1ab11a5530a51401ed3b5bb0bdc4a6f024" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>codage_du_calcul_du_residu</name></member>
+      <member refid="classDiscret__Thyd_1aa3dfaccfc5dcd116a23f79eefd875cb6" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>concentration</name></member>
+      <member refid="classDiscret__Thyd_1a5eafa07b25121e4db82a5b17cdf3be34" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>courant_maille</name></member>
+      <member refid="classDiscretisation__base_1a78d39e8085df1f98212b52b5b7ee459f" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1a4ea304a3017fa3c2f42b47c604a41665" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1ae85d1a5377595c6a9b7f220d375ee021" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>creer_champ</name></member>
+      <member refid="classDiscret__Thyd_1a752e23fcdd7286eaa31145cd91e969bf" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>creer_champ_vorticite</name></member>
+      <member refid="classDiscret__Thyd_1aed8b46c9ac4be3154fb4fd5f1d6289f0" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>critere_Q</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classDG__discretisation_1a60fd411c3dda185f54e43e5ef5b7ee07" prot="private" virt="non-virtual"><scope>DG_discretisation</scope><name>Declare_instanciable</name></member>
+      <member refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>DEMANDE_DESCRIPTION</name></member>
+      <member refid="classDiscret__Thyd_1ad2fcde9216c159cfddd0ec03a13f6f17" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>diametre_hydraulique_face</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>disable_TU</name></member>
+      <member refid="classDiscretisation__base_1a720792b21fab7d60bef9a2b39faf96c1" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>discretiser</name></member>
+      <member refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDG__discretisation_1afc4a60aef8f66ce57f924db98bcfdbb6" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDG__discretisation_1a9fadb63e84a90c76940e3e8e5455d699" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" prot="public" virt="non-virtual" ambiguityscope="Discret_Thyd::"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1aa025262a374bffb83d08804efb142723" prot="public" virt="non-virtual" ambiguityscope="Discret_Thyd::"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a4926d441cf0d6877629cb17e90cc23b7" prot="public" virt="non-virtual" ambiguityscope="Discret_Thyd::"><scope>DG_discretisation</scope><name>discretiser_champ</name></member>
+      <member refid="classDG__discretisation_1af606791b2a3622839a36d5063954860f" prot="private" virt="virtual"><scope>DG_discretisation</scope><name>discretiser_champ_fonc_don</name></member>
+      <member refid="classDiscretisation__base_1a0e60e14ef2b31bd8098f3688565d510c" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>discretiser_variables</name></member>
+      <member refid="classDG__discretisation_1a53f84dc4dccbb271478ddaf4d9e26e64" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>distance_paroi</name></member>
+      <member refid="classDG__discretisation_1ac47d8b823a0b14ef88b3d45da8f45cb5" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>distance_paroi_globale</name></member>
+      <member refid="classDiscret__Thyd_1ab7bc7c73423133eb9ac1b384c65b7f18" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>divergence_U</name></member>
+      <member refid="classDG__discretisation_1a5f9282012c10bf14a28e6510838306dc" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>domaine_cl_dis_type</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>DG_discretisation</scope><name>duplique</name></member>
+      <member refid="classDiscret__Thyd_1a9706952848d95a8c360d780f646f8c08" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>entcor</name></member>
+      <member refid="classDiscret__Thermique_1aa5757c8ca5f37cb3acb9a84eb862b706" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>enthalpie</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>est_egal_a</name></member>
+      <member refid="classDiscret__Thyd_1a8a93429b6fc3fa429b29c06dcac9a8f7" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>estimateur_aposteriori</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>exit</name></member>
+      <member refid="classDiscret__Thermique_1ae5f0ee2e0b1e48cf6438bcad592bcd97" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>Fluctu_Temperature</name></member>
+      <member refid="classDiscret__Thermique_1a7cd25486adf0f3b47f6e9f59ca0c2f75" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>Flux_Chaleur_Turb</name></member>
+      <member refid="classDiscret__Thermique_1ad3ab69019a623431fe412cfe803ed29a" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>flux_neutronique</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>get_info</name></member>
+      <member refid="classDG__discretisation_1ab0d7f5e3ed572a0eb49e20ee64c71654" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>get_name_of_type_for</name></member>
+      <member refid="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" prot="public" virt="virtual" ambiguityscope="Discret_Thyd::"><scope>DG_discretisation</scope><name>get_name_of_type_for</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classDiscret__Thyd_1add44e817a0c758f5f656b9faebfac770" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>grad_T</name></member>
+      <member refid="classDG__discretisation_1a2517ad8ed229987afb4ca28ba6334a88" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>grad_u</name></member>
+      <member refid="classDiscret__Thyd_1a0f99e47729d83ca76239608a9ce676e7" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>gradient_P</name></member>
+      <member refid="classDiscret__Thyd_1abb83cab1c2399484ff8b363d503b5c47" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>h_conv</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>interprete</name></member>
+      <member refid="classDG__discretisation_1add64832c66838d76520f46c2e343ce1f" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_dg</name></member>
+      <member refid="classDiscretisation__base_1a447faf3699b7e2687003fc7903c24886" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_ef</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>is_parallel</name></member>
+      <member refid="classDiscretisation__base_1a31f49a7acb39da94cf4e0229c465169b" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_polymac</name></member>
+      <member refid="classDG__discretisation_1ad035ecc5eb9ed629354e698db50cd3d3" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_polymac_family</name></member>
+      <member refid="classDiscretisation__base_1a0be287d02325f0201d98921c8665ebbb" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_polymac_p0</name></member>
+      <member refid="classDiscretisation__base_1a14605de98065dcb471af3c796f9d66a6" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_polymac_p0p1nc</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>is_sequential</name></member>
+      <member refid="classDiscretisation__base_1a48deff14b7e177f668cdbc7faec9e2c6" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_vdf</name></member>
+      <member refid="classDiscretisation__base_1aac859a9216c7c1c200fe2f1050190ce7" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>is_vef</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>me</name></member>
+      <member refid="classDiscretisation__base_1a5d6d9a9f61567c3be2ca403bf4613698" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mesh_numbering</name></member>
+      <member refid="classDG__discretisation_1a7cbd3ed17c09b3fce20569c1fa86901e" prot="private" virt="non-virtual"><scope>DG_discretisation</scope><name>modifier_champ_tabule</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>nom_du_cas</name></member>
+      <member refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>NOM_VIDE</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>nommer</name></member>
+      <member refid="classDiscretisation__base_1a17969ebd170a72f28d8cac002eb3f857" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>nommer_completer_champ_physique</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>Objet_U</name></member>
+      <member refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>DG_discretisation</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>precision_geom</name></member>
+      <member refid="classDiscret__Thyd_1a537f7d41eaad4059797e88b9a0304759" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>pression</name></member>
+      <member refid="classDiscret__Thyd_1a2b2def9ce530f8517beb694eaaf870a3" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>pression_en_pa</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>printOn</name></member>
+      <member refid="classDiscret__Thyd_1a88c53950ab6c638db6133291740a120b" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>proprietes_physiques_fluide_Ostwald</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>reprendre</name></member>
+      <member refid="classDiscretisation__base_1ad9237819535d3a28e8ab041f66af27d4" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>residu</name></member>
+      <member refid="classDiscret__Thyd_1ad1fd8bd572c75e663bbc96728c9e806f" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>reynolds_maille</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>sauvegarder</name></member>
+      <member refid="classDiscret__Thyd_1acf2fee34fbee3b2a6200ac29c380db1c" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>section_passage</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classDiscret__Thermique_1a2956db1bee80fad7f6100de187a3c0e3" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>t_paroi</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>DG_discretisation</scope><name>taille_memoire</name></member>
+      <member refid="classDiscret__Thyd_1a6b0df382c89ae7d973ddf3e5eb7b644d" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>taux_cisaillement</name></member>
+      <member refid="classDiscret__Thermique_1a20563156cce652924424506b54fba185" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>temperature</name></member>
+      <member refid="classDiscret__Thyd_1ac77afc3356903d6687212ee006a7ab67" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>translation</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>type_calcul_du_residu</name></member>
+      <member refid="classDiscretisation__base_1afc3992b63975458f04f3f898f58e84cf" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>verifie_sous_type</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0ab1b0885ce8af07e1563ae012e4822f6e" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>VIA_AJOUTER</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0a6da3daf19c0be297ebb5c28e3ad11b2d" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>VIA_CONTRIBUER_AU_SECOND_MEMBRE</name></member>
+      <member refid="classDiscret__Thyd_1acc8970458b63722879a01dc6eb52a7e8" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>vitesse</name></member>
+      <member refid="classDiscretisation__base_1a83cb828fd1e4a9f53372d22a60f7349b" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>volume_maille</name></member>
+      <member refid="classDiscret__Thyd_1a5f58ef7a30ead60131d8cf764e05c6d4" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>y_plus</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>DG_discretisation</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>DG_discretisation</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

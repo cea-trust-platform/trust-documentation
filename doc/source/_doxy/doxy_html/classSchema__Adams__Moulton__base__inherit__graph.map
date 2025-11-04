@@ -1,17 +1,10 @@
 <map id="Schema_Adams_Moulton_base" name="Schema_Adams_Moulton_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="90,401,314,428"/>
-<area shape="rect" id="Node000007" href="$classSchema__Adams__Moulton__order__2.html" title=" " alt="" coords="5,476,191,521"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="175,440,127,478,124,474,172,436"/>
-<area shape="rect" id="Node000008" href="$classSchema__Adams__Moulton__order__3.html" title=" " alt="" coords="215,476,400,521"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="232,436,281,474,278,478,229,440"/>
-<area shape="rect" id="Node000002" href="$classSchema__Implicite__Multi__TimeStep__base.html" title=" " alt="" coords="113,308,291,353"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,368,205,400,199,400,199,368"/>
-<area shape="rect" id="Node000003" href="$classSchema__Implicite__base.html" title="class Schema_Implicite_base Classe de base pour tous les schemas en temps implicite" alt="" coords="114,232,290,260"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="205,276,205,307,199,307,199,276"/>
-<area shape="rect" id="Node000004" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="122,157,282,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="205,200,205,232,199,232,199,200"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="165,81,239,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="205,124,205,156,199,156,199,124"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="166,5,238,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,49,205,81,199,81,199,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="92,393,316,420"/>
+<area shape="rect" id="node7" href="$classSchema__Adams__Moulton__order__2.html" title=" " alt="" coords="5,468,192,509"/>
+<area shape="rect" id="node8" href="$classSchema__Adams__Moulton__order__3.html" title=" " alt="" coords="216,468,403,509"/>
+<area shape="rect" id="node2" href="$classSchema__Implicite__Multi__TimeStep__base.html" title=" " alt="" coords="115,304,293,345"/>
+<area shape="rect" id="node3" href="$classSchema__Implicite__base.html" title="class Schema_Implicite_base Classe de base pour tous les schemas en temps implicite" alt="" coords="116,229,292,256"/>
+<area shape="rect" id="node4" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="123,155,285,181"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="167,80,241,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="168,5,240,32"/>
 </map>

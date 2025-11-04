@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_afb067275a07c2501b6978b1dabb20ba" kind="dir">
+    <compoundname>Sources</compoundname>
+    <innerfile refid="Eval__Puiss__Th__DG__Elem_8h">Eval_Puiss_Th_DG_Elem.h</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__DG__base_8cpp">Terme_Puissance_Thermique_DG_base.cpp</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__DG__base_8h">Terme_Puissance_Thermique_DG_base.h</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__DG__Elem_8cpp">Terme_Puissance_Thermique_DG_Elem.cpp</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__DG__Elem_8h">Terme_Puissance_Thermique_DG_Elem.h</innerfile>
+    <innerfile refid="Terme__Source__DG__base_8cpp">Terme_Source_DG_base.cpp</innerfile>
+    <innerfile refid="Terme__Source__DG__base_8h">Terme_Source_DG_base.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Sources/"/>
+  </compounddef>
+</doxygen>

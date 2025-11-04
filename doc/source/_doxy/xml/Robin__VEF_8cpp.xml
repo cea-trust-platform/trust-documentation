@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="Robin__VEF_8cpp" kind="file" language="C++">
+    <compoundname>Robin_VEF.cpp</compoundname>
+    <includes refid="Frontiere__dis__base_8h" local="no">Frontiere_dis_base.h</includes>
+    <includes refid="Navier__Stokes__std_8h" local="no">Navier_Stokes_std.h</includes>
+    <includes refid="Equation__base_8h" local="no">Equation_base.h</includes>
+    <includes refid="Robin__VEF_8h" local="no">Robin_VEF.h</includes>
+    <includes refid="Front__VF_8h" local="no">Front_VF.h</includes>
+    <includes refid="Param_8h" local="no">Param.h</includes>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="Robin__VEF_8cpp_1a6f4f644c0668beafd3cc7adbde79633f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Implemente_instanciable</definition>
+        <argsstring>(Robin_VEF, &quot;Robin_VEF&quot;, Cond_lim_base)</argsstring>
+        <name>Implemente_instanciable</name>
+        <param>
+          <type><ref refid="classRobin__VEF" kindref="compound">Robin_VEF</ref></type>
+        </param>
+        <param>
+          <type>&quot;Robin_VEF&quot;</type>
+        </param>
+        <param>
+          <type><ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Cond_Lim/Robin_VEF.cpp" line="23" column="1" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Cond_Lim/Robin_VEF.cpp" declline="23" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Frontiere_dis_base.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Navier_Stokes_std.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Equation_base.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Robin_VEF.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Front_VF.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Param.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Implemente_instanciable(<sp/><ref refid="classRobin__VEF" kindref="compound">Robin_VEF</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Robin_VEF&quot;</highlight><highlight class="normal">,<sp/><ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref><sp/>)<sp/>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>XD<sp/>robin_vef<sp/>condlim_base<sp/>robin_vef<sp/>1<sp/>Robin<sp/>condition<sp/>at<sp/>the<sp/>boundary<sp/>(edge)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><ref refid="classSortie" kindref="compound">Sortie</ref>&amp;<sp/><ref refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" kindref="member">Robin_VEF::printOn</ref>(<sp/><ref refid="classSortie" kindref="compound">Sortie</ref>&amp;<sp/>os<sp/>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="27"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" kindref="member">Cond_lim_base::printOn</ref>(<sp/>os<sp/>);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="classEntree" kindref="compound">Entree</ref>&amp;<sp/><ref refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" kindref="member">Robin_VEF::readOn</ref>(<sp/><ref refid="classEntree" kindref="compound">Entree</ref>&amp;<sp/>is<sp/>)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><ref refid="classParam" kindref="compound">Param</ref><sp/>param(<ref refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" kindref="member">que_suis_je</ref>());</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>param.ajouter(</highlight><highlight class="stringliteral">&quot;alpha&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="classRobin__VEF_1a7be8a09c71abafb00512bb36a32022e7" kindref="member">alpha_robin_cl_</ref>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classParam_1aa4ad0ca1d49bc5f2ebc5fc83ee9df384aaf5b6dfac1c5970478525407cc6ac572" kindref="member">Param::REQUIRED</ref>);<sp/></highlight><highlight class="comment">//<sp/>XD_ADD_P<sp/>floattant<sp/>Robin<sp/>coefficient<sp/>for<sp/>the<sp/>normal<sp/>field</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>param.ajouter(</highlight><highlight class="stringliteral">&quot;beta&quot;</highlight><highlight class="normal"><sp/>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="classRobin__VEF_1aed7a1d1b1c483d21cf8e5857159cf0a0" kindref="member">beta_robin_cl_</ref><sp/>,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classParam_1aa4ad0ca1d49bc5f2ebc5fc83ee9df384aaf5b6dfac1c5970478525407cc6ac572" kindref="member">Param::REQUIRED</ref>);<sp/></highlight><highlight class="comment">//<sp/>XD_ADD_P<sp/>floattant<sp/>Robin<sp/>coefficient<sp/>for<sp/>the<sp/>tangent<sp/>field</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>param.ajouter(</highlight><highlight class="stringliteral">&quot;champ_front_normal_et_tangentiel_robin&quot;</highlight><highlight class="normal">,&amp;le_champ_front,<ref refid="classParam_1aa4ad0ca1d49bc5f2ebc5fc83ee9df384aaf5b6dfac1c5970478525407cc6ac572" kindref="member">Param::REQUIRED</ref>);<sp/></highlight><highlight class="comment">//<sp/>XD_ADD_P<sp/>front_field_base<sp/>The<sp/>boundary<sp/>field</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>param.lire_avec_accolades_depuis(is);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Reading<sp/>Robin<sp/>boundary<sp/>condition,<sp/>the<sp/>value<sp/>of<sp/>the<sp/>normal<sp/>Robin<sp/>coefficient<sp/>is<sp/><sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/><ref refid="classRobin__VEF_1a7be8a09c71abafb00512bb36a32022e7" kindref="member">alpha_robin_cl_</ref><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>and<sp/>the<sp/>tangential<sp/>Robin<sp/>coefficient<sp/>is<sp/><sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/><ref refid="classRobin__VEF_1aed7a1d1b1c483d21cf8e5857159cf0a0" kindref="member">beta_robin_cl_</ref><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRobin__VEF_1a7be8a09c71abafb00512bb36a32022e7" kindref="member">alpha_robin_cl_</ref>&lt;=0<sp/>||<sp/><ref refid="classRobin__VEF_1aed7a1d1b1c483d21cf8e5857159cf0a0" kindref="member">beta_robin_cl_</ref>&lt;=0)</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>(</highlight><highlight class="stringliteral">&quot;Error<sp/>of<sp/>Robin<sp/>boundary<sp/>conditions<sp/>:<sp/>Alpha<sp/>and<sp/>Beta<sp/>parameters<sp/>should<sp/>be<sp/>positive.<sp/>\n<sp/>&quot;</highlight><highlight class="normal">)<sp/>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" kindref="member">supp_discs</ref>.size()<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" kindref="member">supp_discs</ref><sp/>=<sp/>{<sp/><ref refid="classNom" kindref="compound">Nom</ref>(</highlight><highlight class="stringliteral">&quot;VEF&quot;</highlight><highlight class="normal">)<sp/>,<sp/><ref refid="classNom" kindref="compound">Nom</ref>(</highlight><highlight class="stringliteral">&quot;VEFPreP1B&quot;</highlight><highlight class="normal">)<sp/>};</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" kindref="member">app_domains</ref>.size()<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" kindref="member">app_domains</ref><sp/>=<sp/>{<sp/><ref refid="classMotcle" kindref="compound">Motcle</ref>(</highlight><highlight class="stringliteral">&quot;Hydraulique&quot;</highlight><highlight class="normal">)<sp/>};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>is;<sp/></highlight><highlight class="comment">//Cond_lim_base::readOn(is);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="classRobin__VEF_1a6fd8dbbb0a339de9f35b8b0df170a09f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a6fd8dbbb0a339de9f35b8b0df170a09f" kindref="member">Robin_VEF::completer</ref>()</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><ref refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" kindref="member">Cond_lim_base::completer</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>assert(<sp/>mon_dom_cl_dis.non_nul());</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!sub_type(<ref refid="classNavier__Stokes__std" kindref="compound">Navier_Stokes_std</ref>,<sp/>mon_dom_cl_dis-&gt;equation()))</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>(</highlight><highlight class="stringliteral">&quot;Robin_VEF<sp/>is<sp/>not<sp/>yet<sp/>coded<sp/>on<sp/>scalar<sp/>equations<sp/>...<sp/>\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>pour<sp/>le<sp/>moment<sp/>....</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mon_dom_cl_dis-&gt;equation().operateur(0).l_op_base().que_suis_je()<sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;Op_Diff_VEF_P1NC&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>(</highlight><highlight class="stringliteral">&quot;Robin_VEF<sp/>is<sp/>now<sp/>only<sp/>available<sp/>for<sp/>the<sp/>laminar<sp/>Op_Diff_VEF_P1NC<sp/>operator<sp/>...<sp/>\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="70"><highlight class="comment">/*!<sp/>@brief<sp/>Returns<sp/>the<sp/>value<sp/>of<sp/>the<sp/>imposed<sp/>normal<sp/>and<sp/>tangential<sp/>Robin<sp/>flux<sp/>on<sp/>the<sp/>(i,j)-th<sp/>component<sp/>of<sp/>the<sp/>field<sp/>representing<sp/>the<sp/>flux<sp/>at<sp/>the<sp/>boundary.</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>@param<sp/>(int<sp/>i)<sp/>index<sp/>along<sp/>the<sp/>first<sp/>dimension<sp/>of<sp/>the<sp/>field</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>@param<sp/>(int<sp/>j)<sp/>index<sp/>along<sp/>the<sp/>second<sp/>dimension<sp/>of<sp/>the<sp/>field<sp/>(j=1<sp/>returns<sp/>the<sp/>normal<sp/>component,<sp/>and<sp/>for<sp/>j&gt;1,<sp/>returns<sp/>the<sp/>(j-1)-th<sp/>tangential<sp/>component)</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>@return<sp/>(double)<sp/>the<sp/>imposed<sp/>value<sp/>on<sp/>the<sp/>specified<sp/>field<sp/>component</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="classRobin__VEF_1a2af7eb83766cc94e286af8a77bdbda58" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a2af7eb83766cc94e286af8a77bdbda58" kindref="member">Robin_VEF::flux_robin_normal_et_trangentiel_imp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="77"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>dim<sp/>=<sp/>2<sp/>:<sp/>le_champ_front<sp/>has<sp/>1+2<sp/>dimensions<sp/><sp/>:<sp/>1<sp/>column<sp/>for<sp/>the<sp/>localisation<sp/>of<sp/>the<sp/>field<sp/>+<sp/>1<sp/>column<sp/>for<sp/>the<sp/>normal<sp/>field<sp/>value,<sp/>and<sp/>1<sp/>column<sp/>for<sp/>the<sp/>tangential<sp/>field<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>dim<sp/>=<sp/>3<sp/>:<sp/>le_champ_front<sp/>has<sp/>1+4<sp/>dimensions<sp/><sp/>:<sp/>1<sp/>column<sp/>for<sp/>the<sp/>localisation<sp/>of<sp/>the<sp/>field<sp/>+<sp/>1<sp/>column<sp/>for<sp/>the<sp/>normal<sp/>field<sp/>value,<sp/>and<sp/>3<sp/>column<sp/>for<sp/>the<sp/>tangential<sp/>field<sp/>value</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((le_champ_front-&gt;valeurs().dimension(1)==2<sp/>&amp;&amp;<sp/><ref refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" kindref="member">dimension</ref><sp/>==<sp/>2)<sp/>||<sp/>(le_champ_front-&gt;valeurs().dimension(1)==4<sp/>&amp;&amp;<sp/><ref refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" kindref="member">dimension</ref><sp/>==<sp/>3))</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(le_champ_front-&gt;valeurs().dimension(0)==1)<sp/></highlight><highlight class="comment">//<sp/>a<sp/>une<sp/>valeur<sp/>identique<sp/>sur<sp/>toutes<sp/>les<sp/>mailles<sp/>du<sp/>bord</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>le_champ_front-&gt;valeurs()(0,j);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>le_champ_front-&gt;valeurs()(i,j);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Robin::flux_robin_normal_et_tangentiel<sp/>error&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="94"><highlight class="comment">/*!<sp/>@brief<sp/>Returns<sp/>the<sp/>value<sp/>of<sp/>the<sp/>imposed<sp/>normal<sp/>flux<sp/>on<sp/>the<sp/>i-th<sp/>component<sp/>of<sp/>the<sp/>field<sp/>representing<sp/>the<sp/>flux<sp/>at<sp/>the<sp/>boundary.</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>@param<sp/>(int<sp/>i)<sp/>index<sp/>along<sp/>the<sp/>first<sp/>dimension<sp/>of<sp/>the<sp/>field</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>@return<sp/>(double)<sp/>the<sp/>imposed<sp/>value<sp/>on<sp/>the<sp/>specified<sp/>field<sp/>component</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="classRobin__VEF_1a9510221356bcb278aafcf646f05c78da" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a9510221356bcb278aafcf646f05c78da" kindref="member">Robin_VEF::flux_normal_imp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a2af7eb83766cc94e286af8a77bdbda58" kindref="member">flux_robin_normal_et_trangentiel_imp</ref>(i,<sp/>0);}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="102"><highlight class="comment">/*!<sp/>@brief<sp/>Returns<sp/>the<sp/>value<sp/>of<sp/>the<sp/>imposed<sp/>tangential<sp/>flux<sp/>on<sp/>the<sp/>(i,j)-th<sp/>component<sp/>of<sp/>the<sp/>field<sp/>representing<sp/>the<sp/>tangential<sp/>flux<sp/>at<sp/>the<sp/>boundary.</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>@param<sp/>(int<sp/>i)<sp/>index<sp/>along<sp/>the<sp/>first<sp/>dimension<sp/>of<sp/>the<sp/>field</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>@param<sp/>(int<sp/>j)<sp/>index<sp/>along<sp/>the<sp/>second<sp/>dimension<sp/>of<sp/>the<sp/>field</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>@return<sp/>(double)<sp/>the<sp/>imposed<sp/>value<sp/>on<sp/>the<sp/>specified<sp/>field<sp/>component</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classRobin__VEF_1a116ea9176ab08b42e06a965da8a33269" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a116ea9176ab08b42e06a965da8a33269" kindref="member">Robin_VEF::flux_tangentiel_imp</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="109"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" kindref="member">dimension</ref>==2<sp/>&amp;&amp;<sp/>j&lt;2)<sp/>||<sp/>(<ref refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" kindref="member">dimension</ref><sp/>==3<sp/>&amp;&amp;<sp/>j&lt;4))</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a2af7eb83766cc94e286af8a77bdbda58" kindref="member">flux_robin_normal_et_trangentiel_imp</ref>(i,<sp/>j+1);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>Robin::flux_tangentiel_imp<sp/>error,<sp/>dimension<sp/>does<sp/>not<sp/>match&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="classRobin__VEF_1aaea0e80aeef5cacb092f311562de152e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1aaea0e80aeef5cacb092f311562de152e" kindref="member">Robin_VEF::mettre_a_jour</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temps)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/>le_champ_front-&gt;mettre_a_jour(temps);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment">//<sp/>for<sp/>domain<sp/>decomposition,<sp/>not<sp/>implemented<sp/>yet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="classRobin__VEF_1a20922dbe0a7877587e2113edad59976a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a20922dbe0a7877587e2113edad59976a" kindref="member">Robin_VEF::flux_robin_imp_au_temps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temps,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="125"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="comment">//<sp/>for<sp/>domain<sp/>decomposition,<sp/>not<sp/>implemented<sp/>yet</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="classRobin__VEF_1a591ad818fc7b63ddb1086072ebcae313" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a20922dbe0a7877587e2113edad59976a" kindref="member">Robin_VEF::flux_robin_imp_au_temps</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>temps,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>)</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="132"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="136"><highlight class="comment">/*!<sp/>@brief<sp/>Updates<sp/>and<sp/>returns<sp/>the<sp/>imposed<sp/>flux<sp/>array.</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>checks<sp/>the<sp/>total<sp/>number<sp/>of<sp/>faces<sp/>in<sp/>the<sp/>boundary<sp/>and<sp/>resizes<sp/>the</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>`flux_normal_impose_`<sp/>array<sp/>if<sp/>necessary.<sp/>It<sp/>updates<sp/>the<sp/>values<sp/>based<sp/>on<sp/>the<sp/>imposed</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/>*<sp/>flux<sp/>from<sp/>the<sp/>front<sp/>field<sp/>if<sp/>the<sp/>field<sp/>is<sp/>unsteady<sp/>or<sp/>if<sp/>the<sp/>dimensions<sp/>have<sp/>changed.</highlight></codeline>
+<codeline lineno="141"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/>*<sp/>@return<sp/>const<sp/>DoubleTab&amp;<sp/>Reference<sp/>to<sp/>the<sp/>updated<sp/>imposed<sp/>flux<sp/>array.</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="classRobin__VEF_1a7b0c437a5f6d49baf93c9e2d4c192b9b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref>&amp;<sp/><ref refid="classRobin__VEF_1a7b0c437a5f6d49baf93c9e2d4c192b9b" kindref="member">Robin_VEF::flux_robin_normal_imp</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="145"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classFront__VF" kindref="compound">Front_VF</ref>&amp;<sp/>le_bord<sp/>=<sp/>ref_cast(<ref refid="classFront__VF" kindref="compound">Front_VF</ref>,<sp/><ref refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" kindref="member">frontiere_dis</ref>());</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_faces_tot<sp/>=<sp/>le_bord.<ref refid="classFront__VF_1ae8650bf8eff95a5022a1abc91a0e5592" kindref="member">nb_faces_tot</ref>();</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb_faces_tot&gt;0)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRobin__VEF_1a427f2ab08fdc5effa5fca1c89b17bd9d" kindref="member">flux_normal_impose_</ref>.<ref refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" kindref="member">dimension</ref>(0)<sp/>!=<sp/>nb_faces_tot)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRobin__VEF_1a427f2ab08fdc5effa5fca1c89b17bd9d" kindref="member">flux_normal_impose_</ref>.<ref refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" kindref="member">resize</ref>(nb_faces_tot,<sp/>1);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size<sp/>=<sp/><ref refid="classRobin__VEF_1a427f2ab08fdc5effa5fca1c89b17bd9d" kindref="member">flux_normal_impose_</ref>.<ref refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" kindref="member">dimension</ref>(0);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//int<sp/>nb_comp<sp/>=<sp/>flux_robin_impose_.dimension(1);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>size;<sp/>i++)</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//for<sp/>(int<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>nb_comp;<sp/>j++)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRobin__VEF_1a427f2ab08fdc5effa5fca1c89b17bd9d" kindref="member">flux_normal_impose_</ref>(i,<sp/>0)<sp/>=<sp/><ref refid="classRobin__VEF_1a9510221356bcb278aafcf646f05c78da" kindref="member">flux_normal_imp</ref>(i);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a427f2ab08fdc5effa5fca1c89b17bd9d" kindref="member">flux_normal_impose_</ref>;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="162"><highlight class="comment">/*!<sp/>@brief<sp/>Updates<sp/>and<sp/>returns<sp/>the<sp/>imposed<sp/>flux<sp/>array.</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>checks<sp/>the<sp/>total<sp/>number<sp/>of<sp/>faces<sp/>in<sp/>the<sp/>boundary<sp/>and<sp/>resizes<sp/>the</highlight></codeline>
+<codeline lineno="165"><highlight class="comment"><sp/>*<sp/>`flux_tangentiel_impose_`<sp/>array<sp/>if<sp/>necessary.<sp/>It<sp/>updates<sp/>the<sp/>values<sp/>based<sp/>on<sp/>the<sp/>imposed</highlight></codeline>
+<codeline lineno="166"><highlight class="comment"><sp/>*<sp/>flux<sp/>from<sp/>the<sp/>front<sp/>field<sp/>if<sp/>the<sp/>field<sp/>is<sp/>unsteady<sp/>or<sp/>if<sp/>the<sp/>dimensions<sp/>have<sp/>changed.</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/>*<sp/>@return<sp/>const<sp/>DoubleTab&amp;<sp/>Reference<sp/>to<sp/>the<sp/>updated<sp/>imposed<sp/>flux<sp/>array.</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="classRobin__VEF_1a24e59778a9e3da2a879ff918f4bdcb2f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref>&amp;<sp/><ref refid="classRobin__VEF_1a24e59778a9e3da2a879ff918f4bdcb2f" kindref="member">Robin_VEF::flux_robin_tangentiel_imp</ref>()</highlight><highlight class="keyword"><sp/>const</highlight></codeline>
+<codeline lineno="171"><highlight class="keyword"></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classFront__VF" kindref="compound">Front_VF</ref>&amp;<sp/>le_bord<sp/>=<sp/>ref_cast(<ref refid="classFront__VF" kindref="compound">Front_VF</ref>,<sp/><ref refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" kindref="member">frontiere_dis</ref>());</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_faces_tot<sp/>=<sp/>le_bord.<ref refid="classFront__VF_1ae8650bf8eff95a5022a1abc91a0e5592" kindref="member">nb_faces_tot</ref>();</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nb_faces_tot&gt;0)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>.<ref refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" kindref="member">dimension</ref>(0)<sp/>!=<sp/>nb_faces_tot)</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>.<ref refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" kindref="member">resize</ref>(nb_faces_tot,<sp/>le_champ_front-&gt;valeurs().dimension(1));</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>size<sp/>=<sp/><ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>.<ref refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" kindref="member">dimension</ref>(0);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_comp<sp/>=<sp/><ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>.<ref refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" kindref="member">dimension</ref>(1);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>size;<sp/>i++)</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>nb_comp;<sp/>j++)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>(i,<sp/>0)<sp/>=<sp/><ref refid="classRobin__VEF_1a116ea9176ab08b42e06a965da8a33269" kindref="member">flux_tangentiel_imp</ref>(i,j);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classRobin__VEF_1a7213ad196875e6503ef922ab6f870bd4" kindref="member">flux_tangentiel_impose_</ref>;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Cond_Lim/Robin_VEF.cpp"/>
+  </compounddef>
+</doxygen>

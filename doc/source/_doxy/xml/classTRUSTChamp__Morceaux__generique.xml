@@ -1,0 +1,1196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classTRUSTChamp__Morceaux__generique" kind="class" language="C++" prot="public">
+    <compoundname>TRUSTChamp_Morceaux_generique</compoundname>
+    <basecompoundref refid="classChamp__Don__base" prot="public" virt="non-virtual">Champ_Don_base</basecompoundref>
+    <includes local="no">TRUSTChamp_Morceaux_generique.h</includes>
+    <templateparamlist>
+      <param>
+        <type>Champ_Morceaux_Type</type>
+        <declname>_TYPE_</declname>
+        <defname>_TYPE_</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classTRUSTChamp__Morceaux__generique_1adece1c20778c50804e8f7e0657ad7621" prot="protected" static="no" mutable="no">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::nom_champ_parametre_</definition>
+        <argsstring></argsstring>
+        <name>nom_champ_parametre_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="65" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTRUSTChamp__Morceaux__generique_1ac073dac2aea2cd804fe5da23b1129475" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::parser_idx</definition>
+        <argsstring></argsstring>
+        <name>parser_idx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="66" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classTRUSTChamp__Morceaux__generique_1a664e7d4e44f6a478716433acc4487042" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::read_pb_instead_of_domain</definition>
+        <argsstring></argsstring>
+        <name>read_pb_instead_of_domain</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="67" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1ad87c211f3f5a366b0c6ea0a07b4356ef" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>Champ_base &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::affecter_</definition>
+        <argsstring>(const Champ_base &amp;ch) override</argsstring>
+        <name>affecter_</name>
+        <reimplements refid="classChamp__Don__base_1a4e53e3d023881e8f6ceb0f9704e59f31">affecter_</reimplements>
+        <param>
+          <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Provoque une erreur ! A surcharger par les classes derivees ! non virtuelle pure par commoditees de developpement ! </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="35" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="23" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1ae6c6b8d4d1e960b635be228e96b6edcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::initialiser</definition>
+        <argsstring>(const double temps) override</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classChamp__Don__base_1ab983685032a207a2a494a16f950b0481">initialiser</reimplements>
+        <param>
+          <type>const double</type>
+          <declname>temps</declname>
+          <defname>un_temps</defname>
+        </param>
+        <briefdescription>
+<para>NE FAIT RIEN. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A surcharger dans les classes derivees. Provoque l&apos;initialisation du champ si necessaire </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="53" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="225" bodyend="228"/>
+        <references refid="classChamp__Don__base_1ab983685032a207a2a494a16f950b0481" compoundref="Champ__Don__base_8cpp" startline="77" endline="81">Champ_Don_base::initialiser</references>
+        <referencedby refid="classChamp__Fonc__Tabule__Morceaux_1a3c4ff5c5d6b4afbcefb39de32bcd6454" compoundref="Champ__Fonc__Tabule__Morceaux_8cpp" startline="112" endline="126">Champ_Fonc_Tabule_Morceaux::initialiser</referencedby>
+        <referencedby refid="classChamp__Fonc__Tabule__Morceaux__Interp_1a3a09c3eacea68642aa3e24bc6e574232" compoundref="Champ__Fonc__Tabule__Morceaux__Interp_8cpp" startline="36" endline="60">Champ_Fonc_Tabule_Morceaux_Interp::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1af14bab29e10caaaa57db0b725acf605b" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::LIST</definition>
+        <argsstring>(OBS_PTR(Sous_Domaine)) &amp;sous_domaines()</argsstring>
+        <name>LIST</name>
+        <param>
+          <type><ref refid="classTRUSTChamp__Morceaux__generique_1a55adae5d08bd56c78a8bbf011f4150d7" kindref="member">OBS_PTR</ref>(<ref refid="classSous__Domaine__32__64" kindref="compound">Sous_Domaine</ref>)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="58" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1aa78fcaabb4ae10ac50e79057ce9cd3fc" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::LIST</definition>
+        <argsstring>(OBS_PTR(Sous_Domaine)) &amp;sous_domaines() const</argsstring>
+        <name>LIST</name>
+        <param>
+          <type><ref refid="classTRUSTChamp__Morceaux__generique_1a55adae5d08bd56c78a8bbf011f4150d7" kindref="member">OBS_PTR</ref>(<ref refid="classSous__Domaine__32__64" kindref="compound">Sous_Domaine</ref>)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="57" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="57" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1aaa7d7ca408b99061adc436f34722f797" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::mettre_a_jour</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classChamp__Don__base_1a10f8b9d20732f009ece35d064a71c699">mettre_a_jour</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+          <defname>t</defname>
+        </param>
+        <briefdescription>
+<para>Mise a jour en temps. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="169" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1abb33774ad5c044ebf16fd612e696303b" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::OBS_PTR</definition>
+        <argsstring>(Domaine) &amp;domaine()</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="56" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="56" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a55adae5d08bd56c78a8bbf011f4150d7" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::OBS_PTR</definition>
+        <argsstring>(Domaine) &amp;domaine() const</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="55" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1af50d2cbe58258086f49f51362cded610" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>DoubleVect &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_a</definition>
+        <argsstring>(const DoubleVect &amp;position, DoubleVect &amp;valeurs) const override</argsstring>
+        <name>valeur_a</name>
+        <reimplements refid="classChamp__base_1a0fc1dd65438e9c8f232fb495d22f5c45">valeur_a</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>position</declname>
+          <defname>positions</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>tab_valeurs</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur du champ au point specifie par ses coordonnees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>positions) les coordonnees du point de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valeurs) la valeur du champ au point specifie </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="37" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="41" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a20cfe25a9e1c44f96c3c65299955b1b4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>DoubleVect &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_a_elem</definition>
+        <argsstring>(const DoubleVect &amp;position, DoubleVect &amp;valeurs, int le_poly) const override</argsstring>
+        <name>valeur_a_elem</name>
+        <reimplements refid="classChamp__base_1aae0a49ca788d62a71f943bea9ff2f562">valeur_a_elem</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>val</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>le_poly</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur du champ au point specifie par ses coordonnees, en indiquant que ce point est situe dans un element specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les coordonnees du point de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>val) la valeur du champ au point specifie </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le_poly) l&apos;element dans lequel est situe le point de calcul </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="39" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="56" bodyend="64"/>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1afd2568a558e1c439857c5574e9aa612f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_a_elem_compo</definition>
+        <argsstring>(const DoubleVect &amp;position, int le_poly, int ncomp) const override</argsstring>
+        <name>valeur_a_elem_compo</name>
+        <reimplements refid="classChamp__base_1ad178ac4c1e9c10e4e921edbeb861c458">valeur_a_elem_compo</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>le_poly</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ncomp</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur d&apos;une composante du champ au point specifie par ses coordonnees, en indiquant que ce point est situe dans un element specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les coordonnees du point de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le_poly) l&apos;element dans lequel est situe le point de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ncomp) l&apos;index de la composante du champ a calculer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="41" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="73" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a3f3f61ad2e715d461a4be87b70fc9be4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_aux</definition>
+        <argsstring>(const DoubleTab &amp;positions, DoubleTab &amp;valeurs) const override</argsstring>
+        <name>valeur_aux</name>
+        <reimplements refid="classChamp__base_1a8a09cdc7983b6ed43c57108c514dd91a">valeur_aux</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>positions</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>tab_valeurs</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie les valeurs du champ aux points specifies par leurs coordonnees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>positions) le tableau des coordonnees des points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valeurs) le tableau des valeurs du champ aux points specifies </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="43" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="89" bodyend="95"/>
+        <references refid="classDomaine__32__64_1a43be385d8056508f5d9a326ddb387fcb" compoundref="Domaine_8cpp" startline="353" endline="431">Domaine_32_64&lt; _SIZE_ &gt;::chercher_elements</references>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1add229faba1aa69b7d673bc7c70864df6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>DoubleVect &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_aux_compo</definition>
+        <argsstring>(const DoubleTab &amp;positions, DoubleVect &amp;valeurs, int ncomp) const override</argsstring>
+        <name>valeur_aux_compo</name>
+        <reimplements refid="classChamp__base_1aed4fa503451916cd52e539e9fac1635a">valeur_aux_compo</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>positions</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>tab_valeurs</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ncomp</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie les valeurs d&apos;une composante du champ aux points specifies par leurs coordonnees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>positions) le tableau des coordonnees des points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valeurs) le tableau des valeurs de la composante du champ aux points specifies </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ncomp) l&apos;index de la composante du champ a calculer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="45" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="104" bodyend="110"/>
+        <references refid="classDomaine__32__64_1a43be385d8056508f5d9a326ddb387fcb" compoundref="Domaine_8cpp" startline="353" endline="431">Domaine_32_64&lt; _SIZE_ &gt;::chercher_elements</references>
+        <references refid="classDomaine__32__64_1a92cccd83fdd182cb909d51ff9938eb1b" compoundref="Domaine_8h" startline="128" endline="128">Domaine_32_64&lt; _SIZE_ &gt;::nb_elem</references>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1aca4372148a8b8b471851c4bed8974653" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_aux_elems</definition>
+        <argsstring>(const DoubleTab &amp;positions, const IntVect &amp;les_polys, DoubleTab &amp;valeurs) const override</argsstring>
+        <name>valeur_aux_elems</name>
+        <reimplements refid="classChamp__base_1a962e98716ffb830347f4ac3fef2dac99">valeur_aux_elems</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>positions</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">IntVect</ref> &amp;</type>
+          <declname>les_polys</declname>
+          <defname>polys</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>tab_val</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie les valeurs du champ aux points specifies par leurs coordonnees, en indiquant que les points de calculs sont situes dans les elements indiques. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le tableau des coordonnees des points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(IntVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les_polys) le tableau des elements dans lesquels sont situes les points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>val) le tableau des valeurs du champ aux points specifies </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="47" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="119" bodyend="143"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classTRUSTTab_1a829be3686b4cf6f076d1dc92870e18f9" compoundref="TRUSTTab_8h" startline="200" endline="200">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::nb_dim</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a165a0682e53705b9b59c4d19a732907d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>DoubleVect &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::valeur_aux_elems_compo</definition>
+        <argsstring>(const DoubleTab &amp;positions, const IntVect &amp;les_polys, DoubleVect &amp;valeurs, int ncomp) const override</argsstring>
+        <name>valeur_aux_elems_compo</name>
+        <reimplements refid="classChamp__base_1a4749c70d597e004210cf0bfd2c37f063">valeur_aux_elems_compo</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>positions</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">IntVect</ref> &amp;</type>
+          <declname>les_polys</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>valeurs</declname>
+          <defname>val</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ncomp</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie les valeurs d&apos;une composante du champ aux points specifies par leurs coordonnees, en indiquant que les points de calculs sont situes dans les elements indiques. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le tableau des coordonnees des points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(IntVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les_polys) le tableau des elements dans lesquels sont situes les points de calcul </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleVect&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>val) le tableau des valeurs de la composante du champ aux points specifies </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ncomp) l&apos;index de la composante du champ a calculer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="49" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="153" bodyend="166"/>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a106e79434a8c52908fc8501878d6d441" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::complete_readOn</definition>
+        <argsstring>(const int dim, const Nom &amp;qsj, Entree &amp;is, Nom &amp;nom)</argsstring>
+        <name>complete_readOn</name>
+        <param>
+          <type>const int</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>qsj</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <param>
+          <type><ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="71" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="253" bodyend="312"/>
+        <references refid="classParser__U_1ae216b7daee6c4bb756423ffed5674293" compoundref="Parser__U_8h" startline="183" endline="186">Parser_U::addVar</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classSous__Domaine__32__64_1a968a7b1da5870848f9545b8d289b05ba" compoundref="Sous__Domaine_8h" startline="55" endline="55">Sous_Domaine_32_64&lt; _SIZE_ &gt;::nb_elem_tot</references>
+        <references refid="classParser__U_1a441c2fd29f5d4370c0c7b6a1cdfe56d5" compoundref="Parser__U_8h" startline="116" endline="119">Parser_U::parseString</references>
+        <references refid="classParser__U_1a3ff44eabf641cbcea9ca59f84167e2c1" compoundref="Parser__U_8h" startline="174" endline="177">Parser_U::setNbVar</references>
+        <references refid="classParser__U_1a1e905179ae8b011f9c4eb3f9e3f96e99" compoundref="Parser__U_8h" startline="194" endline="197">Parser_U::setString</references>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a1f3b26fa8d6d670c3165536cea0f156a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::creer_tabs</definition>
+        <argsstring>(const int)</argsstring>
+        <name>creer_tabs</name>
+        <param>
+          <type>const int</type>
+          <defname>dim</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="70" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="243" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a00defdc899dc72f4dee25efc9ea391e4" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::interprete_get_domaine</definition>
+        <argsstring>(const Nom &amp;nom)</argsstring>
+        <name>interprete_get_domaine</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="68" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.tpp" bodystart="231" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1aa51beb382b797a840d2151533d1e4805" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::LIST</definition>
+        <argsstring>(OBS_PTR(Sous_Domaine)) les_sous_domaines</argsstring>
+        <name>LIST</name>
+        <param>
+          <type><ref refid="classTRUSTChamp__Morceaux__generique_1a55adae5d08bd56c78a8bbf011f4150d7" kindref="member">OBS_PTR</ref>(<ref refid="classSous__Domaine__32__64" kindref="compound">Sous_Domaine</ref>)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="61" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1a6b071e4f26655a0e57bf3853e3b129db" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::OBS_PTR</definition>
+        <argsstring>(Domaine) mon_domaine</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="62" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1aae3ce0c84a40aefec45ce38035466251" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::OBS_PTR</definition>
+        <argsstring>(Probleme_base) ref_pb</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classProbleme__base" kindref="compound">Probleme_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="63" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classTRUSTChamp__Morceaux__generique_1abd38c35d44a4722750a3ca33f40e7171" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;::VECT</definition>
+        <argsstring>(Parser_U) parser</argsstring>
+        <name>VECT</name>
+        <param>
+          <type><ref refid="classParser__U" kindref="compound">Parser_U</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="64" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>TRUSTChamp_Morceaux_generique&lt; Champ_Morceaux_Type::UNIFORME &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Champ_Morceaux_Type::UNIFORME &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champ_base</label>
+        <link refid="classChamp__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Champ_Fonc_Fonction_txyz_Morceaux</label>
+        <link refid="classChamp__Fonc__Fonction__txyz__Morceaux"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champ_Uniforme_Morceaux</label>
+        <link refid="classChamp__Uniforme__Morceaux"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Champ_Fonc_Tabule_Morceaux_Interp</label>
+        <link refid="classChamp__Fonc__Tabule__Morceaux__Interp"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Champ_val_tot_sur_vol_VDF</label>
+        <link refid="classChamp__val__tot__sur__vol__VDF"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champ_Don_base</label>
+        <link refid="classChamp__Don__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Champ_val_tot_sur_vol_VEF</label>
+        <link refid="classChamp__val__tot__sur__vol__VEF"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Field_base</label>
+        <link refid="classField__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>TRUSTChamp_Morceaux_generique&lt; Champ_Morceaux_Type::FONC_TABULE &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Champ_Morceaux_Type::FONC_TABULE &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Champ_val_tot_sur_vol_base</label>
+        <link refid="classChamp__val__tot__sur__vol__base"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Champ_Fonc_Tabule_Morceaux</label>
+        <link refid="classChamp__Fonc__Tabule__Morceaux"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="11">
+        <label>Champ_Uniforme_Morceaux_Tabule_Temps</label>
+        <link refid="classChamp__Uniforme__Morceaux__Tabule__Temps"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTChamp_Morceaux_generique&lt; Champ_Morceaux_Type::FONC &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Champ_Morceaux_Type::FONC &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Champ_Fonc_Morceaux</label>
+        <link refid="classChamp__Fonc__Morceaux"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Champ_Uniforme_Morceaux_inst</label>
+        <link refid="classChamp__Uniforme__Morceaux__inst"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTChamp_Morceaux_generique&lt; Champ_Morceaux_Type::FONC_TXYZ &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Champ_Morceaux_Type::FONC_TXYZ &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Champ_Proto</label>
+        <link refid="classChamp__Proto"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>VECTNom</label>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champ_base</label>
+        <link refid="classChamp__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="2">
+        <label>Champ_Don_base</label>
+        <link refid="classChamp__Don__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>valeurs_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Field_base</label>
+        <link refid="classField__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>noms_compo_</edgelabel>
+          <edgelabel>noms_synonymes_</edgelabel>
+          <edgelabel>unite_</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="14">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>TRUSTChamp_Morceaux_generique&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTChamp__Morceaux__generique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>parser_idx</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>nom_champ_parametre_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Champ_Proto</label>
+        <link refid="classChamp__Proto"/>
+      </node>
+      <node id="23">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/TRUSTChamp_Morceaux_generique.h" bodystart="32" bodyend="73"/>
+    <listofallmembers>
+      <member refid="classChamp__base_1a159842d77448d86cbd400fa29e2550cb" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>a_un_domaine_dis_base</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>abort</name></member>
+      <member refid="classChamp__base_1ad4295316ed063e2da638f42bb66d51e6" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>abortTimeStep</name></member>
+      <member refid="classField__base_1a96e5f33f4a5dcce4ad8c148d7dfa5661" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>add_synonymous</name></member>
+      <member refid="classChamp__base_1a336a105699c70cd8c4d9b066a39264a8" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>affecter</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1ad87c211f3f5a366b0c6ea0a07b4356ef" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>affecter_</name></member>
+      <member refid="classChamp__Don__base_1a573c3ebd3da5723899e0d445d077a910" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>affecter_compo</name></member>
+      <member refid="classChamp__base_1a58ad1f287e3880dde233bd94f23721bf" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>affecter_erreur</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>associer_</name></member>
+      <member refid="classChamp__base_1a7597d30c90e9186474ae29308dae4acd" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>associer_domaine_dis_base</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>bidim_axi</name></member>
+      <member refid="classChamp__base_1a6e782515ab8e4b883844ed8f5736e471" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>calculer_valeurs_elem_compo_post</name></member>
+      <member refid="classChamp__base_1a27dc62a0594bcf3a274200229846efcc" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>calculer_valeurs_elem_post</name></member>
+      <member refid="classChamp__base_1a035c01e9df2cf30cfce1243f09ad0edd" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>calculer_valeurs_som_compo_post</name></member>
+      <member refid="classChamp__base_1a98f12c04fbed3ae85ffc80075c9ebb9c" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>calculer_valeurs_som_post</name></member>
+      <member refid="classChamp__base_1a3113ba131a833505cc801e7cfc355bde" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Champ_base</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>change_num</name></member>
+      <member refid="classChamp__base_1a51c611d7c5754aaf1556c5f0e563c157" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>changer_temps</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>check_int_overflow</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a106e79434a8c52908fc8501878d6d441" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>complete_readOn</name></member>
+      <member refid="classChamp__base_1a2f7e3d1e0533c682427e06e931d40299" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>completer</name></member>
+      <member refid="classChamp__base_1a2d32427d1051fdf879187f051d27bb65" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>completer_post_champ</name></member>
+      <member refid="classChamp__base_1ad4ce4adc1125f3ff1fe87f405129984a" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>corriger_unite_nom_compo</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a1f3b26fa8d6d670c3165536cea0f156a" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>creer_tabs</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>dimension</name></member>
+      <member refid="classChamp__Don__base_1a17e3161b4b8cbf51a5029bba45ac758b" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>dimensionner</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>disable_TU</name></member>
+      <member refid="classChamp__base_1a3768ee301fe939aa1b70d3364561b141" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>domaine_dis_base</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>est_egal_a</name></member>
+      <member refid="classChamp__base_1a390cffbf828ace1115cfbd4723d488c1" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>eval_elem</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>exit</name></member>
+      <member refid="classField__base_1a3bd7da08af01a75b034c147a45b76ec2" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Field_base</name></member>
+      <member refid="classField__base_1ab3493cbf494c38e7657491e93946b649" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Field_base</name></member>
+      <member refid="classField__base_1a740d888da6eb9db6c7b62e65faf2436e" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_nature_du_champ</name></member>
+      <member refid="classField__base_1a0d3bb177287a79b9d7da6f3a46deff53" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_nb_comp</name></member>
+      <member refid="classChamp__Don__base_1a9df8b506cd9b5709846286e4488a30a7" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_nb_valeurs_nodales</name></member>
+      <member refid="classField__base_1ac2b194dc5cdc675df21508d28b80b366" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_nom_compo</name></member>
+      <member refid="classField__base_1a4c9660b273e65d99ed3c1623aa092f23" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_nom_compo</name></member>
+      <member refid="classField__base_1a91540f9a5b77e485bc809287e351ca55" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_noms_compo</name></member>
+      <member refid="classField__base_1a5bcb91a2475ee68412475efc3d9902f1" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_unite</name></member>
+      <member refid="classField__base_1a505494af5ef0e9f2d0cee3264a8c1966" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_unite</name></member>
+      <member refid="classField__base_1a39c1d5f3b23664c7d36ebd6880e96113" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>fixer_unites</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>format_precision_geom</name></member>
+      <member refid="classChamp__Proto_1a6f255ab3a13584691c2366010d9f20a6" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>futur</name></member>
+      <member refid="classChamp__Proto_1a3674142104c11fdecbe56360b92b0f5b" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>futur</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classField__base_1ac90397e679093832424a278d12e49279" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>get_synonyms</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>HAS_POINTER</name></member>
+      <member refid="classChamp__Don__base_1ac7d7e2678e9f6a642169e5feeb200e8c" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>imprime</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>info_obj</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1ae6c6b8d4d1e960b635be228e96b6edcb" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>initialiser</name></member>
+      <member refid="classChamp__Don__base_1ae141f64d7d0889715288ecb958124af2" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>instationnaire</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>interprete</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a00defdc899dc72f4dee25efc9ea391e4" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>interprete_get_domaine</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Kokkos_exit</name></member>
+      <member refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>le_type</name></member>
+      <member refid="classChamp__Proto_1aab57f8de7f990578e4aa3bb83046b303" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>lire_dimension</name></member>
+      <member refid="classChamp__Proto_1afee87ac0d12eaa7507514f4ba17a1204" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>lire_dimension</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1aa78fcaabb4ae10ac50e79057ce9cd3fc" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>LIST</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1af14bab29e10caaaa57db0b725acf605b" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>LIST</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1aa51beb382b797a840d2151533d1e4805" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>LIST</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>me</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1aaa7d7ca408b99061adc436f34722f797" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mettre_a_jour</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>multiple_files</name></member>
+      <member refid="classField__base_1acd96a388ee10e13c834cda260fee071a" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nature_</name></member>
+      <member refid="classField__base_1ae53a751737b70865efa8425ed7fce11c" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nature_du_champ</name></member>
+      <member refid="classField__base_1a7f1a8a933594c9f73ac0b14260961fad" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nb_comp</name></member>
+      <member refid="classField__base_1ac3539c9ffa67a0b2abe334607c61664f" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nb_compo_</name></member>
+      <member refid="classChamp__Don__base_1ac20663803508c952438d8ced9b8beab1" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nb_valeurs_nodales</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>node_master</name></member>
+      <member refid="classField__base_1a2dc5ce975f94c9cbf066cb49093d856e" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nom_</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1adece1c20778c50804e8f7e0657ad7621" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nom_champ_parametre_</name></member>
+      <member refid="classField__base_1a908c861b7c7f74334e51be944fe758bf" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nom_compo</name></member>
+      <member refid="classField__base_1a067f96964ad873d5d5dfb60c54b6f90d" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nom_compo</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nom_du_cas</name></member>
+      <member refid="classField__base_1a517704cb3a892cbe30c12e0d744277c7" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nommer</name></member>
+      <member refid="classField__base_1afb419940fd7b884fd83a8c240b34b254" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>noms_compo</name></member>
+      <member refid="classField__base_1a28d0230eb7a030948250b0e067729b4a" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>noms_compo_</name></member>
+      <member refid="classField__base_1ae091f92e4de7afca0b3275a63dad2b95" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>noms_synonymes_</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>Objet_U</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a55adae5d08bd56c78a8bbf011f4150d7" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>OBS_PTR</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1abb33774ad5c044ebf16fd612e696303b" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>OBS_PTR</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a6b071e4f26655a0e57bf3853e3b129db" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>OBS_PTR</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1aae3ce0c84a40aefec45ce38035466251" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>OBS_PTR</name></member>
+      <member refid="classChamp__Don__base_1afd33f9c2a40595d84a43fec00573ed5c" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator const DoubleTab &amp;</name></member>
+      <member refid="classChamp__Don__base_1aee0c2e03f17723c481d3f7c1d4e1d79c" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator DoubleTab &amp;</name></member>
+      <member refid="classChamp__Proto_1afa0d71cbe49d06beb1bcf20b6f94f0de" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator()</name></member>
+      <member refid="classChamp__Proto_1ad2d65e7eb716ca4ff6e696f7cd3e1b86" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator()</name></member>
+      <member refid="classChamp__Proto_1a9bbdbffa00412b5b08d5451225e2ae9f" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator()</name></member>
+      <member refid="classChamp__Proto_1a77f250fc8efb8f575f0249f4062f8ccb" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator()</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>operator=</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1ac073dac2aea2cd804fe5da23b1129475" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>parser_idx</name></member>
+      <member refid="classChamp__Proto_1aee62b1eb59dbfe100154d9cf5ec1442c" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>passe</name></member>
+      <member refid="classChamp__Proto_1ac12b9ccd17f4d6883d35352c73abab03" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>passe</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>ram_processeur</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a664e7d4e44f6a478716433acc4487042" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>read_pb_instead_of_domain</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>readOn</name></member>
+      <member refid="classChamp__Don__base_1a5da05e54b57b2784c6ecb5b84fa59619" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>reprendre</name></member>
+      <member refid="classChamp__Don__base_1adf6705dc0d3c321c552918649ec9e69a" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>resetTime</name></member>
+      <member refid="classChamp__Don__base_1af112cb693f72f1e0d5831b1ff666e0fd" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>self_cast</name></member>
+      <member refid="classChamp__Don__base_1a4bb5c97557a3ef20cb7e7eddc6e01e08" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>set_instationnaire</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>taille_memoire</name></member>
+      <member refid="classChamp__base_1a74560965ac18225959cd9457b3c8faa9" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>temps</name></member>
+      <member refid="classChamp__base_1a06a74ef2b02796a933b9b0702d073af9" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>temps_</name></member>
+      <member refid="classChamp__base_1afc5845799f40a7bf89d1291321d097a7" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>trace</name></member>
+      <member refid="classField__base_1a60a98e106856ed8d9d6e8400fd6c7cc7" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>unite</name></member>
+      <member refid="classField__base_1a562ddd152e194741b2227a3997520cb6" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>unite</name></member>
+      <member refid="classField__base_1ae881b903733ce25ed11bb36b303ecf0d" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>unite_</name></member>
+      <member refid="classField__base_1af4fd05d0e9fc1c9abe346ac5e2e78ab8" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>unites</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1af50d2cbe58258086f49f51362cded610" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a</name></member>
+      <member refid="classChamp__base_1ab6db7d7a915fbc17e22aaa640f70193d" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a_compo</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a20cfe25a9e1c44f96c3c65299955b1b4" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a_elem</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1afd2568a558e1c439857c5574e9aa612f" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a_elem_compo</name></member>
+      <member refid="classChamp__base_1a1ef49b6b427d1c0b49c6dda6abf8a985" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a_sommet</name></member>
+      <member refid="classChamp__base_1a0790ee4c26ea58cfea25c7985b52e320" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_a_sommet_compo</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a3f3f61ad2e715d461a4be87b70fc9be4" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux</name></member>
+      <member refid="classChamp__base_1a55ceca476f239745a2d30d2029a0864e" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_bords</name></member>
+      <member refid="classChamp__base_1af90b410323096a3cbc5911aaa8b3ab98" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_centres_de_gravite</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1add229faba1aa69b7d673bc7c70864df6" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_compo</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1aca4372148a8b8b471851c4bed8974653" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_elems</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1a165a0682e53705b9b59c4d19a732907d" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_elems_compo</name></member>
+      <member refid="classChamp__base_1a014a5f23787b71f4479ba6a159c6d1ed" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_elems_compo_smooth</name></member>
+      <member refid="classChamp__base_1af9c79c8394df4df58147a85e709e046c" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_elems_passe</name></member>
+      <member refid="classChamp__base_1a14b1af94ad32af4b9f63df3562fb8853" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_elems_smooth</name></member>
+      <member refid="classChamp__base_1a962d2d343a22e938e459416042dc0698" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_faces</name></member>
+      <member refid="classChamp__base_1a1a0cb02719a8924ee01b692fa5b2b3f9" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_faces_post</name></member>
+      <member refid="classChamp__base_1ae64d0c5bd3d0005c557e5777f74db146" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_sommets</name></member>
+      <member refid="classChamp__base_1a7e565cee307484123830010304265c4f" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeur_aux_sommets_compo</name></member>
+      <member refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1a5108c9298e81d8b4a5a4e327f3762402" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1a9d8c69f11d1b0a8e378cc6ca41793614" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1a82b6441747d2fa6d9f9298ec5a1a24c7" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1adefb4bfc24181d6332783ae5fd2c92a2" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1a3c546181910c4c5e3fff03375202b6ad" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Proto_1adefb4bfc24181d6332783ae5fd2c92a2" prot="public" virt="virtual" ambiguityscope="Champ_base::"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Proto_1a3c546181910c4c5e3fff03375202b6ad" prot="public" virt="virtual" ambiguityscope="Champ_base::"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs</name></member>
+      <member refid="classChamp__Don__base_1aee977558da7ab6fc4320de097eada7fb" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>valeurs_</name></member>
+      <member refid="classTRUSTChamp__Morceaux__generique_1abd38c35d44a4722750a3ca33f40e7171" prot="protected" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>VECT</name></member>
+      <member refid="classChamp__Proto_1ada417329892f9094c3d0e7a96c3f23da" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>~Champ_Proto</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>TRUSTChamp_Morceaux_generique</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

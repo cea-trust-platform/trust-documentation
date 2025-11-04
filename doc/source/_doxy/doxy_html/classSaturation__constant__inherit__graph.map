@@ -1,11 +1,7 @@
 <map id="Saturation_constant" name="Saturation_constant">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,157,336"/>
-<area shape="rect" id="Node000002" href="$classSaturation__base.html" title=" " alt="" coords="18,232,144,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,276,84,308,78,308,78,276"/>
-<area shape="rect" id="Node000003" href="$classInterface__base.html" title=" " alt="" coords="22,157,140,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,200,84,232,78,232,78,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="44,81,118,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,124,84,156,78,156,78,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="45,5,117,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,49,84,81,78,81,78,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,304,157,331"/>
+<area shape="rect" id="node2" href="$classSaturation__base.html" title=" " alt="" coords="18,229,145,256"/>
+<area shape="rect" id="node3" href="$classInterface__base.html" title=" " alt="" coords="22,155,141,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="44,80,119,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="45,5,117,32"/>
 </map>

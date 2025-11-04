@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_6b3855f9f2aac258c9e9bc3ab7823484" kind="dir">
+    <compoundname>Chimie</compoundname>
+    <innerfile refid="Chimie_8cpp">Chimie.cpp</innerfile>
+    <innerfile refid="Chimie_8h">Chimie.h</innerfile>
+    <innerfile refid="dlsinterf_8h">dlsinterf.h</innerfile>
+    <innerfile refid="Reaction_8cpp">Reaction.cpp</innerfile>
+    <innerfile refid="Reaction_8h">Reaction.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Chimie/"/>
+  </compounddef>
+</doxygen>

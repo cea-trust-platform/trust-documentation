@@ -1,9 +1,6 @@
 <map id="Interface_sigma_constant" name="Interface_sigma_constant">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,195,260"/>
-<area shape="rect" id="Node000002" href="$classInterface__base.html" title=" " alt="" coords="41,157,159,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,200,103,232,97,232,97,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="63,81,137,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,124,103,156,97,156,97,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="64,5,136,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,49,103,81,97,81,97,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,196,256"/>
+<area shape="rect" id="node2" href="$classInterface__base.html" title=" " alt="" coords="41,155,160,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="63,80,138,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="65,5,137,32"/>
 </map>

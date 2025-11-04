@@ -1,15 +1,9 @@
 <map id="Frottement_impose_base" name="Frottement_impose_base">
-<area shape="rect" id="Node000001" title="Classe Frottement_impose_base Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="86,308,272,336"/>
-<area shape="rect" id="Node000006" href="$classFrottement__externe__impose.html" title="Classe Frottement_externe_impose Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="5,384,156,428"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="154,348,108,385,105,381,150,344"/>
-<area shape="rect" id="Node000007" href="$classFrottement__global__impose.html" title="Classe Frottement_global_impose Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="180,392,376,420"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="208,344,264,390,261,394,205,348"/>
-<area shape="rect" id="Node000002" href="$classNavier.html" title="classe Navier Condition aux limites sur la vitesse de type &quot;Navier&quot; :" alt="" coords="147,232,211,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,276,182,308,176,308,176,276"/>
-<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="119,157,239,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="182,200,182,232,176,232,176,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="142,81,216,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="182,124,182,156,176,156,176,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="144,5,215,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="182,49,182,81,176,81,176,49"/>
+<area shape="rect" id="node1" title="Classe Frottement_impose_base Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="86,304,273,331"/>
+<area shape="rect" id="node6" href="$classFrottement__externe__impose.html" title="Classe Frottement_externe_impose Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="5,379,156,420"/>
+<area shape="rect" id="node7" href="$classFrottement__global__impose.html" title="Classe Frottement_global_impose Classe de base pour des conditions aux limites de type Navier (v." alt="" coords="180,386,376,413"/>
+<area shape="rect" id="node2" href="$classNavier.html" title="classe Navier Condition aux limites sur la vitesse de type &quot;Navier&quot; :" alt="" coords="147,229,212,256"/>
+<area shape="rect" id="node3" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="119,155,240,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="142,80,217,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="143,5,215,32"/>
 </map>

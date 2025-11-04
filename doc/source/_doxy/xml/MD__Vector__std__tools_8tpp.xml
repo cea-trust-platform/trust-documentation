@@ -1,0 +1,625 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="MD__Vector__std__tools_8tpp" kind="file" language="C++">
+    <compoundname>MD_Vector_std_tools.tpp</compoundname>
+    <includedby refid="MD__Vector__std_8h" local="no">MD_Vector_std.h</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="MD__Vector__std__tools_8tpp_1af64e6ddb776505d7d0d12c7846cc9ef9" prot="public" static="no">
+        <name>MD_Vector_std_tools_TPP_included</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="17" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="MD__Vector__std__tools_8tpp_1a8423e221d668b3391d1f3f42e696ae68" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>VECT_BLOCS_TYPE</name>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a8423e221d668b3391d1f3f42e696ae68a3466fab4975481651940ed328aa990e4" prot="public">
+          <name>READ</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a8423e221d668b3391d1f3f42e696ae68ad4b9e47f65b6e79b010582f15785867e" prot="public">
+          <name>WRITE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a8423e221d668b3391d1f3f42e696ae68a9eeb52badb613229884838847294b90d" prot="public">
+          <name>ADD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="20" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="enum" id="MD__Vector__std__tools_8tpp_1a1958927cb0d3fc35c38d21802bd0b54c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>VECT_ITEMS_TYPE</name>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a1958927cb0d3fc35c38d21802bd0b54ca3466fab4975481651940ed328aa990e4" prot="public">
+          <name>READ</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a1958927cb0d3fc35c38d21802bd0b54cad4b9e47f65b6e79b010582f15785867e" prot="public">
+          <name>WRITE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a1958927cb0d3fc35c38d21802bd0b54ca9eeb52badb613229884838847294b90d" prot="public">
+          <name>ADD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="MD__Vector__std__tools_8tpp_1a1958927cb0d3fc35c38d21802bd0b54ca26a4b44a837bf97b972628509912b4a5" prot="public">
+          <name>MAX</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="19" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="19" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1ae724850a0dcda3f597a46c3d252a4db3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void add_to_vect_blocs</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, const ArrOfInt &amp;nb_items_par_voisin, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>add_to_vect_blocs</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>nb_items_par_voisin</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="113" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="113" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a8db2b9e342c651db19508c6be7916e11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void add_to_vect_items</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>add_to_vect_items</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="39" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a892c2ee262cbdfae2dc88c478ce92d8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void max_to_vect_items</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>max_to_vect_items</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="45" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a7d185684e57a225807e4bca84ae4dfdd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mincol1_to_vect_items</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>mincol1_to_vect_items</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="51" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="51" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1ae470b21cc0243bdf3fc7c906b6867156" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void read_from_vect_blocs</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, const ArrOfInt &amp;nb_items_par_voisin, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>read_from_vect_blocs</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>nb_items_par_voisin</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="101" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="101" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a67126a46dbde4a810c0527606f12f067" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void read_from_vect_items</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>read_from_vect_items</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="27" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a7d69876cf73a3c2f0edaf40c6ecff597" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>VECT_BLOCS_TYPE</type>
+            <declname>_ITEM_TYPE_</declname>
+            <defname>_ITEM_TYPE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void vect_blocs_generic</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, const ArrOfInt &amp;nb_items_par_voisin, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>vect_blocs_generic</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>nb_items_par_voisin</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="98" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.cpp" bodystart="194" bodyend="218" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" declline="98" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1ad1d8016d74af38552d5b43f8f79043f4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>VECT_ITEMS_TYPE</type>
+            <declname>_ITEM_TYPE_</declname>
+            <defname>_ITEM_TYPE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void vect_items_generic</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>vect_items_generic</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="24" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.cpp" bodystart="92" bodyend="116" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" declline="24" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a63b6dfee42181092a8c13b6f7630663a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void write_to_vect_blocs</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, const ArrOfInt &amp;nb_items_par_voisin, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>write_to_vect_blocs</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>nb_items_par_voisin</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="107" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="107" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="MD__Vector__std__tools_8tpp_1a4dc6c6d6c97687fec7ec8dd37300d2dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void write_to_vect_items</definition>
+        <argsstring>(const int line_size, const ArrOfInt &amp;voisins, const Static_Int_Lists &amp;list, TRUSTArray&lt; _TYPE_ &gt; &amp;vect, Schema_Comm_Vecteurs &amp;buffers)</argsstring>
+        <name>write_to_vect_items</name>
+        <param>
+          <type>const int</type>
+          <declname>line_size</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>voisins</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>list</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref> &amp;</type>
+          <declname>buffers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" line="33" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp" bodystart="33" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2023,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MD_Vector_std_tools_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MD_Vector_std_tools_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>VECT_ITEMS_TYPE<sp/>{<sp/>READ<sp/>,<sp/>WRITE<sp/>,<sp/>ADD<sp/>,<sp/>MAX<sp/>};</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>VECT_BLOCS_TYPE<sp/>{<sp/>READ<sp/>,<sp/>WRITE<sp/>,<sp/>ADD<sp/>};</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/>VECT_ITEMS_TYPE<sp/>_ITEM_TYPE_&gt;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>vect_items_generic(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>read_from_vect_items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>vect_items_generic&lt;_TYPE_,VECT_ITEMS_TYPE::READ&gt;(line_size,voisins,list,vect,buffers);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>write_to_vect_items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>vect_items_generic&lt;_TYPE_,VECT_ITEMS_TYPE::WRITE&gt;(line_size,voisins,list,vect,buffers);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>add_to_vect_items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>vect_items_generic&lt;_TYPE_,VECT_ITEMS_TYPE::ADD&gt;(line_size,voisins,list,vect,buffers);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>max_to_vect_items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>vect_items_generic&lt;_TYPE_,VECT_ITEMS_TYPE::MAX&gt;(line_size,voisins,list,vect,buffers);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mincol1_to_vect_items(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>assert(line_size<sp/>&gt;<sp/>0);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>_TYPE_<sp/>*data<sp/>=<sp/>vect.<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>*items_to_process<sp/>=<sp/>list.<ref refid="classStatic__Int__Lists__32__64_1ad3eeca6df854badf757332f5ffa77619" kindref="member">get_data</ref>().<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//<sp/>Index<sp/>in<sp/>list.get_data()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>index<sp/>=<sp/>list.<ref refid="classStatic__Int__Lists__32__64_1af1a047192520ea5fa2c36cb61cae3e4f" kindref="member">get_index</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_voisins<sp/>=<sp/>list.<ref refid="classStatic__Int__Lists__32__64_1acd3132b39ddb4f9b2b63b537157b7d6f" kindref="member">get_nb_lists</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_voisin<sp/>=<sp/>0;<sp/>i_voisin<sp/>&lt;<sp/>nb_voisins;<sp/>i_voisin++)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Indice<sp/>dans<sp/>list.get_data()<sp/>de<sp/>la<sp/>fin<sp/>de<sp/>la<sp/>liste<sp/>d&apos;items/blocs<sp/>pour<sp/>ce<sp/>voisin:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx_end_of_list<sp/>=<sp/>index[i_voisin<sp/>+<sp/>1];</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Nombre<sp/>d&apos;elements<sp/>de<sp/>tableau<sp/>a<sp/>envoyer/recevoir<sp/>de<sp/>ce<sp/>voisin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_elems<sp/>=<sp/>(idx_end_of_list<sp/>-<sp/>idx)<sp/>*<sp/>line_size;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>buffer<sp/>=<sp/>buffers.<ref refid="classSchema__Comm__Vecteurs_1a8942e69abba8688e3037f95bc242c573" kindref="member">get_next_area_template</ref><sp/>&lt;<sp/>_TYPE_<sp/>&gt;(voisins[i_voisin],<sp/>nb_elems);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*bufptr<sp/>=<sp/>buffer.<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>assert(idx_end_of_list<sp/>&lt;=<sp/>list.<ref refid="classStatic__Int__Lists__32__64_1ad3eeca6df854badf757332f5ffa77619" kindref="member">get_data</ref>().<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>());</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(idx<sp/>&lt;<sp/>idx_end_of_list)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Indice<sp/>de<sp/>l&apos;item<sp/>geometrique<sp/>a<sp/>copier<sp/>(ou<sp/>du<sp/>premier<sp/>item<sp/>du<sp/>bloc)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>premier_item_bloc<sp/>=<sp/>items_to_process[idx++];</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bloc_size<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Adresse<sp/>des<sp/>elements<sp/>a<sp/>copier<sp/>dans<sp/>le<sp/>vecteur</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(premier_item_bloc<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>bloc_size<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>(premier_item_bloc<sp/>+<sp/>bloc_size)<sp/>*<sp/>line_size<sp/>&lt;=<sp/>vect.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>());</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*vectptr<sp/>=<sp/>data<sp/>+<sp/>premier_item_bloc<sp/>*<sp/>line_size;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Copy<sp/>whole<sp/>line<sp/>if<sp/>first<sp/>line<sp/>is<sp/>greater<sp/>than<sp/>destination</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(bufptr<sp/>+<sp/>line_size<sp/>*<sp/>bloc_size<sp/>-<sp/>buffer.<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>()<sp/>&lt;=<sp/>buffer.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>());</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>bloc_size;<sp/>j++)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>dest<sp/>=<sp/>*vectptr;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>src<sp/>=<sp/>*bufptr;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src<sp/>&lt;<sp/>dest)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>line_size;<sp/>k;<sp/>k--)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*(vectptr++)<sp/>=<sp/>*(bufptr++);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vectptr<sp/>+=<sp/>line_size;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bufptr<sp/>+=<sp/>line_size;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/>VECT_BLOCS_TYPE<sp/>_ITEM_TYPE_&gt;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>vect_blocs_generic(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>nb_items_par_voisin,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>read_from_vect_blocs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>nb_items_par_voisin,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="102"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>vect_blocs_generic&lt;_TYPE_,VECT_BLOCS_TYPE::READ&gt;(line_size,voisins,list,nb_items_par_voisin,vect,buffers);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>write_to_vect_blocs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>nb_items_par_voisin,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>vect_blocs_generic&lt;_TYPE_,VECT_BLOCS_TYPE::WRITE&gt;(line_size,voisins,list,nb_items_par_voisin,vect,buffers);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>add_to_vect_blocs(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>voisins,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref>&amp;<sp/>list,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref>&amp;<sp/>nb_items_par_voisin,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classSchema__Comm__Vecteurs" kindref="compound">Schema_Comm_Vecteurs</ref>&amp;<sp/>buffers)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>vect_blocs_generic&lt;_TYPE_,VECT_BLOCS_TYPE::ADD&gt;(line_size,voisins,list,nb_items_par_voisin,vect,buffers);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>MD_Vector_std_tools_TPP_included<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/MD_Vector_std_tools.tpp"/>
+  </compounddef>
+</doxygen>

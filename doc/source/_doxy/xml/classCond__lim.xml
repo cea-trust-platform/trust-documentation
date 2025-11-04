@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classCond__lim" kind="class" language="C++" prot="public">
+    <compoundname>Cond_lim</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">OWN_PTRCond_lim_base</basecompoundref>
+    <includes local="no">Cond_lim.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCond__lim_1a4832152809985dff95a359d5f33d9609" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cond_lim::Declare_instanciable</definition>
+        <argsstring>(Cond_lim)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classCond__lim" kindref="compound">Cond_lim</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="32" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCond__lim_1a94ec29b66de6adceb8c7be132546f0a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cond_lim::adopt</definition>
+        <argsstring>(Cond_lim &amp;cl)</argsstring>
+        <name>adopt</name>
+        <param>
+          <type><ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+          <declname>cl</declname>
+        </param>
+        <briefdescription>
+<para>Adopte la <ref refid="classCond__lim" kindref="compound">Cond_lim</ref> passee en parametre. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Il n&apos;y a pas de copie. La <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> eventuellement detenue avant l&apos;appel est detruite. ATTENTION cl est nul ensuite</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Cond_lim&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>cl) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.cpp" bodystart="38" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim_1afaff40a48ccbe5b5a1ef8829b8e6cefd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cond_lim::Cond_lim</definition>
+        <argsstring>(const Cond_lim &amp;)=default</argsstring>
+        <name>Cond_lim</name>
+        <param>
+          <type>const <ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="34" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim_1a28c0b3328f31dddfc3522a24ce35ef08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+        <definition>Cond_lim &amp; Cond_lim::operator=</definition>
+        <argsstring>(const Cond_lim &amp;cl)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+          <declname>cl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="36" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" bodystart="47" bodyend="51"/>
+        <references refid="classCond__lim_1acefcdccc636d609a3f763aa2df7137c0" compoundref="Cond__lim_8h" startline="41" endline="45">operator=</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim_1acefcdccc636d609a3f763aa2df7137c0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+        <definition>Cond_lim &amp; Cond_lim::operator=</definition>
+        <argsstring>(const Cond_lim_base &amp;cl_base)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> &amp;</type>
+          <declname>cl_base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="35" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" bodystart="41" bodyend="45"/>
+        <referencedby refid="classCond__lim_1a28c0b3328f31dddfc3522a24ce35ef08" compoundref="Cond__lim_8h" startline="47" endline="51">operator=</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim_1a521f944b1989570404fc4994ca4ddd80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Cond_lim::operator==</definition>
+        <argsstring>(const Cond_lim &amp;x) const</argsstring>
+        <name>operator==</name>
+        <param>
+          <type>const <ref refid="classCond__lim" kindref="compound">Cond_lim</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="38" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" bodystart="53" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classCond__lim" kindref="compound">Cond_lim</ref> Classe generique servant a representer n&apos;importe quelle classe </para>
+    </briefdescription>
+    <detaileddescription>
+<para>derivee de la classe <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> La plupart des methodes appellent les methodes de l&apos;objet Probleme sous-jacent via la methode valeur() declaree grace a la macro</para>
+<para><simplesect kind="see"><para><ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>OWN_PTRCond_lim_base</label>
+      </node>
+      <node id="1">
+        <label>Cond_lim</label>
+        <link refid="classCond__lim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>OWN_PTRCond_lim_base</label>
+      </node>
+      <node id="1">
+        <label>Cond_lim</label>
+        <link refid="classCond__lim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim.h" bodystart="31" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classCond__lim_1a94ec29b66de6adceb8c7be132546f0a8" prot="public" virt="non-virtual"><scope>Cond_lim</scope><name>adopt</name></member>
+      <member refid="classCond__lim_1afaff40a48ccbe5b5a1ef8829b8e6cefd" prot="public" virt="non-virtual"><scope>Cond_lim</scope><name>Cond_lim</name></member>
+      <member refid="classCond__lim_1a4832152809985dff95a359d5f33d9609" prot="private" virt="non-virtual"><scope>Cond_lim</scope><name>Declare_instanciable</name></member>
+      <member refid="classCond__lim_1acefcdccc636d609a3f763aa2df7137c0" prot="public" virt="non-virtual"><scope>Cond_lim</scope><name>operator=</name></member>
+      <member refid="classCond__lim_1a28c0b3328f31dddfc3522a24ce35ef08" prot="public" virt="non-virtual"><scope>Cond_lim</scope><name>operator=</name></member>
+      <member refid="classCond__lim_1a521f944b1989570404fc4994ca4ddd80" prot="public" virt="non-virtual"><scope>Cond_lim</scope><name>operator==</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

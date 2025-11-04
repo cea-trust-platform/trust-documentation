@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_72b83ae7841e16ab394bb91d2ea5ecf9" kind="dir">
+    <compoundname>IJK</compoundname>
+    <innerdir refid="dir_54b8e96f3e5976caea65642dc2747b5a">Cond_Lim</innerdir>
+    <innerdir refid="dir_d27a32f44bd08f2d06a1ab7ca6b2f78e">Multigrille</innerdir>
+    <innerdir refid="dir_07e945d2af3744342123b2ea77e28c62">Tools</innerdir>
+    <innerfile refid="Option__IJK_8cpp">Option_IJK.cpp</innerfile>
+    <innerfile refid="Option__IJK_8h">Option_IJK.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/"/>
+  </compounddef>
+</doxygen>

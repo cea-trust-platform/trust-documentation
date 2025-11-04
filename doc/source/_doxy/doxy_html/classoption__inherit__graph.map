@@ -1,9 +1,6 @@
 <map id="option" name="option">
-<area shape="rect" id="Node000001" title=" " alt="" coords="155,5,217,33"/>
-<area shape="rect" id="Node000002" href="$classoption__double.html" title=" " alt="" coords="5,81,119,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,44,85,83,83,78,149,39"/>
-<area shape="rect" id="Node000003" href="$classoption__int.html" title=" " alt="" coords="143,81,229,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,49,189,81,183,81,183,49"/>
-<area shape="rect" id="Node000004" href="$classoption__string.html" title=" " alt="" coords="253,81,359,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,39,286,78,283,83,219,44"/>
+<area shape="rect" id="node1" title=" " alt="" coords="157,5,219,32"/>
+<area shape="rect" id="node2" href="$classoption__double.html" title=" " alt="" coords="5,80,120,107"/>
+<area shape="rect" id="node3" href="$classoption__int.html" title=" " alt="" coords="145,80,231,107"/>
+<area shape="rect" id="node4" href="$classoption__string.html" title=" " alt="" coords="256,80,363,107"/>
 </map>

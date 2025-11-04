@@ -1,9 +1,6 @@
 <map id="EOS_to_TRUST" name="EOS_to_TRUST">
-<area shape="rect" id="Node000001" title="classe EOS_to_TRUST" alt="" coords="169,81,286,109"/>
-<area shape="rect" id="Node000003" href="$classEOS__to__TRUST__Sat__generique.html" title="classe EOS_to_TRUST_Sat_generique" alt="" coords="5,157,223,184"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="196,120,136,158,133,154,193,115"/>
-<area shape="rect" id="Node000004" href="$classEOS__to__TRUST__generique.html" title="classe EOS_to_TRUST_generique" alt="" coords="247,157,437,184"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="262,115,323,154,320,158,259,120"/>
-<area shape="rect" id="Node000002" href="$classTPPI.html" title="classe EOS_to_TRUST" alt="" coords="203,5,252,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,49,230,81,225,81,225,49"/>
+<area shape="rect" id="node1" title="classe EOS_to_TRUST" alt="" coords="170,80,289,107"/>
+<area shape="rect" id="node3" href="$classEOS__to__TRUST__Sat__generique.html" title="classe EOS_to_TRUST_Sat_generique" alt="" coords="5,155,224,181"/>
+<area shape="rect" id="node4" href="$classEOS__to__TRUST__generique.html" title="classe EOS_to_TRUST_generique" alt="" coords="249,155,439,181"/>
+<area shape="rect" id="node2" href="$classTPPI.html" title="classe EOS_to_TRUST" alt="" coords="204,5,255,32"/>
 </map>

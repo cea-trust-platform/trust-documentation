@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f999ad8736097ebdc524243ad7f1213b" kind="dir">
+    <compoundname>VDF</compoundname>
+    <innerdir refid="dir_0197979fff557feda0433ec01d8934c3">Champs</innerdir>
+    <innerdir refid="dir_c634a2e9fd6c43191e1ba3ab82cd5cdd">Cond_Lim</innerdir>
+    <innerdir refid="dir_2ab998f55bf51009710415c7a150bd7a">Geometrie</innerdir>
+    <innerdir refid="dir_fadd61ab149a990122b6cec8f5dc788a">Milieu</innerdir>
+    <innerdir refid="dir_c501444e80f6063cc257170bb92b0879">Multiphase</innerdir>
+    <innerdir refid="dir_b997c7237227ba6ac7dbb3b0dcd5abb6">Operateurs</innerdir>
+    <innerdir refid="dir_bc4ffc0cacce4978ffaa1a5dd64c4cc2">Solveurs</innerdir>
+    <innerdir refid="dir_69b5eb4a11f152a375d71010aa55dc53">Sources</innerdir>
+    <innerdir refid="dir_82337bb98577ed9b6f580c1233e8b8ee">Traitement_particulier</innerdir>
+    <innerdir refid="dir_6641c62bb0d48fbc4b3c13a016c75772">Turbulence</innerdir>
+    <innerfile refid="Option__VDF_8cpp">Option_VDF.cpp</innerfile>
+    <innerfile refid="Option__VDF_8h">Option_VDF.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/"/>
+  </compounddef>
+</doxygen>

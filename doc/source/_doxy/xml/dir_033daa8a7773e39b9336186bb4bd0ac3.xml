@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_033daa8a7773e39b9336186bb4bd0ac3" kind="dir">
+    <compoundname>PDC</compoundname>
+    <innerfile refid="Perte__Charge__Anisotrope__VDF__Face_8cpp">Perte_Charge_Anisotrope_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Anisotrope__VDF__Face_8h">Perte_Charge_Anisotrope_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__Circulaire__VDF__Face_8cpp">Perte_Charge_Circulaire_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Circulaire__VDF__Face_8h">Perte_Charge_Circulaire_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__Directionnelle__VDF__Face_8cpp">Perte_Charge_Directionnelle_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Directionnelle__VDF__Face_8h">Perte_Charge_Directionnelle_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__Isotrope__VDF__Face_8cpp">Perte_Charge_Isotrope_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Isotrope__VDF__Face_8h">Perte_Charge_Isotrope_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__Reguliere__VDF__Face_8cpp">Perte_Charge_Reguliere_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Reguliere__VDF__Face_8h">Perte_Charge_Reguliere_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__Singuliere__VDF__Face_8cpp">Perte_Charge_Singuliere_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__Singuliere__VDF__Face_8h">Perte_Charge_Singuliere_VDF_Face.h</innerfile>
+    <innerfile refid="Perte__Charge__VDF__base_8cpp">Perte_Charge_VDF_base.cpp</innerfile>
+    <innerfile refid="Perte__Charge__VDF__base_8h">Perte_Charge_VDF_base.h</innerfile>
+    <innerfile refid="Perte__Charge__VDF__Face_8cpp">Perte_Charge_VDF_Face.cpp</innerfile>
+    <innerfile refid="Perte__Charge__VDF__Face_8h">Perte_Charge_VDF_Face.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/PDC/"/>
+  </compounddef>
+</doxygen>

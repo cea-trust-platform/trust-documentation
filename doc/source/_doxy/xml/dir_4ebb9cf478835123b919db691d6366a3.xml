@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4ebb9cf478835123b919db691d6366a3" kind="dir">
+    <compoundname>Kernel</compoundname>
+    <innerdir refid="dir_75410551070c442219860822de95c95e">Champs</innerdir>
+    <innerdir refid="dir_6dac92f0062453f7a42b7c25128a86b5">Champs_dis</innerdir>
+    <innerdir refid="dir_23d1fb8a2b2494919bcda520dba4d5e8">Cond_Lim</innerdir>
+    <innerdir refid="dir_0a215d9ccf7924e0d75b691c360a5032">Framework</innerdir>
+    <innerdir refid="dir_248459fe65344770a2fa593f47170c23">Geometrie</innerdir>
+    <innerdir refid="dir_1c43769a4edddf83e0fc84ca45348b32">ICoCo</innerdir>
+    <innerdir refid="dir_e384bdbf780d88bbf5cd0038dce404bc">IJK</innerdir>
+    <innerdir refid="dir_65ad971e6c761419c1a7edd88c13347f">Math</innerdir>
+    <innerdir refid="dir_bb7b3c080fc0d81edccd817a561865f4">MEDimpl</innerdir>
+    <innerdir refid="dir_8bc67a5531db7985b2c780e01f178aea">Operateurs</innerdir>
+    <innerdir refid="dir_f18fec2cebbf94b3ae1056ce02fe1e86">Postraitement</innerdir>
+    <innerdir refid="dir_cee772cf5f55d85be61c5b0ef044067f">Schemas_Temps</innerdir>
+    <innerdir refid="dir_097323260182343668cad86571b802ae">Solveurs</innerdir>
+    <innerdir refid="dir_3d117e0a90c7272e4c42351032cb3fda">Statistiques_temps</innerdir>
+    <innerdir refid="dir_cdaacd66118cd3761cec6ba1adfb2dd4">Utilitaires</innerdir>
+    <innerdir refid="dir_be8568a82a3aa3b37d484509da529385">VF</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/"/>
+  </compounddef>
+</doxygen>

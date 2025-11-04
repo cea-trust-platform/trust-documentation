@@ -1,5 +1,4 @@
 <map id="Sondes_Int" name="Sondes_Int">
-<area shape="rect" id="Node000001" title="classe Sondes_Int Cette classe represente une liste d&#39;objets de type Sonde_Int." alt="" coords="15,81,108,109"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,118,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,49,64,81,59,81,59,49"/>
+<area shape="rect" id="node1" title="classe Sondes_Int Cette classe represente une liste d&#39;objets de type Sonde_Int." alt="" coords="15,80,109,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,119,32"/>
 </map>

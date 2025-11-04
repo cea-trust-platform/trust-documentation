@@ -1,15 +1,9 @@
 <map id="Schema_Backward_Differentiation_order_3" name="Schema_Backward_Differentiation_order_3">
-<area shape="rect" id="Node000001" title="classe Schema_Backward_Differentiation_order_3 Cette classe represente un schema de differentiation r..." alt="" coords="24,476,271,521"/>
-<area shape="rect" id="Node000002" href="$classSchema__Backward__Differentiation__base.html" title="classe Schema_Backward_Differentiation_base" alt="" coords="5,401,290,428"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,444,150,476,145,476,145,444"/>
-<area shape="rect" id="Node000003" href="$classSchema__Implicite__Multi__TimeStep__base.html" title=" " alt="" coords="59,308,236,353"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,368,150,400,145,400,145,368"/>
-<area shape="rect" id="Node000004" href="$classSchema__Implicite__base.html" title="class Schema_Implicite_base Classe de base pour tous les schemas en temps implicite" alt="" coords="60,232,235,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="150,276,150,307,145,307,145,276"/>
-<area shape="rect" id="Node000005" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="67,157,228,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="150,200,150,232,145,232,145,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="111,81,184,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="150,124,150,156,145,156,145,124"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="112,5,183,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="150,49,150,81,145,81,145,49"/>
+<area shape="rect" id="node1" title="classe Schema_Backward_Differentiation_order_3 Cette classe represente un schema de differentiation r..." alt="" coords="25,468,271,509"/>
+<area shape="rect" id="node2" href="$classSchema__Backward__Differentiation__base.html" title="classe Schema_Backward_Differentiation_base" alt="" coords="5,393,291,420"/>
+<area shape="rect" id="node3" href="$classSchema__Implicite__Multi__TimeStep__base.html" title=" " alt="" coords="59,304,237,345"/>
+<area shape="rect" id="node4" href="$classSchema__Implicite__base.html" title="class Schema_Implicite_base Classe de base pour tous les schemas en temps implicite" alt="" coords="60,229,236,256"/>
+<area shape="rect" id="node5" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="67,155,229,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="111,80,185,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="112,5,184,32"/>
 </map>

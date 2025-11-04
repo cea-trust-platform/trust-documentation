@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPb__Hydraulique__List__Concentration__Turbulent" kind="class" language="C++" prot="public">
+    <compoundname>Pb_Hydraulique_List_Concentration_Turbulent</compoundname>
+    <basecompoundref refid="classTRUSTProblem__List__Concentration__Gen" prot="public" virt="non-virtual">TRUSTProblem_List_Concentration_Gen&lt; Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant &gt;</basecompoundref>
+    <includes local="no">Problemes_List_Concentration_Turbulent.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPb__Hydraulique__List__Concentration__Turbulent_1a43d55037b54f76a4609eae0df1803fd0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Pb_Hydraulique_List_Concentration_Turbulent::Declare_instanciable</definition>
+        <argsstring>(Pb_Hydraulique_List_Concentration_Turbulent)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classPb__Hydraulique__List__Concentration__Turbulent" kindref="compound">Pb_Hydraulique_List_Concentration_Turbulent</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Turbulence/Problems/Problemes_List_Concentration_Turbulent.h" line="49" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classPb__Hydraulique__List__Concentration__Turbulent" kindref="compound">Pb_Hydraulique_List_Concentration_Turbulent</ref> Cette classe represente un probleme d&apos;hydraulique avec transport de constituants (1 ou plusieurs) et avec modelisation de la turbulence: </para>
+    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Equations de Navier_Stokes en regime turbulent pour un fluide incompressible en regime turbulent</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="see"><para><ref refid="classPb__Fluide__base" kindref="compound">Pb_Fluide_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>TRUSTProblem_Concentration_Gen&lt; _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ &gt;</label>
+        <link refid="classTRUSTProblem__Concentration__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>_DERIVED_TYPE_</label>
+      </node>
+      <node id="1">
+        <label>Pb_Hydraulique_List_Concentration_Turbulent</label>
+        <link refid="classPb__Hydraulique__List__Concentration__Turbulent"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TRUSTProblem_List_Concentration_Gen&lt; _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ &gt;</label>
+        <link refid="classTRUSTProblem__List__Concentration__Gen"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TRUSTProblem_List_Concentration_Gen&lt; Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant &gt;</label>
+        <link refid="classTRUSTProblem__List__Concentration__Gen"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>TRUSTProblem_Concentration_Gen&lt; _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant &gt;</label>
+        <link refid="classTRUSTProblem__Concentration__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>TRUSTProblem_Concentration_Gen&lt; _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ &gt;</label>
+        <link refid="classTRUSTProblem__Concentration__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>_DERIVED_TYPE_</label>
+      </node>
+      <node id="1">
+        <label>Pb_Hydraulique_List_Concentration_Turbulent</label>
+        <link refid="classPb__Hydraulique__List__Concentration__Turbulent"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TRUSTProblem_List_Concentration_Gen&lt; _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ &gt;</label>
+        <link refid="classTRUSTProblem__List__Concentration__Gen"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TRUSTProblem_List_Concentration_Gen&lt; Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant &gt;</label>
+        <link refid="classTRUSTProblem__List__Concentration__Gen"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>TRUSTProblem_Concentration_Gen&lt; _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant &gt;</label>
+        <link refid="classTRUSTProblem__Concentration__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Turbulence/Problems/Problemes_List_Concentration_Turbulent.h" line="47" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Turbulence/Problems/Problemes_List_Concentration_Turbulent.h" bodystart="48" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1ac95ad088303027c81386d4305ef1f866" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>add_concentration_equations</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1afae95bb9aa9dd59b5112b5492f2d7ff8" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>associer_milieu_base</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1aa2391248a921feae60036c156ea4104f" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>create_constituants_echaines</name></member>
+      <member refid="classPb__Hydraulique__List__Concentration__Turbulent_1a43d55037b54f76a4609eae0df1803fd0" prot="private" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>Declare_instanciable</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1af715aff9169b332f32061bc3cf753f91" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>duplique</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1aa8e8dc81112aff7f2d7d91a7accd9bfd" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>equation</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1adc38b85c2bbc82a3134433c1eee8b8f9" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>equation</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1a3fa1960b467ecb936faf59503ece409f" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>lire_equations</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1ae17a1824db2868cc1deea307cd82a3ee" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>lire_resize_medium</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a8fac803c6529d61e2d2904475a0c8e79" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>LIST</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a5e9c91ed75dc0f3f6b196ce2b0f202a2" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>mil_constituants_</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a2b3bbccc2e4213f92b556147b13f2f86" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>nb_consts_</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a29e72182b71e06464921d53b0f690f49" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>nb_equations_multi</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a8672ff05108dc027ca985cfec45f1931" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>nb_equations_multi</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a3a5335b97872d5f41e3a681fd9e08d01" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>nombre_d_equations</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1a9e7367f0fef5fd3c052b6b0f9639bb52" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>printOn</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1a5605525a8addafb31cf4d6344cba711c" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>readOn</name></member>
+      <member refid="classTRUSTProblem__Concentration__Gen_1aed37f6c219c1990adb6fff433acebd02" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>rename_equation_unknown</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1ab0468fe91ea39ccc3380dfbab2d69973" prot="protected" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>taille_memoire</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1afbf6a878c6d2d602d36a5f371c554996" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>typer_lire_milieu</name></member>
+      <member refid="classTRUSTProblem__List__Concentration__Gen_1a640640d128dd21ecadb308388ec239cb" prot="public" virt="non-virtual"><scope>Pb_Hydraulique_List_Concentration_Turbulent</scope><name>verifier</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,221 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structBlock__Iter" kind="struct" language="C++" prot="public">
+    <compoundname>Block_Iter</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structBlock__Iter_1a337ce4a441477a8f96003f428b81b9a4" prot="public" static="no" mutable="no">
+        <type>_SIZE_</type>
+        <definition>_SIZE_ Block_Iter&lt; _SIZE_ &gt;::end</definition>
+        <argsstring></argsstring>
+        <name>end</name>
+        <initializer>=-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="52" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="52" bodyend="-1"/>
+        <referencedby refid="structBlock__Iter_1a65d37a87088c32ab316983d3d79812dc" compoundref="TRUSTVect__tools_8tpp" startline="41" endline="47">Block_Iter&lt; _SIZE_ &gt;::operator++</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structBlock__Iter_1a9b8deb95277484e3d7a5f3b2c4685856" prot="public" static="no" mutable="no">
+        <type>const int *</type>
+        <definition>const int* Block_Iter&lt; _SIZE_ &gt;::int_ptr</definition>
+        <argsstring></argsstring>
+        <name>int_ptr</name>
+        <initializer>=nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="50" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="50" bodyend="-1"/>
+        <referencedby refid="structBlock__Iter_1a6bc6a74392fb12ba2f8a24fb19bdb3d4" compoundref="TRUSTVect__tools_8tpp" startline="48" endline="48">Block_Iter&lt; _SIZE_ &gt;::empty</referencedby>
+        <referencedby refid="structBlock__Iter_1af6b4d015108aa89b7c9362706b39d27c" compoundref="TRUSTVect__tools_8tpp" startline="37" endline="40">Block_Iter&lt; _SIZE_ &gt;::operator*</referencedby>
+        <referencedby refid="structBlock__Iter_1a65d37a87088c32ab316983d3d79812dc" compoundref="TRUSTVect__tools_8tpp" startline="41" endline="47">Block_Iter&lt; _SIZE_ &gt;::operator++</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structBlock__Iter_1a093ef57b9c5d2751b778de9206923ba5" prot="public" static="no" mutable="no">
+        <type>_SIZE_</type>
+        <definition>_SIZE_ Block_Iter&lt; _SIZE_ &gt;::start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <initializer>=-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="51" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="51" bodyend="-1"/>
+        <referencedby refid="structBlock__Iter_1a6bc6a74392fb12ba2f8a24fb19bdb3d4" compoundref="TRUSTVect__tools_8tpp" startline="48" endline="48">Block_Iter&lt; _SIZE_ &gt;::empty</referencedby>
+        <referencedby refid="structBlock__Iter_1af6b4d015108aa89b7c9362706b39d27c" compoundref="TRUSTVect__tools_8tpp" startline="37" endline="40">Block_Iter&lt; _SIZE_ &gt;::operator*</referencedby>
+        <referencedby refid="structBlock__Iter_1a65d37a87088c32ab316983d3d79812dc" compoundref="TRUSTVect__tools_8tpp" startline="41" endline="47">Block_Iter&lt; _SIZE_ &gt;::operator++</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structBlock__Iter_1ad443b7284314c6db8374f50f25feac3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Block_Iter&lt; _SIZE_ &gt;::Block_Iter</definition>
+        <argsstring>()=default</argsstring>
+        <name>Block_Iter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="31" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a42ba42ecfc3629e464dcbc0496fe33ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Block_Iter&lt; _SIZE_ &gt;::Block_Iter</definition>
+        <argsstring>(_SIZE_ s, _SIZE_ e)</argsstring>
+        <name>Block_Iter</name>
+        <param>
+          <type>_SIZE_</type>
+          <declname>s</declname>
+        </param>
+        <param>
+          <type>_SIZE_</type>
+          <declname>e</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="35" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a2e2e638907bc821f7676acdf06ff2a2a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Block_Iter&lt; _SIZE_ &gt;::Block_Iter</definition>
+        <argsstring>(const Block_Iter &amp;other)=default</argsstring>
+        <name>Block_Iter</name>
+        <param>
+          <type>const <ref refid="structBlock__Iter" kindref="compound">Block_Iter</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a51cde8d6698fbe64f5e45e484ab21336" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Block_Iter&lt; _SIZE_ &gt;::Block_Iter</definition>
+        <argsstring>(const int *p)</argsstring>
+        <name>Block_Iter</name>
+        <param>
+          <type>const int *</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="34" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a6bc6a74392fb12ba2f8a24fb19bdb3d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Block_Iter&lt; _SIZE_ &gt;::empty</definition>
+        <argsstring>() const</argsstring>
+        <name>empty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="48" bodyend="48"/>
+        <references refid="structBlock__Iter_1a9b8deb95277484e3d7a5f3b2c4685856" compoundref="TRUSTVect__tools_8tpp" startline="50">Block_Iter&lt; _SIZE_ &gt;::int_ptr</references>
+        <references refid="structBlock__Iter_1a093ef57b9c5d2751b778de9206923ba5" compoundref="TRUSTVect__tools_8tpp" startline="51">Block_Iter&lt; _SIZE_ &gt;::start</references>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1af6b4d015108aa89b7c9362706b39d27c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>_SIZE_</type>
+        <definition>_SIZE_ Block_Iter&lt; _SIZE_ &gt;::operator*</definition>
+        <argsstring>() const</argsstring>
+        <name>operator*</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="37" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="37" bodyend="40"/>
+        <references refid="structBlock__Iter_1a9b8deb95277484e3d7a5f3b2c4685856" compoundref="TRUSTVect__tools_8tpp" startline="50">Block_Iter&lt; _SIZE_ &gt;::int_ptr</references>
+        <references refid="structBlock__Iter_1a093ef57b9c5d2751b778de9206923ba5" compoundref="TRUSTVect__tools_8tpp" startline="51">Block_Iter&lt; _SIZE_ &gt;::start</references>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a65d37a87088c32ab316983d3d79812dc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="structBlock__Iter" kindref="compound">Block_Iter</ref></type>
+        <definition>Block_Iter Block_Iter&lt; _SIZE_ &gt;::operator++</definition>
+        <argsstring>(True_int)</argsstring>
+        <name>operator++</name>
+        <param>
+          <type>True_int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="41" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="41" bodyend="47"/>
+        <references refid="structBlock__Iter_1a337ce4a441477a8f96003f428b81b9a4" compoundref="TRUSTVect__tools_8tpp" startline="52">Block_Iter&lt; _SIZE_ &gt;::end</references>
+        <references refid="structBlock__Iter_1a9b8deb95277484e3d7a5f3b2c4685856" compoundref="TRUSTVect__tools_8tpp" startline="50">Block_Iter&lt; _SIZE_ &gt;::int_ptr</references>
+        <references refid="structBlock__Iter_1a093ef57b9c5d2751b778de9206923ba5" compoundref="TRUSTVect__tools_8tpp" startline="51">Block_Iter&lt; _SIZE_ &gt;::start</references>
+      </memberdef>
+      <memberdef kind="function" id="structBlock__Iter_1a86e4d59773dc08a060dd7740e082f330" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structBlock__Iter" kindref="compound">Block_Iter</ref> &amp;</type>
+        <definition>Block_Iter&amp; Block_Iter&lt; _SIZE_ &gt;::operator=</definition>
+        <argsstring>(const Block_Iter &amp;other)=default</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="structBlock__Iter" kindref="compound">Block_Iter</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="33" column="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Small iterator class to scan blocks of a MD vector (blocks described by integer indices) or scan a single big block (trustIdType). The important point: the <ref refid="structBlock__Iter_1af6b4d015108aa89b7c9362706b39d27c" kindref="member">operator*()</ref> always returns a trustIdType (TID), whether internal data is int* or trustIdType* :<itemizedlist>
+<listitem><para>in sequential, we can scan a whole Big array from start to end,</para>
+</listitem><listitem><para>in parallel, we can scan chunks of the arrays, as defined by <ref refid="classMD__Vector__mono_1adb025702d8d30a8ef0a706e9d7c9d4e9" kindref="member">MD_Vector_mono::blocs_items_to_compute_</ref> (which store int values, never long) </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" line="29" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTVect_tools.tpp" bodystart="30" bodyend="53"/>
+    <listofallmembers>
+      <member refid="structBlock__Iter_1ad443b7284314c6db8374f50f25feac3b" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>Block_Iter</name></member>
+      <member refid="structBlock__Iter_1a2e2e638907bc821f7676acdf06ff2a2a" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>Block_Iter</name></member>
+      <member refid="structBlock__Iter_1a51cde8d6698fbe64f5e45e484ab21336" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>Block_Iter</name></member>
+      <member refid="structBlock__Iter_1a42ba42ecfc3629e464dcbc0496fe33ed" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>Block_Iter</name></member>
+      <member refid="structBlock__Iter_1a6bc6a74392fb12ba2f8a24fb19bdb3d4" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>empty</name></member>
+      <member refid="structBlock__Iter_1a337ce4a441477a8f96003f428b81b9a4" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>end</name></member>
+      <member refid="structBlock__Iter_1a9b8deb95277484e3d7a5f3b2c4685856" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>int_ptr</name></member>
+      <member refid="structBlock__Iter_1af6b4d015108aa89b7c9362706b39d27c" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>operator*</name></member>
+      <member refid="structBlock__Iter_1a65d37a87088c32ab316983d3d79812dc" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>operator++</name></member>
+      <member refid="structBlock__Iter_1a86e4d59773dc08a060dd7740e082f330" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>operator=</name></member>
+      <member refid="structBlock__Iter_1a093ef57b9c5d2751b778de9206923ba5" prot="public" virt="non-virtual"><scope>Block_Iter</scope><name>start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

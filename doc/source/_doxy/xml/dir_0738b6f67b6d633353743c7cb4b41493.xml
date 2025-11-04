@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0738b6f67b6d633353743c7cb4b41493" kind="dir">
+    <compoundname>DG</compoundname>
+    <innerdir refid="dir_6cf714229baa5090cda38dd784c393b5">Champs</innerdir>
+    <innerdir refid="dir_762cc173cc427daef2c8c8d5fac04445">Geometrie</innerdir>
+    <innerdir refid="dir_9ef87feff0cd3336c3c4bc9bdd359945">Math</innerdir>
+    <innerdir refid="dir_19264e93542b99f73abc8b29818c2095">Operateurs</innerdir>
+    <innerdir refid="dir_bc2021f0ce703cf8804f128261a2eed3">Solveurs</innerdir>
+    <innerdir refid="dir_afb067275a07c2501b6978b1dabb20ba">Sources</innerdir>
+    <innerfile refid="Option__DG_8cpp">Option_DG.cpp</innerfile>
+    <innerfile refid="Option__DG_8h">Option_DG.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/"/>
+  </compounddef>
+</doxygen>

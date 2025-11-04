@@ -1,0 +1,982 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="SSE__kernels_8tpp" kind="file" language="C++">
+    <compoundname>SSE_kernels.tpp</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">sys/time.h</includes>
+    <includes refid="IJK__Field_8h" local="no">IJK_Field.h</includes>
+    <includedby refid="SSE__kernels_8h" local="no">SSE_kernels.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>sys/time.h</label>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="1">
+        <label>SSE_kernels.tpp</label>
+        <link refid="SSE__kernels_8tpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="SSE__kernels_8tpp_1a7d37e23a36afd8c9bb9a561ecc8216ec" prot="public" static="no">
+        <name>SSE_Kernels_H_TPP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="17" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="SSE__kernels_8tpp_1a5f21b4ec7ce52acce5b4672ab8c7e0a2" prot="public" static="yes" mutable="no">
+        <type>const double</type>
+        <definition>const double check_performance</definition>
+        <argsstring></argsstring>
+        <name>check_performance</name>
+        <initializer>= 0.002</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="24" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="SSE__kernels_8tpp_1a165443bb769b716a36a741e84c89a4c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_</type>
+        <definition>_TYPE_ compute_difference</definition>
+        <argsstring>(const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;a, const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;b)</argsstring>
+        <name>compute_difference</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="110" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="110" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1aa6a00797619e4c30a21e840d5fa4124e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void fill_dummy</definition>
+        <argsstring>(IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;tab, int seed)</argsstring>
+        <name>fill_dummy</name>
+        <param>
+          <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>seed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="37" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="37" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1ab17cb4f2dd30fb442cd09f6d4bc78361" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double get_clock</definition>
+        <argsstring>()</argsstring>
+        <name>get_clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="29" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="29" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1aa98821db1f0459b593f6864a222a8d8a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_KSTRIDE_</declname>
+            <defname>_KSTRIDE_</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_JSTRIDE_</declname>
+            <defname>_JSTRIDE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Jacobi_Residue_template</definition>
+        <argsstring>(const _TYPE_ *tab, const _TYPE_ *coeffs_ptr, const _TYPE_ *secmem_ptr, _TYPE_ *result_ptr, const int kstride_input, const int jstride_input, const int nvalues, const _TYPE_ relax_coefficient, bool is_jacobi)</argsstring>
+        <name>Jacobi_Residue_template</name>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>coeffs_ptr</declname>
+        </param>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>secmem_ptr</declname>
+        </param>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>result_ptr</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>kstride_input</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>jstride_input</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nvalues</declname>
+        </param>
+        <param>
+          <type>const _TYPE_</type>
+          <declname>relax_coefficient</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_jacobi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="132" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="132" bodyend="196"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1a6e3e027f3ba22015c3ce8e82f0c6c9ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_KSTRIDE_</declname>
+            <defname>_KSTRIDE_</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_JSTRIDE_</declname>
+            <defname>_JSTRIDE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Jacobi_Residue_template_proto</definition>
+        <argsstring>(const _TYPE_ *tab, const _TYPE_ *coeffs_ptr, const _TYPE_ *secmem_ptr, _TYPE_ *result_ptr, const int kstride_input, const int jstride_input, const int nvalues, const _TYPE_ relax_coefficient, bool is_jacobi)</argsstring>
+        <name>Jacobi_Residue_template_proto</name>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>coeffs_ptr</declname>
+        </param>
+        <param>
+          <type>const _TYPE_ *</type>
+          <declname>secmem_ptr</declname>
+        </param>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>result_ptr</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>kstride_input</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>jstride_input</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nvalues</declname>
+        </param>
+        <param>
+          <type>const _TYPE_</type>
+          <declname>relax_coefficient</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_jacobi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="199" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="199" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1a72095265ff2bb8a38c6c1a088b4502f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_KSTRIDE_</declname>
+            <defname>_KSTRIDE_</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_JSTRIDE_</declname>
+            <defname>_JSTRIDE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multipass_Jacobi_template</definition>
+        <argsstring>(IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;x, IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;residue, const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coeffs, const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;secmem, const int npass, const bool last_pass_is_residue, const _TYPE_ relax_coefficient)</argsstring>
+        <name>Multipass_Jacobi_template</name>
+        <param>
+          <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>residue</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>npass</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>last_pass_is_residue</declname>
+        </param>
+        <param>
+          <type>const _TYPE_</type>
+          <declname>relax_coefficient</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="297" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="297" bodyend="387"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1a839193a23560d17d592304357c1e5f3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void reference_kernel_template</definition>
+        <argsstring>(const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;tab, const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coeffs, const IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;secmem, IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;resu, const _TYPE_ relax, const bool residue)</argsstring>
+        <name>reference_kernel_template</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coeffs</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>resu</declname>
+        </param>
+        <param>
+          <type>const _TYPE_</type>
+          <declname>relax</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>residue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="71" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="71" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="SSE__kernels_8tpp_1a3ec67fe51e3fff4551df694ca9c31535" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_KSTRIDE_</declname>
+            <defname>_KSTRIDE_</defname>
+          </param>
+          <param>
+            <type>int</type>
+            <declname>_JSTRIDE_</declname>
+            <defname>_JSTRIDE_</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void test_template</definition>
+        <argsstring>(const int kstride_input, const int jstride_input, int nk, int npass, bool residue)</argsstring>
+        <name>test_template</name>
+        <param>
+          <type>const int</type>
+          <declname>kstride_input</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>jstride_input</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nk</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>npass</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>residue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" line="393" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp" bodystart="393" bodyend="563"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>SSE_Kernels_H_TPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SSE_Kernels_H_TPP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;sys/time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;IJK_Field.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Factors<sp/>to<sp/>apply<sp/>to<sp/>the<sp/>number<sp/>of<sp/>iterations<sp/>(0=&gt;no<sp/>performance<sp/>check,<sp/>1=&gt;check<sp/>for<sp/>1<sp/>second<sp/>or<sp/>so)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>NDEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>check_performance<sp/>=<sp/>0.002;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>check_performance<sp/>=<sp/>0.2;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>get_clock()</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">timeval<sp/>time;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>gettimeofday(&amp;<sp/>time,<sp/>0);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)<sp/>time.tv_sec<sp/>+<sp/>0.000001<sp/>*<sp/>(double)time.tv_usec;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_&gt;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>fill_dummy(<ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>tab,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>seed)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ghost<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>imin<sp/>=<sp/>-ghost;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>imax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" kindref="member">ni</ref>()<sp/>+<sp/>ghost;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jmin<sp/>=<sp/>-ghost;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jmax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" kindref="member">nj</ref>()<sp/>+<sp/>ghost;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kmin<sp/>=<sp/>-ghost;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kmax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" kindref="member">nk</ref>()<sp/>+<sp/>ghost;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tab.<ref refid="classField__base_1a7f1a8a933594c9f73ac0b14260961fad" kindref="member">nb_comp</ref>()<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>kmin;<sp/>k<sp/>&lt;<sp/>kmax;<sp/>k++)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>jmin;<sp/>j<sp/>&lt;<sp/>jmax;<sp/>j++)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>imin;<sp/>i<sp/>&lt;<sp/>imax;<sp/>i++)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>i<sp/>*<sp/>0.2<sp/>+<sp/>j<sp/>*<sp/>0.9893<sp/>+<sp/>k<sp/>*<sp/>0.87987<sp/>+<sp/>seed;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tab(i,j,k)<sp/>=<sp/>(_TYPE_)(1.<sp/>+<sp/>0.5<sp/>*<sp/>sin(x));</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>tab.<ref refid="classField__base_1a7f1a8a933594c9f73ac0b14260961fad" kindref="member">nb_comp</ref>();</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>kmin;<sp/>k<sp/>&lt;<sp/>kmax;<sp/>k++)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>compo<sp/>=<sp/>0;<sp/>compo<sp/>&lt;<sp/>n;<sp/>compo++)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>jmin;<sp/>j<sp/>&lt;<sp/>jmax;<sp/>j++)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>imin;<sp/>i<sp/>&lt;<sp/>imax;<sp/>i++)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>=<sp/>i<sp/>*<sp/>0.2<sp/>+<sp/>j<sp/>*<sp/>0.9893<sp/>+<sp/>k<sp/>*<sp/>0.87987<sp/>+<sp/>compo<sp/>*<sp/>0.238768<sp/>+<sp/>seed;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tab(i,j,k,compo)<sp/>=<sp/>(_TYPE_)(1.<sp/>+<sp/>0.5<sp/>*<sp/>sin(x));</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_&gt;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="namespaceSSE__Kernels_1a1c3a1832511d8a693064e68dab880195" kindref="member">reference_kernel_template</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>tab,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>coeffs,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>secmem,<sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>resu,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>relax,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>residue)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>one_minus_relax<sp/>=<sp/>(_TYPE_)(1.<sp/>-<sp/>relax);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kmin<sp/>=<sp/>-<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kmax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" kindref="member">nk</ref>()<sp/>+<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jmin<sp/>=<sp/>-<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jmax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" kindref="member">nj</ref>()<sp/>+<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>imin<sp/>=<sp/>-<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>imax<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" kindref="member">ni</ref>()<sp/>+<sp/>tab.<ref refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" kindref="member">ghost</ref>()<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>k;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k<sp/>=<sp/>kmin;<sp/>k<sp/>&lt;<sp/>kmax;<sp/>k++)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>jmin;<sp/>j<sp/>&lt;<sp/>jmax;<sp/>j++)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>imin;<sp/>i<sp/>&lt;<sp/>imax;<sp/>i++)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>x<sp/>=</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeffs(i,j,k,0)<sp/>*<sp/>tab(i-1,j,k)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i+1,j,k,0)<sp/>*<sp/>tab(i+1,j,k)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i,j,k,1)<sp/>*<sp/>tab(i,j-1,k)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i,j+1,k,1)<sp/>*<sp/>tab(i,j+1,k)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i,j,k,2)<sp/>*<sp/>tab(i,j,k-1)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i,j,k+1,2)<sp/>*<sp/>tab(i,j,k+1);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>r;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(residue)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r<sp/>=<sp/>tab(i,j,k)<sp/>*<sp/>coeffs(i,j,k,3)<sp/>-<sp/>x<sp/>-<sp/>secmem(i,j,k);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>r<sp/>=<sp/>tab(i,j,k)<sp/>*<sp/>one_minus_relax<sp/>+<sp/>(x<sp/>+<sp/>secmem(i,j,k))<sp/>*<sp/>relax<sp/>/<sp/>coeffs(i,j,k,3);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>resu(i,j,k)<sp/>=<sp/>r;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_&gt;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">_TYPE_<sp/>compute_difference(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>b)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>_TYPE_<sp/>diff<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ni<sp/>=<sp/>a.<ref refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" kindref="member">ni</ref>();</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nj<sp/>=<sp/>a.<ref refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" kindref="member">nj</ref>();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nk<sp/>=<sp/>a.<ref refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" kindref="member">nk</ref>();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/>j,<sp/>k;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>ni;<sp/>i++)</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>nj;<sp/>j++)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(k<sp/>=<sp/>0;<sp/>k<sp/>&lt;<sp/>nk;<sp/>k++)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>std::max(diff,<sp/>std::fabs(a(i,j,k)<sp/>-<sp/>b(i,j,k)));</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(std::fabs(a(i,j,k)<sp/>-<sp/>b(i,j,k))<sp/>&lt;<sp/>1e-4);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>diff;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_KSTRIDE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_JSTRIDE_&gt;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Jacobi_Residue_template(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*tab,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*coeffs_ptr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*secmem_ptr,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*result_ptr,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride_input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride_input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvalues,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>relax_coefficient,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_jacobi</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vsize<sp/>=<sp/><ref refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" kindref="member">Simd_template&lt;_TYPE_&gt;::size</ref>();</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride<sp/>=<sp/>_KSTRIDE_<sp/>!=<sp/><ref refid="namespaceSSE__Kernels_1a3b2dbee97caaae748a1be29113ed7671" kindref="member">SSE_Kernels::GENERIC_STRIDE</ref>?<sp/>_KSTRIDE_<sp/>:<sp/>kstride_input;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride<sp/>=<sp/>_JSTRIDE_<sp/>!=<sp/><ref refid="namespaceSSE__Kernels_1a3b2dbee97caaae748a1be29113ed7671" kindref="member">SSE_Kernels::GENERIC_STRIDE</ref>?<sp/>_JSTRIDE_<sp/>:<sp/>jstride_input;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/>assert(kstride<sp/>==<sp/>kstride_input);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/>assert(jstride<sp/>==<sp/>jstride_input);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvectors<sp/>=<sp/>(nvalues<sp/>+<sp/>vsize-1)<sp/>/<sp/>vsize;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Code<sp/>version<sp/>1:<sp/>perform<sp/>all<sp/>operations<sp/>at<sp/>once:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>points<sp/>to<sp/>the<sp/>x<sp/>direction<sp/>coefficient<sp/>for<sp/>the<sp/>left<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>kstride<sp/>=<sp/>y<sp/>direction<sp/>coefficient</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>2<sp/>*<sp/>kstride<sp/>=<sp/>z<sp/>direction<sp/>coefficient<sp/>(lower<sp/>face)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>3<sp/>*<sp/>kstride<sp/>=<sp/>sum<sp/>of<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>6<sp/>*<sp/>kstride<sp/>=<sp/>z<sp/>direction<sp/>coefficient<sp/>(upper<sp/>face)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ylow_coeff_offset<sp/>=<sp/>kstride;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>yup_coeff_offset<sp/>=<sp/>kstride<sp/>+<sp/>jstride;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zlow_coeff_offset<sp/>=<sp/>2<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zup_coeff_offset<sp/>=<sp/>6<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sum_coeff_offset<sp/>=<sp/>3<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zlow_tab_offset<sp/>=<sp/>-kstride;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zup_tab_offset<sp/>=<sp/>kstride;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ylow_tab_offset<sp/>=<sp/>-jstride;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>yup_tab_offset<sp/>=<sp/>jstride;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>relax<sp/>=<sp/>relax_coefficient;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>one_minus_relax<sp/>=<sp/>1.f<sp/>-<sp/>relax_coefficient;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>nvectors;<sp/>i++)</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>coeff,<sp/>x1,<sp/>x2;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>zlow_coeff_offset);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x1<sp/>=<sp/>SimdGet(tab<sp/>+<sp/>zlow_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>zup_coeff_offset);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x2<sp/>=<sp/>SimdGet(tab<sp/>+<sp/>zup_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>ylow_coeff_offset);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x1<sp/>+=<sp/>SimdGet(tab<sp/>+<sp/>ylow_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>yup_coeff_offset);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x2<sp/>+=<sp/>SimdGet(tab<sp/>+<sp/>yup_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>c_left,<sp/>c_right,<sp/>tab_left,<sp/>tab_center,<sp/>tab_right;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>SimdGetCenterRight(coeffs_ptr,<sp/>c_left,<sp/>c_right);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>SimdGetLeftCenterRight(tab,<sp/>tab_left,<sp/>tab_center,<sp/>tab_right);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x1<sp/>+=<sp/>tab_left<sp/>*<sp/>c_left;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>x2<sp/>+=<sp/>tab_right<sp/>*<sp/>c_right;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>coeff_sum<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>sum_coeff_offset);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>secmem<sp/>=<sp/>SimdGet(secmem_ptr);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>tmp;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(is_jacobi)</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp<sp/>=<sp/>tab_center<sp/>*<sp/>one_minus_relax<sp/>+<sp/>SimdDivideMed(<sp/>(x1<sp/>+<sp/>x2<sp/>+<sp/>secmem)<sp/>*<sp/>relax,<sp/>coeff_sum);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp<sp/>=<sp/>tab_center<sp/>*<sp/>coeff_sum<sp/>-<sp/>x1<sp/>-<sp/>x2<sp/>-<sp/>secmem;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>SimdPut(result_ptr,<sp/>tmp);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeffs_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>secmem_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>tab<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>result_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_KSTRIDE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_JSTRIDE_&gt;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Jacobi_Residue_template_proto(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*tab,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*coeffs_ptr,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*secmem_ptr,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*result_ptr,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride_input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride_input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvalues,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>relax_coefficient,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_jacobi</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vsize<sp/>=<sp/><ref refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" kindref="member">Simd_template&lt;_TYPE_&gt;::size</ref>();</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride<sp/>=<sp/>_KSTRIDE_<sp/>!=<sp/><ref refid="namespaceSSE__Kernels_1a3b2dbee97caaae748a1be29113ed7671" kindref="member">SSE_Kernels::GENERIC_STRIDE</ref>?<sp/>_KSTRIDE_<sp/>:<sp/>kstride_input;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride<sp/>=<sp/>_JSTRIDE_<sp/>!=<sp/><ref refid="namespaceSSE__Kernels_1a3b2dbee97caaae748a1be29113ed7671" kindref="member">SSE_Kernels::GENERIC_STRIDE</ref>?<sp/>_JSTRIDE_<sp/>:<sp/>jstride_input;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/>assert(kstride<sp/>==<sp/>kstride_input);</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/>assert(jstride<sp/>==<sp/>jstride_input);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvectors<sp/>=<sp/>(nvalues<sp/>+<sp/>vsize-1)<sp/>/<sp/>vsize;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Code<sp/>version<sp/>1:<sp/>perform<sp/>all<sp/>operations<sp/>at<sp/>once:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>points<sp/>to<sp/>the<sp/>x<sp/>direction<sp/>coefficient<sp/>for<sp/>the<sp/>left<sp/>face</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>kstride<sp/>=<sp/>y<sp/>direction<sp/>coefficient</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>2<sp/>*<sp/>kstride<sp/>=<sp/>z<sp/>direction<sp/>coefficient<sp/>(lower<sp/>face)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>3<sp/>*<sp/>kstride<sp/>=<sp/>sum<sp/>of<sp/>coefficients</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>coeffs_ptr<sp/>+<sp/>6<sp/>*<sp/>kstride<sp/>=<sp/>z<sp/>direction<sp/>coefficient<sp/>(upper<sp/>face)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ylow_coeff_offset<sp/>=<sp/>kstride;</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>yup_coeff_offset<sp/>=<sp/>kstride<sp/>+<sp/>jstride;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zlow_coeff_offset<sp/>=<sp/>2<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zup_coeff_offset<sp/>=<sp/>6<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sum_coeff_offset<sp/>=<sp/>3<sp/>*<sp/>kstride;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zlow_tab_offset<sp/>=<sp/>-kstride;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zup_tab_offset<sp/>=<sp/>kstride;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ylow_tab_offset<sp/>=<sp/>-jstride;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>yup_tab_offset<sp/>=<sp/>jstride;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>relax<sp/>=<sp/>relax_coefficient;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>one_minus_relax<sp/>=<sp/>1.f<sp/>-<sp/>relax_coefficient;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>chunksize<sp/>=<sp/>1024/vsize;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(i<sp/>&lt;<sp/>nvectors)</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jmax<sp/>=<sp/>nvectors<sp/>-<sp/>i;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(jmax<sp/>&gt;<sp/>chunksize)</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jmax<sp/>=<sp/>chunksize;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Part<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j;</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>jmax;<sp/>j++)</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>coeff,<sp/>x;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>zlow_coeff_offset);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>SimdGet(tab<sp/>+<sp/>zlow_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>zup_coeff_offset);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>SimdGet(tab<sp/>+<sp/>zup_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>ylow_coeff_offset);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>SimdGet(tab<sp/>+<sp/>ylow_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SimdPut(result_ptr,<sp/>x);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeffs_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tab<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coeffs_ptr<sp/>-=<sp/>vsize<sp/>*<sp/>jmax;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>tab<sp/>-=<sp/>vsize<sp/>*<sp/>jmax;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>result_ptr<sp/>-=<sp/>vsize<sp/>*<sp/>jmax;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Part<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>jmax;<sp/>j++)</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>coeff,<sp/>x;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>=<sp/>SimdGet(result_ptr);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeff<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>yup_coeff_offset);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>SimdGet(tab<sp/>+<sp/>yup_tab_offset)<sp/>*<sp/>coeff;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>c_left,<sp/>c_right,<sp/>tab_left,<sp/>tab_center,<sp/>tab_right;</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SimdGetCenterRight(coeffs_ptr,<sp/>c_left,<sp/>c_right);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SimdGetLeftCenterRight(tab,<sp/>tab_left,<sp/>tab_center,<sp/>tab_right);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>tab_left<sp/>*<sp/>c_left;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>x<sp/>+=<sp/>tab_right<sp/>*<sp/>c_right;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>coeff_sum<sp/>=<sp/>SimdGet(coeffs_ptr<sp/>+<sp/>sum_coeff_offset);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>secmem<sp/>=<sp/>SimdGet(secmem_ptr);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;</ref><sp/>tmp;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(is_jacobi)</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp<sp/>=<sp/>tab_center<sp/>*<sp/>one_minus_relax<sp/>+<sp/>SimdDivideMed((x<sp/>+<sp/>secmem)<sp/>*<sp/>relax,<sp/>coeff_sum);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp<sp/>=<sp/>tab_center<sp/>*<sp/>coeff_sum<sp/>-<sp/>x<sp/>-<sp/>secmem;</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SimdPut(result_ptr,<sp/>tmp);</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeffs_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>secmem_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tab<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result_ptr<sp/>+=<sp/>vsize;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>+=<sp/>jmax;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//flop_count<sp/>+=<sp/>nmax<sp/>*<sp/>14;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Realize<sp/>npass<sp/>simultaneous<sp/>passes<sp/>of<sp/>jacobi<sp/>smoother<sp/>on<sp/>the<sp/>x<sp/>field,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight><highlight class="comment">//<sp/>if<sp/>last_pass_is_residue,<sp/>compute<sp/>npass-1<sp/>iterations<sp/>of<sp/>jacobi<sp/>smoothers<sp/>and<sp/>compute</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>residue<sp/>into<sp/>&quot;residue&quot;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight><highlight class="comment">//<sp/>The<sp/>algorithm<sp/>relies<sp/>on<sp/>the<sp/>fact<sp/>that<sp/>all<sp/>data<sp/>necessary<sp/>to<sp/>compute</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>npass<sp/>passes<sp/>on<sp/>npass<sp/>layers<sp/>can<sp/>reside<sp/>in<sp/>cache<sp/>memory,<sp/>otherwise</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"></highlight><highlight class="comment">//<sp/>will<sp/>have<sp/>same<sp/>performance<sp/>than<sp/>a<sp/>trivial<sp/>algorithm<sp/>that<sp/>performs<sp/>independant</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight><highlight class="comment">//<sp/>passes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight><highlight class="comment">//<sp/>x,<sp/>coeffs<sp/>and<sp/>secmem<sp/>must<sp/>have<sp/>npass<sp/>uptodate<sp/>layers<sp/>of<sp/>ghost<sp/>cells.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_KSTRIDE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_JSTRIDE_&gt;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Multipass_Jacobi_template(<ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>x,</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>residue,</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>coeffs,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref>&amp;<sp/>secmem,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npass,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>last_pass_is_residue,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>relax_coefficient)</highlight></codeline>
+<codeline lineno="304"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>result<sp/>of<sp/>jacobi<sp/>iterations<sp/>will<sp/>be<sp/>stored<sp/>here:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>final_k_shift;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!last_pass_is_residue)</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>final_k_shift<sp/>=<sp/>npass;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>final_k_shift<sp/>=<sp/>npass<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/>assert(x.<ref refid="classIJK__Field__local__template_1a164314830a2b8a2668c74bbf10508267" kindref="member">k_shift</ref>()<sp/>&gt;=<sp/>final_k_shift);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sweep_k_begin<sp/>=<sp/>-<sp/>npass<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sweep_k_end<sp/><sp/><sp/>=<sp/>x.<ref refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" kindref="member">nk</ref>()<sp/>+<sp/>npass<sp/>-<sp/>1;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstart<sp/>=<sp/>-<sp/>npass<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>istart<sp/>=<sp/>-<sp/>npass<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Align<sp/>istart<sp/>on<sp/>SIMD<sp/>vector<sp/>size<sp/>(might<sp/>compute<sp/>a<sp/>few<sp/>useless<sp/>values<sp/>at<sp/>beginning,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>must<sp/>also<sp/>take<sp/>care<sp/>that<sp/>padding<sp/>is<sp/>ok)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/>istart<sp/>=<sp/>istart<sp/>&amp;<sp/>(~(<ref refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" kindref="member">Simd_template&lt;_TYPE_&gt;::size</ref>()-1));</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride<sp/>=<sp/>x.<ref refid="classIJK__Field__local__template_1ab7ade87cba125e7f760698f74198cc73" kindref="member">k_stride</ref>();</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride<sp/>=<sp/>x.<ref refid="classIJK__Field__local__template_1adcb0772a9823fef32251b403d3bd41de" kindref="member">j_stride</ref>();</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>residue_pass<sp/>=<sp/>(last_pass_is_residue<sp/>?<sp/>npass<sp/>-<sp/>1<sp/>:<sp/>npass);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MAXPASS<sp/>=<sp/>8;<sp/></highlight><highlight class="comment">//<sp/>8<sp/>simultaneous<sp/>passes<sp/>is<sp/>a<sp/>reasonable<sp/>max...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>&gt;<sp/>MAXPASS)</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>MAXPASS<sp/>too<sp/>low,<sp/>increase<sp/>value<sp/>and<sp/>recompile...&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvalues[MAXPASS];</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npass;<sp/>i++)</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstart_this_pass<sp/>=<sp/>jstart<sp/>+<sp/>i;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iend<sp/>=<sp/>x.<ref refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" kindref="member">ni</ref>()<sp/>+<sp/>npass-i<sp/>-<sp/>2;<sp/></highlight><highlight class="comment">//<sp/>i<sp/>index<sp/>of<sp/>the<sp/>last<sp/>computed<sp/>cell</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jend<sp/>=<sp/>x.<ref refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" kindref="member">nj</ref>()<sp/>+<sp/>npass-i<sp/>-<sp/>2;<sp/></highlight><highlight class="comment">//<sp/>j<sp/>index<sp/>of<sp/>the<sp/>last<sp/>computed<sp/>cell</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>end_index<sp/>=<sp/>jend<sp/>*<sp/>jstride<sp/>+<sp/>iend;</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>start_index<sp/>=<sp/>jstart_this_pass<sp/>*<sp/>jstride<sp/>+<sp/>istart;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>nvalues[i]<sp/>=<sp/>end_index<sp/>-<sp/>start_index<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>sweep_k_pos<sp/>is<sp/>the<sp/>k<sp/>layer<sp/>of<sp/>the<sp/>first<sp/>pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sweep_k_pos<sp/>=<sp/>sweep_k_begin;<sp/>sweep_k_pos<sp/>&lt;<sp/>sweep_k_end;<sp/>sweep_k_pos++)</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k_layer<sp/>=<sp/>sweep_k_pos;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*src_ptr<sp/>=<sp/>&amp;x.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart,<sp/>k_layer);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*coeffs_ptr<sp/>=<sp/>&amp;coeffs.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart,<sp/>k_layer,0);</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>*secmem_ptr<sp/>=<sp/>&amp;secmem.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart,<sp/>k_layer);</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>current_pass<sp/>=<sp/>0;<sp/>current_pass<sp/>&lt;<sp/>npass;<sp/>current_pass++)</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>layer<sp/>number<sp/>(where<sp/>to<sp/>take<sp/>rhs<sp/>and<sp/>coefficients<sp/>for<sp/>this<sp/>pass</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k_layer_mpass<sp/>=<sp/>sweep_k_pos<sp/>-<sp/>current_pass;</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>data<sp/>is<sp/>not<sp/>ready<sp/>yet<sp/>for<sp/>this<sp/>pass<sp/>(happens<sp/>for<sp/>the<sp/>first<sp/>layers)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_pass<sp/>&gt;<sp/>k_layer_mpass<sp/>-<sp/>sweep_k_begin)</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(src_ptr<sp/>==<sp/>&amp;x.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart<sp/>+<sp/>current_pass,<sp/>k_layer_mpass<sp/>-<sp/>current_pass));</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(coeffs_ptr<sp/>==<sp/>&amp;coeffs.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart<sp/>+<sp/>current_pass,<sp/>k_layer_mpass,0));</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(secmem_ptr<sp/>==<sp/>&amp;secmem.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart<sp/>+<sp/>current_pass,<sp/>k_layer_mpass));</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"></highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_pass<sp/>==<sp/>residue_pass)</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*residue_ptr<sp/>=<sp/>&amp;residue.<ref refid="classIJK__Field__local__template_1a119804dfc77cea1ccf3c0d5170157eb7" kindref="member">get_in_allocated_area</ref>(istart,<sp/>jstart<sp/>+<sp/>current_pass,<sp/>k_layer_mpass);</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jacobi_Residue_template&lt;_TYPE_,_KSTRIDE_,<sp/>_JSTRIDE_&gt;(src_ptr,<sp/>coeffs_ptr,<sp/>secmem_ptr,<sp/>residue_ptr<sp/></highlight><highlight class="comment">/*<sp/>where<sp/>to<sp/>store<sp/>result<sp/>*/</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kstride,<sp/>jstride,<sp/>nvalues[current_pass],<sp/>relax_coefficient,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>residu*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jacobi_Residue_template&lt;_TYPE_,_KSTRIDE_,<sp/>_JSTRIDE_&gt;(src_ptr,<sp/>coeffs_ptr,<sp/>secmem_ptr,<sp/>src_ptr<sp/>-<sp/>kstride<sp/></highlight><highlight class="comment">/*<sp/>where<sp/>to<sp/>store<sp/>result<sp/>*/</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kstride,<sp/>jstride,<sp/>nvalues[current_pass],<sp/>relax_coefficient,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*jacobi*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"></highlight></codeline>
+<codeline lineno="374"><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Shift<sp/>source,<sp/>result<sp/>and<sp/>coefficient<sp/>data<sp/>to<sp/>layer<sp/>for<sp/>next<sp/>pass.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Next<sp/>pass<sp/>requires<sp/>one<sp/>less<sp/>row<sp/>so<sp/>add<sp/>also<sp/>&quot;jstride&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>src_ptr<sp/>=<sp/>src_ptr<sp/>-<sp/>2<sp/>*<sp/>kstride<sp/>+<sp/>jstride;</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>assert(coeffs.<ref refid="classField__base_1a7f1a8a933594c9f73ac0b14260961fad" kindref="member">nb_comp</ref>()<sp/>==<sp/>4);</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeffs_ptr<sp/>=<sp/>coeffs_ptr<sp/>-<sp/>kstride<sp/>*<sp/>4<sp/>+<sp/>jstride;</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>secmem_ptr<sp/>=<sp/>secmem_ptr<sp/>-<sp/>kstride<sp/>+<sp/>jstride;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"></highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>result<sp/>is<sp/>stored<sp/>with<sp/>shift<sp/>in<sp/>k<sp/>direction:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/>x.<ref refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" kindref="member">shift_k_origin</ref>(-final_k_shift);</highlight></codeline>
+<codeline lineno="387"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"></highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Tests<sp/>the<sp/>kernel<sp/>(compares<sp/>with<sp/>reference<sp/>implementation)<sp/>and<sp/>gives<sp/>performance<sp/>result.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Can<sp/>be<sp/>run<sp/>in<sp/>parallel<sp/>to<sp/>test<sp/>concurrency<sp/>efficiency<sp/>(memory<sp/>and<sp/>cache<sp/>bandwidth).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight><highlight class="comment">//<sp/>if<sp/>npass==0,<sp/>runs<sp/>only<sp/>single<sp/>plane<sp/>algorithm,<sp/>otherwise<sp/>runs<sp/>multipass<sp/>algorithm</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="392"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_KSTRIDE_,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>_JSTRIDE_&gt;</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>test_template(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>kstride_input,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>jstride_input,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nk,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>npass,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>residue)</highlight></codeline>
+<codeline lineno="394"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref><sp/>coeffs,<sp/>tab,<sp/>secmem,<sp/>resu,<sp/>resu_reference;</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ghost<sp/>=<sp/>(npass<sp/>==<sp/>0)<sp/>?<sp/>1<sp/>:<sp/>npass;</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>additional_layers<sp/>=<sp/>npass;</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ni<sp/>=<sp/>jstride_input<sp/>-<sp/>2<sp/>*<sp/>ghost;</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nj<sp/>=<sp/>kstride_input<sp/>/<sp/>jstride_input<sp/>-<sp/>2<sp/>*<sp/>ghost;</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>nk<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>&lt;<sp/>0<sp/>||<sp/>nk<sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>!<sp/>in<sp/>test_template&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/>coeffs.<ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">allocate</ref>(ni,<sp/>nj,<sp/>nk,<sp/>ghost,<sp/>additional_layers,<sp/>4<sp/></highlight><highlight class="comment">/*nb<sp/>compo*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/>tab.<ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">allocate</ref>(ni,<sp/>nj,<sp/>nk,<sp/>ghost,<sp/>additional_layers);</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/>secmem.<ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">allocate</ref>(ni,<sp/>nj,<sp/>nk,<sp/>ghost);</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/>resu.<ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">allocate</ref>(ni,<sp/>nj,<sp/>nk,<sp/>ghost);</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/>resu_reference.<ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">allocate</ref>(ni,<sp/>nj,<sp/>nk,<sp/>ghost);</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"></highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/>tab.<ref refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" kindref="member">shift_k_origin</ref>(additional_layers);</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Fill<sp/>with<sp/>dummy<sp/>data:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/>fill_dummy(tab,<sp/>0);</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/>fill_dummy(coeffs,<sp/>1);</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/>fill_dummy(secmem,<sp/>2);</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/>fill_dummy(resu,<sp/>3);</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"></highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>-ghost<sp/>+<sp/>1;<sp/>i<sp/>&lt;<sp/>ni<sp/>+<sp/>ghost<sp/>-<sp/>1;<sp/>i++)</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j<sp/>=<sp/>-ghost<sp/>+<sp/>1;<sp/>j<sp/>&lt;<sp/>nj<sp/>+<sp/>ghost<sp/>-<sp/>1;<sp/>j++)</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k<sp/>=<sp/>-ghost<sp/>+<sp/>1;<sp/>k<sp/>&lt;<sp/>nk<sp/>+<sp/>ghost<sp/>-<sp/>1;<sp/>k++)</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coeffs(i,j,k,3)<sp/>=<sp/>coeffs(i,j,k,0)<sp/>+<sp/>coeffs(i,j,k,1)<sp/>+<sp/>coeffs(i,j,k,2)</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/>coeffs(i+1,j,k,0)<sp/>+<sp/>coeffs(i,j+1,k,1)<sp/>+<sp/>coeffs(i,j,k+1,2);</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"></highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_<sp/>relax_coefficient<sp/>=<sp/>(_TYPE_)0.65;</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nvalues<sp/>=<sp/>tab.<ref refid="classIJK__Field__local__template_1adcb0772a9823fef32251b403d3bd41de" kindref="member">j_stride</ref>()<sp/>*<sp/>(nj-1)<sp/>+<sp/>ni;</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"></highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><ref refid="classNom" kindref="compound">Nom</ref><sp/>kernname;</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>diff;</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Unit<sp/>test<sp/>of<sp/>the<sp/>kernel<sp/>for<sp/>one<sp/>plane:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Compute<sp/>result:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(residue)</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kernname<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;residue&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kernname<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;jacobi&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Jacobi_Residue_template&lt;_TYPE_,_KSTRIDE_,<sp/>_JSTRIDE_&gt;(&amp;tab(0,0,0),<sp/>&amp;coeffs(0,0,0,0),<sp/>&amp;secmem(0,0,0),<sp/>&amp;resu(0,0,0),</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kstride_input,<sp/>jstride_input,<sp/>nvalues,</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>relax_coefficient,<sp/>!residue);</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>reference_kernel_template&lt;_TYPE_&gt;(tab,<sp/>coeffs,<sp/>secmem,<sp/>resu_reference,<sp/>relax_coefficient,<sp/>residue);</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>compute_difference(resu_reference,<sp/>resu);</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>kernname<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;multipass_jacobi&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;</ref><sp/>copy_tab(tab);</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Multipass_Jacobi_template&lt;_TYPE_,<sp/>_TYPE_ARRAY_,<sp/>_KSTRIDE_,<sp/>_JSTRIDE_&gt;(tab,<sp/>resu,<sp/>coeffs,<sp/>secmem,<sp/>npass,<sp/>residue,<sp/>relax_coefficient);</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"></highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npass<sp/>-<sp/>1;<sp/>i++)</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reference_kernel_template&lt;_TYPE_&gt;(copy_tab,<sp/>coeffs,<sp/>secmem,<sp/>resu_reference,<sp/>relax_coefficient,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>copy_tab<sp/>=<sp/>resu_reference;</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>reference_kernel_template&lt;_TYPE_&gt;(copy_tab,<sp/>coeffs,<sp/>secmem,<sp/>resu_reference,<sp/>relax_coefficient,<sp/>residue);</highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(residue)</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>compute_difference(resu_reference,<sp/>resu);</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>diff<sp/>=<sp/>compute_difference(resu_reference,<sp/>tab);</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"></highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" kindref="member">Process::je_suis_maitre</ref>())</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/>Cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Checking<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>kernname<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>kstride_input<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>jstride_input</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>Maximum<sp/>difference=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>diff<sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diff<sp/>&gt;<sp/>1e-5)</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>difference<sp/>found<sp/>in<sp/>testing<sp/>kernel.&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(check_performance)</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>niter;</highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>nflop<sp/>=<sp/>0.;</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>flops_per_cell_residue<sp/>=<sp/>14.;</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>flops_per_cell_jacobi<sp/>=<sp/>17.;</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>usefull_flops<sp/>=<sp/>0.;</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>0.;</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>niter<sp/>=<sp/>(int)floor(check_performance<sp/>*<sp/>1e9/nvalues);</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" kindref="member">Process::barrier</ref>();</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t1<sp/>=<sp/>get_clock();</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>niter;<sp/>i++)</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Jacobi_Residue_template&lt;_TYPE_,_KSTRIDE_,<sp/>_JSTRIDE_&gt;(&amp;tab(0,0,0),<sp/>&amp;coeffs(0,0,0,0),<sp/>&amp;secmem(0,0,0),<sp/>&amp;resu(0,0,0),</highlight></codeline>
+<codeline lineno="502"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>kstride_input,<sp/>jstride_input,<sp/>nvalues,</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>relax_coefficient,<sp/>!residue);</highlight></codeline>
+<codeline lineno="504"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="505"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" kindref="member">Process::barrier</ref>();</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>get_clock()-t1;</highlight></codeline>
+<codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(residue)</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nflop<sp/>=<sp/>flops_per_cell_residue<sp/>*<sp/>nvalues;</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="510"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nflop<sp/>=<sp/>flops_per_cell_jacobi<sp/>*<sp/>nvalues;</highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>npass;<sp/>i++)</highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="516"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ncells<sp/>=<sp/>(nk<sp/>+<sp/>2<sp/>*<sp/>i)<sp/>*<sp/>(nj<sp/>+<sp/>2<sp/>*<sp/>i)<sp/>*<sp/>jstride_input;</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(i<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>residue)</highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nflop<sp/>+=<sp/>flops_per_cell_residue<sp/>*<sp/>ncells;</highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usefull_flops<sp/>+=<sp/>flops_per_cell_residue<sp/>*<sp/>ni<sp/>*<sp/>nj<sp/>*<sp/>nk;</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nflop<sp/>+=<sp/>flops_per_cell_jacobi<sp/>*<sp/>ncells;</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>usefull_flops<sp/>+=<sp/>flops_per_cell_jacobi<sp/>*<sp/>ni<sp/>*<sp/>nj<sp/>*<sp/>nk;</highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>niter<sp/>=<sp/>(int)<sp/>floor(check_performance<sp/>*<sp/>1e10<sp/>/<sp/>nflop)<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" kindref="member">Process::barrier</ref>();</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t1<sp/>=<sp/>get_clock();</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>niter;<sp/>i++)</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>GF<sp/>je<sp/>remets<sp/>a<sp/>zero<sp/>sinon<sp/>cela<sp/>diverge<sp/>???</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fill_dummy(tab,<sp/>0);</highlight></codeline>
+<codeline lineno="535"><highlight class="normal"></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tab.<ref refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" kindref="member">shift_k_origin</ref>(residue<sp/>?<sp/>npass-1<sp/>:<sp/>npass);</highlight></codeline>
+<codeline lineno="537"><highlight class="normal"></highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Multipass_Jacobi_template&lt;_TYPE_,<sp/>_TYPE_ARRAY_,<sp/>_KSTRIDE_,<sp/>_JSTRIDE_&gt;(tab,<sp/>resu,<sp/>coeffs,<sp/>secmem,<sp/>npass,<sp/>residue,<sp/>relax_coefficient);</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" kindref="member">Process::barrier</ref>();</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>get_clock()-t1;</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>gflops<sp/>=<sp/>nflop<sp/>*<sp/>niter<sp/>/<sp/>dt<sp/>*<sp/>1e-9;</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" kindref="member">Process::je_suis_maitre</ref>())</highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Performance<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>kernname<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;(kstride=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>kstride_input</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,jstride=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>jstride_input<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,nk=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>nk<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,npass=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>npass<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,residue=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(int)(residue?1:0);</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Cout<sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>niter=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>niter<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>time=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>dt<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>flops<sp/>per<sp/>iteration=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>nflop</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>gflops=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>gflops<sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(npass<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data_factor<sp/>=<sp/>2<sp/></highlight><highlight class="comment">/*<sp/>read/write<sp/>tab<sp/>*/</highlight><highlight class="normal"><sp/>+<sp/>1<sp/></highlight><highlight class="comment">/*<sp/>secmem<sp/>*/</highlight><highlight class="normal"><sp/>+<sp/>2<sp/></highlight><highlight class="comment">/*<sp/>read/write<sp/>resu<sp/>*/</highlight><highlight class="normal"><sp/>+<sp/>4<sp/></highlight><highlight class="comment">/*<sp/>coeffs<sp/>*/</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>data_size<sp/>=<sp/>kstride_input<sp/>*<sp/>(nk<sp/>+<sp/>2<sp/>*<sp/>npass);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>bandwidth<sp/>=<sp/>(double)<sp/>data_size<sp/>*<sp/>data_factor<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_)<sp/>*<sp/>niter<sp/>/<sp/>dt;</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"></highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>Amount<sp/>of<sp/>data<sp/>read/write<sp/>to<sp/>RAM<sp/>per<sp/>iteration=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>data_size<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>*<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>data_factor<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>*<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>(int)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_)</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>data_size<sp/>*<sp/>data_factor<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_)<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>MB&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Cout<sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>Bandwidth<sp/>per<sp/>process<sp/>if<sp/>optimal<sp/>caching(GB/s)=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>bandwidth<sp/>&lt;&lt;<sp/>finl</highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>Usefull<sp/>GFlops=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>usefull_flops<sp/>*<sp/>niter<sp/>/<sp/>dt<sp/>*<sp/>1e-9<sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="563"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="564"><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/SSE_kernels.tpp"/>
+  </compounddef>
+</doxygen>

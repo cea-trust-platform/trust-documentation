@@ -10,7 +10,7 @@ var classTRUST__Deriv__Objet__U =
     [ "reprendre", "classTRUST__Deriv__Objet__U.html#a4513b6ae92030c239edc9a89ffd140bd", null ],
     [ "sauvegarder", "classTRUST__Deriv__Objet__U.html#a20e60c45c60114dfda393eecc1a13f73", null ],
     [ "deplace", "classTRUST__Deriv__Objet__U.html#af20b3453442ef9e137e64d1f68dc8196", null ],
-    [ "valeur", "classTRUST__Deriv__Objet__U.html#a78532376fbd9fcb230aaffc0632cc4d9", null ],
-    [ "valeur", "classTRUST__Deriv__Objet__U.html#a0f1de5163baeb597723f7a58514adb88", null ],
-    [ "operator->", "classTRUST__Deriv__Objet__U.html#a6f1c25d0a5d82e06f0ce65405b2f6cd4", null ]
+    [ "valeur", "classTRUST__Deriv__Objet__U.html#ab3aa3354ba857a7fcf8c341d94b67715", null ],
+    [ "valeur", "classTRUST__Deriv__Objet__U.html#a6f192fe5114e5ecf30c834e4815c8a3f", null ],
+    [ "operator->", "classTRUST__Deriv__Objet__U.html#aa8897d9d57f4d7ee852772836bca4d2a", null ]
 ];

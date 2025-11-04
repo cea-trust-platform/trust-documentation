@@ -1,26 +1,14 @@
 <map id="Champ_val_tot_sur_vol_base" name="Champ_val_tot_sur_vol_base">
-<area shape="rect" id="Node000001" title="classe Champ_val_tot_sur_vol_base Classe de base derivee de Champ_Uniforme_Morceaux qui represente le..." alt="" coords="118,705,329,733"/>
-<area shape="rect" id="Node000011" href="$classChamp__val__tot__sur__vol__VDF.html" title="classe Champ_val_tot_sur_vol_VDF derivee de Champ_val_tot_sur_vol_base Evaluation de Somme_vol_poro_l..." alt="" coords="5,782,213,810"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="192,744,131,784,128,779,189,739"/>
-<area shape="rect" id="Node000012" href="$classChamp__val__tot__sur__vol__VEF.html" title="classe Champ_val_tot_sur_vol_VEF derivee de Champ_val_tot_sur_vol_base Evaluation Somme_vol_poro_loc ..." alt="" coords="237,782,442,810"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="258,739,321,779,318,784,255,743"/>
-<area shape="rect" id="Node000002" href="$classChamp__Uniforme__Morceaux.html" title="classe Champ_Uniforme_Morceaux Cette classe represente champ constant par morceaux dans l&#39;espace" alt="" coords="120,628,327,656"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="226,671,226,705,221,705,221,671"/>
-<area shape="rect" id="Node000003" href="$classTRUSTChamp__Morceaux__generique.html" title=" " alt="" coords="111,517,336,579"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="226,594,226,628,221,628,221,594"/>
-<area shape="rect" id="Node000004" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="149,313,288,341"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="222,357,226,516,220,517,216,357"/>
-<area shape="rect" id="Node000010" href="$classTRUSTChamp__Morceaux__generique.html" title=" " alt="" coords="240,390,421,435"/>
-<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="250,348,303,388,300,392,246,353"/>
-<area shape="rect" id="Node000005" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="166,236,271,264"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="221,279,221,313,216,313,216,279"/>
-<area shape="rect" id="Node000006" href="$classField__base.html" title=" " alt="" coords="112,159,202,187"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="179,198,210,234,206,238,175,201"/>
-<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="120,82,194,110"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="160,125,160,159,154,159,154,125"/>
-<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="121,5,193,33"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="160,48,160,82,154,82,154,48"/>
-<area shape="rect" id="Node000009" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="226,159,334,187"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="261,201,231,238,227,234,257,198"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="306,449,250,518,246,515,302,445"/>
+<area shape="rect" id="node1" title="classe Champ_val_tot_sur_vol_base Classe de base derivee de Champ_Uniforme_Morceaux qui represente le..." alt="" coords="119,685,331,712"/>
+<area shape="rect" id="node11" href="$classChamp__val__tot__sur__vol__VDF.html" title="classe Champ_val_tot_sur_vol_VDF derivee de Champ_val_tot_sur_vol_base Evaluation de Somme_vol_poro_l..." alt="" coords="5,761,213,788"/>
+<area shape="rect" id="node12" href="$classChamp__val__tot__sur__vol__VEF.html" title="classe Champ_val_tot_sur_vol_VEF derivee de Champ_val_tot_sur_vol_base Evaluation Somme_vol_poro_loc ..." alt="" coords="238,761,445,788"/>
+<area shape="rect" id="node2" href="$classChamp__Uniforme__Morceaux.html" title="classe Champ_Uniforme_Morceaux Cette classe represente champ constant par morceaux dans l&#39;espace" alt="" coords="122,609,329,636"/>
+<area shape="rect" id="node3" href="$classTRUSTChamp__Morceaux__generique.html" title=" " alt="" coords="112,504,339,560"/>
+<area shape="rect" id="node4" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="151,309,289,336"/>
+<area shape="rect" id="node10" href="$classTRUSTChamp__Morceaux__generique.html" title=" " alt="" coords="242,385,425,427"/>
+<area shape="rect" id="node5" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="167,233,273,260"/>
+<area shape="rect" id="node6" href="$classField__base.html" title=" " alt="" coords="113,157,204,184"/>
+<area shape="rect" id="node7" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="121,81,196,108"/>
+<area shape="rect" id="node8" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="123,5,195,32"/>
+<area shape="rect" id="node9" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="228,157,337,184"/>
 </map>

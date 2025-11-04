@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_bc4ffc0cacce4978ffaa1a5dd64c4cc2" kind="dir">
+    <compoundname>Solveurs</compoundname>
+    <innerfile refid="Assembleur__P__VDF_8cpp">Assembleur_P_VDF.cpp</innerfile>
+    <innerfile refid="Assembleur__P__VDF_8h">Assembleur_P_VDF.h</innerfile>
+    <innerfile refid="Assembleur__P__VDF__Q4_8cpp">Assembleur_P_VDF_Q4.cpp</innerfile>
+    <innerfile refid="Assembleur__P__VDF__Q4_8h">Assembleur_P_VDF_Q4.h</innerfile>
+    <innerfile refid="Masse__VDF__base_8cpp">Masse_VDF_base.cpp</innerfile>
+    <innerfile refid="Masse__VDF__base_8h">Masse_VDF_base.h</innerfile>
+    <innerfile refid="Masse__VDF__Elem_8cpp">Masse_VDF_Elem.cpp</innerfile>
+    <innerfile refid="Masse__VDF__Elem_8h">Masse_VDF_Elem.h</innerfile>
+    <innerfile refid="Masse__VDF__Face_8cpp">Masse_VDF_Face.cpp</innerfile>
+    <innerfile refid="Masse__VDF__Face_8h">Masse_VDF_Face.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Solveurs/"/>
+  </compounddef>
+</doxygen>

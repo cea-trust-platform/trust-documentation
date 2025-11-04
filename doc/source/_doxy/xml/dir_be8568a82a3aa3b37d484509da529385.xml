@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_be8568a82a3aa3b37d484509da529385" kind="dir">
+    <compoundname>VF</compoundname>
+    <innerdir refid="dir_7e1ab86df413a98ec8d572e4de84840b">Champs</innerdir>
+    <innerdir refid="dir_8c701f916983b0072e313387a7ad56a3">Geometrie</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/VF/"/>
+  </compounddef>
+</doxygen>

@@ -15,7 +15,7 @@ var classMilieu__composite =
     [ "get_interface", "classMilieu__composite.html#aac9f050b6c3ffe51bacc28c17c305cb3", null ],
     [ "get_saturation", "classMilieu__composite.html#aceb12b3dfc2c65e89abb602a09265ac1", null ],
     [ "get_fluid", "classMilieu__composite.html#aee3e3e1021597cdb4b632f0b9f06f130", null ],
-    [ "noms_phases", "classMilieu__composite.html#a933f28c2108d0e5291bcd0bdf9d16eab", null ],
+    [ "noms_phases", "classMilieu__composite.html#a59424e80abb6253f18d6d6cc9b0429bd", null ],
     [ "are_fluid_properties_initialised", "classMilieu__composite.html#a9221275bd8db9d90000ea63ec495a5dc", null ],
     [ "OWN_PTR", "classMilieu__composite.html#a26da9fbfb4ad6a529f0588c25074ed4d", null ],
     [ "OWN_PTR", "classMilieu__composite.html#a30ba8e52df673762f34e72a603ba6384", null ],

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classStatistiques.html" title=" " alt="" coords="5,5,104,33"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,160,32"/>
+<area shape="rect" id="node2" href="$classSondes.html" title="classe Sondes Cette classe represente une liste de sondes." alt="" coords="208,5,277,32"/>
 </map>

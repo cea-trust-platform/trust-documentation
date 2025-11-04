@@ -1,0 +1,382 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classLoi__Etat__Binaire__GP__WC" kind="class" language="C++" prot="public">
+    <compoundname>Loi_Etat_Binaire_GP_WC</compoundname>
+    <basecompoundref refid="classLoi__Etat__Binaire__GP__base" prot="public" virt="non-virtual">Loi_Etat_Binaire_GP_base</basecompoundref>
+    <includes local="no">Loi_Etat_Binaire_GP_WC.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classLoi__Etat__Binaire__GP__WC_1a63ea083609262d24a355078f13b9fb35" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Loi_Etat_Binaire_GP_WC::Declare_instanciable</definition>
+        <argsstring>(Loi_Etat_Binaire_GP_WC)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classLoi__Etat__Binaire__GP__WC" kindref="compound">Loi_Etat_Binaire_GP_WC</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.h" line="32" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classLoi__Etat__Binaire__GP__WC_1af26e4683e9959b360c84ed6f717a97dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Loi_Etat_Binaire_GP_WC::calculer_masse_volumique</definition>
+        <argsstring>() override</argsstring>
+        <name>calculer_masse_volumique</name>
+        <reimplements refid="classLoi__Etat__Binaire__GP__base_1a0680ad7953e7f67ad0957229bad73ea3">calculer_masse_volumique</reimplements>
+        <briefdescription>
+<para>Calcule la masse volumique. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.cpp" bodystart="49" bodyend="66"/>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classFluide__Weakly__Compressible_1a761c72eb30b77a52bf6b079c8aff6356" compoundref="Fluide__Weakly__Compressible_8h" startline="51" endline="51">Fluide_Weakly_Compressible::pression_th_tab</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classLoi__Etat__base_1a871fa2f34cfdb48f795f8d76b6058a45" compoundref="Loi__Etat__base_8h" startline="92">Loi_Etat_base::tab_rho_n</references>
+        <references refid="classLoi__Etat__base_1a35a0877b17bda1981f04da05f2ba3ffe" compoundref="Loi__Etat__base_8h" startline="92">Loi_Etat_base::tab_rho_np1</references>
+        <references refid="classDebog_1aa228f7e951ef67b9e9bb31ced928652f" compoundref="Debog_8cpp" startline="21" endline="25">Debog::verifier</references>
+      </memberdef>
+      <memberdef kind="function" id="classLoi__Etat__Binaire__GP__WC_1a11e129cd1735bc1bdbf9a3cec0865ec5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Loi_Etat_Binaire_GP_WC::calculer_masse_volumique</definition>
+        <argsstring>(double P, double Y1) const override</argsstring>
+        <name>calculer_masse_volumique</name>
+        <reimplements refid="classLoi__Etat__Binaire__GP__base_1a408462ce12b6806cebca1a0e9344ae5f">calculer_masse_volumique</reimplements>
+        <param>
+          <type>double</type>
+          <declname>P</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Y1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.h" line="36" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.cpp" bodystart="41" bodyend="44"/>
+        <references refid="classLoi__Etat__Binaire__GP__base_1a0680ad7953e7f67ad0957229bad73ea3">Loi_Etat_Binaire_GP_base::calculer_masse_volumique</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classLoi__Etat__Binaire__GP__WC" kindref="compound">Loi_Etat_Binaire_GP_WC</ref> Cette classe represente la loi d&apos;etat pour les melanges binaires. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Associe a un fluide dilatable, elle definit un fluide binaire weakly compressible
+dont la loi d&apos;eata est :
+   Pth = rho*R*T*(Y1/M1+Y2/M2)
+</verbatim> <simplesect kind="see"><para><ref refid="classLoi__Etat__Binaire__GP__base" kindref="compound">Loi_Etat_Binaire_GP_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Loi_Etat_Binaire_GP_base</label>
+        <link refid="classLoi__Etat__Binaire__GP__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Loi_Etat_Melange_GP_base</label>
+        <link refid="classLoi__Etat__Melange__GP__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="1">
+        <label>Loi_Etat_Binaire_GP_WC</label>
+        <link refid="classLoi__Etat__Binaire__GP__WC"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Loi_Etat_base</label>
+        <link refid="classLoi__Etat__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="4">
+        <label>Loi_Etat_GP_base</label>
+        <link refid="classLoi__Etat__GP__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Loi_Etat_Binaire_GP_base</label>
+        <link refid="classLoi__Etat__Binaire__GP__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Loi_Etat_Melange_GP_base</label>
+        <link refid="classLoi__Etat__Melange__GP__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="1">
+        <label>Loi_Etat_Binaire_GP_WC</label>
+        <link refid="classLoi__Etat__Binaire__GP__WC"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Loi_Etat_base</label>
+        <link refid="classLoi__Etat__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>tab_rho_n</edgelabel>
+          <edgelabel>tab_rho_np1</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="11">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Loi_Etat_GP_base</label>
+        <link refid="classLoi__Etat__GP__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Milieu/Loi_Etat_Binaire_GP_WC.h" bodystart="31" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>abort</name></member>
+      <member refid="classLoi__Etat__base_1a46ae0feed73753c4cf5c900ac4d5b4e8" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>abortTimeStep</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>associer_</name></member>
+      <member refid="classLoi__Etat__Melange__GP__base_1a331a1f329e7385953a9108d93f352bad" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>associer_fluide</name></member>
+      <member refid="classLoi__Etat__base_1a06acabf8836442c88e628188ed9ab3dd" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>assoscier_probleme</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>bidim_axi</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a9de8bbd49acccd4b0e41112d02fe2ea1" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_alpha</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a58ff5916fd78b05122dc607290c2ece2" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_Cp</name></member>
+      <member refid="classLoi__Etat__base_1adc015ad620b00fe2405c1ef621e7e9d7" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_H</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a1043555a4aa55cd3e85f2f17384c16c3" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_lambda</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__WC_1af26e4683e9959b360c84ed6f717a97dc" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_masse_volumique</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__WC_1a11e129cd1735bc1bdbf9a3cec0865ec5" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_masse_volumique</name></member>
+      <member refid="classLoi__Etat__GP__base_1ab01f197200e72c7492235ba18aa49b87" prot="public" virt="non-virtual" ambiguityscope="Loi_Etat_Melange_GP_base::"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_masse_volumique</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a9219ef356395da66fa58a0a07a14c404" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_mu</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a200b299e6a7c91756d2894e1ae55acb8" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_mu_sur_Sc</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1ada4269c44ecf9888aac429ce6a1e98b1" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_mu_wilke</name></member>
+      <member refid="classLoi__Etat__base_1aec2201c588a245964f7dbe6531522426" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_nu</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a2ba0915a4a6c256c24b09cf3897e7bff" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>calculer_nu_sur_Sc</name></member>
+      <member refid="classLoi__Etat__base_1a8acdd2860248eaf0ce0e952bd9f42d84" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>ch_temperature</name></member>
+      <member refid="classLoi__Etat__base_1afa5a6386f61968d1ed319d1425b8a667" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>ch_temperature</name></member>
+      <member refid="classLoi__Etat__base_1ab7f8562c78f7cc41790a096bcb70bfad" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>champs_compris</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>check_int_overflow</name></member>
+      <member refid="classLoi__Etat__base_1aa81507cf7425cdc64533ee557498b89c" prot="protected" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>compute_tab_rho</name></member>
+      <member refid="classLoi__Etat__GP__base_1ae5c91842e6653b2606b3e46d9241a7ec" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Cp_</name></member>
+      <member refid="classLoi__Etat__base_1a5e13f8eecdafae40e10ca0e91ff2b22b" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>creer_champ</name></member>
+      <member refid="classLoi__Etat__base_1a21c9c3d67d3be5b3a7eef1a59bec99c1" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>De_DP</name></member>
+      <member refid="classLoi__Etat__base_1a5d71960f0bab947164946e1844b6ac41" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>De_DT</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classLoi__Etat__base_1af6822615d10d78324057c50c2d193d19" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>debug</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__WC_1a63ea083609262d24a355078f13b9fb35" prot="private" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Declare_instanciable</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a8e0836de6f3ea074da9134feb265cf76" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>diff_coeff_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>disable_TU</name></member>
+      <member refid="classLoi__Etat__base_1adc5fda0c1165c7b52c0c5d5fb0708920" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Drho_DP</name></member>
+      <member refid="classLoi__Etat__base_1ac7bc5e1d50fc6cf739b611820e67cc9a" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Drho_DT</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>format_precision_geom</name></member>
+      <member refid="classLoi__Etat__base_1a460d6f2fa98f43a8152754b002f34b07" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>get_champ</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>get_info</name></member>
+      <member refid="classLoi__Etat__base_1adf0e203762be19f96ac06c560ccdf75e" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classLoi__Etat__base_1af41ed06fdc7527322b3f41d7a34e421c" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>has_champ</name></member>
+      <member refid="classLoi__Etat__base_1a725664abea7eda6866ac969bbd8b6794" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Loi_Etat_Binaire_GP_WC</scope><name>has_champ</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>info_obj</name></member>
+      <member refid="classLoi__Etat__GP__base_1a05919302de941bd584d5cf9cd6d72c89" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>initialiser</name></member>
+      <member refid="classLoi__Etat__base_1a14cd89a7b568e6e0601b838d8f825e86" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>initialiser_inco_ch</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>interprete</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1af1d0a3e32c9681ee5a441c656c2a67ac" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>inverser_Pth</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classLoi__Etat__base_1adb072fb38c2715091942ee8b2585ed1c" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Loi_Etat_base</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a4edc7afc1c9cd7cab57d3a3a9edaf5dd" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Loi_Etat_Binaire_GP_base</name></member>
+      <member refid="classLoi__Etat__GP__base_1a6a33bbbbbe2db4e5bcc360b633f16b5d" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Loi_Etat_GP_base</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a2546020e8eb04db89daa5a607695c069" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>massmol1_</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a8100d8f425ce0fe232b60861ed484270" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>massmol2_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>me</name></member>
+      <member refid="classLoi__Etat__base_1a44c4b5fd0c26531acd5d845957dbfac2" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mettre_a_jour</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mpsum_multiple</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1ae0b7725d9ae22989f64b408e1bca4ed7" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mu1_</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1ab224fb141ce094143b213e8bb8594612" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>mu2_</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Objet_U</name></member>
+      <member refid="classLoi__Etat__base_1add8fada1d659b96179d042f9d4b8a3da" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>OBS_PTR</name></member>
+      <member refid="classLoi__Etat__base_1ae4924449bee5d175181b0c41a53d0b86" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>operator=</name></member>
+      <member refid="classLoi__Etat__base_1af49d9ffc438236482f087eef88bce902" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>OWN_PTR</name></member>
+      <member refid="classLoi__Etat__base_1a1cff6e1f3179d8edd86955bbfe49ab7f" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Pr_</name></member>
+      <member refid="classLoi__Etat__base_1a6bb009980184d5217a2978af7fc738cb" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>Prandt</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>precision_geom</name></member>
+      <member refid="classLoi__Etat__base_1ac8ae5b951db0bf697337c280a074132a" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>que_suis_je</name></member>
+      <member refid="classLoi__Etat__GP__base_1a6389e4a3a127c983e2bb30c90daa6678" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>R</name></member>
+      <member refid="classLoi__Etat__GP__base_1ae606f1a9a47cb9c24d60d24ebc52c525" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>R_</name></member>
+      <member refid="classLoi__Etat__Melange__GP__base_1afa1975350653c13f9a065791fbf96a48" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>R_GAS</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>readOn</name></member>
+      <member refid="classLoi__Etat__GP__base_1a7090370c97ad819aba55230dc830bf81" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>remplir_T</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>reprendre</name></member>
+      <member refid="classLoi__Etat__base_1aae9423558b7b6c05774df87f4a950841" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>rho_n</name></member>
+      <member refid="classLoi__Etat__base_1a0c21f11d9ec97ab77f2a851b0bb42d0a" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>rho_np1</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classLoi__Etat__base_1a871fa2f34cfdb48f795f8d76b6058a45" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>tab_rho_n</name></member>
+      <member refid="classLoi__Etat__base_1a35a0877b17bda1981f04da05f2ba3ffe" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>tab_rho_np1</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>taille_memoire</name></member>
+      <member refid="classLoi__Etat__base_1abb2cd2cc4240a180f0d6f4a05c0e51ba" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>temperature</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a5fbbe4d92eb754f2bac461f172bb59af" prot="protected" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>tempr_</name></member>
+      <member refid="classLoi__Etat__Binaire__GP__base_1a5908f2357234a4040c7070aac90697c8" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>type_fluide</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Loi_Etat_Binaire_GP_WC</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

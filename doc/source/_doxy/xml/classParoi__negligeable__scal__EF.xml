@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classParoi__negligeable__scal__EF" kind="class" language="C++" prot="public">
+    <compoundname>Paroi_negligeable_scal_EF</compoundname>
+    <basecompoundref refid="classParoi__scal__hyd__base__EF" prot="public" virt="non-virtual">Paroi_scal_hyd_base_EF</basecompoundref>
+    <includes local="no">Paroi_negligeable_scal_EF.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classParoi__negligeable__scal__EF_1a18a78924050c4e3ba42cb8062dca91ff" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Paroi_negligeable_scal_EF::Declare_instanciable</definition>
+        <argsstring>(Paroi_negligeable_scal_EF)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classParoi__negligeable__scal__EF" kindref="compound">Paroi_negligeable_scal_EF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.h" line="23" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classParoi__negligeable__scal__EF_1aedeb44e2b5022d3007bcf7f149028670" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Paroi_negligeable_scal_EF::calculer_scal</definition>
+        <argsstring>(Champ_Fonc_base &amp;) override</argsstring>
+        <name>calculer_scal</name>
+        <reimplements refid="classTurbulence__paroi__scal__base_1abd835ee417ebec0dce4a33ce3f3acb0a">calculer_scal</reimplements>
+        <param>
+          <type><ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref> &amp;</type>
+          <defname>diffusivite_turb</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.h" line="25" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.cpp" bodystart="22" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="classParoi__negligeable__scal__EF_1ae693e1b7438ae1993636e15a70f74405" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool Paroi_negligeable_scal_EF::use_equivalent_distance</definition>
+        <argsstring>() const override</argsstring>
+        <name>use_equivalent_distance</name>
+        <reimplements refid="classTurbulence__paroi__scal__base_1a3fbdac89d5db3a3498a3c663e9924102">use_equivalent_distance</reimplements>
+        <briefdescription>
+<para>Give a boolean indicating if we need to use equivant distance by default we consider that we use the equivalent distance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(boolean) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.h" line="26" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.cpp" bodystart="23" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Turbulence_paroi_scal_base</label>
+        <link refid="classTurbulence__paroi__scal__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Paroi_negligeable_scal_EF</label>
+        <link refid="classParoi__negligeable__scal__EF"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Paroi_scal_hyd_base_EF</label>
+        <link refid="classParoi__scal__hyd__base__EF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>TRUST_Vector&lt; TRUSTVect&lt; double, int &gt; &gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; TRUSTVect&lt; double, int &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Turbulence_paroi_scal_base</label>
+        <link refid="classTurbulence__paroi__scal__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>equivalent_distance_</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>tab_</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TRUST_Vector&lt; _CLASSE_ &gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="10">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="11">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Paroi_negligeable_scal_EF</label>
+        <link refid="classParoi__negligeable__scal__EF"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Paroi_scal_hyd_base_EF</label>
+        <link refid="classParoi__scal__hyd__base__EF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>tab_d_reel_</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.h" line="21" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Turbulence/Paroi_negligeable_scal_EF.h" bodystart="22" bodyend="27"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>abort</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a0ac7019da56dbdcbae701692e4832318" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>associer_</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a9d551fd9b2671b55aee688f182e25555" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>associer_modele</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>bidim_axi</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a3da82adeee1d1e622bb4e6e312614e48" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>calcul_ldp_en_flux_impose_</name></member>
+      <member refid="classParoi__negligeable__scal__EF_1aedeb44e2b5022d3007bcf7f149028670" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>calculer_scal</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>check_int_overflow</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1accbc451551716b8a33bdd7bf67e8aead" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>completer</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a2b03872e27d6b1b375c71b8f50cd57b8" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>compute_nusselt</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a5028bada83e9fbf6771a87608e7f2d60" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>creer_champ</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1af3ecf1ccce5bd48e20da4baec2d86e58" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>data_a_sauvegarder</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classParoi__negligeable__scal__EF_1a18a78924050c4e3ba42cb8062dca91ff" prot="private" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>duplique</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1af7adc3b4527b8d318fe936cd9bc8a0d2" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>equivalent_distance</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a98e3f7468c5d8377e50731806ccdd922" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>equivalent_distance</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a244643408c5c901a6045de4c1305f0dd" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>equivalent_distance</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a1a33da1be8f0f287a64db99527b32c11" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>equivalent_distance_</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a1419bbc0ff3c677c30a95b1dfe98e847" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>equivalent_distance_name</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>format_precision_geom</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a729b187615ed3cf35d23eb490f0c8063" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_champ</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1aa72d72d1418e57c762dc5b48e42321ec" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_flag_calcul_ldp_en_flux_impose</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_info</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1acf3670f9372bca16f2f07e2a7cc75a39" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1ad8f4eeb114b8d50229f8f803cbad0a32" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>has_champ</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1ad4e6ebc1c240cecd52028363c18f0db3" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Paroi_negligeable_scal_EF</scope><name>has_champ</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>HAS_POINTER</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a18a57dc6bdfebe0af1ee0eeb779bedb6" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>imprimer_nusselt</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a90c8dc3e403338fb72bdf32468518ffb" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>imprimer_nusselt_mean_only</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a42373f3ffe46c21184758ec47a4d4428" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>imprimer_premiere_ligne_nusselt</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>info_obj</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a719af10525b541c8720e76608c13ffbe" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>init_lois_paroi</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>multiple_files</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1ab9824da477d56f6f4b20eee8630281f9" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nb_fields_</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1add39cbf623bee9156bfe8b18218e5dbb" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nb_impr0_</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1afc250717da7ac684f19d14b1de795bb8" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nb_impr_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Objet_U</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a75546022c57e31afc65826e9fea6c2a8" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>OBS_PTR</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a0614e130f0f3ddc9ed15d5c481787b3e" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>OBS_PTR</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a6185ff314db222c6cd4ce9870bce1068" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>operator=</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1afab7cbc332422b733c2b60017f4c33d7" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1aabaa16955875ce734a64c924f8845861" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a2607e12c9e7f466321f9a7dc7bbaeb79" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Prdt_sur_kappa_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>readOn</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a0680d8fb66a3b513fa1f5bc7d048583f" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>reprendre</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a33047b038e8aa7a11248de311a0713d8" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a54b26d371e156f447cd28d52dca826f6" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>T_plus</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a0e49721a1aea04cac5904ead2b95fe52" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1a1cd9511128a4e57835790f0bf67c7828" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_d_reel</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1af070a881774ccec5afe9c82cf4848af1" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_d_reel</name></member>
+      <member refid="classParoi__scal__hyd__base__EF_1abf2c95f0d91f19200d59d3ea874d7af3" prot="protected" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_d_reel_</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1af66c9634c2c74b1e698d89cb6f270e61" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_equivalent_distance</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a8c22ef96c6c7ce016a57ba022c225fea" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_equivalent_distance</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a000cf51032b471eb2fd2cde7a435305e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>tab_equivalent_distance_size</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>taille_memoire</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1ad15e106634a7ca84b303fc9af12abd4e" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>Turbulence_paroi_scal_base</name></member>
+      <member refid="classTurbulence__paroi__scal__base_1a425ff85da2a8efd166cb589d948c5acd" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>typer_lire_turbulence_paroi_scal</name></member>
+      <member refid="classParoi__negligeable__scal__EF_1ae693e1b7438ae1993636e15a70f74405" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>use_equivalent_distance</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Paroi_negligeable_scal_EF</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Paroi_negligeable_scal_EF</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

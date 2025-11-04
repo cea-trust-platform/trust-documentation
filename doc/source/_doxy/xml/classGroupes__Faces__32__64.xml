@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classGroupes__Faces__32__64" kind="class" language="C++" prot="public">
+    <compoundname>Groupes_Faces_32_64</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTGroupe_Faces_32_64&lt; _SIZE_ &gt;</basecompoundref>
+    <includes local="no">Groupes_Faces.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classGroupes__Faces__32__64_1a70821836f30467572d146c62e33262b1" prot="public" static="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt_T</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Groupes_Faces_32_64&lt; _SIZE_ &gt;::ArrOfInt_t =  ArrOfInt_T&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>ArrOfInt_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="33" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classGroupes__Faces__32__64_1a6a397a6e7d11dcfe3441f445b52d7519" prot="public" static="no">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Groupes_Faces_32_64&lt; _SIZE_ &gt;::Domaine_t =  Domaine_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Domaine_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="34" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classGroupes__Faces__32__64_1aead48dbdd1a6b98088dce7d195730fe2" prot="public" static="no">
+        <type>_SIZE_</type>
+        <definition>using Groupes_Faces_32_64&lt; _SIZE_ &gt;::int_t =  _SIZE_</definition>
+        <argsstring></argsstring>
+        <name>int_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="32" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1ad22c696ab86d4f83d1cca701ded4e511" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Groupes_Faces_32_64&lt; _SIZE_ &gt;::Declare_instanciable_32_64</definition>
+        <argsstring>(Groupes_Faces_32_64)</argsstring>
+        <name>Declare_instanciable_32_64</name>
+        <param>
+          <type><ref refid="classGroupes__Faces__32__64" kindref="compound">Groupes_Faces_32_64</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1a90c7809692b2826ec260ebd93dad3dd0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Groupes_Faces_32_64&lt; _SIZE_ &gt;::associer_domaine</definition>
+        <argsstring>(const Domaine_t &amp;)</argsstring>
+        <name>associer_domaine</name>
+        <param>
+          <type>const <ref refid="classGroupes__Faces__32__64_1a6a397a6e7d11dcfe3441f445b52d7519" kindref="member">Domaine_t</ref> &amp;</type>
+          <defname>un_domaine</defname>
+        </param>
+        <briefdescription>
+<para>Associe un domaine a tous les objets Groupe_Faces de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un_domaine) le domaine a associer aux Groupe_Faces de la liste </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.cpp" bodystart="31" bodyend="34"/>
+        <referencedby refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" compoundref="Interprete__geometrique__base_8cpp" startline="60" endline="84">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::interpreter</referencedby>
+        <referencedby refid="classDomaine__32__64_1a96722a1630524b52ecc912eb0b39a863" compoundref="Domaine_8cpp" startline="1179" endline="1221">Domaine_32_64&lt; _SIZE_ &gt;::merge_wo_vertices_with</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1af5150da67e9c623193f93cee3164b8e6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classGroupes__Faces__32__64_1aead48dbdd1a6b98088dce7d195730fe2" kindref="member">int_t</ref></type>
+        <definition>Groupes_Faces_32_64&lt; _SIZE_ &gt;::int_t Groupes_Faces_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_faces</name>
+        <briefdescription>
+<para>Renvoie le nombre total de faces contenues dans la liste des Groupe_Faces, i. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>e. la somme de toutes les faces de tous les objet Groupe_Faces contenu dans la liste.</para>
+<para><simplesect kind="return"><para>(int) le nombre total de faces contenues dans la liste des Groupe_Faces </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="37" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.cpp" bodystart="45" bodyend="51"/>
+        <referencedby refid="classDomaine__32__64_1a6f397a25bd1e82c3a87e3efa5624aa8d" compoundref="Domaine_8h" startline="174" endline="174">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_groupes_faces</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1adae24c76852906b9da09b4275797ddd7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classGroupes__Faces__32__64_1aead48dbdd1a6b98088dce7d195730fe2" kindref="member">int_t</ref></type>
+        <definition>Groupes_Faces_32_64&lt; _SIZE_ &gt;::int_t Groupes_Faces_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>(Type_Face type) const</argsstring>
+        <name>nb_faces</name>
+        <param>
+          <type>Type_Face</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie le nombre total de faces de type specifie contenues dans la liste des Groupe_Faces. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>i.e. la somme de toutes les faces de type specifie de tous les objet Groupe_Faces contenu dans la liste.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Type_Face</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type) le type des faces a compter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) le nombre total de faces contenues dans la liste des Groupe_Faces </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="39" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.cpp" bodystart="63" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1a8da06e2f74785c8937d67c3a9fd83ca7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Groupes_Faces_32_64&lt; _SIZE_ &gt;::nb_groupes_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_groupes_faces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="38" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" bodystart="38" bodyend="38"/>
+        <referencedby refid="classDomaine__32__64_1aea1e52bc442b698a3bfddd08db896995" compoundref="Domaine_8h" startline="217" endline="217">Domaine_32_64&lt; _SIZE_ &gt;::nb_groupes_faces</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGroupes__Faces__32__64_1af0e4d2da689d32ac589ad0934af354af" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Groupes_Faces_32_64&lt; _SIZE_ &gt;::renumerote</definition>
+        <argsstring>(ArrOfInt_t &amp;reverse_index)</argsstring>
+        <name>renumerote</name>
+        <param>
+          <type><ref refid="classGroupes__Faces__32__64_1a70821836f30467572d146c62e33262b1" kindref="member">ArrOfInt_t</ref> &amp;</type>
+          <declname>reverse_index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Mise a jour des indices des groupes de faces avec table inversee: reverse_index[ancien_numero] = nouveau numero: necessaire lorsque les numeros des faces ont ete modifies </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.cpp" bodystart="76" bodyend="89"/>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class Groupes_Faces Cette classe represente une liste d&apos;objets de type Groupe_Faces. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para>Groupes_Faces </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>LISTGroupe_Faces_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Groupes_Faces_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classGroupes__Faces__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>LISTGroupe_Faces_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Groupes_Faces_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classGroupes__Faces__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Groupes_Faces.h" bodystart="28" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classGroupes__Faces__32__64_1a70821836f30467572d146c62e33262b1" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>ArrOfInt_t</name></member>
+      <member refid="classGroupes__Faces__32__64_1a90c7809692b2826ec260ebd93dad3dd0" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>associer_domaine</name></member>
+      <member refid="classGroupes__Faces__32__64_1ad22c696ab86d4f83d1cca701ded4e511" prot="private" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>Declare_instanciable_32_64</name></member>
+      <member refid="classGroupes__Faces__32__64_1a6a397a6e7d11dcfe3441f445b52d7519" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>Domaine_t</name></member>
+      <member refid="classGroupes__Faces__32__64_1aead48dbdd1a6b98088dce7d195730fe2" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>int_t</name></member>
+      <member refid="classGroupes__Faces__32__64_1af5150da67e9c623193f93cee3164b8e6" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>nb_faces</name></member>
+      <member refid="classGroupes__Faces__32__64_1adae24c76852906b9da09b4275797ddd7" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>nb_faces</name></member>
+      <member refid="classGroupes__Faces__32__64_1a8da06e2f74785c8937d67c3a9fd83ca7" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>nb_groupes_faces</name></member>
+      <member refid="classGroupes__Faces__32__64_1af0e4d2da689d32ac589ad0934af354af" prot="public" virt="non-virtual"><scope>Groupes_Faces_32_64</scope><name>renumerote</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

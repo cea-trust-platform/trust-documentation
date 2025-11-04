@@ -1,7 +1,7 @@
 var classOp__Dift__Multiphase__proto =
 [
     [ "associer_proto", "classOp__Dift__Multiphase__proto.html#a0426dd4305ff8ff6a0ca1c1a614a4208", null ],
-    [ "correlation", "classOp__Dift__Multiphase__proto.html#aeb6bbbf432a6e802ff0bd41a19ac1b0a", null ],
+    [ "correlation", "classOp__Dift__Multiphase__proto.html#a56ffceb907d730fa388512ba3a2626d1", null ],
     [ "ajout_champs_proto_face", "classOp__Dift__Multiphase__proto.html#ad7d8236650a4e741ff81e624841efb64", null ],
     [ "ajout_champs_proto_elem", "classOp__Dift__Multiphase__proto.html#a1597b8a36cd11630d7bf2012320430c1", null ],
     [ "get_noms_champs_postraitables_proto", "classOp__Dift__Multiphase__proto.html#aa019f7dd1121e34d156fb84503f63704", null ],
@@ -11,8 +11,8 @@ var classOp__Dift__Multiphase__proto =
     [ "completer_proto_elem", "classOp__Dift__Multiphase__proto.html#a67d3c03301fd199709279b2ca1126301", null ],
     [ "mettre_a_jour_proto_face", "classOp__Dift__Multiphase__proto.html#a84512dc7689fb91771b6e522fe4793d6", null ],
     [ "mettre_a_jour_proto_elem", "classOp__Dift__Multiphase__proto.html#a1796dc05823038bf95d6f4b7eae29637", null ],
-    [ "viscosite_turbulente", "classOp__Dift__Multiphase__proto.html#a75679b379a1cd3c2ae2b576eeff8291f", null ],
-    [ "diffusivite_turbulente", "classOp__Dift__Multiphase__proto.html#ab85537cc2866ce2a7dbb775a3a4594dc", null ],
+    [ "viscosite_turbulente", "classOp__Dift__Multiphase__proto.html#a4fe67b6720be8d738571e16cc615ef78", null ],
+    [ "diffusivite_turbulente", "classOp__Dift__Multiphase__proto.html#a513875a55274587e318f598073142f31", null ],
     [ "call_compute_nu_turb", "classOp__Dift__Multiphase__proto.html#a0bfd0e53337c019812195142abd33b01", null ],
     [ "call_compute_diff_turb", "classOp__Dift__Multiphase__proto.html#aad382f70286adee9871fb2fc5c288e1d", null ],
     [ "OWN_PTR", "classOp__Dift__Multiphase__proto.html#a3f30b61f09dea2067bd725fad32ac070", null ],

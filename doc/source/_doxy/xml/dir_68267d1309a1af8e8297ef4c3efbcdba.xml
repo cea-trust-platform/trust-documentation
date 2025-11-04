@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
+    <compoundname>src</compoundname>
+    <innerdir refid="dir_0738b6f67b6d633353743c7cb4b41493">DG</innerdir>
+    <innerdir refid="dir_ce5762a3948b7336bc5fa1d84acdd0a9">EF</innerdir>
+    <innerdir refid="dir_72b83ae7841e16ab394bb91d2ea5ecf9">IJK</innerdir>
+    <innerdir refid="dir_4ebb9cf478835123b919db691d6366a3">Kernel</innerdir>
+    <innerdir refid="dir_b5bdd15a3acf6700d59baef1b2a4dac1">MAIN</innerdir>
+    <innerdir refid="dir_81c75001e30643c0416ee4c3bd1b274e">PolyMAC</innerdir>
+    <innerdir refid="dir_b91833fa2d528be7aecedeb7fe4eea36">ThHyd</innerdir>
+    <innerdir refid="dir_13693299dd61556dbbda8b8a807dfaab">ThSol</innerdir>
+    <innerdir refid="dir_f999ad8736097ebdc524243ad7f1213b">VDF</innerdir>
+    <innerdir refid="dir_2bf20327eb8d166f9acb0c9b72854f51">VEF</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="TRUSTTab__parts_8tpp" kind="file" language="C++">
+    <compoundname>TRUSTTab_parts.tpp</compoundname>
+    <includedby refid="TRUSTTab__parts_8h" local="no">TRUSTTab_parts.h</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="TRUSTTab__parts_8tpp_1ae05a19c1379348b88a92db365eebfe9a" prot="public" static="no">
+        <name>TRUSTTab_parts_TPP_included</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_parts.tpp" line="17" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_parts.tpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="TRUSTTab__parts_8tpp_1a7ad4fd33da16a995c2435d6e401591ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void init_parts</definition>
+        <argsstring>(TRUSTVect&lt; _TYPE_ &gt; &amp;vect, TRUST_Vector&lt; TRUSTTab&lt; _TYPE_ &gt;&gt; &amp;parts, TRUSTTab&lt; _TYPE_ &gt; *dummy_type_ptr)</argsstring>
+        <name>init_parts</name>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">TRUSTVect</ref>&lt; _TYPE_ &gt; &amp;</type>
+          <declname>vect</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">TRUST_Vector</ref>&lt; <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _TYPE_ &gt;&gt; &amp;</type>
+          <declname>parts</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _TYPE_ &gt; *</type>
+          <declname>dummy_type_ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_parts.tpp" line="20" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_parts.tpp" bodystart="20" bodyend="87"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TRUSTTab_parts_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUSTTab_parts_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init_parts(<ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect,<sp/><ref refid="classTRUST__Vector" kindref="compound">TRUST_Vector</ref>&lt;<ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>&gt;&amp;<sp/>parts,<sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref><sp/>*dummy_type_ptr)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classMD__Vector" kindref="compound">MD_Vector</ref>&amp;<sp/>md<sp/>=<sp/>vect.<ref refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" kindref="member">get_md_vector</ref>();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*<sp/>tab_ptr<sp/>=<sp/></highlight><highlight class="keyword">dynamic_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(&amp;vect);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<sp/>md.<ref refid="classMD__Vector_1a036f2429ea40bd07b331500f6ff22b8f" kindref="member">non_nul</ref>()<sp/>||<sp/>!sub_type(<ref refid="classMD__Vector__composite" kindref="compound">MD_Vector_composite</ref>,<sp/>md.<ref refid="classMD__Vector_1a3d77c78aa347c9c1e31afe355399d817" kindref="member">valeur</ref>()))</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ce<sp/>n&apos;est<sp/>pas<sp/>un<sp/>tableau<sp/>a<sp/>plusieurs<sp/>sous-parties,<sp/>on<sp/>cree<sp/>juste<sp/>une<sp/>partie<sp/>qui<sp/>pointe<sp/>sur<sp/>vect.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>parts.dimensionner(1);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>&amp;<sp/>part<sp/>=<sp/>parts[0];</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>On<sp/>preserve<sp/>le<sp/>&apos;shape&apos;<sp/>du<sp/>tableau<sp/>de<sp/>depart,<sp/>si<sp/>c&apos;est<sp/>un<sp/>TRUSTTab&lt;_TYPE_&gt;...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tab_ptr)<sp/>part.<ref refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" kindref="member">ref</ref>(*tab_ptr);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>part.<ref refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" kindref="member">ref</ref>(vect);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref><sp/>shape;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line_size<sp/>=<sp/>vect.<ref refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" kindref="member">line_size</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tab_ptr)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>&amp;<sp/>tab<sp/>=<sp/>*tab_ptr;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>tab.<ref refid="classTRUSTTab_1a829be3686b4cf6f076d1dc92870e18f9" kindref="member">nb_dim</ref>();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape.<ref refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" kindref="member">resize_array</ref>(n);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>n;<sp/>i++)<sp/>shape[i]<sp/>=<sp/>tab.<ref refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" kindref="member">dimension_tot</ref>(i);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(line_size<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape.<ref refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" kindref="member">resize_array</ref>(1);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape[0]<sp/>=<sp/>vect.<ref refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" kindref="member">size_totale</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape.<ref refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" kindref="member">resize_array</ref>(2);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape[0]<sp/>=<sp/>vect.<ref refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" kindref="member">size_totale</ref>()<sp/>/<sp/>line_size;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape[1]<sp/>=<sp/>line_size;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classMD__Vector__composite" kindref="compound">MD_Vector_composite</ref>&amp;<sp/>mdata<sp/>=<sp/>ref_cast(<ref refid="classMD__Vector__composite" kindref="compound">MD_Vector_composite</ref>,<sp/>md.<ref refid="classMD__Vector_1a3d77c78aa347c9c1e31afe355399d817" kindref="member">valeur</ref>());</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>mdata.<ref refid="classMD__Vector__composite_1a0fbd0f5e477ccc01fe7e6bda348a4dae" kindref="member">nb_parts</ref>();</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>parts.dimensionner(n);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0,<sp/>j;<sp/>i<sp/>&lt;<sp/>n;<sp/>i++)</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref><sp/>shape_i;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mdata.<ref refid="classMD__Vector__composite_1a522669d06aa16357b9dbf2618d97756c" kindref="member">get_shape</ref>(i)<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape_i<sp/>=<sp/>shape;<sp/></highlight><highlight class="comment">//si<sp/>mdata.shapes_[i]<sp/>&gt;<sp/>0,<sp/>alors<sp/>la<sp/>sous-partie<sp/>a<sp/>une<sp/>dimension<sp/>mineure<sp/>en<sp/>plus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape_i.<ref refid="classTRUSTArray_1ae237f45dbfa18eed7bfd5ca071adfdd8" kindref="member">resize</ref>(shape.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>()<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape_i[1]<sp/>=<sp/>mdata.<ref refid="classMD__Vector__composite_1a522669d06aa16357b9dbf2618d97756c" kindref="member">get_shape</ref>(i);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(j<sp/>=<sp/>1;<sp/>j<sp/>&lt;<sp/>shape.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>();<sp/>j++)</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape_i[j<sp/>+<sp/>1]<sp/>=<sp/>shape[j];</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>offset<sp/>=<sp/>mdata.<ref refid="classMD__Vector__composite_1a39923361a43a68c71449a40c9897eff6" kindref="member">get_part_offset</ref>(i);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classMD__Vector" kindref="compound">MD_Vector</ref>&amp;<sp/>md_part<sp/>=<sp/>mdata.<ref refid="classMD__Vector__composite_1ac11e221da419bfdbb30c95f37e6d2642" kindref="member">get_desc_part</ref>(i);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shape_i[0]<sp/>=<sp/>md_part-&gt;<ref refid="classMD__Vector__base_1abb6438093dfd60b817caea07517659ef" kindref="member">get_nb_items_tot</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>&amp;<sp/>part<sp/>=<sp/>parts[i];</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fait<sp/>pointer<sp/>le<sp/>domaine<sp/>de<sp/>memoire<sp/>sur<sp/>le<sp/>sous-tableau<sp/>(pour<sp/>l&apos;instant<sp/>tableau<sp/>monodimensionnel)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>part.<ref refid="classTRUSTTab_1a4e02d5a03d32f77b78473d00b3580f12" kindref="member">ref_array</ref>(vect,<sp/>offset<sp/>*<sp/>line_size,<sp/>shape_i[0]<sp/>*<sp/>line_size<sp/>*<sp/>std::max(mdata.<ref refid="classMD__Vector__composite_1a522669d06aa16357b9dbf2618d97756c" kindref="member">get_shape</ref>(i),<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)1));<sp/></highlight><highlight class="comment">//<sp/>int<sp/>cast<sp/>necessary<sp/>for<sp/>64b<sp/>transcription</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Change<sp/>le<sp/>&quot;shape&quot;<sp/>du<sp/>tableau<sp/>pour<sp/>mettre<sp/>le<sp/>nombre<sp/>de<sp/>lignes<sp/>et<sp/>de<sp/>colonnes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(nombre<sp/>total<sp/>d&apos;items<sp/>inchange,<sp/>donc<sp/>resize<sp/>autorise)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>part.<ref refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" kindref="member">resize</ref>(shape_i);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Associe<sp/>le<sp/>md_vector</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>part.<ref refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" kindref="member">set_md_vector</ref>(md_part);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="90" refid="classTRUSTTab__parts_1a6848ba85c5bd0bf94d2a6e090cfeb4c1" refkind="member"><highlight class="normal"><ref refid="classTRUSTTab__parts_1a41f99a4d14532463eb62c8d10a16c565" kindref="member">TRUSTTab_parts&lt;_TYPE_&gt;::TRUSTTab_parts</ref>(<ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>init_parts&lt;_TYPE_&gt;(vect,<sp/>parts_,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(0));</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="96" refid="classTRUSTTab__parts_1a0496fb6e73a5a3cebb969c2eee63abde" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab__parts_1a0496fb6e73a5a3cebb969c2eee63abde" kindref="member">TRUSTTab_parts&lt;_TYPE_&gt;::initialize</ref>(<ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>reset();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>init_parts&lt;_TYPE_&gt;(vect,<sp/>parts_,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(0));</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Pour<sp/>ConstTRUSTTab_parts,<sp/>on<sp/>const_cast<sp/>pour<sp/>remplir<sp/>les<sp/>ref<sp/>dans<sp/>parts_.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Pas<sp/>grave,<sp/>ensuite<sp/>les<sp/>sous<sp/>parties<sp/>ne<sp/>seront<sp/>accessibles<sp/>qu&apos;en<sp/>const<sp/>de<sp/>l&apos;exterieur.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="105" refid="classConstTRUSTTab__parts_1a24d1219379d8c72cb89ade9c73a6ba7e" refkind="member"><highlight class="normal"><ref refid="classConstTRUSTTab__parts_1a5c956e58a6923c0af678638fbd75ab13" kindref="member">ConstTRUSTTab_parts&lt;_TYPE_&gt;::ConstTRUSTTab_parts</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect2<sp/>=<sp/></highlight><highlight class="keyword">const_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vect);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>init_parts&lt;_TYPE_&gt;(vect2,<sp/>parts_,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(0));</highlight></codeline>
+<codeline lineno="109"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="112" refid="classConstTRUSTTab__parts_1a49d15be14e3522bfa996a8f9bd70e151" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classConstTRUSTTab__parts_1a49d15be14e3522bfa996a8f9bd70e151" kindref="member">ConstTRUSTTab_parts&lt;_TYPE_&gt;::initialize</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>reset();</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;<sp/>vect2<sp/>=<sp/></highlight><highlight class="keyword">const_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTVect" kindref="compound">TRUSTVect&lt;_TYPE_&gt;</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(vect);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>init_parts&lt;_TYPE_&gt;(vect2,<sp/>parts_,<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_TYPE_&gt;</ref>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(0));</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>TRUSTTab_parts_TPP_included<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_parts.tpp"/>
+  </compounddef>
+</doxygen>

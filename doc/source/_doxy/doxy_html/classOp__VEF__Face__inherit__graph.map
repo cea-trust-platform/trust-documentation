@@ -1,73 +1,38 @@
 <map id="Op_VEF_Face" name="Op_VEF_Face">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,516,114,544"/>
-<area shape="rect" id="Node000002" href="$classOp__Conv__VEF__base.html" title="class Op_Conv_VEF_base" alt="" coords="172,308,322,336"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,503,231,334,235,338,85,506"/>
-<area shape="rect" id="Node000023" href="$classOp__Diff__P1NC__barprim.html" title=" " alt="" coords="162,516,332,544"/>
-<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="130,527,161,527,161,532,130,532"/>
-<area shape="rect" id="Node000024" href="$classOp__Diff__VEF__base.html" title="class Op_Diff_VEF_base" alt="" coords="177,697,317,725"/>
-<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="88,552,233,695,229,699,84,556"/>
-<area shape="rect" id="Node000003" href="$classOp__Conv__AmontNew__VEF__Face.html" title="class Op_Conv_AmontNew_VEF_Face" alt="" coords="382,5,610,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,292,264,239,289,171,326,102,350,71,378,44,399,31,401,36,382,48,354,74,330,105,293,173,269,240,256,293"/>
-<area shape="rect" id="Node000004" href="$classOp__Conv__Amont__old__VEF__Face.html" title="class Op_Conv_Amont_old_VEF_Face" alt="" coords="384,57,609,85"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="254,292,271,248,296,195,332,141,354,117,378,96,401,83,403,88,382,100,358,121,336,144,301,198,276,251,259,294"/>
-<area shape="rect" id="Node000005" href="$classOp__Conv__Centre__EF__VEF__Face.html" title="class Op_Conv_Centre_EF_VEF_Face" alt="" coords="386,109,607,137"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="259,293,278,259,305,219,338,179,379,146,401,135,403,140,381,151,342,183,309,222,282,262,264,295"/>
-<area shape="rect" id="Node000006" href="$classOp__Conv__Centre__old__VEF__Face.html" title="class Op_Conv_Centre_old_VEF_Face" alt="" coords="418,161,574,206"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="272,295,319,255,379,215,417,200,419,204,381,220,322,259,275,299"/>
-<area shape="rect" id="Node000007" href="$classOp__Conv__DI__L2__VEF__Face.html" title="class Op_Conv_DI_L2_VEF_Face" alt="" coords="400,229,592,257"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="294,299,379,267,424,255,426,260,381,272,296,304"/>
-<area shape="rect" id="Node000008" href="$classOp__Conv__EF__VEF__P1NC.html" title="class Op_Conv_EF_VEF_P1NC" alt="" coords="408,281,584,309"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="336,310,407,302,408,307,337,315"/>
-<area shape="rect" id="Node000009" href="$classOp__Conv__Muscl__old__VEF__Face.html" title="class Op_Conv_Muscl_old_VEF_Face" alt="" coords="386,333,606,361"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="337,328,386,333,385,339,336,334"/>
-<area shape="rect" id="Node000010" href="$classOp__Conv__VEF__Face.html" title="class Op_Conv_VEF_Face" alt="" coords="422,385,570,413"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="297,340,381,370,426,382,425,387,379,375,295,345"/>
-<area shape="rect" id="Node000017" href="$classOp__Conv__Vort__VEF__Face.html" title="class Op_Conv_Vort_VEF_Face" alt="" coords="405,437,587,465"/>
-<area shape="poly" id="edge16_Node000002_Node000017" title=" " alt="" coords="275,345,322,385,381,422,414,434,412,439,379,427,319,389,271,349"/>
-<area shape="rect" id="Node000018" href="$classOp__Conv__kschemas__VEF.html" title="class Op_Conv_kschemas_VEF" alt="" coords="404,489,588,517"/>
-<area shape="poly" id="edge17_Node000002_Node000018" title=" " alt="" coords="266,347,312,412,344,446,381,474,408,486,406,491,379,479,341,450,308,416,261,350"/>
-<area shape="rect" id="Node000021" href="$classOp__Conv__kschemas__centre__VEF.html" title="class Op_Conv_kschemas_centre_VEF" alt="" coords="380,568,612,596"/>
-<area shape="poly" id="edge20_Node000002_Node000021" title=" " alt="" coords="262,349,281,388,307,435,341,483,382,526,415,549,450,565,448,570,412,554,378,531,337,487,303,438,276,390,257,351"/>
-<area shape="rect" id="Node000011" href="$classOp__Conv__Amont__VEF__Face.html" title="class Op_Conv_Amont_VEF_Face" alt="" coords="676,177,874,205"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="584,387,611,370,625,352,632,334,634,295,635,255,643,235,659,216,677,203,680,208,662,220,648,238,641,256,639,295,637,335,630,355,614,375,586,392"/>
-<area shape="rect" id="Node000012" href="$classOp__Conv__Centre__VEF__Face.html" title="class Op_Conv_Centre_VEF_Face" alt="" coords="676,229,874,257"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="584,385,611,370,622,359,628,347,634,321,639,294,646,281,659,268,679,255,682,260,662,272,651,284,644,296,639,322,633,348,626,362,614,375,587,390"/>
-<area shape="rect" id="Node000013" href="$classOp__Conv__EF__VEF__P1NC__Stab.html" title="class Op_Conv_EF_VEF_P1NC_Stab" alt="" coords="669,281,881,309"/>
-<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="584,382,611,370,625,358,634,346,643,332,659,320,687,307,689,312,662,324,647,336,639,349,629,362,614,375,586,387"/>
-<area shape="rect" id="Node000014" href="$classOp__Conv__Muscl3__VEF__Face.html" title="class Op_Conv_Muscl3_VEF_Face" alt="" coords="674,333,876,361"/>
-<area shape="poly" id="edge13_Node000010_Node000014" title=" " alt="" coords="585,380,696,359,697,364,586,385"/>
-<area shape="rect" id="Node000015" href="$classOp__Conv__Muscl__New__VEF__Face.html" title="class Op_Conv_Muscl_New_VEF_Face" alt="" coords="660,385,890,413"/>
-<area shape="poly" id="edge14_Node000010_Node000015" title=" " alt="" coords="586,396,660,396,660,402,586,402"/>
-<area shape="rect" id="Node000016" href="$classOp__Conv__Muscl__VEF__Face.html" title="class Op_Conv_Muscl_VEF_Face" alt="" coords="678,437,872,465"/>
-<area shape="poly" id="edge15_Node000010_Node000016" title=" " alt="" coords="586,413,697,434,696,439,585,418"/>
-<area shape="rect" id="Node000019" href="$classOpVEF__Centre.html" title="class OpVEF_Centre" alt="" coords="718,489,832,517"/>
-<area shape="poly" id="edge18_Node000018_Node000019" title=" " alt="" coords="604,500,717,500,717,506,604,506"/>
-<area shape="rect" id="Node000020" href="$classOpVEF__Quick.html" title="class OpVEF_Quick" alt="" coords="721,541,829,569"/>
-<area shape="poly" id="edge19_Node000018_Node000020" title=" " alt="" coords="590,518,721,542,720,548,589,523"/>
-<area shape="rect" id="Node000022" href="$classOpVEF__Centre4.html" title="class OpVEF_Centre4" alt="" coords="714,593,836,621"/>
-<area shape="poly" id="edge21_Node000021_Node000022" title=" " alt="" coords="628,591,714,599,713,604,627,596"/>
-<area shape="rect" id="Node000025" href="$classOp__Diff__VEF__Anisotrope__Face.html" title=" " alt="" coords="388,645,604,673"/>
-<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="331,691,426,671,427,676,332,696"/>
-<area shape="rect" id="Node000026" href="$classOp__Diff__VEF__Face.html" title="class Op_Diff_VEF_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="426,697,566,725"/>
-<area shape="poly" id="edge25_Node000024_Node000026" title=" " alt="" coords="333,708,426,708,426,714,333,714"/>
-<area shape="rect" id="Node000030" href="$classOp__Diff__VEF__Face__Q1.html" title="class Op_Diff_VEF_Face_Q1_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="414,749,578,777"/>
-<area shape="poly" id="edge29_Node000024_Node000030" title=" " alt="" coords="332,726,427,746,426,751,331,731"/>
-<area shape="rect" id="Node000031" href="$classOp__Dift__VEF__base.html" title=" " alt="" coords="426,879,566,906"/>
-<area shape="poly" id="edge30_Node000024_Node000031" title=" " alt="" coords="281,732,477,876,474,880,278,736"/>
-<area shape="rect" id="Node000027" href="$classOp__Diff__VEFP1NCP1B__Face.html" title="class Op_Diff_VEF_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="675,645,875,673"/>
-<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="581,693,696,671,697,676,582,698"/>
-<area shape="rect" id="Node000028" href="$classOp__Diff__VEF__Face__Penalise.html" title=" " alt="" coords="674,697,876,725"/>
-<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="582,708,674,708,674,714,582,714"/>
-<area shape="rect" id="Node000029" href="$classOp__Diff__VEF__Face__Stab.html" title="class Op_Diff_VEF_Face_Stab Cette classe represente l&#39;operateur de diffusion" alt="" coords="687,749,863,777"/>
-<area shape="poly" id="edge28_Node000026_Node000029" title=" " alt="" coords="582,724,697,746,696,751,581,730"/>
-<area shape="rect" id="Node000032" href="$classOp__Dift__Stab__VEF__Face.html" title=" " alt="" coords="687,801,863,829"/>
-<area shape="poly" id="edge31_Node000031_Node000032" title=" " alt="" coords="555,871,660,839,708,827,709,832,661,844,556,876"/>
-<area shape="rect" id="Node000033" href="$classOp__Dift__VEF__Face.html" title=" " alt="" coords="705,853,845,881"/>
-<area shape="poly" id="edge32_Node000031_Node000033" title=" " alt="" coords="582,882,705,871,705,876,582,887"/>
-<area shape="rect" id="Node000034" href="$classOp__Dift__VEF__Face__Q1.html" title=" " alt="" coords="693,905,857,933"/>
-<area shape="poly" id="edge33_Node000031_Node000034" title=" " alt="" coords="582,898,693,909,692,914,582,903"/>
-<area shape="rect" id="Node000035" href="$classOp__Dift__VEF__P1NCP1B__Face.html" title="class Op_Dift_VEF_P1NCP1B_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="672,957,878,985"/>
-<area shape="poly" id="edge34_Node000031_Node000035" title=" " alt="" coords="555,909,661,942,709,954,708,959,660,947,553,914"/>
-<area shape="rect" id="Node000036" href="$classOp__Dift__standard__VEF__Face.html" title=" " alt="" coords="673,1009,877,1037"/>
-<area shape="poly" id="edge35_Node000031_Node000036" title=" " alt="" coords="529,914,588,955,661,994,697,1006,695,1011,659,999,586,960,526,918"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,503,115,529"/>
+<area shape="rect" id="node2" href="$classOp__Conv__VEF__base.html" title="class Op_Conv_VEF_base" alt="" coords="173,300,323,327"/>
+<area shape="rect" id="node23" href="$classOp__Diff__P1NC__barprim.html" title=" " alt="" coords="163,503,333,529"/>
+<area shape="rect" id="node24" href="$classOp__Diff__VEF__base.html" title="class Op_Diff_VEF_base" alt="" coords="177,680,319,707"/>
+<area shape="rect" id="node3" href="$classOp__Conv__AmontNew__VEF__Face.html" title="class Op_Conv_AmontNew_VEF_Face" alt="" coords="384,5,612,32"/>
+<area shape="rect" id="node4" href="$classOp__Conv__Amont__old__VEF__Face.html" title="class Op_Conv_Amont_old_VEF_Face" alt="" coords="385,56,611,83"/>
+<area shape="rect" id="node5" href="$classOp__Conv__Centre__EF__VEF__Face.html" title="class Op_Conv_Centre_EF_VEF_Face" alt="" coords="387,107,609,133"/>
+<area shape="rect" id="node6" href="$classOp__Conv__Centre__old__VEF__Face.html" title="class Op_Conv_Centre_old_VEF_Face" alt="" coords="419,158,577,199"/>
+<area shape="rect" id="node7" href="$classOp__Conv__DI__L2__VEF__Face.html" title="class Op_Conv_DI_L2_VEF_Face" alt="" coords="402,224,594,251"/>
+<area shape="rect" id="node8" href="$classOp__Conv__EF__VEF__P1NC.html" title="class Op_Conv_EF_VEF_P1NC" alt="" coords="409,275,587,301"/>
+<area shape="rect" id="node9" href="$classOp__Conv__Muscl__old__VEF__Face.html" title="class Op_Conv_Muscl_old_VEF_Face" alt="" coords="387,325,609,352"/>
+<area shape="rect" id="node10" href="$classOp__Conv__VEF__Face.html" title="class Op_Conv_VEF_Face" alt="" coords="423,376,573,403"/>
+<area shape="rect" id="node17" href="$classOp__Conv__Vort__VEF__Face.html" title="class Op_Conv_Vort_VEF_Face" alt="" coords="407,427,589,453"/>
+<area shape="rect" id="node18" href="$classOp__Conv__kschemas__VEF.html" title="class Op_Conv_kschemas_VEF" alt="" coords="405,477,591,504"/>
+<area shape="rect" id="node21" href="$classOp__Conv__kschemas__centre__VEF.html" title="class Op_Conv_kschemas_centre_VEF" alt="" coords="381,553,615,580"/>
+<area shape="rect" id="node11" href="$classOp__Conv__Amont__VEF__Face.html" title="class Op_Conv_Amont_VEF_Face" alt="" coords="679,173,877,200"/>
+<area shape="rect" id="node12" href="$classOp__Conv__Centre__VEF__Face.html" title="class Op_Conv_Centre_VEF_Face" alt="" coords="679,224,877,251"/>
+<area shape="rect" id="node13" href="$classOp__Conv__EF__VEF__P1NC__Stab.html" title="class Op_Conv_EF_VEF_P1NC_Stab" alt="" coords="671,275,885,301"/>
+<area shape="rect" id="node14" href="$classOp__Conv__Muscl3__VEF__Face.html" title="class Op_Conv_Muscl3_VEF_Face" alt="" coords="677,325,879,352"/>
+<area shape="rect" id="node15" href="$classOp__Conv__Muscl__New__VEF__Face.html" title="class Op_Conv_Muscl_New_VEF_Face" alt="" coords="663,376,893,403"/>
+<area shape="rect" id="node16" href="$classOp__Conv__Muscl__VEF__Face.html" title="class Op_Conv_Muscl_VEF_Face" alt="" coords="681,427,875,453"/>
+<area shape="rect" id="node19" href="$classOpVEF__Centre.html" title="class OpVEF_Centre" alt="" coords="721,477,835,504"/>
+<area shape="rect" id="node20" href="$classOpVEF__Quick.html" title="class OpVEF_Quick" alt="" coords="723,528,833,555"/>
+<area shape="rect" id="node22" href="$classOpVEF__Centre4.html" title="class OpVEF_Centre4" alt="" coords="717,579,839,605"/>
+<area shape="rect" id="node25" href="$classOp__Diff__VEF__Anisotrope__Face.html" title=" " alt="" coords="389,629,607,656"/>
+<area shape="rect" id="node26" href="$classOp__Diff__VEF__Face.html" title="class Op_Diff_VEF_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="428,680,568,707"/>
+<area shape="rect" id="node30" href="$classOp__Diff__VEF__Face__Q1.html" title="class Op_Diff_VEF_Face_Q1_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="415,731,581,757"/>
+<area shape="rect" id="node31" href="$classOp__Dift__VEF__base.html" title=" " alt="" coords="427,857,569,884"/>
+<area shape="rect" id="node27" href="$classOp__Diff__VEFP1NCP1B__Face.html" title="class Op_Diff_VEF_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="678,629,878,656"/>
+<area shape="rect" id="node28" href="$classOp__Diff__VEF__Face__Penalise.html" title=" " alt="" coords="677,680,879,707"/>
+<area shape="rect" id="node29" href="$classOp__Diff__VEF__Face__Stab.html" title="class Op_Diff_VEF_Face_Stab Cette classe represente l&#39;operateur de diffusion" alt="" coords="690,731,866,757"/>
+<area shape="rect" id="node32" href="$classOp__Dift__Stab__VEF__Face.html" title=" " alt="" coords="690,781,866,808"/>
+<area shape="rect" id="node33" href="$classOp__Dift__VEF__Face.html" title=" " alt="" coords="708,832,848,859"/>
+<area shape="rect" id="node34" href="$classOp__Dift__VEF__Face__Q1.html" title=" " alt="" coords="695,883,861,909"/>
+<area shape="rect" id="node35" href="$classOp__Dift__VEF__P1NCP1B__Face.html" title="class Op_Dift_VEF_P1NCP1B_Face Cette classe represente l&#39;operateur de diffusion" alt="" coords="675,933,881,960"/>
+<area shape="rect" id="node36" href="$classOp__Dift__standard__VEF__Face.html" title=" " alt="" coords="676,984,880,1011"/>
 </map>

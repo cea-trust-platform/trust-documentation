@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOperateurs__Statistique__tps" kind="class" language="C++" prot="public">
+    <compoundname>Operateurs_Statistique_tps</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTOWN_PTROperateur_Statistique_tps_base</basecompoundref>
+    <includes local="no">Operateurs_Statistique_tps.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classOperateurs__Statistique__tps_1a609b331dabc44b6939631466a71ac143" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Operateurs_Statistique_tps::dt_integr_serie_</definition>
+        <argsstring></argsstring>
+        <name>dt_integr_serie_</name>
+        <initializer>= 123.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="46" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classOperateurs__Statistique__tps_1ae1dd33aaec42d07321f0f40e53a90159" compoundref="Operateurs__Statistique__tps_8h" startline="38" endline="38">dt_integr_serie</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOperateurs__Statistique__tps_1ab27131f86f9697dd0816b4f81c4f93af" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Operateurs_Statistique_tps::lserie_</definition>
+        <argsstring></argsstring>
+        <name>lserie_</name>
+        <initializer>= -123</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="45" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classOperateurs__Statistique__tps_1a4db8b7880c4a7afc917ef31fb5786d8b" compoundref="Operateurs__Statistique__tps_8h" startline="37" endline="37">lserie</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1adcede8afc0169b290f306056c042ee6f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Operateurs_Statistique_tps::Declare_instanciable</definition>
+        <argsstring>(Operateurs_Statistique_tps)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classOperateurs__Statistique__tps" kindref="compound">Operateurs_Statistique_tps</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="34" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1ae1dd33aaec42d07321f0f40e53a90159" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Operateurs_Statistique_tps::dt_integr_serie</definition>
+        <argsstring>() const</argsstring>
+        <name>dt_integr_serie</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="38" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" bodystart="38" bodyend="38"/>
+        <references refid="classOperateurs__Statistique__tps_1a609b331dabc44b6939631466a71ac143" compoundref="Operateurs__Statistique__tps_8h" startline="46">dt_integr_serie_</references>
+      </memberdef>
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1a4db8b7880c4a7afc917ef31fb5786d8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Operateurs_Statistique_tps::lserie</definition>
+        <argsstring>() const</argsstring>
+        <name>lserie</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="37" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" bodystart="37" bodyend="37"/>
+        <references refid="classOperateurs__Statistique__tps_1ab27131f86f9697dd0816b4f81c4f93af" compoundref="Operateurs__Statistique__tps_8h" startline="45">lserie_</references>
+      </memberdef>
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1a0768db6e1666fba6f57763c203aebba3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Operateurs_Statistique_tps::reprendre</definition>
+        <argsstring>(Entree &amp;is) override</argsstring>
+        <name>reprendre</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="41" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.cpp" bodystart="69" bodyend="185"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classTRUST__2__PDI_1abf2cc0e15286e61cc1506bda28cea966" compoundref="TRUST__2__PDI_8h" startline="128" endline="128">TRUST_2_PDI::is_PDI_restart</references>
+        <references refid="classTRUSTTab_1a18951412e837c583b2d6ab2cbf8a20cc" compoundref="TRUSTTab_8tpp" startline="686" endline="689">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::jump</references>
+        <references refid="classNom_1ae5d7b0dc793b2dcd6f3bdf550cd41da6" compoundref="Nom_8cpp" startline="567" endline="570">Nom::le_nom</references>
+        <references refid="classTRUST__2__PDI_1a48b5a5fc5a2b5490c195a0085b7cd205" compoundref="TRUST__2__PDI_8h" startline="131" endline="136">TRUST_2_PDI::read</references>
+        <references refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" compoundref="Objet__U_8cpp" startline="338" endline="345">Objet_U::reprendre</references>
+        <references refid="classTRUSTTab_1a777917b2ef88a69dc91f57e4721cec38" compoundref="TRUSTTab_8tpp" startline="362" endline="369">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::reset</references>
+      </memberdef>
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1a21481b89de3bec9769c6ef76f81ac9da" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Operateurs_Statistique_tps::sauvegarder</definition>
+        <argsstring>(Sortie &amp;os) const override</argsstring>
+        <name>sauvegarder</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="40" column="7"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classOperateurs__Statistique__tps_1a29d4c8c448327d1ea79be4f4ad0022d8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Operateurs_Statistique_tps::OBS_PTR</definition>
+        <argsstring>(Postraitement) mon_post_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classPostraitement" kindref="compound">Postraitement</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="44" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classOperateurs__Statistique__tps" kindref="compound">Operateurs_Statistique_tps</ref> Cette classe represente une liste d&apos;operateurs statistiques en temps. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Les objets Postraitement portent un objet de ce type.
+</verbatim> <simplesect kind="see"><para><ref refid="classPostraitement" kindref="compound">Postraitement</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Operateurs_Statistique_tps</label>
+        <link refid="classOperateurs__Statistique__tps"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTROperateur_Statistique_tps_base</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Operateurs_Statistique_tps</label>
+        <link refid="classOperateurs__Statistique__tps"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTROperateur_Statistique_tps_base</label>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" line="32" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Statistiques_temps/Operateurs_Statistique_tps.h" bodystart="33" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classOperateurs__Statistique__tps_1adcede8afc0169b290f306056c042ee6f" prot="private" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>Declare_instanciable</name></member>
+      <member refid="classOperateurs__Statistique__tps_1ae1dd33aaec42d07321f0f40e53a90159" prot="public" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>dt_integr_serie</name></member>
+      <member refid="classOperateurs__Statistique__tps_1a609b331dabc44b6939631466a71ac143" prot="protected" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>dt_integr_serie_</name></member>
+      <member refid="classOperateurs__Statistique__tps_1a4db8b7880c4a7afc917ef31fb5786d8b" prot="public" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>lserie</name></member>
+      <member refid="classOperateurs__Statistique__tps_1ab27131f86f9697dd0816b4f81c4f93af" prot="protected" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>lserie_</name></member>
+      <member refid="classOperateurs__Statistique__tps_1a29d4c8c448327d1ea79be4f4ad0022d8" prot="protected" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateurs__Statistique__tps_1a0768db6e1666fba6f57763c203aebba3" prot="public" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>reprendre</name></member>
+      <member refid="classOperateurs__Statistique__tps_1a21481b89de3bec9769c6ef76f81ac9da" prot="public" virt="non-virtual"><scope>Operateurs_Statistique_tps</scope><name>sauvegarder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,1312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOp__Conv__VDF__base" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Op_Conv_VDF_base</compoundname>
+    <basecompoundref refid="classOperateur__Conv__base" prot="public" virt="non-virtual">Operateur_Conv_base</basecompoundref>
+    <derivedcompoundref refid="classOp__Conv__Amont__VDF__Elem" prot="public" virt="non-virtual">Op_Conv_Amont_VDF_Elem</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Amont__VDF__Face" prot="public" virt="non-virtual">Op_Conv_Amont_VDF_Face</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Centre4__VDF__Elem" prot="public" virt="non-virtual">Op_Conv_Centre4_VDF_Elem</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Centre4__VDF__Face" prot="public" virt="non-virtual">Op_Conv_Centre4_VDF_Face</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Centre__VDF__Elem" prot="public" virt="non-virtual">Op_Conv_Centre_VDF_Elem</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Centre__VDF__Face" prot="public" virt="non-virtual">Op_Conv_Centre_VDF_Face</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Quick__VDF__Elem" prot="public" virt="non-virtual">Op_Conv_Quick_VDF_Elem</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Quick__VDF__Face" prot="public" virt="non-virtual">Op_Conv_Quick_VDF_Face</derivedcompoundref>
+    <derivedcompoundref refid="classOp__Conv__Quick__VDF__Face__Axi" prot="public" virt="non-virtual">Op_Conv_Quick_VDF_Face_Axi</derivedcompoundref>
+    <includes local="no">Op_Conv_VDF_base.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1a1b9344a77921ac7f3f8a0ffacba2c069" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&gt;</type>
+        <definition>std::vector&lt;OWN_PTR(Champ_Inc_base)&gt; Op_Conv_VDF_base::cc_phases_</definition>
+        <argsstring></argsstring>
+        <name>cc_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="81" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1abd4d0a65ac4210da6a140e4c41e16ba3" prot="private" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Op_Conv_VDF_base::fluent_</definition>
+        <argsstring></argsstring>
+        <name>fluent_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="87" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1ac5663eb573eafa7be93cf9c536eb761b" prot="private" static="no" mutable="no">
+        <type><ref refid="classMotcles" kindref="compound">Motcles</ref></type>
+        <definition>Motcles Op_Conv_VDF_base::noms_cc_phases_</definition>
+        <argsstring></argsstring>
+        <name>noms_cc_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="82" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1a27ea55bc08a3452931f0703a2604c68b" prot="private" static="no" mutable="no">
+        <type><ref refid="classMotcles" kindref="compound">Motcles</ref></type>
+        <definition>Motcles Op_Conv_VDF_base::noms_vd_phases_</definition>
+        <argsstring></argsstring>
+        <name>noms_vd_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="84" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1a84b62eaa25ad7757657120e22378e357" prot="private" static="no" mutable="no">
+        <type><ref refid="classMotcles" kindref="compound">Motcles</ref></type>
+        <definition>Motcles Op_Conv_VDF_base::noms_x_phases_</definition>
+        <argsstring></argsstring>
+        <name>noms_x_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="86" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1af77090b0d013ad21b46231d0aaa1b0c7" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&gt;</type>
+        <definition>std::vector&lt;OWN_PTR(Champ_Inc_base)&gt; Op_Conv_VDF_base::vd_phases_</definition>
+        <argsstring></argsstring>
+        <name>vd_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="83" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Conv__VDF__base_1acb96e70eed33aedf60d91acac1bfae50" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&gt;</type>
+        <definition>std::vector&lt;OWN_PTR(Champ_Inc_base)&gt; Op_Conv_VDF_base::x_phases_</definition>
+        <argsstring></argsstring>
+        <name>x_phases_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="85" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1aa92178586cda31ba13df42b98dff4242" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Conv_VDF_base::Declare_base</definition>
+        <argsstring>(Op_Conv_VDF_base)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classOp__Conv__VDF__base" kindref="compound">Op_Conv_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="28" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1aa3c2d7ba381f34ea497441bceaa7b439" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::ajouter_blocs</definition>
+        <argsstring>(matrices_t, DoubleTab &amp;, const tabs_t &amp;) const override</argsstring>
+        <name>ajouter_blocs</name>
+        <reimplements refid="classOperateur__base_1aec5922f1a3a0a064dbc94b8d371ad92d">ajouter_blocs</reimplements>
+        <param>
+          <type>matrices_t</type>
+          <defname>mats</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>secmem</defname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <defname>semi_impl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="63" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="173" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a9b2f88cf751c9387c5aba058c3ceaef6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::associer_champ_temp</definition>
+        <argsstring>(const Champ_Inc_base &amp;, bool) const override</argsstring>
+        <name>associer_champ_temp</name>
+        <reimplements refid="classOperateur__Conv__base_1abc743de15aa3969e4035ba7ca4d6ee57">associer_champ_temp</reimplements>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <defname>ch_unite</defname>
+        </param>
+        <param>
+          <type>bool</type>
+          <defname>use_base</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="67" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="89" bodyend="92"/>
+        <references refid="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" compoundref="Op__Conv__VDF__base_8h" startline="47" endline="47">OWN_PTR</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1abe04efd801038d5037f7137b4371fb22" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::associer_domaine_cl_dis</definition>
+        <argsstring>(const Domaine_Cl_dis_base &amp;zcl) override</argsstring>
+        <name>associer_domaine_cl_dis</name>
+        <reimplements refid="classOperateur__base_1a31a1b8d69db032746c4dabb22550646a">associer_domaine_cl_dis</reimplements>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>zcl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a774c6eec334580ab1f938fb3301c038c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab&amp; Op_Conv_VDF_base::calculer</definition>
+        <argsstring>(const DoubleTab &amp;inco, DoubleTab &amp;resu) const override</argsstring>
+        <name>calculer</name>
+        <reimplements refid="classOperateur__base_1a2cac888141406ee39b0eb5fd66da7fca">calculer</reimplements>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>inco</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>resu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="46" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a34058fa14e1270d186a871009e32c32e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::calculer_dt_local</definition>
+        <argsstring>(DoubleTab &amp;) const override</argsstring>
+        <name>calculer_dt_local</name>
+        <reimplements refid="classOperateur__base_1a1f6a1b118c3b44790e9843edfc93c4a6">calculer_dt_local</reimplements>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>dt_face</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="256" bodyend="348"/>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classPeriodique_1a58591bbd91005803c7ea2a714197282b" compoundref="Periodique_8h" startline="35" endline="35">Periodique::face_associee</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" compoundref="Objet__U_8cpp" startline="319" endline="323">Objet_U::le_nom</references>
+        <references refid="classDomaine__Cl__dis__base_1ac61cb62c82e3db6c4b4553538d7a6b61" compoundref="Domaine__Cl__dis__base_8cpp" startline="386" endline="389">Domaine_Cl_dis_base::les_conditions_limites</references>
+        <references refid="classTRUSTVect_1a38da078c559243113b68dbc7bb6136c7" compoundref="TRUSTVect_8h" startline="160" endline="160">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::mp_max_abs_vect</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classFront__VF_1a48eadf1b57ddc0d16e4953d19f259a9e" compoundref="Front__VF_8h" startline="53" endline="56">Front_VF::nb_faces</references>
+        <references refid="classDomaine__dis__base_1a4c457162fa796d381e2319faaede831c" compoundref="Domaine__dis__base_8h" startline="51" endline="51">Domaine_dis_base::nb_front_Cl</references>
+        <references refid="classFront__VF_1afb322ba7bea455f029d3dec838048c36" compoundref="Front__VF_8h" startline="68" endline="74">Front_VF::num_face</references>
+        <references refid="classFront__VF_1a930e90fb5e8e79adaad93b5c405d00d1" compoundref="Front__VF_8h" startline="63" endline="66">Front_VF::num_premiere_face</references>
+        <references refid="classDomaine__VF_1ad11d37a7ca15cd43713bcc083f8753b7" compoundref="Domaine__VF_8h" startline="448" endline="451">Domaine_VF::premiere_face_int</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <references refid="classDomaine__VF_1ad0bf90d9beb4083aea6421ca906229f1" compoundref="Domaine__VF_8h" startline="100" endline="100">Domaine_VF::volumes_entrelaces</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1ae393cd6ca056226df5d5f9c72a6c2977" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Op_Conv_VDF_base::calculer_dt_stab</definition>
+        <argsstring>() const override</argsstring>
+        <name>calculer_dt_stab</name>
+        <reimplements refid="classOperateur__base_1a6d87cb9ef58739660975790629a55847">calculer_dt_stab</reimplements>
+        <briefdescription>
+<para>Calcul dt_stab. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(double) renvoie toujours 1.e30 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="41" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="178" bodyend="253"/>
+        <references refid="classDomaine__32__64_1a513f7e6058252bd4e0b1561535d87bb0" compoundref="Domaine_8cpp" startline="799" endline="803">Domaine_32_64&lt; _SIZE_ &gt;::creer_tableau_elements</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1ad19ad4b9679367115cbbc7036257aa51" compoundref="Domaine__VF_8h" startline="403" endline="406">Domaine_VF::face_voisins</references>
+        <references refid="classOperateur__Conv__base_1a868dd39f29b4f613ec620fe5ada95977" compoundref="Operateur__Conv__base_8h" startline="62" endline="65">Operateur_Conv_base::fixer_dt_stab_conv</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" compoundref="Objet__U_8cpp" startline="319" endline="323">Objet_U::le_nom</references>
+        <references refid="classDomaine__Cl__dis__base_1ac61cb62c82e3db6c4b4553538d7a6b61" compoundref="Domaine__Cl__dis__base_8cpp" startline="386" endline="389">Domaine_Cl_dis_base::les_conditions_limites</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" compoundref="Process_8cpp" startline="203" endline="203">Process::mp_min</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classFront__VF_1a48eadf1b57ddc0d16e4953d19f259a9e" compoundref="Front__VF_8h" startline="53" endline="56">Front_VF::nb_faces</references>
+        <references refid="classDomaine__dis__base_1a4c457162fa796d381e2319faaede831c" compoundref="Domaine__dis__base_8h" startline="51" endline="51">Domaine_dis_base::nb_front_Cl</references>
+        <references refid="classMD__Vector_1a036f2429ea40bd07b331500f6ff22b8f" compoundref="MD__Vector_8h" startline="56" endline="63">MD_Vector::non_nul</references>
+        <references refid="classFront__VF_1a930e90fb5e8e79adaad93b5c405d00d1" compoundref="Front__VF_8h" startline="63" endline="66">Front_VF::num_premiere_face</references>
+        <references refid="classDomaine__VF_1ad11d37a7ca15cd43713bcc083f8753b7" compoundref="Domaine__VF_8h" startline="448" endline="451">Domaine_VF::premiere_face_int</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <references refid="classDomaine__VF_1a72d89d7c6778a2b8a7a5199bede0297a" compoundref="Domaine__VF_8h" startline="114" endline="114">Domaine_VF::volumes</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a4db5ef5ba30045e3e06ebde9cca41a7c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::calculer_pour_post</definition>
+        <argsstring>(Champ_base &amp;espace_stockage, const Nom &amp;option, int comp) const override</argsstring>
+        <name>calculer_pour_post</name>
+        <reimplements refid="classOperateur__base_1a5a049482cef92d18dfab5c179b0514ec">calculer_pour_post</reimplements>
+        <param>
+          <type><ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>espace_stockage</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>option</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>comp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="351" bodyend="415"/>
+        <references refid="classOperateur__base_1a5a049482cef92d18dfab5c179b0514ec" compoundref="Operateur__base_8cpp" startline="488" endline="520">Operateur_base::calculer_pour_post</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1ad19ad4b9679367115cbbc7036257aa51" compoundref="Domaine__VF_8h" startline="403" endline="406">Domaine_VF::face_voisins</references>
+        <references refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" compoundref="Objet__U_8cpp" startline="319" endline="323">Objet_U::le_nom</references>
+        <references refid="classDomaine__Cl__dis__base_1ac61cb62c82e3db6c4b4553538d7a6b61" compoundref="Domaine__Cl__dis__base_8cpp" startline="386" endline="389">Domaine_Cl_dis_base::les_conditions_limites</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__32__64_1a33af8e98ae3d31533d6e4bf22842f03a" compoundref="Domaine_8h" startline="129" endline="129">Domaine_32_64&lt; _SIZE_ &gt;::nb_elem_tot</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classFront__VF_1a48eadf1b57ddc0d16e4953d19f259a9e" compoundref="Front__VF_8h" startline="53" endline="56">Front_VF::nb_faces</references>
+        <references refid="classDomaine__dis__base_1a4c457162fa796d381e2319faaede831c" compoundref="Domaine__dis__base_8h" startline="51" endline="51">Domaine_dis_base::nb_front_Cl</references>
+        <references refid="classFront__VF_1a930e90fb5e8e79adaad93b5c405d00d1" compoundref="Front__VF_8h" startline="63" endline="66">Front_VF::num_premiere_face</references>
+        <references refid="classDomaine__VF_1ad11d37a7ca15cd43713bcc083f8753b7" compoundref="Domaine__VF_8h" startline="448" endline="451">Domaine_VF::premiere_face_int</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <references refid="classDomaine__VF_1a72d89d7c6778a2b8a7a5199bede0297a" compoundref="Domaine__VF_8h" startline="114" endline="114">Domaine_VF::volumes</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a22cf42def6a904148ed82870869eb6e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classOperateur__base_1a9560967884361b918b12a67813476608">completer</reimplements>
+        <briefdescription>
+<para>Associe l&apos;operateur au domaine_dis, le domaine_Cl_dis, et a l&apos;inconnue de son equation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>pas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>d&apos;equation associee </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="32" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="54" bodyend="58"/>
+        <references refid="classOperateur__base_1a9560967884361b918b12a67813476608" compoundref="Operateur__base_8cpp" startline="89" endline="117">Operateur_base::completer</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a60a51a767c64039c5425b945d67a4517" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::contribuer_au_second_membre</definition>
+        <argsstring>(DoubleTab &amp;resu) const override</argsstring>
+        <name>contribuer_au_second_membre</name>
+        <reimplements refid="classOperateur__base_1abbebdc80dad39b8a5ec3058379113a52">contribuer_au_second_membre</reimplements>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>DOES NOTHING - to override in derived classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un tableau de valeur (double) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>methode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a surcharger </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="68" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="68" bodyend="72"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a1d46b7001f80c75d451c58a9805db0b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::creer_champ</definition>
+        <argsstring>(const Motcle &amp;) override</argsstring>
+        <name>creer_champ</name>
+        <reimplements refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d">creer_champ</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <defname>motlu</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="446" bodyend="468"/>
+        <references refid="classChamps__compris__T_1aa2bd9fb5b3b311863130fa0bbc404773" compoundref="Champs__compris_8cpp" startline="60" endline="109">Champs_compris_T&lt; FIELD_TYPE &gt;::ajoute_champ</references>
+        <references refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" compoundref="Operateur__base_8h" startline="142">Operateur_base::champs_compris_</references>
+        <references refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d" compoundref="Operateur__base_8h" startline="112" endline="112">Operateur_base::creer_champ</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" compoundref="Equation__base_8cpp" startline="1035" endline="1043">Equation_base::discretisation</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classMotcles_1a58500f4b548d7d22baab54ba19704bef" compoundref="Motcle_8cpp" startline="338" endline="349">Motcles::rang</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a32bb67df30990cf054bb48a55ea137f4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::dimensionner_blocs_elem</definition>
+        <argsstring>(matrices_t, const tabs_t &amp;) const</argsstring>
+        <name>dimensionner_blocs_elem</name>
+        <param>
+          <type>matrices_t</type>
+          <defname>mats</defname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <defname>semi_impl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="64" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="94" bodyend="132"/>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classEquation__base_1aba99570514e9c07e430f4b773a33048a" compoundref="Equation__base_8h" startline="200" endline="200">Equation_base::champ_convecte</references>
+        <references refid="classChamp__Inc__base_1aa2e444b59a47046391babafe51ba5248" compoundref="Champ__Inc__base_8h" startline="142" endline="142">Champ_Inc_base::derivees</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classProbleme__base_1a587a928959992bbe1a03a3a4c2e5296c" compoundref="Probleme__base_8cpp" startline="832" endline="867">Probleme_base::get_champ</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classEquation__base_1a315ed14d5275cce38920719bfadf49be" compoundref="Equation__base_8h" startline="201" endline="201">Equation_base::has_champ_convecte</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <referencedby refid="classOp__Conv__Amont__VDF__Elem_1a87cd1e6ee07689d82186f68b55cd0c6e" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="48" endline="48">Op_Conv_Amont_VDF_Elem::dimensionner_blocs</referencedby>
+        <referencedby refid="classOp__Conv__Centre__VDF__Elem_1a4401391a6e5290ae5125420c7652c6bc" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="71" endline="71">Op_Conv_Centre_VDF_Elem::dimensionner_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1ad92d97471dc37c85790d2fa5208da73f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::dimensionner_blocs_face</definition>
+        <argsstring>(matrices_t, const tabs_t &amp;) const</argsstring>
+        <name>dimensionner_blocs_face</name>
+        <param>
+          <type>matrices_t</type>
+          <defname>matrices</defname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <defname>semi_impl</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="65" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="134" bodyend="170"/>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classProbleme__base_1a5a10f77feea03bee5d90fb379e2ef030" compoundref="Probleme__base_8h" startline="201" endline="205">Probleme_base::get_correlation</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classProbleme__base_1a8c62c361fbc067fb1ebcfde1548e8e74" compoundref="Probleme__base_8h" startline="207" endline="211">Probleme_base::has_correlation</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <referencedby refid="classOp__Conv__Amont__VPoly__VDF__Face_1ac0c5424cab0ca3be132eeee2a934d141" compoundref="Op__Conv__Amont__VPoly__VDF__Face_8h" startline="26" endline="26">Op_Conv_Amont_VPoly_VDF_Face::dimensionner_blocs</referencedby>
+        <referencedby refid="classOp__Conv__Amont__VDF__Face_1a918b82c8fa4a94535e3ce03f77ab277d" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="48" endline="52">Op_Conv_Amont_VDF_Face::dimensionner_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a84e3a6ab0974f0f26ec815a01c2c2862" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classMotcle" kindref="compound">Motcle</ref></type>
+        <definition>Motcle Op_Conv_VDF_base::get_localisation_pour_post</definition>
+        <argsstring>(const Nom &amp;option) const override</argsstring>
+        <name>get_localisation_pour_post</name>
+        <reimplements refid="classOperateur__base_1aad500fa9786aae72f075593384970c0b">get_localisation_pour_post</reimplements>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>option</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="43" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="417" bodyend="423"/>
+        <references refid="classOperateur__base_1aad500fa9786aae72f075593384970c0b" compoundref="Operateur__base_8cpp" startline="522" endline="539">Operateur_base::get_localisation_pour_post</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a706db1a41d5ffea3bf2f55226a26e3b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::get_noms_champs_postraitables</definition>
+        <argsstring>(Noms &amp;nom, Option opt=NONE) const override</argsstring>
+        <name>get_noms_champs_postraitables</name>
+        <reimplements refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0">get_noms_champs_postraitables</reimplements>
+        <param>
+          <type><ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>Option</type>
+          <declname>opt</declname>
+          <defval>NONE</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="425" bodyend="445"/>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" compoundref="Operateur__base_8cpp" startline="476" endline="482">Operateur_base::get_noms_champs_postraitables</references>
+        <references refid="classPb__Multiphase_1abbd18662850b1751183b2522e1e38fb4" compoundref="Pb__Multiphase_8h" startline="59" endline="59">Pb_Multiphase::nb_phases</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1afaf2b425d6542ac78efccb0ff3785891" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Op_Conv_VDF_base::has_interface_blocs</definition>
+        <argsstring>() const override</argsstring>
+        <name>has_interface_blocs</name>
+        <reimplements refid="classOperateur__base_1a3535d556393ce52658fb973127d63b9f">has_interface_blocs</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="50" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a7899e62f21a3e125f29bfa981f2b5f2f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Op_Conv_VDF_base::impr</definition>
+        <argsstring>(Sortie &amp;os) const override</argsstring>
+        <name>impr</name>
+        <reimplements refid="classOperateur__base_1aa851da56d060f728cce2b178ca6271da">impr</reimplements>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>DOES NOTHING - to override in derived classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Imprime l&apos;operateur sur un flot de sortie.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Sortie&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>os) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) renvoie toujours 1 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="42" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a39f9e422637a080ee46a675237b0e620" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::mettre_a_jour</definition>
+        <argsstring>(double) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classOperateur__base_1a55ee9300d78cf0d8bdf7f48c56feb7ce">mettre_a_jour</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>DOES NOTHING - to override in derived classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Mise a jour de l&apos;operateur</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un pas de temps </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="470" bodyend="528"/>
+        <references refid="classEquation__base_1aba99570514e9c07e430f4b773a33048a" compoundref="Equation__base_8h" startline="200" endline="200">Equation_base::champ_convecte</references>
+        <references refid="classChamp__Inc__base_1a7c3ae8a25367576fa08466df17f581d7" compoundref="Champ__Inc__base_8cpp" startline="672" endline="676">Champ_Inc_base::changer_temps</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classOperateur__base_1a55ee9300d78cf0d8bdf7f48c56feb7ce" compoundref="Operateur__base_8cpp" startline="71" endline="73">Operateur_base::mettre_a_jour</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classMilieu__base_1a50a5bde86eaca0f17f09498e9ace7d21" compoundref="Milieu__base_8h" startline="59" endline="59">Milieu_base::porosite_elem</references>
+        <references refid="classMilieu__base_1ad2aafcfd9d4ed41e892271af80e5936a" compoundref="Milieu__base_8h" startline="63" endline="63">Milieu_base::porosite_face</references>
+        <references refid="classChamp__Inc__base_1afe3eeba24aaeeaf1b34f64b4f165dfd1" compoundref="Champ__Inc__base_8cpp" startline="735" endline="786">Champ_Inc_base::valeur_aux_bords</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1af300d90a3f09cc96d74e4f8eeb75771f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Op_Conv_VDF_base::Op_Conv_VDF_base</definition>
+        <argsstring>(const Iterateur_VDF_base &amp;iter_base)</argsstring>
+        <name>Op_Conv_VDF_base</name>
+        <param>
+          <type>const <ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref> &amp;</type>
+          <declname>iter_base</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="31" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a57bc6ed20f138e5165add90daf8eaee6" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type></type>
+        <definition>Op_Conv_VDF_base::OWN_PTR</definition>
+        <argsstring>(Iterateur_VDF_base) &amp;get_iter()</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="48" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const Op_Conv_VDF_base::OWN_PTR</definition>
+        <argsstring>(Iterateur_VDF_base) &amp;get_iter() const</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="47" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="47" bodyend="47"/>
+        <referencedby refid="classOp__Conv__VDF__base_1a9b2f88cf751c9387c5aba058c3ceaef6" compoundref="Op__Conv__VDF__base_8cpp" startline="89" endline="92">associer_champ_temp</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a441229db71499de6ffacf859934a6673" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::preparer_calcul</definition>
+        <argsstring>() override</argsstring>
+        <name>preparer_calcul</name>
+        <reimplements refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad">preparer_calcul</reimplements>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Elem_1a7a6cc623bf0e59b76b2141997264b83e">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Elem_1a595e1189a8a637640660e0c50577808f">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Elem_1a6b00cb7405e52da88538eeb6b5d26299">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Elem_1a3f2e2350f39402234889e77b303187b5">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Face_1a454c6ed70af94af2c908c710cebaeb8d">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Face_1a693cbb8cd3a801bc0727b0782dd4c444">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Face_1ac632fb7e92c1506d5bc033b560378703">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face__Axi_1a3220763c6d3cbe02a39675b72d99a948">preparer_calcul</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face_1ac9c4b8cb2c672cb05597523477ef9869">preparer_calcul</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="65" bodyend="69"/>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad" compoundref="Operateur__base_8cpp" startline="562" endline="562">Operateur_base::preparer_calcul</references>
+        <referencedby refid="classOp__Conv__VDF__base_1a44a569e8dabe22f339722b6c8df16288" compoundref="Op__Conv__VDF__base_8cpp" startline="71" endline="79">associer_champ_convecte_elem</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1acaae2df765f87eaafe7a5fba848f5ee0" compoundref="Op__Conv__VDF__base_8cpp" startline="81" endline="87">associer_champ_convecte_face</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a43b03f7007f67f5ad4846a4f2a15beba" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::set_incompressible</definition>
+        <argsstring>(const int flag) override</argsstring>
+        <name>set_incompressible</name>
+        <reimplements refid="classOperateur__Conv__base_1a54bf4f55ea60db9fc2094ac0f1b21027">set_incompressible</reimplements>
+        <param>
+          <type>const int</type>
+          <declname>flag</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="52" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="52" bodyend="61"/>
+        <references refid="classOperateur__Conv__base_1af1413cc45d9de73b3d08c374a3379024" compoundref="Operateur__Conv__base_8h" startline="49">Operateur_Conv_base::incompressible_</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>virtual const Champ_base&amp; Op_Conv_VDF_base::vitesse</definition>
+        <argsstring>() const =0</argsstring>
+        <name>vitesse</name>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Elem_1a5fce9fc9ed066e6c48ab5075285184a3">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Elem_1ae26efd92f3ebecf288388263cc4d5b31">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Elem_1a2fe30d7afaaad8a559e91ceb0aedb1c7">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Elem_1a91a53d1b0ccea0dc3157379834ee6f56">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Face_1a875356726a2493077cad597d7c832be1">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Face_1a93a6086ea76f67113ca97e7e04977a48">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Face_1a8491fc0734579c18d567ecec1c660680">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face__Axi_1ae2444049f93f3ed36daab130ce7e04ec">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face_1a5c28bcbea1a37c572000274ba86a3f49">vitesse</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="44" column="28"/>
+        <referencedby refid="classOp__Conv__VDF__base_1a44a569e8dabe22f339722b6c8df16288" compoundref="Op__Conv__VDF__base_8cpp" startline="71" endline="79">associer_champ_convecte_elem</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1acaae2df765f87eaafe7a5fba848f5ee0" compoundref="Op__Conv__VDF__base_8cpp" startline="81" endline="87">associer_champ_convecte_face</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a34058fa14e1270d186a871009e32c32e" compoundref="Op__Conv__VDF__base_8cpp" startline="256" endline="348">calculer_dt_local</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1ae393cd6ca056226df5d5f9c72a6c2977" compoundref="Op__Conv__VDF__base_8cpp" startline="178" endline="253">calculer_dt_stab</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a4db5ef5ba30045e3e06ebde9cca41a7c" compoundref="Op__Conv__VDF__base_8cpp" startline="351" endline="415">calculer_pour_post</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a32bb67df30990cf054bb48a55ea137f4" compoundref="Op__Conv__VDF__base_8cpp" startline="94" endline="132">dimensionner_blocs_elem</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a39f9e422637a080ee46a675237b0e620" compoundref="Op__Conv__VDF__base_8cpp" startline="470" endline="528">mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a4cc7bb10c5f5bb84b9c4c392feef6d35" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>virtual Champ_base&amp; Op_Conv_VDF_base::vitesse</definition>
+        <argsstring>()=0</argsstring>
+        <name>vitesse</name>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Elem_1a4cf0ae23679634297220e95a97265d4b">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Elem_1a0cc143e98e74244c2b172d2f15e7177c">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Elem_1a782bb0558af908725b51fd8d9a6cba95">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Elem_1ad4d5e73e4b25ba2004bf4aa0f5d0e6b5">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Amont__VDF__Face_1a1284ab7367f5858fb5a94befcd841656">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre__VDF__Face_1a6d57cd67dca22364701dbc36454b559d">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Centre4__VDF__Face_1ad542b5bd897eef80df2f93cbd64ff151">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face__Axi_1ac0c62a8a3649fb3b21c89d8a01c57312">vitesse</reimplementedby>
+        <reimplementedby refid="classOp__Conv__Quick__VDF__Face_1a4696a5fa9b549a487b8b2c9cf2fa8f7d">vitesse</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="45" column="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a44a569e8dabe22f339722b6c8df16288" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::associer_champ_convecte_elem</definition>
+        <argsstring>()</argsstring>
+        <name>associer_champ_convecte_elem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="76" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="71" bodyend="79"/>
+        <references refid="classEquation__base_1aba99570514e9c07e430f4b773a33048a" compoundref="Equation__base_8h" startline="200" endline="200">Equation_base::champ_convecte</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classEquation__base_1a315ed14d5275cce38920719bfadf49be" compoundref="Equation__base_8h" startline="201" endline="201">Equation_base::has_champ_convecte</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classEquation__base_1ab0c34611efd60dce2e9b6dfbcf618f96" compoundref="Equation__base_8h" startline="202" endline="202">Equation_base::init_champ_convecte</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" compoundref="Operateur__base_8h" startline="95" endline="99">Operateur_base::nom_inconnue</references>
+        <references refid="classOp__Conv__VDF__base_1a441229db71499de6ffacf859934a6673" compoundref="Op__Conv__VDF__base_8cpp" startline="65" endline="69">preparer_calcul</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <referencedby refid="classOp__Conv__Amont__VDF__Elem_1a7a6cc623bf0e59b76b2141997264b83e" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="42" endline="42">Op_Conv_Amont_VDF_Elem::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Centre__VDF__Elem_1a595e1189a8a637640660e0c50577808f" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="65" endline="65">Op_Conv_Centre_VDF_Elem::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Centre4__VDF__Elem_1a6b00cb7405e52da88538eeb6b5d26299" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="85" endline="85">Op_Conv_Centre4_VDF_Elem::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Quick__VDF__Elem_1a3f2e2350f39402234889e77b303187b5" compoundref="Op__Conv__VDF__Elem__leaves_8h" startline="103" endline="103">Op_Conv_Quick_VDF_Elem::preparer_calcul</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1acaae2df765f87eaafe7a5fba848f5ee0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Op_Conv_VDF_base::associer_champ_convecte_face</definition>
+        <argsstring>()</argsstring>
+        <name>associer_champ_convecte_face</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="77" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.cpp" bodystart="81" bodyend="87"/>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" compoundref="Operateur__base_8h" startline="95" endline="99">Operateur_base::nom_inconnue</references>
+        <references refid="classOp__Conv__VDF__base_1a441229db71499de6ffacf859934a6673" compoundref="Op__Conv__VDF__base_8cpp" startline="65" endline="69">preparer_calcul</references>
+        <references refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254">vitesse</references>
+        <referencedby refid="classOp__Conv__Amont__VDF__Face_1a454c6ed70af94af2c908c710cebaeb8d" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="42" endline="42">Op_Conv_Amont_VDF_Face::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Centre__VDF__Face_1a693cbb8cd3a801bc0727b0782dd4c444" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="66" endline="66">Op_Conv_Centre_VDF_Face::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Centre4__VDF__Face_1ac632fb7e92c1506d5bc033b560378703" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="86" endline="86">Op_Conv_Centre4_VDF_Face::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Quick__VDF__Face__Axi_1a3220763c6d3cbe02a39675b72d99a948" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="104" endline="104">Op_Conv_Quick_VDF_Face_Axi::preparer_calcul</referencedby>
+        <referencedby refid="classOp__Conv__Quick__VDF__Face_1ac9c4b8cb2c672cb05597523477ef9869" compoundref="Op__Conv__VDF__Face__leaves_8h" startline="122" endline="122">Op_Conv_Quick_VDF_Face::preparer_calcul</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Conv__VDF__base_1a417e19efd7a10b2f9cecdd351b37ebcf" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Conv_VDF_base::OWN_PTR</definition>
+        <argsstring>(Iterateur_VDF_base) iter_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="75" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classOp__Conv__VDF__base" kindref="compound">Op_Conv_VDF_base</ref> Classe de base des operateurs de convection VDF </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="13">
+        <label>Op_Conv_Centre_VDF_Elem</label>
+        <link refid="classOp__Conv__Centre__VDF__Elem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Op_Conv_Centre4_VDF_Elem</label>
+        <link refid="classOp__Conv__Centre4__VDF__Elem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Op_Conv_Amont_VPoly_VDF_Face</label>
+        <link refid="classOp__Conv__Amont__VPoly__VDF__Face"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Op_Conv_Amont_VDF_Face</label>
+        <link refid="classOp__Conv__Amont__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Operateur_Conv_base</label>
+        <link refid="classOperateur__Conv__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Op_Conv_Centre_VDF_Face</label>
+        <link refid="classOp__Conv__Centre__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="8">
+        <label>Op_Conv_Amont_VDF_Elem</label>
+        <link refid="classOp__Conv__Amont__VDF__Elem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="17">
+        <label>Op_Conv_Quick_VDF_Face_Axi</label>
+        <link refid="classOp__Conv__Quick__VDF__Face__Axi"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Op_Conv_Quick_VDF_Elem</label>
+        <link refid="classOp__Conv__Quick__VDF__Elem"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Op_Conv_Centre4_VDF_Face</label>
+        <link refid="classOp__Conv__Centre4__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Op_Conv_Quick_VDF_Face</label>
+        <link refid="classOp__Conv__Quick__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Op_Conv_VDF_base</label>
+        <link refid="classOp__Conv__VDF__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="17">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>OWN_PTRMatrice_Base</label>
+      </node>
+      <node id="13">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>string</label>
+      </node>
+      <node id="2">
+        <label>Operateur_Conv_base</label>
+        <link refid="classOperateur__Conv__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="9">
+        <label>Matrice</label>
+        <link refid="classMatrice"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="16">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="3">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>matrice_</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>description_</edgelabel>
+          <edgelabel>out_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>solveur</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>flux_bords_</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="11">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="19">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="1">
+        <label>Op_Conv_VDF_base</label>
+        <link refid="classOp__Conv__VDF__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Conv/Op_Conv_VDF_base.h" bodystart="27" bodyend="88"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>abort</name></member>
+      <member refid="classOperateur__base_1ad4c4e376365aa056c1a9bb9093ee7878" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>abortTimeStep</name></member>
+      <member refid="classOperateur__base_1ae8eb74015f6e04dca91d4a2da5fca9bb" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>ajouter</name></member>
+      <member refid="classOp__Conv__VDF__base_1aa3c2d7ba381f34ea497441bceaa7b439" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>ajouter_blocs</name></member>
+      <member refid="classOperateur__base_1ac9a953b4d76473713ee31c1d4671bf6f" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>ajouter_contribution_explicite_au_second_membre</name></member>
+      <member refid="classOperateur__base_1a5785d8f2346cbb70e2f584aefb51b61b" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>ajouter_flux</name></member>
+      <member refid="classOperateur__base_1a0d969b161b7caf2c3f09dec9a2b9ebfe" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classOperateur__base_1a3c38d9a5d73cf54a5b714e99d8e79da1" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_</name></member>
+      <member refid="classOperateur__base_1a21ee8b399a139dd8e85ec0025d0606a5" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_champ</name></member>
+      <member refid="classOp__Conv__VDF__base_1a44a569e8dabe22f339722b6c8df16288" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>associer_champ_convecte_elem</name></member>
+      <member refid="classOp__Conv__VDF__base_1acaae2df765f87eaafe7a5fba848f5ee0" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>associer_champ_convecte_face</name></member>
+      <member refid="classOp__Conv__VDF__base_1a9b2f88cf751c9387c5aba058c3ceaef6" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_champ_temp</name></member>
+      <member refid="classOp__Conv__VDF__base_1abe04efd801038d5037f7137b4371fb22" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_domaine_cl_dis</name></member>
+      <member refid="classOperateur__base_1addce89950be87e830970589f6aba37d3" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>associer_eqn</name></member>
+      <member refid="classOperateur__Conv__base_1a70e7969d884a0501f0abe7e790fb9978" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_norme_vitesse</name></member>
+      <member refid="classOperateur__Conv__base_1a64ac0bf91e62c44b0b640a5b4fcca706" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>associer_vitesse</name></member>
+      <member refid="classOperateur__Conv__base_1ac5a52abff20b5590089726046684364b" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>associer_vitesse_pour_pas_de_temps</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>bidim_axi</name></member>
+      <member refid="classOp__Conv__VDF__base_1a774c6eec334580ab1f938fb3301c038c" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>calculer</name></member>
+      <member refid="classOp__Conv__VDF__base_1a34058fa14e1270d186a871009e32c32e" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>calculer_dt_local</name></member>
+      <member refid="classOp__Conv__VDF__base_1ae393cd6ca056226df5d5f9c72a6c2977" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>calculer_dt_stab</name></member>
+      <member refid="classOperateur__base_1af5cee4c5e5f27e9203bfb38d4a9b932b" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>calculer_flux</name></member>
+      <member refid="classOp__Conv__VDF__base_1a4db5ef5ba30045e3e06ebde9cca41a7c" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>calculer_pour_post</name></member>
+      <member refid="classOp__Conv__VDF__base_1a1b9344a77921ac7f3f8a0ffacba2c069" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>cc_phases_</name></member>
+      <member refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>check_int_overflow</name></member>
+      <member refid="classMorEqn_1a46879a44635069fbe1a7b2bb2368bfc1" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classOperateur__base_1a0ffe040617353804459652b00e98d414" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>col_width_</name></member>
+      <member refid="classOp__Conv__VDF__base_1a22cf42def6a904148ed82870869eb6e5" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>completer</name></member>
+      <member refid="classOperateur__base_1a2fbd607fd187f87ef8b72dec73cf51aa" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>contribuer_a_avec</name></member>
+      <member refid="classOp__Conv__VDF__base_1a60a51a767c64039c5425b945d67a4517" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>contribuer_au_second_membre</name></member>
+      <member refid="classOperateur__base_1aabeae40911cab7759852f7000ae5ed24" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>contribuer_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1aed83e514128b3ec4a5c2470ca03db7a7" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classOp__Conv__VDF__base_1a1d46b7001f80c75d451c58a9805db0b8" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classOperateur__base_1aa800ac60ec1afa615386d816a2bc1095" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>decal_temps</name></member>
+      <member refid="classOp__Conv__VDF__base_1aa92178586cda31ba13df42b98dff4242" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Declare_base</name></member>
+      <member refid="classOperateur__base_1ae6a9120f01183fb396915a995d19f31f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>description</name></member>
+      <member refid="classOperateur__base_1a0df8b73d13d81f02f3074a09dde28c84" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>description_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>dimension</name></member>
+      <member refid="classOperateur__base_1a8be8a7694d899cde1d08e02f992cb3e3" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner</name></member>
+      <member refid="classOperateur__base_1a6c57cb01245cf33b9e1aaeb36413ffe6" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1ab1383995b6e34068640675a57bec363b" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner_blocs</name></member>
+      <member refid="classOp__Conv__VDF__base_1a32bb67df30990cf054bb48a55ea137f4" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner_blocs_elem</name></member>
+      <member refid="classOp__Conv__VDF__base_1ad92d97471dc37c85790d2fa5208da73f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner_blocs_face</name></member>
+      <member refid="classOperateur__base_1a840c29d194fc359fdf41fd5d3c4564e8" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>disable_TU</name></member>
+      <member refid="classOperateur__Conv__base_1a450bdc9a685144198c796cc62e67b85a" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>dt_stab_conv</name></member>
+      <member refid="classOperateur__Conv__base_1ad7f8949a3e9fa94731db3357c3547d7e" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>dt_stab_conv_</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>duplique</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>equation</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>exit</name></member>
+      <member refid="classOperateur__base_1a47589b011a317625bca06268fec941fa" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>fichier</name></member>
+      <member refid="classOperateur__Conv__base_1a868dd39f29b4f613ec620fe5ada95977" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>fixer_dt_stab_conv</name></member>
+      <member refid="classOp__Conv__VDF__base_1abd4d0a65ac4210da6a140e4c41e16ba3" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>fluent_</name></member>
+      <member refid="classOperateur__base_1ab547b37ace0f04931f6f09fcfa8fae0c" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1ace9775be15067de0b4ee3c850cb0f78b" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>flux_bords_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>format_precision_geom</name></member>
+      <member refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>get_champ</name></member>
+      <member refid="classOperateur__base_1a6391c6f9d25cc0058baff086d6e374d2" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_decal_temps</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>get_info</name></member>
+      <member refid="classOp__Conv__VDF__base_1a84e3a6ab0974f0f26ec815a01c2c2862" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classOperateur__base_1a99957cfc9c19dfc1b3eb6eba25bb34e7" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_matrice</name></member>
+      <member refid="classOperateur__base_1a96bd268a33abb1e77dbe1dda3dde2e71" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_nb_ss_pas_de_temps</name></member>
+      <member refid="classOp__Conv__VDF__base_1a706db1a41d5ffea3bf2f55226a26e3b9" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classOperateur__base_1a189af24b5b71f6eb5f61cbd27f137f8f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>get_solveur</name></member>
+      <member refid="classOperateur__base_1a6118925b38e7470d3820384da89ad8b8" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Op_Conv_VDF_base</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a48bacffa849c639403aae805225904a7" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>has_champ_inco</name></member>
+      <member refid="classOperateur__base_1a7261aed881ea18082ee61b431cfee4be" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>has_impr_file</name></member>
+      <member refid="classOp__Conv__VDF__base_1afaf2b425d6542ac78efccb0ff3785891" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>HAS_POINTER</name></member>
+      <member refid="classOp__Conv__VDF__base_1a7899e62f21a3e125f29bfa981f2b5f2f" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>impr</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classOperateur__Conv__base_1af1413cc45d9de73b3d08c374a3379024" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>incompressible_</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classOperateur__base_1aaa3ae2d3c5358c1f385bb438959abb37" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>lire_solveur</name></member>
+      <member refid="classOperateur__base_1a8da7fc774882c66318f3a4573d814d83" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>matrice_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>me</name></member>
+      <member refid="classOp__Conv__VDF__base_1a39f9e422637a080ee46a675237b0e620" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>mettre_a_jour</name></member>
+      <member refid="classOperateur__base_1a109d07fcb418f60efc1302c6a91bf33d" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classOperateur__base_1ae53d686cf12a9bb83751f706193d5592" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mon_inconnue</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>multiple_files</name></member>
+      <member refid="classOperateur__base_1a656cefa4eb2adfc957e9e4c1fd651749" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>nb_ss_pas_de_temps</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>nom_du_cas</name></member>
+      <member refid="classOperateur__base_1ad35467308aed5d9f44aaa6cc66b35a79" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>nom_inco_</name></member>
+      <member refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>nom_inconnue</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>nommer</name></member>
+      <member refid="classOp__Conv__VDF__base_1ac5663eb573eafa7be93cf9c536eb761b" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>noms_cc_phases_</name></member>
+      <member refid="classOp__Conv__VDF__base_1a27ea55bc08a3452931f0703a2604c68b" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>noms_vd_phases_</name></member>
+      <member refid="classOp__Conv__VDF__base_1a84b62eaa25ad7757657120e22378e357" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>noms_x_phases_</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Objet_U</name></member>
+      <member refid="classOperateur__Conv__base_1ad9ae3b83d990d03d2c24804f71411668" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__Conv__base_1a8b6591535a3819be151c22a2972879dd" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__base_1a2a9e31828e16e1e5588e59032681f412" prot="protected" virt="non-virtual" ambiguityscope="Operateur_base::"><scope>Op_Conv_VDF_base</scope><name>OBS_PTR</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual" ambiguityscope="MorEqn::"><scope>Op_Conv_VDF_base</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Conv__VDF__base_1af300d90a3f09cc96d74e4f8eeb75771f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>Op_Conv_VDF_base</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>operator=</name></member>
+      <member refid="classOperateur__base_1a0f48883db4ca2a57a4d83f344f427723" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>out_</name></member>
+      <member refid="classOperateur__base_1afd23006466730b1b57f4087a8c5fa776" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>ouvrir_fichier</name></member>
+      <member refid="classOperateur__base_1a5858c8c8ee1f6082ae18f2476804f495" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classOp__Conv__VDF__base_1a0cdd820a947df905048a572dad8659bb" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Conv__VDF__base_1a57bc6ed20f138e5165add90daf8eaee6" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Conv__VDF__base_1a417e19efd7a10b2f9cecdd351b37ebcf" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>precision_geom</name></member>
+      <member refid="classOp__Conv__VDF__base_1a441229db71499de6ffacf859934a6673" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>reprendre</name></member>
+      <member refid="classOperateur__base_1abde0b3c19d29602a6aaf01cafb0ffdbc" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>self_cast</name></member>
+      <member refid="classOperateur__base_1aff84ae0046179ad6c9aac58da235b8b4" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_decal_temps</name></member>
+      <member refid="classOperateur__base_1adc6417da22ec9fd42988d5a4103c471f" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_description</name></member>
+      <member refid="classOperateur__base_1a1079052c44f7db7615ecc24448676093" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_fichier</name></member>
+      <member refid="classOp__Conv__VDF__base_1a43b03f7007f67f5ad4846a4f2a15beba" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>set_incompressible</name></member>
+      <member refid="classOperateur__base_1a58bbc3d85feaa143ec0d87e68d8fe137" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_matrice</name></member>
+      <member refid="classOperateur__base_1a75805455a9a1286fe361482dbbae0369" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a2fe69e40852fa946df7685516d3e5c66" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>set_solveur</name></member>
+      <member refid="classOperateur__base_1a01258c6b4bf60a83b7ebd1649a54ecf6" prot="protected" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>solveur</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classOperateur__base_1ae939f468496af4fdceb8c537a26dd09b" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>systeme_invariant</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>taille_memoire</name></member>
+      <member refid="classOperateur__base_1a3640f8feaeac1bf4d8ff3777c233753c" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>tester_contribuer_a_avec</name></member>
+      <member refid="classOp__Conv__VDF__base_1af77090b0d013ad21b46231d0aaa1b0c7" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>vd_phases_</name></member>
+      <member refid="classOp__Conv__VDF__base_1af3ad0ee20468ae9cc35151761a35a254" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>vitesse</name></member>
+      <member refid="classOp__Conv__VDF__base_1a4cc7bb10c5f5bb84b9c4c392feef6d35" prot="public" virt="pure-virtual"><scope>Op_Conv_VDF_base</scope><name>vitesse</name></member>
+      <member refid="classOp__Conv__VDF__base_1acb96e70eed33aedf60d91acac1bfae50" prot="private" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>x_phases_</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>~MorEqn</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Op_Conv_VDF_base</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Op_Conv_VDF_base</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

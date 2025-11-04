@@ -1,0 +1,494 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classRemove__elem" kind="class" language="C++" prot="public">
+    <compoundname>Remove_elem</compoundname>
+    <basecompoundref refid="classInterprete__geometrique__base__32__64" prot="public" virt="non-virtual">Interprete_geometrique_base_32_64&lt; int &gt;</basecompoundref>
+    <includes local="no">Remove_elem.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classRemove__elem_1a83d3d1be72fcbdaed61dd0f5795d303a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classParser__U" kindref="compound">Parser_U</ref></type>
+        <definition>Parser_U Remove_elem::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="48" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" compoundref="Remove__elem_8cpp" startline="52" endline="81">interpreter_</referencedby>
+        <referencedby refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" compoundref="Remove__elem_8cpp" startline="211" endline="356">remove_elem_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRemove__elem_1ae715df58f96cd47918d2f3c3f2638cba" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Remove_elem::f_ok</definition>
+        <argsstring></argsstring>
+        <name>f_ok</name>
+        <initializer>= -10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="49" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" compoundref="Remove__elem_8cpp" startline="52" endline="81">interpreter_</referencedby>
+        <referencedby refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" compoundref="Remove__elem_8cpp" startline="211" endline="356">remove_elem_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classRemove__elem_1aede7d0416e34a4c2f500c4345ba2bf25" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTList" kindref="compound">IntList</ref></type>
+        <definition>IntList Remove_elem::listelem</definition>
+        <argsstring></argsstring>
+        <name>listelem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="47" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" compoundref="Remove__elem_8cpp" startline="211" endline="356">remove_elem_</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRemove__elem_1a9a3b05eb0a98c4e2d40501603853df4f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Remove_elem::Declare_instanciable</definition>
+        <argsstring>(Remove_elem)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classRemove__elem" kindref="compound">Remove_elem</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="35" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classRemove__elem_1ae4b4f563394f93b15efe6c02a2650ebc" prot="private" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Remove_elem::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889">lire_motcle_non_standard</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="51" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="32" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRemove__elem_1ac8f2335177932c062ff396b740205779" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Remove_elem::creer_faces</definition>
+        <argsstring>(Domaine &amp;, Faces &amp;, IntTab &amp;) const</argsstring>
+        <name>creer_faces</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <defname>dom</defname>
+        </param>
+        <param>
+          <type><ref refid="classFaces__32__64" kindref="compound">Faces</ref> &amp;</type>
+          <defname>faces</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <defname>som_face</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="138" bodyend="169"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classFaces__32__64_1ab2dbc3e3e4fa4c3f088845d4d8f78812" compoundref="Faces_8cpp" startline="344" endline="358">Faces_32_64&lt; _SIZE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; Remove_elem::interpreter_</definition>
+        <argsstring>(Entree &amp;) override</argsstring>
+        <name>interpreter_</name>
+        <reimplements refid="classInterprete__geometrique__base__32__64_1af9f180510b71215c6533001d211e66fa">interpreter_</reimplements>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="39" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="52" bodyend="81"/>
+        <references refid="classParser__U_1ae216b7daee6c4bb756423ffed5674293" compoundref="Parser__U_8h" startline="183" endline="186">Parser_U::addVar</references>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a35235d5a5d9994aff7237931bfe4a7eb" compoundref="Interprete__geometrique__base_8cpp" startline="31" endline="35">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::associer_domaine</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classRemove__elem_1a83d3d1be72fcbdaed61dd0f5795d303a" compoundref="Remove__elem_8h" startline="48">f</references>
+        <references refid="classRemove__elem_1ae715df58f96cd47918d2f3c3f2638cba" compoundref="Remove__elem_8h" startline="49">f_ok</references>
+        <references refid="classScatter_1a234264f0b60648fc3def26f2b4ab9da5" compoundref="Scatter_8cpp" startline="2725" endline="2734">Scatter::init_sequential_domain</references>
+        <references refid="classParam_1aa9d44fc51b4a08b357733a97dc7acaad" compoundref="Param_8cpp" startline="32" endline="39">Param::lire_avec_accolades_depuis</references>
+        <references refid="classNettoieNoeuds__32__64_1a361e496d106690905817cc1519ee4686" compoundref="NettoieNoeuds_8cpp" startline="62" endline="194">NettoieNoeuds_32_64&lt; _SIZE_ &gt;::nettoie</references>
+        <references refid="classParser__U_1a441c2fd29f5d4370c0c7b6a1cdfe56d5" compoundref="Parser__U_8h" startline="116" endline="119">Parser_U::parseString</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" compoundref="Remove__elem_8cpp" startline="211" endline="356">remove_elem_</references>
+        <references refid="classParser__U_1a3ff44eabf641cbcea9ca59f84167e2c1" compoundref="Parser__U_8h" startline="174" endline="177">Parser_U::setNbVar</references>
+        <references refid="classParser__U_1a1e905179ae8b011f9c4eb3f9e3f96e99" compoundref="Parser__U_8h" startline="194" endline="197">Parser_U::setString</references>
+        <references refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" compoundref="Scatter_8cpp" startline="2740" endline="2745">Scatter::uninit_sequential_domain</references>
+      </memberdef>
+      <memberdef kind="function" id="classRemove__elem_1a24d8c6466e24995db9f165b745f09e80" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Remove_elem::recreer_faces</definition>
+        <argsstring>(Domaine &amp;, Faces &amp;, IntTab &amp;) const</argsstring>
+        <name>recreer_faces</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <defname>domaine</defname>
+        </param>
+        <param>
+          <type><ref refid="classFaces__32__64" kindref="compound">Faces</ref> &amp;</type>
+          <defname>faces</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <defname>som_face</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="83" bodyend="136"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTTab_1a777917b2ef88a69dc91f57e4721cec38" compoundref="TRUSTTab_8tpp" startline="362" endline="369">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::reset</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Remove_elem::remove_elem_</definition>
+        <argsstring>(Domaine &amp;)</argsstring>
+        <name>remove_elem_</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <defname>dom</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="211" bodyend="356"/>
+        <references refid="classDomaine__32__64_1a563f4ac3dcb86ff1b7fc5dfb2856c735" compoundref="Domaine_8h" startline="496" endline="496">Domaine_32_64&lt; _SIZE_ &gt;::calculer_centres_gravite</references>
+        <references refid="classDomaine__32__64_1a5080eaae4900a367b4ff2b66d16a615d" compoundref="Domaine_8cpp" startline="765" endline="776">Domaine_32_64&lt; _SIZE_ &gt;::construit_octree</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classParser__U_1a61605bc1b85e466f884f1739e811b6b4" compoundref="Parser__U_8h" startline="125" endline="128">Parser_U::eval</references>
+        <references refid="classRemove__elem_1a83d3d1be72fcbdaed61dd0f5795d303a" compoundref="Remove__elem_8h" startline="48">f</references>
+        <references refid="classRemove__elem_1ae715df58f96cd47918d2f3c3f2638cba" compoundref="Remove__elem_8h" startline="49">f_ok</references>
+        <references refid="classDomaine__32__64_1a57f7542a6a84b2666fdd557347ca3bd6" compoundref="Domaine_8h" startline="195" endline="195">Domaine_32_64&lt; _SIZE_ &gt;::faces_bord</references>
+        <references refid="classDomaine__32__64_1aa26d97645fbddfbc672974f2ef1db2bb" compoundref="Domaine_8cpp" startline="758" endline="762">Domaine_32_64&lt; _SIZE_ &gt;::invalide_octree</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classRemove__elem_1aede7d0416e34a4c2f500c4345ba2bf25" compoundref="Remove__elem_8h" startline="47">listelem</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classRemove__elem_1afd687a182209cd1706de9b2976dc46e4" compoundref="Remove__elem_8cpp" startline="171" endline="209">remplir_liste</references>
+        <references refid="classDomaine__32__64_1afcc00e8ee110ec09cbe837412c22433b" compoundref="Domaine_8h" startline="101" endline="101">Domaine_32_64&lt; _SIZE_ &gt;::reordonner</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classParser__U_1a13c377b32b6c3ced39a14f83f94a8828" compoundref="Parser__U_8h" startline="149" endline="152">Parser_U::setVar</references>
+        <references refid="classTRUSTList_1affaf5af7af6f892472b6bf05a6a690d9" compoundref="TRUSTList_8h" startline="68" endline="68">TRUSTList&lt; _TYPE_ &gt;::size</references>
+        <references refid="classFaces__32__64_1a17403f802c4f213dbe9131338f8aaa2a" compoundref="Faces_8cpp" startline="390" endline="393">Faces_32_64&lt; _SIZE_ &gt;::typer</references>
+        <referencedby refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" compoundref="Remove__elem_8cpp" startline="52" endline="81">interpreter_</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRemove__elem_1afd687a182209cd1706de9b2976dc46e4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Remove_elem::remplir_liste</definition>
+        <argsstring>(IntTab &amp;, int, int, int, int) const</argsstring>
+        <name>remplir_liste</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <defname>som_face</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>ind1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>ind2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>ind3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>ind4</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.cpp" bodystart="171" bodyend="209"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <referencedby refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" compoundref="Remove__elem_8cpp" startline="211" endline="356">remove_elem_</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classRemove__elem" kindref="compound">Remove_elem</ref> Enleve du maillage les elements specifies par l&apos;utilisateur dans le jeu de donnees </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classInterprete" kindref="compound">Interprete</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete_geometrique_base</label>
+        <link refid="classInterprete__geometrique__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Remove_elem</label>
+        <link refid="classRemove__elem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>TRUSTList&lt; int &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="template-instance">
+          <edgelabel>&lt; int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete_geometrique_base</label>
+        <link refid="classInterprete__geometrique__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUSTList&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="7">
+        <label>Parser_U</label>
+        <link refid="classParser__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TRUSTListElem&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTListElem"/>
+        <childnode refid="9" relation="usage">
+          <edgelabel>suivant_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Remove_elem</label>
+        <link refid="classRemove__elem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>f</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>listelem</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" line="33" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Remove_elem.h" bodystart="34" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Remove_elem</scope><name>associer_</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a35235d5a5d9994aff7237931bfe4a7eb" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>associer_domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a285abef1bd0a71ec25a0b6c0f8ae96cb" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>associer_domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a6920c40acdb0c2769cc9953729038470" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Remove_elem</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>check_int_overflow</name></member>
+      <member refid="classRemove__elem_1ac8f2335177932c062ff396b740205779" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>creer_faces</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classRemove__elem_1a9a3b05eb0a98c4e2d40501603853df4f" prot="private" virt="non-virtual"><scope>Remove_elem</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>disable_TU</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ad8b28769663ebe4fe9d26ee4acbb654f" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ae3f0c75375f5abc3fb90244e7cc89347" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>Domaine_t</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Remove_elem</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Remove_elem</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>exit</name></member>
+      <member refid="classRemove__elem_1a83d3d1be72fcbdaed61dd0f5795d303a" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>f</name></member>
+      <member refid="classRemove__elem_1ae715df58f96cd47918d2f3c3f2638cba" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>f_ok</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Remove_elem</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>info_obj</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a146084030844e5cabc41bf096ec66a92" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>int_t</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>interprete</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" prot="public" virt="virtual"><scope>Remove_elem</scope><name>interpreter</name></member>
+      <member refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" prot="public" virt="virtual"><scope>Remove_elem</scope><name>interpreter_</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Remove_elem</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>le_type</name></member>
+      <member refid="classRemove__elem_1ae4b4f563394f93b15efe6c02a2650ebc" prot="private" virt="virtual"><scope>Remove_elem</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1af5be8c060605c47f9d81fff14e6ad2b4" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>LIST</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ab3f424b6e46e93b42329a51760ed397d" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>LIST</name></member>
+      <member refid="classRemove__elem_1aede7d0416e34a4c2f500c4345ba2bf25" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>listelem</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>me</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a229e36782c975b026432239a8b312f73" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mettre_a_jour_sous_domaine</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Remove_elem</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>numero</name></member>
+      <member refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>objet</name></member>
+      <member refid="classInterprete_1ae5b09c3b61cd8b789437a0822a26a573" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>objet_existant</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Remove_elem</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Remove_elem</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Remove_elem</scope><name>readOn</name></member>
+      <member refid="classRemove__elem_1a24d8c6466e24995db9f165b745f09e80" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>recreer_faces</name></member>
+      <member refid="classRemove__elem_1aab554669b5de58f6bf599078cc2fa2ea" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>remove_elem_</name></member>
+      <member refid="classRemove__elem_1afd687a182209cd1706de9b2976dc46e4" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>remplir_liste</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Remove_elem</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Remove_elem</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Remove_elem</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Remove_elem</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Remove_elem</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

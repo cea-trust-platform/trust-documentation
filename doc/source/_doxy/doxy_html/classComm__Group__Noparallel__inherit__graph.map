@@ -1,9 +1,6 @@
 <map id="Comm_Group_Noparallel" name="Comm_Group_Noparallel">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,190,260"/>
-<area shape="rect" id="Node000002" href="$classComm__Group.html" title=": Cette classe decrit un groupe de processeurs sur lesquels" alt="" coords="42,157,153,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,200,100,232,95,232,95,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="61,81,134,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,124,100,156,95,156,95,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="62,5,133,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="100,49,100,81,95,81,95,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,191,256"/>
+<area shape="rect" id="node2" href="$classComm__Group.html" title=": Cette classe decrit un groupe de processeurs sur lesquels" alt="" coords="43,155,153,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="61,80,135,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="62,5,134,32"/>
 </map>

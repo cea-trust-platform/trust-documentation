@@ -1,11 +1,7 @@
 <map id="Iterateur_VDF_base" name="Iterateur_VDF_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="93,157,242,184"/>
-<area shape="rect" id="Node000004" href="$classIterateur__VDF__Elem.html" title=" " alt="" coords="5,232,157,277"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="145,197,106,234,102,230,141,193"/>
-<area shape="rect" id="Node000005" href="$classIterateur__VDF__Face.html" title=" " alt="" coords="180,232,328,277"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="194,193,233,230,229,234,191,197"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="131,81,204,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,124,170,156,165,156,165,124"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="132,5,203,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="170,49,170,81,165,81,165,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="93,155,243,181"/>
+<area shape="rect" id="node4" href="$classIterateur__VDF__Elem.html" title=" " alt="" coords="5,229,157,271"/>
+<area shape="rect" id="node5" href="$classIterateur__VDF__Face.html" title=" " alt="" coords="181,229,331,271"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="131,80,205,107"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="132,5,204,32"/>
 </map>

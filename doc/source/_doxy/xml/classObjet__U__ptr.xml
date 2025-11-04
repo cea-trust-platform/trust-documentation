@@ -1,0 +1,635 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classObjet__U__ptr" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Objet_U_ptr</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <derivedcompoundref refid="classTRUST__Deriv" prot="public" virt="non-virtual">TRUST_Deriv&lt; Discretisation_base &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classTRUST__Deriv" prot="public" virt="non-virtual">TRUST_Deriv&lt; _CLASSE_ &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classTRUST__Deriv__Objet__U" prot="public" virt="non-virtual">TRUST_Deriv_Objet_U</derivedcompoundref>
+    <includes local="no">Objet_U_ptr.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classObjet__U__ptr_1a30f053082d1b13ccbc66a82fc78ed781" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Objet_U_ptr::HAS_POINTER</definition>
+        <argsstring></argsstring>
+        <name>HAS_POINTER</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="35" column="25" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classObjet__U__ptr_1a31fecb59c381caa8190a5c02cddbb5a8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Objet_U_ptr::cle_</definition>
+        <argsstring></argsstring>
+        <name>cle_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="72" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__U__ptr_1a71d879a3f758ed62fed2ce8fce0bca68" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Objet_U_ptr::ptr_object_id_</definition>
+        <argsstring></argsstring>
+        <name>ptr_object_id_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="75" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classObjet__U__ptr_1ae08d62a7df48ea303843de409af76926" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_U_ptr::Declare_base_sans_constructeur_ni_destructeur</definition>
+        <argsstring>(Objet_U_ptr)</argsstring>
+        <name>Declare_base_sans_constructeur_ni_destructeur</name>
+        <param>
+          <type><ref refid="classObjet__U__ptr" kindref="compound">Objet_U_ptr</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="32" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classObjet__U__ptr_1a1f05aa2e2adf651ccf15ddb8c4c4f237" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Objet_U_ptr::associer_</definition>
+        <argsstring>(Objet_U &amp;objet) override</argsstring>
+        <name>associer_</name>
+        <reimplements refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8">associer_</reimplements>
+        <param>
+          <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>Associe l&apos;<ref refid="classObjet__U" kindref="compound">Objet_U</ref> a un autre <ref refid="classObjet__U" kindref="compound">Objet_U</ref> Methode virtuelle a surcharger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Objet_U&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>l&apos;<ref refid="classObjet__U" kindref="compound">Objet_U</ref> avec lequel doit s&apos;effectuer l&apos;association </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) code de retour </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="46" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="76" bodyend="82"/>
+        <references refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" compoundref="Objet__U_8cpp" startline="201" endline="204">Objet_U::associer_</references>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a43544afb6679e71aaf5487b399f5b93f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_U_ptr::detach</definition>
+        <argsstring>()</argsstring>
+        <name>detach</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="69" bodyend="74"/>
+        <references refid="classObjet__U__ptr_1af5ffb8a6cd473f3d32dbb6de421bb012" compoundref="Objet__U__ptr_8cpp" startline="208" endline="222">get_Objet_U_ptr</references>
+        <references refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" compoundref="Objet__U__ptr_8cpp" startline="227" endline="242">set_Objet_U_ptr</references>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1af20b3453442ef9e137e64d1f68dc8196" compoundref="TRUST__Deriv_8cpp" startline="66" endline="72">TRUST_Deriv_Objet_U::deplace</referencedby>
+        <referencedby refid="classTRUST__Deriv_1ac630e22e64dbb1b52bfe94b881363366" compoundref="TRUST__Deriv_8h" startline="143" endline="151">TRUST_Deriv&lt; _CLASSE_ &gt;::operator=</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1ab87cd60620ad2dac630a92e86a8494b4" compoundref="TRUST__Deriv_8cpp" startline="38" endline="43">TRUST_Deriv_Objet_U::operator=</referencedby>
+        <referencedby refid="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" compoundref="Objet__U__ptr_8cpp" startline="250" endline="288">typer</referencedby>
+        <referencedby refid="classTRUST__Deriv_1adfb7e8fd0ea98095fb6bf8f1f41102c7" compoundref="TRUST__Deriv_8h" startline="99" endline="99">TRUST_Deriv&lt; _CLASSE_ &gt;::~TRUST_Deriv</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a925076caa4d769fc4615d95c57ef711c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Objet_U_ptr::est_nul</definition>
+        <argsstring>() const</argsstring>
+        <name>est_nul</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="93" bodyend="97"/>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a9a5254ed0900de717b295a2a49c08d53" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+        <definition>const Nom &amp; Objet_U_ptr::le_nom</definition>
+        <argsstring>() const override</argsstring>
+        <name>le_nom</name>
+        <reimplements refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5">le_nom</reimplements>
+        <briefdescription>
+<para>Renvoie ref_(). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="classObjet__U__ptr_1a9a5254ed0900de717b295a2a49c08d53" kindref="member">le_nom()</ref> si le pointeur est non nul ou &quot;Pointeur Nul&quot; </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="42" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="168" bodyend="175"/>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+        <references refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" compoundref="Objet__U_8cpp" startline="319" endline="323">Objet_U::le_nom</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a2ae7b8a19db61f14ed61250b931228ae" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Objet_U_ptr::non_nul</definition>
+        <argsstring>() const</argsstring>
+        <name>non_nul</name>
+        <briefdescription>
+<para>Renvoie true si le pointeur est non_nul Renvoie false sinon. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="87" bodyend="91"/>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+        <referencedby refid="classTRUST__Deriv_1ae364f3cbbf41cfa5fa9ca263c0e5b299" compoundref="TRUST__Deriv_8h" startline="153" endline="161">TRUST_Deriv&lt; _CLASSE_ &gt;::operator=</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1ad2703ecf0f48270a151911015e8bc5a1" compoundref="TRUST__Deriv_8cpp" startline="45" endline="51">TRUST_Deriv_Objet_U::operator=</referencedby>
+        <referencedby refid="classTRUST__Deriv_1a0fea382e5d25419435ec2eea587a08a4" compoundref="TRUST__Deriv_8h" startline="101" endline="104">TRUST_Deriv&lt; _CLASSE_ &gt;::TRUST_Deriv</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1a2aca00274095aaadebbbf5809871cdda" compoundref="TRUST__Deriv_8cpp" startline="28" endline="31">TRUST_Deriv_Objet_U::TRUST_Deriv_Objet_U</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1aa441193d9d20cb436b14a032a7c2e85e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_U_ptr::Objet_U_ptr</definition>
+        <argsstring>(const Objet_U_ptr &amp;)=delete</argsstring>
+        <name>Objet_U_ptr</name>
+        <param>
+          <type>const <ref refid="classObjet__U__ptr" kindref="compound">Objet_U_ptr</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a61d27b45403c8591a89a071e2cc48c3b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classObjet__U__ptr" kindref="compound">Objet_U_ptr</ref> &amp;</type>
+        <definition>const Objet_U_ptr&amp; Objet_U_ptr::operator=</definition>
+        <argsstring>(const Objet_U_ptr &amp;)=delete</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classObjet__U__ptr" kindref="compound">Objet_U_ptr</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="37" column="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+        <definition>Objet_U * Objet_U_ptr::typer</definition>
+        <argsstring>(const char *nom_type)</argsstring>
+        <name>typer</name>
+        <param>
+          <type>const char *</type>
+          <declname>nom_type</declname>
+          <defname>type</defname>
+        </param>
+        <briefdescription>
+<para>Essaie de creer une instance du type &quot;type&quot;. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>si type n&apos;est pas un type ou type n&apos;est pas instanciable=&gt;arret si type n&apos;est pas un sous-type du type du pointeur=&gt;retour 0 si ok, renvoie l&apos;adresse de l&apos;objet cree. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="43" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="250" bodyend="288"/>
+        <references refid="classObjet__U__ptr_1a43544afb6679e71aaf5487b399f5b93f" compoundref="Objet__U__ptr_8cpp" startline="69" endline="74">detach</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classNom_1a811856a7830730408e6ca1b3a8f93276" compoundref="Nom_8cpp" startline="318" endline="321">Nom::find</references>
+        <references refid="classObjet__U__ptr_1a175adffdd5739a8a1470b353c88ee398">get_info_ptr</references>
+        <references refid="classObjet__U__ptr_1af5ffb8a6cd473f3d32dbb6de421bb012" compoundref="Objet__U__ptr_8cpp" startline="208" endline="222">get_Objet_U_ptr</references>
+        <references refid="classType__info_1a55377af3b49b0cc55ca24e694bec4249" compoundref="Type__info_8cpp" startline="394" endline="426">Type_info::has_base</references>
+        <references refid="classType__info_1a33d9bcb6af0b8367ec331bd797a23d94" compoundref="Type__info_8cpp" startline="354" endline="365">Type_info::instance</references>
+        <references refid="classType__info_1a0230e839547c9dd5a3d210f007725899" compoundref="Type__info_8cpp" startline="572" endline="575">Type_info::instanciable</references>
+        <references refid="classType__info_1ad36b4e1ade35174e6985dfe972800eac" compoundref="Type__info_8h" startline="36" endline="39">Type_info::name</references>
+        <references refid="classSynonyme__info_1aa5e5c997c0cf62387b82888ccfb4e798" compoundref="Synonyme__info_8h" startline="46" endline="46">Synonyme_info::org_name_</references>
+        <references refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" compoundref="Objet__U__ptr_8cpp" startline="227" endline="242">set_Objet_U_ptr</references>
+        <references refid="classSynonyme__info_1a4955fa6c7f53c4289402b2e9c955ed1c" compoundref="Synonyme__info_8cpp" startline="233" endline="243">Synonyme_info::synonyme_info_from_name</references>
+        <references refid="classType__info_1ab37d59e931ab9761812e24ed99842a43" compoundref="Type__info_8cpp" startline="544" endline="567">Type_info::type_info_from_name</references>
+        <referencedby refid="classLire_1a354596c5c8bfee7e988a8fabf1753166" compoundref="Lire_8cpp" startline="45" endline="67">Lire::interpreter</referencedby>
+        <referencedby refid="classTyper__Lire_1a7bedcc7afa52ecf3da28751ff115b265" compoundref="Typer__Lire_8cpp" startline="41" endline="69">Typer_Lire::interpreter</referencedby>
+        <referencedby refid="classTroisDto2D__32__64_1a11b47eeb02e2b70c27565f575845a73a" compoundref="TroisDto2D_8cpp" startline="49" endline="104">TroisDto2D_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classInterprete__bloc_1a30e3dd349fa1745d8024cdd7399a014e" compoundref="Interprete__bloc_8cpp" startline="73" endline="203">Interprete_bloc::interpreter_bloc</referencedby>
+        <referencedby refid="classTRUST__Deriv_1a72a4885f5327623d44f84396dff22554" compoundref="TRUST__Deriv_8h" startline="177" endline="200">TRUST_Deriv&lt; _CLASSE_ &gt;::typer_lire</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classObjet__U__ptr_1a6949654ed38a1ad5dba47f5877281d77" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Objet_U_ptr::change_num</definition>
+        <argsstring>(const int *const) override</argsstring>
+        <name>change_num</name>
+        <reimplements refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168">change_num</reimplements>
+        <param>
+          <type>const int * const</type>
+          <defname>new_ones</defname>
+        </param>
+        <briefdescription>
+<para>Pour mettre a jour les cles lorsque les <ref refid="classObjet__U" kindref="compound">Objet_U</ref> ont etes renumerotes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(const</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>int* const new_ones) tableau de la nouvelle numerotation </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) la nouvelle cle du pointeur </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="58" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="182" bodyend="191"/>
+        <references refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" compoundref="Objet__U_8cpp" startline="181" endline="184">Objet_U::change_num</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a88d2be054a86ae34480fa06739b09d22" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Objet_U_ptr::check_Objet_U_ptr_type</definition>
+        <argsstring>(const Objet_U *ptr) const</argsstring>
+        <name>check_Objet_U_ptr_type</name>
+        <param>
+          <type>const <ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+<para>Verifie que l&apos;objet pointe par ptr est d&apos;un type acceptable pour le pointeur (avec get_info_ptr) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="62" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="137" bodyend="161"/>
+        <references refid="classType__info_1a5b186f421370c823a001d3c34d1553ab" compoundref="Type__info_8h" startline="100" endline="103">Type_info::can_cast</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" compoundref="Objet__U_8cpp" startline="126" endline="129">Objet_U::get_info</references>
+        <references refid="classObjet__U__ptr_1a175adffdd5739a8a1470b353c88ee398">get_info_ptr</references>
+        <references refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" compoundref="Objet__U_8cpp" startline="191" endline="194">Objet_U::le_type</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classType__info_1ad36b4e1ade35174e6985dfe972800eac" compoundref="Type__info_8h" startline="36" endline="39">Type_info::name</references>
+        <referencedby refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" compoundref="Objet__U__ptr_8cpp" startline="227" endline="242">set_Objet_U_ptr</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a175adffdd5739a8a1470b353c88ee398" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="classType__info" kindref="compound">Type_info</ref> &amp;</type>
+        <definition>virtual const Type_info&amp; Objet_U_ptr::get_info_ptr</definition>
+        <argsstring>() const =0</argsstring>
+        <name>get_info_ptr</name>
+        <reimplementedby refid="classTRUST__Deriv_1a1636c7fd230f848f7831773f5d49b1bc">get_info_ptr</reimplementedby>
+        <reimplementedby refid="classTRUST__Deriv_1a1636c7fd230f848f7831773f5d49b1bc">get_info_ptr</reimplementedby>
+        <reimplementedby refid="classTRUST__Deriv__Objet__U_1a5845612eabe928068dcb6251e2ec0e8d">get_info_ptr</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="65" column="27"/>
+        <referencedby refid="classObjet__U__ptr_1a88d2be054a86ae34480fa06739b09d22" compoundref="Objet__U__ptr_8cpp" startline="137" endline="161">check_Objet_U_ptr_type</referencedby>
+        <referencedby refid="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" compoundref="Objet__U__ptr_8cpp" startline="250" endline="288">typer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1af5ffb8a6cd473f3d32dbb6de421bb012" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+        <definition>Objet_U * Objet_U_ptr::get_Objet_U_ptr</definition>
+        <argsstring>() const</argsstring>
+        <name>get_Objet_U_ptr</name>
+        <briefdescription>
+<para>Renvoie un pointeur sur l&apos;<ref refid="classObjet__U" kindref="compound">Objet_U</ref> associe ATTENTION: l&apos;adresse peut etre nulle (si le pointeur est nul) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="54" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="208" bodyend="222"/>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+        <references refid="classMemoire_1a552329c7ffbaff5dd8395af9489fa05b" compoundref="Memoire_8cpp" startline="32" endline="37">Memoire::Instance</references>
+        <references refid="classMemoire_1a214a0f83b3164a2a24e366cc80cb806e" compoundref="Memoire_8cpp" startline="206" endline="223">Memoire::objet_u</references>
+        <referencedby refid="classObjet__U__ptr_1a43544afb6679e71aaf5487b399f5b93f" compoundref="Objet__U__ptr_8cpp" startline="69" endline="74">detach</referencedby>
+        <referencedby refid="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" compoundref="Objet__U__ptr_8cpp" startline="250" endline="288">typer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+        <definition>Objet_U * Objet_U_ptr::get_Objet_U_ptr_check</definition>
+        <argsstring>() const</argsstring>
+        <name>get_Objet_U_ptr_check</name>
+        <briefdescription>
+<para>Verifie si le pointeur est valide. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Le pointeur est valide si cle_==-1 ou si la_memoire().objet_u(cle_) a le meme object_id_ que celui enregistre dans ptr_object_id_. Si le pointeur n&apos;est pas valide, arret du programme. Renvoie l&apos;adresse de l&apos;objet pointe (de type <ref refid="classObjet__U" kindref="compound">Objet_U</ref>) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="61" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="108" bodyend="132"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" compoundref="Objet__U_8cpp" startline="95" endline="98">Objet_U::get_object_id</references>
+        <references refid="classMemoire_1a552329c7ffbaff5dd8395af9489fa05b" compoundref="Memoire_8cpp" startline="32" endline="37">Memoire::Instance</references>
+        <references refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" compoundref="Objet__U_8cpp" startline="191" endline="194">Objet_U::le_type</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classMemoire_1a214a0f83b3164a2a24e366cc80cb806e" compoundref="Memoire_8cpp" startline="206" endline="223">Memoire::objet_u</references>
+        <referencedby refid="classObjet__U__ptr_1a1f05aa2e2adf651ccf15ddb8c4c4f237" compoundref="Objet__U__ptr_8cpp" startline="76" endline="82">associer_</referencedby>
+        <referencedby refid="classObjet__U__ptr_1a925076caa4d769fc4615d95c57ef711c" compoundref="Objet__U__ptr_8cpp" startline="93" endline="97">est_nul</referencedby>
+        <referencedby refid="classObjet__U__ptr_1af5ffb8a6cd473f3d32dbb6de421bb012" compoundref="Objet__U__ptr_8cpp" startline="208" endline="222">get_Objet_U_ptr</referencedby>
+        <referencedby refid="classObjet__U__ptr_1a9a5254ed0900de717b295a2a49c08d53" compoundref="Objet__U__ptr_8cpp" startline="168" endline="175">le_nom</referencedby>
+        <referencedby refid="classObjet__U__ptr_1a2ae7b8a19db61f14ed61250b931228ae" compoundref="Objet__U__ptr_8cpp" startline="87" endline="91">non_nul</referencedby>
+        <referencedby refid="classTRUST__Deriv_1a435423d28f9f1c02a4ae4db6e6b92e48" compoundref="TRUST__Deriv_8h" startline="129" endline="134">TRUST_Deriv&lt; _CLASSE_ &gt;::operator-&gt;</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1aa8897d9d57f4d7ee852772836bca4d2a" compoundref="TRUST__Deriv_8h" startline="257" endline="262">TRUST_Deriv_Objet_U::operator-&gt;</referencedby>
+        <referencedby refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" compoundref="Objet__U__ptr_8cpp" startline="227" endline="242">set_Objet_U_ptr</referencedby>
+        <referencedby refid="classTRUST__Deriv_1a2a5e56cd496c5f9be2069131c6251884" compoundref="TRUST__Deriv_8h" startline="111" endline="118">TRUST_Deriv&lt; _CLASSE_ &gt;::valeur</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1ab3aa3354ba857a7fcf8c341d94b67715" compoundref="TRUST__Deriv_8h" startline="243" endline="248">TRUST_Deriv_Objet_U::valeur</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1ad7df2bb9f1088f5cdd0ab0369e0b956b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_U_ptr::Objet_U_ptr</definition>
+        <argsstring>()</argsstring>
+        <name>Objet_U_ptr</name>
+        <briefdescription>
+<para>construit un pointeur nul (cle a -1) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="51" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a860b31e4099223b11ef753c133b2d32c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_U_ptr::recopie</definition>
+        <argsstring>(const Objet_U &amp;)</argsstring>
+        <name>recopie</name>
+        <param>
+          <type>const <ref refid="classObjet__U" kindref="compound">Objet_U</ref> &amp;</type>
+          <defname>obj</defname>
+        </param>
+        <briefdescription>
+<para>Duplique l&apos;<ref refid="classObjet__U" kindref="compound">Objet_U</ref> obj puis change le pointeur vers cette copie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(const</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="classObjet__U" kindref="compound">Objet_U</ref>&amp; obj) reference sur l&apos;<ref refid="classObjet__U" kindref="compound">Objet_U</ref> a copier </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="56" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="197" bodyend="203"/>
+        <references refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd">Objet_U::duplique</references>
+        <references refid="classMemoire_1a552329c7ffbaff5dd8395af9489fa05b" compoundref="Memoire_8cpp" startline="32" endline="37">Memoire::Instance</references>
+        <references refid="classMemoire_1a214a0f83b3164a2a24e366cc80cb806e" compoundref="Memoire_8cpp" startline="206" endline="223">Memoire::objet_u</references>
+        <references refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" compoundref="Objet__U__ptr_8cpp" startline="227" endline="242">set_Objet_U_ptr</references>
+        <referencedby refid="classTRUST__Deriv_1ac630e22e64dbb1b52bfe94b881363366" compoundref="TRUST__Deriv_8h" startline="143" endline="151">TRUST_Deriv&lt; _CLASSE_ &gt;::operator=</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1ab87cd60620ad2dac630a92e86a8494b4" compoundref="TRUST__Deriv_8cpp" startline="38" endline="43">TRUST_Deriv_Objet_U::operator=</referencedby>
+        <referencedby refid="classTRUST__Deriv_1a0fea382e5d25419435ec2eea587a08a4" compoundref="TRUST__Deriv_8h" startline="101" endline="104">TRUST_Deriv&lt; _CLASSE_ &gt;::TRUST_Deriv</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1a2aca00274095aaadebbbf5809871cdda" compoundref="TRUST__Deriv_8cpp" startline="28" endline="31">TRUST_Deriv_Objet_U::TRUST_Deriv_Objet_U</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Objet_U_ptr::set_Objet_U_ptr</definition>
+        <argsstring>(Objet_U *)</argsstring>
+        <name>set_Objet_U_ptr</name>
+        <reimplementedby refid="classTRUST__Deriv_1acb90d77582c9f73499eea1257046b0bd">set_Objet_U_ptr</reimplementedby>
+        <reimplementedby refid="classTRUST__Deriv_1acb90d77582c9f73499eea1257046b0bd">set_Objet_U_ptr</reimplementedby>
+        <reimplementedby refid="classTRUST__Deriv__Objet__U_1af94203583305f49d3c0017ba9883c467">set_Objet_U_ptr</reimplementedby>
+        <param>
+          <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+          <defname>ptr</defname>
+        </param>
+        <briefdescription>
+<para>Fait pointer *this sur l&apos;objet *ptr L&apos;adresse peut etre nulle (pointeur nul). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="53" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="227" bodyend="242"/>
+        <references refid="classObjet__U__ptr_1a88d2be054a86ae34480fa06739b09d22" compoundref="Objet__U__ptr_8cpp" startline="137" endline="161">check_Objet_U_ptr_type</references>
+        <references refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" compoundref="Objet__U_8cpp" startline="95" endline="98">Objet_U::get_object_id</references>
+        <references refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" compoundref="Objet__U__ptr_8cpp" startline="108" endline="132">get_Objet_U_ptr_check</references>
+        <references refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" compoundref="Objet__U_8cpp" startline="268" endline="275">Objet_U::numero</references>
+        <referencedby refid="classObjet__U__ptr_1a43544afb6679e71aaf5487b399f5b93f" compoundref="Objet__U__ptr_8cpp" startline="69" endline="74">detach</referencedby>
+        <referencedby refid="classObjet__U__ptr_1a860b31e4099223b11ef753c133b2d32c" compoundref="Objet__U__ptr_8cpp" startline="197" endline="203">recopie</referencedby>
+        <referencedby refid="classTRUST__Deriv_1acb90d77582c9f73499eea1257046b0bd" compoundref="TRUST__Deriv_8h" startline="82" endline="88">TRUST_Deriv&lt; _CLASSE_ &gt;::set_Objet_U_ptr</referencedby>
+        <referencedby refid="classTRUST__Deriv__Objet__U_1af94203583305f49d3c0017ba9883c467" compoundref="TRUST__Deriv_8cpp" startline="59" endline="64">TRUST_Deriv_Objet_U::set_Objet_U_ptr</referencedby>
+        <referencedby refid="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" compoundref="Objet__U__ptr_8cpp" startline="250" endline="288">typer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__U__ptr_1ab62bd66f21cafe82b9e41682c0bf4583" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_U_ptr::~Objet_U_ptr</definition>
+        <argsstring>() override</argsstring>
+        <name>~Objet_U_ptr</name>
+        <briefdescription>
+<para>Destructeur. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Il ne detruit pas l&apos;objet en reference </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="50" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.cpp" bodystart="59" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Pointeur sur un <ref refid="classObjet__U" kindref="compound">Objet_U</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Le constructeur par defaut construit un pointeur &quot;nul&quot;.</para>
+<para><simplesect kind="see"><para><ref refid="classTRUST__Deriv" kindref="compound">TRUST_Deriv</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TRUST_Deriv&lt; _CLASSE_ &gt;</label>
+        <link refid="classTRUST__Deriv"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>TRUST_Deriv_Objet_U</label>
+        <link refid="classTRUST__Deriv__Objet__U"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="4">
+        <label>TRUST_Deriv&lt; Discretisation_base &gt;</label>
+        <link refid="classTRUST__Deriv"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; Discretisation_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Objet_U_ptr</label>
+        <link refid="classObjet__U__ptr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Objet_U_ptr</label>
+        <link refid="classObjet__U__ptr"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_U_ptr.h" bodystart="31" bodyend="76"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>abort</name></member>
+      <member refid="classObjet__U__ptr_1a1f05aa2e2adf651ccf15ddb8c4c4f237" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U__ptr_1a6949654ed38a1ad5dba47f5877281d77" prot="protected" virt="virtual"><scope>Objet_U_ptr</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>check_int_overflow</name></member>
+      <member refid="classObjet__U__ptr_1a88d2be054a86ae34480fa06739b09d22" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>check_Objet_U_ptr_type</name></member>
+      <member refid="classObjet__U__ptr_1a31fecb59c381caa8190a5c02cddbb5a8" prot="private" virt="non-virtual"><scope>Objet_U_ptr</scope><name>cle_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classObjet__U__ptr_1ae08d62a7df48ea303843de409af76926" prot="private" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Declare_base_sans_constructeur_ni_destructeur</name></member>
+      <member refid="classObjet__U__ptr_1a43544afb6679e71aaf5487b399f5b93f" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>detach</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Objet_U_ptr</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>est_egal_a</name></member>
+      <member refid="classObjet__U__ptr_1a925076caa4d769fc4615d95c57ef711c" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>est_nul</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>get_info</name></member>
+      <member refid="classObjet__U__ptr_1a175adffdd5739a8a1470b353c88ee398" prot="protected" virt="pure-virtual"><scope>Objet_U_ptr</scope><name>get_info_ptr</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U__ptr_1af5ffb8a6cd473f3d32dbb6de421bb012" prot="protected" virt="virtual"><scope>Objet_U_ptr</scope><name>get_Objet_U_ptr</name></member>
+      <member refid="classObjet__U__ptr_1a7b6074bedd4d72cdcda63b4372ea0cc1" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>get_Objet_U_ptr_check</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U__ptr_1a30f053082d1b13ccbc66a82fc78ed781" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U__ptr_1a9a5254ed0900de717b295a2a49c08d53" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>nommer</name></member>
+      <member refid="classObjet__U__ptr_1a2ae7b8a19db61f14ed61250b931228ae" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>non_nul</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U__ptr_1aa441193d9d20cb436b14a032a7c2e85e" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Objet_U_ptr</name></member>
+      <member refid="classObjet__U__ptr_1ad7df2bb9f1088f5cdd0ab0369e0b956b" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>Objet_U_ptr</name></member>
+      <member refid="classObjet__U__ptr_1a61d27b45403c8591a89a071e2cc48c3b" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual" ambiguityscope="Objet_U::"><scope>Objet_U_ptr</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>printOn</name></member>
+      <member refid="classObjet__U__ptr_1a71d879a3f758ed62fed2ce8fce0bca68" prot="private" virt="non-virtual"><scope>Objet_U_ptr</scope><name>ptr_object_id_</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>readOn</name></member>
+      <member refid="classObjet__U__ptr_1a860b31e4099223b11ef753c133b2d32c" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>recopie</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>self_cast</name></member>
+      <member refid="classObjet__U__ptr_1a7bae681a3a3c0d7f2bcc8b8dd4e8c445" prot="protected" virt="virtual"><scope>Objet_U_ptr</scope><name>set_Objet_U_ptr</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Objet_U_ptr</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U__ptr_1af1441c90920c933ff845d91d3bd7b814" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>typer</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Objet_U_ptr</scope><name>~Objet_U</name></member>
+      <member refid="classObjet__U__ptr_1ab62bd66f21cafe82b9e41682c0bf4583" prot="protected" virt="non-virtual"><scope>Objet_U_ptr</scope><name>~Objet_U_ptr</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Objet_U_ptr</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

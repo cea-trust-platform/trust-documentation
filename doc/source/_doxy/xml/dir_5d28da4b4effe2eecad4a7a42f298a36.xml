@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_5d28da4b4effe2eecad4a7a42f298a36" kind="dir">
+    <compoundname>Dilatable</compoundname>
+    <innerdir refid="dir_34af9566fa953ec4d674e053f3791c3c">Common</innerdir>
+    <innerdir refid="dir_ff1c0327015213079e47006da0573e6e">Quasi_Compressible</innerdir>
+    <innerdir refid="dir_f68ca564a2e143a4f6bd7b58dc1f43b7">Weakly_Compressible</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/"/>
+  </compounddef>
+</doxygen>

@@ -242,7 +242,8 @@ html {
     }
 }
 
-/* dark mode variables are defined twice, to support both the dark-mode without and with doxygen-awesome-darkmode-toggle.js */
+/*
+dark mode variables are defined twice, to support both the dark-mode without and with doxygen-awesome-darkmode-toggle.js 
 html.dark-mode {
     color-scheme: dark;
 
@@ -301,7 +302,7 @@ html.dark-mode {
     --fragment-linenumber-background: #35393c;
     --fragment-linenumber-border: #1f1f1f;
 }
-
+*/
 body {
     color: var(--page-foreground-color);
     background-color: var(--page-background-color);

@@ -10,7 +10,7 @@ var classAssembleur__P__VEFPreP1B =
     [ "modifier_matrice", "classAssembleur__P__VEFPreP1B.html#abe8db1219815da867bd2d7dabc88651a", null ],
     [ "verifier_dirichlet", "classAssembleur__P__VEFPreP1B.html#acdeef94a4da9a426b6baf0042d9bf2b6", null ],
     [ "completer", "classAssembleur__P__VEFPreP1B.html#afa1069010190af451752baec9a506b65", null ],
-    [ "equation", "classAssembleur__P__VEFPreP1B.html#a07f9b10879250f385c32594eb80697cd", null ],
+    [ "equation", "classAssembleur__P__VEFPreP1B.html#a9b845268b25f1d89e911bf446cc529f9", null ],
     [ "modifier_secmem_elem", "classAssembleur__P__VEFPreP1B.html#a68c56f1db1d79a34135f8f46c293dc83", null ],
     [ "modifier_secmem_som", "classAssembleur__P__VEFPreP1B.html#a6e9aef242858ae25dde40c58c30791b8", null ],
     [ "modifier_secmem_aretes", "classAssembleur__P__VEFPreP1B.html#a671dcfc1aa964152dbc04bc5c31d196c", null ],
@@ -22,7 +22,6 @@ var classAssembleur__P__VEFPreP1B =
     [ "changer_base", "classAssembleur__P__VEFPreP1B.html#aa22b816f1e68a750994142c7b2363ce2", null ],
     [ "OBS_PTR", "classAssembleur__P__VEFPreP1B.html#a068c80681f38e56f8fa96a6ffa30278b", null ],
     [ "projete_L2", "classAssembleur__P__VEFPreP1B.html#ad322061530a77e3541d562700b900641", null ],
-    [ "la_matrice_de_travail_", "classAssembleur__P__VEFPreP1B.html#a5d22f81d5f579074de9324230e3ff45f", null ],
     [ "init", "classAssembleur__P__VEFPreP1B.html#a0b6f503b0a0af64037b281637f170661", null ],
     [ "alpha_", "classAssembleur__P__VEFPreP1B.html#a35bcffc2b58ba9d8d8692baeff32de13", null ],
     [ "beta_", "classAssembleur__P__VEFPreP1B.html#a9c3a670bab58483f6c06ddef2811097d", null ]

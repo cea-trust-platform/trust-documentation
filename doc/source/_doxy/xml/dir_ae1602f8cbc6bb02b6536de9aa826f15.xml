@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_ae1602f8cbc6bb02b6536de9aa826f15" kind="dir">
+    <compoundname>Multiphase</compoundname>
+    <innerdir refid="dir_a25a2b29f3ee895c93778b5d3bcdbc76">Correlations</innerdir>
+    <innerdir refid="dir_3cdd54bd2707fe79b899672dacdbc396">Equations</innerdir>
+    <innerdir refid="dir_c2f45dbef785956de0bc79de75cc16d7">Milieu</innerdir>
+    <innerdir refid="dir_fd402a27f7542945def33a3fcaecb53e">Operateurs</innerdir>
+    <innerdir refid="dir_0dc107b37124c25f744c920597b1be02">Problems</innerdir>
+    <innerdir refid="dir_81aa6c0fa59c1676a3e13aed969edf3d">Schemas_Temps</innerdir>
+    <innerdir refid="dir_661122b508a3ff59ea0fa3ba8e2d3366">Sources</innerdir>
+    <innerdir refid="dir_b56f16a2046187fc8769b1b21652aa21">Turbulence</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/"/>
+  </compounddef>
+</doxygen>

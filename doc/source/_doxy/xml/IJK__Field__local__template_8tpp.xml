@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="IJK__Field__local__template_8tpp" kind="file" language="C++">
+    <compoundname>IJK_Field_local_template.tpp</compoundname>
+    <includes refid="Simd__template_8h" local="no">Simd_template.h</includes>
+    <includedby refid="IJK__Field__local__template_8h" local="no">IJK_Field_local_template.h</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="IJK__Field__local__template_8tpp_1ac49fad99d7dc7e90f0496a4997c6f478" prot="public" static="no">
+        <name>IJK_Field_local_template_TPP_H</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Field_local_template.tpp" line="17" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Field_local_template.tpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>IJK_Field_local_template_TPP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IJK_Field_local_template_TPP_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Simd_template.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>External<sp/>storage:<sp/>false=&gt;normal<sp/>behaviour,<sp/>true=&gt;the<sp/>field<sp/>will<sp/>not<sp/>allocate<sp/>memory<sp/>in<sp/>data_,<sp/>the<sp/>user<sp/>must</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>provide<sp/>the<sp/>storage<sp/>via<sp/>set_external_storage()<sp/>method<sp/>(used<sp/>to<sp/>map<sp/>memory<sp/>from<sp/>elsewhere).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>Example:<sp/>field.allocate(...<sp/>,<sp/>true);<sp/>int<sp/>size=field.get_allocated_size();<sp/>Array<sp/>T(size);<sp/>field.set_external_storage(T);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>IMPORTANT:<sp/>when<sp/>&quot;external_storage==false&quot;,<sp/>an<sp/>appropriate<sp/>offset<sp/>will<sp/>be<sp/>set<sp/>in<sp/>order<sp/>to<sp/>align<sp/>the<sp/>data<sp/>on<sp/>cache<sp/>lines,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>(this<sp/>offset<sp/>varies<sp/>from<sp/>field<sp/>to<sp/>field<sp/>even<sp/>if<sp/>the<sp/>field<sp/>shape<sp/>(ni,nj,nk,compo,ghost)<sp/>is<sp/>exactly<sp/>the<sp/>same</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>plus<sp/>extra<sp/>padding<sp/>will<sp/>be<sp/>added<sp/>to<sp/>align<sp/>all<sp/>i=0,j,k<sp/>on<sp/>SIMD<sp/>aligned<sp/>blocks...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_&gt;</highlight></codeline>
+<codeline lineno="28" refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" kindref="member">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;::allocate</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Ni,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nj,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Nk,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ghosts,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>additional_k_layers,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nb_compos,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>external_storage)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>WARNING<sp/>!!!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>for<sp/>the<sp/>sympy_to_trust<sp/>system,<sp/>mem<sp/>alignment<sp/>must<sp/>be<sp/>disabled<sp/>otherwise<sp/>we<sp/>have<sp/>serious<sp/>trouble</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>with<sp/>fields<sp/>of<sp/>same<sp/>&quot;kind&quot;<sp/>that<sp/>have<sp/>not<sp/>the<sp/>same<sp/>storage<sp/>pattern<sp/>(offset,<sp/>stride,<sp/>etc...),<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>we<sp/>heavily<sp/>rely<sp/>on<sp/>&quot;same<sp/>pattern&quot;<sp/>to<sp/>optimize<sp/>fetch<sp/>operations<sp/>in<sp/>the<sp/>fields...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>disable_memalign<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ghosts<sp/>&gt;<sp/>Ni<sp/>||<sp/>ghosts<sp/>&gt;<sp/>Nj<sp/>||<sp/>ghosts<sp/>&gt;<sp/>Nk)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>in<sp/>IJK_Field_local_template::allocate:<sp/>ghostsize=&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>ghosts<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>is<sp/>larger<sp/>than<sp/>the<sp/>local<sp/>mesh<sp/>size<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>Ni<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>Nj<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>Nk<sp/>&lt;&lt;<sp/>finl;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>ni_<sp/>=<sp/>Ni;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>nj_<sp/>=<sp/>Nj;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>nk_<sp/>=<sp/>Nk;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>ghost_size_<sp/>=<sp/>ghosts;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>this-&gt;nb_compo_<sp/>=<sp/>nb_compos;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>j_stride_<sp/>=<sp/>ni_<sp/>+<sp/>2<sp/>*<sp/>ghosts;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!external_storage<sp/>||<sp/>disable_memalign)</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Align<sp/>beginning<sp/>of<sp/>line<sp/>on<sp/>SIMD<sp/>type...</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(j_stride_<sp/>%<sp/><ref refid="classSimd__template" kindref="compound">Simd_template&lt;_TYPE_&gt;::size</ref>()<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>j_stride_++;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>compo_stride_<sp/>=<sp/>j_stride_<sp/>*<sp/>(nj_<sp/>+<sp/>2<sp/>*<sp/>ghosts);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>offset_<sp/>=<sp/>ghost_size_<sp/>*<sp/>(1<sp/>+<sp/>j_stride_<sp/>+<sp/>compo_stride_<sp/>*<sp/>this-&gt;nb_compo_);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>k_layer_shift_<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>additional_k_layers_<sp/>=<sp/>additional_k_layers;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sz<sp/>=<sp/>(nk_<sp/>+<sp/>2<sp/>*<sp/>ghosts<sp/>+<sp/>additional_k_layers)<sp/>*<sp/>compo_stride_<sp/>*<sp/>this-&gt;nb_compo_<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="55" refid="classIJK__Field__local__template_1a02254e5ea9888a58be24e3424140aa53" refkind="member"><highlight class="normal"><sp/><sp/>allocated_size_<sp/>=<sp/>sz;</highlight></codeline>
+<codeline lineno="56" refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" refkind="member"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!external_storage<sp/>||<sp/>disable_memalign)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ensure<sp/>that<sp/>there<sp/>is<sp/>some<sp/>padding<sp/>data<sp/>at<sp/>beginning:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>offset_<sp/>+=<sp/>8;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Align<sp/>origin<sp/>on<sp/>cache<sp/>line<sp/>boundary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>CacheLineSizeBytes<sp/>=<sp/>64;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>+=<sp/>(int)(CacheLineSizeBytes/</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_));</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Add<sp/>supplemental<sp/>data<sp/>at<sp/>end<sp/>for<sp/>the<sp/>last<sp/>SIMD<sp/>instruction<sp/>of<sp/>the<sp/>loop<sp/>that<sp/>might<sp/>go</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>beyond<sp/>the<sp/>end<sp/>of<sp/>the<sp/>usefull<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sz<sp/>+=<sp/>(int)(CacheLineSizeBytes/</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_));</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>allocated_size_<sp/>=<sp/>sz;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>_TYPE_<sp/>*ptr<sp/>=<sp/>data_.addr()<sp/>+<sp/>offset_;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cptr<sp/>=<sp/>(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*)<sp/>ptr;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>iptr<sp/>=<sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>long)<sp/>cptr;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>decal<sp/>=<sp/>iptr<sp/>&amp;<sp/>(CacheLineSizeBytes<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>offset_<sp/>+=<sp/>(int)((CacheLineSizeBytes<sp/>-<sp/>decal)<sp/>/<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_TYPE_));</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!external_storage)</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>data_.resize_array(sz);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Adds<sp/>n<sp/>*<sp/>compo_stride_<sp/>*<sp/>nb_compo_<sp/>to<sp/>the<sp/>offset<sp/>(shifts<sp/>the<sp/>data<sp/>by<sp/>n<sp/>layers<sp/>in<sp/>the<sp/>k<sp/>direction<sp/>without<sp/>moving<sp/>memory)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Used<sp/>by<sp/>the<sp/>jacobi<sp/>&quot;in<sp/>place&quot;<sp/>algorithm:<sp/>the<sp/>result<sp/>replaces<sp/>the<sp/>source<sp/>data<sp/>but<sp/>is<sp/>shifted<sp/>in<sp/>k.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_ARRAY_&gt;</highlight></codeline>
+<codeline lineno="84" refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template_1a7e1670266e902f9084e4fc60e58c457e" kindref="member">IJK_Field_local_template&lt;_TYPE_,_TYPE_ARRAY_&gt;::shift_k_origin</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>k_layer_shift_<sp/>+=<sp/>n;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>Check<sp/>that<sp/>the<sp/>data<sp/>still<sp/>fits<sp/>into<sp/>the<sp/>allocated<sp/>memory<sp/>block</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/>assert(k_layer_shift_<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>k_layer_shift_<sp/>&lt;=<sp/>additional_k_layers_);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>offset_<sp/>+=<sp/>compo_stride_<sp/>*<sp/>this-&gt;nb_compo_<sp/>*<sp/>n;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Creates<sp/>a<sp/>field<sp/>with<sp/>nk=1,<sp/>that<sp/>points<sp/>to<sp/>the<sp/>data<sp/>than<sp/>src(...,...,k_layer)<sp/>(uses<sp/>ref_array()<sp/>to<sp/>create<sp/>the<sp/>reference).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/>ghostsize<sp/>is<sp/>identical<sp/>to<sp/>source<sp/>array.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;</highlight></codeline>
+<codeline lineno="96" refid="classIJK__Field__local__template_1a368089b3084ae97f25074cd2242b37f1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template_1ad5e88d463eb2d4578fb74ffbe2decb6a" kindref="member">IJK_Field_local_template&lt;float,ArrOfFloat&gt;::ref_ij</ref>(<ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_float</ref>&amp;<sp/>src,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k_lay)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>Cerr<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Error:<sp/>must<sp/>implement<sp/>ArrOfFloat::ref_array()<sp/>and<sp/>reset()&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>endl;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><ref refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" kindref="member">Process::exit</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;&gt;</highlight></codeline>
+<codeline lineno="103" refid="classIJK__Field__local__template_1a880c68e981bcc7dc0fd95a161b73a4b0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classIJK__Field__local__template_1ad5e88d463eb2d4578fb74ffbe2decb6a" kindref="member">IJK_Field_local_template&lt;double, ArrOfDouble&gt;::ref_ij</ref>(<ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_double</ref>&amp;<sp/>src,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>k_lay)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>data_.reset();</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>ni_<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1ac46e8dbcfe69b73e28f180a828b6fc8b" kindref="member">ni_</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/>nj_<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1a112577866ee0b70c990f3d5c5bcdf1bb" kindref="member">nj_</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>nk_<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/>ghost_size_<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1a15585107de44d0ff160a5c2174dcdf68" kindref="member">ghost_size_</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>j_stride_<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1ac0d327b5285b0d58e96a404761075c93" kindref="member">j_stride_</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>this-&gt;nb_compo_<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/>compo_stride_<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>k_layer_shift_<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>additional_k_layers_<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_first<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1a1e9b8fda1c7579cbac7a78a495bca1ba" kindref="member">linear_index</ref>(-ghost_size_,<sp/>-ghost_size_,<sp/>k_lay);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i_last<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1a1e9b8fda1c7579cbac7a78a495bca1ba" kindref="member">linear_index</ref>(ni_<sp/>+<sp/>ghost_size_<sp/>-<sp/>1,<sp/>nj_<sp/>+<sp/>ghost_size_<sp/>-<sp/>1,<sp/>k_lay);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>offset_<sp/>=<sp/>src.<ref refid="classIJK__Field__local__template_1a1e9b8fda1c7579cbac7a78a495bca1ba" kindref="member">linear_index</ref>(0,<sp/>0,<sp/>k_lay)<sp/>-<sp/>i_first;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>data_.ref_array(src.<ref refid="classIJK__Field__local__template_1a2b5d3e4ea14801e178568b6b7da2e06d" kindref="member">data_</ref>,<sp/>i_first,<sp/>i_last<sp/>-<sp/>i_first<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>IJK_Field_local_template_TPP_H<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Field_local_template.tpp"/>
+  </compounddef>
+</doxygen>

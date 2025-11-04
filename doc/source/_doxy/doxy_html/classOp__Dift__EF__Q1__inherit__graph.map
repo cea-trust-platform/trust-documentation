@@ -1,27 +1,15 @@
 <map id="Op_Dift_EF_Q1" name="Op_Dift_EF_Q1">
-<area shape="rect" id="Node000001" title="class Op_Dift_EF_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="330,476,448,504"/>
-<area shape="rect" id="Node000013" href="$classOp__Dift__EF__Q1__option.html" title=" " alt="" coords="306,552,472,580"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="391,520,391,552,386,552,386,520"/>
-<area shape="rect" id="Node000002" href="$classOp__Dift__EF__base.html" title=" " alt="" coords="323,401,454,428"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="391,444,391,476,386,476,386,444"/>
-<area shape="rect" id="Node000003" href="$classOp__Diff__EF__base.html" title="class Op_Diff_EF_base Classe de base des operateurs de diffusion EF" alt="" coords="235,325,366,353"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="330,361,375,398,371,402,326,365"/>
-<area shape="rect" id="Node000004" href="$classOperateur__Diff__base.html" title="classe Operateur_Diff_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="147,249,302,277"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="251,286,289,323,285,326,247,290"/>
-<area shape="rect" id="Node000005" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="76,165,200,193"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="165,202,213,247,209,251,161,206"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="5,81,79,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="70,117,125,163,121,167,67,121"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="6,5,78,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="45,49,45,81,39,81,39,49"/>
-<area shape="rect" id="Node000008" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="103,81,173,109"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="141,125,141,165,135,165,135,125"/>
-<area shape="rect" id="Node000009" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="198,81,396,109"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="259,119,165,167,162,162,256,114"/>
-<area shape="rect" id="Node000010" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="225,157,398,201"/>
-<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="279,214,240,251,237,247,276,210"/>
-<area shape="rect" id="Node000011" href="$classOp__EF__base.html" title=" " alt="" coords="326,249,427,277"/>
-<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="354,290,316,326,312,323,350,286"/>
-<area shape="rect" id="Node000012" href="$classOp__Diff__Turbulent__base.html" title=": classe Op_Diff_Turbulent_base Classe de base pour les operateurs de diffusion pour un ecoulement tu..." alt="" coords="390,325,566,353"/>
-<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="452,365,406,402,403,398,449,361"/>
+<area shape="rect" id="node1" title="class Op_Dift_EF_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="333,468,451,495"/>
+<area shape="rect" id="node13" href="$classOp__Dift__EF__Q1__option.html" title=" " alt="" coords="309,543,475,569"/>
+<area shape="rect" id="node2" href="$classOp__Dift__EF__base.html" title=" " alt="" coords="326,393,458,420"/>
+<area shape="rect" id="node3" href="$classOp__Diff__EF__base.html" title="class Op_Diff_EF_base Classe de base des operateurs de diffusion EF" alt="" coords="237,319,369,345"/>
+<area shape="rect" id="node4" href="$classOperateur__Diff__base.html" title="classe Operateur_Diff_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="149,244,305,271"/>
+<area shape="rect" id="node5" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="77,162,203,189"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="7,5,79,32"/>
+<area shape="rect" id="node8" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="105,80,175,107"/>
+<area shape="rect" id="node9" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="199,80,398,107"/>
+<area shape="rect" id="node10" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="227,155,402,196"/>
+<area shape="rect" id="node11" href="$classOp__EF__base.html" title=" " alt="" coords="329,244,431,271"/>
+<area shape="rect" id="node12" href="$classOp__Diff__Turbulent__base.html" title=": classe Op_Diff_Turbulent_base Classe de base pour les operateurs de diffusion pour un ecoulement tu..." alt="" coords="393,319,569,345"/>
 </map>

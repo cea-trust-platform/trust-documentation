@@ -6,5 +6,5 @@ var classStack =
     [ "pop", "classStack.html#a904ee78a9c87d5576b4dcff1d65b3ec9", null ],
     [ "peek", "classStack.html#aded92fe72b4b10c992a591c434a43b18", null ],
     [ "isEmpty", "classStack.html#af0c7d536d5df53fce29b62437e87dc01", null ],
-    [ "getBase", "classStack.html#aa20d61e9461297fb07af23e93cc21561", null ]
+    [ "getBase", "classStack.html#aae98b08fdaaa1fe5c49d20040f64a855", null ]
 ];

@@ -1,0 +1,490 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOpVEF__Quick" kind="class" language="C++" prot="public">
+    <compoundname>OpVEF_Quick</compoundname>
+    <basecompoundref refid="classOp__Conv__kschemas__VEF" prot="public" virt="non-virtual">Op_Conv_kschemas_VEF</basecompoundref>
+    <includes local="no">OpVEF_Quick.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOpVEF__Quick_1a48f69ff8d8bc2a7efd16592b66f23133" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>OpVEF_Quick::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(OpVEF_Quick)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classOpVEF__Quick" kindref="compound">OpVEF_Quick</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Operateurs/Op_Conv/OpVEF_Quick.h" line="35" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOpVEF__Quick_1af3f2439e74763899a7390746316b8e28" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>OpVEF_Quick::OpVEF_Quick</definition>
+        <argsstring>()</argsstring>
+        <name>OpVEF_Quick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Operateurs/Op_Conv/OpVEF_Quick.h" line="38" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Operateurs/Op_Conv/OpVEF_Quick.cpp" bodystart="31" bodyend="34"/>
+        <references refid="classOp__Conv__kschemas__VEF_1acefc930970ff28b3f623fbb3c867610a" compoundref="Op__Conv__kschemas__VEF_8h" startline="44">Op_Conv_kschemas_VEF::K</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classOpVEF__Quick" kindref="compound">OpVEF_Quick</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Cette classe represente l&apos;operateur de convection associe a une equation de transport d&apos;un scalaire. La discretisation est VEF Le champ convecte est scalaire ou vecteur de type <ref refid="classChamp__P1NC" kindref="compound">Champ_P1NC</ref> Le schema de convection est du type Quick</para>
+<para><simplesect kind="see"><para><ref refid="classOperateur__Conv__base" kindref="compound">Operateur_Conv_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Operateur_Conv_base</label>
+        <link refid="classOperateur__Conv__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Conv_kschemas_VEF</label>
+        <link refid="classOp__Conv__kschemas__VEF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="1">
+        <label>OpVEF_Quick</label>
+        <link refid="classOpVEF__Quick"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Conv_VEF_base</label>
+        <link refid="classOp__Conv__VEF__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="10">
+        <label>Op_VEF_Face</label>
+        <link refid="classOp__VEF__Face"/>
+      </node>
+      <node id="8">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="19">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OWN_PTRMatrice_Base</label>
+      </node>
+      <node id="15">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="26" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>Operateur_Conv_base</label>
+        <link refid="classOperateur__Conv__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Conv_kschemas_VEF</label>
+        <link refid="classOp__Conv__kschemas__VEF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="11">
+        <label>Matrice</label>
+        <link refid="classMatrice"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OpVEF_Quick</label>
+        <link refid="classOpVEF__Quick"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Conv_VEF_base</label>
+        <link refid="classOp__Conv__VEF__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>fluent_</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>faces_entrelaces_Cl_</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>matrice_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>description_</edgelabel>
+          <edgelabel>out_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>solveur</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>flux_bords_</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="27">
+        <label>Op_VEF_Face</label>
+        <link refid="classOp__VEF__Face"/>
+      </node>
+      <node id="13">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="21">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="28">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Operateurs/Op_Conv/OpVEF_Quick.h" line="32" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Operateurs/Op_Conv/OpVEF_Quick.h" bodystart="33" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>abort</name></member>
+      <member refid="classOp__Conv__VEF__base_1a663f0d1aef935785460683cd6e43b200" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>abortTimeStep</name></member>
+      <member refid="classOp__Conv__kschemas__VEF_1af96e2bfda9e99c543b658e489753bfd8" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>ajouter</name></member>
+      <member refid="classOperateur__base_1aec5922f1a3a0a064dbc94b8d371ad92d" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>ajouter_blocs</name></member>
+      <member refid="classOperateur__base_1ac9a953b4d76473713ee31c1d4671bf6f" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>ajouter_contribution_explicite_au_second_membre</name></member>
+      <member refid="classOperateur__base_1a5785d8f2346cbb70e2f584aefb51b61b" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>ajouter_flux</name></member>
+      <member refid="classOperateur__base_1a0d969b161b7caf2c3f09dec9a2b9ebfe" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classOp__Conv__kschemas__VEF_1a47a8c8c14f38a73597b0af5c0b8c8c46" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_</name></member>
+      <member refid="classOperateur__base_1a21ee8b399a139dd8e85ec0025d0606a5" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_champ</name></member>
+      <member refid="classOperateur__Conv__base_1abc743de15aa3969e4035ba7ca4d6ee57" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_champ_temp</name></member>
+      <member refid="classOp__Conv__VEF__base_1abc5d63166262da113ec50bd5d0fb5ec3" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_domaine_cl_dis</name></member>
+      <member refid="classOperateur__base_1addce89950be87e830970589f6aba37d3" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>associer_eqn</name></member>
+      <member refid="classOperateur__Conv__base_1a70e7969d884a0501f0abe7e790fb9978" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_norme_vitesse</name></member>
+      <member refid="classOp__Conv__VEF__base_1a789fdecb0536d198acea7cdd643528bc" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_vitesse</name></member>
+      <member refid="classOperateur__Conv__base_1ac5a52abff20b5590089726046684364b" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>associer_vitesse_pour_pas_de_temps</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>bidim_axi</name></member>
+      <member refid="classOp__Conv__VEF__base_1a2268eb7089622d2d62cf7656a7a5287f" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>calculer</name></member>
+      <member refid="classOp__Conv__VEF__base_1af095c42623cce20ae0e9a6be72dbf17f" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>calculer_dt_local</name></member>
+      <member refid="classOp__Conv__VEF__base_1a9162aee065590af65b6c871b4061f851" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>calculer_dt_stab</name></member>
+      <member refid="classOperateur__base_1af5cee4c5e5f27e9203bfb38d4a9b932b" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>calculer_flux</name></member>
+      <member refid="classOp__Conv__VEF__base_1a4e75d12784dd4f18e183aac91f24afc6" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>calculer_pour_post</name></member>
+      <member refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>check_int_overflow</name></member>
+      <member refid="classMorEqn_1a46879a44635069fbe1a7b2bb2368bfc1" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classOperateur__base_1a0ffe040617353804459652b00e98d414" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>col_width_</name></member>
+      <member refid="classOperateur__base_1a9560967884361b918b12a67813476608" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>completer</name></member>
+      <member refid="classOperateur__base_1a2fbd607fd187f87ef8b72dec73cf51aa" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>contribuer_a_avec</name></member>
+      <member refid="classOperateur__base_1abbebdc80dad39b8a5ec3058379113a52" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>contribuer_au_second_membre</name></member>
+      <member refid="classOperateur__base_1aabeae40911cab7759852f7000ae5ed24" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>contribuer_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1aed83e514128b3ec4a5c2470ca03db7a7" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classOperateur__base_1aa800ac60ec1afa615386d816a2bc1095" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>decal_temps</name></member>
+      <member refid="classOpVEF__Quick_1a48f69ff8d8bc2a7efd16592b66f23133" prot="private" virt="non-virtual"><scope>OpVEF_Quick</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classOperateur__base_1ae6a9120f01183fb396915a995d19f31f" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>description</name></member>
+      <member refid="classOperateur__base_1a0df8b73d13d81f02f3074a09dde28c84" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>description_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>dimension</name></member>
+      <member refid="classOperateur__base_1a8be8a7694d899cde1d08e02f992cb3e3" prot="public" virt="virtual" ambiguityscope="Operateur_Conv_base::"><scope>OpVEF_Quick</scope><name>dimensionner</name></member>
+      <member refid="classOp__VEF__Face_1a12571bc5ca5ba550da3e2066a08c8a71" prot="public" virt="non-virtual" ambiguityscope="Op_VEF_Face::"><scope>OpVEF_Quick</scope><name>dimensionner</name></member>
+      <member refid="classOperateur__base_1a6c57cb01245cf33b9e1aaeb36413ffe6" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>dimensionner_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1ab1383995b6e34068640675a57bec363b" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>dimensionner_blocs</name></member>
+      <member refid="classOperateur__base_1a840c29d194fc359fdf41fd5d3c4564e8" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>disable_TU</name></member>
+      <member refid="classOperateur__Conv__base_1a450bdc9a685144198c796cc62e67b85a" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>dt_stab_conv</name></member>
+      <member refid="classOperateur__Conv__base_1ad7f8949a3e9fa94731db3357c3547d7e" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>dt_stab_conv_</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>OpVEF_Quick</scope><name>duplique</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>equation</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>exit</name></member>
+      <member refid="classOp__Conv__VEF__base_1ae48e5a850c7764c1734c9c69e75fb620" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>faces_entrelaces_Cl_</name></member>
+      <member refid="classOperateur__base_1a47589b011a317625bca06268fec941fa" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>fichier</name></member>
+      <member refid="classOperateur__Conv__base_1a868dd39f29b4f613ec620fe5ada95977" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>fixer_dt_stab_conv</name></member>
+      <member refid="classOp__Conv__VEF__base_1a06aa1958fdf4fc1b04fb234d91e32f2a" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>fluent_</name></member>
+      <member refid="classOperateur__base_1ab547b37ace0f04931f6f09fcfa8fae0c" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1ace9775be15067de0b4ee3c850cb0f78b" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>flux_bords_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>format_precision_geom</name></member>
+      <member refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>get_champ</name></member>
+      <member refid="classOperateur__base_1a6391c6f9d25cc0058baff086d6e374d2" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_decal_temps</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>get_info</name></member>
+      <member refid="classOp__Conv__VEF__base_1afb357d3b0f34f5c860978e1fb6f75c22" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classOperateur__base_1a99957cfc9c19dfc1b3eb6eba25bb34e7" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_matrice</name></member>
+      <member refid="classOperateur__base_1a96bd268a33abb1e77dbe1dda3dde2e71" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classOperateur__base_1a189af24b5b71f6eb5f61cbd27f137f8f" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>get_solveur</name></member>
+      <member refid="classOperateur__base_1a6118925b38e7470d3820384da89ad8b8" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>OpVEF_Quick</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a48bacffa849c639403aae805225904a7" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>has_champ_inco</name></member>
+      <member refid="classOperateur__base_1a7261aed881ea18082ee61b431cfee4be" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>has_impr_file</name></member>
+      <member refid="classOperateur__base_1a3535d556393ce52658fb973127d63b9f" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>HAS_POINTER</name></member>
+      <member refid="classOp__Conv__VEF__base_1a07d90a8fe63917296ed81f95308af58d" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>impr</name></member>
+      <member refid="classOp__VEF__Face_1a189b861bb3549bc463ba077d070c7d4a" prot="public" virt="non-virtual" ambiguityscope="Op_VEF_Face::"><scope>OpVEF_Quick</scope><name>impr</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classOperateur__Conv__base_1af1413cc45d9de73b3d08c374a3379024" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>incompressible_</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>je_suis_maitre</name></member>
+      <member refid="classOp__Conv__VEF__base_1a831dc64492516f9bc7cd5341f8c7b610" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>jeton</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>Journal</name></member>
+      <member refid="classOp__Conv__kschemas__VEF_1acefc930970ff28b3f623fbb3c867610a" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>K</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classOperateur__base_1aaa3ae2d3c5358c1f385bb438959abb37" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>lire_solveur</name></member>
+      <member refid="classOperateur__base_1a8da7fc774882c66318f3a4573d814d83" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>matrice_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>me</name></member>
+      <member refid="classOperateur__base_1a55ee9300d78cf0d8bdf7f48c56feb7ce" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>mettre_a_jour</name></member>
+      <member refid="classOp__VEF__Face_1ae7d729c55575206fd7589968778ce8ac" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>modifier_flux</name></member>
+      <member refid="classOp__VEF__Face_1a0261e354c6e50c6a77070be4a463e9f8" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>modifier_matrice_pour_periodique_apres_contribuer</name></member>
+      <member refid="classOp__VEF__Face_1a8cbb60a2af76facc58137e9d351348ad" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>modifier_matrice_pour_periodique_avant_contribuer</name></member>
+      <member refid="classOperateur__base_1a109d07fcb418f60efc1302c6a91bf33d" prot="public" virt="virtual" ambiguityscope="Operateur_Conv_base::"><scope>OpVEF_Quick</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classOp__VEF__Face_1af98c1a1c0e887dd97c06fe5c1c7682bc" prot="public" virt="non-virtual" ambiguityscope="Op_VEF_Face::"><scope>OpVEF_Quick</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classOperateur__base_1ae53d686cf12a9bb83751f706193d5592" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mon_inconnue</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>multiple_files</name></member>
+      <member refid="classOperateur__base_1a656cefa4eb2adfc957e9e4c1fd651749" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>nb_ss_pas_de_temps</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>nom_du_cas</name></member>
+      <member refid="classOperateur__base_1ad35467308aed5d9f44aaa6cc66b35a79" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>nom_inco_</name></member>
+      <member refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>nom_inconnue</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>Objet_U</name></member>
+      <member refid="classOp__Conv__VEF__base_1a4e6166cdf6d385590a03cf0484352b15" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Conv__VEF__base_1a70537383a3ae0086a420f4beab002045" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Conv__VEF__base_1a3fe792242b8932dfa7e79323de2d1eed" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__Conv__base_1ad9ae3b83d990d03d2c24804f71411668" prot="protected" virt="non-virtual" ambiguityscope="Operateur_Conv_base::"><scope>OpVEF_Quick</scope><name>OBS_PTR</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual" ambiguityscope="MorEqn::"><scope>OpVEF_Quick</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>operator=</name></member>
+      <member refid="classOpVEF__Quick_1af3f2439e74763899a7390746316b8e28" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>OpVEF_Quick</name></member>
+      <member refid="classOperateur__base_1a0f48883db4ca2a57a4d83f344f427723" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>out_</name></member>
+      <member refid="classOperateur__base_1afd23006466730b1b57f4087a8c5fa776" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>ouvrir_fichier</name></member>
+      <member refid="classOperateur__base_1a5858c8c8ee1f6082ae18f2476804f495" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classOp__Conv__VEF__base_1a0b52e4725213bb233af4e1ead351a188" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>phi_u_transportant</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>precision_geom</name></member>
+      <member refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>readOn</name></member>
+      <member refid="classOp__Conv__VEF__base_1a5f309afe7e50577cdd69e395fdfe7bb9" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>remplir_fluent</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>reprendre</name></member>
+      <member refid="classOperateur__base_1abde0b3c19d29602a6aaf01cafb0ffdbc" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>resetTime</name></member>
+      <member refid="classOp__Conv__VEF__base_1a4d79c7265e1ae1c093a99a899dc45d19" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>roue</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>self_cast</name></member>
+      <member refid="classOperateur__base_1aff84ae0046179ad6c9aac58da235b8b4" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_decal_temps</name></member>
+      <member refid="classOperateur__base_1adc6417da22ec9fd42988d5a4103c471f" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_description</name></member>
+      <member refid="classOperateur__base_1a1079052c44f7db7615ecc24448676093" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_fichier</name></member>
+      <member refid="classOperateur__Conv__base_1a54bf4f55ea60db9fc2094ac0f1b21027" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>set_incompressible</name></member>
+      <member refid="classOperateur__base_1a58bbc3d85feaa143ec0d87e68d8fe137" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_matrice</name></member>
+      <member refid="classOperateur__base_1a75805455a9a1286fe361482dbbae0369" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a2fe69e40852fa946df7685516d3e5c66" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>set_solveur</name></member>
+      <member refid="classOperateur__base_1a01258c6b4bf60a83b7ebd1649a54ecf6" prot="protected" virt="non-virtual"><scope>OpVEF_Quick</scope><name>solveur</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classOperateur__base_1ae939f468496af4fdceb8c537a26dd09b" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>systeme_invariant</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>OpVEF_Quick</scope><name>taille_memoire</name></member>
+      <member refid="classOperateur__base_1a3640f8feaeac1bf4d8ff3777c233753c" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>tester_contribuer_a_avec</name></member>
+      <member refid="classOp__Conv__VEF__base_1a788492fc2aca98971471717c6d0d0d28" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>vitesse</name></member>
+      <member refid="classOp__Conv__VEF__base_1a1bc50476ba83fe89b9cf187c3b66abfe" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>vitesse</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>OpVEF_Quick</scope><name>~MorEqn</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>OpVEF_Quick</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>OpVEF_Quick</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamps__compris__IJK" kind="class" language="C++" prot="public">
+    <compoundname>Champs_compris_IJK</compoundname>
+    <basecompoundref refid="classChamps__compris__T" prot="public" virt="non-virtual">Champs_compris_T&lt; IJK_Field_double &gt;</basecompoundref>
+    <includes local="no">Champs_compris_IJK.h</includes>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classChamps__compris__IJK_1a46db23dfdc9fc62647a0635eb3447eeb" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr std::array&lt; const char *, 3 &gt;</type>
+        <definition>constexpr std::array&lt;const char*,3&gt; Champs_compris_IJK::COMPOS</definition>
+        <argsstring></argsstring>
+        <name>COMPOS</name>
+        <initializer>= {&quot;_X&quot;, &quot;_Y&quot;, &quot;_Z&quot;}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="45" column="31" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classChamps__compris__IJK_1aab2f3a1fd1f95b74dfec7a55d899a261" prot="private" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, OBS_PTR(<ref refid="classIJK__Field__vector" kindref="compound">IJK_Field_vector3_double</ref>)&gt;</type>
+        <definition>std::unordered_map&lt;std::string, OBS_PTR(IJK_Field_vector3_double)&gt; Champs_compris_IJK::liste_champs_vecto_</definition>
+        <argsstring></argsstring>
+        <name>liste_champs_vecto_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="47" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamps__compris__IJK_1a6fe05057895c3570022134c01cdbd6ab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_IJK::ajoute_champ_vectoriel</definition>
+        <argsstring>(const IJK_Field_vector3_double &amp;champ)</argsstring>
+        <name>ajoute_champ_vectoriel</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__vector" kindref="compound">IJK_Field_vector3_double</ref> &amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="37" bodyend="77"/>
+        <references refid="classChamps__compris__T_1aa2bd9fb5b3b311863130fa0bbc404773" compoundref="Champs__compris_8cpp" startline="60" endline="109">Champs_compris_T&lt; FIELD_TYPE &gt;::ajoute_champ</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classChamps__compris__IJK_1a30dfa55d832851c3a8de954b3fc82e57" compoundref="Champs__compris__IJK_8cpp" startline="22" endline="27">has_champ_vectoriel</references>
+        <references refid="classNom_1ae5d7b0dc793b2dcd6f3bdf550cd41da6" compoundref="Nom_8cpp" startline="567" endline="570">Nom::le_nom</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1a5d844c8f07d62c976bb577b4f23c4a7b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__vector" kindref="compound">IJK_Field_vector3_double</ref> &amp;</type>
+        <definition>const IJK_Field_vector3_double &amp; Champs_compris_IJK::get_champ_vectoriel</definition>
+        <argsstring>(const Motcle &amp;nom) const</argsstring>
+        <name>get_champ_vectoriel</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="36" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="29" bodyend="35"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1a30dfa55d832851c3a8de954b3fc82e57" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Champs_compris_IJK::has_champ_vectoriel</definition>
+        <argsstring>(const Motcle &amp;nom) const</argsstring>
+        <name>has_champ_vectoriel</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>A vectorial field is considered present in the structure if all its three components are there </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="22" bodyend="27"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <referencedby refid="classChamps__compris__IJK_1a6fe05057895c3570022134c01cdbd6ab" compoundref="Champs__compris__IJK_8cpp" startline="37" endline="77">ajoute_champ_vectoriel</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1a3ad43f67a7c77c42dafdade3705c41cc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classNoms" kindref="compound">Noms</ref></type>
+        <definition>const Noms Champs_compris_IJK::liste_noms_compris</definition>
+        <argsstring>() const</argsstring>
+        <name>liste_noms_compris</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="38" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="171" bodyend="177"/>
+        <references refid="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" compoundref="Champs__compris_8h" startline="47">Champs_compris_T&lt; FIELD_TYPE &gt;::liste_champs_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1acef1a069a3f301d67d4d9ec04a5134e3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classNoms" kindref="compound">Noms</ref></type>
+        <definition>const Noms Champs_compris_IJK::liste_noms_compris_vectoriel</definition>
+        <argsstring>() const</argsstring>
+        <name>liste_noms_compris_vectoriel</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="37" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="79" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1a1df2edb531cd5b9757f1f9168dc976b9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_IJK::switch_ft_fields</definition>
+        <argsstring>()</argsstring>
+        <name>switch_ft_fields</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="87" bodyend="108"/>
+        <references refid="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" compoundref="Champs__compris_8h" startline="47">Champs_compris_T&lt; FIELD_TYPE &gt;::liste_champs_</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classChamps__compris__IJK_1aaedde8bfc3bc642fc22b4df7fef86b28" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_IJK::switch_field</definition>
+        <argsstring>(const Nom &amp;field_name, const Nom &amp;prefix)</argsstring>
+        <name>switch_field</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>field_name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="111" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__IJK_1aa41d21e15422c21c25a9814081b50aab" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_IJK::switch_vector_field</definition>
+        <argsstring>(const Nom &amp;field_name, const Nom &amp;prefix)</argsstring>
+        <name>switch_vector_field</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>field_name</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>prefix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.cpp" bodystart="141" bodyend="169"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Same as Champs_compris, but specialised for IJK fields and also supports quering for vectorial fields (aka IJK_Field_vector3_double). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Note that this class has no member of type &quot;Champs_compris_IJK&quot;. This member is kept separate and inserted in Navier_Stokes_FTD_IJK, IJK_Interfaces, etc., because in some cases (typically at the probleme level Probleme_FTD_IJK_base) we do not need the member, just the abstract interface below. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Champs_compris_IJK</label>
+        <link refid="classChamps__compris__IJK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champs_compris_IJK_base</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Champs_compris_IJK</label>
+        <link refid="classChamps__compris__IJK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champs_compris_IJK_base</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris_IJK.h" bodystart="32" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classChamps__compris__T_1aa2bd9fb5b3b311863130fa0bbc404773" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>ajoute_champ</name></member>
+      <member refid="classChamps__compris__IJK_1a6fe05057895c3570022134c01cdbd6ab" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>ajoute_champ_vectoriel</name></member>
+      <member refid="classChamps__compris__T_1ab6b4aabf54a0681ab3c7495d5db4354a" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>clear_champs_compris</name></member>
+      <member refid="classChamps__compris__IJK_1a46db23dfdc9fc62647a0635eb3447eeb" prot="private" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>COMPOS</name></member>
+      <member refid="classChamps__compris__T_1a81e7ff823e570ba4432177e16035084a" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>get_champ</name></member>
+      <member refid="classChamps__compris__IJK_1a5d844c8f07d62c976bb577b4f23c4a7b" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>get_champ_vectoriel</name></member>
+      <member refid="classChamps__compris__T_1af1247b732f00044de3ab1053c52d8700" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__T_1ab4bcd337be295faa46b0481291393af0" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__IJK_1a30dfa55d832851c3a8de954b3fc82e57" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>has_champ_vectoriel</name></member>
+      <member refid="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" prot="protected" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>liste_champs_</name></member>
+      <member refid="classChamps__compris__IJK_1aab2f3a1fd1f95b74dfec7a55d899a261" prot="private" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>liste_champs_vecto_</name></member>
+      <member refid="classChamps__compris__IJK_1a3ad43f67a7c77c42dafdade3705c41cc" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>liste_noms_compris</name></member>
+      <member refid="classChamps__compris__IJK_1acef1a069a3f301d67d4d9ec04a5134e3" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>liste_noms_compris_vectoriel</name></member>
+      <member refid="classChamps__compris__IJK_1aaedde8bfc3bc642fc22b4df7fef86b28" prot="private" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>switch_field</name></member>
+      <member refid="classChamps__compris__IJK_1a1df2edb531cd5b9757f1f9168dc976b9" prot="public" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>switch_ft_fields</name></member>
+      <member refid="classChamps__compris__IJK_1aa41d21e15422c21c25a9814081b50aab" prot="private" virt="non-virtual"><scope>Champs_compris_IJK</scope><name>switch_vector_field</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,799 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="Perf__counters_8h" kind="file" language="C++">
+    <compoundname>Perf_counters.h</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">chrono</includes>
+    <includes local="no">memory</includes>
+    <includes local="no">iostream</includes>
+    <includedby refid="Coarsen__Operator__K_8tpp" local="no">Coarsen_Operator_K.tpp</includedby>
+    <includedby refid="Coarsen__Operator__Uniform_8tpp" local="no">Coarsen_Operator_Uniform.tpp</includedby>
+    <includedby refid="IJK__Test__Multigrille_8cpp" local="no">IJK_Test_Multigrille.cpp</includedby>
+    <includedby refid="Multigrille__Adrien_8cpp" local="no">Multigrille_Adrien.cpp</includedby>
+    <includedby refid="Multigrille__Adrien_8tpp" local="no">Multigrille_Adrien.tpp</includedby>
+    <includedby refid="Multigrille__base_8tpp" local="no">Multigrille_base.tpp</includedby>
+    <includedby refid="IJK__Navier__Stokes__tools_8cpp" local="no">IJK_Navier_Stokes_tools.cpp</includedby>
+    <includedby refid="Redistribute__Field_8cpp" local="no">Redistribute_Field.cpp</includedby>
+    <includedby refid="Equation__base_8cpp" local="no">Equation_base.cpp</includedby>
+    <includedby refid="Equation__IBM__proto_8cpp" local="no">Equation_IBM_proto.cpp</includedby>
+    <includedby refid="Operateur_8cpp" local="no">Operateur.cpp</includedby>
+    <includedby refid="Probleme__base_8cpp" local="no">Probleme_base.cpp</includedby>
+    <includedby refid="Probleme__U_8cpp" local="no">Probleme_U.cpp</includedby>
+    <includedby refid="Resoudre_8cpp" local="no">Resoudre.cpp</includedby>
+    <includedby refid="Schema__Temps__base_8cpp" local="no">Schema_Temps_base.cpp</includedby>
+    <includedby refid="Source_8cpp" local="no">Source.cpp</includedby>
+    <includedby refid="Domaine_8cpp" local="no">Domaine.cpp</includedby>
+    <includedby refid="MaillerParallel_8cpp" local="no">MaillerParallel.cpp</includedby>
+    <includedby refid="Scatter_8cpp" local="no">Scatter.cpp</includedby>
+    <includedby refid="ProblemTrio_8cpp" local="no">ProblemTrio.cpp</includedby>
+    <includedby refid="IJK__Field__template_8tpp" local="no">IJK_Field_template.tpp</includedby>
+    <includedby refid="IJKArray__with__ghost_8h" local="no">IJKArray_with_ghost.h</includedby>
+    <includedby refid="Parallel__io__parameters_8cpp" local="no">Parallel_io_parameters.cpp</includedby>
+    <includedby refid="MD__Vector__std__tools_8cpp" local="no">MD_Vector_std_tools.cpp</includedby>
+    <includedby refid="MD__Vector__tools_8cpp" local="no">MD_Vector_tools.cpp</includedby>
+    <includedby refid="Solv__AMG_8h" local="no">Solv_AMG.h</includedby>
+    <includedby refid="Solv__AMGX_8cpp" local="no">Solv_AMGX.cpp</includedby>
+    <includedby refid="Solv__cuDSS_8cpp" local="no">Solv_cuDSS.cpp</includedby>
+    <includedby refid="Solv__GCP_8cpp" local="no">Solv_GCP.cpp</includedby>
+    <includedby refid="Solv__GCP__NS_8cpp" local="no">Solv_GCP_NS.cpp</includedby>
+    <includedby refid="Solv__Optimal_8cpp" local="no">Solv_Optimal.cpp</includedby>
+    <includedby refid="Solv__Petsc_8cpp" local="no">Solv_Petsc.cpp</includedby>
+    <includedby refid="Solv__rocALUTION_8cpp" local="no">Solv_rocALUTION.cpp</includedby>
+    <includedby refid="SolveurSys_8cpp" local="no">SolveurSys.cpp</includedby>
+    <includedby refid="TRUSTArray_8cpp" local="no">TRUSTArray.cpp</includedby>
+    <includedby refid="TRUSTArray_8tpp" local="no">TRUSTArray.tpp</includedby>
+    <includedby refid="TRUSTVect__tools_8cpp" local="no">TRUSTVect_tools.cpp</includedby>
+    <includedby refid="Pb__MED_8cpp" local="no">Pb_MED.cpp</includedby>
+    <includedby refid="Operateur__Conv_8cpp" local="no">Operateur_Conv.cpp</includedby>
+    <includedby refid="Operateur__Div_8cpp" local="no">Operateur_Div.cpp</includedby>
+    <includedby refid="Operateur__Grad_8cpp" local="no">Operateur_Grad.cpp</includedby>
+    <includedby refid="Comm__Group__MPI_8cpp" local="no">Comm_Group_MPI.cpp</includedby>
+    <includedby refid="Device_8cpp" local="no">Device.cpp</includedby>
+    <includedby refid="Device_8h" local="no">Device.h</includedby>
+    <includedby refid="EcrFicPartage_8cpp" local="no">EcrFicPartage.cpp</includedby>
+    <includedby refid="Perf__counters_8cpp" local="no">Perf_counters.cpp</includedby>
+    <includedby refid="Save__Restart_8cpp" local="no">Save_Restart.cpp</includedby>
+    <includedby refid="Champ__Fonc__reprise_8cpp" local="no">Champ_Fonc_reprise.cpp</includedby>
+    <includedby refid="MAIN_8cpp" local="no">MAIN.cpp</includedby>
+    <includedby refid="mon__main_8cpp" local="no">mon_main.cpp</includedby>
+    <includedby refid="Op__Diff__PolyMAC__P0P1NC__Elem_8cpp" local="no">Op_Diff_PolyMAC_P0P1NC_Elem.cpp</includedby>
+    <includedby refid="Op__Diff__PolyMAC__P0P1NC__Face_8cpp" local="no">Op_Diff_PolyMAC_P0P1NC_Face.cpp</includedby>
+    <includedby refid="Op__Grad__PolyMAC__P0P1NC__Face_8cpp" local="no">Op_Grad_PolyMAC_P0P1NC_Face.cpp</includedby>
+    <includedby refid="Assembleur__P__PolyMAC_8cpp" local="no">Assembleur_P_PolyMAC.cpp</includedby>
+    <includedby refid="Assembleur__P__PolyMAC__P0_8cpp" local="no">Assembleur_P_PolyMAC_P0.cpp</includedby>
+    <includedby refid="Assembleur__P__PolyMAC__P0P1NC_8cpp" local="no">Assembleur_P_PolyMAC_P0P1NC.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Espece__Binaire__base_8cpp" local="no">Convection_Diffusion_Espece_Binaire_base.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" local="no">Convection_Diffusion_Fluide_Dilatable_Proto.cpp</includedby>
+    <includedby refid="Navier__Stokes__Fluide__Dilatable__Proto_8cpp" local="no">Navier_Stokes_Fluide_Dilatable_Proto.cpp</includedby>
+    <includedby refid="Pb__Dilatable__base_8cpp" local="no">Pb_Dilatable_base.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Espece__Multi__QC_8cpp" local="no">Convection_Diffusion_Espece_Multi_QC.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Espece__Multi__WC_8cpp" local="no">Convection_Diffusion_Espece_Multi_WC.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Temperature_8cpp" local="no">Convection_Diffusion_Temperature.cpp</includedby>
+    <includedby refid="Modele__turbulence__hyd__0__eq__base_8cpp" local="no">Modele_turbulence_hyd_0_eq_base.cpp</includedby>
+    <includedby refid="Op__Diff__VDF__Elem__base_8cpp" local="no">Op_Diff_VDF_Elem_base.cpp</includedby>
+    <includedby refid="Op__Diff__VDF__Face__base_8cpp" local="no">Op_Diff_VDF_Face_base.cpp</includedby>
+    <includedby refid="Op__Dift__VDF__base_8cpp" local="no">Op_Dift_VDF_base.cpp</includedby>
+    <includedby refid="Op__Grad__P0__to__Face_8cpp" local="no">Op_Grad_P0_to_Face.cpp</includedby>
+    <includedby refid="Op__Grad__VDF__Face_8cpp" local="no">Op_Grad_VDF_Face.cpp</includedby>
+    <includedby refid="SolveurPP1B_8cpp" local="no">SolveurPP1B.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>Perf_counters.h</label>
+        <link refid="Perf__counters_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>iostream</label>
+      </node>
+      <node id="3">
+        <label>chrono</label>
+      </node>
+      <node id="4">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classPerf__counters" prot="public">Perf_counters</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8" prot="public" static="no" strong="yes">
+        <type>int</type>
+        <name>STD_COUNTERS</name>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a685c4e8ddbba4632af3530dcadb09a43" prot="public">
+          <name>total_execution_time</name>
+          <briefdescription>
+<para>Lowest level counter that track the total time of the computation. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8abbf99f5eaae469fc901db20760ebd3ce" prot="public">
+          <name>computation_start_up</name>
+          <briefdescription>
+<para>Track the time before the <ref refid="classResoudre" kindref="compound">Resoudre</ref> loop. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aec64fdab6618e1c09ba785808ad4e8e2" prot="public">
+          <name>timeloop</name>
+          <briefdescription>
+<para>Track time elapsed in the time loop. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a65d20a2eeb64b467ae2a1ff3c9116f7b" prot="public">
+          <name>backup_file</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aefed22b4bd674e5870e084e9b4b8bd12" prot="public">
+          <name>system_solver</name>
+          <briefdescription>
+<para>Track time elapsed in <ref refid="classSolveurSys_1a62ca198f0c5dc599e53b0535761e5138" kindref="member">SolveurSys::resoudre_systeme</ref>. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8acb231e090948a815d1d8185dff5c4d53" prot="public">
+          <name>convection</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aa12e8d6288da27af8921e6378a917573" prot="public">
+          <name>diffusion</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a83ff9f9e3dd7561d3dd91204cf546b7e" prot="public">
+          <name>rhs</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8ae2b6dfb8a5c48206992d8310d176c37c" prot="public">
+          <name>gradient</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a1f064262ee7a1d63d490d9880aeb4aa0" prot="public">
+          <name>divergence</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aa046ac4201c9ce47f0b9cbc21093fcf9" prot="public">
+          <name>matrix_assembly</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a972114dec317781317a50209fa9d5aa2" prot="public">
+          <name>update_variables</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a9f5d8ac6d7cde39370bcba5c163bb854" prot="public">
+          <name>implicit_diffusion</name>
+          <briefdescription>
+<para>Track time elapsed in Equation_base::conjugue_diff_impl. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a5060fb2e05cf70525987a49db4cc8a07" prot="public">
+          <name>compute_dt</name>
+          <briefdescription>
+<para>Track time used to compute the time step dt. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a339350eeb4172769f23937a06be0fd04" prot="public">
+          <name>turbulent_viscosity</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a8a7ef1c3e82395341b7000b79c239eb4" prot="public">
+          <name>restart</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a97efcb39a5ee70661b7d8e45a71f77e7" prot="public">
+          <name>postreatment</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8af9c50e88e906d1b85e885a5739289765" prot="public">
+          <name>petsc_solver</name>
+          <briefdescription>
+<para>Track the time elapsed using petsc solver. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a44ad211dca61b78638a7bcaca86067fe" prot="public">
+          <name>mpi_sendrecv</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a8722169bf8ffe2303fbaef1abd715f67" prot="public">
+          <name>mpi_send</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a841086207127b650ea9fabd35c064e7b" prot="public">
+          <name>mpi_recv</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a832d4f75063a6a6db4abf458c128649e" prot="public">
+          <name>mpi_bcast</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a12e0431c9782793bbbd364a03dfc5d00" prot="public">
+          <name>mpi_alltoall</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a9bf61604af84644dc809998fbab320f3" prot="public">
+          <name>mpi_allgather</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8ad1346f58ca8c3a396b8a2082bf96f439" prot="public">
+          <name>mpi_gather</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8adea081da1a9b820b93490e0fd10790dc" prot="public">
+          <name>mpi_partialsum</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a3a1b9624cd99473333a7ce0e275d2a02" prot="public">
+          <name>mpi_sumdouble</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aed65a6830ac5bb854afa1f2b24ae75ca" prot="public">
+          <name>mpi_mindouble</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8af9c916a345b9dcef59508f3a5039b398" prot="public">
+          <name>mpi_maxdouble</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a1df0d851f19b8818a99bd82ba7ad6d09" prot="public">
+          <name>mpi_sumfloat</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a086a765afbeab97ea1c80abe8e44a661" prot="public">
+          <name>mpi_minfloat</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a158be2c4c9df128142caa8e707ba3cb6" prot="public">
+          <name>mpi_maxfloat</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a4e11c75a9bb512d8a099d329514502e8" prot="public">
+          <name>mpi_sumint</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a5f263fe3bba7a0861e62894ce9801554" prot="public">
+          <name>mpi_minint</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8af2f5fe853176ad0024e462d24b7f4505" prot="public">
+          <name>mpi_maxint</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aaa595c56a54dd2ff7a03bba7bd445273" prot="public">
+          <name>mpi_barrier</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a8bcdee27cbf623b69a222a9b46c2c8ac" prot="public">
+          <name>gpu_library</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a8e4a7de2591ddf2c030582d8280152ad" prot="public">
+          <name>gpu_kernel</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aff20a507a2153da612276deae986e7aa" prot="public">
+          <name>gpu_copytodevice</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a7416c10f167a6b397fb6bdc69278581e" prot="public">
+          <name>gpu_copyfromdevice</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8aa974bb9b4542d985ba191bfdbe4dc17d" prot="public">
+          <name>gpu_malloc_free</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8ab97593349cf7ac646296286bb9d12d69" prot="public">
+          <name>IO_EcrireFicPartageMPIIO</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a5ed0d808a9561d914ff237f4a9293ee2" prot="public">
+          <name>IO_EcrireFicPartageBin</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a7238e8b09c1323cc62a79a30111757d4" prot="public">
+          <name>interprete_scatter</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a5e554a20d891e64609374e8798d02df4" prot="public">
+          <name>virtual_swap</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a180b18fb574ccfa38cd3bc291e9f3ae9" prot="public">
+          <name>read_scatter</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a771e1f598731a8015e90694486057b7f" prot="public">
+          <name>parallel_meshing</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="Perf__counters_8h_1ac0a19117a44f202fb29071bbf2b119e8a864055adf13d1b799317c07b83c52d9b" prot="public">
+          <name>NB_OF_STD_COUNTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.h" bodystart="27" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="Perf__counters_8h_1a8f6104b2c26f694cc5ded4953575f984" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref> &amp;</type>
+        <definition>Perf_counters&amp; statistics</definition>
+        <argsstring>()</argsstring>
+        <name>statistics</name>
+        <briefdescription>
+<para>An that compact the access to the unique <ref refid="classPerf__counters" kindref="compound">Perf_counters</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>the unique <ref refid="classPerf__counters" kindref="compound">Perf_counters</ref> object </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.h" line="307" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.h" bodystart="307" bodyend="307"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>Copyright<sp/>(c)<sp/>2024,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;chrono&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>Perf_counters_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Perf_counters_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>file<sp/>contains<sp/>all<sp/>of<sp/>the<sp/>needed<sp/>for<sp/>the<sp/>description<sp/>of<sp/>the<sp/>counter<sp/>associated<sp/>with<sp/>the<sp/>tracking<sp/>of<sp/>performance<sp/>in<sp/>the<sp/>TRUST<sp/>code.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">enum<sp/>class</highlight><highlight class="normal"><sp/>STD_COUNTERS<sp/>:<sp/>int</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>total_execution_time<sp/>,<sp/></highlight><highlight class="comment">///&lt;<sp/>Lowest<sp/>level<sp/>counter<sp/>that<sp/>track<sp/>the<sp/>total<sp/>time<sp/>of<sp/>the<sp/>computation</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>computation_start_up<sp/>,<sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>the<sp/>time<sp/>before<sp/>the<sp/>Resoudre<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>timeloop<sp/>,<sp/><sp/><sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>time<sp/>elapsed<sp/>in<sp/>the<sp/>time<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/>backup_file<sp/>,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>system_solver,<sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>time<sp/>elapsed<sp/>in<sp/>SolveurSys::resoudre_systeme</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>convection<sp/>,</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>diffusion<sp/>,</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/>rhs<sp/>,</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>gradient<sp/>,</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/>divergence<sp/>,</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/>matrix_assembly<sp/>,</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/>update_variables<sp/><sp/>,</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/>implicit_diffusion,<sp/><sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>time<sp/>elapsed<sp/>in<sp/>Equation_base::conjugue_diff_impl</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>compute_dt<sp/>,<sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>time<sp/>used<sp/>to<sp/>compute<sp/>the<sp/>time<sp/>step<sp/>dt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/>turbulent_viscosity<sp/>,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>restart<sp/>,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>postreatment<sp/>,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>petsc_solver,<sp/><sp/></highlight><highlight class="comment">///&lt;<sp/>Track<sp/>the<sp/>time<sp/>elapsed<sp/>using<sp/>petsc<sp/>solver</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/>mpi_sendrecv<sp/><sp/>,</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>mpi_send<sp/>,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/>mpi_recv<sp/>,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/>mpi_bcast<sp/>,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/>mpi_alltoall<sp/>,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/>mpi_allgather<sp/>,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>mpi_gather<sp/>,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/>mpi_partialsum,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/>mpi_sumdouble<sp/>,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>mpi_mindouble,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/>mpi_maxdouble<sp/>,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/>mpi_sumfloat<sp/>,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>mpi_minfloat<sp/>,</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>mpi_maxfloat<sp/>,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/>mpi_sumint<sp/>,</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/>mpi_minint<sp/>,</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>mpi_maxint<sp/>,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>mpi_barrier<sp/>,</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>gpu_library<sp/>,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>gpu_kernel<sp/>,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/>gpu_copytodevice<sp/>,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/>gpu_copyfromdevice<sp/>,</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>gpu_malloc_free,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/>IO_EcrireFicPartageMPIIO<sp/>,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/>IO_EcrireFicPartageBin<sp/>,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/>interprete_scatter,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/>virtual_swap<sp/>,</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>read_scatter,</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/>parallel_meshing,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>NB_OF_STD_COUNTER</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="80"><highlight class="comment">/*!<sp/><sp/>@brief<sp/>This<sp/>class<sp/>stores<sp/>and<sp/>manages<sp/>counters<sp/>in<sp/>TRUST.<sp/>It<sp/>is<sp/>a<sp/>singleton.</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="classPerf__counters" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref></highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="86" refid="classPerf__counters_1a7199862ecc2cf8a7d3dda954d0ed38aa" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a7199862ecc2cf8a7d3dda954d0ed38aa" kindref="member">clock</ref><sp/>=<sp/>std::chrono::high_resolution_clock;</highlight></codeline>
+<codeline lineno="87" refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref><sp/>=<sp/>std::chrono::time_point&lt;clock&gt;;</highlight></codeline>
+<codeline lineno="88" refid="classPerf__counters_1a55de2814bd702ea138c8518f419c44b0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a55de2814bd702ea138c8518f419c44b0" kindref="member">duration</ref><sp/>=<sp/>std::chrono::duration&lt;double&gt;;</highlight></codeline>
+<codeline lineno="89" refid="classPerf__counters_1a4495ad839e5d76d8567365e86257510d" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref><sp/><ref refid="classPerf__counters_1a4495ad839e5d76d8567365e86257510d" kindref="member">now</ref>()</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>clock::now();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="94"><highlight class="comment">//////<sp/>Time<sp/>wrapper<sp/>/////</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="classPerf__counters_1ad4643192fc862e7ac577c883e403a83a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref><sp/><ref refid="classPerf__counters_1ad4643192fc862e7ac577c883e403a83a" kindref="member">start_clock</ref>()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a4495ad839e5d76d8567365e86257510d" kindref="member">now</ref>();}<sp/></highlight><highlight class="comment">///&lt;<sp/>Start<sp/>a<sp/>clock,<sp/>return<sp/>a<sp/>time_point,<sp/>not<sp/>a<sp/>double</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad3303a3210effd1d0c6fdd83f52b1e77" kindref="member">compute_time</ref>(<ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref><sp/>start);<sp/></highlight><highlight class="comment">///&lt;<sp/>return<sp/>time<sp/>since<sp/>start<sp/>in<sp/>seconds</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>The<sp/>class<sp/>Perf_counters<sp/>is<sp/>based<sp/>on<sp/>a<sp/>phoenix<sp/>singleton<sp/>pattern.<sp/>To<sp/>access<sp/>to<sp/>the<sp/>unique<sp/>object<sp/>inside<sp/>the<sp/>code,<sp/>use<sp/>the<sp/>getInstance()<sp/>function</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@return<sp/>the<sp/>unique<sp/>Perf_counters<sp/>object</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="classPerf__counters_1acd120776ba633243c7f6b22133cc0868" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>&amp;<sp/><ref refid="classPerf__counters_1acd120776ba633243c7f6b22133cc0868" kindref="member">getInstance</ref>()</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Static<sp/>flag<sp/>for<sp/>tracking<sp/>singleton<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>destroyed<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>*<sp/>instance<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(instance<sp/>==<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(destroyed)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>instance<sp/>has<sp/>already<sp/>been<sp/>destroyed<sp/>but<sp/>still<sp/>asked<sp/>for<sp/>somewhere,<sp/>the<sp/>instance<sp/>is<sp/>reborn</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[Stats]<sp/>The<sp/>singleton<sp/>pattern<sp/>had<sp/>to<sp/>be<sp/>reconstructed<sp/>for<sp/>avoiding<sp/>\&apos;Static<sp/>Initialization<sp/>Order<sp/>Fiasco\&apos;<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;std::endl;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;It<sp/>does<sp/>not<sp/>impact<sp/>the<sp/>TU<sp/>files<sp/>but<sp/>be<sp/>careful<sp/>with<sp/>the<sp/>values<sp/>of<sp/>times<sp/>printed<sp/>afterwards&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;std::endl;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>memory<sp/>=<sp/>::operator<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal">(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>));</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>(memory)<sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>A<sp/>cleaning<sp/>method<sp/>for<sp/>avoiding<sp/>memory<sp/>leaks</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::atexit([]()</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance-&gt;~Perf_counters();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>For<sp/>the<sp/>first<sp/>creation<sp/>of<sp/>the<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref><sp/>counters_stat_;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance<sp/>=<sp/>&amp;counters_stat_;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>destruction<sp/>flag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::atexit([]()</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>destroyed<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>instance<sp/>=<sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*instance;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/>}</highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="141"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>Create<sp/>a<sp/>new<sp/>counter<sp/>and<sp/>add<sp/>it<sp/>to<sp/>the<sp/>map<sp/>of<sp/>custom<sp/>counters</highlight></codeline>
+<codeline lineno="142"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="143"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>counter_level</highlight></codeline>
+<codeline lineno="144"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>counter_description</highlight></codeline>
+<codeline lineno="145"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>counter_family</highlight></codeline>
+<codeline lineno="146"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>is_comm</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@return<sp/>create<sp/>a<sp/>new<sp/>counter</highlight></codeline>
+<codeline lineno="148"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@note<sp/>If<sp/>the<sp/>counter<sp/>description<sp/>already<sp/>exists,<sp/>it<sp/>will<sp/>not<sp/>create<sp/>a<sp/>new<sp/>counter.</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad8da7bbe3cc8b6bf63ce2c5a9c76323c" kindref="member">create_custom_counter</ref>(std::string<sp/>counter_description<sp/>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>counter_level,<sp/><sp/>std::string<sp/>counter_family<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;None&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_comm=</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>is_gpu=</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="153"><highlight class="comment"><sp/><sp/>/*!<sp/>Standard<sp/>counters,<sp/>start<sp/>the<sp/>tracking<sp/>of<sp/>the<sp/>wanted<sp/>operation</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>std_cnt<sp/>reference<sp/>to<sp/>the<sp/>standard<sp/>counter</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>counter_lvl<sp/>level<sp/>of<sp/>the<sp/>counter<sp/>you<sp/>try<sp/>to<sp/>open,<sp/>warning<sp/>it<sp/>changes<sp/>the<sp/>value<sp/>of<sp/>the<sp/>counter<sp/>level<sp/>associated<sp/>with<sp/>counter<sp/>std_cnt</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" kindref="member">begin_count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>STD_COUNTERS&amp;<sp/>std_cnt,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>counter_lvl<sp/>=<sp/>-100000);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="160"><highlight class="comment"><sp/><sp/>/*!<sp/>Custom<sp/>counters,<sp/>start<sp/>the<sp/>tracking<sp/>of<sp/>the<sp/>wanted<sp/>operation</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>custom_count_name<sp/>string<sp/>key<sp/>in<sp/>the<sp/>custom<sp/>counter<sp/>map</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>counter_lvl<sp/>level<sp/>of<sp/>the<sp/>counter<sp/>you<sp/>try<sp/>to<sp/>open,<sp/>warning<sp/>it<sp/>changes<sp/>the<sp/>value<sp/>of<sp/>the<sp/>level<sp/>of<sp/>the<sp/>counter<sp/>associated<sp/>with<sp/>custom_count_name</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" kindref="member">begin_count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>custom_count_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>counter_lvl=<sp/>-100000);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>End<sp/>the<sp/>count<sp/>of<sp/>a<sp/>counter<sp/>and<sp/>update<sp/>the<sp/>counter<sp/>values</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>c<sp/>is<sp/>the<sp/>counter<sp/>to<sp/>end<sp/>the<sp/>count</highlight></codeline>
+<codeline lineno="170"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>count_increment<sp/>is<sp/>the<sp/>count<sp/>increment.<sp/>If<sp/>not<sp/>specified,<sp/>then<sp/>it<sp/>is<sp/>equal<sp/>to<sp/>1</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>quantity_increment<sp/>is<sp/>the<sp/>increment<sp/>of<sp/>custom<sp/>variable<sp/>quantity.<sp/>If<sp/>not<sp/>specified,<sp/>it<sp/>is<sp/>set<sp/>to<sp/>0.</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad528e593c4ea8c18b317fef30632b053" kindref="member">end_count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>custom_count_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count_increment=1,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>quantity_increment=0);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>End<sp/>the<sp/>count<sp/>of<sp/>a<sp/>counter<sp/>and<sp/>update<sp/>the<sp/>counter<sp/>values</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>c<sp/>is<sp/>the<sp/>counter<sp/>to<sp/>end<sp/>the<sp/>count</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>count_increment<sp/>is<sp/>the<sp/>count<sp/>increment.<sp/>If<sp/>not<sp/>specified,<sp/>then<sp/>it<sp/>is<sp/>equal<sp/>to<sp/>1</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>quantity_increment<sp/>is<sp/>the<sp/>increment<sp/>of<sp/>custom<sp/>variable<sp/>quantity.<sp/>If<sp/>not<sp/>specified,<sp/>it<sp/>is<sp/>set<sp/>to<sp/>0.</highlight></codeline>
+<codeline lineno="180"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad528e593c4ea8c18b317fef30632b053" kindref="member">end_count</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>STD_COUNTERS&amp;<sp/>std_cnt,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count_increment=1,<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>quantity_increment=0);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>Stop<sp/>all<sp/>counters,<sp/>has<sp/>to<sp/>be<sp/>called<sp/>on<sp/>every<sp/>processor<sp/>simultaneously</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ab876919b95e793685c350b095350e1c3" kindref="member">stop_counters</ref>();</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="188"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>Restart<sp/>all<sp/>counters,<sp/>has<sp/>to<sp/>be<sp/>called<sp/>on<sp/>every<sp/>processor<sp/>simultaneously</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ac371d494b5c1f518d2019782baff2130" kindref="member">restart_counters</ref>();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="193"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>Reset<sp/>counters<sp/>to<sp/>zero,<sp/>used<sp/>between<sp/>the<sp/>start-up<sp/>of<sp/>the<sp/>computation,<sp/>the<sp/>computation<sp/>itself<sp/>and<sp/>the<sp/>post-processing</highlight></codeline>
+<codeline lineno="194"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad1c75ccb43dee0a876d89e5a06f625d1" kindref="member">reset_counters</ref>();</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/><sp/>/*!<sp/>@brief<sp/>Function<sp/>that<sp/>encapsulate<sp/>the<sp/>two<sp/>functions<sp/>that<sp/>writes<sp/>the<sp/>TU<sp/>files</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="200"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>messsage<sp/>can<sp/>only<sp/>take<sp/>three<sp/>values:<sp/>&quot;Computation<sp/>start-up<sp/>statistics&quot;,<sp/>&quot;Time<sp/>loop<sp/>statistics&quot;<sp/>or<sp/>&quot;Post-resolution<sp/>statistics&quot;</highlight></codeline>
+<codeline lineno="201"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@note<sp/>It<sp/>also<sp/>resets<sp/>the<sp/>counters</highlight></codeline>
+<codeline lineno="202"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad449b337c7c852c4b7713eb192e645b3" kindref="member">print_TU_files</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>message);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Update<sp/>computation_time_<sp/>and<sp/>return<sp/>its<sp/>value<sp/>as<sp/>a<sp/>double<sp/>(in<sp/>seconds)</highlight></codeline>
+<codeline lineno="207"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aef5cfc87fc28eec306d686d90e1183e3" kindref="member">get_computation_time</ref>();</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="211"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Give<sp/>as<sp/>a<sp/>double<sp/>the<sp/>total<sp/>time<sp/>(in<sp/>second)<sp/>elapsed<sp/>in<sp/>the<sp/>operation<sp/>tracked<sp/>by<sp/>the<sp/>standard<sp/>counter<sp/>call<sp/>name</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aba562d97cce8c96822134e67b74921b0" kindref="member">get_total_time</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>STD_COUNTERS&amp;<sp/>name)<sp/>;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Give<sp/>as<sp/>a<sp/>double<sp/>the<sp/>total<sp/>time<sp/>(in<sp/>second)<sp/>elapsed<sp/>in<sp/>the<sp/>operation<sp/>tracked<sp/>by<sp/>the<sp/>custom<sp/>counter<sp/>call<sp/>name</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aba562d97cce8c96822134e67b74921b0" kindref="member">get_total_time</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name)<sp/>;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="221"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Give<sp/>as<sp/>a<sp/>double<sp/>the<sp/>time<sp/>(in<sp/>second)<sp/>elapsed<sp/>in<sp/>the<sp/>operation<sp/>tracked<sp/>by<sp/>the<sp/>standard<sp/>counter<sp/>call<sp/>name<sp/>since<sp/>the<sp/>counter<sp/>was<sp/>last<sp/>opened</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="223"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aae1b9a5f462a7d48de0d004d96ca86d6" kindref="member">get_time_since_last_open</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>STD_COUNTERS&amp;<sp/>name);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Give<sp/>as<sp/>a<sp/>double<sp/>the<sp/>time<sp/>(in<sp/>second)<sp/>elapsed<sp/>in<sp/>the<sp/>operation<sp/>tracked<sp/>by<sp/>the<sp/>standard<sp/>counter<sp/>call<sp/>name<sp/>since<sp/>the<sp/>counter<sp/>was<sp/>last<sp/>opened</highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="228"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aae1b9a5f462a7d48de0d004d96ca86d6" kindref="member">get_time_since_last_open</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>name)<sp/>;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="231"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>Check<sp/>whether<sp/>a<sp/>counter<sp/>is<sp/>already<sp/>running.<sp/>Should<sp/>rarely<sp/>be<sp/>used!</highlight></codeline>
+<codeline lineno="232"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a0c24e82b4bf800660ce909ede0c87f7b" kindref="member">is_running</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>STD_COUNTERS&amp;<sp/>name);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="236"><highlight class="comment"><sp/><sp/>/*!</highlight></codeline>
+<codeline lineno="237"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@brief<sp/>Set<sp/>time_loop_<sp/>to<sp/>true<sp/>in<sp/>order<sp/>to<sp/>account<sp/>for<sp/>cache<sp/>properly</highlight></codeline>
+<codeline lineno="238"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a3596145f4996d2fb7be4ac0c1cdc0117" kindref="member">start_timeloop</ref>();</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="241"><highlight class="comment"><sp/><sp/>/*!</highlight></codeline>
+<codeline lineno="242"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@brief<sp/>Set<sp/>time_loop_<sp/>to<sp/>false<sp/>as<sp/>we<sp/>exit<sp/>the<sp/>time<sp/>loop</highlight></codeline>
+<codeline lineno="243"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ac8f905b259c9fadbdc830dcd01dc6b64" kindref="member">end_timeloop</ref>();</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/><sp/>/*!</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@brief,<sp/>this<sp/>function<sp/>start<sp/>statistics<sp/>tracking<sp/>for<sp/>a<sp/>time<sp/>step.<sp/>It<sp/>has<sp/>to<sp/>be<sp/>called<sp/>at<sp/>the<sp/>start<sp/>of<sp/>each<sp/>time<sp/>step.</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ad955fef08848bb9b1b3aee01fe1023de" kindref="member">start_time_step</ref>();</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="251"><highlight class="comment"><sp/><sp/>/*!@brief<sp/>This<sp/>function<sp/>compute<sp/>statistics<sp/>per<sp/>time<sp/>steps<sp/>of<sp/>counters<sp/>used<sp/>at<sp/>least<sp/>once<sp/>during<sp/>a<sp/>time<sp/>step.</highlight></codeline>
+<codeline lineno="252"><highlight class="comment"><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="253"><highlight class="comment"><sp/><sp/><sp/>*<sp/>@param<sp/>tstep<sp/>is<sp/>the<sp/>current<sp/>time<sp/>step<sp/>number</highlight></codeline>
+<codeline lineno="254"><highlight class="comment"><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a32280f3cf6c063ea91f0bb33cd5721a0" kindref="member">end_time_step</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>tstep);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aac375186e7827e84e504c6555c4ba22c" kindref="member">set_nb_time_steps_elapsed</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n)<sp/>;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a0006a5433fd2b26141890a63db3e6a2f" kindref="member">get_last_opened_counter_level</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="261"><highlight class="comment"><sp/><sp/>///////<sp/>GPU<sp/>features<sp/>for<sp/>a<sp/>cleaner<sp/>Device<sp/>class</highlight></codeline>
+<codeline lineno="262"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a1c0b04d09dbed1681c1705ef9baee2fe" kindref="member">start_gpu_timer</ref>();</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a624db38bab623ee517bc2f9931d6c26a" kindref="member">stop_gpu_timer</ref>();</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aecdf9f0a617572041f4abd731de778c5" kindref="member">is_gpu_verbose_on</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a4104a8ab22805a16b45a2df17b3b8c7c" kindref="member">set_gpu_verbose</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>on)<sp/>;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ac0d5e063dc8513bba10426be6b7ce5db" kindref="member">get_init_device</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a950e2d43363c71b71df79bb311197dba" kindref="member">set_init_device</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>init)<sp/>;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a5181c9dd4460edf3c7f2fc3ae3304f51" kindref="member">get_gpu_timer</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276" refid="classPerf__counters_1a22c74f67ff8a6b1aa85281b9abf30c66" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a22c74f67ff8a6b1aa85281b9abf30c66" kindref="member">set_gpu_timer</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>timer);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ab55f020baa427f6a2a2da877de26ae59" kindref="member">add_to_gpu_timer_counter</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>to_add)<sp/>;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a2d30e2dcb48dc4a1fdfe9abdbfd1b0a0" kindref="member">get_gpu_timer_counter</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>;</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a345495052c0ce97444d8cfb262d9cb59" kindref="member">stop_gpu_timer_and_compute_gpu_time</ref>()<sp/>;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1ab9afd4896c4fd242860d2c7167473329" kindref="member">get_use_gpu</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"></highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1aa95f2c0dc611025fcfe98fa3ac28008e" kindref="member">get_gpu_fence</ref>()<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1a41289bfef518aceb64d15e2b5704b5b3" kindref="member">set_gpu_fence</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>fence);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="290"><highlight class="comment">////<sp/>end<sp/>of<sp/>GPU<sp/>features</highlight></codeline>
+<codeline lineno="291"><highlight class="comment"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292" refid="classPerf__counters_1a3b7cae8b59595308625097066e98c04c" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classPerf__counters_1a3b7cae8b59595308625097066e98c04c" kindref="member">Perf_counters</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="293" refid="classPerf__counters_1a6b63c6e1f8a5905399df851c8de3aef7" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>&amp;<sp/><ref refid="classPerf__counters_1a6b63c6e1f8a5905399df851c8de3aef7" kindref="member">operator=</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>&amp;)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>();</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/>~<ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>();</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Impl;</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/>std::unique_ptr&lt;Impl&gt;<sp/>pimpl_;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="303"><highlight class="comment">/*!<sp/>@brief<sp/>An<sp/>that<sp/>compact<sp/>the<sp/>access<sp/>to<sp/>the<sp/>unique<sp/>Perf_counters<sp/>object</highlight></codeline>
+<codeline lineno="304"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="305"><highlight class="comment"><sp/>*<sp/>@return<sp/>the<sp/>unique<sp/>Perf_counters<sp/>object</highlight></codeline>
+<codeline lineno="306"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters" kindref="compound">Perf_counters</ref>&amp;<sp/>statistics()<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classPerf__counters_1acd120776ba633243c7f6b22133cc0868" kindref="member">Perf_counters::getInstance</ref>();}</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.h"/>
+  </compounddef>
+</doxygen>

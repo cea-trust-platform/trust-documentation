@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classInterpolation__IBM__mean__gradient__proto" kind="class" language="C++" prot="public">
+    <compoundname>Interpolation_IBM_mean_gradient_proto</compoundname>
+    <derivedcompoundref refid="classInterpolation__IBM__hybrid" prot="public" virt="non-virtual">Interpolation_IBM_hybrid</derivedcompoundref>
+    <derivedcompoundref refid="classInterpolation__IBM__mean__gradient" prot="public" virt="non-virtual">Interpolation_IBM_mean_gradient</derivedcompoundref>
+    <includes local="no">Interpolation_IBM_mean_gradient_proto.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTLists" kindref="compound">IntLists</ref></type>
+        <definition>IntLists Interpolation_IBM_mean_gradient_proto::sommets_voisins_</definition>
+        <argsstring></argsstring>
+        <name>sommets_voisins_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="49" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classInterpolation__IBM__mean__gradient__proto_1a9b087672acfa2abb1d9cbb1b5dc2dd3d" compoundref="Interpolation__IBM__mean__gradient__proto_8cpp" startline="21" endline="242">computeSommetsVoisins</referencedby>
+        <referencedby refid="classInterpolation__IBM__hybrid_1a3117e61064d01021df0d1a1f8a327db1" compoundref="Interpolation__IBM__hybrid_8h" startline="37" endline="40">Interpolation_IBM_hybrid::getSommetsVoisinsOf</referencedby>
+        <referencedby refid="classInterpolation__IBM__mean__gradient_1a3e1e998e433b0e1ac855c1c8a484b5cd" compoundref="Interpolation__IBM__mean__gradient_8h" startline="38" endline="41">Interpolation_IBM_mean_gradient::getSommetsVoisinsOf</referencedby>
+        <referencedby refid="classInterpolation__IBM__mean__gradient__proto_1a0d659d09a0051a6cc22c4e5545c24c2a" compoundref="Interpolation__IBM__mean__gradient__proto_8h" startline="35" endline="38">getSommetsVoisinsOf</referencedby>
+        <referencedby refid="classInterpolation__IBM__power__law__tbl__u__star_1a4afb702084e8c580648cd59a49353ab3" compoundref="Interpolation__IBM__power__law__tbl__u__star_8h" startline="39" endline="42">Interpolation_IBM_power_law_tbl_u_star::getSommetsVoisinsOf</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1a0d659d09a0051a6cc22c4e5545c24c2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTRUSTList" kindref="compound">IntList</ref> &amp;</type>
+        <definition>IntList&amp; Interpolation_IBM_mean_gradient_proto::getSommetsVoisinsOf</definition>
+        <argsstring>(int i)</argsstring>
+        <name>getSommetsVoisinsOf</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="35" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" bodystart="35" bodyend="38"/>
+        <references refid="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" compoundref="Interpolation__IBM__mean__gradient__proto_8h" startline="49">sommets_voisins_</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1a9b087672acfa2abb1d9cbb1b5dc2dd3d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Interpolation_IBM_mean_gradient_proto::computeSommetsVoisins</definition>
+        <argsstring>(Domaine_dis_base &amp;le_dom_EF, const Champ_Don_base &amp;solid_points, const Champ_Don_base &amp;corresp_elems, bool has_corres)</argsstring>
+        <name>computeSommetsVoisins</name>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>le_dom_EF</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref> &amp;</type>
+          <declname>solid_points</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref> &amp;</type>
+          <declname>corresp_elems</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>has_corres</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.cpp" bodystart="21" bodyend="242"/>
+        <references refid="classDomaine__32__64_1a43be385d8056508f5d9a326ddb387fcb" compoundref="Domaine_8cpp" startline="353" endline="431">Domaine_32_64&lt; _SIZE_ &gt;::chercher_elements</references>
+        <references refid="classDomaine__32__64_1a0f47377f57417c91dba5efe37791f88c" compoundref="Domaine_8h" startline="109" endline="109">Domaine_32_64&lt; _SIZE_ &gt;::coord_sommets</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classDomaine__dis__base_1a6319e76eb43f35bced14bf0272fa8ca1" compoundref="Domaine__dis__base_8h" startline="49" endline="49">Domaine_dis_base::nb_som</references>
+        <references refid="classDomaine__32__64_1a321db5cc41805b9d47322b90004e7551" compoundref="Domaine_8h" startline="467" endline="467">Domaine_32_64&lt; _SIZE_ &gt;::nb_som_elem</references>
+        <references refid="classDomaine__dis__base_1a909e4f99ce84d6363b8a240052a61897" compoundref="Domaine__dis__base_8h" startline="50" endline="50">Domaine_dis_base::nb_som_tot</references>
+        <references refid="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" compoundref="Interpolation__IBM__mean__gradient__proto_8h" startline="49">sommets_voisins_</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <referencedby refid="classInterpolation__IBM__hybrid_1aeb57f049f59bd5f070248e2ed619f56d" compoundref="Interpolation__IBM__hybrid_8cpp" startline="41" endline="53">Interpolation_IBM_hybrid::discretise</referencedby>
+        <referencedby refid="classInterpolation__IBM__power__law__tbl__u__star_1a5606c7ba7fcc62522002388fe190f773" compoundref="Interpolation__IBM__power__law__tbl__u__star_8cpp" startline="43" endline="61">Interpolation_IBM_power_law_tbl_u_star::discretise</referencedby>
+        <referencedby refid="classInterpolation__IBM__mean__gradient_1a37c27f6df3c9c2ccf3bf17f2b08a40c8" compoundref="Interpolation__IBM__mean__gradient_8cpp" startline="42" endline="61">Interpolation_IBM_mean_gradient::discretise</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1a2af934d93dca99843effe7b74cc83556" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Interpolation_IBM_mean_gradient_proto::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) is_dirichlet_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="44" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1a5d3bfe57f9dea6c603b6f20a3b6aad14" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Interpolation_IBM_mean_gradient_proto::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) is_dirichlet_lu_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="43" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1ab318df135b7f6b2c04f02d5c65099a7b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Interpolation_IBM_mean_gradient_proto::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) solid_elems_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="47" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classInterpolation__IBM__mean__gradient__proto_1a86e4a21373660ccd23631cdc21de24b5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Interpolation_IBM_mean_gradient_proto::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) solid_elems_lu_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="46" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>: class <ref refid="classInterpolation__IBM__mean__gradient__proto" kindref="compound">Interpolation_IBM_mean_gradient_proto</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Pure C++ class to allow multiple inheritance in <ref refid="classInterpolation__IBM__hybrid" kindref="compound">Interpolation_IBM_hybrid</ref> </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Interpolation_IBM_mean_gradient_proto</label>
+        <link refid="classInterpolation__IBM__mean__gradient__proto"/>
+      </node>
+      <node id="3">
+        <label>Interpolation_IBM_mean_gradient</label>
+        <link refid="classInterpolation__IBM__mean__gradient"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Interpolation_IBM_power_law_tbl_u_star</label>
+        <link refid="classInterpolation__IBM__power__law__tbl__u__star"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interpolation_IBM_hybrid</label>
+        <link refid="classInterpolation__IBM__hybrid"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>TRUSTLists&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTLists"/>
+      </node>
+      <node id="1">
+        <label>Interpolation_IBM_mean_gradient_proto</label>
+        <link refid="classInterpolation__IBM__mean__gradient__proto"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sommets_voisins_</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>TRUSTLists&lt; int &gt;</label>
+        <link refid="classTRUSTLists"/>
+        <childnode refid="3" relation="template-instance">
+          <edgelabel>&lt; int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_mean_gradient_proto.h" bodystart="32" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a9b087672acfa2abb1d9cbb1b5dc2dd3d" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>computeSommetsVoisins</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a0d659d09a0051a6cc22c4e5545c24c2a" prot="public" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>getSommetsVoisinsOf</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a5d3bfe57f9dea6c603b6f20a3b6aad14" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a2af934d93dca99843effe7b74cc83556" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a86e4a21373660ccd23631cdc21de24b5" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1ab318df135b7f6b2c04f02d5c65099a7b" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_mean_gradient_proto</scope><name>sommets_voisins_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

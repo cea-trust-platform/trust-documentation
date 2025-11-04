@@ -1,41 +1,23 @@
 <map id="Champ_implementation_sommet" name="Champ_implementation_sommet">
-<area shape="rect" id="Node000001" title=": class Champ_implementation_sommet" alt="" coords="232,386,410,431"/>
-<area shape="rect" id="Node000003" href="$classChamp__implementation__P1.html" title=" " alt="" coords="459,292,660,320"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="387,377,524,318,526,323,390,382"/>
-<area shape="rect" id="Node000013" href="$classChamp__implementation__Q1.html" title=": class Champ_implementation_Q1" alt="" coords="458,447,661,474"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="426,429,493,443,492,449,425,434"/>
-<area shape="rect" id="Node000002" href="$classChamp__implementation.html" title=" " alt="" coords="5,395,184,422"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,406,231,406,231,411,200,411"/>
-<area shape="rect" id="Node000004" href="$classChamp__Fonc__P1__base.html" title=": class Champ_Fonc_P1_base" alt="" coords="710,136,876,164"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="593,281,769,162,772,166,596,285"/>
-<area shape="rect" id="Node000010" href="$classChamp__Inc__P1__base.html" title=" " alt="" coords="716,292,870,320"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="676,303,715,303,715,308,676,308"/>
-<area shape="rect" id="Node000005" href="$classChamp__Fonc__P1__EF.html" title=" " alt="" coords="952,5,1102,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="817,123,864,82,923,43,955,31,957,36,926,48,867,86,821,127"/>
-<area shape="rect" id="Node000006" href="$classChamp__Fonc__P1__MED.html" title="classe Champ_Fonc_P1_MED permet de faire un champ P1 pour le post med" alt="" coords="945,57,1110,85"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="840,127,924,95,965,83,967,88,926,100,842,132"/>
-<area shape="rect" id="Node000007" href="$classChamp__Fonc__P1__VDF.html" title="classe Champ_Fonc_P1_VDF" alt="" coords="947,109,1108,137"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="891,136,946,130,947,135,892,141"/>
-<area shape="rect" id="Node000008" href="$classChamp__Fonc__P1__VEF.html" title="classe Champ_Fonc_P1_VEF" alt="" coords="948,161,1107,189"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="891,158,947,164,947,169,891,163"/>
-<area shape="rect" id="Node000009" href="$classChamp__Fonc__Som__PolyMAC.html" title=" " alt="" coords="925,213,1130,241"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="843,167,926,198,967,210,966,215,924,203,841,172"/>
-<area shape="rect" id="Node000011" href="$classChamp__P1__EF.html" title=" " alt="" coords="971,265,1084,293"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="886,293,970,283,970,288,886,298"/>
-<area shape="rect" id="Node000012" href="$classChamp__Som__PolyMAC.html" title=" " alt="" coords="943,317,1112,345"/>
-<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="886,313,943,319,943,325,885,318"/>
-<area shape="rect" id="Node000014" href="$classChamp__Fonc__Q1__base.html" title=": class Champ_Fonc_Q1_base" alt="" coords="709,447,877,474"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="677,458,709,458,709,463,677,463"/>
-<area shape="rect" id="Node000019" href="$classChamp__Inc__Q1__base.html" title=" " alt="" coords="715,551,871,578"/>
-<area shape="poly" id="edge18_Node000013_Node000019" title=" " alt="" coords="608,479,761,548,759,553,606,484"/>
-<area shape="rect" id="Node000015" href="$classChamp__Fonc__Q1__EF.html" title=" " alt="" coords="951,369,1104,397"/>
-<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="841,438,924,407,966,395,967,400,926,412,843,443"/>
-<area shape="rect" id="Node000016" href="$classChamp__Fonc__Q1__MED.html" title="classe Champ_Fonc_Q1_MED permet de faire un champ P1 pour le post med" alt="" coords="944,421,1110,449"/>
-<area shape="poly" id="edge15_Node000014_Node000016" title=" " alt="" coords="892,447,943,442,944,447,892,452"/>
-<area shape="rect" id="Node000017" href="$classChamp__Fonc__Q1__VDF.html" title=" " alt="" coords="946,473,1109,501"/>
-<area shape="poly" id="edge16_Node000014_Node000017" title=" " alt="" coords="893,469,945,475,945,481,892,474"/>
-<area shape="rect" id="Node000018" href="$classChamp__Fonc__Q1__VEF.html" title=" " alt="" coords="947,525,1108,553"/>
-<area shape="poly" id="edge17_Node000014_Node000018" title=" " alt="" coords="842,478,926,510,967,522,965,527,924,515,840,483"/>
-<area shape="rect" id="Node000020" href="$classChamp__Q1__EF.html" title=" " alt="" coords="970,577,1085,605"/>
-<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="887,572,970,582,969,587,886,578"/>
+<area shape="rect" id="node1" title=": class Champ_implementation_sommet" alt="" coords="232,403,411,445"/>
+<area shape="rect" id="node3" href="$classChamp__implementation__P1.html" title=" " alt="" coords="459,309,662,336"/>
+<area shape="rect" id="node14" href="$classChamp__implementation__Q1.html" title=": class Champ_implementation_Q1" alt="" coords="459,487,663,513"/>
+<area shape="rect" id="node2" href="$classChamp__implementation.html" title=" " alt="" coords="5,411,184,437"/>
+<area shape="rect" id="node4" href="$classChamp__Fonc__P1__base.html" title=": class Champ_Fonc_P1_base" alt="" coords="711,132,878,159"/>
+<area shape="rect" id="node10" href="$classChamp__Inc__P1__base.html" title=" " alt="" coords="717,309,872,336"/>
+<area shape="rect" id="node5" href="$classChamp__Fonc__P1__EF.html" title=" " alt="" coords="955,5,1105,32"/>
+<area shape="rect" id="node6" href="$classChamp__Fonc__P1__MED.html" title="classe Champ_Fonc_P1_MED permet de faire un champ P1 pour le post med" alt="" coords="947,56,1113,83"/>
+<area shape="rect" id="node7" href="$classChamp__Fonc__P1__VDF.html" title="classe Champ_Fonc_P1_VDF" alt="" coords="949,107,1111,133"/>
+<area shape="rect" id="node8" href="$classChamp__Fonc__P1__VEF.html" title="classe Champ_Fonc_P1_VEF" alt="" coords="950,157,1110,184"/>
+<area shape="rect" id="node9" href="$classChamp__Fonc__Som__PolyMAC.html" title=" " alt="" coords="927,208,1133,235"/>
+<area shape="rect" id="node11" href="$classChamp__P1__EF.html" title=" " alt="" coords="973,259,1087,285"/>
+<area shape="rect" id="node12" href="$classChamp__P1__VEF.html" title="Class representing a P1 field on a VEF mesh." alt="" coords="969,309,1091,336"/>
+<area shape="rect" id="node13" href="$classChamp__Som__PolyMAC.html" title=" " alt="" coords="945,360,1115,387"/>
+<area shape="rect" id="node15" href="$classChamp__Fonc__Q1__base.html" title=": class Champ_Fonc_Q1_base" alt="" coords="711,487,879,513"/>
+<area shape="rect" id="node20" href="$classChamp__Inc__Q1__base.html" title=" " alt="" coords="716,563,873,589"/>
+<area shape="rect" id="node16" href="$classChamp__Fonc__Q1__EF.html" title=" " alt="" coords="953,411,1107,437"/>
+<area shape="rect" id="node17" href="$classChamp__Fonc__Q1__MED.html" title="classe Champ_Fonc_Q1_MED permet de faire un champ P1 pour le post med" alt="" coords="947,461,1113,488"/>
+<area shape="rect" id="node18" href="$classChamp__Fonc__Q1__VDF.html" title=" " alt="" coords="948,512,1112,539"/>
+<area shape="rect" id="node19" href="$classChamp__Fonc__Q1__VEF.html" title=" " alt="" coords="949,563,1111,589"/>
+<area shape="rect" id="node21" href="$classChamp__Q1__EF.html" title=" " alt="" coords="972,613,1088,640"/>
 </map>

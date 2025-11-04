@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b997c7237227ba6ac7dbb3b0dcd5abb6" kind="dir">
+    <compoundname>Operateurs</compoundname>
+    <innerdir refid="dir_e6a29ecdda41fea5fada76bec6ec02e7">Eval_Conv</innerdir>
+    <innerdir refid="dir_1c7744b8583e66b25da22a55e5a85b12">Eval_Diff_Dift</innerdir>
+    <innerdir refid="dir_a91ee8bb42f03e91640e187cda3f14f9">Eval_Divers</innerdir>
+    <innerdir refid="dir_2aca9b1822f61dad52b63c72a592d571">Iterateurs</innerdir>
+    <innerdir refid="dir_e95f542fc4241f0189310ae519dec355">Op_Conv</innerdir>
+    <innerdir refid="dir_3e34adaf9afb9a826894bc7b9aa55c33">Op_Diff_Dift</innerdir>
+    <innerdir refid="dir_acff013c882e13652555f9d73e2d45f7">Op_Divers</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/"/>
+  </compounddef>
+</doxygen>

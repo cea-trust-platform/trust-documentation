@@ -1,0 +1,797 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classIJK__Shear__Periodic__helpler" kind="class" language="C++" prot="public">
+    <compoundname>IJK_Shear_Periodic_helpler</compoundname>
+    <includes local="no">IJK_Shear_Periodic_helpler.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::defilement_</definition>
+        <argsstring></argsstring>
+        <name>defilement_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="27" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="classMatrice__Grossiere_1a393b0a0f0c4fcdc63f04076d7fa27221" compoundref="Matrice__Grossiere_8tpp" startline="22" endline="257">Matrice_Grossiere::build_matrix</referencedby>
+        <referencedby refid="classMultigrille__base_1af18270f77115a6ae23832efc78d55a44" compoundref="Multigrille__base_8tpp" startline="302" endline="335">Multigrille_base::coarse_solver</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1ad50fc12bdac7adc1090401c84e73fb7e" compoundref="Multigrille__Adrien_8cpp" startline="80" endline="105">Multigrille_Adrien::initialize</referencedby>
+        <referencedby refid="classGrid__Level__Data__template_1ae216a12eb4b58969e76362b35918df09" compoundref="Grid__Level__Data__template_8tpp" startline="33" endline="66">Grid_Level_Data_template&lt; _TYPE_ &gt;::initialize</referencedby>
+        <referencedby refid="classMultigrille__base_1ae02b4893932e1d2af876f34c46be7f16" compoundref="Multigrille__base_8tpp" startline="98" endline="299">Multigrille_base::multigrille_</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" compoundref="Multigrille__Adrien_8tpp" startline="133" endline="194">Multigrille_Adrien::set_inv_rho_template</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" compoundref="Multigrille__Adrien_8tpp" startline="74" endline="130">Multigrille_Adrien::set_rho_template</referencedby>
+        <referencedby refid="classMultigrille__base_1ae9e31c57654179861f758239dd88337c" compoundref="Multigrille__base_8cpp" startline="190" endline="211">Multigrille_base::solve_ijk_in_storage_template</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a080dec14e05238f16c9baa65c532ed03" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::Lx_for_shear_perio</definition>
+        <argsstring></argsstring>
+        <name>Lx_for_shear_perio</name>
+        <initializer>=0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="26" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a1e9f14cf7bede7f79f2135818e5c533c" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::order_interpolation_poisson_solver_</definition>
+        <argsstring></argsstring>
+        <name>order_interpolation_poisson_solver_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="28" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classMatrice__Grossiere_1a393b0a0f0c4fcdc63f04076d7fa27221" compoundref="Matrice__Grossiere_8tpp" startline="22" endline="257">Matrice_Grossiere::build_matrix</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a849f11683762e2f99725ae641540f7b5" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::rho_liq_ref_for_poisson_</definition>
+        <argsstring></argsstring>
+        <name>rho_liq_ref_for_poisson_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="29" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="classMultigrille__Adrien_1ad50fc12bdac7adc1090401c84e73fb7e" compoundref="Multigrille__Adrien_8cpp" startline="80" endline="105">Multigrille_Adrien::initialize</referencedby>
+        <referencedby refid="classGrid__Level__Data__template_1ae216a12eb4b58969e76362b35918df09" compoundref="Grid__Level__Data__template_8tpp" startline="33" endline="66">Grid_Level_Data_template&lt; _TYPE_ &gt;::initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a353a726e13f3de2eb4661da617c5daca" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::rho_vap_ref_for_poisson_</definition>
+        <argsstring></argsstring>
+        <name>rho_vap_ref_for_poisson_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="30" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="classMultigrille__Adrien_1ad50fc12bdac7adc1090401c84e73fb7e" compoundref="Multigrille__Adrien_8cpp" startline="80" endline="105">Multigrille_Adrien::initialize</referencedby>
+        <referencedby refid="classGrid__Level__Data__template_1ae216a12eb4b58969e76362b35918df09" compoundref="Grid__Level__Data__template_8tpp" startline="33" endline="66">Grid_Level_Data_template&lt; _TYPE_ &gt;::initialize</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1ab033cf6ae610035cbdef879dd1dd2556" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::shear_x_time_</definition>
+        <argsstring></argsstring>
+        <name>shear_x_time_</name>
+        <initializer>=0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="25" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="25" bodyend="-1"/>
+        <referencedby refid="classIJK__Field__template_1a124d889a52a0ca7baff9d862b26c0e5a" compoundref="IJK__Field__template_8tpp" startline="452" endline="542">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ajouter_second_membre_shear_perio</referencedby>
+        <referencedby refid="classMatrice__Grossiere_1a393b0a0f0c4fcdc63f04076d7fa27221" compoundref="Matrice__Grossiere_8tpp" startline="22" endline="257">Matrice_Grossiere::build_matrix</referencedby>
+        <referencedby refid="classIJK__Field__template_1a9bd7082f55e8b5edf784afcae8bcda13" compoundref="IJK__Field__template_8tpp" startline="393" endline="445">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::redistribute_with_shear_domain_ft</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a52fcfdc0e7d0554563993ad3dc014f3d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::compo_</definition>
+        <argsstring></argsstring>
+        <name>compo_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="34" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a0c44bdee78355db8078b4b0b8a9eadb0" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref></type>
+        <definition>ArrOfDouble IJK_Shear_Periodic_helpler::denum_</definition>
+        <argsstring></argsstring>
+        <name>denum_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="38" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="56" endline="108">prepare_interpolation_for_shear_periodicity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a45b33827b0fbfe9621907b5ef972afb8" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::DU_</definition>
+        <argsstring></argsstring>
+        <name>DU_</name>
+        <initializer>= 0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="41" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a0f536a42b39904cc5e4e92dca9020b04" compoundref="IJK__Shear__Periodic__helpler_8h" startline="106" endline="109">set_dU_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a100e766e4b21ad56cdd16b77bc9a235f" prot="public" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt;</type>
+        <definition>IJK_Field_local_template&lt;double,ArrOfDouble&gt; IJK_Shear_Periodic_helpler::I_sig_kappa_zmax_</definition>
+        <argsstring></argsstring>
+        <name>I_sig_kappa_zmax_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="47" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aa4c57c85d4bf57f51172b9b89192e96b" compoundref="IJK__Shear__Periodic__helpler_8h" startline="65" endline="68">get_I_kappa_ghost_zmax_</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aa1e8d845a464fa3d6986739be20b5c58" compoundref="IJK__Shear__Periodic__helpler_8h" startline="95" endline="105">set_I_sig_kappa_zmax_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a1e5d25a38674a238ff545991a691e835" prot="public" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt;</type>
+        <definition>IJK_Field_local_template&lt;double,ArrOfDouble&gt; IJK_Shear_Periodic_helpler::I_sig_kappa_zmin_</definition>
+        <argsstring></argsstring>
+        <name>I_sig_kappa_zmin_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="46" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a3421ab8ab7701a933b4564ebc62fd53e" compoundref="IJK__Shear__Periodic__helpler_8h" startline="61" endline="64">get_I_kappa_ghost_zmin_</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a71a746dae368b411921743a317cd6c46" compoundref="IJK__Shear__Periodic__helpler_8h" startline="85" endline="94">set_I_sig_kappa_zmin_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1afbfe7140f09fff3e5264dd716434a11a" prot="public" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt;</type>
+        <definition>IJK_Field_local_template&lt;double,ArrOfDouble&gt; IJK_Shear_Periodic_helpler::indicatrice_ghost_zmax_</definition>
+        <argsstring></argsstring>
+        <name>indicatrice_ghost_zmax_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="45" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1ad8e63d3109bd3a6aaf6e18fb8adbe8f9" compoundref="IJK__Shear__Periodic__helpler_8h" startline="57" endline="60">get_indicatrice_ghost_zmax_</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1adc7f7347076afc72bdcda17a370cdb09" compoundref="IJK__Shear__Periodic__helpler_8h" startline="77" endline="84">set_indicatrice_ghost_zmax_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a269eeeeb27c91a1d03b6774128e84ca4" prot="public" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt;</type>
+        <definition>IJK_Field_local_template&lt;double,ArrOfDouble&gt; IJK_Shear_Periodic_helpler::indicatrice_ghost_zmin_</definition>
+        <argsstring></argsstring>
+        <name>indicatrice_ghost_zmin_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="44" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="44" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1ae1e049c45c99e9dc3c9ae55c8a4d9910" compoundref="IJK__Shear__Periodic__helpler_8h" startline="53" endline="56">get_indicatrice_ghost_zmin_</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a09516c81e8d41b8753f73906d02a9b01" compoundref="IJK__Shear__Periodic__helpler_8h" startline="70" endline="76">set_indicatrice_ghost_zmin_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1ad6d3d6459e37242d2c1be3f36d82700d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::monofluide_variable_</definition>
+        <argsstring></argsstring>
+        <name>monofluide_variable_</name>
+        <initializer>= -123</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="32" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aa1e8d845a464fa3d6986739be20b5c58" compoundref="IJK__Shear__Periodic__helpler_8h" startline="95" endline="105">set_I_sig_kappa_zmax_</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a71a746dae368b411921743a317cd6c46" compoundref="IJK__Shear__Periodic__helpler_8h" startline="85" endline="94">set_I_sig_kappa_zmin_</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a8f6d6407f997165d3ef94db6efe5cf03" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::order_interpolation_</definition>
+        <argsstring></argsstring>
+        <name>order_interpolation_</name>
+        <initializer>= -123</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="56" endline="108">prepare_interpolation_for_shear_periodicity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1ad403983809df1d747cc743b1c3d79ac3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::Phi_ppty_l_</definition>
+        <argsstring></argsstring>
+        <name>Phi_ppty_l_</name>
+        <initializer>= -123.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="42" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1ad900e513abc2a89df33d5fe326841800" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double IJK_Shear_Periodic_helpler::Phi_ppty_v_</definition>
+        <argsstring></argsstring>
+        <name>Phi_ppty_v_</name>
+        <initializer>= -123.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="42" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a7b65953d2e2c206c6446dbd330f75c7a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::real_size_i_</definition>
+        <argsstring></argsstring>
+        <name>real_size_i_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="35" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a18f4e707f4f0a6ad892719af2f3242b2" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref></type>
+        <definition>ArrOfDouble IJK_Shear_Periodic_helpler::res_</definition>
+        <argsstring></argsstring>
+        <name>res_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="39" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="56" endline="108">prepare_interpolation_for_shear_periodicity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1acd4da2f1914c4f6d2271ca0ae63be129" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref></type>
+        <definition>ArrOfInt IJK_Shear_Periodic_helpler::send_i_real_</definition>
+        <argsstring></argsstring>
+        <name>send_i_real_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="37" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="56" endline="108">prepare_interpolation_for_shear_periodicity</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1a825aa8fc90a003f9b815182ec0b3449d" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int IJK_Shear_Periodic_helpler::use_inv_rho_in_pressure_solver_</definition>
+        <argsstring></argsstring>
+        <name>use_inv_rho_in_pressure_solver_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="40" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classIJK__Shear__Periodic__helpler_1ad2203c0be92b1794406e394275924f50" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref></type>
+        <definition>ArrOfInt IJK_Shear_Periodic_helpler::x_</definition>
+        <argsstring></argsstring>
+        <name>x_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="36" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="36" bodyend="-1"/>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="26" endline="53">allocate</referencedby>
+        <referencedby refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" compoundref="IJK__Shear__Periodic__helpler_8cpp" startline="56" endline="108">prepare_interpolation_for_shear_periodicity</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::allocate</definition>
+        <argsstring>(const int ni_local, const int nj_local, const int nk_local, int ghost_size, int ncompo, int type, double rov, double rol, int use_inv_rho_in_pressure_solver)</argsstring>
+        <name>allocate</name>
+        <param>
+          <type>const int</type>
+          <declname>ni_local</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nj_local</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nk_local</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ghost_size</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ncompo</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rov</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>rol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>use_inv_rho_in_pressure_solver</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="50" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.cpp" bodystart="26" bodyend="53"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a0c44bdee78355db8078b4b0b8a9eadb0" compoundref="IJK__Shear__Periodic__helpler_8h" startline="38">denum_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a100e766e4b21ad56cdd16b77bc9a235f" compoundref="IJK__Shear__Periodic__helpler_8h" startline="47">I_sig_kappa_zmax_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a1e5d25a38674a238ff545991a691e835" compoundref="IJK__Shear__Periodic__helpler_8h" startline="46">I_sig_kappa_zmin_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1afbfe7140f09fff3e5264dd716434a11a" compoundref="IJK__Shear__Periodic__helpler_8h" startline="45">indicatrice_ghost_zmax_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a269eeeeb27c91a1d03b6774128e84ca4" compoundref="IJK__Shear__Periodic__helpler_8h" startline="44">indicatrice_ghost_zmin_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad6d3d6459e37242d2c1be3f36d82700d" compoundref="IJK__Shear__Periodic__helpler_8h" startline="32">monofluide_variable_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a8f6d6407f997165d3ef94db6efe5cf03" compoundref="IJK__Shear__Periodic__helpler_8h" startline="33">order_interpolation_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a1e9f14cf7bede7f79f2135818e5c533c" compoundref="IJK__Shear__Periodic__helpler_8h" startline="28">order_interpolation_poisson_solver_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad403983809df1d747cc743b1c3d79ac3" compoundref="IJK__Shear__Periodic__helpler_8h" startline="42">Phi_ppty_l_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad900e513abc2a89df33d5fe326841800" compoundref="IJK__Shear__Periodic__helpler_8h" startline="42">Phi_ppty_v_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a18f4e707f4f0a6ad892719af2f3242b2" compoundref="IJK__Shear__Periodic__helpler_8h" startline="39">res_</references>
+        <references refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" compoundref="TRUSTArray_8tpp" startline="44" endline="54">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::resize_array</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1acd4da2f1914c4f6d2271ca0ae63be129" compoundref="IJK__Shear__Periodic__helpler_8h" startline="37">send_i_real_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a825aa8fc90a003f9b815182ec0b3449d" compoundref="IJK__Shear__Periodic__helpler_8h" startline="40">use_inv_rho_in_pressure_solver_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad2203c0be92b1794406e394275924f50" compoundref="IJK__Shear__Periodic__helpler_8h" startline="36">x_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1aa4c57c85d4bf57f51172b9b89192e96b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt; &amp;</type>
+        <definition>const IJK_Field_local_template&lt;double,ArrOfDouble&gt;&amp; IJK_Shear_Periodic_helpler::get_I_kappa_ghost_zmax_</definition>
+        <argsstring>() const</argsstring>
+        <name>get_I_kappa_ghost_zmax_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="65" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="65" bodyend="68"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a100e766e4b21ad56cdd16b77bc9a235f" compoundref="IJK__Shear__Periodic__helpler_8h" startline="47">I_sig_kappa_zmax_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1a3421ab8ab7701a933b4564ebc62fd53e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt; &amp;</type>
+        <definition>const IJK_Field_local_template&lt;double,ArrOfDouble&gt;&amp; IJK_Shear_Periodic_helpler::get_I_kappa_ghost_zmin_</definition>
+        <argsstring>() const</argsstring>
+        <name>get_I_kappa_ghost_zmin_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="61" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="61" bodyend="64"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a1e5d25a38674a238ff545991a691e835" compoundref="IJK__Shear__Periodic__helpler_8h" startline="46">I_sig_kappa_zmin_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1ad8e63d3109bd3a6aaf6e18fb8adbe8f9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt; &amp;</type>
+        <definition>const IJK_Field_local_template&lt;double,ArrOfDouble&gt;&amp; IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmax_</definition>
+        <argsstring>() const</argsstring>
+        <name>get_indicatrice_ghost_zmax_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="57" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="57" bodyend="60"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1afbfe7140f09fff3e5264dd716434a11a" compoundref="IJK__Shear__Periodic__helpler_8h" startline="45">indicatrice_ghost_zmax_</references>
+        <referencedby refid="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" compoundref="Multigrille__Adrien_8tpp" startline="133" endline="194">Multigrille_Adrien::set_inv_rho_template</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" compoundref="Multigrille__Adrien_8tpp" startline="74" endline="130">Multigrille_Adrien::set_rho_template</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1ae1e049c45c99e9dc3c9ae55c8a4d9910" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &gt; &amp;</type>
+        <definition>const IJK_Field_local_template&lt;double,ArrOfDouble&gt;&amp; IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmin_</definition>
+        <argsstring>() const</argsstring>
+        <name>get_indicatrice_ghost_zmin_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="53" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="53" bodyend="56"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a269eeeeb27c91a1d03b6774128e84ca4" compoundref="IJK__Shear__Periodic__helpler_8h" startline="44">indicatrice_ghost_zmin_</references>
+        <referencedby refid="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" compoundref="Multigrille__Adrien_8tpp" startline="133" endline="194">Multigrille_Adrien::set_inv_rho_template</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" compoundref="Multigrille__Adrien_8tpp" startline="74" endline="130">Multigrille_Adrien::set_rho_template</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::prepare_interpolation_for_shear_periodicity</definition>
+        <argsstring>(const int send_i, const double istmp, const int real_size_i)</argsstring>
+        <name>prepare_interpolation_for_shear_periodicity</name>
+        <param>
+          <type>const int</type>
+          <declname>send_i</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>istmp</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>real_size_i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.cpp" bodystart="56" bodyend="108"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a0c44bdee78355db8078b4b0b8a9eadb0" compoundref="IJK__Shear__Periodic__helpler_8h" startline="38">denum_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a8f6d6407f997165d3ef94db6efe5cf03" compoundref="IJK__Shear__Periodic__helpler_8h" startline="33">order_interpolation_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a18f4e707f4f0a6ad892719af2f3242b2" compoundref="IJK__Shear__Periodic__helpler_8h" startline="39">res_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1acd4da2f1914c4f6d2271ca0ae63be129" compoundref="IJK__Shear__Periodic__helpler_8h" startline="37">send_i_real_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad2203c0be92b1794406e394275924f50" compoundref="IJK__Shear__Periodic__helpler_8h" startline="36">x_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1a0f536a42b39904cc5e4e92dca9020b04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::set_dU_</definition>
+        <argsstring>(double DU)</argsstring>
+        <name>set_dU_</name>
+        <param>
+          <type>double</type>
+          <declname>DU</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="106" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="106" bodyend="109"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a45b33827b0fbfe9621907b5ef972afb8" compoundref="IJK__Shear__Periodic__helpler_8h" startline="41">DU_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1aa1e8d845a464fa3d6986739be20b5c58" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::set_I_sig_kappa_zmax_</definition>
+        <argsstring>(const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;indic_z_max, const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;kappa_z_max, const double sigma, const int decallage=0)</argsstring>
+        <name>set_I_sig_kappa_zmax_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>indic_z_max</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>kappa_z_max</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>decallage</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="95" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="95" bodyend="105"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a100e766e4b21ad56cdd16b77bc9a235f" compoundref="IJK__Shear__Periodic__helpler_8h" startline="47">I_sig_kappa_zmax_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad6d3d6459e37242d2c1be3f36d82700d" compoundref="IJK__Shear__Periodic__helpler_8h" startline="32">monofluide_variable_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1a71a746dae368b411921743a317cd6c46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::set_I_sig_kappa_zmin_</definition>
+        <argsstring>(const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;indic_z_min, const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;kappa_z_min, const double sigma, const int decallage=0)</argsstring>
+        <name>set_I_sig_kappa_zmin_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>indic_z_min</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>kappa_z_min</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>sigma</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>decallage</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="85" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="85" bodyend="94"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a1e5d25a38674a238ff545991a691e835" compoundref="IJK__Shear__Periodic__helpler_8h" startline="46">I_sig_kappa_zmin_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad6d3d6459e37242d2c1be3f36d82700d" compoundref="IJK__Shear__Periodic__helpler_8h" startline="32">monofluide_variable_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1adc7f7347076afc72bdcda17a370cdb09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::set_indicatrice_ghost_zmax_</definition>
+        <argsstring>(const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;indic_z_max, int decallage=0)</argsstring>
+        <name>set_indicatrice_ghost_zmax_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>indic_z_max</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>decallage</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="77" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="77" bodyend="84"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1afbfe7140f09fff3e5264dd716434a11a" compoundref="IJK__Shear__Periodic__helpler_8h" startline="45">indicatrice_ghost_zmax_</references>
+      </memberdef>
+      <memberdef kind="function" id="classIJK__Shear__Periodic__helpler_1a09516c81e8d41b8753f73906d02a9b01" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IJK_Shear_Periodic_helpler::set_indicatrice_ghost_zmin_</definition>
+        <argsstring>(const IJK_Field_local_template&lt; double, TRUSTArray&lt; double &gt;&gt; &amp;indic_z_min, int decallage=0)</argsstring>
+        <name>set_indicatrice_ghost_zmin_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__local__template" kindref="compound">IJK_Field_local_template</ref>&lt; double, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; double &gt;&gt; &amp;</type>
+          <declname>indic_z_min</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>decallage</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="70" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="70" bodyend="76"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1a269eeeeb27c91a1d03b6774128e84ca4" compoundref="IJK__Shear__Periodic__helpler_8h" startline="44">indicatrice_ghost_zmin_</references>
+        <referencedby refid="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" compoundref="Multigrille__Adrien_8tpp" startline="133" endline="194">Multigrille_Adrien::set_inv_rho_template</referencedby>
+        <referencedby refid="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" compoundref="Multigrille__Adrien_8tpp" startline="74" endline="130">Multigrille_Adrien::set_rho_template</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>IJK_Field_local_template&lt; double, TRUSTArray &gt;</label>
+        <link refid="classIJK__Field__local__template"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="template-instance">
+          <edgelabel>&lt; double, TRUSTArray &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>VECTNom</label>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>string</label>
+      </node>
+      <node id="11">
+        <label>IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;</label>
+        <link refid="classIJK__Field__local__template"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Field_base</label>
+        <link refid="classField__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>noms_compo_</edgelabel>
+          <edgelabel>noms_synonymes_</edgelabel>
+          <edgelabel>unite_</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>IJK_Shear_Periodic_helpler</label>
+        <link refid="classIJK__Shear__Periodic__helpler"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>I_sig_kappa_zmax_</edgelabel>
+          <edgelabel>I_sig_kappa_zmin_</edgelabel>
+          <edgelabel>indicatrice_ghost_zmax_</edgelabel>
+          <edgelabel>indicatrice_ghost_zmin_</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>denum_</edgelabel>
+          <edgelabel>res_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>send_i_real_</edgelabel>
+          <edgelabel>x_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" line="22" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Champs/IJK_Shear_Periodic_helpler.h" bodystart="23" bodyend="110"/>
+    <listofallmembers>
+      <member refid="classIJK__Shear__Periodic__helpler_1a52473022c4f8a5b4a13525315d8ff06e" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>allocate</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a52fcfdc0e7d0554563993ad3dc014f3d" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>compo_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>defilement_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a0c44bdee78355db8078b4b0b8a9eadb0" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>denum_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a45b33827b0fbfe9621907b5ef972afb8" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>DU_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1aa4c57c85d4bf57f51172b9b89192e96b" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>get_I_kappa_ghost_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a3421ab8ab7701a933b4564ebc62fd53e" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>get_I_kappa_ghost_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ad8e63d3109bd3a6aaf6e18fb8adbe8f9" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>get_indicatrice_ghost_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ae1e049c45c99e9dc3c9ae55c8a4d9910" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>get_indicatrice_ghost_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a100e766e4b21ad56cdd16b77bc9a235f" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>I_sig_kappa_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a1e5d25a38674a238ff545991a691e835" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>I_sig_kappa_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1afbfe7140f09fff3e5264dd716434a11a" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>indicatrice_ghost_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a269eeeeb27c91a1d03b6774128e84ca4" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>indicatrice_ghost_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a080dec14e05238f16c9baa65c532ed03" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>Lx_for_shear_perio</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ad6d3d6459e37242d2c1be3f36d82700d" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>monofluide_variable_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a8f6d6407f997165d3ef94db6efe5cf03" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>order_interpolation_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a1e9f14cf7bede7f79f2135818e5c533c" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>order_interpolation_poisson_solver_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ad403983809df1d747cc743b1c3d79ac3" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>Phi_ppty_l_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ad900e513abc2a89df33d5fe326841800" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>Phi_ppty_v_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1aeb7e54ddee688f764280a0d8fdb1fa69" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>prepare_interpolation_for_shear_periodicity</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a7b65953d2e2c206c6446dbd330f75c7a" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>real_size_i_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a18f4e707f4f0a6ad892719af2f3242b2" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>res_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a849f11683762e2f99725ae641540f7b5" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>rho_liq_ref_for_poisson_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a353a726e13f3de2eb4661da617c5daca" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>rho_vap_ref_for_poisson_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1acd4da2f1914c4f6d2271ca0ae63be129" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>send_i_real_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a0f536a42b39904cc5e4e92dca9020b04" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>set_dU_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1aa1e8d845a464fa3d6986739be20b5c58" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>set_I_sig_kappa_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a71a746dae368b411921743a317cd6c46" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>set_I_sig_kappa_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1adc7f7347076afc72bdcda17a370cdb09" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>set_indicatrice_ghost_zmax_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a09516c81e8d41b8753f73906d02a9b01" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>set_indicatrice_ghost_zmin_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ab033cf6ae610035cbdef879dd1dd2556" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>shear_x_time_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1a825aa8fc90a003f9b815182ec0b3449d" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>use_inv_rho_in_pressure_solver_</name></member>
+      <member refid="classIJK__Shear__Periodic__helpler_1ad2203c0be92b1794406e394275924f50" prot="public" virt="non-virtual"><scope>IJK_Shear_Periodic_helpler</scope><name>x_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

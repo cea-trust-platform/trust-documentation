@@ -1,0 +1,513 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPDF__model" kind="class" language="C++" prot="public">
+    <compoundname>PDF_model</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <includes local="no">PDF_model.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classPDF__model_1ab19afb8cdb40c4ee81cbbc7bc3775a05" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PDF_model::coefku_</definition>
+        <argsstring></argsstring>
+        <name>coefku_</name>
+        <initializer>= -100.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="44" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1a1d5b14d6dec235cfb47b16b8f56b1c40" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PDF_model::dim_variable_</definition>
+        <argsstring></argsstring>
+        <name>dim_variable_</name>
+        <initializer>=-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="42" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classPDF__model_1ac0eb1670a72a6ca74da74c6bbc693118" compoundref="PDF__model_8cpp" startline="108" endline="139">affecter_variable_imposee</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+        <referencedby refid="classSource__PDF__EF_1aeb9f05485052f6c96244fb8e497e3584" compoundref="Source__PDF__EF_8cpp" startline="1752" endline="1872">Source_PDF_EF::impr</referencedby>
+        <referencedby refid="classPDF__model_1add581dad3ca79012788f3d6adfd8555c" compoundref="PDF__model_8cpp" startline="55" endline="106">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSource__PDF__base_1aa2f695ec0ba8b8309f3800dc16af9dfc" compoundref="Source__PDF__base_8cpp" startline="288" endline="334">Source_PDF_base::ouvrir_fichier</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1a44698e6cfd4f195dd6297cc9d6378ca7" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PDF_model::echelle_relax_</definition>
+        <argsstring></argsstring>
+        <name>echelle_relax_</name>
+        <initializer>=5.0e-2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="46" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1a6595cf9ce43a00e0274fc27ba1726cb5" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PDF_model::eta_</definition>
+        <argsstring></argsstring>
+        <name>eta_</name>
+        <initializer>= -100.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="43" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classSource__PDF__EF_1a70f7729fb7d0b68c33e16dd83a896cd1" compoundref="Source__PDF__EF_8cpp" startline="546" endline="636">Source_PDF_EF::ajouter_</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a109b9d6ca4862e5d37a117523694cbff" compoundref="Source__PDF__EF_8cpp" startline="300" endline="366">Source_PDF_EF::compute_coeff_elem</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a34e3a8c994af130303172f7e72a7a753" compoundref="Source__PDF__EF_8cpp" startline="394" endline="493">Source_PDF_EF::compute_coeff_matrice</referencedby>
+        <referencedby refid="classSource__PDF__EF_1ab5dc65c72f4c8115b77720ef783b0feb" compoundref="Source__PDF__EF_8cpp" startline="655" endline="723">Source_PDF_EF::contribuer_a_avec</referencedby>
+        <referencedby refid="classPDF__model_1a194058189634564c4bc54d1564ec3240" compoundref="PDF__model_8h" startline="35" endline="35">eta</referencedby>
+        <referencedby refid="classSource__PDF__base_1a04f1ba26a8f3e8094cc7a468f80241be" compoundref="Source__PDF__base_8cpp" startline="135" endline="143">Source_PDF_base::get_tuvw_local</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1a6bee6f7e9aca9e837b3615adb6586136" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool PDF_model::local_</definition>
+        <argsstring></argsstring>
+        <name>local_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+        <referencedby refid="classPDF__model_1add581dad3ca79012788f3d6adfd8555c" compoundref="PDF__model_8cpp" startline="55" endline="106">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1a05129d805eded4361ba5b13cb4552dae" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PDF_model::pdf_bilan_</definition>
+        <argsstring></argsstring>
+        <name>pdf_bilan_</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="49" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classPDF__model_1a0c11d4cc3c36ca8f57f2cd1b5a029887" compoundref="PDF__model_8h" startline="36" endline="36">pdf_bilan</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1ae421217438aa20e2aad7a95627c81b9e" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double PDF_model::temps_relax_</definition>
+        <argsstring></argsstring>
+        <name>temps_relax_</name>
+        <initializer>=1.0e+12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="45" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classPDF__model_1aa87e3cdc8549809208297aac4d75f802" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int PDF_model::type_variable_imposee_</definition>
+        <argsstring></argsstring>
+        <name>type_variable_imposee_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="47" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classPDF__model_1ac0eb1670a72a6ca74da74c6bbc693118" compoundref="PDF__model_8cpp" startline="108" endline="139">affecter_variable_imposee</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+        <referencedby refid="classPDF__model_1add581dad3ca79012788f3d6adfd8555c" compoundref="PDF__model_8cpp" startline="55" endline="106">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classPDF__model_1a6c0d8076b625020a15b1f6d4e3bc3925" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class Source_PDF_base</definition>
+        <argsstring></argsstring>
+        <name>Source_PDF_base</name>
+        <param>
+          <type><ref refid="classSource__PDF__base" kindref="compound">Source_PDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="50" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classPDF__model_1a453ee6dc2cf7d696f04084911fd64c91" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class Source_PDF_EF</definition>
+        <argsstring></argsstring>
+        <name>Source_PDF_EF</name>
+        <param>
+          <type><ref refid="classSource__PDF__EF" kindref="compound">Source_PDF_EF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="51" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPDF__model_1a8033feb82659c3f5552765f23710a167" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDF_model::Declare_instanciable</definition>
+        <argsstring>(PDF_model)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classPDF__model" kindref="compound">PDF_model</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="31" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1ab2a763750a11ef9d284ace2a099f9f31" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDF_model::VECT</definition>
+        <argsstring>(Parser_U) parsers_</argsstring>
+        <name>VECT</name>
+        <param>
+          <type><ref refid="classParser__U" kindref="compound">Parser_U</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="53" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPDF__model_1ac0eb1670a72a6ca74da74c6bbc693118" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void PDF_model::affecter_variable_imposee</definition>
+        <argsstring>(Domaine_VF &amp;, const DoubleTab &amp;)</argsstring>
+        <name>affecter_variable_imposee</name>
+        <param>
+          <type><ref refid="classDomaine__VF" kindref="compound">Domaine_VF</ref> &amp;</type>
+          <defname>le_dom</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>coords</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.cpp" bodystart="108" bodyend="139"/>
+        <references refid="classPDF__model_1a1d5b14d6dec235cfb47b16b8f56b1c40" compoundref="PDF__model_8h" startline="42">dim_variable_</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classPDF__model_1a5f3a62589d946171d88f879f103e7b8c" compoundref="PDF__model_8cpp" startline="141" endline="149">get_variable_imposee</references>
+        <references refid="classDomaine__dis__base_1a909e4f99ce84d6363b8a240052a61897" compoundref="Domaine__dis__base_8h" startline="50" endline="50">Domaine_dis_base::nb_som_tot</references>
+        <references refid="classPDF__model_1aa87e3cdc8549809208297aac4d75f802" compoundref="PDF__model_8h" startline="47">type_variable_imposee_</references>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1a194058189634564c4bc54d1564ec3240" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double PDF_model::eta</definition>
+        <argsstring>() const</argsstring>
+        <name>eta</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="35" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="35" bodyend="35"/>
+        <references refid="classPDF__model_1a6595cf9ce43a00e0274fc27ba1726cb5" compoundref="PDF__model_8h" startline="43">eta_</references>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1a5f3a62589d946171d88f879f103e7b8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double PDF_model::get_variable_imposee</definition>
+        <argsstring>(ArrOfDouble &amp;, int)</argsstring>
+        <name>get_variable_imposee</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &amp;</type>
+          <defname>x</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>comp</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="33" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.cpp" bodystart="141" bodyend="149"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <referencedby refid="classPDF__model_1ac0eb1670a72a6ca74da74c6bbc693118" compoundref="PDF__model_8cpp" startline="108" endline="139">affecter_variable_imposee</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a714a0f9a9dc28347a989f21bfc1b3a1a" compoundref="Source__PDF__EF_8cpp" startline="259" endline="291">Source_PDF_EF::compute_variable_imposee_projete</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1a0c11d4cc3c36ca8f57f2cd1b5a029887" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int PDF_model::pdf_bilan</definition>
+        <argsstring>() const</argsstring>
+        <name>pdf_bilan</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="36" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="36" bodyend="36"/>
+        <references refid="classPDF__model_1a05129d805eded4361ba5b13cb4552dae" compoundref="PDF__model_8h" startline="49">pdf_bilan_</references>
+        <referencedby refid="classEquation__IBM__proto_1ac81e2bbd56789ea242f8955e9f798197" compoundref="Equation__IBM__proto_8cpp" startline="87" endline="141">Equation_IBM_proto::derivee_en_temps_inco_ibm_proto</referencedby>
+        <referencedby refid="classSource__PDF__EF_1aeb9f05485052f6c96244fb8e497e3584" compoundref="Source__PDF__EF_8cpp" startline="1752" endline="1872">Source_PDF_EF::impr</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classPDF__model_1add581dad3ca79012788f3d6adfd8555c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int PDF_model::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889">lire_motcle_non_standard</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="39" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.cpp" bodystart="55" bodyend="106"/>
+        <references refid="classPDF__model_1a1d5b14d6dec235cfb47b16b8f56b1c40" compoundref="PDF__model_8h" startline="42">dim_variable_</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classPDF__model_1a6bee6f7e9aca9e837b3615adb6586136" compoundref="PDF__model_8h" startline="48">local_</references>
+        <references refid="classPDF__model_1aa87e3cdc8549809208297aac4d75f802" compoundref="PDF__model_8h" startline="47">type_variable_imposee_</references>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1acb0763199ac5769ecb2e1f36628346b0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDF_model::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) variable_imposee_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="41" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classPDF__model_1a99a4dd2c36f7a3670309c28c194ac8e1" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PDF_model::OWN_PTR</definition>
+        <argsstring>(Champ_Don_base) variable_imposee_lu_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="40" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>: class <ref refid="classPDF__model" kindref="compound">PDF_model</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>PDF_model</label>
+        <link refid="classPDF__model"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>PDF_model</label>
+        <link refid="classPDF__model"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" line="29" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/IBM/PDF_model.h" bodystart="30" bodyend="54"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>abort</name></member>
+      <member refid="classPDF__model_1ac0eb1670a72a6ca74da74c6bbc693118" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>affecter_variable_imposee</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>PDF_model</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>PDF_model</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>check_int_overflow</name></member>
+      <member refid="classPDF__model_1ab19afb8cdb40c4ee81cbbc7bc3775a05" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>coefku_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classPDF__model_1a8033feb82659c3f5552765f23710a167" prot="private" virt="non-virtual"><scope>PDF_model</scope><name>Declare_instanciable</name></member>
+      <member refid="classPDF__model_1a1d5b14d6dec235cfb47b16b8f56b1c40" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>dim_variable_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>PDF_model</scope><name>duplique</name></member>
+      <member refid="classPDF__model_1a44698e6cfd4f195dd6297cc9d6378ca7" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>echelle_relax_</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>PDF_model</scope><name>est_egal_a</name></member>
+      <member refid="classPDF__model_1a194058189634564c4bc54d1564ec3240" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>eta</name></member>
+      <member refid="classPDF__model_1a6595cf9ce43a00e0274fc27ba1726cb5" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>eta_</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>PDF_model</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classPDF__model_1a5f3a62589d946171d88f879f103e7b8c" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>get_variable_imposee</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>PDF_model</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>le_type</name></member>
+      <member refid="classPDF__model_1add581dad3ca79012788f3d6adfd8555c" prot="protected" virt="virtual"><scope>PDF_model</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classPDF__model_1a6bee6f7e9aca9e837b3615adb6586136" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>local_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>PDF_model</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>operator=</name></member>
+      <member refid="classPDF__model_1a99a4dd2c36f7a3670309c28c194ac8e1" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>OWN_PTR</name></member>
+      <member refid="classPDF__model_1acb0763199ac5769ecb2e1f36628346b0" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>OWN_PTR</name></member>
+      <member refid="classPDF__model_1a0c11d4cc3c36ca8f57f2cd1b5a029887" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>pdf_bilan</name></member>
+      <member refid="classPDF__model_1a05129d805eded4361ba5b13cb4552dae" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>pdf_bilan_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>PDF_model</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>PDF_model</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>PDF_model</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>PDF_model</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>self_cast</name></member>
+      <member refid="classPDF__model_1a6c0d8076b625020a15b1f6d4e3bc3925" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>Source_PDF_base</name></member>
+      <member refid="classPDF__model_1a453ee6dc2cf7d696f04084911fd64c91" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>Source_PDF_EF</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>PDF_model</scope><name>taille_memoire</name></member>
+      <member refid="classPDF__model_1ae421217438aa20e2aad7a95627c81b9e" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>temps_relax_</name></member>
+      <member refid="classPDF__model_1aa87e3cdc8549809208297aac4d75f802" prot="protected" virt="non-virtual"><scope>PDF_model</scope><name>type_variable_imposee_</name></member>
+      <member refid="classPDF__model_1ab2a763750a11ef9d284ace2a099f9f31" prot="private" virt="non-virtual"><scope>PDF_model</scope><name>VECT</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>PDF_model</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>PDF_model</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

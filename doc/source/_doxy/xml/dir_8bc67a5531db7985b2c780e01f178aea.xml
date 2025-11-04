@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_8bc67a5531db7985b2c780e01f178aea" kind="dir">
+    <compoundname>Operateurs</compoundname>
+    <innerfile refid="Op__Conv__negligeable_8cpp">Op_Conv_negligeable.cpp</innerfile>
+    <innerfile refid="Op__Conv__negligeable_8h">Op_Conv_negligeable.h</innerfile>
+    <innerfile refid="Op__Diff__negligeable_8cpp">Op_Diff_negligeable.cpp</innerfile>
+    <innerfile refid="Op__Diff__negligeable_8h">Op_Diff_negligeable.h</innerfile>
+    <innerfile refid="Operateur__Conv_8cpp">Operateur_Conv.cpp</innerfile>
+    <innerfile refid="Operateur__Conv_8h">Operateur_Conv.h</innerfile>
+    <innerfile refid="Operateur__Conv__base_8cpp">Operateur_Conv_base.cpp</innerfile>
+    <innerfile refid="Operateur__Conv__base_8h">Operateur_Conv_base.h</innerfile>
+    <innerfile refid="Operateur__Diff_8cpp">Operateur_Diff.cpp</innerfile>
+    <innerfile refid="Operateur__Diff_8h">Operateur_Diff.h</innerfile>
+    <innerfile refid="Operateur__Diff__base_8cpp">Operateur_Diff_base.cpp</innerfile>
+    <innerfile refid="Operateur__Diff__base_8h">Operateur_Diff_base.h</innerfile>
+    <innerfile refid="Operateur__Div_8cpp">Operateur_Div.cpp</innerfile>
+    <innerfile refid="Operateur__Div_8h">Operateur_Div.h</innerfile>
+    <innerfile refid="Operateur__Div__base_8cpp">Operateur_Div_base.cpp</innerfile>
+    <innerfile refid="Operateur__Div__base_8h">Operateur_Div_base.h</innerfile>
+    <innerfile refid="Operateur__Grad_8cpp">Operateur_Grad.cpp</innerfile>
+    <innerfile refid="Operateur__Grad_8h">Operateur_Grad.h</innerfile>
+    <innerfile refid="Operateur__Grad__base_8cpp">Operateur_Grad_base.cpp</innerfile>
+    <innerfile refid="Operateur__Grad__base_8h">Operateur_Grad_base.h</innerfile>
+    <innerfile refid="Operateur__negligeable_8h">Operateur_negligeable.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Operateurs/"/>
+  </compounddef>
+</doxygen>

@@ -18,5 +18,5 @@ var classDomaineCutter__32__64 =
     [ "construire_sous_domaine", "classDomaineCutter__32__64.html#a8354408c82399b37a7f5e7971f203ee5", null ],
     [ "construire_sous_domaine", "classDomaineCutter__32__64.html#a6294cee67a8ee6ff2c71eb67bfad0c24", null ],
     [ "ecrire_domaines", "classDomaineCutter__32__64.html#a3c2beb31e4037aba270f618556e00520", null ],
-    [ "bords_internes", "classDomaineCutter__32__64.html#a6f66d595ffacb59861d79f5aa139526c", null ]
+    [ "bords_internes", "classDomaineCutter__32__64.html#aebbbc611b955e09c78103edbebae600b", null ]
 ];

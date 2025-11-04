@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structEcrire__YAML_1_1Pb2Save" kind="struct" language="C++" prot="private">
+    <compoundname>Ecrire_YAML::Pb2Save</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structEcrire__YAML_1_1Pb2Save_1a3893e45707cc7d946e27443282a2a426" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classYAML__data" kindref="compound">YAML_data</ref> &gt;</type>
+        <definition>std::vector&lt;YAML_data&gt; Ecrire_YAML::Pb2Save::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" line="164" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structEcrire__YAML_1_1Pb2Save_1ae2445984f34e1984fb2bfce1b672a7d1" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string Ecrire_YAML::Pb2Save::filename</definition>
+        <argsstring></argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" line="165" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structEcrire__YAML_1_1Pb2Save_1ac9e3fe840578c4b398d20fb3df99635a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Ecrire_YAML::Pb2Save::OBS_PTR</definition>
+        <argsstring>(Probleme_base) pb</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classProbleme__base" kindref="compound">Probleme_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" line="163" column="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>Ecrire_YAML::Pb2Save</label>
+        <childnode refid="2" relation="usage">
+          <edgelabel>filename</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" line="161" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Ecrire_YAML.h" bodystart="162" bodyend="166"/>
+    <listofallmembers>
+      <member refid="structEcrire__YAML_1_1Pb2Save_1a3893e45707cc7d946e27443282a2a426" prot="public" virt="non-virtual"><scope>Ecrire_YAML::Pb2Save</scope><name>data</name></member>
+      <member refid="structEcrire__YAML_1_1Pb2Save_1ae2445984f34e1984fb2bfce1b672a7d1" prot="public" virt="non-virtual"><scope>Ecrire_YAML::Pb2Save</scope><name>filename</name></member>
+      <member refid="structEcrire__YAML_1_1Pb2Save_1ac9e3fe840578c4b398d20fb3df99635a" prot="public" virt="non-virtual"><scope>Ecrire_YAML::Pb2Save</scope><name>OBS_PTR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

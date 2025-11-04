@@ -1,0 +1,1502 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDiscretisation__base" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Discretisation_base</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <derivedcompoundref refid="classDiscr__inst" prot="public" virt="non-virtual">Discr_inst</derivedcompoundref>
+    <derivedcompoundref refid="classDiscret__Thermique" prot="public" virt="non-virtual">Discret_Thermique</derivedcompoundref>
+    <derivedcompoundref refid="classIJK__discretisation" prot="public" virt="non-virtual">IJK_discretisation</derivedcompoundref>
+    <includes local="no">Discretisation_base.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" prot="public" static="no" strong="no">
+        <type></type>
+        <name>type_calcul_du_residu</name>
+        <enumvalue id="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0a6da3daf19c0be297ebb5c28e3ad11b2d" prot="public">
+          <name>VIA_CONTRIBUER_AU_SECOND_MEMBRE</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0ab1b0885ce8af07e1563ae012e4822f6e" prot="public">
+          <name>VIA_AJOUTER</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="59" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" prot="protected" static="yes" mutable="no">
+        <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref></type>
+        <definition>const Motcle Discretisation_base::DEMANDE_DESCRIPTION</definition>
+        <argsstring></argsstring>
+        <name>DEMANDE_DESCRIPTION</name>
+        <initializer>= <ref refid="classMotcle" kindref="compound">Motcle</ref>(&quot;demande_description&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="111" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="111" bodyend="-1"/>
+        <referencedby refid="classEF__discretisation_1a780692831fee96965fb0bf2ec584bc81" compoundref="EF__discretisation_8cpp" startline="59" endline="163">EF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVDF__discretisation_1a04358416bef0aa8aa6de3ec301cd653b" compoundref="VDF__discretisation_8cpp" startline="58" endline="145">VDF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classDiscretisation__base_1a509a8f15679dc718615771bdef0782b3" compoundref="Discretisation__base_8cpp" startline="121" endline="133">discretiser_champ</referencedby>
+        <referencedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">DG_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642" compoundref="PolyMAC__discretisation_8cpp" startline="50" endline="124">PolyMAC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="50" endline="129">PolyMAC_P0P1NC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVEF__discretisation_1a18252b0cc46bdcf54b1a861ca6c4033f" compoundref="VEF__discretisation_8cpp" startline="123" endline="171">VEF_discretisation::discretiser_champ</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" prot="protected" static="yes" mutable="no">
+        <type>const <ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>const Nom Discretisation_base::NOM_VIDE</definition>
+        <argsstring></argsstring>
+        <name>NOM_VIDE</name>
+        <initializer>= <ref refid="classNom" kindref="compound">Nom</ref>(&quot;-&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="112" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="112" bodyend="-1"/>
+        <referencedby refid="classVDF__discretisation_1a04358416bef0aa8aa6de3ec301cd653b" compoundref="VDF__discretisation_8cpp" startline="58" endline="145">VDF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">DG_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642" compoundref="PolyMAC__discretisation_8cpp" startline="50" endline="124">PolyMAC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="50" endline="129">PolyMAC_P0P1NC_discretisation::discretiser_champ</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDiscretisation__base_1a79fe1d4825b868dba27cc3ef1c025d08" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discretisation_base::Declare_base</definition>
+        <argsstring>(Discretisation_base)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="47" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a3230b5df888097a22eab8467acc26563" prot="private" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::modifier_champ_tabule</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_dis, Champ_Fonc_Tabule &amp;ch_tab, const VECT(OBS_PTR(Champ_base))&amp;ch_inc) const</argsstring>
+        <name>modifier_champ_tabule</name>
+        <reimplementedby refid="classVEF__discretisation_1a7f6d2e15921774afae171028396cfe7a">modifier_champ_tabule</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_dis</declname>
+        </param>
+        <param>
+          <type><ref refid="classChamp__Fonc__Tabule" kindref="compound">Champ_Fonc_Tabule</ref> &amp;</type>
+          <declname>ch_tab</declname>
+        </param>
+        <param>
+          <type>const VECT(<ref refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>))&amp;</type>
+          <declname>ch_inc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="119" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="317" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a9cf24ee4d121211b68fc7077e7172c89" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::test_demande_description</definition>
+        <argsstring>(const Motcle &amp;, const Nom &amp;) const</argsstring>
+        <name>test_demande_description</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <defname>directive</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <defname>type_objet</defname>
+        </param>
+        <briefdescription>
+<para>Cette fonction est un outil pour les trois methodes suivantes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>.. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="116" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="97" bodyend="111"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDiscretisation__base_1aad7284735cd70264a2e9f1ffa5ee73c2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::associer_domaine</definition>
+        <argsstring>(const Domaine &amp;dom)</argsstring>
+        <name>associer_domaine</name>
+        <param>
+          <type>const <ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="62" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="38" bodyend="41"/>
+        <referencedby refid="classProbleme__base_1a17e19aa7b3e17c0f93efaadf0bcbeb23" compoundref="Probleme__base_8cpp" startline="384" endline="422">Probleme_base::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1ad6333cec25f23f44f36aabb20416ab68" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" kindref="member">type_calcul_du_residu</ref></type>
+        <definition>virtual type_calcul_du_residu Discretisation_base::codage_du_calcul_du_residu</definition>
+        <argsstring>() const</argsstring>
+        <name>codage_du_calcul_du_residu</name>
+        <reimplementedby refid="classDG__discretisation_1ab11a5530a51401ed3b5bb0bdc4a6f024">codage_du_calcul_du_residu</reimplementedby>
+        <reimplementedby refid="classEF__discretisation_1ae51689641a695a82ff2776c123bd9e87">codage_du_calcul_du_residu</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a19b68a884afb9da64252e3b562a4146a">codage_du_calcul_du_residu</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1ab3f09f9789baaa1e1970ddb81f634db0">codage_du_calcul_du_residu</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="60" column="40" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="60" bodyend="60"/>
+        <references refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0ab1b0885ce8af07e1563ae012e4822f6e" compoundref="Discretisation__base_8h" startline="59">VIA_AJOUTER</references>
+        <referencedby refid="classEquation__base_1a8dbd9212dcd3e8277d21a4b24b04bd65" compoundref="Equation__base_8cpp" startline="1976" endline="2057">Equation_base::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1afd4ac12ed4a4c74d0b1b248f9c2650c2" compoundref="Convection__Diffusion__Temperature_8cpp" startline="354" endline="439">Convection_Diffusion_Temperature::assembler</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a720792b21fab7d60bef9a2b39faf96c1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        <definition>Domaine_dis_base &amp; Discretisation_base::discretiser</definition>
+        <argsstring>() const</argsstring>
+        <name>discretiser</name>
+        <reimplementedby refid="classVEF__discretisation_1aa2b8545fd30fcd9845af5e244eaf6fc0">discretiser</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="67" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="259" bodyend="266"/>
+        <references refid="classDomaine__dis__cache_1ac206d2efdc425e870a32093ba8b911e0" compoundref="Domaine__dis__cache_8cpp" startline="114" endline="117">Domaine_dis_cache::Build_or_get</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classProbleme__base_1a17e19aa7b3e17c0f93efaadf0bcbeb23" compoundref="Probleme__base_8cpp" startline="384" endline="422">Probleme_base::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a4926d441cf0d6877629cb17e90cc23b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)&amp;champ) const</argsstring>
+        <name>discretiser_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="73" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="82" bodyend="90"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1aa025262a374bffb83d08804efb142723" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)&amp;champ) const</argsstring>
+        <name>discretiser_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="72" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="72" bodyend="80"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, int nb_pas_dt, double temps, OWN_PTR(Champ_Inc_base)&amp;champ, const Nom &amp;sous_type=NOM_VIDE) const</argsstring>
+        <name>discretiser_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_pas_dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>sous_type</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="70" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="61" bodyend="70"/>
+        <referencedby refid="classOp__Grad__EF_1a72a2c29a3b5661d38bfd255f3b677d57" compoundref="Op__Grad__EF_8cpp" startline="63" endline="88">Op_Grad_EF::associer</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a6f5e5c2d3ba14d75e36fda3ea63495ef" compoundref="Source__PDF__EF_8cpp" startline="63" endline="169">Source_PDF_EF::associer_pb</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__0__eq__base_1a4f8f79c87ab852a0a82185e5f4020abd" compoundref="Modele__turbulence__hyd__0__eq__base_8cpp" startline="120" endline="144">Modele_turbulence_hyd_0_eq_base::completer</referencedby>
+        <referencedby refid="classDiscret__Thyd_1aa3dfaccfc5dcd116a23f79eefd875cb6" compoundref="Discret__Thyd_8cpp" startline="152" endline="169">Discret_Thyd::concentration</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a1d46b7001f80c75d451c58a9805db0b8" compoundref="Op__Conv__VDF__base_8cpp" startline="446" endline="468">Op_Conv_VDF_base::creer_champ</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a508d779dc9e9a08a1a1e5c41d27c7f8c" compoundref="Source__PDF__EF_8cpp" startline="1882" endline="1908">Source_PDF_EF::creer_champ</referencedby>
+        <referencedby refid="classParoi__hyd__base__EF_1acc51ec9095e446962b99d0cfba74348f" compoundref="Paroi__hyd__base__EF_8cpp" startline="35" endline="50">Paroi_hyd_base_EF::creer_champ</referencedby>
+        <referencedby refid="classOp__Conv__EF__Stab__PolyMAC__P0P1NC__Elem_1a5134814a30aacb011a16c5faa3f307af" compoundref="Op__Conv__EF__Stab__PolyMAC__P0P1NC__Elem_8cpp" startline="338" endline="361">Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::creer_champ</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+        <referencedby refid="classQDM__Multiphase_1a317626daed1651286d00792a06c24d56" compoundref="QDM__Multiphase_8cpp" startline="297" endline="337">QDM_Multiphase::creer_champ</referencedby>
+        <referencedby refid="classSource__Portance__interfaciale__base_1a6c7e7454d4a947a4de494624e318759d" compoundref="Source__Portance__interfaciale__base_8cpp" startline="54" endline="84">Source_Portance_interfaciale_base::creer_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__base_1a8b5be0727f120fbef1eb52495a414172" compoundref="Turbulence__paroi__base_8cpp" startline="86" endline="101">Turbulence_paroi_base::creer_champ</referencedby>
+        <referencedby refid="classFluide__base_1ac2cca217e2533313db2ded7fa108593f" compoundref="Fluide__base_8cpp" startline="408" endline="417">Fluide_base::creer_e_int</referencedby>
+        <referencedby refid="classDiscret__Thyd_1ad2fcde9216c159cfddd0ec03a13f6f17" compoundref="Discret__Thyd_8cpp" startline="89" endline="96">Discret_Thyd::diametre_hydraulique_face</referencedby>
+        <referencedby refid="classInterpolation__IBM__hybrid_1aeb57f049f59bd5f070248e2ed619f56d" compoundref="Interpolation__IBM__hybrid_8cpp" startline="41" endline="53">Interpolation_IBM_hybrid::discretise</referencedby>
+        <referencedby refid="classInterpolation__IBM__power__law__tbl__u__star_1a5606c7ba7fcc62522002388fe190f773" compoundref="Interpolation__IBM__power__law__tbl__u__star_8cpp" startline="43" endline="61">Interpolation_IBM_power_law_tbl_u_star::discretise</referencedby>
+        <referencedby refid="classInterpolation__IBM__elem__fluid_1aab1ad8ebe2492e5d280a4573cb06a1a5" compoundref="Interpolation__IBM__elem__fluid_8cpp" startline="47" endline="66">Interpolation_IBM_elem_fluid::discretise</referencedby>
+        <referencedby refid="classInterpolation__IBM__mean__gradient_1a37c27f6df3c9c2ccf3bf17f2b08a40c8" compoundref="Interpolation__IBM__mean__gradient_8cpp" startline="42" endline="61">Interpolation_IBM_mean_gradient::discretise</referencedby>
+        <referencedby refid="classEquation__base_1ac849b71b99dbe338b049a7728208c965" compoundref="Equation__base_8cpp" startline="749" endline="787">Equation_base::discretiser</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1acf1f1200bec466196a090dfd1eb8814c" compoundref="Modele__turbulence__hyd__base_8cpp" startline="224" endline="235">Modele_turbulence_hyd_base::discretiser</referencedby>
+        <referencedby refid="classModele__turbulence__scal__base_1ae89ab3b3bbe00fc7dc8c332278757e61" compoundref="Modele__turbulence__scal__base_8cpp" startline="178" endline="187">Modele_turbulence_scal_base::discretiser</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Fluide__Dilatable__base_1afadfd0e2690439af5cff874767b1049d" compoundref="Convection__Diffusion__Espece__Fluide__Dilatable__base_8cpp" startline="55" endline="66">Convection_Diffusion_Espece_Fluide_Dilatable_base::discretiser</referencedby>
+        <referencedby refid="classAire__interfaciale_1a67861d04b968371c0bb903da3a7b240a" compoundref="Aire__interfaciale_8cpp" startline="121" endline="148">Aire_interfaciale::discretiser</referencedby>
+        <referencedby refid="classMasse__Multiphase_1a2458650c7cf2d322452d58c8f5da6928" compoundref="Masse__Multiphase_8cpp" startline="183" endline="199">Masse_Multiphase::discretiser</referencedby>
+        <referencedby refid="classLoi__Fermeture__Test_1aceef6bce50d89e88d1fb30362877fd2b" compoundref="Loi__Fermeture__Test_8cpp" startline="45" endline="56">Loi_Fermeture_Test::discretiser</referencedby>
+        <referencedby refid="classMilieu__base_1a76dffc16168f8e822fde763bfe60fb93" compoundref="Milieu__base_8cpp" startline="126" endline="218">Milieu_base::discretiser</referencedby>
+        <referencedby refid="classMarqueur__Lagrange__base_1ab3d5bab4de5a7bd3f171c654d76d2ff5" compoundref="Marqueur__Lagrange__base_8cpp" startline="47" endline="60">Marqueur_Lagrange_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Dilatable__base_1a9a4d1bc0ec656a3efda9fa67201b4fa3" compoundref="Fluide__Dilatable__base_8cpp" startline="42" endline="83">Fluide_Dilatable_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Quasi__Compressible_1a4ae6752c6ff4172683f3445d73d6eb17" compoundref="Fluide__Quasi__Compressible_8cpp" startline="111" endline="127">Fluide_Quasi_Compressible::discretiser</referencedby>
+        <referencedby refid="classFluide__Weakly__Compressible_1a2d3c712001f1548edd016a487dac0a1a" compoundref="Fluide__Weakly__Compressible_8cpp" startline="188" endline="218">Fluide_Weakly_Compressible::discretiser</referencedby>
+        <referencedby refid="classFluide__base_1af4c5ec816edd85e3ee3dbc47058692f3" compoundref="Fluide__base_8cpp" startline="96" endline="144">Fluide_base::discretiser</referencedby>
+        <referencedby refid="classFluide__reel__base_1aaaa887beb25e8fb210187a49a1ce4338" compoundref="Fluide__reel__base_8cpp" startline="53" endline="116">Fluide_reel_base::discretiser</referencedby>
+        <referencedby refid="classMilieu__composite_1ac6b8b2b04b11f038e93739f8e485e881" compoundref="Milieu__composite_8cpp" startline="228" endline="301">Milieu_composite::discretiser</referencedby>
+        <referencedby refid="classSolide_1acd79604d8a1dc32d3711b81bb0b4478d" compoundref="Solide_8cpp" startline="83" endline="119">Solide::discretiser</referencedby>
+        <referencedby refid="classDiscretisation__base_1aa025262a374bffb83d08804efb142723" compoundref="Discretisation__base_8cpp" startline="72" endline="80">discretiser_champ</referencedby>
+        <referencedby refid="classEF__discretisation_1a780692831fee96965fb0bf2ec584bc81" compoundref="EF__discretisation_8cpp" startline="59" endline="163">EF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVDF__discretisation_1a04358416bef0aa8aa6de3ec301cd653b" compoundref="VDF__discretisation_8cpp" startline="58" endline="145">VDF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">DG_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642" compoundref="PolyMAC__discretisation_8cpp" startline="50" endline="124">PolyMAC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="50" endline="129">PolyMAC_P0P1NC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1a58a663a85ef67441ad20eebbf5ad7819" compoundref="Modele__turbulence__hyd__base_8cpp" startline="250" endline="255">Modele_turbulence_hyd_base::discretiser_corr_visc_turb</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1a4d32e4b5f8775e376294de92733c5033" compoundref="Modele__turbulence__hyd__base_8cpp" startline="257" endline="262">Modele_turbulence_hyd_base::discretiser_K</referencedby>
+        <referencedby refid="classReaction_1a61ad45429b7fe2e647f8d44c0f5f825c" compoundref="Reaction_8cpp" startline="177" endline="181">Reaction::discretiser_omega</referencedby>
+        <referencedby refid="classInterface__base_1a206392c298ea5e270922d2182f7ce39a" compoundref="Interface__base_8cpp" startline="42" endline="47">Interface_base::discretiser_sigma</referencedby>
+        <referencedby refid="classSaturation__base_1a2ee3b57475b871f2aa8518fdb41f4d19" compoundref="Saturation__base_8cpp" startline="58" endline="63">Saturation_base::discretiser_Tsat</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1a482511b7f15ec3bb1a44c7b709d5e981" compoundref="Modele__turbulence__hyd__base_8cpp" startline="237" endline="248">Modele_turbulence_hyd_base::discretiser_visc_turb</referencedby>
+        <referencedby refid="classDiscret__Thyd_1ab7bc7c73423133eb9ac1b384c65b7f18" compoundref="Discret__Thyd_8cpp" startline="61" endline="65">Discret_Thyd::divergence_U</referencedby>
+        <referencedby refid="classDiscret__Thyd_1a9706952848d95a8c360d780f646f8c08" compoundref="Discret__Thyd_8cpp" startline="41" endline="45">Discret_Thyd::entcor</referencedby>
+        <referencedby refid="classDiscret__Thermique_1aa5757c8ca5f37cb3acb9a84eb862b706" compoundref="Discret__Thermique_8cpp" startline="35" endline="39">Discret_Thermique::enthalpie</referencedby>
+        <referencedby refid="classDiscret__Thermique_1ae5f0ee2e0b1e48cf6438bcad592bcd97" compoundref="Discret__Thermique_8cpp" startline="41" endline="51">Discret_Thermique::Fluctu_Temperature</referencedby>
+        <referencedby refid="classDiscret__Thermique_1a7cd25486adf0f3b47f6e9f59ca0c2f75" compoundref="Discret__Thermique_8cpp" startline="52" endline="56">Discret_Thermique::Flux_Chaleur_Turb</referencedby>
+        <referencedby refid="classDiscret__Thermique_1ad3ab69019a623431fe412cfe803ed29a" compoundref="Discret__Thermique_8cpp" startline="58" endline="62">Discret_Thermique::flux_neutronique</referencedby>
+        <referencedby refid="classChamp__Generique__Tparoi__VEF_1a541674df6fc7a3fa64d65d161e1ea38a" compoundref="Champ__Generique__Tparoi__VEF_8cpp" startline="71" endline="201">Champ_Generique_Tparoi_VEF::get_champ</referencedby>
+        <referencedby refid="classChamp__Generique__Tparoi__VEF_1a03e30cca07032b4c2521f35bb8b59297" compoundref="Champ__Generique__Tparoi__VEF_8cpp" startline="46" endline="70">Champ_Generique_Tparoi_VEF::get_champ_without_evaluation</referencedby>
+        <referencedby refid="classDiscret__Thyd_1a0f99e47729d83ca76239608a9ce676e7" compoundref="Discret__Thyd_8cpp" startline="67" endline="71">Discret_Thyd::gradient_P</referencedby>
+        <referencedby refid="classTerme__Source__Acceleration_1afb4f14dc1c36a3a6fc3e030bf6c98207" compoundref="Terme__Source__Acceleration_8cpp" startline="81" endline="239">Terme_Source_Acceleration::lire_data</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+        <referencedby refid="classDiscretisation__base_1a5d6d9a9f61567c3be2ca403bf4613698" compoundref="Discretisation__base_8cpp" startline="278" endline="309">mesh_numbering</referencedby>
+        <referencedby refid="classDiscret__Thyd_1a537f7d41eaad4059797e88b9a0304759" compoundref="Discret__Thyd_8cpp" startline="47" endline="52">Discret_Thyd::pression</referencedby>
+        <referencedby refid="classDiscret__Thyd_1a2b2def9ce530f8517beb694eaaf870a3" compoundref="Discret__Thyd_8cpp" startline="54" endline="59">Discret_Thyd::pression_en_pa</referencedby>
+        <referencedby refid="classDomaine__Cl__EF_1a17adc985db520db15a0927edaaab5e67" compoundref="Domaine__Cl__EF_8cpp" startline="128" endline="315">Domaine_Cl_EF::remplir_type_elem_Cl</referencedby>
+        <referencedby refid="classVDF__discretisation_1a1d332e54a4e7a05a97a63234a861d960" compoundref="VDF__discretisation_8cpp" startline="546" endline="573">VDF_discretisation::residu</referencedby>
+        <referencedby refid="classVEF__discretisation_1ac30159d68ad0150c837fc2dcfe5ab35b" compoundref="VEF__discretisation_8cpp" startline="818" endline="831">VEF_discretisation::residu</referencedby>
+        <referencedby refid="classDiscret__Thyd_1acf2fee34fbee3b2a6200ac29c380db1c" compoundref="Discret__Thyd_8cpp" startline="98" endline="106">Discret_Thyd::section_passage</referencedby>
+        <referencedby refid="classDiscret__Thermique_1a20563156cce652924424506b54fba185" compoundref="Discret__Thermique_8cpp" startline="29" endline="33">Discret_Thermique::temperature</referencedby>
+        <referencedby refid="classDiscret__Thyd_1ac77afc3356903d6687212ee006a7ab67" compoundref="Discret__Thyd_8cpp" startline="35" endline="39">Discret_Thyd::translation</referencedby>
+        <referencedby refid="classDiscret__Thyd_1acc8970458b63722879a01dc6eb52a7e8" compoundref="Discret__Thyd_8cpp" startline="29" endline="33">Discret_Thyd::vitesse</referencedby>
+        <referencedby refid="classDiscretisation__base_1a83cb828fd1e4a9f53372d22a60f7349b" compoundref="Discretisation__base_8cpp" startline="268" endline="276">volume_maille</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a29462970b0097e5ff1c24309613c1545" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Don_base)&amp;champ) const</argsstring>
+        <name>discretiser_champ</name>
+        <reimplementedby refid="classDG__discretisation_1a9fadb63e84a90c76940e3e8e5455d699">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classEF__discretisation_1a27acf30e9e806ec40bbff9056bebcc80">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classDiscr__inst_1a3dfac3785f3ebdb5ac31af89b6ad7742">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a2e59921e79d64f8a84df1a4002f29fd6">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1a2b28897c46d48a0a87ae8d8cd0d08541">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1a7203433978287f18e43e69924578996e">discretiser_champ</reimplementedby>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+<para>idem </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="82" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="155" bodyend="167"/>
+        <references refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" compoundref="Discretisation__base_8h" startline="111">DEMANDE_DESCRIPTION</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a7a83512f3f7c77c32d80a21bd5e7ea2a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, double temps, OWN_PTR(Champ_Fonc_base)&amp;champ) const</argsstring>
+        <name>discretiser_champ</name>
+        <reimplementedby refid="classDG__discretisation_1afc4a60aef8f66ce57f924db98bcfdbb6">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a7ae815ba9efc810b3af5ab8ddc7fd07c">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1ab011457fbd8f272168ecc37bfee334c5">discretiser_champ</reimplementedby>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+<para>idem </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="81" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="138" bodyend="150"/>
+        <references refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" compoundref="Discretisation__base_8h" startline="111">DEMANDE_DESCRIPTION</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a509a8f15679dc718615771bdef0782b3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_champ</definition>
+        <argsstring>(const Motcle &amp;directive, const Domaine_dis_base &amp;z, Nature_du_champ nature, const Noms &amp;nom, const Noms &amp;unite, int nb_comp, int nb_pas_dt, double temps, OWN_PTR(Champ_Inc_base)&amp;champ, const Nom &amp;sous_type=NOM_VIDE) const</argsstring>
+        <name>discretiser_champ</name>
+        <reimplementedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec">discretiser_champ</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1a18252b0cc46bdcf54b1a861ca6c4033f">discretiser_champ</reimplementedby>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>Nature_du_champ</type>
+          <declname>nature</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>nom</declname>
+          <defname>noms</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>unite</declname>
+          <defname>unites</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_pas_dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+          <declname>champ</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>sous_type</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+<para>Discretisation d&apos;un champ en fonction de la directive et des autres parametres. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Voir les classes derivees. Cette methode ne traite aucune directive, elle affiche la liste des directives comprises par les classes derivees. Voir par exemple VDF_discretisation.cpp et VEF... </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="79" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="121" bodyend="133"/>
+        <references refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" compoundref="Discretisation__base_8h" startline="111">DEMANDE_DESCRIPTION</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a0e60e14ef2b31bd8098f3688565d510c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::discretiser_variables</definition>
+        <argsstring>() const</argsstring>
+        <name>discretiser_variables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="66" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="169" bodyend="172"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a771a54326f782563754413afbf2e44b7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>virtual Nom Discretisation_base::domaine_cl_dis_type</definition>
+        <argsstring>() const =0</argsstring>
+        <name>domaine_cl_dis_type</name>
+        <reimplementedby refid="classDG__discretisation_1a5f9282012c10bf14a28e6510838306dc">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classEF__discretisation_1ae8bcf30a10f8dcf24bbc01eb55a362ad">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classIJK__discretisation_1a35be015de366f6ad2dca84f238f11480">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classDiscr__inst_1aa49c0b7a5b151036fad06a5c7bb653b8">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a9cbc204759a0e23942fc9e2225e5562c">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1a629b565bc23bb6b2fcca078ba5dee1fc">domaine_cl_dis_type</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1a129e8486daf7425625b8196c83c73ef9">domaine_cl_dis_type</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="64" column="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom Discretisation_base::get_name_of_type_for</definition>
+        <argsstring>(const Nom &amp;class_operateur, const Nom &amp;type_operteur, const Equation_base &amp;eqn, const OBS_PTR(Champ_base)&amp;champ_supp=OBS_PTR(Champ_base)()) const</argsstring>
+        <name>get_name_of_type_for</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>class_operateur</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type_operteur</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <declname>eqn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)&amp;</type>
+          <declname>champ_supp</declname>
+          <defval><ref refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)()</defval>
+        </param>
+        <briefdescription>
+<para>remplit le <ref refid="classNom" kindref="compound">Nom</ref> type en focntion de la classe de operateur, du type de l&apos;operateur et de l&apos;equation </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(class_operateur)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ce nom correspond au type de la classe de base de l&apos;objet que l&apos;on veut construire exemples: &quot;source&quot;,&quot;Op_conv&quot;,&quot;Op_diff&quot;,&quot;Op_div&quot;,&quot;Op_grad&quot;,&quot;solveur_masse&quot; Exemple get_name_of_type_for(&quot;Op_conv&quot;,&quot;amont&quot;,eqn,type); get_name_of_type_for(&quot;Op_diff&quot;,&quot; &quot;,eqn,type,champ_diffusisivite); </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="98" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="350" bodyend="548"/>
+        <references refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" compoundref="Objet__U_8h" startline="99">Objet_U::axi</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classEquation__base_1a55b98fab5e0172d6c7bc6e6ba3558df4" compoundref="Equation__base_8h" startline="257" endline="257">Equation_base::diffusion_multi_scalaire</references>
+        <references refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" compoundref="Equation__base_8cpp" startline="1035" endline="1043">Equation_base::discretisation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classProbleme__base_1a40e3419cc379f9aea225fbef3dadf3ec" compoundref="Probleme__base_8cpp" startline="1033" endline="1036">Probleme_base::is_dilatable</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classField__base_1a7f1a8a933594c9f73ac0b14260961fad" compoundref="Field__base_8h" startline="53" endline="53">Field_base::nb_comp</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classNom_1acdb0a56b1654b0c37050be0ca9435706" compoundref="Nom_8cpp" startline="275" endline="283">Nom::suffix</references>
+        <referencedby refid="classEquation__base_1ac849b71b99dbe338b049a7728208c965" compoundref="Equation__base_8cpp" startline="749" endline="787">Equation_base::discretiser</referencedby>
+        <referencedby refid="classDG__discretisation_1ab0d7f5e3ed572a0eb49e20ee64c71654" compoundref="DG__discretisation_8cpp" startline="321" endline="392">DG_discretisation::get_name_of_type_for</referencedby>
+        <referencedby refid="classEF__discretisation_1aa445054452a6b8d23fb96fae23e28ba6" compoundref="EF__discretisation_8cpp" startline="573" endline="609">EF_discretisation::get_name_of_type_for</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a08123f67851a1a70565202eb639ccb10" compoundref="PolyMAC__discretisation_8cpp" startline="327" endline="398">PolyMAC_discretisation::get_name_of_type_for</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1abb75467563dfdcefd95e8714c6b3b521" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="256" endline="287">PolyMAC_P0P1NC_discretisation::get_name_of_type_for</referencedby>
+        <referencedby refid="classOperateur__Conv_1a1681cf94ad49243981b787dec0d09cd8" compoundref="Operateur__Conv_8cpp" startline="68" endline="80">Operateur_Conv::typer</referencedby>
+        <referencedby refid="classOperateur__Diff_1acf6a9a9161578b16a6d8665f0a4bfc23" compoundref="Operateur__Diff_8cpp" startline="49" endline="66">Operateur_Diff::typer</referencedby>
+        <referencedby refid="classOperateur__Div_1a121d0afd56a4671fc2e78cc5ab27d6a5" compoundref="Operateur__Div_8cpp" startline="37" endline="45">Operateur_Div::typer</referencedby>
+        <referencedby refid="classOperateur__Grad_1aab7ee0db82901a47490b18b22aa819df" compoundref="Operateur__Grad_8cpp" startline="38" endline="46">Operateur_Grad::typer</referencedby>
+        <referencedby refid="classOperateur__Evanescence_1a131abd498d949f26eea7ca61d84ab30f" compoundref="Operateur__Evanescence_8cpp" startline="26" endline="33">Operateur_Evanescence::typer</referencedby>
+        <referencedby refid="classSource_1a64787353f65177329e2118a7462fdf39" compoundref="Source_8cpp" startline="52" endline="64">Source::typer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a2f404ad2c8800e75a39c37964d93f883" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_dg</definition>
+        <argsstring>() const</argsstring>
+        <name>is_dg</name>
+        <reimplementedby refid="classDG__discretisation_1add64832c66838d76520f46c2e343ce1f">is_dg</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="102" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="102" bodyend="102"/>
+        <referencedby refid="classMilieu__base_1a76dffc16168f8e822fde763bfe60fb93" compoundref="Milieu__base_8cpp" startline="126" endline="218">Milieu_base::discretiser</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a447faf3699b7e2687003fc7903c24886" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_ef</definition>
+        <argsstring>() const</argsstring>
+        <name>is_ef</name>
+        <reimplementedby refid="classEF__discretisation_1af559c1f7d43460a5411b798df7d7748e">is_ef</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="101" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="101" bodyend="101"/>
+        <referencedby refid="classChamp__Generique__Extraction_1a2ef4e0909c441b507d7822a5b7b33e18" compoundref="Champ__Generique__Extraction_8cpp" startline="99" endline="201">Champ_Generique_Extraction::get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a31f49a7acb39da94cf4e0229c465169b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_polymac</definition>
+        <argsstring>() const</argsstring>
+        <name>is_polymac</name>
+        <reimplementedby refid="classPolyMAC__discretisation_1a8ed29832e48da86d726072c46f603872">is_polymac</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1a03cd395ec3855d06d210ba577827c8a0">is_polymac</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1a437e4b8899e085c5b4107b76a43efd1a">is_polymac</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="105" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="105" bodyend="105"/>
+        <referencedby refid="classSolveur__U__P_1a1849f02ff76bb049809805ab933f5d8e" compoundref="Solveur__U__P_8cpp" startline="46" endline="208">Solveur_U_P::iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1ab68dcb966f6651993d3b19bfdb644399" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_polymac_family</definition>
+        <argsstring>() const</argsstring>
+        <name>is_polymac_family</name>
+        <reimplementedby refid="classDG__discretisation_1ad035ecc5eb9ed629354e698db50cd3d3">is_polymac_family</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a527c3f39e669f035c2744af982655ff2">is_polymac_family</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="108" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="108" bodyend="108"/>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a0be287d02325f0201d98921c8665ebbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_polymac_p0</definition>
+        <argsstring>() const</argsstring>
+        <name>is_polymac_p0</name>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1ab3e56152e65815835a36bce888f2005b">is_polymac_p0</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="106" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a14605de98065dcb471af3c796f9d66a6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_polymac_p0p1nc</definition>
+        <argsstring>() const</argsstring>
+        <name>is_polymac_p0p1nc</name>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1a7b930c74bb7f4553fa921b4563fc7eae">is_polymac_p0p1nc</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1a9a08234d5bc675b5aa1fd154dfce93a1">is_polymac_p0p1nc</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="107" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a48deff14b7e177f668cdbc7faec9e2c6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_vdf</definition>
+        <argsstring>() const</argsstring>
+        <name>is_vdf</name>
+        <reimplementedby refid="classVDF__discretisation_1ac9c24851313370138334c13a4a38531d">is_vdf</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="103" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="103" bodyend="103"/>
+        <referencedby refid="classChamp__Generique__Extraction_1a2ef4e0909c441b507d7822a5b7b33e18" compoundref="Champ__Generique__Extraction_8cpp" startline="99" endline="201">Champ_Generique_Extraction::get_champ</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+        <referencedby refid="classQDM__Multiphase_1ab7c36b9443dc8fe4d7a46f61af7f8da5" compoundref="QDM__Multiphase_8cpp" startline="143" endline="207">QDM_Multiphase::mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1aac859a9216c7c1c200fe2f1050190ce7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool Discretisation_base::is_vef</definition>
+        <argsstring>() const</argsstring>
+        <name>is_vef</name>
+        <reimplementedby refid="classVEF__discretisation_1ac8800ec6aeba23a6c149edd2c4380b5c">is_vef</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="104" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="104" bodyend="104"/>
+        <referencedby refid="classChamp__Generique__Extraction_1a2ef4e0909c441b507d7822a5b7b33e18" compoundref="Champ__Generique__Extraction_8cpp" startline="99" endline="201">Champ_Generique_Extraction::get_champ</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a5d6d9a9f61567c3be2ca403bf4613698" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::mesh_numbering</definition>
+        <argsstring>(const Schema_Temps_base &amp;sch, const Domaine_dis_base &amp;z, OWN_PTR(Champ_Fonc_base)&amp;ch) const</argsstring>
+        <name>mesh_numbering</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+          <declname>sch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="88" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="278" bodyend="309"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1aa67059b226a41e89c7de2132c53e6bda" compoundref="Domaine__VF_8h" startline="519" endline="522">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classField__base_1a517704cb3a892cbe30c12e0d744277c7" compoundref="Field__base_8cpp" startline="39" endline="42">Field_base::nommer</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <referencedby refid="classDomaine__dis__base_1a4ae2154aeffb9349d9e7fedaefca15ad" compoundref="Domaine__dis__base_8cpp" startline="187" endline="199">Domaine_dis_base::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a17969ebd170a72f28d8cac002eb3f857" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::nommer_completer_champ_physique</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_vdf, const Nom &amp;nom_champ, const Nom &amp;unite, Champ_base &amp;champ, const Probleme_base &amp;pbi) const</argsstring>
+        <name>nommer_completer_champ_physique</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_vdf</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom_champ</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type><ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>champ</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classProbleme__base" kindref="compound">Probleme_base</ref> &amp;</type>
+          <declname>pbi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="84" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="323" bodyend="342"/>
+        <references refid="classField__base_1a5bcb91a2475ee68412475efc3d9902f1" compoundref="Field__base_8cpp" startline="184" endline="188">Field_base::fixer_unite</references>
+        <references refid="classProbleme__base_1a587a928959992bbe1a03a3a4c2e5296c" compoundref="Probleme__base_8cpp" startline="832" endline="867">Probleme_base::get_champ</references>
+        <references refid="classField__base_1a517704cb3a892cbe30c12e0d744277c7" compoundref="Field__base_8cpp" startline="39" endline="42">Field_base::nommer</references>
+        <references refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" compoundref="Interprete_8cpp" startline="43" endline="46">Interprete::objet</references>
+        <references refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792">OBS_PTR</references>
+        <referencedby refid="classPuissance__Thermique__EF_1a800bbeb83bbebec50722fb189f223d2e" compoundref="Puissance__Thermique__EF_8cpp" startline="46" endline="52">Puissance_Thermique_EF::associer_pb</referencedby>
+        <referencedby refid="classPuissance__Thermique__QC__EF_1adc8993eccd2520d233505294f3368991" compoundref="Puissance__Thermique__QC__EF_8cpp" startline="46" endline="53">Puissance_Thermique_QC_EF::associer_pb</referencedby>
+        <referencedby refid="classTerme__Source__Constituant__PolyMAC__Elem_1a34df2725b5ef0a72c1dd3496b46a1cf5" compoundref="Terme__Source__Constituant__PolyMAC__Elem_8cpp" startline="47" endline="53">Terme_Source_Constituant_PolyMAC_Elem::associer_pb</referencedby>
+        <referencedby refid="classTerme__Source__Constituant__VDF__Elem_1a1cadab411ecd251c3f9d9adf2a76ac2e" compoundref="Terme__Source__Constituant__VDF__Elem_8cpp" startline="52" endline="58">Terme_Source_Constituant_VDF_Elem::associer_pb</referencedby>
+        <referencedby refid="classTerme__Source__Constituant__VEF__Face_1aef39c59a134f1470fce160478af26b87" compoundref="Terme__Source__Constituant__VEF__Face_8cpp" startline="45" endline="51">Terme_Source_Constituant_VEF_Face::associer_pb</referencedby>
+        <referencedby refid="classMilieu__base_1a76dffc16168f8e822fde763bfe60fb93" compoundref="Milieu__base_8cpp" startline="126" endline="218">Milieu_base::discretiser</referencedby>
+        <referencedby refid="classFluide__base_1af4c5ec816edd85e3ee3dbc47058692f3" compoundref="Fluide__base_8cpp" startline="96" endline="144">Fluide_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Ostwald_1aac1a27338844764b061d38c2e3de0b00" compoundref="Fluide__Ostwald_8cpp" startline="58" endline="78">Fluide_Ostwald::discretiser</referencedby>
+        <referencedby refid="classFluide__reel__base_1aaaa887beb25e8fb210187a49a1ce4338" compoundref="Fluide__reel__base_8cpp" startline="53" endline="116">Fluide_reel_base::discretiser</referencedby>
+        <referencedby refid="classSolide_1acd79604d8a1dc32d3711b81bb0b4478d" compoundref="Solide_8cpp" startline="83" endline="119">Solide::discretiser</referencedby>
+        <referencedby refid="classConstituant_1a8fe0f515c55b2fcf06d174b63d13a773" compoundref="Constituant_8cpp" startline="40" endline="46">Constituant::discretiser_multi_concentration</referencedby>
+        <referencedby refid="classTerme__Source__Qdm__Face__PolyMAC__P0P1NC_1a36caeff89f34dd00b55676b72f8fc305" compoundref="Terme__Source__Qdm__Face__PolyMAC__P0P1NC_8cpp" startline="94" endline="99">Terme_Source_Qdm_Face_PolyMAC_P0P1NC::initialiser</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique__Echange__Impose__Elem__base_1a5b451578b68c8121d02703788dd25c31" compoundref="Terme__Puissance__Thermique__Echange__Impose__Elem__base_8cpp" startline="140" endline="149">Terme_Puissance_Thermique_Echange_Impose_Elem_base::initialiser</referencedby>
+        <referencedby refid="classTerme__Source__Qdm__VDF__Face_1afb8b3e1def5f330e08fc09053cf3f4dc" compoundref="Terme__Source__Qdm__VDF__Face_8cpp" startline="235" endline="240">Terme_Source_Qdm_VDF_Face::initialiser</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique__Echange__Impose__VEF__Face_1ac9201d602df21264a8dd48e283efad6b" compoundref="Terme__Puissance__Thermique__Echange__Impose__VEF__Face_8cpp" startline="187" endline="196">Terme_Puissance_Thermique_Echange_Impose_VEF_Face::initialiser</referencedby>
+        <referencedby refid="classTerme__Puissance__Thermique_1a70e89c813970d9e7be593edfdda461ed" compoundref="Terme__Puissance__Thermique_8cpp" startline="36" endline="65">Terme_Puissance_Thermique::lire_donnees</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1ad9237819535d3a28e8ab041f66af27d4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::residu</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>residu</name>
+        <reimplementedby refid="classVDF__discretisation_1a1d332e54a4e7a05a97a63234a861d960">residu</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1ac30159d68ad0150c837fc2dcfe5ab35b">residu</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1a38df2f3e547ef0540883ab65145c6135">residu</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1ab0e19166480640ecc32a6d21535727f9">residu</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="89" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="311" bodyend="315"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classEquation__base_1ab9c5226bc9b23689b0945b50fd61890a" compoundref="Equation__base_8cpp" startline="1045" endline="1065">Equation_base::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1afc3992b63975458f04f3f898f58e84cf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Discretisation_base::verifie_sous_type</definition>
+        <argsstring>(Nom &amp;type, const Nom &amp;sous_type, const Motcle &amp;directive) const</argsstring>
+        <name>verifie_sous_type</name>
+        <param>
+          <type><ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>sous_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>directive</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="85" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="550" bodyend="581"/>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classType__info_1a55377af3b49b0cc55ca24e694bec4249" compoundref="Type__info_8cpp" startline="394" endline="426">Type_info::has_base</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classType__info_1ab37d59e931ab9761812e24ed99842a43" compoundref="Type__info_8cpp" startline="544" endline="567">Type_info::type_info_from_name</references>
+        <referencedby refid="classVDF__discretisation_1a04358416bef0aa8aa6de3ec301cd653b" compoundref="VDF__discretisation_8cpp" startline="58" endline="145">VDF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">DG_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642" compoundref="PolyMAC__discretisation_8cpp" startline="50" endline="124">PolyMAC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="50" endline="129">PolyMAC_P0P1NC_discretisation::discretiser_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a83cb828fd1e4a9f53372d22a60f7349b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::volume_maille</definition>
+        <argsstring>(const Schema_Temps_base &amp;sch, const Domaine_dis_base &amp;z, OWN_PTR(Champ_Fonc_base)&amp;ch) const</argsstring>
+        <name>volume_maille</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+          <declname>sch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="87" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="268" bodyend="276"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <references refid="classDomaine__VF_1a72d89d7c6778a2b8a7a5199bede0297a" compoundref="Domaine__VF_8h" startline="114" endline="114">Domaine_VF::volumes</references>
+        <referencedby refid="classDomaine__dis__base_1a4ae2154aeffb9349d9e7fedaefca15ad" compoundref="Domaine__dis__base_8cpp" startline="187" endline="199">Domaine_dis_base::creer_champ</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classDiscretisation__base_1ae85d1a5377595c6a9b7f220d375ee021" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::creer_champ</definition>
+        <argsstring>(OWN_PTR(Champ_Don_base)&amp;ch, const Domaine_dis_base &amp;z, const Nom &amp;type, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, int nb_ddl, double temps, const Nom &amp;directive=NOM_VIDE, const Nom &amp;nom_discretisation=NOM_VIDE)</argsstring>
+        <name>creer_champ</name>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_ddl</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>directive</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom_discretisation</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+<para>Methode statique qui cree un OWN_PTR(Champ_Don_base) du type specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Les parametres &quot;directive&quot; et &quot;nom_discretisation&quot; sont utilises pour l&apos;affichage uniquement et sont optionnels </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="95" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="250" bodyend="257"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a4ea304a3017fa3c2f42b47c604a41665" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::creer_champ</definition>
+        <argsstring>(OWN_PTR(Champ_Fonc_base)&amp;ch, const Domaine_dis_base &amp;z, const Nom &amp;type, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, int nb_ddl, double temps, const Nom &amp;directive=NOM_VIDE, const Nom &amp;nom_discretisation=NOM_VIDE)</argsstring>
+        <name>creer_champ</name>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_ddl</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>directive</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom_discretisation</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+<para>Methode statique qui cree un OWN_PTR(Champ_Fonc_base) du type specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Les parametres &quot;directive&quot; et &quot;nom_discretisation&quot; sont utilises pour l&apos;affichage uniquement et sont optionnels </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="93" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="235" bodyend="242"/>
+      </memberdef>
+      <memberdef kind="function" id="classDiscretisation__base_1a78d39e8085df1f98212b52b5b7ee459f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::creer_champ</definition>
+        <argsstring>(OWN_PTR(Champ_Inc_base)&amp;ch, const Domaine_dis_base &amp;z, const Nom &amp;type, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, int nb_ddl, int nb_pas_dt, double temps, const Nom &amp;directive=NOM_VIDE, const Nom &amp;nom_discretisation=NOM_VIDE)</argsstring>
+        <name>creer_champ</name>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_ddl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_pas_dt</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>directive</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom_discretisation</declname>
+          <defval><ref refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" kindref="member">NOM_VIDE</ref></defval>
+        </param>
+        <briefdescription>
+<para>Methode statique qui cree un OWN_PTR(Champ_Inc_base) du type specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Les parametres &quot;directive&quot; et &quot;nom_discretisation&quot; sont utilises pour l&apos;affichage uniquement et sont optionnels </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="91" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="219" bodyend="227"/>
+        <references refid="classChamp__Inc__base_1a3206048a0cfda08c716678d0eb9a885f" compoundref="Champ__Inc__base_8cpp" startline="46" endline="49">Champ_Inc_base::fixer_nb_valeurs_temporelles</references>
+        <referencedby refid="classEF__discretisation_1a780692831fee96965fb0bf2ec584bc81" compoundref="EF__discretisation_8cpp" startline="59" endline="163">EF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVDF__discretisation_1a04358416bef0aa8aa6de3ec301cd653b" compoundref="VDF__discretisation_8cpp" startline="58" endline="145">VDF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classDG__discretisation_1af29ac29eaf22dd507fbe18820cd675e4" compoundref="DG__discretisation_8cpp" startline="54" endline="121">DG_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__discretisation_1a8513fc2904106e565f6291d9d98f8642" compoundref="PolyMAC__discretisation_8cpp" startline="50" endline="124">PolyMAC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classPolyMAC__P0P1NC__discretisation_1a1ba8e06a8c1423a81af8d847f53c6aec" compoundref="PolyMAC__P0P1NC__discretisation_8cpp" startline="50" endline="129">PolyMAC_P0P1NC_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVEF__discretisation_1a18252b0cc46bdcf54b1a861ca6c4033f" compoundref="VEF__discretisation_8cpp" startline="123" endline="171">VEF_discretisation::discretiser_champ</referencedby>
+        <referencedby refid="classVEF__discretisation_1a9311085eace037b64763f8e624c8452f" compoundref="VEF__discretisation_8cpp" startline="757" endline="769">VEF_discretisation::grad_T</referencedby>
+        <referencedby refid="classEquation__base_1a462da14d51ee8cc39b4cc16a5b3d9055" compoundref="Equation__base_8cpp" startline="2141" endline="2153">Equation_base::init_champ_conserve</referencedby>
+        <referencedby refid="classEnergie__Multiphase_1a8a4a0d3204fe9db1c2e7087987581da1" compoundref="Energie__Multiphase_8cpp" startline="262" endline="272">Energie_Multiphase::init_champ_convecte</referencedby>
+        <referencedby refid="classMasse__Multiphase_1a8a7d341d6af1c7ca2d88361b828f8c50" compoundref="Masse__Multiphase_8cpp" startline="312" endline="322">Masse_Multiphase::init_champ_convecte</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discretisation_base::OBS_PTR</definition>
+        <argsstring>(Domaine) le_domaine_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="113" column="3"/>
+        <referencedby refid="classDiscretisation__base_1a17969ebd170a72f28d8cac002eb3f857" compoundref="Discretisation__base_8cpp" startline="323" endline="342">nommer_completer_champ_physique</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="classDiscretisation__base_1a965c4f37c171fa58a9bd2d5372684403" prot="private" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discretisation_base::champ_fixer_membres_communs</definition>
+        <argsstring>(Champ_base &amp;ch, const Domaine_dis_base &amp;z, const Nom &amp;type, const Nom &amp;nom, const Nom &amp;unite, int nb_comp, int nb_ddl, double temps)</argsstring>
+        <name>champ_fixer_membres_communs</name>
+        <param>
+          <type><ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>unite</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_ddl</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Fonction outil pour fixer les membres communs a tous les types de champs (utilisee dans creer_champ) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="117" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.cpp" bodystart="177" bodyend="211"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> Cette classe represente un schema de discretisation en espace, qui </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>sera associe a un probleme. Discretisation_base est la classe
+abstraite qui est a la base de la hierarchie des discretisations
+en espace.
+</verbatim> <simplesect kind="see"><para><ref refid="classProbleme__base" kindref="compound">Probleme_base</ref>, Classe abstraite dont toutes les discretisations en espace doivent, deriver., Methode abstraite:, void domaine_Cl_dis(Domaine_dis_base&amp; , Domaine_Cl_dis_base&amp; ) const </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Discr_inst</label>
+        <link refid="classDiscr__inst"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>EF_discretisation</label>
+        <link refid="classEF__discretisation"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>DG_discretisation</label>
+        <link refid="classDG__discretisation"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>PolyMAC_P0_discretisation</label>
+        <link refid="classPolyMAC__P0__discretisation"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>VEF_discretisation</label>
+        <link refid="classVEF__discretisation"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>VDF_discretisation</label>
+        <link refid="classVDF__discretisation"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>PolyMAC_discretisation</label>
+        <link refid="classPolyMAC__discretisation"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="6">
+        <label>Discret_Thyd</label>
+        <link refid="classDiscret__Thyd"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>IJK_discretisation</label>
+        <link refid="classIJK__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Discret_Thermique</label>
+        <link refid="classDiscret__Thermique"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>PolyMAC_P0P1NC_discretisation</label>
+        <link refid="classPolyMAC__P0P1NC__discretisation"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>EF_axi_discretisation</label>
+        <link refid="classEF__axi__discretisation"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="1">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>NOM_VIDE</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>DEMANDE_DESCRIPTION</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="7">
+        <label>Motcle</label>
+        <link refid="classMotcle"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" line="45" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Discretisation_base.h" bodystart="46" bodyend="120"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>associer_</name></member>
+      <member refid="classDiscretisation__base_1aad7284735cd70264a2e9f1ffa5ee73c2" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>bidim_axi</name></member>
+      <member refid="classDiscretisation__base_1a965c4f37c171fa58a9bd2d5372684403" prot="private" virt="non-virtual"><scope>Discretisation_base</scope><name>champ_fixer_membres_communs</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>check_int_overflow</name></member>
+      <member refid="classDiscretisation__base_1ad6333cec25f23f44f36aabb20416ab68" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>codage_du_calcul_du_residu</name></member>
+      <member refid="classDiscretisation__base_1a78d39e8085df1f98212b52b5b7ee459f" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1a4ea304a3017fa3c2f42b47c604a41665" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1ae85d1a5377595c6a9b7f220d375ee021" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classDiscretisation__base_1a79fe1d4825b868dba27cc3ef1c025d08" prot="private" virt="non-virtual"><scope>Discretisation_base</scope><name>Declare_base</name></member>
+      <member refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>DEMANDE_DESCRIPTION</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>disable_TU</name></member>
+      <member refid="classDiscretisation__base_1a720792b21fab7d60bef9a2b39faf96c1" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>discretiser</name></member>
+      <member refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1aa025262a374bffb83d08804efb142723" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a4926d441cf0d6877629cb17e90cc23b7" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a509a8f15679dc718615771bdef0782b3" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a7a83512f3f7c77c32d80a21bd5e7ea2a" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a29462970b0097e5ff1c24309613c1545" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a0e60e14ef2b31bd8098f3688565d510c" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>discretiser_variables</name></member>
+      <member refid="classDiscretisation__base_1a771a54326f782563754413afbf2e44b7" prot="public" virt="pure-virtual"><scope>Discretisation_base</scope><name>domaine_cl_dis_type</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Discretisation_base</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>get_info</name></member>
+      <member refid="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>get_name_of_type_for</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>interprete</name></member>
+      <member refid="classDiscretisation__base_1a2f404ad2c8800e75a39c37964d93f883" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_dg</name></member>
+      <member refid="classDiscretisation__base_1a447faf3699b7e2687003fc7903c24886" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_ef</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>is_parallel</name></member>
+      <member refid="classDiscretisation__base_1a31f49a7acb39da94cf4e0229c465169b" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_polymac</name></member>
+      <member refid="classDiscretisation__base_1ab68dcb966f6651993d3b19bfdb644399" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_polymac_family</name></member>
+      <member refid="classDiscretisation__base_1a0be287d02325f0201d98921c8665ebbb" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_polymac_p0</name></member>
+      <member refid="classDiscretisation__base_1a14605de98065dcb471af3c796f9d66a6" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_polymac_p0p1nc</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>is_sequential</name></member>
+      <member refid="classDiscretisation__base_1a48deff14b7e177f668cdbc7faec9e2c6" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_vdf</name></member>
+      <member refid="classDiscretisation__base_1aac859a9216c7c1c200fe2f1050190ce7" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>is_vef</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>me</name></member>
+      <member refid="classDiscretisation__base_1a5d6d9a9f61567c3be2ca403bf4613698" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mesh_numbering</name></member>
+      <member refid="classDiscretisation__base_1a3230b5df888097a22eab8467acc26563" prot="private" virt="virtual"><scope>Discretisation_base</scope><name>modifier_champ_tabule</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>nom_du_cas</name></member>
+      <member refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>NOM_VIDE</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>nommer</name></member>
+      <member refid="classDiscretisation__base_1a17969ebd170a72f28d8cac002eb3f857" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>nommer_completer_champ_physique</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>Objet_U</name></member>
+      <member refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Discretisation_base</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>reprendre</name></member>
+      <member refid="classDiscretisation__base_1ad9237819535d3a28e8ab041f66af27d4" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>residu</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Discretisation_base</scope><name>taille_memoire</name></member>
+      <member refid="classDiscretisation__base_1a9cf24ee4d121211b68fc7077e7172c89" prot="private" virt="non-virtual"><scope>Discretisation_base</scope><name>test_demande_description</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>type_calcul_du_residu</name></member>
+      <member refid="classDiscretisation__base_1afc3992b63975458f04f3f898f58e84cf" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>verifie_sous_type</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0ab1b0885ce8af07e1563ae012e4822f6e" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>VIA_AJOUTER</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0a6da3daf19c0be297ebb5c28e3ad11b2d" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>VIA_CONTRIBUER_AU_SECOND_MEMBRE</name></member>
+      <member refid="classDiscretisation__base_1a83cb828fd1e4a9f53372d22a60f7349b" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>volume_maille</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Discretisation_base</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Discretisation_base</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

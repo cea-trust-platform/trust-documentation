@@ -1,0 +1,275 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classJoints__32__64" kind="class" language="C++" prot="public">
+    <compoundname>Joints_32_64</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTJoint_32_64&lt; _SIZE_ &gt;</basecompoundref>
+    <includes local="no">Joints.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classJoints__32__64_1a5bab2f2c9993bdfc2c4664f0e2a8702f" prot="public" static="no">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Joints_32_64&lt; _SIZE_ &gt;::Domaine_t =  Domaine_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Domaine_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="34" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classJoints__32__64_1a943d44014a7afac390617785c869e7c1" prot="public" static="no">
+        <type>_SIZE_</type>
+        <definition>using Joints_32_64&lt; _SIZE_ &gt;::int_t =  _SIZE_</definition>
+        <argsstring></argsstring>
+        <name>int_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="33" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classJoints__32__64_1aa438b81da4b935dca6cb0345d661078c" prot="public" static="no">
+        <type><ref refid="classJoint__32__64" kindref="compound">Joint_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Joints_32_64&lt; _SIZE_ &gt;::Joint_t =  Joint_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Joint_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="35" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classJoints__32__64_1a21b0e30c475218f15a1e7726e4f7b77a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Joints_32_64&lt; _SIZE_ &gt;::Declare_instanciable_32_64</definition>
+        <argsstring>(Joints_32_64)</argsstring>
+        <name>Declare_instanciable_32_64</name>
+        <param>
+          <type><ref refid="classJoints__32__64" kindref="compound">Joints_32_64</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classJoints__32__64_1ad20fa01829550d07f4e749d3e4fbec79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Joints_32_64&lt; _SIZE_ &gt;::associer_domaine</definition>
+        <argsstring>(const Domaine_t &amp;)</argsstring>
+        <name>associer_domaine</name>
+        <param>
+          <type>const <ref refid="classJoints__32__64_1a5bab2f2c9993bdfc2c4664f0e2a8702f" kindref="member">Domaine_t</ref> &amp;</type>
+          <defname>un_domaine</defname>
+        </param>
+        <briefdescription>
+<para>Associe un domaine a tous les joints de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Les joints de la liste feront partie de cet domaine.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un_domaine) le domaine a associer aux joints </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.cpp" bodystart="33" bodyend="36"/>
+        <referencedby refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" compoundref="Interprete__geometrique__base_8cpp" startline="60" endline="84">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::interpreter</referencedby>
+        <referencedby refid="classDomaine__32__64_1a96722a1630524b52ecc912eb0b39a863" compoundref="Domaine_8cpp" startline="1179" endline="1221">Domaine_32_64&lt; _SIZE_ &gt;::merge_wo_vertices_with</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJoints__32__64_1a11b867951cb6c1e14f9f392f44bf95ae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Joints_32_64&lt; _SIZE_ &gt;::comprimer</definition>
+        <argsstring>()</argsstring>
+        <name>comprimer</name>
+        <briefdescription>
+<para>Comprime la liste de joints. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.cpp" bodystart="77" bodyend="128"/>
+        <references refid="classJoint__32__64_1ad359b4b2bca18821499775f406a25d0d" compoundref="Joint_8cpp" startline="89" endline="93">Joint_32_64&lt; _SIZE_ &gt;::ajouter_faces</references>
+        <references refid="classJoint__32__64_1a682e335888382681cccc561b19457e12" compoundref="Joint_8cpp" startline="76" endline="81">Joint_32_64&lt; _SIZE_ &gt;::dimensionner</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classFrontiere__32__64_1aa2453faaa6bcb39dcab9159feba7fee3" compoundref="Frontiere_8h" startline="49" endline="49">Frontiere_32_64&lt; _SIZE_ &gt;::le_nom</references>
+        <references refid="classFrontiere__32__64_1abc6c71dfd30e5e1a58c60f7e8c64f202" compoundref="Frontiere_8cpp" startline="114" endline="117">Frontiere_32_64&lt; _SIZE_ &gt;::les_sommets_des_faces</references>
+        <references refid="classFrontiere__32__64_1aa7884654b521e9ff54f90af0f872550b" compoundref="Frontiere_8h" startline="59" endline="59">Frontiere_32_64&lt; _SIZE_ &gt;::nb_faces</references>
+        <references refid="classFrontiere__32__64_1a3064a8115270f842bec3e2a6c236504a" compoundref="Frontiere_8cpp" startline="72" endline="75">Frontiere_32_64&lt; _SIZE_ &gt;::nommer</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+      </memberdef>
+      <memberdef kind="function" id="classJoints__32__64_1aed031ee711199cd6bda8703325f27a4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJoints__32__64_1aa438b81da4b935dca6cb0345d661078c" kindref="member">Joint_t</ref> &amp;</type>
+        <definition>Joints_32_64&lt; _SIZE_ &gt;::Joint_t &amp; Joints_32_64&lt; _SIZE_ &gt;::joint_PE</definition>
+        <argsstring>(int pe)</argsstring>
+        <name>joint_PE</name>
+        <param>
+          <type>int</type>
+          <declname>pe</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie une reference sur le joint qui a pour voisin le PE specifie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pe) un numero de PE </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(Joint&amp;) le joint qui a pour voisin le PE specifie </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>PE</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>voisin specifie non trouve dans la liste des joints. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="42" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.cpp" bodystart="137" bodyend="148"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+      </memberdef>
+      <memberdef kind="function" id="classJoints__32__64_1a75c3dc5fee95f5111b308eb25e85058e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJoints__32__64_1a943d44014a7afac390617785c869e7c1" kindref="member">int_t</ref></type>
+        <definition>_SIZE_ Joints_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_faces</name>
+        <briefdescription>
+<para>Renvoie le nombre de face total des <ref refid="classJoints__32__64" kindref="compound">Joints_32_64</ref> de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(la somme des faces de tous les joints de la liste).</para>
+<para><simplesect kind="return"><para>(int) le nombre de face total des <ref refid="classJoints__32__64" kindref="compound">Joints_32_64</ref> de la liste </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="38" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.cpp" bodystart="46" bodyend="52"/>
+        <referencedby refid="classDomaine__32__64_1a81392fe24bc01bf7a6a3253b9ead30a2" compoundref="Domaine_8h" startline="165" endline="165">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_joint</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classJoints__32__64_1a0c34da19ca49baf548cf9564a98d29ea" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classJoints__32__64_1a943d44014a7afac390617785c869e7c1" kindref="member">int_t</ref></type>
+        <definition>_SIZE_ Joints_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>(Type_Face type) const</argsstring>
+        <name>nb_faces</name>
+        <param>
+          <type>Type_Face</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie le nombre de faces du type specifie contenues dans la liste de joints. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(somme des faces de ce type sur tous les joints de la liste)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Type_Face</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type) le type des faces a compter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) le nombre de faces du type specifie contenues dans la liste de joints </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="39" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.cpp" bodystart="63" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classJoints__32__64_1a10effa09d459ce59cc62603100dabae8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Joints_32_64&lt; _SIZE_ &gt;::nb_joints</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_joints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="40" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" bodystart="40" bodyend="40"/>
+        <referencedby refid="classDomaine__32__64_1a867846f34c5411d6ea0b4138c81325d4" compoundref="Domaine_8h" startline="255" endline="255">Domaine_32_64&lt; _SIZE_ &gt;::nb_joints</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Classe Joints Cette classe represente une liste d&apos;objet de type Joint. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para>Joint </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>LISTJoint_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Joints_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classJoints__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>LISTJoint_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Joints_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classJoints__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Joints.h" bodystart="28" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classJoints__32__64_1ad20fa01829550d07f4e749d3e4fbec79" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>associer_domaine</name></member>
+      <member refid="classJoints__32__64_1a11b867951cb6c1e14f9f392f44bf95ae" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>comprimer</name></member>
+      <member refid="classJoints__32__64_1a21b0e30c475218f15a1e7726e4f7b77a" prot="private" virt="non-virtual"><scope>Joints_32_64</scope><name>Declare_instanciable_32_64</name></member>
+      <member refid="classJoints__32__64_1a5bab2f2c9993bdfc2c4664f0e2a8702f" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>Domaine_t</name></member>
+      <member refid="classJoints__32__64_1a943d44014a7afac390617785c869e7c1" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>int_t</name></member>
+      <member refid="classJoints__32__64_1aed031ee711199cd6bda8703325f27a4b" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>joint_PE</name></member>
+      <member refid="classJoints__32__64_1aa438b81da4b935dca6cb0345d661078c" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>Joint_t</name></member>
+      <member refid="classJoints__32__64_1a75c3dc5fee95f5111b308eb25e85058e" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>nb_faces</name></member>
+      <member refid="classJoints__32__64_1a0c34da19ca49baf548cf9564a98d29ea" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>nb_faces</name></member>
+      <member refid="classJoints__32__64_1a10effa09d459ce59cc62603100dabae8" prot="public" virt="non-virtual"><scope>Joints_32_64</scope><name>nb_joints</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

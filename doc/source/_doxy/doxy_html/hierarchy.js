@@ -1,39 +1,40 @@
 var hierarchy =
 [
     [ "_DERIVED_TYPE_", null, [
-      [ "TRUSTProblem_Concentration_Gen< _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant >", "classTRUSTProblem__Concentration__Gen.html", null ],
+      [ "TRUSTProblem_Concentration_Gen< _DERIVED_TYPE_, Convection_Diffusion_Concentration, Constituant >", "classTRUSTProblem__Concentration__Gen.html", [
+        [ "TRUSTProblem_Cloned_Concentration_Gen< _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ >", "classTRUSTProblem__Cloned__Concentration__Gen.html", null ],
+        [ "TRUSTProblem_List_Concentration_Gen< _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ >", "classTRUSTProblem__List__Concentration__Gen.html", null ]
+      ] ],
       [ "TRUSTProblem_Concentration_Gen< _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ >", "classTRUSTProblem__Concentration__Gen.html", [
-        [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Hydraulique >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
-          [ "Pb_Hydraulique_Cloned_Concentration", "classPb__Hydraulique__Cloned__Concentration.html", null ]
+        [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Thermohydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
+          [ "Pb_Thermohydraulique_Cloned_Concentration_Turbulent", "classPb__Thermohydraulique__Cloned__Concentration__Turbulent.html", null ]
         ] ],
         [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
           [ "Pb_Hydraulique_Cloned_Concentration_Turbulent", "classPb__Hydraulique__Cloned__Concentration__Turbulent.html", null ]
         ] ],
+        [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Hydraulique >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
+          [ "Pb_Hydraulique_Cloned_Concentration", "classPb__Hydraulique__Cloned__Concentration.html", null ]
+        ] ],
         [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Thermohydraulique >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
           [ "Pb_Thermohydraulique_Cloned_Concentration", "classPb__Thermohydraulique__Cloned__Concentration.html", null ]
-        ] ],
-        [ "TRUSTProblem_Cloned_Concentration_Gen< Pb_Thermohydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__Cloned__Concentration__Gen.html", [
-          [ "Pb_Thermohydraulique_Cloned_Concentration_Turbulent", "classPb__Thermohydraulique__Cloned__Concentration__Turbulent.html", null ]
-        ] ],
-        [ "TRUSTProblem_List_Concentration_Gen< Pb_Hydraulique >", "classTRUSTProblem__List__Concentration__Gen.html", [
-          [ "Pb_Hydraulique_List_Concentration", "classPb__Hydraulique__List__Concentration.html", null ]
-        ] ],
-        [ "TRUSTProblem_List_Concentration_Gen< Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__List__Concentration__Gen.html", [
-          [ "Pb_Hydraulique_List_Concentration_Turbulent", "classPb__Hydraulique__List__Concentration__Turbulent.html", null ]
-        ] ],
-        [ "TRUSTProblem_List_Concentration_Gen< Pb_Thermohydraulique >", "classTRUSTProblem__List__Concentration__Gen.html", [
-          [ "Pb_Thermohydraulique_List_Concentration", "classPb__Thermohydraulique__List__Concentration.html", null ]
         ] ],
         [ "TRUSTProblem_List_Concentration_Gen< Pb_Thermohydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__List__Concentration__Gen.html", [
           [ "Pb_Thermohydraulique_List_Concentration_Turbulent", "classPb__Thermohydraulique__List__Concentration__Turbulent.html", null ]
         ] ],
-        [ "TRUSTProblem_Cloned_Concentration_Gen< _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ >", "classTRUSTProblem__Cloned__Concentration__Gen.html", null ],
-        [ "TRUSTProblem_List_Concentration_Gen< _DERIVED_TYPE_, _EQUATION_TYPE_, _MEDIUM_TYPE_ >", "classTRUSTProblem__List__Concentration__Gen.html", null ]
+        [ "TRUSTProblem_List_Concentration_Gen< Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__List__Concentration__Gen.html", [
+          [ "Pb_Hydraulique_List_Concentration_Turbulent", "classPb__Hydraulique__List__Concentration__Turbulent.html", null ]
+        ] ],
+        [ "TRUSTProblem_List_Concentration_Gen< Pb_Hydraulique >", "classTRUSTProblem__List__Concentration__Gen.html", [
+          [ "Pb_Hydraulique_List_Concentration", "classPb__Hydraulique__List__Concentration.html", null ]
+        ] ],
+        [ "TRUSTProblem_List_Concentration_Gen< Pb_Thermohydraulique >", "classTRUSTProblem__List__Concentration__Gen.html", [
+          [ "Pb_Thermohydraulique_List_Concentration", "classPb__Thermohydraulique__List__Concentration.html", null ]
+        ] ]
       ] ],
       [ "TRUSTProblem_sup_eqns< _DERIVED_TYPE_ >", "classTRUSTProblem__sup__eqns.html", null ]
     ] ],
     [ "_sig_ucontext", "struct__sig__ucontext.html", null ],
-    [ "AbstractIO", null, [
+    [ "AbstractIO", "classAbstractIO.html", [
       [ "Entree", "classEntree.html", [
         [ "EChaine", "classEChaine.html", null ],
         [ "EChaineJDD", "classEChaineJDD.html", null ],
@@ -44,6 +45,7 @@ var hierarchy =
             [ "LecFicDistribue", "classLecFicDistribue.html", [
               [ "LecFicDistribueBin", "classLecFicDistribueBin.html", null ]
             ] ],
+            [ "LecFicDistribue_sansnum", "classLecFicDistribue__sansnum.html", null ],
             [ "Lec_Diffuse_base", "classLec__Diffuse__base.html", [
               [ "LecFicDiffuse", "classLecFicDiffuse.html", [
                 [ "LecFicDiffuseBin", "classLecFicDiffuseBin.html", null ]
@@ -95,6 +97,7 @@ var hierarchy =
     [ "Champ_implementation", "classChamp__implementation.html", [
       [ "Champ_implementation_P0", "classChamp__implementation__P0.html", [
         [ "Champ_Fonc_P0_base", "classChamp__Fonc__P0__base.html", [
+          [ "Champ_Fonc_Elem_DG", "classChamp__Fonc__Elem__DG.html", null ],
           [ "Champ_Fonc_Elem_PolyMAC", "classChamp__Fonc__Elem__PolyMAC.html", [
             [ "Champ_Fonc_Elem_PolyMAC_P0_TC", "classChamp__Fonc__Elem__PolyMAC__P0__TC.html", null ],
             [ "Champ_Fonc_Elem_PolyMAC_P0_rot", "classChamp__Fonc__Elem__PolyMAC__P0__rot.html", null ],
@@ -114,6 +117,7 @@ var hierarchy =
             [ "Correlation_Vec_Sca_VDF", "classCorrelation__Vec__Sca__VDF.html", null ],
             [ "Critere_Q_Champ_Face", "classCritere__Q__Champ__Face.html", null ],
             [ "Rotationnel_Champ_Face", "classRotationnel__Champ__Face.html", null ],
+            [ "T_paroi_Champ_P0_VDF", "classT__paroi__Champ__P0__VDF.html", null ],
             [ "Taux_cisaillement_P0_VDF", "classTaux__cisaillement__P0__VDF.html", null ],
             [ "Y_plus_Champ_Face", "classY__plus__Champ__Face.html", null ],
             [ "grad_U_Champ_Face", "classgrad__U__Champ__Face.html", null ]
@@ -123,12 +127,14 @@ var hierarchy =
             [ "Critere_Q_Champ_P1NC", "classCritere__Q__Champ__P1NC.html", null ],
             [ "Rotationnel_Champ_P1NC", "classRotationnel__Champ__P1NC.html", null ],
             [ "Rotationnel_Champ_Q1NC", "classRotationnel__Champ__Q1NC.html", null ],
+            [ "T_paroi_Champ_P1NC", "classT__paroi__Champ__P1NC.html", null ],
             [ "Taux_cisaillement_P0_VEF", "classTaux__cisaillement__P0__VEF.html", null ],
             [ "Y_plus_Champ_P1NC", "classY__plus__Champ__P1NC.html", null ],
             [ "grad_T_Champ_P1NC", "classgrad__T__Champ__P1NC.html", null ],
             [ "grad_U_Champ_P1NC", "classgrad__U__Champ__P1NC.html", null ],
             [ "h_conv_Champ_P1NC", "classh__conv__Champ__P1NC.html", null ]
           ] ],
+          [ "Champ_Fonc_P1_DG", "classChamp__Fonc__P1__DG.html", null ],
           [ "Champ_Input_P0_Composite", "classChamp__Input__P0__Composite.html", null ],
           [ "Champ_Ostwald", "classChamp__Ostwald.html", [
             [ "Champ_Ostwald_VDF", "classChamp__Ostwald__VDF.html", null ],
@@ -137,6 +143,7 @@ var hierarchy =
           [ "Champ_input_P0", "classChamp__input__P0.html", null ]
         ] ],
         [ "Champ_Inc_P0_base", "classChamp__Inc__P0__base.html", [
+          [ "Champ_Elem_DG", "classChamp__Elem__DG.html", null ],
           [ "Champ_Elem_PolyMAC", "classChamp__Elem__PolyMAC.html", [
             [ "Champ_Elem_PolyMAC_P0P1NC", "classChamp__Elem__PolyMAC__P0P1NC.html", [
               [ "Champ_Elem_PolyMAC_P0", "classChamp__Elem__PolyMAC__P0.html", null ]
@@ -183,6 +190,7 @@ var hierarchy =
           ] ],
           [ "Champ_Inc_P1_base", "classChamp__Inc__P1__base.html", [
             [ "Champ_P1_EF", "classChamp__P1__EF.html", null ],
+            [ "Champ_P1_VEF", "classChamp__P1__VEF.html", null ],
             [ "Champ_Som_PolyMAC", "classChamp__Som__PolyMAC.html", null ]
           ] ]
         ] ],
@@ -209,38 +217,52 @@ var hierarchy =
     ] ],
     [ "Champ_lu_proto", "classChamp__lu__proto.html", [
       [ "Champ_Fonc_MED_Table_Temps", "classChamp__Fonc__MED__Table__Temps.html", null ],
+      [ "Champ_Tabule_lu", "classChamp__Tabule__lu.html", null ],
       [ "Champ_front_Tabule_lu", "classChamp__front__Tabule__lu.html", null ]
     ] ],
     [ "Champ_Proto", "classChamp__Proto.html", [
       [ "Champ_base", "classChamp__base.html", [
         [ "Champ_Don_base", "classChamp__Don__base.html", [
-          [ "TRUSTChamp_Divers_generique< Champ_Divers_Type::UNIFORME >", "classTRUSTChamp__Divers__generique.html", [
-            [ "Champ_Uniforme", "classChamp__Uniforme.html", [
-              [ "Ch_input_uniforme", "classCh__input__uniforme.html", null ],
-              [ "Champ_Uniforme_inst", "classChamp__Uniforme__inst.html", [
-                [ "Champ_Fonc_t", "classChamp__Fonc__t.html", null ],
-                [ "Champ_Tabule_Temps", "classChamp__Tabule__Temps.html", null ]
-              ] ]
-            ] ]
+          [ "TRUSTChamp_Divers_generique< Champ_Divers_Type::CANAL >", "classTRUSTChamp__Divers__generique.html", [
+            [ "champ_init_canal_sinal", "classchamp__init__canal__sinal.html", null ]
           ] ],
           [ "TRUSTChamp_Divers_generique< Champ_Divers_Type::INUTILE >", "classTRUSTChamp__Divers__generique.html", [
             [ "Init_par_partie", "classInit__par__partie.html", null ],
             [ "Tayl_Green", "classTayl__Green.html", null ]
           ] ],
-          [ "TRUSTChamp_Divers_generique< Champ_Divers_Type::CANAL >", "classTRUSTChamp__Divers__generique.html", [
-            [ "champ_init_canal_sinal", "classchamp__init__canal__sinal.html", null ]
-          ] ],
-          [ "TRUSTChamp_Don_generique< Champ_Don_Type::TXYZ >", "classTRUSTChamp__Don__generique.html", [
-            [ "Champ_Don_Fonc_txyz", "classChamp__Don__Fonc__txyz.html", null ]
-          ] ],
-          [ "TRUSTChamp_Don_generique< Champ_Don_Type::XYZ >", "classTRUSTChamp__Don__generique.html", [
-            [ "Champ_Don_Fonc_xyz", "classChamp__Don__Fonc__xyz.html", null ]
+          [ "TRUSTChamp_Divers_generique< Champ_Divers_Type::UNIFORME >", "classTRUSTChamp__Divers__generique.html", [
+            [ "Champ_Uniforme", "classChamp__Uniforme.html", [
+              [ "Ch_input_uniforme", "classCh__input__uniforme.html", null ],
+              [ "Champ_Uniforme_inst", "classChamp__Uniforme__inst.html", [
+                [ "Champ_Fonc_t", "classChamp__Fonc__t.html", null ],
+                [ "Champ_Tabule_Temps", "classChamp__Tabule__Temps.html", [
+                  [ "Champ_Tabule_lu", "classChamp__Tabule__lu.html", null ]
+                ] ]
+              ] ]
+            ] ]
           ] ],
           [ "TRUSTChamp_Don_generique< Champ_Don_Type::LU >", "classTRUSTChamp__Don__generique.html", [
             [ "Champ_Don_lu", "classChamp__Don__lu.html", null ],
             [ "Champ_som_lu", "classChamp__som__lu.html", [
               [ "Champ_som_lu_VDF", "classChamp__som__lu__VDF.html", null ],
               [ "Champ_som_lu_VEF", "classChamp__som__lu__VEF.html", null ]
+            ] ]
+          ] ],
+          [ "TRUSTChamp_Don_generique< Champ_Don_Type::XYZ >", "classTRUSTChamp__Don__generique.html", [
+            [ "Champ_Don_Fonc_xyz", "classChamp__Don__Fonc__xyz.html", null ]
+          ] ],
+          [ "TRUSTChamp_Don_generique< Champ_Don_Type::TXYZ >", "classTRUSTChamp__Don__generique.html", [
+            [ "Champ_Don_Fonc_txyz", "classChamp__Don__Fonc__txyz.html", null ]
+          ] ],
+          [ "TRUSTChamp_Morceaux_generique< Champ_Morceaux_Type::UNIFORME >", "classTRUSTChamp__Morceaux__generique.html", [
+            [ "Champ_Uniforme_Morceaux", "classChamp__Uniforme__Morceaux.html", [
+              [ "Champ_Uniforme_Morceaux_inst", "classChamp__Uniforme__Morceaux__inst.html", [
+                [ "Champ_Uniforme_Morceaux_Tabule_Temps", "classChamp__Uniforme__Morceaux__Tabule__Temps.html", null ]
+              ] ],
+              [ "Champ_val_tot_sur_vol_base", "classChamp__val__tot__sur__vol__base.html", [
+                [ "Champ_val_tot_sur_vol_VDF", "classChamp__val__tot__sur__vol__VDF.html", null ],
+                [ "Champ_val_tot_sur_vol_VEF", "classChamp__val__tot__sur__vol__VEF.html", null ]
+              ] ]
             ] ]
           ] ],
           [ "TRUSTChamp_Morceaux_generique< Champ_Morceaux_Type::FONC_TXYZ >", "classTRUSTChamp__Morceaux__generique.html", [
@@ -252,17 +274,6 @@ var hierarchy =
           [ "TRUSTChamp_Morceaux_generique< Champ_Morceaux_Type::FONC_TABULE >", "classTRUSTChamp__Morceaux__generique.html", [
             [ "Champ_Fonc_Tabule_Morceaux", "classChamp__Fonc__Tabule__Morceaux.html", [
               [ "Champ_Fonc_Tabule_Morceaux_Interp", "classChamp__Fonc__Tabule__Morceaux__Interp.html", null ]
-            ] ]
-          ] ],
-          [ "TRUSTChamp_Morceaux_generique< Champ_Morceaux_Type::UNIFORME >", "classTRUSTChamp__Morceaux__generique.html", [
-            [ "Champ_Uniforme_Morceaux", "classChamp__Uniforme__Morceaux.html", [
-              [ "Champ_Uniforme_Morceaux_inst", "classChamp__Uniforme__Morceaux__inst.html", [
-                [ "Champ_Uniforme_Morceaux_Tabule_Temps", "classChamp__Uniforme__Morceaux__Tabule__Temps.html", null ]
-              ] ],
-              [ "Champ_val_tot_sur_vol_base", "classChamp__val__tot__sur__vol__base.html", [
-                [ "Champ_val_tot_sur_vol_VDF", "classChamp__val__tot__sur__vol__VDF.html", null ],
-                [ "Champ_val_tot_sur_vol_VEF", "classChamp__val__tot__sur__vol__VEF.html", null ]
-              ] ]
             ] ]
           ] ],
           [ "Champ_Composite", "classChamp__Composite.html", [
@@ -401,6 +412,7 @@ var hierarchy =
         [ "Coalescence_bulles_1groupe_base", "classCoalescence__bulles__1groupe__base.html", null ],
         [ "Diametre_bulles_champ", "classDiametre__bulles__champ.html", null ],
         [ "Diametre_bulles_constant", "classDiametre__bulles__constant.html", null ],
+        [ "Diametre_bulles_musig", "classDiametre__bulles__musig.html", null ],
         [ "Dispersion_bulles_base", "classDispersion__bulles__base.html", [
           [ "Dispersion_bulles_constante", "classDispersion__bulles__constante.html", null ]
         ] ],
@@ -413,7 +425,10 @@ var hierarchy =
           [ "Flux_interfacial_Wolfert_composant", "classFlux__interfacial__Wolfert__composant.html", null ],
           [ "Flux_interfacial_Zeitoun", "classFlux__interfacial__Zeitoun.html", null ]
         ] ],
-        [ "Flux_parietal_base", "classFlux__parietal__base.html", null ],
+        [ "Flux_parietal_base", "classFlux__parietal__base.html", [
+          [ "Flux_parietal_Nusselt", "classFlux__parietal__Nusselt.html", null ],
+          [ "Flux_parietal_diphasique_simple_lineaire", "classFlux__parietal__diphasique__simple__lineaire.html", null ]
+        ] ],
         [ "Frottement_interfacial_base", "classFrottement__interfacial__base.html", [
           [ "Frottement_interfacial_Garnier", "classFrottement__interfacial__Garnier.html", null ],
           [ "Frottement_interfacial_Ishii_Zuber", "classFrottement__interfacial__Ishii__Zuber.html", null ],
@@ -451,7 +466,8 @@ var hierarchy =
         [ "Transport_turbulent_base", "classTransport__turbulent__base.html", [
           [ "Transport_turbulent_GGDH", "classTransport__turbulent__GGDH.html", null ],
           [ "Transport_turbulent_Prandtl", "classTransport__turbulent__Prandtl.html", null ],
-          [ "Transport_turbulent_SGDH", "classTransport__turbulent__SGDH.html", null ]
+          [ "Transport_turbulent_SGDH", "classTransport__turbulent__SGDH.html", null ],
+          [ "Transport_turbulent_aire_interfaciale", "classTransport__turbulent__aire__interfaciale.html", null ]
         ] ],
         [ "Viscosite_turbulente_base", "classViscosite__turbulente__base.html", [
           [ "Viscosite_turbulente_LES_base", "classViscosite__turbulente__LES__base.html", [
@@ -475,6 +491,7 @@ var hierarchy =
             [ "Domaine_EF_axi", "classDomaine__EF__axi.html", null ]
           ] ],
           [ "Domaine_Poly_base", "classDomaine__Poly__base.html", [
+            [ "Domaine_DG", "classDomaine__DG.html", null ],
             [ "Domaine_PolyMAC", "classDomaine__PolyMAC.html", [
               [ "Domaine_PolyMAC_P0P1NC", "classDomaine__PolyMAC__P0P1NC.html", [
                 [ "Domaine_PolyMAC_P0", "classDomaine__PolyMAC__P0.html", null ]
@@ -487,7 +504,9 @@ var hierarchy =
         ] ]
       ] ],
       [ "Equation_base", "classEquation__base.html", [
-        [ "Conduction", "classConduction.html", null ],
+        [ "Conduction", "classConduction.html", [
+          [ "Conduction_IBM", "classConduction__IBM.html", null ]
+        ] ],
         [ "Convection_Diffusion_std", "classConvection__Diffusion__std.html", [
           [ "Aire_interfaciale", "classAire__interfaciale.html", null ],
           [ "Convection_Diffusion_Concentration", "classConvection__Diffusion__Concentration.html", [
@@ -515,6 +534,17 @@ var hierarchy =
               ] ]
             ] ]
           ] ],
+          [ "Convection_Diffusion_Temperature_base", "classConvection__Diffusion__Temperature__base.html", [
+            [ "Convection_Diffusion_Temperature", "classConvection__Diffusion__Temperature.html", [
+              [ "Convection_Diffusion_Temperature_IBM", "classConvection__Diffusion__Temperature__IBM.html", [
+                [ "Convection_Diffusion_Temperature_IBM_Turbulent", "classConvection__Diffusion__Temperature__IBM__Turbulent.html", null ]
+              ] ],
+              [ "Convection_Diffusion_Temperature_Turbulent", "classConvection__Diffusion__Temperature__Turbulent.html", null ]
+            ] ],
+            [ "Energie_Multiphase", "classEnergie__Multiphase.html", [
+              [ "Energie_Multiphase_Enthalpie", "classEnergie__Multiphase__Enthalpie.html", null ]
+            ] ]
+          ] ],
           [ "Masse_Multiphase", "classMasse__Multiphase.html", null ]
         ] ],
         [ "List_Equations_Scalaires_Passifs_Especes", "classList__Equations__Scalaires__Passifs__Especes.html", null ],
@@ -523,11 +553,15 @@ var hierarchy =
             [ "Navier_Stokes_QC", "classNavier__Stokes__QC.html", null ],
             [ "Navier_Stokes_WC", "classNavier__Stokes__WC.html", null ]
           ] ],
+          [ "Navier_Stokes_IBM", "classNavier__Stokes__IBM.html", [
+            [ "Navier_Stokes_IBM_Turbulent", "classNavier__Stokes__IBM__Turbulent.html", null ]
+          ] ],
           [ "Navier_Stokes_Turbulent", "classNavier__Stokes__Turbulent.html", [
             [ "Navier_Stokes_Turbulent_QC", "classNavier__Stokes__Turbulent__QC.html", null ]
           ] ],
           [ "QDM_Multiphase", "classQDM__Multiphase.html", null ]
         ] ],
+        [ "Transport_2eq_base", "classTransport__2eq__base.html", null ],
         [ "Transport_Interfaces_base", "classTransport__Interfaces__base.html", null ]
       ] ],
       [ "Loi_Etat_base", "classLoi__Etat__base.html", [
@@ -697,6 +731,9 @@ var hierarchy =
           [ "Op_Conv_negligeable", "classOp__Conv__negligeable.html", null ]
         ] ],
         [ "Operateur_Diff_base", "classOperateur__Diff__base.html", [
+          [ "Op_Diff_DG_base", "classOp__Diff__DG__base.html", [
+            [ "Op_Diff_DG_Elem", "classOp__Diff__DG__Elem.html", null ]
+          ] ],
           [ "Op_Diff_EF_base", "classOp__Diff__EF__base.html", [
             [ "Op_Diff_EF", "classOp__Diff__EF.html", [
               [ "Op_Diff_option_EF", "classOp__Diff__option__EF.html", null ]
@@ -708,6 +745,29 @@ var hierarchy =
             ] ]
           ] ],
           [ "Op_Diff_P1NC_barprim", "classOp__Diff__P1NC__barprim.html", null ],
+          [ "Op_Diff_PolyMAC_Gen_base", "classOp__Diff__PolyMAC__Gen__base.html", [
+            [ "Op_Diff_PolyMAC_P0P1NC_base", "classOp__Diff__PolyMAC__P0P1NC__base.html", [
+              [ "Op_Diff_PolyMAC_P0P1NC_Elem", "classOp__Diff__PolyMAC__P0P1NC__Elem.html", null ],
+              [ "Op_Diff_PolyMAC_P0P1NC_Face", "classOp__Diff__PolyMAC__P0P1NC__Face.html", null ]
+            ] ],
+            [ "Op_Diff_PolyMAC_P0_base", "classOp__Diff__PolyMAC__P0__base.html", [
+              [ "Op_Diff_PolyMAC_P0_Elem", "classOp__Diff__PolyMAC__P0__Elem.html", [
+                [ "Op_Diff_Turbulent_PolyMAC_P0_Elem", "classOp__Diff__Turbulent__PolyMAC__P0__Elem.html", null ],
+                [ "Op_Dift_PolyMAC_P0_Elem", "classOp__Dift__PolyMAC__P0__Elem.html", null ]
+              ] ],
+              [ "Op_Diff_PolyMAC_P0_Face", "classOp__Diff__PolyMAC__P0__Face.html", [
+                [ "Op_Diff_Turbulent_PolyMAC_P0_Face", "classOp__Diff__Turbulent__PolyMAC__P0__Face.html", null ]
+              ] ]
+            ] ],
+            [ "Op_Diff_PolyMAC_base", "classOp__Diff__PolyMAC__base.html", [
+              [ "Op_Diff_PolyMAC_Elem", "classOp__Diff__PolyMAC__Elem.html", [
+                [ "Op_Diff_Nonlinear_PolyMAC_Elem", "classOp__Diff__Nonlinear__PolyMAC__Elem.html", null ],
+                [ "Op_Dift_Nonlinear_PolyMAC_Elem", "classOp__Dift__Nonlinear__PolyMAC__Elem.html", null ],
+                [ "Op_Dift_PolyMAC_Elem", "classOp__Dift__PolyMAC__Elem.html", null ]
+              ] ],
+              [ "Op_Diff_PolyMAC_Face", "classOp__Diff__PolyMAC__Face.html", null ]
+            ] ]
+          ] ],
           [ "Op_Diff_RotRot", "classOp__Diff__RotRot.html", null ],
           [ "Op_Diff_VDF_base", "classOp__Diff__VDF__base.html", [
             [ "Op_Diff_VDF_Elem_base", "classOp__Diff__VDF__Elem__base.html", [
@@ -802,7 +862,8 @@ var hierarchy =
         [ "Pb_Conduction", "classPb__Conduction.html", [
           [ "TRUSTProblem_sup_eqns< Pb_Conduction >", "classTRUSTProblem__sup__eqns.html", [
             [ "Pb_Conduction_Scalaires_Passifs", "classPb__Conduction__Scalaires__Passifs.html", null ]
-          ] ]
+          ] ],
+          [ "Pb_Conduction_IBM", "classPb__Conduction__IBM.html", null ]
         ] ],
         [ "Pb_Fluide_base", "classPb__Fluide__base.html", [
           [ "Pb_Dilatable_base", "classPb__Dilatable__base.html", [
@@ -830,9 +891,7 @@ var hierarchy =
             ] ]
           ] ],
           [ "Pb_Hydraulique", "classPb__Hydraulique.html", [
-            [ "TRUSTProblem_Concentration_Gen< Pb_Hydraulique, Convection_Diffusion_Concentration, Constituant >", "classTRUSTProblem__Concentration__Gen.html", null ],
             [ "Pb_Thermohydraulique", "classPb__Thermohydraulique.html", [
-              [ "TRUSTProblem_Concentration_Gen< Pb_Thermohydraulique, Convection_Diffusion_Concentration, Constituant >", "classTRUSTProblem__Concentration__Gen.html", null ],
               [ "TRUSTProblem_sup_eqns< Pb_Thermohydraulique >", "classTRUSTProblem__sup__eqns.html", [
                 [ "Pb_Thermohydraulique_Scalaires_Passifs", "classPb__Thermohydraulique__Scalaires__Passifs.html", null ]
               ] ],
@@ -853,10 +912,13 @@ var hierarchy =
               [ "Pb_Hydraulique_Concentration_Turbulent_Scalaires_Passifs", "classPb__Hydraulique__Concentration__Turbulent__Scalaires__Passifs.html", null ]
             ] ]
           ] ],
-          [ "Pb_Hydraulique_Turbulent", "classPb__Hydraulique__Turbulent.html", [
-            [ "TRUSTProblem_Concentration_Gen< Pb_Hydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__Concentration__Gen.html", null ]
+          [ "Pb_Hydraulique_IBM", "classPb__Hydraulique__IBM.html", [
+            [ "Pb_Thermohydraulique_IBM", "classPb__Thermohydraulique__IBM.html", null ]
           ] ],
+          [ "Pb_Hydraulique_IBM_Turbulent", "classPb__Hydraulique__IBM__Turbulent.html", null ],
+          [ "Pb_Hydraulique_Turbulent", "classPb__Hydraulique__Turbulent.html", null ],
           [ "Pb_Multiphase", "classPb__Multiphase.html", [
+            [ "Pb_Multiphase_Enthalpie", "classPb__Multiphase__Enthalpie.html", null ],
             [ "Pb_Multiphase_HEM", "classPb__Multiphase__HEM.html", null ]
           ] ],
           [ "Pb_Thermohydraulique_Concentration_Turbulent", "classPb__Thermohydraulique__Concentration__Turbulent.html", [
@@ -864,8 +926,8 @@ var hierarchy =
               [ "Pb_Thermohydraulique_Concentration_Turbulent_Scalaires_Passifs", "classPb__Thermohydraulique__Concentration__Turbulent__Scalaires__Passifs.html", null ]
             ] ]
           ] ],
+          [ "Pb_Thermohydraulique_IBM_Turbulent", "classPb__Thermohydraulique__IBM__Turbulent.html", null ],
           [ "Pb_Thermohydraulique_Turbulent", "classPb__Thermohydraulique__Turbulent.html", [
-            [ "TRUSTProblem_Concentration_Gen< Pb_Thermohydraulique_Turbulent, Convection_Diffusion_Concentration_Turbulent, Constituant >", "classTRUSTProblem__Concentration__Gen.html", null ],
             [ "TRUSTProblem_sup_eqns< Pb_Thermohydraulique_Turbulent >", "classTRUSTProblem__sup__eqns.html", [
               [ "Pb_Thermohydraulique_Turbulent_Scalaires_Passifs", "classPb__Thermohydraulique__Turbulent__Scalaires__Passifs.html", null ]
             ] ]
@@ -876,7 +938,30 @@ var hierarchy =
       [ "Source_base", "classSource__base.html", [
         [ "Correction_Antal_PolyMAC_P0", "classCorrection__Antal__PolyMAC__P0.html", null ],
         [ "Correction_Antal_VDF", "classCorrection__Antal__VDF.html", null ],
+        [ "Correction_Tomiyama_PolyMAC_P0", "classCorrection__Tomiyama__PolyMAC__P0.html", null ],
         [ "Force_Centrifuge_VDF_Face_Axi", "classForce__Centrifuge__VDF__Face__Axi.html", null ],
+        [ "Perte_Charge_Gen", "classPerte__Charge__Gen.html", [
+          [ "Perte_Charge_PolyMAC", "classPerte__Charge__PolyMAC.html", [
+            [ "Perte_Charge_Anisotrope_PolyMAC_Face", "classPerte__Charge__Anisotrope__PolyMAC__Face.html", [
+              [ "Perte_Charge_Anisotrope_PolyMAC_P0P1NC_Face", "classPerte__Charge__Anisotrope__PolyMAC__P0P1NC__Face.html", null ]
+            ] ],
+            [ "Perte_Charge_Circulaire_PolyMAC_Face", "classPerte__Charge__Circulaire__PolyMAC__Face.html", [
+              [ "Perte_Charge_Circulaire_PolyMAC_P0P1NC_Face", "classPerte__Charge__Circulaire__PolyMAC__P0P1NC__Face.html", null ]
+            ] ],
+            [ "Perte_Charge_Directionnelle_PolyMAC_Face", "classPerte__Charge__Directionnelle__PolyMAC__Face.html", [
+              [ "Perte_Charge_Directionnelle_PolyMAC_P0P1NC_Face", "classPerte__Charge__Directionnelle__PolyMAC__P0P1NC__Face.html", null ]
+            ] ],
+            [ "Perte_Charge_Isotrope_PolyMAC_Face", "classPerte__Charge__Isotrope__PolyMAC__Face.html", [
+              [ "Perte_Charge_Isotrope_PolyMAC_P0P1NC_Face", "classPerte__Charge__Isotrope__PolyMAC__P0P1NC__Face.html", null ]
+            ] ]
+          ] ],
+          [ "Perte_Charge_VDF_base", "classPerte__Charge__VDF__base.html", [
+            [ "Perte_Charge_Anisotrope_VDF_Face", "classPerte__Charge__Anisotrope__VDF__Face.html", null ],
+            [ "Perte_Charge_Circulaire_VDF_Face", "classPerte__Charge__Circulaire__VDF__Face.html", null ],
+            [ "Perte_Charge_Directionnelle_VDF_Face", "classPerte__Charge__Directionnelle__VDF__Face.html", null ],
+            [ "Perte_Charge_Isotrope_VDF_Face", "classPerte__Charge__Isotrope__VDF__Face.html", null ]
+          ] ]
+        ] ],
         [ "Perte_Charge_PolyMAC_Face", "classPerte__Charge__PolyMAC__Face.html", [
           [ "DP_Impose_PolyMAC_Face", "classDP__Impose__PolyMAC__Face.html", null ],
           [ "Perte_Charge_Singuliere_PolyMAC_Face", "classPerte__Charge__Singuliere__PolyMAC__Face.html", [
@@ -884,23 +969,41 @@ var hierarchy =
           ] ]
         ] ],
         [ "Perte_Charge_VEF", "classPerte__Charge__VEF.html", [
-          [ "Perte_Charge_Anisotrope_VEF_P1NC", "classPerte__Charge__Anisotrope__VEF__P1NC.html", null ],
-          [ "Perte_Charge_Circulaire_VEF_P1NC", "classPerte__Charge__Circulaire__VEF__P1NC.html", null ],
-          [ "Perte_Charge_Directionnelle_VEF_P1NC", "classPerte__Charge__Directionnelle__VEF__P1NC.html", null ],
-          [ "Perte_Charge_Isotrope_VEF_P1NC", "classPerte__Charge__Isotrope__VEF__P1NC.html", null ]
+          [ "Perte_Charge_Anisotrope_VEF_P1NC", "classPerte__Charge__Anisotrope__VEF__P1NC.html", [
+            [ "Perte_Charge_Anisotrope_QC_VEF_P1NC", "classPerte__Charge__Anisotrope__QC__VEF__P1NC.html", null ]
+          ] ],
+          [ "Perte_Charge_Circulaire_VEF_P1NC", "classPerte__Charge__Circulaire__VEF__P1NC.html", [
+            [ "Perte_Charge_Circulaire_QC_VEF_P1NC", "classPerte__Charge__Circulaire__QC__VEF__P1NC.html", null ]
+          ] ],
+          [ "Perte_Charge_Directionnelle_VEF_P1NC", "classPerte__Charge__Directionnelle__VEF__P1NC.html", [
+            [ "Perte_Charge_Directionnelle_QC_VEF_P1NC", "classPerte__Charge__Directionnelle__QC__VEF__P1NC.html", null ]
+          ] ],
+          [ "Perte_Charge_Isotrope_VEF_P1NC", "classPerte__Charge__Isotrope__VEF__P1NC.html", [
+            [ "Perte_Charge_Isotrope_QC_VEF_P1NC", "classPerte__Charge__Isotrope__QC__VEF__P1NC.html", null ]
+          ] ]
         ] ],
         [ "Perte_Charge_VEF_Face", "classPerte__Charge__VEF__Face.html", [
           [ "DP_Impose_VEF_Face", "classDP__Impose__VEF__Face.html", null ],
-          [ "Perte_Charge_Reguliere_VEF_P1NC", "classPerte__Charge__Reguliere__VEF__P1NC.html", null ],
-          [ "Perte_Charge_Singuliere_VEF_Face", "classPerte__Charge__Singuliere__VEF__Face.html", null ]
+          [ "Perte_Charge_Reguliere_VEF_P1NC", "classPerte__Charge__Reguliere__VEF__P1NC.html", [
+            [ "Perte_Charge_Reguliere_QC_VEF_P1NC", "classPerte__Charge__Reguliere__QC__VEF__P1NC.html", null ]
+          ] ],
+          [ "Perte_Charge_Singuliere_VEF_Face", "classPerte__Charge__Singuliere__VEF__Face.html", [
+            [ "Perte_Charge_Singuliere_QC_VEF_P1NC", "classPerte__Charge__Singuliere__QC__VEF__P1NC.html", null ]
+          ] ]
         ] ],
         [ "Source_Chaleur_Fluide_Dilatable_base", "classSource__Chaleur__Fluide__Dilatable__base.html", [
-          [ "Source_QC_Chaleur", "classSource__QC__Chaleur.html", null ],
+          [ "Source_QC_Chaleur", "classSource__QC__Chaleur.html", [
+            [ "Source_QC_Chaleur_VDF", "classSource__QC__Chaleur__VDF.html", null ],
+            [ "Source_QC_Chaleur_VEF", "classSource__QC__Chaleur__VEF.html", null ]
+          ] ],
           [ "Source_QC_Chaleur_Verif", "classSource__QC__Chaleur__Verif.html", [
             [ "Source_QC_Chaleur_Verif_VEF", "classSource__QC__Chaleur__Verif__VEF.html", null ],
             [ "Source_QC_Chaleur_Verif_VEF_P1NC", "classSource__QC__Chaleur__Verif__VEF__P1NC.html", null ]
           ] ],
-          [ "Source_WC_Chaleur", "classSource__WC__Chaleur.html", null ]
+          [ "Source_WC_Chaleur", "classSource__WC__Chaleur.html", [
+            [ "Source_WC_Chaleur_VDF", "classSource__WC__Chaleur__VDF.html", null ],
+            [ "Source_WC_Chaleur_VEF", "classSource__WC__Chaleur__VEF.html", null ]
+          ] ]
         ] ],
         [ "Source_Generique_base", "classSource__Generique__base.html", [
           [ "Source_Generique_Face_PolyMAC", "classSource__Generique__Face__PolyMAC.html", [
@@ -910,14 +1013,31 @@ var hierarchy =
           [ "Source_Generique_VDF_Face", "classSource__Generique__VDF__Face.html", null ],
           [ "Source_Generique_VEF", "classSource__Generique__VEF.html", null ]
         ] ],
-        [ "Source_Gravite_Fluide_Dilatable_base", "classSource__Gravite__Fluide__Dilatable__base.html", null ],
+        [ "Source_Gravite_Fluide_Dilatable_base", "classSource__Gravite__Fluide__Dilatable__base.html", [
+          [ "Source_QC_Gravite_VDF", "classSource__QC__Gravite__VDF.html", null ],
+          [ "Source_QC_Gravite_VEF", "classSource__QC__Gravite__VEF.html", null ],
+          [ "Source_WC_Gravite_VDF", "classSource__WC__Gravite__VDF.html", null ],
+          [ "Source_WC_Gravite_VEF", "classSource__WC__Gravite__VEF.html", null ]
+        ] ],
         [ "Source_Neutronique", "classSource__Neutronique.html", [
           [ "Source_Neutronique_VDF", "classSource__Neutronique__VDF.html", null ]
         ] ],
         [ "Source_QC_QDM_Gen", "classSource__QC__QDM__Gen.html", null ],
         [ "Source_Qdm_EF", "classSource__Qdm__EF.html", null ],
         [ "Source_Scalaire_EF", "classSource__Scalaire__EF.html", null ],
-        [ "Source_dep_inco_base", "classSource__dep__inco__base.html", null ],
+        [ "Source_dep_inco_base", "classSource__dep__inco__base.html", [
+          [ "Perte_Charge_VDF_Face", "classPerte__Charge__VDF__Face.html", [
+            [ "Perte_Charge_Reguliere_VDF_Face", "classPerte__Charge__Reguliere__VDF__Face.html", [
+              [ "Perte_Charge_Reguliere_QC_VDF_Face", "classPerte__Charge__Reguliere__QC__VDF__Face.html", null ]
+            ] ],
+            [ "Perte_Charge_Singuliere_VDF_Face", "classPerte__Charge__Singuliere__VDF__Face.html", [
+              [ "Perte_Charge_Singuliere_QC_VDF_Face", "classPerte__Charge__Singuliere__QC__VDF__Face.html", null ]
+            ] ]
+          ] ],
+          [ "Source_PDF_base", "classSource__PDF__base.html", [
+            [ "Source_PDF_EF", "classSource__PDF__EF.html", null ]
+          ] ]
+        ] ],
         [ "Sources_Multiphase_base", "classSources__Multiphase__base.html", [
           [ "Source_Dispersion_bulles_base", "classSource__Dispersion__bulles__base.html", [
             [ "Dispersion_bulles_PolyMAC_P0", "classDispersion__bulles__PolyMAC__P0.html", null ],
@@ -957,13 +1077,33 @@ var hierarchy =
         ] ],
         [ "Terme_Puissance_Thermique_Echange_Impose_VEF_Face", "classTerme__Puissance__Thermique__Echange__Impose__VEF__Face.html", null ],
         [ "Terme_Source_Acceleration", "classTerme__Source__Acceleration.html", [
-          [ "Terme_Source_Acceleration_VDF_Face", "classTerme__Source__Acceleration__VDF__Face.html", null ],
-          [ "Terme_Source_Acceleration_VEF_Face", "classTerme__Source__Acceleration__VEF__Face.html", null ]
+          [ "Terme_Source_Acceleration_VDF_Face", "classTerme__Source__Acceleration__VDF__Face.html", [
+            [ "Acceleration_QC_VDF_Face", "classAcceleration__QC__VDF__Face.html", null ]
+          ] ],
+          [ "Terme_Source_Acceleration_VEF_Face", "classTerme__Source__Acceleration__VEF__Face.html", [
+            [ "Acceleration_QC_VEF_P1NC", "classAcceleration__QC__VEF__P1NC.html", null ]
+          ] ]
         ] ],
-        [ "Terme_Source_Canal_perio", "classTerme__Source__Canal__perio.html", null ],
+        [ "Terme_Source_Canal_RANS_LES_VDF_Elem", "classTerme__Source__Canal__RANS__LES__VDF__Elem.html", null ],
+        [ "Terme_Source_Canal_RANS_LES_VDF_Face", "classTerme__Source__Canal__RANS__LES__VDF__Face.html", null ],
+        [ "Terme_Source_Canal_RANS_LES_VEF_Face", "classTerme__Source__Canal__RANS__LES__VEF__Face.html", null ],
+        [ "Terme_Source_Canal_perio", "classTerme__Source__Canal__perio.html", [
+          [ "Terme_Source_Canal_perio_VDF_Face", "classTerme__Source__Canal__perio__VDF__Face.html", [
+            [ "Terme_Source_Canal_perio_QC_VDF_Face", "classTerme__Source__Canal__perio__QC__VDF__Face.html", null ],
+            [ "Terme_Source_Canal_perio_VDF_P0", "classTerme__Source__Canal__perio__VDF__P0.html", null ]
+          ] ],
+          [ "Terme_Source_Canal_perio_VEF_P1NC", "classTerme__Source__Canal__perio__VEF__P1NC.html", [
+            [ "Terme_Source_Canal_perio_QC_VEF_P1NC", "classTerme__Source__Canal__perio__QC__VEF__P1NC.html", null ]
+          ] ]
+        ] ],
         [ "Terme_Source_Coriolis_base", "classTerme__Source__Coriolis__base.html", [
           [ "Terme_Source_Coriolis_VDF_Face", "classTerme__Source__Coriolis__VDF__Face.html", [
             [ "Terme_Source_Coriolis_QC_VDF_Face", "classTerme__Source__Coriolis__QC__VDF__Face.html", null ]
+          ] ]
+        ] ],
+        [ "Terme_Source_DG_base", "classTerme__Source__DG__base.html", [
+          [ "Terme_Puissance_Thermique_DG_base", "classTerme__Puissance__Thermique__DG__base.html", [
+            [ "Terme_Puissance_Thermique_DG_Elem", "classTerme__Puissance__Thermique__DG__Elem.html", null ]
           ] ]
         ] ],
         [ "Terme_Source_Decroissance_Radioactive_Elem_PolyMAC", "classTerme__Source__Decroissance__Radioactive__Elem__PolyMAC.html", null ],
@@ -981,16 +1121,24 @@ var hierarchy =
         [ "Terme_Source_Qdm_Face_PolyMAC", "classTerme__Source__Qdm__Face__PolyMAC.html", [
           [ "Terme_Source_Qdm_Face_PolyMAC_P0P1NC", "classTerme__Source__Qdm__Face__PolyMAC__P0P1NC.html", null ]
         ] ],
-        [ "Terme_Source_Qdm_VDF_Face", "classTerme__Source__Qdm__VDF__Face.html", null ],
-        [ "Terme_Source_Qdm_VEF_Face", "classTerme__Source__Qdm__VEF__Face.html", null ],
+        [ "Terme_Source_Qdm_VDF_Face", "classTerme__Source__Qdm__VDF__Face.html", [
+          [ "Source_qdm_QC_VDF_Face", "classSource__qdm__QC__VDF__Face.html", null ]
+        ] ],
+        [ "Terme_Source_Qdm_VEF_Face", "classTerme__Source__Qdm__VEF__Face.html", [
+          [ "Source_qdm_QC_VEF_P1NC", "classSource__qdm__QC__VEF__P1NC.html", null ]
+        ] ],
         [ "Terme_Source_Qdm_lambdaup_VEF_Face", "classTerme__Source__Qdm__lambdaup__VEF__Face.html", null ],
         [ "Terme_Source_Rappel_T_VEF_Face", "classTerme__Source__Rappel__T__VEF__Face.html", null ],
         [ "Terme_Source_Solide_SWIFT_VDF", "classTerme__Source__Solide__SWIFT__VDF.html", null ],
         [ "Terme_Source_Th_TdivU_VEF_Face", "classTerme__Source__Th__TdivU__VEF__Face.html", null ],
         [ "Terme_Source_VDF_base", "classTerme__Source__VDF__base.html", [
-          [ "Source_Darcy_VDF_Face", "classSource__Darcy__VDF__Face.html", null ],
+          [ "Source_Darcy_VDF_Face", "classSource__Darcy__VDF__Face.html", [
+            [ "Darcy_QC_VDF_Face", "classDarcy__QC__VDF__Face.html", null ]
+          ] ],
           [ "Source_Echange_Th_VDF", "classSource__Echange__Th__VDF.html", null ],
-          [ "Source_Forchheimer_VDF_Face", "classSource__Forchheimer__VDF__Face.html", null ],
+          [ "Source_Forchheimer_VDF_Face", "classSource__Forchheimer__VDF__Face.html", [
+            [ "Forchheimer_QC_VDF_Face", "classForchheimer__QC__VDF__Face.html", null ]
+          ] ],
           [ "Terme_Gravite_VDF_Face", "classTerme__Gravite__VDF__Face.html", null ],
           [ "Terme_Puissance_Thermique_VDF_base", "classTerme__Puissance__Thermique__VDF__base.html", [
             [ "Source_Dirac_VDF_Elem", "classSource__Dirac__VDF__Elem.html", null ],
@@ -1000,8 +1148,12 @@ var hierarchy =
           [ "Terme_Source_Constituant_VDF_Elem", "classTerme__Source__Constituant__VDF__Elem.html", null ]
         ] ],
         [ "Terme_Source_VEF_base", "classTerme__Source__VEF__base.html", [
-          [ "Source_Darcy_VEF_Face", "classSource__Darcy__VEF__Face.html", null ],
-          [ "Source_Forchheimer_VEF_Face", "classSource__Forchheimer__VEF__Face.html", null ],
+          [ "Source_Darcy_VEF_Face", "classSource__Darcy__VEF__Face.html", [
+            [ "Darcy_QC_VEF_P1NC", "classDarcy__QC__VEF__P1NC.html", null ]
+          ] ],
+          [ "Source_Forchheimer_VEF_Face", "classSource__Forchheimer__VEF__Face.html", [
+            [ "Forchheimer_QC_VEF_P1NC", "classForchheimer__QC__VEF__P1NC.html", null ]
+          ] ],
           [ "Terme_Puissance_Thermique_VEF_base", "classTerme__Puissance__Thermique__VEF__base.html", [
             [ "Source_Dirac_VEF_Face", "classSource__Dirac__VEF__Face.html", null ],
             [ "Terme_Puissance_Thermique_QC_VEF_Face", "classTerme__Puissance__Thermique__QC__VEF__Face.html", null ],
@@ -1072,54 +1224,44 @@ var hierarchy =
         ] ]
       ] ]
     ] ],
-    [ "Champs_compris_T< FIELD_TYPE >", "classChamps__compris__T.html", null ],
+    [ "Champs_compris_T< FIELD_TYPE >", "classChamps__compris__T.html", [
+      [ "Champs_compris_IJK", "classChamps__compris__IJK.html", null ]
+    ] ],
     [ "Champs_compris_T< Champ_base >", "classChamps__compris__T.html", null ],
     [ "Char_ptr", "classChar__ptr.html", null ],
     [ "Champ_Fonc_Tabule_Morceaux::CHTAB", "structChamp__Fonc__Tabule__Morceaux_1_1CHTAB.html", null ],
+    [ "ConstIJK_ptr< _TYPE_, _TYPE_ARRAY_ >", "classConstIJK__ptr.html", [
+      [ "IJK_ptr< _TYPE_, _TYPE_ARRAY_ >", "classIJK__ptr.html", null ]
+    ] ],
     [ "ConstTRUSTTab_parts< _TYPE_ >", "classConstTRUSTTab__parts.html", null ],
     [ "Convection_Diffusion_Fluide_Dilatable_Proto", "classConvection__Diffusion__Fluide__Dilatable__Proto.html", [
       [ "Convection_Diffusion_Fluide_Dilatable_base", "classConvection__Diffusion__Fluide__Dilatable__base.html", null ]
-    ] ],
-    [ "Convection_Diffusion_Temperature_base", null, [
-      [ "Convection_Diffusion_Temperature", "classConvection__Diffusion__Temperature.html", [
-        [ "Convection_Diffusion_Temperature_Turbulent", "classConvection__Diffusion__Temperature__Turbulent.html", null ]
-      ] ],
-      [ "Energie_Multiphase", "classEnergie__Multiphase.html", null ]
     ] ],
     [ "Convection_Diffusion_Turbulent", "classConvection__Diffusion__Turbulent.html", [
       [ "Convection_Diffusion_Chaleur_Turbulent_QC", "classConvection__Diffusion__Chaleur__Turbulent__QC.html", null ],
       [ "Convection_Diffusion_Concentration_Turbulent", "classConvection__Diffusion__Concentration__Turbulent.html", null ],
       [ "Convection_Diffusion_Espece_Binaire_Turbulent_QC", "classConvection__Diffusion__Espece__Binaire__Turbulent__QC.html", null ],
       [ "Convection_Diffusion_Espece_Multi_Turbulent_QC", "classConvection__Diffusion__Espece__Multi__Turbulent__QC.html", null ],
+      [ "Convection_Diffusion_Temperature_IBM_Turbulent", "classConvection__Diffusion__Temperature__IBM__Turbulent.html", null ],
       [ "Convection_Diffusion_Temperature_Turbulent", "classConvection__Diffusion__Temperature__Turbulent.html", null ]
     ] ],
+    [ "Couplage_Parietal_PolyMAC_helper", "classCouplage__Parietal__PolyMAC__helper.html", null ],
     [ "CSR_Builder", "classCSR__Builder.html", null ],
     [ "Debog", "classDebog.html", null ],
+    [ "DeviceMemory", "structDeviceMemory.html", null ],
     [ "Discretisation_tools", "classDiscretisation__tools.html", null ],
     [ "Domain_Graph", "classDomain__Graph.html", null ],
-    [ "Domaine_base", null, [
-      [ "Domaine_32_64< int >", "classDomaine__32__64.html", null ],
-      [ "Domaine_32_64< _SIZE_ >", "classDomaine__32__64.html", [
-        [ "DomaineAxi1d_32_64< _SIZE_ >", "classDomaineAxi1d__32__64.html", null ],
-        [ "Domaine_bord_32_64< _SIZE_ >", "classDomaine__bord__32__64.html", null ],
-        [ "Pave_32_64< _SIZE_ >", "classPave__32__64.html", null ]
-      ] ]
-    ] ],
     [ "DomaineCutter_Correspondance_32_64< _SIZE_ >", "classDomaineCutter__Correspondance__32__64.html", null ],
     [ "Echange_EV_Options", "classEchange__EV__Options.html", null ],
     [ "Ecrire_CGNS", "classEcrire__CGNS.html", null ],
-    [ "EDO_Pression_th_base", null, [
-      [ "EDO_Pression_th_VDF", "classEDO__Pression__th__VDF.html", [
-        [ "EDO_Pression_th_VDF_Gaz_Parfait", "classEDO__Pression__th__VDF__Gaz__Parfait.html", null ],
-        [ "EDO_Pression_th_VDF_Gaz_Reel", "classEDO__Pression__th__VDF__Gaz__Reel.html", null ]
-      ] ],
-      [ "EDO_Pression_th_VEF", "classEDO__Pression__th__VEF.html", [
-        [ "EDO_Pression_th_VEF_Gaz_Parfait", "classEDO__Pression__th__VEF__Gaz__Parfait.html", null ],
-        [ "EDO_Pression_th_VEF_Gaz_Reel", "classEDO__Pression__th__VEF__Gaz__Reel.html", null ]
-      ] ]
-    ] ],
+    [ "Ecrire_YAML", "classEcrire__YAML.html", null ],
     [ "bprinter::endl", "classbprinter_1_1endl.html", null ],
     [ "Entree_Sortie_Error", "classEntree__Sortie__Error.html", null ],
+    [ "Equation_IBM_proto", "classEquation__IBM__proto.html", [
+      [ "Conduction_IBM", "classConduction__IBM.html", null ],
+      [ "Convection_Diffusion_Temperature_IBM", "classConvection__Diffusion__Temperature__IBM.html", null ],
+      [ "Navier_Stokes_IBM", "classNavier__Stokes__IBM.html", null ]
+    ] ],
     [ "Eval_Conv_VDF_tools", "classEval__Conv__VDF__tools.html", [
       [ "Eval_Conv_VDF", "classEval__Conv__VDF.html", [
         [ "Eval_Amont_VDF_Elem", "classEval__Amont__VDF__Elem.html", null ],
@@ -1158,79 +1300,79 @@ var hierarchy =
       [ "Eval_centre_PolyMAC_Elem", "classEval__centre__PolyMAC__Elem.html", null ]
     ] ],
     [ "Eval_VDF_Elem", "classEval__VDF__Elem.html", [
+      [ "Eval_Conv_VDF_Elem< Eval_Quick_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
+        [ "Eval_Quick_VDF_Elem", "classEval__Quick__VDF__Elem.html", null ]
+      ] ],
       [ "Eval_Conv_VDF_Elem< Eval_Amont_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
         [ "Eval_Amont_VDF_Elem", "classEval__Amont__VDF__Elem.html", null ]
-      ] ],
-      [ "Eval_Conv_VDF_Elem< Eval_Centre4_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
-        [ "Eval_Centre4_VDF_Elem", "classEval__Centre4__VDF__Elem.html", null ]
       ] ],
       [ "Eval_Conv_VDF_Elem< Eval_Centre_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
         [ "Eval_Centre_VDF_Elem", "classEval__Centre__VDF__Elem.html", null ]
       ] ],
-      [ "Eval_Conv_VDF_Elem< Eval_Quick_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
-        [ "Eval_Quick_VDF_Elem", "classEval__Quick__VDF__Elem.html", null ]
-      ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Diff_VDF_Elem", "classEval__Diff__VDF__Elem.html", null ]
-      ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Diff_VDF_Elem_Axi", "classEval__Diff__VDF__Elem__Axi.html", null ]
+      [ "Eval_Conv_VDF_Elem< Eval_Centre4_VDF_Elem >", "classEval__Conv__VDF__Elem.html", [
+        [ "Eval_Centre4_VDF_Elem", "classEval__Centre4__VDF__Elem.html", null ]
       ] ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_aniso >", "classEval__Diff__VDF__Elem__Gen.html", [
         [ "Eval_Diff_VDF_Elem_aniso", "classEval__Diff__VDF__Elem__aniso.html", null ]
       ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Diff_VDF_Multi_inco_Elem", "classEval__Diff__VDF__Multi__inco__Elem.html", null ]
-      ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Diff_VDF_Multi_inco_Elem_Axi", "classEval__Diff__VDF__Multi__inco__Elem__Axi.html", null ]
-      ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem", "classEval__Diff__VDF__Multi__inco__Multi__scalar__Elem.html", null ]
-      ] ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_Multiphase_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
         [ "Eval_Dift_Multiphase_VDF_Elem", "classEval__Dift__Multiphase__VDF__Elem.html", null ]
       ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Dift_VDF_Elem", "classEval__Dift__VDF__Elem.html", null ]
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Dift_VDF_Multi_inco_Elem_Axi", "classEval__Dift__VDF__Multi__inco__Elem__Axi.html", null ]
       ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Dift_VDF_Elem_Axi", "classEval__Dift__VDF__Elem__Axi.html", null ]
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Diff_VDF_Multi_inco_Elem", "classEval__Diff__VDF__Multi__inco__Elem.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Diff_VDF_Elem_Axi", "classEval__Diff__VDF__Elem__Axi.html", null ]
       ] ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
         [ "Eval_Dift_VDF_Multi_inco_Elem", "classEval__Dift__VDF__Multi__inco__Elem.html", null ]
       ] ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
-        [ "Eval_Dift_VDF_Multi_inco_Elem_Axi", "classEval__Dift__VDF__Multi__inco__Elem__Axi.html", null ]
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Diff_VDF_Multi_inco_Elem_Axi", "classEval__Diff__VDF__Multi__inco__Elem__Axi.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Diff_VDF_Elem", "classEval__Diff__VDF__Elem.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem", "classEval__Diff__VDF__Multi__inco__Multi__scalar__Elem.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Dift_VDF_Elem_Axi", "classEval__Dift__VDF__Elem__Axi.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", [
+        [ "Eval_Dift_VDF_Elem", "classEval__Dift__VDF__Elem.html", null ]
       ] ],
       [ "Eval_Conv_VDF_Elem< DERIVED_T >", "classEval__Conv__VDF__Elem.html", null ],
       [ "Eval_Diff_VDF_Elem_Gen< DERIVED_T >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Div_VDF_Elem", "classEval__Div__VDF__Elem.html", null ]
     ] ],
     [ "Eval_VDF_Face", "classEval__VDF__Face.html", [
-      [ "Eval_Conv_VDF_Face< Eval_Amont_VDF_Face >", "classEval__Conv__VDF__Face.html", [
-        [ "Eval_Amont_VDF_Face", "classEval__Amont__VDF__Face.html", null ]
-      ] ],
-      [ "Eval_Conv_VDF_Face< Eval_Centre4_VDF_Face >", "classEval__Conv__VDF__Face.html", [
-        [ "Eval_Centre4_VDF_Face", "classEval__Centre4__VDF__Face.html", null ]
-      ] ],
       [ "Eval_Conv_VDF_Face< Eval_Centre_VDF_Face >", "classEval__Conv__VDF__Face.html", [
         [ "Eval_Centre_VDF_Face", "classEval__Centre__VDF__Face.html", null ]
-      ] ],
-      [ "Eval_Conv_VDF_Face< Eval_Quick_VDF_Face >", "classEval__Conv__VDF__Face.html", [
-        [ "Eval_Quick_VDF_Face", "classEval__Quick__VDF__Face.html", null ]
       ] ],
       [ "Eval_Conv_VDF_Face< Eval_Quick_VDF_Face_Axi >", "classEval__Conv__VDF__Face.html", [
         [ "Eval_Quick_VDF_Face_Axi", "classEval__Quick__VDF__Face__Axi.html", null ]
       ] ],
+      [ "Eval_Conv_VDF_Face< Eval_Centre4_VDF_Face >", "classEval__Conv__VDF__Face.html", [
+        [ "Eval_Centre4_VDF_Face", "classEval__Centre4__VDF__Face.html", null ]
+      ] ],
+      [ "Eval_Conv_VDF_Face< Eval_Amont_VDF_Face >", "classEval__Conv__VDF__Face.html", [
+        [ "Eval_Amont_VDF_Face", "classEval__Amont__VDF__Face.html", null ]
+      ] ],
+      [ "Eval_Conv_VDF_Face< Eval_Quick_VDF_Face >", "classEval__Conv__VDF__Face.html", [
+        [ "Eval_Quick_VDF_Face", "classEval__Quick__VDF__Face.html", null ]
+      ] ],
       [ "Eval_Diff_VDF_Face_Gen< Eval_Diff_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", [
         [ "Eval_Diff_VDF_Face", "classEval__Diff__VDF__Face.html", null ]
       ] ],
-      [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_Multiphase_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", [
-        [ "Eval_Dift_Multiphase_VDF_Face", "classEval__Dift__Multiphase__VDF__Face.html", null ]
-      ] ],
       [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", [
         [ "Eval_Dift_VDF_Face", "classEval__Dift__VDF__Face.html", null ]
+      ] ],
+      [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_Multiphase_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", [
+        [ "Eval_Dift_Multiphase_VDF_Face", "classEval__Dift__Multiphase__VDF__Face.html", null ]
       ] ],
       [ "Eval_Conv_VDF_Face< DERIVED_T >", "classEval__Conv__VDF__Face.html", null ],
       [ "Eval_Diff_VDF_Face_Gen< DERIVED_T >", "classEval__Diff__VDF__Face__Gen.html", null ]
@@ -1250,6 +1392,7 @@ var hierarchy =
         [ "Eval_Dirac_VDF_Elem", "classEval__Dirac__VDF__Elem.html", null ],
         [ "Eval_Echange_Himp_VDF_Elem", "classEval__Echange__Himp__VDF__Elem.html", null ],
         [ "Eval_Puiss_Neutr_VDF_Elem", "classEval__Puiss__Neutr__VDF__Elem.html", null ],
+        [ "Eval_Puiss_Th_DG_Elem", "classEval__Puiss__Th__DG__Elem.html", null ],
         [ "Eval_Puiss_Th_PolyMAC_Elem", "classEval__Puiss__Th__PolyMAC__Elem.html", null ],
         [ "Eval_Puiss_Th_QC_VDF_Elem", "classEval__Puiss__Th__QC__VDF__Elem.html", null ],
         [ "Eval_Puiss_Th_VDF_Elem", "classEval__Puiss__Th__VDF__Elem.html", null ],
@@ -1283,20 +1426,20 @@ var hierarchy =
       ] ]
     ] ],
     [ "Evaluateur_VDF", "classEvaluateur__VDF.html", [
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_aniso >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_Multiphase_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
-      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Multi_inco_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem_Axi >", "classEval__Diff__VDF__Elem__Gen.html", null ],
+      [ "Eval_Diff_VDF_Elem_Gen< Eval_Dift_VDF_Elem >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Diff_VDF_Face_Gen< Eval_Diff_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", null ],
-      [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_Multiphase_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", null ],
       [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", null ],
+      [ "Eval_Diff_VDF_Face_Gen< Eval_Dift_Multiphase_VDF_Face >", "classEval__Diff__VDF__Face__Gen.html", null ],
       [ "Eval_Conv_VDF", "classEval__Conv__VDF.html", null ],
       [ "Eval_Diff_VDF_Elem_Gen< DERIVED_T >", "classEval__Diff__VDF__Elem__Gen.html", null ],
       [ "Eval_Diff_VDF_Face_Gen< DERIVED_T >", "classEval__Diff__VDF__Face__Gen.html", null ],
@@ -1311,7 +1454,18 @@ var hierarchy =
     [ "FichierHDF", "classFichierHDF.html", [
       [ "FichierHDFPar", "classFichierHDFPar.html", null ]
     ] ],
+    [ "FixedVector< T, N >", "classFixedVector.html", null ],
+    [ "FixedVector< FixedVector< int, 3 >, 2 >", "classFixedVector.html", null ],
+    [ "FixedVector< FixedVector< int, 3 >, 3 >", "classFixedVector.html", null ],
+    [ "FixedVector< int, 3 >", "classFixedVector.html", null ],
+    [ "FixedVector< std::shared_ptr< IJK_Field_template< T, TRUSTArray< T > > >, N >", "classFixedVector.html", [
+      [ "IJK_Field_vector< T, N >", "classIJK__Field__vector.html", null ]
+    ] ],
+    [ "FixedVector< TRUSTTab, 3 >", "classFixedVector.html", null ],
     [ "Fluide_reel_base::H_to_T", "structFluide__reel__base_1_1H__to__T.html", null ],
+    [ "IJ_layout", "classIJ__layout.html", null ],
+    [ "IJK_Shear_Periodic_helpler", "classIJK__Shear__Periodic__helpler.html", null ],
+    [ "IJK_Striped_Writer", "classIJK__Striped__Writer.html", null ],
     [ "ICoCo::Init_Params", "classICoCo_1_1Init__Params.html", null ],
     [ "InOutCommBuffers", "classInOutCommBuffers.html", null ],
     [ "Dispersion_bulles_base::input_t", "structDispersion__bulles__base_1_1input__t.html", null ],
@@ -1322,23 +1476,29 @@ var hierarchy =
     [ "interface_CALCULBIJ", "classinterface__CALCULBIJ.html", null ],
     [ "interface_CALCULSI", "classinterface__CALCULSI.html", null ],
     [ "interface_INITGAUSS", "classinterface__INITGAUSS.html", null ],
+    [ "Interpolation_IBM_mean_gradient_proto", "classInterpolation__IBM__mean__gradient__proto.html", [
+      [ "Interpolation_IBM_hybrid", "classInterpolation__IBM__hybrid.html", null ],
+      [ "Interpolation_IBM_mean_gradient", "classInterpolation__IBM__mean__gradient.html", [
+        [ "Interpolation_IBM_power_law_tbl_u_star", "classInterpolation__IBM__power__law__tbl__u__star.html", null ]
+      ] ]
+    ] ],
+    [ "Interpolation_IBM_power_law_tbl_proto", "classInterpolation__IBM__power__law__tbl__proto.html", [
+      [ "Interpolation_IBM_power_law_tbl", "classInterpolation__IBM__power__law__tbl.html", null ],
+      [ "Interpolation_IBM_power_law_tbl_u_star", "classInterpolation__IBM__power__law__tbl__u__star.html", null ]
+    ] ],
     [ "IntListsListe", "classIntListsListe.html", null ],
     [ "Joint_Items_32_64< _SIZE_ >", "classJoint__Items__32__64.html", null ],
     [ "LISTBord_32_64", null, [
-      [ "Bords_32_64< int >", "classBords__32__64.html", null ],
       [ "Bords_32_64< _SIZE_ >", "classBords__32__64.html", null ]
     ] ],
     [ "LISTBord_Interne_32_64", null, [
-      [ "Bords_Internes_32_64< int >", "classBords__Internes__32__64.html", null ],
       [ "Bords_Internes_32_64< _SIZE_ >", "classBords__Internes__32__64.html", null ]
     ] ],
     [ "Liste_bloc_curseur", "classListe__bloc__curseur.html", null ],
     [ "LISTGroupe_Faces_32_64", null, [
-      [ "Groupes_Faces_32_64< int >", "classGroupes__Faces__32__64.html", null ],
       [ "Groupes_Faces_32_64< _SIZE_ >", "classGroupes__Faces__32__64.html", null ]
     ] ],
     [ "LISTJoint_32_64", null, [
-      [ "Joints_32_64< int >", "classJoints__32__64.html", null ],
       [ "Joints_32_64< _SIZE_ >", "classJoints__32__64.html", null ]
     ] ],
     [ "LISTOWN_PTRChamp_Fonc_base", null, [
@@ -1354,7 +1514,6 @@ var hierarchy =
       [ "Postraitements", "classPostraitements.html", null ]
     ] ],
     [ "LISTOWN_PTRRaccord_base_32_64", null, [
-      [ "Raccords_32_64< int >", "classRaccords__32__64.html", null ],
       [ "Raccords_32_64< _SIZE_ >", "classRaccords__32__64.html", null ]
     ] ],
     [ "LISTOWN_PTRSonde", null, [
@@ -1377,9 +1536,6 @@ var hierarchy =
     ] ],
     [ "Matrix_tools", "classMatrix__tools.html", null ],
     [ "MD_Vector", "classMD__Vector.html", null ],
-    [ "MD_Vector_mono", null, [
-      [ "MD_Vector_std", "classMD__Vector__std.html", null ]
-    ] ],
     [ "MD_Vector_tools", "classMD__Vector__tools.html", null ],
     [ "Memoire", "classMemoire.html", null ],
     [ "Memoire_ptr", "classMemoire__ptr.html", null ],
@@ -1388,6 +1544,7 @@ var hierarchy =
     [ "MorEqn", "classMorEqn.html", [
       [ "Champ_Inc_base", "classChamp__Inc__base.html", null ],
       [ "Domaine_Cl_dis_base", "classDomaine__Cl__dis__base.html", [
+        [ "Domaine_Cl_DG", "classDomaine__Cl__DG.html", null ],
         [ "Domaine_Cl_EF", "classDomaine__Cl__EF.html", null ],
         [ "Domaine_Cl_PolyMAC", "classDomaine__Cl__PolyMAC.html", null ],
         [ "Domaine_Cl_VDF", "classDomaine__Cl__VDF.html", null ],
@@ -1402,6 +1559,9 @@ var hierarchy =
       ] ],
       [ "Operateur_base", "classOperateur__base.html", null ],
       [ "Solveur_Masse_base", "classSolveur__Masse__base.html", [
+        [ "Masse_DG_base", "classMasse__DG__base.html", [
+          [ "Masse_DG_Elem", "classMasse__DG__Elem.html", null ]
+        ] ],
         [ "Masse_PolyMAC_base", "classMasse__PolyMAC__base.html", [
           [ "Masse_PolyMAC_Elem", "classMasse__PolyMAC__Elem.html", null ],
           [ "Masse_PolyMAC_Face", "classMasse__PolyMAC__Face.html", null ],
@@ -1433,7 +1593,6 @@ var hierarchy =
     [ "Octree_Double_32_64< _SIZE_ >", "classOctree__Double__32__64.html", null ],
     [ "Octree_Double_32_64< int >", "classOctree__Double__32__64.html", null ],
     [ "Octree_Int_32_64< _SIZE_ >", "classOctree__Int__32__64.html", null ],
-    [ "Octree_Int_32_64< int >", "classOctree__Int__32__64.html", null ],
     [ "OctreeLoc", "structOctreeLoc.html", null ],
     [ "Op_Diff_Dift_VDF< OP_TYPE >", "classOp__Diff__Dift__VDF.html", null ],
     [ "Op_Diff_Dift_VDF< Op_Diff_VDF_Elem >", "classOp__Diff__Dift__VDF.html", [
@@ -1478,28 +1637,9 @@ var hierarchy =
     [ "Op_Diff_Dift_VDF< Op_Dift_VDF_Multi_inco_Elem_Axi >", "classOp__Diff__Dift__VDF.html", [
       [ "Op_Dift_VDF_Multi_inco_Elem_Axi", "classOp__Dift__VDF__Multi__inco__Elem__Axi.html", null ]
     ] ],
-    [ "Op_Diff_PolyMAC_base", null, [
-      [ "Op_Diff_PolyMAC_Elem", "classOp__Diff__PolyMAC__Elem.html", [
-        [ "Op_Diff_Nonlinear_PolyMAC_Elem", "classOp__Diff__Nonlinear__PolyMAC__Elem.html", null ],
-        [ "Op_Dift_Nonlinear_PolyMAC_Elem", "classOp__Dift__Nonlinear__PolyMAC__Elem.html", null ],
-        [ "Op_Dift_PolyMAC_Elem", "classOp__Dift__PolyMAC__Elem.html", null ]
-      ] ],
-      [ "Op_Diff_PolyMAC_Face", "classOp__Diff__PolyMAC__Face.html", null ]
-    ] ],
-    [ "Op_Diff_PolyMAC_P0_base", null, [
-      [ "Op_Diff_PolyMAC_P0_Elem", "classOp__Diff__PolyMAC__P0__Elem.html", [
-        [ "Op_Diff_Turbulent_PolyMAC_P0_Elem", "classOp__Diff__Turbulent__PolyMAC__P0__Elem.html", null ],
-        [ "Op_Dift_PolyMAC_P0_Elem", "classOp__Dift__PolyMAC__P0__Elem.html", null ]
-      ] ],
-      [ "Op_Diff_PolyMAC_P0_Face", "classOp__Diff__PolyMAC__P0__Face.html", [
-        [ "Op_Diff_Turbulent_PolyMAC_P0_Face", "classOp__Diff__Turbulent__PolyMAC__P0__Face.html", null ]
-      ] ]
-    ] ],
-    [ "Op_Diff_PolyMAC_P0P1NC_base", null, [
-      [ "Op_Diff_PolyMAC_P0P1NC_Elem", "classOp__Diff__PolyMAC__P0P1NC__Elem.html", null ],
-      [ "Op_Diff_PolyMAC_P0P1NC_Face", "classOp__Diff__PolyMAC__P0P1NC__Face.html", null ]
-    ] ],
     [ "Op_Diff_Turbulent_base", "classOp__Diff__Turbulent__base.html", [
+      [ "Op_Diff_DG_base", "classOp__Diff__DG__base.html", null ],
+      [ "Op_Diff_PolyMAC_base", "classOp__Diff__PolyMAC__base.html", null ],
       [ "Op_Dift_EF_base", "classOp__Dift__EF__base.html", null ],
       [ "Op_Dift_VDF_base", "classOp__Dift__VDF__base.html", null ],
       [ "Op_Dift_VEF_base", "classOp__Dift__VEF__base.html", null ]
@@ -1526,47 +1666,47 @@ var hierarchy =
       [ "Op_Conv_Centre_PolyMAC_Elem", "classOp__Conv__Centre__PolyMAC__Elem.html", null ]
     ] ],
     [ "Op_VDF_Elem", "classOp__VDF__Elem.html", [
-      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Elem >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Amont_VDF_Elem", "classOp__Conv__Amont__VDF__Elem.html", null ]
-      ] ],
-      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Face >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Amont_VDF_Face", "classOp__Conv__Amont__VDF__Face.html", null ]
-      ] ],
-      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Elem >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Centre4_VDF_Elem", "classOp__Conv__Centre4__VDF__Elem.html", null ]
-      ] ],
-      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Face >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Centre4_VDF_Face", "classOp__Conv__Centre4__VDF__Face.html", null ]
-      ] ],
-      [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Elem >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Centre_VDF_Elem", "classOp__Conv__Centre__VDF__Elem.html", null ]
-      ] ],
       [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Face >", "classOp__Conv__VDF.html", [
         [ "Op_Conv_Centre_VDF_Face", "classOp__Conv__Centre__VDF__Face.html", null ]
-      ] ],
-      [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Elem >", "classOp__Conv__VDF.html", [
-        [ "Op_Conv_Quick_VDF_Elem", "classOp__Conv__Quick__VDF__Elem.html", null ]
       ] ],
       [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Face >", "classOp__Conv__VDF.html", [
         [ "Op_Conv_Quick_VDF_Face", "classOp__Conv__Quick__VDF__Face.html", null ]
       ] ],
+      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Face >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Centre4_VDF_Face", "classOp__Conv__Centre4__VDF__Face.html", null ]
+      ] ],
+      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Face >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Amont_VDF_Face", "classOp__Conv__Amont__VDF__Face.html", null ]
+      ] ],
+      [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Elem >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Quick_VDF_Elem", "classOp__Conv__Quick__VDF__Elem.html", null ]
+      ] ],
+      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Elem >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Centre4_VDF_Elem", "classOp__Conv__Centre4__VDF__Elem.html", null ]
+      ] ],
       [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Face_Axi >", "classOp__Conv__VDF.html", [
         [ "Op_Conv_Quick_VDF_Face_Axi", "classOp__Conv__Quick__VDF__Face__Axi.html", null ]
+      ] ],
+      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Elem >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Amont_VDF_Elem", "classOp__Conv__Amont__VDF__Elem.html", null ]
+      ] ],
+      [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Elem >", "classOp__Conv__VDF.html", [
+        [ "Op_Conv_Centre_VDF_Elem", "classOp__Conv__Centre__VDF__Elem.html", null ]
       ] ],
       [ "Op_Conv_VDF< OP_TYPE >", "classOp__Conv__VDF.html", null ],
       [ "Op_Diff_VDF_Elem_base", "classOp__Diff__VDF__Elem__base.html", null ],
       [ "Op_Dift_VDF_Elem_base", "classOp__Dift__VDF__Elem__base.html", null ]
     ] ],
     [ "Op_VDF_Face", "classOp__VDF__Face.html", [
-      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Elem >", "classOp__Conv__VDF.html", null ],
-      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Face >", "classOp__Conv__VDF.html", null ],
-      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Elem >", "classOp__Conv__VDF.html", null ],
-      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Face >", "classOp__Conv__VDF.html", null ],
-      [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Elem >", "classOp__Conv__VDF.html", null ],
       [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Face >", "classOp__Conv__VDF.html", null ],
-      [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Elem >", "classOp__Conv__VDF.html", null ],
       [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Face >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Face >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Face >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Elem >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Centre4_VDF_Elem >", "classOp__Conv__VDF.html", null ],
       [ "Op_Conv_VDF< Op_Conv_Quick_VDF_Face_Axi >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Amont_VDF_Elem >", "classOp__Conv__VDF.html", null ],
+      [ "Op_Conv_VDF< Op_Conv_Centre_VDF_Elem >", "classOp__Conv__VDF.html", null ],
       [ "Op_Conv_VDF< OP_TYPE >", "classOp__Conv__VDF.html", null ],
       [ "Op_Diff_VDF_Face_base", "classOp__Diff__VDF__Face__base.html", null ],
       [ "Op_Dift_VDF_Face_base", "classOp__Dift__VDF__Face__base.html", null ]
@@ -1618,11 +1758,13 @@ var hierarchy =
       [ "Source", "classSource.html", null ]
     ] ],
     [ "Param", "classParam.html", null ],
-    [ "Parser", "classParser.html", null ],
+    [ "Parser", "classParser.html", [
+      [ "ParserView", "classParserView.html", null ]
+    ] ],
     [ "Parser_Eval", "classParser__Eval.html", [
-      [ "TRUSTChamp_Don_generique< Champ_Don_Type::TXYZ >", "classTRUSTChamp__Don__generique.html", null ],
-      [ "TRUSTChamp_Don_generique< Champ_Don_Type::XYZ >", "classTRUSTChamp__Don__generique.html", null ],
       [ "TRUSTChamp_Don_generique< Champ_Don_Type::LU >", "classTRUSTChamp__Don__generique.html", null ],
+      [ "TRUSTChamp_Don_generique< Champ_Don_Type::XYZ >", "classTRUSTChamp__Don__generique.html", null ],
+      [ "TRUSTChamp_Don_generique< Champ_Don_Type::TXYZ >", "classTRUSTChamp__Don__generique.html", null ],
       [ "TRUSTChamp_Don_generique< _TYPE_ >", "classTRUSTChamp__Don__generique.html", null ],
       [ "Table", "classTable.html", null ]
     ] ],
@@ -1636,8 +1778,10 @@ var hierarchy =
     ] ],
     [ "PCstruct", "structPCstruct.html", null ],
     [ "PE_Groups", "classPE__Groups.html", null ],
+    [ "Perf_counters", "classPerf__counters.html", null ],
     [ "Perte_Charge", "classPerte__Charge.html", [
       [ "Perte_Charge_Reguliere", "classPerte__Charge__Reguliere.html", [
+        [ "Perte_Charge_Reguliere_VDF_Face", "classPerte__Charge__Reguliere__VDF__Face.html", null ],
         [ "Perte_Charge_Reguliere_VEF_P1NC", "classPerte__Charge__Reguliere__VEF__P1NC.html", null ]
       ] ],
       [ "Perte_Charge_Singuliere", "classPerte__Charge__Singuliere.html", [
@@ -1646,23 +1790,8 @@ var hierarchy =
           [ "DP_Impose_VEF_Face", "classDP__Impose__VEF__Face.html", null ]
         ] ],
         [ "Perte_Charge_Singuliere_PolyMAC_Face", "classPerte__Charge__Singuliere__PolyMAC__Face.html", null ],
+        [ "Perte_Charge_Singuliere_VDF_Face", "classPerte__Charge__Singuliere__VDF__Face.html", null ],
         [ "Perte_Charge_Singuliere_VEF_Face", "classPerte__Charge__Singuliere__VEF__Face.html", null ]
-      ] ]
-    ] ],
-    [ "Perte_Charge_Gen", null, [
-      [ "Perte_Charge_PolyMAC", "classPerte__Charge__PolyMAC.html", [
-        [ "Perte_Charge_Anisotrope_PolyMAC_Face", "classPerte__Charge__Anisotrope__PolyMAC__Face.html", [
-          [ "Perte_Charge_Anisotrope_PolyMAC_P0P1NC_Face", "classPerte__Charge__Anisotrope__PolyMAC__P0P1NC__Face.html", null ]
-        ] ],
-        [ "Perte_Charge_Circulaire_PolyMAC_Face", "classPerte__Charge__Circulaire__PolyMAC__Face.html", [
-          [ "Perte_Charge_Circulaire_PolyMAC_P0P1NC_Face", "classPerte__Charge__Circulaire__PolyMAC__P0P1NC__Face.html", null ]
-        ] ],
-        [ "Perte_Charge_Directionnelle_PolyMAC_Face", "classPerte__Charge__Directionnelle__PolyMAC__Face.html", [
-          [ "Perte_Charge_Directionnelle_PolyMAC_P0P1NC_Face", "classPerte__Charge__Directionnelle__PolyMAC__P0P1NC__Face.html", null ]
-        ] ],
-        [ "Perte_Charge_Isotrope_PolyMAC_Face", "classPerte__Charge__Isotrope__PolyMAC__Face.html", [
-          [ "Perte_Charge_Isotrope_PolyMAC_P0P1NC_Face", "classPerte__Charge__Isotrope__PolyMAC__P0P1NC__Face.html", null ]
-        ] ]
       ] ]
     ] ],
     [ "PNode", "classPNode.html", null ],
@@ -1673,54 +1802,57 @@ var hierarchy =
     [ "Process", "classProcess.html", [
       [ "Objet_U", "classObjet__U.html", [
         [ "ArrOfBit_32_64< int >", "classArrOfBit__32__64.html", null ],
+        [ "TRUST_Vector< TRUSTArray >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< TRUSTTab< double > >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< OWN_PTR(Sous_domaine_dis_base)>", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< TRUSTTab< _TYPE_ > >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< TRUSTVect< int, int > >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< Grid_Level_Data_template< float > >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< TRUSTVect< double, int > >", "classTRUST__Vector.html", null ],
         [ "TRUST_Vector< _TRUST_TABL_< _TYPE_, _TYPE_ARRAY_ > >", "classTRUST__Vector.html", [
           [ "IJK_Vector< _TRUST_TABL_, _TYPE_, _TYPE_ARRAY_ >", "classIJK__Vector.html", null ]
         ] ],
-        [ "TRUST_Vector< TRUSTTab< double > >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< TRUSTArray >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< TRUSTArray< int > >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< TRUSTTab< _TYPE_ > >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< TRUSTVect< int, int > >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< OWN_PTR(Sous_domaine_dis_base)>", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< TRUSTVect< double, int > >", "classTRUST__Vector.html", null ],
-        [ "TRUST_Vector< Grid_Level_Data_template< float > >", "classTRUST__Vector.html", null ],
         [ "TRUST_Vector< Grid_Level_Data_template< double > >", "classTRUST__Vector.html", null ],
+        [ "TRUST_Vector< TRUSTArray< int > >", "classTRUST__Vector.html", null ],
         [ "Aretes", "classAretes.html", null ],
         [ "ArrOfBit_32_64< _SIZE_ >", "classArrOfBit__32__64.html", null ],
         [ "Array_base", "classArray__base.html", [
-          [ "TRUSTArray< int, int >", "classTRUSTArray.html", null ],
+          [ "TRUSTArray< int, int >", "classTRUSTArray.html", [
+            [ "TRUSTVect< int, int >", "classTRUSTVect.html", [
+              [ "TRUSTTab< int, int >", "classTRUSTTab.html", null ]
+            ] ]
+          ] ],
           [ "TRUSTArray< int >", "classTRUSTArray.html", [
             [ "Esp_Dist", "classEsp__Dist.html", null ]
           ] ],
-          [ "TRUSTArray< double, int >", "classTRUSTArray.html", null ],
+          [ "TRUSTArray< int, _SIZE_ >", "classTRUSTArray.html", [
+            [ "TRUSTVect< int, _SIZE_ >", "classTRUSTVect.html", null ]
+          ] ],
+          [ "TRUSTArray< double, int >", "classTRUSTArray.html", [
+            [ "TRUSTVect< double, int >", "classTRUSTVect.html", [
+              [ "TRUSTTab< double, int >", "classTRUSTTab.html", null ]
+            ] ]
+          ] ],
+          [ "TRUSTArray< trustIdType, trustIdType >", "classTRUSTArray.html", null ],
+          [ "TRUSTArray< trustIdType, int >", "classTRUSTArray.html", [
+            [ "TRUSTVect< trustIdType, int >", "classTRUSTVect.html", [
+              [ "TRUSTTab< trustIdType, int >", "classTRUSTTab.html", null ]
+            ] ]
+          ] ],
           [ "TRUSTArray< _TYPE_ >", "classTRUSTArray.html", [
             [ "TRUSTArrayFT< _TYPE_ >", "classTRUSTArrayFT.html", null ]
           ] ],
-          [ "TRUSTArray< _TYPE_, int >", "classTRUSTArray.html", null ],
-          [ "TRUSTArray< int, _SIZE_ >", "classTRUSTArray.html", null ],
-          [ "TRUSTArray< trustIdType, trustIdType >", "classTRUSTArray.html", null ],
           [ "TRUSTArray< _SIZE_ >", "classTRUSTArray.html", null ],
-          [ "TRUSTArray< _SIZE_, _SIZE_ >", "classTRUSTArray.html", null ],
-          [ "TRUSTArray< trustIdType, int >", "classTRUSTArray.html", null ],
           [ "TRUSTArray< _TYPE_, _SIZE_ >", "classTRUSTArray.html", [
-            [ "TRUSTVect< int, int >", "classTRUSTVect.html", null ],
-            [ "TRUSTVect< double, int >", "classTRUSTVect.html", null ],
-            [ "TRUSTVect< _TYPE_, int >", "classTRUSTVect.html", null ],
-            [ "TRUSTVect< int, _SIZE_ >", "classTRUSTVect.html", null ],
-            [ "TRUSTVect< _SIZE_, _SIZE_ >", "classTRUSTVect.html", null ],
-            [ "TRUSTVect< trustIdType, int >", "classTRUSTVect.html", null ],
+            [ "TRUSTVect< _SIZE_ >", "classTRUSTVect.html", null ],
             [ "TRUSTVect< _TYPE_, _SIZE_ >", "classTRUSTVect.html", [
-              [ "TRUSTTab< int, int >", "classTRUSTTab.html", null ],
-              [ "TRUSTTab< double, int >", "classTRUSTTab.html", null ],
-              [ "TRUSTTab< _TYPE_ >", "classTRUSTTab.html", [
-                [ "TRUSTTabFT< _TYPE_ >", "classTRUSTTabFT.html", null ]
-              ] ],
               [ "TRUSTTab< _TYPE_, int >", "classTRUSTTab.html", [
                 [ "TRUSTTrav< _TYPE_ >", "classTRUSTTrav.html", null ]
               ] ],
-              [ "TRUSTTab< int >", "classTRUSTTab.html", null ],
+              [ "TRUSTTab< _TYPE_ >", "classTRUSTTab.html", [
+                [ "TRUSTTabFT< _TYPE_ >", "classTRUSTTabFT.html", null ]
+              ] ],
               [ "TRUSTTab< _SIZE_ >", "classTRUSTTab.html", null ],
-              [ "TRUSTTab< trustIdType, int >", "classTRUSTTab.html", null ],
               [ "TRUSTTab< _TYPE_, _SIZE_ >", "classTRUSTTab.html", null ]
             ] ]
           ] ]
@@ -1738,6 +1870,8 @@ var hierarchy =
             [ "Assembleur_P_VEFPreP1B", "classAssembleur__P__VEFPreP1B.html", null ]
           ] ]
         ] ],
+        [ "Boundary_Conditions", "classBoundary__Conditions.html", null ],
+        [ "Boundary_Conditions_Thermique", "classBoundary__Conditions__Thermique.html", null ],
         [ "Champ_Generique_base", "classChamp__Generique__base.html", [
           [ "Champ_Gen_de_Champs_Gen", "classChamp__Gen__de__Champs__Gen.html", [
             [ "Champ_Generique_Extraction", "classChamp__Generique__Extraction.html", null ],
@@ -1774,7 +1908,15 @@ var hierarchy =
           [ "Comm_Group_Noparallel", "classComm__Group__Noparallel.html", null ]
         ] ],
         [ "Cond_lim_base", "classCond__lim__base.html", [
-          [ "Cond_lim_utilisateur_base", "classCond__lim__utilisateur__base.html", null ],
+          [ "Cond_lim_utilisateur_base", "classCond__lim__utilisateur__base.html", [
+            [ "Paroi_Temperature_imposee", "classParoi__Temperature__imposee.html", null ],
+            [ "Paroi_adiabatique", "classParoi__adiabatique.html", null ],
+            [ "Paroi_contact", "classParoi__contact.html", null ],
+            [ "Paroi_contact_fictif", "classParoi__contact__fictif.html", null ],
+            [ "Paroi_contact_fictif_rayo", "classParoi__contact__fictif__rayo.html", null ],
+            [ "Paroi_contact_rayo", "classParoi__contact__rayo.html", null ],
+            [ "Paroi_flux_impose", "classParoi__flux__impose.html", null ]
+          ] ],
           [ "Dirichlet", "classDirichlet.html", [
             [ "Dirichlet_entree_fluide", "classDirichlet__entree__fluide.html", [
               [ "Entree_fluide_Fluctu_Temperature_imposee", "classEntree__fluide__Fluctu__Temperature__imposee.html", null ],
@@ -1816,6 +1958,7 @@ var hierarchy =
                 [ "Echange_contact_PolyMAC_P0", "classEchange__contact__PolyMAC__P0.html", null ]
               ] ],
               [ "Echange_externe_impose_H", "classEchange__externe__impose__H.html", null ],
+              [ "Echange_externe_radiatif", "classEchange__externe__radiatif.html", null ],
               [ "Echange_interne_impose", "classEchange__interne__impose.html", [
                 [ "Echange_interne_parfait", "classEchange__interne__parfait.html", null ]
               ] ]
@@ -1867,7 +2010,8 @@ var hierarchy =
               [ "Neumann_paroi_flux_nul", "classNeumann__paroi__flux__nul.html", null ]
             ] ]
           ] ],
-          [ "Periodique", "classPeriodique.html", null ]
+          [ "Periodique", "classPeriodique.html", null ],
+          [ "Robin_VEF", "classRobin__VEF.html", null ]
         ] ],
         [ "Constante", "classConstante.html", null ],
         [ "Correlation_base", "classCorrelation__base.html", null ],
@@ -1878,6 +2022,7 @@ var hierarchy =
           [ "Discr_inst", "classDiscr__inst.html", null ],
           [ "Discret_Thermique", "classDiscret__Thermique.html", [
             [ "Discret_Thyd", "classDiscret__Thyd.html", [
+              [ "DG_discretisation", "classDG__discretisation.html", null ],
               [ "EF_discretisation", "classEF__discretisation.html", [
                 [ "EF_axi_discretisation", "classEF__axi__discretisation.html", null ]
               ] ],
@@ -1889,11 +2034,31 @@ var hierarchy =
               [ "VDF_discretisation", "classVDF__discretisation.html", null ],
               [ "VEF_discretisation", "classVEF__discretisation.html", null ]
             ] ]
-          ] ]
+          ] ],
+          [ "IJK_discretisation", "classIJK__discretisation.html", null ]
         ] ],
         [ "DomaineCutter_32_64< _SIZE_ >", "classDomaineCutter__32__64.html", null ],
         [ "Domaine_Cl_dis_base", "classDomaine__Cl__dis__base.html", null ],
+        [ "Domaine_base", "classDomaine__base.html", [
+          [ "Domaine_32_64< int >", "classDomaine__32__64.html", null ],
+          [ "Domaine_32_64< _SIZE_ >", "classDomaine__32__64.html", [
+            [ "DomaineAxi1d_32_64< _SIZE_ >", "classDomaineAxi1d__32__64.html", null ],
+            [ "Domaine_bord_32_64< _SIZE_ >", "classDomaine__bord__32__64.html", null ],
+            [ "Pave_32_64< _SIZE_ >", "classPave__32__64.html", null ]
+          ] ],
+          [ "Domaine_IJK", "classDomaine__IJK.html", null ]
+        ] ],
         [ "Domaine_dis_base", "classDomaine__dis__base.html", null ],
+        [ "EDO_Pression_th_base", "classEDO__Pression__th__base.html", [
+          [ "EDO_Pression_th_VDF", "classEDO__Pression__th__VDF.html", [
+            [ "EDO_Pression_th_VDF_Gaz_Parfait", "classEDO__Pression__th__VDF__Gaz__Parfait.html", null ],
+            [ "EDO_Pression_th_VDF_Gaz_Reel", "classEDO__Pression__th__VDF__Gaz__Reel.html", null ]
+          ] ],
+          [ "EDO_Pression_th_VEF", "classEDO__Pression__th__VEF.html", [
+            [ "EDO_Pression_th_VEF_Gaz_Parfait", "classEDO__Pression__th__VEF__Gaz__Parfait.html", null ],
+            [ "EDO_Pression_th_VEF_Gaz_Reel", "classEDO__Pression__th__VEF__Gaz__Reel.html", null ]
+          ] ]
+        ] ],
         [ "EOS_Tools_base", "classEOS__Tools__base.html", [
           [ "EOS_Tools_VDF", "classEOS__Tools__VDF.html", null ],
           [ "EOS_Tools_VEF", "classEOS__Tools__VEF.html", null ]
@@ -1915,6 +2080,28 @@ var hierarchy =
           [ "Tetra_VEF", "classTetra__VEF.html", null ],
           [ "Tri_VEF", "classTri__VEF.html", null ]
         ] ],
+        [ "Elem_geom_base_32_64< _SIZE_ >", "classElem__geom__base__32__64.html", [
+          [ "Hexaedre_32_64< _SIZE_ >", "classHexaedre__32__64.html", [
+            [ "Hexaedre_axi_32_64< _SIZE_ >", "classHexaedre__axi__32__64.html", null ]
+          ] ],
+          [ "Hexaedre_VEF_32_64< _SIZE_ >", "classHexaedre__VEF__32__64.html", null ],
+          [ "Point_32_64< _SIZE_ >", "classPoint__32__64.html", null ],
+          [ "Poly_geom_base_32_64< _SIZE_ >", "classPoly__geom__base__32__64.html", [
+            [ "Polyedre_32_64< _SIZE_ >", "classPolyedre__32__64.html", null ],
+            [ "Polygone_32_64< _SIZE_ >", "classPolygone__32__64.html", null ]
+          ] ],
+          [ "Prisme_32_64< _SIZE_ >", "classPrisme__32__64.html", null ],
+          [ "Quadrangle_VEF_32_64< _SIZE_ >", "classQuadrangle__VEF__32__64.html", null ],
+          [ "Rectangle_32_64< _SIZE_ >", "classRectangle__32__64.html", [
+            [ "Rectangle_2D_axi_32_64< _SIZE_ >", "classRectangle__2D__axi__32__64.html", null ],
+            [ "Rectangle_axi_32_64< _SIZE_ >", "classRectangle__axi__32__64.html", null ]
+          ] ],
+          [ "Segment_32_64< _SIZE_ >", "classSegment__32__64.html", [
+            [ "Segment_axi_32_64< _SIZE_ >", "classSegment__axi__32__64.html", null ]
+          ] ],
+          [ "Tetraedre_32_64< _SIZE_ >", "classTetraedre__32__64.html", null ],
+          [ "Triangle_32_64< _SIZE_ >", "classTriangle__32__64.html", null ]
+        ] ],
         [ "Elem_poly_base", "classElem__poly__base.html", [
           [ "Hexa_poly", "classHexa__poly.html", null ],
           [ "Polyedre_poly", "classPolyedre__poly.html", null ],
@@ -1932,17 +2119,21 @@ var hierarchy =
           [ "Faces_VDF", "classFaces__VDF.html", null ]
         ] ],
         [ "Field_base", "classField__base.html", [
+          [ "IJK_Field_local_template< double, TRUSTArray >", "classIJK__Field__local__template.html", null ],
           [ "Champ_base", "classChamp__base.html", null ],
-          [ "Champ_front_base", "classChamp__front__base.html", null ]
+          [ "Champ_front_base", "classChamp__front__base.html", null ],
+          [ "IJK_Field_local_template< _TYPE_, _TYPE_ARRAY_ >", "classIJK__Field__local__template.html", [
+            [ "IJK_Field_template< double, ArrOfDouble >", "classIJK__Field__template.html", null ],
+            [ "IJK_Field_template< _TYPE_, TRUSTArray< _TYPE_ > >", "classIJK__Field__template.html", null ],
+            [ "IJK_Field_template< _TYPE_, _TYPE_ARRAY_ >", "classIJK__Field__template.html", null ]
+          ] ],
+          [ "IJK_Field_vector< T, N >", "classIJK__Field__vector.html", null ]
         ] ],
         [ "Format_Post_base", "classFormat__Post__base.html", [
           [ "Format_Post_CGNS", "classFormat__Post__CGNS.html", null ],
           [ "Format_Post_Lata", "classFormat__Post__Lata.html", null ],
           [ "Format_Post_Lml", "classFormat__Post__Lml.html", null ],
-          [ "Format_Post_Med", "classFormat__Post__Med.html", [
-            [ "Format_Post_Med_major", "classFormat__Post__Med__major.html", null ]
-          ] ],
-          [ "Format_Post_XYZ", "classFormat__Post__XYZ.html", null ]
+          [ "Format_Post_Med", "classFormat__Post__Med.html", null ]
         ] ],
         [ "Frontiere_32_64< _SIZE_ >", "classFrontiere__32__64.html", [
           [ "Bord_32_64< _SIZE_ >", "classBord__32__64.html", null ],
@@ -1962,6 +2153,10 @@ var hierarchy =
           [ "Front_VF", "classFront__VF.html", null ]
         ] ],
         [ "Grid_Level_Data_template< _TYPE_ >", "classGrid__Level__Data__template.html", null ],
+        [ "IJKArray_with_ghost< _TYPE_, _TYPE_ARRAY_ >", "classIJKArray__with__ghost.html", null ],
+        [ "IJK_Field_tools", "classIJK__Field__tools.html", null ],
+        [ "IJK_Grid_Geometry", "classIJK__Grid__Geometry.html", null ],
+        [ "IJK_VDF_converter", "classIJK__VDF__converter.html", null ],
         [ "Integrale_tps_Champ", "classIntegrale__tps__Champ.html", [
           [ "Integrale_tps_produit_champs", "classIntegrale__tps__produit__champs.html", null ]
         ] ],
@@ -1976,13 +2171,23 @@ var hierarchy =
             [ "Saturation_sodium", "classSaturation__sodium.html", null ]
           ] ]
         ] ],
+        [ "Interpolation_IBM_base", "classInterpolation__IBM__base.html", [
+          [ "Interpolation_IBM_aucune", "classInterpolation__IBM__aucune.html", null ],
+          [ "Interpolation_IBM_elem_fluid", "classInterpolation__IBM__elem__fluid.html", [
+            [ "Interpolation_IBM_hybrid", "classInterpolation__IBM__hybrid.html", null ],
+            [ "Interpolation_IBM_power_law_tbl", "classInterpolation__IBM__power__law__tbl.html", null ]
+          ] ],
+          [ "Interpolation_IBM_mean_gradient", "classInterpolation__IBM__mean__gradient.html", null ]
+        ] ],
         [ "Interprete", "classInterprete.html", [
           [ "Ecrire_MED_32_64< int >", "classEcrire__MED__32__64.html", null ],
           [ "Analyse_Angle", "classAnalyse__Angle.html", null ],
           [ "Associer", "classAssocier.html", null ],
           [ "Axi", "classAxi.html", null ],
           [ "Bidim_Axi", "classBidim__Axi.html", null ],
+          [ "Build_Map_to_Structured", "classBuild__Map__to__Structured.html", null ],
           [ "Deactivate_SIGINT_Catch", "classDeactivate__SIGINT__Catch.html", null ],
+          [ "DebogIJK", "classDebogIJK.html", null ],
           [ "Debog_Pb_Wrapper", "classDebog__Pb__Wrapper.html", null ],
           [ "Decouper_multi", "classDecouper__multi.html", null ],
           [ "Diametre_hyd_champ", "classDiametre__hyd__champ.html", null ],
@@ -1997,6 +2202,7 @@ var hierarchy =
           [ "Ecrire_MED_32_64< _SIZE_ >", "classEcrire__MED__32__64.html", null ],
           [ "EcritureLectureSpecial", "classEcritureLectureSpecial.html", null ],
           [ "Execute_parallel", "classExecute__parallel.html", null ],
+          [ "IJK_Lata_Swap_JK", "classIJK__Lata__Swap__JK.html", null ],
           [ "IJK_Test_Multigrille", "classIJK__Test__Multigrille.html", null ],
           [ "Integrer_champ_med", "classIntegrer__champ__med.html", null ],
           [ "Interprete_geometrique_base_32_64< _SIZE_ >", "classInterprete__geometrique__base__32__64.html", [
@@ -2066,6 +2272,7 @@ var hierarchy =
             [ "Verifier_Qualite_Raffinements_32_64< _SIZE_ >", "classVerifier__Qualite__Raffinements__32__64.html", null ],
             [ "Verifier_Simplexes_32_64< _SIZE_ >", "classVerifier__Simplexes__32__64.html", null ]
           ] ],
+          [ "Lata_2_CGNS", "classLata__2__CGNS.html", null ],
           [ "Lata_2_MED", "classLata__2__MED.html", null ],
           [ "Lata_2_Other", "classLata__2__Other.html", null ],
           [ "Link_CGNS_Files", "classLink__CGNS__Files.html", null ],
@@ -2079,13 +2286,18 @@ var hierarchy =
           [ "Lml_2_Lata", "classLml__2__Lata.html", null ],
           [ "MaillerParallel", "classMaillerParallel.html", null ],
           [ "Merge_MED", "classMerge__MED.html", null ],
+          [ "Mkdir", "classMkdir.html", null ],
           [ "ModifyDomaineAxi1D", "classModifyDomaineAxi1D.html", null ],
           [ "Moyenne_volumique", "classMoyenne__volumique.html", null ],
           [ "MultipleFiles", "classMultipleFiles.html", null ],
+          [ "My_Comm_Group", "classMy__Comm__Group.html", null ],
           [ "Option_CGNS", "classOption__CGNS.html", null ],
+          [ "Option_DG", "classOption__DG.html", null ],
+          [ "Option_IJK", "classOption__IJK.html", null ],
           [ "Option_Interpolation", "classOption__Interpolation.html", null ],
           [ "Option_PolyMAC", "classOption__PolyMAC.html", null ],
           [ "Option_VDF", "classOption__VDF.html", null ],
+          [ "Parallel_io_parameters", "classParallel__io__parameters.html", null ],
           [ "Pilote_ICoCo", "classPilote__ICoCo.html", null ],
           [ "Porosites_champ", "classPorosites__champ.html", null ],
           [ "PrecisionGeom", "classPrecisionGeom.html", null ],
@@ -2122,7 +2334,11 @@ var hierarchy =
         [ "Loi_Fermeture_base", "classLoi__Fermeture__base.html", null ],
         [ "Loi_horaire", "classLoi__horaire.html", null ],
         [ "MD_Vector_base", "classMD__Vector__base.html", [
-          [ "MD_Vector_composite", "classMD__Vector__composite.html", null ]
+          [ "MD_Vector_composite", "classMD__Vector__composite.html", null ],
+          [ "MD_Vector_mono", "classMD__Vector__mono.html", [
+            [ "MD_Vector_seq", "classMD__Vector__seq.html", null ],
+            [ "MD_Vector_std", "classMD__Vector__std.html", null ]
+          ] ]
         ] ],
         [ "Marqueur_Lagrange_base", "classMarqueur__Lagrange__base.html", null ],
         [ "Matrice_Base", "classMatrice__Base.html", [
@@ -2166,6 +2382,7 @@ var hierarchy =
         [ "PCShell_base", "classPCShell__base.html", [
           [ "PCShell_Jacobi", "classPCShell__Jacobi.html", null ]
         ] ],
+        [ "PDF_model", "classPDF__model.html", null ],
         [ "Parametre_equation_base", "classParametre__equation__base.html", [
           [ "Parametre_diffusion_implicite", "classParametre__diffusion__implicite.html", null ],
           [ "Parametre_implicite", "classParametre__implicite.html", null ]
@@ -2195,9 +2412,14 @@ var hierarchy =
           [ "Precond_local", "classPrecond__local.html", null ],
           [ "SSOR", "classSSOR.html", null ]
         ] ],
+        [ "Prepro_IBM_base", "classPrepro__IBM__base.html", [
+          [ "Prepro_IBM_Ponderation", "classPrepro__IBM__Ponderation.html", null ],
+          [ "Prepro_IBM_Uzawa", "classPrepro__IBM__Uzawa.html", null ]
+        ] ],
         [ "Probleme_U", "classProbleme__U.html", [
           [ "Couplage_U", "classCouplage__U.html", [
             [ "Probleme_Couple", "classProbleme__Couple.html", [
+              [ "Pb_Couple_Optimisation_IBM", "classPb__Couple__Optimisation__IBM.html", null ],
               [ "Pbc_MED", "classPbc__MED.html", null ]
             ] ]
           ] ],
@@ -2206,14 +2428,11 @@ var hierarchy =
         [ "RTabInt", "classRTabInt.html", null ],
         [ "Reaction", "classReaction.html", null ],
         [ "Schema_Temps_base", "classSchema__Temps__base.html", [
-          [ "TRUSTSchema_RK< Ordre_RK::DEUX_WILLIAMSON >", "classTRUSTSchema__RK.html", [
-            [ "RK2", "classRK2.html", null ]
+          [ "TRUSTSchema_RK< Ordre_RK::QUATRE_CLASSIQUE >", "classTRUSTSchema__RK.html", [
+            [ "RK4_Classique", "classRK4__Classique.html", null ]
           ] ],
-          [ "TRUSTSchema_RK< Ordre_RK::DEUX_CLASSIQUE >", "classTRUSTSchema__RK.html", [
-            [ "RK2_Classique", "classRK2__Classique.html", null ]
-          ] ],
-          [ "TRUSTSchema_RK< Ordre_RK::TROIS_WILLIAMSON >", "classTRUSTSchema__RK.html", [
-            [ "RK3", "classRK3.html", null ]
+          [ "TRUSTSchema_RK< Ordre_RK::UN >", "classTRUSTSchema__RK.html", [
+            [ "Schema_Euler_explicite", "classSchema__Euler__explicite.html", null ]
           ] ],
           [ "TRUSTSchema_RK< Ordre_RK::TROIS_CLASSIQUE >", "classTRUSTSchema__RK.html", [
             [ "RK3_Classique", "classRK3__Classique.html", null ]
@@ -2221,17 +2440,20 @@ var hierarchy =
           [ "TRUSTSchema_RK< Ordre_RK::QUATRE_WILLIAMSON >", "classTRUSTSchema__RK.html", [
             [ "RK4", "classRK4.html", null ]
           ] ],
-          [ "TRUSTSchema_RK< Ordre_RK::QUATRE_CLASSIQUE >", "classTRUSTSchema__RK.html", [
-            [ "RK4_Classique", "classRK4__Classique.html", null ]
+          [ "TRUSTSchema_RK< Ordre_RK::DEUX_CLASSIQUE >", "classTRUSTSchema__RK.html", [
+            [ "RK2_Classique", "classRK2__Classique.html", null ]
           ] ],
-          [ "TRUSTSchema_RK< Ordre_RK::QUATRE_CLASSIQUE_3_8 >", "classTRUSTSchema__RK.html", [
-            [ "RK4_Classique_3_8", "classRK4__Classique__3__8.html", null ]
+          [ "TRUSTSchema_RK< Ordre_RK::DEUX_WILLIAMSON >", "classTRUSTSchema__RK.html", [
+            [ "RK2", "classRK2.html", null ]
           ] ],
           [ "TRUSTSchema_RK< Ordre_RK::RATIO_DEUX >", "classTRUSTSchema__RK.html", [
             [ "RRK2", "classRRK2.html", null ]
           ] ],
-          [ "TRUSTSchema_RK< Ordre_RK::UN >", "classTRUSTSchema__RK.html", [
-            [ "Schema_Euler_explicite", "classSchema__Euler__explicite.html", null ]
+          [ "TRUSTSchema_RK< Ordre_RK::QUATRE_CLASSIQUE_3_8 >", "classTRUSTSchema__RK.html", [
+            [ "RK4_Classique_3_8", "classRK4__Classique__3__8.html", null ]
+          ] ],
+          [ "TRUSTSchema_RK< Ordre_RK::TROIS_WILLIAMSON >", "classTRUSTSchema__RK.html", [
+            [ "RK3", "classRK3.html", null ]
           ] ],
           [ "Leap_frog", "classLeap__frog.html", null ],
           [ "Multi_Sch_ThHyd", "classMulti__Sch__ThHyd.html", null ],
@@ -2269,12 +2491,14 @@ var hierarchy =
           [ "Multigrille_base", "classMultigrille__base.html", [
             [ "Multigrille_Adrien", "classMultigrille__Adrien.html", null ]
           ] ],
+          [ "Solv_AMG", "classSolv__AMG.html", null ],
           [ "Solv_Cholesky", "classSolv__Cholesky.html", null ],
           [ "Solv_Externe", "classSolv__Externe.html", [
             [ "Solv_Petsc", "classSolv__Petsc.html", [
               [ "Solv_AMGX", "classSolv__AMGX.html", null ],
               [ "Solv_Petsc_GPU", "classSolv__Petsc__GPU.html", null ]
             ] ],
+            [ "Solv_cuDSS", "classSolv__cuDSS.html", null ],
             [ "Solv_rocALUTION", "classSolv__rocALUTION.html", null ]
           ] ],
           [ "SolveurPP1B", "classSolveurPP1B.html", null ],
@@ -2286,10 +2510,34 @@ var hierarchy =
             [ "Solv_Optimal", "classSolv__Optimal.html", null ]
           ] ]
         ] ],
+        [ "Solveur_Implicite_base", "classSolveur__Implicite__base.html", [
+          [ "Solveur_lineaire", "classSolveur__lineaire.html", [
+            [ "Solveur_Lineaire_Std", "classSolveur__Lineaire__Std.html", null ]
+          ] ],
+          [ "Solveur_non_lineaire", "classSolveur__non__lineaire.html", [
+            [ "Simpler_Base", "classSimpler__Base.html", [
+              [ "Simple", "classSimple.html", [
+                [ "Simpler", "classSimpler.html", [
+                  [ "Piso", "classPiso.html", [
+                    [ "Implicite", "classImplicite.html", null ]
+                  ] ],
+                  [ "SETS", "classSETS.html", [
+                    [ "ICE", "classICE.html", null ]
+                  ] ]
+                ] ],
+                [ "Solveur_U_P", "classSolveur__U__P.html", null ]
+              ] ]
+            ] ]
+          ] ]
+        ] ],
         [ "Solveur_Masse_base", "classSolveur__Masse__base.html", null ],
         [ "Sonde", "classSonde.html", null ],
         [ "Sonde_Int", "classSonde__Int.html", null ],
         [ "Sortie_Fichier_base", "classSortie__Fichier__base.html", null ],
+        [ "Source_Masse_Fluide_Dilatable_base", "classSource__Masse__Fluide__Dilatable__base.html", [
+          [ "Source_Masse_Fluide_Dilatable_VDF", "classSource__Masse__Fluide__Dilatable__VDF.html", null ],
+          [ "Source_Masse_Fluide_Dilatable_VEF", "classSource__Masse__Fluide__Dilatable__VEF.html", null ]
+        ] ],
         [ "Source_base", "classSource__base.html", null ],
         [ "Sous_Domaine_32_64< _SIZE_ >", "classSous__Domaine__32__64.html", null ],
         [ "Sous_domaine_dis_base", "classSous__domaine__dis__base.html", [
@@ -2309,9 +2557,16 @@ var hierarchy =
         [ "ptrParam", "classptrParam.html", null ]
       ] ]
     ] ],
+    [ "Quadrature_base", "classQuadrature__base.html", [
+      [ "Quadrature_Ord1_Polygone", "classQuadrature__Ord1__Polygone.html", null ],
+      [ "Quadrature_Ord3_Polygone", "classQuadrature__Ord3__Polygone.html", null ],
+      [ "Quadrature_Ord5_Polygone", "classQuadrature__Ord5__Polygone.html", null ]
+    ] ],
     [ "TVAlloc< T, Alloc >::rebind< U >", "structTVAlloc_1_1rebind.html", null ],
+    [ "Redistribute_Field", "classRedistribute__Field.html", null ],
     [ "Roue", "classRoue.html", null ],
     [ "Roue_ptr", "structRoue__ptr.html", null ],
+    [ "Save_Restart", "classSave__Restart.html", null ],
     [ "ScalarRegister", "classScalarRegister.html", null ],
     [ "Schema_Comm", "classSchema__Comm.html", [
       [ "Schema_Comm_statique", "classSchema__Comm__statique.html", null ]
@@ -2319,27 +2574,8 @@ var hierarchy =
     [ "Schema_Comm_Vecteurs", "classSchema__Comm__Vecteurs.html", null ],
     [ "Schema_Comm_Vecteurs_Static_Data", "classSchema__Comm__Vecteurs__Static__Data.html", null ],
     [ "Separateur", "classSeparateur.html", null ],
+    [ "Simd_template< _TYPE_ >", "classSimd__template.html", null ],
     [ "Solv_TDMA", "classSolv__TDMA.html", null ],
-    [ "Solveur_Implicite_base", null, [
-      [ "Solveur_lineaire", "classSolveur__lineaire.html", [
-        [ "Solveur_Lineaire_Std", "classSolveur__Lineaire__Std.html", null ]
-      ] ],
-      [ "Solveur_non_lineaire", "classSolveur__non__lineaire.html", [
-        [ "Simpler_Base", "classSimpler__Base.html", [
-          [ "Simple", "classSimple.html", [
-            [ "Simpler", "classSimpler.html", [
-              [ "Piso", "classPiso.html", [
-                [ "Implicite", "classImplicite.html", null ]
-              ] ],
-              [ "SETS", "classSETS.html", [
-                [ "ICE", "classICE.html", null ]
-              ] ]
-            ] ],
-            [ "Solveur_U_P", "classSolveur__U__P.html", null ]
-          ] ]
-        ] ]
-      ] ]
-    ] ],
     [ "Solveur_Masse_Elem_proto", "classSolveur__Masse__Elem__proto.html", [
       [ "Masse_PolyMAC_P0P1NC_Elem", "classMasse__PolyMAC__P0P1NC__Elem.html", null ],
       [ "Masse_VDF_Elem", "classMasse__VDF__Elem.html", null ]
@@ -2349,16 +2585,70 @@ var hierarchy =
       [ "Masse_VDF_Face", "classMasse__VDF__Face.html", null ]
     ] ],
     [ "Source_Fluide_Dilatable_Face< DERIVED_T >", "classSource__Fluide__Dilatable__Face.html", null ],
-    [ "Source_PDF_base", null, [
-      [ "Source_PDF_EF", "classSource__PDF__EF.html", null ]
+    [ "Source_Fluide_Dilatable_Face< Acceleration_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Acceleration_QC_VDF_Face", "classAcceleration__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Acceleration_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Acceleration_QC_VEF_P1NC", "classAcceleration__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Darcy_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Darcy_QC_VDF_Face", "classDarcy__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Darcy_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Darcy_QC_VEF_P1NC", "classDarcy__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Forchheimer_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Forchheimer_QC_VDF_Face", "classForchheimer__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Forchheimer_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Forchheimer_QC_VEF_P1NC", "classForchheimer__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Anisotrope_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Anisotrope_QC_VEF_P1NC", "classPerte__Charge__Anisotrope__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Circulaire_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Circulaire_QC_VEF_P1NC", "classPerte__Charge__Circulaire__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Directionnelle_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Directionnelle_QC_VEF_P1NC", "classPerte__Charge__Directionnelle__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Isotrope_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Isotrope_QC_VEF_P1NC", "classPerte__Charge__Isotrope__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Reguliere_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Reguliere_QC_VDF_Face", "classPerte__Charge__Reguliere__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Reguliere_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Reguliere_QC_VEF_P1NC", "classPerte__Charge__Reguliere__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Singuliere_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Singuliere_QC_VDF_Face", "classPerte__Charge__Singuliere__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Perte_Charge_Singuliere_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Perte_Charge_Singuliere_QC_VEF_P1NC", "classPerte__Charge__Singuliere__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Source_qdm_QC_VDF_Face >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Source_qdm_QC_VDF_Face", "classSource__qdm__QC__VDF__Face.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_Face< Source_qdm_QC_VEF_P1NC >", "classSource__Fluide__Dilatable__Face.html", [
+      [ "Source_qdm_QC_VEF_P1NC", "classSource__qdm__QC__VEF__P1NC.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_VDF_Proto", "classSource__Fluide__Dilatable__VDF__Proto.html", [
+      [ "Source_QC_Chaleur_VDF", "classSource__QC__Chaleur__VDF.html", null ],
+      [ "Source_QC_Gravite_VDF", "classSource__QC__Gravite__VDF.html", null ],
+      [ "Source_WC_Chaleur_VDF", "classSource__WC__Chaleur__VDF.html", null ],
+      [ "Source_WC_Gravite_VDF", "classSource__WC__Gravite__VDF.html", null ]
+    ] ],
+    [ "Source_Fluide_Dilatable_VEF_Proto", "classSource__Fluide__Dilatable__VEF__Proto.html", [
+      [ "Source_QC_Chaleur_VEF", "classSource__QC__Chaleur__VEF.html", null ],
+      [ "Source_QC_Gravite_VEF", "classSource__QC__Gravite__VEF.html", null ],
+      [ "Source_WC_Chaleur_VEF", "classSource__WC__Chaleur__VEF.html", null ],
+      [ "Source_WC_Gravite_VEF", "classSource__WC__Gravite__VEF.html", null ]
     ] ],
     [ "Stack< T >", "classStack.html", null ],
-    [ "Stat_Counter_Id", "classStat__Counter__Id.html", null ],
-    [ "Stat_Results", "classStat__Results.html", null ],
     [ "StatComm", "classStatComm.html", null ],
     [ "Static_Int_Lists_32_64< _SIZE_ >", "classStatic__Int__Lists__32__64.html", null ],
     [ "Static_Int_Lists_32_64< int >", "classStatic__Int__Lists__32__64.html", null ],
-    [ "Statistiques", "classStatistiques.html", null ],
     [ "StringTokenizer", "classStringTokenizer.html", null ],
     [ "Support_Champ_Masse_Volumique", "classSupport__Champ__Masse__Volumique.html", [
       [ "Modele_turbulence_hyd_base", "classModele__turbulence__hyd__base.html", null ],
@@ -2376,6 +2666,7 @@ var hierarchy =
       [ "Puissance_Thermique_EF", "classPuissance__Thermique__EF.html", null ],
       [ "Puissance_Thermique_QC_EF", "classPuissance__Thermique__QC__EF.html", null ],
       [ "Source_Neutronique", "classSource__Neutronique.html", null ],
+      [ "Terme_Puissance_Thermique_DG_base", "classTerme__Puissance__Thermique__DG__base.html", null ],
       [ "Terme_Puissance_Thermique_PolyMAC_base", "classTerme__Puissance__Thermique__PolyMAC__base.html", null ],
       [ "Terme_Puissance_Thermique_VDF_base", "classTerme__Puissance__Thermique__VDF__base.html", null ],
       [ "Terme_Puissance_Thermique_VEF_base", "classTerme__Puissance__Thermique__VEF__base.html", null ]
@@ -2389,6 +2680,7 @@ var hierarchy =
       [ "Terme_Source_inc_th_VDF_Face", "classTerme__Source__inc__th__VDF__Face.html", null ]
     ] ],
     [ "Terme_Source_Qdm", "classTerme__Source__Qdm.html", [
+      [ "Perte_Charge_Gen", "classPerte__Charge__Gen.html", null ],
       [ "Perte_Charge_PolyMAC_Face", "classPerte__Charge__PolyMAC__Face.html", null ],
       [ "Perte_Charge_VEF", "classPerte__Charge__VEF.html", null ],
       [ "Perte_Charge_VEF_Face", "classPerte__Charge__VEF__Face.html", null ],
@@ -2409,6 +2701,7 @@ var hierarchy =
         [ "EOS_to_TRUST_generique", "classEOS__to__TRUST__generique.html", null ]
       ] ]
     ] ],
+    [ "TRUST_2_PDI", "classTRUST__2__PDI.html", null ],
     [ "TRUST_Error", "classTRUST__Error.html", null ],
     [ "TRUST_Ref< _CLASSE_ >", "classTRUST__Ref.html", null ],
     [ "TRUST_Ref_Objet_U", "classTRUST__Ref__Objet__U.html", null ],
@@ -2418,16 +2711,14 @@ var hierarchy =
       [ "TRUSTList< int >", "classTRUSTList.html", null ],
       [ "TRUSTList< _TYPE_ >", "classTRUSTList.html", null ]
     ] ],
-    [ "TRUSTListElem< double >", "classTRUSTListElem.html", null ],
-    [ "TRUSTListElem< int >", "classTRUSTListElem.html", null ],
     [ "TRUSTLists< _TYPE_ >", "classTRUSTLists.html", null ],
     [ "TRUSTLists< double >", "classTRUSTLists.html", null ],
     [ "TRUSTLists< int >", "classTRUSTLists.html", null ],
     [ "TRUSTSingle< _TYPE_ >", "classTRUSTSingle.html", null ],
     [ "TRUSTTab_parts< _TYPE_ >", "classTRUSTTab__parts.html", null ],
     [ "TRUSTTravPool< _TYPE_ >", "classTRUSTTravPool.html", null ],
-    [ "TRUSTVect< _SIZE_, _SIZE_ >< _SIZE_ >", "classTRUSTVect.html", null ],
     [ "Type_info", "classType__info.html", null ],
+    [ "VDF_to_IJK", "classVDF__to__IJK.html", null ],
     [ "VECTCond_lim", null, [
       [ "Conds_lim", "classConds__lim.html", null ]
     ] ],
@@ -2438,6 +2729,7 @@ var hierarchy =
     [ "VECTNom", null, [
       [ "Noms", "classNoms.html", null ]
     ] ],
+    [ "YAML_data", "classYAML__data.html", null ],
     [ "Problem", null, [
       [ "ICoCo::ProblemTrio", "classICoCo_1_1ProblemTrio.html", null ]
     ] ]

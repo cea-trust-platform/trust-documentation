@@ -1,13 +1,8 @@
 <map id="Correction_Antal_PolyMAC_P0" name="Correction_Antal_PolyMAC_P0">
-<area shape="rect" id="Node000001" title="classe Correction_Antal_PolyMAC_P0 Correction de repulsion en paroi d&#39;Antal dans un ecoulement multip..." alt="" coords="154,232,372,260"/>
-<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,200,266,232,260,232,260,200"/>
-<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
-<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
+<area shape="rect" id="node1" title="classe Correction_Antal_PolyMAC_P0 Correction de repulsion en paroi d&#39;Antal dans un ecoulement multip..." alt="" coords="154,229,373,256"/>
+<area shape="rect" id="node2" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="211,155,315,181"/>
+<area shape="rect" id="node3" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node4" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,80,299,107"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="323,80,398,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="325,5,397,32"/>
 </map>

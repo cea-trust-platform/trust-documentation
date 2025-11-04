@@ -1,0 +1,274 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamp__implementation__divers" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Champ_implementation_divers</compoundname>
+    <basecompoundref refid="classChamp__implementation" prot="public" virt="non-virtual">Champ_implementation</basecompoundref>
+    <derivedcompoundref refid="classChamp__Face__VDF__implementation" prot="public" virt="non-virtual">Champ_Face_VDF_implementation</derivedcompoundref>
+    <derivedcompoundref refid="classChamp__P1NC__implementation" prot="public" virt="non-virtual">Champ_P1NC_implementation</derivedcompoundref>
+    <derivedcompoundref refid="classChamp__P1iP1B__implementation" prot="public" virt="non-virtual">Champ_P1iP1B_implementation</derivedcompoundref>
+    <derivedcompoundref refid="classChamp__Q1NC__implementation" prot="public" virt="non-virtual">Champ_Q1NC_implementation</derivedcompoundref>
+    <derivedcompoundref refid="classChamp__Q4__implementation" prot="public" virt="non-virtual">Champ_Q4_implementation</derivedcompoundref>
+    <includes local="no">Champ_implementation_divers.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamp__implementation__divers_1a93ffe01f78771e5b8985527c9f433b66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab&amp; Champ_implementation_divers::valeur_aux_sommets</definition>
+        <argsstring>(const Domaine &amp;, DoubleTab &amp;) const override=0</argsstring>
+        <name>valeur_aux_sommets</name>
+        <reimplements refid="classChamp__implementation_1ac3b7e0bb7b03e4846c16503f5e6d90fb">valeur_aux_sommets</reimplements>
+        <reimplementedby refid="classChamp__Q4__implementation_1a228d47083533e1585ee0f9a1a6035c56">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Face__VDF__implementation_1a6f63335435d5721da5bb93919b1682a7">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__P1iP1B__implementation_1afd0422f8e9dcf179862eea3a5dcfb982">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Q1NC__implementation_1a28a947a72e49a86bb8fa27fbe442d168">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__P1NC__implementation_1a0681b81281d945d347e2d462c04ec3fc">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__P1__isoP1Bulle_1a47dee20a0a710e0b4f1ec87458133c9f">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Face__VDF_1a0494770621f6250bddc1133521fc486b">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__Face__VDF_1a8b763ffb008681495633c6e374acab30">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__P1__isoP1Bulle_1a0a6bdd23a74f472e7908fed44df86bab">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__P1NC_1a97e49a6bdc81bee8cb0067abb699664f">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__Q1NC_1a3670735e7a9f303dfa69f10b91a67749">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__P1NC_1a55fb14537d5df07e663d230ebcdb880c">valeur_aux_sommets</reimplementedby>
+        <reimplementedby refid="classChamp__Q1NC_1a70715df3a19ad4bdab7bde38b34c9142">valeur_aux_sommets</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" line="25" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__implementation__divers_1a88429c3e513673b3a6832e50ef993778" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>virtual DoubleVect&amp; Champ_implementation_divers::valeur_aux_sommets_compo</definition>
+        <argsstring>(const Domaine &amp;, DoubleVect &amp;, int) const override=0</argsstring>
+        <name>valeur_aux_sommets_compo</name>
+        <reimplements refid="classChamp__implementation_1a0c10a4cfbaa368324f2a4c01a5d9ec1b">valeur_aux_sommets_compo</reimplements>
+        <reimplementedby refid="classChamp__Q4__implementation_1adc388985c3567fb065d63b155bafdf3a">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Face__VDF__implementation_1af533b16e8355ac19f4bb84aee0e33c1d">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__P1iP1B__implementation_1aaee79512e9b4dcbb7913312ce57d84aa">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Q1NC__implementation_1a72ac0d8aeb2b9cee15678b7ec86bd4e2">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__P1NC__implementation_1a5e59774b02a1cc4d72b287ff66a0c26d">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__P1__isoP1Bulle_1aee6bf39b34c193b37405b71df63a67d3">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Face__VDF_1a740d7dbdfd236c8735c39b43fb4a4c4b">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__Face__VDF_1a33f0dd356e212a58d1d136fc23ea1b92">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__P1__isoP1Bulle_1a0336678e3b279ed8ebd723f30baf1c96">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__P1NC_1aa6f5c62b14076c4fe9aa89fb09071a5b">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Fonc__Q1NC_1a4c3859a1f23e9b93ffafeafb62c7c866">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__P1NC_1a0d59b5f03375254436378b11383354b2">valeur_aux_sommets_compo</reimplementedby>
+        <reimplementedby refid="classChamp__Q1NC_1aa1ea438e62d0e31be4cd09dcd8742542">valeur_aux_sommets_compo</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" line="26" column="22"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classChamp__implementation__divers_1a7b2ce81214a369f4c464bb50392cba91" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        <definition>DoubleVect&amp; Champ_implementation_divers::valeur_aux_sommets_compo_impl</definition>
+        <argsstring>(DoubleVect &amp;result, int ncomp) const override</argsstring>
+        <name>valeur_aux_sommets_compo_impl</name>
+        <reimplements refid="classChamp__implementation_1ab35ea38a30da958a12ad59170e631db2">valeur_aux_sommets_compo_impl</reimplements>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>result</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ncomp</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" line="30" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__implementation__divers_1a61675b5e8c17f8a1bf22bdc2f032589f" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab&amp; Champ_implementation_divers::valeur_aux_sommets_impl</definition>
+        <argsstring>(DoubleTab &amp;result) const override</argsstring>
+        <name>valeur_aux_sommets_impl</name>
+        <reimplements refid="classChamp__implementation_1a2ad21ead97a9ddf7ede17ffbd309538f">valeur_aux_sommets_impl</reimplements>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" line="29" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="17">
+        <label>Champ_Fonc_Q1NC</label>
+        <link refid="classChamp__Fonc__Q1NC"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Champ_Don_Face_lu</label>
+        <link refid="classChamp__Don__Face__lu"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Champ_Q4_implementation</label>
+        <link refid="classChamp__Q4__implementation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Champ_Fonc_P1NC</label>
+        <link refid="classChamp__Fonc__P1NC"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Reynolds_maille_Champ_Face</label>
+        <link refid="classReynolds__maille__Champ__Face"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Champ_P1_isoP1Bulle</label>
+        <link refid="classChamp__P1__isoP1Bulle"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Champ_Face_VDF</label>
+        <link refid="classChamp__Face__VDF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Champ_Q1NC_implementation</label>
+        <link refid="classChamp__Q1NC__implementation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Champ_Fonc_P1_isoP1Bulle</label>
+        <link refid="classChamp__Fonc__P1__isoP1Bulle"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Champ_P1iP1B_implementation</label>
+        <link refid="classChamp__P1iP1B__implementation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Champ_implementation_divers</label>
+        <link refid="classChamp__implementation__divers"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champ_Face_VDF_implementation</label>
+        <link refid="classChamp__Face__VDF__implementation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Champ_P1NC</label>
+        <link refid="classChamp__P1NC"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Correlation_Vec_Sca_VEF</label>
+        <link refid="classCorrelation__Vec__Sca__VEF"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Champ_Q1NC</label>
+        <link refid="classChamp__Q1NC"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champ_P1NC_implementation</label>
+        <link refid="classChamp__P1NC__implementation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Champ_Fonc_Face_VDF</label>
+        <link refid="classChamp__Fonc__Face__VDF"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champ_implementation</label>
+        <link refid="classChamp__implementation"/>
+      </node>
+      <node id="7">
+        <label>Courant_maille_Champ_Face</label>
+        <link refid="classCourant__maille__Champ__Face"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Champ_implementation_divers</label>
+        <link refid="classChamp__implementation__divers"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champ_implementation</label>
+        <link refid="classChamp__implementation"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" line="22" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_implementation_divers.h" bodystart="23" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classChamp__implementation_1ad3adfc700c771b218b531161bec50f15" prot="protected" virt="non-virtual"><scope>Champ_implementation_divers</scope><name>get_domaine_dis</name></member>
+      <member refid="classChamp__implementation_1a3fec2ea8062d59ae40a96ccc417bf695" prot="protected" virt="non-virtual"><scope>Champ_implementation_divers</scope><name>get_domaine_geom</name></member>
+      <member refid="classChamp__implementation_1af3622959577930b165f17511ff382404" prot="protected" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>le_champ</name></member>
+      <member refid="classChamp__implementation_1acef977877647c519ea01aa4b19ba6613" prot="protected" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>le_champ</name></member>
+      <member refid="classChamp__implementation_1a0eb6d710d2a0400d28e3c80984fac75d" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>remplir_coord_noeuds</name></member>
+      <member refid="classChamp__implementation_1a83c40e62f34543358b851ff34f72e5b0" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>remplir_coord_noeuds_et_polys</name></member>
+      <member refid="classChamp__implementation_1aef7801d9bd59c8d9a70a0fafa10f16bb" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_a_elem</name></member>
+      <member refid="classChamp__implementation_1a001cf78dfe0d174dd0445050311ba6dc" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_a_elem_compo</name></member>
+      <member refid="classChamp__implementation_1a6da15169be9b5b9491493a09cbc2bb0e" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_elems</name></member>
+      <member refid="classChamp__implementation_1a455fc00667a058dfd495adf1d54ce906" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_elems_compo</name></member>
+      <member refid="classChamp__implementation__divers_1a93ffe01f78771e5b8985527c9f433b66" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_sommets</name></member>
+      <member refid="classChamp__implementation__divers_1a88429c3e513673b3a6832e50ef993778" prot="public" virt="pure-virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_sommets_compo</name></member>
+      <member refid="classChamp__implementation__divers_1a7b2ce81214a369f4c464bb50392cba91" prot="protected" virt="virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_sommets_compo_impl</name></member>
+      <member refid="classChamp__implementation__divers_1a61675b5e8c17f8a1bf22bdc2f032589f" prot="protected" virt="virtual"><scope>Champ_implementation_divers</scope><name>valeur_aux_sommets_impl</name></member>
+      <member refid="classChamp__implementation_1ac5269f4e40a49a17e5d265b88cc712f6" prot="public" virt="virtual"><scope>Champ_implementation_divers</scope><name>~Champ_implementation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_34af9566fa953ec4d674e053f3791c3c" kind="dir">
+    <compoundname>Common</compoundname>
+    <innerdir refid="dir_412420084d20f27086da1ffb2563fe3f">Cond_Lim</innerdir>
+    <innerdir refid="dir_5b96133fc312ac14941b09346784af5a">Equations</innerdir>
+    <innerdir refid="dir_554acddbd47a939aa4f4726d36f3573e">Milieu</innerdir>
+    <innerdir refid="dir_95a94701f787d77d24fcdb955b45db14">Problems</innerdir>
+    <innerdir refid="dir_8ea01aac23484eb6f4e5c3f404fccd49">Sources</innerdir>
+    <innerfile refid="Modifier__pour__fluide__dilatable_8cpp">Modifier_pour_fluide_dilatable.cpp</innerfile>
+    <innerfile refid="Modifier__pour__fluide__dilatable_8h">Modifier_pour_fluide_dilatable.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Common/"/>
+  </compounddef>
+</doxygen>

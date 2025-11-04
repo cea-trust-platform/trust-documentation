@@ -1,0 +1,592 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSolv__Gen" kind="class" language="C++" prot="public">
+    <compoundname>Solv_Gen</compoundname>
+    <basecompoundref refid="classsolv__iteratif" prot="public" virt="non-virtual">solv_iteratif</basecompoundref>
+    <includes local="no">Solv_Gen.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classSolv__Gen_1ac740673f935fa916cf9d5c1310b81e2f" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Solv_Gen::force_</definition>
+        <argsstring></argsstring>
+        <name>force_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="53" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classSolv__Gen_1a5e60639b8586eeb250a5c46442f589ad" compoundref="Solv__Gen_8cpp" startline="66" endline="77">set_param</referencedby>
+        <referencedby refid="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" compoundref="Solv__Gen_8cpp" startline="155" endline="388">solve</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gen_1ae08bbd855e3def94f073b6aac490c8a8" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Solv_Gen::nb_it_max_</definition>
+        <argsstring></argsstring>
+        <name>nb_it_max_</name>
+        <initializer>= 1000000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="51" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classSolv__Gen_1aba6ad20d1320c2e9bafa9bbc22de4228" compoundref="Solv__Gen_8cpp" startline="79" endline="93">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" compoundref="Solv__Gen_8cpp" startline="155" endline="388">solve</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gen_1a9300bad844183d8256e1bf088ee6a1bd" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Solv_Gen::nb_it_max_flag</definition>
+        <argsstring></argsstring>
+        <name>nb_it_max_flag</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="52" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classSolv__Gen_1aba6ad20d1320c2e9bafa9bbc22de4228" compoundref="Solv__Gen_8cpp" startline="79" endline="93">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" compoundref="Solv__Gen_8cpp" startline="155" endline="388">solve</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSolv__Gen_1a2cbdc7ef2a0afb6d67c654c1bc1131ea" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gen::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(Solv_Gen)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classSolv__Gen" kindref="compound">Solv_Gen</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="30" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSolv__Gen_1a99dda5e7db94c08c22ee122ae8a1314d" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const Solv_Gen::OWN_PTR</definition>
+        <argsstring>(Precond_base) &amp;get_precond() const</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classPrecond__base" kindref="compound">Precond_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="40" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a756a9229b687da9d999b1f850e384c06" prot="public" static="no" const="no" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gen::OWN_PTR</definition>
+        <argsstring>(SolvElem_base) &amp;le_solveur_elem()</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classSolvElem__base" kindref="compound">SolvElem_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="38" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a2637c29bca8c8f24c738ff6ab8403aa4" prot="public" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const Solv_Gen::OWN_PTR</definition>
+        <argsstring>(SolvElem_base) &amp;le_solveur_elem() const</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classSolvElem__base" kindref="compound">SolvElem_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="39" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a4475ff33359bf1f586f9ac12547c8c66" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Solv_Gen::reinit</definition>
+        <argsstring>() override</argsstring>
+        <name>reinit</name>
+        <reimplements refid="classSolveurSys__base_1a8737bd7292204c64e4b7bfe4c7bd88ef">reinit</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="39" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a65e4be1e2eab529fc2787c5117522bf6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gen::resoudre_systeme</definition>
+        <argsstring>(const Matrice_Base &amp;, const DoubleVect &amp;, DoubleVect &amp;) override</argsstring>
+        <name>resoudre_systeme</name>
+        <reimplements refid="classSolveurSys__base_1a7c520c3aa574c8be3d3f27d4f700eac2">resoudre_systeme</reimplements>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <defname>la_matrice</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>secmem</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>solution</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="95" bodyend="153"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classMatrice__Bloc_1a76a5691fecfea8b4dd877d2c449a7f21" compoundref="Matrice__Bloc_8cpp" startline="601" endline="618">Matrice_Bloc::get_bloc</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classTRUSTVect_1ae68bc2c6cfd7016c9c209cddd41e51d4" compoundref="TRUSTVect_8tpp" startline="91" endline="96">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" compoundref="Solv__Gen_8cpp" startline="155" endline="388">solve</references>
+        <referencedby refid="classSolv__Gen_1a454bad1002f2c906f973efc493b828f2" compoundref="Solv__Gen_8h" startline="34" endline="37">resoudre_systeme</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a454bad1002f2c906f973efc493b828f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gen::resoudre_systeme</definition>
+        <argsstring>(const Matrice_Base &amp;M, const DoubleVect &amp;A, DoubleVect &amp;B, int niter_max) override</argsstring>
+        <name>resoudre_systeme</name>
+        <reimplements refid="classSolveurSys__base_1a8c42bf5160d595afada02074ccc7f91e">resoudre_systeme</reimplements>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>niter_max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="34" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="34" bodyend="37"/>
+        <references refid="classSolv__Gen_1a65e4be1e2eab529fc2787c5117522bf6" compoundref="Solv__Gen_8cpp" startline="95" endline="153">resoudre_systeme</references>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1af5b7a09c7df079de18c52d46d3ada87a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solv_Gen::set_precond</definition>
+        <argsstring>(const OWN_PTR(Precond_base)&amp;pre)</argsstring>
+        <name>set_precond</name>
+        <param>
+          <type>const <ref refid="classSolv__Gen_1a756a9229b687da9d999b1f850e384c06" kindref="member">OWN_PTR</ref>(<ref refid="classPrecond__base" kindref="compound">Precond_base</ref>)&amp;</type>
+          <declname>pre</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="41" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a406e2886ea253ac2a92f32a9d33ac551" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gen::Solv_Gen</definition>
+        <argsstring>()</argsstring>
+        <name>Solv_Gen</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="32" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="34" bodyend="37"/>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSolv__Gen_1aba6ad20d1320c2e9bafa9bbc22de4228" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gen::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889">lire_motcle_non_standard</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="46" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="79" bodyend="93"/>
+        <references refid="classSolveurSys__base_1a987e97740c779c1ab4192c3c1f1bbd5d" compoundref="SolveurSys__base_8h" startline="38" endline="38">SolveurSys_base::fixer_limpr</references>
+        <references refid="classSolv__Gen_1ae08bbd855e3def94f073b6aac490c8a8" compoundref="Solv__Gen_8h" startline="51">nb_it_max_</references>
+        <references refid="classSolv__Gen_1a9300bad844183d8256e1bf088ee6a1bd" compoundref="Solv__Gen_8h" startline="52">nb_it_max_flag</references>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1ada02dca0b59e6d43943279e6e015b49a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gen::OWN_PTR</definition>
+        <argsstring>(Precond_base) le_precond_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classPrecond__base" kindref="compound">Precond_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="49" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1abc662f40114fa56ed7465b38583ca9d7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gen::OWN_PTR</definition>
+        <argsstring>(SolvElem_base) le_solveur_elem_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classSolvElem__base" kindref="compound">SolvElem_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="50" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a5e60639b8586eeb250a5c46442f589ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solv_Gen::set_param</definition>
+        <argsstring>(Param &amp;param)</argsstring>
+        <name>set_param</name>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="66" bodyend="77"/>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classParam_1a094f83c119a3283c851a6672b277eb6f" compoundref="Param_8cpp" startline="414" endline="428">Param::ajouter_flag</references>
+        <references refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</references>
+        <references refid="classSolv__Gen_1ac740673f935fa916cf9d5c1310b81e2f" compoundref="Solv__Gen_8h" startline="53">force_</references>
+        <references refid="classSolveurSys__base_1a9f5542de1fc8d2e98a48a6bfe7eb9353" compoundref="SolveurSys__base_8h" startline="79">SolveurSys_base::return_on_error_</references>
+        <references refid="classSolveurSys__base_1a824322fe6a2c03aa986b8152aefcf14b" compoundref="SolveurSys__base_8h" startline="77">SolveurSys_base::save_matrice_</references>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Solv_Gen::solve</definition>
+        <argsstring>(const Matrice_Base &amp;matrice, const Matrice_Base &amp;mat_loc, const DoubleVect &amp;secmem, DoubleVect &amp;solution)</argsstring>
+        <name>solve</name>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <declname>matrice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <declname>mat_loc</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>solution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="47" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.cpp" bodystart="155" bodyend="388"/>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classSolv__Gen_1ac740673f935fa916cf9d5c1310b81e2f" compoundref="Solv__Gen_8h" startline="53">force_</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classSolveurSys__base_1a6435c5b83312da8f782eeeab564b4061" compoundref="SolveurSys__base_8h" startline="41" endline="46">SolveurSys_base::limpr</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" compoundref="Process_8cpp" startline="145" endline="151">Process::mp_sum</references>
+        <references refid="classMatrice__Base_1a91c98b86a0bdce6ccc483dd453ef9ab2" compoundref="Matrice__Base_8h" startline="103" endline="108">Matrice_Base::multvect</references>
+        <references refid="classMatrice__Base_1a255d26b3881c5f3342416438ed89529a" compoundref="Matrice__Base_8h" startline="127" endline="132">Matrice_Base::multvectT</references>
+        <references refid="classSolv__Gen_1ae08bbd855e3def94f073b6aac490c8a8" compoundref="Solv__Gen_8h" startline="51">nb_it_max_</references>
+        <references refid="classSolv__Gen_1a9300bad844183d8256e1bf088ee6a1bd" compoundref="Solv__Gen_8h" startline="52">nb_it_max_flag</references>
+        <references refid="classTRUSTTab_1a4e02d5a03d32f77b78473d00b3580f12" compoundref="TRUSTTab_8tpp" startline="332" endline="339">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref_array</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classSolveurSys__base_1a9f5542de1fc8d2e98a48a6bfe7eb9353" compoundref="SolveurSys__base_8h" startline="79">SolveurSys_base::return_on_error_</references>
+        <references refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" compoundref="TRUSTTab_8tpp" startline="658" endline="670">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::set_md_vector</references>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <references refid="classILU__SP_1a314feaeda8b0004b8b6a05036dcb3fc9" compoundref="ILU__SP_8h" startline="30" endline="30">ILU_SP::type_precond</references>
+        <referencedby refid="classSolv__Gen_1a65e4be1e2eab529fc2787c5117522bf6" compoundref="Solv__Gen_8cpp" startline="95" endline="153">resoudre_systeme</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>solv_iteratif</label>
+        <link refid="classsolv__iteratif"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Solv_Gen</label>
+        <link refid="classSolv__Gen"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>solv_iteratif</label>
+        <link refid="classsolv__iteratif"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="7">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Solv_Gen</label>
+        <link refid="classSolv__Gen"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>chaine_lue_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" line="28" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gen.h" bodystart="29" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>bidim_axi</name></member>
+      <member refid="classSolveurSys__base_1afe094450db2e5697da7b535437bd71b9" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>chaine_lue_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>check_int_overflow</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classSolv__Gen_1a2cbdc7ef2a0afb6d67c654c1bc1131ea" prot="private" virt="non-virtual"><scope>Solv_Gen</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Solv_Gen</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>exit</name></member>
+      <member refid="classSolveurSys__base_1a987e97740c779c1ab4192c3c1f1bbd5d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>fixer_limpr</name></member>
+      <member refid="classSolveurSys__base_1ac7ab2597959ce63c33809112abf348c2" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>fixer_nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1af97f0f1bb14eaebf5a20ef6a741065ac" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>fixer_schema_temps_limpr</name></member>
+      <member refid="classSolv__Gen_1ac740673f935fa916cf9d5c1310b81e2f" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>force_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>format_precision_geom</name></member>
+      <member refid="classSolveurSys__base_1a37ee1ac4f2a7c4438df6a806488c7c46" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>get_chaine_lue</name></member>
+      <member refid="classSolveurSys__base_1a03ce5204378b04ca33275e7b5563c83a" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>get_flag_updated_input</name></member>
+      <member refid="classSolveurSys__base_1a82adf841121371ac9aea5d965e25b9eb" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>get_flag_updated_result</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classsolv__iteratif_1a01ebbc2f7ea7ad06c1486f27aadf3f75" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>get_seuil</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>le_type</name></member>
+      <member refid="classSolveurSys__base_1af4e770068f6ad5f717569ec7807e4186" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>lecture</name></member>
+      <member refid="classSolveurSys__base_1a6435c5b83312da8f782eeeab564b4061" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>limpr</name></member>
+      <member refid="classSolv__Gen_1aba6ad20d1320c2e9bafa9bbc22de4228" prot="protected" virt="virtual"><scope>Solv_Gen</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>multiple_files</name></member>
+      <member refid="classSolv__Gen_1ae08bbd855e3def94f073b6aac490c8a8" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>nb_it_max_</name></member>
+      <member refid="classSolv__Gen_1a9300bad844183d8256e1bf088ee6a1bd" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>nb_it_max_flag</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>nommer</name></member>
+      <member refid="classSolveurSys__base_1a5d87061de47689a5dfc33ceb4434bfcd" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1a6f3572b460eb22fb58bff895dae3a0f2" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>nouvelle_matrice_</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>operator=</name></member>
+      <member refid="classSolv__Gen_1a756a9229b687da9d999b1f850e384c06" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>OWN_PTR</name></member>
+      <member refid="classSolv__Gen_1a2637c29bca8c8f24c738ff6ab8403aa4" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>OWN_PTR</name></member>
+      <member refid="classSolv__Gen_1a99dda5e7db94c08c22ee122ae8a1314d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>OWN_PTR</name></member>
+      <member refid="classSolv__Gen_1ada02dca0b59e6d43943279e6e015b49a" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>OWN_PTR</name></member>
+      <member refid="classSolv__Gen_1abc662f40114fa56ed7465b38583ca9d7" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>ram_processeur</name></member>
+      <member refid="classSolveurSys__base_1a0a95f84b624d297dce073c7cf062d988" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>read_matrix</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>readOn</name></member>
+      <member refid="classSolv__Gen_1a4475ff33359bf1f586f9ac12547c8c66" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>reinit</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>reprendre</name></member>
+      <member refid="classSolv__Gen_1a65e4be1e2eab529fc2787c5117522bf6" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>resoudre_systeme</name></member>
+      <member refid="classSolv__Gen_1a454bad1002f2c906f973efc493b828f2" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>resoudre_systeme</name></member>
+      <member refid="classSolveurSys__base_1a9f5542de1fc8d2e98a48a6bfe7eb9353" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>return_on_error_</name></member>
+      <member refid="classSolveurSys__base_1a265d6db198203cfb2416b461a6bc640d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>reuse_preconditioner</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>sauvegarder</name></member>
+      <member refid="classSolveurSys__base_1a824322fe6a2c03aa986b8152aefcf14b" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>save_matrice_</name></member>
+      <member refid="classSolveurSys__base_1a58dba89c332229c6fd0491b2fc56c148" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>save_matrice_secmem_conditionnel</name></member>
+      <member refid="classSolveurSys__base_1af86b588703a1fb89319cfecefb9e2441" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>save_matrix</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>self_cast</name></member>
+      <member refid="classSolveurSys__base_1a101e6ebcf447c66eb0171e35ba40fc1b" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_flag_updated_result</name></member>
+      <member refid="classSolv__Gen_1a5e60639b8586eeb250a5c46442f589ad" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>set_param</name></member>
+      <member refid="classSolv__Gen_1af5b7a09c7df079de18c52d46d3ada87a" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_precond</name></member>
+      <member refid="classSolveurSys__base_1ab5dd43c8033d107357e5c2d1aea565c9" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_read_matrix</name></member>
+      <member refid="classSolveurSys__base_1a27067468cf159dc2e08c693ac7432685" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_return_on_error</name></member>
+      <member refid="classSolveurSys__base_1a0ea6281a5c0ad2cf572d421e661d370c" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_reuse_preconditioner</name></member>
+      <member refid="classSolveurSys__base_1aaecb60c1df070675220f4f49fd170db6" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_save_matrix</name></member>
+      <member refid="classsolv__iteratif_1a8f895c998d8b0548468b12c4cd908b2d" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>set_seuil</name></member>
+      <member refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>seuil_</name></member>
+      <member refid="classSolv__Gen_1a406e2886ea253ac2a92f32a9d33ac551" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>Solv_Gen</name></member>
+      <member refid="classsolv__iteratif_1a52a5f9a797e67b4f3e62e99f5b1b960c" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>solv_iteratif</name></member>
+      <member refid="classSolv__Gen_1a4309d6b8e3671ebce5e8661dee4912fb" prot="protected" virt="non-virtual"><scope>Solv_Gen</scope><name>solve</name></member>
+      <member refid="classsolv__iteratif_1abce5fddbd5c34e601132e0f8265ddedd" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>solveur_direct</name></member>
+      <member refid="classSolveurSys__base_1a00b69ea2bd461781c8727a498a646ffe" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>SolveurSys_base</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classSolveurSys__base_1a0040749ba12cc2db61a39519fa519996" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>supporte_matrice_morse_sym</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Solv_Gen</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Solv_Gen</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Solv_Gen</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,765 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="Device_8h" kind="file" language="C++">
+    <compoundname>Device.h</compoundname>
+    <includes refid="TRUSTTabs__forward_8h" local="no">TRUSTTabs_forward.h</includes>
+    <includes refid="Nom_8h" local="no">Nom.h</includes>
+    <includes refid="Perf__counters_8h" local="no">Perf_counters.h</includes>
+    <includes refid="kokkos_09_09_8h" local="no">kokkos++.h</includes>
+    <includedby refid="Milieu__base_8cpp" local="no">Milieu_base.cpp</includedby>
+    <includedby refid="Solveur__Masse__base_8cpp" local="no">Solveur_Masse_base.cpp</includedby>
+    <includedby refid="Discretisation__tools_8cpp" local="no">Discretisation_tools.cpp</includedby>
+    <includedby refid="MD__Vector__std__tools_8cpp" local="no">MD_Vector_std_tools.cpp</includedby>
+    <includedby refid="Solv__AMGX_8cpp" local="no">Solv_AMGX.cpp</includedby>
+    <includedby refid="Solv__cuDSS_8cpp" local="no">Solv_cuDSS.cpp</includedby>
+    <includedby refid="Solv__cuDSS_8h" local="no">Solv_cuDSS.h</includedby>
+    <includedby refid="Solv__Externe_8cpp" local="no">Solv_Externe.cpp</includedby>
+    <includedby refid="Solv__rocALUTION_8cpp" local="no">Solv_rocALUTION.cpp</includedby>
+    <includedby refid="Solv__rocALUTION_8h" local="no">Solv_rocALUTION.h</includedby>
+    <includedby refid="TRUSTArray_8h" local="no">TRUSTArray.h</includedby>
+    <includedby refid="TRUSTTravPool_8cpp" local="no">TRUSTTravPool.cpp</includedby>
+    <includedby refid="Device_8cpp" local="no">Device.cpp</includedby>
+    <includedby refid="Device__test_8cpp" local="no">Device_test.cpp</includedby>
+    <includedby refid="DeviceMemory_8cpp" local="no">DeviceMemory.cpp</includedby>
+    <includedby refid="kokkos__test_8cpp" local="no">kokkos_test.cpp</includedby>
+    <includedby refid="Domaine__VF_8cpp" local="no">Domaine_VF.cpp</includedby>
+    <includedby refid="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" local="no">Convection_Diffusion_Fluide_Dilatable_Proto.cpp</includedby>
+    <includedby refid="Champ__P1NC_8cpp" local="no">Champ_P1NC.cpp</includedby>
+    <includedby refid="Op__Conv__VEF__Face_8cpp" local="no">Op_Conv_VEF_Face.cpp</includedby>
+    <includedby refid="Op__Diff__VEF__Face_8cpp" local="no">Op_Diff_VEF_Face.cpp</includedby>
+    <includedby refid="Op__Dift__VEF__Face__Gen_8tpp" local="no">Op_Dift_VEF_Face_Gen.tpp</includedby>
+    <includedby refid="Op__Div__VEFP1B__Elem_8cpp" local="no">Op_Div_VEFP1B_Elem.cpp</includedby>
+    <includedby refid="Op__Grad__VEF__P1B__Face_8cpp" local="no">Op_Grad_VEF_P1B_Face.cpp</includedby>
+    <includedby refid="Masse__VEF__P1NC_8cpp" local="no">Masse_VEF_P1NC.cpp</includedby>
+    <includedby refid="Terme__Boussinesq__VEF__Face_8cpp" local="no">Terme_Boussinesq_VEF_Face.cpp</includedby>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="Device_8h_1a863bbcff982d9b96b44ef2a12b1cf24f" prot="public" static="no">
+        <name>__KERNEL_NAME__</name>
+        <initializer>&quot;&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="72" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="Device_8h_1aecf57b2eea0df5f68dda14174da9ddc0" prot="public" static="no">
+        <name>ToDo_Kokkos</name>
+        <param><defname>str</defname></param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="48" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="Device_8h_1aecf7eb9364836c408f100166f0500c6a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* addrOnDevice</definition>
+        <argsstring>(_TYPE_ *ptr)</argsstring>
+        <name>addrOnDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>ptr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="80" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="134" bodyend="142" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="80" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1ad5825a2eca486ec3da86bd05fa96242b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>const _TYPE_ *</type>
+        <definition>const _TYPE_* addrOnDevice</definition>
+        <argsstring>(const TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>addrOnDevice</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="86" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a8bea7e62757b020620d4d48758aca52d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* addrOnDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>addrOnDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="83" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="144" bodyend="152" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="83" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a8ee148265d4900e4ce72de71776a7710" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* allocateOnDevice</definition>
+        <argsstring>(_TYPE_ *ptr, _SIZE_ size)</argsstring>
+        <name>allocateOnDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>_SIZE_</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="125" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="193" bodyend="227" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="125" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a78a8cd7435c042b96905e08813ffe969" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>const _TYPE_ *</type>
+        <definition>const _TYPE_* allocateOnDevice</definition>
+        <argsstring>(const TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>allocateOnDevice</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="95" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a2cf5b1e48d1f01dde0c30aed9961cb59" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* allocateOnDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>allocateOnDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="92" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="181" bodyend="190" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="92" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a1868e1bd9ace685a71f65a16c91ca572" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* computeOnTheDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>computeOnTheDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="116" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="328" bodyend="333" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="116" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a976c0aed84e65c0ecc229180588563d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void copyFromDevice</definition>
+        <argsstring>(_TYPE_ *ptr, _SIZE_ size)</argsstring>
+        <name>copyFromDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>_SIZE_</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="134" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="349" bodyend="370" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="134" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a7b3d9a822a80a6a1aada1d0c56c17e5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void copyFromDevice</definition>
+        <argsstring>(const TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>copyFromDevice</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="122" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="374" bodyend="377" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="122" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a5ebbe44db7d3ea771bfbe73563f1ddcb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void copyFromDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>copyFromDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="119" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="338" bodyend="347" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="119" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a8821badd7cec047c57328483bcecc67c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void copyToDevice</definition>
+        <argsstring>(_TYPE_ *ptr, _SIZE_ size)</argsstring>
+        <name>copyToDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>_SIZE_</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="131" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="306" bodyend="324" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="131" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a4feca521f17814da0bd8e1faea496389" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void deleteOnDevice</definition>
+        <argsstring>(_TYPE_ *ptr, _SIZE_ size)</argsstring>
+        <name>deleteOnDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>ptr</declname>
+        </param>
+        <param>
+          <type>_SIZE_</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="128" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="244" bodyend="259" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="128" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a0b9f86459b6a6fe386e0ba053c4c796e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void deleteOnDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>deleteOnDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="107" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="231" bodyend="241" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="107" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a0258a1d4f5b305f6659a7c05c3b45e94" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void end_gpu_timer</definition>
+        <argsstring>(const std::string &amp;str, int onDevice=1, int bytes=-1)</argsstring>
+        <name>end_gpu_timer</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>str</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>onDevice</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bytes</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="77" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="77" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a7d1b51a2228d4c150ee4cbb41396b9de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_cuda</definition>
+        <argsstring>()</argsstring>
+        <name>init_cuda</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="41" column="6" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="41" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1ae2005a13252b62f880c536e26177b5bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_device</definition>
+        <argsstring>()</argsstring>
+        <name>init_device</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="40" column="6" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="40" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a12637c5f4a1c206df3c4a0b0a7e64cd6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool isAllocatedOnDevice</definition>
+        <argsstring>(_TYPE_ *tab_addr)</argsstring>
+        <name>isAllocatedOnDevice</name>
+        <param>
+          <type>_TYPE_ *</type>
+          <declname>tab_addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="101" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="156" bodyend="163" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="101" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1ac76f05c20bf3bc104c09a6be42504fbb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool isAllocatedOnDevice</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>isAllocatedOnDevice</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="104" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="166" bodyend="177" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="104" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1aea7927a139390fabee4fd8c624b09b0e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>const _TYPE_ *</type>
+        <definition>const _TYPE_* mapToDevice</definition>
+        <argsstring>(const TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab)</argsstring>
+        <name>mapToDevice</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="110" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="268" bodyend="274" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="110" declcolumn="21"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a32dcd641c21ffd49f6abd927e8ddf1f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _SIZE_</type>
+            <defval>int</defval>
+          </param>
+        </templateparamlist>
+        <type>_TYPE_ *</type>
+        <definition>_TYPE_* mapToDevice_</definition>
+        <argsstring>(TRUSTArray&lt; _TYPE_, _SIZE_ &gt; &amp;tab, DataLocation nextLocation)</argsstring>
+        <name>mapToDevice_</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_, _SIZE_ &gt; &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>DataLocation</type>
+          <declname>nextLocation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="113" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="277" bodyend="303" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="113" declcolumn="15"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1a865548178e4a60858cbcf9626e121cd3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string ptrToString</definition>
+        <argsstring>(const void *adr)</argsstring>
+        <name>ptrToString</name>
+        <param>
+          <type>const void *</type>
+          <declname>adr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="42" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.cpp" bodystart="47" bodyend="52" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="42" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1abb0d85707aacf1ea82148356040d3163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void self_test</definition>
+        <argsstring>()</argsstring>
+        <name>self_test</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="39" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device_test.cpp" bodystart="26" bodyend="434" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="39" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="Device_8h_1aca941cb76ec9b6afc01da45e2a7d032e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string start_gpu_timer</definition>
+        <argsstring>(std::string str=&quot;kernel&quot;, int bytes=-1)</argsstring>
+        <name>start_gpu_timer</name>
+        <param>
+          <type>std::string</type>
+          <declname>str</declname>
+          <defval>&quot;kernel&quot;</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>bytes</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" line="75" column="20" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h" declline="75" declcolumn="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>Device_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>Device_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;TRUSTTabs_forward.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Nom.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LATATOOLS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Perf_counters.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;kokkos++.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TRUST_USE_CUDA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>https://nvidia.github.io/NVTX/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>https://stackoverflow.com/questions/23230003/something-between-func-and-pretty-function/29856690#29856690</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;nvtx3/nvToolsExt.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">extern<sp/>bool<sp/>init_device_,<sp/>clock_on,<sp/>timer;</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">extern<sp/>double<sp/>clock_start;</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">extern<sp/>int<sp/>timer_counter;</highlight></codeline>
+<codeline lineno="37"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>self_test();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init_device();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>init_cuda();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">std::string<sp/>ptrToString(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>adr);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TRUST_USE_GPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ToDo_Kokkos(str)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>\</highlight></codeline>
+<codeline lineno="46"><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(Process::je_suis_maitre())<sp/>fprintf(stderr,<sp/>&quot;[Kokkos<sp/>%s]<sp/>Warning,<sp/>code<sp/>running<sp/>slow<sp/>cause<sp/>not<sp/>ported<sp/>yet:<sp/>line<sp/>%d<sp/>in<sp/>%s<sp/>\n&quot;</highlight><highlight class="normal">,<sp/>str,<sp/>__LINE__,<sp/>__FILE__);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ToDo_Kokkos(str)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Macro<sp/>Kernel_Name</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>TRUST_USE_GPU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>methodName(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>prettyFunction,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>line)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>colons<sp/>=<sp/>prettyFunction.find(</highlight><highlight class="stringliteral">&quot;::&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(colons<sp/>!=<sp/>std::string::npos)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>method::class:line</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>begin<sp/>=<sp/>prettyFunction.substr(0,<sp/>colons).rfind(</highlight><highlight class="stringliteral">&quot;<sp/>&quot;</highlight><highlight class="normal">)<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>end<sp/>=<sp/>prettyFunction.rfind(</highlight><highlight class="stringliteral">&quot;(&quot;</highlight><highlight class="normal">)<sp/>-<sp/>begin;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>prettyFunction.substr(begin,<sp/>end)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(line);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return_type<sp/>function:line</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>colons<sp/>=<sp/>prettyFunction.find(</highlight><highlight class="charliteral">&apos;(&apos;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>prettyFunction.substr(0,<sp/>colons)<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/>std::to_string(line);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__KERNEL_NAME__<sp/>methodName(__PRETTY_FUNCTION__,__LINE__)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__KERNEL_NAME__<sp/>&quot;&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>std::string<sp/>start_gpu_timer(std::string<sp/>str=</highlight><highlight class="stringliteral">&quot;kernel&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bytes=-1);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>end_gpu_timer(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string&amp;<sp/>str,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>onDevice=1,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>bytes=-1);<sp/></highlight><highlight class="comment">//<sp/>Return<sp/>in<sp/>[ms]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>addrOnDevice(_TYPE_*<sp/>ptr);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>addrOnDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>addrOnDevice(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>addrOnDevice(</highlight><highlight class="keyword">const_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(tab));</highlight></codeline>
+<codeline lineno="89"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>allocateOnDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>allocateOnDevice(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>allocateOnDevice(</highlight><highlight class="keyword">const_cast&lt;</highlight><highlight class="normal"><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(tab));</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_&gt;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isAllocatedOnDevice(_TYPE_*<sp/>tab_addr);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isAllocatedOnDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteOnDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>mapToDevice(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>mapToDevice_(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab,<sp/>DataLocation<sp/>nextLocation);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>computeOnTheDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyFromDevice(<ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyFromDevice(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_TYPE_,_SIZE_&gt;</ref>&amp;<sp/>tab);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>_TYPE_*<sp/>allocateOnDevice(_TYPE_*<sp/>ptr,<sp/>_SIZE_<sp/>size);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>deleteOnDevice(_TYPE_*<sp/>ptr,<sp/>_SIZE_<sp/>size);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyToDevice(_TYPE_*<sp/>ptr,<sp/>_SIZE_<sp/>size);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_TYPE_,<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_=</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&gt;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>copyFromDevice(_TYPE_*<sp/>ptr,<sp/>_SIZE_<sp/>size);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Device.h"/>
+  </compounddef>
+</doxygen>

@@ -1,11 +1,7 @@
 <map id="Lire" name="Lire">
-<area shape="rect" id="Node000001" title="Keyword to read an object, typically from a data file." alt="" coords="26,232,72,260"/>
-<area shape="rect" id="Node000005" href="$classTyper__Lire.html" title="Keyword to read an object, typically from a data file." alt="" coords="5,308,93,336"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="52,276,52,308,46,308,46,276"/>
-<area shape="rect" id="Node000002" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="6,157,92,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,200,52,232,46,232,46,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="12,81,86,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="52,124,52,156,46,156,46,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="13,5,85,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="52,49,52,81,46,81,46,49"/>
+<area shape="rect" id="node1" title="Keyword to read an object, typically from a data file." alt="" coords="26,229,73,256"/>
+<area shape="rect" id="node5" href="$classTyper__Lire.html" title="Keyword to read an object, typically from a data file." alt="" coords="5,304,93,331"/>
+<area shape="rect" id="node2" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="6,155,93,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="12,80,87,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="13,5,85,32"/>
 </map>

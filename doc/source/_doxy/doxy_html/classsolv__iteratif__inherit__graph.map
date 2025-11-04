@@ -1,19 +1,11 @@
 <map id="solv_iteratif" name="solv_iteratif">
-<area shape="rect" id="Node000001" title=" " alt="" coords="237,232,337,260"/>
-<area shape="rect" id="Node000005" href="$classSolv__GCP.html" title=" " alt="" coords="5,308,89,336"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="230,268,90,310,88,305,229,262"/>
-<area shape="rect" id="Node000006" href="$classSolv__GCP__NS.html" title=" " alt="" coords="113,308,221,336"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="254,271,190,310,187,305,251,266"/>
-<area shape="rect" id="Node000007" href="$classSolv__Gen.html" title=" " alt="" coords="246,308,328,336"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="290,276,290,308,284,308,284,276"/>
-<area shape="rect" id="Node000008" href="$classSolv__Gmres.html" title=" " alt="" coords="352,308,451,336"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="322,266,383,305,380,310,319,271"/>
-<area shape="rect" id="Node000009" href="$classSolv__Optimal.html" title=" " alt="" coords="476,308,584,336"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="346,262,487,305,485,310,344,268"/>
-<area shape="rect" id="Node000002" href="$classSolveurSys__base.html" title=" " alt="" coords="221,157,353,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,200,290,232,284,232,284,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="250,81,324,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="290,124,290,156,284,156,284,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="251,5,323,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="290,49,290,81,284,81,284,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="239,229,339,256"/>
+<area shape="rect" id="node5" href="$classSolv__GCP.html" title=" " alt="" coords="5,304,89,331"/>
+<area shape="rect" id="node6" href="$classSolv__GCP__NS.html" title=" " alt="" coords="114,304,223,331"/>
+<area shape="rect" id="node7" href="$classSolv__Gen.html" title=" " alt="" coords="247,304,330,331"/>
+<area shape="rect" id="node8" href="$classSolv__Gmres.html" title=" " alt="" coords="355,304,455,331"/>
+<area shape="rect" id="node9" href="$classSolv__Optimal.html" title=" " alt="" coords="479,304,589,331"/>
+<area shape="rect" id="node2" href="$classSolveurSys__base.html" title=" " alt="" coords="223,155,355,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="251,80,326,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="253,5,325,32"/>
 </map>

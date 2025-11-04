@@ -7,6 +7,6 @@ var classStringTokenizer =
     [ "nextToken", "classStringTokenizer.html#a1609abee63fadfa35437bfb379679f64", null ],
     [ "check_GRP", "classStringTokenizer.html#a999cdb95393f479df83c1be95e4941cf", null ],
     [ "getNValue", "classStringTokenizer.html#aec2e9b24765ee0bfd5448740ecf6740e", null ],
-    [ "getSValue", "classStringTokenizer.html#a04e6ea95215f5e99755f596d20126836", null ],
+    [ "getSValue", "classStringTokenizer.html#a22bbe6823d1f87b6c039e7f61e476c4b", null ],
     [ "type", "classStringTokenizer.html#a85f97a453a77e58f6712f53a1de981e3", null ]
 ];

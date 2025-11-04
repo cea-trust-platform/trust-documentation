@@ -1,0 +1,631 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOp__Diff__VDF__Elem__aniso" kind="class" language="C++" prot="public">
+    <compoundname>Op_Diff_VDF_Elem_aniso</compoundname>
+    <basecompoundref refid="classOp__Diff__VDF__Elem__base" prot="public" virt="non-virtual">Op_Diff_VDF_Elem_base</basecompoundref>
+    <basecompoundref refid="classOp__Diff__Dift__VDF" prot="public" virt="non-virtual">Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem_aniso &gt;</basecompoundref>
+    <includes local="no">Op_Diff_VDF_Elem_leaves.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1acd2cf0d4f641f460aaaea424e69294d8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Diff_VDF_Elem_aniso::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(Op_Diff_VDF_Elem_aniso)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classOp__Diff__VDF__Elem__aniso" kindref="compound">Op_Diff_VDF_Elem_aniso</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="78" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1a002a77bddcb2e9ad8474e84a58e30ae5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_VDF_Elem_aniso::associer</definition>
+        <argsstring>(const Domaine_dis_base &amp;zd, const Domaine_Cl_dis_base &amp;zcd, const Champ_Inc_base &amp;ch) override</argsstring>
+        <name>associer</name>
+        <reimplements refid="classOperateur__base_1a3c38d9a5d73cf54a5b714e99d8e79da1">associer</reimplements>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>zd</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>zcd</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="82" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1af18cbb4afcca8869f6bd6ef3d990cf94" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_VDF_Elem_aniso::associer_diffusivite</definition>
+        <argsstring>(const Champ_base &amp;ch) override</argsstring>
+        <name>associer_diffusivite</name>
+        <reimplements refid="classOperateur__Diff__base_1a6b7a2267ef5127b6ef55d97b5e203032">associer_diffusivite</reimplements>
+        <param>
+          <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="83" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="83" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1a260eadf1b4270f399f6aacd489b55dbe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_VDF_Elem_aniso::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classOp__Diff__VDF__base_1a87572b30550c3395203563c8e133adfd">completer</reimplements>
+        <briefdescription>
+<para>Associe l&apos;operateur au domaine_dis, le domaine_Cl_dis, et a l&apos;inconnue de son equation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>pas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>d&apos;equation associee </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="85" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="85" bodyend="89"/>
+        <references refid="classOp__Diff__VDF__base_1a87572b30550c3395203563c8e133adfd" compoundref="Op__Diff__VDF__base_8cpp" startline="31" endline="55">Op_Diff_VDF_base::completer</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1a5def5a004b9e44d5686d02ccac43dbd4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base&amp; Op_Diff_VDF_Elem_aniso::diffusivite</definition>
+        <argsstring>() const override</argsstring>
+        <name>diffusivite</name>
+        <reimplements refid="classOperateur__Diff__base_1a9561c17a9425426c91f2ef74ab525e03">diffusivite</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="84" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="84" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1ab8ab2c5d667d7407821eb1d3ad04347f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Diff_VDF_Elem_aniso::Op_Diff_VDF_Elem_aniso</definition>
+        <argsstring>()</argsstring>
+        <name>Op_Diff_VDF_Elem_aniso</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="80" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.cpp" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__VDF__Elem__aniso_1a9a91e3363ef5af70da96d761c969ba1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Op_Diff_VDF_Elem_aniso::Op_Diff_VDF_Elem_aniso</definition>
+        <argsstring>(const Iterateur_VDF_base &amp;iterateur)</argsstring>
+        <name>Op_Diff_VDF_Elem_aniso</name>
+        <param>
+          <type>const <ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref> &amp;</type>
+          <declname>iterateur</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="81" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="81" bodyend="81"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Represents the anisotropic diffusion operator with VDF discretization for scalar fields. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>The diffusivity field varies with direction. The associated iterator is of type <computeroutput><ref refid="classIterateur__VDF__Elem" kindref="compound">Iterateur_VDF_Elem</ref></computeroutput>, and the associated evaluator is of type <computeroutput><ref refid="classEval__Diff__VDF__Elem__aniso" kindref="compound">Eval_Diff_VDF_Elem_aniso</ref></computeroutput>. </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="11">
+        <label>Op_VDF_Elem</label>
+        <link refid="classOp__VDF__Elem"/>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem_aniso &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="13" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Elem_aniso &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Op_Diff_VDF_Elem_aniso</label>
+        <link refid="classOp__Diff__VDF__Elem__aniso"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Operateur_Diff_base</label>
+        <link refid="classOperateur__Diff__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="13">
+        <label>Op_Diff_Dift_VDF&lt; OP_TYPE &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+      </node>
+      <node id="10">
+        <label>Support_Champ_Masse_Volumique</label>
+        <link refid="classSupport__Champ__Masse__Volumique"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="3">
+        <label>Op_Diff_VDF_base</label>
+        <link refid="classOp__Diff__VDF__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Diff_VDF_Elem_base</label>
+        <link refid="classOp__Diff__VDF__Elem__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="28">
+        <label>Op_VDF_Elem</label>
+        <link refid="classOp__VDF__Elem"/>
+      </node>
+      <node id="19">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OWN_PTRMatrice_Base</label>
+      </node>
+      <node id="15">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="26" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem_aniso &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="30" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Elem_aniso &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Op_Diff_VDF_Elem_aniso</label>
+        <link refid="classOp__Diff__VDF__Elem__aniso"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>Operateur_Diff_base</label>
+        <link refid="classOperateur__Diff__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="30">
+        <label>Op_Diff_Dift_VDF&lt; OP_TYPE &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+      </node>
+      <node id="11">
+        <label>Matrice</label>
+        <link refid="classMatrice"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Support_Champ_Masse_Volumique</label>
+        <link refid="classSupport__Champ__Masse__Volumique"/>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>matrice_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>description_</edgelabel>
+          <edgelabel>out_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>solveur</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>flux_bords_</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="3">
+        <label>Op_Diff_VDF_base</label>
+        <link refid="classOp__Diff__VDF__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Diff_VDF_Elem_base</label>
+        <link refid="classOp__Diff__VDF__Elem__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="21">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="9">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" line="76" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_VDF_Elem_leaves.h" bodystart="77" bodyend="90"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>abort</name></member>
+      <member refid="classOperateur__base_1ad4c4e376365aa056c1a9bb9093ee7878" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>abortTimeStep</name></member>
+      <member refid="classOp__Diff__VDF__base_1a4e9723ddb726bc020425e15420de6875" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajoute_terme_pour_axi</name></member>
+      <member refid="classOperateur__base_1ae8eb74015f6e04dca91d4a2da5fca9bb" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajouter</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a51884db18daa9ddff11cce23a573d0cf" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajouter_blocs</name></member>
+      <member refid="classOperateur__base_1ac9a953b4d76473713ee31c1d4671bf6f" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajouter_contribution_explicite_au_second_membre</name></member>
+      <member refid="classOperateur__base_1a5785d8f2346cbb70e2f584aefb51b61b" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajouter_flux</name></member>
+      <member refid="classOperateur__base_1a0d969b161b7caf2c3f09dec9a2b9ebfe" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1aa1440f6e01ec062c65c34b16dc8d7be7" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>alpha_impl</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1a002a77bddcb2e9ad8474e84a58e30ae5" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual" ambiguityscope="Op_Diff_VDF_Elem_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_</name></member>
+      <member refid="classOperateur__base_1a21ee8b399a139dd8e85ec0025d0606a5" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_champ</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a84589b115dbb54d7b3d4dc46f41a5567" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_champ_masse_volumique</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a8a5b78541c09c1a080c1499baae071b9" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_corr_impl</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1af18cbb4afcca8869f6bd6ef3d990cf94" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_diffusivite</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a19d64ba0c287957e41956c6db2c062b2" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_diffusivite_impl</name></member>
+      <member refid="classOperateur__Diff__base_1a90df8a35377264fa313b2bcbbd1a9a18" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1aee7823068b0b0b9c76e3691d6cc4dab2" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_diffusivite_turbulente_impl</name></member>
+      <member refid="classOperateur__base_1a31a1b8d69db032746c4dabb22550646a" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_domaine_cl_dis</name></member>
+      <member refid="classOperateur__base_1addce89950be87e830970589f6aba37d3" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_eqn</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a1ed44bdce3c20547c50958bfeee09f58" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a0102c2135e2a383d2e5b1ad86ab55906" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a103af193f1a8b2f3c8dc16381f1f2245" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_loipar_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a7bc6ed73fef1dbc18d77a5a1b4cd2763" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>associer_pb</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>bidim_axi</name></member>
+      <member refid="classOp__Diff__VDF__base_1a6a336d1c1667e8e9f66e61561f51609e" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer</name></member>
+      <member refid="classOperateur__Diff__base_1a72b1a1661d46064c3bc75e395ffac2f1" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_borne_locale</name></member>
+      <member refid="classOperateur__base_1a1f6a1b118c3b44790e9843edfc93c4a6" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_dt_local</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a5da1e4ce0b695de1b8d46ffdddf4bdaa" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_dt_stab</name></member>
+      <member refid="classOp__Diff__VDF__base_1a39ecfc560af46bffe7fabe02ca1d3f70" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_dt_stab_</name></member>
+      <member refid="classOperateur__base_1af5cee4c5e5f27e9203bfb38d4a9b932b" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_flux</name></member>
+      <member refid="classOp__Diff__VDF__base_1a0266eb12853b67a6c89c731a66f49f23" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_flux_bord</name></member>
+      <member refid="classOperateur__base_1a5a049482cef92d18dfab5c179b0514ec" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>calculer_pour_post</name></member>
+      <member refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>check_int_overflow</name></member>
+      <member refid="classOp__Diff__VDF__base_1a7c6e429b4f5622864ee8e0145909de9d" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classOperateur__base_1a0ffe040617353804459652b00e98d414" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>col_width_</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1a260eadf1b4270f399f6aacd489b55dbe" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>completer</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a725cabbd4d6c17d2b773b3da1d388477" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>completer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a12547f1d3183a7fed52f8cafcd6d74a5" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>completer_impl</name></member>
+      <member refid="classOperateur__base_1a2fbd607fd187f87ef8b72dec73cf51aa" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>contribuer_a_avec</name></member>
+      <member refid="classOp__Diff__VDF__base_1ac6e11cfc9cde1dd64e78d32599ce430a" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>contribuer_au_second_membre</name></member>
+      <member refid="classOperateur__base_1aabeae40911cab7759852f7000ae5ed24" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>contribuer_bloc_vitesse</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a2a78291f35878d9e37c4fb4f1c6ad75e" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classOperateur__Diff__base_1aa53194b04cd3b98073ee8268ccfb4af8" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>correlation_viscosite_turbulente</name></member>
+      <member refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classOperateur__base_1aa800ac60ec1afa615386d816a2bc1095" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>decal_temps</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1acd2cf0d4f641f460aaaea424e69294d8" prot="private" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a637260a3ed6c5020f0c99626c0f29ddf" prot="protected" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>declare_support_masse_volumique</name></member>
+      <member refid="classOperateur__base_1ae6a9120f01183fb396915a995d19f31f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>description</name></member>
+      <member refid="classOperateur__base_1a0df8b73d13d81f02f3074a09dde28c84" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>description_</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1a5def5a004b9e44d5686d02ccac43dbd4" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>diffusivite</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a41dfaa9f4d16a83fe16709d9d0cb91ca" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>diffusivite_impl</name></member>
+      <member refid="classOperateur__Diff__base_1aa706359dc11f21084f5dbc3c2247c09d" prot="protected" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimension</name></member>
+      <member refid="classOperateur__base_1a8be8a7694d899cde1d08e02f992cb3e3" prot="public" virt="virtual" ambiguityscope="Op_Diff_VDF_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimensionner</name></member>
+      <member refid="classOp__VDF__Elem_1ae2c192187c44676b869a3c5227bdf17f" prot="public" virt="non-virtual" ambiguityscope="Op_VDF_Elem::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimensionner</name></member>
+      <member refid="classOperateur__base_1a6c57cb01245cf33b9e1aaeb36413ffe6" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimensionner_bloc_vitesse</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a02d2632526fa1242c480d1f7db9a0bd3" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimensionner_blocs</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a42fc744f5e6fb65f8d9b9a8d5d6f9607" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>disable_TU</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a41ff1e6624c14554760c0678fd631ae0" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>dissocier_champ_masse_volumique</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>duplique</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>equation</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>exit</name></member>
+      <member refid="classOperateur__base_1a47589b011a317625bca06268fec941fa" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>fichier</name></member>
+      <member refid="classOperateur__base_1ab547b37ace0f04931f6f09fcfa8fae0c" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1ace9775be15067de0b4ee3c850cb0f78b" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>flux_bords_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>format_precision_geom</name></member>
+      <member refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_champ</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a3cf68c31de51540e3b4c0ac09d12aa40" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_champ_masse_volumique</name></member>
+      <member refid="classOperateur__base_1a6391c6f9d25cc0058baff086d6e374d2" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_decal_temps</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a2565da1fbc6e8e300b423c0d50f9a20e" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_diffusivite_turbulente_multiphase_impl</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_info</name></member>
+      <member refid="classOperateur__base_1aad500fa9786aae72f075593384970c0b" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classOperateur__base_1a99957cfc9c19dfc1b3eb6eba25bb34e7" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_matrice</name></member>
+      <member refid="classOperateur__base_1a96bd268a33abb1e77dbe1dda3dde2e71" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classOperateur__base_1a189af24b5b71f6eb5f61cbd27f137f8f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>get_solveur</name></member>
+      <member refid="classOperateur__base_1a6118925b38e7470d3820384da89ad8b8" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a48bacffa849c639403aae805225904a7" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_champ_inco</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1ae787e0cfc274af9e2de5b619b2347a88" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_champ_masse_volumique</name></member>
+      <member refid="classOperateur__base_1a7261aed881ea18082ee61b431cfee4be" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_impr_file</name></member>
+      <member refid="classOp__Diff__VDF__base_1a674162ec5724cb323153c7537cf2092e" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>HAS_POINTER</name></member>
+      <member refid="classOp__Diff__VDF__base_1a04dfdd8fdf39d6e750e746549cbddfa2" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>impr</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>info_obj</name></member>
+      <member refid="classOp__Diff__VDF__base_1a44d19838bd13f3e645659b9aa94beb8c" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>init_op_ext</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>is_sequential</name></member>
+      <member refid="classOperateur__Diff__base_1a8d060a90adb52d3fbf0b38df8e58ca11" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>is_turb</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classOperateur__base_1aaa3ae2d3c5358c1f385bb438959abb37" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>lire_solveur</name></member>
+      <member refid="classOperateur__base_1a8da7fc774882c66318f3a4573d814d83" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>matrice_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>me</name></member>
+      <member refid="classOperateur__base_1a55ee9300d78cf0d8bdf7f48c56feb7ce" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mettre_a_jour</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ab3fe09e80c824b9107c5717c804f1cdd" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mettre_a_jour_impl</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1afbddfec17b2e11e81829ab186f07326b" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classOp__VDF__Elem_1a283417c7a8c66e6cdcd168a408122cda" prot="public" virt="non-virtual" ambiguityscope="Op_VDF_Elem::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classOperateur__base_1ae53d686cf12a9bb83751f706193d5592" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mon_inconnue</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>multiple_files</name></member>
+      <member refid="classOperateur__base_1a656cefa4eb2adfc957e9e4c1fd651749" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nb_ss_pas_de_temps</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nom_du_cas</name></member>
+      <member refid="classOperateur__base_1ad35467308aed5d9f44aaa6cc66b35a79" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nom_inco_</name></member>
+      <member refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nom_inconnue</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Objet_U</name></member>
+      <member refid="classOperateur__Diff__base_1a23654159198259f2815f5bc32a9e93cc" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__base_1a2a9e31828e16e1e5588e59032681f412" prot="protected" virt="non-virtual" ambiguityscope="Operateur_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OBS_PTR</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual" ambiguityscope="MorEqn::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Diff__VDF__base_1ada6ace52b4d7ed30c08afa452ed03db3" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Op_Diff_VDF_base</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1ab8ab2c5d667d7407821eb1d3ad04347f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Op_Diff_VDF_Elem_aniso</name></member>
+      <member refid="classOp__Diff__VDF__Elem__aniso_1a9a91e3363ef5af70da96d761c969ba1f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Op_Diff_VDF_Elem_aniso</name></member>
+      <member refid="classOp__Diff__VDF__Elem__base_1a12324ea97af87f9839ff400f12c72aff" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Op_Diff_VDF_Elem_base</name></member>
+      <member refid="classOperateur__Diff__base_1a55bd9b2fad5e6ef816f89ea07371ddfc" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>op_ext</name></member>
+      <member refid="classOp__Diff__VDF__base_1a0e1951a3a4f2aa94f1f116685dcb7ea0" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>op_ext_init_</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>operator=</name></member>
+      <member refid="classOperateur__base_1a0f48883db4ca2a57a4d83f344f427723" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>out_</name></member>
+      <member refid="classOperateur__base_1afd23006466730b1b57f4087a8c5fa776" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ouvrir_fichier</name></member>
+      <member refid="classOperateur__base_1a5858c8c8ee1f6082ae18f2476804f495" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classOp__Diff__VDF__base_1a20bb8277ba4e4e90c5b76f448c9f6c71" prot="public" virt="non-virtual" ambiguityscope="Op_Diff_VDF_Elem_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Diff__VDF__base_1ae5cf61467ecbfaba9263364a4f5755d1" prot="public" virt="non-virtual" ambiguityscope="Op_Diff_VDF_Elem_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Diff__VDF__base_1a94567c139b0dc7ee1c8ef2deef8d3d0d" prot="protected" virt="non-virtual" ambiguityscope="Op_Diff_VDF_Elem_base::"><scope>Op_Diff_VDF_Elem_aniso</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>precision_geom</name></member>
+      <member refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>reprendre</name></member>
+      <member refid="classOperateur__base_1abde0b3c19d29602a6aaf01cafb0ffdbc" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>self_cast</name></member>
+      <member refid="classOperateur__base_1aff84ae0046179ad6c9aac58da235b8b4" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_decal_temps</name></member>
+      <member refid="classOperateur__base_1adc6417da22ec9fd42988d5a4103c471f" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_description</name></member>
+      <member refid="classOperateur__base_1a1079052c44f7db7615ecc24448676093" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_fichier</name></member>
+      <member refid="classOperateur__base_1a58bbc3d85feaa143ec0d87e68d8fe137" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_matrice</name></member>
+      <member refid="classOperateur__base_1a75805455a9a1286fe361482dbbae0369" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_nb_ss_pas_de_temps</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ad41ce0713967745948886a6799de3193" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_nut_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a266ac927a2a0791a72b200eba569c925" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_nut_impl</name></member>
+      <member refid="classOperateur__base_1a2fe69e40852fa946df7685516d3e5c66" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>set_solveur</name></member>
+      <member refid="classOperateur__base_1a01258c6b4bf60a83b7ebd1649a54ecf6" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>solveur</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1aa95b3c73d846cb9e7e3357bbb1bfc3ed" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>Support_Champ_Masse_Volumique</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a36a4f3f6d9f93413d86890f23299a537" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>support_ok</name></member>
+      <member refid="classOperateur__base_1ae939f468496af4fdceb8c537a26dd09b" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>systeme_invariant</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ae381e3f296349fae44bde81fd644af0c" prot="protected" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>tab_alpha_impl</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>taille_memoire</name></member>
+      <member refid="classOperateur__base_1a3640f8feaeac1bf4d8ff3777c233753c" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>tester_contribuer_a_avec</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>~MorEqn</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>~Process</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a55763975b7c565b21d554f938ccef4ce" prot="public" virt="virtual"><scope>Op_Diff_VDF_Elem_aniso</scope><name>~Support_Champ_Masse_Volumique</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

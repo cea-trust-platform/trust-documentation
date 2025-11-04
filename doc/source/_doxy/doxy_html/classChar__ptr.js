@@ -9,7 +9,7 @@ var classChar__ptr =
     [ "longueur", "classChar__ptr.html#a0db192d71fcda5fbbc4f8dd96a88e635", null ],
     [ "operator=", "classChar__ptr.html#a56e2e5d89f1cf8904cfffe06959e4a81", null ],
     [ "operator=", "classChar__ptr.html#a0e627e13409b2c5e8aeee51746a7f326", null ],
-    [ "getChar", "classChar__ptr.html#ae61d8331a5749b5e5bfe65ddb764361e", null ],
-    [ "getChar", "classChar__ptr.html#acd705d59b1134c940a619f11376ba3c3", null ],
+    [ "getChar", "classChar__ptr.html#a04cf6c1d67ee4ec571da20f11e74f6c2", null ],
+    [ "getChar", "classChar__ptr.html#a67877805a129f53bbcf709422b597385", null ],
     [ "nom_", "classChar__ptr.html#a3a1a15b66613a9d3bc3ca1fd861307da", null ]
 ];

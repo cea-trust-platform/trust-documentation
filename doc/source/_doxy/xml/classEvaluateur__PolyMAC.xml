@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classEvaluateur__PolyMAC" kind="class" language="C++" prot="public">
+    <compoundname>Evaluateur_PolyMAC</compoundname>
+    <derivedcompoundref refid="classEval__Conv__PolyMAC" prot="public" virt="non-virtual">Eval_Conv_PolyMAC</derivedcompoundref>
+    <includes local="no">Evaluateur_PolyMAC.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1ad383238d4e9f8276974c4cc783befd3d" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Evaluateur_PolyMAC::dimension</definition>
+        <argsstring></argsstring>
+        <name>dimension</name>
+        <initializer>= -3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="48" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1ae4a01e0e82a18e438cf2f6a55d659788" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Evaluateur_PolyMAC::elem_</definition>
+        <argsstring></argsstring>
+        <name>elem_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="50" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a8c1942e3364fa5a08aa49e44240b5a73" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="188" endline="220">Eval_Amont_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a42598dab5e5e3b15a59bd79c8ee26767" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="176" endline="191">Eval_centre_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a12c0c0fa2cc2172f179a571a066aee93" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="222" endline="246">Eval_Amont_PolyMAC_Elem::coeffs_face_bloc_vitesse</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a676dd9b7aa913410a62ebb4a382e688b" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="315" endline="334">Eval_centre_PolyMAC_Elem::coeffs_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1aaa1952be72fa9677045c66a94b707f99" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="446" endline="455">Eval_Amont_PolyMAC_Elem::coeffs_faces_interne_bloc_vitesse</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" compoundref="Evaluateur__PolyMAC_8cpp" startline="22" endline="32">Evaluateur_PolyMAC</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a5f6430d052e690adfdf691afab397a20" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="162" endline="186">Eval_Amont_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a856bfe24e0bd438e7f704c1ae3ae6dad" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="152" endline="174">Eval_centre_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1afac1874b3ffd7c3b7de39b077a650d67" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="420" endline="429">Eval_Amont_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1aeb5447b3723e09413f5ba4c2f0a41595" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="302" endline="313">Eval_centre_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a3afcebf63200aba536c7c397132da89e" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="248" endline="270">Eval_Amont_PolyMAC_Elem::secmem_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1ad094b4aacf8c71317effce2909952412" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="193" endline="210">Eval_centre_PolyMAC_Elem::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1a37bc3ef525a32c58f57b6d0e66058631" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_PolyMAC::porosite</definition>
+        <argsstring></argsstring>
+        <name>porosite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="52" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1ab03e4916593b6821ce2a0f4eba24f6a4" compoundref="Evaluateur__PolyMAC_8cpp" startline="48" endline="51">associer_porosite</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a8c1942e3364fa5a08aa49e44240b5a73" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="188" endline="220">Eval_Amont_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a42598dab5e5e3b15a59bd79c8ee26767" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="176" endline="191">Eval_centre_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a12c0c0fa2cc2172f179a571a066aee93" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="222" endline="246">Eval_Amont_PolyMAC_Elem::coeffs_face_bloc_vitesse</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1ac47a3fa3731a622079d71fd2e5ac61c5" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="431" endline="444">Eval_Amont_PolyMAC_Elem::coeffs_faces_interne</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a676dd9b7aa913410a62ebb4a382e688b" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="315" endline="334">Eval_centre_PolyMAC_Elem::coeffs_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1aaa1952be72fa9677045c66a94b707f99" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="446" endline="455">Eval_Amont_PolyMAC_Elem::coeffs_faces_interne_bloc_vitesse</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" compoundref="Evaluateur__PolyMAC_8cpp" startline="22" endline="32">Evaluateur_PolyMAC</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a5f6430d052e690adfdf691afab397a20" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="162" endline="186">Eval_Amont_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a856bfe24e0bd438e7f704c1ae3ae6dad" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="152" endline="174">Eval_centre_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1afac1874b3ffd7c3b7de39b077a650d67" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="420" endline="429">Eval_Amont_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1aeb5447b3723e09413f5ba4c2f0a41595" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="302" endline="313">Eval_centre_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a3afcebf63200aba536c7c397132da89e" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="248" endline="270">Eval_Amont_PolyMAC_Elem::secmem_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1ad094b4aacf8c71317effce2909952412" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="193" endline="210">Eval_centre_PolyMAC_Elem::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1aa972c08bfec7655ab627043910659284" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Evaluateur_PolyMAC::premiere_face_bord</definition>
+        <argsstring></argsstring>
+        <name>premiere_face_bord</name>
+        <initializer>= -100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="49" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1a072926db55dca8b7c72c1ec522daca47" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_PolyMAC::surface</definition>
+        <argsstring></argsstring>
+        <name>surface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="51" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="51" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a8c1942e3364fa5a08aa49e44240b5a73" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="188" endline="220">Eval_Amont_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a42598dab5e5e3b15a59bd79c8ee26767" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="176" endline="191">Eval_centre_PolyMAC_Elem::coeffs_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a12c0c0fa2cc2172f179a571a066aee93" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="222" endline="246">Eval_Amont_PolyMAC_Elem::coeffs_face_bloc_vitesse</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1ac47a3fa3731a622079d71fd2e5ac61c5" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="431" endline="444">Eval_Amont_PolyMAC_Elem::coeffs_faces_interne</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a676dd9b7aa913410a62ebb4a382e688b" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="315" endline="334">Eval_centre_PolyMAC_Elem::coeffs_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1aaa1952be72fa9677045c66a94b707f99" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="446" endline="455">Eval_Amont_PolyMAC_Elem::coeffs_faces_interne_bloc_vitesse</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" compoundref="Evaluateur__PolyMAC_8cpp" startline="22" endline="32">Evaluateur_PolyMAC</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a5f6430d052e690adfdf691afab397a20" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="162" endline="186">Eval_Amont_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a856bfe24e0bd438e7f704c1ae3ae6dad" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="152" endline="174">Eval_centre_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1afac1874b3ffd7c3b7de39b077a650d67" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="420" endline="429">Eval_Amont_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1aeb5447b3723e09413f5ba4c2f0a41595" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="302" endline="313">Eval_centre_PolyMAC_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a3afcebf63200aba536c7c397132da89e" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="248" endline="270">Eval_Amont_PolyMAC_Elem::secmem_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1ad094b4aacf8c71317effce2909952412" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="193" endline="210">Eval_centre_PolyMAC_Elem::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1af1d45d4e4a03bccf7947e0b424ec8869" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_PolyMAC::volume_entrelaces</definition>
+        <argsstring></argsstring>
+        <name>volume_entrelaces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="53" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" compoundref="Evaluateur__PolyMAC_8cpp" startline="22" endline="32">Evaluateur_PolyMAC</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__PolyMAC_1a4976975244366da262ddd53f43ae814f" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Evaluateur_PolyMAC::xv</definition>
+        <argsstring></argsstring>
+        <name>xv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="54" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" compoundref="Evaluateur__PolyMAC_8cpp" startline="34" endline="46">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" compoundref="Evaluateur__PolyMAC_8cpp" startline="22" endline="32">Evaluateur_PolyMAC</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Evaluateur_PolyMAC::associer_domaines</definition>
+        <argsstring>(const Domaine_PolyMAC &amp;, const Domaine_Cl_PolyMAC &amp;)</argsstring>
+        <name>associer_domaines</name>
+        <param>
+          <type>const <ref refid="classDomaine__PolyMAC" kindref="compound">Domaine_PolyMAC</ref> &amp;</type>
+          <defname>domaine_vdf</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__PolyMAC" kindref="compound">Domaine_Cl_PolyMAC</ref> &amp;</type>
+          <defname>domaine_cl_vdf</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="42" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.cpp" bodystart="34" bodyend="46"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classEvaluateur__PolyMAC_1ad383238d4e9f8276974c4cc783befd3d" compoundref="Evaluateur__PolyMAC_8h" startline="48">dimension</references>
+        <references refid="classEvaluateur__PolyMAC_1ae4a01e0e82a18e438cf2f6a55d659788" compoundref="Evaluateur__PolyMAC_8h" startline="50">elem_</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1ad19ad4b9679367115cbbc7036257aa51" compoundref="Domaine__VF_8h" startline="403" endline="406">Domaine_VF::face_voisins</references>
+        <references refid="classEvaluateur__PolyMAC_1a37bc3ef525a32c58f57b6d0e66058631" compoundref="Evaluateur__PolyMAC_8h" startline="52">porosite</references>
+        <references refid="classDomaine__VF_1a03c4d9d78c967029f1222fc096a13bd7" compoundref="Domaine__VF_8h" startline="499" endline="502">Domaine_VF::premiere_face_bord</references>
+        <references refid="classEvaluateur__PolyMAC_1aa972c08bfec7655ab627043910659284" compoundref="Evaluateur__PolyMAC_8h" startline="49">premiere_face_bord</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classEvaluateur__PolyMAC_1a072926db55dca8b7c72c1ec522daca47" compoundref="Evaluateur__PolyMAC_8h" startline="51">surface</references>
+        <references refid="classEvaluateur__PolyMAC_1af1d45d4e4a03bccf7947e0b424ec8869" compoundref="Evaluateur__PolyMAC_8h" startline="53">volume_entrelaces</references>
+        <references refid="classDomaine__VF_1ad0bf90d9beb4083aea6421ca906229f1" compoundref="Domaine__VF_8h" startline="100" endline="100">Domaine_VF::volumes_entrelaces</references>
+        <references refid="classDomaine__VF_1a5b43475ca3328249d3ae62642db3feda" compoundref="Domaine__VF_8h" startline="77" endline="77">Domaine_VF::xv</references>
+        <references refid="classEvaluateur__PolyMAC_1a4976975244366da262ddd53f43ae814f" compoundref="Evaluateur__PolyMAC_8h" startline="54">xv</references>
+        <referencedby refid="classOp__Conv__Amont__PolyMAC__Elem_1a45143998dd31703155f066bd4486b6d5" compoundref="Op__Conv__Amont__PolyMAC__Elem_8cpp" startline="32" endline="43">Op_Conv_Amont_PolyMAC_Elem::associer</referencedby>
+        <referencedby refid="classOp__Conv__Centre__PolyMAC__Elem_1aafc0217dbc9493fc865dc2121326277c" compoundref="Op__Conv__Centre__PolyMAC__Elem_8cpp" startline="32" endline="43">Op_Conv_Centre_PolyMAC_Elem::associer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1ab03e4916593b6821ce2a0f4eba24f6a4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Evaluateur_PolyMAC::associer_porosite</definition>
+        <argsstring>(const DoubleVect &amp;)</argsstring>
+        <name>associer_porosite</name>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>poro</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="43" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.cpp" bodystart="48" bodyend="51"/>
+        <references refid="classEvaluateur__PolyMAC_1a37bc3ef525a32c58f57b6d0e66058631" compoundref="Evaluateur__PolyMAC_8h" startline="52">porosite</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1ad1b0b92fab375803e51bb519f83a104b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_PolyMAC::Evaluateur_PolyMAC</definition>
+        <argsstring>()</argsstring>
+        <name>Evaluateur_PolyMAC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="38" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_PolyMAC::Evaluateur_PolyMAC</definition>
+        <argsstring>(const Evaluateur_PolyMAC &amp;)</argsstring>
+        <name>Evaluateur_PolyMAC</name>
+        <param>
+          <type>const <ref refid="classEvaluateur__PolyMAC" kindref="compound">Evaluateur_PolyMAC</ref> &amp;</type>
+          <defname>eval</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="41" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.cpp" bodystart="22" bodyend="32"/>
+        <references refid="classEvaluateur__PolyMAC_1ae4a01e0e82a18e438cf2f6a55d659788" compoundref="Evaluateur__PolyMAC_8h" startline="50">elem_</references>
+        <references refid="classEvaluateur__PolyMAC_1a37bc3ef525a32c58f57b6d0e66058631" compoundref="Evaluateur__PolyMAC_8h" startline="52">porosite</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classEvaluateur__PolyMAC_1a072926db55dca8b7c72c1ec522daca47" compoundref="Evaluateur__PolyMAC_8h" startline="51">surface</references>
+        <references refid="classEvaluateur__PolyMAC_1af1d45d4e4a03bccf7947e0b424ec8869" compoundref="Evaluateur__PolyMAC_8h" startline="53">volume_entrelaces</references>
+        <references refid="classEvaluateur__PolyMAC_1a4976975244366da262ddd53f43ae814f" compoundref="Evaluateur__PolyMAC_8h" startline="54">xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1a3dc1640bd419e06d8866940a39266874" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual Evaluateur_PolyMAC::~Evaluateur_PolyMAC</definition>
+        <argsstring>()</argsstring>
+        <name>~Evaluateur_PolyMAC</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="39" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1a2b5d6a38eb5e7566c51d834ea667f5b3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_PolyMAC::OBS_PTR</definition>
+        <argsstring>(Domaine_Cl_PolyMAC) la_zcl</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__Cl__PolyMAC" kindref="compound">Domaine_Cl_PolyMAC</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="47" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__PolyMAC_1a05de58865d5321d662b43924e494dafb" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_PolyMAC::OBS_PTR</definition>
+        <argsstring>(Domaine_PolyMAC) le_domaine</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__PolyMAC" kindref="compound">Domaine_PolyMAC</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="46" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classEvaluateur__PolyMAC" kindref="compound">Evaluateur_PolyMAC</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Classe de base des evaluateurs PolyMAC. Cette classe n&apos;appartient pas a la hierarchie des <ref refid="classObjet__U" kindref="compound">Objet_U</ref>. Cette classe porte une reference a un objet de type <ref refid="classDomaine__PolyMAC" kindref="compound">Domaine_PolyMAC</ref> et une reference a un objet de type <ref refid="classDomaine__Cl__PolyMAC" kindref="compound">Domaine_Cl_PolyMAC</ref>. Elle porte des tableaux locaux qui sont en fait des references aux tableaux de l&apos;objet de type <ref refid="classDomaine__PolyMAC" kindref="compound">Domaine_PolyMAC</ref> (ces tableaux locaux n&apos;existent pas en memoire). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Eval_centre_PolyMAC_Elem</label>
+        <link refid="classEval__centre__PolyMAC__Elem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eval_Conv_PolyMAC</label>
+        <link refid="classEval__Conv__PolyMAC"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Evaluateur_PolyMAC</label>
+        <link refid="classEvaluateur__PolyMAC"/>
+      </node>
+      <node id="3">
+        <label>Eval_Amont_PolyMAC_Elem</label>
+        <link refid="classEval__Amont__PolyMAC__Elem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="2">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="14">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Evaluateur_PolyMAC</label>
+        <link refid="classEvaluateur__PolyMAC"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>porosite</edgelabel>
+          <edgelabel>surface</edgelabel>
+          <edgelabel>volume_entrelaces</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elem_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>xv</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" line="35" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Conv/Conv_iterateur/Evaluateur_PolyMAC.h" bodystart="36" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classEvaluateur__PolyMAC_1a4602cdd0f5bf80a11d9414e187c63b20" prot="public" virt="virtual"><scope>Evaluateur_PolyMAC</scope><name>associer_domaines</name></member>
+      <member refid="classEvaluateur__PolyMAC_1ab03e4916593b6821ce2a0f4eba24f6a4" prot="public" virt="virtual"><scope>Evaluateur_PolyMAC</scope><name>associer_porosite</name></member>
+      <member refid="classEvaluateur__PolyMAC_1ad383238d4e9f8276974c4cc783befd3d" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>dimension</name></member>
+      <member refid="classEvaluateur__PolyMAC_1ae4a01e0e82a18e438cf2f6a55d659788" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>elem_</name></member>
+      <member refid="classEvaluateur__PolyMAC_1ad1b0b92fab375803e51bb519f83a104b" prot="public" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>Evaluateur_PolyMAC</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a5d684183ebd288810724bbdbecd4aee4" prot="public" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>Evaluateur_PolyMAC</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a05de58865d5321d662b43924e494dafb" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a2b5d6a38eb5e7566c51d834ea667f5b3" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a37bc3ef525a32c58f57b6d0e66058631" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>porosite</name></member>
+      <member refid="classEvaluateur__PolyMAC_1aa972c08bfec7655ab627043910659284" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>premiere_face_bord</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a072926db55dca8b7c72c1ec522daca47" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>surface</name></member>
+      <member refid="classEvaluateur__PolyMAC_1af1d45d4e4a03bccf7947e0b424ec8869" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>volume_entrelaces</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a4976975244366da262ddd53f43ae814f" prot="protected" virt="non-virtual"><scope>Evaluateur_PolyMAC</scope><name>xv</name></member>
+      <member refid="classEvaluateur__PolyMAC_1a3dc1640bd419e06d8866940a39266874" prot="public" virt="virtual"><scope>Evaluateur_PolyMAC</scope><name>~Evaluateur_PolyMAC</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

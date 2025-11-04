@@ -1,0 +1,701 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classConduction__IBM" kind="class" language="C++" prot="public">
+    <compoundname>Conduction_IBM</compoundname>
+    <basecompoundref refid="classConduction" prot="public" virt="non-virtual">Conduction</basecompoundref>
+    <basecompoundref refid="classEquation__IBM__proto" prot="public" virt="non-virtual">Equation_IBM_proto</basecompoundref>
+    <includes local="no">Conduction_IBM.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classConduction__IBM_1a6fc78556fc7bb87b4ff6cd68c24aa7a4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Conduction_IBM::Declare_instanciable</definition>
+        <argsstring>(Conduction_IBM)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classConduction__IBM" kindref="compound">Conduction_IBM</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="24" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classConduction__IBM_1adceec1567d919b085c6a46bab9a1ddfc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Conduction_IBM::assembler</definition>
+        <argsstring>(Matrice_Morse &amp;mat_morse, const DoubleTab &amp;present, DoubleTab &amp;secmem) override</argsstring>
+        <name>assembler</name>
+        <reimplements refid="classEquation__base_1a8dbd9212dcd3e8277d21a4b24b04bd65">assembler</reimplements>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <declname>mat_morse</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>present</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="27" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="56" bodyend="59"/>
+        <references refid="classEquation__IBM__proto_1a5ee56fc82d7fe0e768ed2ae2db6a9379" compoundref="Equation__IBM__proto_8cpp" startline="169" endline="303">Equation_IBM_proto::assembler_ibm_proto</references>
+      </memberdef>
+      <memberdef kind="function" id="classConduction__IBM_1a6dc66b8600f03f5343423e4bfd8b3c32" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Conduction_IBM::derivee_en_temps_inco_sources</definition>
+        <argsstring>(DoubleTrav &amp;) override</argsstring>
+        <name>derivee_en_temps_inco_sources</name>
+        <reimplements refid="classEquation__base_1a494ac895f64a797a2a52de73cbcd8841">derivee_en_temps_inco_sources</reimplements>
+        <param>
+          <type><ref refid="classTRUSTTrav" kindref="compound">DoubleTrav</ref> &amp;</type>
+          <defname>secmem</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="30" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="62" bodyend="65"/>
+        <references refid="classEquation__IBM__proto_1ac81e2bbd56789ea242f8955e9f798197" compoundref="Equation__IBM__proto_8cpp" startline="87" endline="141">Equation_IBM_proto::derivee_en_temps_inco_ibm_proto</references>
+      </memberdef>
+      <memberdef kind="function" id="classConduction__IBM_1a1f51a35d4732aaca8965ba62ac7f1998" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool Conduction_IBM::initTimeStep</definition>
+        <argsstring>(double dt) override</argsstring>
+        <name>initTimeStep</name>
+        <reimplements refid="classEquation__base_1abe73d22669a839178f90e5afa713e616">initTimeStep</reimplements>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+<para>Allocation et initialisation de l&apos;inconnue et des CLs jusqu&apos;a present+dt. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>autres initialisations pour les calculs sur le prochain pas de temps : operateurs, solveur_masse-&gt;</para>
+</listitem></itemizedlist>
+</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="29" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="48" bodyend="53"/>
+        <references refid="classEquation__base_1abe73d22669a839178f90e5afa713e616" compoundref="Equation__base_8cpp" startline="962" endline="1001">Equation_base::initTimeStep</references>
+        <references refid="classEquation__IBM__proto_1a13854f2c55cf67cc8a7d3ba1931eae7e" compoundref="Equation__IBM__proto_8cpp" startline="78" endline="85">Equation_IBM_proto::initTimeStep_ibm_proto</references>
+      </memberdef>
+      <memberdef kind="function" id="classConduction__IBM_1a881eedff6638918cea058701765b9049" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Conduction_IBM::preparer_calcul</definition>
+        <argsstring>() override</argsstring>
+        <name>preparer_calcul</name>
+        <reimplements refid="classEquation__base_1a6ec47139247e984d286c2e13d0a92ff7">preparer_calcul</reimplements>
+        <briefdescription>
+<para>Tout ce qui ne depend pas des autres problemes eventuels. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(int) renvoie toujours 1 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="28" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="41" bodyend="46"/>
+        <references refid="classEquation__base_1a6ec47139247e984d286c2e13d0a92ff7" compoundref="Equation__base_8cpp" startline="919" endline="952">Equation_base::preparer_calcul</references>
+        <references refid="classEquation__IBM__proto_1a963dbaa721e6b6eb1377715d2d40df4b" compoundref="Equation__IBM__proto_8cpp" startline="143" endline="155">Equation_IBM_proto::preparer_calcul_ibm_proto</references>
+      </memberdef>
+      <memberdef kind="function" id="classConduction__IBM_1a67954d46762bcf9f8d1aeab09a380e0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Conduction_IBM::set_param</definition>
+        <argsstring>(Param &amp;titi) override</argsstring>
+        <name>set_param</name>
+        <reimplements refid="classConduction_1a29ffb7312d7196e46227616d00bb1e28">set_param</reimplements>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>titi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="26" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="35" bodyend="39"/>
+        <references refid="classConduction_1a29ffb7312d7196e46227616d00bb1e28" compoundref="Conduction_8cpp" startline="39" endline="45">Conduction::set_param</references>
+        <references refid="classEquation__IBM__proto_1a267a0f586b834cfef8073a566fbdc8f2" compoundref="Equation__IBM__proto_8cpp" startline="28" endline="31">Equation_IBM_proto::set_param_ibm_proto</references>
+      </memberdef>
+      <memberdef kind="function" id="classConduction__IBM_1a25afe0885786c84b085c06a4c63d8f52" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Conduction_IBM::verify_scheme</definition>
+        <argsstring>() override</argsstring>
+        <name>verify_scheme</name>
+        <reimplements refid="classEquation__base_1abfb2144cc81ba7852d3b9d9ce4270e76">verify_scheme</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.cpp" bodystart="67" bodyend="74"/>
+        <references refid="classProcess_1a6a4b64571b10f150a70db229b839e881" compoundref="Process_8cpp" startline="392" endline="401">Process::abort</references>
+        <references refid="classEquation__base_1a02b61eaa806df06140933f8aa68b08cb" compoundref="Equation__base_8cpp" startline="68" endline="84">Equation_base::equation_non_resolue</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Conduction_IBM</label>
+        <link refid="classConduction__IBM"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Equation_base</label>
+        <link refid="classEquation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Conduction</label>
+        <link refid="classConduction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Equation_IBM_proto</label>
+        <link refid="classEquation__IBM__proto"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Conduction_IBM</label>
+        <link refid="classConduction__IBM"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Champs_Fonc</label>
+        <link refid="classChamps__Fonc"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="31" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Equation_base</label>
+        <link refid="classEquation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>list_champ_combi</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>diag_</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>les_sources</edgelabel>
+        </childnode>
+        <childnode refid="30" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>matrice_stockee</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>dt_op_bak</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>string</label>
+      </node>
+      <node id="34">
+        <label>TRUSTList&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Sources</label>
+        <link refid="classSources"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="12">
+        <label>Matrice_Morse</label>
+        <link refid="classMatrice__Morse"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>coeff_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>tab1_</edgelabel>
+          <edgelabel>tab2_</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>LISTSource</label>
+      </node>
+      <node id="36">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Conduction</label>
+        <link refid="classConduction"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Equation_IBM_proto</label>
+        <link refid="classEquation__IBM__proto"/>
+        <childnode refid="36" relation="usage">
+          <edgelabel>champ_coeff_pdf_som_</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>TRUSTListElem&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTListElem"/>
+        <childnode refid="33" relation="usage">
+          <edgelabel>suivant_</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>LISTOWN_PTRChamp_Fonc_base</label>
+      </node>
+      <node id="21">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Matrice_Morse_Sym</label>
+        <link refid="classMatrice__Morse__Sym"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Matrice_Base</label>
+        <link refid="classMatrice__Base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>stencil_</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Matrice_Morse_Diag</label>
+        <link refid="classMatrice__Morse__Diag"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Matrice_Sym</label>
+        <link refid="classMatrice__Sym"/>
+      </node>
+      <node id="31">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="32">
+        <label>TRUSTList&lt; double &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="template-instance">
+          <edgelabel>&lt; double &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" line="22" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/Conduction_IBM.h" bodystart="23" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>abort</name></member>
+      <member refid="classEquation__base_1a643e4ffb873396a94d5f263fecccd9fc" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>abortTimeStep</name></member>
+      <member refid="classEquation__base_1a5adf2db73600e55a06907a1f321e5253" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>add_champs_compris</name></member>
+      <member refid="classEquation__base_1a0ae7c0dceb6c9be8bb21ea295bd47f23" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classConduction__IBM_1adceec1567d919b085c6a46bab9a1ddfc" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>assembler</name></member>
+      <member refid="classEquation__base_1a6442c887ca10e6b6e59e0d36140f698c" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>assembler_avec_inertie</name></member>
+      <member refid="classEquation__base_1ad69c8d0d6da9143927a56696c27b79cb" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>assembler_blocs</name></member>
+      <member refid="classEquation__base_1a43b8fd39221258e4909cea7b046220a9" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>assembler_blocs_avec_inertie</name></member>
+      <member refid="classEquation__IBM__proto_1a5ee56fc82d7fe0e768ed2ae2db6a9379" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>assembler_ibm_proto</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_</name></member>
+      <member refid="classEquation__base_1a2ba87baeb85c9cdc58dfbe101d6fa2e5" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_domaine_dis</name></member>
+      <member refid="classConduction_1a99ca3266a3c4ed23d2f015ada347d929" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_milieu_base</name></member>
+      <member refid="classEquation__base_1a16b5af9ce66738d4d05d2567e417ff3d" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_milieu_equation</name></member>
+      <member refid="classEquation__base_1a3b6b408360358fb75bfe61e9c65f771c" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_pb_base</name></member>
+      <member refid="classEquation__base_1aabd38edf86fa21fec604553313862bff" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>associer_sch_tps_base</name></member>
+      <member refid="classConduction_1a454f7012a5522de1621d1133b53bfe32" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>associer_solide</name></member>
+      <member refid="classEquation__base_1a276174d27befa3ca552c9b58836941a0" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>bidim_axi</name></member>
+      <member refid="classEquation__base_1a6665283fb383bf4c9e966ae4ed1ae523" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>calculate_time_derivative</name></member>
+      <member refid="classEquation__base_1a5915aa20ea4a5f0f267063634bcda902" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>calculate_time_derivative_</name></member>
+      <member refid="classEquation__base_1ae195e4c25e4128a50d75907939a2fe75" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>calculer_champ_conserve</name></member>
+      <member refid="classEquation__base_1af3a3a81771a3311cf5efafb4ed775927" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>calculer_pas_de_temps</name></member>
+      <member refid="classEquation__base_1ac87d56d8708c46e427c54c128044e11b" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>calculer_pas_de_temps_locaux</name></member>
+      <member refid="classEquation__IBM__proto_1a875eb780ec2f2363968570c734c33266" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>champ_coeff_pdf_som_</name></member>
+      <member refid="classEquation__base_1a05677b03f40b65c55a6934bfba90f17c" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>champ_conserve</name></member>
+      <member refid="classEquation__base_1aba99570514e9c07e430f4b773a33048a" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>champ_convecte</name></member>
+      <member refid="classEquation__base_1ad687c312e72dcbc783cf597af5927b07" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>check_int_overflow</name></member>
+      <member refid="classEquation__base_1aad9e8feabd1876a94ca11d144ee18377" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>close_save_file</name></member>
+      <member refid="classEquation__base_1a68c77bfc9fb39474ddc481495710c40e" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>completer</name></member>
+      <member refid="classConduction_1ab956b87519f94c9ac09b96a074cabd75" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>Conduction</name></member>
+      <member refid="classEquation__base_1a5f5e5943b4526103cdd611ac2f721fbc" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classEquation__IBM__proto_1ade2f8f89b8ec1237630c56464aaef93e" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>correction_variable_initiale_</name></member>
+      <member refid="classEquation__base_1a5c06feed3927199a5ff70fb1c3a10f2a" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>corriger_derivee_expl</name></member>
+      <member refid="classEquation__base_1ab1a4dff7878cb1c47efb1ecb7b5b31ae" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>corriger_derivee_impl</name></member>
+      <member refid="classConduction_1a265c421fdd0634fa56d56cabedeff225" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>creer_champ</name></member>
+      <member refid="classEquation__base_1a392b9c1e46ecdbbbe6c5a1025173b878" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>data_a_sauvegarder</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classConduction__IBM_1a6fc78556fc7bb87b4ff6cd68c24aa7a4" prot="private" virt="non-virtual"><scope>Conduction_IBM</scope><name>Declare_instanciable</name></member>
+      <member refid="classEquation__base_1ac1fef693ad721bbeb75f440d75ed8433" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps</name></member>
+      <member refid="classEquation__base_1ab0a06f79f0f3c2d242a7a52aa63b9696" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps</name></member>
+      <member refid="classEquation__base_1a20d04d53bd0c4b48aa923c2b328bb1e3" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps_conv</name></member>
+      <member refid="classEquation__base_1a97aa87b0cf6205ef437a6774adf1bd47" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps_inco</name></member>
+      <member refid="classEquation__IBM__proto_1ac81e2bbd56789ea242f8955e9f798197" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps_inco_ibm_proto</name></member>
+      <member refid="classConduction__IBM_1a6dc66b8600f03f5343423e4bfd8b3c32" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps_inco_sources</name></member>
+      <member refid="classEquation__base_1a9bf3284dd223e0e0888ad769af73cb6e" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>derivee_en_temps_inco_transport</name></member>
+      <member refid="classEquation__base_1a5ebccb0e2e848ef3155bc09f809077b5" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>diag_</name></member>
+      <member refid="classEquation__base_1a55b98fab5e0172d6c7bc6e6ba3558df4" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>diffusion_multi_scalaire</name></member>
+      <member refid="classEquation__base_1afacaba7038093dc4b8c26074169467ad" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>diffusion_multi_scalaire_</name></member>
+      <member refid="classConduction_1aa9a958c366690365d76ae21b6af778ca" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classConduction_1a5fe984d5d0082092191c1534e7e14a6d" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>diffusivite_pour_transport</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>dimension</name></member>
+      <member refid="classEquation__base_1a5f51df433a67d9aa3da8055e4d8c3b5c" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>dimensionner_blocs</name></member>
+      <member refid="classEquation__base_1abead2a90d8fb40f857e21a80a202b26b" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>dimensionner_matrice</name></member>
+      <member refid="classEquation__base_1a2f62dcd0761768631cbdc25279c9f48e" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>dimensionner_matrice_sans_mem</name></member>
+      <member refid="classEquation__base_1a070306517a5f65eb11c64425986982fd" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classEquation__base_1adcfcc5708fc47d3ae3d5c617da42b489" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>disable_equation_residual</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>disable_TU</name></member>
+      <member refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>discretisation</name></member>
+      <member refid="classConduction_1addbcf8583b7db6f3e0e366c11d74147e" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>discretiser</name></member>
+      <member refid="classConduction_1ac186c8519743f925bd66ae99cb6fa745" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>domaine_application</name></member>
+      <member refid="classEquation__base_1a9dd19036ab6bf1d01b103c6f609b8efe" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classEquation__base_1a03157640014c98fe23a19782686b75be" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classEquation__base_1aee9aeebf76d9f659f7032cf7fb0b8a02" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>domaine_dis</name></member>
+      <member refid="classEquation__base_1aa51f7c85698a22feb9e5a5f4616b26c6" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>domaine_dis</name></member>
+      <member refid="classEquation__base_1a83044a97de577592dea52668854266cd" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>dt_op_bak</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Conduction_IBM</scope><name>duplique</name></member>
+      <member refid="classEquation__base_1a02b61eaa806df06140933f8aa68b08cb" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>equation_non_resolue</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>exit</name></member>
+      <member refid="classEquation__base_1af86f7f88fba1214b9f1f185ce8eb4de2" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>expression_residu</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>format_precision_geom</name></member>
+      <member refid="classConduction_1ab324c7cfdfabd0b0f545e6827d7b678d" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_champ</name></member>
+      <member refid="classEquation__IBM__proto_1a0187c65b60cf029b6164b0b3e2692580" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_champ_coeff_pdf_som</name></member>
+      <member refid="classEquation__IBM__proto_1a82e6ab46b741db5fb5edbd2afdea4508" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_correction_variable_initiale</name></member>
+      <member refid="classEquation__base_1a3d2dcd5a3afc21ebc59d1910f34e10b7" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_fonc_champ_conserve</name></member>
+      <member refid="classEquation__IBM__proto_1a96af63afcebdb05bd4e480f170adc030" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_i_source_pdf</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_info</name></member>
+      <member refid="classEquation__base_1a26d510ff71f9cc45143a9f16bf4bd24a" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_modele</name></member>
+      <member refid="classConduction_1abde425117235100e634fcca9bd15feca" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_object_id</name></member>
+      <member refid="classEquation__base_1a7a76cecb22f2acd998cd2f9a2f699f7b" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_residu</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classEquation__base_1a6aaf20fa7a6c5ebe6b8ca1d662c564b8" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>get_time_factor</name></member>
+      <member refid="classEquation__base_1abd67532530f67b3305703a130a5d823a" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>Gradient_conjugue_diff_impl</name></member>
+      <member refid="classEquation__base_1a11e78e2032c0b2affa71f4b27de07368" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>Gradient_conjugue_diff_impl</name></member>
+      <member refid="classConduction_1a943679ab92b6993a9c0d28106dcd4aa6" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>has_champ</name></member>
+      <member refid="classConduction_1acbaca52019f7ab41a625af9b3ffe5301" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Conduction_IBM</scope><name>has_champ</name></member>
+      <member refid="classEquation__base_1a20410cc0edf01fb3ce5bc88dad8bed52" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>has_champ_conserve</name></member>
+      <member refid="classEquation__base_1a315ed14d5275cce38920719bfadf49be" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>has_champ_convecte</name></member>
+      <member refid="classEquation__base_1ad14417612f0546058ce18eafd21f5017" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>HAS_POINTER</name></member>
+      <member refid="classEquation__base_1afca0189bb5c798b9fe69b8468fe0be73" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>has_time_factor_</name></member>
+      <member refid="classEquation__IBM__proto_1a0ac46f212dd2a756b37f52c6d55249af" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>i_source_pdf_</name></member>
+      <member refid="classEquation__base_1aef791a4afd5964d1b4dfd3d2ac3f5e5e" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>implicite_</name></member>
+      <member refid="classConduction_1aa04dcf83dc1f309d62a591c02d87ff39" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>impr</name></member>
+      <member refid="classEquation__base_1a700f2903c7c3f2f73fdde7a45bfb03be" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>imprime_residu</name></member>
+      <member refid="classEquation__base_1a3a09acdaf5b1f20b2dbc979c17f7d896" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>imprimer</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classConduction_1a34a1804d2e72683f6c57fbbe00c608fb" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>inconnue</name></member>
+      <member refid="classConduction_1afd91ac1dd039a49485f125f50b7cc023" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>inconnue</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>info_obj</name></member>
+      <member refid="classEquation__base_1a462da14d51ee8cc39b4cc16a5b3d9055" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>init_champ_conserve</name></member>
+      <member refid="classEquation__base_1ab0c34611efd60dce2e9b6dfbcf618f96" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>init_champ_convecte</name></member>
+      <member refid="classEquation__base_1a1d9841099162a975984bddecc7af4d2f" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>init_save_file</name></member>
+      <member refid="classEquation__base_1a888dc3f8eb5fb54b05250b6b704a6997" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>initialise_residu</name></member>
+      <member refid="classConduction__IBM_1a1f51a35d4732aaca8965ba62ac7f1998" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>initTimeStep</name></member>
+      <member refid="classEquation__IBM__proto_1a13854f2c55cf67cc8a7d3ba1931eae7e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>initTimeStep_ibm_proto</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>interprete</name></member>
+      <member refid="classEquation__IBM__proto_1a7079c26a242f4c16e3e381d4c5c9d18a" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>is_IBM</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>Kokkos_exit</name></member>
+      <member refid="classEquation__base_1a1205f9bb2a02982c5f456fdd781d9e66" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>le_type</name></member>
+      <member refid="classEquation__base_1a6dae2cb8a228b0e3a6d90042fd75f360" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>les_sources</name></member>
+      <member refid="classEquation__base_1ab6b9cf5a37fb8759a701c5ee30af63c3" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>limpr</name></member>
+      <member refid="classEquation__base_1aae2993902e88118b9f1ed77a0fafb6c9" prot="protected" virt="virtual"><scope>Conduction_IBM</scope><name>lire</name></member>
+      <member refid="classEquation__base_1a5850585c3a61422d75c0849a6e8cf769" prot="protected" virt="virtual"><scope>Conduction_IBM</scope><name>lire_cl</name></member>
+      <member refid="classEquation__base_1a1948b10edf8744391a782423c3f5f538" prot="protected" virt="virtual"><scope>Conduction_IBM</scope><name>lire_cond_init</name></member>
+      <member refid="classConduction_1a571452b84155cd4779e29294bf67c0b3" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classEquation__base_1ad1006d00fdef338af22a7559d05566b1" prot="protected" virt="virtual"><scope>Conduction_IBM</scope><name>lire_sources</name></member>
+      <member refid="classEquation__base_1a5bf207083bc040805dace0d92aa863e7" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>LIST</name></member>
+      <member refid="classEquation__base_1a690c78ec3eec197aafb3eb5a8e3a8b16" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>list_champ_combi</name></member>
+      <member refid="classEquation__base_1a4988730ccb465999b227ecc567e156d9" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>matrice_init</name></member>
+      <member refid="classEquation__base_1a042bd4294c5adb3efaf6c95519a1cabd" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>matrice_stockee</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>me</name></member>
+      <member refid="classConduction_1a258ab8e1558c9999a727eacff766e589" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>mettre_a_jour</name></member>
+      <member refid="classEquation__base_1a4c0471cb5adac12f10dca133e361135f" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>mettre_a_jour_champs_conserves</name></member>
+      <member refid="classConduction_1ae187190c20405a548e0882d8cf0870af" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>milieu</name></member>
+      <member refid="classConduction_1a197afbe8bc5067a1d14e84bb746f4027" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>milieu</name></member>
+      <member refid="classEquation__base_1a8ff1bdbe0842649404d010dae3755c25" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classEquation__IBM__proto_1a4dd00d579727478889225519201320ea" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>modify_initial_variable_ibm_proto</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>node_master</name></member>
+      <member refid="classEquation__base_1a9e2143e3ca5f68c2c02220b7fec06248" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>nom_</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>nom_du_cas</name></member>
+      <member refid="classConduction_1a0fd252ce126843929bd9cb3202110c6f" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>nombre_d_operateurs</name></member>
+      <member refid="classEquation__base_1a71f8f8c8cd2feff508cfc550a2ba8045" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>nombre_d_operateurs_tot</name></member>
+      <member refid="classEquation__base_1a2e6fb89d8de4f991a9aa75208ceb542b" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>Objet_U</name></member>
+      <member refid="classEquation__base_1a53b301515d2abbf7237fc510183e1247" prot="protected" virt="non-virtual" ambiguityscope="Conduction::Equation_base::"><scope>Conduction_IBM</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__base_1a22189d243b6e1d57832bdbac9cf0695e" prot="protected" virt="non-virtual" ambiguityscope="Conduction::Equation_base::"><scope>Conduction_IBM</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__base_1a3cf31d5b0ae08345eaba6d4f257c25ed" prot="protected" virt="non-virtual" ambiguityscope="Conduction::Equation_base::"><scope>Conduction_IBM</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__IBM__proto_1ab8e3f838396aa7bffd98c9bf4a2a4ac9" prot="protected" virt="non-virtual" ambiguityscope="Equation_IBM_proto::"><scope>Conduction_IBM</scope><name>OBS_PTR</name></member>
+      <member refid="classConduction_1ac40cea483f117ab7f0dc92a2cf1f72a9" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>operateur</name></member>
+      <member refid="classConduction_1a521086aa2489848e730bd8998b2ac9c8" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>operateur</name></member>
+      <member refid="classEquation__base_1ac3c35ca07590fde20924f41e14919979" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>operateur_fonctionnel</name></member>
+      <member refid="classEquation__base_1aa20b65412422945c03ef9147390672ae" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>operateur_fonctionnel</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>operator=</name></member>
+      <member refid="classConduction_1a96d4830a17673e6d9af9c246cb643f62" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a439b12137213dbea0a01c6f7ef4af694" prot="public" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a5f867962e82a8c4d43548b1c27410c42" prot="public" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a746b62f40cdfbfad56d66f274d3c3f2c" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1aed7a629a3fa74d791e21fd3a53471506" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1ae1bc37c8e040434720d98ac4059f12a4" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Conduction_IBM</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a66cea7302e08728fb68c4d28e12f2f57" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>positive_unkown</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>precision_geom</name></member>
+      <member refid="classConduction__IBM_1a881eedff6638918cea058701765b9049" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>preparer_calcul</name></member>
+      <member refid="classEquation__IBM__proto_1a963dbaa721e6b6eb1377715d2d40df4b" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>preparer_calcul_ibm_proto</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>printOn</name></member>
+      <member refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>probleme</name></member>
+      <member refid="classEquation__base_1a275379ec75330ae493bc1e5a14342566" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>probleme</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>readOn</name></member>
+      <member refid="classEquation__IBM__proto_1a4e1d295e5ed114d34aaf1b80591e8396" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>readOn_ibm_proto</name></member>
+      <member refid="classEquation__base_1ab0ac04151f764d6d5e55aa6da34d68f3" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>reculer</name></member>
+      <member refid="classEquation__base_1a1bf3576c178a1c2c907467a526347153" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>reprendre</name></member>
+      <member refid="classEquation__base_1ad32db22960f7dc8b0f1432a21c0279e9" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>resetTime</name></member>
+      <member refid="classEquation__base_1a6e0b2000e5d5fb7d5a1588a41d1b0dd6" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>residu_initial</name></member>
+      <member refid="classEquation__base_1a9b074257155c1b095a254fa90a2447d7" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>sauvegarder</name></member>
+      <member refid="classEquation__base_1abc11e51aa75b4c7aa55c27f71eb2f2c4" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>schema_temps</name></member>
+      <member refid="classEquation__base_1a718611fc2812ef3400d2279403a19dcf" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>schema_temps</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>self_cast</name></member>
+      <member refid="classEquation__base_1a41239f371a7cb76961220ffd3f5b8f34" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>set_calculate_time_derivative</name></member>
+      <member refid="classEquation__IBM__proto_1a845605ade6e5f5b638e5be66eed1a6e8" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>set_champ_coeff_pdf_som</name></member>
+      <member refid="classEquation__base_1a4f5435ba83d4fd937142b4833f1999ba" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>set_diffusion_multi_scalaire</name></member>
+      <member refid="classConduction__IBM_1a67954d46762bcf9f8d1aeab09a380e0c" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>set_param</name></member>
+      <member refid="classEquation__IBM__proto_1a267a0f586b834cfef8073a566fbdc8f2" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>set_param_ibm_proto</name></member>
+      <member refid="classEquation__base_1a2e2f686482b7b042a251b46e7cac9531" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>set_residuals</name></member>
+      <member refid="classConduction_1a27a989a02b76d25c4eb26d4f2c1002fd" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>solide</name></member>
+      <member refid="classConduction_1acbe1eef6b69dfbb7be63b76d3fe22915" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>solide</name></member>
+      <member refid="classEquation__base_1a4b4effb48f1841ec8c743d6eb29f8a51" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>solv_masse</name></member>
+      <member refid="classEquation__base_1aa3aa30317beae7097931edce8a9db52b" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>solv_masse</name></member>
+      <member refid="classEquation__base_1a3c8ac50e3e7b6ed29024a43e828a5396" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>sources</name></member>
+      <member refid="classEquation__base_1a982f6ef9f7995d29492be0b4e054e18b" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>sources</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classEquation__base_1afd09d18db565d1acb431885b9c6d4a55" prot="protected" virt="non-virtual"><scope>Conduction_IBM</scope><name>sys_invariant_</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Conduction_IBM</scope><name>taille_memoire</name></member>
+      <member refid="classEquation__base_1a769801bc7ebb7a6be88e34d02cabc26b" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>updateGivenFields</name></member>
+      <member refid="classEquation__base_1a4b5f65f0f29ea9c4c90d7caea6f2e270" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>valider_iteration</name></member>
+      <member refid="classEquation__base_1a2fd1ca87462cdd2e3f249e8d5917beab" prot="protected" virt="virtual"><scope>Conduction_IBM</scope><name>verif_Cl</name></member>
+      <member refid="classEquation__base_1aa954b9346961a237dcbe399a1648c0e5" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classEquation__base_1a52b47bb2cea72fde57a0e0f942c3444e" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>verifie_ch_init_nb_comp_cl</name></member>
+      <member refid="classConduction__IBM_1a25afe0885786c84b085c06a4c63d8f52" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>verify_scheme</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Conduction_IBM</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Conduction_IBM</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

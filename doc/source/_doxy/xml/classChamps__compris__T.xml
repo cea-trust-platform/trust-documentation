@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamps__compris__T" kind="class" language="C++" prot="public">
+    <compoundname>Champs_compris_T</compoundname>
+    <derivedcompoundref refid="classChamps__compris__IJK" prot="public" virt="non-virtual">Champs_compris_IJK</derivedcompoundref>
+    <includes local="no">Champs_compris.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename FIELD_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" prot="protected" static="no" mutable="no">
+        <type>std::unordered_map&lt; std::string, OBS_PTR(FIELD_TYPE)&gt;</type>
+        <definition>std::unordered_map&lt;std::string, OBS_PTR(FIELD_TYPE)&gt; Champs_compris_T&lt; FIELD_TYPE &gt;::liste_champs_</definition>
+        <argsstring></argsstring>
+        <name>liste_champs_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="47" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classChamps__compris__T_1ab6b4aabf54a0681ab3c7495d5db4354a" compoundref="Champs__compris_8h" startline="44" endline="44">Champs_compris_T&lt; FIELD_TYPE &gt;::clear_champs_compris</referencedby>
+        <referencedby refid="classChamps__compris__IJK_1a3ad43f67a7c77c42dafdade3705c41cc" compoundref="Champs__compris__IJK_8cpp" startline="171" endline="177">Champs_compris_IJK::liste_noms_compris</referencedby>
+        <referencedby refid="classChamps__compris__IJK_1a1df2edb531cd5b9757f1f9168dc976b9" compoundref="Champs__compris__IJK_8cpp" startline="87" endline="108">Champs_compris_IJK::switch_ft_fields</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamps__compris__T_1aa2bd9fb5b3b311863130fa0bbc404773" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_T&lt; FIELD_TYPE &gt;::ajoute_champ</definition>
+        <argsstring>(const FIELD_TYPE &amp;champ)</argsstring>
+        <name>ajoute_champ</name>
+        <param>
+          <type>const FIELD_TYPE &amp;</type>
+          <declname>champ</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.cpp" bodystart="60" bodyend="109"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classNom_1ae5d7b0dc793b2dcd6f3bdf550cd41da6" compoundref="Nom_8cpp" startline="567" endline="570">Nom::le_nom</references>
+        <referencedby refid="classEquation__base_1a5adf2db73600e55a06907a1f321e5253" compoundref="Equation__base_8h" startline="249" endline="249">Equation_base::add_champs_compris</referencedby>
+        <referencedby refid="classChamps__compris__IJK_1a6fe05057895c3570022134c01cdbd6ab" compoundref="Champs__compris__IJK_8cpp" startline="37" endline="77">Champs_compris_IJK::ajoute_champ_vectoriel</referencedby>
+        <referencedby refid="classOp__Conv__VDF__base_1a1d46b7001f80c75d451c58a9805db0b8" compoundref="Op__Conv__VDF__base_8cpp" startline="446" endline="468">Op_Conv_VDF_base::creer_champ</referencedby>
+        <referencedby refid="classDomaine__dis__base_1a4ae2154aeffb9349d9e7fedaefca15ad" compoundref="Domaine__dis__base_8cpp" startline="187" endline="199">Domaine_dis_base::creer_champ</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a508d779dc9e9a08a1a1e5c41d27c7f8c" compoundref="Source__PDF__EF_8cpp" startline="1882" endline="1908">Source_PDF_EF::creer_champ</referencedby>
+        <referencedby refid="classParoi__hyd__base__EF_1acc51ec9095e446962b99d0cfba74348f" compoundref="Paroi__hyd__base__EF_8cpp" startline="35" endline="50">Paroi_hyd_base_EF::creer_champ</referencedby>
+        <referencedby refid="classEquation__base_1ab9c5226bc9b23689b0945b50fd61890a" compoundref="Equation__base_8cpp" startline="1045" endline="1065">Equation_base::creer_champ</referencedby>
+        <referencedby refid="classOp__Conv__EF__Stab__PolyMAC__P0P1NC__Elem_1a5134814a30aacb011a16c5faa3f307af" compoundref="Op__Conv__EF__Stab__PolyMAC__P0P1NC__Elem_8cpp" startline="338" endline="361">Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem::creer_champ</referencedby>
+        <referencedby refid="classFluide__Dilatable__base_1a131ca5a71a7944e68790f30873ef7ce5" compoundref="Fluide__Dilatable__base_8cpp" startline="475" endline="499">Fluide_Dilatable_base::creer_champ</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1ab45e5cdac58c0755bbf36be22e95c35a" compoundref="Convection__Diffusion__Temperature_8cpp" startline="190" endline="217">Convection_Diffusion_Temperature::creer_champ</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__base_1a0f136c15476694bc50fc95b6cee499f4" compoundref="Convection__Diffusion__Temperature__base_8cpp" startline="63" endline="76">Convection_Diffusion_Temperature_base::creer_champ</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+        <referencedby refid="classQDM__Multiphase_1a317626daed1651286d00792a06c24d56" compoundref="QDM__Multiphase_8cpp" startline="297" endline="337">QDM_Multiphase::creer_champ</referencedby>
+        <referencedby refid="classSource__Portance__interfaciale__base_1a6c7e7454d4a947a4de494624e318759d" compoundref="Source__Portance__interfaciale__base_8cpp" startline="54" endline="84">Source_Portance_interfaciale_base::creer_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__base_1a8b5be0727f120fbef1eb52495a414172" compoundref="Turbulence__paroi__base_8cpp" startline="86" endline="101">Turbulence_paroi_base::creer_champ</referencedby>
+        <referencedby refid="classConduction_1a265c421fdd0634fa56d56cabedeff225" compoundref="Conduction_8cpp" startline="244" endline="257">Conduction::creer_champ</referencedby>
+        <referencedby refid="classEquation__base_1ac849b71b99dbe338b049a7728208c965" compoundref="Equation__base_8cpp" startline="749" endline="787">Equation_base::discretiser</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1acf1f1200bec466196a090dfd1eb8814c" compoundref="Modele__turbulence__hyd__base_8cpp" startline="224" endline="235">Modele_turbulence_hyd_base::discretiser</referencedby>
+        <referencedby refid="classModele__turbulence__scal__base_1ae89ab3b3bbe00fc7dc8c332278757e61" compoundref="Modele__turbulence__scal__base_8cpp" startline="178" endline="187">Modele_turbulence_scal_base::discretiser</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__Fluide__Dilatable__base_1a34545160969ce32a4a7e0e68c4884ad7" compoundref="Convection__Diffusion__Chaleur__Fluide__Dilatable__base_8cpp" startline="59" endline="68">Convection_Diffusion_Chaleur_Fluide_Dilatable_base::discretiser</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration_1a82c113e3f4824208e2b25ab752f57144" compoundref="Convection__Diffusion__Concentration_8cpp" startline="136" endline="145">Convection_Diffusion_Concentration::discretiser</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a7a3cae6362e36e0268b3dcab3f84e06c" compoundref="Convection__Diffusion__Temperature_8cpp" startline="128" endline="149">Convection_Diffusion_Temperature::discretiser</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1abe64eca3b0fd9e9ec58ba27033949694" compoundref="Navier__Stokes__std_8cpp" startline="348" endline="381">Navier_Stokes_std::discretiser</referencedby>
+        <referencedby refid="classAire__interfaciale_1a67861d04b968371c0bb903da3a7b240a" compoundref="Aire__interfaciale_8cpp" startline="121" endline="148">Aire_interfaciale::discretiser</referencedby>
+        <referencedby refid="classEnergie__Multiphase_1ab78062d4314d20354666e0ce1d3e0feb" compoundref="Energie__Multiphase_8cpp" startline="86" endline="98">Energie_Multiphase::discretiser</referencedby>
+        <referencedby refid="classEnergie__Multiphase__Enthalpie_1a022bf72316c15a2b6bf60421226222c1" compoundref="Energie__Multiphase__Enthalpie_8cpp" startline="32" endline="44">Energie_Multiphase_Enthalpie::discretiser</referencedby>
+        <referencedby refid="classMasse__Multiphase_1a2458650c7cf2d322452d58c8f5da6928" compoundref="Masse__Multiphase_8cpp" startline="183" endline="199">Masse_Multiphase::discretiser</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__0__eq__base_1abbc89bcaf37d2e7dd97fbd02a4ebdc2e" compoundref="Modele__turbulence__hyd__0__eq__base_8cpp" startline="41" endline="46">Modele_turbulence_hyd_0_eq_base::discretiser</referencedby>
+        <referencedby refid="classConduction_1addbcf8583b7db6f3e0e366c11d74147e" compoundref="Conduction_8cpp" startline="194" endline="201">Conduction::discretiser</referencedby>
+        <referencedby refid="classLoi__Fermeture__Test_1aceef6bce50d89e88d1fb30362877fd2b" compoundref="Loi__Fermeture__Test_8cpp" startline="45" endline="56">Loi_Fermeture_Test::discretiser</referencedby>
+        <referencedby refid="classMilieu__base_1a76dffc16168f8e822fde763bfe60fb93" compoundref="Milieu__base_8cpp" startline="126" endline="218">Milieu_base::discretiser</referencedby>
+        <referencedby refid="classMarqueur__Lagrange__base_1ab3d5bab4de5a7bd3f171c654d76d2ff5" compoundref="Marqueur__Lagrange__base_8cpp" startline="47" endline="60">Marqueur_Lagrange_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Dilatable__base_1a9a4d1bc0ec656a3efda9fa67201b4fa3" compoundref="Fluide__Dilatable__base_8cpp" startline="42" endline="83">Fluide_Dilatable_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Weakly__Compressible_1a2d3c712001f1548edd016a487dac0a1a" compoundref="Fluide__Weakly__Compressible_8cpp" startline="188" endline="218">Fluide_Weakly_Compressible::discretiser</referencedby>
+        <referencedby refid="classFluide__base_1af4c5ec816edd85e3ee3dbc47058692f3" compoundref="Fluide__base_8cpp" startline="96" endline="144">Fluide_base::discretiser</referencedby>
+        <referencedby refid="classFluide__Ostwald_1aac1a27338844764b061d38c2e3de0b00" compoundref="Fluide__Ostwald_8cpp" startline="58" endline="78">Fluide_Ostwald::discretiser</referencedby>
+        <referencedby refid="classFluide__reel__base_1aaaa887beb25e8fb210187a49a1ce4338" compoundref="Fluide__reel__base_8cpp" startline="53" endline="116">Fluide_reel_base::discretiser</referencedby>
+        <referencedby refid="classMilieu__composite_1ac6b8b2b04b11f038e93739f8e485e881" compoundref="Milieu__composite_8cpp" startline="228" endline="301">Milieu_composite::discretiser</referencedby>
+        <referencedby refid="classSolide_1acd79604d8a1dc32d3711b81bb0b4478d" compoundref="Solide_8cpp" startline="83" endline="119">Solide::discretiser</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a870c25dbe80518b0aba8f959953385a0" compoundref="Navier__Stokes__std_8cpp" startline="389" endline="394">Navier_Stokes_std::discretiser_grad_p</referencedby>
+        <referencedby refid="classConstituant_1a8fe0f515c55b2fcf06d174b63d13a773" compoundref="Constituant_8cpp" startline="40" endline="46">Constituant::discretiser_multi_concentration</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__Pression__VDF_1a26f852f536bbe6711b49c61853acac31" compoundref="Traitement__particulier__NS__Pression__VDF_8cpp" startline="56" endline="124">Traitement_particulier_NS_Pression_VDF::lire</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__Brech__VEF_1a27b203c6d9b62a699cd368c31f3e6b4c" compoundref="Traitement__particulier__NS__Brech__VEF_8cpp" startline="62" endline="216">Traitement_particulier_NS_Brech_VEF::lire</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__Pression__VEF_1a34a3603733224ca0b6ee6fcb5ba29c65" compoundref="Traitement__particulier__NS__Pression__VEF_8cpp" startline="54" endline="122">Traitement_particulier_NS_Pression_VEF::lire</referencedby>
+        <referencedby refid="classTerme__Source__Acceleration_1afb4f14dc1c36a3a6fc3e030bf6c98207" compoundref="Terme__Source__Acceleration_8cpp" startline="81" endline="239">Terme_Source_Acceleration::lire_data</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration_1a9ca119a9231e71840eba3737334bb66f" compoundref="Convection__Diffusion__Concentration_8cpp" startline="84" endline="115">Convection_Diffusion_Concentration::lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__T_1ab6b4aabf54a0681ab3c7495d5db4354a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_compris_T&lt; FIELD_TYPE &gt;::clear_champs_compris</definition>
+        <argsstring>()</argsstring>
+        <name>clear_champs_compris</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" bodystart="44" bodyend="44"/>
+        <references refid="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" compoundref="Champs__compris_8h" startline="47">Champs_compris_T&lt; FIELD_TYPE &gt;::liste_champs_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__T_1a81e7ff823e570ba4432177e16035084a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const FIELD_TYPE &amp;</type>
+        <definition>const FIELD_TYPE &amp; Champs_compris_T&lt; FIELD_TYPE &gt;::get_champ</definition>
+        <argsstring>(const Motcle &amp;nom) const</argsstring>
+        <name>get_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="38" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.cpp" bodystart="21" bodyend="27"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <referencedby refid="classSource__PDF__EF_1a249881424de92c31467b3c1322e1ad65" compoundref="Source__PDF__EF_8cpp" startline="1938" endline="1982">Source_PDF_EF::get_champ</referencedby>
+        <referencedby refid="classParoi__hyd__base__EF_1a8d67786cebb8aa42dc574955dece5929" compoundref="Paroi__hyd__base__EF_8cpp" startline="72" endline="109">Paroi_hyd_base_EF::get_champ</referencedby>
+        <referencedby refid="classLoi__Fermeture__base_1a0771f932c0261f629f66cf4e1ebb801a" compoundref="Loi__Fermeture__base_8cpp" startline="153" endline="156">Loi_Fermeture_base::get_champ</referencedby>
+        <referencedby refid="classMilieu__base_1a864fa3c0c09748d77fb0ec1401ba762e" compoundref="Milieu__base_8cpp" startline="910" endline="913">Milieu_base::get_champ</referencedby>
+        <referencedby refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" compoundref="Operateur__base_8cpp" startline="461" endline="464">Operateur_base::get_champ</referencedby>
+        <referencedby refid="classSource__base_1a255eeb1709e4ce0959910151a0243491" compoundref="Source__base_8cpp" startline="136" endline="139">Source_base::get_champ</referencedby>
+        <referencedby refid="classLoi__Etat__base_1a460d6f2fa98f43a8152754b002f34b07" compoundref="Loi__Etat__base_8cpp" startline="306" endline="309">Loi_Etat_base::get_champ</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a5012b803252d2190d5bc3070ac067e83" compoundref="Convection__Diffusion__Temperature_8cpp" startline="255" endline="277">Convection_Diffusion_Temperature::get_champ</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__base_1a74ff44355de3af74b5b5f7e336a6b89a" compoundref="Convection__Diffusion__Temperature__base_8cpp" startline="103" endline="120">Convection_Diffusion_Temperature_base::get_champ</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a66d052e27cfd857e9572b5ca372d6e76" compoundref="Navier__Stokes__std_8cpp" startline="1489" endline="1596">Navier_Stokes_std::get_champ</referencedby>
+        <referencedby refid="classMarqueur__Lagrange__base_1a58d7ca7b5d47e7873dd7fa43d195bab4" compoundref="Marqueur__Lagrange__base_8cpp" startline="69" endline="72">Marqueur_Lagrange_base::get_champ</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__base_1ab38ad8dbfab8c2be063fbfc3b6623385" compoundref="Traitement__particulier__NS__base_8cpp" startline="58" endline="61">Traitement_particulier_NS_base::get_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__champ_1a891712d1d56717bb65c8b364d85a5b46" compoundref="Diametre__bulles__champ_8cpp" startline="70" endline="76">Diametre_bulles_champ::get_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__constant_1af73451944f5f7e0eae5b590a30c1803a" compoundref="Diametre__bulles__constant_8cpp" startline="76" endline="82">Diametre_bulles_constant::get_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__musig_1a8364298e641b0fd8e58dd6050c0140be" compoundref="Diametre__bulles__musig_8cpp" startline="87" endline="93">Diametre_bulles_musig::get_champ</referencedby>
+        <referencedby refid="classGravite__Multiphase_1ac294c9d455fea828e12ee2725f6c98b9" compoundref="Gravite__Multiphase_8cpp" startline="66" endline="72">Gravite_Multiphase::get_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__base_1a5a8dda3371f55167aa4e3a14befcdf2d" compoundref="Turbulence__paroi__base_8cpp" startline="122" endline="151">Turbulence_paroi_base::get_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__scal__base_1a729b187615ed3cf35d23eb490f0c8063" compoundref="Turbulence__paroi__scal__base_8cpp" startline="98" endline="101">Turbulence_paroi_scal_base::get_champ</referencedby>
+        <referencedby refid="classConduction_1ab324c7cfdfabd0b0f545e6827d7b678d" compoundref="Conduction_8cpp" startline="292" endline="313">Conduction::get_champ</referencedby>
+        <referencedby refid="classTraitement__particulier__Solide__base_1a919c28ad56d61719e4eae42b5872edde" compoundref="Traitement__particulier__Solide__base_8cpp" startline="40" endline="43">Traitement_particulier_Solide_base::get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__T_1ab4bcd337be295faa46b0481291393af0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Champs_compris_T&lt; FIELD_TYPE &gt;::has_champ</definition>
+        <argsstring>(const Motcle &amp;nom) const</argsstring>
+        <name>has_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.cpp" bodystart="43" bodyend="48"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__T_1af1247b732f00044de3ab1053c52d8700" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Champs_compris_T&lt; FIELD_TYPE &gt;::has_champ</definition>
+        <argsstring>(const Motcle &amp;nom, OBS_PTR(FIELD_TYPE)&amp;ref_champ) const</argsstring>
+        <name>has_champ</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>OBS_PTR(FIELD_TYPE)&amp;</type>
+          <declname>ref_champ</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.cpp" bodystart="30" bodyend="40"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <referencedby refid="classPuissance__Thermique__QC__EF_1a204434da7101ddb4326893e12e4d4728" compoundref="Puissance__Thermique__QC__EF_8cpp" startline="71" endline="82">Puissance_Thermique_QC_EF::get_champ</referencedby>
+        <referencedby refid="classEquation__base_1a57ba60a2c32601e3441c838ab2d74332" compoundref="Equation__base_8cpp" startline="1135" endline="1170">Equation_base::get_champ</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1affcf004c8788984a5dd9e75d70a2a81e" compoundref="Modele__turbulence__hyd__base_8cpp" startline="338" endline="350">Modele_turbulence_hyd_base::get_champ</referencedby>
+        <referencedby refid="classModele__turbulence__scal__base_1a44dadbf1f3b274fbcefe711af7f49a51" compoundref="Modele__turbulence__scal__base_8cpp" startline="310" endline="322">Modele_turbulence_scal_base::get_champ</referencedby>
+        <referencedby refid="classCorrelation__base_1aa47f41d89a0e29ce5e474f42591f7ba0" compoundref="Correlation__base_8cpp" startline="43" endline="46">Correlation_base::has_champ</referencedby>
+        <referencedby refid="classLoi__Fermeture__base_1a05ab1d2cd4bad42996903852f22fd19a" compoundref="Loi__Fermeture__base_8cpp" startline="162" endline="165">Loi_Fermeture_base::has_champ</referencedby>
+        <referencedby refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" compoundref="Operateur__base_8cpp" startline="471" endline="474">Operateur_base::has_champ</referencedby>
+        <referencedby refid="classLoi__Etat__base_1a725664abea7eda6866ac969bbd8b6794" compoundref="Loi__Etat__base_8cpp" startline="301" endline="304">Loi_Etat_base::has_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__base_1a401476c3003790411d2e72316993b281" compoundref="Turbulence__paroi__base_8cpp" startline="114" endline="120">Turbulence_paroi_base::has_champ</referencedby>
+        <referencedby refid="classTurbulence__paroi__scal__base_1ad4e6ebc1c240cecd52028363c18f0db3" compoundref="Turbulence__paroi__scal__base_8cpp" startline="107" endline="110">Turbulence_paroi_scal_base::has_champ</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1a13113c075fd7e03ab10a77a12d7d3cd6" compoundref="Modele__turbulence__hyd__base_8cpp" startline="326" endline="336">Modele_turbulence_hyd_base::has_champ</referencedby>
+        <referencedby refid="classModele__turbulence__scal__base_1a9c7cfdbcaf0b08088788324250f2eaca" compoundref="Modele__turbulence__scal__base_8cpp" startline="298" endline="308">Modele_turbulence_scal_base::has_champ</referencedby>
+        <referencedby refid="classSource__PDF__EF_1a8d5c4b0fc8aa243e8b4ad2d742732136" compoundref="Source__PDF__EF_8cpp" startline="1910" endline="1926">Source_PDF_EF::has_champ</referencedby>
+        <referencedby refid="classPuissance__Thermique__QC__EF_1adf1f840306702c2d1ad881e8671f4189" compoundref="Puissance__Thermique__QC__EF_8cpp" startline="55" endline="61">Puissance_Thermique_QC_EF::has_champ</referencedby>
+        <referencedby refid="classParoi__hyd__base__EF_1ab1c78f07ab356e7aafe96dd8d8ddb993" compoundref="Paroi__hyd__base__EF_8cpp" startline="52" endline="63">Paroi_hyd_base_EF::has_champ</referencedby>
+        <referencedby refid="classEquation__base_1a78cd47a1fec07d9a6f9e5eecef5f48da" compoundref="Equation__base_8cpp" startline="1067" endline="1102">Equation_base::has_champ</referencedby>
+        <referencedby refid="classMilieu__base_1a71a9263a57250a3ba060443a6b6eebd0" compoundref="Milieu__base_8cpp" startline="915" endline="918">Milieu_base::has_champ</referencedby>
+        <referencedby refid="classSource__base_1a2ca4aea8a3e33b84e32b9198615775e0" compoundref="Source__base_8cpp" startline="141" endline="144">Source_base::has_champ</referencedby>
+        <referencedby refid="classMarqueur__Lagrange__base_1ab3e5db570bfe91a04b298fdf3b378251" compoundref="Marqueur__Lagrange__base_8cpp" startline="82" endline="85">Marqueur_Lagrange_base::has_champ</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__base_1af166892fafcea6a21138d9cd592fc811" compoundref="Traitement__particulier__NS__base_8cpp" startline="71" endline="74">Traitement_particulier_NS_base::has_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__champ_1a071855a2c99965854cb8060d859a5807" compoundref="Diametre__bulles__champ_8cpp" startline="54" endline="60">Diametre_bulles_champ::has_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__constant_1a03aea4f7c6153875ae937138f3a81a52" compoundref="Diametre__bulles__constant_8cpp" startline="60" endline="66">Diametre_bulles_constant::has_champ</referencedby>
+        <referencedby refid="classDiametre__bulles__musig_1ac95d0aa96df47cc6a77a384b4e908e0c" compoundref="Diametre__bulles__musig_8cpp" startline="71" endline="77">Diametre_bulles_musig::has_champ</referencedby>
+        <referencedby refid="classGravite__Multiphase_1af64e2cd9cc6205d4182390ea81c9b1c9" compoundref="Gravite__Multiphase_8cpp" startline="50" endline="56">Gravite_Multiphase::has_champ</referencedby>
+        <referencedby refid="classTraitement__particulier__Solide__base_1a1bb146a36dddcbdd3aafb68439e73990" compoundref="Traitement__particulier__Solide__base_8cpp" startline="53" endline="56">Traitement_particulier_Solide_base::has_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamps__compris__T_1a388ec0dd36a665b722df36a5c6300461" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classNoms" kindref="compound">Noms</ref></type>
+        <definition>const Noms Champs_compris_T&lt; FIELD_TYPE &gt;::liste_noms_compris</definition>
+        <argsstring>() const</argsstring>
+        <name>liste_noms_compris</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="43" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.cpp" bodystart="51" bodyend="57"/>
+        <referencedby refid="classSource__PDF__EF_1af7d2aea7febf4a4d6af29a9387bbbfb4" compoundref="Source__PDF__EF_8cpp" startline="1984" endline="1999">Source_PDF_EF::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classPuissance__Thermique__QC__EF_1a8ea9d7e4b3bed386d569a214c7252464" compoundref="Puissance__Thermique__QC__EF_8cpp" startline="83" endline="90">Puissance_Thermique_QC_EF::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classDomaine__dis__base_1a4cabd9e9dd95905b5f0be31d02400fd4" compoundref="Domaine__dis__base_8cpp" startline="234" endline="243">Domaine_dis_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classEquation__base_1a6dba1d00b00089f5083308173341a271" compoundref="Equation__base_8cpp" startline="1172" endline="1187">Equation_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classLoi__Fermeture__base_1adb9c0cfbd715962a3b77b12d7b58d139" compoundref="Loi__Fermeture__base_8cpp" startline="167" endline="173">Loi_Fermeture_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classMilieu__base_1a6dc3540fca9a74186c3a16c38deb6729" compoundref="Milieu__base_8cpp" startline="925" endline="931">Milieu_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" compoundref="Operateur__base_8cpp" startline="476" endline="482">Operateur_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classSource__base_1a68ec84c242ec693e0d556321f0a19146" compoundref="Source__base_8cpp" startline="151" endline="157">Source_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classLoi__Etat__base_1adf0e203762be19f96ac06c560ccdf75e" compoundref="Loi__Etat__base_8cpp" startline="311" endline="317">Loi_Etat_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a6e948fa28e0ba093c109689c9d813ee7" compoundref="Convection__Diffusion__Temperature_8cpp" startline="176" endline="188">Convection_Diffusion_Temperature::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__base_1ac12034a72892c53b0d0460c32f7cb0b9" compoundref="Convection__Diffusion__Temperature__base_8cpp" startline="122" endline="134">Convection_Diffusion_Temperature_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a81426757d86f290422cb91c60b403961" compoundref="Navier__Stokes__std_8cpp" startline="1598" endline="1619">Navier_Stokes_std::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classMarqueur__Lagrange__base_1abd32000d210383ac2e3eb7dfacae3cf7" compoundref="Marqueur__Lagrange__base_8cpp" startline="74" endline="80">Marqueur_Lagrange_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classTraitement__particulier__NS__base_1a0b0371e69fd2f130861048877ca86afc" compoundref="Traitement__particulier__NS__base_8cpp" startline="63" endline="69">Traitement_particulier_NS_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classTurbulence__paroi__base_1a5d71c534496f4394f160502834d81161" compoundref="Turbulence__paroi__base_8cpp" startline="153" endline="161">Turbulence_paroi_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classTurbulence__paroi__scal__base_1acf3670f9372bca16f2f07e2a7cc75a39" compoundref="Turbulence__paroi__scal__base_8cpp" startline="112" endline="119">Turbulence_paroi_scal_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classModele__turbulence__hyd__base_1a9667f648f4208e8b5b459d62a5dd60cb" compoundref="Modele__turbulence__hyd__base_8cpp" startline="352" endline="361">Modele_turbulence_hyd_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classModele__turbulence__scal__base_1a85722db849f5f5e7ec8c89fbbbb4fd0c" compoundref="Modele__turbulence__scal__base_8cpp" startline="324" endline="333">Modele_turbulence_scal_base::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classConduction_1abde425117235100e634fcca9bd15feca" compoundref="Conduction_8cpp" startline="315" endline="330">Conduction::get_noms_champs_postraitables</referencedby>
+        <referencedby refid="classTraitement__particulier__Solide__base_1a0d88d85d9b2ed050c7fa810e52f0823b" compoundref="Traitement__particulier__Solide__base_8cpp" startline="45" endline="51">Traitement_particulier_Solide_base::get_noms_champs_postraitables</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe Champs_compris Represente un champ compris par un objet de type Equation, Milieu, </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Operateur, Source, Traitement_particulier.
+</verbatim> Parametrized by the type of field: typically <ref refid="classChamp__base" kindref="compound">Champ_base</ref> or IJK_Field_double </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champs_compris_IJK&lt; IJK_Field_double &gt;</label>
+        <link refid="classChamps__compris__IJK"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+    </inheritancegraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" line="34" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_compris.h" bodystart="35" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classChamps__compris__T_1aa2bd9fb5b3b311863130fa0bbc404773" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>ajoute_champ</name></member>
+      <member refid="classChamps__compris__T_1ab6b4aabf54a0681ab3c7495d5db4354a" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>clear_champs_compris</name></member>
+      <member refid="classChamps__compris__T_1a81e7ff823e570ba4432177e16035084a" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>get_champ</name></member>
+      <member refid="classChamps__compris__T_1af1247b732f00044de3ab1053c52d8700" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__T_1ab4bcd337be295faa46b0481291393af0" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__T_1a542dc8a71e3cce5ee57b24a626a85c03" prot="protected" virt="non-virtual"><scope>Champs_compris_T</scope><name>liste_champs_</name></member>
+      <member refid="classChamps__compris__T_1a388ec0dd36a665b722df36a5c6300461" prot="public" virt="non-virtual"><scope>Champs_compris_T</scope><name>liste_noms_compris</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -6,7 +6,7 @@ var classOp__Conv__Quick__VDF__Elem =
     [ "modifier_pour_Cl", "classOp__Conv__Quick__VDF__Elem.html#af06f4a31a6cb39c98a01fbe8c4e0f8a9", null ],
     [ "associer", "classOp__Conv__Quick__VDF__Elem.html#a8bd8bc7878354d07148fe07d102d2f01", null ],
     [ "associer_vitesse", "classOp__Conv__Quick__VDF__Elem.html#acae4e782caf9614fd550e1f73e6a0698", null ],
-    [ "vitesse", "classOp__Conv__Quick__VDF__Elem.html#a84028472a9e7dfc4dff5c96ddecc1521", null ],
-    [ "vitesse", "classOp__Conv__Quick__VDF__Elem.html#a9cf21d938b9416ccc460eeeb491c581d", null ],
+    [ "vitesse", "classOp__Conv__Quick__VDF__Elem.html#ad4d5e73e4b25ba2004bf4aa0f5d0e6b5", null ],
+    [ "vitesse", "classOp__Conv__Quick__VDF__Elem.html#a91a53d1b0ccea0dc3157379834ee6f56", null ],
     [ "dimensionner_blocs", "classOp__Conv__Quick__VDF__Elem.html#a974ceee8a1960f26e85c50d4336d0d58", null ]
 ];

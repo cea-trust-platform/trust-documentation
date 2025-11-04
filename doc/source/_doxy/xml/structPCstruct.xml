@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structPCstruct" kind="struct" language="C++" prot="public">
+    <compoundname>PCstruct</compoundname>
+    <includes local="no">Solv_Petsc.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structPCstruct_1aca445d76cf64c32fb3b786b1519eb612" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PCstruct::OWN_PTR</definition>
+        <argsstring>(PCShell_base) pc_shell</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classPCShell__base" kindref="compound">PCShell_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Petsc.h" line="42" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Petsc.h" line="40" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Petsc.h" bodystart="41" bodyend="43"/>
+    <listofallmembers>
+      <member refid="structPCstruct_1aca445d76cf64c32fb3b786b1519eb612" prot="public" virt="non-virtual"><scope>PCstruct</scope><name>OWN_PTR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_6cf714229baa5090cda38dd784c393b5" kind="dir">
+    <compoundname>Champs</compoundname>
+    <innerfile refid="Champ__Elem__DG_8cpp">Champ_Elem_DG.cpp</innerfile>
+    <innerfile refid="Champ__Elem__DG_8h">Champ_Elem_DG.h</innerfile>
+    <innerfile refid="Champ__Fonc__Elem__DG_8cpp">Champ_Fonc_Elem_DG.cpp</innerfile>
+    <innerfile refid="Champ__Fonc__Elem__DG_8h">Champ_Fonc_Elem_DG.h</innerfile>
+    <innerfile refid="Champ__Fonc__P1__DG_8cpp">Champ_Fonc_P1_DG.cpp</innerfile>
+    <innerfile refid="Champ__Fonc__P1__DG_8h">Champ_Fonc_P1_DG.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Champs/"/>
+  </compounddef>
+</doxygen>

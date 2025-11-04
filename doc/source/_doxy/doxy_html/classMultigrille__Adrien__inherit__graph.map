@@ -1,11 +1,7 @@
 <map id="Multigrille_Adrien" name="Multigrille_Adrien">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,142,336"/>
-<area shape="rect" id="Node000002" href="$classMultigrille__base.html" title=" " alt="" coords="11,232,136,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,276,76,308,71,308,71,276"/>
-<area shape="rect" id="Node000003" href="$classSolveurSys__base.html" title=" " alt="" coords="8,157,139,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,200,76,232,71,232,71,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="37,81,110,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="76,124,76,156,71,156,71,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="38,5,109,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="76,49,76,81,71,81,71,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,304,143,331"/>
+<area shape="rect" id="node2" href="$classMultigrille__base.html" title=" " alt="" coords="11,229,137,256"/>
+<area shape="rect" id="node3" href="$classSolveurSys__base.html" title=" " alt="" coords="8,155,140,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="37,80,111,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="38,5,110,32"/>
 </map>

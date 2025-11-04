@@ -1,7 +1,5 @@
 <map id="Grid_Level_Data_template&lt; _TYPE_ &gt;" name="Grid_Level_Data_template&lt; _TYPE_ &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,157,200,201"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="66,81,139,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,125,105,156,100,156,100,125"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="67,5,138,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,49,105,81,100,81,100,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,155,200,196"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="65,80,140,107"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="67,5,139,32"/>
 </map>

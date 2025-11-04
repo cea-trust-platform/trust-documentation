@@ -1,7 +1,5 @@
 <map id="Eval_Div_VDF" name="Eval_Div_VDF">
-<area shape="rect" id="Node000001" title="class Eval_Div_VDF classe de base des evaluateurs de divergence VDF" alt="" coords="25,81,138,109"/>
-<area shape="rect" id="Node000003" href="$classEval__Div__VDF__Elem.html" title="class Eval_Div_VDF_Elem Evaluateur VDF pour la divergence" alt="" coords="5,157,158,184"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="84,124,84,156,79,156,79,124"/>
-<area shape="rect" id="Node000002" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="19,5,144,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,49,84,81,79,81,79,49"/>
+<area shape="rect" id="node1" title="class Eval_Div_VDF classe de base des evaluateurs de divergence VDF" alt="" coords="25,80,139,107"/>
+<area shape="rect" id="node3" href="$classEval__Div__VDF__Elem.html" title="class Eval_Div_VDF_Elem Evaluateur VDF pour la divergence" alt="" coords="5,155,159,181"/>
+<area shape="rect" id="node2" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="19,5,145,32"/>
 </map>

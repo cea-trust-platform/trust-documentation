@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_4d75e4700657d72246265bd98a28c023" kind="dir">
+    <compoundname>IBM</compoundname>
+    <innerdir refid="dir_7eb553dab4b0b23c0a887b93886fa82b">Interpolation_IBM</innerdir>
+    <innerdir refid="dir_75e16697825e66234dc6c295773f08c8">Prepro_IBM</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/"/>
+  </compounddef>
+</doxygen>

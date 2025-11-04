@@ -10,8 +10,7 @@ var classObjet__a__lire =
       [ "DERIV", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618a22e8b4ba5ba79e200ec77c07a15dbc5e", null ],
       [ "ArrOfInt_size_imp", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618a7a9e047713f6dd502fb94df45836dcf4", null ],
       [ "ArrOfDouble_size_imp", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618ac6dd3f9720589cf930d55e3178c1df85", null ],
-      [ "PARAM", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0", null ],
-      [ "BOOLEAN_FLAG", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618ab22500f0b87e9c8b0e8320897e7f9036", null ]
+      [ "PARAM", "classObjet__a__lire.html#a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0", null ]
     ] ],
     [ "Nature", "classObjet__a__lire.html#a08a46fbed4f867c91efbe469282c3c53", [
       [ "OPTIONAL", "classObjet__a__lire.html#a08a46fbed4f867c91efbe469282c3c53a67c76dc808bf81632dddf80b8104150b", null ],
@@ -25,7 +24,6 @@ var classObjet__a__lire =
     [ "set_arrofdouble", "classObjet__a__lire.html#a73ded0678f590c4226c698832bc6eeea", null ],
     [ "set_deriv", "classObjet__a__lire.html#a4ef1a749e15d15a611f9e548c1e1456d", null ],
     [ "create_param", "classObjet__a__lire.html#af390338c0b15fc5b00d5e633711c6a7a", null ],
-    [ "set_flag", "classObjet__a__lire.html#ae079db1597d354f33bf73f8ee00b5bc8", null ],
     [ "set_flag", "classObjet__a__lire.html#a4407add015eb8ae482fe781cd35dc380", null ],
     [ "set_non_std", "classObjet__a__lire.html#ac1a635d6c6ceb13b6aee909e35b7ef25", null ],
     [ "add_dict", "classObjet__a__lire.html#a8f5df1c4e79e3d8941f3ced5e11626f0", null ],
@@ -51,8 +49,7 @@ var classObjet__a__lire =
     [ "objet_lu", "classObjet__a__lire.html#af74ed9e1a6a2a6f6236b4537f534ee95", null ],
     [ "arrofint_a_lire", "classObjet__a__lire.html#a4c941ada0d68d935229306fd592fdb58", null ],
     [ "arrofdouble_a_lire", "classObjet__a__lire.html#a755b11f521c047eeaf84b573dd39532b", null ],
-    [ "flag_a_lire", "classObjet__a__lire.html#a2efae19304a0239ae46344636664a345", null ],
-    [ "boolean_flag_a_lire", "classObjet__a__lire.html#add79064f3e61022839a2db2c82582f6f", null ],
+    [ "flag_a_lire", "classObjet__a__lire.html#a4f97ef36f60fa219bb3df79f70a49ef7", null ],
     [ "dictionnaire_noms", "classObjet__a__lire.html#a7118f1c26812ad639a5cbcd53a31222b", null ],
     [ "dictionnaire_valeurs", "classObjet__a__lire.html#a78151e1e70af5e2756e5d8cbd10a6bb0", null ],
     [ "prefixe_deriv", "classObjet__a__lire.html#a5b58cc626e338737d521d0701f972199", null ],

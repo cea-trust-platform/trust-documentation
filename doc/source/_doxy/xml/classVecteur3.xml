@@ -1,0 +1,463 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classVecteur3" kind="class" language="C++" prot="public">
+    <compoundname>Vecteur3</compoundname>
+    <includes local="no">Vecteur3.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classVecteur3_1adec82ff0fd78518db6402b5af5fda19c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class Matrice33</definition>
+        <argsstring></argsstring>
+        <name>Matrice33</name>
+        <param>
+          <type><ref refid="classMatrice33" kindref="compound">Matrice33</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="107" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="friend" id="classVecteur3_1a18ec282c5fc4227a14c4e569aea08d15" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref></type>
+        <definition>Vecteur3 operator-</definition>
+        <argsstring>(const Vecteur3 &amp;, const Vecteur3 &amp;)</argsstring>
+        <name>operator-</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <defname>x</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <defname>y</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="108" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Linear_algebra_tools_impl.h" bodystart="147" bodyend="153"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Vecteur3::v[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="110" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="110" bodyend="-1"/>
+        <referencedby refid="classVecteur3_1ac3ff0f92a64c706cb949e5b407e76f22" compoundref="Vecteur3_8h" startline="111" endline="115">init</referencedby>
+        <referencedby refid="classVecteur3_1ad53cacc9f4babbf532ff76a00ca8f0e7" compoundref="Vecteur3_8h" startline="51" endline="54">length</referencedby>
+        <referencedby refid="classVecteur3_1a75f33fb221c545e1eabcf2edd1ae701e" compoundref="Linear__algebra__tools__impl_8h" startline="73" endline="81">norme_Linfini</referencedby>
+        <referencedby refid="classVecteur3_1a33db04d0f665c45546ab42a80bd96c55" compoundref="Vecteur3_8h" startline="75" endline="80">operator*=</referencedby>
+        <referencedby refid="classVecteur3_1ac28ff43e2e88bb64c024731aba86e426" compoundref="Vecteur3_8h" startline="81" endline="86">operator+=</referencedby>
+        <referencedby refid="classVecteur3_1af26ca11841a44dbb873a743785bd9ba0" compoundref="Vecteur3_8h" startline="69" endline="74">operator=</referencedby>
+        <referencedby refid="classVecteur3_1a65d65f46232f4053470dc729dde5a78f" compoundref="Vecteur3_8h" startline="94" endline="98">operator[]</referencedby>
+        <referencedby refid="classMatrice33_1a479bcae7e83023c7a885d5ccf9174ddc" compoundref="Linear__algebra__tools__impl_8h" startline="38" endline="44">Matrice33::produit</referencedby>
+        <referencedby refid="classVecteur3_1a13d4a2f0fe07e384704d1917942892d0" compoundref="Linear__algebra__tools__impl_8h" startline="62" endline="68">produit_scalaire</referencedby>
+        <referencedby refid="classVecteur3_1a5fff26b06fb58ea97cfd2e2e8f9c3d0f" compoundref="Linear__algebra__tools__impl_8h" startline="55" endline="60">produit_vectoriel</referencedby>
+        <referencedby refid="classVecteur3_1aa58a03d4e8f78f4c2fdfa42747fc8990" compoundref="Vecteur3_8h" startline="36" endline="41">set</referencedby>
+        <referencedby refid="classVecteur3_1ac914b20bfa5cd9836baf7893046436cb" compoundref="Vecteur3_8h" startline="25" endline="29">Vecteur3</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classVecteur3_1ad53cacc9f4babbf532ff76a00ca8f0e7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Vecteur3::length</definition>
+        <argsstring>() const</argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="51" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="51" bodyend="54"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a75f33fb221c545e1eabcf2edd1ae701e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Vecteur3::norme_Linfini</definition>
+        <argsstring>()</argsstring>
+        <name>norme_Linfini</name>
+        <briefdescription>
+<para>norme L_infini, c&apos;est le max des abs(v[i]) </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="104" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Linear_algebra_tools_impl.h" bodystart="73" bodyend="81"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a33db04d0f665c45546ab42a80bd96c55" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+        <definition>Vecteur3&amp; Vecteur3::operator*=</definition>
+        <argsstring>(double x)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="75" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="75" bodyend="80"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1ac28ff43e2e88bb64c024731aba86e426" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+        <definition>Vecteur3&amp; Vecteur3::operator+=</definition>
+        <argsstring>(const Vecteur3 &amp;x)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="81" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="81" bodyend="86"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1aa8af5538b216459194b79af74f7bc551" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+        <definition>Vecteur3&amp; Vecteur3::operator=</definition>
+        <argsstring>(const Vecteur3 &amp;w)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="88" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="88" bodyend="93"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1af26ca11841a44dbb873a743785bd9ba0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+        <definition>Vecteur3&amp; Vecteur3::operator=</definition>
+        <argsstring>(double x)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="69" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="69" bodyend="74"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a843e8239a910a1dfffc487a1b3f69330" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double &amp;</type>
+        <definition>double&amp; Vecteur3::operator[]</definition>
+        <argsstring>(int i)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="99" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="99" bodyend="103"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a65d65f46232f4053470dc729dde5a78f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Vecteur3::operator[]</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="94" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="94" bodyend="98"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a3e23de776329a5895b598c957ea67302" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Vecteur3::set</definition>
+        <argsstring>(const DoubleTab &amp;tab, int i)</argsstring>
+        <name>set</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="43" bodyend="50"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1aa58a03d4e8f78f4c2fdfa42747fc8990" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Vecteur3::set</definition>
+        <argsstring>(double x, double y, double z)</argsstring>
+        <name>set</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="36" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="36" bodyend="41"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a209852e35cbf81ddff99f094470524a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Vecteur3::Vecteur3</definition>
+        <argsstring>()</argsstring>
+        <name>Vecteur3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="24" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1ace2a51c9c3f515e204273411438d0c5a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Vecteur3::Vecteur3</definition>
+        <argsstring>(const ArrOfDouble &amp;arr)</argsstring>
+        <name>Vecteur3</name>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> &amp;</type>
+          <declname>arr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="63" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="63" bodyend="68"/>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1af5936d3bab2c7e2b99a6336f69a4c749" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Vecteur3::Vecteur3</definition>
+        <argsstring>(const DoubleTab &amp;tab, int i)</argsstring>
+        <name>Vecteur3</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>tab</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="55" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="55" bodyend="62"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1ac914b20bfa5cd9836baf7893046436cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Vecteur3::Vecteur3</definition>
+        <argsstring>(const Vecteur3 &amp;w)</argsstring>
+        <name>Vecteur3</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>w</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="25" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="25" bodyend="29"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a71991036e22a9197c73aed1381f4677b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Vecteur3::Vecteur3</definition>
+        <argsstring>(double x, double y, double z)</argsstring>
+        <name>Vecteur3</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>z</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="30" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="30" bodyend="35"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classVecteur3_1a13d4a2f0fe07e384704d1917942892d0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Vecteur3::produit_scalaire</definition>
+        <argsstring>(const Vecteur3 &amp;x, const Vecteur3 &amp;y)</argsstring>
+        <name>produit_scalaire</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="106" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Linear_algebra_tools_impl.h" bodystart="62" bodyend="68"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+        <referencedby refid="classPolyedre__32__64_1a9948fec6e941e48f6490069b7daea814" compoundref="Polyedre_8cpp" startline="184" endline="237">Polyedre_32_64&lt; _SIZE_ &gt;::contient</referencedby>
+        <referencedby refid="classPolyedre__poly_1a06ae230997e0724627f2fb6d9566079d" compoundref="Polyedre__poly_8cpp" startline="28" endline="107">Polyedre_poly::normale</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classVecteur3_1a5fff26b06fb58ea97cfd2e2e8f9c3d0f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Vecteur3::produit_vectoriel</definition>
+        <argsstring>(const Vecteur3 &amp;x, const Vecteur3 &amp;y, Vecteur3 &amp;resu)</argsstring>
+        <name>produit_vectoriel</name>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type><ref refid="classVecteur3" kindref="compound">Vecteur3</ref> &amp;</type>
+          <declname>resu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="105" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Linear_algebra_tools_impl.h" bodystart="55" bodyend="60"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+        <referencedby refid="classPolyedre__32__64_1a9948fec6e941e48f6490069b7daea814" compoundref="Polyedre_8cpp" startline="184" endline="237">Polyedre_32_64&lt; _SIZE_ &gt;::contient</referencedby>
+        <referencedby refid="classPolyedre__poly_1a06ae230997e0724627f2fb6d9566079d" compoundref="Polyedre__poly_8cpp" startline="28" endline="107">Polyedre_poly::normale</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classVecteur3_1ac3ff0f92a64c706cb949e5b407e76f22" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Vecteur3::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="111" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="111" bodyend="115"/>
+        <references refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" compoundref="Vecteur3_8h" startline="110">v</references>
+        <referencedby refid="classMatrice33_1a479bcae7e83023c7a885d5ccf9174ddc" compoundref="Linear__algebra__tools__impl_8h" startline="38" endline="44">Matrice33::produit</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" line="21" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/Vecteur3.h" bodystart="22" bodyend="116"/>
+    <listofallmembers>
+      <member refid="classVecteur3_1ac3ff0f92a64c706cb949e5b407e76f22" prot="protected" virt="non-virtual"><scope>Vecteur3</scope><name>init</name></member>
+      <member refid="classVecteur3_1ad53cacc9f4babbf532ff76a00ca8f0e7" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>length</name></member>
+      <member refid="classVecteur3_1adec82ff0fd78518db6402b5af5fda19c" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Matrice33</name></member>
+      <member refid="classVecteur3_1a75f33fb221c545e1eabcf2edd1ae701e" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>norme_Linfini</name></member>
+      <member refid="classVecteur3_1a33db04d0f665c45546ab42a80bd96c55" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator*=</name></member>
+      <member refid="classVecteur3_1ac28ff43e2e88bb64c024731aba86e426" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator+=</name></member>
+      <member refid="classVecteur3_1a18ec282c5fc4227a14c4e569aea08d15" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator-</name></member>
+      <member refid="classVecteur3_1af26ca11841a44dbb873a743785bd9ba0" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator=</name></member>
+      <member refid="classVecteur3_1aa8af5538b216459194b79af74f7bc551" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator=</name></member>
+      <member refid="classVecteur3_1a65d65f46232f4053470dc729dde5a78f" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator[]</name></member>
+      <member refid="classVecteur3_1a843e8239a910a1dfffc487a1b3f69330" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>operator[]</name></member>
+      <member refid="classVecteur3_1a13d4a2f0fe07e384704d1917942892d0" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>produit_scalaire</name></member>
+      <member refid="classVecteur3_1a5fff26b06fb58ea97cfd2e2e8f9c3d0f" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>produit_vectoriel</name></member>
+      <member refid="classVecteur3_1aa58a03d4e8f78f4c2fdfa42747fc8990" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>set</name></member>
+      <member refid="classVecteur3_1a3e23de776329a5895b598c957ea67302" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>set</name></member>
+      <member refid="classVecteur3_1aa928d54dd74c2d4a401c9b85e1f81e6f" prot="protected" virt="non-virtual"><scope>Vecteur3</scope><name>v</name></member>
+      <member refid="classVecteur3_1a209852e35cbf81ddff99f094470524a8" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Vecteur3</name></member>
+      <member refid="classVecteur3_1ac914b20bfa5cd9836baf7893046436cb" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Vecteur3</name></member>
+      <member refid="classVecteur3_1a71991036e22a9197c73aed1381f4677b" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Vecteur3</name></member>
+      <member refid="classVecteur3_1af5936d3bab2c7e2b99a6336f69a4c749" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Vecteur3</name></member>
+      <member refid="classVecteur3_1ace2a51c9c3f515e204273411438d0c5a" prot="public" virt="non-virtual"><scope>Vecteur3</scope><name>Vecteur3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

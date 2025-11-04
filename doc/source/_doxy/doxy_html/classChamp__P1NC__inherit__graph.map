@@ -1,23 +1,13 @@
 <map id="Champ_P1NC" name="Champ_P1NC">
-<area shape="rect" id="Node000001" title=" " alt="" coords="231,401,341,428"/>
-<area shape="rect" id="Node000002" href="$classChamp__Inc__base.html" title="Classe Champ_Inc_base." alt="" coords="120,325,252,353"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,360,270,398,267,402,214,364"/>
-<area shape="rect" id="Node000003" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="48,241,153,268"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,278,174,323,171,327,123,281"/>
-<area shape="rect" id="Node000004" href="$classField__base.html" title=" " alt="" coords="5,157,95,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="68,197,95,239,90,242,64,199"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="13,81,87,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="53,124,53,156,47,156,47,124"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="14,5,86,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="53,49,53,81,47,81,47,49"/>
-<area shape="rect" id="Node000007" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="118,157,227,184"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="153,198,114,242,110,239,149,194"/>
-<area shape="rect" id="Node000008" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="178,241,248,268"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="206,284,193,326,188,324,201,283"/>
-<area shape="rect" id="Node000009" href="$classChamp__P1NC__implementation.html" title=" " alt="" coords="276,325,496,353"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="358,364,305,402,302,398,354,360"/>
-<area shape="rect" id="Node000010" href="$classChamp__implementation__divers.html" title=" " alt="" coords="297,232,475,277"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="389,293,389,324,383,324,383,293"/>
-<area shape="rect" id="Node000011" href="$classChamp__implementation.html" title=" " alt="" coords="297,157,475,184"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="389,200,389,232,383,232,383,200"/>
+<area shape="rect" id="node1" title=" " alt="" coords="233,393,343,420"/>
+<area shape="rect" id="node2" href="$classChamp__Inc__base.html" title="Classe Champ_Inc_base." alt="" coords="122,319,254,345"/>
+<area shape="rect" id="node3" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="48,237,155,263"/>
+<area shape="rect" id="node4" href="$classField__base.html" title=" " alt="" coords="5,155,96,181"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="13,80,88,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="15,5,87,32"/>
+<area shape="rect" id="node7" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="120,155,229,181"/>
+<area shape="rect" id="node8" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="179,237,250,263"/>
+<area shape="rect" id="node9" href="$classChamp__P1NC__implementation.html" title=" " alt="" coords="279,319,500,345"/>
+<area shape="rect" id="node10" href="$classChamp__implementation__divers.html" title=" " alt="" coords="300,229,479,271"/>
+<area shape="rect" id="node11" href="$classChamp__implementation.html" title=" " alt="" coords="300,155,479,181"/>
 </map>

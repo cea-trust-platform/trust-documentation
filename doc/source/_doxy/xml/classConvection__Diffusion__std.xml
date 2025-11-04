@@ -1,0 +1,1250 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classConvection__Diffusion__std" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Convection_Diffusion_std</compoundname>
+    <basecompoundref refid="classEquation__base" prot="public" virt="non-virtual">Equation_base</basecompoundref>
+    <derivedcompoundref refid="classAire__interfaciale" prot="public" virt="non-virtual">Aire_interfaciale</derivedcompoundref>
+    <derivedcompoundref refid="classConvection__Diffusion__Concentration" prot="public" virt="non-virtual">Convection_Diffusion_Concentration</derivedcompoundref>
+    <derivedcompoundref refid="classConvection__Diffusion__Fluide__Dilatable__base" prot="public" virt="non-virtual">Convection_Diffusion_Fluide_Dilatable_base</derivedcompoundref>
+    <derivedcompoundref refid="classConvection__Diffusion__Temperature__base" prot="public" virt="non-virtual">Convection_Diffusion_Temperature_base</derivedcompoundref>
+    <derivedcompoundref refid="classMasse__Multiphase" prot="public" virt="non-virtual">Masse_Multiphase</derivedcompoundref>
+    <includes local="no">Convection_Diffusion_std.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classConvection__Diffusion__std_1aff629b8054c74fb1244b37c79aa6a3bd" prot="protected" static="no" mutable="no">
+        <type><ref refid="classOperateur__Conv" kindref="compound">Operateur_Conv</ref></type>
+        <definition>Operateur_Conv Convection_Diffusion_std::terme_convectif</definition>
+        <argsstring></argsstring>
+        <name>terme_convectif</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="68" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classMasse__Multiphase_1aac9d0716a005588041a1cdf5f8d8d4dc" compoundref="Masse__Multiphase_8cpp" startline="140" endline="158">Masse_Multiphase::completer</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__QC_1ab2851ae3f85126af962a11db205ddd05" compoundref="Convection__Diffusion__Chaleur__QC_8cpp" startline="48" endline="97">Convection_Diffusion_Chaleur_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1a484fdbfcd546f73289b7077bd3062f68" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="48" endline="73">Convection_Diffusion_Espece_Multi_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1acfb3e5da249873b1f878c2aa5868e534" compoundref="Convection__Diffusion__std_8cpp" startline="96" endline="112">operateur</referencedby>
+        <referencedby refid="classAire__interfaciale_1a850a492181962a7aa40329f11d9a3ae6" compoundref="Aire__interfaciale_8cpp" startline="176" endline="205">Aire_interfaciale::operateur</referencedby>
+        <referencedby refid="classMasse__Multiphase_1a2451a86aa24efe393ce8765ff65e87bb" compoundref="Masse__Multiphase_8cpp" startline="80" endline="88">Masse_Multiphase::operateur</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" prot="protected" static="no" mutable="no">
+        <type><ref refid="classOperateur__Diff" kindref="compound">Operateur_Diff</ref></type>
+        <definition>Operateur_Diff Convection_Diffusion_std::terme_diffusif</definition>
+        <argsstring></argsstring>
+        <name>terme_diffusif</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="69" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classConvection__Diffusion__std_1a834f45e444f7b89a8ac81c00eaf0176a" compoundref="Convection__Diffusion__std_8cpp" startline="146" endline="149">diffusivite_pour_pas_de_temps</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Binaire__base_1aa51d71a7e89f38cc64ebd0d1efa63737" compoundref="Convection__Diffusion__Espece__Binaire__base_8cpp" startline="57" endline="76">Convection_Diffusion_Espece_Binaire_base::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__base_1a7328a509f55853d7c2835b564b87b92a" compoundref="Convection__Diffusion__Espece__Multi__base_8cpp" startline="51" endline="66">Convection_Diffusion_Espece_Multi_base::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1a484fdbfcd546f73289b7077bd3062f68" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="48" endline="73">Convection_Diffusion_Espece_Multi_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__IBM__Turbulent_1a0cf0fc0eca9a3cc057eb311bdff51706" compoundref="Convection__Diffusion__Temperature__IBM__Turbulent_8cpp" startline="34" endline="55">Convection_Diffusion_Temperature_IBM_Turbulent::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__Turbulent__QC_1ae1c9cc18e187748dec6259c320088cf9" compoundref="Convection__Diffusion__Chaleur__Turbulent__QC_8cpp" startline="41" endline="61">Convection_Diffusion_Chaleur_Turbulent_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration__Turbulent_1ac92225d5a4a2e203b2ed2876af12879e" compoundref="Convection__Diffusion__Concentration__Turbulent_8cpp" startline="42" endline="64">Convection_Diffusion_Concentration_Turbulent::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Binaire__Turbulent__QC_1a985d6327fded9a96fa3aa67bd232c0f1" compoundref="Convection__Diffusion__Espece__Binaire__Turbulent__QC_8cpp" startline="35" endline="56">Convection_Diffusion_Espece_Binaire_Turbulent_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__Turbulent__QC_1a18a5e364226888996ca8381dc4094389" compoundref="Convection__Diffusion__Espece__Multi__Turbulent__QC_8cpp" startline="37" endline="60">Convection_Diffusion_Espece_Multi_Turbulent_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__Turbulent_1a03ccbbbde62790d2fd343cd802940980" compoundref="Convection__Diffusion__Temperature__Turbulent_8cpp" startline="34" endline="55">Convection_Diffusion_Temperature_Turbulent::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1acfb3e5da249873b1f878c2aa5868e534" compoundref="Convection__Diffusion__std_8cpp" startline="96" endline="112">operateur</referencedby>
+        <referencedby refid="classAire__interfaciale_1a850a492181962a7aa40329f11d9a3ae6" compoundref="Aire__interfaciale_8cpp" startline="176" endline="205">Aire_interfaciale::operateur</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a96bc2c2496bb4a34655a5fae5109339d" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Convection_Diffusion_std::Declare_base</definition>
+        <argsstring>(Convection_Diffusion_std)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classConvection__Diffusion__std" kindref="compound">Convection_Diffusion_std</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="44" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a3f405914a16dc2743ea2a1fab1ab6bda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Convection_Diffusion_std::associer_vitesse</definition>
+        <argsstring>(const Champ_base &amp;)</argsstring>
+        <name>associer_vitesse</name>
+        <param>
+          <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <defname>vit</defname>
+        </param>
+        <briefdescription>
+<para>Associe la vitesse transportante a l&apos;equation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Champ_Inc_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vit) le champ a affecter a la vitesse transportante </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="53" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" bodystart="87" bodyend="90"/>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1a484fdbfcd546f73289b7077bd3062f68" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="48" endline="73">Convection_Diffusion_Espece_Multi_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a03a8ea82b9f455bfdcabdfd1ab16a94a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="classYAML__data" kindref="compound">YAML_data</ref> &gt;</type>
+        <definition>std::vector&lt; YAML_data &gt; Convection_Diffusion_std::data_a_sauvegarder_base</definition>
+        <argsstring>() const</argsstring>
+        <name>data_a_sauvegarder_base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="63" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="166" bodyend="169"/>
+        <references refid="classEquation__base_1a392b9c1e46ecdbbbe6c5a1025173b878" compoundref="Equation__base_8cpp" startline="441" endline="445">Equation_base::data_a_sauvegarder</references>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a216d7310d623f3131b285bf59debe23d" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="429" endline="440">Convection_Diffusion_Fluide_Dilatable_Proto::data_a_sauvegarder</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a834f45e444f7b89a8ac81c00eaf0176a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base &amp; Convection_Diffusion_std::diffusivite_pour_pas_de_temps</definition>
+        <argsstring>() const</argsstring>
+        <name>diffusivite_pour_pas_de_temps</name>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__Fluide__Dilatable__base_1a38f4501a18bf6ab74b242613fa1e1d67">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Binaire__base_1a620f7c96d142da2acc559153fee3c380">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Multi__QC_1ab8b6aa212f1f0fe42c7f0d48dfec04b6">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Multi__WC_1a8b0caa97a6c99d52ddf78cc2521802fa">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature__base_1a5c6a33ebcc17adcb10cefcee84fc55f9">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classEnergie__Multiphase__Enthalpie_1a9ed8f7e8dc238b2dc1560a31ff63fd74">diffusivite_pour_pas_de_temps</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Fluide__Dilatable__base_1af6dabfc2ee5837c9d72578eef2ec057d">diffusivite_pour_pas_de_temps</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="58" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="146" bodyend="149"/>
+        <references refid="classOperateur__Diff_1a684570cd736780e40fecef7696a227b6" compoundref="Operateur__Diff_8cpp" startline="126" endline="129">Operateur_Diff::diffusivite</references>
+        <references refid="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" compoundref="Convection__Diffusion__std_8h" startline="69">terme_diffusif</references>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration__Turbulent_1ac92225d5a4a2e203b2ed2876af12879e" compoundref="Convection__Diffusion__Concentration__Turbulent_8cpp" startline="42" endline="64">Convection_Diffusion_Concentration_Turbulent::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classTransport__turbulent__GGDH_1a39384a70a6635133b5ef1f5f98daeaec" compoundref="Transport__turbulent__GGDH_8cpp" startline="43" endline="59">Transport_turbulent_GGDH::modifier_mu</referencedby>
+        <referencedby refid="classTransport__turbulent__Prandtl_1ad71e2ac0023ab10efadf133579991499" compoundref="Transport__turbulent__Prandtl_8cpp" startline="41" endline="66">Transport_turbulent_Prandtl::modifier_mu</referencedby>
+        <referencedby refid="classTransport__turbulent__SGDH_1a7be7ddcf575eb1da58035019ff14b1cd" compoundref="Transport__turbulent__SGDH_8cpp" startline="46" endline="75">Transport_turbulent_SGDH::modifier_mu</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a6ef0dc650f9d40a40f64a8b5d7ddadde" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref> &amp;</type>
+        <definition>const Champ_Don_base &amp; Convection_Diffusion_std::diffusivite_pour_transport</definition>
+        <argsstring>() const</argsstring>
+        <name>diffusivite_pour_transport</name>
+        <reimplementedby refid="classConvection__Diffusion__Fluide__Dilatable__base_1a0195d19beae6398efaab7d31c161b48b">diffusivite_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Concentration_1adedee0a75912bb5926930ed1f5d98ed7">diffusivite_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature__base_1a5b09631b8605501a03a4b99d3b8b954e">diffusivite_pour_transport</reimplementedby>
+        <reimplementedby refid="classEnergie__Multiphase__Enthalpie_1ad6c0e584fef17a50f1711adbfc6cbf23">diffusivite_pour_transport</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="57" column="32" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="141" bodyend="144"/>
+        <references refid="classMilieu__base_1ab4857f84512f820544a4ef86a3ccbd07" compoundref="Milieu__base_8cpp" startline="817" endline="820">Milieu_base::diffusivite</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+        <referencedby refid="classTransport__turbulent__GGDH_1a39384a70a6635133b5ef1f5f98daeaec" compoundref="Transport__turbulent__GGDH_8cpp" startline="43" endline="59">Transport_turbulent_GGDH::modifier_mu</referencedby>
+        <referencedby refid="classTransport__turbulent__Prandtl_1ad71e2ac0023ab10efadf133579991499" compoundref="Transport__turbulent__Prandtl_8cpp" startline="41" endline="66">Transport_turbulent_Prandtl::modifier_mu</referencedby>
+        <referencedby refid="classTransport__turbulent__SGDH_1a7be7ddcf575eb1da58035019ff14b1cd" compoundref="Transport__turbulent__SGDH_8cpp" startline="46" endline="75">Transport_turbulent_SGDH::modifier_mu</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a88e760204e93420fd1678f243260df7b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        <definition>const Champ_Inc_base&amp; Convection_Diffusion_std::inconnue</definition>
+        <argsstring>() const override=0</argsstring>
+        <name>inconnue</name>
+        <reimplements refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">inconnue</reimplements>
+        <reimplementedby refid="classConvection__Diffusion__Fluide__Dilatable__base_1ad0099f5dcff25353df74331eefab5e86">inconnue</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Concentration_1ab8be51fd6560094b4dd67ce9b0f9cdba">inconnue</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature_1a5da572c2479a197533ddb43983428a80">inconnue</reimplementedby>
+        <reimplementedby refid="classAire__interfaciale_1aba65cc1e220afffc0b7fbd63b9a24987">inconnue</reimplementedby>
+        <reimplementedby refid="classEnergie__Multiphase_1ab22c8e034bc8c598779f882b95465c35">inconnue</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1a5f738400cc2781fe395962447308d41e">inconnue</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="55" column="24"/>
+        <referencedby refid="classModele__turbulence__scal__base_1afdfc03fe4372f7c69c360ff3299f58a2" compoundref="Modele__turbulence__scal__base_8cpp" startline="245" endline="260">Modele_turbulence_scal_base::a_faire</referencedby>
+        <referencedby refid="classTerme__Boussinesq__VEF__Face_1add7513a99af6557cd55bcc0f5d43a072" compoundref="Terme__Boussinesq__VEF__Face_8cpp" startline="47" endline="102">Terme_Boussinesq_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classTerme__Boussinesq__VEFPreP1B__Face_1afb4b1bbf4cd214f798d21e438b833af9" compoundref="Terme__Boussinesq__VEFPreP1B__Face_8cpp" startline="44" endline="285">Terme_Boussinesq_VEFPreP1B_Face::ajouter</referencedby>
+        <referencedby refid="classTerme__Boussinesq__VDF__Face_1a4c77937dad26ef8873f5d341774d2d69" compoundref="Terme__Boussinesq__VDF__Face_8cpp" startline="49" endline="203">Terme_Boussinesq_VDF_Face::ajouter_blocs</referencedby>
+        <referencedby refid="classTerme__Boussinesq__PolyMAC__Face_1a4c3498de47f49d712c2d2cbb256be59c" compoundref="Terme__Boussinesq__PolyMAC__Face_8cpp" startline="50" endline="85">Terme_Boussinesq_PolyMAC_Face::ajouter_blocs</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__base_1a0f136c15476694bc50fc95b6cee499f4" compoundref="Convection__Diffusion__Temperature__base_8cpp" startline="63" endline="76">Convection_Diffusion_Temperature_base::creer_champ</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature__base_1a74ff44355de3af74b5b5f7e336a6b89a" compoundref="Convection__Diffusion__Temperature__base_8cpp" startline="103" endline="120">Convection_Diffusion_Temperature_base::get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a4a8392c9652199ced4282a986a92f1fc" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        <definition>Champ_Inc_base&amp; Convection_Diffusion_std::inconnue</definition>
+        <argsstring>() override=0</argsstring>
+        <name>inconnue</name>
+        <reimplements refid="classEquation__base_1a10a1eb5fb63392428790a9215024e747">inconnue</reimplements>
+        <reimplementedby refid="classConvection__Diffusion__Fluide__Dilatable__base_1a9c4cb4dd0f69b0486990151c40c8917a">inconnue</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Concentration_1aec06e4ecead77c55bdc611e8ccb1b710">inconnue</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature_1a2098670a14d5136564567e8223e3aba5">inconnue</reimplementedby>
+        <reimplementedby refid="classAire__interfaciale_1ae2a671c64906bc194bffaa31ad833450">inconnue</reimplementedby>
+        <reimplementedby refid="classEnergie__Multiphase_1a0f2d7a14b96d908fce9d79d0b0110d81">inconnue</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1af645c89d1b2e3e9587a8d1425d39db56">inconnue</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="56" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Convection_Diffusion_std::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classEquation__base_1aaaada44548b29f2bb2b695445b11ba22">lire_motcle_non_standard</reimplements>
+        <reimplementedby refid="classConvection__Diffusion__Temperature_1aa509b5f5c81cabab1cf623e9e18877db">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classEnergie__Multiphase_1a1ad42a4043ff3bc09f1a4fe99f0f68ff">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1a0427c27dec9882e6c58a24c2f7717827">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__Turbulent__QC_1ae1c9cc18e187748dec6259c320088cf9">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Concentration__Turbulent_1ac92225d5a4a2e203b2ed2876af12879e">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Binaire__Turbulent__QC_1a985d6327fded9a96fa3aa67bd232c0f1">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Multi__Turbulent__QC_1a18a5e364226888996ca8381dc4094389">lire_motcle_non_standard</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature__Turbulent_1a03ccbbbde62790d2fd343cd802940980">lire_motcle_non_standard</reimplementedby>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="49" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="55" bodyend="76"/>
+        <references refid="classOperateur__Diff_1a9e560c15136324e71568e3087f3652b5" compoundref="Operateur__Diff_8cpp" startline="137" endline="140">Operateur_Diff::associer_diffusivite</references>
+        <references refid="classOperateur__Diff_1a75a11b9bc776e5de33c49f48e947f8be" compoundref="Operateur__Diff_8cpp" startline="142" endline="145">Operateur_Diff::associer_diffusivite_pour_pas_de_temps</references>
+        <references refid="classOperateur__Conv_1ab97c7035846db1561eb447f7d8aa7e39" compoundref="Operateur__Conv_8h" startline="75" endline="78">Operateur_Conv::associer_vitesse</references>
+        <references refid="classConvection__Diffusion__std_1a3f405914a16dc2743ea2a1fab1ab6bda" compoundref="Convection__Diffusion__std_8h" startline="87" endline="90">associer_vitesse</references>
+        <references refid="classConvection__Diffusion__std_1a834f45e444f7b89a8ac81c00eaf0176a" compoundref="Convection__Diffusion__std_8cpp" startline="146" endline="149">diffusivite_pour_pas_de_temps</references>
+        <references refid="classConvection__Diffusion__std_1a6ef0dc650f9d40a40f64a8b5d7ddadde" compoundref="Convection__Diffusion__std_8cpp" startline="141" endline="144">diffusivite_pour_transport</references>
+        <references refid="classEquation__base_1aaaada44548b29f2bb2b695445b11ba22" compoundref="Equation__base_8cpp" startline="269" endline="314">Equation_base::lire_motcle_non_standard</references>
+        <references refid="classConvection__Diffusion__std_1aff629b8054c74fb1244b37c79aa6a3bd" compoundref="Convection__Diffusion__std_8h" startline="68">terme_convectif</references>
+        <references refid="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" compoundref="Convection__Diffusion__std_8h" startline="69">terme_diffusif</references>
+        <references refid="classConvection__Diffusion__std_1adf3c17f8f33b204062c1128452edbe5b" compoundref="Convection__Diffusion__std_8cpp" startline="151" endline="154">vitesse_pour_transport</references>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__base_1a22da38b873ab01a00a08c44347b080c7" compoundref="Convection__Diffusion__Fluide__Dilatable__base_8cpp" startline="38" endline="41">Convection_Diffusion_Fluide_Dilatable_base::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration_1a9ca119a9231e71840eba3737334bb66f" compoundref="Convection__Diffusion__Concentration_8cpp" startline="84" endline="115">Convection_Diffusion_Concentration::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1aa509b5f5c81cabab1cf623e9e18877db" compoundref="Convection__Diffusion__Temperature_8cpp" startline="67" endline="115">Convection_Diffusion_Temperature::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classEnergie__Multiphase_1a1ad42a4043ff3bc09f1a4fe99f0f68ff" compoundref="Energie__Multiphase_8cpp" startline="76" endline="81">Energie_Multiphase::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classMasse__Multiphase_1a0427c27dec9882e6c58a24c2f7717827" compoundref="Masse__Multiphase_8cpp" startline="73" endline="78">Masse_Multiphase::lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1ade25f9d00c31f0ac21ae9f73b9148d0a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Convection_Diffusion_std::nombre_d_operateurs</definition>
+        <argsstring>() const override</argsstring>
+        <name>nombre_d_operateurs</name>
+        <reimplements refid="classEquation__base_1a68cdf54c4af72b23d0d2c8a1b3f7ebd9">nombre_d_operateurs</reimplements>
+        <reimplementedby refid="classAire__interfaciale_1a02cd7a1bd482a0d771d6f03915d54706">nombre_d_operateurs</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1aa797eef22eb311a140f9d2b412a7d261">nombre_d_operateurs</reimplementedby>
+        <briefdescription>
+<para>Renvoie le nombre d&apos;operateurs de l&apos;equation: 2 pour une equation de diffusion. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(int) le nombre d&apos;operateurs de l&apos;equation </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="50" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="81" bodyend="84"/>
+        <referencedby refid="classConvection__Diffusion__Temperature_1afd4ac12ed4a4c74d0b1b248f9c2650c2" compoundref="Convection__Diffusion__Temperature_8cpp" startline="354" endline="439">Convection_Diffusion_Temperature::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1acfe718aa8a7928625a3e46fdd47edb27" compoundref="Convection__Diffusion__Temperature_8cpp" startline="441" endline="496">Convection_Diffusion_Temperature::assembler_blocs</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a60244b9fbcc9d37eb2e9ffecf32291c1" compoundref="Convection__Diffusion__Temperature_8cpp" startline="291" endline="346">Convection_Diffusion_Temperature::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classConvection__Diffusion__std_1acfb3e5da249873b1f878c2aa5868e534" compoundref="Convection__Diffusion__std_8cpp" startline="96" endline="112">operateur</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a82affa83cd11442b4b18d0e7114d4b08" compoundref="Convection__Diffusion__Temperature_8cpp" startline="541" endline="621">Convection_Diffusion_Temperature::transport_ibc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1acfb3e5da249873b1f878c2aa5868e534" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classOperateur" kindref="compound">Operateur</ref> &amp;</type>
+        <definition>const Operateur &amp; Convection_Diffusion_std::operateur</definition>
+        <argsstring>(int) const override</argsstring>
+        <name>operateur</name>
+        <reimplements refid="classEquation__base_1a8406eaa10e61a27e9a2e1cacea253c3e">operateur</reimplements>
+        <reimplementedby refid="classAire__interfaciale_1a850a492181962a7aa40329f11d9a3ae6">operateur</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1a2451a86aa24efe393ce8765ff65e87bb">operateur</reimplementedby>
+        <param>
+          <type>int</type>
+          <defname>i</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie l&apos;operateur specifie par son index: renvoie terme_diffusif si i = 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>renvoie terme_convectif si i = 1
+exit si i&gt;1
+</verbatim> (version const)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) l&apos;index de l&apos;operateur a renvoyer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(<ref refid="classOperateur" kindref="compound">Operateur</ref>&amp;) l&apos;operateur specifie </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>l&apos;equation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>n&apos;a pas plus de 2 operateurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="51" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="96" bodyend="112"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classConvection__Diffusion__std_1ade25f9d00c31f0ac21ae9f73b9148d0a" compoundref="Convection__Diffusion__std_8cpp" startline="81" endline="84">nombre_d_operateurs</references>
+        <references refid="classConvection__Diffusion__std_1aff629b8054c74fb1244b37c79aa6a3bd" compoundref="Convection__Diffusion__std_8h" startline="68">terme_convectif</references>
+        <references refid="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" compoundref="Convection__Diffusion__std_8h" startline="69">terme_diffusif</references>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1ad17d4b7fe214fac9bfe83ccaa403b592" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="152" endline="219">Convection_Diffusion_Espece_Multi_QC::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1afd4ac12ed4a4c74d0b1b248f9c2650c2" compoundref="Convection__Diffusion__Temperature_8cpp" startline="354" endline="439">Convection_Diffusion_Temperature::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1aef65ca43a14dca55ea4a7b038a49f884" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="355" endline="423">Convection_Diffusion_Fluide_Dilatable_Proto::assembler_blocs</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1acfe718aa8a7928625a3e46fdd47edb27" compoundref="Convection__Diffusion__Temperature_8cpp" startline="441" endline="496">Convection_Diffusion_Temperature::assembler_blocs</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a6726448816aaa2898df58d670a1a9704" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="217" endline="353">Convection_Diffusion_Fluide_Dilatable_Proto::assembler_impl</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a121d891b16222913346f02b786fbf945" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="37" endline="63">Convection_Diffusion_Fluide_Dilatable_Proto::calculer_div_rho_u_impl</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__QC_1af9cc8941c70b2fc443f92339fa29f25d" compoundref="Convection__Diffusion__Chaleur__QC_8cpp" startline="110" endline="147">Convection_Diffusion_Chaleur_QC::calculer_div_u_ou_div_rhou</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1aaf47f4c9f6b48c9e05ee0afb39239307" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="124" endline="150">Convection_Diffusion_Espece_Multi_QC::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a2f09516e23af998bef35700d625abb50" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="74" endline="214">Convection_Diffusion_Fluide_Dilatable_Proto::derivee_en_temps_inco_sans_solveur_masse_impl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a9930b7b2ef071344ec46eacff292cad5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classOperateur" kindref="compound">Operateur</ref> &amp;</type>
+        <definition>Operateur &amp; Convection_Diffusion_std::operateur</definition>
+        <argsstring>(int) override</argsstring>
+        <name>operateur</name>
+        <reimplements refid="classEquation__base_1a38f19d6ba3ee581acd6568147a0a6477">operateur</reimplements>
+        <reimplementedby refid="classAire__interfaciale_1aa20c1b54cc46e7621f0e5219576cad93">operateur</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1a6efc4faeb2d0c09be709a860be64ec8d">operateur</reimplementedby>
+        <param>
+          <type>int</type>
+          <defname>i</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie l&apos;operateur specifie par son index: renvoie terme_diffusif si i = 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>renvoie terme_convectif si i = 1
+exit si i&gt;1
+</verbatim> <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) l&apos;index de l&apos;operateur a renvoyer </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(<ref refid="classOperateur" kindref="compound">Operateur</ref>&amp;) l&apos;operateur specifie </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>l&apos;equation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>n&apos;a pas plus de 2 operateurs </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="52" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="123" bodyend="139"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classConvection__Diffusion__std_1ade25f9d00c31f0ac21ae9f73b9148d0a" compoundref="Convection__Diffusion__std_8cpp" startline="81" endline="84">nombre_d_operateurs</references>
+        <references refid="classConvection__Diffusion__std_1aff629b8054c74fb1244b37c79aa6a3bd" compoundref="Convection__Diffusion__std_8h" startline="68">terme_convectif</references>
+        <references refid="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" compoundref="Convection__Diffusion__std_8h" startline="69">terme_diffusif</references>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a87cba2432b9aa0215de377777fdf9e0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Convection_Diffusion_std::reprendre_base</definition>
+        <argsstring>(Entree &amp;)</argsstring>
+        <name>reprendre_base</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="62" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="161" bodyend="164"/>
+        <references refid="classEquation__base_1a1bf3576c178a1c2c907467a526347153" compoundref="Equation__base_8cpp" startline="457" endline="470">Equation_base::reprendre</references>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1abfafe8aec90e12871145dfd2849bf278" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="485" endline="525">Convection_Diffusion_Fluide_Dilatable_Proto::Reprendre_WC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a8d505acd31c2defd6ae53d3e09468547" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Convection_Diffusion_std::sauvegarder_base</definition>
+        <argsstring>(Sortie &amp;) const</argsstring>
+        <name>sauvegarder_base</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <defname>os</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="61" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="157" bodyend="160"/>
+        <references refid="classEquation__base_1a9b074257155c1b095a254fa90a2447d7" compoundref="Equation__base_8cpp" startline="428" endline="431">Equation_base::sauvegarder</references>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1acb0976593376c9f67b7a9fa2b837e7c2" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="442" endline="483">Convection_Diffusion_Fluide_Dilatable_Proto::Sauvegarder_WC</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1a6c0b61c59140f9f98eaf9b794f64cee0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Convection_Diffusion_std::set_param</definition>
+        <argsstring>(Param &amp;titi) override</argsstring>
+        <name>set_param</name>
+        <reimplements refid="classEquation__base_1a56e1c6f710cf92ffb54656bd4b5be32d">set_param</reimplements>
+        <reimplementedby refid="classEnergie__Multiphase_1a93db7db11d350452924d55681bcb061c">set_param</reimplementedby>
+        <reimplementedby refid="classMasse__Multiphase_1afdce4b459db88464754324a8b1edafa9">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature_1a3a4ac812817ec03f4ca651457e30d700">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__Turbulent__QC_1ab9ce2315e913aa3311eb08a01209ceaa">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Concentration__Turbulent_1a08b0b9a5cd1e4aafe843bb047044c48d">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Binaire__Turbulent__QC_1a8c43721cf6058bd7853035d33aa06787">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Multi__Turbulent__QC_1a0cc38b6b0a52e43d256bcc32818db145">set_param</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Temperature__Turbulent_1ad31a192f6c1723eb3019e3f2308d4c8b">set_param</reimplementedby>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>titi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="47" bodyend="52"/>
+        <references refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</references>
+        <references refid="classEquation__base_1a56e1c6f710cf92ffb54656bd4b5be32d" compoundref="Equation__base_8cpp" startline="258" endline="267">Equation_base::set_param</references>
+        <referencedby refid="classEnergie__Multiphase_1a93db7db11d350452924d55681bcb061c" compoundref="Energie__Multiphase_8cpp" startline="70" endline="74">Energie_Multiphase::set_param</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__base_1a5e1bdf0057391925f15199ad53b19911" compoundref="Convection__Diffusion__Fluide__Dilatable__base_8cpp" startline="33" endline="36">Convection_Diffusion_Fluide_Dilatable_base::set_param</referencedby>
+        <referencedby refid="classConvection__Diffusion__Concentration_1a6b11d2ccbb3af6049f711a77393ebf2c" compoundref="Convection__Diffusion__Concentration_8cpp" startline="75" endline="82">Convection_Diffusion_Concentration::set_param</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1a3a4ac812817ec03f4ca651457e30d700" compoundref="Convection__Diffusion__Temperature_8cpp" startline="61" endline="65">Convection_Diffusion_Temperature::set_param</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1adf3c17f8f33b204062c1128452edbe5b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base &amp; Convection_Diffusion_std::vitesse_pour_transport</definition>
+        <argsstring>() const</argsstring>
+        <name>vitesse_pour_transport</name>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__Fluide__Dilatable__base_1ad05bcc05718adaf3e8ad0439fb730e4d">vitesse_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Binaire__base_1a55858482d689152b4b55424a86d9962c">vitesse_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__QC_1aed71ce1391402f194c246f8769587aab">vitesse_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Chaleur__WC_1a72aea80d752418ecd10664febc97f128">vitesse_pour_transport</reimplementedby>
+        <reimplementedby refid="classConvection__Diffusion__Espece__Multi__WC_1a5a4194e9945ebf43856119350ded5a3d">vitesse_pour_transport</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="59" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.cpp" bodystart="151" bodyend="154"/>
+        <references refid="classProbleme__base_1a587a928959992bbe1a03a3a4c2e5296c" compoundref="Probleme__base_8cpp" startline="832" endline="867">Probleme_base::get_champ</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <referencedby refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" compoundref="Convection__Diffusion__std_8cpp" startline="55" endline="76">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConvection__Diffusion__std_1ad2d177939307dc824ddc25ccc4fe120a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        <definition>const Champ_Inc_base &amp; Convection_Diffusion_std::vitesse_transportante</definition>
+        <argsstring>() const</argsstring>
+        <name>vitesse_transportante</name>
+        <briefdescription>
+<para>Renvoie une reference sur le champ representant la vitesse transportante. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>&amp;) le champ representant la vitesse transportante </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="54" column="31" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classConvection__Diffusion__std_1afddae7a210f10abe0d02ece8ec90d4a6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Convection_Diffusion_std::OBS_PTR</definition>
+        <argsstring>(Champ_Inc_base) la_vitesse_transportante</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="67" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classConvection__Diffusion__std" kindref="compound">Convection_Diffusion_std</ref> Cette classe est la base des equations modelisant le transport </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>d&apos;un scalaire.
+Cette classe porte les termes communs a l&apos;equation
+de transport d&apos;un scalaire en regime laminaire.
+On se place sous l&apos;hypothese de fluide incompressible.
+    DT/dt = div(terme visqueux) + termes sources/rho_0
+avec DT/dt : derivee particulaire du scalaire
+Rq: l&apos;implementation de la classe permet bien sur de negliger
+    certains termes de l&apos;equation (le terme diffusif,
+    le terme convectif,tel ou tel terme source).
+</verbatim> <simplesect kind="see"><para><ref refid="classEquation__base" kindref="compound">Equation_base</ref>, Classe abstraite, Methodes abstraites:, <ref refid="classEntree" kindref="compound">Entree</ref>&amp; lire(const Motcle&amp;, Entree&amp;), const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>&amp; <ref refid="classConvection__Diffusion__std_1a88e760204e93420fd1678f243260df7b" kindref="member">inconnue() const</ref>, <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>&amp; <ref refid="classConvection__Diffusion__std_1a4a8392c9652199ced4282a986a92f1fc" kindref="member">inconnue()</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Convection_Diffusion_Espece_Multi_base</label>
+        <link refid="classConvection__Diffusion__Espece__Multi__base"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Convection_Diffusion_Espece_Binaire_Turbulent_QC</label>
+        <link refid="classConvection__Diffusion__Espece__Binaire__Turbulent__QC"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Convection_Diffusion_Temperature_Turbulent</label>
+        <link refid="classConvection__Diffusion__Temperature__Turbulent"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Convection_Diffusion_Temperature_IBM</label>
+        <link refid="classConvection__Diffusion__Temperature__IBM"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Convection_Diffusion_std</label>
+        <link refid="classConvection__Diffusion__std"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Convection_Diffusion_Chaleur_Turbulent_QC</label>
+        <link refid="classConvection__Diffusion__Chaleur__Turbulent__QC"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Convection_Diffusion_Espece_Multi_WC</label>
+        <link refid="classConvection__Diffusion__Espece__Multi__WC"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Convection_Diffusion_Concentration_Turbulent</label>
+        <link refid="classConvection__Diffusion__Concentration__Turbulent"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Convection_Diffusion_Espece_Binaire_QC</label>
+        <link refid="classConvection__Diffusion__Espece__Binaire__QC"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Masse_Multiphase</label>
+        <link refid="classMasse__Multiphase"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Equation_base</label>
+        <link refid="classEquation__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Energie_Multiphase_Enthalpie</label>
+        <link refid="classEnergie__Multiphase__Enthalpie"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Convection_Diffusion_Espece_Multi_QC</label>
+        <link refid="classConvection__Diffusion__Espece__Multi__QC"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="23">
+        <label>Convection_Diffusion_Temperature_base</label>
+        <link refid="classConvection__Diffusion__Temperature__base"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Convection_Diffusion_Chaleur_WC</label>
+        <link refid="classConvection__Diffusion__Chaleur__WC"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Convection_Diffusion_Chaleur_QC</label>
+        <link refid="classConvection__Diffusion__Chaleur__QC"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Convection_Diffusion_Concentration</label>
+        <link refid="classConvection__Diffusion__Concentration"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Convection_Diffusion_Espece_Binaire_WC</label>
+        <link refid="classConvection__Diffusion__Espece__Binaire__WC"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Convection_Diffusion_Espece_Multi_Turbulent_QC</label>
+        <link refid="classConvection__Diffusion__Espece__Multi__Turbulent__QC"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Convection_Diffusion_Espece_Binaire_base</label>
+        <link refid="classConvection__Diffusion__Espece__Binaire__base"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Energie_Multiphase</label>
+        <link refid="classEnergie__Multiphase"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Convection_Diffusion_Espece_Fluide_Dilatable_base</label>
+        <link refid="classConvection__Diffusion__Espece__Fluide__Dilatable__base"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="26">
+        <label>Convection_Diffusion_Temperature_IBM_Turbulent</label>
+        <link refid="classConvection__Diffusion__Temperature__IBM__Turbulent"/>
+        <childnode refid="25" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Convection_Diffusion_Chaleur_Fluide_Dilatable_base</label>
+        <link refid="classConvection__Diffusion__Chaleur__Fluide__Dilatable__base"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Aire_interfaciale</label>
+        <link refid="classAire__interfaciale"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Convection_Diffusion_Temperature</label>
+        <link refid="classConvection__Diffusion__Temperature"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Convection_Diffusion_Fluide_Dilatable_base</label>
+        <link refid="classConvection__Diffusion__Fluide__Dilatable__base"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="34">
+        <label>Operateur_Diff</label>
+        <link refid="classOperateur__Diff"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Champs_Fonc</label>
+        <link refid="classChamps__Fonc"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Convection_Diffusion_std</label>
+        <link refid="classConvection__Diffusion__std"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="34" relation="usage">
+          <edgelabel>terme_diffusif</edgelabel>
+        </childnode>
+        <childnode refid="38" relation="usage">
+          <edgelabel>terme_convectif</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="30" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Equation_base</label>
+        <link refid="classEquation__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>list_champ_combi</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>diag_</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>les_sources</edgelabel>
+        </childnode>
+        <childnode refid="29" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>matrice_stockee</edgelabel>
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>dt_op_bak</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>string</label>
+      </node>
+      <node id="33">
+        <label>TRUSTList&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Sources</label>
+        <link refid="classSources"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="11">
+        <label>Matrice_Morse</label>
+        <link refid="classMatrice__Morse"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>coeff_</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>tab1_</edgelabel>
+          <edgelabel>tab2_</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>LISTSource</label>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="21">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>OWN_PTROperateur_Conv_base</label>
+      </node>
+      <node id="19">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="36">
+        <label>Motcle</label>
+        <link refid="classMotcle"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="37">
+        <label>OWN_PTROperateur_Diff_base</label>
+      </node>
+      <node id="32">
+        <label>TRUSTListElem&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTListElem"/>
+        <childnode refid="32" relation="usage">
+          <edgelabel>suivant_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>LISTOWN_PTRChamp_Fonc_base</label>
+      </node>
+      <node id="20">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Matrice_Morse_Sym</label>
+        <link refid="classMatrice__Morse__Sym"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Matrice_Base</label>
+        <link refid="classMatrice__Base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>stencil_</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Matrice_Morse_Diag</label>
+        <link refid="classMatrice__Morse__Diag"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Operateur</label>
+        <link refid="classOperateur"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+        <childnode refid="36" relation="usage">
+          <edgelabel>typ</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Matrice_Sym</label>
+        <link refid="classMatrice__Sym"/>
+      </node>
+      <node id="30">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="31">
+        <label>TRUSTList&lt; double &gt;</label>
+        <link refid="classTRUSTList"/>
+        <childnode refid="32" relation="public-inheritance">
+        </childnode>
+        <childnode refid="33" relation="template-instance">
+          <edgelabel>&lt; double &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+      <node id="38">
+        <label>Operateur_Conv</label>
+        <link refid="classOperateur__Conv"/>
+        <childnode refid="35" relation="public-inheritance">
+        </childnode>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" line="42" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Equations/Convection_Diffusion_std.h" bodystart="43" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>abort</name></member>
+      <member refid="classEquation__base_1a643e4ffb873396a94d5f263fecccd9fc" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>abortTimeStep</name></member>
+      <member refid="classEquation__base_1a5adf2db73600e55a06907a1f321e5253" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>add_champs_compris</name></member>
+      <member refid="classEquation__base_1a0ae7c0dceb6c9be8bb21ea295bd47f23" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classEquation__base_1a8dbd9212dcd3e8277d21a4b24b04bd65" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>assembler</name></member>
+      <member refid="classEquation__base_1a6442c887ca10e6b6e59e0d36140f698c" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>assembler_avec_inertie</name></member>
+      <member refid="classEquation__base_1ad69c8d0d6da9143927a56696c27b79cb" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>assembler_blocs</name></member>
+      <member refid="classEquation__base_1a43b8fd39221258e4909cea7b046220a9" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>assembler_blocs_avec_inertie</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>associer_</name></member>
+      <member refid="classEquation__base_1a2ba87baeb85c9cdc58dfbe101d6fa2e5" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>associer_domaine_dis</name></member>
+      <member refid="classEquation__base_1a1886b59d39b7d60afb39aadfb56b971b" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>associer_milieu_base</name></member>
+      <member refid="classEquation__base_1a16b5af9ce66738d4d05d2567e417ff3d" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>associer_milieu_equation</name></member>
+      <member refid="classEquation__base_1a3b6b408360358fb75bfe61e9c65f771c" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>associer_pb_base</name></member>
+      <member refid="classEquation__base_1aabd38edf86fa21fec604553313862bff" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>associer_sch_tps_base</name></member>
+      <member refid="classConvection__Diffusion__std_1a3f405914a16dc2743ea2a1fab1ab6bda" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>associer_vitesse</name></member>
+      <member refid="classEquation__base_1a276174d27befa3ca552c9b58836941a0" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>bidim_axi</name></member>
+      <member refid="classEquation__base_1a6665283fb383bf4c9e966ae4ed1ae523" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>calculate_time_derivative</name></member>
+      <member refid="classEquation__base_1a5915aa20ea4a5f0f267063634bcda902" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>calculate_time_derivative_</name></member>
+      <member refid="classEquation__base_1ae195e4c25e4128a50d75907939a2fe75" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>calculer_champ_conserve</name></member>
+      <member refid="classEquation__base_1af3a3a81771a3311cf5efafb4ed775927" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>calculer_pas_de_temps</name></member>
+      <member refid="classEquation__base_1ac87d56d8708c46e427c54c128044e11b" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>calculer_pas_de_temps_locaux</name></member>
+      <member refid="classEquation__base_1a05677b03f40b65c55a6934bfba90f17c" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>champ_conserve</name></member>
+      <member refid="classEquation__base_1aba99570514e9c07e430f4b773a33048a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>champ_convecte</name></member>
+      <member refid="classEquation__base_1ad687c312e72dcbc783cf597af5927b07" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>check_int_overflow</name></member>
+      <member refid="classEquation__base_1aad9e8feabd1876a94ca11d144ee18377" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>close_save_file</name></member>
+      <member refid="classEquation__base_1a68c77bfc9fb39474ddc481495710c40e" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>completer</name></member>
+      <member refid="classEquation__base_1a5f5e5943b4526103cdd611ac2f721fbc" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classEquation__base_1a5c06feed3927199a5ff70fb1c3a10f2a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>corriger_derivee_expl</name></member>
+      <member refid="classEquation__base_1ab1a4dff7878cb1c47efb1ecb7b5b31ae" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>corriger_derivee_impl</name></member>
+      <member refid="classEquation__base_1ab9c5226bc9b23689b0945b50fd61890a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>creer_champ</name></member>
+      <member refid="classEquation__base_1a392b9c1e46ecdbbbe6c5a1025173b878" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>data_a_sauvegarder</name></member>
+      <member refid="classConvection__Diffusion__std_1a03a8ea82b9f455bfdcabdfd1ab16a94a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>data_a_sauvegarder_base</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classConvection__Diffusion__std_1a96bc2c2496bb4a34655a5fae5109339d" prot="private" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Declare_base</name></member>
+      <member refid="classEquation__base_1ac1fef693ad721bbeb75f440d75ed8433" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>derivee_en_temps</name></member>
+      <member refid="classEquation__base_1ab0a06f79f0f3c2d242a7a52aa63b9696" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>derivee_en_temps</name></member>
+      <member refid="classEquation__base_1a20d04d53bd0c4b48aa923c2b328bb1e3" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>derivee_en_temps_conv</name></member>
+      <member refid="classEquation__base_1a97aa87b0cf6205ef437a6774adf1bd47" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>derivee_en_temps_inco</name></member>
+      <member refid="classEquation__base_1a9bf3284dd223e0e0888ad769af73cb6e" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>derivee_en_temps_inco_transport</name></member>
+      <member refid="classEquation__base_1a5ebccb0e2e848ef3155bc09f809077b5" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>diag_</name></member>
+      <member refid="classEquation__base_1a55b98fab5e0172d6c7bc6e6ba3558df4" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>diffusion_multi_scalaire</name></member>
+      <member refid="classEquation__base_1afacaba7038093dc4b8c26074169467ad" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>diffusion_multi_scalaire_</name></member>
+      <member refid="classConvection__Diffusion__std_1a834f45e444f7b89a8ac81c00eaf0176a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classConvection__Diffusion__std_1a6ef0dc650f9d40a40f64a8b5d7ddadde" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>diffusivite_pour_transport</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>dimension</name></member>
+      <member refid="classEquation__base_1a5f51df433a67d9aa3da8055e4d8c3b5c" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>dimensionner_blocs</name></member>
+      <member refid="classEquation__base_1abead2a90d8fb40f857e21a80a202b26b" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>dimensionner_matrice</name></member>
+      <member refid="classEquation__base_1a2f62dcd0761768631cbdc25279c9f48e" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>dimensionner_matrice_sans_mem</name></member>
+      <member refid="classEquation__base_1a070306517a5f65eb11c64425986982fd" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classEquation__base_1adcfcc5708fc47d3ae3d5c617da42b489" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>disable_equation_residual</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>disable_TU</name></member>
+      <member refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>discretisation</name></member>
+      <member refid="classEquation__base_1ac849b71b99dbe338b049a7728208c965" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>discretiser</name></member>
+      <member refid="classEquation__base_1af36aa592e88858ac5fdd7f23d3f5018d" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>domaine_application</name></member>
+      <member refid="classEquation__base_1a9dd19036ab6bf1d01b103c6f609b8efe" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classEquation__base_1a03157640014c98fe23a19782686b75be" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classEquation__base_1aee9aeebf76d9f659f7032cf7fb0b8a02" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>domaine_dis</name></member>
+      <member refid="classEquation__base_1aa51f7c85698a22feb9e5a5f4616b26c6" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>domaine_dis</name></member>
+      <member refid="classEquation__base_1a83044a97de577592dea52668854266cd" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>dt_op_bak</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>duplique</name></member>
+      <member refid="classEquation__base_1a02b61eaa806df06140933f8aa68b08cb" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>equation_non_resolue</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>exit</name></member>
+      <member refid="classEquation__base_1af86f7f88fba1214b9f1f185ce8eb4de2" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>expression_residu</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>format_precision_geom</name></member>
+      <member refid="classEquation__base_1a57ba60a2c32601e3441c838ab2d74332" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_champ</name></member>
+      <member refid="classEquation__base_1a3d2dcd5a3afc21ebc59d1910f34e10b7" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_fonc_champ_conserve</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_info</name></member>
+      <member refid="classEquation__base_1a26d510ff71f9cc45143a9f16bf4bd24a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_modele</name></member>
+      <member refid="classEquation__base_1a6dba1d00b00089f5083308173341a271" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>get_object_id</name></member>
+      <member refid="classEquation__base_1a7a76cecb22f2acd998cd2f9a2f699f7b" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>get_residu</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classEquation__base_1a6aaf20fa7a6c5ebe6b8ca1d662c564b8" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>get_time_factor</name></member>
+      <member refid="classEquation__base_1abd67532530f67b3305703a130a5d823a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Gradient_conjugue_diff_impl</name></member>
+      <member refid="classEquation__base_1a11e78e2032c0b2affa71f4b27de07368" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Gradient_conjugue_diff_impl</name></member>
+      <member refid="classEquation__base_1a78cd47a1fec07d9a6f9e5eecef5f48da" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>has_champ</name></member>
+      <member refid="classEquation__base_1aee46d2f121b6c4c1650d6a7fd9df29a0" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Convection_Diffusion_std</scope><name>has_champ</name></member>
+      <member refid="classEquation__base_1a20410cc0edf01fb3ce5bc88dad8bed52" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>has_champ_conserve</name></member>
+      <member refid="classEquation__base_1a315ed14d5275cce38920719bfadf49be" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>has_champ_convecte</name></member>
+      <member refid="classEquation__base_1ad14417612f0546058ce18eafd21f5017" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>HAS_POINTER</name></member>
+      <member refid="classEquation__base_1afca0189bb5c798b9fe69b8468fe0be73" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>has_time_factor_</name></member>
+      <member refid="classEquation__base_1aef791a4afd5964d1b4dfd3d2ac3f5e5e" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>implicite_</name></member>
+      <member refid="classEquation__base_1a627afccc65b5c1031a9fdeaadb2c6e62" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>impr</name></member>
+      <member refid="classEquation__base_1a700f2903c7c3f2f73fdde7a45bfb03be" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>imprime_residu</name></member>
+      <member refid="classEquation__base_1a3a09acdaf5b1f20b2dbc979c17f7d896" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>imprimer</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classConvection__Diffusion__std_1a88e760204e93420fd1678f243260df7b" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>inconnue</name></member>
+      <member refid="classConvection__Diffusion__std_1a4a8392c9652199ced4282a986a92f1fc" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>inconnue</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>info_obj</name></member>
+      <member refid="classEquation__base_1a462da14d51ee8cc39b4cc16a5b3d9055" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>init_champ_conserve</name></member>
+      <member refid="classEquation__base_1ab0c34611efd60dce2e9b6dfbcf618f96" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>init_champ_convecte</name></member>
+      <member refid="classEquation__base_1a1d9841099162a975984bddecc7af4d2f" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>init_save_file</name></member>
+      <member refid="classEquation__base_1a888dc3f8eb5fb54b05250b6b704a6997" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>initialise_residu</name></member>
+      <member refid="classEquation__base_1abe73d22669a839178f90e5afa713e616" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>initTimeStep</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Kokkos_exit</name></member>
+      <member refid="classEquation__base_1a1205f9bb2a02982c5f456fdd781d9e66" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>le_type</name></member>
+      <member refid="classEquation__base_1a6dae2cb8a228b0e3a6d90042fd75f360" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>les_sources</name></member>
+      <member refid="classEquation__base_1ab6b9cf5a37fb8759a701c5ee30af63c3" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>limpr</name></member>
+      <member refid="classEquation__base_1aae2993902e88118b9f1ed77a0fafb6c9" prot="protected" virt="virtual"><scope>Convection_Diffusion_std</scope><name>lire</name></member>
+      <member refid="classEquation__base_1a5850585c3a61422d75c0849a6e8cf769" prot="protected" virt="virtual"><scope>Convection_Diffusion_std</scope><name>lire_cl</name></member>
+      <member refid="classEquation__base_1a1948b10edf8744391a782423c3f5f538" prot="protected" virt="virtual"><scope>Convection_Diffusion_std</scope><name>lire_cond_init</name></member>
+      <member refid="classConvection__Diffusion__std_1ae582d3212606486028f051dad02ac3a0" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classEquation__base_1ad1006d00fdef338af22a7559d05566b1" prot="protected" virt="virtual"><scope>Convection_Diffusion_std</scope><name>lire_sources</name></member>
+      <member refid="classEquation__base_1a5bf207083bc040805dace0d92aa863e7" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>LIST</name></member>
+      <member refid="classEquation__base_1a690c78ec3eec197aafb3eb5a8e3a8b16" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>list_champ_combi</name></member>
+      <member refid="classEquation__base_1a4988730ccb465999b227ecc567e156d9" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>matrice_init</name></member>
+      <member refid="classEquation__base_1a042bd4294c5adb3efaf6c95519a1cabd" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>matrice_stockee</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>me</name></member>
+      <member refid="classEquation__base_1a62757c897af44f346e3a9e65e38aa122" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>mettre_a_jour</name></member>
+      <member refid="classEquation__base_1a4c0471cb5adac12f10dca133e361135f" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>mettre_a_jour_champs_conserves</name></member>
+      <member refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>milieu</name></member>
+      <member refid="classEquation__base_1a49a929e04d89f155b42d74d1ac4d8a93" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>milieu</name></member>
+      <member refid="classEquation__base_1a8ff1bdbe0842649404d010dae3755c25" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>node_master</name></member>
+      <member refid="classEquation__base_1a9e2143e3ca5f68c2c02220b7fec06248" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>nom_</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>nom_du_cas</name></member>
+      <member refid="classConvection__Diffusion__std_1ade25f9d00c31f0ac21ae9f73b9148d0a" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>nombre_d_operateurs</name></member>
+      <member refid="classEquation__base_1a71f8f8c8cd2feff508cfc550a2ba8045" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>nombre_d_operateurs_tot</name></member>
+      <member refid="classEquation__base_1a2e6fb89d8de4f991a9aa75208ceb542b" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>Objet_U</name></member>
+      <member refid="classConvection__Diffusion__std_1afddae7a210f10abe0d02ece8ec90d4a6" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__base_1a53b301515d2abbf7237fc510183e1247" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Convection_Diffusion_std</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__base_1a22189d243b6e1d57832bdbac9cf0695e" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Convection_Diffusion_std</scope><name>OBS_PTR</name></member>
+      <member refid="classEquation__base_1a3cf31d5b0ae08345eaba6d4f257c25ed" prot="protected" virt="non-virtual" ambiguityscope="Equation_base::"><scope>Convection_Diffusion_std</scope><name>OBS_PTR</name></member>
+      <member refid="classConvection__Diffusion__std_1acfb3e5da249873b1f878c2aa5868e534" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>operateur</name></member>
+      <member refid="classConvection__Diffusion__std_1a9930b7b2ef071344ec46eacff292cad5" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>operateur</name></member>
+      <member refid="classEquation__base_1ac3c35ca07590fde20924f41e14919979" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>operateur_fonctionnel</name></member>
+      <member refid="classEquation__base_1aa20b65412422945c03ef9147390672ae" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>operateur_fonctionnel</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>operator=</name></member>
+      <member refid="classEquation__base_1a439b12137213dbea0a01c6f7ef4af694" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a5f867962e82a8c4d43548b1c27410c42" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a746b62f40cdfbfad56d66f274d3c3f2c" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1aed7a629a3fa74d791e21fd3a53471506" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1ae1bc37c8e040434720d98ac4059f12a4" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a14e0d9229c68180c72c9493f58455665" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a3ebefab5fce9ffb7d5ee328eb25ed234" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1afb2afdb1ba7e491fb4d956024f972a61" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>OWN_PTR</name></member>
+      <member refid="classEquation__base_1a66cea7302e08728fb68c4d28e12f2f57" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>positive_unkown</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>precision_geom</name></member>
+      <member refid="classEquation__base_1a6ec47139247e984d286c2e13d0a92ff7" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>printOn</name></member>
+      <member refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>probleme</name></member>
+      <member refid="classEquation__base_1a275379ec75330ae493bc1e5a14342566" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>probleme</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>readOn</name></member>
+      <member refid="classEquation__base_1ab0ac04151f764d6d5e55aa6da34d68f3" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>reculer</name></member>
+      <member refid="classEquation__base_1a1bf3576c178a1c2c907467a526347153" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>reprendre</name></member>
+      <member refid="classConvection__Diffusion__std_1a87cba2432b9aa0215de377777fdf9e0f" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>reprendre_base</name></member>
+      <member refid="classEquation__base_1ad32db22960f7dc8b0f1432a21c0279e9" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>resetTime</name></member>
+      <member refid="classEquation__base_1a6e0b2000e5d5fb7d5a1588a41d1b0dd6" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>residu_initial</name></member>
+      <member refid="classEquation__base_1a9b074257155c1b095a254fa90a2447d7" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>sauvegarder</name></member>
+      <member refid="classConvection__Diffusion__std_1a8d505acd31c2defd6ae53d3e09468547" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>sauvegarder_base</name></member>
+      <member refid="classEquation__base_1abc11e51aa75b4c7aa55c27f71eb2f2c4" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>schema_temps</name></member>
+      <member refid="classEquation__base_1a718611fc2812ef3400d2279403a19dcf" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>schema_temps</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>self_cast</name></member>
+      <member refid="classEquation__base_1a41239f371a7cb76961220ffd3f5b8f34" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>set_calculate_time_derivative</name></member>
+      <member refid="classEquation__base_1a4f5435ba83d4fd937142b4833f1999ba" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>set_diffusion_multi_scalaire</name></member>
+      <member refid="classConvection__Diffusion__std_1a6c0b61c59140f9f98eaf9b794f64cee0" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>set_param</name></member>
+      <member refid="classEquation__base_1a2e2f686482b7b042a251b46e7cac9531" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>set_residuals</name></member>
+      <member refid="classEquation__base_1a4b4effb48f1841ec8c743d6eb29f8a51" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>solv_masse</name></member>
+      <member refid="classEquation__base_1aa3aa30317beae7097931edce8a9db52b" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>solv_masse</name></member>
+      <member refid="classEquation__base_1a3c8ac50e3e7b6ed29024a43e828a5396" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>sources</name></member>
+      <member refid="classEquation__base_1a982f6ef9f7995d29492be0b4e054e18b" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>sources</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classEquation__base_1afd09d18db565d1acb431885b9c6d4a55" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>sys_invariant_</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Convection_Diffusion_std</scope><name>taille_memoire</name></member>
+      <member refid="classConvection__Diffusion__std_1aff629b8054c74fb1244b37c79aa6a3bd" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>terme_convectif</name></member>
+      <member refid="classConvection__Diffusion__std_1a7507bbda8e79eb03a9099ccd35af2275" prot="protected" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>terme_diffusif</name></member>
+      <member refid="classEquation__base_1a769801bc7ebb7a6be88e34d02cabc26b" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>updateGivenFields</name></member>
+      <member refid="classEquation__base_1a4b5f65f0f29ea9c4c90d7caea6f2e270" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>valider_iteration</name></member>
+      <member refid="classEquation__base_1a2fd1ca87462cdd2e3f249e8d5917beab" prot="protected" virt="virtual"><scope>Convection_Diffusion_std</scope><name>verif_Cl</name></member>
+      <member refid="classEquation__base_1aa954b9346961a237dcbe399a1648c0e5" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classEquation__base_1a52b47bb2cea72fde57a0e0f942c3444e" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>verifie_ch_init_nb_comp_cl</name></member>
+      <member refid="classConvection__Diffusion__std_1adf3c17f8f33b204062c1128452edbe5b" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>vitesse_pour_transport</name></member>
+      <member refid="classConvection__Diffusion__std_1ad2d177939307dc824ddc25ccc4fe120a" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>vitesse_transportante</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Convection_Diffusion_std</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Convection_Diffusion_std</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

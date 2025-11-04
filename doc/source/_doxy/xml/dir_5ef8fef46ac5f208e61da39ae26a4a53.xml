@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_5ef8fef46ac5f208e61da39ae26a4a53" kind="dir">
+    <compoundname>Sources</compoundname>
+    <innerdir refid="dir_f9eb2b5cbf804e3bcf0dcae550d6142b">Canal</innerdir>
+    <innerdir refid="dir_4b249f1e5fd9881cfd7a2550ff2225df">Dilatable</innerdir>
+    <innerdir refid="dir_788306424f6fe5758d59c102fdaf195a">PDC</innerdir>
+    <innerdir refid="dir_ee4655942324cc17a16406503f9cad09">Sources_It_Eval</innerdir>
+    <innerfile refid="Source__Generique__VEF_8cpp">Source_Generique_VEF.cpp</innerfile>
+    <innerfile refid="Source__Generique__VEF_8h">Source_Generique_VEF.h</innerfile>
+    <innerfile refid="Terme__Boussinesq__VEF__Face_8cpp">Terme_Boussinesq_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Boussinesq__VEF__Face_8h">Terme_Boussinesq_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Boussinesq__VEFPreP1B__Face_8cpp">Terme_Boussinesq_VEFPreP1B_Face.cpp</innerfile>
+    <innerfile refid="Terme__Boussinesq__VEFPreP1B__Face_8h">Terme_Boussinesq_VEFPreP1B_Face.h</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__Echange__Impose__VEF__Face_8cpp">Terme_Puissance_Thermique_Echange_Impose_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__Echange__Impose__VEF__Face_8h">Terme_Puissance_Thermique_Echange_Impose_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Acceleration__VEF__Face_8cpp">Terme_Source_Acceleration_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Acceleration__VEF__Face_8h">Terme_Source_Acceleration_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Decroissance__Radioactive__VEF__Face_8cpp">Terme_Source_Decroissance_Radioactive_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Decroissance__Radioactive__VEF__Face_8h">Terme_Source_Decroissance_Radioactive_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Qdm__lambdaup__VEF__Face_8cpp">Terme_Source_Qdm_lambdaup_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Qdm__lambdaup__VEF__Face_8h">Terme_Source_Qdm_lambdaup_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Qdm__VEF__Face_8cpp">Terme_Source_Qdm_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Qdm__VEF__Face_8h">Terme_Source_Qdm_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Rappel__T__VEF__Face_8cpp">Terme_Source_Rappel_T_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Rappel__T__VEF__Face_8h">Terme_Source_Rappel_T_VEF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Th__TdivU__VEF__Face_8cpp">Terme_Source_Th_TdivU_VEF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Th__TdivU__VEF__Face_8h">Terme_Source_Th_TdivU_VEF_Face.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/"/>
+  </compounddef>
+</doxygen>

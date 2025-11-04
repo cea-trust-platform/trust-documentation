@@ -1,0 +1,265 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPostraitements" kind="class" language="C++" prot="public">
+    <compoundname>Postraitements</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTOWN_PTRPostraitement_base</basecompoundref>
+    <includes local="no">Postraitements.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPostraitements_1af30e917b8a33c7937e734cc6d2e0cad0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Postraitements::Declare_instanciable</definition>
+        <argsstring>(Postraitements)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classPostraitements" kindref="compound">Postraitements</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="34" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPostraitements_1ae3e4a1e9eb91338b2622f49e89a955cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::completer</definition>
+        <argsstring>()</argsstring>
+        <name>completer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="299" bodyend="306"/>
+        <references refid="classPostraitement__base_1a6716f460b148ee627b35b7d0b571e05e">Postraitement_base::completer</references>
+        <referencedby refid="classProbleme__base_1ad0e1472b628450d9748a712ab5f55a2e" compoundref="Probleme__base_8cpp" startline="326" endline="342">Probleme_base::completer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1a48e94aba3fa023d628e1bfcee73eedff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::completer_sondes</definition>
+        <argsstring>()</argsstring>
+        <name>completer_sondes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="308" bodyend="315"/>
+        <references refid="classPostraitement__base_1ad1e28d46d63b6f05e1a81fb159d19591" compoundref="Postraitement__base_8h" startline="52" endline="52">Postraitement_base::completer_sondes</references>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1a12d1c4c47f51c2531fbd3ba698a76a68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::finir</definition>
+        <argsstring>()</argsstring>
+        <name>finir</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="269" bodyend="276"/>
+        <references refid="classPostraitement__base_1a3aec1871bcaa6f492b93a335add568d2" compoundref="Postraitement__base_8h" startline="47" endline="47">Postraitement_base::finir</references>
+        <referencedby refid="classProbleme__base_1a948dcfd838e16c3d9e428c7752ea7123" compoundref="Probleme__base_8cpp" startline="1124" endline="1139">Probleme_base::finir</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1ad03005b66e09dbdc6d197774b78f3ada" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::init</definition>
+        <argsstring>()</argsstring>
+        <name>init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="260" bodyend="267"/>
+        <references refid="classPostraitement__base_1a624178fc83207155c21cdad303f866aa" compoundref="Postraitement__base_8h" startline="46" endline="46">Postraitement_base::init</references>
+        <referencedby refid="classProbleme__base_1a6d88b0185198c92d6ea119e0d6ca0a62" compoundref="Probleme__base_8cpp" startline="427" endline="470">Probleme_base::init_postraitements</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1ae404476a38604567bd154654a0bed23d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Postraitements::lire_postraitements</definition>
+        <argsstring>(Entree &amp;is, const Motcle &amp;motlu, const Probleme_base &amp;mon_pb)</argsstring>
+        <name>lire_postraitements</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classProbleme__base" kindref="compound">Probleme_base</ref> &amp;</type>
+          <declname>mon_pb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="37" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="103" bodyend="222"/>
+        <references refid="classNom_1a53b723a5e954eff5d84bbcce22996bc6" compoundref="Nom_8h" startline="86" endline="90">Nom::contient</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classMotcles_1abd4862b9c8552b88a48927e67bd48d9d" compoundref="Motcle_8cpp" startline="321" endline="331">Motcles::search</references>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1af73afcb31f834ac13a2912b5b1a5b78e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::mettre_a_jour</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="242" bodyend="249"/>
+        <references refid="classPostraitement__base_1aee0288a4acc86f25c7f5bc6351c13c34" compoundref="Postraitement__base_8cpp" startline="61" endline="64">Postraitement_base::mettre_a_jour</references>
+        <referencedby refid="classProbleme__base_1a8644e9f76f6dfdd087eb56938997fc57" compoundref="Probleme__base_8cpp" startline="939" endline="971">Probleme_base::mettre_a_jour</referencedby>
+        <referencedby refid="classPb__Dilatable__base_1a3d5e844b827dae16d241ca9bfd35b08b" compoundref="Pb__Dilatable__base_8cpp" startline="79" endline="95">Pb_Dilatable_base::mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1ac49d716c8bbc7d93d4c0e6a1f44d55d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::postraiter</definition>
+        <argsstring>()</argsstring>
+        <name>postraiter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="224" bodyend="231"/>
+        <references refid="classPostraitement__base_1a0766b39ce62af259fd3e4188f14f2886">Postraitement_base::postraiter</references>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1a503f045bbd50cdc8008907c58295e83f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Postraitements::reprendre</definition>
+        <argsstring>(Entree &amp;is) override</argsstring>
+        <name>reprendre</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="44" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="289" bodyend="297"/>
+        <references refid="classPostraitement__base_1a6784ec67f00bfc74d3eb125280afc397" compoundref="Postraitement__base_8cpp" startline="71" endline="74">Postraitement_base::reprendre</references>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1aae403aaafb145144ee977e1f3c6cc170" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::resetTime</definition>
+        <argsstring>(double t, const std::string dirname)</argsstring>
+        <name>resetTime</name>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>const std::string</type>
+          <declname>dirname</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="47" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="251" bodyend="258"/>
+        <references refid="classPostraitement__base_1a8611b8d048c0cf94508140dc859ecc41">Postraitement_base::resetTime</references>
+        <referencedby refid="classProbleme__base__interface__proto_1ad6ad56555859466abcad33457015bf8d" compoundref="Probleme__base__interface__proto_8cpp" startline="185" endline="221">Probleme_base_interface_proto::resetTimeWithDir_impl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1a82cb69f5a241c22a54403408db479b6d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Postraitements::sauvegarder</definition>
+        <argsstring>(Sortie &amp;os) const override</argsstring>
+        <name>sauvegarder</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="43" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="278" bodyend="287"/>
+        <references refid="classPostraitement__base_1aebe29f7a907c64d05cf990facbd1d839" compoundref="Postraitement__base_8cpp" startline="66" endline="69">Postraitement_base::sauvegarder</references>
+        <referencedby refid="classProbleme__base_1a002124938ee01d00992193f04b7a30e8" compoundref="Probleme__base_8cpp" startline="485" endline="499">Probleme_base::sauvegarder</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classPostraitements_1abdbc93cbc82df638b9f1b639cb9c11d5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Postraitements::traiter_postraitement</definition>
+        <argsstring>()</argsstring>
+        <name>traiter_postraitement</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.cpp" bodystart="233" bodyend="240"/>
+        <references refid="classPostraitement__base_1a0766b39ce62af259fd3e4188f14f2886">Postraitement_base::postraiter</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>LISTOWN_PTRPostraitement_base</label>
+      </node>
+      <node id="1">
+        <label>Postraitements</label>
+        <link refid="classPostraitements"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>LISTOWN_PTRPostraitement_base</label>
+      </node>
+      <node id="1">
+        <label>Postraitements</label>
+        <link refid="classPostraitements"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" line="32" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Postraitements.h" bodystart="33" bodyend="48"/>
+    <listofallmembers>
+      <member refid="classPostraitements_1ae3e4a1e9eb91338b2622f49e89a955cf" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>completer</name></member>
+      <member refid="classPostraitements_1a48e94aba3fa023d628e1bfcee73eedff" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>completer_sondes</name></member>
+      <member refid="classPostraitements_1af30e917b8a33c7937e734cc6d2e0cad0" prot="private" virt="non-virtual"><scope>Postraitements</scope><name>Declare_instanciable</name></member>
+      <member refid="classPostraitements_1a12d1c4c47f51c2531fbd3ba698a76a68" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>finir</name></member>
+      <member refid="classPostraitements_1ad03005b66e09dbdc6d197774b78f3ada" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>init</name></member>
+      <member refid="classPostraitements_1ae404476a38604567bd154654a0bed23d" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>lire_postraitements</name></member>
+      <member refid="classPostraitements_1af73afcb31f834ac13a2912b5b1a5b78e" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>mettre_a_jour</name></member>
+      <member refid="classPostraitements_1ac49d716c8bbc7d93d4c0e6a1f44d55d4" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>postraiter</name></member>
+      <member refid="classPostraitements_1a503f045bbd50cdc8008907c58295e83f" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>reprendre</name></member>
+      <member refid="classPostraitements_1aae403aaafb145144ee977e1f3c6cc170" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>resetTime</name></member>
+      <member refid="classPostraitements_1a82cb69f5a241c22a54403408db479b6d" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>sauvegarder</name></member>
+      <member refid="classPostraitements_1abdbc93cbc82df638b9f1b639cb9c11d5" prot="public" virt="non-virtual"><scope>Postraitements</scope><name>traiter_postraitement</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

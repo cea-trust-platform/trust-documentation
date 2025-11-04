@@ -1,13 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,84,179,112"/>
-<area shape="rect" id="Node000001" href="$classOp__Diff__PolyMAC__Elem.html" title=" " alt="" coords="227,57,402,85"/>
-<area shape="poly" id="edge1599_Node000000_Node000001" title=" " alt="" coords="194,83,226,79,227,84,194,88"/>
-<area shape="rect" id="Node000005" href="$classOp__Diff__PolyMAC__Face.html" title=" " alt="" coords="228,109,400,137"/>
-<area shape="poly" id="edge1603_Node000000_Node000005" title=" " alt="" coords="194,107,228,111,227,116,194,112"/>
-<area shape="rect" id="Node000002" href="$classOp__Diff__Nonlinear__PolyMAC__Elem.html" title=" " alt="" coords="450,5,695,33"/>
-<area shape="poly" id="edge1600_Node000001_Node000002" title=" " alt="" coords="401,51,500,31,501,36,402,56"/>
-<area shape="rect" id="Node000003" href="$classOp__Dift__Nonlinear__PolyMAC__Elem.html" title=" " alt="" coords="450,57,695,85"/>
-<area shape="poly" id="edge1601_Node000001_Node000003" title=" " alt="" coords="418,68,450,68,450,74,418,74"/>
-<area shape="rect" id="Node000004" href="$classOp__Dift__PolyMAC__Elem.html" title=" " alt="" coords="485,109,660,137"/>
-<area shape="poly" id="edge1602_Node000001_Node000004" title=" " alt="" coords="402,86,501,106,500,111,401,91"/>
+<area shape="rect" id="node1" href="$classmon__main.html" title="Classe creee et executee par main() et lors d&#39;une execution TRUST a travers Python." alt="" coords="5,5,96,32"/>
 </map>

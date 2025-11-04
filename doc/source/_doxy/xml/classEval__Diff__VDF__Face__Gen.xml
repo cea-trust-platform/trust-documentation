@@ -1,0 +1,2023 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classEval__Diff__VDF__Face__Gen" kind="class" language="C++" prot="public">
+    <compoundname>Eval_Diff_VDF_Face_Gen</compoundname>
+    <basecompoundref refid="classEval__VDF__Face" prot="public" virt="non-virtual">Eval_VDF_Face</basecompoundref>
+    <basecompoundref refid="classEvaluateur__VDF" prot="public" virt="non-virtual">Evaluateur_VDF</basecompoundref>
+    <includes local="no">Eval_Diff_VDF_Face_Gen.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename DERIVED_T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classEval__Diff__VDF__Face__Gen_1a5c57cab42c3d757c9014daad0496fecb" prot="public" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::ACTIVATE_TAU_TR</definition>
+        <argsstring></argsstring>
+        <name>ACTIVATE_TAU_TR</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="35" column="57" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEval__Diff__VDF__Face__Gen_1aceeafeffdad9256540390432defb5a63" prot="public" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::IS_ANISO</definition>
+        <argsstring></argsstring>
+        <name>IS_ANISO</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="35" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEval__Diff__VDF__Face__Gen_1a78b9721def83ebef7ddb569282a2c2a9" prot="public" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::IS_TURB</definition>
+        <argsstring></argsstring>
+        <name>IS_TURB</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="35" column="25" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classEval__Diff__VDF__Face__Gen_1a591cb7e4e13917bfa7f1ef3922b43b1e" prot="public" static="yes" mutable="no">
+        <type>constexpr bool</type>
+        <definition>constexpr bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::TEST_COEFFS</definition>
+        <argsstring></argsstring>
+        <name>TEST_COEFFS</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="35" column="44" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classEval__Diff__VDF__Face__Gen_1a05a83f0b93baffd8c011ed2e9486b512" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr double</type>
+        <definition>constexpr double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::EPS</definition>
+        <argsstring></argsstring>
+        <name>EPS</name>
+        <initializer>= 1e-6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="126" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1aacc782857cbe3baebfca32c1c8116e1c" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="88" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="230" bodyend="245"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a8bbcab0579d699a86bb460f3544ef413" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="91" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="248" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1aa2b587812b4122010812ec8ef90240e5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="94" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="369" bodyend="384"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a70faff84c05fa74db32dbd04a12b0904" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii1_2</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii3_4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj1_2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="97" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="285" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a3866c5defa88843b7e6c9aeaf81c4c5d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii1_2</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii3</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj1_2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="101" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="321" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a2737232dc120db7a802028468ae7aa23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt;(Arete_Type==Type_Flux_Arete::NAVIER), void &gt;</type>
+        <definition>std::enable_if_t&lt;(Arete_Type==Type_Flux_Arete::NAVIER), void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii1_2</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>aii3</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>ajj1_2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="104" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="349" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a349b4886d86b78dbdd6aea3aa9181057" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt;(Arete_Type==Type_Flux_Arete::COIN_FLUIDE), void &gt;</type>
+        <definition>std::enable_if_t&lt; (Arete_Type == Type_Flux_Arete::COIN_FLUIDE), void&gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_arete</definition>
+        <argsstring>(const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="107" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="107" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a7fb2de311af57f7ca3c3a8d535089985" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Fa7</type>
+            <declname>Fa7_Type</declname>
+            <defname>Fa7_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::SORTIE_LIBRE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Fa7_Type == Type_Flux_Fa7::SORTIE_LIBRE, void&gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_fa7</definition>
+        <argsstring>(const DoubleTab *, int, const Neumann_sortie_libre &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_fa7</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>const <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> &amp;</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="82" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="82" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a6fbfbcac4780317ce44dfd0bf11a45e0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Fa7</type>
+            <declname>Fa7_Type</declname>
+            <defname>Fa7_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::coeffs_fa7</definition>
+        <argsstring>(const DoubleTab *, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>coeffs_fa7</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>elem</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>f1</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>f2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="85" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="213" bodyend="227"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ae8b3b67faf58f67258339e667fcf6837" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="52" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="42" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a2a007b086e12b0885a4d2828d7f5fec5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="55" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="57" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a6de9841c86c36296cb362b5e38f57807" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="58" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="88" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ab2be23ac524aa58f3e2d40e53b122048" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt;(Arete_Type==Type_Flux_Arete::NAVIER), void &gt;</type>
+        <definition>std::enable_if_t&lt;(Arete_Type==Type_Flux_Arete::NAVIER), void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="61" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="127" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a59654722ec03644e3bbe34006baa3af8" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux3</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux1_2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="65" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="149" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ab535ea7972a0a23a84541b25451e7936" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux3_4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux1_2</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="68" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="191" bodyend="206"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1abee6a6f1e3a9687fe799d6845069e56d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::COIN_FLUIDE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type == Type_Flux_Arete::COIN_FLUIDE, void&gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_arete</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>flux_arete</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="71" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="71" bodyend="75"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ac45fb419b54949f17a2d7280398b90f2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Fa7</type>
+            <declname>Fa7_Type</declname>
+            <defname>Fa7_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::SORTIE_LIBRE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Fa7_Type == Type_Flux_Fa7::SORTIE_LIBRE, void&gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_fa7</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, const Neumann_sortie_libre &amp;, int, Type_Double &amp;) const</argsstring>
+        <name>flux_fa7</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>const <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> &amp;</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="46" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a745254e95513fe2465bebce9bd47683b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Fa7</type>
+            <declname>Fa7_Type</declname>
+            <defname>Fa7_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::flux_fa7</definition>
+        <argsstring>(const DoubleTab &amp;, const DoubleTab *, int, int, int, Type_Double &amp;) const</argsstring>
+        <name>flux_fa7</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>inco</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>elem</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="49" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="29" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a4110184132918969b6f3de6d6ec91477" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::check_error</definition>
+        <argsstring>(const char *, const int, const int, const Type_Double &amp;, const Type_Double &amp;, const Type_Double &amp;) const</argsstring>
+        <name>check_error</name>
+        <param>
+          <type>const char *</type>
+          <defname>nom_funct</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>Type_Flux</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>ncomp</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>f1</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>flux_p</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>flux_m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="128" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="391" bodyend="408"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ae895c80f3d961a1b21d514b840a318c5" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>const DoubleTab&amp; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::k_elem</definition>
+        <argsstring>() const</argsstring>
+        <name>k_elem</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="123" column="26" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="123" bodyend="123"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a43205294ec9772c276576b4562a5044c" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_lam</definition>
+        <argsstring>(int i, int j=0) const</argsstring>
+        <name>nu_lam</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="116" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="116" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a2c64f966a90ae97bebe367f319d8b19f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_lam_mean_2pts</definition>
+        <argsstring>(int i, int j, int compo=0) const</argsstring>
+        <name>nu_lam_mean_2pts</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compo</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="118" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="118" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1aad86c87edfddecfb70117b48f5fa03fb" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_lam_mean_4pts</definition>
+        <argsstring>(int i, int j, int k, int l, int compo=0) const</argsstring>
+        <name>nu_lam_mean_4pts</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compo</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="117" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="117" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a8b1bb40f32f8d65872a11eef8729f7e4" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_mean_2pts</definition>
+        <argsstring>(int i=0, int j=0, int compo=0) const</argsstring>
+        <name>nu_mean_2pts</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compo</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="114" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="114" bodyend="114"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a912b70160a2d3de3549f7ee570e6fd37" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_mean_4pts</definition>
+        <argsstring>(int i, int j, int k, int l, int compo=0) const</argsstring>
+        <name>nu_mean_4pts</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>l</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compo</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="115" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="115" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a372cd348403b7529a5d0619e8005ecd6" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::nu_turb</definition>
+        <argsstring>(int i, int compo=0) const</argsstring>
+        <name>nu_turb</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>compo</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="119" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="119" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ab5d3378b27658d13bd37d9f0014fbfec" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::porosity_</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>porosity_</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="111" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="111" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a8d5f86e765e434d8baf05c5250323e18" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::surface_</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>surface_</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="110" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="110" bodyend="110"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a5704932ee2fb4262b3cff90d17610d7f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::tau_tan</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>tau_tan</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="120" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="120" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a416f80fd46398d9c44753faa5e8b12e8" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_arete</definition>
+        <argsstring>(const int, const int, const int, const int, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_arete</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="151" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="497" bodyend="503"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a159e7f476b7ba778a1e43c0546f4c78d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::MIXTE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_arete</definition>
+        <argsstring>(const int, const int, const int, const int, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_arete</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="155" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="507" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a94189c6b8bd7ceeff518ba41c363bffe" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_arete</definition>
+        <argsstring>(const int, const int, const int, const int, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_arete</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="159" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="538" bodyend="544"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a06e3719f7faa88232f65fac136330fac" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_arete</definition>
+        <argsstring>(const int, const int, const int, const int, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_arete</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii3_4</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="163" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="517" bodyend="523"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1addaafa0f49c23f10ba86150110ebf00f" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_arete</definition>
+        <argsstring>(const int, const int, const int, const int, const Type_Double &amp;, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_arete</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii1_2</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>aii3</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="167" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="527" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a22e78f444d7e44557db2d59c27c717c5" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE||Arete_Type==Type_Flux_Arete::MIXTE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::INTERNE||Arete_Type==Type_Flux_Arete::MIXTE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_common</definition>
+        <argsstring>(const int, const int, const int, const int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_common</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_p</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="132" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="412" bodyend="422"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a6d9e7f94532670a20bbcc9956944f5ac" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PAROI||Arete_Type==Type_Flux_Arete::NAVIER_PAROI, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_common</definition>
+        <argsstring>(const int, const int, const int, const int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_common</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_p</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="136" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="426" bodyend="437"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1ac7ac040955e5fa2596465e391addf808" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::PERIODICITE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_common</definition>
+        <argsstring>(const int, const int, const int, const int, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_common</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac4</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_p</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_m</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="144" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="466" bodyend="477"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a86b062ca7bff664e972d88ffe007ab95" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Arete</type>
+            <declname>Arete_Type</declname>
+            <defname>Arete_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt;</type>
+        <definition>std::enable_if_t&lt; Arete_Type==Type_Flux_Arete::FLUIDE||Arete_Type==Type_Flux_Arete::NAVIER_FLUIDE||Arete_Type==Type_Flux_Arete::PAROI_FLUIDE, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_common</definition>
+        <argsstring>(const int, const int, const int, const int, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;, Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_common</name>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac3</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>signe</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_p3</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_m3</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_p12</defname>
+        </param>
+        <param>
+          <type>Type_Double &amp;</type>
+          <defname>flux_m12</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="140" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="441" bodyend="462"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a26d012e58f5388ab4ec93176d465ea4b" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Flux_Fa7</type>
+            <declname>Fa7_Type</declname>
+            <defname>Fa7_Type</defname>
+          </param>
+          <param>
+            <type>typename Type_Double</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt; Fa7_Type==Type_Flux_Fa7::ELEM, void &gt; Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::test_coeffs_fa7</definition>
+        <argsstring>(const int, const int, const int, const Type_Double &amp;) const</argsstring>
+        <name>test_coeffs_fa7</name>
+        <param>
+          <type>const int</type>
+          <defname>elem</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac1</defname>
+        </param>
+        <param>
+          <type>const int</type>
+          <defname>fac2</defname>
+        </param>
+        <param>
+          <type>const Type_Double &amp;</type>
+          <defname>f1</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="147" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.tpp" bodystart="480" bodyend="493"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a4a3c9f4e68b5147b5007d2b69a50b29d" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::uses_mod_turb</definition>
+        <argsstring>() const</argsstring>
+        <name>uses_mod_turb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="122" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="122" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classEval__Diff__VDF__Face__Gen_1a08409581d820f150f33edbfb1a4d3774" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;::uses_wall_law</definition>
+        <argsstring>() const</argsstring>
+        <name>uses_wall_law</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="121" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="121" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classEval__Diff__VDF__Face__Gen" kindref="compound">Eval_Diff_VDF_Face_Gen</ref> Evaluateur VDF pour la diffusion </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Le champ diffuse est un <ref refid="classChamp__Face__VDF" kindref="compound">Champ_Face_VDF</ref></para>
+<para><simplesect kind="see"><para><ref refid="classEval__VDF__Face" kindref="compound">Eval_VDF_Face</ref>, <ref refid="classEvaluateur__VDF" kindref="compound">Evaluateur_VDF</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Eval_Diff_VDF_Face</label>
+        <link refid="classEval__Diff__VDF__Face"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_Multiphase_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_Multiphase_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eval_VDF_Face</label>
+        <link refid="classEval__VDF__Face"/>
+      </node>
+      <node id="3">
+        <label>Evaluateur_VDF</label>
+        <link refid="classEvaluateur__VDF"/>
+      </node>
+      <node id="4">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Diff_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eval_Dift_VDF_Face</label>
+        <link refid="classEval__Dift__VDF__Face"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eval_Dift_Multiphase_VDF_Face</label>
+        <link refid="classEval__Dift__Multiphase__VDF__Face"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="15" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eval_VDF_Face</label>
+        <link refid="classEval__VDF__Face"/>
+      </node>
+      <node id="3">
+        <label>Evaluateur_VDF</label>
+        <link refid="classEvaluateur__VDF"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>porosite</edgelabel>
+          <edgelabel>surface</edgelabel>
+          <edgelabel>volume_entrelaces</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>elem_</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>orientation</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>xv</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="4">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="8">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="16">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/Eval_Diff_VDF_Face_Gen.h" bodystart="31" bodyend="168"/>
+    <listofallmembers>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a5c57cab42c3d757c9014daad0496fecb" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>ACTIVATE_TAU_TR</name></member>
+      <member refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" prot="public" virt="virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>associer_domaines</name></member>
+      <member refid="classEval__VDF__Face_1a2ced0192d64a09429a0d565f30d5b286" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>associer_inconnue</name></member>
+      <member refid="classEvaluateur__VDF_1a2f2ac9866a360378d9655d9bd41846e5" prot="public" virt="virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>associer_porosite</name></member>
+      <member refid="classEval__VDF__Face_1ab7c368dd2449821a3961703c34c034c9" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_BORD</name></member>
+      <member refid="classEval__VDF__Face_1a18eb4aed7e252c94edb139da6ed53480" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_COIN_FL</name></member>
+      <member refid="classEval__VDF__Face_1af8cf6cfcd3b2132a99381861942aadd0" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_FL</name></member>
+      <member refid="classEval__VDF__Face_1a5e39acd79fedfcdcc0909f8e5ce367a7" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_INT</name></member>
+      <member refid="classEval__VDF__Face_1aeefd59a95be928bce11d261bcbc866d2" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_MIXTE</name></member>
+      <member refid="classEval__VDF__Face_1a2b9487edbb8bab060947cb7794a044b9" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_NAVIER</name></member>
+      <member refid="classEval__VDF__Face_1a75e3e6282c781968775247aef6e70291" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_NAVIER_FL</name></member>
+      <member refid="classEval__VDF__Face_1a8dd1b8d636a2ec05cbb824f67c118210" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_NAVIER_PAR</name></member>
+      <member refid="classEval__VDF__Face_1a61ce680733f787a168f6d10a1e377dc1" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_PAR</name></member>
+      <member refid="classEval__VDF__Face_1ac68a83fa0d8a72faf8b999e7d7886b5e" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_PAR_FL</name></member>
+      <member refid="classEval__VDF__Face_1a4cab0d4ce479f5490b899c8b0db20e0d" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_ARR_PERIO</name></member>
+      <member refid="classEval__VDF__Face_1afd5a6b2b3174f8b64cfa6100690caf01" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>CALC_FA7_SORTIE_LIB</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a4110184132918969b6f3de6d6ec91477" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>check_error</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1aacc782857cbe3baebfca32c1c8116e1c" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a8bbcab0579d699a86bb460f3544ef413" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1aa2b587812b4122010812ec8ef90240e5" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a70faff84c05fa74db32dbd04a12b0904" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a3866c5defa88843b7e6c9aeaf81c4c5d" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a2737232dc120db7a802028468ae7aa23" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a349b4886d86b78dbdd6aea3aa9181057" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a7fb2de311af57f7ca3c3a8d535089985" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_fa7</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a6fbfbcac4780317ce44dfd0bf11a45e0" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>coeffs_fa7</name></member>
+      <member refid="classEvaluateur__VDF_1a9fc73f56f87221c238ad047ebbfd8902" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>dimension</name></member>
+      <member refid="classEvaluateur__VDF_1a78bb50894efadf65f557e597f58d1a62" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>dist_face</name></member>
+      <member refid="classEvaluateur__VDF_1ab81e23871a5e1ca58c92856dcd0a2a74" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>dist_face_period</name></member>
+      <member refid="classEvaluateur__VDF_1a4918b7a873562104ebfbe9b7b3a03ee5" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>dist_norm_bord</name></member>
+      <member refid="classEvaluateur__VDF_1a1ae8c5dfc34d6bed0dd0876fb20fd7aa" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>elem_</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a05a83f0b93baffd8c011ed2e9486b512" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>EPS</name></member>
+      <member refid="classEvaluateur__VDF_1ae9c2cff3e7c4d41534a6b74b8b06935d" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>Evaluateur_VDF</name></member>
+      <member refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>Evaluateur_VDF</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ae8b3b67faf58f67258339e667fcf6837" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a2a007b086e12b0885a4d2828d7f5fec5" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a6de9841c86c36296cb362b5e38f57807" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ab2be23ac524aa58f3e2d40e53b122048" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a59654722ec03644e3bbe34006baa3af8" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ab535ea7972a0a23a84541b25451e7936" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1abee6a6f1e3a9687fe799d6845069e56d" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ac45fb419b54949f17a2d7280398b90f2" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_fa7</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a745254e95513fe2465bebce9bd47683b" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>flux_fa7</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1aceeafeffdad9256540390432defb5a63" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>IS_ANISO</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a78b9721def83ebef7ddb569282a2c2a9" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>IS_TURB</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ae895c80f3d961a1b21d514b840a318c5" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>k_elem</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a43205294ec9772c276576b4562a5044c" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_lam</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a2c64f966a90ae97bebe367f319d8b19f" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_lam_mean_2pts</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1aad86c87edfddecfb70117b48f5fa03fb" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_lam_mean_4pts</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a8b1bb40f32f8d65872a11eef8729f7e4" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_mean_2pts</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a912b70160a2d3de3549f7ee570e6fd37" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_mean_4pts</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a372cd348403b7529a5d0619e8005ecd6" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>nu_turb</name></member>
+      <member refid="classEval__VDF__Face_1aa64753403bc037254321328d09e4b621" prot="protected" virt="non-virtual" ambiguityscope="Eval_VDF_Face::"><scope>Eval_Diff_VDF_Face_Gen</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__VDF_1acdd49b338361241ae48de72cf70dca6d" prot="protected" virt="non-virtual" ambiguityscope="Evaluateur_VDF::"><scope>Eval_Diff_VDF_Face_Gen</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__VDF_1aa56cd7a372213691109725a21201f86f" prot="protected" virt="non-virtual" ambiguityscope="Evaluateur_VDF::"><scope>Eval_Diff_VDF_Face_Gen</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__VDF_1a2e17e58f738e0edc92e2b12b420eb4f2" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>orientation</name></member>
+      <member refid="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>porosite</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ab5d3378b27658d13bd37d9f0014fbfec" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>porosity_</name></member>
+      <member refid="classEvaluateur__VDF_1a891f002dd56c0e86b69a70b739564107" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>premiere_face_bord</name></member>
+      <member refid="classEvaluateur__VDF_1ab2fa875ef169e97e2da92a9565bfbf5e" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>surface</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a8d5f86e765e434d8baf05c5250323e18" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>surface_</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a5704932ee2fb4262b3cff90d17610d7f" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>tau_tan</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a591cb7e4e13917bfa7f1ef3922b43b1e" prot="public" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>TEST_COEFFS</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a416f80fd46398d9c44753faa5e8b12e8" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a159e7f476b7ba778a1e43c0546f4c78d" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a94189c6b8bd7ceeff518ba41c363bffe" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a06e3719f7faa88232f65fac136330fac" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1addaafa0f49c23f10ba86150110ebf00f" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_arete</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a22e78f444d7e44557db2d59c27c717c5" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_common</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a6d9e7f94532670a20bbcc9956944f5ac" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_common</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a86b062ca7bff664e972d88ffe007ab95" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_common</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1ac7ac040955e5fa2596465e391addf808" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_common</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a26d012e58f5388ab4ec93176d465ea4b" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>test_coeffs_fa7</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a4a3c9f4e68b5147b5007d2b69a50b29d" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>uses_mod_turb</name></member>
+      <member refid="classEval__Diff__VDF__Face__Gen_1a08409581d820f150f33edbfb1a4d3774" prot="private" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>uses_wall_law</name></member>
+      <member refid="classEvaluateur__VDF_1aa51a76af287bd9689f0ce7c851a85a83" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>volume_entrelaces</name></member>
+      <member refid="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" prot="protected" virt="non-virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>xv</name></member>
+      <member refid="classEvaluateur__VDF_1a09fe4dfcc9f6fc30c3cf0aa190b733c7" prot="public" virt="virtual"><scope>Eval_Diff_VDF_Face_Gen</scope><name>~Evaluateur_VDF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

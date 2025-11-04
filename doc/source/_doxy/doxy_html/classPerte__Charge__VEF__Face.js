@@ -1,6 +1,6 @@
 var classPerte__Charge__VEF__Face =
 [
-    [ "ajouter", "classPerte__Charge__VEF__Face.html#a66b2fb1dd03be5a9eb7e7039c4d57b1f", null ],
+    [ "ajouter", "classPerte__Charge__VEF__Face.html#ae0593b1c5e1d8391a5a16cec77de3100", null ],
     [ "associer_pb", "classPerte__Charge__VEF__Face.html#a78a7be2b0821a5363bec9196fecd3eea", null ],
     [ "mettre_a_jour", "classPerte__Charge__VEF__Face.html#afc65278ec88e2dcf00bc10ee8227aaab", null ],
     [ "OBS_PTR", "classPerte__Charge__VEF__Face.html#abb8d4ccbe4e21d3d3e134adc568e3899", null ],

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_fe55f178bfa7feac4732ad467f650ee2" kind="dir">
+    <compoundname>IBM</compoundname>
+    <innerfile refid="Conduction__IBM_8cpp">Conduction_IBM.cpp</innerfile>
+    <innerfile refid="Conduction__IBM_8h">Conduction_IBM.h</innerfile>
+    <innerfile refid="Pb__Conduction__IBM_8cpp">Pb_Conduction_IBM.cpp</innerfile>
+    <innerfile refid="Pb__Conduction__IBM_8h">Pb_Conduction_IBM.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/IBM/"/>
+  </compounddef>
+</doxygen>

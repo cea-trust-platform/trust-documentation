@@ -1,0 +1,1103 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classRefine__Mesh" kind="class" language="C++" prot="public">
+    <compoundname>Refine_Mesh</compoundname>
+    <basecompoundref refid="classInterprete__geometrique__base__32__64" prot="public" virt="non-virtual">Interprete_geometrique_base_32_64&lt; int &gt;</basecompoundref>
+    <includes local="no">Refine_Mesh.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classRefine__Mesh_1a96dc0a96f561a7c1cc73aa53e52921b4" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Refine_Mesh::Declare_instanciable</definition>
+        <argsstring>(Refine_Mesh)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classRefine__Mesh" kindref="compound">Refine_Mesh</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classRefine__Mesh_1a2b2f0f8e1c837a9a4069905572a0a6f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; Refine_Mesh::interpreter_</definition>
+        <argsstring>(Entree &amp;is) override</argsstring>
+        <name>interpreter_</name>
+        <reimplements refid="classInterprete__geometrique__base__32__64_1af9f180510b71215c6533001d211e66fa">interpreter_</reimplements>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="32" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="32" bodyend="37"/>
+        <references refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" compoundref="Refine__Mesh_8cpp" startline="39" endline="56">apply</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a35235d5a5d9994aff7237931bfe4a7eb" compoundref="Interprete__geometrique__base_8cpp" startline="31" endline="35">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::associer_domaine</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::apply</definition>
+        <argsstring>()</argsstring>
+        <name>apply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="39" bodyend="56"/>
+        <references refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</references>
+        <references refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</references>
+        <references refid="classRefine__Mesh_1a1e860f9679eb5ee6c10ad5c30fd136a0" compoundref="Refine__Mesh_8cpp" startline="69" endline="80">check_cell_type</references>
+        <references refid="classRefine__Mesh_1a9ecd5cf218e4465296d43cdbe34c4ac9" compoundref="Refine__Mesh_8cpp" startline="58" endline="67">check_dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <referencedby refid="classRefine__Mesh_1a2b2f0f8e1c837a9a4069905572a0a6f2" compoundref="Refine__Mesh_8cpp" startline="32" endline="37">interpreter_</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::apply_2D</definition>
+        <argsstring>()</argsstring>
+        <name>apply_2D</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="82" bodyend="121"/>
+        <references refid="classRefine__Mesh_1ada761b1892124487b3b9e8607a4125c2" compoundref="Refine__Mesh_8cpp" startline="164" endline="178">build_edges_2D</references>
+        <references refid="classRefine__Mesh_1a54720ce2adf20f8d588fd5574ba94e73" compoundref="Refine__Mesh_8cpp" startline="403" endline="434">build_incidence_from_node_to_edges</references>
+        <references refid="classRefine__Mesh_1aeab9b424a32b110caa7295db2fc4842f" compoundref="Refine__Mesh_8cpp" startline="436" endline="450">build_new_boundary_faces_2D</references>
+        <references refid="classRefine__Mesh_1a7f6ea87a05ffb5ef81923520976d4780" compoundref="Refine__Mesh_8cpp" startline="279" endline="312">build_new_cells_2D</references>
+        <references refid="classRefine__Mesh_1aa4a540c5e930eea281797f78fd8738a5" compoundref="Refine__Mesh_8cpp" startline="468" endline="482">build_new_connector_faces_2D</references>
+        <references refid="classRefine__Mesh_1a211055631d29454dee8b3450ac968981" compoundref="Refine__Mesh_8cpp" startline="500" endline="515">build_new_internal_frontier_faces_2D</references>
+        <references refid="classRefine__Mesh_1ad6e34e0906c532ca4e5f9e52bcaa8e5a" compoundref="Refine__Mesh_8cpp" startline="254" endline="277">build_new_nodes</references>
+        <references refid="classRefine__Mesh_1ae4b32b148da025930313c4820763df90" compoundref="Refine__Mesh_8cpp" startline="373" endline="401">build_new_sub_domaines_descriptions</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" compoundref="Scatter_8cpp" startline="2740" endline="2745">Scatter::uninit_sequential_domain</references>
+        <references refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</references>
+        <referencedby refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" compoundref="Refine__Mesh_8cpp" startline="39" endline="56">apply</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::apply_3D</definition>
+        <argsstring>()</argsstring>
+        <name>apply_3D</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="123" bodyend="162"/>
+        <references refid="classRefine__Mesh_1a9be656099a939b11265d02826d26fbf8" compoundref="Refine__Mesh_8cpp" startline="180" endline="200">build_edges_3D</references>
+        <references refid="classRefine__Mesh_1a54720ce2adf20f8d588fd5574ba94e73" compoundref="Refine__Mesh_8cpp" startline="403" endline="434">build_incidence_from_node_to_edges</references>
+        <references refid="classRefine__Mesh_1a658932280ec69eeee25d72fcfc48cf3b" compoundref="Refine__Mesh_8cpp" startline="452" endline="466">build_new_boundary_faces_3D</references>
+        <references refid="classRefine__Mesh_1ab19d54df0940af1cfaa3f6f750f29e6d" compoundref="Refine__Mesh_8cpp" startline="314" endline="371">build_new_cells_3D</references>
+        <references refid="classRefine__Mesh_1a376025d2bb26737d9b9f577b39da8565" compoundref="Refine__Mesh_8cpp" startline="484" endline="498">build_new_connector_faces_3D</references>
+        <references refid="classRefine__Mesh_1a78e6113cabf000b408660566ef58e0fe" compoundref="Refine__Mesh_8cpp" startline="517" endline="532">build_new_internal_frontier_faces_3D</references>
+        <references refid="classRefine__Mesh_1ad6e34e0906c532ca4e5f9e52bcaa8e5a" compoundref="Refine__Mesh_8cpp" startline="254" endline="277">build_new_nodes</references>
+        <references refid="classRefine__Mesh_1ae4b32b148da025930313c4820763df90" compoundref="Refine__Mesh_8cpp" startline="373" endline="401">build_new_sub_domaines_descriptions</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" compoundref="Scatter_8cpp" startline="2740" endline="2745">Scatter::uninit_sequential_domain</references>
+        <references refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</references>
+        <referencedby refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" compoundref="Refine__Mesh_8cpp" startline="39" endline="56">apply</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1af7abdb07da5bfc46eac05cdf08bdb9f8" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_edges</definition>
+        <argsstring>(IntTab &amp;nodes_of_edges, IntTab &amp;edges_of_cells, int nb_edges_per_cell, int nb_nodes_per_edge, const IntTab &amp;local_nodes_of_edges) const</argsstring>
+        <name>build_edges</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>nodes_of_edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>edges_of_cells</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_edges_per_cell</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_nodes_per_edge</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>local_nodes_of_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="202" bodyend="252"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <referencedby refid="classRefine__Mesh_1ada761b1892124487b3b9e8607a4125c2" compoundref="Refine__Mesh_8cpp" startline="164" endline="178">build_edges_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a9be656099a939b11265d02826d26fbf8" compoundref="Refine__Mesh_8cpp" startline="180" endline="200">build_edges_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ada761b1892124487b3b9e8607a4125c2" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_edges_2D</definition>
+        <argsstring>(IntTab &amp;nodes_of_edges, IntTab &amp;edges_of_cells) const</argsstring>
+        <name>build_edges_2D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>nodes_of_edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>edges_of_cells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="164" bodyend="178"/>
+        <references refid="classRefine__Mesh_1af7abdb07da5bfc46eac05cdf08bdb9f8" compoundref="Refine__Mesh_8cpp" startline="202" endline="252">build_edges</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a9be656099a939b11265d02826d26fbf8" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_edges_3D</definition>
+        <argsstring>(IntTab &amp;nodes_of_edges, IntTab &amp;edges_of_cells) const</argsstring>
+        <name>build_edges_3D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>nodes_of_edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>edges_of_cells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="180" bodyend="200"/>
+        <references refid="classRefine__Mesh_1af7abdb07da5bfc46eac05cdf08bdb9f8" compoundref="Refine__Mesh_8cpp" startline="202" endline="252">build_edges</references>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a54720ce2adf20f8d588fd5574ba94e73" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_incidence_from_node_to_edges</definition>
+        <argsstring>(int nb_nodes, const IntTab &amp;nodes_of_edges, Static_Int_Lists &amp;incidence) const</argsstring>
+        <name>build_incidence_from_node_to_edges</name>
+        <param>
+          <type>int</type>
+          <declname>nb_nodes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>nodes_of_edges</declname>
+        </param>
+        <param>
+          <type><ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="59" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="403" bodyend="434"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classStatic__Int__Lists__32__64_1ac66dcf65e302b351f53c96f50fac7e35" compoundref="Static__Int__Lists_8cpp" startline="35" endline="50">Static_Int_Lists_32_64&lt; _SIZE_ &gt;::set_list_sizes</references>
+        <references refid="classStatic__Int__Lists__32__64_1a7afc6b7de0c34a5ebdbfc6835ec76a73" compoundref="Static__Int__Lists_8h" startline="79" endline="84">Static_Int_Lists_32_64&lt; _SIZE_ &gt;::set_value</references>
+        <references refid="classStatic__Int__Lists__32__64_1ab37d3fe2020db57513b228c31cea7565" compoundref="Static__Int__Lists_8cpp" startline="101" endline="114">Static_Int_Lists_32_64&lt; _SIZE_ &gt;::trier_liste</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1aeab9b424a32b110caa7295db2fc4842f" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_boundary_faces_2D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_boundary_faces, IntTabs &amp;new_cells_of_boundary_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_boundary_faces_2D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="63" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="436" bodyend="450"/>
+        <references refid="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" compoundref="Refine__Mesh_8cpp" startline="534" endline="560">build_new_frontier_faces_2D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1aae8f00a862e3c640388a5d94729ae18f" compoundref="Domaine_8h" startline="189" endline="189">Domaine_32_64&lt; _SIZE_ &gt;::nb_bords</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a658932280ec69eeee25d72fcfc48cf3b" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_boundary_faces_3D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_boundary_faces, IntTabs &amp;new_cells_of_boundary_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_boundary_faces_3D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="67" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="452" bodyend="466"/>
+        <references refid="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" compoundref="Refine__Mesh_8cpp" startline="562" endline="602">build_new_frontier_faces_3D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1aae8f00a862e3c640388a5d94729ae18f" compoundref="Domaine_8h" startline="189" endline="189">Domaine_32_64&lt; _SIZE_ &gt;::nb_bords</references>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a7f6ea87a05ffb5ef81923520976d4780" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_cells_2D</definition>
+        <argsstring>(IntTab &amp;new_cells, const IntTab &amp;edges_of_cells) const</argsstring>
+        <name>build_new_cells_2D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>edges_of_cells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="54" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="279" bodyend="312"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ab19d54df0940af1cfaa3f6f750f29e6d" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_cells_3D</definition>
+        <argsstring>(IntTab &amp;new_cells, const IntTab &amp;edges_of_cells) const</argsstring>
+        <name>build_new_cells_3D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>edges_of_cells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="55" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="314" bodyend="371"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1aa4a540c5e930eea281797f78fd8738a5" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_connector_faces_2D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_connector_faces, IntTabs &amp;new_cells_of_connector_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_connector_faces_2D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_connector_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_connector_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="71" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="468" bodyend="482"/>
+        <references refid="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" compoundref="Refine__Mesh_8cpp" startline="534" endline="560">build_new_frontier_faces_2D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1af7f019b204d20bab3271c6a70e987088" compoundref="Domaine_8h" startline="243" endline="243">Domaine_32_64&lt; _SIZE_ &gt;::nb_raccords</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a376025d2bb26737d9b9f577b39da8565" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_connector_faces_3D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_connector_faces, IntTabs &amp;new_cells_of_connector_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_connector_faces_3D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_connector_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_connector_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="75" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="484" bodyend="498"/>
+        <references refid="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" compoundref="Refine__Mesh_8cpp" startline="562" endline="602">build_new_frontier_faces_3D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1af7f019b204d20bab3271c6a70e987088" compoundref="Domaine_8h" startline="243" endline="243">Domaine_32_64&lt; _SIZE_ &gt;::nb_raccords</references>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_frontier_faces_2D</definition>
+        <argsstring>(IntTab &amp;new_nodes_of_frontier_faces, IntTab &amp;new_cells_of_frontier_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges, const Faces &amp;old_frontier_faces) const</argsstring>
+        <name>build_new_frontier_faces_2D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_nodes_of_frontier_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells_of_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classFaces__32__64" kindref="compound">Faces</ref> &amp;</type>
+          <declname>old_frontier_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="87" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="534" bodyend="560"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classRefine__Mesh_1ab7ddddf1b8c01c18fccf71892ed359fc" compoundref="Refine__Mesh_8cpp" startline="604" endline="616">find_edge</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a8054f798ad0dc824af89bff34c9a9d7a" compoundref="Faces_8h" startline="66" endline="66">Faces_32_64&lt; _SIZE_ &gt;::nb_faces</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classRefine__Mesh_1aeab9b424a32b110caa7295db2fc4842f" compoundref="Refine__Mesh_8cpp" startline="436" endline="450">build_new_boundary_faces_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1aa4a540c5e930eea281797f78fd8738a5" compoundref="Refine__Mesh_8cpp" startline="468" endline="482">build_new_connector_faces_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a211055631d29454dee8b3450ac968981" compoundref="Refine__Mesh_8cpp" startline="500" endline="515">build_new_internal_frontier_faces_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_frontier_faces_3D</definition>
+        <argsstring>(IntTab &amp;new_nodes_of_frontier_faces, IntTab &amp;new_cells_of_frontier_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges, const Faces &amp;old_frontier_faces) const</argsstring>
+        <name>build_new_frontier_faces_3D</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_nodes_of_frontier_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells_of_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classFaces__32__64" kindref="compound">Faces</ref> &amp;</type>
+          <declname>old_frontier_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="92" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="562" bodyend="602"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classRefine__Mesh_1ab7ddddf1b8c01c18fccf71892ed359fc" compoundref="Refine__Mesh_8cpp" startline="604" endline="616">find_edge</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a8054f798ad0dc824af89bff34c9a9d7a" compoundref="Faces_8h" startline="66" endline="66">Faces_32_64&lt; _SIZE_ &gt;::nb_faces</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classRefine__Mesh_1a658932280ec69eeee25d72fcfc48cf3b" compoundref="Refine__Mesh_8cpp" startline="452" endline="466">build_new_boundary_faces_3D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a376025d2bb26737d9b9f577b39da8565" compoundref="Refine__Mesh_8cpp" startline="484" endline="498">build_new_connector_faces_3D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a78e6113cabf000b408660566ef58e0fe" compoundref="Refine__Mesh_8cpp" startline="517" endline="532">build_new_internal_frontier_faces_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a211055631d29454dee8b3450ac968981" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_internal_frontier_faces_2D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_internal_frontier_faces, IntTabs &amp;new_cells_of_internal_frontier_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_internal_frontier_faces_2D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="79" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="500" bodyend="515"/>
+        <references refid="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" compoundref="Refine__Mesh_8cpp" startline="534" endline="560">build_new_frontier_faces_2D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a74e4ad3e00e0d76fec323e6c36406be3" compoundref="Domaine_8h" startline="232" endline="232">Domaine_32_64&lt; _SIZE_ &gt;::nb_frontieres_internes</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a78e6113cabf000b408660566ef58e0fe" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_internal_frontier_faces_3D</definition>
+        <argsstring>(IntTabs &amp;new_nodes_of_internal_frontier_faces, IntTabs &amp;new_cells_of_internal_frontier_faces, const Static_Int_Lists &amp;incidence_from_node_to_edges) const</argsstring>
+        <name>build_new_internal_frontier_faces_3D</name>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="83" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="517" bodyend="532"/>
+        <references refid="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" compoundref="Refine__Mesh_8cpp" startline="562" endline="602">build_new_frontier_faces_3D</references>
+        <references refid="classTRUST__Vector_1a29489aa7553eb6924ce12ceee6f087a6" compoundref="TRUST__Vector_8h" startline="184" endline="199">TRUST_Vector&lt; _CLASSE_ &gt;::dimensionner</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a74e4ad3e00e0d76fec323e6c36406be3" compoundref="Domaine_8h" startline="232" endline="232">Domaine_32_64&lt; _SIZE_ &gt;::nb_frontieres_internes</references>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ad6e34e0906c532ca4e5f9e52bcaa8e5a" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_nodes</definition>
+        <argsstring>(DoubleTab &amp;new_nodes, const IntTab &amp;nodes_of_edges) const</argsstring>
+        <name>build_new_nodes</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>new_nodes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>nodes_of_edges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="52" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="254" bodyend="277"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ae4b32b148da025930313c4820763df90" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::build_new_sub_domaines_descriptions</definition>
+        <argsstring>(Noms &amp;new_sub_domaines_descriptions) const</argsstring>
+        <name>build_new_sub_domaines_descriptions</name>
+        <param>
+          <type><ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>new_sub_domaines_descriptions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="57" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="373" bodyend="401"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classSChaine_1a328b5a25ca0f229dd8d014ee98ee7f1d" compoundref="SChaine_8cpp" startline="72" endline="78">SChaine::get_str</references>
+        <references refid="classSous__Domaine__32__64_1a968a7b1da5870848f9545b8d289b05ba" compoundref="Sous__Domaine_8h" startline="55" endline="55">Sous_Domaine_32_64&lt; _SIZE_ &gt;::nb_elem_tot</references>
+        <references refid="classDomaine__32__64_1a7c939afeeabc0e7a54ee0ae34c5b1180" compoundref="Domaine_8h" startline="283" endline="283">Domaine_32_64&lt; _SIZE_ &gt;::nb_ss_domaines</references>
+        <references refid="classDomaine__32__64_1a1b4786c05f92b3e695c1a38f63a9c067" compoundref="Domaine_8h" startline="284" endline="284">Domaine_32_64&lt; _SIZE_ &gt;::ss_domaine</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a1e860f9679eb5ee6c10ad5c30fd136a0" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::check_cell_type</definition>
+        <argsstring>() const</argsstring>
+        <name>check_cell_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="69" bodyend="80"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" compoundref="Refine__Mesh_8cpp" startline="39" endline="56">apply</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a9ecd5cf218e4465296d43cdbe34c4ac9" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::check_dimension</definition>
+        <argsstring>() const</argsstring>
+        <name>check_dimension</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="58" bodyend="67"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" compoundref="Refine__Mesh_8cpp" startline="39" endline="56">apply</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ab7ddddf1b8c01c18fccf71892ed359fc" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Refine_Mesh::find_edge</definition>
+        <argsstring>(const Static_Int_Lists &amp;incidence_from_node_to_edges, int node0, int node1) const</argsstring>
+        <name>find_edge</name>
+        <param>
+          <type>const <ref refid="classStatic__Int__Lists__32__64" kindref="compound">Static_Int_Lists</ref> &amp;</type>
+          <declname>incidence_from_node_to_edges</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>node0</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>node1</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="97" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="604" bodyend="616"/>
+        <references refid="classStatic__Int__Lists__32__64_1a53e84ddc151c5ea97a90d2bd7781d6e6" compoundref="Static__Int__Lists_8cpp" startline="120" endline="126">Static_Int_Lists_32_64&lt; _SIZE_ &gt;::copy_list_to_array</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <referencedby refid="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" compoundref="Refine__Mesh_8cpp" startline="534" endline="560">build_new_frontier_faces_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" compoundref="Refine__Mesh_8cpp" startline="562" endline="602">build_new_frontier_faces_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ac3c9389bb2af5b6b9ffc84c8680a2efc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_boundary_faces</definition>
+        <argsstring>(const Type_Face &amp;face_type, const IntTabs &amp;new_nodes_of_boundary_faces, const IntTabs &amp;new_cells_of_boundary_faces)</argsstring>
+        <name>update_boundary_faces</name>
+        <param>
+          <type>const Type_Face &amp;</type>
+          <declname>face_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_boundary_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="119" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="660" bodyend="671"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classFaces__32__64_1a17403f802c4f213dbe9131338f8aaa2a" compoundref="Faces_8cpp" startline="390" endline="393">Faces_32_64&lt; _SIZE_ &gt;::typer</references>
+        <references refid="classFaces__32__64_1a657eb4a9c86931dea8f7c919558aa529" compoundref="Faces_8h" startline="89" endline="89">Faces_32_64&lt; _SIZE_ &gt;::voisins</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a05300d9f137cf184740915bdcde4f753" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_cells</definition>
+        <argsstring>(const IntTab &amp;new_cells)</argsstring>
+        <name>update_cells</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="113" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="636" bodyend="639"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1ac40760c5fdfbe7e75a409f857e9fba88" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_connector_faces</definition>
+        <argsstring>(const Type_Face &amp;face_type, const IntTabs &amp;new_nodes_of_connector_faces, const IntTabs &amp;new_cells_of_connector_faces)</argsstring>
+        <name>update_connector_faces</name>
+        <param>
+          <type>const Type_Face &amp;</type>
+          <declname>face_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_connector_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_connector_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="123" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="673" bodyend="684"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classFaces__32__64_1a17403f802c4f213dbe9131338f8aaa2a" compoundref="Faces_8cpp" startline="390" endline="393">Faces_32_64&lt; _SIZE_ &gt;::typer</references>
+        <references refid="classFaces__32__64_1a657eb4a9c86931dea8f7c919558aa529" compoundref="Faces_8h" startline="89" endline="89">Faces_32_64&lt; _SIZE_ &gt;::voisins</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_domain</definition>
+        <argsstring>(const Nom &amp;cell_type, const Type_Face &amp;face_type, const DoubleTab &amp;new_nodes, const IntTab &amp;new_cells, const Noms &amp;new_sub_domaines_descriptions, const IntTabs &amp;new_nodes_of_boundary_faces, const IntTabs &amp;new_cells_of_boundary_faces, const IntTabs &amp;new_nodes_of_connector_faces, const IntTabs &amp;new_cells_of_connector_faces, const IntTabs &amp;new_nodes_of_internal_frontier_faces, const IntTabs &amp;new_cells_of_internal_frontier_faces)</argsstring>
+        <name>update_domain</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>cell_type</declname>
+        </param>
+        <param>
+          <type>const Type_Face &amp;</type>
+          <declname>face_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>new_nodes</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>new_cells</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>new_sub_domaines_descriptions</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_boundary_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_connector_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_connector_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_internal_frontier_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="99" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="618" bodyend="629"/>
+        <references refid="classRefine__Mesh_1ac3c9389bb2af5b6b9ffc84c8680a2efc" compoundref="Refine__Mesh_8cpp" startline="660" endline="671">update_boundary_faces</references>
+        <references refid="classRefine__Mesh_1a05300d9f137cf184740915bdcde4f753" compoundref="Refine__Mesh_8cpp" startline="636" endline="639">update_cells</references>
+        <references refid="classRefine__Mesh_1ac40760c5fdfbe7e75a409f857e9fba88" compoundref="Refine__Mesh_8cpp" startline="673" endline="684">update_connector_faces</references>
+        <references refid="classRefine__Mesh_1a52570caa5aa5aceed827de1f6d4bb037" compoundref="Refine__Mesh_8cpp" startline="686" endline="697">update_internal_frontier_faces</references>
+        <references refid="classRefine__Mesh_1a87bebc14e9d7def612170d405617174e" compoundref="Refine__Mesh_8cpp" startline="631" endline="634">update_nodes</references>
+        <references refid="classRefine__Mesh_1a59298f42acd5bc897eb4bf871130b3ee" compoundref="Refine__Mesh_8cpp" startline="641" endline="646">update_octree</references>
+        <references refid="classRefine__Mesh_1a6f82d000f6f95b8aecb72cf392d1661c" compoundref="Refine__Mesh_8cpp" startline="648" endline="658">update_sub_domaines</references>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">apply_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">apply_3D</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a52570caa5aa5aceed827de1f6d4bb037" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_internal_frontier_faces</definition>
+        <argsstring>(const Type_Face &amp;face_type, const IntTabs &amp;new_nodes_of_internal_frontier_faces, const IntTabs &amp;new_cells_of_internal_frontier_faces)</argsstring>
+        <name>update_internal_frontier_faces</name>
+        <param>
+          <type>const Type_Face &amp;</type>
+          <declname>face_type</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_nodes_of_internal_frontier_faces</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">IntTabs</ref> &amp;</type>
+          <declname>new_cells_of_internal_frontier_faces</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="127" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="686" bodyend="697"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classFaces__32__64_1a17403f802c4f213dbe9131338f8aaa2a" compoundref="Faces_8cpp" startline="390" endline="393">Faces_32_64&lt; _SIZE_ &gt;::typer</references>
+        <references refid="classFaces__32__64_1a657eb4a9c86931dea8f7c919558aa529" compoundref="Faces_8h" startline="89" endline="89">Faces_32_64&lt; _SIZE_ &gt;::voisins</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a87bebc14e9d7def612170d405617174e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_nodes</definition>
+        <argsstring>(const DoubleTab &amp;new_nodes)</argsstring>
+        <name>update_nodes</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>new_nodes</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="111" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="631" bodyend="634"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a59298f42acd5bc897eb4bf871130b3ee" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_octree</definition>
+        <argsstring>(const Nom &amp;cell_type)</argsstring>
+        <name>update_octree</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>cell_type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="115" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="641" bodyend="646"/>
+        <references refid="classDomaine__32__64_1a5080eaae4900a367b4ff2b66d16a615d" compoundref="Domaine_8cpp" startline="765" endline="776">Domaine_32_64&lt; _SIZE_ &gt;::construit_octree</references>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1aa26d97645fbddfbc672974f2ef1db2bb" compoundref="Domaine_8cpp" startline="758" endline="762">Domaine_32_64&lt; _SIZE_ &gt;::invalide_octree</references>
+        <references refid="classDomaine__32__64_1abdc32a5b45071f57ee3dcb5717b72b24" compoundref="Domaine_8h" startline="450" endline="456">Domaine_32_64&lt; _SIZE_ &gt;::typer</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classRefine__Mesh_1a6f82d000f6f95b8aecb72cf392d1661c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Refine_Mesh::update_sub_domaines</definition>
+        <argsstring>(const Noms &amp;new_sub_domaines_descriptions)</argsstring>
+        <name>update_sub_domaines</name>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>new_sub_domaines_descriptions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="117" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.cpp" bodystart="648" bodyend="658"/>
+        <references refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" compoundref="Interprete__geometrique__base_8h" startline="48" endline="48">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classNom_1abf41dc0dd491c30fe386eab9e59636d5" compoundref="Nom_8h" startline="91" endline="91">Nom::getChar</references>
+        <references refid="classDomaine__32__64_1a7c939afeeabc0e7a54ee0ae34c5b1180" compoundref="Domaine_8h" startline="283" endline="283">Domaine_32_64&lt; _SIZE_ &gt;::nb_ss_domaines</references>
+        <references refid="classDomaine__32__64_1a1b4786c05f92b3e695c1a38f63a9c067" compoundref="Domaine_8h" startline="284" endline="284">Domaine_32_64&lt; _SIZE_ &gt;::ss_domaine</references>
+        <referencedby refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" compoundref="Refine__Mesh_8cpp" startline="618" endline="629">update_domain</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>: class <ref refid="classRefine__Mesh" kindref="compound">Refine_Mesh</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete_geometrique_base</label>
+        <link refid="classInterprete__geometrique__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Refine_Mesh</label>
+        <link refid="classRefine__Mesh"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete_geometrique_base</label>
+        <link refid="classInterprete__geometrique__base__32__64"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Refine_Mesh</label>
+        <link refid="classRefine__Mesh"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Refine_Mesh.h" bodystart="27" bodyend="131"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>abort</name></member>
+      <member refid="classRefine__Mesh_1ab2cc797d33259e6f2994ccff56f2d07b" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>apply</name></member>
+      <member refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>apply_2D</name></member>
+      <member refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>apply_3D</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>associer_</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a35235d5a5d9994aff7237931bfe4a7eb" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>associer_domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a285abef1bd0a71ec25a0b6c0f8ae96cb" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>associer_domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a6920c40acdb0c2769cc9953729038470" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>bidim_axi</name></member>
+      <member refid="classRefine__Mesh_1af7abdb07da5bfc46eac05cdf08bdb9f8" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_edges</name></member>
+      <member refid="classRefine__Mesh_1ada761b1892124487b3b9e8607a4125c2" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_edges_2D</name></member>
+      <member refid="classRefine__Mesh_1a9be656099a939b11265d02826d26fbf8" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_edges_3D</name></member>
+      <member refid="classRefine__Mesh_1a54720ce2adf20f8d588fd5574ba94e73" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_incidence_from_node_to_edges</name></member>
+      <member refid="classRefine__Mesh_1aeab9b424a32b110caa7295db2fc4842f" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_boundary_faces_2D</name></member>
+      <member refid="classRefine__Mesh_1a658932280ec69eeee25d72fcfc48cf3b" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_boundary_faces_3D</name></member>
+      <member refid="classRefine__Mesh_1a7f6ea87a05ffb5ef81923520976d4780" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_cells_2D</name></member>
+      <member refid="classRefine__Mesh_1ab19d54df0940af1cfaa3f6f750f29e6d" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_cells_3D</name></member>
+      <member refid="classRefine__Mesh_1aa4a540c5e930eea281797f78fd8738a5" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_connector_faces_2D</name></member>
+      <member refid="classRefine__Mesh_1a376025d2bb26737d9b9f577b39da8565" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_connector_faces_3D</name></member>
+      <member refid="classRefine__Mesh_1ae99e0a40522731f83748b3a12ac943b6" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_frontier_faces_2D</name></member>
+      <member refid="classRefine__Mesh_1adc29637f665e0b265b21b3307bdb2715" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_frontier_faces_3D</name></member>
+      <member refid="classRefine__Mesh_1a211055631d29454dee8b3450ac968981" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_internal_frontier_faces_2D</name></member>
+      <member refid="classRefine__Mesh_1a78e6113cabf000b408660566ef58e0fe" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_internal_frontier_faces_3D</name></member>
+      <member refid="classRefine__Mesh_1ad6e34e0906c532ca4e5f9e52bcaa8e5a" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_nodes</name></member>
+      <member refid="classRefine__Mesh_1ae4b32b148da025930313c4820763df90" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>build_new_sub_domaines_descriptions</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>change_num</name></member>
+      <member refid="classRefine__Mesh_1a1e860f9679eb5ee6c10ad5c30fd136a0" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>check_cell_type</name></member>
+      <member refid="classRefine__Mesh_1a9ecd5cf218e4465296d43cdbe34c4ac9" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>check_dimension</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>check_int_overflow</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classRefine__Mesh_1a96dc0a96f561a7c1cc73aa53e52921b4" prot="private" virt="non-virtual"><scope>Refine_Mesh</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>disable_TU</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a150831669e629ca5926e3bd47711cdce" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ad8b28769663ebe4fe9d26ee4acbb654f" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>domaine</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ae3f0c75375f5abc3fb90244e7cc89347" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>Domaine_t</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Refine_Mesh</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>exit</name></member>
+      <member refid="classRefine__Mesh_1ab7ddddf1b8c01c18fccf71892ed359fc" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>find_edge</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>info_obj</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a146084030844e5cabc41bf096ec66a92" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>int_t</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>interprete</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>interpreter</name></member>
+      <member refid="classRefine__Mesh_1a2b2f0f8e1c837a9a4069905572a0a6f2" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>interpreter_</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1af5be8c060605c47f9d81fff14e6ad2b4" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>LIST</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1ab3f424b6e46e93b42329a51760ed397d" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>LIST</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>me</name></member>
+      <member refid="classInterprete__geometrique__base__32__64_1a229e36782c975b026432239a8b312f73" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mettre_a_jour_sous_domaine</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>numero</name></member>
+      <member refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>objet</name></member>
+      <member refid="classInterprete_1ae5b09c3b61cd8b789437a0822a26a573" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>objet_existant</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Refine_Mesh</scope><name>taille_memoire</name></member>
+      <member refid="classRefine__Mesh_1ac3c9389bb2af5b6b9ffc84c8680a2efc" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_boundary_faces</name></member>
+      <member refid="classRefine__Mesh_1a05300d9f137cf184740915bdcde4f753" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_cells</name></member>
+      <member refid="classRefine__Mesh_1ac40760c5fdfbe7e75a409f857e9fba88" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_connector_faces</name></member>
+      <member refid="classRefine__Mesh_1a5a12cd9784a42d4a79d33ce44e1ff063" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_domain</name></member>
+      <member refid="classRefine__Mesh_1a52570caa5aa5aceed827de1f6d4bb037" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_internal_frontier_faces</name></member>
+      <member refid="classRefine__Mesh_1a87bebc14e9d7def612170d405617174e" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_nodes</name></member>
+      <member refid="classRefine__Mesh_1a59298f42acd5bc897eb4bf871130b3ee" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_octree</name></member>
+      <member refid="classRefine__Mesh_1a6f82d000f6f95b8aecb72cf392d1661c" prot="protected" virt="non-virtual"><scope>Refine_Mesh</scope><name>update_sub_domaines</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Refine_Mesh</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Refine_Mesh</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

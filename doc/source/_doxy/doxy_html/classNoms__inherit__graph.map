@@ -1,5 +1,4 @@
 <map id="Noms" name="Noms">
-<area shape="rect" id="Node000001" title="Un tableau de chaine de caracteres (VECT(Nom))" alt="" coords="19,81,78,109"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,92,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="51,49,51,81,46,81,46,49"/>
+<area shape="rect" id="node1" title="Un tableau de chaine de caracteres (VECT(Nom))" alt="" coords="19,80,79,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,92,32"/>
 </map>

@@ -1,0 +1,1470 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMultigrille__Adrien" kind="class" language="C++" prot="public">
+    <compoundname>Multigrille_Adrien</compoundname>
+    <basecompoundref refid="classMultigrille__base" prot="public" virt="non-virtual">Multigrille_base</basecompoundref>
+    <includes local="no">Multigrille_Adrien.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classMultigrille__Adrien_1a236b6ec2e03222396e4494a7c30db8a1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Multigrille_Adrien::ghost_size_</definition>
+        <argsstring></argsstring>
+        <name>ghost_size_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="186" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMultigrille__Adrien_1afd3a1d1d95c4bbfd1790938fb4f746e3" prot="private" static="no" mutable="no">
+        <type><ref refid="classTRUST__Vector" kindref="compound">TRUST_Vector</ref>&lt; <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; double &gt; &gt;</type>
+        <definition>TRUST_Vector&lt;Grid_Level_Data_template&lt;double&gt; &gt; Multigrille_Adrien::grids_data_double_</definition>
+        <argsstring></argsstring>
+        <name>grids_data_double_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="193" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMultigrille__Adrien_1ab6700756ffb7eb5129d4064c36842092" prot="private" static="no" mutable="no">
+        <type><ref refid="classTRUST__Vector" kindref="compound">TRUST_Vector</ref>&lt; <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; float &gt; &gt;</type>
+        <definition>TRUST_Vector&lt;Grid_Level_Data_template&lt;float&gt; &gt; Multigrille_Adrien::grids_data_float_</definition>
+        <argsstring></argsstring>
+        <name>grids_data_float_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="192" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMultigrille__Adrien_1ae05976ff8eae67dd21b36cb41c70f31c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Multigrille_Adrien::nb_isotropic_coarsening_</definition>
+        <argsstring></argsstring>
+        <name>nb_isotropic_coarsening_</name>
+        <initializer>= -10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="182" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="182" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classMultigrille__Adrien_1afb87df4f243505e776c96850c0ee015b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::alloc_field_</definition>
+        <argsstring>(IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;x, int level, bool with_additional_k_layers=false) const</argsstring>
+        <name>alloc_field_</name>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>with_additional_k_layers</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="166" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="302" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a8133fee8c2506e69fb501c6e2055e838" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::coarsen_</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;fine, IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coarse, int fine_level) const</argsstring>
+        <name>coarsen_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="175" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="255" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a333a66d7e07fedaab0150ef3c539d360" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Multigrille_Adrien::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(Multigrille_Adrien)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classMultigrille__Adrien" kindref="compound">Multigrille_Adrien</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a934b468fccd172630960b2e751355361" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::dump_lata_</definition>
+        <argsstring>(const Nom &amp;field, const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;data, int tstep) const</argsstring>
+        <name>dump_lata_</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tstep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="164" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a23002bb53296f376f49dc34b512a2d61" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, double &gt;::value, const <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; double &gt; &amp; &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,double&gt;::value, const Grid_Level_Data_template&lt;double&gt;&amp;&gt; Multigrille_Adrien::get_grid_data</definition>
+        <argsstring>(int level) const</argsstring>
+        <name>get_grid_data</name>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="145" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="145" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a72f9d50dc7f302e51d3953efcafc47f4" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, float &gt;::value, const <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; float &gt; &amp; &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,float&gt;::value, const Grid_Level_Data_template&lt;float&gt;&amp;&gt; Multigrille_Adrien::get_grid_data</definition>
+        <argsstring>(int level) const</argsstring>
+        <name>get_grid_data</name>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="149" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="149" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a5bcb25af6df54cd4eb6c5ef93a953fa1" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, double &gt;::value, int &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,double&gt;::value, int&gt; Multigrille_Adrien::get_grid_data_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_grid_data_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="137" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="137" bodyend="137"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a7c8a495a032cc190ea1979cf31663827" prot="private" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, float &gt;::value, int &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,float&gt;::value, int&gt; Multigrille_Adrien::get_grid_data_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_grid_data_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="141" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="141" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a14565a0477c1274616551356ce2cf5fb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>IJK_Field_template&lt; _TYPE_, TRUSTArray&lt; _TYPE_ &gt; &gt; &amp; Multigrille_Adrien::get_storage_template_</definition>
+        <argsstring>(StorageId, int level)</argsstring>
+        <name>get_storage_template_</name>
+        <param>
+          <type><ref refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736d" kindref="member">StorageId</ref></type>
+          <defname>id</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="179" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="319" bodyend="334"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1acc7e55ee0c07dffe58a3d9941dc8bc51" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::interpolate_sub_shiftk_</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coarse, IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;fine, int fine_level) const</argsstring>
+        <name>interpolate_sub_shiftk_</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="177" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="262" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1aaee060049ab60a7b3941dd9162516a37" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::jacobi_residu_</definition>
+        <argsstring>(IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;x, const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; *secmem, const int grid_level, const int n_jacobi, IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; *residu) const</argsstring>
+        <name>jacobi_residu_</name>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; *</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>grid_level</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>n_jacobi</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; *</type>
+          <declname>residu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="168" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="204" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a8078856f96c9810906ba5c603efc0314" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::prepare_secmem_</definition>
+        <argsstring>(IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;x) const</argsstring>
+        <name>prepare_secmem_</name>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="162" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="27" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a9dd5c3d3594ad5f6658ce91dc890cc0e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, double &gt;::value, <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; double &gt; &amp; &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,double&gt;::value, Grid_Level_Data_template&lt;double&gt;&amp;&gt; Multigrille_Adrien::set_grid_data</definition>
+        <argsstring>(int level)</argsstring>
+        <name>set_grid_data</name>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="153" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="153" bodyend="153"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1aa7918ab325d6ab227749a3beb82da3c3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; _TYPE_, float &gt;::value, <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; float &gt; &amp; &gt;</type>
+        <definition>std::enable_if_t&lt;std::is_same&lt;_TYPE_,float&gt;::value, Grid_Level_Data_template&lt;float&gt;&amp;&gt; Multigrille_Adrien::set_grid_data</definition>
+        <argsstring>(int level)</argsstring>
+        <name>set_grid_data</name>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="157" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="157" bodyend="157"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ae27523a312e322b2ea7f388fb6e1ee86" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Multigrille_Adrien::VECT</definition>
+        <argsstring>(OWN_PTR(Coarsen_Operator_base)) coarsen_operators_</argsstring>
+        <name>VECT</name>
+        <param>
+          <type>OWN_PTR(<ref refid="classCoarsen__Operator__base" kindref="compound">Coarsen_Operator_base</ref>)</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="189" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMultigrille__Adrien_1a7e619daf424d2776ac10f5fe79bab731" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::alloc_field</definition>
+        <argsstring>(IJK_Field_double &amp;x, int level, bool with_additional_k_layers=false) const override</argsstring>
+        <name>alloc_field</name>
+        <reimplements refid="classMultigrille__base_1aa8528439d6a0ef782146949001f02858">alloc_field</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>with_additional_k_layers</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="58" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1abb1a0adde1485865a853c752f56022d9" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::alloc_field</definition>
+        <argsstring>(IJK_Field_float &amp;x, int level, bool with_additional_k_layers=false) const override</argsstring>
+        <name>alloc_field</name>
+        <reimplements refid="classMultigrille__base_1ab7e9b37816f427593adca79128ba7a9d">alloc_field</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>with_additional_k_layers</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="54" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a265385ed61c3ee3475d8c03259ac3b0f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Multigrille_Adrien::completer</definition>
+        <argsstring>(const Equation_base &amp;eq)</argsstring>
+        <name>completer</name>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <declname>eq</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="32" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="67" bodyend="78"/>
+        <references refid="classIJK__VDF__converter_1a2ddf1c81176abfca4963f456bd64ce77" compoundref="IJK__VDF__converter_8cpp" startline="30" endline="33">IJK_VDF_converter::get_conventional_name</references>
+        <references refid="classIJK__VDF__converter_1a022328f346cfd37d2215ff5b0ed77716" compoundref="IJK__VDF__converter_8h" startline="27" endline="27">IJK_VDF_converter::get_domaine</references>
+        <references refid="classInterprete__bloc_1ae0b05c3b185638c72c0521be856f1d4f" compoundref="Interprete__bloc_8cpp" startline="252" endline="269">Interprete_bloc::objet_global</references>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a0c4209602f8c0125ebc8ea459e3162a0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::dump_lata</definition>
+        <argsstring>(const Nom &amp;field, const IJK_Field_double &amp;data, int tstep) const override</argsstring>
+        <name>dump_lata</name>
+        <reimplements refid="classMultigrille__base_1afa3da064f38c87828edf58efa6f91b85">dump_lata</reimplements>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tstep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="66" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ac2ed6620e4ccf40a6eeb86dd2e103e9e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::dump_lata</definition>
+        <argsstring>(const Nom &amp;field, const IJK_Field_float &amp;data, int tstep) const override</argsstring>
+        <name>dump_lata</name>
+        <reimplements refid="classMultigrille__base_1a82aee2e06ea4d90a868c93bb1a13e35c">dump_lata</reimplements>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>tstep</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="62" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="62" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ad50fc12bdac7adc1090401c84e73fb7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::initialize</definition>
+        <argsstring>(const Domaine_IJK &amp;)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>const <ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref> &amp;</type>
+          <defname>split</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="80" bodyend="105"/>
+        <references refid="classIJK__Field__template_1a9c330f12b41547930db9e6cedb736c8c" compoundref="IJK__Field__template_8tpp" startline="562" endline="572">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate</references>
+        <references refid="classIJK__Field__template_1a5942d9ff62d57d77a11b0dda5d4e91f5" compoundref="IJK__Field__template_8tpp" startline="575" endline="581">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate_shear_BC</references>
+        <references refid="classIJK__Field__local__template_1a7557798c384c81b392b53902ecabf221" compoundref="IJK__Field__local__template_8h" startline="178" endline="178">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::data</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" compoundref="IJK__Shear__Periodic__helpler_8h" startline="27">IJK_Shear_Periodic_helpler::defilement_</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a4a01cd61239708e0c20e9fbedfa52eb6" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::ELEM</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a849f11683762e2f99725ae641540f7b5" compoundref="IJK__Shear__Periodic__helpler_8h" startline="29">IJK_Shear_Periodic_helpler::rho_liq_ref_for_poisson_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a353a726e13f3de2eb4661da617c5daca" compoundref="IJK__Shear__Periodic__helpler_8h" startline="30">IJK_Shear_Periodic_helpler::rho_vap_ref_for_poisson_</references>
+        <referencedby refid="classIJK__Test__Multigrille_1a586a3a8d97de54b8b21f95fbebe85ba2" compoundref="IJK__Test__Multigrille_8cpp" startline="34" endline="125">IJK_Test_Multigrille::interpreter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a6d79b287c00391a6d525fd73fead758e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Multigrille_Adrien::Multigrille_Adrien</definition>
+        <argsstring>()</argsstring>
+        <name>Multigrille_Adrien</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="31" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a8fd5c60797230e72b78eda90f3533c97" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Multigrille_Adrien::nb_grid_levels</definition>
+        <argsstring>() const override</argsstring>
+        <name>nb_grid_levels</name>
+        <reimplements refid="classMultigrille__base_1a70447f2bd566d37fcc5d4161a96ef98c">nb_grid_levels</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="34" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="34" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ab8ee8083d83a88ce5f2576f7fa3a31d4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::prepare_secmem</definition>
+        <argsstring>(IJK_Field_double &amp;x) const override</argsstring>
+        <name>prepare_secmem</name>
+        <reimplements refid="classMultigrille__base_1a97a427e29c7d279a21651035ac08d721">prepare_secmem</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="49" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a311fd8afe1d2472830c79acd0ca43b45" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::prepare_secmem</definition>
+        <argsstring>(IJK_Field_float &amp;x) const override</argsstring>
+        <name>prepare_secmem</name>
+        <reimplements refid="classMultigrille__base_1a22b3db7d514452cbf18c639b6cdcaff7">prepare_secmem</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="45" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ad54b8ac97c4d41ae144ddbe96ac8f8a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::reset_rho</definition>
+        <argsstring>()</argsstring>
+        <name>reset_rho</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="39" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a31e5729d310dab770e0955b56151e5c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::set_inv_rho</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;inv_rho)</argsstring>
+        <name>set_inv_rho</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>inv_rho</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="60" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_FUNC_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::set_inv_rho_template</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;rho, bool set_coarse_matrix_flag, bool use_coeffs_from_double)</argsstring>
+        <name>set_inv_rho_template</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>rho</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>set_coarse_matrix_flag</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_coeffs_from_double</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="133" bodyend="194"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" compoundref="IJK__Shear__Periodic__helpler_8h" startline="27">IJK_Shear_Periodic_helpler::defilement_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad8e63d3109bd3a6aaf6e18fb8adbe8f9" compoundref="IJK__Shear__Periodic__helpler_8h" startline="57" endline="60">IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmax_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ae1e049c45c99e9dc3c9ae55c8a4d9910" compoundref="IJK__Shear__Periodic__helpler_8h" startline="53" endline="56">IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmin_</references>
+        <references refid="classIJK__Field__template_1a2ab5ac2176aa90b67a633fc4d3b37275" compoundref="IJK__Field__template_8h" startline="76" endline="76">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::get_shear_BC_helpler</references>
+        <references refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" compoundref="IJK__Field__local__template_8h" startline="167" endline="167">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ni</references>
+        <references refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" compoundref="IJK__Field__local__template_8h" startline="168" endline="168">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nj</references>
+        <references refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" compoundref="IJK__Field__local__template_8h" startline="169" endline="169">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nk</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a09516c81e8d41b8753f73906d02a9b01" compoundref="IJK__Shear__Periodic__helpler_8h" startline="70" endline="76">IJK_Shear_Periodic_helpler::set_indicatrice_ghost_zmin_</references>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a4312d18b7420ad7632e25eb4bab54716" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::set_rho</definition>
+        <argsstring>(const DoubleVect &amp;rho)</argsstring>
+        <name>set_rho</name>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>rho</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="112" bodyend="129"/>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <references refid="classPerf__counters_1ad8da7bbe3cc8b6bf63ce2c5a9c76323c" compoundref="Perf__counters_8cpp" startline="1790" endline="1793">Perf_counters::create_custom_counter</references>
+        <references refid="classPerf__counters_1ad528e593c4ea8c18b317fef30632b053" compoundref="Perf__counters_8cpp" startline="1805" endline="1808">Perf_counters::end_count</references>
+        <referencedby refid="classIJK__Test__Multigrille_1a586a3a8d97de54b8b21f95fbebe85ba2" compoundref="IJK__Test__Multigrille_8cpp" startline="34" endline="125">IJK_Test_Multigrille::interpreter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a3312d126124734f27f6cb0e30b0646dd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::set_rho</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;rho)</argsstring>
+        <name>set_rho</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>rho</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="46" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classMultigrille__Adrien_1a26a236cc39ca16c087513bd29739b762" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::ajouter_param</definition>
+        <argsstring>(Param &amp;param) override</argsstring>
+        <name>ajouter_param</name>
+        <reimplements refid="classMultigrille__base_1a09f627bc6baae0e242bce96bf840806e">ajouter_param</reimplements>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="72" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="41" bodyend="47"/>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classMultigrille__base_1a09f627bc6baae0e242bce96bf840806e" compoundref="Multigrille__base_8cpp" startline="43" endline="62">Multigrille_base::ajouter_param</references>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a95dbe66ceaae180c61740bb14f84c2a6" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::coarsen</definition>
+        <argsstring>(const IJK_Field_double &amp;fine, IJK_Field_double &amp;coarse, int fine_level) const override</argsstring>
+        <name>coarsen</name>
+        <reimplements refid="classMultigrille__base_1a809563d6b3bf67b05e930119c25eb9e5">coarsen</reimplements>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="110" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="110" bodyend="113"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a1467660812023dcdedae6397673c4990" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::coarsen</definition>
+        <argsstring>(const IJK_Field_float &amp;fine, IJK_Field_float &amp;coarse, int fine_level) const override</argsstring>
+        <name>coarsen</name>
+        <reimplements refid="classMultigrille__base_1ab743ae8e3a201b2304472cc42c1af135">coarsen</reimplements>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="106" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a45060c23f2b59259cd5058e65aa273b6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::completer_double_for_residue</definition>
+        <argsstring>(const Domaine_IJK &amp;splitting)</argsstring>
+        <name>completer_double_for_residue</name>
+        <param>
+          <type>const <ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref> &amp;</type>
+          <declname>splitting</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="86" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="137" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ad574e66de8a4afdb5f5f7b84e31fa342" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::completer_template</definition>
+        <argsstring>(const Domaine_IJK &amp;)</argsstring>
+        <name>completer_template</name>
+        <param>
+          <type>const <ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref> &amp;</type>
+          <defname>split</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="76" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="271" bodyend="296"/>
+        <references refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" compoundref="IJK__Field__local__template_8h" startline="167" endline="167">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ni</references>
+        <references refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" compoundref="IJK__Field__local__template_8h" startline="168" endline="168">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nj</references>
+        <references refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" compoundref="IJK__Field__local__template_8h" startline="169" endline="169">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nk</references>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1aed23e335848eab81ab519404e0f96e47" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::compute_coefficients</definition>
+        <argsstring>(IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coeffs_faces, const int grid_level) const</argsstring>
+        <name>compute_coefficients</name>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coeffs_faces</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>grid_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="81" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a412344bf9f4aea0b2897871f8b036a26" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+        <definition>IJK_Field_double&amp; Multigrille_Adrien::get_storage_double</definition>
+        <argsstring>(StorageId si, int level) override</argsstring>
+        <name>get_storage_double</name>
+        <reimplements refid="classMultigrille__base_1ada67e422d5a918165de9d3a577c7cde1">get_storage_double</reimplements>
+        <param>
+          <type><ref refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736d" kindref="member">StorageId</ref></type>
+          <declname>si</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="126" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="126" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a2103b2fc6493a12a78f92f6ccfc294b5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+        <definition>IJK_Field_float&amp; Multigrille_Adrien::get_storage_float</definition>
+        <argsstring>(StorageId si, int level) override</argsstring>
+        <name>get_storage_float</name>
+        <reimplements refid="classMultigrille__base_1a69d7d045131c570037f533c0bd228d74">get_storage_float</reimplements>
+        <param>
+          <type><ref refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736d" kindref="member">StorageId</ref></type>
+          <declname>si</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="122" column="26" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="122" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ac76729c4774f1c12137473a487c574d1" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::interpolate_sub_shiftk</definition>
+        <argsstring>(const IJK_Field_double &amp;coarse, IJK_Field_double &amp;fine, int fine_level) const override</argsstring>
+        <name>interpolate_sub_shiftk</name>
+        <reimplements refid="classMultigrille__base_1aadfd8ae0f3cb8394060ed77c047f1761">interpolate_sub_shiftk</reimplements>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="118" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1aebcfacffeada5d5b3fffc6462ee409c1" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::interpolate_sub_shiftk</definition>
+        <argsstring>(const IJK_Field_float &amp;coarse, IJK_Field_float &amp;fine, int fine_level) const override</argsstring>
+        <name>interpolate_sub_shiftk</name>
+        <reimplements refid="classMultigrille__base_1a5fbb2181f5070191e03c7188b07d9796">interpolate_sub_shiftk</reimplements>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fine_level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="114" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="114" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ad6876db1c5fe19bb0902ca82e9910e52" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::jacobi_residu</definition>
+        <argsstring>(IJK_Field_double &amp;x, const IJK_Field_double *secmem, const int grid_level, const int n_jacobi, IJK_Field_double *residu) const override</argsstring>
+        <name>jacobi_residu</name>
+        <reimplements refid="classMultigrille__base_1ad28fe6816c3825d88f5b4cd05ec61adc">jacobi_residu</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> *</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>grid_level</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>n_jacobi</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_double</ref> *</type>
+          <declname>residu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="96" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="96" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1abafebef17808872f62e21c98cdfd0809" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Multigrille_Adrien::jacobi_residu</definition>
+        <argsstring>(IJK_Field_float &amp;x, const IJK_Field_float *secmem, const int grid_level, const int n_jacobi, IJK_Field_float *residu) const override</argsstring>
+        <name>jacobi_residu</name>
+        <reimplements refid="classMultigrille__base_1ae37baa318ae647a50d24c4c7500fa7dc">jacobi_residu</reimplements>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> &amp;</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> *</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>grid_level</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>n_jacobi</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_float</ref> *</type>
+          <declname>residu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="88" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="88" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1ac73fa3808968358f583766ead079d56f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Multigrille_Adrien::multigrille_failure</definition>
+        <argsstring>() override</argsstring>
+        <name>multigrille_failure</name>
+        <reimplements refid="classMultigrille__base_1a14b989605b369972e3f5f12aa1f66fa2">multigrille_failure</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="131" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="144" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a94bbc467f1ed92f90acf303d82f65567" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Multigrille_Adrien::needed_kshift_for_jacobi</definition>
+        <argsstring>(int level) const override</argsstring>
+        <name>needed_kshift_for_jacobi</name>
+        <reimplements refid="classMultigrille__base_1a03ce76351d19b897838d392d6ea28d76">needed_kshift_for_jacobi</reimplements>
+        <param>
+          <type>int</type>
+          <declname>level</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="73" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.cpp" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_FUNC_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::set_rho_template</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;rho, bool set_coarse_matrix, bool use_coeffs_from_double)</argsstring>
+        <name>set_rho_template</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>rho</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>set_coarse_matrix</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>use_coeffs_from_double</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="84" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.tpp" bodystart="74" bodyend="130"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" compoundref="IJK__Shear__Periodic__helpler_8h" startline="27">IJK_Shear_Periodic_helpler::defilement_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ad8e63d3109bd3a6aaf6e18fb8adbe8f9" compoundref="IJK__Shear__Periodic__helpler_8h" startline="57" endline="60">IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmax_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1ae1e049c45c99e9dc3c9ae55c8a4d9910" compoundref="IJK__Shear__Periodic__helpler_8h" startline="53" endline="56">IJK_Shear_Periodic_helpler::get_indicatrice_ghost_zmin_</references>
+        <references refid="classIJK__Field__template_1a2ab5ac2176aa90b67a633fc4d3b37275" compoundref="IJK__Field__template_8h" startline="76" endline="76">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::get_shear_BC_helpler</references>
+        <references refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" compoundref="IJK__Field__local__template_8h" startline="167" endline="167">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ni</references>
+        <references refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" compoundref="IJK__Field__local__template_8h" startline="168" endline="168">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nj</references>
+        <references refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" compoundref="IJK__Field__local__template_8h" startline="169" endline="169">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nk</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a09516c81e8d41b8753f73906d02a9b01" compoundref="IJK__Shear__Periodic__helpler_8h" startline="70" endline="76">IJK_Shear_Periodic_helpler::set_indicatrice_ghost_zmin_</references>
+      </memberdef>
+      <memberdef kind="function" id="classMultigrille__Adrien_1af297f90da117fe9e43ea9a4697563bf4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _TYPE_</type>
+          </param>
+          <param>
+            <type>typename _TYPE_ARRAY_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Multigrille_Adrien::setup_coarse_grid</definition>
+        <argsstring>(const IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;fine, IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;coarse) const</argsstring>
+        <name>setup_coarse_grid</name>
+        <param>
+          <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>fine</declname>
+        </param>
+        <param>
+          <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, _TYPE_ARRAY_ &gt; &amp;</type>
+          <declname>coarse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="79" column="8"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Multigrille_base</label>
+        <link refid="classMultigrille__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Multigrille_Adrien</label>
+        <link refid="classMultigrille__Adrien"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="7">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Multigrille_base</label>
+        <link refid="classMultigrille__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>chaine_lue_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Multigrille_Adrien</label>
+        <link refid="classMultigrille__Adrien"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Multigrille_Adrien.h" bodystart="28" bodyend="194"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>abort</name></member>
+      <member refid="classMultigrille__Adrien_1a26a236cc39ca16c087513bd29739b762" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>ajouter_param</name></member>
+      <member refid="classMultigrille__Adrien_1abb1a0adde1485865a853c752f56022d9" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>alloc_field</name></member>
+      <member refid="classMultigrille__Adrien_1a7e619daf424d2776ac10f5fe79bab731" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>alloc_field</name></member>
+      <member refid="classMultigrille__Adrien_1afb87df4f243505e776c96850c0ee015b" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>alloc_field_</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>bidim_axi</name></member>
+      <member refid="classSolveurSys__base_1afe094450db2e5697da7b535437bd71b9" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>chaine_lue_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>check_int_overflow</name></member>
+      <member refid="classMultigrille__base_1af18270f77115a6ae23832efc78d55a44" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>coarse_solver</name></member>
+      <member refid="classMultigrille__Adrien_1a1467660812023dcdedae6397673c4990" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>coarsen</name></member>
+      <member refid="classMultigrille__Adrien_1a95dbe66ceaae180c61740bb14f84c2a6" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>coarsen</name></member>
+      <member refid="classMultigrille__Adrien_1a8133fee8c2506e69fb501c6e2055e838" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>coarsen_</name></member>
+      <member refid="classMultigrille__Adrien_1a265385ed61c3ee3475d8c03259ac3b0f" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>completer</name></member>
+      <member refid="classMultigrille__Adrien_1a45060c23f2b59259cd5058e65aa273b6" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>completer_double_for_residue</name></member>
+      <member refid="classMultigrille__Adrien_1ad574e66de8a4afdb5f5f7b84e31fa342" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>completer_template</name></member>
+      <member refid="classMultigrille__Adrien_1aed23e335848eab81ab519404e0f96e47" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>compute_coefficients</name></member>
+      <member refid="classMultigrille__base_1ac67d84173bce821cb0947cb8ef29768b" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>convert_from_ijk</name></member>
+      <member refid="classMultigrille__base_1a783c1f841ce9656fa466b3113e61e65f" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>convert_to_ijk</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classMultigrille__Adrien_1a333a66d7e07fedaab0150ef3c539d360" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>disable_TU</name></member>
+      <member refid="classMultigrille__Adrien_1ac2ed6620e4ccf40a6eeb86dd2e103e9e" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>dump_lata</name></member>
+      <member refid="classMultigrille__Adrien_1a0c4209602f8c0125ebc8ea459e3162a0" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>dump_lata</name></member>
+      <member refid="classMultigrille__Adrien_1a934b468fccd172630960b2e751355361" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>dump_lata_</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Multigrille_Adrien</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>exit</name></member>
+      <member refid="classSolveurSys__base_1a987e97740c779c1ab4192c3c1f1bbd5d" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>fixer_limpr</name></member>
+      <member refid="classSolveurSys__base_1ac7ab2597959ce63c33809112abf348c2" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>fixer_nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1af97f0f1bb14eaebf5a20ef6a741065ac" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>fixer_schema_temps_limpr</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>format_precision_geom</name></member>
+      <member refid="classSolveurSys__base_1a37ee1ac4f2a7c4438df6a806488c7c46" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_chaine_lue</name></member>
+      <member refid="classMultigrille__base_1a85bbc2c3b0a63fa0ac62f103883ec442" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>get_flag_updated_input</name></member>
+      <member refid="classSolveurSys__base_1a82adf841121371ac9aea5d965e25b9eb" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_flag_updated_result</name></member>
+      <member refid="classMultigrille__Adrien_1a23002bb53296f376f49dc34b512a2d61" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_grid_data</name></member>
+      <member refid="classMultigrille__Adrien_1a72f9d50dc7f302e51d3953efcafc47f4" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_grid_data</name></member>
+      <member refid="classMultigrille__Adrien_1a5bcb25af6df54cd4eb6c5ef93a953fa1" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_grid_data_size</name></member>
+      <member refid="classMultigrille__Adrien_1a7c8a495a032cc190ea1979cf31663827" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_grid_data_size</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classMultigrille__Adrien_1a412344bf9f4aea0b2897871f8b036a26" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>get_storage_double</name></member>
+      <member refid="classMultigrille__Adrien_1a2103b2fc6493a12a78f92f6ccfc294b5" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>get_storage_float</name></member>
+      <member refid="classMultigrille__base_1a9af8a6f6ea260dd37c906a6d5d994338" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_storage_template</name></member>
+      <member refid="classMultigrille__base_1ada92a0112e31601201f013cb321a430c" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_storage_template</name></member>
+      <member refid="classMultigrille__Adrien_1a14565a0477c1274616551356ce2cf5fb" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>get_storage_template_</name></member>
+      <member refid="classMultigrille__Adrien_1a236b6ec2e03222396e4494a7c30db8a1" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>ghost_size_</name></member>
+      <member refid="classMultigrille__Adrien_1afd3a1d1d95c4bbfd1790938fb4f746e3" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>grids_data_double_</name></member>
+      <member refid="classMultigrille__Adrien_1ab6700756ffb7eb5129d4064c36842092" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>grids_data_float_</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>info_obj</name></member>
+      <member refid="classMultigrille__Adrien_1ad50fc12bdac7adc1090401c84e73fb7e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>initialize</name></member>
+      <member refid="classMultigrille__Adrien_1aebcfacffeada5d5b3fffc6462ee409c1" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>interpolate_sub_shiftk</name></member>
+      <member refid="classMultigrille__Adrien_1ac76729c4774f1c12137473a487c574d1" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>interpolate_sub_shiftk</name></member>
+      <member refid="classMultigrille__Adrien_1acc7e55ee0c07dffe58a3d9941dc8bc51" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>interpolate_sub_shiftk_</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>is_sequential</name></member>
+      <member refid="classMultigrille__Adrien_1abafebef17808872f62e21c98cdfd0809" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>jacobi_residu</name></member>
+      <member refid="classMultigrille__Adrien_1ad6876db1c5fe19bb0902ca82e9910e52" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>jacobi_residu</name></member>
+      <member refid="classMultigrille__Adrien_1aaee060049ab60a7b3941dd9162516a37" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>jacobi_residu_</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>le_type</name></member>
+      <member refid="classSolveurSys__base_1af4e770068f6ad5f717569ec7807e4186" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>lecture</name></member>
+      <member refid="classSolveurSys__base_1a6435c5b83312da8f782eeeab564b4061" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>limpr</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>mpsum_multiple</name></member>
+      <member refid="classMultigrille__base_1ac5a69341ee38ad245e447207cb635d24" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>multigrille</name></member>
+      <member refid="classMultigrille__base_1ae02b4893932e1d2af876f34c46be7f16" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>multigrille_</name></member>
+      <member refid="classMultigrille__Adrien_1a6d79b287c00391a6d525fd73fead758e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Multigrille_Adrien</name></member>
+      <member refid="classMultigrille__base_1a2057f84c2913730ac2f534699c41fa91" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Multigrille_base</name></member>
+      <member refid="classMultigrille__Adrien_1ac73fa3808968358f583766ead079d56f" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>multigrille_failure</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>multiple_files</name></member>
+      <member refid="classMultigrille__Adrien_1a8fd5c60797230e72b78eda90f3533c97" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>nb_grid_levels</name></member>
+      <member refid="classMultigrille__Adrien_1ae05976ff8eae67dd21b36cb41c70f31c" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nb_isotropic_coarsening_</name></member>
+      <member refid="classMultigrille__Adrien_1a94bbc467f1ed92f90acf303d82f65567" prot="protected" virt="virtual"><scope>Multigrille_Adrien</scope><name>needed_kshift_for_jacobi</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>nommer</name></member>
+      <member refid="classSolveurSys__base_1a5d87061de47689a5dfc33ceb4434bfcd" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1a6f3572b460eb22fb58bff895dae3a0f2" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nouvelle_matrice_</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nproc</name></member>
+      <member refid="classMultigrille__base_1ae95a89e3d0277347216e75a7269b1bc6" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>nsweeps_jacobi_residu</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>operator=</name></member>
+      <member refid="classMultigrille__base_1a9f1dea4bcf7569bbf782f9d959c0fb86" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>precision_double_</name></member>
+      <member refid="classMultigrille__base_1ac74aad38fc2cd7ae348291a2951ebfa3" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>precision_float_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>precision_geom</name></member>
+      <member refid="classMultigrille__base_1ab1ec9194bcb038c6f1c17ef04e248c42" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>precision_mix_</name></member>
+      <member refid="classMultigrille__Adrien_1a311fd8afe1d2472830c79acd0ca43b45" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>prepare_secmem</name></member>
+      <member refid="classMultigrille__Adrien_1ab8ee8083d83a88ce5f2576f7fa3a31d4" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>prepare_secmem</name></member>
+      <member refid="classMultigrille__Adrien_1a8078856f96c9810906ba5c603efc0314" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>prepare_secmem_</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>ram_processeur</name></member>
+      <member refid="classSolveurSys__base_1a0a95f84b624d297dce073c7cf062d988" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>read_matrix</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>readOn</name></member>
+      <member refid="classSolveurSys__base_1a8737bd7292204c64e4b7bfe4c7bd88ef" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>reinit</name></member>
+      <member refid="classMultigrille__base_1a4aac65cbd91b1107aadaaa691c83603e" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>relax_jacobi</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>reprendre</name></member>
+      <member refid="classMultigrille__Adrien_1ad54b8ac97c4d41ae144ddbe96ac8f8a8" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>reset_rho</name></member>
+      <member refid="classMultigrille__base_1ab7f7650943a8c7be971a03ba505c307e" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>resoudre_avec_gcp</name></member>
+      <member refid="classMultigrille__base_1aaf946ac987f0f0bdbeeaa76b5281d339" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>resoudre_avec_gmres</name></member>
+      <member refid="classMultigrille__base_1aa2fdffd51847028c22b0c72d25c738dc" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>resoudre_systeme</name></member>
+      <member refid="classMultigrille__base_1ac8cbef36d2a40cd359294ff2610a07a0" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>resoudre_systeme</name></member>
+      <member refid="classMultigrille__base_1aee5630b16ae8dfe24b91f8d1e4c023aa" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>resoudre_systeme_IJK</name></member>
+      <member refid="classMultigrille__base_1a70e8d2fbe09418940129de9f70543885" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>resoudre_systeme_IJK_template</name></member>
+      <member refid="classMultigrille__base_1adb2c7f4e7b774975859be76b539816dd" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>resoudre_systeme_template</name></member>
+      <member refid="classSolveurSys__base_1a9f5542de1fc8d2e98a48a6bfe7eb9353" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>return_on_error_</name></member>
+      <member refid="classSolveurSys__base_1a265d6db198203cfb2416b461a6bc640d" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>reuse_preconditioner</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>sauvegarder</name></member>
+      <member refid="classSolveurSys__base_1a824322fe6a2c03aa986b8152aefcf14b" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>save_matrice_</name></member>
+      <member refid="classSolveurSys__base_1a58dba89c332229c6fd0491b2fc56c148" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>save_matrice_secmem_conditionnel</name></member>
+      <member refid="classSolveurSys__base_1af86b588703a1fb89319cfecefb9e2441" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>save_matrix</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>self_cast</name></member>
+      <member refid="classMultigrille__base_1ac4eaa32f95c67996a0c1adbce68d3fcb" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_coarse_matrix</name></member>
+      <member refid="classSolveurSys__base_1a101e6ebcf447c66eb0171e35ba40fc1b" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_flag_updated_result</name></member>
+      <member refid="classMultigrille__Adrien_1a9dd5c3d3594ad5f6658ce91dc890cc0e" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_grid_data</name></member>
+      <member refid="classMultigrille__Adrien_1aa7918ab325d6ab227749a3beb82da3c3" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_grid_data</name></member>
+      <member refid="classMultigrille__Adrien_1a31e5729d310dab770e0955b56151e5c1" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_inv_rho</name></member>
+      <member refid="classMultigrille__Adrien_1a79a02cd8ce7748da31b71d5ec150612f" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_inv_rho_template</name></member>
+      <member refid="classSolveurSys__base_1ab5dd43c8033d107357e5c2d1aea565c9" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_read_matrix</name></member>
+      <member refid="classSolveurSys__base_1a27067468cf159dc2e08c693ac7432685" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_return_on_error</name></member>
+      <member refid="classSolveurSys__base_1a0ea6281a5c0ad2cf572d421e661d370c" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_reuse_preconditioner</name></member>
+      <member refid="classMultigrille__Adrien_1a4312d18b7420ad7632e25eb4bab54716" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_rho</name></member>
+      <member refid="classMultigrille__Adrien_1a3312d126124734f27f6cb0e30b0646dd" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_rho</name></member>
+      <member refid="classMultigrille__Adrien_1a49c18c61db0b4881d70c4e5627d6ba54" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_rho_template</name></member>
+      <member refid="classSolveurSys__base_1aaecb60c1df070675220f4f49fd170db6" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>set_save_matrix</name></member>
+      <member refid="classMultigrille__Adrien_1af297f90da117fe9e43ea9a4697563bf4" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>setup_coarse_grid</name></member>
+      <member refid="classMultigrille__base_1a481c220c3661633ce6175569b6a0a2bf" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>solve_ijk_in_storage_template</name></member>
+      <member refid="classMultigrille__base_1ae9e31c57654179861f758239dd88337c" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>solve_ijk_in_storage_template</name></member>
+      <member refid="classMultigrille__base_1ae9e31c57654179861f758239dd88337c" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>solve_ijk_in_storage_template</name></member>
+      <member refid="classMultigrille__base_1a1a7db77ecd428a100a8891a6c2deb613" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>solver_precision_</name></member>
+      <member refid="classMultigrille__base_1a5428df32678ac3a6bfced3f660b1f977" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>solveur_direct</name></member>
+      <member refid="classSolveurSys__base_1a00b69ea2bd461781c8727a498a646ffe" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>SolveurSys_base</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736daa886df115ff91d6b68c47818969f2b4e" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>STORAGE_RESIDUE</name></member>
+      <member refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736da4a40e0931323c413702485639387d47b" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>STORAGE_RHS</name></member>
+      <member refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736da8d4f08373965286118c37fadd7144c24" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>STORAGE_X</name></member>
+      <member refid="classMultigrille__base_1a417cb13f16dbde98fabdb3aa3eca736d" prot="protected" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>StorageId</name></member>
+      <member refid="classSolveurSys__base_1a0040749ba12cc2db61a39519fa519996" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>supporte_matrice_morse_sym</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Multigrille_Adrien</scope><name>taille_memoire</name></member>
+      <member refid="classMultigrille__Adrien_1ae27523a312e322b2ea7f388fb6e1ee86" prot="private" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>VECT</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Multigrille_Adrien</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Multigrille_Adrien</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

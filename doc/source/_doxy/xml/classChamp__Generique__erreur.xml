@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamp__Generique__erreur" kind="class" language="C++" prot="public">
+    <compoundname>Champ_Generique_erreur</compoundname>
+    <includes local="no">Champ_Generique_base.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classChamp__Generique__erreur_1a5de8aebe13ec02715ddada92e3221225" prot="public" static="no" mutable="no">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom Champ_Generique_erreur::mot1</definition>
+        <argsstring></argsstring>
+        <name>mot1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" line="189" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" bodystart="189" bodyend="-1"/>
+        <referencedby refid="classChamp__Generique__erreur_1a11caf72eb788669d27ede9aa61e1ef97" compoundref="Champ__Generique__base_8h" startline="191" endline="196">Champ_Generique_erreur</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamp__Generique__erreur_1a11caf72eb788669d27ede9aa61e1ef97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Champ_Generique_erreur::Champ_Generique_erreur</definition>
+        <argsstring>(const Nom &amp;mot2)</argsstring>
+        <name>Champ_Generique_erreur</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>mot2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" line="191" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" bodystart="191" bodyend="196"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classChamp__Generique__erreur_1a5de8aebe13ec02715ddada92e3221225" compoundref="Champ__Generique__base_8h" startline="189">mot1</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Champ_Generique_erreur</label>
+        <link refid="classChamp__Generique__erreur"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>mot1</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>string</label>
+      </node>
+      <node id="5">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" line="186" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champ_Generique_base.h" bodystart="187" bodyend="197"/>
+    <listofallmembers>
+      <member refid="classChamp__Generique__erreur_1a11caf72eb788669d27ede9aa61e1ef97" prot="public" virt="non-virtual"><scope>Champ_Generique_erreur</scope><name>Champ_Generique_erreur</name></member>
+      <member refid="classChamp__Generique__erreur_1a5de8aebe13ec02715ddada92e3221225" prot="public" virt="non-virtual"><scope>Champ_Generique_erreur</scope><name>mot1</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

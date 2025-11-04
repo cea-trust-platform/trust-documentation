@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_92c25a2389a8122bfc5dd1f6f073bdb1" kind="dir">
+    <compoundname>IBM</compoundname>
+    <innerdir refid="dir_15becda995053b5343bda6bb8717a758">Equations</innerdir>
+    <innerdir refid="dir_da62c604389de949fb73b426e363ac8c">Problems</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/IBM/"/>
+  </compounddef>
+</doxygen>

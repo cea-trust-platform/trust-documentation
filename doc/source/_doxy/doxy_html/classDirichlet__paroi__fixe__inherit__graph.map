@@ -1,13 +1,8 @@
 <map id="Dirichlet_paroi_fixe" name="Dirichlet_paroi_fixe">
-<area shape="rect" id="Node000001" title="classe Dirichlet_paroi_fixe Represente une paroi immobile dans une equation de type Navier_Stokes." alt="" coords="7,308,156,336"/>
-<area shape="rect" id="Node000006" href="$classDirichlet__paroi__fixe__iso__Genepi2.html" title=" " alt="" coords="7,384,156,428"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="84,352,84,383,79,383,79,352"/>
-<area shape="rect" id="Node000002" href="$classDirichlet__homogene.html" title="Classe Dirichlet_homogene Cette classe est la classe de base de la hierarchie des conditions aux limi..." alt="" coords="5,232,158,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,276,84,308,79,308,79,276"/>
-<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="21,157,142,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,200,84,232,79,232,79,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="45,81,118,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="84,124,84,156,79,156,79,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="46,5,117,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="84,49,84,81,79,81,79,49"/>
+<area shape="rect" id="node1" title="classe Dirichlet_paroi_fixe Represente une paroi immobile dans une equation de type Navier_Stokes." alt="" coords="7,304,157,331"/>
+<area shape="rect" id="node6" href="$classDirichlet__paroi__fixe__iso__Genepi2.html" title=" " alt="" coords="7,379,157,420"/>
+<area shape="rect" id="node2" href="$classDirichlet__homogene.html" title="Classe Dirichlet_homogene Cette classe est la classe de base de la hierarchie des conditions aux limi..." alt="" coords="5,229,159,256"/>
+<area shape="rect" id="node3" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="21,155,143,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="45,80,119,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="46,5,118,32"/>
 </map>

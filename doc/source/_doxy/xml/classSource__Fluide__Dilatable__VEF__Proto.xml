@@ -1,0 +1,185 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSource__Fluide__Dilatable__VEF__Proto" kind="class" language="C++" prot="public">
+    <compoundname>Source_Fluide_Dilatable_VEF_Proto</compoundname>
+    <derivedcompoundref refid="classSource__QC__Chaleur__VEF" prot="public" virt="non-virtual">Source_QC_Chaleur_VEF</derivedcompoundref>
+    <derivedcompoundref refid="classSource__QC__Gravite__VEF" prot="public" virt="non-virtual">Source_QC_Gravite_VEF</derivedcompoundref>
+    <derivedcompoundref refid="classSource__WC__Chaleur__VEF" prot="public" virt="non-virtual">Source_WC_Chaleur_VEF</derivedcompoundref>
+    <derivedcompoundref refid="classSource__WC__Gravite__VEF" prot="public" virt="non-virtual">Source_WC_Gravite_VEF</derivedcompoundref>
+    <includes local="no">Source_Fluide_Dilatable_VEF_Proto.h</includes>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSource__Fluide__Dilatable__VEF__Proto_1abdd1b317dc40f4d9bb9465ea3be351dd" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Source_Fluide_Dilatable_VEF_Proto::ajouter_impl</definition>
+        <argsstring>(const Equation_base &amp;eqn, const DoubleVect &amp;g, const int dimension, const double rho_m, const DoubleTab &amp;tab_rho, DoubleTab &amp;resu) const</argsstring>
+        <name>ajouter_impl</name>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <declname>eqn</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>g</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>dimension</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>rho_m</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>tab_rho</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>resu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.cpp" bodystart="43" bodyend="138"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" compoundref="Equation__base_8cpp" startline="1035" endline="1043">Equation_base::discretisation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classFront__VF_1a48eadf1b57ddc0d16e4953d19f259a9e" compoundref="Front__VF_8h" startline="53" endline="56">Front_VF::nb_faces</references>
+        <references refid="classFront__VF_1a930e90fb5e8e79adaad93b5c405d00d1" compoundref="Front__VF_8h" startline="63" endline="66">Front_VF::num_premiere_face</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classSource__QC__Gravite__VEF_1a60df7e476c12ad57613c93ba6cf91114" compoundref="Source__QC__Gravite__VEF_8cpp" startline="34" endline="41">Source_QC_Gravite_VEF::ajouter</referencedby>
+        <referencedby refid="classSource__WC__Gravite__VEF_1a77db9fb1ed5e89c413ec0d506c212c22" compoundref="Source__WC__Gravite__VEF_8cpp" startline="34" endline="39">Source_WC_Gravite_VEF::ajouter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSource__Fluide__Dilatable__VEF__Proto_1a3d864cb133210cc7fef6243b856986ce" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Source_Fluide_Dilatable_VEF_Proto::associer_domaines_impl</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine, const Domaine_Cl_dis_base &amp;domaine_cl)</argsstring>
+        <name>associer_domaines_impl</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>domaine_cl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.cpp" bodystart="31" bodyend="35"/>
+        <referencedby refid="classSource__QC__Chaleur__VEF_1ae44cabddc352e23286276dfa47d132fd" compoundref="Source__QC__Chaleur__VEF_8cpp" startline="29" endline="33">Source_QC_Chaleur_VEF::associer_domaines</referencedby>
+        <referencedby refid="classSource__WC__Chaleur__VEF_1af5557fadea2b3198c89ea8b32e15dbda" compoundref="Source__WC__Chaleur__VEF_8cpp" startline="34" endline="38">Source_WC_Chaleur_VEF::associer_domaines</referencedby>
+        <referencedby refid="classSource__QC__Gravite__VEF_1a8bebbdc458aa74c204496cb909a13cb6" compoundref="Source__QC__Gravite__VEF_8cpp" startline="29" endline="32">Source_QC_Gravite_VEF::associer_domaines</referencedby>
+        <referencedby refid="classSource__WC__Gravite__VEF_1af9951ff0f11071dbf8bb0cbd0ac7a1f1" compoundref="Source__WC__Gravite__VEF_8cpp" startline="29" endline="32">Source_WC_Gravite_VEF::associer_domaines</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSource__Fluide__Dilatable__VEF__Proto_1a7ef72e05b2fa971c2b12f3f1c6aecfba" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Source_Fluide_Dilatable_VEF_Proto::associer_volume_porosite_impl</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine, DoubleVect &amp;volumes, DoubleVect &amp;porosites)</argsstring>
+        <name>associer_volume_porosite_impl</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>volumes</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>porosites</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="32" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.cpp" bodystart="37" bodyend="41"/>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <referencedby refid="classSource__QC__Chaleur__VEF_1ae44cabddc352e23286276dfa47d132fd" compoundref="Source__QC__Chaleur__VEF_8cpp" startline="29" endline="33">Source_QC_Chaleur_VEF::associer_domaines</referencedby>
+        <referencedby refid="classSource__WC__Chaleur__VEF_1af5557fadea2b3198c89ea8b32e15dbda" compoundref="Source__WC__Chaleur__VEF_8cpp" startline="34" endline="38">Source_WC_Chaleur_VEF::associer_domaines</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSource__Fluide__Dilatable__VEF__Proto_1ac81fb21d19467f141f857f2b67aea1af" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Source_Fluide_Dilatable_VEF_Proto::OBS_PTR</definition>
+        <argsstring>(Domaine_Cl_VEF) le_dom_Cl</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__Cl__VEF" kindref="compound">Domaine_Cl_VEF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classSource__Fluide__Dilatable__VEF__Proto_1a5a07b2386fa08195bc3ec01800965e11" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Source_Fluide_Dilatable_VEF_Proto::OBS_PTR</definition>
+        <argsstring>(Domaine_VEF) le_dom</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__VEF" kindref="compound">Domaine_VEF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="35" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Source_Fluide_Dilatable_VEF_Proto</label>
+        <link refid="classSource__Fluide__Dilatable__VEF__Proto"/>
+      </node>
+      <node id="4">
+        <label>Source_WC_Chaleur_VEF</label>
+        <link refid="classSource__WC__Chaleur__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Source_QC_Chaleur_VEF</label>
+        <link refid="classSource__QC__Chaleur__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Source_WC_Gravite_VEF</label>
+        <link refid="classSource__WC__Gravite__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Source_QC_Gravite_VEF</label>
+        <link refid="classSource__QC__Gravite__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" line="28" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/Sources/Dilatable/Source_Fluide_Dilatable_VEF_Proto.h" bodystart="29" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classSource__Fluide__Dilatable__VEF__Proto_1abdd1b317dc40f4d9bb9465ea3be351dd" prot="protected" virt="non-virtual"><scope>Source_Fluide_Dilatable_VEF_Proto</scope><name>ajouter_impl</name></member>
+      <member refid="classSource__Fluide__Dilatable__VEF__Proto_1a3d864cb133210cc7fef6243b856986ce" prot="protected" virt="non-virtual"><scope>Source_Fluide_Dilatable_VEF_Proto</scope><name>associer_domaines_impl</name></member>
+      <member refid="classSource__Fluide__Dilatable__VEF__Proto_1a7ef72e05b2fa971c2b12f3f1c6aecfba" prot="protected" virt="non-virtual"><scope>Source_Fluide_Dilatable_VEF_Proto</scope><name>associer_volume_porosite_impl</name></member>
+      <member refid="classSource__Fluide__Dilatable__VEF__Proto_1a5a07b2386fa08195bc3ec01800965e11" prot="protected" virt="non-virtual"><scope>Source_Fluide_Dilatable_VEF_Proto</scope><name>OBS_PTR</name></member>
+      <member refid="classSource__Fluide__Dilatable__VEF__Proto_1ac81fb21d19467f141f857f2b67aea1af" prot="protected" virt="non-virtual"><scope>Source_Fluide_Dilatable_VEF_Proto</scope><name>OBS_PTR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

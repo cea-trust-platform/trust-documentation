@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classMemoire.html" title="La memoire de Trio&#45;U." alt="" coords="5,5,85,33"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,180,32"/>
+<area shape="rect" id="node2" href="$classMatrice.html" title="Classe Matrice Classe generique de la hierarchie des matrices." alt="" coords="228,5,299,32"/>
 </map>

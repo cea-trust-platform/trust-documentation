@@ -8,9 +8,9 @@ var classDomaine__Cl__VDF =
     [ "domaine_VDF", "classDomaine__Cl__VDF.html#a7e951b00f92c8d36e866aa1945502871", null ],
     [ "domaine_VDF", "classDomaine__Cl__VDF.html#a3a023e618aa7b66d79ad4e02b3ecd097", null ],
     [ "num_Cl_face", "classDomaine__Cl__VDF.html#ac97b9f7083cd387eb7bd04f342b0b5d5", null ],
-    [ "la_cl_de_la_face", "classDomaine__Cl__VDF.html#a3f015c2f6608182c82e8adcac43569fa", null ],
+    [ "la_cl_de_la_face", "classDomaine__Cl__VDF.html#a16d3625ef0b5136a64dd6046715c391a", null ],
     [ "type_arete_bord", "classDomaine__Cl__VDF.html#a511f61ea1061d1b149e521993abb47f8", null ],
-    [ "type_arete_bord", "classDomaine__Cl__VDF.html#aa0f81e999baac3c27ccfc4835393cf83", null ],
-    [ "type_arete_coin", "classDomaine__Cl__VDF.html#ae9db52009c5775a1934a6b0e4d30f4a2", null ],
-    [ "type_arete_coin", "classDomaine__Cl__VDF.html#a7f11600de50cd5ed56193aa3b8ddae29", null ]
+    [ "type_arete_bord", "classDomaine__Cl__VDF.html#af0747d3c8b8e50e6ff955a3aa7722cf6", null ],
+    [ "type_arete_coin", "classDomaine__Cl__VDF.html#ac05dc3ef79b0121221d449dd2ce93c92", null ],
+    [ "type_arete_coin", "classDomaine__Cl__VDF.html#ad0efefe6adcc5d06d0a6a7c0dbeecfa8", null ]
 ];

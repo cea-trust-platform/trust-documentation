@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classFlux__parietal__Nusselt" kind="class" language="C++" prot="public">
+    <compoundname>Flux_parietal_Nusselt</compoundname>
+    <basecompoundref refid="classFlux__parietal__base" prot="public" virt="non-virtual">Flux_parietal_base</basecompoundref>
+    <includes local="no">Flux_parietal_Nusselt.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFlux__parietal__Nusselt_1a85550ab2a64875e7461bf9a1282c66ca" prot="private" static="no" mutable="yes">
+        <type><ref refid="classParser__U" kindref="compound">Parser_U</ref></type>
+        <definition>Parser_U Flux_parietal_Nusselt::nusselt_</definition>
+        <argsstring></argsstring>
+        <name>nusselt_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="37" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classFlux__parietal__Nusselt_1a1a554977b9a594ae9d4d8f0b038ebd4f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Flux_parietal_Nusselt::Declare_instanciable</definition>
+        <argsstring>(Flux_parietal_Nusselt)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classFlux__parietal__Nusselt" kindref="compound">Flux_parietal_Nusselt</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="31" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFlux__parietal__Nusselt_1ad914d0f6837b7a6f480671ffae490192" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Flux_parietal_Nusselt::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;mot, Entree &amp;is) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889">lire_motcle_non_standard</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.cpp" bodystart="36" bodyend="52"/>
+        <references refid="classParser__U_1ae216b7daee6c4bb756423ffed5674293" compoundref="Parser__U_8h" startline="183" endline="186">Parser_U::addVar</references>
+        <references refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" compoundref="Objet__U_8cpp" startline="115" endline="120">Objet_U::lire_motcle_non_standard</references>
+        <references refid="classParser__U_1a441c2fd29f5d4370c0c7b6a1cdfe56d5" compoundref="Parser__U_8h" startline="116" endline="119">Parser_U::parseString</references>
+        <references refid="classParser__U_1a3ff44eabf641cbcea9ca59f84167e2c1" compoundref="Parser__U_8h" startline="174" endline="177">Parser_U::setNbVar</references>
+        <references refid="classParser__U_1a1e905179ae8b011f9c4eb3f9e3f96e99" compoundref="Parser__U_8h" startline="194" endline="197">Parser_U::setString</references>
+      </memberdef>
+      <memberdef kind="function" id="classFlux__parietal__Nusselt_1a233fd418e9ab022137fe89cb0740493e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Flux_parietal_Nusselt::qp</definition>
+        <argsstring>(const input_t &amp;input, output_t &amp;output) const override</argsstring>
+        <name>qp</name>
+        <reimplements refid="classFlux__parietal__base_1ae8148a510ea83f8aafb2b93d12050869">qp</reimplements>
+        <param>
+          <type>const <ref refid="structFlux__parietal__base_1_1input__t" kindref="compound">input_t</ref> &amp;</type>
+          <declname>input</declname>
+        </param>
+        <param>
+          <type><ref refid="structFlux__parietal__base_1_1output__t" kindref="compound">output_t</ref> &amp;</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.cpp" bodystart="54" bodyend="66"/>
+        <references refid="structFlux__parietal__base_1_1input__t_1a2af863eb2241321449b8bccd83afa242" compoundref="Flux__parietal__base_8h" startline="51">Flux_parietal_base::input_t::Cp</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1a0251f036ee828e11ddf34a7c8befad89" compoundref="Flux__parietal__base_8h" startline="42">Flux_parietal_base::input_t::D_ch</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1a4c52284197715a6746bb7b31dcd26629" compoundref="Flux__parietal__base_8h" startline="41">Flux_parietal_base::input_t::D_h</references>
+        <references refid="structFlux__parietal__base_1_1output__t_1a5d28bacadc49398533c25f74263aeaca" compoundref="Flux__parietal__base_8h" startline="61">Flux_parietal_base::output_t::dp_qpk</references>
+        <references refid="structFlux__parietal__base_1_1output__t_1a72a73f11316e83944bf56e6836bdbfc0" compoundref="Flux__parietal__base_8h" startline="63">Flux_parietal_base::output_t::dTf_qpk</references>
+        <references refid="structFlux__parietal__base_1_1output__t_1a6f0e82ab4330348d612b53a61c07f299" compoundref="Flux__parietal__base_8h" startline="64">Flux_parietal_base::output_t::dTp_qpk</references>
+        <references refid="classParser__U_1a61605bc1b85e466f884f1739e811b6b4" compoundref="Parser__U_8h" startline="125" endline="128">Parser_U::eval</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1ad7a0fdd396fa3cecb2b8cae70f62604e" compoundref="Flux__parietal__base_8h" startline="48">Flux_parietal_base::input_t::lambda</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1ae40adc2ffcd54c594dc1b9e1435cba54" compoundref="Flux__parietal__base_8h" startline="49">Flux_parietal_base::input_t::mu</references>
+        <references refid="structFlux__parietal__base_1_1output__t_1acb9843efd6d2af0a3416fb163b96076d" compoundref="Flux__parietal__base_8h" startline="59">Flux_parietal_base::output_t::qpk</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1a1ef82745d73012adcf2b1f6b5392908b" compoundref="Flux__parietal__base_8h" startline="50">Flux_parietal_base::input_t::rho</references>
+        <references refid="classParser__U_1a13c377b32b6c3ced39a14f83f94a8828" compoundref="Parser__U_8h" startline="149" endline="152">Parser_U::setVar</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1a038afb39657fadb13cc2b34e071bccac" compoundref="Flux__parietal__base_8h" startline="46">Flux_parietal_base::input_t::T</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1af425135974086693e1b9324162e89256" compoundref="Flux__parietal__base_8h" startline="44">Flux_parietal_base::input_t::Tp</references>
+        <references refid="structFlux__parietal__base_1_1input__t_1a55dacc42f219abd0c169900648f46ec2" compoundref="Flux__parietal__base_8h" startline="47">Flux_parietal_base::input_t::v</references>
+      </memberdef>
+      <memberdef kind="function" id="classFlux__parietal__Nusselt_1a8156f972f8ec0d4b9665af72f3b55cff" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Flux_parietal_Nusselt::T_at_wall</definition>
+        <argsstring>() const override</argsstring>
+        <name>T_at_wall</name>
+        <reimplements refid="classFlux__parietal__base_1a7fe4d645400863f5d9f38afb7ea2c7b9">T_at_wall</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="35" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class <ref refid="classFlux__parietal__Nusselt" kindref="compound">Flux_parietal_Nusselt</ref> Correlation of parietal heat flux using the Nusselt number (with Nusselt provided by the user as a function of Re and Pr): lambda / D_ch * Nu * (Tp - Tl) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Flux_parietal_Nusselt</label>
+        <link refid="classFlux__parietal__Nusselt"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Flux_parietal_base</label>
+        <link refid="classFlux__parietal__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Correlation_base</label>
+        <link refid="classCorrelation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Flux_parietal_Nusselt</label>
+        <link refid="classFlux__parietal__Nusselt"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Flux_parietal_base</label>
+        <link refid="classFlux__parietal__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Correlation_base</label>
+        <link refid="classCorrelation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="9">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" line="29" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Correlations/Flux_parietal_Nusselt.h" bodystart="30" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>associer_</name></member>
+      <member refid="classCorrelation__base_1aab3b96a6d25cc4a106312dbffd72027d" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>associer_pb</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>bidim_axi</name></member>
+      <member refid="classFlux__parietal__base_1ae4261616f73eaea6a414a02a84cd4f5f" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>calculates_bubble_nucleation_diameter</name></member>
+      <member refid="classCorrelation__base_1a48cca3e9388e19bb81c5c5902ea7b5fa" prot="protected" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>check_int_overflow</name></member>
+      <member refid="classCorrelation__base_1ac25d85636ab3d12ce1d8426e79e5df2e" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>completer</name></member>
+      <member refid="classCorrelation__base_1ad623fff4adb25ed26f9c761367ee0970" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classFlux__parietal__Nusselt_1a1a554977b9a594ae9d4d8f0b038ebd4f" prot="private" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Flux_parietal_Nusselt</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>format_precision_geom</name></member>
+      <member refid="classCorrelation__base_1a97b5f37e58ce8716004c181f33c55103" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>get_champ</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>get_info</name></member>
+      <member refid="classCorrelation__base_1ac05dd34b6aaaf8c1e1f0c415805464db" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classCorrelation__base_1a14fc9e1a29082bbac4b9f048655bfd8d" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>has_champ</name></member>
+      <member refid="classCorrelation__base_1aa47f41d89a0e29ce5e474f42591f7ba0" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Flux_parietal_Nusselt</scope><name>has_champ</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>le_type</name></member>
+      <member refid="classFlux__parietal__Nusselt_1ad914d0f6837b7a6f480671ffae490192" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>me</name></member>
+      <member refid="classCorrelation__base_1a06f6f231669ec457049b72982e1b9696" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>mettre_a_jour</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>multiple_files</name></member>
+      <member refid="classFlux__parietal__base_1a1449fd65d66e37c914364fe706b74e9a" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>needs_saturation</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>numero</name></member>
+      <member refid="classFlux__parietal__Nusselt_1a85550ab2a64875e7461bf9a1282c66ca" prot="private" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>nusselt_</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>Objet_U</name></member>
+      <member refid="classCorrelation__base_1a5ef271245d0ad06cb084ebc22fffe806" prot="protected" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>printOn</name></member>
+      <member refid="classFlux__parietal__Nusselt_1a233fd418e9ab022137fe89cb0740493e" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>qp</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classFlux__parietal__Nusselt_1a8156f972f8ec0d4b9665af72f3b55cff" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>T_at_wall</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Flux_parietal_Nusselt</scope><name>taille_memoire</name></member>
+      <member refid="classCorrelation__base_1a658dc8a2a0c11a68197adb80e957a751" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>typer_lire_correlation</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Flux_parietal_Nusselt</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Flux_parietal_Nusselt</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

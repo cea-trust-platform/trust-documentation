@@ -1,16 +1,9 @@
 <map id="Eval_Amont_VDF_Face" name="Eval_Amont_VDF_Face">
-<area shape="rect" id="Node000001" title="class Eval_Amont_VDF_Face Evaluateur VDF pour la convection Le champ convecte est un Champ_Face_VDF" alt="" coords="163,286,333,314"/>
-<area shape="rect" id="Node000002" href="$classEval__Conv__VDF__Face.html" title=" " alt="" coords="48,192,248,237"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,244,234,283,231,288,184,249"/>
-<area shape="rect" id="Node000003" href="$classEval__VDF__Face.html" title="class Eval_VDF_Face Cette classe represente le prototype fonctionnel des evaluateurs" alt="" coords="5,5,126,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="66,48,68,86,77,126,99,161,125,190,121,193,95,164,72,128,62,87,61,49"/>
-<area shape="rect" id="Node000004" href="$classEval__Conv__VDF__Face.html" title=" " alt="" coords="87,82,247,127"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="95,41,142,80,139,84,91,45"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="163,143,155,192,149,191,158,142"/>
-<area shape="rect" id="Node000005" href="$classEval__Conv__VDF.html" title="class Eval_Conv_VDF classe de base des evaluateurs de convection VDF" alt="" coords="289,200,412,228"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="325,240,266,287,263,283,322,236"/>
-<area shape="rect" id="Node000006" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="288,91,414,118"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="354,134,354,200,348,200,348,134"/>
-<area shape="rect" id="Node000007" href="$classEval__Conv__VDF__tools.html" title=" " alt="" coords="438,91,600,118"/>
-<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="487,129,373,202,370,198,484,125"/>
+<area shape="rect" id="node1" title="class Eval_Amont_VDF_Face Evaluateur VDF pour la convection Le champ convecte est un Champ_Face_VDF" alt="" coords="166,276,337,303"/>
+<area shape="rect" id="node2" href="$classEval__Conv__VDF__Face.html" title=" " alt="" coords="49,185,251,227"/>
+<area shape="rect" id="node3" href="$classEval__VDF__Face.html" title="class Eval_VDF_Face Cette classe represente le prototype fonctionnel des evaluateurs" alt="" coords="5,5,127,32"/>
+<area shape="rect" id="node4" href="$classEval__Conv__VDF__Face.html" title=" " alt="" coords="88,81,249,123"/>
+<area shape="rect" id="node5" href="$classEval__Conv__VDF.html" title="class Eval_Conv_VDF classe de base des evaluateurs de convection VDF" alt="" coords="292,193,416,219"/>
+<area shape="rect" id="node6" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="291,89,417,115"/>
+<area shape="rect" id="node7" href="$classEval__Conv__VDF__tools.html" title=" " alt="" coords="442,89,605,115"/>
 </map>

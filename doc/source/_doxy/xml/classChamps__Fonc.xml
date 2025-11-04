@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamps__Fonc" kind="class" language="C++" prot="public">
+    <compoundname>Champs_Fonc</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTOWN_PTRChamp_Fonc_base</basecompoundref>
+    <includes local="no">Champs_Fonc.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classChamps__Fonc_1a987c0edbe975195c56d2c7725f45e0cc" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Champs_Fonc::Declare_instanciable</definition>
+        <argsstring>(Champs_Fonc)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classChamps__Fonc" kindref="compound">Champs_Fonc</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_Fonc.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamps__Fonc_1a8fd67b9a714593a679b47a925acd0483" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champs_Fonc::mettre_a_jour</definition>
+        <argsstring>(double)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <defname>tps</defname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de tous les Champ contenus dans la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tps) le temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_Fonc.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_Fonc.cpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classChamps__Fonc" kindref="compound">Champs_Fonc</ref> Liste de OWN_PTR(Champ_Fonc_base) declaree grace a la macro LIST(X) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Champs_Fonc</label>
+        <link refid="classChamps__Fonc"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTRChamp_Fonc_base</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Champs_Fonc</label>
+        <link refid="classChamps__Fonc"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTRChamp_Fonc_base</label>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_Fonc.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Champs_Fonc.h" bodystart="28" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classChamps__Fonc_1a987c0edbe975195c56d2c7725f45e0cc" prot="private" virt="non-virtual"><scope>Champs_Fonc</scope><name>Declare_instanciable</name></member>
+      <member refid="classChamps__Fonc_1a8fd67b9a714593a679b47a925acd0483" prot="public" virt="non-virtual"><scope>Champs_Fonc</scope><name>mettre_a_jour</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

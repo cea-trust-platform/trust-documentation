@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classNoms" kind="class" language="C++" prot="public">
+    <compoundname>Noms</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">VECTNom</basecompoundref>
+    <includes local="no">Noms.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classNoms_1a56c3ec5167983c909a06a0d047987863" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Noms::Declare_instanciable</definition>
+        <argsstring>(Noms)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classNoms" kindref="compound">Noms</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="27" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classNoms_1ae2d2ff5b418b415561815dfa687c0651" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Noms::contient_</definition>
+        <argsstring>(const char *const ch) const</argsstring>
+        <name>contient_</name>
+        <param>
+          <type>const char *const</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="31" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.cpp" bodystart="59" bodyend="62"/>
+        <references refid="classNoms_1a5e3b3639770aad419278777b0ce1e335" compoundref="Noms_8cpp" startline="64" endline="75">rang</references>
+        <referencedby refid="classPartitionneur__base__32__64_1afe7c4842efdb9225d2ec4a28ac72c284" compoundref="Partitionneur__base_8cpp" startline="134" endline="222">Partitionneur_base_32_64&lt; _SIZE_ &gt;::calculer_graphe_connexions_periodiques</referencedby>
+        <referencedby refid="classPartitionneur__Sous__Domaines_1aec490a4a07a533ae0d945d4e08bdd6f6" compoundref="Partitionneur__Sous__Domaines_8cpp" startline="96" endline="194">Partitionneur_Sous_Domaines::construire_partition</referencedby>
+        <referencedby refid="classPartitionneur__base__32__64_1a9528878ae88bef4df6310002bad43bb7" compoundref="Partitionneur__base_8cpp" startline="241" endline="391">Partitionneur_base_32_64&lt; _SIZE_ &gt;::corriger_sommets_bord</referencedby>
+        <referencedby refid="classChamp__Fonc__MED_1a8e4e0c74c245bdeca1e27325fcbc7b17" compoundref="Champ__Fonc__MED_8cpp" startline="441" endline="531">Champ_Fonc_MED::creer</referencedby>
+        <referencedby refid="classProbleme__base_1a17e19aa7b3e17c0f93efaadf0bcbeb23" compoundref="Probleme__base_8cpp" startline="384" endline="422">Probleme_base::discretiser</referencedby>
+        <referencedby refid="classFormat__Post__Lata_1aab44b21941d5cbadbed109db0945feda" compoundref="Format__Post__Lata_8cpp" startline="696" endline="787">Format_Post_Lata::ecrire_champ</referencedby>
+        <referencedby refid="classFormat__Post__Lata_1ac485b4629250fb969ce046ec17382072" compoundref="Format__Post__Lata_8cpp" startline="497" endline="654">Format_Post_Lata::ecrire_domaine_low_level</referencedby>
+        <referencedby refid="classFormat__Post__CGNS_1aa68df69bf16b39cacdc9111572dd3769" compoundref="Format__Post__CGNS_8cpp" startline="74" endline="97">Format_Post_CGNS::ecrire_entete</referencedby>
+        <referencedby refid="classPostraitement_1aab72cc531732cfd5c6cb2b6f12246c4a" compoundref="Postraitement_8cpp" startline="1482" endline="1635">Postraitement::init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classNoms_1a1d14ecbb6ff61936d5835a6bbe7a2648" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Noms::Noms</definition>
+        <argsstring>(int)</argsstring>
+        <name>Noms</name>
+        <param>
+          <type>int</type>
+          <defname>i</defname>
+        </param>
+        <briefdescription>
+<para>Constructeur Construit un tableau de i noms. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) nombre d&apos;elements du tableau </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="29" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classNoms_1a5e3b3639770aad419278777b0ce1e335" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Noms::rang</definition>
+        <argsstring>(const char *const ch) const</argsstring>
+        <name>rang</name>
+        <param>
+          <type>const char *const</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="30" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.cpp" bodystart="64" bodyend="75"/>
+        <referencedby refid="classNoms_1ae2d2ff5b418b415561815dfa687c0651" compoundref="Noms_8cpp" startline="59" endline="62">contient_</referencedby>
+        <referencedby refid="classDomaine__Cl__EF_1ab2788dec23d3e338c20167f774c5877f" compoundref="Domaine__Cl__EF_8cpp" startline="350" endline="419">Domaine_Cl_EF::imposer_symetrie_partiellement</referencedby>
+        <referencedby refid="classCreate__domain__from__sub__domain_1a854ece2f27ee84433591b4e3172766df" compoundref="Create__domain__from__sub__domain_8cpp" startline="54" endline="192">Create_domain_from_sub_domain::interpreter_</referencedby>
+        <referencedby refid="classPostraitement_1a557643f836a282cdf8a686409e467a08" compoundref="Postraitement_8cpp" startline="553" endline="850">Postraitement::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classProbleme__base_1a593f8bd8076bf3525631eec9494ca8e6" compoundref="Probleme__base_8cpp" startline="1202" endline="1223">Probleme_base::read_optional_equations</referencedby>
+        <referencedby refid="classNoms_1a6843498262e267516e985d44c318ae66" compoundref="Noms_8cpp" startline="38" endline="42">search</referencedby>
+        <referencedby refid="classParser_1a5187d2f2cb94650da58e0e6633414972" compoundref="Parser_8h" startline="170" endline="175">Parser::searchVar</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classNoms_1a6843498262e267516e985d44c318ae66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Noms::search</definition>
+        <argsstring>(const Nom &amp;t) const</argsstring>
+        <name>search</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="32" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.cpp" bodystart="38" bodyend="42"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classNoms_1a5e3b3639770aad419278777b0ce1e335" compoundref="Noms_8cpp" startline="64" endline="75">rang</references>
+        <referencedby refid="classInterprete__bloc_1a229ccd01911aa158cca828a109ead063" compoundref="Interprete__bloc_8cpp" startline="233" endline="245">Interprete_bloc::ajouter</referencedby>
+        <referencedby refid="classLireMED__32__64_1a104c667dd925abd432b542b89ff9b3bd" compoundref="LireMED_8cpp" startline="759" endline="886">LireMED_32_64&lt; _SIZE_ &gt;::fill_frontieres</referencedby>
+        <referencedby refid="classInterprete__bloc_1a6bdeff06294d080a6c62e8a0b8074453" compoundref="Interprete__bloc_8cpp" startline="208" endline="217">Interprete_bloc::objet_local</referencedby>
+        <referencedby refid="classInterprete__bloc_1ab722f3c2dffdbc21e6385d8b8dec102f" compoundref="Interprete__bloc_8cpp" startline="222" endline="226">Interprete_bloc::objet_local_existant</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classNoms_1a623dc846675cc3a51ea587e1dec05e8b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Noms::search_without_checking_Motcle</definition>
+        <argsstring>(const Nom &amp;t) const</argsstring>
+        <name>search_without_checking_Motcle</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.cpp" bodystart="44" bodyend="57"/>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Un tableau de chaine de caracteres (VECT(Nom)) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>VECTNom</label>
+      </node>
+      <node id="1">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>VECTNom</label>
+      </node>
+      <node id="1">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" line="25" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Noms.h" bodystart="26" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classNoms_1ae2d2ff5b418b415561815dfa687c0651" prot="public" virt="non-virtual"><scope>Noms</scope><name>contient_</name></member>
+      <member refid="classNoms_1a56c3ec5167983c909a06a0d047987863" prot="private" virt="non-virtual"><scope>Noms</scope><name>Declare_instanciable</name></member>
+      <member refid="classNoms_1a1d14ecbb6ff61936d5835a6bbe7a2648" prot="public" virt="non-virtual"><scope>Noms</scope><name>Noms</name></member>
+      <member refid="classNoms_1a5e3b3639770aad419278777b0ce1e335" prot="public" virt="non-virtual"><scope>Noms</scope><name>rang</name></member>
+      <member refid="classNoms_1a6843498262e267516e985d44c318ae66" prot="public" virt="non-virtual"><scope>Noms</scope><name>search</name></member>
+      <member refid="classNoms_1a623dc846675cc3a51ea587e1dec05e8b" prot="public" virt="non-virtual"><scope>Noms</scope><name>search_without_checking_Motcle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

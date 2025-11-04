@@ -1,0 +1,650 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classChamp__Post__Operateur__Eqn" kind="class" language="C++" prot="public">
+    <compoundname>Champ_Post_Operateur_Eqn</compoundname>
+    <basecompoundref refid="classChamp__Generique__Operateur__base" prot="public" virt="non-virtual">Champ_Generique_Operateur_base</basecompoundref>
+    <includes local="no">Champ_Post_Operateur_Eqn.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Champ_Post_Operateur_Eqn::compo_</definition>
+        <argsstring></argsstring>
+        <name>compo_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="70" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a4595f868aec83f88267f6e7958f1ae4b" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="247" endline="304">get_property</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="314" endline="334">nommer_source</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="39" endline="47">set_param</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1abcb570355e591dff29925aac19e7fd1e" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="56" endline="82">verification_cas_compo</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1a3ec56d3d222d834bdb0be1710b72b102" prot="protected" static="no" mutable="no">
+        <type>Entity</type>
+        <definition>Entity Champ_Post_Operateur_Eqn::localisation_inco_</definition>
+        <argsstring></argsstring>
+        <name>localisation_inco_</name>
+        <initializer>= Entity::NODE</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="69" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a143090cc22f4eb34c2dba0f3db80c25a" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="84" endline="155">completer</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a4feacb61116dcd11fde25a63a64b128d" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="163" endline="194">get_champ_compo_without_evaluation</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1ad9c8de1601330b49fcc9cf8f5e0af928" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="306" endline="311">get_localisation</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1a7c76b32dde8045a69265a7fe455219b5" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Champ_Post_Operateur_Eqn::numero_masse_</definition>
+        <argsstring></argsstring>
+        <name>numero_masse_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="66" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="66" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="314" endline="334">nommer_source</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="39" endline="47">set_param</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Champ_Post_Operateur_Eqn::numero_op_</definition>
+        <argsstring></argsstring>
+        <name>numero_op_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="65" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="65" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="314" endline="334">nommer_source</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1aea8aa68cd011b76ca3d5d0d61d4194f5" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="335" endline="338">Operateur</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="39" endline="47">set_param</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1a4dff596a337cd4485fc49385af00dfd6" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Champ_Post_Operateur_Eqn::numero_source_</definition>
+        <argsstring></argsstring>
+        <name>numero_source_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="64" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="64" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="314" endline="334">nommer_source</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="39" endline="47">set_param</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classChamp__Post__Operateur__Eqn_1aad11ff74033f0c762b4f1aa28ae8080b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Champ_Post_Operateur_Eqn::sans_solveur_masse_</definition>
+        <argsstring></argsstring>
+        <name>sans_solveur_masse_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="68" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="39" endline="47">set_param</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1ab1a7805484df2432812fb28e9ac8e0f8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Champ_Post_Operateur_Eqn::Declare_instanciable</definition>
+        <argsstring>(Champ_Post_Operateur_Eqn)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classChamp__Post__Operateur__Eqn" kindref="compound">Champ_Post_Operateur_Eqn</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="45" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a143090cc22f4eb34c2dba0f3db80c25a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Champ_Post_Operateur_Eqn::completer</definition>
+        <argsstring>(const Postraitement_base &amp;post) override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classChamp__Gen__de__Champs__Gen_1a580093f9e120ee6257cd2bc7116a0b00">completer</reimplements>
+        <param>
+          <type>const <ref refid="classPostraitement__base" kindref="compound">Postraitement_base</ref> &amp;</type>
+          <declname>post</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="57" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="84" bodyend="155"/>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a580093f9e120ee6257cd2bc7116a0b00" compoundref="Champ__Gen__de__Champs__Gen_8cpp" startline="231" endline="263">Champ_Gen_de_Champs_Gen::completer</references>
+        <references refid="classProbleme__base_1ae97586575b7e510d7945ce3a894b806a">Probleme_base::equation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classDomaine__VF_1a81419e40a5c0ae2bef716d8d9bb2b5f2" compoundref="Domaine__VF_8h" startline="559" endline="562">Domaine_VF::face_sommets</references>
+        <references refid="classChamp__Generique__base_1a59942be04cf2425ae6738272c2035cf3">Champ_Generique_base::get_champ</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1af91fed98692d66e85596a565aaad7ff0">Champ_Gen_de_Champs_Gen::get_source</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a3ec56d3d222d834bdb0be1710b72b102" compoundref="Champ__Post__Operateur__Eqn_8h" startline="69">localisation_inco_</references>
+        <references refid="classProbleme__base_1abefceb0ac0d0b35d42a4daaa82a95f59">Probleme_base::nombre_d_equations</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4">Champ_Gen_de_Champs_Gen::OWN_PTR</references>
+        <references refid="classMD__Vector_1a3d77c78aa347c9c1e31afe355399d817" compoundref="MD__Vector_8h" startline="68" endline="72">MD_Vector::valeur</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base &amp; Champ_Post_Operateur_Eqn::get_champ</definition>
+        <argsstring>(OWN_PTR(Champ_base)&amp;espace_stockage) const override</argsstring>
+        <name>get_champ</name>
+        <param>
+          <type><ref refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)&amp;</type>
+          <declname>espace_stockage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="51" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="196" bodyend="245"/>
+        <references refid="classOperateur__base_1ae8eb74015f6e04dca91d4a2da5fca9bb" compoundref="Operateur__base_8cpp" startline="228" endline="240">Operateur_base::ajouter</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="70">compo_</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a4feacb61116dcd11fde25a63a64b128d" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="163" endline="194">get_champ_compo_without_evaluation</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1adde8a74529589eec497aaaf4c6195dab" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="157" endline="161">get_champ_without_evaluation</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a7c76b32dde8045a69265a7fe455219b5" compoundref="Champ__Post__Operateur__Eqn_8h" startline="66">numero_masse_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" compoundref="Champ__Post__Operateur__Eqn_8h" startline="65">numero_op_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a4dff596a337cd4485fc49385af00dfd6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="64">numero_source_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1aea8aa68cd011b76ca3d5d0d61d4194f5" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="335" endline="338">Operateur</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4">Champ_Gen_de_Champs_Gen::OWN_PTR</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1aad11ff74033f0c762b4f1aa28ae8080b" compoundref="Champ__Post__Operateur__Eqn_8h" startline="68">sans_solveur_masse_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a4feacb61116dcd11fde25a63a64b128d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base &amp; Champ_Post_Operateur_Eqn::get_champ_compo_without_evaluation</definition>
+        <argsstring>(OWN_PTR(Champ_base)&amp;espace_stockage) const</argsstring>
+        <name>get_champ_compo_without_evaluation</name>
+        <param>
+          <type><ref refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)&amp;</type>
+          <declname>espace_stockage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="53" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="163" bodyend="194"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1a3ec56d3d222d834bdb0be1710b72b102" compoundref="Champ__Post__Operateur__Eqn_8h" startline="69">localisation_inco_</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4">Champ_Gen_de_Champs_Gen::OWN_PTR</references>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1adde8a74529589eec497aaaf4c6195dab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base &amp; Champ_Post_Operateur_Eqn::get_champ_without_evaluation</definition>
+        <argsstring>(OWN_PTR(Champ_base)&amp;espace_stockage) const override</argsstring>
+        <name>get_champ_without_evaluation</name>
+        <reimplements refid="classChamp__Generique__base_1a75a7cd7110c7ca09fa6e4abb3ca5d285">get_champ_without_evaluation</reimplements>
+        <param>
+          <type><ref refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4" kindref="member">OWN_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)&amp;</type>
+          <declname>espace_stockage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="52" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="157" bodyend="161"/>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1ad9c8de1601330b49fcc9cf8f5e0af928" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>Entity</type>
+        <definition>Entity Champ_Post_Operateur_Eqn::get_localisation</definition>
+        <argsstring>(const int index=-1) const override</argsstring>
+        <name>get_localisation</name>
+        <reimplements refid="classChamp__Gen__de__Champs__Gen_1a1f1f0636eade829ccc6c9dc54a260fee">get_localisation</reimplements>
+        <param>
+          <type>const int</type>
+          <declname>index</declname>
+          <defval>-1</defval>
+        </param>
+        <briefdescription>
+<para>Renvoie le type des entites geometriques sur auxquelles les valeurs discretes sont attachees (NODE pour un champ P1, FACE pour un champ P1NC, ELEMENT pour un. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>champ P0, etc). Il est conseille d&apos;utiliser la syntaxe <ref refid="classChamp__Post__Operateur__Eqn_1ad9c8de1601330b49fcc9cf8f5e0af928" kindref="member">get_localisation()</ref> sans parametre, sauf si on sait quoi faire pour les champs multi-supports. <simplesect kind="see"><para><ref refid="classChamp__Generique__base_1a82a9148fb2d7798b85de7c713b62cfd1" kindref="member">get_nb_localisations()</ref> Parametre : index Signification : index de la localisation demandee (pour les champs multi-support). Si index = -1 : si le champ est multi-support on leve une exception, sinon on renvoie le support. Si index &gt;= 0 : on renvoie le i-ieme support. Valeur par defaut : -1 Exceptions:<itemizedlist>
+<listitem><para>GenericFieldError::INVALID : le champ n&apos;est pas discretise sur ces entites geometriques (il peut s&apos;agir d&apos;un champ analytique ou d&apos;un champ multi-localisation), ou le champ est multi-support alors qu&apos;on a demande index = -1, ou le support &quot;index&quot; n&apos;existe pas. </para>
+</listitem></itemizedlist>
+</para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="50" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="306" bodyend="311"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1a3ec56d3d222d834bdb0be1710b72b102" compoundref="Champ__Post__Operateur__Eqn_8h" startline="69">localisation_inco_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a4595f868aec83f88267f6e7958f1ae4b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classNoms" kindref="compound">Noms</ref></type>
+        <definition>const Noms Champ_Post_Operateur_Eqn::get_property</definition>
+        <argsstring>(const Motcle &amp;query) const override</argsstring>
+        <name>get_property</name>
+        <reimplements refid="classChamp__Gen__de__Champs__Gen_1a4022edbc7d59b504d85b5b7510c1682e">get_property</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>query</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la propriete demandee. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Exemples: &quot;DISCRETISATION&quot; : type du champ discret (P0, P1, P1NC, etc...) &quot;ELEMENT_TYPE&quot; : type de l&apos;element de plus grande dimension ({TRIANGLE}, {TETRAHEDRA}, {QUAD}, {HEXA}, etc) &quot;DYNAMIC_MESH&quot; : le maillage est-il dynamique ou pas ({STATIC}, {DYNAMIC}) &quot;NAME&quot; : nom du champ &quot;COMPONENT_NAMES&quot; : nom des composantes du champ ({K,EPSILON} ou {VITESSE_X,VITESSE_Y,VITESSE_Z}) &quot;BOUNDARY_NAMES&quot; : nom des bords &quot;COORDINATES&quot; : systeme de coordonnees des noeuds ({X}, {X,Y}, {X,Y,Z}, {R,THETA}, etc...) Exceptions:<itemizedlist>
+<listitem><para>GenericFieldError::INVALID : query non comprise </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="49" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="247" bodyend="304"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="70">compo_</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a4022edbc7d59b504d85b5b7510c1682e" compoundref="Champ__Gen__de__Champs__Gen_8cpp" startline="277" endline="292">Champ_Gen_de_Champs_Gen::get_property</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1afc49adbfc71b7f535a7eeab7411f454d" compoundref="Champ__Gen__de__Champs__Gen_8h" startline="54">Champ_Gen_de_Champs_Gen::nb_comp</references>
+        <references refid="classChamp__Generique__base_1ae62b052dfbd7325d47584487401729e4" compoundref="Champ__Generique__base_8h" startline="150">Champ_Generique_base::nom_post_</references>
+        <references refid="classMotcles_1abd4862b9c8552b88a48927e67bd48d9d" compoundref="Motcle_8cpp" startline="321" endline="331">Motcles::search</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Champ_Post_Operateur_Eqn::nommer_source</definition>
+        <argsstring>() override</argsstring>
+        <name>nommer_source</name>
+        <reimplements refid="classChamp__Gen__de__Champs__Gen_1aa20508ea599bfec5780fc831826c4f6f">nommer_source</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="58" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="314" bodyend="334"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="70">compo_</references>
+        <references refid="classChamp__Generique__base_1ae62b052dfbd7325d47584487401729e4" compoundref="Champ__Generique__base_8h" startline="150">Champ_Generique_base::nom_post_</references>
+        <references refid="classChamp__Generique__base_1ac0c56a8ba5feefc98276b5e90b9c74f4" compoundref="Champ__Generique__base_8cpp" startline="101" endline="104">Champ_Generique_base::nommer</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a7c76b32dde8045a69265a7fe455219b5" compoundref="Champ__Post__Operateur__Eqn_8h" startline="66">numero_masse_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" compoundref="Champ__Post__Operateur__Eqn_8h" startline="65">numero_op_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a4dff596a337cd4485fc49385af00dfd6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="64">numero_source_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1aea8aa68cd011b76ca3d5d0d61d4194f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classOperateur__base" kindref="compound">Operateur_base</ref> &amp;</type>
+        <definition>const Operateur_base &amp; Champ_Post_Operateur_Eqn::Operateur</definition>
+        <argsstring>() const override</argsstring>
+        <name>Operateur</name>
+        <reimplements refid="classChamp__Generique__Operateur__base_1adf90e2f97cc7b06f19ee4e66a158daa9">Operateur</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="55" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="335" bodyend="338"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" compoundref="Champ__Post__Operateur__Eqn_8h" startline="65">numero_op_</references>
+        <referencedby refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" compoundref="Champ__Post__Operateur__Eqn_8cpp" startline="196" endline="245">get_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a6d70caaff3ad365fd93b8a511d4117d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classOperateur__base" kindref="compound">Operateur_base</ref> &amp;</type>
+        <definition>Operateur_base &amp; Champ_Post_Operateur_Eqn::Operateur</definition>
+        <argsstring>() override</argsstring>
+        <name>Operateur</name>
+        <reimplements refid="classChamp__Generique__Operateur__base_1a1494fa330dba4ef43c2b3ffff033e2e2">Operateur</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="56" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="340" bodyend="343"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" compoundref="Champ__Post__Operateur__Eqn_8h" startline="65">numero_op_</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Champ_Post_Operateur_Eqn::set_param</definition>
+        <argsstring>(Param &amp;param) override</argsstring>
+        <name>set_param</name>
+        <reimplements refid="classChamp__Gen__de__Champs__Gen_1a15415ffd736f1f9b1096ff72dace930c">set_param</reimplements>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="60" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="39" bodyend="47"/>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classParam_1a094f83c119a3283c851a6672b277eb6f" compoundref="Param_8cpp" startline="414" endline="428">Param::ajouter_flag</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="70">compo_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a7c76b32dde8045a69265a7fe455219b5" compoundref="Champ__Post__Operateur__Eqn_8h" startline="66">numero_masse_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" compoundref="Champ__Post__Operateur__Eqn_8h" startline="65">numero_op_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1a4dff596a337cd4485fc49385af00dfd6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="64">numero_source_</references>
+        <references refid="classChamp__Post__Operateur__Eqn_1aad11ff74033f0c762b4f1aa28ae8080b" compoundref="Champ__Post__Operateur__Eqn_8h" startline="68">sans_solveur_masse_</references>
+        <references refid="classChamp__Gen__de__Champs__Gen_1a15415ffd736f1f9b1096ff72dace930c" compoundref="Champ__Gen__de__Champs__Gen_8cpp" startline="42" endline="49">Champ_Gen_de_Champs_Gen::set_param</references>
+      </memberdef>
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1abcb570355e591dff29925aac19e7fd1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Champ_Post_Operateur_Eqn::verification_cas_compo</definition>
+        <argsstring>() const</argsstring>
+        <name>verification_cas_compo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="61" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.cpp" bodystart="56" bodyend="82"/>
+        <references refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" compoundref="Champ__Post__Operateur__Eqn_8h" startline="70">compo_</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classChamp__Post__Operateur__Eqn_1a837cc084fe07b8f05f508c9116c3f632" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Champ_Post_Operateur_Eqn::OBS_PTR</definition>
+        <argsstring>(Equation_base) ref_eq_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classEquation__base" kindref="compound">Equation_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="67" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classChamp__Post__Operateur__Eqn" kindref="compound">Champ_Post_Operateur_Eqn</ref> OWN_PTR(Champ_base) destine a post-traiter le gradient d un champ generique </para>
+    </briefdescription>
+    <detaileddescription>
+<para>La classe porte un operateur statistique &quot;gradient&quot;</para>
+<para>Syntaxe a respecter pour jdd</para>
+<para>nom_choisi operateur_eqn { sources { refchamp { pb_champ nom_pb nom_inconnue } } numero_source/numero op 1 } Il faut entrer le nom de l&apos;inconnue et pas celui de l&apos;equation Le numero des termes sources est celui du jdd, bien respecter l&apos;ordre Pour les operateurs : 0 diffusion, 1 convection </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Champ_Generique_Operateur_base</label>
+        <link refid="classChamp__Generique__Operateur__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champ_Gen_de_Champs_Gen</label>
+        <link refid="classChamp__Gen__de__Champs__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Champ_Post_Operateur_Eqn</label>
+        <link refid="classChamp__Post__Operateur__Eqn"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="4">
+        <label>Champ_Generique_base</label>
+        <link refid="classChamp__Generique__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>string</label>
+      </node>
+      <node id="2">
+        <label>Champ_Generique_Operateur_base</label>
+        <link refid="classChamp__Generique__Operateur__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Champ_Gen_de_Champs_Gen</label>
+        <link refid="classChamp__Gen__de__Champs__Gen"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>parent_name_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="1">
+        <label>Champ_Post_Operateur_Eqn</label>
+        <link refid="classChamp__Post__Operateur__Eqn"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="4">
+        <label>Champ_Generique_base</label>
+        <link refid="classChamp__Generique__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>identifiant_appel_</edgelabel>
+          <edgelabel>nom_pb_</edgelabel>
+          <edgelabel>nom_post_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" line="42" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Champs_dis/Champ_Post_Operateur_Eqn.h" bodystart="43" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>abort</name></member>
+      <member refid="classChamp__Generique__base_1affa62cc067d2a45c4ee43ccb8706b4b3" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>assert_parallel</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>bidim_axi</name></member>
+      <member refid="classChamp__Generique__Operateur__base_1a938ae24071c03eba10c8eac3a8bbc75d" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Champ_Generique_Operateur_base</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>check_int_overflow</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a143090cc22f4eb34c2dba0f3db80c25a" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>completer</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1aace5904d7e8dd76f133b167cb7fb45f6" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>compo_</name></member>
+      <member refid="classChamp__Generique__base_1a2489bebc4ef57531846997e7c755f6b6" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>composante</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a2cb31780b72fcf472ddca247e35931b1" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>comprend_champ_post</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a77d6d3cf006bbe307d7e94c21dc41a07" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>data_a_sauvegarder</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1ab1a7805484df2432812fb28e9ac8e0f8" prot="private" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>exit</name></member>
+      <member refid="classChamp__Generique__base_1a3b2413cb494ffa3a2579753b7a4247ca" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>fixer_identifiant_appel</name></member>
+      <member refid="classChamp__Generique__base_1a0b2326fa45d974751404ad8c0b590d5e" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>fixer_noms_compo</name></member>
+      <member refid="classChamp__Generique__base_1ad58a83bac5d2b02c04af2416f1eea36f" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>fixer_noms_synonyms</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1aeb55535b6aff7be5fe1b846bed40908e" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>fixer_serie</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a35910c0f632592763f4bbc3751b0d5e3" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>fixer_tstat_deb</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>format_precision_geom</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a65887ec266ca1e5f04d8f2842bc2a212" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_champ</name></member>
+      <member refid="classChamp__Generique__base_1a59942be04cf2425ae6738272c2035cf3" prot="public" virt="pure-virtual" ambiguityscope="Champ_Generique_Operateur_base::"><scope>Champ_Post_Operateur_Eqn</scope><name>get_champ</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a4feacb61116dcd11fde25a63a64b128d" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_champ_compo_without_evaluation</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a4e87ca5f05ec4ba2e7446418d3239fc6" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_champ_post</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1adde8a74529589eec497aaaf4c6195dab" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_champ_without_evaluation</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a87a47c30d6c9417c7bf2da375cb3359d" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_copy_connectivity</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a75188780fec1df7309cbf5e4a29eca98" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_copy_coordinates</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a91af69fc2eb5fc9bbcaa438ff77b8c3a" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_copy_domain</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a0d4013593c49fccbac4504e90fd47514" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_copy_values</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a8f09f85452f20c7977dbe85090048e6d" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_dimension</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1ab6a58e93299af9c2e1c3407b90a23e34" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_directive_pour_discr</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1ac5c5cd10b309022dfe0e4251ac0c84d2" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_discretisation</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_info</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a324ae11e98d401f30318b95ce45d31a2" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_info_type_post</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1ad9c8de1601330b49fcc9cf8f5e0af928" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_localisation</name></member>
+      <member refid="classChamp__Generique__base_1a82a9148fb2d7798b85de7c713b62cfd1" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_nb_localisations</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a31adc1b9206eb21cc01c4d7a779d6931" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_nb_sources</name></member>
+      <member refid="classChamp__Generique__base_1a9bef3d575201ecd51a8cba4a59a7cf40" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_nom_post</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_object_id</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a52202b374b459f830220ed4b81fbef34" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_parent_name</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a4595f868aec83f88267f6e7958f1ae4b" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_property</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a739d997fa24b57650378a9d621f25d5f" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_property_names</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a1eb8791a3bf84027b3f5fe9e0900d703" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_connectivity</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a25dbf16ae2d3ac738c0d00df64cf6fd8" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_coordinates</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a9194c31c3b731f6de0d9f15c42893e11" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_domain</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1ac744fb47d98707546ad745034a405d1c" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_domaine_dis_base</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a647a4bcdc6125bc9a76618198f1e43f4" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_pb_base</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1af31f36ad5f0112c8b8dec31d2ca8d088" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_values</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a98a4bc4305409cb630e3e91d56d3b5bf" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_ref_zcl_dis_base</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1af91fed98692d66e85596a565aaad7ff0" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_source</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1aded056fa64e64106f61c1275a87873cf" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_time</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a8ec70dc8fc17aeddcbc92d4015987cdb" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>get_xyz_values</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a929a67228146d59054bd2e39ccf1b7e5" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>has_champ_post</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>HAS_POINTER</name></member>
+      <member refid="classChamp__Generique__base_1af8f1335251d0b2a5978b70fc54394f6c" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>identifiant_appel_</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>le_type</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a2669c7909b7cd9e3c1a386ffcf24c15c" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>lire_bidon</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1ae9bac227e730be528e8287c64f5d090a" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a2473514cb19c614780ecc7c43e2e4419" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>LIST</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1ae517a590e4e4a2ce88d03f54ce30da2f" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>LIST</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1af18f1e55943c31579dd52886a023ac89" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>LIST</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a3ec56d3d222d834bdb0be1710b72b102" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>localisation_inco_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>me</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a105c727edca95cee89f0bc38bd4dd3b8" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mettre_a_jour</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>multiple_files</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1afc49adbfc71b7f535a7eeab7411f454d" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nb_comp</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nom_du_cas</name></member>
+      <member refid="classChamp__Generique__base_1a5959d75a754eccae6dd28907315aaf49" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nom_pb_</name></member>
+      <member refid="classChamp__Generique__base_1ae62b052dfbd7325d47584487401729e4" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nom_post_</name></member>
+      <member refid="classChamp__Generique__base_1ac0c56a8ba5feefc98276b5e90b9c74f4" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nommer</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a15071158d7e4aa42240125ea7afa1620" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nommer_source</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a31ce5365d365971723aba6a22e134639" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nommer_sources</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>numero</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a7c76b32dde8045a69265a7fe455219b5" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>numero_masse_</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1ad8076dee53bcd25a7b96b76fe74cc17c" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>numero_op_</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a4dff596a337cd4485fc49385af00dfd6" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>numero_source_</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Objet_U</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a837cc084fe07b8f05f508c9116c3f632" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>OBS_PTR</name></member>
+      <member refid="classChamp__Generique__base_1af57b591764a6e03ab1f1e830b6f3d8e4" prot="protected" virt="non-virtual" ambiguityscope="Champ_Generique_Operateur_base::"><scope>Champ_Post_Operateur_Eqn</scope><name>OBS_PTR</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1aea8aa68cd011b76ca3d5d0d61d4194f5" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Operateur</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a6d70caaff3ad365fd93b8a511d4117d9" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>Operateur</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>operator=</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a54272426d1bcf52bac151212f2da44a4" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>OWN_PTR</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a822150246608bba5da1352472037572b" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>OWN_PTR</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1af019ebb588338b69079d46baa1307a69" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>parent_name_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>readOn</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a5c0933ac153c8ad7f4ad620435f79748" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>reprendre</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a369b4e4ca1ded1b08dca179d1f867e6c" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>reset</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1aad11ff74033f0c762b4f1aa28ae8080b" prot="protected" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>sans_solveur_masse_</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a15b6d61db871e55c8242eefedd422b23" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>self_cast</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1a1750198641fe87b4cefbbf489d676f77" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>set_param</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a1d3a172d39809b5085a315f790362d7f" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>set_parent_name</name></member>
+      <member refid="classChamp__Gen__de__Champs__Gen_1a53f2d0886a10411bc148a8305ab18b2d" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>set_source</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>taille_memoire</name></member>
+      <member refid="classChamp__Post__Operateur__Eqn_1abcb570355e591dff29925aac19e7fd1e" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>verification_cas_compo</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Champ_Post_Operateur_Eqn</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

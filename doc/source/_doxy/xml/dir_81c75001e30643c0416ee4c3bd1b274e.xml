@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_81c75001e30643c0416ee4c3bd1b274e" kind="dir">
+    <compoundname>PolyMAC</compoundname>
+    <innerdir refid="dir_bb30ab391fde99acc353ebf4f7c26a0e">Champs</innerdir>
+    <innerdir refid="dir_a4f8fcbc6a1960d29ef260af21753442">Cond_Lim</innerdir>
+    <innerdir refid="dir_3e9290adc5d476140803958375d34971">Geometrie</innerdir>
+    <innerdir refid="dir_6a8c445b222920f8bf55febad0d6be43">Multiphase</innerdir>
+    <innerdir refid="dir_1e52fa291c21cf30d759f962a525acf2">Operateurs</innerdir>
+    <innerdir refid="dir_a2f1f6887b1d3e243b11944e4b912b07">Solveurs</innerdir>
+    <innerdir refid="dir_f932d68dad59b5f9280cfec6f74d54db">Sources</innerdir>
+    <innerfile refid="Option__PolyMAC_8cpp">Option_PolyMAC.cpp</innerfile>
+    <innerfile refid="Option__PolyMAC_8h">Option_PolyMAC.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/"/>
+  </compounddef>
+</doxygen>

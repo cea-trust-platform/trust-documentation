@@ -12,5 +12,5 @@ var classMemoire =
     [ "compacte", "classMemoire.html#a46c7b07f882adba0eae1724c7ad861e2", null ],
     [ "verifie", "classMemoire.html#a240bf0aaa9ec75e23e6404809afa8e45", null ],
     [ "imprime", "classMemoire.html#af457c48bbfa6872a61298f5b0a198444", null ],
-    [ "operator<<", "classMemoire.html#a75c966ffca4a3c6bdf45e77ce170d418", null ]
+    [ "operator<<", "classMemoire.html#a6081da23e9bd69ac20053d3be588a679", null ]
 ];

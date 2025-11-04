@@ -1,0 +1,1160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classObjet__a__lire" kind="class" language="C++" prot="public">
+    <compoundname>Objet_a_lire</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <includes local="no">Objet_a_lire.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Nature</name>
+        <enumvalue id="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53a67c76dc808bf81632dddf80b8104150b" prot="public">
+          <name>OPTIONAL</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53ae633230ab9c0ccd20767a01d8138e8ce" prot="public">
+          <name>REQUIRED</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="35" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="enum" id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618" prot="public" static="no" strong="no">
+        <type></type>
+        <name>Type</name>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" prot="public">
+          <name>INTEGER</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a35cc37000e5fcae9086f8989b5c22746" prot="public">
+          <name>TRUSTID</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" prot="public">
+          <name>DOUBLE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a4131f3d09935a257bd3952b667fd0621" prot="public">
+          <name>OBJECT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" prot="public">
+          <name>FLAG</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a8c48dc6e4448a8e4c9d59d8c682d45d3" prot="public">
+          <name>NON_STD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a22e8b4ba5ba79e200ec77c07a15dbc5e" prot="public">
+          <name>DERIV</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a7a9e047713f6dd502fb94df45836dcf4" prot="public">
+          <name>ArrOfInt_size_imp</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ac6dd3f9720589cf930d55e3178c1df85" prot="public">
+          <name>ArrOfDouble_size_imp</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0" prot="public">
+          <name>PARAM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="31" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="31" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classObjet__a__lire_1a755b11f521c047eeaf84b573dd39532b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> *</type>
+        <definition>ArrOfDouble* Objet_a_lire::arrofdouble_a_lire</definition>
+        <argsstring></argsstring>
+        <name>arrofdouble_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="77" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1a73ded0678f590c4226c698832bc6eeea" compoundref="Objet__a__lire_8cpp" startline="65" endline="69">set_arrofdouble</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a4c941ada0d68d935229306fd592fdb58" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> *</type>
+        <definition>ArrOfInt* Objet_a_lire::arrofint_a_lire</definition>
+        <argsstring></argsstring>
+        <name>arrofint_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="76" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1a431f3df72228c7e67d656fcff2a49466" compoundref="Objet__a__lire_8cpp" startline="59" endline="63">set_arrofint</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a7118f1c26812ad639a5cbcd53a31222b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classMotcles" kindref="compound">Motcles</ref></type>
+        <definition>Motcles Objet_a_lire::dictionnaire_noms</definition>
+        <argsstring></argsstring>
+        <name>dictionnaire_noms</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="79" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="79" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a8f5df1c4e79e3d8941f3ced5e11626f0" compoundref="Objet__a__lire_8cpp" startline="135" endline="152">add_dict</referencedby>
+        <referencedby refid="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" compoundref="Param_8cpp" startline="152" endline="183">print</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a78151e1e70af5e2756e5d8cbd10a6bb0" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref></type>
+        <definition>ArrOfInt Objet_a_lire::dictionnaire_valeurs</definition>
+        <argsstring></argsstring>
+        <name>dictionnaire_valeurs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="80" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a8f5df1c4e79e3d8941f3ced5e11626f0" compoundref="Objet__a__lire_8cpp" startline="135" endline="152">add_dict</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a2a4d1eec4d0c4d5d3b54bdfec26d3392" prot="protected" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* Objet_a_lire::double_a_lire</definition>
+        <argsstring></argsstring>
+        <name>double_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="74" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" compoundref="Objet__a__lire_8cpp" startline="163" endline="180">get_value</referencedby>
+        <referencedby refid="classObjet__a__lire_1a24b34b25682e02d15abe7547458b3e04" compoundref="Objet__a__lire_8cpp" startline="47" endline="51">set_double</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a4f97ef36f60fa219bb3df79f70a49ef7" prot="protected" static="no" mutable="no">
+        <type>bool *</type>
+        <definition>bool* Objet_a_lire::flag_a_lire</definition>
+        <argsstring></argsstring>
+        <name>flag_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="78" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" compoundref="Objet__a__lire_8cpp" startline="163" endline="180">get_value</referencedby>
+        <referencedby refid="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" compoundref="Param_8cpp" startline="152" endline="183">print</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4407add015eb8ae482fe781cd35dc380" compoundref="Objet__a__lire_8cpp" startline="71" endline="77">set_flag</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" prot="protected" static="no" mutable="no">
+        <type>int *</type>
+        <definition>int* Objet_a_lire::int_a_lire</definition>
+        <argsstring></argsstring>
+        <name>int_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="72" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a8f5df1c4e79e3d8941f3ced5e11626f0" compoundref="Objet__a__lire_8cpp" startline="135" endline="152">add_dict</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" compoundref="Objet__a__lire_8cpp" startline="163" endline="180">get_value</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1a7fcffe94def2cd8d9b63d682cf96a988" compoundref="Objet__a__lire_8cpp" startline="35" endline="39">set_entier</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" prot="protected" static="no" mutable="no">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom Objet_a_lire::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="68" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a41fd4d7d895315b363a249f0add21d65" compoundref="Objet__a__lire_8cpp" startline="106" endline="116">comprend_name</referencedby>
+        <referencedby refid="classObjet__a__lire_1af3705b33852aec771e0c3f2a3e0a0eab" compoundref="Objet__a__lire_8cpp" startline="130" endline="133">get_name</referencedby>
+        <referencedby refid="classObjet__a__lire_1a9782e23d3ba76c1f664467ae97ae75c9" compoundref="Objet__a__lire_8cpp" startline="118" endline="128">get_names_message</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1af0b7e086c23982427eb9420a8570e891" compoundref="Objet__a__lire_8cpp" startline="96" endline="104">set_name</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1afd025a7dcb3e6418c401c01e3ac73470" prot="protected" static="no" mutable="no">
+        <type><ref refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53" kindref="member">Objet_a_lire::Nature</ref></type>
+        <definition>Objet_a_lire::Nature Objet_a_lire::nature</definition>
+        <argsstring></argsstring>
+        <name>nature</name>
+        <initializer>= <ref refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53a67c76dc808bf81632dddf80b8104150b" kindref="member">OPTIONAL</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="71" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a04f64db99ae95a6b69536a2da3924c00" compoundref="Objet__a__lire_8cpp" startline="91" endline="94">is_optional</referencedby>
+        <referencedby refid="classObjet__a__lire_1a490ed4091fb51f75de94a5f7235672cf" compoundref="Objet__a__lire_8cpp" startline="153" endline="156">set_nature</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a71e5aeefa45192d565e47fa517c29b8b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+        <definition>Objet_U* Objet_a_lire::obj_a_lire</definition>
+        <argsstring></argsstring>
+        <name>obj_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="75" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a4ef1a749e15d15a611f9e548c1e1456d" compoundref="Objet__a__lire_8h" startline="45" endline="50">set_deriv</referencedby>
+        <referencedby refid="classObjet__a__lire_1a0314c0736041fffe81655e5c4ec7e736" compoundref="Objet__a__lire_8cpp" startline="53" endline="57">set_objet</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1af74ed9e1a6a2a6f6236b4537f534ee95" prot="protected" static="no" mutable="no">
+        <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+        <definition>Objet_U * Objet_a_lire::objet_lu</definition>
+        <argsstring></argsstring>
+        <name>objet_lu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="75" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1ac1a635d6c6ceb13b6aee909e35b7ef25" compoundref="Objet__a__lire_8cpp" startline="79" endline="83">set_non_std</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1ae45fd3f6b4c34b3ba51b3aa9d7a61dc7" prot="protected" static="no" mutable="no">
+        <type><ref refid="classptrParam" kindref="compound">ptrParam</ref></type>
+        <definition>ptrParam Objet_a_lire::param_interne</definition>
+        <argsstring></argsstring>
+        <name>param_interne</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="83" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1af390338c0b15fc5b00d5e633711c6a7a" compoundref="Objet__a__lire_8cpp" startline="84" endline="89">create_param</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a5b58cc626e338737d521d0701f972199" prot="protected" static="no" mutable="no">
+        <type><ref refid="classMotcle" kindref="compound">Motcle</ref></type>
+        <definition>Motcle Objet_a_lire::prefixe_deriv</definition>
+        <argsstring></argsstring>
+        <name>prefixe_deriv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="82" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="82" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4ef1a749e15d15a611f9e548c1e1456d" compoundref="Objet__a__lire_8h" startline="45" endline="50">set_deriv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a5c6e09d1ecaf854e860023513e7f2a0b" prot="protected" static="no" mutable="no">
+        <type>trustIdType *</type>
+        <definition>trustIdType* Objet_a_lire::tid_a_lire</definition>
+        <argsstring></argsstring>
+        <name>tid_a_lire</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="73" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="73" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1a137edfbbe054f87e28e44d41ffcd4a6d" compoundref="Objet__a__lire_8cpp" startline="41" endline="45">set_tid</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" prot="protected" static="no" mutable="no">
+        <type><ref refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618" kindref="member">Objet_a_lire::Type</ref></type>
+        <definition>Objet_a_lire::Type Objet_a_lire::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <initializer>= <ref refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" kindref="member">INTEGER</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="70" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="classObjet__a__lire_1af390338c0b15fc5b00d5e633711c6a7a" compoundref="Objet__a__lire_8cpp" startline="84" endline="89">create_param</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" compoundref="Objet__a__lire_8cpp" startline="163" endline="180">get_value</referencedby>
+        <referencedby refid="classObjet__a__lire_1ad16ed4f95a5c174177f5d91138633a77" compoundref="Objet__a__lire_8cpp" startline="158" endline="161">is_type_simple</referencedby>
+        <referencedby refid="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" compoundref="Param_8cpp" startline="152" endline="183">print</referencedby>
+        <referencedby refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" compoundref="Objet__a__lire_8cpp" startline="182" endline="271">read</referencedby>
+        <referencedby refid="classObjet__a__lire_1a73ded0678f590c4226c698832bc6eeea" compoundref="Objet__a__lire_8cpp" startline="65" endline="69">set_arrofdouble</referencedby>
+        <referencedby refid="classObjet__a__lire_1a431f3df72228c7e67d656fcff2a49466" compoundref="Objet__a__lire_8cpp" startline="59" endline="63">set_arrofint</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4ef1a749e15d15a611f9e548c1e1456d" compoundref="Objet__a__lire_8h" startline="45" endline="50">set_deriv</referencedby>
+        <referencedby refid="classObjet__a__lire_1a24b34b25682e02d15abe7547458b3e04" compoundref="Objet__a__lire_8cpp" startline="47" endline="51">set_double</referencedby>
+        <referencedby refid="classObjet__a__lire_1a7fcffe94def2cd8d9b63d682cf96a988" compoundref="Objet__a__lire_8cpp" startline="35" endline="39">set_entier</referencedby>
+        <referencedby refid="classObjet__a__lire_1a4407add015eb8ae482fe781cd35dc380" compoundref="Objet__a__lire_8cpp" startline="71" endline="77">set_flag</referencedby>
+        <referencedby refid="classObjet__a__lire_1ac1a635d6c6ceb13b6aee909e35b7ef25" compoundref="Objet__a__lire_8cpp" startline="79" endline="83">set_non_std</referencedby>
+        <referencedby refid="classObjet__a__lire_1a0314c0736041fffe81655e5c4ec7e736" compoundref="Objet__a__lire_8cpp" startline="53" endline="57">set_objet</referencedby>
+        <referencedby refid="classObjet__a__lire_1a137edfbbe054f87e28e44d41ffcd4a6d" compoundref="Objet__a__lire_8cpp" startline="41" endline="45">set_tid</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classObjet__a__lire_1a0c6c99344c52ec9086b74a7d45d21246" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_a_lire::Declare_instanciable</definition>
+        <argsstring>(Objet_a_lire)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classObjet__a__lire" kindref="compound">Objet_a_lire</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classObjet__a__lire_1a8f5df1c4e79e3d8941f3ced5e11626f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classptrParam" kindref="compound">ptrParam</ref> &amp;</type>
+        <definition>ptrParam &amp; Objet_a_lire::add_dict</definition>
+        <argsstring>(const char *, int, const char *=0)</argsstring>
+        <name>add_dict</name>
+        <param>
+          <type>const char *</type>
+          <defname>nom_option</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <defname>valeur</defname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <defname>aname</defname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="55" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="135" bodyend="152"/>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classptrParam_1ac0beada8d838ea2086da90d377d0100d" compoundref="ptrParam_8cpp" startline="32" endline="35">ptrParam::create</references>
+        <references refid="classObjet__a__lire_1a7118f1c26812ad639a5cbcd53a31222b" compoundref="Objet__a__lire_8h" startline="79">dictionnaire_noms</references>
+        <references refid="classObjet__a__lire_1a78151e1e70af5e2756e5d8cbd10a6bb0" compoundref="Objet__a__lire_8h" startline="80">dictionnaire_valeurs</references>
+        <references refid="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" compoundref="Objet__a__lire_8h" startline="72">int_a_lire</references>
+        <references refid="classMotcles_1abd4862b9c8552b88a48927e67bd48d9d" compoundref="Motcle_8cpp" startline="321" endline="331">Motcles::search</references>
+        <referencedby refid="classParam_1a0d5da6b10afd9ae6e7c98f0836fcb3b0" compoundref="Param_8cpp" startline="293" endline="299">Param::dictionnaire</referencedby>
+        <referencedby refid="classParam_1a6fa2745ca8a6b66b92930fa6433b6d34" compoundref="Param_8cpp" startline="300" endline="309">Param::dictionnaire_param</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a41fd4d7d895315b363a249f0add21d65" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Objet_a_lire::comprend_name</definition>
+        <argsstring>(Motcle &amp;mot) const</argsstring>
+        <name>comprend_name</name>
+        <param>
+          <type><ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>mot</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="60" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="106" bodyend="116"/>
+        <references refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" compoundref="Objet__a__lire_8h" startline="68">name</references>
+        <referencedby refid="classParam_1a650cd0a754361652998cf21c7f699d30" compoundref="Param_8cpp" startline="62" endline="134">Param::read</referencedby>
+        <referencedby refid="classParam_1a79be5a57849e1c837ea23714d7a95719" compoundref="Param_8cpp" startline="339" endline="354">Param::supprimer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1af390338c0b15fc5b00d5e633711c6a7a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+        <definition>Param &amp; Objet_a_lire::create_param</definition>
+        <argsstring>(const char *)</argsstring>
+        <name>create_param</name>
+        <param>
+          <type>const char *</type>
+          <defname>aname</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="52" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="84" bodyend="89"/>
+        <references refid="classptrParam_1ac0beada8d838ea2086da90d377d0100d" compoundref="ptrParam_8cpp" startline="32" endline="35">ptrParam::create</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0" compoundref="Objet__a__lire_8h" startline="32">PARAM</references>
+        <references refid="classObjet__a__lire_1ae45fd3f6b4c34b3ba51b3aa9d7a61dc7" compoundref="Objet__a__lire_8h" startline="83">param_interne</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <references refid="classptrParam_1a03b1bd6861fd8e03ae79e13e496dbe56" compoundref="ptrParam_8cpp" startline="37" endline="41">ptrParam::valeur</references>
+        <referencedby refid="classParam_1a4b4654e674df057c13950a98d7c02040" compoundref="Param_8cpp" startline="392" endline="400">Param::ajouter_param</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1af3705b33852aec771e0c3f2a3e0a0eab" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+        <definition>const Nom &amp; Objet_a_lire::get_name</definition>
+        <argsstring>() const</argsstring>
+        <name>get_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="59" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="130" bodyend="133"/>
+        <references refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" compoundref="Objet__a__lire_8h" startline="68">name</references>
+        <referencedby refid="classParam_1a4b4654e674df057c13950a98d7c02040" compoundref="Param_8cpp" startline="392" endline="400">Param::ajouter_param</referencedby>
+        <referencedby refid="classParam_1a737f2797a7ada1a9f930005bc83d67fc" compoundref="Param_8cpp" startline="184" endline="260">Param::check</referencedby>
+        <referencedby refid="classParam_1aec928eb5342cbe1bfea6c491f47dd0d6" compoundref="Param_8cpp" startline="465" endline="490">Param::get_value</referencedby>
+        <referencedby refid="classParam_1a5a27c9991a6e4220502cf9222ecf1796" compoundref="Param_8cpp" startline="41" endline="61">Param::lire_sans_accolade</referencedby>
+        <referencedby refid="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" compoundref="Param_8cpp" startline="152" endline="183">print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a9782e23d3ba76c1f664467ae97ae75c9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom Objet_a_lire::get_names_message</definition>
+        <argsstring>() const</argsstring>
+        <name>get_names_message</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="61" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="118" bodyend="128"/>
+        <references refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" compoundref="Objet__a__lire_8h" startline="68">name</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Objet_a_lire::get_value</definition>
+        <argsstring>() const</argsstring>
+        <name>get_value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="65" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="163" bodyend="180"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" compoundref="Objet__a__lire_8h" startline="31">DOUBLE</references>
+        <references refid="classObjet__a__lire_1a2a4d1eec4d0c4d5d3b54bdfec26d3392" compoundref="Objet__a__lire_8h" startline="74">double_a_lire</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" compoundref="Objet__a__lire_8h" startline="31">FLAG</references>
+        <references refid="classObjet__a__lire_1a4f97ef36f60fa219bb3df79f70a49ef7" compoundref="Objet__a__lire_8h" startline="78">flag_a_lire</references>
+        <references refid="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" compoundref="Objet__a__lire_8h" startline="72">int_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" compoundref="Objet__a__lire_8h" startline="31">INTEGER</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1aec928eb5342cbe1bfea6c491f47dd0d6" compoundref="Param_8cpp" startline="465" endline="490">Param::get_value</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a04f64db99ae95a6b69536a2da3924c00" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Objet_a_lire::is_optional</definition>
+        <argsstring>() const</argsstring>
+        <name>is_optional</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="63" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="91" bodyend="94"/>
+        <references refid="classObjet__a__lire_1afd025a7dcb3e6418c401c01e3ac73470" compoundref="Objet__a__lire_8h" startline="71">nature</references>
+        <references refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53a67c76dc808bf81632dddf80b8104150b" compoundref="Objet__a__lire_8h" startline="35">OPTIONAL</references>
+        <referencedby refid="classParam_1a737f2797a7ada1a9f930005bc83d67fc" compoundref="Param_8cpp" startline="184" endline="260">Param::check</referencedby>
+        <referencedby refid="classParam_1a5a27c9991a6e4220502cf9222ecf1796" compoundref="Param_8cpp" startline="41" endline="61">Param::lire_sans_accolade</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1ad16ed4f95a5c174177f5d91138633a77" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Objet_a_lire::is_type_simple</definition>
+        <argsstring>() const</argsstring>
+        <name>is_type_simple</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="64" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="158" bodyend="161"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" compoundref="Objet__a__lire_8h" startline="31">DOUBLE</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" compoundref="Objet__a__lire_8h" startline="31">FLAG</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" compoundref="Objet__a__lire_8h" startline="31">INTEGER</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1a737f2797a7ada1a9f930005bc83d67fc" compoundref="Param_8cpp" startline="184" endline="260">Param::check</referencedby>
+        <referencedby refid="classParam_1aec928eb5342cbe1bfea6c491f47dd0d6" compoundref="Param_8cpp" startline="465" endline="490">Param::get_value</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::print</definition>
+        <argsstring>(Sortie &amp;s) const</argsstring>
+        <name>print</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="58" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Param.cpp" bodystart="152" bodyend="183"/>
+        <references refid="classObjet__a__lire_1a7118f1c26812ad639a5cbcd53a31222b" compoundref="Objet__a__lire_8h" startline="79">dictionnaire_noms</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" compoundref="Objet__a__lire_8h" startline="31">DOUBLE</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" compoundref="Objet__a__lire_8h" startline="31">FLAG</references>
+        <references refid="classObjet__a__lire_1a4f97ef36f60fa219bb3df79f70a49ef7" compoundref="Objet__a__lire_8h" startline="78">flag_a_lire</references>
+        <references refid="classObjet__a__lire_1af3705b33852aec771e0c3f2a3e0a0eab" compoundref="Objet__a__lire_8cpp" startline="130" endline="133">get_name</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" compoundref="Objet__a__lire_8h" startline="31">INTEGER</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a8c48dc6e4448a8e4c9d59d8c682d45d3" compoundref="Objet__a__lire_8h" startline="31">NON_STD</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1a557bb1c9e7e2ce7d138b1053096fad16" compoundref="Param_8cpp" startline="135" endline="150">Param::print</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::read</definition>
+        <argsstring>(const Motcle &amp;keyword, Entree &amp;is)</argsstring>
+        <name>read</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>keyword</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="57" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="182" bodyend="271"/>
+        <references refid="classObjet__a__lire_1a755b11f521c047eeaf84b573dd39532b" compoundref="Objet__a__lire_8h" startline="77">arrofdouble_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ac6dd3f9720589cf930d55e3178c1df85" compoundref="Objet__a__lire_8h" startline="32">ArrOfDouble_size_imp</references>
+        <references refid="classObjet__a__lire_1a4c941ada0d68d935229306fd592fdb58" compoundref="Objet__a__lire_8h" startline="76">arrofint_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a7a9e047713f6dd502fb94df45836dcf4" compoundref="Objet__a__lire_8h" startline="31">ArrOfInt_size_imp</references>
+        <references refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" compoundref="Process_8cpp" startline="135" endline="138">Process::barrier</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a22e8b4ba5ba79e200ec77c07a15dbc5e" compoundref="Objet__a__lire_8h" startline="31">DERIV</references>
+        <references refid="classObjet__a__lire_1a7118f1c26812ad639a5cbcd53a31222b" compoundref="Objet__a__lire_8h" startline="79">dictionnaire_noms</references>
+        <references refid="classObjet__a__lire_1a78151e1e70af5e2756e5d8cbd10a6bb0" compoundref="Objet__a__lire_8h" startline="80">dictionnaire_valeurs</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" compoundref="Objet__a__lire_8h" startline="31">DOUBLE</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" compoundref="Objet__a__lire_8h" startline="31">FLAG</references>
+        <references refid="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" compoundref="Objet__a__lire_8h" startline="72">int_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" compoundref="Objet__a__lire_8h" startline="31">INTEGER</references>
+        <references refid="classParam_1aa9d44fc51b4a08b357733a97dc7acaad" compoundref="Param_8cpp" startline="32" endline="39">Param::lire_avec_accolades_depuis</references>
+        <references refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" compoundref="Objet__a__lire_8h" startline="68">name</references>
+        <references refid="classptrParam_1af3d74b09a1894d54f5343fcb7371a749" compoundref="ptrParam_8h" startline="34" endline="34">ptrParam::non_nul</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a8c48dc6e4448a8e4c9d59d8c682d45d3" compoundref="Objet__a__lire_8h" startline="31">NON_STD</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a4131f3d09935a257bd3952b667fd0621" compoundref="Objet__a__lire_8h" startline="31">OBJECT</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0" compoundref="Objet__a__lire_8h" startline="32">PARAM</references>
+        <references refid="classObjet__a__lire_1ae45fd3f6b4c34b3ba51b3aa9d7a61dc7" compoundref="Objet__a__lire_8h" startline="83">param_interne</references>
+        <references refid="classObjet__a__lire_1a5b58cc626e338737d521d0701f972199" compoundref="Objet__a__lire_8h" startline="82">prefixe_deriv</references>
+        <references refid="classMotcles_1abd4862b9c8552b88a48927e67bd48d9d" compoundref="Motcle_8cpp" startline="321" endline="331">Motcles::search</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a35cc37000e5fcae9086f8989b5c22746" compoundref="Objet__a__lire_8h" startline="31">TRUSTID</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1a5a27c9991a6e4220502cf9222ecf1796" compoundref="Param_8cpp" startline="41" endline="61">Param::lire_sans_accolade</referencedby>
+        <referencedby refid="classParam_1a650cd0a754361652998cf21c7f699d30" compoundref="Param_8cpp" startline="62" endline="134">Param::read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a73ded0678f590c4226c698832bc6eeea" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_arrofdouble</definition>
+        <argsstring>(ArrOfDouble *)</argsstring>
+        <name>set_arrofdouble</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref> *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="65" bodyend="69"/>
+        <references refid="classObjet__a__lire_1a755b11f521c047eeaf84b573dd39532b" compoundref="Objet__a__lire_8h" startline="77">arrofdouble_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ac6dd3f9720589cf930d55e3178c1df85" compoundref="Objet__a__lire_8h" startline="32">ArrOfDouble_size_imp</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1ade724a8de56de74480f37c382828de20" compoundref="Param_8cpp" startline="407" endline="412">Param::ajouter_arr_size_predefinie</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a431f3df72228c7e67d656fcff2a49466" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_arrofint</definition>
+        <argsstring>(ArrOfInt *)</argsstring>
+        <name>set_arrofint</name>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="59" bodyend="63"/>
+        <references refid="classObjet__a__lire_1a4c941ada0d68d935229306fd592fdb58" compoundref="Objet__a__lire_8h" startline="76">arrofint_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a7a9e047713f6dd502fb94df45836dcf4" compoundref="Objet__a__lire_8h" startline="31">ArrOfInt_size_imp</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1adcb07d363043552750b5cbca934ba015" compoundref="Param_8cpp" startline="401" endline="406">Param::ajouter_arr_size_predefinie</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a4ef1a749e15d15a611f9e548c1e1456d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _CLASSE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Objet_a_lire::set_deriv</definition>
+        <argsstring>(TRUST_Deriv&lt; _CLASSE_ &gt; *quoi, const char *prefixe)</argsstring>
+        <name>set_deriv</name>
+        <param>
+          <type><ref refid="classTRUST__Deriv" kindref="compound">TRUST_Deriv</ref>&lt; _CLASSE_ &gt; *</type>
+          <declname>quoi</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>prefixe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="45" bodyend="50"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a22e8b4ba5ba79e200ec77c07a15dbc5e" compoundref="Objet__a__lire_8h" startline="31">DERIV</references>
+        <references refid="classObjet__a__lire_1a71e5aeefa45192d565e47fa517c29b8b" compoundref="Objet__a__lire_8h" startline="75">obj_a_lire</references>
+        <references refid="classObjet__a__lire_1a5b58cc626e338737d521d0701f972199" compoundref="Objet__a__lire_8h" startline="82">prefixe_deriv</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a24b34b25682e02d15abe7547458b3e04" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_double</definition>
+        <argsstring>(double *)</argsstring>
+        <name>set_double</name>
+        <param>
+          <type>double *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="47" bodyend="51"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" compoundref="Objet__a__lire_8h" startline="31">DOUBLE</references>
+        <references refid="classObjet__a__lire_1a2a4d1eec4d0c4d5d3b54bdfec26d3392" compoundref="Objet__a__lire_8h" startline="74">double_a_lire</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1ad360b9e37aa23d02f45322598d5e19ec" compoundref="Param_8cpp" startline="380" endline="385">Param::ajouter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a7fcffe94def2cd8d9b63d682cf96a988" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_entier</definition>
+        <argsstring>(int *)</argsstring>
+        <name>set_entier</name>
+        <param>
+          <type>int *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="35" bodyend="39"/>
+        <references refid="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" compoundref="Objet__a__lire_8h" startline="72">int_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" compoundref="Objet__a__lire_8h" startline="31">INTEGER</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a4407add015eb8ae482fe781cd35dc380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_flag</definition>
+        <argsstring>(bool *)</argsstring>
+        <name>set_flag</name>
+        <param>
+          <type>bool *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="53" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="71" bodyend="77"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" compoundref="Objet__a__lire_8h" startline="31">FLAG</references>
+        <references refid="classObjet__a__lire_1a4f97ef36f60fa219bb3df79f70a49ef7" compoundref="Objet__a__lire_8h" startline="78">flag_a_lire</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1a094f83c119a3283c851a6672b277eb6f" compoundref="Param_8cpp" startline="414" endline="428">Param::ajouter_flag</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1af0b7e086c23982427eb9420a8570e891" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_name</definition>
+        <argsstring>(const LIST(Nom)&amp;n)</argsstring>
+        <name>set_name</name>
+        <param>
+          <type>const <ref refid="classObjet__a__lire_1a708ad2cb214bcf217772e3f6c1aef699" kindref="member">LIST</ref>(<ref refid="classNom" kindref="compound">Nom</ref>)&amp;</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="62" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="96" bodyend="104"/>
+        <references refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" compoundref="Objet__a__lire_8h" startline="68">name</references>
+        <referencedby refid="classParam_1a1212c59569379b7d4d910a921382337d" compoundref="Param_8cpp" startline="314" endline="337">Param::create_or_get_objet_a_lire</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a490ed4091fb51f75de94a5f7235672cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_nature</definition>
+        <argsstring>(Objet_a_lire::Nature n)</argsstring>
+        <name>set_nature</name>
+        <param>
+          <type><ref refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53" kindref="member">Objet_a_lire::Nature</ref></type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="56" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="153" bodyend="156"/>
+        <references refid="classObjet__a__lire_1afd025a7dcb3e6418c401c01e3ac73470" compoundref="Objet__a__lire_8h" startline="71">nature</references>
+        <referencedby refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</referencedby>
+        <referencedby refid="classParam_1adcb07d363043552750b5cbca934ba015" compoundref="Param_8cpp" startline="401" endline="406">Param::ajouter_arr_size_predefinie</referencedby>
+        <referencedby refid="classParam_1a094f83c119a3283c851a6672b277eb6f" compoundref="Param_8cpp" startline="414" endline="428">Param::ajouter_flag</referencedby>
+        <referencedby refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</referencedby>
+        <referencedby refid="classParam_1a4b4654e674df057c13950a98d7c02040" compoundref="Param_8cpp" startline="392" endline="400">Param::ajouter_param</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1ac1a635d6c6ceb13b6aee909e35b7ef25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_non_std</definition>
+        <argsstring>(Objet_U *)</argsstring>
+        <name>set_non_std</name>
+        <param>
+          <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="54" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="79" bodyend="83"/>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a8c48dc6e4448a8e4c9d59d8c682d45d3" compoundref="Objet__a__lire_8h" startline="31">NON_STD</references>
+        <references refid="classObjet__a__lire_1af74ed9e1a6a2a6f6236b4537f534ee95" compoundref="Objet__a__lire_8h" startline="75">objet_lu</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a0314c0736041fffe81655e5c4ec7e736" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_objet</definition>
+        <argsstring>(Objet_U *)</argsstring>
+        <name>set_objet</name>
+        <param>
+          <type><ref refid="classObjet__U" kindref="compound">Objet_U</ref> *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="53" bodyend="57"/>
+        <references refid="classObjet__a__lire_1a71e5aeefa45192d565e47fa517c29b8b" compoundref="Objet__a__lire_8h" startline="75">obj_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a4131f3d09935a257bd3952b667fd0621" compoundref="Objet__a__lire_8h" startline="31">OBJECT</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+        <referencedby refid="classParam_1aa10e936bb587a675dfab849cdd77664a" compoundref="Param_8cpp" startline="386" endline="391">Param::ajouter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a137edfbbe054f87e28e44d41ffcd4a6d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Objet_a_lire::set_tid</definition>
+        <argsstring>(trustIdType *)</argsstring>
+        <name>set_tid</name>
+        <param>
+          <type>trustIdType *</type>
+          <defname>quoi</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.cpp" bodystart="41" bodyend="45"/>
+        <references refid="classObjet__a__lire_1a5c6e09d1ecaf854e860023513e7f2a0b" compoundref="Objet__a__lire_8h" startline="73">tid_a_lire</references>
+        <references refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a35cc37000e5fcae9086f8989b5c22746" compoundref="Objet__a__lire_8h" startline="31">TRUSTID</references>
+        <references refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" compoundref="Objet__a__lire_8h" startline="70">type</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classObjet__a__lire_1a708ad2cb214bcf217772e3f6c1aef699" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_a_lire::LIST</definition>
+        <argsstring>(Nom) names</argsstring>
+        <name>LIST</name>
+        <param>
+          <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="69" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classObjet__a__lire_1a860982a7ec082b44b13793f17eda2fc9" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Objet_a_lire::LIST</definition>
+        <argsstring>(ptrParam) dictionnaire_params</argsstring>
+        <name>LIST</name>
+        <param>
+          <type><ref refid="classptrParam" kindref="compound">ptrParam</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="81" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Objet_a_lire</label>
+        <link refid="classObjet__a__lire"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="6">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>VECTMotcle</label>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="11">
+        <label>Motcles</label>
+        <link refid="classMotcles"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Param</label>
+        <link refid="classParam"/>
+        <childnode refid="7" relation="usage">
+          <edgelabel>proprietaire_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="1">
+        <label>Objet_a_lire</label>
+        <link refid="classObjet__a__lire"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>arrofdouble_a_lire</edgelabel>
+          <edgelabel>arrofint_a_lire</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>name</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>prefixe_deriv</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>dictionnaire_valeurs</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>dictionnaire_noms</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>param_interne</edgelabel>
+        </childnode>
+        <childnode refid="2" relation="usage">
+          <edgelabel>obj_a_lire</edgelabel>
+          <edgelabel>objet_lu</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="9">
+        <label>Motcle</label>
+        <link refid="classMotcle"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>ptrParam</label>
+        <link refid="classptrParam"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>param_</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Objet_a_lire.h" bodystart="28" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>abort</name></member>
+      <member refid="classObjet__a__lire_1a8f5df1c4e79e3d8941f3ced5e11626f0" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>add_dict</name></member>
+      <member refid="classObjet__a__lire_1a755b11f521c047eeaf84b573dd39532b" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>arrofdouble_a_lire</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ac6dd3f9720589cf930d55e3178c1df85" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>ArrOfDouble_size_imp</name></member>
+      <member refid="classObjet__a__lire_1a4c941ada0d68d935229306fd592fdb58" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>arrofint_a_lire</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a7a9e047713f6dd502fb94df45836dcf4" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>ArrOfInt_size_imp</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>check_int_overflow</name></member>
+      <member refid="classObjet__a__lire_1a41fd4d7d895315b363a249f0add21d65" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>comprend_name</name></member>
+      <member refid="classObjet__a__lire_1af390338c0b15fc5b00d5e633711c6a7a" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>create_param</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classObjet__a__lire_1a0c6c99344c52ec9086b74a7d45d21246" prot="private" virt="non-virtual"><scope>Objet_a_lire</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a22e8b4ba5ba79e200ec77c07a15dbc5e" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>DERIV</name></member>
+      <member refid="classObjet__a__lire_1a7118f1c26812ad639a5cbcd53a31222b" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>dictionnaire_noms</name></member>
+      <member refid="classObjet__a__lire_1a78151e1e70af5e2756e5d8cbd10a6bb0" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>dictionnaire_valeurs</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>disable_TU</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a3d308c8835efb4021fe8f7a57d8a3b85" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>DOUBLE</name></member>
+      <member refid="classObjet__a__lire_1a2a4d1eec4d0c4d5d3b54bdfec26d3392" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>double_a_lire</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Objet_a_lire</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>exit</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618ad159760c5bd77b1fec877a3d0070bee7" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>FLAG</name></member>
+      <member refid="classObjet__a__lire_1a4f97ef36f60fa219bb3df79f70a49ef7" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>flag_a_lire</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>get_info</name></member>
+      <member refid="classObjet__a__lire_1af3705b33852aec771e0c3f2a3e0a0eab" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>get_name</name></member>
+      <member refid="classObjet__a__lire_1a9782e23d3ba76c1f664467ae97ae75c9" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>get_names_message</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__a__lire_1a4d8d970ef195db7c735dfe50302f9074" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>get_value</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>info_obj</name></member>
+      <member refid="classObjet__a__lire_1a954ac98e15141a3534e2050c030f16bd" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>int_a_lire</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a49d83e21cec8e40601582447a74987d1" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>INTEGER</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>interprete</name></member>
+      <member refid="classObjet__a__lire_1a04f64db99ae95a6b69536a2da3924c00" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>is_optional</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>is_sequential</name></member>
+      <member refid="classObjet__a__lire_1ad16ed4f95a5c174177f5d91138633a77" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>is_type_simple</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classObjet__a__lire_1a708ad2cb214bcf217772e3f6c1aef699" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>LIST</name></member>
+      <member refid="classObjet__a__lire_1a860982a7ec082b44b13793f17eda2fc9" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>LIST</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>multiple_files</name></member>
+      <member refid="classObjet__a__lire_1a9b2ff81b35b8accbfdbe3fa92d47fa81" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>name</name></member>
+      <member refid="classObjet__a__lire_1afd025a7dcb3e6418c401c01e3ac73470" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>nature</name></member>
+      <member refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>Nature</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>nommer</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a8c48dc6e4448a8e4c9d59d8c682d45d3" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>NON_STD</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>numero</name></member>
+      <member refid="classObjet__a__lire_1a71e5aeefa45192d565e47fa517c29b8b" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>obj_a_lire</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a4131f3d09935a257bd3952b667fd0621" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>OBJECT</name></member>
+      <member refid="classObjet__a__lire_1af74ed9e1a6a2a6f6236b4537f534ee95" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>objet_lu</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>operator=</name></member>
+      <member refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53a67c76dc808bf81632dddf80b8104150b" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>OPTIONAL</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a976b5086fdfd9214b0be8195c8efeac0" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>PARAM</name></member>
+      <member refid="classObjet__a__lire_1ae45fd3f6b4c34b3ba51b3aa9d7a61dc7" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>param_interne</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>precision_geom</name></member>
+      <member refid="classObjet__a__lire_1a5b58cc626e338737d521d0701f972199" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>prefixe_deriv</name></member>
+      <member refid="classObjet__a__lire_1a36ce11d074d8a5c666961f244673e578" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>print</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__a__lire_1a26fef392ee218a112e76f433e9e63971" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>read</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>reprendre</name></member>
+      <member refid="classObjet__a__lire_1a08a46fbed4f867c91efbe469282c3c53ae633230ab9c0ccd20767a01d8138e8ce" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>REQUIRED</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>self_cast</name></member>
+      <member refid="classObjet__a__lire_1a73ded0678f590c4226c698832bc6eeea" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_arrofdouble</name></member>
+      <member refid="classObjet__a__lire_1a431f3df72228c7e67d656fcff2a49466" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_arrofint</name></member>
+      <member refid="classObjet__a__lire_1a4ef1a749e15d15a611f9e548c1e1456d" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_deriv</name></member>
+      <member refid="classObjet__a__lire_1a24b34b25682e02d15abe7547458b3e04" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_double</name></member>
+      <member refid="classObjet__a__lire_1a7fcffe94def2cd8d9b63d682cf96a988" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_entier</name></member>
+      <member refid="classObjet__a__lire_1a4407add015eb8ae482fe781cd35dc380" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_flag</name></member>
+      <member refid="classObjet__a__lire_1af0b7e086c23982427eb9420a8570e891" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_name</name></member>
+      <member refid="classObjet__a__lire_1a490ed4091fb51f75de94a5f7235672cf" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_nature</name></member>
+      <member refid="classObjet__a__lire_1ac1a635d6c6ceb13b6aee909e35b7ef25" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_non_std</name></member>
+      <member refid="classObjet__a__lire_1a0314c0736041fffe81655e5c4ec7e736" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_objet</name></member>
+      <member refid="classObjet__a__lire_1a137edfbbe054f87e28e44d41ffcd4a6d" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>set_tid</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Objet_a_lire</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__a__lire_1a5c6e09d1ecaf854e860023513e7f2a0b" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>tid_a_lire</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618a35cc37000e5fcae9086f8989b5c22746" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>TRUSTID</name></member>
+      <member refid="classObjet__a__lire_1a4048f53c5528e4928bbfcbe671798e3a" prot="protected" virt="non-virtual"><scope>Objet_a_lire</scope><name>type</name></member>
+      <member refid="classObjet__a__lire_1a7a142da83aac9e5236fc5e87c4814618" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>Type</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Objet_a_lire</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Objet_a_lire</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

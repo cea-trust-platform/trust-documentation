@@ -1,21 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,118,147,146"/>
-<area shape="rect" id="Node000001" href="$classPerte__Charge__PolyMAC.html" title="Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces." alt="" coords="195,118,368,146"/>
-<area shape="poly" id="edge1613_Node000000_Node000001" title=" " alt="" coords="162,129,194,129,194,134,162,134"/>
-<area shape="rect" id="Node000002" href="$classPerte__Charge__Anisotrope__PolyMAC__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="426,5,612,50"/>
-<area shape="poly" id="edge1614_Node000001_Node000002" title=" " alt="" coords="320,107,415,60,445,48,447,53,417,65,322,112"/>
-<area shape="rect" id="Node000004" href="$classPerte__Charge__Circulaire__PolyMAC__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="430,75,608,119"/>
-<area shape="poly" id="edge1616_Node000001_Node000004" title=" " alt="" coords="383,114,430,107,430,113,383,120"/>
-<area shape="rect" id="Node000006" href="$classPerte__Charge__Directionnelle__PolyMAC__Face.html" title="Perte de charge directionnelle (selon un vecteur unitaire v)" alt="" coords="416,144,622,189"/>
-<area shape="poly" id="edge1618_Node000001_Node000006" title=" " alt="" coords="384,144,416,149,415,154,383,149"/>
-<area shape="rect" id="Node000008" href="$classPerte__Charge__Isotrope__PolyMAC__Face.html" title="Perte de charge isotrope (proportionnelle a &#45;u )" alt="" coords="435,213,603,258"/>
-<area shape="poly" id="edge1620_Node000001_Node000008" title=" " alt="" coords="322,151,417,199,447,210,445,215,415,203,320,156"/>
-<area shape="rect" id="Node000003" href="$classPerte__Charge__Anisotrope__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="681,5,866,50"/>
-<area shape="poly" id="edge1615_Node000002_Node000003" title=" " alt="" coords="628,25,680,25,680,30,628,30"/>
-<area shape="rect" id="Node000005" href="$classPerte__Charge__Circulaire__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="683,75,864,119"/>
-<area shape="poly" id="edge1617_Node000004_Node000005" title=" " alt="" coords="623,94,682,94,682,100,623,100"/>
-<area shape="rect" id="Node000007" href="$classPerte__Charge__Directionnelle__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="670,144,877,189"/>
-<area shape="poly" id="edge1619_Node000006_Node000007" title=" " alt="" coords="638,164,670,164,670,169,638,169"/>
-<area shape="rect" id="Node000009" href="$classPerte__Charge__Isotrope__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="683,213,864,258"/>
-<area shape="poly" id="edge1621_Node000008_Node000009" title=" " alt="" coords="619,233,682,233,682,238,619,238"/>
+<area shape="rect" id="node1" href="$classParser.html" title="Representation des donnees de la classe Parser." alt="" coords="5,5,68,32"/>
+<area shape="rect" id="node2" href="$classParserView.html" title=" " alt="" coords="116,5,211,32"/>
 </map>

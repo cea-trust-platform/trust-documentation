@@ -1,0 +1,981 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDiscret__Thyd" kind="class" language="C++" prot="public">
+    <compoundname>Discret_Thyd</compoundname>
+    <basecompoundref refid="classDiscret__Thermique" prot="public" virt="non-virtual">Discret_Thermique</basecompoundref>
+    <derivedcompoundref refid="classDG__discretisation" prot="public" virt="non-virtual">DG_discretisation</derivedcompoundref>
+    <derivedcompoundref refid="classEF__discretisation" prot="public" virt="non-virtual">EF_discretisation</derivedcompoundref>
+    <derivedcompoundref refid="classPolyMAC__discretisation" prot="public" virt="non-virtual">PolyMAC_discretisation</derivedcompoundref>
+    <derivedcompoundref refid="classVDF__discretisation" prot="public" virt="non-virtual">VDF_discretisation</derivedcompoundref>
+    <derivedcompoundref refid="classVEF__discretisation" prot="public" virt="non-virtual">VEF_discretisation</derivedcompoundref>
+    <includes local="no">Discret_Thyd.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDiscret__Thyd_1af345c1c39b92c47c146fb4dead8ca4fb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Discret_Thyd::Declare_base</definition>
+        <argsstring>(Discret_Thyd)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classDiscret__Thyd" kindref="compound">Discret_Thyd</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="39" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDiscret__Thyd_1aa3dfaccfc5dcd116a23f79eefd875cb6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::concentration</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;, int=1, const Nom nom_champ=&quot;concentration&quot;) const</argsstring>
+        <name>concentration</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <param>
+          <type>int</type>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref></type>
+          <declname>nom_champ</declname>
+          <defval>&quot;concentration&quot;</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="50" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="152" bodyend="169"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classField__base_1a740d888da6eb9db6c7b62e65faf2436e" compoundref="Field__base_8cpp" startline="206" endline="209">Field_base::fixer_nature_du_champ</references>
+        <references refid="classField__base_1ac2b194dc5cdc675df21508d28b80b366" compoundref="Field__base_8cpp" startline="89" endline="93">Field_base::fixer_nom_compo</references>
+        <references refid="classSchema__Temps__base_1acbe9f5266e4b4267a53fdbb9157718c5">Schema_Temps_base::nb_valeurs_temporelles</references>
+        <references refid="classField__base_1a517704cb3a892cbe30c12e0d744277c7" compoundref="Field__base_8cpp" startline="39" endline="42">Field_base::nommer</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classConvection__Diffusion__Concentration_1a82c113e3f4824208e2b25ab752f57144" compoundref="Convection__Diffusion__Concentration_8cpp" startline="136" endline="145">Convection_Diffusion_Concentration::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a5eafa07b25121e4db82a5b17cdf3be34" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Discret_Thyd::courant_maille</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Schema_Temps_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>courant_maille</name>
+        <reimplementedby refid="classVDF__discretisation_1adf332dd2abb989b8b5e60e849d8c3246">courant_maille</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="74" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" bodystart="74" bodyend="78"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a752e23fcdd7286eaa31145cd91e969bf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::creer_champ_vorticite</definition>
+        <argsstring>(const Schema_Temps_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>creer_champ_vorticite</name>
+        <reimplementedby refid="classEF__discretisation_1aa3f82f779f3714660ab004c796867f0b">creer_champ_vorticite</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1a6a94c81e38d30423ea43c3772d6b0b64">creer_champ_vorticite</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1adfdc6a8429f27b28617a802ca790bbd1">creer_champ_vorticite</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1a488916484ddc29fa17f982c7a3baba51">creer_champ_vorticite</reimplementedby>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="55" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="73" bodyend="78"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1aed8b46c9ac4be3154fb4fd5f1d6289f0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::critere_Q</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Domaine_Cl_dis_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>critere_Q</name>
+        <reimplementedby refid="classVDF__discretisation_1ad5b8915c202b8f096f12b46b982d9db7">critere_Q</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1aa61991b6f265da709eee3154bcab6724">critere_Q</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="66" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="80" bodyend="87"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1ad2fcde9216c159cfddd0ec03a13f6f17" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::diametre_hydraulique_face</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const DoubleVect &amp;, const Schema_Temps_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>diametre_hydraulique_face</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="89" bodyend="96"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1ac4ced1c5b973fd0dbe2938bfa9dfe37d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::distance_paroi_globale</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>distance_paroi_globale</name>
+        <reimplementedby refid="classDG__discretisation_1ac47d8b823a0b14ef88b3d45da8f45cb5">distance_paroi_globale</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1af60a79002deafb18675b222a1f5d717b">distance_paroi_globale</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1aa1197d565bcce289c0e4199f8d12723a">distance_paroi_globale</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1a3d15d82935116e9dbc2da9707e65c922">distance_paroi_globale</reimplementedby>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="60" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="117" bodyend="122"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1ab7bc7c73423133eb9ac1b384c65b7f18" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::divergence_U</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;) const</argsstring>
+        <name>divergence_U</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="61" bodyend="65"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classNavier__Stokes__std_1abe64eca3b0fd9e9ec58ba27033949694" compoundref="Navier__Stokes__std_8cpp" startline="348" endline="381">Navier_Stokes_std::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a9706952848d95a8c360d780f646f8c08" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::entcor</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>entcor</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="41" bodyend="45"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a8a93429b6fc3fa429b29c06dcac9a8f7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Discret_Thyd::estimateur_aposteriori</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Domaine_Cl_dis_base &amp;, const Champ_Inc_base &amp;, const Champ_Inc_base &amp;, const Champ_Don_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>estimateur_aposteriori</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="80" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" bodystart="80" bodyend="85"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1add44e817a0c758f5f656b9faebfac770" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::grad_T</definition>
+        <argsstring>(const Domaine_dis_base &amp;z, const Domaine_Cl_dis_base &amp;zcl, const Champ_Inc_base &amp;eqn, OWN_PTR(Champ_Fonc_base)&amp;ch) const</argsstring>
+        <name>grad_T</name>
+        <reimplementedby refid="classVEF__discretisation_1a9311085eace037b64763f8e624c8452f">grad_T</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>zcl</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>eqn</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="62" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="124" bodyend="129"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classConvection__Diffusion__Temperature_1ab45e5cdac58c0755bbf36be22e95c35a" compoundref="Convection__Diffusion__Temperature_8cpp" startline="190" endline="217">Convection_Diffusion_Temperature::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1aadadc7418fd142c41a354b0bb8044431" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::grad_u</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Domaine_Cl_dis_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>grad_u</name>
+        <reimplementedby refid="classVDF__discretisation_1a788939d1cad50bdcd21b0ec63b9b4ec7">grad_u</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1ad35e7b6f17363a1f4a02df36d2e9f9d1">grad_u</reimplementedby>
+        <reimplementedby refid="classDG__discretisation_1a2517ad8ed229987afb4ca28ba6334a88">grad_u</reimplementedby>
+        <reimplementedby refid="classPolyMAC__discretisation_1a35b9f51f072d4dead2783be4ffbbd40b">grad_u</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1aca9fddc926b6a998fddc4b70438a79a0">grad_u</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1a6895903737d96970e3466bced240fd32">grad_u</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="56" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="145" bodyend="150"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a0f99e47729d83ca76239608a9ce676e7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::gradient_P</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;, int nb_comp=1) const</argsstring>
+        <name>gradient_P</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="49" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="67" bodyend="71"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classQDM__Multiphase_1a317626daed1651286d00792a06c24d56" compoundref="QDM__Multiphase_8cpp" startline="297" endline="337">QDM_Multiphase::creer_champ</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a870c25dbe80518b0aba8f959953385a0" compoundref="Navier__Stokes__std_8cpp" startline="389" endline="394">Navier_Stokes_std::discretiser_grad_p</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1abb83cab1c2399484ff8b363d503b5c47" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::h_conv</definition>
+        <argsstring>(const Domaine_dis_base &amp;z, const Domaine_Cl_dis_base &amp;zcl, const Champ_Inc_base &amp;eqn, OWN_PTR(Champ_Fonc_base)&amp;ch, Motcle &amp;nom, int temp_ref) const</argsstring>
+        <name>h_conv</name>
+        <reimplementedby refid="classVEF__discretisation_1ab4c593621c3f61645307247f011219af">h_conv</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>z</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>zcl</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>eqn</declname>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+          <declname>ch</declname>
+        </param>
+        <param>
+          <type><ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>temp_ref</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="63" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="131" bodyend="136"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classConvection__Diffusion__Temperature_1ab45e5cdac58c0755bbf36be22e95c35a" compoundref="Convection__Diffusion__Temperature_8cpp" startline="190" endline="217">Convection_Diffusion_Temperature::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a537f7d41eaad4059797e88b9a0304759" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::pression</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;) const</argsstring>
+        <name>pression</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="47" bodyend="52"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classNavier__Stokes__std_1abe64eca3b0fd9e9ec58ba27033949694" compoundref="Navier__Stokes__std_8cpp" startline="348" endline="381">Navier_Stokes_std::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a2b2def9ce530f8517beb694eaaf870a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::pression_en_pa</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;) const</argsstring>
+        <name>pression_en_pa</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="47" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="54" bodyend="59"/>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classNavier__Stokes__std_1abe64eca3b0fd9e9ec58ba27033949694" compoundref="Navier__Stokes__std_8cpp" startline="348" endline="381">Navier_Stokes_std::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a88c53950ab6c638db6133291740a120b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::proprietes_physiques_fluide_Ostwald</definition>
+        <argsstring>(const Domaine_dis_base &amp;, Fluide_Ostwald &amp;, const Navier_Stokes_std &amp;, const Champ_Inc_base &amp;) const</argsstring>
+        <name>proprietes_physiques_fluide_Ostwald</name>
+        <reimplementedby refid="classEF__discretisation_1a26ca699bd8572df143aebc144e077134">proprietes_physiques_fluide_Ostwald</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1a9b56bc5f87d1e11603147a465f1b6beb">proprietes_physiques_fluide_Ostwald</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1afea8df6d8d3d5f4b09e22a9ff5f976f4">proprietes_physiques_fluide_Ostwald</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classFluide__Ostwald" kindref="compound">Fluide_Ostwald</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classNavier__Stokes__std" kindref="compound">Navier_Stokes_std</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="57" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="138" bodyend="143"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classFluide__Ostwald_1aac1a27338844764b061d38c2e3de0b00" compoundref="Fluide__Ostwald_8cpp" startline="58" endline="78">Fluide_Ostwald::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1ad1fd8bd572c75e663bbc96728c9e806f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Discret_Thyd::reynolds_maille</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Fluide_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>reynolds_maille</name>
+        <reimplementedby refid="classVDF__discretisation_1aa34e77ded55540c44b0167065d398add">reynolds_maille</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classFluide__base" kindref="compound">Fluide_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="68" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" bodystart="68" bodyend="72"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1acf2fee34fbee3b2a6200ac29c380db1c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::section_passage</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const DoubleVect &amp;, const Schema_Temps_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>section_passage</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="52" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="98" bodyend="106"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classTRUSTArray_1a678fe673d5c62662dcac939687fad90c" compoundref="TRUSTArray_8cpp" startline="193" endline="233">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::inject_array</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a6b0df382c89ae7d973ddf3e5eb7b644d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Discret_Thyd::taux_cisaillement</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Domaine_Cl_dis_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>taux_cisaillement</name>
+        <reimplementedby refid="classPolyMAC__P0__discretisation_1ab220c6c7586f43bfb3f47359ca8fea98">taux_cisaillement</reimplementedby>
+        <reimplementedby refid="classVDF__discretisation_1a8de860ead1238e0036a53071e421776d">taux_cisaillement</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1ab885833bcf67b292309166b8d2ec2678">taux_cisaillement</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="87" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" bodystart="87" bodyend="91"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1ac77afc3356903d6687212ee006a7ab67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::translation</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>translation</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="35" bodyend="39"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1acc8970458b63722879a01dc6eb52a7e8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::vitesse</definition>
+        <argsstring>(const Schema_Temps_base &amp;, Domaine_dis_base &amp;, OWN_PTR(Champ_Inc_base)&amp;, int nb_comp=1) const</argsstring>
+        <name>vitesse</name>
+        <param>
+          <type>const <ref refid="classSchema__Temps__base" kindref="compound">Schema_Temps_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref>)&amp;</type>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_comp</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="29" bodyend="33"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classSchema__Temps__base_1acbe9f5266e4b4267a53fdbb9157718c5">Schema_Temps_base::nb_valeurs_temporelles</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classNavier__Stokes__Fluide__Dilatable__base_1a7900ed96b71813f57fb04f694d9beee4" compoundref="Navier__Stokes__Fluide__Dilatable__base_8cpp" startline="226" endline="232">Navier_Stokes_Fluide_Dilatable_base::discretiser</referencedby>
+        <referencedby refid="classNavier__Stokes__Turbulent__QC_1a052d16911247a64815d2fb60f3c1580d" compoundref="Navier__Stokes__Turbulent__QC_8cpp" startline="71" endline="77">Navier_Stokes_Turbulent_QC::discretiser</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ab8c28dae40a64bb151636caea955acb8" compoundref="Navier__Stokes__std_8cpp" startline="383" endline="387">Navier_Stokes_std::discretiser_vitesse</referencedby>
+        <referencedby refid="classQDM__Multiphase_1a3c4a23ff9cc63d2ce141d49e78e25f77" compoundref="QDM__Multiphase_8cpp" startline="231" endline="235">QDM_Multiphase::discretiser_vitesse</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDiscret__Thyd_1a5f58ef7a30ead60131d8cf764e05c6d4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Discret_Thyd::y_plus</definition>
+        <argsstring>(const Domaine_dis_base &amp;, const Domaine_Cl_dis_base &amp;, const Champ_Inc_base &amp;, OWN_PTR(Champ_Fonc_base)&amp;) const</argsstring>
+        <name>y_plus</name>
+        <reimplementedby refid="classVDF__discretisation_1a9b93cd07da20230fe226b7549fca7a63">y_plus</reimplementedby>
+        <reimplementedby refid="classPolyMAC__P0P1NC__discretisation_1a75f977aa92b6d46d1008f3fbf25dcc8c">y_plus</reimplementedby>
+        <reimplementedby refid="classVEF__discretisation_1ab879eb17a944250c8cd6cb37b7120edb">y_plus</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <param>
+          <type>OWN_PTR(<ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref>)&amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="61" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.cpp" bodystart="108" bodyend="115"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classNavier__Stokes__std_1a3d27fccf0d918fb1b5affcfdcd596b33" compoundref="Navier__Stokes__std_8cpp" startline="1260" endline="1352">Navier_Stokes_std::creer_champ</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classDiscret__Thyd" kindref="compound">Discret_Thyd</ref> Cette classe est la classe de base representant une discretisation </para>
+    </briefdescription>
+    <detaileddescription>
+<para>spatiale appliquee aux problemes de thermo-hydrauliques. Les methodes virtuelles pures sont a implementer dans les classes derivees pour typer et discretiser les champs portes par les equations liees a la discretisation.</para>
+<para><simplesect kind="see"><para><ref refid="classDiscret__Thermique" kindref="compound">Discret_Thermique</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7">
+        <label>EF_discretisation</label>
+        <link refid="classEF__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>DG_discretisation</label>
+        <link refid="classDG__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>PolyMAC_P0_discretisation</label>
+        <link refid="classPolyMAC__P0__discretisation"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>VEF_discretisation</label>
+        <link refid="classVEF__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>VDF_discretisation</label>
+        <link refid="classVDF__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>PolyMAC_discretisation</label>
+        <link refid="classPolyMAC__discretisation"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Discret_Thyd</label>
+        <link refid="classDiscret__Thyd"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Discret_Thermique</label>
+        <link refid="classDiscret__Thermique"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>PolyMAC_P0P1NC_discretisation</label>
+        <link refid="classPolyMAC__P0P1NC__discretisation"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>EF_axi_discretisation</label>
+        <link refid="classEF__axi__discretisation"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="3">
+        <label>Discretisation_base</label>
+        <link refid="classDiscretisation__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>NOM_VIDE</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>DEMANDE_DESCRIPTION</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Discret_Thyd</label>
+        <link refid="classDiscret__Thyd"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Motcle</label>
+        <link refid="classMotcle"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Discret_Thermique</label>
+        <link refid="classDiscret__Thermique"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" line="37" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Discret_Thyd.h" bodystart="38" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>associer_</name></member>
+      <member refid="classDiscretisation__base_1aad7284735cd70264a2e9f1ffa5ee73c2" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>check_int_overflow</name></member>
+      <member refid="classDiscretisation__base_1ad6333cec25f23f44f36aabb20416ab68" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>codage_du_calcul_du_residu</name></member>
+      <member refid="classDiscret__Thyd_1aa3dfaccfc5dcd116a23f79eefd875cb6" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>concentration</name></member>
+      <member refid="classDiscret__Thyd_1a5eafa07b25121e4db82a5b17cdf3be34" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>courant_maille</name></member>
+      <member refid="classDiscretisation__base_1a78d39e8085df1f98212b52b5b7ee459f" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1a4ea304a3017fa3c2f42b47c604a41665" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>creer_champ</name></member>
+      <member refid="classDiscretisation__base_1ae85d1a5377595c6a9b7f220d375ee021" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>creer_champ</name></member>
+      <member refid="classDiscret__Thyd_1a752e23fcdd7286eaa31145cd91e969bf" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>creer_champ_vorticite</name></member>
+      <member refid="classDiscret__Thyd_1aed8b46c9ac4be3154fb4fd5f1d6289f0" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>critere_Q</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classDiscret__Thyd_1af345c1c39b92c47c146fb4dead8ca4fb" prot="private" virt="non-virtual"><scope>Discret_Thyd</scope><name>Declare_base</name></member>
+      <member refid="classDiscretisation__base_1acc1768bebcf6d9cb36fcf2db50cd01a2" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>DEMANDE_DESCRIPTION</name></member>
+      <member refid="classDiscret__Thyd_1ad2fcde9216c159cfddd0ec03a13f6f17" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>diametre_hydraulique_face</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>disable_TU</name></member>
+      <member refid="classDiscretisation__base_1a720792b21fab7d60bef9a2b39faf96c1" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>discretiser</name></member>
+      <member refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1aa025262a374bffb83d08804efb142723" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a4926d441cf0d6877629cb17e90cc23b7" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a509a8f15679dc718615771bdef0782b3" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a7a83512f3f7c77c32d80a21bd5e7ea2a" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a29462970b0097e5ff1c24309613c1545" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>discretiser_champ</name></member>
+      <member refid="classDiscretisation__base_1a0e60e14ef2b31bd8098f3688565d510c" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>discretiser_variables</name></member>
+      <member refid="classDiscret__Thyd_1ac4ced1c5b973fd0dbe2938bfa9dfe37d" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>distance_paroi_globale</name></member>
+      <member refid="classDiscret__Thyd_1ab7bc7c73423133eb9ac1b384c65b7f18" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>divergence_U</name></member>
+      <member refid="classDiscretisation__base_1a771a54326f782563754413afbf2e44b7" prot="public" virt="pure-virtual"><scope>Discret_Thyd</scope><name>domaine_cl_dis_type</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Discret_Thyd</scope><name>duplique</name></member>
+      <member refid="classDiscret__Thyd_1a9706952848d95a8c360d780f646f8c08" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>entcor</name></member>
+      <member refid="classDiscret__Thermique_1aa5757c8ca5f37cb3acb9a84eb862b706" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>enthalpie</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>est_egal_a</name></member>
+      <member refid="classDiscret__Thyd_1a8a93429b6fc3fa429b29c06dcac9a8f7" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>estimateur_aposteriori</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>exit</name></member>
+      <member refid="classDiscret__Thermique_1ae5f0ee2e0b1e48cf6438bcad592bcd97" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>Fluctu_Temperature</name></member>
+      <member refid="classDiscret__Thermique_1a7cd25486adf0f3b47f6e9f59ca0c2f75" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>Flux_Chaleur_Turb</name></member>
+      <member refid="classDiscret__Thermique_1ad3ab69019a623431fe412cfe803ed29a" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>flux_neutronique</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>get_info</name></member>
+      <member refid="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>get_name_of_type_for</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classDiscret__Thyd_1add44e817a0c758f5f656b9faebfac770" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>grad_T</name></member>
+      <member refid="classDiscret__Thyd_1aadadc7418fd142c41a354b0bb8044431" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>grad_u</name></member>
+      <member refid="classDiscret__Thyd_1a0f99e47729d83ca76239608a9ce676e7" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>gradient_P</name></member>
+      <member refid="classDiscret__Thyd_1abb83cab1c2399484ff8b363d503b5c47" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>h_conv</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>interprete</name></member>
+      <member refid="classDiscretisation__base_1a2f404ad2c8800e75a39c37964d93f883" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_dg</name></member>
+      <member refid="classDiscretisation__base_1a447faf3699b7e2687003fc7903c24886" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_ef</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>is_parallel</name></member>
+      <member refid="classDiscretisation__base_1a31f49a7acb39da94cf4e0229c465169b" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_polymac</name></member>
+      <member refid="classDiscretisation__base_1ab68dcb966f6651993d3b19bfdb644399" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_polymac_family</name></member>
+      <member refid="classDiscretisation__base_1a0be287d02325f0201d98921c8665ebbb" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_polymac_p0</name></member>
+      <member refid="classDiscretisation__base_1a14605de98065dcb471af3c796f9d66a6" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_polymac_p0p1nc</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>is_sequential</name></member>
+      <member refid="classDiscretisation__base_1a48deff14b7e177f668cdbc7faec9e2c6" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_vdf</name></member>
+      <member refid="classDiscretisation__base_1aac859a9216c7c1c200fe2f1050190ce7" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>is_vef</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>me</name></member>
+      <member refid="classDiscretisation__base_1a5d6d9a9f61567c3be2ca403bf4613698" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mesh_numbering</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>nom_du_cas</name></member>
+      <member refid="classDiscretisation__base_1aaf779dbc4b8447a662e9a3d230deb002" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>NOM_VIDE</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>nommer</name></member>
+      <member refid="classDiscretisation__base_1a17969ebd170a72f28d8cac002eb3f857" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>nommer_completer_champ_physique</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>Objet_U</name></member>
+      <member refid="classDiscretisation__base_1a730e16d1ca0d5a1f153842026655f792" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Discret_Thyd</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>precision_geom</name></member>
+      <member refid="classDiscret__Thyd_1a537f7d41eaad4059797e88b9a0304759" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>pression</name></member>
+      <member refid="classDiscret__Thyd_1a2b2def9ce530f8517beb694eaaf870a3" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>pression_en_pa</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>printOn</name></member>
+      <member refid="classDiscret__Thyd_1a88c53950ab6c638db6133291740a120b" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>proprietes_physiques_fluide_Ostwald</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>reprendre</name></member>
+      <member refid="classDiscretisation__base_1ad9237819535d3a28e8ab041f66af27d4" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>residu</name></member>
+      <member refid="classDiscret__Thyd_1ad1fd8bd572c75e663bbc96728c9e806f" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>reynolds_maille</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>sauvegarder</name></member>
+      <member refid="classDiscret__Thyd_1acf2fee34fbee3b2a6200ac29c380db1c" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>section_passage</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classDiscret__Thermique_1a2956db1bee80fad7f6100de187a3c0e3" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>t_paroi</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Discret_Thyd</scope><name>taille_memoire</name></member>
+      <member refid="classDiscret__Thyd_1a6b0df382c89ae7d973ddf3e5eb7b644d" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>taux_cisaillement</name></member>
+      <member refid="classDiscret__Thermique_1a20563156cce652924424506b54fba185" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>temperature</name></member>
+      <member refid="classDiscret__Thyd_1ac77afc3356903d6687212ee006a7ab67" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>translation</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>type_calcul_du_residu</name></member>
+      <member refid="classDiscretisation__base_1afc3992b63975458f04f3f898f58e84cf" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>verifie_sous_type</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0ab1b0885ce8af07e1563ae012e4822f6e" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>VIA_AJOUTER</name></member>
+      <member refid="classDiscretisation__base_1ad6b02af5532904375c2384825f2d4ea0a6da3daf19c0be297ebb5c28e3ad11b2d" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>VIA_CONTRIBUER_AU_SECOND_MEMBRE</name></member>
+      <member refid="classDiscret__Thyd_1acc8970458b63722879a01dc6eb52a7e8" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>vitesse</name></member>
+      <member refid="classDiscretisation__base_1a83cb828fd1e4a9f53372d22a60f7349b" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>volume_maille</name></member>
+      <member refid="classDiscret__Thyd_1a5f58ef7a30ead60131d8cf764e05c6d4" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>y_plus</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Discret_Thyd</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Discret_Thyd</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

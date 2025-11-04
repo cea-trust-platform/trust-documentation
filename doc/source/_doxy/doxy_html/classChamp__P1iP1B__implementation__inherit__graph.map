@@ -1,11 +1,7 @@
 <map id="Champ_P1iP1B_implementation" name="Champ_P1iP1B_implementation">
-<area shape="rect" id="Node000001" title=" " alt="" coords="95,174,326,201"/>
-<area shape="rect" id="Node000004" href="$classChamp__Fonc__P1__isoP1Bulle.html" title="classe Champ_Fonc_P1_isoP1Bulle" alt="" coords="5,249,208,277"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,213,126,251,123,247,178,208"/>
-<area shape="rect" id="Node000005" href="$classChamp__P1__isoP1Bulle.html" title=" " alt="" coords="232,249,397,277"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="243,208,298,247,295,251,240,213"/>
-<area shape="rect" id="Node000002" href="$classChamp__implementation__divers.html" title=" " alt="" coords="121,81,300,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,141,213,173,208,173,208,141"/>
-<area shape="rect" id="Node000003" href="$classChamp__implementation.html" title=" " alt="" coords="121,5,300,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="213,49,213,80,208,80,208,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="95,169,326,196"/>
+<area shape="rect" id="node4" href="$classChamp__Fonc__P1__isoP1Bulle.html" title="classe Champ_Fonc_P1_isoP1Bulle" alt="" coords="5,244,208,271"/>
+<area shape="rect" id="node5" href="$classChamp__P1__isoP1Bulle.html" title=" " alt="" coords="233,244,399,271"/>
+<area shape="rect" id="node2" href="$classChamp__implementation__divers.html" title=" " alt="" coords="121,80,300,121"/>
+<area shape="rect" id="node3" href="$classChamp__implementation.html" title=" " alt="" coords="121,5,300,32"/>
 </map>

@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSondes__Int" kind="class" language="C++" prot="public">
+    <compoundname>Sondes_Int</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTSonde_Int</basecompoundref>
+    <includes local="no">Sondes_Int.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSondes__Int_1a78fe04e2674d98f051fed8389b693b59" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sondes_Int::Declare_instanciable</definition>
+        <argsstring>(Sondes_Int)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classSondes__Int" kindref="compound">Sondes_Int</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="29" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classSondes__Int_1ae8a13331b65f2e981e970ca93b1bd446" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sondes_Int::OBS_PTR</definition>
+        <argsstring>(Postraitement) mon_post</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classPostraitement" kindref="compound">Postraitement</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="38" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSondes__Int_1a2bfbdfe1a517d79c0b6f04ba664e5203" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sondes_Int::associer_post</definition>
+        <argsstring>(const Postraitement &amp;)</argsstring>
+        <name>associer_post</name>
+        <param>
+          <type>const <ref refid="classPostraitement" kindref="compound">Postraitement</ref> &amp;</type>
+          <defname>post</defname>
+        </param>
+        <briefdescription>
+<para>Associe un postraitement a la liste des sondes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.cpp" bodystart="86" bodyend="89"/>
+        <referencedby refid="classPostraitement_1a557643f836a282cdf8a686409e467a08" compoundref="Postraitement_8cpp" startline="553" endline="850">Postraitement::lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSondes__Int_1aca2e0f9b0912099ee26008c94b85f65a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sondes_Int::fermer_fichiers</definition>
+        <argsstring>()</argsstring>
+        <name>fermer_fichiers</name>
+        <briefdescription>
+<para>Ferme tous les fichiers des sondes de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="32" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" bodystart="52" bodyend="55"/>
+        <referencedby refid="classPostraitement_1ad3b2a1750a83fa20073dc477e608039d" compoundref="Postraitement_8cpp" startline="1641" endline="1654">Postraitement::finir</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSondes__Int_1a137c3c8eaaf1cd8714ed7a0f3517831f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sondes_Int::mettre_a_jour</definition>
+        <argsstring>(double temps, double tinit)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tinit</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de chacune des sondes de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tinit) le temps initial des sondes </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.cpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classSondes__Int_1a82f1d8a1fb23f1fbc39016e8a5a4a71e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sondes_Int::ouvrir_fichiers</definition>
+        <argsstring>()</argsstring>
+        <name>ouvrir_fichiers</name>
+        <briefdescription>
+<para>Ouvre tous les fichiers associes a chacune des sondes de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="31" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" bodystart="44" bodyend="47"/>
+        <referencedby refid="classPostraitement_1a557643f836a282cdf8a686409e467a08" compoundref="Postraitement_8cpp" startline="553" endline="850">Postraitement::lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSondes__Int_1ac77c02c9b8e3d74bf9c43f0f817a2163" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sondes_Int::postraiter</definition>
+        <argsstring>(double)</argsstring>
+        <name>postraiter</name>
+        <param>
+          <type>double</type>
+          <defname>temps</defname>
+        </param>
+        <briefdescription>
+<para>Effectue le postraitement sur chacune des sondes de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.cpp" bodystart="68" bodyend="71"/>
+        <referencedby refid="classPostraitement_1a99ef31350d42c618f6ce1dff30bbb09a" compoundref="Postraitement_8cpp" startline="1841" endline="1846">Postraitement::postraiter_sondes</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classSondes__Int" kindref="compound">Sondes_Int</ref> Cette classe represente une liste d&apos;objets de type <ref refid="classSonde__Int" kindref="compound">Sonde_Int</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classSonde__Int" kindref="compound">Sonde_Int</ref> <ref refid="classPostraitement" kindref="compound">Postraitement</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>LISTSonde_Int</label>
+      </node>
+      <node id="1">
+        <label>Sondes_Int</label>
+        <link refid="classSondes__Int"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>LISTSonde_Int</label>
+      </node>
+      <node id="1">
+        <label>Sondes_Int</label>
+        <link refid="classSondes__Int"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Postraitement/Sondes_Int.h" bodystart="28" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classSondes__Int_1a2bfbdfe1a517d79c0b6f04ba664e5203" prot="public" virt="non-virtual"><scope>Sondes_Int</scope><name>associer_post</name></member>
+      <member refid="classSondes__Int_1a78fe04e2674d98f051fed8389b693b59" prot="private" virt="non-virtual"><scope>Sondes_Int</scope><name>Declare_instanciable</name></member>
+      <member refid="classSondes__Int_1aca2e0f9b0912099ee26008c94b85f65a" prot="public" virt="non-virtual"><scope>Sondes_Int</scope><name>fermer_fichiers</name></member>
+      <member refid="classSondes__Int_1a137c3c8eaaf1cd8714ed7a0f3517831f" prot="public" virt="non-virtual"><scope>Sondes_Int</scope><name>mettre_a_jour</name></member>
+      <member refid="classSondes__Int_1ae8a13331b65f2e981e970ca93b1bd446" prot="private" virt="non-virtual"><scope>Sondes_Int</scope><name>OBS_PTR</name></member>
+      <member refid="classSondes__Int_1a82f1d8a1fb23f1fbc39016e8a5a4a71e" prot="public" virt="non-virtual"><scope>Sondes_Int</scope><name>ouvrir_fichiers</name></member>
+      <member refid="classSondes__Int_1ac77c02c9b8e3d74bf9c43f0f817a2163" prot="public" virt="non-virtual"><scope>Sondes_Int</scope><name>postraiter</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

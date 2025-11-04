@@ -1,0 +1,776 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOp__Grad__PolyMAC__P0__Face" kind="class" language="C++" prot="public">
+    <compoundname>Op_Grad_PolyMAC_P0_Face</compoundname>
+    <basecompoundref refid="classOp__Grad__PolyMAC__P0P1NC__Face" prot="public" virt="non-virtual">Op_Grad_PolyMAC_P0P1NC_Face</basecompoundref>
+    <includes local="no">Op_Grad_PolyMAC_P0_Face.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1a9afe85b9eec4cd163a52fb67693e721e" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Op_Grad_PolyMAC_P0_Face::fgrad_c</definition>
+        <argsstring></argsstring>
+        <name>fgrad_c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="43" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="43" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1a5990273b9c70ccf59d1aff0bf29c2864" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Op_Grad_PolyMAC_P0_Face::fgrad_d</definition>
+        <argsstring></argsstring>
+        <name>fgrad_d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="42" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a9748e23bfc46961dce5cde703d82961a" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="73" endline="213">dimensionner_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1a27c6587afa1e46e061ca34f6aa62b9f3" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Op_Grad_PolyMAC_P0_Face::fgrad_e</definition>
+        <argsstring></argsstring>
+        <name>fgrad_e</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="42" column="26" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a9748e23bfc46961dce5cde703d82961a" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="73" endline="213">dimensionner_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1ab8cd10230ef62dc3800bf874616ee240" prot="protected" static="no" mutable="yes">
+        <type>std::map&lt; int, std::map&lt; int, double &gt; &gt;</type>
+        <definition>std::map&lt;int, std::map&lt;int, double&gt; &gt; Op_Grad_PolyMAC_P0_Face::dgb_v_</definition>
+        <argsstring></argsstring>
+        <name>dgb_v_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="48" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1a7a7fd66ed766375bbc2b469d2334ea8f" prot="protected" static="no" mutable="yes">
+        <type>std::vector&lt; std::vector&lt; std::pair&lt; int, double &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;std::pair&lt;int, double&gt; &gt; &gt; Op_Grad_PolyMAC_P0_Face::dgf_gb_</definition>
+        <argsstring></argsstring>
+        <name>dgf_gb_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="50" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="50" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1abe7235dfc974ba48194bbfea177bd66a" prot="protected" static="no" mutable="yes">
+        <type>std::vector&lt; std::vector&lt; std::pair&lt; int, double &gt; &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;std::pair&lt;int, double&gt; &gt; &gt; Op_Grad_PolyMAC_P0_Face::dgf_pe_</definition>
+        <argsstring></argsstring>
+        <name>dgf_pe_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="49" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1af19bd7a446abd00dd6d0e8d36f6e7ca9" prot="protected" static="no" mutable="yes">
+        <type>std::map&lt; int, std::map&lt; int, double &gt; &gt;</type>
+        <definition>std::map&lt;int, std::map&lt;int, double&gt; &gt; Op_Grad_PolyMAC_P0_Face::dgp_gb_</definition>
+        <argsstring></argsstring>
+        <name>dgp_gb_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="47" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Grad__PolyMAC__P0__Face_1aae55dd238715b792dcca8ef73d9a68a1" prot="protected" static="no" mutable="yes">
+        <type>double</type>
+        <definition>double Op_Grad_PolyMAC_P0_Face::last_gradp_</definition>
+        <argsstring></argsstring>
+        <name>last_gradp_</name>
+        <initializer>= -DBL_MAX</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="46" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOp__Grad__PolyMAC__P0__Face_1a9eb7d8db659d140a2ea19211844e0be5" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Grad_PolyMAC_P0_Face::Declare_instanciable</definition>
+        <argsstring>(Op_Grad_PolyMAC_P0_Face)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classOp__Grad__PolyMAC__P0__Face" kindref="compound">Op_Grad_PolyMAC_P0_Face</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="31" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Grad_PolyMAC_P0_Face::ajouter_blocs</definition>
+        <argsstring>(matrices_t matrices, DoubleTab &amp;secmem, const tabs_t &amp;semi_impl={ }) const override</argsstring>
+        <name>ajouter_blocs</name>
+        <reimplements refid="classOperateur__base_1aec5922f1a3a0a064dbc94b8d371ad92d">ajouter_blocs</reimplements>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.cpp" bodystart="215" bodyend="367"/>
+        <references refid="classProcess_1a6a4b64571b10f150a70db229b839e881" compoundref="Process_8cpp" startline="392" endline="401">Process::abort</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1ab8cd10230ef62dc3800bf874616ee240" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="48">dgb_v_</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a7a7fd66ed766375bbc2b469d2334ea8f" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="50">dgf_gb_</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1abe7235dfc974ba48194bbfea177bd66a" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="49">dgf_pe_</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1af19bd7a446abd00dd6d0e8d36f6e7ca9" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="47">dgp_gb_</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a9afe85b9eec4cd163a52fb67693e721e" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="43">fgrad_c</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a5990273b9c70ccf59d1aff0bf29c2864" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_d</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a27c6587afa1e46e061ca34f6aa62b9f3" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_e</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classMilieu__base_1a50a5bde86eaca0f17f09498e9ace7d21" compoundref="Milieu__base_8h" startline="59" endline="59">Milieu_base::porosite_elem</references>
+        <references refid="classMilieu__base_1ad2aafcfd9d4ed41e892271af80e5936a" compoundref="Milieu__base_8h" startline="63" endline="63">Milieu_base::porosite_face</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Grad__PolyMAC__P0__Face_1a2a8c23a1aa89c756e0e618d98f6f09e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Grad_PolyMAC_P0_Face::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classOperateur__base_1a9560967884361b918b12a67813476608">completer</reimplements>
+        <briefdescription>
+<para>Associe l&apos;operateur au domaine_dis, le domaine_Cl_dis, et a l&apos;inconnue de son equation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>pas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>d&apos;equation associee </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.cpp" bodystart="37" bodyend="55"/>
+        <references refid="classOperateur__base_1a9560967884361b918b12a67813476608" compoundref="Operateur__base_8cpp" startline="89" endline="117">Operateur_base::completer</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classChamp__Face__PolyMAC__P0_1aec596c250f720ac3e66b7f1ced15ac3f" compoundref="Champ__Face__PolyMAC__P0_8cpp" startline="61" endline="71">Champ_Face_PolyMAC_P0::init_auxiliary_variables</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Grad__PolyMAC__P0__Face_1a9748e23bfc46961dce5cde703d82961a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Grad_PolyMAC_P0_Face::dimensionner_blocs</definition>
+        <argsstring>(matrices_t matrices, const tabs_t &amp;semi_impl={ }) const override</argsstring>
+        <name>dimensionner_blocs</name>
+        <reimplements refid="classOperateur__base_1ab1383995b6e34068640675a57bec363b">dimensionner_blocs</reimplements>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.cpp" bodystart="73" bodyend="213"/>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a5990273b9c70ccf59d1aff0bf29c2864" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_d</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a27c6587afa1e46e061ca34f6aa62b9f3" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_e</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="57" endline="71">update_grad</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Op_Grad_PolyMAC_P0_Face::update_grad</definition>
+        <argsstring>(int full_stencil=0) const</argsstring>
+        <name>update_grad</name>
+        <param>
+          <type>int</type>
+          <declname>full_stencil</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.cpp" bodystart="57" bodyend="71"/>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a9afe85b9eec4cd163a52fb67693e721e" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="43">fgrad_c</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a5990273b9c70ccf59d1aff0bf29c2864" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_d</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1a27c6587afa1e46e061ca34f6aa62b9f3" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="42">fgrad_e</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classOp__Grad__PolyMAC__P0__Face_1aae55dd238715b792dcca8ef73d9a68a1" compoundref="Op__Grad__PolyMAC__P0__Face_8h" startline="46">last_gradp_</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classChamp__Inc__base_1abf6cdfc9482f6347c274ac5409c8a471" compoundref="Champ__Inc__base_8cpp" startline="334" endline="338">Champ_Inc_base::recuperer_temps_passe</references>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="215" endline="367">ajouter_blocs</referencedby>
+        <referencedby refid="classOp__Grad__PolyMAC__P0__Face_1a9748e23bfc46961dce5cde703d82961a" compoundref="Op__Grad__PolyMAC__P0__Face_8cpp" startline="73" endline="213">dimensionner_blocs</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classOp__Grad__PolyMAC__P0__Face" kindref="compound">Op_Grad_PolyMAC_P0_Face</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Cette classe represente l&apos;operateur de gradient La discretisation est PolyMAC_P0 On calcule le gradient d&apos;un champ_Elem_PolyMAC_P0 (la pression)</para>
+<para><simplesect kind="see"><para><ref refid="classOperateur__Grad__base" kindref="compound">Operateur_Grad_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Grad_PolyMAC_Face</label>
+        <link refid="classOp__Grad__PolyMAC__Face"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Op_Grad_PolyMAC_P0_Face</label>
+        <link refid="classOp__Grad__PolyMAC__P0__Face"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Operateur_Grad_base</label>
+        <link refid="classOperateur__Grad__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Grad_PolyMAC_P0P1NC_Face</label>
+        <link refid="classOp__Grad__PolyMAC__P0P1NC__Face"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="28">
+        <label>Sortie_Fichier_base</label>
+        <link refid="classSortie__Fichier__base"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="usage">
+          <edgelabel>ofstream_</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>AbstractIO</label>
+        <link refid="classAbstractIO"/>
+      </node>
+      <node id="19">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Sortie</label>
+        <link refid="classSortie"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OWN_PTRMatrice_Base</label>
+      </node>
+      <node id="33">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Grad_PolyMAC_Face</label>
+        <link refid="classOp__Grad__PolyMAC__Face"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>porosite_surf</edgelabel>
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>face_voisins</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="26" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="27">
+        <label>SFichier</label>
+        <link refid="classSFichier"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="10">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="11">
+        <label>Matrice</label>
+        <link refid="classMatrice"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="32">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>matrice_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>description_</edgelabel>
+          <edgelabel>out_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>solveur</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>flux_bords_</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Op_Grad_PolyMAC_P0_Face</label>
+        <link refid="classOp__Grad__PolyMAC__P0__Face"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>fgrad_d</edgelabel>
+          <edgelabel>fgrad_e</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>fgrad_c</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>ofstream</label>
+      </node>
+      <node id="13">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Operateur_Grad_base</label>
+        <link refid="classOperateur__Grad__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>Flux_grad</edgelabel>
+          <edgelabel>Flux_grad_moment</edgelabel>
+          <edgelabel>Flux_grad_sum</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="2">
+        <label>Op_Grad_PolyMAC_P0P1NC_Face</label>
+        <link refid="classOp__Grad__PolyMAC__P0P1NC__Face"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="34">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" line="29" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Divers/Op_Grad_PolyMAC_P0_Face.h" bodystart="30" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>abort</name></member>
+      <member refid="classOperateur__base_1ad4c4e376365aa056c1a9bb9093ee7878" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>abortTimeStep</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1ac9ee2f8d2ca6af29972c01a683f40b1f" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ajouter</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a462b73899b5b08802803ff91465c6ad4" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ajouter_blocs</name></member>
+      <member refid="classOperateur__base_1ac9a953b4d76473713ee31c1d4671bf6f" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ajouter_contribution_explicite_au_second_membre</name></member>
+      <member refid="classOperateur__base_1a5785d8f2346cbb70e2f584aefb51b61b" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ajouter_flux</name></member>
+      <member refid="classOperateur__base_1a0d969b161b7caf2c3f09dec9a2b9ebfe" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1aaa5f09a31d0d598e3836c75baf624817" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>associer_</name></member>
+      <member refid="classOperateur__base_1a21ee8b399a139dd8e85ec0025d0606a5" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>associer_champ</name></member>
+      <member refid="classOperateur__base_1a31a1b8d69db032746c4dabb22550646a" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>associer_domaine_cl_dis</name></member>
+      <member refid="classOperateur__base_1addce89950be87e830970589f6aba37d3" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>associer_eqn</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>bidim_axi</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a5975bd60b97eac9c4e6fd9f0ae73c5ef" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer</name></member>
+      <member refid="classOperateur__base_1a1f6a1b118c3b44790e9843edfc93c4a6" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer_dt_local</name></member>
+      <member refid="classOperateur__base_1a6d87cb9ef58739660975790629a55847" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer_dt_stab</name></member>
+      <member refid="classOperateur__base_1af5cee4c5e5f27e9203bfb38d4a9b932b" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer_flux</name></member>
+      <member refid="classOperateur__Grad__base_1a525c6040adf289c0e622cc50ef5de5eb" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer_flux_bords</name></member>
+      <member refid="classOperateur__base_1a5a049482cef92d18dfab5c179b0514ec" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>calculer_pour_post</name></member>
+      <member refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>check_int_overflow</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0P1NC__Face_1ad68c0c5bbf7734ff8e53bc4815212c75" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classOperateur__base_1a0ffe040617353804459652b00e98d414" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>col_width_</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a2a8c23a1aa89c756e0e618d98f6f09e6" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>completer</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a640e4f369e90b8815abcf85e1b3c67ed" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>contribuer_a_avec</name></member>
+      <member refid="classOperateur__base_1abbebdc80dad39b8a5ec3058379113a52" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>contribuer_au_second_membre</name></member>
+      <member refid="classOperateur__base_1aabeae40911cab7759852f7000ae5ed24" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>contribuer_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1aed83e514128b3ec4a5c2470ca03db7a7" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classOperateur__base_1aa800ac60ec1afa615386d816a2bc1095" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>decal_temps</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a9eb7d8db659d140a2ea19211844e0be5" prot="private" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Declare_instanciable</name></member>
+      <member refid="classOperateur__base_1ae6a9120f01183fb396915a995d19f31f" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>description</name></member>
+      <member refid="classOperateur__base_1a0df8b73d13d81f02f3074a09dde28c84" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>description_</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1ab8cd10230ef62dc3800bf874616ee240" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dgb_v_</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a7a7fd66ed766375bbc2b469d2334ea8f" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dgf_gb_</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1abe7235dfc974ba48194bbfea177bd66a" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dgf_pe_</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1af19bd7a446abd00dd6d0e8d36f6e7ca9" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dgp_gb_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dimension</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a59cfe5dc7d2c4a9caa820807b1f46222" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dimensionner</name></member>
+      <member refid="classOperateur__base_1a6c57cb01245cf33b9e1aaeb36413ffe6" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dimensionner_bloc_vitesse</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a9748e23bfc46961dce5cde703d82961a" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dimensionner_blocs</name></member>
+      <member refid="classOperateur__base_1a840c29d194fc359fdf41fd5d3c4564e8" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>duplique</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>equation</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>exit</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a5c4d94dfda3d5926e9fdd4a68aa85d3a" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>face_voisins</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a9afe85b9eec4cd163a52fb67693e721e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>fgrad_c</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a5990273b9c70ccf59d1aff0bf29c2864" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>fgrad_d</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a27c6587afa1e46e061ca34f6aa62b9f3" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>fgrad_e</name></member>
+      <member refid="classOperateur__base_1a47589b011a317625bca06268fec941fa" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>fichier</name></member>
+      <member refid="classOperateur__base_1ab547b37ace0f04931f6f09fcfa8fae0c" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1ace9775be15067de0b4ee3c850cb0f78b" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>flux_bords_</name></member>
+      <member refid="classOperateur__Grad__base_1a852bbcb144dce79e93f79ff7d52524e6" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Flux_grad</name></member>
+      <member refid="classOperateur__Grad__base_1aedb561a3b3c666b8854ff7b55c91b298" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Flux_grad_moment</name></member>
+      <member refid="classOperateur__Grad__base_1aa284e70c489596664dad9724fb8eb9c3" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Flux_grad_sum</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>format_precision_geom</name></member>
+      <member refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_champ</name></member>
+      <member refid="classOperateur__base_1a6391c6f9d25cc0058baff086d6e374d2" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_decal_temps</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_info</name></member>
+      <member refid="classOperateur__base_1aad500fa9786aae72f075593384970c0b" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classOperateur__base_1a99957cfc9c19dfc1b3eb6eba25bb34e7" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_matrice</name></member>
+      <member refid="classOperateur__base_1a96bd268a33abb1e77dbe1dda3dde2e71" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classOperateur__base_1a189af24b5b71f6eb5f61cbd27f137f8f" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>get_solveur</name></member>
+      <member refid="classOperateur__base_1a6118925b38e7470d3820384da89ad8b8" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a48bacffa849c639403aae805225904a7" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_champ_inco</name></member>
+      <member refid="classOperateur__base_1a7261aed881ea18082ee61b431cfee4be" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_impr_file</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0P1NC__Face_1aae1f9bfe618728d0e7867fff91b99d5d" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>HAS_POINTER</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a04d87dfd3e6a5d75a662d9989e93b2a0" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>impr</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Kokkos_exit</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1aae55dd238715b792dcca8ef73d9a68a1" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>last_gradp_</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classOperateur__base_1aaa3ae2d3c5358c1f385bb438959abb37" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>lire_solveur</name></member>
+      <member refid="classOperateur__base_1a8da7fc774882c66318f3a4573d814d83" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>matrice_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>me</name></member>
+      <member refid="classOperateur__base_1a55ee9300d78cf0d8bdf7f48c56feb7ce" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mettre_a_jour</name></member>
+      <member refid="classOperateur__base_1a109d07fcb418f60efc1302c6a91bf33d" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classOperateur__base_1ae53d686cf12a9bb83751f706193d5592" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mon_inconnue</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>multiple_files</name></member>
+      <member refid="classOperateur__Grad__base_1a331f925ebb5c11dcc1c92e89d5656a69" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>multvect</name></member>
+      <member refid="classOperateur__base_1a656cefa4eb2adfc957e9e4c1fd651749" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nb_ss_pas_de_temps</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nom_du_cas</name></member>
+      <member refid="classOperateur__base_1ad35467308aed5d9f44aaa6cc66b35a79" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nom_inco_</name></member>
+      <member refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nom_inconnue</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>Objet_U</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a6f917bb939ae5aa2cb1921e8279fa043" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1ad08c93ea1075d325228e55355dba6685" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__base_1a2a9e31828e16e1e5588e59032681f412" prot="protected" virt="non-virtual" ambiguityscope="Operateur_Grad_base::"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual" ambiguityscope="MorEqn::"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>operator=</name></member>
+      <member refid="classOperateur__base_1a0f48883db4ca2a57a4d83f344f427723" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>out_</name></member>
+      <member refid="classOperateur__base_1afd23006466730b1b57f4087a8c5fa776" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ouvrir_fichier</name></member>
+      <member refid="classOperateur__base_1a5858c8c8ee1f6082ae18f2476804f495" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classOp__Grad__PolyMAC__Face_1a5ddd1edc736c9b16b657b5f16b203066" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>porosite_surf</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>precision_geom</name></member>
+      <member refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>reprendre</name></member>
+      <member refid="classOperateur__base_1abde0b3c19d29602a6aaf01cafb0ffdbc" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>self_cast</name></member>
+      <member refid="classOperateur__base_1aff84ae0046179ad6c9aac58da235b8b4" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_decal_temps</name></member>
+      <member refid="classOperateur__base_1adc6417da22ec9fd42988d5a4103c471f" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_description</name></member>
+      <member refid="classOperateur__base_1a1079052c44f7db7615ecc24448676093" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_fichier</name></member>
+      <member refid="classOperateur__base_1a58bbc3d85feaa143ec0d87e68d8fe137" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_matrice</name></member>
+      <member refid="classOperateur__base_1a75805455a9a1286fe361482dbbae0369" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a2fe69e40852fa946df7685516d3e5c66" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>set_solveur</name></member>
+      <member refid="classOperateur__base_1a01258c6b4bf60a83b7ebd1649a54ecf6" prot="protected" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>solveur</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classOperateur__base_1ae939f468496af4fdceb8c537a26dd09b" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>systeme_invariant</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>taille_memoire</name></member>
+      <member refid="classOperateur__base_1a3640f8feaeac1bf4d8ff3777c233753c" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>tester_contribuer_a_avec</name></member>
+      <member refid="classOp__Grad__PolyMAC__P0__Face_1a13897d8d7a865a8da8d7edbf6966f74e" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>update_grad</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>~MorEqn</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Op_Grad_PolyMAC_P0_Face</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

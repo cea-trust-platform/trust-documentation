@@ -50,6 +50,7 @@ extensions = [
     'myst_parser',                 # Support for Markdown (MyST) syntax
     # Bibliography and citations
     'sphinxcontrib.bibtex',        # Handle bibliographic references and citations
+    'breathe',
 ]
 
 numfig = True
@@ -165,6 +166,13 @@ myst_enable_extensions = [
     "attrs_block"
 ]
 myst_heading_anchors = 1
+
+# Breathe config
+
+breathe_projects = {
+    "TRUST": "./_doxy/xml/"  
+}
+breathe_default_project = "TRUST"
 
 extlinks = {
     'github': ('https://github.com/cea-trust-platform/trust-code/%s', 'GitHub: %s'),

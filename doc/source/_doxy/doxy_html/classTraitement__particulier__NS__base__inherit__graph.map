@@ -1,51 +1,27 @@
 <map id="Traitement_particulier_NS_base" name="Traitement_particulier_NS_base">
-<area shape="rect" id="Node000001" title="classe Traitement_particulier_NS_base Derive de Support_Champ_Masse_Volumique: utilisation de rho" alt="" coords="371,387,536,431"/>
-<area shape="rect" id="Node000006" href="$classTraitement__particulier__NS__EC.html" title="classe Traitement_particulier_EC Cette classe permet de faire les traitements particuliers" alt="" coords="584,75,750,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="467,371,513,274,545,218,582,165,606,139,632,118,635,122,610,143,586,168,549,221,517,276,472,373"/>
-<area shape="rect" id="Node000009" href="$classTraitement__particulier__NS__Pression.html" title=" " alt="" coords="584,179,750,223"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="472,372,517,303,548,266,583,234,601,222,604,226,586,238,552,270,521,306,476,375"/>
-<area shape="rect" id="Node000012" href="$classTraitement__particulier__NS__Profils.html" title="class Trait_part_NS_Profils_VDF" alt="" coords="584,248,750,293"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="489,374,532,338,583,303,605,291,608,296,586,307,536,342,492,378"/>
-<area shape="rect" id="Node000015" href="$classTraitement__particulier__NS__THI.html" title="classe Traitement_particulier_THI Cette classe permet de faire les traitements particuliers" alt="" coords="584,317,750,362"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="538,379,595,360,597,365,540,384"/>
-<area shape="rect" id="Node000016" href="$classTraitement__particulier__NS__THI__new.html" title="classe Traitement_particulier_THI_new Cette classe permet de faire les traitements particuliers" alt="" coords="584,387,750,431"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="552,406,584,406,584,412,552,412"/>
-<area shape="rect" id="Node000017" href="$classTraitement__particulier__NS__VEF.html" title="classe Traitement_particulier_VEF Cette classe permet de ne faire aucyun traitement particulier" alt="" coords="584,456,750,501"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="540,434,597,453,595,458,538,439"/>
-<area shape="rect" id="Node000019" href="$classTraitement__particulier__NS__canal.html" title="classe Traitement_particulier_NS_canal Cette classe permet de faire les traitements particuliers" alt="" coords="584,525,750,570"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="492,440,536,476,586,511,608,522,605,527,583,515,532,480,489,444"/>
-<area shape="rect" id="Node000022" href="$classTraitement__particulier__NS__chmoy__faceperio.html" title="classe Traitement_particulier_chmoy_faceperio Cette classe permet de faire les traitements particulie..." alt="" coords="584,595,750,639"/>
-<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="476,443,521,512,552,548,586,580,604,592,601,596,583,584,548,552,517,515,472,446"/>
-<area shape="rect" id="Node000024" href="$classTraitement__particulier__NS__temperature.html" title="classe Traitement_particulier_NS_temperature Cette classe permet de faire les traitements particulier..." alt="" coords="584,664,750,709"/>
-<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="469,446,486,492,511,546,544,601,586,650,602,661,599,666,583,654,540,604,506,548,481,494,464,447"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,335,260,363"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="276,359,324,372,371,384,370,390,322,377,275,365"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,335,77,363"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,346,187,346,187,352,92,352"/>
-<area shape="rect" id="Node000004" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="137,387,310,431"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="326,406,370,406,370,412,326,412"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,455,323,483"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="295,448,322,441,370,428,371,434,324,446,296,453"/>
-<area shape="rect" id="Node000007" href="$classTraitement__particulier__NS__EC__VDF.html" title="classe Traitement_particulier_NS_EC_VDF Cette classe permet de faire les traitements particuliers" alt="" coords="814,5,979,50"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="757,67,819,48,821,53,758,72"/>
-<area shape="rect" id="Node000008" href="$classTraitement__particulier__NS__EC__VEF.html" title="classe Traitement_particulier_NS_EC_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="814,75,979,119"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="765,94,813,94,813,100,765,100"/>
-<area shape="rect" id="Node000010" href="$classTraitement__particulier__NS__Pression__VDF.html" title="classe Traitement_particulier_NS_Pression_VDF Cette classe permet de faire les traitements particulie..." alt="" coords="814,144,979,189"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="765,184,813,176,814,181,766,189"/>
-<area shape="rect" id="Node000011" href="$classTraitement__particulier__NS__Pression__VEF.html" title="classe Traitement_particulier_NS_Pression_VEF Cette classe permet de faire les traitements particulie..." alt="" coords="814,213,979,258"/>
-<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="766,213,814,221,813,226,765,218"/>
-<area shape="rect" id="Node000013" href="$classTraitement__particulier__NS__Profils__VDF.html" title="class Trait_part_NS_Profils_VDF This classe enables a particular treatment" alt="" coords="814,283,979,327"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="766,283,814,290,813,295,765,288"/>
-<area shape="rect" id="Node000014" href="$classTraitement__particulier__NS__Profils__thermo__VDF.html" title="classe Traitement_particulier_NS_Profils_thermo_VDF" alt="" coords="1043,283,1225,327"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="994,302,1043,302,1043,308,994,308"/>
-<area shape="rect" id="Node000018" href="$classTraitement__particulier__NS__Brech__VEF.html" title="classe Traitement_particulier_Brech_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="814,387,979,431"/>
-<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="757,449,819,429,821,435,758,454"/>
-<area shape="rect" id="Node000020" href="$classTraitement__particulier__NS__canal__VDF.html" title="classe Traitement_particulier_NS_canal_VDF Cette classe permet de faire les traitements particuliers" alt="" coords="814,456,979,501"/>
-<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="757,518,819,499,821,504,758,523"/>
-<area shape="rect" id="Node000021" href="$classTraitement__particulier__NS__canal__VEF.html" title="classe Traitement_particulier_NS_canal_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="814,525,979,570"/>
-<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="765,545,813,545,813,550,765,550"/>
-<area shape="rect" id="Node000023" href="$classTraitement__particulier__NS__chmoy__faceperio__VEF.html" title="classe Traitement_particulier_NS_chmoy_faceperio_VEF Cette classe permet de faire les traitements par..." alt="" coords="798,595,995,639"/>
-<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="765,614,797,614,797,620,765,620"/>
-<area shape="rect" id="Node000025" href="$classTraitement__particulier__NS__temperature__VEF.html" title="classe Traitement_particulier_NS_temperature_VEF Cette classe permet de faire les traitements particu..." alt="" coords="813,664,980,709"/>
-<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="765,684,813,684,813,689,765,689"/>
+<area shape="rect" id="node1" title="classe Traitement_particulier_NS_base Derive de Support_Champ_Masse_Volumique: utilisation de rho" alt="" coords="372,364,539,405"/>
+<area shape="rect" id="node6" href="$classTraitement__particulier__NS__EC.html" title="classe Traitement_particulier_EC Cette classe permet de faire les traitements particuliers" alt="" coords="587,71,753,112"/>
+<area shape="rect" id="node9" href="$classTraitement__particulier__NS__Pression.html" title=" " alt="" coords="587,168,753,209"/>
+<area shape="rect" id="node12" href="$classTraitement__particulier__NS__Profils.html" title="class Trait_part_NS_Profils_VDF" alt="" coords="587,233,753,275"/>
+<area shape="rect" id="node15" href="$classTraitement__particulier__NS__THI.html" title="classe Traitement_particulier_THI Cette classe permet de faire les traitements particuliers" alt="" coords="587,299,753,340"/>
+<area shape="rect" id="node16" href="$classTraitement__particulier__NS__THI__new.html" title="classe Traitement_particulier_THI_new Cette classe permet de faire les traitements particuliers" alt="" coords="587,364,753,405"/>
+<area shape="rect" id="node17" href="$classTraitement__particulier__NS__VEF.html" title="classe Traitement_particulier_VEF Cette classe permet de ne faire aucyun traitement particulier" alt="" coords="587,429,753,471"/>
+<area shape="rect" id="node19" href="$classTraitement__particulier__NS__canal.html" title="classe Traitement_particulier_NS_canal Cette classe permet de faire les traitements particuliers" alt="" coords="587,495,753,536"/>
+<area shape="rect" id="node22" href="$classTraitement__particulier__NS__chmoy__faceperio.html" title="classe Traitement_particulier_chmoy_faceperio Cette classe permet de faire les traitements particulie..." alt="" coords="587,560,753,601"/>
+<area shape="rect" id="node24" href="$classTraitement__particulier__NS__temperature.html" title="classe Traitement_particulier_NS_temperature Cette classe permet de faire les traitements particulier..." alt="" coords="587,625,753,667"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,313,262,339"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,313,77,339"/>
+<area shape="rect" id="node4" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="137,364,312,405"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,430,324,457"/>
+<area shape="rect" id="node7" href="$classTraitement__particulier__NS__EC__VDF.html" title="classe Traitement_particulier_NS_EC_VDF Cette classe permet de faire les traitements particuliers" alt="" coords="817,5,984,47"/>
+<area shape="rect" id="node8" href="$classTraitement__particulier__NS__EC__VEF.html" title="classe Traitement_particulier_NS_EC_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="817,71,984,112"/>
+<area shape="rect" id="node10" href="$classTraitement__particulier__NS__Pression__VDF.html" title="classe Traitement_particulier_NS_Pression_VDF Cette classe permet de faire les traitements particulie..." alt="" coords="817,136,984,177"/>
+<area shape="rect" id="node11" href="$classTraitement__particulier__NS__Pression__VEF.html" title="classe Traitement_particulier_NS_Pression_VEF Cette classe permet de faire les traitements particulie..." alt="" coords="817,201,984,243"/>
+<area shape="rect" id="node13" href="$classTraitement__particulier__NS__Profils__VDF.html" title="class Trait_part_NS_Profils_VDF This classe enables a particular treatment" alt="" coords="817,267,984,308"/>
+<area shape="rect" id="node14" href="$classTraitement__particulier__NS__Profils__thermo__VDF.html" title="classe Traitement_particulier_NS_Profils_thermo_VDF" alt="" coords="1048,267,1231,308"/>
+<area shape="rect" id="node18" href="$classTraitement__particulier__NS__Brech__VEF.html" title="classe Traitement_particulier_Brech_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="817,364,984,405"/>
+<area shape="rect" id="node20" href="$classTraitement__particulier__NS__canal__VDF.html" title="classe Traitement_particulier_NS_canal_VDF Cette classe permet de faire les traitements particuliers" alt="" coords="817,429,984,471"/>
+<area shape="rect" id="node21" href="$classTraitement__particulier__NS__canal__VEF.html" title="classe Traitement_particulier_NS_canal_VEF Cette classe permet de faire les traitements particuliers" alt="" coords="817,495,984,536"/>
+<area shape="rect" id="node23" href="$classTraitement__particulier__NS__chmoy__faceperio__VEF.html" title="classe Traitement_particulier_NS_chmoy_faceperio_VEF Cette classe permet de faire les traitements par..." alt="" coords="801,560,1000,601"/>
+<area shape="rect" id="node25" href="$classTraitement__particulier__NS__temperature__VEF.html" title="classe Traitement_particulier_NS_temperature_VEF Cette classe permet de faire les traitements particu..." alt="" coords="817,625,984,667"/>
 </map>

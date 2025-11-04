@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_2a41d69b6083215bc50c2e5488a5506d" kind="dir">
+    <compoundname>CoolProp_to_TRUST</compoundname>
+    <innerfile refid="CoolProp__to__TRUST_8cpp">CoolProp_to_TRUST.cpp</innerfile>
+    <innerfile refid="CoolProp__to__TRUST_8h">CoolProp_to_TRUST.h</innerfile>
+    <innerfile refid="CoolProp__to__TRUST__generique_8cpp">CoolProp_to_TRUST_generique.cpp</innerfile>
+    <innerfile refid="CoolProp__to__TRUST__generique_8h">CoolProp_to_TRUST_generique.h</innerfile>
+    <innerfile refid="CoolProp__to__TRUST__Sat__generique_8cpp">CoolProp_to_TRUST_Sat_generique.cpp</innerfile>
+    <innerfile refid="CoolProp__to__TRUST__Sat__generique_8h">CoolProp_to_TRUST_Sat_generique.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/ThermoPhysical_properties_interfaces/CoolProp_to_TRUST/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_2bf20327eb8d166f9acb0c9b72854f51" kind="dir">
+    <compoundname>VEF</compoundname>
+    <innerdir refid="dir_a6b51754580b905273f4f6e3400306f6">Champs</innerdir>
+    <innerdir refid="dir_7651c176b3eed08cd10b5b5e1a4075be">Cond_Lim</innerdir>
+    <innerdir refid="dir_11bf7d6605272e89023db634423f51e2">Geometrie</innerdir>
+    <innerdir refid="dir_4385d1fa29f5eef81a17c8049a25c5eb">Milieu</innerdir>
+    <innerdir refid="dir_8aa9c1dd3c5ade7316757c44275ca69f">Operateurs</innerdir>
+    <innerdir refid="dir_76e782e4b410e98a1ee906fdad6366b8">Solveurs</innerdir>
+    <innerdir refid="dir_5ef8fef46ac5f208e61da39ae26a4a53">Sources</innerdir>
+    <innerdir refid="dir_0e700fa58bae744fa5a0daead45dc57c">Traitement_particulier</innerdir>
+    <innerdir refid="dir_218ebfcde7b9299419e1b930bf67bde3">Turbulence</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VEF/"/>
+  </compounddef>
+</doxygen>

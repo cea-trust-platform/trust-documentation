@@ -1,17 +1,10 @@
 <map id="Masse_ajoutee_base" name="Masse_ajoutee_base">
-<area shape="rect" id="Node000001" title="classe Masse_ajoutee_base masse ajoutee de la forme" alt="" coords="212,232,369,260"/>
-<area shape="rect" id="Node000006" href="$classMasse__ajoutee__Coef__Constant.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="5,308,162,353"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="244,269,139,310,137,305,242,264"/>
-<area shape="rect" id="Node000007" href="$classMasse__ajoutee__Wijngaarden.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="186,316,394,344"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="293,276,293,316,288,316,288,276"/>
-<area shape="rect" id="Node000008" href="$classMasse__ajoutee__Zuber.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="419,316,583,344"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="339,264,468,313,466,318,337,269"/>
-<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="224,157,356,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,200,293,232,288,232,288,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="174,81,247,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="238,118,278,154,274,158,234,122"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="174,5,246,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="213,49,213,81,208,81,208,49"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="271,81,469,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="346,122,306,158,303,154,343,118"/>
+<area shape="rect" id="node1" title="classe Masse_ajoutee_base masse ajoutee de la forme" alt="" coords="213,229,371,256"/>
+<area shape="rect" id="node6" href="$classMasse__ajoutee__Coef__Constant.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="5,304,163,345"/>
+<area shape="rect" id="node7" href="$classMasse__ajoutee__Wijngaarden.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="187,311,397,338"/>
+<area shape="rect" id="node8" href="$classMasse__ajoutee__Zuber.html" title="Masse ajoutee de la forme ma(k, l) = +/&#45; beta * alpha_k * alpha_l * rho_m." alt="" coords="421,311,587,338"/>
+<area shape="rect" id="node2" href="$classCorrelation__base.html" title=" " alt="" coords="226,155,358,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="175,80,249,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="176,5,248,32"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="273,80,471,107"/>
 </map>

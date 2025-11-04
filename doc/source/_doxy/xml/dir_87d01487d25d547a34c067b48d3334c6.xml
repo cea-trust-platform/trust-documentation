@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_87d01487d25d547a34c067b48d3334c6" kind="dir">
+    <compoundname>Sources</compoundname>
+    <innerfile refid="Source__WC__Chaleur_8cpp">Source_WC_Chaleur.cpp</innerfile>
+    <innerfile refid="Source__WC__Chaleur_8h">Source_WC_Chaleur.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/Sources/"/>
+  </compounddef>
+</doxygen>

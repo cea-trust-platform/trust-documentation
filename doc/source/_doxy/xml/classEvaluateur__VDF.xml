@@ -1,0 +1,826 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classEvaluateur__VDF" kind="class" language="C++" prot="public">
+    <compoundname>Evaluateur_VDF</compoundname>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem_aniso &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_Multiphase_VDF_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Multi_inco_Elem_Axi &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem_Axi &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Multi_inco_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Elem_Axi &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Elem_Axi &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Elem &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Face__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Face_Gen&lt; Eval_Diff_VDF_Face &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Face__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_VDF_Face &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Face__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_Multiphase_VDF_Face &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Conv__VDF" prot="public" virt="non-virtual">Eval_Conv_VDF</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Elem__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Diff__VDF__Face__Gen" prot="public" virt="non-virtual">Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classEval__Div__VDF" prot="public" virt="non-virtual">Eval_Div_VDF</derivedcompoundref>
+    <includes local="no">Evaluateur_VDF.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a9fc73f56f87221c238ad047ebbfd8902" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Evaluateur_VDF::dimension</definition>
+        <argsstring></argsstring>
+        <name>dimension</name>
+        <initializer>= -100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="52" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEval__Quick__VDF__Face__Axi_1a00f8a089b88b4c9eaf420da5061194ea" compoundref="Eval__Conv__VDF__Face__leaves_8h" startline="136" endline="140">Eval_Quick_VDF_Face_Axi::dim_elem</referencedby>
+        <referencedby refid="classEval__Quick__VDF__Face__Axi_1ae89fd7b644f5c8b9612a7b7b30c14b6c" compoundref="Eval__Conv__VDF__Face__leaves_8h" startline="163" endline="169">Eval_Quick_VDF_Face_Axi::face_amont_conj</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a1ae8c5dfc34d6bed0dd0876fb20fd7aa" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Evaluateur_VDF::elem_</definition>
+        <argsstring></argsstring>
+        <name>elem_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="53" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1ab51318a3a2482fbce08470347cb8755b" compoundref="Eval__Conv__VDF_8h" startline="44" endline="44">Eval_Conv_VDF::get_elem</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a2e17e58f738e0edc92e2b12b420eb4f2" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">IntVect</ref></type>
+        <definition>IntVect Evaluateur_VDF::orientation</definition>
+        <argsstring></argsstring>
+        <name>orientation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="55" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="55" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1a879347fc8b697414082ba9a92f4123ff" compoundref="Eval__Conv__VDF_8h" startline="45" endline="45">Eval_Conv_VDF::get_orientation</referencedby>
+        <referencedby refid="classEval__Centre4__VDF__Elem_1ab96e1f441db5c6eb7e27f5c916d2cd21" compoundref="Eval__Conv__VDF__Elem__leaves_8h" startline="84" endline="89">Eval_Centre4_VDF_Elem::qcentre</referencedby>
+        <referencedby refid="classEval__Quick__VDF__Elem_1a5acc93c33a7230de6a348051e288efdf" compoundref="Eval__Conv__VDF__Elem__leaves_8h" startline="107" endline="114">Eval_Quick_VDF_Elem::quick_fram</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_VDF::porosite</definition>
+        <argsstring></argsstring>
+        <name>porosite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="56" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1a2f2ac9866a360378d9655d9bd41846e5" compoundref="Evaluateur__VDF_8cpp" startline="46" endline="49">associer_porosite</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+        <referencedby refid="classEval__Div__VDF__Elem_1a5df16f3e10e9efce9d917ca3d5348542" compoundref="Eval__Div__VDF__Elem_8h" startline="37" endline="38">Eval_Div_VDF_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Div__VDF__Elem_1a7c4dea603468f456dd1488c4204c3681" compoundref="Eval__Div__VDF__Elem_8h" startline="49" endline="50">Eval_Div_VDF_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1a9dc1f9d67ea2d644dd58900eee88c85a" compoundref="Eval__Conv__VDF_8h" startline="50" endline="50">Eval_Conv_VDF::get_porosite</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1a16b803f0f34121281bf04c3100e63711" compoundref="Eval__Conv__VDF_8h" startline="48" endline="48">Eval_Conv_VDF::get_surface_porosite</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a891f002dd56c0e86b69a70b739564107" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Evaluateur_VDF::premiere_face_bord</definition>
+        <argsstring></argsstring>
+        <name>premiere_face_bord</name>
+        <initializer>= -100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="52" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1ad774ebd8675a706c8c8eb048985e3633" compoundref="Eval__Conv__VDF_8h" startline="46" endline="46">Eval_Conv_VDF::get_premiere_face_bord</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1ab2fa875ef169e97e2da92a9565bfbf5e" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_VDF::surface</definition>
+        <argsstring></argsstring>
+        <name>surface</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="54" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+        <referencedby refid="classEval__Div__VDF__Elem_1a5df16f3e10e9efce9d917ca3d5348542" compoundref="Eval__Div__VDF__Elem_8h" startline="37" endline="38">Eval_Div_VDF_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Div__VDF__Elem_1a7c4dea603468f456dd1488c4204c3681" compoundref="Eval__Div__VDF__Elem_8h" startline="49" endline="50">Eval_Div_VDF_Elem::flux_faces_interne</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1ac4dc05eb3c9d57cb4998b670a080f665" compoundref="Eval__Conv__VDF_8h" startline="49" endline="49">Eval_Conv_VDF::get_surface</referencedby>
+        <referencedby refid="classEval__Conv__VDF_1a16b803f0f34121281bf04c3100e63711" compoundref="Eval__Conv__VDF_8h" startline="48" endline="48">Eval_Conv_VDF::get_surface_porosite</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1aa51a76af287bd9689f0ce7c851a85a83" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Evaluateur_VDF::volume_entrelaces</definition>
+        <argsstring></argsstring>
+        <name>volume_entrelaces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="57" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Evaluateur_VDF::xv</definition>
+        <argsstring></argsstring>
+        <name>xv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="58" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" compoundref="Evaluateur__VDF_8cpp" startline="32" endline="44">associer_domaines</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1a78bb50894efadf65f557e597f58d1a62" compoundref="Evaluateur__VDF_8h" startline="43" endline="47">dist_face</referencedby>
+        <referencedby refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" compoundref="Evaluateur__VDF_8cpp" startline="21" endline="30">Evaluateur_VDF</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Evaluateur_VDF::associer_domaines</definition>
+        <argsstring>(const Domaine_VDF &amp;, const Domaine_Cl_VDF &amp;)</argsstring>
+        <name>associer_domaines</name>
+        <param>
+          <type>const <ref refid="classDomaine__VDF" kindref="compound">Domaine_VDF</ref> &amp;</type>
+          <defname>domaine_vdf</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__VDF" kindref="compound">Domaine_Cl_VDF</ref> &amp;</type>
+          <defname>domaine_cl_vdf</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="39" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.cpp" bodystart="32" bodyend="44"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classEvaluateur__VDF_1a9fc73f56f87221c238ad047ebbfd8902" compoundref="Evaluateur__VDF_8h" startline="52">dimension</references>
+        <references refid="classEvaluateur__VDF_1a1ae8c5dfc34d6bed0dd0876fb20fd7aa" compoundref="Evaluateur__VDF_8h" startline="53">elem_</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1ad19ad4b9679367115cbbc7036257aa51" compoundref="Domaine__VF_8h" startline="403" endline="406">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__VDF_1a51cbb0acc48998aaaa2ca289a65e9b94" compoundref="Domaine__VDF_8h" startline="293" endline="296">Domaine_VDF::orientation</references>
+        <references refid="classEvaluateur__VDF_1a2e17e58f738e0edc92e2b12b420eb4f2" compoundref="Evaluateur__VDF_8h" startline="55">orientation</references>
+        <references refid="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" compoundref="Evaluateur__VDF_8h" startline="56">porosite</references>
+        <references refid="classDomaine__VF_1a03c4d9d78c967029f1222fc096a13bd7" compoundref="Domaine__VF_8h" startline="499" endline="502">Domaine_VF::premiere_face_bord</references>
+        <references refid="classEvaluateur__VDF_1a891f002dd56c0e86b69a70b739564107" compoundref="Evaluateur__VDF_8h" startline="52">premiere_face_bord</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classEvaluateur__VDF_1ab2fa875ef169e97e2da92a9565bfbf5e" compoundref="Evaluateur__VDF_8h" startline="54">surface</references>
+        <references refid="classEvaluateur__VDF_1aa51a76af287bd9689f0ce7c851a85a83" compoundref="Evaluateur__VDF_8h" startline="57">volume_entrelaces</references>
+        <references refid="classDomaine__VF_1ad0bf90d9beb4083aea6421ca906229f1" compoundref="Domaine__VF_8h" startline="100" endline="100">Domaine_VF::volumes_entrelaces</references>
+        <references refid="classDomaine__VF_1a5b43475ca3328249d3ae62642db3feda" compoundref="Domaine__VF_8h" startline="77" endline="77">Domaine_VF::xv</references>
+        <references refid="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" compoundref="Evaluateur__VDF_8h" startline="58">xv</references>
+        <referencedby refid="classOp__Div__VDF__Elem_1a10040e31fc57cc0d5f1cb9c2e6db8b88" compoundref="Op__Div__VDF__Elem_8cpp" startline="25" endline="38">Op_Div_VDF_Elem::associer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1a2f2ac9866a360378d9655d9bd41846e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Evaluateur_VDF::associer_porosite</definition>
+        <argsstring>(const DoubleVect &amp;)</argsstring>
+        <name>associer_porosite</name>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>poro</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="40" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.cpp" bodystart="46" bodyend="49"/>
+        <references refid="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" compoundref="Evaluateur__VDF_8h" startline="56">porosite</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1a78bb50894efadf65f557e597f58d1a62" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Evaluateur_VDF::dist_face</definition>
+        <argsstring>(int fac1, int fac2, int k) const</argsstring>
+        <name>dist_face</name>
+        <param>
+          <type>int</type>
+          <declname>fac1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fac2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="43" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="43" bodyend="47"/>
+        <references refid="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" compoundref="Evaluateur__VDF_8h" startline="58">xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1ab81e23871a5e1ca58c92856dcd0a2a74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Evaluateur_VDF::dist_face_period</definition>
+        <argsstring>(int fac1, int fac2, int k) const</argsstring>
+        <name>dist_face_period</name>
+        <param>
+          <type>int</type>
+          <declname>fac1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>fac2</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="42" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1ae9c2cff3e7c4d41534a6b74b8b06935d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_VDF::Evaluateur_VDF</definition>
+        <argsstring>()</argsstring>
+        <name>Evaluateur_VDF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="36" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_VDF::Evaluateur_VDF</definition>
+        <argsstring>(const Evaluateur_VDF &amp;)</argsstring>
+        <name>Evaluateur_VDF</name>
+        <param>
+          <type>const <ref refid="classEvaluateur__VDF" kindref="compound">Evaluateur_VDF</ref> &amp;</type>
+          <defname>eval</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="38" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.cpp" bodystart="21" bodyend="30"/>
+        <references refid="classEvaluateur__VDF_1a1ae8c5dfc34d6bed0dd0876fb20fd7aa" compoundref="Evaluateur__VDF_8h" startline="53">elem_</references>
+        <references refid="classEvaluateur__VDF_1a2e17e58f738e0edc92e2b12b420eb4f2" compoundref="Evaluateur__VDF_8h" startline="55">orientation</references>
+        <references refid="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" compoundref="Evaluateur__VDF_8h" startline="56">porosite</references>
+        <references refid="classTRUSTTab_1a23030ef21a5ad973c5a9fa030d38da22" compoundref="TRUSTTab_8tpp" startline="308" endline="315">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classEvaluateur__VDF_1ab2fa875ef169e97e2da92a9565bfbf5e" compoundref="Evaluateur__VDF_8h" startline="54">surface</references>
+        <references refid="classEvaluateur__VDF_1aa51a76af287bd9689f0ce7c851a85a83" compoundref="Evaluateur__VDF_8h" startline="57">volume_entrelaces</references>
+        <references refid="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" compoundref="Evaluateur__VDF_8h" startline="58">xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1a09fe4dfcc9f6fc30c3cf0aa190b733c7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual Evaluateur_VDF::~Evaluateur_VDF</definition>
+        <argsstring>()</argsstring>
+        <name>~Evaluateur_VDF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="37" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classEvaluateur__VDF_1a4918b7a873562104ebfbe9b7b3a03ee5" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Evaluateur_VDF::dist_norm_bord</definition>
+        <argsstring>(int) const</argsstring>
+        <name>dist_norm_bord</name>
+        <param>
+          <type>int</type>
+          <defname>face</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="59" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.cpp" bodystart="51" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1aa56cd7a372213691109725a21201f86f" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_VDF::OBS_PTR</definition>
+        <argsstring>(Domaine_Cl_VDF) la_zcl</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__Cl__VDF" kindref="compound">Domaine_Cl_VDF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="51" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEvaluateur__VDF_1acdd49b338361241ae48de72cf70dca6d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Evaluateur_VDF::OBS_PTR</definition>
+        <argsstring>(Domaine_VDF) le_dom</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__VDF" kindref="compound">Domaine_VDF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="50" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classEvaluateur__VDF" kindref="compound">Evaluateur_VDF</ref> Classe de base des evaluateurs VDF. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Cette classe n&apos;appartient pas a la hierarchie des <ref refid="classObjet__U" kindref="compound">Objet_U</ref>. Cette classe porte une reference a un objet de type <ref refid="classDomaine__VDF" kindref="compound">Domaine_VDF</ref> et une reference a un objet de type <ref refid="classDomaine__Cl__VDF" kindref="compound">Domaine_Cl_VDF</ref>. Elle porte des tableaux locaux qui sont en fait des references aux tableaux de l&apos;objet de type <ref refid="classDomaine__VDF" kindref="compound">Domaine_VDF</ref> (ces tableaux locaux n&apos;existent pas en memoire). </para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="25">
+        <label>Eval_Diff_VDF_Face</label>
+        <link refid="classEval__Diff__VDF__Face"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Eval_Dift_VDF_Multi_inco_Elem_Axi</label>
+        <link refid="classEval__Dift__VDF__Multi__inco__Elem__Axi"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="41" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>Eval_Amont_VDF_Elem</label>
+        <link refid="classEval__Amont__VDF__Elem"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Dift_Multiphase_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="41" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_Multiphase_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Eval_Centre_VDF_Elem</label>
+        <link refid="classEval__Centre__VDF__Elem"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_Multiphase_VDF_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_Multiphase_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>Eval_Centre_VDF_Face</label>
+        <link refid="classEval__Centre__VDF__Face"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Eval_Conv_VDF</label>
+        <link refid="classEval__Conv__VDF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Multi_inco_Elem_Axi &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Multi_inco_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Eval_Diff_VDF_Elem</label>
+        <link refid="classEval__Diff__VDF__Elem"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Evaluateur_VDF</label>
+        <link refid="classEvaluateur__VDF"/>
+      </node>
+      <node id="5">
+        <label>Eval_Dift_Multiphase_VDF_Elem</label>
+        <link refid="classEval__Dift__Multiphase__VDF__Elem"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Eval_Diff_VDF_Face_Gen&lt; Eval_Diff_VDF_Face &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="41" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="38">
+        <label>Eval_Quick_VDF_Face</label>
+        <link refid="classEval__Quick__VDF__Face"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Eval_Dift_VDF_Face</label>
+        <link refid="classEval__Dift__VDF__Face"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Eval_Amont_VDF_Face</label>
+        <link refid="classEval__Amont__VDF__Face"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem_aniso &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Elem_aniso &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Eval_Dift_Multiphase_VDF_Face</label>
+        <link refid="classEval__Dift__Multiphase__VDF__Face"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>Eval_Div_VDF_Elem</label>
+        <link refid="classEval__Div__VDF__Elem"/>
+        <childnode refid="42" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Elem_Axi &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Multi_inco_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Elem_Axi &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Eval_Diff_VDF_Elem_Axi</label>
+        <link refid="classEval__Diff__VDF__Elem__Axi"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Eval_Dift_VDF_Multi_inco_Elem</label>
+        <link refid="classEval__Dift__VDF__Multi__inco__Elem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Eval_Diff_VDF_Multi_inco_Elem_Axi</label>
+        <link refid="classEval__Diff__VDF__Multi__inco__Elem__Axi"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>Eval_Div_VDF</label>
+        <link refid="classEval__Div__VDF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>Eval_Quick_VDF_Elem</label>
+        <link refid="classEval__Quick__VDF__Elem"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>Eval_Centre4_VDF_Face</label>
+        <link refid="classEval__Centre4__VDF__Face"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Eval_Diff_VDF_Elem_aniso</label>
+        <link refid="classEval__Diff__VDF__Elem__aniso"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Eval_Diff_VDF_Multi_inco_Multi_scalar_Elem</label>
+        <link refid="classEval__Diff__VDF__Multi__inco__Multi__scalar__Elem"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Elem_Axi &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Eval_Diff_VDF_Multi_inco_Elem</label>
+        <link refid="classEval__Diff__VDF__Multi__inco__Elem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Diff_VDF_Multi_inco_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Diff_VDF_Multi_inco_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>Eval_Centre4_VDF_Elem</label>
+        <link refid="classEval__Centre4__VDF__Elem"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Eval_Dift_VDF_Elem_Axi</label>
+        <link refid="classEval__Dift__VDF__Elem__Axi"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;</label>
+        <link refid="classEval__Diff__VDF__Face__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Eval_Diff_VDF_Elem_Gen&lt; Eval_Dift_VDF_Multi_inco_Elem &gt;</label>
+        <link refid="classEval__Diff__VDF__Elem__Gen"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+        <childnode refid="40" relation="template-instance">
+          <edgelabel>&lt; Eval_Dift_VDF_Multi_inco_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Eval_Quick_VDF_Face_Axi</label>
+        <link refid="classEval__Quick__VDF__Face__Axi"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Eval_Dift_VDF_Elem</label>
+        <link refid="classEval__Dift__VDF__Elem"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Evaluateur_VDF</label>
+        <link refid="classEvaluateur__VDF"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>porosite</edgelabel>
+          <edgelabel>surface</edgelabel>
+          <edgelabel>volume_entrelaces</edgelabel>
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>elem_</edgelabel>
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>orientation</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>xv</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="2">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="14">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" line="33" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Divers/Evaluateur_VDF.h" bodystart="34" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classEvaluateur__VDF_1a88b5972a6c956b99671ad26c89dd18b8" prot="public" virt="virtual"><scope>Evaluateur_VDF</scope><name>associer_domaines</name></member>
+      <member refid="classEvaluateur__VDF_1a2f2ac9866a360378d9655d9bd41846e5" prot="public" virt="virtual"><scope>Evaluateur_VDF</scope><name>associer_porosite</name></member>
+      <member refid="classEvaluateur__VDF_1a9fc73f56f87221c238ad047ebbfd8902" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>dimension</name></member>
+      <member refid="classEvaluateur__VDF_1a78bb50894efadf65f557e597f58d1a62" prot="public" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>dist_face</name></member>
+      <member refid="classEvaluateur__VDF_1ab81e23871a5e1ca58c92856dcd0a2a74" prot="public" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>dist_face_period</name></member>
+      <member refid="classEvaluateur__VDF_1a4918b7a873562104ebfbe9b7b3a03ee5" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>dist_norm_bord</name></member>
+      <member refid="classEvaluateur__VDF_1a1ae8c5dfc34d6bed0dd0876fb20fd7aa" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>elem_</name></member>
+      <member refid="classEvaluateur__VDF_1ae9c2cff3e7c4d41534a6b74b8b06935d" prot="public" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>Evaluateur_VDF</name></member>
+      <member refid="classEvaluateur__VDF_1aba005c6008e7228fcd8324a05325a688" prot="public" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>Evaluateur_VDF</name></member>
+      <member refid="classEvaluateur__VDF_1acdd49b338361241ae48de72cf70dca6d" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__VDF_1aa56cd7a372213691109725a21201f86f" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>OBS_PTR</name></member>
+      <member refid="classEvaluateur__VDF_1a2e17e58f738e0edc92e2b12b420eb4f2" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>orientation</name></member>
+      <member refid="classEvaluateur__VDF_1a29094019b76f147268ff07075d72b513" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>porosite</name></member>
+      <member refid="classEvaluateur__VDF_1a891f002dd56c0e86b69a70b739564107" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>premiere_face_bord</name></member>
+      <member refid="classEvaluateur__VDF_1ab2fa875ef169e97e2da92a9565bfbf5e" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>surface</name></member>
+      <member refid="classEvaluateur__VDF_1aa51a76af287bd9689f0ce7c851a85a83" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>volume_entrelaces</name></member>
+      <member refid="classEvaluateur__VDF_1a6fb109ce59e269826be18ea1bdc608a4" prot="protected" virt="non-virtual"><scope>Evaluateur_VDF</scope><name>xv</name></member>
+      <member refid="classEvaluateur__VDF_1a09fe4dfcc9f6fc30c3cf0aa190b733c7" prot="public" virt="virtual"><scope>Evaluateur_VDF</scope><name>~Evaluateur_VDF</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

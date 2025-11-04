@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSolveur__Masse__Face__proto" kind="class" language="C++" prot="public">
+    <compoundname>Solveur_Masse_Face_proto</compoundname>
+    <derivedcompoundref refid="classMasse__PolyMAC__P0P1NC__Face" prot="public" virt="non-virtual">Masse_PolyMAC_P0P1NC_Face</derivedcompoundref>
+    <derivedcompoundref refid="classMasse__VDF__Face" prot="public" virt="non-virtual">Masse_VDF_Face</derivedcompoundref>
+    <includes local="no">Solveur_Masse_Face_proto.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1a199ff4a2dde053ed6c4011f06aea0d06" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solveur_Masse_Face_proto::ajouter_blocs_proto</definition>
+        <argsstring>(matrices_t matrices, DoubleTab &amp;secmem, double dt, const tabs_t &amp;semi_impl, int resoudre_en_increments) const</argsstring>
+        <name>ajouter_blocs_proto</name>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>resoudre_en_increments</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="32" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.cpp" bodystart="81" bodyend="116"/>
+        <references refid="classMasse__ajoutee__base_1afb058e54be181a4c528c875ea9d69cbd">Masse_ajoutee_base::ajouter</references>
+        <references refid="classEquation__base_1a05677b03f40b65c55a6934bfba90f17c" compoundref="Equation__base_8h" startline="187" endline="187">Equation_base::champ_conserve</references>
+        <references refid="classPb__Multiphase_1aaf6fb8417722b043861e3e4be9b58c48" compoundref="Pb__Multiphase_8cpp" startline="145" endline="161">Pb_Multiphase::equation</references>
+        <references refid="classPb__Multiphase_1a3a023b91027c1eca10b7d320ba6506ee" compoundref="Pb__Multiphase_8h" startline="69" endline="69">Pb_Multiphase::equation_masse</references>
+        <references refid="classProbleme__base_1a5a10f77feea03bee5d90fb379e2ef030" compoundref="Probleme__base_8h" startline="201" endline="205">Probleme_base::get_correlation</references>
+        <references refid="classProbleme__base_1a8c62c361fbc067fb1ebcfde1548e8e74" compoundref="Probleme__base_8h" startline="207" endline="211">Probleme_base::has_correlation</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classChamp__Inc__base_1a7f6044b5dabb38911218b0ec82b42a01" compoundref="Champ__Inc__base_8h" startline="112" endline="112">Champ_Inc_base::passe</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <referencedby refid="classMasse__PolyMAC__P0P1NC__Face_1a9d6472d482601c9df11cce23a3ec80ef" compoundref="Masse__PolyMAC__P0P1NC__Face_8cpp" startline="78" endline="81">Masse_PolyMAC_P0P1NC_Face::ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1a53ed7dedc3ab239f392d0e3c1bff9538" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Solveur_Masse_Face_proto::appliquer_impl_proto</definition>
+        <argsstring>(DoubleTab &amp;) const</argsstring>
+        <name>appliquer_impl_proto</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>sm</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="30" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.cpp" bodystart="29" bodyend="54"/>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classPb__Multiphase_1aaf6fb8417722b043861e3e4be9b58c48" compoundref="Pb__Multiphase_8cpp" startline="145" endline="161">Pb_Multiphase::equation</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <referencedby refid="classMasse__PolyMAC__P0__Face_1a4557fcc7943e528d66755c063e56789c" compoundref="Masse__PolyMAC__P0__Face_8cpp" startline="50" endline="72">Masse_PolyMAC_P0_Face::appliquer_impl</referencedby>
+        <referencedby refid="classMasse__VDF__Face_1a5b2b61d231aefd914e58c2ec4648f3f7" compoundref="Masse__VDF__Face_8cpp" startline="40" endline="101">Masse_VDF_Face::appliquer_impl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1a04658b863a10317e1b108c5b691c6991" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solveur_Masse_Face_proto::associer_masse_proto</definition>
+        <argsstring>(const Solveur_Masse_base &amp;, const Domaine_VF &amp;)</argsstring>
+        <name>associer_masse_proto</name>
+        <param>
+          <type>const <ref refid="classSolveur__Masse__base" kindref="compound">Solveur_Masse_base</ref> &amp;</type>
+          <defname>sm</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__VF" kindref="compound">Domaine_VF</ref> &amp;</type>
+          <defname>zvf</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="29" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.cpp" bodystart="23" bodyend="27"/>
+        <referencedby refid="classMasse__PolyMAC__P0__Face_1adb5ca31b47ad98ded7e2c59c51473423" compoundref="Masse__PolyMAC__P0__Face_8cpp" startline="41" endline="48">Masse_PolyMAC_P0_Face::completer</referencedby>
+        <referencedby refid="classMasse__PolyMAC__P0P1NC__Face_1a588099eeeb8536d18bbe2278214f4132" compoundref="Masse__PolyMAC__P0P1NC__Face_8cpp" startline="43" endline="46">Masse_PolyMAC_P0P1NC_Face::completer</referencedby>
+        <referencedby refid="classMasse__VDF__Face_1ab5860d4d8f8fabe9e19d27e62ba3e69b" compoundref="Masse__VDF__Face_8cpp" startline="35" endline="38">Masse_VDF_Face::completer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1ad84b80c0bcc84d9a4e256760d582e72a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solveur_Masse_Face_proto::dimensionner_blocs_proto</definition>
+        <argsstring>(matrices_t matrices, const tabs_t &amp;semi_impl, const bool allocate, IntTab &amp;) const</argsstring>
+        <name>dimensionner_blocs_proto</name>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+        </param>
+        <param>
+          <type>const bool</type>
+          <declname>allocate</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <defname>sten</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.cpp" bodystart="56" bodyend="79"/>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classPb__Multiphase_1aaf6fb8417722b043861e3e4be9b58c48" compoundref="Pb__Multiphase_8cpp" startline="145" endline="161">Pb_Multiphase::equation</references>
+        <references refid="classProbleme__base_1a5a10f77feea03bee5d90fb379e2ef030" compoundref="Probleme__base_8h" startline="201" endline="205">Probleme_base::get_correlation</references>
+        <references refid="classProbleme__base_1a8c62c361fbc067fb1ebcfde1548e8e74" compoundref="Probleme__base_8h" startline="207" endline="211">Probleme_base::has_correlation</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+        <referencedby refid="classMasse__PolyMAC__P0__Face_1a17c83e9117ad650f2e4615c16dcd9fb3" compoundref="Masse__PolyMAC__P0__Face_8cpp" startline="74" endline="98">Masse_PolyMAC_P0_Face::dimensionner_blocs</referencedby>
+        <referencedby refid="classMasse__PolyMAC__P0P1NC__Face_1ae81b96163d5e1b47c9e08a3d3f636fd3" compoundref="Masse__PolyMAC__P0P1NC__Face_8cpp" startline="71" endline="76">Masse_PolyMAC_P0P1NC_Face::dimensionner_blocs</referencedby>
+        <referencedby refid="classMasse__VDF__Face_1a9d0918a852bfb3693a16d14e56b2bd4a" compoundref="Masse__VDF__Face_8cpp" startline="103" endline="113">Masse_VDF_Face::dimensionner_blocs</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1a1c866cbcec8cacb5b1848585fa112c7d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solveur_Masse_Face_proto::OBS_PTR</definition>
+        <argsstring>(Domaine_VF) le_dom_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__VF" kindref="compound">Domaine_VF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="36" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolveur__Masse__Face__proto_1ade0b3f08842215444d1a7ef974491662" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solveur_Masse_Face_proto::OBS_PTR</definition>
+        <argsstring>(Solveur_Masse_base) solv_mass_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classSolveur__Masse__base" kindref="compound">Solveur_Masse_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="35" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Masse_PolyMAC_P0_Face</label>
+        <link refid="classMasse__PolyMAC__P0__Face"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Masse_PolyMAC_P0P1NC_Face</label>
+        <link refid="classMasse__PolyMAC__P0P1NC__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Solveur_Masse_Face_proto</label>
+        <link refid="classSolveur__Masse__Face__proto"/>
+      </node>
+      <node id="4">
+        <label>Masse_VDF_Face</label>
+        <link refid="classMasse__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Solveurs/Solveur_Masse_Face_proto.h" bodystart="27" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classSolveur__Masse__Face__proto_1a199ff4a2dde053ed6c4011f06aea0d06" prot="public" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>ajouter_blocs_proto</name></member>
+      <member refid="classSolveur__Masse__Face__proto_1a53ed7dedc3ab239f392d0e3c1bff9538" prot="public" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>appliquer_impl_proto</name></member>
+      <member refid="classSolveur__Masse__Face__proto_1a04658b863a10317e1b108c5b691c6991" prot="public" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>associer_masse_proto</name></member>
+      <member refid="classSolveur__Masse__Face__proto_1ad84b80c0bcc84d9a4e256760d582e72a" prot="public" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>dimensionner_blocs_proto</name></member>
+      <member refid="classSolveur__Masse__Face__proto_1ade0b3f08842215444d1a7ef974491662" prot="protected" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>OBS_PTR</name></member>
+      <member refid="classSolveur__Masse__Face__proto_1a1c866cbcec8cacb5b1848585fa112c7d" prot="protected" virt="non-virtual"><scope>Solveur_Masse_Face_proto</scope><name>OBS_PTR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

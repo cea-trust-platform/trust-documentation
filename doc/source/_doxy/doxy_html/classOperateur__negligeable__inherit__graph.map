@@ -1,9 +1,6 @@
 <map id="Operateur_negligeable" name="Operateur_negligeable">
-<area shape="rect" id="Node000001" title="Classe Opnegligeable Cette classe definit l&#39;interface d&#39;un operateur negligeable." alt="" coords="92,5,262,33"/>
-<area shape="rect" id="Node000002" href="$classOp__Conv__negligeable.html" title="Classe Op_Conv_negligeable Cette classe represente un opperateur de convection negligeable." alt="" coords="5,81,168,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="151,45,104,83,101,78,147,41"/>
-<area shape="rect" id="Node000003" href="$classOp__Diff__negligeable.html" title="Classe Op_Diff_negligeable Cette classe represente un operateur de diffusion negligeable." alt="" coords="191,81,344,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="207,41,253,78,250,83,204,45"/>
-<area shape="rect" id="Node000004" href="$classOp__Dift__negligeable.html" title=" " alt="" coords="191,157,344,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="270,124,270,156,265,156,265,124"/>
+<area shape="rect" id="node1" title="Classe Opnegligeable Cette classe definit l&#39;interface d&#39;un operateur negligeable." alt="" coords="92,5,263,32"/>
+<area shape="rect" id="node2" href="$classOp__Conv__negligeable.html" title="Classe Op_Conv_negligeable Cette classe represente un opperateur de convection negligeable." alt="" coords="5,80,168,107"/>
+<area shape="rect" id="node3" href="$classOp__Diff__negligeable.html" title="Classe Op_Diff_negligeable Cette classe represente un operateur de diffusion negligeable." alt="" coords="192,80,347,107"/>
+<area shape="rect" id="node4" href="$classOp__Dift__negligeable.html" title=" " alt="" coords="192,155,347,181"/>
 </map>

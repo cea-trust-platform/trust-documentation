@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSimd__template" kind="class" language="C++" prot="public">
+    <compoundname>Simd_template</compoundname>
+    <includes local="no">Simd_template.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _TYPE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classSimd__template_1a8a0f376e50453f92f2f430451f7dc2c5" prot="public" static="no">
+        <type>_TYPE_</type>
+        <definition>using Simd_template&lt; _TYPE_ &gt;::value_type =  _TYPE_</definition>
+        <argsstring></argsstring>
+        <name>value_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="43" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" prot="public" static="no" mutable="no">
+        <type>_TYPE_</type>
+        <definition>_TYPE_ Simd_template&lt; _TYPE_ &gt;::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="101" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="101" bodyend="-1"/>
+        <referencedby refid="classSimd__template_1ada2e7bbda6cd3e9f66e4330824fa8fda" compoundref="Simd__template_8h" startline="63" endline="63">Simd_template&lt; _TYPE_ &gt;::operator*=</referencedby>
+        <referencedby refid="classSimd__template_1a0a27a4c700e45c2c15293c2fcb491c15" compoundref="Simd__template_8h" startline="62" endline="62">Simd_template&lt; _TYPE_ &gt;::operator+=</referencedby>
+        <referencedby refid="classSimd__template_1a2ee53889d7dddad29ee240719dc19dc9" compoundref="Simd__template_8h" startline="64" endline="64">Simd_template&lt; _TYPE_ &gt;::operator-=</referencedby>
+        <referencedby refid="classSimd__template_1a1b6df1fac7bf90622c91c79ab92e45da" compoundref="Simd__template_8h" startline="66" endline="74">Simd_template&lt; _TYPE_ &gt;::operator[]</referencedby>
+        <referencedby refid="classSimd__template_1ad55bab029f8706fdd9adc0e53158c8f9" compoundref="Simd__template_8h" startline="47" endline="47">Simd_template&lt; _TYPE_ &gt;::Simd_template</referencedby>
+        <referencedby refid="classSimd__template_1a1454778b82467ce898938cdd217ad631" compoundref="Simd__template_8h" startline="86" endline="96">Simd_template&lt; _TYPE_ &gt;::sumReduction</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSimd__template_1ada2e7bbda6cd3e9f66e4330824fa8fda" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Simd_template&lt; _TYPE_ &gt;::operator*=</definition>
+        <argsstring>(Simd_template a)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type><ref refid="classSimd__template" kindref="compound">Simd_template</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="63" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="63" bodyend="63"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1a0a27a4c700e45c2c15293c2fcb491c15" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Simd_template&lt; _TYPE_ &gt;::operator+=</definition>
+        <argsstring>(Simd_template a)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type><ref refid="classSimd__template" kindref="compound">Simd_template</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="62" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="62" bodyend="62"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1a2ee53889d7dddad29ee240719dc19dc9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Simd_template&lt; _TYPE_ &gt;::operator-=</definition>
+        <argsstring>(Simd_template a)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type><ref refid="classSimd__template" kindref="compound">Simd_template</ref></type>
+          <declname>a</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="64" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="64" bodyend="64"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1a1b6df1fac7bf90622c91c79ab92e45da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>_TYPE_ &amp;</type>
+        <definition>_TYPE_&amp; Simd_template&lt; _TYPE_ &gt;::operator[]</definition>
+        <argsstring>(int idx)</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="66" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="66" bodyend="74"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+        <references refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" compoundref="Simd__template_8h" startline="54" endline="61">Simd_template&lt; _TYPE_ &gt;::size</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1aff7593f835418919bb90bef208a56124" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>_TYPE_</type>
+        <definition>_TYPE_ Simd_template&lt; _TYPE_ &gt;::operator[]</definition>
+        <argsstring>(int idx) const</argsstring>
+        <name>operator[]</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="76" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="76" bodyend="84"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+        <references refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" compoundref="Simd__template_8h" startline="54" endline="61">Simd_template&lt; _TYPE_ &gt;::size</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1ad55bab029f8706fdd9adc0e53158c8f9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Simd_template&lt; _TYPE_ &gt;::Simd_template</definition>
+        <argsstring>()</argsstring>
+        <name>Simd_template</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="47" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="47" bodyend="47"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1a0212eae2e67848dfd0cc471b79738b7d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Simd_template&lt; _TYPE_ &gt;::Simd_template</definition>
+        <argsstring>(_TYPE_ x)</argsstring>
+        <name>Simd_template</name>
+        <param>
+          <type>_TYPE_</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="49" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classSimd__template_1a1454778b82467ce898938cdd217ad631" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>_TYPE_</type>
+        <definition>_TYPE_ Simd_template&lt; _TYPE_ &gt;::sumReduction</definition>
+        <argsstring>()</argsstring>
+        <name>sumReduction</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="86" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="86" bodyend="96"/>
+        <references refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" compoundref="Simd__template_8h" startline="101">Simd_template&lt; _TYPE_ &gt;::data_</references>
+        <references refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" compoundref="Simd__template_8h" startline="54" endline="61">Simd_template&lt; _TYPE_ &gt;::size</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Simd_template&lt; _TYPE_ &gt;::size</definition>
+        <argsstring>()</argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="54" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="54" bodyend="61"/>
+        <referencedby refid="classSimd__template_1a1b6df1fac7bf90622c91c79ab92e45da" compoundref="Simd__template_8h" startline="66" endline="74">Simd_template&lt; _TYPE_ &gt;::operator[]</referencedby>
+        <referencedby refid="classSimd__template_1a1454778b82467ce898938cdd217ad631" compoundref="Simd__template_8h" startline="86" endline="96">Simd_template&lt; _TYPE_ &gt;::sumReduction</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This class provides a generic access to simd operations on x86, x86 AMD and ARM architectures. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Functionalities provided by the class are :<itemizedlist>
+<listitem><para>load vector size aligned data from memory (SimdGet)</para>
+</listitem><listitem><para>getting x[i-1] and x[i+1] for finite difference algorithms (SimdGetAtLeft, SimdGetAtRight, etc)</para>
+</listitem><listitem><para>arithmetic operations (+ - * /)</para>
+</listitem><listitem><para>conditional affectation (SimdSelect) </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" line="40" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Simd_template.h" bodystart="41" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classSimd__template_1a8907def50f9a8c8c06f90ba45e70bb72" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>data_</name></member>
+      <member refid="classSimd__template_1ada2e7bbda6cd3e9f66e4330824fa8fda" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>operator*=</name></member>
+      <member refid="classSimd__template_1a0a27a4c700e45c2c15293c2fcb491c15" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>operator+=</name></member>
+      <member refid="classSimd__template_1a2ee53889d7dddad29ee240719dc19dc9" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>operator-=</name></member>
+      <member refid="classSimd__template_1a1b6df1fac7bf90622c91c79ab92e45da" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>operator[]</name></member>
+      <member refid="classSimd__template_1aff7593f835418919bb90bef208a56124" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>operator[]</name></member>
+      <member refid="classSimd__template_1ad55bab029f8706fdd9adc0e53158c8f9" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>Simd_template</name></member>
+      <member refid="classSimd__template_1a0212eae2e67848dfd0cc471b79738b7d" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>Simd_template</name></member>
+      <member refid="classSimd__template_1a9467e42dc591ad210272f29bb40a320b" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>size</name></member>
+      <member refid="classSimd__template_1a1454778b82467ce898938cdd217ad631" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>sumReduction</name></member>
+      <member refid="classSimd__template_1a8a0f376e50453f92f2f430451f7dc2c5" prot="public" virt="non-virtual"><scope>Simd_template</scope><name>value_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

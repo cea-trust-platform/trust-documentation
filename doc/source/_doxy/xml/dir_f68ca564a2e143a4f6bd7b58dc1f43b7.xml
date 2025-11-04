@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f68ca564a2e143a4f6bd7b58dc1f43b7" kind="dir">
+    <compoundname>Weakly_Compressible</compoundname>
+    <innerdir refid="dir_8ca32724eb7314e9485b03ea0a7798c4">Equations</innerdir>
+    <innerdir refid="dir_d81664fe54e3259051126d7dac15c85f">Milieu</innerdir>
+    <innerdir refid="dir_4b2e23b35cfb0e6ac3202ce11a5b1b5c">Problems</innerdir>
+    <innerdir refid="dir_87d01487d25d547a34c067b48d3334c6">Sources</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Weakly_Compressible/"/>
+  </compounddef>
+</doxygen>

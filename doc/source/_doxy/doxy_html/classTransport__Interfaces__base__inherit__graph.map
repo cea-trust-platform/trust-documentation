@@ -1,11 +1,7 @@
 <map id="Transport_Interfaces_base" name="Transport_Interfaces_base">
-<area shape="rect" id="Node000001" title="classe Transport_Interfaces_base Cette classe constitue la classe de base des equations de transport ..." alt="" coords="88,232,281,260"/>
-<area shape="rect" id="Node000002" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="126,157,243,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,200,187,232,182,232,182,200"/>
-<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,118,172,154,169,158,128,122"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="228,81,301,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="241,122,200,158,197,154,237,118"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,300,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="267,49,267,81,262,81,262,49"/>
+<area shape="rect" id="node1" title="classe Transport_Interfaces_base Cette classe constitue la classe de base des equations de transport ..." alt="" coords="88,229,281,256"/>
+<area shape="rect" id="node2" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="126,155,243,181"/>
+<area shape="rect" id="node3" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="227,80,302,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,301,32"/>
 </map>

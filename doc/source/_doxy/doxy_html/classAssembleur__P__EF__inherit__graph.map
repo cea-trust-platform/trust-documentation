@@ -1,9 +1,6 @@
 <map id="Assembleur_P_EF" name="Assembleur_P_EF">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,142,260"/>
-<area shape="rect" id="Node000002" href="$classAssembleur__base.html" title=" " alt="" coords="5,157,142,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,200,76,232,71,232,71,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="37,81,110,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="76,124,76,156,71,156,71,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="38,5,109,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="76,49,76,81,71,81,71,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,143,256"/>
+<area shape="rect" id="node2" href="$classAssembleur__base.html" title=" " alt="" coords="5,155,143,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="37,80,111,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="38,5,110,32"/>
 </map>

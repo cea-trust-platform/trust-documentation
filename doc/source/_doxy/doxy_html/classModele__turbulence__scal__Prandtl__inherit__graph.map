@@ -1,13 +1,8 @@
 <map id="Modele_turbulence_scal_Prandtl" name="Modele_turbulence_scal_Prandtl">
-<area shape="rect" id="Node000001" title="Classe Modele_turbulence_scal_Prandtl Cette classe represente le modele de calcul suivant." alt="" coords="95,325,274,370"/>
-<area shape="rect" id="Node000002" href="$classModele__turbulence__scal__diffturb__base.html" title="Classe Mod_Turb_scal_diffuturb_base Cette classe represente la classe de base pour le modele de calcu..." alt="" coords="95,232,274,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,293,187,325,182,325,182,293"/>
-<area shape="rect" id="Node000003" href="$classModele__turbulence__scal__base.html" title="Classe Modele_turbulence_scal_base Cette classe represente un modele de turbulence pour une equation ..." alt="" coords="76,157,293,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="187,200,187,232,182,232,182,200"/>
-<area shape="rect" id="Node000004" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="132,118,172,154,169,158,128,122"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="228,81,301,109"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="241,122,200,158,197,154,237,118"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,300,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="267,49,267,81,262,81,262,49"/>
+<area shape="rect" id="node1" title="Classe Modele_turbulence_scal_Prandtl Cette classe represente le modele de calcul suivant." alt="" coords="95,319,274,360"/>
+<area shape="rect" id="node2" href="$classModele__turbulence__scal__diffturb__base.html" title="Classe Mod_Turb_scal_diffuturb_base Cette classe represente la classe de base pour le modele de calcu..." alt="" coords="95,229,274,271"/>
+<area shape="rect" id="node3" href="$classModele__turbulence__scal__base.html" title="Classe Modele_turbulence_scal_base Cette classe represente un modele de turbulence pour une equation ..." alt="" coords="76,155,293,181"/>
+<area shape="rect" id="node4" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="227,80,302,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,301,32"/>
 </map>

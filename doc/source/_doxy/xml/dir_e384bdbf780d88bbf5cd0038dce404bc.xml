@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_e384bdbf780d88bbf5cd0038dce404bc" kind="dir">
+    <compoundname>IJK</compoundname>
+    <innerdir refid="dir_9cf22c30c95de14d6f530f91eacc5207">Champs</innerdir>
+    <innerdir refid="dir_038d2bfd79f7582964131f50a2fb661e">Framework</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/"/>
+  </compounddef>
+</doxygen>

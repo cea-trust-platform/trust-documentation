@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_82337bb98577ed9b6f580c1233e8b8ee" kind="dir">
+    <compoundname>Traitement_particulier</compoundname>
+    <innerfile refid="Traitement__particulier__NS__canal__VDF_8cpp">Traitement_particulier_NS_canal_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__NS__canal__VDF_8h">Traitement_particulier_NS_canal_VDF.h</innerfile>
+    <innerfile refid="Traitement__particulier__NS__EC__VDF_8cpp">Traitement_particulier_NS_EC_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__NS__EC__VDF_8h">Traitement_particulier_NS_EC_VDF.h</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Pression__VDF_8cpp">Traitement_particulier_NS_Pression_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Pression__VDF_8h">Traitement_particulier_NS_Pression_VDF.h</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Profils__thermo__VDF_8cpp">Traitement_particulier_NS_Profils_thermo_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Profils__thermo__VDF_8h">Traitement_particulier_NS_Profils_thermo_VDF.h</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Profils__VDF_8cpp">Traitement_particulier_NS_Profils_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__NS__Profils__VDF_8h">Traitement_particulier_NS_Profils_VDF.h</innerfile>
+    <innerfile refid="Traitement__particulier__Solide__canal__VDF_8cpp">Traitement_particulier_Solide_canal_VDF.cpp</innerfile>
+    <innerfile refid="Traitement__particulier__Solide__canal__VDF_8h">Traitement_particulier_Solide_canal_VDF.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Traitement_particulier/"/>
+  </compounddef>
+</doxygen>

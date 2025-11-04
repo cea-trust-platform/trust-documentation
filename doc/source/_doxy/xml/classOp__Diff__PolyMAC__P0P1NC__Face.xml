@@ -1,0 +1,841 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOp__Diff__PolyMAC__P0P1NC__Face" kind="class" language="C++" prot="public">
+    <compoundname>Op_Diff_PolyMAC_P0P1NC_Face</compoundname>
+    <basecompoundref refid="classOp__Diff__PolyMAC__P0P1NC__base" prot="public" virt="non-virtual">Op_Diff_PolyMAC_P0P1NC_base</basecompoundref>
+    <includes local="no">Op_Diff_PolyMAC_P0P1NC_Face.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a9e8f84a0257d0fc6c66842fd3cf29006" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Op_Diff_PolyMAC_P0P1NC_Face::porosite_e</definition>
+        <argsstring></argsstring>
+        <name>porosite_e</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="38" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a5069af88d29fe82eb3868a306eb7ede3" compoundref="Op__Diff__PolyMAC__P0P1NC__Face_8cpp" startline="36" endline="52">completer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classOp__Diff__PolyMAC__P0P1NC__Face_1aa7a1a53af75c8b15ee0681b8f07c0088" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref></type>
+        <definition>DoubleVect Op_Diff_PolyMAC_P0P1NC_Face::porosite_f</definition>
+        <argsstring></argsstring>
+        <name>porosite_f</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="38" column="25" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a5069af88d29fe82eb3868a306eb7ede3" compoundref="Op__Diff__PolyMAC__P0P1NC__Face_8cpp" startline="36" endline="52">completer</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1aaa34aa3b367f89e6731e69bbc0200e3b" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Op_Diff_PolyMAC_P0P1NC_Face::Declare_instanciable</definition>
+        <argsstring>(Op_Diff_PolyMAC_P0P1NC_Face)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classOp__Diff__PolyMAC__P0P1NC__Face" kindref="compound">Op_Diff_PolyMAC_P0P1NC_Face</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="24" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1ad936d9052c05aa7e3ef49c12644ae1ef" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_PolyMAC_P0P1NC_Face::ajouter_blocs_ext</definition>
+        <argsstring>(int aux_only, matrices_t matrices, DoubleTab &amp;secmem, const tabs_t &amp;semi_impl={ }) const override</argsstring>
+        <name>ajouter_blocs_ext</name>
+        <reimplements refid="classOp__Diff__PolyMAC__P0P1NC__base_1a8e7d127027f0d2147191fd86508d3184">ajouter_blocs_ext</reimplements>
+        <param>
+          <type>int</type>
+          <declname>aux_only</declname>
+        </param>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.cpp" bodystart="230" bodyend="452"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classChamp__Inc__base_1a5f587e8f4a44ab7f428467c8a9c872f7" compoundref="Champ__Inc__base_8cpp" startline="708" endline="714">Champ_Inc_base::domaine_Cl_dis</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classMatrice33_1aca5f722ce68b9dde06a9bfa6db4f4fc5" compoundref="Linear__algebra__tools__impl_8h" startline="100" endline="145">Matrice33::inverse</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classDomaine__Cl__dis__base_1ac61cb62c82e3db6c4b4553538d7a6b61" compoundref="Domaine__Cl__dis__base_8cpp" startline="386" endline="389">Domaine_Cl_dis_base::les_conditions_limites</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classTRUSTTab_1a829be3686b4cf6f076d1dc92870e18f9" compoundref="TRUSTTab_8h" startline="200" endline="200">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::nb_dim</references>
+        <references refid="classOp__Diff__PolyMAC__Gen__base_1a7635b5b2b71e820671f42e298dd7601e" compoundref="Op__Diff__PolyMAC__Gen__base_8h" startline="64">Op_Diff_PolyMAC_Gen_base::nu_</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classEquation__base_1abc11e51aa75b4c7aa55c27f71eb2f2c4" compoundref="Equation__base_8cpp" startline="807" endline="816">Equation_base::schema_temps</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1640b9ba68d28470a72b46c922196a56" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8h" startline="59">Op_Diff_PolyMAC_P0P1NC_base::t_last_aux_</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1ae4b2fbba2dea8a89b74dc08e01ece201" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="104" endline="165">Op_Diff_PolyMAC_P0P1NC_base::update_aux</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1097cd6ced128feaf2e61a0176bc9384" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="64" endline="101">Op_Diff_PolyMAC_P0P1NC_base::update_nu</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a8e67134e1d0790939926ea78d4187904" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8h" startline="60">Op_Diff_PolyMAC_P0P1NC_base::use_aux_</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a157505a2be56f520ade2ca98b858b763" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8h" startline="62">Op_Diff_PolyMAC_P0P1NC_base::var_aux</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1ae3ca6b2348beef73e1a0a12f91d670d7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Op_Diff_PolyMAC_P0P1NC_Face::calculer_dt_stab</definition>
+        <argsstring>() const override</argsstring>
+        <name>calculer_dt_stab</name>
+        <reimplements refid="classOperateur__base_1a6d87cb9ef58739660975790629a55847">calculer_dt_stab</reimplements>
+        <briefdescription>
+<para>Calcul dt_stab. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(double) renvoie toujours 1.e30 </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="32" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.cpp" bodystart="54" bodyend="92"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classSupport__Champ__Masse__Volumique_1a3cf68c31de51540e3b4c0ac09d12aa40" compoundref="Support__Champ__Masse__Volumique_8cpp" startline="87" endline="92">Support_Champ_Masse_Volumique::get_champ_masse_volumique</references>
+        <references refid="classSupport__Champ__Masse__Volumique_1ae787e0cfc274af9e2de5b619b2347a88" compoundref="Support__Champ__Masse__Volumique_8cpp" startline="78" endline="82">Support_Champ_Masse_Volumique::has_champ_masse_volumique</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" compoundref="Process_8cpp" startline="203" endline="203">Process::mp_min</references>
+        <references refid="classOp__Diff__PolyMAC__Gen__base_1a7635b5b2b71e820671f42e298dd7601e" compoundref="Op__Diff__PolyMAC__Gen__base_8h" startline="64">Op_Diff_PolyMAC_Gen_base::nu_</references>
+        <references refid="classMilieu__base_1a50a5bde86eaca0f17f09498e9ace7d21" compoundref="Milieu__base_8h" startline="59" endline="59">Milieu_base::porosite_elem</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1097cd6ced128feaf2e61a0176bc9384" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="64" endline="101">Op_Diff_PolyMAC_P0P1NC_base::update_nu</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a1b430df1ecb673034fcd98003714b1a5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_PolyMAC_P0P1NC_Face::check_multiphase_compatibility</definition>
+        <argsstring>() const override</argsstring>
+        <name>check_multiphase_compatibility</name>
+        <reimplements refid="classMorEqn_1a46879a44635069fbe1a7b2bb2368bfc1">check_multiphase_compatibility</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a5069af88d29fe82eb3868a306eb7ede3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_PolyMAC_P0P1NC_Face::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classOp__Diff__PolyMAC__P0P1NC__base_1a2c09e0411437dd2c0f0ee433bd8ca01e">completer</reimplements>
+        <briefdescription>
+<para>Associe l&apos;operateur au domaine_dis, le domaine_Cl_dis, et a l&apos;inconnue de son equation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>pas</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>d&apos;equation associee </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="27" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.cpp" bodystart="36" bodyend="52"/>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a2c09e0411437dd2c0f0ee433bd8ca01e" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="46" endline="62">Op_Diff_PolyMAC_P0P1NC_base::completer</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" compoundref="Operateur__base_8h" startline="140">Operateur_base::flux_bords_</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classChamp__Face__PolyMAC__P0P1NC_1a2fdb4daaa9202404e25b299b6decab08" compoundref="Champ__Face__PolyMAC__P0P1NC_8cpp" startline="60" endline="70">Champ_Face_PolyMAC_P0P1NC::init_auxiliary_variables</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classOperateur__Diff__base_1a55bd9b2fad5e6ef816f89ea07371ddfc" compoundref="Operateur__Diff__base_8h" startline="43">Operateur_Diff_base::op_ext</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a9e8f84a0257d0fc6c66842fd3cf29006" compoundref="Op__Diff__PolyMAC__P0P1NC__Face_8h" startline="38">porosite_e</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__Face_1aa7a1a53af75c8b15ee0681b8f07c0088" compoundref="Op__Diff__PolyMAC__P0P1NC__Face_8h" startline="38">porosite_f</references>
+        <references refid="classTRUSTVect_1afb2306332ef716403d9936c2e7b7294b" compoundref="TRUSTVect_8tpp" startline="143" endline="153">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::ref</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a19753999a6e565a2c3564280f345bb84" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_PolyMAC_P0P1NC_Face::dimensionner_blocs_ext</definition>
+        <argsstring>(int aux_only, matrices_t matrices, const tabs_t &amp;semi_impl={ }) const override</argsstring>
+        <name>dimensionner_blocs_ext</name>
+        <reimplements refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1e58f67baab17be567bfc2b6f443355c">dimensionner_blocs_ext</reimplements>
+        <param>
+          <type>int</type>
+          <declname>aux_only</declname>
+        </param>
+        <param>
+          <type>matrices_t</type>
+          <declname>matrices</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>semi_impl</declname>
+          <defval>{ }</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.cpp" bodystart="94" bodyend="226"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classChamp__Face__base_1a971f6bc87483640f133567d28d4019ea" compoundref="Champ__Face__base_8h" startline="32" endline="36">Champ_Face_base::fcl</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classMatrice33_1aca5f722ce68b9dde06a9bfa6db4f4fc5" compoundref="Linear__algebra__tools__impl_8h" startline="100" endline="145">Matrice33::inverse</references>
+        <references refid="classField__base_1a1a644c094b32b3923219f3afd6bcc075" compoundref="Field__base_8cpp" startline="30" endline="33">Field_base::le_nom</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <references refid="classTRUSTTab_1a829be3686b4cf6f076d1dc92870e18f9" compoundref="TRUSTTab_8h" startline="200" endline="200">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::nb_dim</references>
+        <references refid="classOp__Diff__PolyMAC__Gen__base_1a7635b5b2b71e820671f42e298dd7601e" compoundref="Op__Diff__PolyMAC__Gen__base_8h" startline="64">Op_Diff_PolyMAC_Gen_base::nu_</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+        <references refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1097cd6ced128feaf2e61a0176bc9384" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="64" endline="101">Op_Diff_PolyMAC_P0P1NC_base::update_nu</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a61ec28b76994ac2a3247473c67183252" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Op_Diff_PolyMAC_P0P1NC_Face::has_interface_blocs</definition>
+        <argsstring>() const override</argsstring>
+        <name>has_interface_blocs</name>
+        <reimplements refid="classOp__Diff__PolyMAC__P0P1NC__base_1ae3956bceb8e725919ad9dc69c320c836">has_interface_blocs</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="30" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__PolyMAC__P0P1NC__Face_1a760926dde2890292444a0c0c1c3f9d74" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Op_Diff_PolyMAC_P0P1NC_Face::modifier_pour_Cl</definition>
+        <argsstring>(Matrice_Morse &amp;, DoubleTab &amp;) const override</argsstring>
+        <name>modifier_pour_Cl</name>
+        <reimplements refid="classOperateur__base_1a109d07fcb418f60efc1302c6a91bf33d">modifier_pour_Cl</reimplements>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        </param>
+        <briefdescription>
+<para>DOES NOTHING - to override in derived classes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Matrice_Morse&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>une matrice au format Morse </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un tableau de valeur (double) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>methode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a surcharger </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="28" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="28" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Op_Diff_PolyMAC_P0P1NC_Face</label>
+        <link refid="classOp__Diff__PolyMAC__P0P1NC__Face"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Diff_PolyMAC_P0P1NC_base</label>
+        <link refid="classOp__Diff__PolyMAC__P0P1NC__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Diff_PolyMAC_Gen_base</label>
+        <link refid="classOp__Diff__PolyMAC__Gen__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Operateur_Diff_base</label>
+        <link refid="classOperateur__Diff__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="10">
+        <label>Support_Champ_Masse_Volumique</label>
+        <link refid="classSupport__Champ__Masse__Volumique"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="8">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="29">
+        <label>Sortie_Fichier_base</label>
+        <link refid="classSortie__Fichier__base"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="32" relation="usage">
+          <edgelabel>ofstream_</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>AbstractIO</label>
+        <link refid="classAbstractIO"/>
+      </node>
+      <node id="1">
+        <label>Op_Diff_PolyMAC_P0P1NC_Face</label>
+        <link refid="classOp__Diff__PolyMAC__P0P1NC__Face"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>porosite_e</edgelabel>
+          <edgelabel>porosite_f</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Sortie</label>
+        <link refid="classSortie"/>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>OWN_PTRMatrice_Base</label>
+      </node>
+      <node id="2">
+        <label>Op_Diff_PolyMAC_P0P1NC_base</label>
+        <link refid="classOp__Diff__PolyMAC__P0P1NC__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>solv_aux</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>var_aux</edgelabel>
+        </childnode>
+        <childnode refid="33" relation="usage">
+          <edgelabel>mat_aux</edgelabel>
+        </childnode>
+      </node>
+      <node id="36">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Diff_PolyMAC_Gen_base</label>
+        <link refid="classOp__Diff__PolyMAC__Gen__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>Flux</edgelabel>
+          <edgelabel>Flux_moment</edgelabel>
+          <edgelabel>Flux_sum</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>nu_</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="26" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="28">
+        <label>SFichier</label>
+        <link refid="classSFichier"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>string</label>
+      </node>
+      <node id="4">
+        <label>Operateur_Diff_base</label>
+        <link refid="classOperateur__Diff__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="11">
+        <label>Matrice</label>
+        <link refid="classMatrice"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Support_Champ_Masse_Volumique</label>
+        <link refid="classSupport__Champ__Masse__Volumique"/>
+      </node>
+      <node id="17">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="18">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="35">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+        <childnode refid="24" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="23">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Operateur_base</label>
+        <link refid="classOperateur__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>matrice_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>description_</edgelabel>
+          <edgelabel>out_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>solveur</edgelabel>
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_inco_</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>flux_bords_</edgelabel>
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="32">
+        <label>ofstream</label>
+      </node>
+      <node id="13">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="33">
+        <label>Matrice_Bloc</label>
+        <link refid="classMatrice__Bloc"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+        <childnode refid="37" relation="usage">
+          <edgelabel>offsets_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="34">
+        <label>Matrice_Base</label>
+        <link refid="classMatrice__Base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="35" relation="usage">
+          <edgelabel>stencil_</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="21">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="37">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" line="21" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Operateurs/Op_Diff_Dift/Op_Diff_PolyMAC_P0P1NC_Face.h" bodystart="22" bodyend="39"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>abort</name></member>
+      <member refid="classOperateur__base_1ad4c4e376365aa056c1a9bb9093ee7878" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>abortTimeStep</name></member>
+      <member refid="classOperateur__base_1ae8eb74015f6e04dca91d4a2da5fca9bb" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a8beadad37dceb247dacd8a70b4306812" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter_blocs</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1ad936d9052c05aa7e3ef49c12644ae1ef" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter_blocs_ext</name></member>
+      <member refid="classOperateur__base_1ac9a953b4d76473713ee31c1d4671bf6f" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter_contribution_explicite_au_second_membre</name></member>
+      <member refid="classOperateur__base_1a5785d8f2346cbb70e2f584aefb51b61b" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter_flux</name></member>
+      <member refid="classOperateur__base_1a0d969b161b7caf2c3f09dec9a2b9ebfe" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ajouter_termes_croises</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1aaf0bff485a8745c887717c7ff9e56e7e" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_</name></member>
+      <member refid="classOperateur__base_1a21ee8b399a139dd8e85ec0025d0606a5" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_champ</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a84589b115dbb54d7b3d4dc46f41a5567" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_champ_masse_volumique</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a1f7a38ce1da3f8f93f4ef64d0f53c93d" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_diffusivite</name></member>
+      <member refid="classOperateur__Diff__base_1a90df8a35377264fa313b2bcbbd1a9a18" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a31a1b8d69db032746c4dabb22550646a" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_domaine_cl_dis</name></member>
+      <member refid="classOperateur__base_1addce89950be87e830970589f6aba37d3" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>associer_eqn</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>bidim_axi</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a7b3da1a76b769168bef452cf42190a04" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer</name></member>
+      <member refid="classOperateur__Diff__base_1a72b1a1661d46064c3bc75e395ffac2f1" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer_borne_locale</name></member>
+      <member refid="classOperateur__base_1a1f6a1b118c3b44790e9843edfc93c4a6" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer_dt_local</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1ae3ca6b2348beef73e1a0a12f91d670d7" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer_dt_stab</name></member>
+      <member refid="classOperateur__base_1af5cee4c5e5f27e9203bfb38d4a9b932b" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer_flux</name></member>
+      <member refid="classOperateur__base_1a5a049482cef92d18dfab5c179b0514ec" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>calculer_pour_post</name></member>
+      <member refid="classOperateur__base_1a1d42ead0b3d473aecac335a46e7cdb6c" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>check_int_overflow</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a1b430df1ecb673034fcd98003714b1a5" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classOperateur__base_1a0ffe040617353804459652b00e98d414" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>col_width_</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a5069af88d29fe82eb3868a306eb7ede3" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>completer</name></member>
+      <member refid="classOperateur__base_1a2fbd607fd187f87ef8b72dec73cf51aa" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>contribuer_a_avec</name></member>
+      <member refid="classOperateur__base_1abbebdc80dad39b8a5ec3058379113a52" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>contribuer_au_second_membre</name></member>
+      <member refid="classOperateur__base_1aabeae40911cab7759852f7000ae5ed24" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>contribuer_bloc_vitesse</name></member>
+      <member refid="classOperateur__base_1aed83e514128b3ec4a5c2470ca03db7a7" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>contribuer_termes_croises</name></member>
+      <member refid="classOperateur__Diff__base_1aa53194b04cd3b98073ee8268ccfb4af8" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>correlation_viscosite_turbulente</name></member>
+      <member refid="classOperateur__base_1a28213fa0669f203661ca7a3e4f71519d" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>creer_champ</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classOperateur__base_1aa800ac60ec1afa615386d816a2bc1095" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>decal_temps</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1aaa34aa3b367f89e6731e69bbc0200e3b" prot="private" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Declare_instanciable</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a637260a3ed6c5020f0c99626c0f29ddf" prot="protected" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>declare_support_masse_volumique</name></member>
+      <member refid="classOperateur__base_1ae6a9120f01183fb396915a995d19f31f" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>description</name></member>
+      <member refid="classOperateur__base_1a0df8b73d13d81f02f3074a09dde28c84" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>description_</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1ae22552ca18315f0a13fcec308d622f4a" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>diffusivite</name></member>
+      <member refid="classOperateur__Diff__base_1aa706359dc11f21084f5dbc3c2247c09d" prot="protected" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>diffusivite_pour_pas_de_temps</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimension</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a4af8fb25898c666fe79fd2f05ab75aad" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimension_min_nu</name></member>
+      <member refid="classOperateur__base_1a8be8a7694d899cde1d08e02f992cb3e3" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimensionner</name></member>
+      <member refid="classOperateur__base_1a6c57cb01245cf33b9e1aaeb36413ffe6" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimensionner_bloc_vitesse</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a59e994a10a21c068e372b2458051a36c" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimensionner_blocs</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a19753999a6e565a2c3564280f345bb84" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimensionner_blocs_ext</name></member>
+      <member refid="classOperateur__base_1a840c29d194fc359fdf41fd5d3c4564e8" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dimensionner_termes_croises</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>disable_TU</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a41ff1e6624c14554760c0678fd631ae0" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>dissocier_champ_masse_volumique</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a8799dd516763023095c5cabecbdd0686" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>domaine_cl_poly</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1adf8bbfbbe3ca900b5f19748ebddc6fb8" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>domaine_poly</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>duplique</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>equation</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>exit</name></member>
+      <member refid="classOperateur__base_1a47589b011a317625bca06268fec941fa" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>fichier</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a2f6bbc7453a785914b7c6f1157b3957d" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Flux</name></member>
+      <member refid="classOperateur__base_1ab547b37ace0f04931f6f09fcfa8fae0c" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1ace9775be15067de0b4ee3c850cb0f78b" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>flux_bords</name></member>
+      <member refid="classOperateur__base_1a451f51b41518ddbc0d3f586a8177d319" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>flux_bords_</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a32589578f25b985cd305b098618e52b5" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Flux_moment</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1ad544aaccee334f01ea8d6f4003b98579" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Flux_sum</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>format_precision_geom</name></member>
+      <member refid="classOperateur__base_1ab92979aab03dbd9f818385218b9aa911" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_champ</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a3cf68c31de51540e3b4c0ac09d12aa40" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_champ_masse_volumique</name></member>
+      <member refid="classOperateur__base_1a6391c6f9d25cc0058baff086d6e374d2" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_decal_temps</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_info</name></member>
+      <member refid="classOperateur__base_1aad500fa9786aae72f075593384970c0b" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classOperateur__base_1a99957cfc9c19dfc1b3eb6eba25bb34e7" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_matrice</name></member>
+      <member refid="classOperateur__base_1a96bd268a33abb1e77dbe1dda3dde2e71" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a9c4894a06555965e1fee2b631d6814d0" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classOperateur__base_1a189af24b5b71f6eb5f61cbd27f137f8f" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>get_solveur</name></member>
+      <member refid="classOperateur__base_1a6118925b38e7470d3820384da89ad8b8" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a9a74144ef5ac986dcda4b9cf0502650f" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_champ</name></member>
+      <member refid="classOperateur__base_1a48bacffa849c639403aae805225904a7" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_champ_inco</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1ae787e0cfc274af9e2de5b619b2347a88" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_champ_masse_volumique</name></member>
+      <member refid="classOperateur__base_1a7261aed881ea18082ee61b431cfee4be" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_impr_file</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a61ec28b76994ac2a3247473c67183252" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>has_interface_blocs</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>HAS_POINTER</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a8502823ca76687105b42d14535d22d16" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>impr</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>info_obj</name></member>
+      <member refid="classOperateur__Diff__base_1aebb358c199f6bdb3f6a4af9a8eafbacd" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>init_op_ext</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>is_sequential</name></member>
+      <member refid="classOperateur__Diff__base_1a8d060a90adb52d3fbf0b38df8e58ca11" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>is_turb</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classOperateur__base_1aaa3ae2d3c5358c1f385bb438959abb37" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>lire_solveur</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a6fe14c26a516ad48d6650f30ac77e43a" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mat_aux</name></member>
+      <member refid="classOperateur__base_1a8da7fc774882c66318f3a4573d814d83" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>matrice_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>me</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a701512a949ec23e52c8b588279ff69d6" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mettre_a_jour</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a88d8394aece8d1ec630d01839615b5b3" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>modifier_mu</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a760926dde2890292444a0c0c1c3f9d74" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classOperateur__base_1ae53d686cf12a9bb83751f706193d5592" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mon_inconnue</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>multiple_files</name></member>
+      <member refid="classOperateur__base_1a656cefa4eb2adfc957e9e4c1fd651749" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nb_ss_pas_de_temps</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nom_du_cas</name></member>
+      <member refid="classOperateur__base_1ad35467308aed5d9f44aaa6cc66b35a79" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nom_inco_</name></member>
+      <member refid="classOperateur__base_1aa142f2b9079e643a6b78ac93afa737f8" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nom_inconnue</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nproc</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a5c0e122482574cfd66237acdf535fd02" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nu</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a7635b5b2b71e820671f42e298dd7601e" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nu_</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a497b9fb64b82214d49f9f677106b75b8" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nu_a_jour_</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a0ad3931b5158965d5f727ee866372deb" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>nu_constant_</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Objet_U</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a69a01507fa14acefe09ff993fa7d576b" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1ab6e049ddfc9e968216023eab2ce2fc82" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOp__Diff__PolyMAC__Gen__base_1a62dd1d65500ea16a147cfa00a2bd4ca8" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__base_1a2a9e31828e16e1e5588e59032681f412" prot="protected" virt="non-virtual" ambiguityscope="Operateur_base::"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual" ambiguityscope="MorEqn::"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>OBS_PTR</name></member>
+      <member refid="classOperateur__Diff__base_1a55bd9b2fad5e6ef816f89ea07371ddfc" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>op_ext</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>operator=</name></member>
+      <member refid="classOperateur__base_1a0f48883db4ca2a57a4d83f344f427723" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>out_</name></member>
+      <member refid="classOperateur__base_1afd23006466730b1b57f4087a8c5fa776" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ouvrir_fichier</name></member>
+      <member refid="classOperateur__base_1a5858c8c8ee1f6082ae18f2476804f495" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ouvrir_fichier_partage</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1a9e8f84a0257d0fc6c66842fd3cf29006" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>porosite_e</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__Face_1aa7a1a53af75c8b15ee0681b8f07c0088" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>porosite_f</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>precision_geom</name></member>
+      <member refid="classOperateur__base_1a65a8ff1ffaa48a10cc14477e1620fbad" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>preparer_calcul</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>reprendre</name></member>
+      <member refid="classOperateur__base_1abde0b3c19d29602a6aaf01cafb0ffdbc" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>self_cast</name></member>
+      <member refid="classOperateur__base_1aff84ae0046179ad6c9aac58da235b8b4" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_decal_temps</name></member>
+      <member refid="classOperateur__base_1adc6417da22ec9fd42988d5a4103c471f" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_description</name></member>
+      <member refid="classOperateur__base_1a1079052c44f7db7615ecc24448676093" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_fichier</name></member>
+      <member refid="classOperateur__base_1a58bbc3d85feaa143ec0d87e68d8fe137" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_matrice</name></member>
+      <member refid="classOperateur__base_1a75805455a9a1286fe361482dbbae0369" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_nb_ss_pas_de_temps</name></member>
+      <member refid="classOperateur__base_1a2fe69e40852fa946df7685516d3e5c66" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>set_solveur</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1aa4a428937f814ba2ed58b09bf762a102" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>solv_aux</name></member>
+      <member refid="classOperateur__base_1a01258c6b4bf60a83b7ebd1649a54ecf6" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>solveur</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1aa95b3c73d846cb9e7e3357bbb1bfc3ed" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>Support_Champ_Masse_Volumique</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a36a4f3f6d9f93413d86890f23299a537" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>support_ok</name></member>
+      <member refid="classOperateur__base_1ae939f468496af4fdceb8c537a26dd09b" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>systeme_invariant</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1640b9ba68d28470a72b46c922196a56" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>t_last_aux_</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1ab67dac03b664c32159afabffdd136838" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>t_last_nu_</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>taille_memoire</name></member>
+      <member refid="classOperateur__base_1a3640f8feaeac1bf4d8ff3777c233753c" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>tester_contribuer_a_avec</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1ae4b2fbba2dea8a89b74dc08e01ece201" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>update_aux</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a1097cd6ced128feaf2e61a0176bc9384" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>update_nu</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a8e67134e1d0790939926ea78d4187904" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>use_aux_</name></member>
+      <member refid="classOp__Diff__PolyMAC__P0P1NC__base_1a157505a2be56f520ade2ca98b858b763" prot="protected" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>var_aux</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>~MorEqn</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>~Process</name></member>
+      <member refid="classSupport__Champ__Masse__Volumique_1a55763975b7c565b21d554f938ccef4ce" prot="public" virt="virtual"><scope>Op_Diff_PolyMAC_P0P1NC_Face</scope><name>~Support_Champ_Masse_Volumique</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

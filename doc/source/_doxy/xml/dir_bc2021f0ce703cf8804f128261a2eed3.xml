@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_bc2021f0ce703cf8804f128261a2eed3" kind="dir">
+    <compoundname>Solveurs</compoundname>
+    <innerfile refid="Masse__DG__base_8cpp">Masse_DG_base.cpp</innerfile>
+    <innerfile refid="Masse__DG__base_8h">Masse_DG_base.h</innerfile>
+    <innerfile refid="Masse__DG__Elem_8cpp">Masse_DG_Elem.cpp</innerfile>
+    <innerfile refid="Masse__DG__Elem_8h">Masse_DG_Elem.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Solveurs/"/>
+  </compounddef>
+</doxygen>

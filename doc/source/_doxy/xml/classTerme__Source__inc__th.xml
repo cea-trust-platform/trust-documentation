@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classTerme__Source__inc__th" kind="class" language="C++" prot="public">
+    <compoundname>Terme_Source_inc_th</compoundname>
+    <derivedcompoundref refid="classTerme__Source__inc__th__VDF__Face" prot="public" virt="non-virtual">Terme_Source_inc_th_VDF_Face</derivedcompoundref>
+    <includes local="no">Terme_Source_inc_th.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classTerme__Source__inc__th_1a0f7d1f29fa2b74ba2ad6e8dd0472e306" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Terme_Source_inc_th::impr</definition>
+        <argsstring></argsstring>
+        <name>impr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="42" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classTerme__Source__inc__th_1a3bba1d94bcc750d84257cb6ed55619e5" compoundref="Terme__Source__inc__th_8cpp" startline="31" endline="64">lire_donnees</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a370f0c053a87b3adbbe42f8a7b7143a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Terme_Source_inc_th::associer_eqn</definition>
+        <argsstring>(const Convection_Diffusion_Temperature &amp;)</argsstring>
+        <name>associer_eqn</name>
+        <param>
+          <type>const <ref refid="classConvection__Diffusion__Temperature" kindref="compound">Convection_Diffusion_Temperature</ref> &amp;</type>
+          <defname>eq_thm</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="33" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.cpp" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a7ed12c1b633c8c3d97191083bca57b0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Terme_Source_inc_th::associer_eqn</definition>
+        <argsstring>(const Navier_Stokes_std &amp;)</argsstring>
+        <name>associer_eqn</name>
+        <param>
+          <type>const <ref refid="classNavier__Stokes__std" kindref="compound">Navier_Stokes_std</ref> &amp;</type>
+          <defname>eq_hyd</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="32" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.cpp" bodystart="20" bodyend="23"/>
+        <referencedby refid="classTerme__Source__inc__th__VDF__Face_1a540cdd3fc63c7490cd7cc8677442f3a0" compoundref="Terme__Source__inc__th__VDF__Face_8cpp" startline="51" endline="72">Terme_Source_inc_th_VDF_Face::associer_pb</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a0d35ff57ac0391413204654bc4adfd34" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classNavier__Stokes__std" kindref="compound">Navier_Stokes_std</ref> &amp;</type>
+        <definition>const Navier_Stokes_std &amp; Terme_Source_inc_th::eq_hydraulique</definition>
+        <argsstring>() const</argsstring>
+        <name>eq_hydraulique</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="34" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" bodystart="46" bodyend="49"/>
+        <referencedby refid="classTerme__Source__inc__th__VDF__Face_1a0ee2b15bf50da4ad3b03cd098eaac887" compoundref="Terme__Source__inc__th__VDF__Face_8cpp" startline="90" endline="1089">Terme_Source_inc_th_VDF_Face::ajouter_blocs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1ac644ae51044119aa7967f1e49da05322" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classConvection__Diffusion__Temperature" kindref="compound">Convection_Diffusion_Temperature</ref> &amp;</type>
+        <definition>const Convection_Diffusion_Temperature &amp; Terme_Source_inc_th::eq_thermique</definition>
+        <argsstring>() const</argsstring>
+        <name>eq_thermique</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="35" column="49" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" bodystart="51" bodyend="54"/>
+        <referencedby refid="classTerme__Source__inc__th__VDF__Face_1a0ee2b15bf50da4ad3b03cd098eaac887" compoundref="Terme__Source__inc__th__VDF__Face_8cpp" startline="90" endline="1089">Terme_Source_inc_th_VDF_Face::ajouter_blocs</referencedby>
+        <referencedby refid="classTerme__Source__inc__th__VDF__Face_1a540cdd3fc63c7490cd7cc8677442f3a0" compoundref="Terme__Source__inc__th__VDF__Face_8cpp" startline="51" endline="72">Terme_Source_inc_th_VDF_Face::associer_pb</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a4293fc20b43c5e49fa9f3283a1fd7d42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Terme_Source_inc_th::mettre_a_jour</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" bodystart="36" bodyend="36"/>
+        <referencedby refid="classTerme__Source__inc__th__VDF__Face_1a89e82b0b8fd50bb149fa1c7bc3d238c5" compoundref="Terme__Source__inc__th__VDF__Face_8h" startline="47" endline="50">Terme_Source_inc_th_VDF_Face::mettre_a_jour</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a3bba1d94bcc750d84257cb6ed55619e5" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; Terme_Source_inc_th::lire_donnees</definition>
+        <argsstring>(Entree &amp;)</argsstring>
+        <name>lire_donnees</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="43" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.cpp" bodystart="31" bodyend="64"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classTerme__Source__inc__th_1a0f7d1f29fa2b74ba2ad6e8dd0472e306" compoundref="Terme__Source__inc__th_8h" startline="42">impr</references>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1aeb47f4b29cdd08f799efcab0d6e5cf62" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Terme_Source_inc_th::OBS_PTR</definition>
+        <argsstring>(Champ_Don_base) beta_t_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classChamp__Don__base" kindref="compound">Champ_Don_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="41" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1a55ecee4de2c65f28f9e140dfd70a65ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Terme_Source_inc_th::OBS_PTR</definition>
+        <argsstring>(Convection_Diffusion_Temperature) eq_thermique_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classConvection__Diffusion__Temperature" kindref="compound">Convection_Diffusion_Temperature</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="40" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classTerme__Source__inc__th_1ab5bee434867cccd3b3368a3cf46deaf7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Terme_Source_inc_th::OBS_PTR</definition>
+        <argsstring>(Navier_Stokes_std) eq_hydraulique_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classNavier__Stokes__std" kindref="compound">Navier_Stokes_std</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="39" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Terme_Source_inc_th</label>
+        <link refid="classTerme__Source__inc__th"/>
+      </node>
+      <node id="2">
+        <label>Terme_Source_inc_th_VDF_Face</label>
+        <link refid="classTerme__Source__inc__th__VDF__Face"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" line="29" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/Terme_Source_inc_th.h" bodystart="30" bodyend="44"/>
+    <listofallmembers>
+      <member refid="classTerme__Source__inc__th_1a7ed12c1b633c8c3d97191083bca57b0d" prot="public" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>associer_eqn</name></member>
+      <member refid="classTerme__Source__inc__th_1a370f0c053a87b3adbbe42f8a7b7143a5" prot="public" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>associer_eqn</name></member>
+      <member refid="classTerme__Source__inc__th_1a0d35ff57ac0391413204654bc4adfd34" prot="public" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>eq_hydraulique</name></member>
+      <member refid="classTerme__Source__inc__th_1ac644ae51044119aa7967f1e49da05322" prot="public" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>eq_thermique</name></member>
+      <member refid="classTerme__Source__inc__th_1a0f7d1f29fa2b74ba2ad6e8dd0472e306" prot="protected" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>impr</name></member>
+      <member refid="classTerme__Source__inc__th_1a3bba1d94bcc750d84257cb6ed55619e5" prot="protected" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>lire_donnees</name></member>
+      <member refid="classTerme__Source__inc__th_1a4293fc20b43c5e49fa9f3283a1fd7d42" prot="public" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>mettre_a_jour</name></member>
+      <member refid="classTerme__Source__inc__th_1ab5bee434867cccd3b3368a3cf46deaf7" prot="protected" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>OBS_PTR</name></member>
+      <member refid="classTerme__Source__inc__th_1a55ecee4de2c65f28f9e140dfd70a65ad" prot="protected" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>OBS_PTR</name></member>
+      <member refid="classTerme__Source__inc__th_1aeb47f4b29cdd08f799efcab0d6e5cf62" prot="protected" virt="non-virtual"><scope>Terme_Source_inc_th</scope><name>OBS_PTR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_0dc107b37124c25f744c920597b1be02" kind="dir">
+    <compoundname>Problems</compoundname>
+    <innerfile refid="Pb__Multiphase_8cpp">Pb_Multiphase.cpp</innerfile>
+    <innerfile refid="Pb__Multiphase_8h">Pb_Multiphase.h</innerfile>
+    <innerfile refid="Pb__Multiphase__Enthalpie_8cpp">Pb_Multiphase_Enthalpie.cpp</innerfile>
+    <innerfile refid="Pb__Multiphase__Enthalpie_8h">Pb_Multiphase_Enthalpie.h</innerfile>
+    <innerfile refid="Pb__Multiphase__HEM_8cpp">Pb_Multiphase_HEM.cpp</innerfile>
+    <innerfile refid="Pb__Multiphase__HEM_8h">Pb_Multiphase_HEM.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Problems/"/>
+  </compounddef>
+</doxygen>

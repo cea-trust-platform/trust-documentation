@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSolveurSys" kind="class" language="C++" prot="public">
+    <compoundname>SolveurSys</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">OWN_PTRSolveurSys_base</basecompoundref>
+    <includes local="no">SolveurSys.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classSolveurSys_1a62a6dce4142d16c9a9e3c960474102b1" prot="private" static="no" mutable="no">
+        <type><ref refid="classNom" kindref="compound">Nom</ref></type>
+        <definition>Nom SolveurSys::nom_</definition>
+        <argsstring></argsstring>
+        <name>nom_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="40" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSolveurSys_1ad61999e3c8bf428da0b59662eea95832" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SolveurSys::Declare_instanciable</definition>
+        <argsstring>(SolveurSys)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classSolveurSys" kindref="compound">SolveurSys</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="33" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSolveurSys_1ac1106d71a224a4a073b02fc48410ccba" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+        <definition>const Nom&amp; SolveurSys::le_nom</definition>
+        <argsstring>() const override</argsstring>
+        <name>le_nom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="36" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classSolveurSys_1a8dc69a794250d2a64d5126507c2349db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SolveurSys::nommer</definition>
+        <argsstring>(const Nom &amp;nom) override</argsstring>
+        <name>nommer</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>nom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="37" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" bodystart="37" bodyend="37"/>
+        <referencedby refid="classOp__Dift__VEF__P1NCP1B__Face_1a286c84f33862928ff457ea9409a91a53" compoundref="Op__Dift__VEF__P1NCP1B__Face_8cpp" startline="39" endline="49">Op_Dift_VEF_P1NCP1B_Face::associer</referencedby>
+        <referencedby refid="classChamp__P1NC__implementation_1a562aaf721cd09c383b02b487a497df28" compoundref="Champ__P1NC__implementation_8cpp" startline="41" endline="54">Champ_P1NC_implementation::Champ_P1NC_implementation</referencedby>
+        <referencedby refid="classSolv__GCP__NS_1a6261e423a2caea2895ed7be83ed10036" compoundref="Solv__GCP__NS_8cpp" startline="51" endline="73">Solv_GCP_NS::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classParametre__diffusion__implicite_1a3ed8a53b2de538aed56e23d2be320035" compoundref="Parametre__diffusion__implicite_8cpp" startline="53" endline="62">Parametre_diffusion_implicite::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSolveur__Lineaire__Std_1a4af555127b7424f67a7b287c2f309163" compoundref="Solveur__Lineaire__Std_8cpp" startline="50" endline="67">Solveur_Lineaire_Std::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a44372895ab48f1d9ccae1d180fb7a322" compoundref="Navier__Stokes__std_8cpp" startline="118" endline="248">Navier_Stokes_std::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSolv__AMG_1a831b20f3c6f9c0d9ff5614bd4382ed9a" compoundref="Solv__AMG_8cpp" startline="226" endline="271">Solv_AMG::resoudre_systeme</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ac2a9d91d700bc58623ef68765547cc3e" compoundref="Navier__Stokes__std_8cpp" startline="1822" endline="1927">Navier_Stokes_std::uzawa</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolveurSys_1a62ca198f0c5dc599e53b0535761e5138" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int SolveurSys::resoudre_systeme</definition>
+        <argsstring>(const Matrice_Base &amp;matrice, const DoubleVect &amp;secmem, DoubleVect &amp;solution)</argsstring>
+        <name>resoudre_systeme</name>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <declname>matrice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>solution</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="35" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.cpp" bodystart="43" bodyend="63"/>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <referencedby refid="classMultigrille__base_1af18270f77115a6ae23832efc78d55a44" compoundref="Multigrille__base_8tpp" startline="302" endline="335">Multigrille_base::coarse_solver</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a4ac99c8f915f0b1b141b194537e3b237" compoundref="Navier__Stokes__std_8cpp" startline="686" endline="789">Navier_Stokes_std::corriger_derivee_impl</referencedby>
+        <referencedby refid="classEquation__base_1a97aa87b0cf6205ef437a6774adf1bd47" compoundref="Equation__base_8cpp" startline="519" endline="683">Equation_base::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classChamp__P1NC__implementation_1a82d0f38acf7a2f81b9db18e885255cb7" compoundref="Champ__P1NC__implementation_8cpp" startline="1110" endline="1315">Champ_P1NC_implementation::filtrer_resu</referencedby>
+        <referencedby refid="classSimple_1aa6e00a5da503178dae5311b4eb7da726" compoundref="Simple_8cpp" startline="374" endline="517">Simple::iterer_eqs</referencedby>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">SETS::iterer_NS</referencedby>
+        <referencedby refid="classPrecond__local_1af265a086ecb16e14e085c37da0d1c9f4" compoundref="Precond__local_8cpp" startline="85" endline="112">Precond_local::precond</referencedby>
+        <referencedby refid="classPrecondSolv_1af7651895c7e85e6b9a1086fc8e34cda1" compoundref="PrecondSolv_8cpp" startline="50" endline="90">PrecondSolv::preconditionner_</referencedby>
+        <referencedby refid="classNavier__Stokes__IBM_1a4c1d171358e968b5581a9a60d389c9c8" compoundref="Navier__Stokes__IBM_8cpp" startline="80" endline="243">Navier_Stokes_IBM::preparer_calcul</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ac843dd3d1af66273b62f8e88d5d7eb13" compoundref="Navier__Stokes__std_8cpp" startline="917" endline="1007">Navier_Stokes_std::preparer_calcul</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a5750f93d713b5094138e41c9d81bedb7" compoundref="Navier__Stokes__std_8cpp" startline="801" endline="887">Navier_Stokes_std::projeter</referencedby>
+        <referencedby refid="classPrecond__local_1adb9b1714123094d99accd07307a11231" compoundref="Precond__local_8cpp" startline="168" endline="320">Precond_local::res_syst_loc_hybride</referencedby>
+        <referencedby refid="classPrecond__local_1a4475eeddf08b710dcdb6f8b8837bf14c" compoundref="Precond__local_8cpp" startline="114" endline="166">Precond_local::res_syst_loc_simple</referencedby>
+        <referencedby refid="classSolv__Optimal_1a2f4a0e780e9d8394587adc0c6c774d98" compoundref="Solv__Optimal_8cpp" startline="362" endline="366">Solv_Optimal::resoudre_systeme</referencedby>
+        <referencedby refid="classSolv__GCP__NS_1a8c0552da46b07b4155f36753fea0e7d7" compoundref="Solv__GCP__NS_8cpp" startline="105" endline="237">Solv_GCP_NS::resoudre_systeme</referencedby>
+        <referencedby refid="classOp__Diff__PolyMAC__P0P1NC__base_1ae4b2fbba2dea8a89b74dc08e01ece201" compoundref="Op__Diff__PolyMAC__P0P1NC__base_8cpp" startline="104" endline="165">Op_Diff_PolyMAC_P0P1NC_base::update_aux</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ac2a9d91d700bc58623ef68765547cc3e" compoundref="Navier__Stokes__std_8cpp" startline="1822" endline="1927">Navier_Stokes_std::uzawa</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classSolveurSys" kindref="compound">SolveurSys</ref> Un <ref refid="classSolveurSys" kindref="compound">SolveurSys</ref> represente n&apos;importe qu&apos;elle classe </para>
+    </briefdescription>
+    <detaileddescription>
+<para>derivee de la classe <ref refid="classSolveurSys__base" kindref="compound">SolveurSys_base</ref></para>
+<para><simplesect kind="see"><para>Jacobi Gauss_Seidel SOR <ref refid="classSolveurSys__base" kindref="compound">SolveurSys_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/SolveurSys.h" bodystart="32" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classSolveurSys_1ad61999e3c8bf428da0b59662eea95832" prot="private" virt="non-virtual"><scope>SolveurSys</scope><name>Declare_instanciable</name></member>
+      <member refid="classSolveurSys_1ac1106d71a224a4a073b02fc48410ccba" prot="public" virt="non-virtual"><scope>SolveurSys</scope><name>le_nom</name></member>
+      <member refid="classSolveurSys_1a62a6dce4142d16c9a9e3c960474102b1" prot="private" virt="non-virtual"><scope>SolveurSys</scope><name>nom_</name></member>
+      <member refid="classSolveurSys_1a8dc69a794250d2a64d5126507c2349db" prot="public" virt="non-virtual"><scope>SolveurSys</scope><name>nommer</name></member>
+      <member refid="classSolveurSys_1a62ca198f0c5dc599e53b0535761e5138" prot="public" virt="non-virtual"><scope>SolveurSys</scope><name>resoudre_systeme</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

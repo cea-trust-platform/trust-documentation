@@ -1,17 +1,10 @@
 <map id="EcrFicPartageBin" name="EcrFicPartageBin">
-<area shape="rect" id="Node000001" title="Ecriture dans un fichier partage Cette classe derive de Ecr_Fic_Par, en utilisant une sortie en binai..." alt="" coords="37,384,167,411"/>
-<area shape="rect" id="Node000002" href="$classEcrFicPartage.html" title=" " alt="" coords="48,308,156,336"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,351,105,383,99,383,99,351"/>
-<area shape="rect" id="Node000003" href="$classSFichier.html" title="Cette classe est a la classe C++ ofstream ce que la classe Sortie est a la classe C++ ostream Elle re..." alt="" coords="66,232,138,260"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="105,276,105,308,99,308,99,276"/>
-<area shape="rect" id="Node000004" href="$classSortie__Fichier__base.html" title=" " alt="" coords="29,157,175,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="105,200,105,232,99,232,99,200"/>
-<area shape="rect" id="Node000005" href="$classSortie.html" title="Classe de base des flux de sortie." alt="" coords="27,81,86,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="75,121,96,155,92,158,71,124"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,5,95,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="55,49,58,80,53,81,50,49"/>
-<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="113,81,187,109"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="135,123,113,158,108,155,131,120"/>
-<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="118,5,190,33"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="155,49,153,81,148,80,150,49"/>
+<area shape="rect" id="node1" title="Ecriture dans un fichier partage Cette classe derive de Ecr_Fic_Par, en utilisant une sortie en binai..." alt="" coords="37,379,168,405"/>
+<area shape="rect" id="node2" href="$classEcrFicPartage.html" title=" " alt="" coords="48,304,157,331"/>
+<area shape="rect" id="node3" href="$classSFichier.html" title="Cette classe est a la classe C++ ofstream ce que la classe Sortie est a la classe C++ ostream Elle re..." alt="" coords="67,229,139,256"/>
+<area shape="rect" id="node4" href="$classSortie__Fichier__base.html" title=" " alt="" coords="29,155,176,181"/>
+<area shape="rect" id="node5" href="$classSortie.html" title="Classe de base des flux de sortie." alt="" coords="27,80,87,107"/>
+<area shape="rect" id="node6" href="$classAbstractIO.html" title="Base class for all input/output streams." alt="" coords="5,5,96,32"/>
+<area shape="rect" id="node7" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="115,80,189,107"/>
+<area shape="rect" id="node8" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="120,5,192,32"/>
 </map>

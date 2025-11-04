@@ -1,0 +1,406 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSources" kind="class" language="C++" prot="public">
+    <compoundname>Sources</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTSource</basecompoundref>
+    <basecompoundref refid="classMorEqn" prot="public" virt="non-virtual">MorEqn</basecompoundref>
+    <includes local="no">Sources.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSources_1adb23743024d86e1099381ca67e1aeb1a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Sources::Declare_instanciable</definition>
+        <argsstring>(Sources)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classSources" kindref="compound">Sources</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="32" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSources_1ab2aa276da482e0cf3f06606d111ae2e2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Sources::a_pour_Champ_Fonc</definition>
+        <argsstring>(const Motcle &amp;mot, OBS_PTR(Champ_base)&amp;ch_ref) const</argsstring>
+        <name>a_pour_Champ_Fonc</name>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>mot</declname>
+        </param>
+        <param>
+          <type><ref refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" kindref="member">OBS_PTR</ref>(<ref refid="classChamp__base" kindref="compound">Champ_base</ref>)&amp;</type>
+          <declname>ch_ref</declname>
+        </param>
+        <briefdescription>
+<para>Pour chaque source de la liste, appel a a_pour_Champ_Fonc(mot,ch_ref). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Cette methode est appelee par Equation_base::a_pour_Champ_Fonc. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="45" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="154" bodyend="169"/>
+        <references refid="classSource__base_1aef761f41090261f881ec80b28c23310a" compoundref="Source__base_8cpp" startline="130" endline="134">Source_base::a_pour_Champ_Fonc</references>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1aee196746a5ec214061c0a84814e68117" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Sources::ajouter</definition>
+        <argsstring>(DoubleTab &amp;) const</argsstring>
+        <name>ajouter</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>xx</defname>
+        </param>
+        <briefdescription>
+<para>Ajoute la contribution de toutes les sources de la liste au tableau passe en parametre, et renvoie ce tableau. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xx) le tableau dans lequel on doit accumuler la contribution des termes sources </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(DoubleTab&amp;) le parametre xx modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="35" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="85" bodyend="89"/>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1ad17d4b7fe214fac9bfe83ccaa403b592" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="152" endline="219">Convection_Diffusion_Espece_Multi_QC::assembler</referencedby>
+        <referencedby refid="classNavier__Stokes__Fluide__Dilatable__Proto_1a11534759c877a66e685dfa93eec9643e" compoundref="Navier__Stokes__Fluide__Dilatable__Proto_8cpp" startline="158" endline="244">Navier_Stokes_Fluide_Dilatable_Proto::assembler_avec_inertie_impl</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a6726448816aaa2898df58d670a1a9704" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="217" endline="353">Convection_Diffusion_Fluide_Dilatable_Proto::assembler_impl</referencedby>
+        <referencedby refid="classEquation__base_1a97aa87b0cf6205ef437a6774adf1bd47" compoundref="Equation__base_8cpp" startline="519" endline="683">Equation_base::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1aaf47f4c9f6b48c9e05ee0afb39239307" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="124" endline="150">Convection_Diffusion_Espece_Multi_QC::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ab4254b51483cb0b4810020d3cdb01369" compoundref="Navier__Stokes__std_8cpp" startline="1752" endline="1820">Navier_Stokes_std::derivee_en_temps_inco</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a2f09516e23af998bef35700d625abb50" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="74" endline="214">Convection_Diffusion_Fluide_Dilatable_Proto::derivee_en_temps_inco_sans_solveur_masse_impl</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ac843dd3d1af66273b62f8e88d5d7eb13" compoundref="Navier__Stokes__std_8cpp" startline="917" endline="1007">Navier_Stokes_std::preparer_calcul</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1ae4a5edaa79c889463af64951ad64ee84" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Sources::associer_champ_rho</definition>
+        <argsstring>(const Champ_base &amp;champ_rho)</argsstring>
+        <name>associer_champ_rho</name>
+        <param>
+          <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>champ_rho</declname>
+        </param>
+        <briefdescription>
+<para>Pour chaque source de la liste, appel a associer_champ_rho de la source. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Si la masse volumique est variable, il faut declarer le champ de rho aux sources avec cette methode (front-tracking) Sinon, par defaut, les calculs sont faits avec rho=1 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="44" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="139" bodyend="147"/>
+        <references refid="classSource__base_1a45bad0218ad7b517f064ef4d55df2260" compoundref="Source__base_8cpp" startline="114" endline="123">Source_base::associer_champ_rho</references>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1af095604c39a6bea22eef57dac61731b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Sources::calculer</definition>
+        <argsstring>(DoubleTab &amp;) const</argsstring>
+        <name>calculer</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>xx</defname>
+        </param>
+        <briefdescription>
+<para>Calcule la contribution de toutes les sources de la liste stocke le resultat dans le tableau passe en parametre,. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>et renvoie ce tableau.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xx) le tableau dans lequel on doit stocker la somme des contributions des sources </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(DoubleTab&amp;) le parametre xx modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="36" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="98" bodyend="103"/>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1ac10f53f3d32b3317f51d39322fb1146b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Sources::check_multiphase_compatibility</definition>
+        <argsstring>() const override</argsstring>
+        <name>check_multiphase_compatibility</name>
+        <reimplements refid="classMorEqn_1a46879a44635069fbe1a7b2bb2368bfc1">check_multiphase_compatibility</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="49" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="234" bodyend="242"/>
+        <references refid="classMorEqn_1a46879a44635069fbe1a7b2bb2368bfc1" compoundref="MorEqn_8cpp" startline="50" endline="56">MorEqn::check_multiphase_compatibility</references>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1ac938e21c6fe9f5bb9f0dc304eb2267dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::completer</definition>
+        <argsstring>()</argsstring>
+        <name>completer</name>
+        <briefdescription>
+<para>Appelle Source::completer() sur toutes les sources de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>voir <ref refid="classSource__base_1ab78e5efb7493861ded5a6ae9a9a23683" kindref="member">Source_base::completer()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="127" bodyend="130"/>
+        <referencedby refid="classEquation__base_1a68c77bfc9fb39474ddc481495710c40e" compoundref="Equation__base_8cpp" startline="134" endline="203">Equation_base::completer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1a2c4bb87930a1893ee0a11a509771cfc1" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::contribuer_a_avec</definition>
+        <argsstring>(const DoubleTab &amp;, Matrice_Morse &amp;) const</argsstring>
+        <name>contribuer_a_avec</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>a</defname>
+        </param>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <defname>matrice</defname>
+        </param>
+        <briefdescription>
+<para>contribution a la matrice implicite des termes sources par defaut pas de contribution </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="201" bodyend="209"/>
+        <references refid="classSource__base_1a7b9e856eeb1c10ca2aa534ecf823d722" compoundref="Source__base_8cpp" startline="239" endline="244">Source_base::contribuer_a_avec</references>
+        <referencedby refid="classEquation__base_1a8dbd9212dcd3e8277d21a4b24b04bd65" compoundref="Equation__base_8cpp" startline="1976" endline="2057">Equation_base::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Espece__Multi__QC_1ad17d4b7fe214fac9bfe83ccaa403b592" compoundref="Convection__Diffusion__Espece__Multi__QC_8cpp" startline="152" endline="219">Convection_Diffusion_Espece_Multi_QC::assembler</referencedby>
+        <referencedby refid="classConvection__Diffusion__Temperature_1afd4ac12ed4a4c74d0b1b248f9c2650c2" compoundref="Convection__Diffusion__Temperature_8cpp" startline="354" endline="439">Convection_Diffusion_Temperature::assembler</referencedby>
+        <referencedby refid="classNavier__Stokes__Fluide__Dilatable__Proto_1a11534759c877a66e685dfa93eec9643e" compoundref="Navier__Stokes__Fluide__Dilatable__Proto_8cpp" startline="158" endline="244">Navier_Stokes_Fluide_Dilatable_Proto::assembler_avec_inertie_impl</referencedby>
+        <referencedby refid="classConvection__Diffusion__Fluide__Dilatable__Proto_1a6726448816aaa2898df58d670a1a9704" compoundref="Convection__Diffusion__Fluide__Dilatable__Proto_8cpp" startline="217" endline="353">Convection_Diffusion_Fluide_Dilatable_Proto::assembler_impl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1a0e1c149a53e420e0dab4052f7e0224b2" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::contribuer_jacobienne</definition>
+        <argsstring>(Matrice_Bloc &amp;matrice, int n) const</argsstring>
+        <name>contribuer_jacobienne</name>
+        <param>
+          <type><ref refid="classMatrice__Bloc" kindref="compound">Matrice_Bloc</ref> &amp;</type>
+          <declname>matrice</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="211" bodyend="219"/>
+        <references refid="classSource__base_1a89b24906e03a2306bf07c3491685a875" compoundref="Source__base_8h" startline="62" endline="62">Source_base::contribuer_jacobienne</references>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1ac3b18fd761088f669139f11c6b5c9eb7" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::dimensionner</definition>
+        <argsstring>(Matrice_Morse &amp;) const</argsstring>
+        <name>dimensionner</name>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <defname>matrice</defname>
+        </param>
+        <briefdescription>
+<para>Dimensionnement de la matrice implicite des termes sources. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Parcours toutes les sources de la liste pour dimensionner. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="187" bodyend="197"/>
+        <references refid="classSource__base_1af3d787428977472b636a6b4eb30d5416" compoundref="Source__base_8cpp" startline="213" endline="216">Source_base::dimensionner</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <referencedby refid="classEquation__base_1a2f62dcd0761768631cbdc25279c9f48e" compoundref="Equation__base_8cpp" startline="1899" endline="1950">Equation_base::dimensionner_matrice_sans_mem</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1a16e8cb41e283bf7e0630f9485aab869a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sources::impr</definition>
+        <argsstring>(Sortie &amp;) const</argsstring>
+        <name>impr</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <defname>os</defname>
+        </param>
+        <briefdescription>
+<para>Appelle Source::impr() sur toutes les sources de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>voir <ref refid="classSource__base_1a2ece3be00a40a2f9f742febe08c8bc54" kindref="member">Source_base::impr()</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="47" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="176" bodyend="180"/>
+        <referencedby refid="classEquation__base_1a627afccc65b5c1031a9fdeaadb2c6e62" compoundref="Equation__base_8cpp" startline="491" endline="498">Equation_base::impr</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1a40cabc9fa7e745f325fad26aefec055a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Sources::initialiser</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>initialiser</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Appelle Source::initialiser(temps) sur toutes les sources de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>voir <ref refid="classSource__base_1a71fcb800079667d5019b64a1efdf96f7" kindref="member">Source_base::initialiser(double temps)</ref>. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="48" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="226" bodyend="232"/>
+        <referencedby refid="classEquation__base_1a6ec47139247e984d286c2e13d0a92ff7" compoundref="Equation__base_8cpp" startline="919" endline="952">Equation_base::preparer_calcul</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1aa993ae270b7536a4d1a321899b905bf8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::mettre_a_jour</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Mise a jour en temps, de toute les sources de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="38" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="109" bodyend="112"/>
+        <referencedby refid="classEquation__base_1a62757c897af44f346e3a9e65e38aa122" compoundref="Equation__base_8cpp" startline="850" endline="862">Equation_base::mettre_a_jour</referencedby>
+        <referencedby refid="classNavier__Stokes__IBM_1a4c1d171358e968b5581a9a60d389c9c8" compoundref="Navier__Stokes__IBM_8cpp" startline="80" endline="243">Navier_Stokes_IBM::preparer_calcul</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1ac843dd3d1af66273b62f8e88d5d7eb13" compoundref="Navier__Stokes__std_8cpp" startline="917" endline="1007">Navier_Stokes_std::preparer_calcul</referencedby>
+        <referencedby refid="classEquation__base_1a769801bc7ebb7a6be88e34d02cabc26b" compoundref="Equation__base_8cpp" startline="1003" endline="1028">Equation_base::updateGivenFields</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSources_1aa50ea070080dbf465f2435e06e7aa0e4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Sources::resetTime</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>resetTime</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Rest all sources to a given time See ProblemeTrio::resetTime() </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.cpp" bodystart="117" bodyend="120"/>
+        <referencedby refid="classEquation__base_1ad32db22960f7dc8b0f1432a21c0279e9" compoundref="Equation__base_8cpp" startline="893" endline="903">Equation_base::resetTime</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>class <ref refid="classSources" kindref="compound">Sources</ref> <ref refid="classSources" kindref="compound">Sources</ref> represente une liste de <ref refid="classSource" kindref="compound">Source</ref>. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Une equation contient un membres Equation_base::les_sources de type
+Sources. Un objet Sources est un morceaux d&apos;equation, cette classe
+herite donc de MorEqn.
+</verbatim> <simplesect kind="see"><para><ref refid="classSource" kindref="compound">Source</ref> <ref refid="classMorEqn" kindref="compound">MorEqn</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Sources</label>
+        <link refid="classSources"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTSource</label>
+      </node>
+      <node id="3">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Sources</label>
+        <link refid="classSources"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTSource</label>
+      </node>
+      <node id="3">
+        <label>MorEqn</label>
+        <link refid="classMorEqn"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Sources.h" bodystart="31" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classSources_1ab2aa276da482e0cf3f06606d111ae2e2" prot="public" virt="virtual"><scope>Sources</scope><name>a_pour_Champ_Fonc</name></member>
+      <member refid="classSources_1aee196746a5ec214061c0a84814e68117" prot="public" virt="non-virtual"><scope>Sources</scope><name>ajouter</name></member>
+      <member refid="classSources_1ae4a5edaa79c889463af64951ad64ee84" prot="public" virt="virtual"><scope>Sources</scope><name>associer_champ_rho</name></member>
+      <member refid="classMorEqn_1a1a6c57edd46cc696aa45c6b01a76e14c" prot="public" virt="non-virtual"><scope>Sources</scope><name>associer_eqn</name></member>
+      <member refid="classSources_1af095604c39a6bea22eef57dac61731b9" prot="public" virt="non-virtual"><scope>Sources</scope><name>calculer</name></member>
+      <member refid="classMorEqn_1ae472722b5c492c4a37717fd014814e66" prot="public" virt="virtual"><scope>Sources</scope><name>calculer_pour_post</name></member>
+      <member refid="classSources_1ac10f53f3d32b3317f51d39322fb1146b" prot="public" virt="virtual"><scope>Sources</scope><name>check_multiphase_compatibility</name></member>
+      <member refid="classSources_1ac938e21c6fe9f5bb9f0dc304eb2267dc" prot="public" virt="non-virtual"><scope>Sources</scope><name>completer</name></member>
+      <member refid="classSources_1a2c4bb87930a1893ee0a11a509771cfc1" prot="public" virt="non-virtual"><scope>Sources</scope><name>contribuer_a_avec</name></member>
+      <member refid="classSources_1a0e1c149a53e420e0dab4052f7e0224b2" prot="public" virt="non-virtual"><scope>Sources</scope><name>contribuer_jacobienne</name></member>
+      <member refid="classSources_1adb23743024d86e1099381ca67e1aeb1a" prot="private" virt="non-virtual"><scope>Sources</scope><name>Declare_instanciable</name></member>
+      <member refid="classSources_1ac3b18fd761088f669139f11c6b5c9eb7" prot="public" virt="non-virtual"><scope>Sources</scope><name>dimensionner</name></member>
+      <member refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" prot="public" virt="non-virtual"><scope>Sources</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa1a1856d29870721fc9f16c075e45501" prot="public" virt="non-virtual"><scope>Sources</scope><name>equation</name></member>
+      <member refid="classMorEqn_1aa11ca9e30befdd20a82ddc4144022c9c" prot="public" virt="virtual"><scope>Sources</scope><name>get_localisation_pour_post</name></member>
+      <member refid="classSources_1a16e8cb41e283bf7e0630f9485aab869a" prot="public" virt="non-virtual"><scope>Sources</scope><name>impr</name></member>
+      <member refid="classSources_1a40cabc9fa7e745f325fad26aefec055a" prot="public" virt="non-virtual"><scope>Sources</scope><name>initialiser</name></member>
+      <member refid="classSources_1aa993ae270b7536a4d1a321899b905bf8" prot="public" virt="non-virtual"><scope>Sources</scope><name>mettre_a_jour</name></member>
+      <member refid="classMorEqn_1a0e90edfd0d89be7590d9a7afc1461bdc" prot="public" virt="non-virtual"><scope>Sources</scope><name>mon_equation_non_nul</name></member>
+      <member refid="classMorEqn_1a628695ae282c3afc1385c9a0cee43b8d" prot="protected" virt="non-virtual"><scope>Sources</scope><name>OBS_PTR</name></member>
+      <member refid="classSources_1aa50ea070080dbf465f2435e06e7aa0e4" prot="public" virt="non-virtual"><scope>Sources</scope><name>resetTime</name></member>
+      <member refid="classMorEqn_1a08b000838f70fa31501e866be144f947" prot="protected" virt="virtual"><scope>Sources</scope><name>~MorEqn</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

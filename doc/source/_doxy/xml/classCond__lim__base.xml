@@ -1,0 +1,1687 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classCond__lim__base" kind="class" language="C++" prot="public">
+    <compoundname>Cond_lim_base</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <derivedcompoundref refid="classCond__lim__utilisateur__base" prot="public" virt="non-virtual">Cond_lim_utilisateur_base</derivedcompoundref>
+    <derivedcompoundref refid="classDirichlet" prot="public" virt="non-virtual">Dirichlet</derivedcompoundref>
+    <derivedcompoundref refid="classDirichlet__homogene" prot="public" virt="non-virtual">Dirichlet_homogene</derivedcompoundref>
+    <derivedcompoundref refid="classEchange__impose__base" prot="public" virt="non-virtual">Echange_impose_base</derivedcompoundref>
+    <derivedcompoundref refid="classNavier" prot="public" virt="non-virtual">Navier</derivedcompoundref>
+    <derivedcompoundref refid="classNeumann" prot="public" virt="non-virtual">Neumann</derivedcompoundref>
+    <derivedcompoundref refid="classNeumann__homogene" prot="public" virt="non-virtual">Neumann_homogene</derivedcompoundref>
+    <derivedcompoundref refid="classPeriodique" prot="public" virt="non-virtual">Periodique</derivedcompoundref>
+    <derivedcompoundref refid="classRobin__VEF" prot="public" virt="non-virtual">Robin_VEF</derivedcompoundref>
+    <includes local="no">Cond_lim_base.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classMotcle" kindref="compound">Motcle</ref> &gt;</type>
+        <definition>std::vector&lt;Motcle&gt; Cond_lim_base::app_domains</definition>
+        <argsstring></argsstring>
+        <name>app_domains</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="75" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" compoundref="Cond__lim__base_8cpp" startline="36" endline="50">compatible_avec_eqn</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Cond_lim_base::modifier_val_imp</definition>
+        <argsstring></argsstring>
+        <name>modifier_val_imp</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="83" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266" compoundref="Cond__lim__base_8cpp" startline="156" endline="161">associer_fr_dis_base</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a43dadc056380945d14f3908bf430974f" compoundref="Neumann__sortie__libre_8cpp" startline="139" endline="145">Neumann_sortie_libre::associer_fr_dis_base</referencedby>
+        <referencedby refid="classEchange__externe__impose__H_1aa2258037a8911f8d4ab722a5d4537855" compoundref="Echange__externe__impose__H_8cpp" startline="36" endline="41">Echange_externe_impose_H::completer</referencedby>
+        <referencedby refid="classEntree__fluide__temperature__imposee__H_1a8a6c335d993f7e111d35b7fe9b06d2ec" compoundref="Entree__fluide__temperature__imposee__H_8cpp" startline="35" endline="39">Entree_fluide_temperature_imposee_H::completer</referencedby>
+        <referencedby refid="classNeumann__sortie__libre__Temp__H_1a81ffc80c68baf2c666ad8a8b5e1f0a9b" compoundref="Neumann__sortie__libre__Temp__H_8cpp" startline="40" endline="44">Neumann_sortie_libre_Temp_H::completer</referencedby>
+        <referencedby refid="classTemperature__imposee__paroi__H_1a2cb13c095af4f44880a00c657c245868" compoundref="Temperature__imposee__paroi__H_8cpp" startline="35" endline="39">Temperature_imposee_paroi_H::completer</referencedby>
+        <referencedby refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" compoundref="Cond__lim__base_8h" startline="149" endline="153">set_modifier_val_imp</referencedby>
+        <referencedby refid="classEchange__externe__impose__H_1a4cbbc0ed8030309146b6d9415966a00d" compoundref="Echange__externe__impose__H_8cpp" startline="48" endline="69">Echange_externe_impose_H::T_ext</referencedby>
+        <referencedby refid="classNeumann__sortie__libre__Temp__H_1ae329e396627d472505ffc33e22255a0a" compoundref="Neumann__sortie__libre__Temp__H_8cpp" startline="52" endline="76">Neumann_sortie_libre_Temp_H::val_ext</referencedby>
+        <referencedby refid="classEntree__fluide__temperature__imposee__H_1aca7b94f2ca57b2dfdf34b7802a18f0b2" compoundref="Entree__fluide__temperature__imposee__H_8cpp" startline="47" endline="68">Entree_fluide_temperature_imposee_H::val_imp</referencedby>
+        <referencedby refid="classTemperature__imposee__paroi__H_1ac54f5b0c47d897602f0700eba416fc89" compoundref="Temperature__imposee__paroi__H_8cpp" startline="47" endline="68">Temperature_imposee_paroi_H::val_imp</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="classNom" kindref="compound">Nom</ref> &gt;</type>
+        <definition>std::vector&lt;Nom&gt; Cond_lim_base::supp_discs</definition>
+        <argsstring></argsstring>
+        <name>supp_discs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="76" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" compoundref="Cond__lim__base_8cpp" startline="180" endline="192">compatible_avec_discr</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classCond__lim__base_1a8fabd66366df88e91f22cc4cc5b64868" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cond_lim_base::Declare_base</definition>
+        <argsstring>(Cond_lim_base)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="39" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCond__lim__base_1a87e21b172da6aa4f6563f483377fde74" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::a_mettre_a_jour_ss_pas_dt</definition>
+        <argsstring>()</argsstring>
+        <name>a_mettre_a_jour_ss_pas_dt</name>
+        <reimplementedby refid="classEchange__impose__base_1a5801aadfa4eb1f45071ee565ada923fc">a_mettre_a_jour_ss_pas_dt</reimplementedby>
+        <briefdescription>
+<para>Cette methode indique si cette condition aux limites doit etre mise a jour dans des sous pas de temps d&apos;un schema en temps tel que RK. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Par defaut elle renvoie 0 pour indiquer qu&apos;aucune mise a jour n&apos;est necessaire ; il faut la surcharger pour renvoyer 1 au besoin (exemple <ref refid="classEchange__impose__base" kindref="compound">Echange_impose_base</ref>)</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="64" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="116" bodyend="119"/>
+        <referencedby refid="classDomaine__Cl__dis__base_1a0600017038bc99ef9875b240ccb39cc2" compoundref="Domaine__Cl__dis__base_8cpp" startline="246" endline="254">Domaine_Cl_dis_base::mettre_a_jour_ss_pas_dt</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::associer_domaine_cl_dis_base</definition>
+        <argsstring>(const Domaine_Cl_dis_base &amp;)</argsstring>
+        <name>associer_domaine_cl_dis_base</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a457792aa4e1a04a4610cf7d15e74508b">associer_domaine_cl_dis_base</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a3c73180a1c75d0b2b47bff71ed6929da">associer_domaine_cl_dis_base</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a25524edcb1723650ea0f42b7c3148f6d">associer_domaine_cl_dis_base</reimplementedby>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <defname>zcl</defname>
+        </param>
+        <briefdescription>
+<para>Associe le <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> (Domaine des conditions aux limites discretisees) a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ce <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> stocke (reference) toutes les conditions aux limites relative a un Domaine geometrique.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine_Cl_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>zcl) un Domaine des conditions aux limites discretisees a laquelle l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> se rapporte </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="52" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="170" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::associer_fr_dis_base</definition>
+        <argsstring>(const Frontiere_dis_base &amp;)</argsstring>
+        <name>associer_fr_dis_base</name>
+        <reimplementedby refid="classEchange__impose__base_1a573f861c2a54ce89eacbb322df8edc91">associer_fr_dis_base</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a43dadc056380945d14f3908bf430974f">associer_fr_dis_base</reimplementedby>
+        <reimplementedby refid="classDirichlet__loi__paroi_1ae03a631c3410f421b011a73e439b96bd">associer_fr_dis_base</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1ae96bc3d7f82b196a916df1ac76a37b6b">associer_fr_dis_base</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a7437b977056a15f1da1066957fbf5768">associer_fr_dis_base</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a91b5dd943dc2375565d1d8dc7c5d4afa">associer_fr_dis_base</reimplementedby>
+        <param>
+          <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+          <defname>fr</defname>
+        </param>
+        <briefdescription>
+<para>Associe la frontiere a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>L&apos;objet <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> est en fait associe au membre <ref refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" kindref="member">OWN_PTR(Champ_front_base)</ref> de l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> qui represente le champ des conditions aux limites imposees a la frontiere.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Frontiere_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fr) la frontiere sur laquelle on impose les conditions aux limites </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="49" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="156" bodyend="161"/>
+        <references refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" compoundref="Cond__lim__base_8h" startline="83">modifier_val_imp</references>
+        <referencedby refid="classEchange__impose__base_1a573f861c2a54ce89eacbb322df8edc91" compoundref="Echange__impose__base_8cpp" startline="249" endline="256">Echange_impose_base::associer_fr_dis_base</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a43dadc056380945d14f3908bf430974f" compoundref="Neumann__sortie__libre_8cpp" startline="139" endline="145">Neumann_sortie_libre::associer_fr_dis_base</referencedby>
+        <referencedby refid="classTerme__Source__Th__TdivU__VEF__Face_1a01daba5fc2eead6ff6b77bcf1c843eee" compoundref="Terme__Source__Th__TdivU__VEF__Face_8cpp" startline="92" endline="145">Terme_Source_Th_TdivU_VEF_Face::modifier_domaine_cl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::avancer</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>avancer</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1adf1a6025df2a24933aa5daf5964158ed">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1a26800813205884238e3520a445a1bb39">avancer</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a00fa270a7938be3868d3792d104c72bc">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a786aee81c664a68ad6426e689cb84363">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1a8de6be5a384288508b8794d7097f687e">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1ab321646fad96d93ea195d25461782e83">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a29a139c37e38c8d8bc2900af3bb74231">avancer</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="69" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="63" bodyend="66"/>
+        <references refid="classChamp__front__base_1aafb3e002b4dd0a14372d8466e110d543" compoundref="Champ__front__base_8cpp" startline="136" endline="141">Champ_front_base::avancer</references>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <referencedby refid="classEchange__impose__base_1a26800813205884238e3520a445a1bb39" compoundref="Echange__impose__base_8cpp" startline="232" endline="239">Echange_impose_base::avancer</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a00fa270a7938be3868d3792d104c72bc" compoundref="Neumann__sortie__libre_8cpp" startline="212" endline="215">Neumann_sortie_libre::avancer</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1ab321646fad96d93ea195d25461782e83" compoundref="Echange__contact__VDF_8cpp" startline="76" endline="81">Echange_contact_VDF::avancer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::calculer_coeffs_echange</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>calculer_coeffs_echange</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1ac30cb57e05df145bb71ef7eb1e01935c">calculer_coeffs_echange</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1ac33b816a12004430fdcec58c67c96e17">calculer_coeffs_echange</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1addb0b9e64c1a3ad9ebfbe1980340ca8f">calculer_coeffs_echange</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Calcul des coefficient d&apos;echange pour un couplage par <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ces calculs sont locaux au probleme et dependant uniquement de l&apos;inconnue. Ils doivent donc etre faits chaque fois que l&apos;inconnue est modifiee. Ils sont disponibles pour l&apos;exterieur et stockes dans les CLs. WEC : Les <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref> devraient disparaitre et cette methode avec !!!</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="45" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="132" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base &amp; Cond_lim_base::champ_front</definition>
+        <argsstring>()</argsstring>
+        <name>champ_front</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="53" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="126" bodyend="129"/>
+        <referencedby refid="classOp__Grad__P0__to__Face_1a7c99d875899c1d60eb6e7cc9ed86de8a" compoundref="Op__Grad__P0__to__Face_8cpp" startline="34" endline="150">Op_Grad_P0_to_Face::ajouter_blocs</referencedby>
+        <referencedby refid="classChamp__front__contact__VEF_1a14a9d12414f9e6b81d620b97e5e7a8b6" compoundref="Champ__front__contact__VEF_8cpp" startline="576" endline="605">Champ_front_contact_VEF::associer_front_vf_et_ch_front_autre_pb</referencedby>
+        <referencedby refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c" compoundref="Cond__lim__base_8cpp" startline="63" endline="66">avancer</referencedby>
+        <referencedby refid="classOp__Diff__VEFP1NCP1B__Face_1a91177be83fad0fff24b3819d49647abe" compoundref="Op__Diff__VEFP1NCP1B__Face_8cpp" startline="461" endline="696">Op_Diff_VEFP1NCP1B_Face::calculer_gradient_som</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1ae4c7e5711bed76bab63a23709cb6ed27" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="373" endline="397">Echange_contact_Correlation_VEF::calculer_Q</referencedby>
+        <referencedby refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4" compoundref="Cond__lim__base_8cpp" startline="55" endline="58">changer_temps_futur</referencedby>
+        <referencedby refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" compoundref="Cond__lim__base_8cpp" startline="31" endline="34">completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1aa42f794b75fcda3b9755a0c12fb416e6" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="210" endline="285">Echange_contact_Correlation_VEF::completer</referencedby>
+        <referencedby refid="classOp__Diff__DG__Elem_1a48b015a0bac5a54dfe6c5b2d070bf7f3" compoundref="Op__Diff__DG__Elem_8cpp" startline="470" endline="555">Op_Diff_DG_Elem::contribuer_au_second_membre</referencedby>
+        <referencedby refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8" compoundref="Cond__lim__base_8cpp" startline="240" endline="243">fixer_nb_valeurs_temporelles</referencedby>
+        <referencedby refid="classDomaine__Cl__EF_1ac0c999df8f51d8a672cec622cfa9cdcb" compoundref="Domaine__Cl__EF_8cpp" startline="600" endline="737">Domaine_Cl_EF::imposer_cond_lim</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1afef2dc6786ee98f1896f46d62ba12aa5" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="706" endline="832">Echange_contact_Correlation_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classAssembleur__P__EF_1af1241e3076764c6ab72bddee6df119d4" compoundref="Assembleur__P__EF_8cpp" startline="474" endline="527">Assembleur_P_EF::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__PolyMAC_1a63b8af8c331e55bd3f81a5d116b0fda2" compoundref="Assembleur__P__PolyMAC_8cpp" startline="215" endline="269">Assembleur_P_PolyMAC::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEF_1aef0a0c6f1cec93453fc2b4a699c4cf26" compoundref="Assembleur__P__VEF_8cpp" startline="587" endline="652">Assembleur_P_VEF::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1aba42f939c150d8962fd2df72cc47f49e" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="400" endline="523">Assembleur_P_VEFPreP1B::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1a68c56f1db1d79a34135f8f46c293dc83" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="525" endline="561">Assembleur_P_VEFPreP1B::modifier_secmem_elem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1a6e9aef242858ae25dde40c58c30791b8" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="563" endline="650">Assembleur_P_VEFPreP1B::modifier_secmem_som</referencedby>
+        <referencedby refid="classAssembleur__P__VDF_1a9479432519c9424e8d5c6be2ce7a5493" compoundref="Assembleur__P__VDF_8cpp" startline="585" endline="629">Assembleur_P_VDF::modifier_secmem_vitesse_imposee</referencedby>
+        <referencedby refid="classProbleme__base_1a1fa081cbf994399a895edf8c39379754" compoundref="Probleme__base_8cpp" startline="1152" endline="1200">Probleme_base::newCompute</referencedby>
+        <referencedby refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4" compoundref="Cond__lim__base_8cpp" startline="71" endline="74">reculer</referencedby>
+        <referencedby refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3" compoundref="Cond__lim__base_8cpp" startline="233" endline="236">set_temps_defaut</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base &amp; Cond_lim_base::champ_front</definition>
+        <argsstring>() const</argsstring>
+        <name>champ_front</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="54" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="131" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::champ_front</definition>
+        <argsstring>(int, DoubleVect &amp;) const</argsstring>
+        <name>champ_front</name>
+        <param>
+          <type>int</type>
+          <defname>face</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>var</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="59" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="218" bodyend="221"/>
+        <references refid="classChamp__front__base_1ad26031f210bcceea6cbc5deb6c55ca2e" compoundref="Champ__front__base_8cpp" startline="106" endline="121">Champ_front_base::valeurs_face</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::changer_temps_futur</definition>
+        <argsstring>(double temps, int i)</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1aa08016e83d1534bfc890fa73676440da">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1af18898cfcee94ccf263a302c91981bb3">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a64b95d6b4ffcefc14b96609aaaa534a8">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a298621296663ac5dde60159f413a0604">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1aea2d808fe377eb3b4679013bd51a96ed">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab9f23a6307b4f34600ba043ae17f2681">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a18dd5588b0f626fa09c36219343a9c6c">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1abeeea0df6de2a48c1c7680cb289d1b3e">changer_temps_futur</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="68" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="55" bodyend="58"/>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <references refid="classChamp__front__base_1a29c442614ff68cd794880c544f4e6c5d" compoundref="Champ__front__base_8cpp" startline="160" endline="163">Champ_front_base::changer_temps_futur</references>
+        <referencedby refid="classEchange__impose__base_1af18898cfcee94ccf263a302c91981bb3" compoundref="Echange__impose__base_8cpp" startline="224" endline="231">Echange_impose_base::changer_temps_futur</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a298621296663ac5dde60159f413a0604" compoundref="Neumann__sortie__libre_8cpp" startline="206" endline="210">Neumann_sortie_libre::changer_temps_futur</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a18dd5588b0f626fa09c36219343a9c6c" compoundref="Echange__contact__VDF_8cpp" startline="67" endline="71">Echange_contact_VDF::changer_temps_futur</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::compatible_avec_discr</definition>
+        <argsstring>(const Discretisation_base &amp;) const</argsstring>
+        <name>compatible_avec_discr</name>
+        <reimplementedby refid="classEchange__global__impose_1ac53c4e3184275fb2e4aa089daa472253">compatible_avec_discr</reimplementedby>
+        <reimplementedby refid="classEchange__interne__global__parfait_1aa85c8ff47bdfadf30a4eec980dd35b68">compatible_avec_discr</reimplementedby>
+        <param>
+          <type>const <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> &amp;</type>
+          <defname>discr</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie 1 si la condition aux limites est compatible avec la discretisation passee en parametre. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Discretisation_base&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>la discretisation avec laquelle on veut verifier la compatibilite </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="61" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="180" bodyend="192"/>
+        <references refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" compoundref="Cond__lim__base_8cpp" startline="200" endline="204">err_pas_compatible</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" compoundref="Cond__lim__base_8h" startline="76">supp_discs</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::compatible_avec_eqn</definition>
+        <argsstring>(const Equation_base &amp;) const</argsstring>
+        <name>compatible_avec_eqn</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a4e13ed3a2f051312a7a3319f5196f343">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classNavier_1ae8911ba1d9fa05a789998b52083cc40f">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classCond__lim__utilisateur__base_1af88344fee97aa3a110b7de4a063a5312">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classPeriodique_1a6c81ad60dc4c590751cb7cf2f6a13823">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classFrontiere__ouverte__rho__u__impose_1afdf148e9ee802060f058e8a503b8f785">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a1173e087d20f3d13715cd294b7fea132">compatible_avec_eqn</reimplementedby>
+        <reimplementedby refid="classParoi__decalee__Robin_1a4e33a8833e9e06f82151761a4ee85463">compatible_avec_eqn</reimplementedby>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="60" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="36" bodyend="50"/>
+        <references refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" compoundref="Cond__lim__base_8h" startline="75">app_domains</references>
+        <references refid="classEquation__base_1af36aa592e88858ac5fdd7f23d3f5018d" compoundref="Equation__base_8cpp" startline="1330" endline="1334">Equation_base::domaine_application</references>
+        <references refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" compoundref="Cond__lim__base_8cpp" startline="200" endline="204">err_pas_compatible</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classFrontiere__ouverte__rho__u__impose_1afdf148e9ee802060f058e8a503b8f785" compoundref="Frontiere__ouverte__rho__u__impose_8cpp" startline="34" endline="43">Frontiere_ouverte_rho_u_impose::compatible_avec_eqn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::completer</definition>
+        <argsstring>()</argsstring>
+        <name>completer</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a2dcfa32550d67c7faeff1712f6b7baa6">completer</reimplementedby>
+        <reimplementedby refid="classDirichlet__paroi__defilante_1a6a5940234239029d5bcaa13a82957d4f">completer</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053">completer</reimplementedby>
+        <reimplementedby refid="classPeriodique_1a0f203cee2e1e299d951a988f1897705f">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__PolyMAC_1afcc2c9ce25ee0aa2603858020cfff17e">completer</reimplementedby>
+        <reimplementedby refid="classEchange__externe__impose__H_1aa2258037a8911f8d4ab722a5d4537855">completer</reimplementedby>
+        <reimplementedby refid="classEntree__fluide__temperature__imposee__H_1a8a6c335d993f7e111d35b7fe9b06d2ec">completer</reimplementedby>
+        <reimplementedby refid="classFrontiere__ouverte__rho__u__impose_1a18696d6ff5411ffac4616f4b4e7c98d0">completer</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre__Temp__H_1a81ffc80c68baf2c666ad8a8b5e1f0a9b">completer</reimplementedby>
+        <reimplementedby refid="classTemperature__imposee__paroi__H_1a2cb13c095af4f44880a00c657c245868">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__pression__imposee__QC_1ad57ef3d32052d0e2059068bcc6521586">completer</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a84079f430af6d44152233376b0131836">completer</reimplementedby>
+        <reimplementedby refid="classParoi__Knudsen__non__negligeable_1af6821495724a744860f9db30a0d66273">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__pression__imposee_1a418dd843edbe7e36fc9070012913153e">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__pression__moyenne__imposee_1ae7cf282c56694fdf6bda75e0f9941864">completer</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908">completer</reimplementedby>
+        <reimplementedby refid="classEchange__interne__global__impose_1ac08602ea1f4e419007a80f03a52ce353">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VDF_1a814dc72824adcc34af7d09b66d174ab2">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a15dddbbb8258d691fc18ba2827a2e8ef">completer</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1aad43c20c4781231512ae178e9f4f85f9">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose_1a47a5afebc475a46f81c829dbbae55231">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Pression__imposee__Orlansky_1a16b6558ba7607520ba9d39e63da169f7">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VEF_1aa42f794b75fcda3b9755a0c12fb416e6">completer</reimplementedby>
+        <reimplementedby refid="classRobin__VEF_1a6fd8dbbb0a339de9f35b8b0df170a09f">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a8a87ffa46d3855de48c4d8227e30ff1d">completer</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1ad7cff6d7284c5dfb2880ab2b1cae903d">completer</reimplementedby>
+        <briefdescription>
+<para>NE FAIT RIEN A surcharger dans les classes derivees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="41" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="31" bodyend="34"/>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <references refid="classChamp__front__base_1ad04b4cde76e09145457dfc6e141ae0fb" compoundref="Champ__front__base_8h" startline="80" endline="80">Champ_front_base::completer</references>
+        <referencedby refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" compoundref="Echange__global__impose_8cpp" startline="220" endline="235">Echange_global_impose::completer</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1afcc2c9ce25ee0aa2603858020cfff17e" compoundref="Echange__contact__PolyMAC_8cpp" startline="47" endline="52">Echange_contact_PolyMAC::completer</referencedby>
+        <referencedby refid="classEchange__externe__impose__H_1aa2258037a8911f8d4ab722a5d4537855" compoundref="Echange__externe__impose__H_8cpp" startline="36" endline="41">Echange_externe_impose_H::completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a814dc72824adcc34af7d09b66d174ab2" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="145" endline="183">Echange_contact_Correlation_VDF::completer</referencedby>
+        <referencedby refid="classEchange__interne__impose_1aad43c20c4781231512ae178e9f4f85f9" compoundref="Echange__interne__impose_8cpp" startline="118" endline="132">Echange_interne_impose::completer</referencedby>
+        <referencedby refid="classRobin__VEF_1a6fd8dbbb0a339de9f35b8b0df170a09f" compoundref="Robin__VEF_8cpp" startline="56" endline="68">Robin_VEF::completer</referencedby>
+        <referencedby refid="classTerme__Source__Th__TdivU__VEF__Face_1a01daba5fc2eead6ff6b77bcf1c843eee" compoundref="Terme__Source__Th__TdivU__VEF__Face_8cpp" startline="92" endline="145">Terme_Source_Th_TdivU_VEF_Face::modifier_domaine_cl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        <definition>Domaine_Cl_dis_base &amp; Cond_lim_base::domaine_Cl_dis</definition>
+        <argsstring>()</argsstring>
+        <name>domaine_Cl_dis</name>
+        <briefdescription>
+<para>Renvoie le domaine des conditions aux limites discretisee dont l&apos;objet fait partie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(<ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref>&amp;) le domaine des conditions aux limites discretisee dont l&apos;objet fait partie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="50" column="30" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="110" bodyend="113"/>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a0eb5f3459477915c7aa5b407a1c0df27" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="374" endline="416">Echange_contact_Correlation_VDF::calculer_CL</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a5fa93272d920816ea88b331e8ff7bb8a" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="296" endline="338">Echange_contact_Correlation_VEF::calculer_CL</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a655503d845e7d455bc8fbedadaf457bb" compoundref="Echange__contact__VDF_8cpp" startline="242" endline="272">Echange_contact_VDF::calculer_h_autre_pb</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a2040068e6ee2e740ad11c78e72fbe6c3" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="130" endline="138">Echange_contact_Correlation_VDF::calculer_h_mon_pb</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1aff4430cdf64d02f520dac1f7474b3655" compoundref="Echange__contact__VDF_8cpp" startline="232" endline="240">Echange_contact_VDF::calculer_h_mon_pb</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1af286e4ae41b339e169fded700260648c" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="151" endline="202">Echange_contact_Correlation_VEF::calculer_h_solide</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a00bf4023bb0567241fbc62054ed39890" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="254" endline="278">Echange_contact_Correlation_VDF::calculer_Q</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1ae4c7e5711bed76bab63a23709cb6ed27" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="373" endline="397">Echange_contact_Correlation_VEF::calculer_Q</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1af6209ce072d8d5b1d941d78c3c7ed293" compoundref="Echange__contact__VDF_8cpp" startline="399" endline="420">Echange_contact_VDF::calculer_Teta_paroi</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1ae9ed7c352914afaedba8f5265aec73a5" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="432" endline="476">Echange_contact_Correlation_VDF::calculer_Tfluide</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a92b24a8c00f7bc70d05e5d6514cb5cfd" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="575" endline="620">Echange_contact_Correlation_VEF::calculer_Tfluide</referencedby>
+        <referencedby refid="classPeriodique_1a0f203cee2e1e299d951a988f1897705f" compoundref="Periodique_8cpp" startline="35" endline="141">Periodique::completer</referencedby>
+        <referencedby refid="classParoi__Knudsen__non__negligeable_1af6821495724a744860f9db30a0d66273" compoundref="Paroi__Knudsen__non__negligeable_8cpp" startline="58" endline="75">Paroi_Knudsen_non_negligeable::completer</referencedby>
+        <referencedby refid="classEchange__interne__global__impose_1ac08602ea1f4e419007a80f03a52ce353" compoundref="Echange__interne__global__impose_8cpp" startline="82" endline="129">Echange_interne_global_impose::completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a814dc72824adcc34af7d09b66d174ab2" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="145" endline="183">Echange_contact_Correlation_VDF::completer</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a15dddbbb8258d691fc18ba2827a2e8ef" compoundref="Echange__contact__VDF_8cpp" startline="55" endline="62">Echange_contact_VDF::completer</referencedby>
+        <referencedby refid="classEchange__interne__impose_1aad43c20c4781231512ae178e9f4f85f9" compoundref="Echange__interne__impose_8cpp" startline="118" endline="132">Echange_interne_impose::completer</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose_1a47a5afebc475a46f81c829dbbae55231" compoundref="Sortie__libre__Gradient__Pression__impose_8cpp" startline="41" endline="71">Sortie_libre_Gradient_Pression_impose::completer</referencedby>
+        <referencedby refid="classSortie__libre__Pression__imposee__Orlansky_1a16b6558ba7607520ba9d39e63da169f7" compoundref="Sortie__libre__Pression__imposee__Orlansky_8cpp" startline="43" endline="85">Sortie_libre_Pression_imposee_Orlansky::completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1aa42f794b75fcda3b9755a0c12fb416e6" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="210" endline="285">Echange_contact_Correlation_VEF::completer</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a8a87ffa46d3855de48c4d8227e30ff1d" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="44" endline="63">Sortie_libre_Gradient_Pression_libre_VEF::completer</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1ad7cff6d7284c5dfb2880ab2b1cae903d" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="43" endline="91">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::completer</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a85859426457e96472ecba5b10b830ea3" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="128" endline="173">Sortie_libre_Gradient_Pression_libre_VEF::flux_impose</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1aacfe1cc860935de5e1f17ee71a8aceb9" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="731" endline="817">Echange_contact_Correlation_VDF::imprimer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a8a8e7bdf218637a325d2f965f17bf2f1" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="859" endline="956">Echange_contact_Correlation_VEF::imprimer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a0b4f74b4b37252273fe449c99c3f3ae0" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="401" endline="559">Echange_contact_Correlation_VEF::init</referencedby>
+        <referencedby refid="classCouplage__Parietal__PolyMAC__helper_1a43ae93387af15abd00504f99e835eb59" compoundref="Couplage__Parietal__PolyMAC__helper_8cpp" startline="74" endline="253">Couplage_Parietal_PolyMAC_helper::init_op_ext</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a2b39754cb042fee141bea2adaecdcb00" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="188" endline="219">Echange_contact_Correlation_VDF::init_tab_echange</referencedby>
+        <referencedby refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92" compoundref="Cond__lim__base_8cpp" startline="85" endline="88">initialiser</referencedby>
+        <referencedby refid="classDirichlet__loi__paroi_1abb92edc78134611a8cb9d73394a36f50" compoundref="Dirichlet__loi__paroi_8cpp" startline="53" endline="58">Dirichlet_loi_paroi::initialiser</referencedby>
+        <referencedby refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" compoundref="Echange__global__impose_8cpp" startline="105" endline="119">Echange_global_impose::initialiser</referencedby>
+        <referencedby refid="classEchange__impose__base_1a2f431bc81bc4e12f39bdc2e0c0b75a79" compoundref="Echange__impose__base_8cpp" startline="197" endline="204">Echange_impose_base::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a3ad2edd45d283f44d4cd12a39984def4" compoundref="Neumann__sortie__libre_8cpp" startline="132" endline="137">Neumann_sortie_libre::initialiser</referencedby>
+        <referencedby refid="classEchange__global__impose__turbulent_1a09e4ee26b3248fe5ddf9fdaca2b78572" compoundref="Echange__global__impose__turbulent_8cpp" startline="60" endline="74">Echange_global_impose_turbulent::initialiser</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">Echange_couplage_thermique::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a14ecbb753952a7e5ef06a5856ea65ab2" compoundref="Echange__contact__VDF_8cpp" startline="274" endline="345">Echange_contact_VDF::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a4a113b35f0d1a105653952fc61a9546b" compoundref="Sortie__libre__Gradient__Pression__impose__VEFPreP1B_8cpp" startline="37" endline="62">Sortie_libre_Gradient_Pression_impose_VEFPreP1B::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a23349943204b90ad4e5e126d9244086a" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="65" endline="109">Sortie_libre_Gradient_Pression_libre_VEF::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1adb8fbd67d134ee06d035f3f6f031116c" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="710" endline="725">Echange_contact_Correlation_VDF::limpr</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1ae330c70eb893b8250d1150fa1ca28a72" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="838" endline="853">Echange_contact_Correlation_VEF::limpr</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a38be589c066dd71ac423b64377b0c3f9" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="123" endline="222">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a77e168961e77113e3c7002d16a6cff6c" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="484" endline="660">Echange_contact_Correlation_VDF::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1afef2dc6786ee98f1896f46d62ba12aa5" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="706" endline="832">Echange_contact_Correlation_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classDomaine__VDF_1aa8f75c4e123886c4c7bd24709afbc150" compoundref="Domaine__VDF_8cpp" startline="619" endline="933">Domaine_VDF::modifier_pour_Cl</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1aeed7238e7b0fe9a3f13caa4dc71620c9" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="282" endline="355">Echange_contact_Correlation_VDF::trier_coord</referencedby>
+        <referencedby refid="classDirichlet_1a8390a0916bc2156706a5a633bc21249c" compoundref="Dirichlet_8cpp" startline="111" endline="119">Dirichlet::verifie_ch_init_nb_comp</referencedby>
+        <referencedby refid="classNeumann__paroi_1af1f381a88f35aa33b682a1d48c30fdff" compoundref="Neumann__paroi_8cpp" startline="37" endline="45">Neumann_paroi::verifie_ch_init_nb_comp</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a4f497ca9a623e2e40fdc70226020a45a" compoundref="Neumann__sortie__libre_8cpp" startline="93" endline="109">Neumann_sortie_libre::verifie_ch_init_nb_comp</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1ab9b22a9508b324e550d21b473ffcb3ee" compoundref="Echange__contact__VDF_8cpp" startline="423" endline="470">Echange_contact_VDF::verifier_correspondance</referencedby>
+        <referencedby refid="classEcrire__fichier__xyz__valeur_1a6f83c9a90d89e6956ca53c513c0d4a03" compoundref="Ecrire__fichier__xyz__valeur_8cpp" startline="154" endline="226">Ecrire_fichier_xyz_valeur::write_fields</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+        <definition>const Domaine_Cl_dis_base &amp; Cond_lim_base::domaine_Cl_dis</definition>
+        <argsstring>() const</argsstring>
+        <name>domaine_Cl_dis</name>
+        <briefdescription>
+<para>Renvoie le domaine des conditions aux limites discretisee dont l&apos;objet fait partie. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(version const)</para>
+<para><simplesect kind="return"><para>(<ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref>&amp;) le domaine des conditions aux limites discretisee dont l&apos;objet fait partie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="51" column="36" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="121" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::fixer_nb_valeurs_temporelles</definition>
+        <argsstring>(int nb_cases)</argsstring>
+        <name>fixer_nb_valeurs_temporelles</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a0fe86dde82db49d23419efe948c96495">fixer_nb_valeurs_temporelles</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1a49abe79a1bdd12ad8b45d8c895d87b73">fixer_nb_valeurs_temporelles</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a1144768e6ddab25dc0c4a678693c0ad3">fixer_nb_valeurs_temporelles</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1af9e11cba63afd7aed9b921fb64b547c7">fixer_nb_valeurs_temporelles</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a9ada68143814dac087d0d3e8ca3f000c">fixer_nb_valeurs_temporelles</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a097c2831019f19a557eec5c4f272fbcc">fixer_nb_valeurs_temporelles</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>nb_cases</declname>
+        </param>
+        <briefdescription>
+<para>Appele par <ref refid="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" kindref="member">Conds_lim::completer</ref> Appel cha_front_base::fixer_nb_valeurs_temporelles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="57" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="240" bodyend="243"/>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <references refid="classChamp__front__base_1aa2e0d14d4ea518dfd6eae588445ee1aa" compoundref="Champ__front__base_8cpp" startline="81" endline="83">Champ_front_base::fixer_nb_valeurs_temporelles</references>
+        <referencedby refid="classEchange__impose__base_1a49abe79a1bdd12ad8b45d8c895d87b73" compoundref="Echange__impose__base_8cpp" startline="215" endline="222">Echange_impose_base::fixer_nb_valeurs_temporelles</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1af9e11cba63afd7aed9b921fb64b547c7" compoundref="Neumann__sortie__libre_8cpp" startline="188" endline="192">Neumann_sortie_libre::fixer_nb_valeurs_temporelles</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>Frontiere_dis_base &amp; Cond_lim_base::frontiere_dis</definition>
+        <argsstring>()</argsstring>
+        <name>frontiere_dis</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1ab2840cb2f4633f89d4ed8b039f9d83e9">frontiere_dis</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a5fe5fa70e740c8c65e61e96e70706ae3">frontiere_dis</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a1f3a2ab45964f7508b022491f293264b">frontiere_dis</reimplementedby>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="47" column="37" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="90" bodyend="93"/>
+        <referencedby refid="classOp__Conv__VEF__Face_1ad531752b777eaeb508d8ff71f3dab071" compoundref="Op__Conv__VEF__Face_8cpp" startline="156" endline="1005">Op_Conv_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Diff__PolyMAC__Elem_1addc4c34cfe04225140b65951d4808772" compoundref="Op__Diff__PolyMAC__Elem_8cpp" startline="206" endline="242">Op_Diff_PolyMAC_Elem::ajouter_termes_croises</referencedby>
+        <referencedby refid="classNavier__Stokes__Fluide__Dilatable__Proto_1a11534759c877a66e685dfa93eec9643e" compoundref="Navier__Stokes__Fluide__Dilatable__Proto_8cpp" startline="158" endline="244">Navier_Stokes_Fluide_Dilatable_Proto::assembler_avec_inertie_impl</referencedby>
+        <referencedby refid="classChamp__front__contact__VEF_1a14a9d12414f9e6b81d620b97e5e7a8b6" compoundref="Champ__front__contact__VEF_8cpp" startline="576" endline="605">Champ_front_contact_VEF::associer_front_vf_et_ch_front_autre_pb</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a655503d845e7d455bc8fbedadaf457bb" compoundref="Echange__contact__VDF_8cpp" startline="242" endline="272">Echange_contact_VDF::calculer_h_autre_pb</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a2040068e6ee2e740ad11c78e72fbe6c3" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="130" endline="138">Echange_contact_Correlation_VDF::calculer_h_mon_pb</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1aff4430cdf64d02f520dac1f7474b3655" compoundref="Echange__contact__VDF_8cpp" startline="232" endline="240">Echange_contact_VDF::calculer_h_mon_pb</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1af286e4ae41b339e169fded700260648c" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="151" endline="202">Echange_contact_Correlation_VEF::calculer_h_solide</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a00bf4023bb0567241fbc62054ed39890" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="254" endline="278">Echange_contact_Correlation_VDF::calculer_Q</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1ae4c7e5711bed76bab63a23709cb6ed27" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="373" endline="397">Echange_contact_Correlation_VEF::calculer_Q</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a6801d66ce96d786d89438f1f68dccb9c" compoundref="Echange__contact__VDF_8cpp" startline="382" endline="394">Echange_contact_VDF::calculer_Teta_equiv</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1af6209ce072d8d5b1d941d78c3c7ed293" compoundref="Echange__contact__VDF_8cpp" startline="399" endline="420">Echange_contact_VDF::calculer_Teta_paroi</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1af8aa0a3816a103eac4998b21f7e5d266" compoundref="Sortie__libre__Gradient__Pression__impose__VEFPreP1B_8cpp" startline="75" endline="91">Sortie_libre_Gradient_Pression_impose_VEFPreP1B::calculer_trace_pression</referencedby>
+        <referencedby refid="classEquation__base_1a68c77bfc9fb39474ddc481495710c40e" compoundref="Equation__base_8cpp" startline="134" endline="203">Equation_base::completer</referencedby>
+        <referencedby refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" compoundref="Echange__global__impose_8cpp" startline="220" endline="235">Echange_global_impose::completer</referencedby>
+        <referencedby refid="classPeriodique_1a0f203cee2e1e299d951a988f1897705f" compoundref="Periodique_8cpp" startline="35" endline="141">Periodique::completer</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1afcc2c9ce25ee0aa2603858020cfff17e" compoundref="Echange__contact__PolyMAC_8cpp" startline="47" endline="52">Echange_contact_PolyMAC::completer</referencedby>
+        <referencedby refid="classSortie__libre__pression__moyenne__imposee_1ae7cf282c56694fdf6bda75e0f9941864" compoundref="Sortie__libre__pression__moyenne__imposee_8cpp" startline="44" endline="72">Sortie_libre_pression_moyenne_imposee::completer</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908" compoundref="Echange__couplage__thermique_8cpp" startline="63" endline="111">Echange_couplage_thermique::completer</referencedby>
+        <referencedby refid="classEchange__interne__global__impose_1ac08602ea1f4e419007a80f03a52ce353" compoundref="Echange__interne__global__impose_8cpp" startline="82" endline="129">Echange_interne_global_impose::completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a814dc72824adcc34af7d09b66d174ab2" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="145" endline="183">Echange_contact_Correlation_VDF::completer</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a15dddbbb8258d691fc18ba2827a2e8ef" compoundref="Echange__contact__VDF_8cpp" startline="55" endline="62">Echange_contact_VDF::completer</referencedby>
+        <referencedby refid="classEchange__interne__impose_1aad43c20c4781231512ae178e9f4f85f9" compoundref="Echange__interne__impose_8cpp" startline="118" endline="132">Echange_interne_impose::completer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1aa42f794b75fcda3b9755a0c12fb416e6" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="210" endline="285">Echange_contact_Correlation_VEF::completer</referencedby>
+        <referencedby refid="classDomaine__Cl__VDF_1a000c04a8388e2cc421533d0145241acd" compoundref="Domaine__Cl__VDF_8cpp" startline="47" endline="342">Domaine_Cl_VDF::completer</referencedby>
+        <referencedby refid="classDomaine__VEF_1ae1266cc6ac4b2d203a1c1b5e63e9b274" compoundref="Domaine__VEF_8cpp" startline="649" endline="779">Domaine_VEF::construire_renum_arete_perio</referencedby>
+        <referencedby refid="classOp__Diff__PolyMAC__Elem_1a3a40e2ebb117f3d19b387d601d3ae06f" compoundref="Op__Diff__PolyMAC__Elem_8cpp" startline="244" endline="269">Op_Diff_PolyMAC_Elem::contribuer_termes_croises</referencedby>
+        <referencedby refid="classOp__Diff__VDF__Elem__base_1a2a78291f35878d9e37c4fb4f1c6ad75e" compoundref="Op__Diff__VDF__Elem__base_8cpp" startline="87" endline="113">Op_Diff_VDF_Elem_base::contribuer_termes_croises</referencedby>
+        <referencedby refid="classOp__EF__base_1a02c1c59b5a095c755148dece5492900a" compoundref="Op__EF__base_8cpp" startline="49" endline="243">Op_EF_base::dimensionner</referencedby>
+        <referencedby refid="classOp__Diff__PolyMAC__Elem_1a3866cad60a4f663225fb2509f8f1e38b" compoundref="Op__Diff__PolyMAC__Elem_8cpp" startline="178" endline="204">Op_Diff_PolyMAC_Elem::dimensionner_termes_croises</referencedby>
+        <referencedby refid="classOp__Diff__VDF__Elem__base_1a42fc744f5e6fb65f8d9b9a8d5d6f9607" compoundref="Op__Diff__VDF__Elem__base_8cpp" startline="115" endline="144">Op_Diff_VDF_Elem_base::dimensionner_termes_croises</referencedby>
+        <referencedby refid="classEchange__impose__base_1aa3a82262943a73a064bdf27e714b45b7" compoundref="Echange__impose__base_8cpp" startline="310" endline="334">Echange_impose_base::eps</referencedby>
+        <referencedby refid="classNeumann_1a5eab7524990e49b92f36b16e10e0149b" compoundref="Neumann_8cpp" startline="67" endline="96">Neumann::flux_impose</referencedby>
+        <referencedby refid="classRobin__VEF_1a7b0c437a5f6d49baf93c9e2d4c192b9b" compoundref="Robin__VEF_8cpp" startline="144" endline="159">Robin_VEF::flux_robin_normal_imp</referencedby>
+        <referencedby refid="classRobin__VEF_1a24e59778a9e3da2a879ff918f4bdcb2f" compoundref="Robin__VEF_8cpp" startline="170" endline="185">Robin_VEF::flux_robin_tangentiel_imp</referencedby>
+        <referencedby refid="classEchange__impose__base_1a155bbdb292e0bc458b8b5114ac6fffed" compoundref="Echange__impose__base_8cpp" startline="284" endline="308">Echange_impose_base::himp</referencedby>
+        <referencedby refid="classDomaine__Cl__EF_1ac0c999df8f51d8a672cec622cfa9cdcb" compoundref="Domaine__Cl__EF_8cpp" startline="600" endline="737">Domaine_Cl_EF::imposer_cond_lim</referencedby>
+        <referencedby refid="classDomaine__Cl__PolyMAC_1addda2387ad4516207796fe5dddcc14c3" compoundref="Domaine__Cl__PolyMAC_8cpp" startline="45" endline="146">Domaine_Cl_PolyMAC::imposer_cond_lim</referencedby>
+        <referencedby refid="classDomaine__Cl__VDF_1a0c77b16b93c733bb0c02ecf0454a4a7e" compoundref="Domaine__Cl__VDF_8cpp" startline="347" endline="442">Domaine_Cl_VDF::imposer_cond_lim</referencedby>
+        <referencedby refid="classDomaine__Cl__VEF_1a2ae01067be545a4b653567f820a35fcf" compoundref="Domaine__Cl__VEF_8cpp" startline="362" endline="670">Domaine_Cl_VEF::imposer_cond_lim</referencedby>
+        <referencedby refid="classDomaine__Cl__EF_1ab2788dec23d3e338c20167f774c5877f" compoundref="Domaine__Cl__EF_8cpp" startline="350" endline="419">Domaine_Cl_EF::imposer_symetrie_partiellement</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1aacfe1cc860935de5e1f17ee71a8aceb9" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="731" endline="817">Echange_contact_Correlation_VDF::imprimer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a8a8e7bdf218637a325d2f965f17bf2f1" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="859" endline="956">Echange_contact_Correlation_VEF::imprimer</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1a0b4f74b4b37252273fe449c99c3f3ae0" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="401" endline="559">Echange_contact_Correlation_VEF::init</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">Echange_couplage_thermique::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a14ecbb753952a7e5ef06a5856ea65ab2" compoundref="Echange__contact__VDF_8cpp" startline="274" endline="345">Echange_contact_VDF::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a23349943204b90ad4e5e126d9244086a" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="65" endline="109">Sortie_libre_Gradient_Pression_libre_VEF::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a92175158ee7c435fb044a920fbf8dd18" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="93" endline="121">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::initialiser</referencedby>
+        <referencedby refid="classDomaine__Cl__dis__base_1a63319d6ca6e2698e45937224f3d6cf33" compoundref="Domaine__Cl__dis__base_8cpp" startline="449" endline="476">Domaine_Cl_dis_base::la_cl_de_la_face</referencedby>
+        <referencedby refid="classAssembleur__P__VDF_1a48da6c5fc5769465a659da41fab00812" compoundref="Assembleur__P__VDF_8cpp" startline="57" endline="94">Assembleur_P_VDF::liste_faces_periodiques</referencedby>
+        <referencedby refid="classDomaine__VF_1aff30082ba77110ff97258260a1a318c6" compoundref="Domaine__VF_8cpp" startline="638" endline="690">Domaine_VF::marquer_faces_double_contrib</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a442fc12681ed48db7a41e08b8ff72b3a" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="111" endline="126">Sortie_libre_Gradient_Pression_libre_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a38be589c066dd71ac423b64377b0c3f9" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="123" endline="222">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__interne__impose_1a0d35a600e593b7804b75f8abb5519da1" compoundref="Echange__interne__impose_8cpp" startline="164" endline="199">Echange_interne_impose::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a77e168961e77113e3c7002d16a6cff6c" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="484" endline="660">Echange_contact_Correlation_VDF::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose_1aab5eb64f33bc726bcaf6cbefbc636ebd" compoundref="Sortie__libre__Gradient__Pression__impose_8cpp" startline="73" endline="85">Sortie_libre_Gradient_Pression_impose::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Pression__imposee__Orlansky_1ad47468a9213c88f451bb63924be3730b" compoundref="Sortie__libre__Pression__imposee__Orlansky_8cpp" startline="87" endline="206">Sortie_libre_Pression_imposee_Orlansky::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1afef2dc6786ee98f1896f46d62ba12aa5" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="706" endline="832">Echange_contact_Correlation_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classDomaine__EF_1a3d78afe9127ca550f690ec39279130dd" compoundref="Domaine__EF_8cpp" startline="704" endline="799">Domaine_EF::modifier_pour_Cl</referencedby>
+        <referencedby refid="classDomaine__Poly__base_1a344dc28b79207094f3d26ff5798cd591" compoundref="Domaine__Poly__base_8cpp" startline="409" endline="490">Domaine_Poly_base::modifier_pour_Cl</referencedby>
+        <referencedby refid="classDomaine__VF_1a7f0cd705cc4ec2ac3a032335f1d30827" compoundref="Domaine__VF_8cpp" startline="447" endline="503">Domaine_VF::modifier_pour_Cl</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1acd565cc8c498a8d2bf0fac62609b353d" compoundref="Domaine__PolyMAC_8cpp" startline="214" endline="295">Domaine_PolyMAC::modifier_pour_Cl</referencedby>
+        <referencedby refid="classDomaine__VEF_1a37545d35151556781bb17e3ba747e6aa" compoundref="Domaine__VEF_8cpp" startline="1056" endline="1194">Domaine_VEF::modifier_pour_Cl</referencedby>
+        <referencedby refid="classDomaine__VDF_1aa8f75c4e123886c4c7bd24709afbc150" compoundref="Domaine__VDF_8cpp" startline="619" endline="933">Domaine_VDF::modifier_pour_Cl</referencedby>
+        <referencedby refid="classOp__VEF__Face_1af98c1a1c0e887dd97c06fe5c1c7682bc" compoundref="Op__VEF__Face_8cpp" startline="168" endline="336">Op_VEF_Face::modifier_pour_Cl</referencedby>
+        <referencedby refid="classAssembleur__P__EF_1af1241e3076764c6ab72bddee6df119d4" compoundref="Assembleur__P__EF_8cpp" startline="474" endline="527">Assembleur_P_EF::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__PolyMAC_1a63b8af8c331e55bd3f81a5d116b0fda2" compoundref="Assembleur__P__PolyMAC_8cpp" startline="215" endline="269">Assembleur_P_PolyMAC::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VDF_1a44ad326fcee9e70eea8f87dc3b2aa939" compoundref="Assembleur__P__VDF_8cpp" startline="478" endline="528">Assembleur_P_VDF::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEF_1aef0a0c6f1cec93453fc2b4a699c4cf26" compoundref="Assembleur__P__VEF_8cpp" startline="587" endline="652">Assembleur_P_VEF::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1aba42f939c150d8962fd2df72cc47f49e" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="400" endline="523">Assembleur_P_VEFPreP1B::modifier_secmem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1a68c56f1db1d79a34135f8f46c293dc83" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="525" endline="561">Assembleur_P_VEFPreP1B::modifier_secmem_elem</referencedby>
+        <referencedby refid="classAssembleur__P__VEFPreP1B_1a6e9aef242858ae25dde40c58c30791b8" compoundref="Assembleur__P__VEFPreP1B_8cpp" startline="563" endline="650">Assembleur_P_VEFPreP1B::modifier_secmem_som</referencedby>
+        <referencedby refid="classAssembleur__P__VDF_1ae6419915244b87d5c8f186d7c4fc1992" compoundref="Assembleur__P__VDF_8cpp" startline="281" endline="466">Assembleur_P_VDF::remplir</referencedby>
+        <referencedby refid="classEDO__Pression__th__VDF__Gaz__Parfait_1a33a0c44677b9804c4d3d3553654a5873" compoundref="EDO__Pression__th__VDF__Gaz__Parfait_8cpp" startline="38" endline="212">EDO_Pression_th_VDF_Gaz_Parfait::resoudre</referencedby>
+        <referencedby refid="classDirichlet_1aea3f33ec4c37302f7750afd675f5cd63" compoundref="Dirichlet_8cpp" startline="73" endline="97">Dirichlet::tab_val_imp</referencedby>
+        <referencedby refid="classFrontiere__ouverte__rho__u__impose_1a649e29c56b3664ed2416bd2882b83d28" compoundref="Frontiere__ouverte__rho__u__impose_8cpp" startline="68" endline="100">Frontiere_ouverte_rho_u_impose::tab_val_imp</referencedby>
+        <referencedby refid="classEchange__impose__base_1af7155f4ed887bd54d857e94a69262280" compoundref="Echange__impose__base_8cpp" startline="258" endline="282">Echange_impose_base::text</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1aeed7238e7b0fe9a3f13caa4dc71620c9" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="282" endline="355">Echange_contact_Correlation_VDF::trier_coord</referencedby>
+        <referencedby refid="classEchange__interne__impose_1a7dd05c442aa75598c0d376d8b0f808ec" compoundref="Echange__interne__impose_8cpp" startline="142" endline="162">Echange_interne_impose::update_inv_lambda</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a197196dc863fb50c4d6ea45f01cf1e0b" compoundref="Neumann__sortie__libre_8cpp" startline="161" endline="176">Neumann_sortie_libre::val_ext</referencedby>
+        <referencedby refid="classChamp__Face__VDF_1a6a3188431f4b405df2c0f0f5b34a5361" compoundref="Champ__Face__VDF_8cpp" startline="178" endline="210">Champ_Face_VDF::verifie_valeurs_cl</referencedby>
+        <referencedby refid="classChamp__P1NC_1a6a5999150ed8f47611f90ce483e94a75" compoundref="Champ__P1NC_8cpp" startline="366" endline="402">Champ_P1NC::verifie_valeurs_cl</referencedby>
+        <referencedby refid="classChamp__Q1NC_1aa93def1413e802cc808d0433595c15e8" compoundref="Champ__Q1NC_8cpp" startline="34" endline="70">Champ_Q1NC::verifie_valeurs_cl</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1ab9b22a9508b324e550d21b473ffcb3ee" compoundref="Echange__contact__VDF_8cpp" startline="423" endline="470">Echange_contact_VDF::verifier_correspondance</referencedby>
+        <referencedby refid="classEcrire__fichier__xyz__valeur_1a6f83c9a90d89e6956ca53c513c0d4a03" compoundref="Ecrire__fichier__xyz__valeur_8cpp" startline="154" endline="226">Ecrire_fichier_xyz_valeur::write_fields</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>const Frontiere_dis_base &amp; Cond_lim_base::frontiere_dis</definition>
+        <argsstring>() const</argsstring>
+        <name>frontiere_dis</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1aac14ff5446bf2eb351a8c87c49e14c52">frontiere_dis</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1aa398e540d4afc55af81c613440227efc">frontiere_dis</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a392dd73c1a4e39cd1d79db23f160f74a">frontiere_dis</reimplementedby>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(version const)</para>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="48" column="43" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="101" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::initialiser</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>initialiser</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1abb92edc78134611a8cb9d73394a36f50">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1a2f431bc81bc4e12f39bdc2e0c0b75a79">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5">initialiser</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a3ad2edd45d283f44d4cd12a39984def4">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a09e4ee26b3248fe5ddf9fdaca2b78572">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a14ecbb753952a7e5ef06a5856ea65ab2">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a54c5dc5e7445626fdfdcf64c5566d51d">initialiser</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a4a113b35f0d1a105653952fc61a9546b">initialiser</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a23349943204b90ad4e5e126d9244086a">initialiser</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a92175158ee7c435fb044a920fbf8dd18">initialiser</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1af7a6bececdc66f48eabd86d51ba919e2">initialiser</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="42" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="85" bodyend="88"/>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">domaine_Cl_dis</references>
+        <referencedby refid="classEchange__impose__base_1a2f431bc81bc4e12f39bdc2e0c0b75a79" compoundref="Echange__impose__base_8cpp" startline="197" endline="204">Echange_impose_base::initialiser</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a3ad2edd45d283f44d4cd12a39984def4" compoundref="Neumann__sortie__libre_8cpp" startline="132" endline="137">Neumann_sortie_libre::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a4a113b35f0d1a105653952fc61a9546b" compoundref="Sortie__libre__Gradient__Pression__impose__VEFPreP1B_8cpp" startline="37" endline="62">Sortie_libre_Gradient_Pression_impose_VEFPreP1B::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a23349943204b90ad4e5e126d9244086a" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="65" endline="109">Sortie_libre_Gradient_Pression_libre_VEF::initialiser</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a92175158ee7c435fb044a920fbf8dd18" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="93" endline="121">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::injecter_dans_champ_inc</definition>
+        <argsstring>(const Champ_Inc_base &amp;) const</argsstring>
+        <name>injecter_dans_champ_inc</name>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="62" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="223" bodyend="229"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::mettre_a_jour</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplementedby refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classPeriodique_1a7882493a544bd92faadb113f2b74876b">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__PolyMAC__P0P1NC_1a673797ca4a4c0ec43e4f9923a1567249">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a156222fbc7dbe2636a639429392de301">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab923c04395889d622d0024b45b48d9cf">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classRobin__VEF_1aaea0e80aeef5cacb092f311562de152e">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a442fc12681ed48db7a41e08b8ff72b3a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a38be589c066dd71ac423b64377b0c3f9">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a2b43bd0b327c47b53e5fe72ef2fe05e3">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a9bb8f2481fb176f471e43d477970f08a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a0d35a600e593b7804b75f8abb5519da1">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1ace6c3be28b71c197eda13938039e82dc">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__PolyMAC_1a0db2ab7fed84e08be023b0cb6d3b88ba">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__pression__moyenne__imposee_1a28a5f84c31192156f4fab7a67fb086f4">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VDF_1a77e168961e77113e3c7002d16a6cff6c">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a8e63158db1c7c3ade6a4afc56bb6b06a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classPlaqThVDF_1a748d4a618b49243506a118415ffb4fc4">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose_1aab5eb64f33bc726bcaf6cbefbc636ebd">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Pression__imposee__Orlansky_1ad47468a9213c88f451bb63924be3730b">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VEF_1afef2dc6786ee98f1896f46d62ba12aa5">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a749c27e46e3052ab29f77d3e60627591">mettre_a_jour</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de la condition aux limites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="43" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="94" bodyend="97"/>
+        <referencedby refid="classNeumann__sortie__libre_1a156222fbc7dbe2636a639429392de301" compoundref="Neumann__sortie__libre_8cpp" startline="194" endline="198">Neumann_sortie_libre::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a442fc12681ed48db7a41e08b8ff72b3a" compoundref="Sortie__libre__Gradient__Pression__libre__VEF_8cpp" startline="111" endline="126">Sortie_libre_Gradient_Pression_libre_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a38be589c066dd71ac423b64377b0c3f9" compoundref="Sortie__libre__Gradient__Pression__libre__VEFPreP1B_8cpp" startline="123" endline="222">Sortie_libre_Gradient_Pression_libre_VEFPreP1B::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__impose__base_1ace6c3be28b71c197eda13938039e82dc" compoundref="Echange__impose__base_8cpp" startline="188" endline="195">Echange_impose_base::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__pression__moyenne__imposee_1a28a5f84c31192156f4fab7a67fb086f4" compoundref="Sortie__libre__pression__moyenne__imposee_8cpp" startline="77" endline="111">Sortie_libre_pression_moyenne_imposee::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose_1aab5eb64f33bc726bcaf6cbefbc636ebd" compoundref="Sortie__libre__Gradient__Pression__impose_8cpp" startline="73" endline="85">Sortie_libre_Gradient_Pression_impose::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Pression__imposee__Orlansky_1ad47468a9213c88f451bb63924be3730b" compoundref="Sortie__libre__Pression__imposee__Orlansky_8cpp" startline="87" endline="206">Sortie_libre_Pression_imposee_Orlansky::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VEF_1afef2dc6786ee98f1896f46d62ba12aa5" compoundref="Echange__contact__Correlation__VEF_8cpp" startline="706" endline="832">Echange_contact_Correlation_VEF::mettre_a_jour</referencedby>
+        <referencedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a749c27e46e3052ab29f77d3e60627591" compoundref="Sortie__libre__Gradient__Pression__impose__VEFPreP1B_8cpp" startline="64" endline="72">Sortie_libre_Gradient_Pression_impose_VEFPreP1B::mettre_a_jour</referencedby>
+        <referencedby refid="classDomaine__Cl__dis__base_1a0600017038bc99ef9875b240ccb39cc2" compoundref="Domaine__Cl__dis__base_8cpp" startline="246" endline="254">Domaine_Cl_dis_base::mettre_a_jour_ss_pas_dt</referencedby>
+        <referencedby refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" compoundref="Cond__lim__base_8cpp" startline="103" endline="106">resetTime</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ab794de2df961766849500b74e4012af4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Cond_lim_base::reculer</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>reculer</name>
+        <reimplementedby refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8">reculer</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1a947c9f066aa1ea5f6ec803dd0de50683">reculer</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a530d48dc97f8da8ea05218d304b0f47e">reculer</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab2b119841848fa7c9dd2ceb6c9447d99">reculer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a092a8d56e057d3f1bb3c7fb0da583ba6">reculer</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1a4e236e63361095c075fd41135e0da70c">reculer</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="70" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="71" bodyend="74"/>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <references refid="classChamp__front__base_1aae47e26ef5098e8bf5341c1acaea0aea" compoundref="Champ__front__base_8cpp" startline="150" endline="155">Champ_front_base::reculer</references>
+        <referencedby refid="classEchange__impose__base_1a947c9f066aa1ea5f6ec803dd0de50683" compoundref="Echange__impose__base_8cpp" startline="241" endline="248">Echange_impose_base::reculer</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a530d48dc97f8da8ea05218d304b0f47e" compoundref="Neumann__sortie__libre_8cpp" startline="217" endline="220">Neumann_sortie_libre::reculer</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a092a8d56e057d3f1bb3c7fb0da583ba6" compoundref="Echange__contact__VDF_8cpp" startline="86" endline="91">Echange_contact_VDF::reculer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::resetTime</definition>
+        <argsstring>(double time)</argsstring>
+        <name>resetTime</name>
+        <param>
+          <type>double</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="44" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="103" bodyend="106"/>
+        <references refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c" compoundref="Cond__lim__base_8cpp" startline="94" endline="97">mettre_a_jour</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::set_modifier_val_imp</definition>
+        <argsstring>(int)</argsstring>
+        <name>set_modifier_val_imp</name>
+        <param>
+          <type>int</type>
+          <defname>drap</defname>
+        </param>
+        <briefdescription>
+<para>Positionne le drapeau modifier_val_imp a la valeur donnee : - si drap == 1 : modifier_val_imp=1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><itemizedlist>
+<listitem><para>sinon : modifier_val_imp=0 Ce drapeau permet a la CL de savoir si elle doit renvoyer la valeur stockee telle quelle, ou si elle doit la traduire pour l&apos;objet appelant A la CL de savoir ensuite quelle traduction faire. Voir application dans <ref refid="classTemperature__imposee__paroi__H" kindref="compound">Temperature_imposee_paroi_H</ref>, ou la CL renvoie l&apos;enthalpie par defaut (modifier_val_imp=1), ou la temperature sinon (cas de l&apos;operateur de diffusion) Le drapeau est positionne dans le equation.derivee_en_temps_inco selon l&apos;operateur qui va etre appele</para>
+</listitem></itemizedlist>
+</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(drap)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>valeur a donner au drapeau </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="67" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="149" bodyend="153"/>
+        <references refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" compoundref="Cond__lim__base_8h" startline="83">modifier_val_imp</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::set_temps_defaut</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a5b4d547cf0b2b56dacd9165d8af6de2a">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__impose__base_1a4b959808eae5a8b41891a3d72c812b53">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1a63accc0c88b3e9c310f3033d1d681db1">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a6dfd5d0256aa515258b54671bfa06495">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1adf5bde6d08e8452eba112db6e37f230c">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1a168e903df18b9b86ad0d1c1fa8591c75">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1aa30bc536dfb03c63da820577283e50f5">set_temps_defaut</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="56" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="233" bodyend="236"/>
+        <references refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" compoundref="Cond__lim__base_8h" startline="126" endline="129">champ_front</references>
+        <references refid="classChamp__front__base_1a3f0dda84a3f962d5e7579b079893e1b8" compoundref="Champ__front__base_8h" startline="99" endline="99">Champ_front_base::set_temps_defaut</references>
+        <referencedby refid="classEchange__impose__base_1a4b959808eae5a8b41891a3d72c812b53" compoundref="Echange__impose__base_8cpp" startline="207" endline="214">Echange_impose_base::set_temps_defaut</referencedby>
+        <referencedby refid="classNeumann__sortie__libre_1a6dfd5d0256aa515258b54671bfa06495" compoundref="Neumann__sortie__libre_8cpp" startline="200" endline="204">Neumann_sortie_libre::set_temps_defaut</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::verifie_ch_init_nb_comp</definition>
+        <argsstring>() const</argsstring>
+        <name>verifie_ch_init_nb_comp</name>
+        <reimplementedby refid="classDirichlet_1a8390a0916bc2156706a5a633bc21249c">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classDirichlet__loi__paroi_1a3ff38e68325bd3069d55989f18f64718">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classEchange__externe__impose_1a78e46eb6b9925f25c0f35a5df775a671">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classNeumann__paroi_1af1f381a88f35aa33b682a1d48c30fdff">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classEchange__contact__PolyMAC__P0P1NC_1ab2cf341e2a06131841383a791a5575f6">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classFrottement__impose__base_1aea0f59866c3b1ac5470787a4bb39e4c4">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classNeumann__sortie__libre_1a4f497ca9a623e2e40fdc70226020a45a">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1aa8ceb2b2fde083eabe128f8191fa6467">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classEchange__interne__global__impose_1a41c9dc870fe32e094c9d926191c65c2f">verifie_ch_init_nb_comp</reimplementedby>
+        <reimplementedby refid="classEchange__interne__impose_1ae431f81b0030448dc5731db809d4c815">verifie_ch_init_nb_comp</reimplementedby>
+        <briefdescription>
+<para>Appel la verification du champ lu par l intermediaire de l equation pour laquelle on considere la condition limite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>La methode est surchargee dans les cas ou l utilisateur doit specifier le champ frontiere </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="46" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="143" bodyend="146"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::err_pas_compatible</definition>
+        <argsstring>(const Discretisation_base &amp;) const</argsstring>
+        <name>err_pas_compatible</name>
+        <param>
+          <type>const <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> &amp;</type>
+          <defname>discr</defname>
+        </param>
+        <briefdescription>
+<para>Cette methode est appelee quand la condition aux limites n&apos;est pas compatible avec la discretisation sur laquelle on essaye. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>de l&apos;appliquer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Discretisation_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>discr) la discretisation avec laquelle la condition aux limites est incompatible </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="80" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="212" bodyend="216"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Cond_lim_base::err_pas_compatible</definition>
+        <argsstring>(const Equation_base &amp;) const</argsstring>
+        <name>err_pas_compatible</name>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <briefdescription>
+<para>Cette methode est appelee quand la condition aux limites n&apos;est pas compatible avec l&apos;equation sur laquelle on essaye. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>de l&apos;appliquer.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Equation_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>eqn) l&apos;equation avec laquelle la condition aux limites est incompatible </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="79" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.cpp" bodystart="200" bodyend="204"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" compoundref="Cond__lim__base_8cpp" startline="180" endline="192">compatible_avec_discr</referencedby>
+        <referencedby refid="classEchange__interne__global__parfait_1aa85c8ff47bdfadf30a4eec980dd35b68" compoundref="Echange__interne__global__parfait_8cpp" startline="47" endline="56">Echange_interne_global_parfait::compatible_avec_discr</referencedby>
+        <referencedby refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" compoundref="Cond__lim__base_8cpp" startline="36" endline="50">compatible_avec_eqn</referencedby>
+        <referencedby refid="classDirichlet__loi__paroi_1a4e13ed3a2f051312a7a3319f5196f343" compoundref="Dirichlet__loi__paroi_8cpp" startline="37" endline="46">Dirichlet_loi_paroi::compatible_avec_eqn</referencedby>
+        <referencedby refid="classEchange__global__impose__turbulent_1a1173e087d20f3d13715cd294b7fea132" compoundref="Echange__global__impose__turbulent_8cpp" startline="44" endline="53">Echange_global_impose_turbulent::compatible_avec_eqn</referencedby>
+        <referencedby refid="classParoi__decalee__Robin_1a4e33a8833e9e06f82151761a4ee85463" compoundref="Paroi__decalee__Robin_8cpp" startline="38" endline="46">Paroi_decalee_Robin::compatible_avec_eqn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cond_lim_base::OBS_PTR</definition>
+        <argsstring>(Domaine_Cl_dis_base) mon_dom_cl_dis</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="78" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Cond_lim_base::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) le_champ_front</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="77" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> Classe de base pour la hierarchie des classes qui representent les differentes conditions aux limites (<ref refid="classDirichlet" kindref="compound">Dirichlet</ref>, <ref refid="classNeumann" kindref="compound">Neumann</ref> ...). </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Un objet condition aux limite sert a definir, pour une equation donnee, les conditions aux limites a appliquer sur une frontiere d&apos;un domaine.
+Chaque objet Cond_lim_base contient une reference vers l&apos;objet Domaine_Cl_dis_base dont il fait partie.
+Chaque objet contient egalement un objet OWN_PTR(Champ_front_base) contenant les valeurs a imposer sur la frontiere.
+</verbatim> <simplesect kind="see"><para><ref refid="classCond__lim" kindref="compound">Cond_lim</ref> <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>, Classe abstraite dont toutes les objets representant des conditions, aux limites doivent deriver., Methode abstraite:, int <ref refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" kindref="member">compatible_avec_eqn(const Equation_base&amp;) const</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="31">
+        <label>Echange_contact_Correlation_VEF</label>
+        <link refid="classEchange__contact__Correlation__VEF"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>Echange_externe_radiatif</label>
+        <link refid="classEchange__externe__radiatif"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Entree_fluide_alpha_impose</label>
+        <link refid="classEntree__fluide__alpha__impose"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Paroi_contact_fictif_rayo</label>
+        <link refid="classParoi__contact__fictif__rayo"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>Echange_contact_Correlation_VDF</label>
+        <link refid="classEchange__contact__Correlation__VDF"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="45">
+        <label>Echange_global_impose</label>
+        <link refid="classEchange__global__impose"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>Navier</label>
+        <link refid="classNavier"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Entree_fluide_vitesse_imposee</label>
+        <link refid="classEntree__fluide__vitesse__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>Symetrie</label>
+        <link refid="classSymetrie"/>
+        <childnode refid="55" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Frontiere_ouverte_rho_u_impose</label>
+        <link refid="classFrontiere__ouverte__rho__u__impose"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>Dirichlet_paroi_fixe_iso_Genepi2</label>
+        <link refid="classDirichlet__paroi__fixe__iso__Genepi2"/>
+        <childnode refid="34" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Paroi_flux_impose</label>
+        <link refid="classParoi__flux__impose"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>Dirichlet_homogene</label>
+        <link refid="classDirichlet__homogene"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="63">
+        <label>Neumann_val_ext</label>
+        <link refid="classNeumann__val__ext"/>
+        <childnode refid="61" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Entree_fluide_Fluctu_Temperature_imposee</label>
+        <link refid="classEntree__fluide__Fluctu__Temperature__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="67">
+        <label>Sortie_libre_Gradient_Pression_impose_VEF</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose__VEF"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="75">
+        <label>Sortie_libre_Text_H_ext</label>
+        <link refid="classSortie__libre__Text__H__ext"/>
+        <childnode refid="61" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Dirichlet_loi_paroi</label>
+        <link refid="classDirichlet__loi__paroi"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Echange_contact_PolyMAC_P0P1NC</label>
+        <link refid="classEchange__contact__PolyMAC__P0P1NC"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="57">
+        <label>Frottement_externe_impose</label>
+        <link refid="classFrottement__externe__impose"/>
+        <childnode refid="56" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Paroi_contact_rayo</label>
+        <link refid="classParoi__contact__rayo"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>Echange_couplage_thermique</label>
+        <link refid="classEchange__couplage__thermique"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Cond_lim_utilisateur_base</label>
+        <link refid="classCond__lim__utilisateur__base"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>Temperature_imposee_paroi_H</label>
+        <link refid="classTemperature__imposee__paroi__H"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="62">
+        <label>Neumann_paroi</label>
+        <link refid="classNeumann__paroi"/>
+        <childnode refid="61" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>Echange_externe_impose_H</label>
+        <link refid="classEchange__externe__impose__H"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>Echange_interne_impose</label>
+        <link refid="classEchange__interne__impose"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>PlaqThVDF</label>
+        <link refid="classPlaqThVDF"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>Echange_contact_Colburn_VDF</label>
+        <link refid="classEchange__contact__Colburn__VDF"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Paroi_Knudsen_non_negligeable</label>
+        <link refid="classParoi__Knudsen__non__negligeable"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="72">
+        <label>Sortie_libre_pression_imposee</label>
+        <link refid="classSortie__libre__pression__imposee"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Temperature_imposee_paroi</label>
+        <link refid="classTemperature__imposee__paroi"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="70">
+        <label>Sortie_libre_Gradient_Pression_libre_VEFPreP1B</label>
+        <link refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="71">
+        <label>Sortie_libre_Pression_imposee_Orlansky</label>
+        <link refid="classSortie__libre__Pression__imposee__Orlansky"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>Neumann_sortie_libre</label>
+        <link refid="classNeumann__sortie__libre"/>
+        <childnode refid="63" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="77">
+        <label>Neumann_paroi_adiabatique</label>
+        <link refid="classNeumann__paroi__adiabatique"/>
+        <childnode refid="76" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="76">
+        <label>Neumann_homogene</label>
+        <link refid="classNeumann__homogene"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Echange_interne_parfait</label>
+        <link refid="classEchange__interne__parfait"/>
+        <childnode refid="43" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Entree_fluide_V2_impose</label>
+        <link refid="classEntree__fluide__V2__impose"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>Echange_contact_PolyMAC</label>
+        <link refid="classEchange__contact__PolyMAC"/>
+        <childnode refid="37" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Paroi_Temperature_imposee</label>
+        <link refid="classParoi__Temperature__imposee"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Dirichlet_paroi_defilante</label>
+        <link refid="classDirichlet__paroi__defilante"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Entree_fluide_Flux_Chaleur_Turbulente_imposee</label>
+        <link refid="classEntree__fluide__Flux__Chaleur__Turbulente__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Entree_fluide_fraction_massique_imposee</label>
+        <link refid="classEntree__fluide__fraction__massique__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Entree_fluide_vitesse_imposee_libre</label>
+        <link refid="classEntree__fluide__vitesse__imposee__libre"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="12">
+        <label>Dirichlet</label>
+        <link refid="classDirichlet"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>Sortie_libre_Gradient_Pression_impose</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>Echange_impose_base</label>
+        <link refid="classEchange__impose__base"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>Neumann</label>
+        <link refid="classNeumann"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="74">
+        <label>Sortie_libre_pression_moyenne_imposee</label>
+        <link refid="classSortie__libre__pression__moyenne__imposee"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>Echange_interne_global_impose</label>
+        <link refid="classEchange__interne__global__impose"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>Dirichlet_paroi_fixe</label>
+        <link refid="classDirichlet__paroi__fixe"/>
+        <childnode refid="33" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Dirichlet_entree_fluide</label>
+        <link refid="classDirichlet__entree__fluide"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Paroi_contact</label>
+        <link refid="classParoi__contact"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>Frottement_impose_base</label>
+        <link refid="classFrottement__impose__base"/>
+        <childnode refid="55" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Entree_fluide_temperature_imposee_H</label>
+        <link refid="classEntree__fluide__temperature__imposee__H"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>Echange_contact_VDF</label>
+        <link refid="classEchange__contact__VDF"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>Echange_contact_PolyMAC_P0</label>
+        <link refid="classEchange__contact__PolyMAC__P0"/>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>Echange_interne_global_parfait</label>
+        <link refid="classEchange__interne__global__parfait"/>
+        <childnode refid="52" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="68">
+        <label>Sortie_libre_Gradient_Pression_impose_VEFPreP1B</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B"/>
+        <childnode refid="67" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Entree_fluide_temperature_imposee</label>
+        <link refid="classEntree__fluide__temperature__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Paroi_contact_fictif</label>
+        <link refid="classParoi__contact__fictif"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Entree_fluide_concentration_imposee</label>
+        <link refid="classEntree__fluide__concentration__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>Echange_contact_VDF_Plaque_Flux_Cte</label>
+        <link refid="classEchange__contact__VDF__Plaque__Flux__Cte"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Entree_fluide_T_h_imposee</label>
+        <link refid="classEntree__fluide__T__h__imposee"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="79">
+        <label>Periodique</label>
+        <link refid="classPeriodique"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Scalaire_impose_paroi</label>
+        <link refid="classScalaire__impose__paroi"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>Frottement_global_impose</label>
+        <link refid="classFrottement__global__impose"/>
+        <childnode refid="56" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>Paroi_decalee_Robin</label>
+        <link refid="classParoi__decalee__Robin"/>
+        <childnode refid="59" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="73">
+        <label>Sortie_libre_pression_imposee_QC</label>
+        <link refid="classSortie__libre__pression__imposee__QC"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="78">
+        <label>Neumann_paroi_flux_nul</label>
+        <link refid="classNeumann__paroi__flux__nul"/>
+        <childnode refid="77" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>Echange_global_impose_turbulent</label>
+        <link refid="classEchange__global__impose__turbulent"/>
+        <childnode refid="45" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>Echange_externe_impose</label>
+        <link refid="classEchange__externe__impose"/>
+        <childnode refid="36" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="69">
+        <label>Sortie_libre_Gradient_Pression_libre_VEF</label>
+        <link refid="classSortie__libre__Gradient__Pression__libre__VEF"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>Robin_VEF</label>
+        <link refid="classRobin__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="65">
+        <label>Neumann_sortie_libre_Temp_H</label>
+        <link refid="classNeumann__sortie__libre__Temp__H"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Paroi_adiabatique</label>
+        <link refid="classParoi__adiabatique"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" line="37" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Cond_lim_base.h" bodystart="38" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classCond__lim__base_1a87e21b172da6aa4f6563f483377fde74" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>associer_</name></member>
+      <member refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>bidim_axi</name></member>
+      <member refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>change_num</name></member>
+      <member refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>check_int_overflow</name></member>
+      <member refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>compatible_avec_discr</name></member>
+      <member refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>completer</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classCond__lim__base_1a8fabd66366df88e91f22cc4cc5b64868" prot="private" virt="non-virtual"><scope>Cond_lim_base</scope><name>Declare_base</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>disable_TU</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Cond_lim_base</scope><name>duplique</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>exit</name></member>
+      <member refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>format_precision_geom</name></member>
+      <member refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>frontiere_dis</name></member>
+      <member refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>info_obj</name></member>
+      <member refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>me</name></member>
+      <member refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>modifier_val_imp</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>Objet_U</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>operator=</name></member>
+      <member refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>readOn</name></member>
+      <member refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>reprendre</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Cond_lim_base</scope><name>supp_discs</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Cond_lim_base</scope><name>taille_memoire</name></member>
+      <member refid="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Cond_lim_base</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Cond_lim_base</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

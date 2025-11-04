@@ -1,0 +1,444 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="TRUSTTab__tools_8tpp" kind="file" language="C++">
+    <compoundname>TRUSTTab_tools.tpp</compoundname>
+    <includes local="no">limits</includes>
+    <includedby refid="TRUSTTab_8h" local="no">TRUSTTab.h</includedby>
+    <includedby refid="TRUSTTab__tools_8cpp" local="no">TRUSTTab_tools.cpp</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>limits</label>
+      </node>
+      <node id="1">
+        <label>TRUSTTab_tools.tpp</label>
+        <link refid="TRUSTTab__tools_8tpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="TRUSTTab__tools_8tpp_1aa0c78632fc06527ba076b2b5079a8911" prot="public" static="no">
+        <name>TRUSTTab_tools_TPP_included</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="17" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a3f2482550dd8344d53987cef05c5ab0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _T_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void local_carre_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; _T_, int &gt; &amp;tableau, TRUSTArray&lt; _T_, int &gt; &amp;norme_colonne)</argsstring>
+        <name>local_carre_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>norme_colonne</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="24" column="6" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="24" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a2b97b13075ecddb423847998d2c649e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void local_carre_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; int, int &gt; &amp;, TRUSTArray&lt; int, int &gt; &amp;)=delete</argsstring>
+        <name>local_carre_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="27" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="27" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a70335c33171893e73f433cccf46bb2c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _T_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void local_max_abs_tab</definition>
+        <argsstring>(const TRUSTTab&lt; _T_, int &gt; &amp;tableau, TRUSTArray&lt; _T_, int &gt; &amp;max_colonne)</argsstring>
+        <name>local_max_abs_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>max_colonne</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="53" column="6" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="53" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a62118c21207d2656cfade52a112a8bd2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void local_max_abs_tab</definition>
+        <argsstring>(const TRUSTTab&lt; int, int &gt; &amp;, TRUSTArray&lt; int, int &gt; &amp;)=delete</argsstring>
+        <name>local_max_abs_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="56" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="56" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1ae8e1f769cf2c3516d5b29794cca152f7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _T_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_carre_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; _T_, int &gt; &amp;tableau, TRUSTArray&lt; _T_, int &gt; &amp;norme_colonne)</argsstring>
+        <name>mp_carre_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>norme_colonne</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="31" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" bodystart="31" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a2a0bba3b323cb61160b04445cb6ee617" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_carre_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; int, int &gt; &amp;, TRUSTArray&lt; int, int &gt; &amp;)=delete</argsstring>
+        <name>mp_carre_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="38" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="38" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a3fe16ed39ecac6d01daf8ddc2f7f7dd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _T_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_max_abs_tab</definition>
+        <argsstring>(const TRUSTTab&lt; _T_, int &gt; &amp;tableau, TRUSTArray&lt; _T_, int &gt; &amp;max_colonne)</argsstring>
+        <name>mp_max_abs_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>max_colonne</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="60" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" bodystart="60" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a4e68334eb657513702f628e66a27db42" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_max_abs_tab</definition>
+        <argsstring>(const TRUSTTab&lt; int, int &gt; &amp;, TRUSTArray&lt; int, int &gt; &amp;)=delete</argsstring>
+        <name>mp_max_abs_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="109" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="109" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1a6fb2bc063f66406f996180ee77c1862e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _T_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; _T_, int &gt; &amp;tableau, TRUSTArray&lt; _T_, int &gt; &amp;norme_colonne)</argsstring>
+        <name>mp_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _T_, int &gt; &amp;</type>
+          <declname>norme_colonne</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="42" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" bodystart="42" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1aa08b21d3cb15756bad820c2e11613db7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void mp_norme_tab</definition>
+        <argsstring>(const TRUSTTab&lt; int, int &gt; &amp;, TRUSTArray&lt; int, int &gt; &amp;)=delete</argsstring>
+        <name>mp_norme_tab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; int, int &gt; &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="49" column="13" declfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" declline="49" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="function" id="TRUSTTab__tools_8tpp_1af6fb522e16529754754e465e79682079" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _SIZE_</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool sameDoubleTab</definition>
+        <argsstring>(const TRUSTTab&lt; double, _SIZE_ &gt; &amp;a, const TRUSTTab&lt; double, _SIZE_ &gt; &amp;b)</argsstring>
+        <name>sameDoubleTab</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; double, _SIZE_ &gt; &amp;</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt; double, _SIZE_ &gt; &amp;</type>
+          <declname>b</declname>
+        </param>
+        <briefdescription>
+<para>Compares two <computeroutput><ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref>&lt;double, _SZ_&gt;</computeroutput> objects for equality. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Performs an element-wise comparison of the two arrays, using Kokkos for GPU data and a sequential approach for host data. Returns <computeroutput>true</computeroutput> if all elements match, <computeroutput>false</computeroutput> otherwise.</para>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>&lt;em&gt;SZ&lt;/em&gt;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The size type of the <computeroutput><ref refid="classTRUSTTab" kindref="compound">TRUSTTab</ref></computeroutput> object. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First array to compare. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second array to compare. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para><computeroutput>true</computeroutput> if the arrays are equal, <computeroutput>false</computeroutput> otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" line="79" column="6" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp" bodystart="79" bodyend="105"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/****************************************************************************</highlight></codeline>
+<codeline lineno="2"><highlight class="comment">*<sp/>Copyright<sp/>(c)<sp/>2025,<sp/>CEA</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">*<sp/>Redistribution<sp/>and<sp/>use<sp/>in<sp/>source<sp/>and<sp/>binary<sp/>forms,<sp/>with<sp/>or<sp/>without<sp/>modification,<sp/>are<sp/>permitted<sp/>provided<sp/>that<sp/>the<sp/>following<sp/>conditions<sp/>are<sp/>met:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment">*<sp/>1.<sp/>Redistributions<sp/>of<sp/>source<sp/>code<sp/>must<sp/>retain<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">*<sp/>2.<sp/>Redistributions<sp/>in<sp/>binary<sp/>form<sp/>must<sp/>reproduce<sp/>the<sp/>above<sp/>copyright<sp/>notice,<sp/>this<sp/>list<sp/>of<sp/>conditions<sp/>and<sp/>the<sp/>following<sp/>disclaimer<sp/>in<sp/>the<sp/>documentation<sp/>and/or<sp/>other<sp/>materials<sp/>provided<sp/>with<sp/>the<sp/>distribution.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">*<sp/>3.<sp/>Neither<sp/>the<sp/>name<sp/>of<sp/>the<sp/>copyright<sp/>holder<sp/>nor<sp/>the<sp/>names<sp/>of<sp/>its<sp/>contributors<sp/>may<sp/>be<sp/>used<sp/>to<sp/>endorse<sp/>or<sp/>promote<sp/>products<sp/>derived<sp/>from<sp/>this<sp/>software<sp/>without<sp/>specific<sp/>prior<sp/>written<sp/>permission.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*<sp/>THIS<sp/>SOFTWARE<sp/>IS<sp/>PROVIDED<sp/>BY<sp/>THE<sp/>COPYRIGHT<sp/>HOLDERS<sp/>AND<sp/>CONTRIBUTORS<sp/>&quot;AS<sp/>IS&quot;<sp/>AND<sp/>ANY<sp/>EXPRESS<sp/>OR<sp/>IMPLIED<sp/>WARRANTIES,<sp/>INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>THE<sp/>IMPLIED<sp/>WARRANTIES<sp/>OF<sp/>MERCHANTABILITY<sp/>AND<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE<sp/>ARE<sp/>DISCLAIMED.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">*<sp/>IN<sp/>NO<sp/>EVENT<sp/>SHALL<sp/>THE<sp/>COPYRIGHT<sp/>HOLDER<sp/>OR<sp/>CONTRIBUTORS<sp/>BE<sp/>LIABLE<sp/>FOR<sp/>ANY<sp/>DIRECT,<sp/>INDIRECT,<sp/>INCIDENTAL,<sp/>SPECIAL,<sp/>EXEMPLARY,<sp/>OR<sp/>CONSEQUENTIAL<sp/>DAMAGES<sp/>(INCLUDING,<sp/>BUT<sp/>NOT<sp/>LIMITED<sp/>TO,<sp/>PROCUREMENT<sp/>OF<sp/>SUBSTITUTE<sp/>GOODS<sp/>OR<sp/>SERVICES;<sp/>LOSS<sp/>OF<sp/>USE,<sp/>DATA,<sp/>OR<sp/>PROFITS;</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">*<sp/>OR<sp/>BUSINESS<sp/>INTERRUPTION)<sp/>HOWEVER<sp/>CAUSED<sp/>AND<sp/>ON<sp/>ANY<sp/>THEORY<sp/>OF<sp/>LIABILITY,<sp/>WHETHER<sp/>IN<sp/>CONTRACT,<sp/>STRICT<sp/>LIABILITY,<sp/>OR<sp/>TORT<sp/>(INCLUDING<sp/>NEGLIGENCE<sp/>OR<sp/>OTHERWISE)<sp/>ARISING<sp/>IN<sp/>ANY<sp/>WAY<sp/>OUT<sp/>OF<sp/>THE<sp/>USE<sp/>OF<sp/>THIS<sp/>SOFTWARE,<sp/>EVEN<sp/>IF<sp/>ADVISED<sp/>OF<sp/>THE<sp/>POSSIBILITY<sp/>OF<sp/>SUCH<sp/>DAMAGE.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment">*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">*****************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>TRUSTTab_tools_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TRUSTTab_tools_TPP_included</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;limits&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NB:<sp/>all<sp/>those<sp/>methods<sp/>are<sp/>never<sp/>used<sp/>on<sp/>big<sp/>(64b)<sp/>arrays,<sp/>so<sp/>the<sp/>size<sp/>type<sp/>is<sp/>always<sp/>&apos;int&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_T_&gt;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>local_carre_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_T_,int&gt;</ref>&amp;<sp/>tableau,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_T_,int&gt;</ref>&amp;<sp/>norme_colonne);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>local_carre_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;int,int&gt;</ref>&amp;<sp/>,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;int,int&gt;</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_T_&gt;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_carre_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_T_,int&gt;</ref>&amp;<sp/>tableau,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_T_,int&gt;</ref>&amp;<sp/>norme_colonne)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/>local_carre_norme_tab(tableau,<sp/>norme_colonne);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/>mp_sum_for_each_item(norme_colonne);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_carre_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;int,int&gt;</ref>&amp;<sp/>,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;int,int&gt;</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_T_&gt;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_T_,int&gt;</ref>&amp;<sp/>tableau,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_T_,int&gt;</ref>&amp;<sp/>norme_colonne)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>mp_carre_norme_tab(tableau,norme_colonne);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c=0;<sp/>c&lt;norme_colonne.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>();<sp/>c++)<sp/>norme_colonne[c]<sp/>=<sp/>sqrt(norme_colonne[c]);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_norme_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;int,int&gt;</ref>&amp;<sp/>,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;int,int&gt;</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_T_&gt;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>local_max_abs_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_T_,int&gt;</ref>&amp;<sp/>tableau,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_T_,int&gt;</ref>&amp;<sp/>max_colonne);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>local_max_abs_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;int,int&gt;</ref>&amp;<sp/>,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;int,int&gt;</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_T_&gt;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_max_abs_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;_T_,int&gt;</ref>&amp;<sp/>tableau,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;_T_,int&gt;</ref>&amp;<sp/>max_colonne)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/>local_max_abs_tab(tableau,<sp/>max_colonne);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/>mp_max_for_each_item(max_colonne);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LATATOOLS</highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="67"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Compares<sp/>two<sp/>`TRUSTTab&lt;double,<sp/>_SZ_&gt;`<sp/>objects<sp/>for<sp/>equality.</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>Performs<sp/>an<sp/>element-wise<sp/>comparison<sp/>of<sp/>the<sp/>two<sp/>arrays,<sp/>using<sp/>Kokkos<sp/>for<sp/>GPU<sp/>data</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>and<sp/>a<sp/>sequential<sp/>approach<sp/>for<sp/>host<sp/>data.<sp/>Returns<sp/>`true`<sp/>if<sp/>all<sp/>elements<sp/>match,<sp/>`false`<sp/>otherwise.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>@tparam<sp/>_SZ_<sp/>The<sp/>size<sp/>type<sp/>of<sp/>the<sp/>`TRUSTTab`<sp/>object.</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>@param<sp/>a<sp/>First<sp/>array<sp/>to<sp/>compare.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>@param<sp/>b<sp/>Second<sp/>array<sp/>to<sp/>compare.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>@return<sp/>`true`<sp/>if<sp/>the<sp/>arrays<sp/>are<sp/>equal,<sp/>`false`<sp/>otherwise.</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>_SIZE_&gt;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>sameDoubleTab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;double, _SIZE_&gt;</ref>&amp;<sp/>a,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;double, _SIZE_&gt;</ref>&amp;<sp/>b)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>_SIZE_<sp/>size_a<sp/>=<sp/>a.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>_SIZE_<sp/>size_b<sp/>=<sp/>b.<ref refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" kindref="member">size_array</ref>();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(size_a<sp/>!=<sp/>size_b)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>kernelOnDevice<sp/>=<sp/>a.<ref refid="classTRUSTArray_1a03efd39cb9d6295ce01dc820c804ecd1" kindref="member">checkDataOnDevice</ref>()<sp/>&amp;&amp;<sp/>b.<ref refid="classTRUSTArray_1a03efd39cb9d6295ce01dc820c804ecd1" kindref="member">checkDataOnDevice</ref>();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(kernelOnDevice)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>a_v<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(a).view_ro();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>b_v<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keyword">const<sp/></highlight><highlight class="normal"><ref refid="classTRUSTArray" kindref="compound">ArrOfDouble</ref>&amp;</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(b).view_ro();</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>same<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Kokkos::parallel_reduce(start_gpu_timer(),<sp/>size_a,<sp/>KOKKOS_LAMBDA(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal">&amp;<sp/>local_same)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a_v(i)<sp/>!=<sp/>b_v(i))<sp/>local_same<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},<sp/>Kokkos::LAnd&lt;bool&gt;(same));</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>end_gpu_timer(__KERNEL_NAME__);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>same;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(_SIZE_<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>size_a;<sp/>i++)</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(a.<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>()[i]<sp/>!=<sp/>b.<ref refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" kindref="member">addr</ref>()[i])</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>mp_max_abs_tab(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classTRUSTTab" kindref="compound">TRUSTTab&lt;int,int&gt;</ref>&amp;<sp/>,<sp/><ref refid="classTRUSTArray" kindref="compound">TRUSTArray&lt;int,int&gt;</ref>&amp;<sp/>)<sp/>=<sp/></highlight><highlight class="keyword">delete</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>TRUSTTab_tools_TPP_included<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/TRUSTTab_tools.tpp"/>
+  </compounddef>
+</doxygen>

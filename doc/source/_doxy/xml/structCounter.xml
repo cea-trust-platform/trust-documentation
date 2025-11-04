@@ -1,0 +1,510 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structCounter" kind="struct" language="C++" prot="public">
+    <compoundname>Counter</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="structCounter_1aba9672d605617fd20b9ddfd6cfb9aed1" prot="public" static="no">
+        <type>std::chrono::high_resolution_clock</type>
+        <definition>using Counter::clock =  std::chrono::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="55" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structCounter_1a0cfe9da21d7363ef6f5c3e6efd85017b" prot="public" static="no">
+        <type>std::chrono::duration&lt; double &gt;</type>
+        <definition>using Counter::duration =  std::chrono::duration&lt;double&gt;</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="57" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="structCounter_1af2af3b55b264c17eb4e32db9a31b25aa" prot="public" static="no">
+        <type>std::chrono::time_point&lt; clock &gt;</type>
+        <definition>using Counter::time_point =  std::chrono::time_point&lt;clock&gt;</definition>
+        <argsstring></argsstring>
+        <name>time_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="56" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structCounter_1a28700aac29cd4dffb3f9c5415312b6ed" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Counter::avg_time_per_step_</definition>
+        <argsstring></argsstring>
+        <name>avg_time_per_step_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="97" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a5522779d185ce7e561d7da6ba7c5f1fe" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Counter::count_</definition>
+        <argsstring></argsstring>
+        <name>count_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="88" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1aba2797fb789ec4c7aa3022048f6115f0" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string Counter::description_</definition>
+        <argsstring></argsstring>
+        <name>description_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="83" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1abbfdaa7f46a544b780d840590f06be2e" prot="public" static="no" mutable="no">
+        <type>const std::string</type>
+        <definition>const std::string Counter::family_</definition>
+        <argsstring></argsstring>
+        <name>family_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="85" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a3d3bdec78025de1700dc5a2d83c40d83" prot="public" static="no" mutable="no">
+        <type>const bool</type>
+        <definition>const bool Counter::is_comm_</definition>
+        <argsstring></argsstring>
+        <name>is_comm_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="86" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a7ab153d68876ffaeba1e9d91f670963a" prot="public" static="no" mutable="no">
+        <type>const bool</type>
+        <definition>const bool Counter::is_gpu_</definition>
+        <argsstring></argsstring>
+        <name>is_gpu_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="87" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a46b4047f4298c45ea5b6176058d2f8a9" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Counter::is_running_</definition>
+        <argsstring></argsstring>
+        <name>is_running_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="101" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1aad7ac6f38589c990d840f67bcaf65b35" prot="public" static="no" mutable="no">
+        <type>time_point</type>
+        <definition>time_point Counter::last_open_time_</definition>
+        <argsstring></argsstring>
+        <name>last_open_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="95" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a340895573a184ff1162ecb90655165d2" prot="public" static="no" mutable="no">
+        <type>time_point</type>
+        <definition>time_point Counter::last_open_time_alone_</definition>
+        <argsstring></argsstring>
+        <name>last_open_time_alone_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="96" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1abf733da143377e0152a65e26a387f11b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Counter::level_</definition>
+        <argsstring></argsstring>
+        <name>level_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="84" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a21ce4d64603d6f4b4dfecb1aceaee30f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Counter::max_time_per_step_</definition>
+        <argsstring></argsstring>
+        <name>max_time_per_step_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="99" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a68b7021091610de6ff4e0dddb2d42d09" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Counter::min_time_per_step_</definition>
+        <argsstring></argsstring>
+        <name>min_time_per_step_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="98" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a67205da2d8cbe48c131ff04c089f7ce5" prot="public" static="no" mutable="no">
+        <type>time_point</type>
+        <definition>time_point Counter::open_time_ts_</definition>
+        <argsstring></argsstring>
+        <name>open_time_ts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="94" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a551e900a13e13a97230bee0be0423545" prot="public" static="no" mutable="no">
+        <type>Counter *</type>
+        <definition>Counter* Counter::parent_</definition>
+        <argsstring></argsstring>
+        <name>parent_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="90" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1aae8970f00a956e9590477952ac7c8c35" prot="public" static="no" mutable="no">
+        <type>long int</type>
+        <definition>long int Counter::quantity_</definition>
+        <argsstring></argsstring>
+        <name>quantity_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="89" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1a652f1753097238110a9137ae3a3c2335" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Counter::sd_time_per_step_</definition>
+        <argsstring></argsstring>
+        <name>sd_time_per_step_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="100" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1ad8739a8d2d0418febb2576906f2a224f" prot="public" static="no" mutable="no">
+        <type>duration</type>
+        <definition>duration Counter::time_alone_</definition>
+        <argsstring></argsstring>
+        <name>time_alone_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="92" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1ac39256a83fba94b8757b550a3c9fed82" prot="public" static="no" mutable="no">
+        <type>duration</type>
+        <definition>duration Counter::time_ts_</definition>
+        <argsstring></argsstring>
+        <name>time_ts_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="93" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structCounter_1af8ff655b3accb40b39f2e7524b46dc51" prot="public" static="no" mutable="no">
+        <type>duration</type>
+        <definition>duration Counter::total_time_</definition>
+        <argsstring></argsstring>
+        <name>total_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="91" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structCounter_1ad011acba0b98f1f359f381c1892dded8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Counter::begin_count_</definition>
+        <argsstring>(int counter_level, time_point t)</argsstring>
+        <name>begin_count_</name>
+        <param>
+          <type>int</type>
+          <declname>counter_level</declname>
+        </param>
+        <param>
+          <type>time_point</type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; You have changed the level of your counter</para>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="65" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="122" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1a730412b5a2cad340da5861f3efc13ff6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::array&lt; std::array&lt; double, 4 &gt;,4 &gt;</type>
+        <definition>std::array&lt; std::array&lt; double, 4 &gt;,4 &gt; Counter::compute_min_max_avg_sd_</definition>
+        <argsstring>() const</argsstring>
+        <name>compute_min_max_avg_sd_</name>
+        <briefdescription>
+<para>update variables : avg_time_per_step_ , min_time_per_step_ , max_time_per_step_ , sd_time_per_step_ </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="79" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="167" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1ab5b32fe9d09cf38ff6c5f3baaaf4a586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Counter::Counter</definition>
+        <argsstring>(int counter_level, std::string counter_name, std::string counter_family=&quot;None&quot;, bool is_comm=false, bool is_gpu=false)</argsstring>
+        <name>Counter</name>
+        <param>
+          <type>int</type>
+          <declname>counter_level</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>counter_name</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>counter_family</declname>
+          <defval>&quot;None&quot;</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_comm</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_gpu</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="63" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="105" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1a5b301a1653f3900f8283f780d3a61acc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Counter::end_count_</definition>
+        <argsstring>(int count_increment, long int quantity_increment, time_point t_stop)</argsstring>
+        <name>end_count_</name>
+        <param>
+          <type>int</type>
+          <declname>count_increment</declname>
+        </param>
+        <param>
+          <type>long int</type>
+          <declname>quantity_increment</declname>
+        </param>
+        <param>
+          <type>time_point</type>
+          <declname>t_stop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="67" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="143" bodyend="165"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1a9c3faa71f9676f4f6c2dec7496c477df" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Counter::get_time_</definition>
+        <argsstring>() const</argsstring>
+        <name>get_time_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="71" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1ac2954ffc8b4b9e203840650aca971d93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>time_point</type>
+        <definition>time_point Counter::now</definition>
+        <argsstring>()</argsstring>
+        <name>now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="58" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1a9ff2c269c37fe615fb2aad7169940a88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Counter::reset</definition>
+        <argsstring>()</argsstring>
+        <name>reset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="81" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="195" bodyend="209"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1a36c0c92df30df0303baecf62f3498677" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Counter::running_</definition>
+        <argsstring>() const</argsstring>
+        <name>running_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="73" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="73" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="structCounter_1ad7a62c8af6cc54f11f9979a4c94be9a0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Counter::set_parent</definition>
+        <argsstring>(Counter *parent_counter)</argsstring>
+        <name>set_parent</name>
+        <param>
+          <type>Counter *</type>
+          <declname>parent_counter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="69" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="69" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>Counter</label>
+        <childnode refid="1" relation="usage">
+          <edgelabel>parent_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="52" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="53" bodyend="102"/>
+    <listofallmembers>
+      <member refid="structCounter_1a28700aac29cd4dffb3f9c5415312b6ed" prot="public" virt="non-virtual"><scope>Counter</scope><name>avg_time_per_step_</name></member>
+      <member refid="structCounter_1ad011acba0b98f1f359f381c1892dded8" prot="public" virt="non-virtual"><scope>Counter</scope><name>begin_count_</name></member>
+      <member refid="structCounter_1aba9672d605617fd20b9ddfd6cfb9aed1" prot="public" virt="non-virtual"><scope>Counter</scope><name>clock</name></member>
+      <member refid="structCounter_1a730412b5a2cad340da5861f3efc13ff6" prot="public" virt="non-virtual"><scope>Counter</scope><name>compute_min_max_avg_sd_</name></member>
+      <member refid="structCounter_1a5522779d185ce7e561d7da6ba7c5f1fe" prot="public" virt="non-virtual"><scope>Counter</scope><name>count_</name></member>
+      <member refid="structCounter_1ab5b32fe9d09cf38ff6c5f3baaaf4a586" prot="public" virt="non-virtual"><scope>Counter</scope><name>Counter</name></member>
+      <member refid="structCounter_1aba2797fb789ec4c7aa3022048f6115f0" prot="public" virt="non-virtual"><scope>Counter</scope><name>description_</name></member>
+      <member refid="structCounter_1a0cfe9da21d7363ef6f5c3e6efd85017b" prot="public" virt="non-virtual"><scope>Counter</scope><name>duration</name></member>
+      <member refid="structCounter_1a5b301a1653f3900f8283f780d3a61acc" prot="public" virt="non-virtual"><scope>Counter</scope><name>end_count_</name></member>
+      <member refid="structCounter_1abbfdaa7f46a544b780d840590f06be2e" prot="public" virt="non-virtual"><scope>Counter</scope><name>family_</name></member>
+      <member refid="structCounter_1a9c3faa71f9676f4f6c2dec7496c477df" prot="public" virt="non-virtual"><scope>Counter</scope><name>get_time_</name></member>
+      <member refid="structCounter_1a3d3bdec78025de1700dc5a2d83c40d83" prot="public" virt="non-virtual"><scope>Counter</scope><name>is_comm_</name></member>
+      <member refid="structCounter_1a7ab153d68876ffaeba1e9d91f670963a" prot="public" virt="non-virtual"><scope>Counter</scope><name>is_gpu_</name></member>
+      <member refid="structCounter_1a46b4047f4298c45ea5b6176058d2f8a9" prot="public" virt="non-virtual"><scope>Counter</scope><name>is_running_</name></member>
+      <member refid="structCounter_1aad7ac6f38589c990d840f67bcaf65b35" prot="public" virt="non-virtual"><scope>Counter</scope><name>last_open_time_</name></member>
+      <member refid="structCounter_1a340895573a184ff1162ecb90655165d2" prot="public" virt="non-virtual"><scope>Counter</scope><name>last_open_time_alone_</name></member>
+      <member refid="structCounter_1abf733da143377e0152a65e26a387f11b" prot="public" virt="non-virtual"><scope>Counter</scope><name>level_</name></member>
+      <member refid="structCounter_1a21ce4d64603d6f4b4dfecb1aceaee30f" prot="public" virt="non-virtual"><scope>Counter</scope><name>max_time_per_step_</name></member>
+      <member refid="structCounter_1a68b7021091610de6ff4e0dddb2d42d09" prot="public" virt="non-virtual"><scope>Counter</scope><name>min_time_per_step_</name></member>
+      <member refid="structCounter_1ac2954ffc8b4b9e203840650aca971d93" prot="public" virt="non-virtual"><scope>Counter</scope><name>now</name></member>
+      <member refid="structCounter_1a67205da2d8cbe48c131ff04c089f7ce5" prot="public" virt="non-virtual"><scope>Counter</scope><name>open_time_ts_</name></member>
+      <member refid="structCounter_1a551e900a13e13a97230bee0be0423545" prot="public" virt="non-virtual"><scope>Counter</scope><name>parent_</name></member>
+      <member refid="structCounter_1aae8970f00a956e9590477952ac7c8c35" prot="public" virt="non-virtual"><scope>Counter</scope><name>quantity_</name></member>
+      <member refid="structCounter_1a9ff2c269c37fe615fb2aad7169940a88" prot="public" virt="non-virtual"><scope>Counter</scope><name>reset</name></member>
+      <member refid="structCounter_1a36c0c92df30df0303baecf62f3498677" prot="public" virt="non-virtual"><scope>Counter</scope><name>running_</name></member>
+      <member refid="structCounter_1a652f1753097238110a9137ae3a3c2335" prot="public" virt="non-virtual"><scope>Counter</scope><name>sd_time_per_step_</name></member>
+      <member refid="structCounter_1ad7a62c8af6cc54f11f9979a4c94be9a0" prot="public" virt="non-virtual"><scope>Counter</scope><name>set_parent</name></member>
+      <member refid="structCounter_1ad8739a8d2d0418febb2576906f2a224f" prot="public" virt="non-virtual"><scope>Counter</scope><name>time_alone_</name></member>
+      <member refid="structCounter_1af2af3b55b264c17eb4e32db9a31b25aa" prot="public" virt="non-virtual"><scope>Counter</scope><name>time_point</name></member>
+      <member refid="structCounter_1ac39256a83fba94b8757b550a3c9fed82" prot="public" virt="non-virtual"><scope>Counter</scope><name>time_ts_</name></member>
+      <member refid="structCounter_1af8ff655b3accb40b39f2e7524b46dc51" prot="public" virt="non-virtual"><scope>Counter</scope><name>total_time_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

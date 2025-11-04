@@ -5,6 +5,6 @@ var classLecFicDiffuse =
     [ "ouvrir", "classLecFicDiffuse.html#a728a462e26ad1a021e8014050613ce35", null ],
     [ "get_istream", "classLecFicDiffuse.html#ae0c5ed078dc89a0d448ff92e4c4eb493", null ],
     [ "get_istream", "classLecFicDiffuse.html#adbfbe4b1b1917d7e8c6bca4c9b4830de", null ],
-    [ "get_entree_master", "classLecFicDiffuse.html#af1c01c91cf9244fe439873e02065bf03", null ],
+    [ "get_entree_master", "classLecFicDiffuse.html#a3a190021d0ccc65143f4d9275e09ea25", null ],
     [ "file_", "classLecFicDiffuse.html#a64b5aa7b897fef98f2ffa8dd499ba230", null ]
 ];

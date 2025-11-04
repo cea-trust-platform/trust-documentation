@@ -1,23 +1,13 @@
 <map id="Terme_Puissance_Thermique_VEF_base" name="Terme_Puissance_Thermique_VEF_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="781,57,991,102"/>
-<area shape="rect" id="Node000009" href="$classSource__Dirac__VEF__Face.html" title="class Terme_Source_Dirac_VEF_Face" alt="" coords="1056,5,1232,33"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="999,50,1081,31,1082,36,1000,55"/>
-<area shape="rect" id="Node000010" href="$classTerme__Puissance__Thermique__QC__VEF__Face.html" title="class Terme_Puissance_Thermique_QC_VEF_Face" alt="" coords="1039,57,1249,102"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="1007,76,1038,76,1038,82,1007,82"/>
-<area shape="rect" id="Node000011" href="$classTerme__Puissance__Thermique__VEF__Face.html" title="class Terme_Puissance_Thermique_VEF_Face" alt="" coords="1039,126,1249,171"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="987,104,1059,123,1058,128,986,109"/>
-<area shape="rect" id="Node000002" href="$classTerme__Puissance__Thermique.html" title="Classe Terme_Puissance_Thermique Cette classe represente un terme source de l&#39;equation de la thermiqu..." alt="" coords="522,39,733,66"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="748,62,780,66,780,71,748,68"/>
-<area shape="rect" id="Node000003" href="$classTerme__Source__VEF__base.html" title=" " alt="" coords="536,91,719,118"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="734,91,780,87,780,92,735,97"/>
-<area shape="rect" id="Node000004" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="371,91,474,118"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="489,102,536,102,536,107,489,107"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,39,323,66"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="295,68,371,88,370,94,294,73"/>
-<area shape="rect" id="Node000006" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,91,259,118"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="274,102,371,102,371,107,274,107"/>
-<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,143,260,170"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="275,141,370,115,371,121,276,146"/>
-<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,143,77,170"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="92,154,187,154,187,159,92,159"/>
+<area shape="rect" id="node1" title=" " alt="" coords="783,57,993,98"/>
+<area shape="rect" id="node9" href="$classSource__Dirac__VEF__Face.html" title="class Terme_Source_Dirac_VEF_Face" alt="" coords="1059,5,1235,32"/>
+<area shape="rect" id="node10" href="$classTerme__Puissance__Thermique__QC__VEF__Face.html" title="class Terme_Puissance_Thermique_QC_VEF_Face" alt="" coords="1041,57,1252,98"/>
+<area shape="rect" id="node11" href="$classTerme__Puissance__Thermique__VEF__Face.html" title="class Terme_Puissance_Thermique_VEF_Face" alt="" coords="1041,122,1252,163"/>
+<area shape="rect" id="node2" href="$classTerme__Puissance__Thermique.html" title="Classe Terme_Puissance_Thermique Cette classe represente un terme source de l&#39;equation de la thermiqu..." alt="" coords="524,39,735,65"/>
+<area shape="rect" id="node3" href="$classTerme__Source__VEF__base.html" title=" " alt="" coords="538,89,721,116"/>
+<area shape="rect" id="node4" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="372,89,476,116"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,39,324,65"/>
+<area shape="rect" id="node6" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,89,260,116"/>
+<area shape="rect" id="node7" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,140,262,167"/>
+<area shape="rect" id="node8" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,140,77,167"/>
 </map>

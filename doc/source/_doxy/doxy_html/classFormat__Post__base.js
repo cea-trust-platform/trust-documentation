@@ -18,9 +18,10 @@ var classFormat__Post__base =
     [ "ecrire_domaine_dis", "classFormat__Post__base.html#aaae96bb44a5630898b8b8182565ae134", null ],
     [ "ecrire_temps", "classFormat__Post__base.html#a6f85911c85685f7a2d5563885ac1cfd9", null ],
     [ "ecrire_champ", "classFormat__Post__base.html#a623fe372adacfa37af9a8b3b512e420f", null ],
-    [ "ecrire_champ2", "classFormat__Post__base.html#a05ff6766d900f8d31e99a81de1eae4f0", null ],
     [ "ecrire_item_int", "classFormat__Post__base.html#ac072290ea6eac9cd04d079cc147ccc96", null ],
     [ "set_single_lata_option", "classFormat__Post__base.html#a04d4829b25d7e192c0313e554aaa5721", null ],
     [ "set_postraiter_domain", "classFormat__Post__base.html#a2a7c72606e121a3816a4de2a46946726", null ],
+    [ "set_deformable_domain", "classFormat__Post__base.html#a7cf4ac9decac238d3147ed9cd4483c14", null ],
+    [ "set_loc_vector", "classFormat__Post__base.html#a248be9bdce4cd5cd609954efb9b61d76", null ],
     [ "OBS_PTR", "classFormat__Post__base.html#aefe250b7055dee59d1af762fe040be46", null ]
 ];

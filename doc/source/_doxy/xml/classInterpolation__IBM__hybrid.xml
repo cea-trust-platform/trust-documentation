@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classInterpolation__IBM__hybrid" kind="class" language="C++" prot="public">
+    <compoundname>Interpolation_IBM_hybrid</compoundname>
+    <basecompoundref refid="classInterpolation__IBM__elem__fluid" prot="public" virt="non-virtual">Interpolation_IBM_elem_fluid</basecompoundref>
+    <basecompoundref refid="classInterpolation__IBM__mean__gradient__proto" prot="public" virt="non-virtual">Interpolation_IBM_mean_gradient_proto</basecompoundref>
+    <includes local="no">Interpolation_IBM_hybrid.h</includes>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classInterpolation__IBM__hybrid_1a453ee6dc2cf7d696f04084911fd64c91" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>class</type>
+        <definition>friend class Source_PDF_EF</definition>
+        <argsstring></argsstring>
+        <name>Source_PDF_EF</name>
+        <param>
+          <type><ref refid="classSource__PDF__EF" kindref="compound">Source_PDF_EF</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" line="42" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classInterpolation__IBM__hybrid_1a904804116a95af1a3d3ef7c489af9c65" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Interpolation_IBM_hybrid::Declare_instanciable</definition>
+        <argsstring>(Interpolation_IBM_hybrid)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classInterpolation__IBM__hybrid" kindref="compound">Interpolation_IBM_hybrid</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" line="33" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classInterpolation__IBM__hybrid_1aeb57f049f59bd5f070248e2ed619f56d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Interpolation_IBM_hybrid::discretise</definition>
+        <argsstring>(const Discretisation_base &amp;, Domaine_dis_base &amp;) override</argsstring>
+        <name>discretise</name>
+        <reimplements refid="classInterpolation__IBM__elem__fluid_1aab1ad8ebe2492e5d280a4573cb06a1a5">discretise</reimplements>
+        <param>
+          <type>const <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> &amp;</type>
+          <defname>dis</defname>
+        </param>
+        <param>
+          <type><ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <defname>le_dom_EF</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.cpp" bodystart="41" bodyend="53"/>
+        <references refid="classInterpolation__IBM__mean__gradient__proto_1a9b087672acfa2abb1d9cbb1b5dc2dd3d" compoundref="Interpolation__IBM__mean__gradient__proto_8cpp" startline="21" endline="242">Interpolation_IBM_mean_gradient_proto::computeSommetsVoisins</references>
+        <references refid="classInterpolation__IBM__elem__fluid_1aab1ad8ebe2492e5d280a4573cb06a1a5" compoundref="Interpolation__IBM__elem__fluid_8cpp" startline="47" endline="66">Interpolation_IBM_elem_fluid::discretise</references>
+        <references refid="classDiscretisation__base_1adea078dcfdc2721f4f3e8b23e6cca594" compoundref="Discretisation__base_8cpp" startline="61" endline="70">Discretisation_base::discretiser_champ</references>
+        <references refid="classInterpolation__IBM__base_1a58c82b05c1c07aab2d22da11987717f1" compoundref="Interpolation__IBM__base_8h" startline="55">Interpolation_IBM_base::has_corresp_</references>
+      </memberdef>
+      <memberdef kind="function" id="classInterpolation__IBM__hybrid_1a3117e61064d01021df0d1a1f8a327db1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classTRUSTList" kindref="compound">IntList</ref> &amp;</type>
+        <definition>IntList&amp; Interpolation_IBM_hybrid::getSommetsVoisinsOf</definition>
+        <argsstring>(int i)</argsstring>
+        <name>getSommetsVoisinsOf</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" line="37" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" bodystart="37" bodyend="40"/>
+        <references refid="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" compoundref="Interpolation__IBM__mean__gradient__proto_8h" startline="49">Interpolation_IBM_mean_gradient_proto::sommets_voisins_</references>
+        <referencedby refid="classSource__PDF__EF_1a02408d46b609dc55b11c83ba08e5f437" compoundref="Source__PDF__EF_8cpp" startline="942" endline="1049">Source_PDF_EF::calculer_variable_imposee_hybrid</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>: class <ref refid="classInterpolation__IBM__hybrid" kindref="compound">Interpolation_IBM_hybrid</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>Interpolation_IBM_mean_gradient_proto</label>
+        <link refid="classInterpolation__IBM__mean__gradient__proto"/>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Interpolation_IBM_hybrid</label>
+        <link refid="classInterpolation__IBM__hybrid"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Interpolation_IBM_base</label>
+        <link refid="classInterpolation__IBM__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Interpolation_IBM_elem_fluid</label>
+        <link refid="classInterpolation__IBM__elem__fluid"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>TRUSTLists&lt; _TYPE_ &gt;</label>
+        <link refid="classTRUSTLists"/>
+      </node>
+      <node id="7">
+        <label>Interpolation_IBM_mean_gradient_proto</label>
+        <link refid="classInterpolation__IBM__mean__gradient__proto"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>sommets_voisins_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TRUSTLists&lt; int &gt;</label>
+        <link refid="classTRUSTLists"/>
+        <childnode refid="9" relation="template-instance">
+          <edgelabel>&lt; int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Interpolation_IBM_hybrid</label>
+        <link refid="classInterpolation__IBM__hybrid"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Interpolation_IBM_base</label>
+        <link refid="classInterpolation__IBM__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Interpolation_IBM_elem_fluid</label>
+        <link refid="classInterpolation__IBM__elem__fluid"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/IBM/Interpolation_IBM/Interpolation_IBM_hybrid.h" bodystart="32" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>check_int_overflow</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1ad6d392d1c6ff853b0d083b088c019f48" prot="protected" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>computeFluidElems</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a9b087672acfa2abb1d9cbb1b5dc2dd3d" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>computeSommetsVoisins</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classInterpolation__IBM__hybrid_1a904804116a95af1a3d3ef7c489af9c65" prot="private" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>disable_TU</name></member>
+      <member refid="classInterpolation__IBM__hybrid_1aeb57f049f59bd5f070248e2ed619f56d" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>discretise</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Interpolation_IBM_hybrid</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>format_precision_geom</name></member>
+      <member refid="classInterpolation__IBM__base_1a3c17b37b2fed7824f9150a18611243a3" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>get_impr</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>get_info</name></member>
+      <member refid="classInterpolation__IBM__base_1a0541f7d55cd40510e653081d90b661d9" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>get_N_histo</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classInterpolation__IBM__hybrid_1a3117e61064d01021df0d1a1f8a327db1" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>getSommetsVoisinsOf</name></member>
+      <member refid="classInterpolation__IBM__base_1a58c82b05c1c07aab2d22da11987717f1" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>has_corresp_</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>HAS_POINTER</name></member>
+      <member refid="classInterpolation__IBM__base_1a08c9074f32b18bfac947235163919f97" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>impr_</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>multiple_files</name></member>
+      <member refid="classInterpolation__IBM__base_1a9fd9335a8f461f3cc4a0a93fe2ce0507" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>N_histo_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>operator=</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1aa191b8d0230975fd3a499c5016c25816" prot="protected" virt="non-virtual" ambiguityscope="Interpolation_IBM_elem_fluid::"><scope>Interpolation_IBM_hybrid</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1a95ba717acf777eeb38399fdda02a4538" prot="protected" virt="non-virtual" ambiguityscope="Interpolation_IBM_elem_fluid::"><scope>Interpolation_IBM_hybrid</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1a50b8a21ff23bc1832c5919b8bf7e306c" prot="protected" virt="non-virtual" ambiguityscope="Interpolation_IBM_elem_fluid::"><scope>Interpolation_IBM_hybrid</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1aa0ee9def4ee2b927e7dd45fff84d5e58" prot="protected" virt="non-virtual" ambiguityscope="Interpolation_IBM_elem_fluid::"><scope>Interpolation_IBM_hybrid</scope><name>OWN_PTR</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1a5d3bfe57f9dea6c603b6f20a3b6aad14" prot="protected" virt="non-virtual" ambiguityscope="Interpolation_IBM_mean_gradient_proto::"><scope>Interpolation_IBM_hybrid</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>self_cast</name></member>
+      <member refid="classInterpolation__IBM__elem__fluid_1aa8fbf1108f6e0eef9da77b0ffd84fc68" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>set_param</name></member>
+      <member refid="classInterpolation__IBM__mean__gradient__proto_1aefac1df1788984f39daf173fa940933f" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>sommets_voisins_</name></member>
+      <member refid="classInterpolation__IBM__hybrid_1a453ee6dc2cf7d696f04084911fd64c91" prot="protected" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>Source_PDF_EF</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Interpolation_IBM_hybrid</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Interpolation_IBM_hybrid</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Interpolation_IBM_hybrid</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

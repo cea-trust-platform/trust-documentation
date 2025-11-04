@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_1c7744b8583e66b25da22a55e5a85b12" kind="dir">
+    <compoundname>Eval_Diff_Dift</compoundname>
+    <innerfile refid="Eval__Diff__VDF_8h">Eval_Diff_VDF.h</innerfile>
+    <innerfile refid="Eval__Diff__VDF__Elem__Gen_8h">Eval_Diff_VDF_Elem_Gen.h</innerfile>
+    <innerfile refid="Eval__Diff__VDF__Elem__Gen_8tpp">Eval_Diff_VDF_Elem_Gen.tpp</innerfile>
+    <innerfile refid="Eval__Diff__VDF__Face__Gen_8h">Eval_Diff_VDF_Face_Gen.h</innerfile>
+    <innerfile refid="Eval__Diff__VDF__Face__Gen_8tpp">Eval_Diff_VDF_Face_Gen.tpp</innerfile>
+    <innerfile refid="Eval__Diff__VDF__leaves_8h">Eval_Diff_VDF_leaves.h</innerfile>
+    <innerfile refid="Eval__Dift__Multiphase__VDF_8h">Eval_Dift_Multiphase_VDF.h</innerfile>
+    <innerfile refid="Eval__Dift__VDF_8h">Eval_Dift_VDF.h</innerfile>
+    <innerfile refid="Eval__Dift__VDF__leaves_8cpp">Eval_Dift_VDF_leaves.cpp</innerfile>
+    <innerfile refid="Eval__Dift__VDF__leaves_8h">Eval_Dift_VDF_leaves.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Eval_Diff_Dift/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,196 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classBords__32__64" kind="class" language="C++" prot="public">
+    <compoundname>Bords_32_64</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTBord_32_64&lt; _SIZE_ &gt;</basecompoundref>
+    <includes local="no">Bords.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classBords__32__64_1a65d7d0b443008c33bbce867a54975505" prot="public" static="no">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Bords_32_64&lt; _SIZE_ &gt;::Domaine_t =  Domaine_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Domaine_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="34" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classBords__32__64_1a2cbe5957029ff06abb3fd4d814030c2b" prot="public" static="no">
+        <type>_SIZE_</type>
+        <definition>using Bords_32_64&lt; _SIZE_ &gt;::int_t =  _SIZE_</definition>
+        <argsstring></argsstring>
+        <name>int_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="33" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBords__32__64_1a3641ab2639c7186f80e4b06a0b527581" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Bords_32_64&lt; _SIZE_ &gt;::Declare_instanciable_32_64</definition>
+        <argsstring>(Bords_32_64)</argsstring>
+        <name>Declare_instanciable_32_64</name>
+        <param>
+          <type><ref refid="classBords__32__64" kindref="compound">Bords_32_64</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="30" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBords__32__64_1acf03104a8745abb68b6960c8f56ec624" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bords_32_64&lt; _SIZE_ &gt;::associer_domaine</definition>
+        <argsstring>(const Domaine_t &amp;)</argsstring>
+        <name>associer_domaine</name>
+        <param>
+          <type>const <ref refid="classBords__32__64_1a65d7d0b443008c33bbce867a54975505" kindref="member">Domaine_t</ref> &amp;</type>
+          <defname>un_domaine</defname>
+        </param>
+        <briefdescription>
+<para>Associe un domaine a tous les bords de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un_domaine) le domaine a associer aux bords de la liste </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.cpp" bodystart="32" bodyend="35"/>
+        <referencedby refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" compoundref="Interprete__geometrique__base_8cpp" startline="60" endline="84">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::interpreter</referencedby>
+        <referencedby refid="classExtraire__domaine_1aa0d721f32e75549a539d693600dc19ea" compoundref="Extraire__domaine_8cpp" startline="33" endline="212">Extraire_domaine::interpreter_</referencedby>
+        <referencedby refid="classDomaine__32__64_1a96722a1630524b52ecc912eb0b39a863" compoundref="Domaine_8cpp" startline="1179" endline="1221">Domaine_32_64&lt; _SIZE_ &gt;::merge_wo_vertices_with</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__32__64_1ae9559ad9334ed1acb87afe1c66aa2b23" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Bords_32_64&lt; _SIZE_ &gt;::nb_bords</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_bords</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="39" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" bodystart="39" bodyend="39"/>
+        <referencedby refid="classDomaine__VF_1a070d4ed8e542f99cb6905a9daa00de6a" compoundref="Domaine__VF_8cpp" startline="730" endline="757">Domaine_VF::info_elem_som</referencedby>
+        <referencedby refid="classDomaine__VF_1a607c82c33bcf12872ca4f2257e45e857" compoundref="Domaine__VF_8cpp" startline="692" endline="728">Domaine_VF::infobord</referencedby>
+        <referencedby refid="classDomaine__32__64_1aae8f00a862e3c640388a5d94729ae18f" compoundref="Domaine_8h" startline="189" endline="189">Domaine_32_64&lt; _SIZE_ &gt;::nb_bords</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__32__64_1a5226689e211c0d0310d24d7c1dd67c66" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classBords__32__64_1a2cbe5957029ff06abb3fd4d814030c2b" kindref="member">int_t</ref></type>
+        <definition>Bords_32_64&lt; _SIZE_ &gt;::int_t Bords_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_faces</name>
+        <briefdescription>
+<para>Renvoie le nombre total de faces de tous les bords de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(int) le nombre total de faces de tous les bords de la liste </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="38" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.cpp" bodystart="42" bodyend="49"/>
+        <referencedby refid="classDomaine__32__64_1a39cd517caa997d3d9c3eb782e97690fd" compoundref="Domaine_8h" startline="162" endline="162">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_bord</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__32__64_1a049fddeb702e7d560d7b73fa6f54a4cf" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classBords__32__64_1a2cbe5957029ff06abb3fd4d814030c2b" kindref="member">int_t</ref></type>
+        <definition>Bords_32_64&lt; _SIZE_ &gt;::int_t Bords_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>(Type_Face type) const</argsstring>
+        <name>nb_faces</name>
+        <param>
+          <type>Type_Face</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie le nombre total de faces du type specifie, pour tous les bords de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Type_Face</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type) le type des faces a comptabiliser </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) le nombre total de faces du type specifie, pour tous les bords de la liste </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="40" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.cpp" bodystart="57" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Classe Bords Cette classe represente une liste d&apos;objets de type Bord. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para>Bord </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>LISTBord_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Bords_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classBords__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>LISTBord_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+      <node id="1">
+        <label>Bords_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classBords__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords.h" bodystart="28" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classBords__32__64_1acf03104a8745abb68b6960c8f56ec624" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>associer_domaine</name></member>
+      <member refid="classBords__32__64_1a3641ab2639c7186f80e4b06a0b527581" prot="private" virt="non-virtual"><scope>Bords_32_64</scope><name>Declare_instanciable_32_64</name></member>
+      <member refid="classBords__32__64_1a65d7d0b443008c33bbce867a54975505" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>Domaine_t</name></member>
+      <member refid="classBords__32__64_1a2cbe5957029ff06abb3fd4d814030c2b" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>int_t</name></member>
+      <member refid="classBords__32__64_1ae9559ad9334ed1acb87afe1c66aa2b23" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>nb_bords</name></member>
+      <member refid="classBords__32__64_1a5226689e211c0d0310d24d7c1dd67c66" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>nb_faces</name></member>
+      <member refid="classBords__32__64_1a049fddeb702e7d560d7b73fa6f54a4cf" prot="public" virt="non-virtual"><scope>Bords_32_64</scope><name>nb_faces</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,21 +1,13 @@
 <map id="Perte_Charge_Reguliere_VEF_P1NC" name="Perte_Charge_Reguliere_VEF_P1NC">
-<area shape="rect" id="Node000001" title="class Perte_Charge_Reguliere_VEF_P1NC" alt="" coords="401,308,578,353"/>
-<area shape="rect" id="Node000002" href="$classPerte__Charge__VEF__Face.html" title="class Perte_Charge_VEF_Face" alt="" coords="301,232,478,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,268,465,305,462,309,416,272"/>
-<area shape="rect" id="Node000003" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,190,369,230,366,234,297,195"/>
-<area shape="rect" id="Node000004" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
-<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
-<area shape="rect" id="Node000008" href="$classTerme__Source__Qdm.html" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="339,157,489,184"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="407,200,397,233,392,231,402,199"/>
-<area shape="rect" id="Node000009" href="$classPerte__Charge__Reguliere.html" title="Classe Perte_Charge_Reguliere Cette classe derivee de Perte_Charge est utiliseelorsque l&#39;on veut." alt="" coords="502,232,680,260"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="565,272,518,309,515,305,561,268"/>
-<area shape="rect" id="Node000010" href="$classPerte__Charge.html" title="Classe Perte_Charge Cette classe represente un terme de perte de charge quiest introduit." alt="" coords="537,157,645,184"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="594,200,594,232,588,232,588,200"/>
+<area shape="rect" id="node1" title="class Perte_Charge_Reguliere_VEF_P1NC" alt="" coords="403,304,582,345"/>
+<area shape="rect" id="node11" href="$classPerte__Charge__Reguliere__QC__VEF__P1NC.html" title=" " alt="" coords="403,393,582,435"/>
+<area shape="rect" id="node2" href="$classPerte__Charge__VEF__Face.html" title="class Perte_Charge_VEF_Face" alt="" coords="302,229,481,256"/>
+<area shape="rect" id="node3" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="211,155,315,181"/>
+<area shape="rect" id="node4" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node5" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,80,299,107"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="323,80,398,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="325,5,397,32"/>
+<area shape="rect" id="node8" href="$classTerme__Source__Qdm.html" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="340,155,491,181"/>
+<area shape="rect" id="node9" href="$classPerte__Charge__Reguliere.html" title="Classe Perte_Charge_Reguliere Cette classe derivee de Perte_Charge est utiliseelorsque l&#39;on veut." alt="" coords="505,229,683,256"/>
+<area shape="rect" id="node10" href="$classPerte__Charge.html" title="Classe Perte_Charge Cette classe represente un terme de perte de charge quiest introduit." alt="" coords="539,155,649,181"/>
 </map>

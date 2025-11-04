@@ -1,0 +1,826 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classGrid__Level__Data__template" kind="class" language="C++" prot="public">
+    <compoundname>Grid_Level_Data_template</compoundname>
+    <basecompoundref refid="classObjet__U" prot="public" virt="non-virtual">Objet_U</basecompoundref>
+    <includes local="no">Grid_Level_Data_template.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _TYPE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1abe981df5d54573f2e112890ded343ee8" prot="protected" static="no" mutable="no">
+        <type><ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref></type>
+        <definition>Domaine_IJK Grid_Level_Data_template&lt; _TYPE_ &gt;::domaine_ijk_</definition>
+        <argsstring></argsstring>
+        <name>domaine_ijk_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="67" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1a00a0865f14b9e152487505d0fd836900" compoundref="Grid__Level__Data__template_8h" startline="44" endline="44">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_domaine</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1ad1ea736d73026d5361e43faa3fac8ce3" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Grid_Level_Data_template&lt; _TYPE_ &gt;::ghost_size_</definition>
+        <argsstring></argsstring>
+        <name>ghost_size_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="68" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1ad1dd9ff9505de90b38a2890423471400" compoundref="Grid__Level__Data__template_8h" startline="43" endline="43">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_ghost_size</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1a51de6d8c1d8f70e1df7902d272814d9b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_faces_coefficients_</definition>
+        <argsstring></argsstring>
+        <name>ijk_faces_coefficients_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="83" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1a4a6d06aec72da9faccf4ee643221b23b" compoundref="Grid__Level__Data__template_8h" startline="58" endline="58">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_faces_coefficients</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1a079eabe37d64ab9e60cce75f388638cb" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_residue_</definition>
+        <argsstring></argsstring>
+        <name>ijk_residue_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="91" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="91" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1a5dfcd19710022987094ea13f01a7f04e" compoundref="Grid__Level__Data__template_8h" startline="57" endline="57">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_residue</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1ac308c7c0ed8ed70c9d6e976621a54f01" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_rho_</definition>
+        <argsstring></argsstring>
+        <name>ijk_rho_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="75" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1a09e6776aeecab806c2a725134fe3b5dd" compoundref="Grid__Level__Data__template_8h" startline="54" endline="54">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_rho</referencedby>
+        <referencedby refid="classGrid__Level__Data__template_1ad1c46cf16a555d9532741d318fc3fcec" compoundref="Grid__Level__Data__template_8h" startline="53" endline="53">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_rho</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1a87dde6ac713f4355f7122dd6e1fe7646" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_rhs_</definition>
+        <argsstring></argsstring>
+        <name>ijk_rhs_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="89" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1aaa2282460667ff174c4ee38edff750f4" compoundref="Grid__Level__Data__template_8h" startline="56" endline="56">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_rhs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1ac5f0a98625c689911fbd0fd268b42bcb" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_x_</definition>
+        <argsstring></argsstring>
+        <name>ijk_x_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="87" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="classGrid__Level__Data__template_1a52330d010a1fe8cbaa4ac0501d6dedc5" compoundref="Grid__Level__Data__template_8h" startline="55" endline="55">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_x</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1a216f5bfe88667525b77945df9991f0c0" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Grid_Level_Data_template&lt; _TYPE_ &gt;::perio_k_</definition>
+        <argsstring></argsstring>
+        <name>perio_k_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="69" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classGrid__Level__Data__template_1a96e7da930edc685b0e293159bd4074f3" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Grid_Level_Data_template&lt; _TYPE_ &gt;::uniform_[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>uniform_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="72" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classGrid__Level__Data__template_1ac9c9c09bc12de52005cd45809c5f4bf7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_inv_rho_cst_i_cst_j_cst_k</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_inv_rho_cst_i_cst_j_cst_k</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="62" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="301" bodyend="425"/>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a7f9a8485deaaa5c4897ea440db4eeafc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_inv_rho_cst_i_cst_j_var_k</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_inv_rho_cst_i_cst_j_var_k</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="64" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="573" bodyend="715"/>
+        <references refid="classIJKArray__with__ghost_1aba057ee47ba6d0c5bbdb839efebf3788" compoundref="IJKArray__with__ghost_8h" startline="60" endline="60">IJKArray_with_ghost&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ghost</references>
+        <references refid="classIJKArray__with__ghost_1a30701707452fbe91ea8bf5ab3a588403" compoundref="IJKArray__with__ghost_8h" startline="51" endline="55">IJKArray_with_ghost&lt; _TYPE_, _TYPE_ARRAY_ &gt;::resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a15f5f2c4cca38e14a1ab47c316911da0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_rho_cst_i_cst_j_cst_k</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_rho_cst_i_cst_j_cst_k</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="61" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="174" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1aa3305fd834e28e665f64e08b9b132b38" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_rho_cst_i_cst_j_var_k</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_rho_cst_i_cst_j_var_k</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="63" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="428" bodyend="570"/>
+        <references refid="classIJKArray__with__ghost_1aba057ee47ba6d0c5bbdb839efebf3788" compoundref="IJKArray__with__ghost_8h" startline="60" endline="60">IJKArray_with_ghost&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ghost</references>
+        <references refid="classIJKArray__with__ghost_1a30701707452fbe91ea8bf5ab3a588403" compoundref="IJKArray__with__ghost_8h" startline="51" endline="55">IJKArray_with_ghost&lt; _TYPE_, _TYPE_ARRAY_ &gt;::resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1aae3c3be4a814e3a59a058ed56c2b8b51" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Grid_Level_Data_template&lt; _TYPE_ &gt;::duplique</definition>
+        <argsstring>() const override</argsstring>
+        <name>duplique</name>
+        <reimplements refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd">duplique</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="30" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="30" bodyend="35"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classGrid__Level__Data__template_1a1829be587bcf2f54522fc8238b973cb4" compoundref="Grid__Level__Data__template_8tpp" startline="24" endline="28">Grid_Level_Data_template&lt; _TYPE_ &gt;::Grid_Level_Data_template</references>
+        <references refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" compoundref="Objet__U_8cpp" startline="268" endline="275">Objet_U::numero</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a9da12cc5b9306153a216ad476820fb2c" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+        <definition>Sortie&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::printOn</definition>
+        <argsstring>(Sortie &amp;os) const override</argsstring>
+        <name>printOn</name>
+        <reimplements refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130">printOn</reimplements>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <defname>s</defname>
+        </param>
+        <briefdescription>
+<para>Ecriture de l&apos;objet sur un flot de sortie Methode a surcharger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Sortie&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>s) flot de sortie </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(<ref refid="classSortie" kindref="compound">Sortie</ref>&amp;) flot de sortie modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="36" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="36" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a81efec2eedf073051769a7089dd05a46" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::readOn</definition>
+        <argsstring>(Entree &amp;is) override</argsstring>
+        <name>readOn</name>
+        <reimplements refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288">readOn</reimplements>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>s</defname>
+        </param>
+        <briefdescription>
+<para>Lecture d&apos;un <ref refid="classObjet__U" kindref="compound">Objet_U</ref> sur un flot d&apos;entree Methode a surcharger. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>s) flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(<ref refid="classEntree" kindref="compound">Entree</ref>&amp; s) flot d&apos;entree modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="37" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="37" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a70d0cbf9220e591ba888a1bf3bc5479e" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>unsigned</type>
+        <definition>unsigned Grid_Level_Data_template&lt; _TYPE_ &gt;::taille_memoire</definition>
+        <argsstring>() const override</argsstring>
+        <name>taille_memoire</name>
+        <reimplements refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2">taille_memoire</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="29" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1af16c7cb6cb76bdb1385ef274679f79e2" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Grid_Level_Data_template&lt; _TYPE_ &gt;::VECT</definition>
+        <argsstring>(ArrOfDouble_with_ghost) local_delta_xyz_</argsstring>
+        <name>VECT</name>
+        <param>
+          <type><ref refid="classIJKArray__with__ghost" kindref="compound">ArrOfDouble_with_ghost</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="71" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGrid__Level__Data__template_1adbcfad7dfe9fbc96b94afcfbba72deda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename MY_TYPE</type>
+            <defval>_TYPE_</defval>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; std::is_same&lt; MY_TYPE, float &gt;::value, void &gt;</type>
+        <definition>std::enable_if_t&lt; std::is_same&lt; MY_TYPE, float &gt;::value, void &gt; Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_double_coeffs</definition>
+        <argsstring>(const Grid_Level_Data_template&lt; double &gt; &amp;)</argsstring>
+        <name>compute_faces_coefficients_from_double_coeffs</name>
+        <param>
+          <type>const <ref refid="classGrid__Level__Data__template" kindref="compound">Grid_Level_Data_template</ref>&lt; double &gt; &amp;</type>
+          <defname>dbl_coeffs</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="50" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="720" bodyend="752"/>
+        <references refid="classGrid__Level__Data__template_1a4a6d06aec72da9faccf4ee643221b23b" compoundref="Grid__Level__Data__template_8h" startline="58" endline="58">Grid_Level_Data_template&lt; _TYPE_ &gt;::get_faces_coefficients</references>
+        <references refid="classIJK__Field__local__template_1ab8d9f7787c98ce7502402a95023911a2" compoundref="IJK__Field__local__template_8h" startline="174" endline="174">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ghost</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1abd22f33f362c3e8d32f5ae5f3d1b5c91" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_inv_rho</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_inv_rho</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="47" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="123" bodyend="171"/>
+        <references refid="classIJK__Field__template_1a9c330f12b41547930db9e6cedb736c8c" compoundref="IJK__Field__template_8tpp" startline="562" endline="572">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate</references>
+        <references refid="classIJK__Field__template_1a34bf4952e7eeaf178687a1137f9bab1c" compoundref="IJK__Field__template_8tpp" startline="287" endline="358">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::echange_espace_virtuel</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a4a01cd61239708e0c20e9fbedfa52eb6" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::ELEM</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a2824d1e193c056b3750a3781714c9bd4" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_I</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a15b0074a7289b4f572e2bb171a7f0bbe" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_J</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a1ca30ec67a63064fafda2bd181ad5615" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_K</references>
+        <references refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" compoundref="IJK__Field__local__template_8h" startline="167" endline="167">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ni</references>
+        <references refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" compoundref="IJK__Field__local__template_8h" startline="168" endline="168">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nj</references>
+        <references refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" compoundref="IJK__Field__local__template_8h" startline="169" endline="169">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nk</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a2f054efd2257af71a74cb0318126fa3d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_rho</definition>
+        <argsstring>()</argsstring>
+        <name>compute_faces_coefficients_from_rho</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="72" bodyend="120"/>
+        <references refid="classIJK__Field__template_1a9c330f12b41547930db9e6cedb736c8c" compoundref="IJK__Field__template_8tpp" startline="562" endline="572">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate</references>
+        <references refid="classIJK__Field__template_1a34bf4952e7eeaf178687a1137f9bab1c" compoundref="IJK__Field__template_8tpp" startline="287" endline="358">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::echange_espace_virtuel</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a4a01cd61239708e0c20e9fbedfa52eb6" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::ELEM</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a2824d1e193c056b3750a3781714c9bd4" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_I</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a15b0074a7289b4f572e2bb171a7f0bbe" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_J</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a1ca30ec67a63064fafda2bd181ad5615" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_K</references>
+        <references refid="classIJK__Field__local__template_1a05abe70b988f06b647c55447a401e8a1" compoundref="IJK__Field__local__template_8h" startline="167" endline="167">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::ni</references>
+        <references refid="classIJK__Field__local__template_1a0b04ee03ff119133a0e6f3a69236f1f0" compoundref="IJK__Field__local__template_8h" startline="168" endline="168">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nj</references>
+        <references refid="classIJK__Field__local__template_1ac2bb2c86b0767595409f700cadf3b772" compoundref="IJK__Field__local__template_8h" startline="169" endline="169">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::nk</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a00a0865f14b9e152487505d0fd836900" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref> &amp;</type>
+        <definition>const Domaine_IJK&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_domaine</definition>
+        <argsstring>() const</argsstring>
+        <name>get_domaine</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="44" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="44" bodyend="44"/>
+        <references refid="classGrid__Level__Data__template_1abe981df5d54573f2e112890ded343ee8" compoundref="Grid__Level__Data__template_8h" startline="67">Grid_Level_Data_template&lt; _TYPE_ &gt;::domaine_ijk_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a4a6d06aec72da9faccf4ee643221b23b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>const IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_faces_coefficients</definition>
+        <argsstring>() const</argsstring>
+        <name>get_faces_coefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="58" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="58" bodyend="58"/>
+        <references refid="classGrid__Level__Data__template_1a51de6d8c1d8f70e1df7902d272814d9b" compoundref="Grid__Level__Data__template_8h" startline="83">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_faces_coefficients_</references>
+        <referencedby refid="classGrid__Level__Data__template_1adbcfad7dfe9fbc96b94afcfbba72deda" compoundref="Grid__Level__Data__template_8tpp" startline="720" endline="752">Grid_Level_Data_template&lt; _TYPE_ &gt;::compute_faces_coefficients_from_double_coeffs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1ad1dd9ff9505de90b38a2890423471400" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Grid_Level_Data_template&lt; _TYPE_ &gt;::get_ghost_size</definition>
+        <argsstring>() const</argsstring>
+        <name>get_ghost_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="43" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="43" bodyend="43"/>
+        <references refid="classGrid__Level__Data__template_1ad1ea736d73026d5361e43faa3fac8ce3" compoundref="Grid__Level__Data__template_8h" startline="68">Grid_Level_Data_template&lt; _TYPE_ &gt;::ghost_size_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a09e6776aeecab806c2a725134fe3b5dd" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>const IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_rho</definition>
+        <argsstring>() const</argsstring>
+        <name>get_rho</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="54" column="28" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="54" bodyend="54"/>
+        <references refid="classGrid__Level__Data__template_1ac308c7c0ed8ed70c9d6e976621a54f01" compoundref="Grid__Level__Data__template_8h" startline="75">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_rho_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a5dfcd19710022987094ea13f01a7f04e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_residue</definition>
+        <argsstring>()</argsstring>
+        <name>get_update_residue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="57" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="57" bodyend="57"/>
+        <references refid="classGrid__Level__Data__template_1a079eabe37d64ab9e60cce75f388638cb" compoundref="Grid__Level__Data__template_8h" startline="91">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_residue_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1ad1c46cf16a555d9532741d318fc3fcec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_rho</definition>
+        <argsstring>()</argsstring>
+        <name>get_update_rho</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="53" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="53" bodyend="53"/>
+        <references refid="classGrid__Level__Data__template_1ac308c7c0ed8ed70c9d6e976621a54f01" compoundref="Grid__Level__Data__template_8h" startline="75">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_rho_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1aaa2282460667ff174c4ee38edff750f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_rhs</definition>
+        <argsstring>()</argsstring>
+        <name>get_update_rhs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="56" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="56" bodyend="56"/>
+        <references refid="classGrid__Level__Data__template_1a87dde6ac713f4355f7122dd6e1fe7646" compoundref="Grid__Level__Data__template_8h" startline="89">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_rhs_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a52330d010a1fe8cbaa4ac0501d6dedc5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classIJK__Field__template" kindref="compound">IJK_Field_template</ref>&lt; _TYPE_, <ref refid="classTRUSTArray" kindref="compound">TRUSTArray</ref>&lt; _TYPE_ &gt; &gt; &amp;</type>
+        <definition>IJK_Field_template&lt;_TYPE_,TRUSTArray&lt;_TYPE_&gt; &gt;&amp; Grid_Level_Data_template&lt; _TYPE_ &gt;::get_update_x</definition>
+        <argsstring>()</argsstring>
+        <name>get_update_x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="55" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="55" bodyend="55"/>
+        <references refid="classGrid__Level__Data__template_1ac5f0a98625c689911fbd0fd268b42bcb" compoundref="Grid__Level__Data__template_8h" startline="87">Grid_Level_Data_template&lt; _TYPE_ &gt;::ijk_x_</references>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1a1829be587bcf2f54522fc8238b973cb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Grid_Level_Data_template&lt; _TYPE_ &gt;::Grid_Level_Data_template</definition>
+        <argsstring>()</argsstring>
+        <name>Grid_Level_Data_template</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="40" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="24" bodyend="28"/>
+        <referencedby refid="classGrid__Level__Data__template_1aae3c3be4a814e3a59a058ed56c2b8b51" compoundref="Grid__Level__Data__template_8h" startline="30" endline="35">Grid_Level_Data_template&lt; _TYPE_ &gt;::duplique</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classGrid__Level__Data__template_1ae216a12eb4b58969e76362b35918df09" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Grid_Level_Data_template&lt; _TYPE_ &gt;::initialize</definition>
+        <argsstring>(const Domaine_IJK &amp;, int ghost, int additional_k_layers)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>const <ref refid="classDomaine__IJK" kindref="compound">Domaine_IJK</ref> &amp;</type>
+          <defname>dom</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>ghost</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>additional_k_layers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.tpp" bodystart="33" bodyend="66"/>
+        <references refid="classIJK__Shear__Periodic__helpler_1acf5f2c5df0f4172bbc1090742ffee789" compoundref="IJK__Shear__Periodic__helpler_8h" startline="27">IJK_Shear_Periodic_helpler::defilement_</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a4a01cd61239708e0c20e9fbedfa52eb6" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::ELEM</references>
+        <references refid="classDomaine__IJK_1a468f577f0fd190e6fa43b57afdeb6c0d" compoundref="Domaine__IJK_8h" startline="554" endline="558">Domaine_IJK::get_periodic_flag</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a849f11683762e2f99725ae641540f7b5" compoundref="IJK__Shear__Periodic__helpler_8h" startline="29">IJK_Shear_Periodic_helpler::rho_liq_ref_for_poisson_</references>
+        <references refid="classIJK__Shear__Periodic__helpler_1a353a726e13f3de2eb4661da617c5daca" compoundref="IJK__Shear__Periodic__helpler_8h" startline="30">IJK_Shear_Periodic_helpler::rho_vap_ref_for_poisson_</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Grid_Level_Data_template&lt; _TYPE_ &gt;</label>
+        <link refid="classGrid__Level__Data__template"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="14">
+        <label>IJK_Field_local_template&lt; double, TRUSTArray &gt;</label>
+        <link refid="classIJK__Field__local__template"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="template-instance">
+          <edgelabel>&lt; double, TRUSTArray &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IJK_Field_template&lt; _TYPE_, TRUSTArray&lt; _TYPE_ &gt; &gt;</label>
+        <link refid="classIJK__Field__template"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="template-instance">
+          <edgelabel>&lt; _TYPE_, TRUSTArray&lt; _TYPE_ &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Domaine_base</label>
+        <link refid="classDomaine__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>fichier_lu_</edgelabel>
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>VECTNom</label>
+      </node>
+      <node id="2">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;</label>
+        <link refid="classIJK__Field__local__template"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Field_base</label>
+        <link refid="classField__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>noms_compo_</edgelabel>
+          <edgelabel>noms_synonymes_</edgelabel>
+          <edgelabel>unite_</edgelabel>
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;</label>
+        <link refid="classIJK__Field__template"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>shear_BC_helpler_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="3">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="13">
+        <label>IJK_Shear_Periodic_helpler</label>
+        <link refid="classIJK__Shear__Periodic__helpler"/>
+        <childnode refid="14" relation="usage">
+          <edgelabel>I_sig_kappa_zmax_</edgelabel>
+          <edgelabel>I_sig_kappa_zmin_</edgelabel>
+          <edgelabel>indicatrice_ghost_zmax_</edgelabel>
+          <edgelabel>indicatrice_ghost_zmin_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>denum_</edgelabel>
+          <edgelabel>res_</edgelabel>
+        </childnode>
+        <childnode refid="18" relation="usage">
+          <edgelabel>send_i_real_</edgelabel>
+          <edgelabel>x_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Noms</label>
+        <link refid="classNoms"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Grid_Level_Data_template&lt; _TYPE_ &gt;</label>
+        <link refid="classGrid__Level__Data__template"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>ijk_faces_coefficients_</edgelabel>
+          <edgelabel>ijk_residue_</edgelabel>
+          <edgelabel>ijk_rho_</edgelabel>
+          <edgelabel>ijk_rhs_</edgelabel>
+          <edgelabel>ijk_x_</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>domaine_ijk_</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Domaine_IJK</label>
+        <link refid="classDomaine__IJK"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/IJK/Multigrille/Grid_Level_Data_template.h" bodystart="27" bodyend="92"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>check_int_overflow</name></member>
+      <member refid="classGrid__Level__Data__template_1adbcfad7dfe9fbc96b94afcfbba72deda" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_double_coeffs</name></member>
+      <member refid="classGrid__Level__Data__template_1abd22f33f362c3e8d32f5ae5f3d1b5c91" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_inv_rho</name></member>
+      <member refid="classGrid__Level__Data__template_1ac9c9c09bc12de52005cd45809c5f4bf7" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_inv_rho_cst_i_cst_j_cst_k</name></member>
+      <member refid="classGrid__Level__Data__template_1a7f9a8485deaaa5c4897ea440db4eeafc" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_inv_rho_cst_i_cst_j_var_k</name></member>
+      <member refid="classGrid__Level__Data__template_1a2f054efd2257af71a74cb0318126fa3d" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_rho</name></member>
+      <member refid="classGrid__Level__Data__template_1a15f5f2c4cca38e14a1ab47c316911da0" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_rho_cst_i_cst_j_cst_k</name></member>
+      <member refid="classGrid__Level__Data__template_1aa3305fd834e28e665f64e08b9b132b38" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>compute_faces_coefficients_from_rho_cst_i_cst_j_var_k</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>disable_TU</name></member>
+      <member refid="classGrid__Level__Data__template_1abe981df5d54573f2e112890ded343ee8" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>domaine_ijk_</name></member>
+      <member refid="classGrid__Level__Data__template_1aae3c3be4a814e3a59a058ed56c2b8b51" prot="protected" virt="virtual"><scope>Grid_Level_Data_template</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>format_precision_geom</name></member>
+      <member refid="classGrid__Level__Data__template_1a00a0865f14b9e152487505d0fd836900" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_domaine</name></member>
+      <member refid="classGrid__Level__Data__template_1a4a6d06aec72da9faccf4ee643221b23b" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_faces_coefficients</name></member>
+      <member refid="classGrid__Level__Data__template_1ad1dd9ff9505de90b38a2890423471400" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_ghost_size</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_object_id</name></member>
+      <member refid="classGrid__Level__Data__template_1a09e6776aeecab806c2a725134fe3b5dd" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_rho</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classGrid__Level__Data__template_1a5dfcd19710022987094ea13f01a7f04e" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_update_residue</name></member>
+      <member refid="classGrid__Level__Data__template_1ad1c46cf16a555d9532741d318fc3fcec" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_update_rho</name></member>
+      <member refid="classGrid__Level__Data__template_1aaa2282460667ff174c4ee38edff750f4" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_update_rhs</name></member>
+      <member refid="classGrid__Level__Data__template_1a52330d010a1fe8cbaa4ac0501d6dedc5" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>get_update_x</name></member>
+      <member refid="classGrid__Level__Data__template_1ad1ea736d73026d5361e43faa3fac8ce3" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ghost_size_</name></member>
+      <member refid="classGrid__Level__Data__template_1a1829be587bcf2f54522fc8238b973cb4" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>Grid_Level_Data_template</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>HAS_POINTER</name></member>
+      <member refid="classGrid__Level__Data__template_1a51de6d8c1d8f70e1df7902d272814d9b" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ijk_faces_coefficients_</name></member>
+      <member refid="classGrid__Level__Data__template_1a079eabe37d64ab9e60cce75f388638cb" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ijk_residue_</name></member>
+      <member refid="classGrid__Level__Data__template_1ac308c7c0ed8ed70c9d6e976621a54f01" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ijk_rho_</name></member>
+      <member refid="classGrid__Level__Data__template_1a87dde6ac713f4355f7122dd6e1fe7646" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ijk_rhs_</name></member>
+      <member refid="classGrid__Level__Data__template_1ac5f0a98625c689911fbd0fd268b42bcb" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ijk_x_</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>info_obj</name></member>
+      <member refid="classGrid__Level__Data__template_1ae216a12eb4b58969e76362b35918df09" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>initialize</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>operator=</name></member>
+      <member refid="classGrid__Level__Data__template_1a216f5bfe88667525b77945df9991f0c0" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>perio_k_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>precision_geom</name></member>
+      <member refid="classGrid__Level__Data__template_1a9da12cc5b9306153a216ad476820fb2c" prot="protected" virt="virtual"><scope>Grid_Level_Data_template</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>ram_processeur</name></member>
+      <member refid="classGrid__Level__Data__template_1a81efec2eedf073051769a7089dd05a46" prot="protected" virt="virtual"><scope>Grid_Level_Data_template</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classGrid__Level__Data__template_1a70d0cbf9220e591ba888a1bf3bc5479e" prot="protected" virt="virtual"><scope>Grid_Level_Data_template</scope><name>taille_memoire</name></member>
+      <member refid="classGrid__Level__Data__template_1a96e7da930edc685b0e293159bd4074f3" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>uniform_</name></member>
+      <member refid="classGrid__Level__Data__template_1af16c7cb6cb76bdb1385ef274679f79e2" prot="protected" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>VECT</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Grid_Level_Data_template</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Grid_Level_Data_template</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

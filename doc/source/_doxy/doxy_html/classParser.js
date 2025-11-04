@@ -14,7 +14,7 @@ var classParser =
     [ "addVar", "classParser.html#a0f04fd67f90acd8301940430b83154b5", null ],
     [ "getmaxVar", "classParser.html#a233521d96e85f6ba1067c3115b2b35db", null ],
     [ "getNbVar", "classParser.html#aca35ed37235cf3ff24be40446b7338c3", null ],
-    [ "getString", "classParser.html#a73f84507bb31366ad04ed1892cb54a9e", null ],
+    [ "getString", "classParser.html#ac30231903a3810dba13bc2d3d5175390", null ],
     [ "setString", "classParser.html#ac7ab1d1e4a4b8decf26822e43b3f304b", null ],
     [ "addCst", "classParser.html#af26ac7e95897cc2a6c3099958af6af54", null ],
     [ "setImpulsion", "classParser.html#a65266c95e7eae272a37ec3a02f6b7d88", null ],

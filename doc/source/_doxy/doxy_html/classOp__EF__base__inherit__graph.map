@@ -1,23 +1,13 @@
 <map id="Op_EF_base" name="Op_EF_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="110,5,211,33"/>
-<area shape="rect" id="Node000002" href="$classOp__Conv__EF__base.html" title="class Op_Conv_EF_base" alt="" coords="10,81,151,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,46,97,83,93,79,133,42"/>
-<area shape="rect" id="Node000006" href="$classOp__Diff__EF__base.html" title="class Op_Diff_EF_base Classe de base des operateurs de diffusion EF" alt="" coords="175,81,306,109"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="188,42,228,79,225,83,185,46"/>
-<area shape="rect" id="Node000003" href="$classOp__Conv__EF.html" title="class Op_Conv_EF Cette classe represente l&#39;operateur de convection associe a une equation de" alt="" coords="28,157,130,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,125,82,156,77,156,77,124"/>
-<area shape="rect" id="Node000004" href="$classOp__Conv__BTD__EF.html" title=" " alt="" coords="10,232,146,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="81,200,81,232,76,232,76,200"/>
-<area shape="rect" id="Node000005" href="$classOp__Conv__SUPG__EF.html" title=": class Op_Conv_SUPG_EF" alt="" coords="5,308,151,336"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="81,276,81,308,75,308,75,276"/>
-<area shape="rect" id="Node000007" href="$classOp__Diff__EF.html" title="class Op_Diff_EF Cette classe represente l&#39;operateur de diffusion" alt="" coords="194,157,287,184"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="243,124,243,156,238,156,238,124"/>
-<area shape="rect" id="Node000009" href="$classOp__Dift__EF__base.html" title=" " alt="" coords="319,157,450,184"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="281,114,360,154,358,159,279,118"/>
-<area shape="rect" id="Node000008" href="$classOp__Diff__option__EF.html" title=" " alt="" coords="170,232,311,260"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="243,200,243,232,238,232,238,200"/>
-<area shape="rect" id="Node000010" href="$classOp__Dift__EF__Q1.html" title="class Op_Dift_EF_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="335,232,453,260"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="391,199,395,232,390,232,386,200"/>
-<area shape="rect" id="Node000011" href="$classOp__Dift__EF__Q1__option.html" title=" " alt="" coords="311,308,477,336"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="397,276,397,308,391,308,391,276"/>
+<area shape="rect" id="node1" title=" " alt="" coords="111,5,212,32"/>
+<area shape="rect" id="node2" href="$classOp__Conv__EF__base.html" title="class Op_Conv_EF_base" alt="" coords="11,80,152,107"/>
+<area shape="rect" id="node6" href="$classOp__Diff__EF__base.html" title="class Op_Diff_EF_base Classe de base des operateurs de diffusion EF" alt="" coords="177,80,309,107"/>
+<area shape="rect" id="node3" href="$classOp__Conv__EF.html" title="class Op_Conv_EF Cette classe represente l&#39;operateur de convection associe a une equation de" alt="" coords="29,155,131,181"/>
+<area shape="rect" id="node4" href="$classOp__Conv__BTD__EF.html" title=" " alt="" coords="10,229,147,256"/>
+<area shape="rect" id="node5" href="$classOp__Conv__SUPG__EF.html" title=": class Op_Conv_SUPG_EF" alt="" coords="5,304,152,331"/>
+<area shape="rect" id="node7" href="$classOp__Diff__EF.html" title="class Op_Diff_EF Cette classe represente l&#39;operateur de diffusion" alt="" coords="195,155,290,181"/>
+<area shape="rect" id="node9" href="$classOp__Dift__EF__base.html" title=" " alt="" coords="322,155,454,181"/>
+<area shape="rect" id="node8" href="$classOp__Diff__option__EF.html" title=" " alt="" coords="171,229,314,256"/>
+<area shape="rect" id="node10" href="$classOp__Dift__EF__Q1.html" title="class Op_Dift_EF_Q1 Cette classe represente l&#39;operateur de diffusion" alt="" coords="338,229,457,256"/>
+<area shape="rect" id="node11" href="$classOp__Dift__EF__Q1__option.html" title=" " alt="" coords="314,304,481,331"/>
 </map>

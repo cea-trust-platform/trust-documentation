@@ -10,5 +10,6 @@ var classPerte__Charge__Singuliere =
     [ "identifiant_", "classPerte__Charge__Singuliere.html#a822dfa85ad27c35b884854e9c4e3f244", null ],
     [ "regul_", "classPerte__Charge__Singuliere.html#a036910a1edb3b5e13a16071cc7c4211e", null ],
     [ "deb_cible_", "classPerte__Charge__Singuliere.html#acb6602b31e6bdb514583b5f50e770d21", null ],
+    [ "alpha_", "classPerte__Charge__Singuliere.html#a23bce4eb09a2aa94604fce36534ebb4c", null ],
     [ "eps_", "classPerte__Charge__Singuliere.html#a28f54fe2cfaad225aa3216315ed40d25", null ]
 ];

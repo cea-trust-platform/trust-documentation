@@ -1,0 +1,1342 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPerf__counters_1_1Impl" kind="class" language="C++" prot="public">
+    <compoundname>Perf_counters::Impl</compoundname>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classPerf__counters_1_1Impl_1afc8d910432b7ddcdfd903831841247e7" prot="public" static="no">
+        <type>std::chrono::high_resolution_clock</type>
+        <definition>using Perf_counters::Impl::clock =  std::chrono::high_resolution_clock</definition>
+        <argsstring></argsstring>
+        <name>clock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="224" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="224" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPerf__counters_1_1Impl_1ae9ff079f24584b90ce69cda7db659480" prot="public" static="no">
+        <type>std::chrono::duration&lt; double &gt;</type>
+        <definition>using Perf_counters::Impl::duration =  std::chrono::duration&lt;double&gt;</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="226" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="226" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classPerf__counters_1_1Impl_1ad526818e2be8cad1c98dabb16ccd1bdc" prot="public" static="no">
+        <type>std::chrono::time_point&lt; <ref refid="classPerf__counters_1a7199862ecc2cf8a7d3dda954d0ed38aa" kindref="member">clock</ref> &gt;</type>
+        <definition>using Perf_counters::Impl::time_point =  std::chrono::time_point&lt;clock&gt;</definition>
+        <argsstring></argsstring>
+        <name>time_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="225" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="225" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1ae5ac666e46477757b562343d7c35542b" prot="private" static="no" mutable="no">
+        <type><ref refid="classPerf__counters_1a55de2814bd702ea138c8518f419c44b0" kindref="member">duration</ref></type>
+        <definition>duration Perf_counters::Impl::computation_time_</definition>
+        <argsstring></argsstring>
+        <name>computation_time_</name>
+        <initializer>=duration::zero()</initializer>
+        <briefdescription>
+<para>Used to compute the total time of the simulation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="286" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a8fa8cab709d10bd0ebbe395b771c612f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::counters_stop_</definition>
+        <argsstring></argsstring>
+        <name>counters_stop_</name>
+        <initializer>=false</initializer>
+        <briefdescription>
+<para>A flag used to know if the counters are paused or not. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="284" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1aab859e25e6da3523ae2b545459020b7b" prot="private" static="no" mutable="no">
+        <type>std::map&lt; std::string, std::unique_ptr&lt; Counter &gt; &gt;</type>
+        <definition>std::map&lt;std::string, std::unique_ptr&lt;Counter&gt; &gt; Perf_counters::Impl::custom_counter_map_str_to_counter_</definition>
+        <argsstring></argsstring>
+        <name>custom_counter_map_str_to_counter_</name>
+        <briefdescription>
+<para>Store custom counters using unique_ptr. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="281" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="281" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1ab727e0ea86b361f4505c2fcda4b41b43" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::end_cache_</definition>
+        <argsstring></argsstring>
+        <name>end_cache_</name>
+        <initializer>=false</initializer>
+        <briefdescription>
+<para>A flag used to know if the two first time steps are over or not. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="282" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="282" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a03fdef61fab04efb65760ee001f17ac4" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::gpu_fence_</definition>
+        <argsstring></argsstring>
+        <name>gpu_fence_</name>
+        <initializer>=true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="296" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a06aaac72ab3e81b8cecdbcf800ece545" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::gpu_timer_</definition>
+        <argsstring></argsstring>
+        <name>gpu_timer_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="294" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a1fe74d601118def3eee9243e122fb16c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::gpu_timer_count_</definition>
+        <argsstring></argsstring>
+        <name>gpu_timer_count_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="298" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="298" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a155289ce0ccd6db4ab3b6d229194745d" prot="private" static="no" mutable="no">
+        <type><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref></type>
+        <definition>time_point Perf_counters::Impl::gpu_timer_start_</definition>
+        <argsstring></argsstring>
+        <name>gpu_timer_start_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="297" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="297" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1ac4cbd0bda0bb095f3eab73be6dfe5c34" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::gpu_verbose_</definition>
+        <argsstring></argsstring>
+        <name>gpu_verbose_</name>
+        <initializer>=false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="292" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a8f5ebd8061627a97e0f82731f8d1d7c0" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::init_device_</definition>
+        <argsstring></argsstring>
+        <name>init_device_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="293" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="293" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1ae8ef887171129548573b33326a30b74f" prot="private" static="no" mutable="no">
+        <type>Counter *</type>
+        <definition>Counter* Perf_counters::Impl::last_opened_counter_</definition>
+        <argsstring></argsstring>
+        <name>last_opened_counter_</name>
+        <initializer>=nullptr</initializer>
+        <briefdescription>
+<para>pointer to the last opened counter. Each counter has a parent attribute, which also give the pointer of the counter open before them. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="288" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a3288c5116240d7e928d1c88fb114fd12" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::max_str_length_</definition>
+        <argsstring></argsstring>
+        <name>max_str_length_</name>
+        <initializer>=118</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="299" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="299" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1aca6a61aa557728c137ebbac1a0b46c38" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::nb_steps_elapsed_</definition>
+        <argsstring></argsstring>
+        <name>nb_steps_elapsed_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+<para>By default, we consider that the two first time steps are used to file the cache, so they are not taken into account in the stats. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="289" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1aaff13a68341e2bd74cee00b1aa372de3" prot="private" static="no" mutable="no">
+        <type>std::array&lt; std::unique_ptr&lt; Counter &gt;, static_cast&lt; int &gt;STD_COUNTERS::NB_OF_STD_COUNTER)&gt;</type>
+        <definition>std::array&lt;std::unique_ptr&lt;Counter&gt;, static_cast&lt;int&gt;STD_COUNTERS::NB_OF_STD_COUNTER)&gt; Perf_counters::Impl::std_counters_</definition>
+        <argsstring></argsstring>
+        <name>std_counters_</name>
+        <briefdescription>
+<para>Store standard counters using unique_ptr. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="280" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="280" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a1d069c9ad72df658ef9efdf5b87a8b2f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::time_loop_</definition>
+        <argsstring></argsstring>
+        <name>time_loop_</name>
+        <initializer>=false</initializer>
+        <briefdescription>
+<para>A flag used to know if we are inside the time loop. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="283" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="283" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a6a55359bfba2a7c86e306c59e82b7c49" prot="private" static="no" mutable="no">
+        <type><ref refid="classPerf__counters_1a55de2814bd702ea138c8518f419c44b0" kindref="member">duration</ref></type>
+        <definition>duration Perf_counters::Impl::time_skipped_ts_</definition>
+        <argsstring></argsstring>
+        <name>time_skipped_ts_</name>
+        <initializer>=duration::zero()</initializer>
+        <briefdescription>
+<para>the duration in seconds of the cache. If cache is too long, use function set_three_first_steps_elapsed in oder to include the stats of the cache in your stats </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="287" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1ab86c4b15935ff3ced15fdbd252675222" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::total_data_exchange_per_backup_</definition>
+        <argsstring></argsstring>
+        <name>total_data_exchange_per_backup_</name>
+        <initializer>=0.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="291" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="291" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1aec6c3079ad52031c9d1032874141abda" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::total_nb_backup_</definition>
+        <argsstring></argsstring>
+        <name>total_nb_backup_</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="290" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="290" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPerf__counters_1_1Impl_1a5235a33eab2314302b81ae34337bce55" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::use_gpu_</definition>
+        <argsstring></argsstring>
+        <name>use_gpu_</name>
+        <initializer>=false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="295" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="295" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ac1af0be4ab1cf4dbf76e7dbc15859341" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::add_to_gpu_timer_counter_impl</definition>
+        <argsstring>(int to_add=1)</argsstring>
+        <name>add_to_gpu_timer_counter_impl</name>
+        <param>
+          <type>int</type>
+          <declname>to_add</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="261" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1764" bodyend="1767"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1af12bd5d0e0a1e847de2cb9ab3498482b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::begin_count_impl</definition>
+        <argsstring>(const std::string &amp;custom_count_name, int counter_lvl)</argsstring>
+        <name>begin_count_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>custom_count_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>counter_lvl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>custom_count_name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>key of the map (custom_counter_map_str_to_counter_) of the custom counter you try to close </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>counter_lvl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="235" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1435" bodyend="1446"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a6fe459db32dedc62fc18a1672a9213d8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::begin_count_impl</definition>
+        <argsstring>(const STD_COUNTERS &amp;std_cnt, int counter_lvl)</argsstring>
+        <name>begin_count_impl</name>
+        <param>
+          <type>const STD_COUNTERS &amp;</type>
+          <declname>std_cnt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>counter_lvl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="234" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1417" bodyend="1428"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a2203c378d0b4bdfa8b044b2657bd4146" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::compute_gpu_time_impl</definition>
+        <argsstring>()</argsstring>
+        <name>compute_gpu_time_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="255" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1737" bodyend="1742"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a77801868e025a13b0222031b6ae7933f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::create_custom_counter_impl</definition>
+        <argsstring>(std::string counter_description, int counter_level, std::string counter_family, bool is_comm, bool is_gpu)</argsstring>
+        <name>create_custom_counter_impl</name>
+        <param>
+          <type>std::string</type>
+          <declname>counter_description</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>counter_level</declname>
+        </param>
+        <param>
+          <type>std::string</type>
+          <declname>counter_family</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_comm</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>is_gpu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="233" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1405" bodyend="1415"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ada44d9803cd91217c790973fba3302ce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::end_count_impl</definition>
+        <argsstring>(const std::string &amp;custom_count_name, int count_increment, long int quantity_increment)</argsstring>
+        <name>end_count_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>custom_count_name</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count_increment</declname>
+        </param>
+        <param>
+          <type>long int</type>
+          <declname>quantity_increment</declname>
+        </param>
+        <briefdescription>
+<para>End the count of a counter and update the counter values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the custom counter to end the count </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count_increment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the count increment. If not specified, then it is equal to 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity_increment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the increment of custom variable quantity. If not specified, it is set to 0. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="237" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1474" bodyend="1484"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a85ab3015ac0227e37f6b7d8cfd557fda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::end_count_impl</definition>
+        <argsstring>(const STD_COUNTERS &amp;std_cnt, int count_increment, long int quantity_increment)</argsstring>
+        <name>end_count_impl</name>
+        <param>
+          <type>const STD_COUNTERS &amp;</type>
+          <declname>std_cnt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>count_increment</declname>
+        </param>
+        <param>
+          <type>long int</type>
+          <declname>quantity_increment</declname>
+        </param>
+        <briefdescription>
+<para>End the count of a counter and update the counter values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>c</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the counter to end the count </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>count_increment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the count increment. If not specified, then it is equal to 1 </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>quantity_increment</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is the increment of custom variable quantity. If not specified, it is set to 0. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="236" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1454" bodyend="1465"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1acd87834f06dc99f4e9b77da689ca9d51" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::end_time_step_impl</definition>
+        <argsstring>(long int tstep)</argsstring>
+        <name>end_time_step_impl</name>
+        <param>
+          <type>long int</type>
+          <declname>tstep</declname>
+        </param>
+        <briefdescription>
+<para>Compute for each counter open during a time step avg_time_per_step_, min_time_per_step_, max_time_per_step_ and sd_time_per_step_. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Called at the end of each time step, and only then <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tstep</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of time steps elapsed since the start of the computation</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Nota : if the counter is called before the time step loop, it is not accounted for in the computation. </para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; stop_counters already updated c-&gt;tim_ts_</para>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="250" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1649" bodyend="1698"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a6c9ea9d0c357cb1ef66eb5db51024e7d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::end_timeloop_impl</definition>
+        <argsstring>()</argsstring>
+        <name>end_timeloop_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="248" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1610" bodyend="1615"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1addc519c8060affe62d2d802fe4b41c06" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::get_computation_time_impl</definition>
+        <argsstring>()</argsstring>
+        <name>get_computation_time_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="242" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1555" bodyend="1563"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a85dd1f63dd5025bae1b811231fa51b30" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::get_gpu_fence_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gpu_fence_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="264" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="264" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a13d9438e8f88e48bb48153fb7ed89eaa" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::get_gpu_timer_counter_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gpu_timer_counter_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="262" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1768" bodyend="1771"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a1235e0ffc897a3cefc6695ed8352bab3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::get_gpu_timer_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gpu_timer_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="260" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1760" bodyend="1763"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a0298a973fdb546f667aa3a463276bd16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::get_init_device_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_init_device_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="258" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1752" bodyend="1755"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a0901a354dc16e2f8977cecac1c65c2ce" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Perf_counters::Impl::get_last_opened_counter_level_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_last_opened_counter_level_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="251" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1700" bodyend="1705"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1afbedb524eaefc01bc0d98d3d5fc23f78" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::get_time_since_last_open_impl</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>get_time_since_last_open_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="246" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1593" bodyend="1601"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a9c09ff3bac2c1e9f959ef9f23b7a7922" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::get_time_since_last_open_impl</definition>
+        <argsstring>(const STD_COUNTERS &amp;name)</argsstring>
+        <name>get_time_since_last_open_impl</name>
+        <param>
+          <type>const STD_COUNTERS &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="245" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1583" bodyend="1591"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a2bc64bd0ae330fd4f820e9b69354085b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::get_total_time_impl</definition>
+        <argsstring>(const std::string &amp;name)</argsstring>
+        <name>get_total_time_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="244" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1574" bodyend="1581"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a91cceab61694c8ec4acb9b44fdd5e42f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::get_total_time_impl</definition>
+        <argsstring>(const STD_COUNTERS &amp;name)</argsstring>
+        <name>get_total_time_impl</name>
+        <param>
+          <type>const STD_COUNTERS &amp;</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="243" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1565" bodyend="1572"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1abe805fdf811901453cd2d7c072b5c63d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::get_use_gpu_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_use_gpu_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="263" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="263" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a4a3a0182bf4ea6bb5c0ef9eda096aba9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Perf_counters::Impl::Impl</definition>
+        <argsstring>()</argsstring>
+        <name>Impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="231" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="303" bodyend="364"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a06500210249cd5d927475b862442e264" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::is_gpu_verbose_on_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>is_gpu_verbose_on_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="256" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1744" bodyend="1747"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aac02007961cc34791512fa6456e88a09" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref></type>
+        <definition>time_point Perf_counters::Impl::now</definition>
+        <argsstring>()</argsstring>
+        <name>now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="227" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="227" bodyend="230"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a0517981bf9e1f76f350ac8a21e318787" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::print_TU_files_impl</definition>
+        <argsstring>(const std::string &amp;message)</argsstring>
+        <name>print_TU_files_impl</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="252" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1707" bodyend="1720"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ace2f5c8de814f6d2bdf82c478d82156a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::reset_counters_impl</definition>
+        <argsstring>()</argsstring>
+        <name>reset_counters_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="240" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1536" bodyend="1548"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a06441dce1137b79609e709ea2414bdce" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::restart_counters_impl</definition>
+        <argsstring>()</argsstring>
+        <name>restart_counters_impl</name>
+        <briefdescription>
+<para>Restart all counters, has to be called on every processor simultaneously. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="239" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1516" bodyend="1534"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aa222e8af0a9194f5943bd2e2174bda19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Perf_counters::Impl::running_impl</definition>
+        <argsstring>(const STD_COUNTERS name)</argsstring>
+        <name>running_impl</name>
+        <param>
+          <type>const STD_COUNTERS</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="266" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="266" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a709bbf35281b669d974b1d9191ef4511" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::set_gpu_fence_impl</definition>
+        <argsstring>(bool fence)</argsstring>
+        <name>set_gpu_fence_impl</name>
+        <param>
+          <type>bool</type>
+          <declname>fence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="265" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="265" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ac8c05effd0cf6d963da541eea842eed7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::set_gpu_verbose_impl</definition>
+        <argsstring>(bool on)</argsstring>
+        <name>set_gpu_verbose_impl</name>
+        <param>
+          <type>bool</type>
+          <declname>on</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="257" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1748" bodyend="1751"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ad09b18c1bd3dfd5e30938ca42740c2db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::set_init_device_impl</definition>
+        <argsstring>(bool init)</argsstring>
+        <name>set_init_device_impl</name>
+        <param>
+          <type>bool</type>
+          <declname>init</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="259" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1756" bodyend="1759"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a9b0e04ad30d41c118a7de4d77f3bab31" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::set_time_steps_elapsed_impl</definition>
+        <argsstring>(int time_step_elapsed)</argsstring>
+        <name>set_time_steps_elapsed_impl</name>
+        <param>
+          <type>int</type>
+          <declname>time_step_elapsed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="241" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1550" bodyend="1553"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a54e3753f83aba31fbb6e0e56d2e6f748" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::start_gpu_timer_impl</definition>
+        <argsstring>()</argsstring>
+        <name>start_gpu_timer_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="253" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1722" bodyend="1728"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a3dc5ba899302f3dec01a2646178714f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::start_time_step_impl</definition>
+        <argsstring>()</argsstring>
+        <name>start_time_step_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="249" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1617" bodyend="1640"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ae484b59d8fe83a1e555fb25281569576" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::start_timeloop_impl</definition>
+        <argsstring>()</argsstring>
+        <name>start_timeloop_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="247" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1603" bodyend="1608"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a29cd9dd4c39be1e3fa07f596238e7078" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::stop_counters_impl</definition>
+        <argsstring>()</argsstring>
+        <name>stop_counters_impl</name>
+        <briefdescription>
+<para>Stop all counters, has to be called on every processor simultaneously. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="238" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1490" bodyend="1511"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aeafe3fa941f8dfc9ec6829a4ee1cc836" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::stop_gpu_timer_impl</definition>
+        <argsstring>()</argsstring>
+        <name>stop_gpu_timer_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="254" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="1730" bodyend="1735"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a55373a3978ae3cca1856bcf35e3f4e9d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Perf_counters::Impl::~Impl</definition>
+        <argsstring>()</argsstring>
+        <name>~Impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="232" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aa3e32bef50bd5bc3da39a4a4f5e3614f" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::check_begin</definition>
+        <argsstring>(Counter &amp;c, int counter_lvl, time_point t)</argsstring>
+        <name>check_begin</name>
+        <param>
+          <type>Counter &amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>counter_lvl</declname>
+        </param>
+        <param>
+          <type><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="271" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="379" bodyend="409"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aa3b41b705551ca196306b90223a23807" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::check_end</definition>
+        <argsstring>(Counter &amp;c, time_point t)</argsstring>
+        <name>check_end</name>
+        <param>
+          <type>Counter &amp;</type>
+          <declname>c</declname>
+        </param>
+        <param>
+          <type><ref refid="classPerf__counters_1a0c2e7a5727d5697e88e42d9a9b3f0d8f" kindref="member">time_point</ref></type>
+          <declname>t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="272" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="411" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1acfebfd20ce1ee2aafafec543674e3c70" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double Perf_counters::Impl::compute_allreduce_peak</definition>
+        <argsstring>()</argsstring>
+        <name>compute_allreduce_peak</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="273" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="432" bodyend="443"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ac9757330fbdcfb22235da38f72930643" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Counter &amp;</type>
+        <definition>Counter &amp; Perf_counters::Impl::get_counter</definition>
+        <argsstring>(const std::string name)</argsstring>
+        <name>get_counter</name>
+        <param>
+          <type>const std::string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="270" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="372" bodyend="377"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a06850676d65237bba2ca790d92bbba82" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Counter &amp;</type>
+        <definition>Counter &amp; Perf_counters::Impl::get_counter</definition>
+        <argsstring>(const STD_COUNTERS name)</argsstring>
+        <name>get_counter</name>
+        <param>
+          <type>const STD_COUNTERS</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="269" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="367" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1ab61046f9475d38b1b3b44e55274d8a7b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Perf_counters::Impl::get_cpu</definition>
+        <argsstring>() const</argsstring>
+        <name>get_cpu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>string that contains cpu model and number of proc </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="275" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="498" bodyend="528"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a3c931fb0694ebdd34343b4578c380490" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Perf_counters::Impl::get_date</definition>
+        <argsstring>() const</argsstring>
+        <name>get_date</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>string with complete date and time : DD-MM-YYYY <ndash/> hour:minute:second </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="277" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="567" bodyend="576"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1aeea842223cec8ba1b95c4e9dc75d0097" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Perf_counters::Impl::get_gpu</definition>
+        <argsstring>() const</argsstring>
+        <name>get_gpu</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>string with gpu model name </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="276" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="534" bodyend="561"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1af7d86a17ba1dd0c0a8024fa4bc6faa30" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string Perf_counters::Impl::get_os</definition>
+        <argsstring>() const</argsstring>
+        <name>get_os</name>
+        <briefdescription>
+<para>Return a string that contains os information. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>for example: node name = is247793 system name = Linux machine = x86_64 release = 6.5.0-44-generic version = #44~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC + current date and time</para>
+<para><simplesect kind="return"><para>string with is, os info and date </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="274" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="478" bodyend="491"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a698c35daf1eda59dc0d8d048f5dfbe95" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::print_global_TU</definition>
+        <argsstring>(const std::string &amp;message)</argsstring>
+        <name>print_global_TU</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>message</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>mode_append</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Stringstream that contains algomerated stats that will be printed in the .TU</para>
+<para>&lt; Stringstream that contains algomerated stats that will be printed in the .TU</para>
+<para>&lt; Stringstream that contains algomerated stats that will be printed in the .TU</para>
+<para>&lt; Stringstream that contains the File header</para>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="279" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="940" bodyend="1401"/>
+      </memberdef>
+      <memberdef kind="function" id="classPerf__counters_1_1Impl_1a89ec19785e08b0ae909e645da2535e28" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Perf_counters::Impl::print_performance_to_csv</definition>
+        <argsstring>(const std::string &amp;message)</argsstring>
+        <name>print_performance_to_csv</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>message</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Stringstream that contains stats for each processor</para>
+<para>&lt; Stringstream that contains stats average on the processors : processor number = -1</para>
+<para>&lt; Stringstream that contains the lines at the start of the file</para>
+<para>&lt; number of item of a line of the _csv.Tu file</para>
+<para>&lt; Contains the the width of the printed string, 20 for numbers by default</para>
+<para>&lt; Contains the data of a line that we want to print in the _csv.TU file.</para>
+<para>&lt; Create a temporary ostringstream for converting wanted line items in string to construct the line_items vector and therefore</para>
+<para>We specify the width of large items of lines of the _csv.Tu file for making it readable by human</para>
+<para>Then we create a vector line_items that contains each item we want to print</para>
+<para>After filling line_items and item_size, we use the function build_line_csv to build the line at the expected format</para>
+<para>Check if all of the processors see the same number of counter, if not print an error message in perfs_globales</para>
+<para>&lt; If min_nb_of_counters != max_nb_of_counters, aggregated stats are not printed</para>
+<para>&lt; If min_nb_of_counters != max_nb_of_counters, aggregated stats are not printed</para>
+<para>&lt; Level of details of the counter</para>
+<para>&lt; Equal to 1 if the counter is a communication counter, 0 otherwise</para>
+<para>&lt; number of time the counter is open and closed</para>
+<para>&lt; A custom quantity which depends on the counter. Used for example to compute the bandwidth</para>
+<para>&lt; Percent of the total time used in the method tracked by the counter</para>
+<para>&lt; the standard dev of all the prev vars</para>
+<para>&lt; Convert into string the item we want to print in the line, here the overall simulation step</para>
+<para>&lt; Add the item to the vector line_itmes, used to construct the line of the _csv.TU file</para>
+<para>&lt; Empties the temporary ostringstream</para>
+<para>&lt; Add the processor number to the vector line_items</para>
+<para>&lt; Add the counter&apos;s family to the vector line_items, null if the counter does not belong in a family</para>
+<para>&lt; Add the counter&apos;s name to the vector line_items</para>
+<para>&lt; Add the counter&apos;s level to the vector line_items</para>
+<para>&lt; Add 1 if the counter is a communication counter, 0 otherwise</para>
+<para>&lt; Add the percent of total time used by the operation tracked by counter i to the vector line_items</para>
+<para>&lt; Time elapsed when using the operation tracked by counter i</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max, avg and SD on proc is equal to 0</para>
+<para>&lt; Number of time the counter was called on the overall simulation step</para>
+<para>&lt; Averaged time elapsed by time step for the operation tracked by the counter on the overall simulation step</para>
+<para>&lt; Minimum time elapsed by time step for the operation tracked by the counter on the overall simulation step</para>
+<para>&lt; Maximum time elapsed by time step for the operation tracked by the counter on the overall simulation step</para>
+<para>&lt; Standard Deviation of time elapsed by time step for the operation tracked by the counter on the overall simulation step</para>
+<para>&lt; Custom variable that depends on the counter the overall simulation step</para>
+<para>&lt; Detail per proc, so the min, max and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max and SD on proc is equal to 0</para>
+<para>&lt; Detail per proc, so the min, max and SD on proc is equal to 0</para>
+<para>&lt; Level of details of the counter</para>
+<para>&lt; Equal to 1 if the counter is a communication counter, 0 otherwise</para>
+<para>&lt; Build the line of the stats associated on the counter i for a single proc</para>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="278" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="600" bodyend="893"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>@Brief declare all standard counters of TRUST inside an array </para>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" line="221" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Utilitaires/Perf_counters.cpp" bodystart="222" bodyend="300"/>
+    <listofallmembers>
+      <member refid="classPerf__counters_1_1Impl_1ac1af0be4ab1cf4dbf76e7dbc15859341" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>add_to_gpu_timer_counter_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a6fe459db32dedc62fc18a1672a9213d8" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>begin_count_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1af12bd5d0e0a1e847de2cb9ab3498482b" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>begin_count_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aa3e32bef50bd5bc3da39a4a4f5e3614f" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>check_begin</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aa3b41b705551ca196306b90223a23807" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>check_end</name></member>
+      <member refid="classPerf__counters_1_1Impl_1afc8d910432b7ddcdfd903831841247e7" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>clock</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ae5ac666e46477757b562343d7c35542b" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>computation_time_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1acfebfd20ce1ee2aafafec543674e3c70" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>compute_allreduce_peak</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a2203c378d0b4bdfa8b044b2657bd4146" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>compute_gpu_time_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a8fa8cab709d10bd0ebbe395b771c612f" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>counters_stop_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a77801868e025a13b0222031b6ae7933f" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>create_custom_counter_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aab859e25e6da3523ae2b545459020b7b" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>custom_counter_map_str_to_counter_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ae9ff079f24584b90ce69cda7db659480" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>duration</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ab727e0ea86b361f4505c2fcda4b41b43" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>end_cache_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a85ab3015ac0227e37f6b7d8cfd557fda" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>end_count_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ada44d9803cd91217c790973fba3302ce" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>end_count_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1acd87834f06dc99f4e9b77da689ca9d51" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>end_time_step_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a6c9ea9d0c357cb1ef66eb5db51024e7d" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>end_timeloop_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1addc519c8060affe62d2d802fe4b41c06" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_computation_time_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a06850676d65237bba2ca790d92bbba82" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_counter</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ac9757330fbdcfb22235da38f72930643" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_counter</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ab61046f9475d38b1b3b44e55274d8a7b" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_cpu</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a3c931fb0694ebdd34343b4578c380490" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_date</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aeea842223cec8ba1b95c4e9dc75d0097" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_gpu</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a85dd1f63dd5025bae1b811231fa51b30" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_gpu_fence_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a13d9438e8f88e48bb48153fb7ed89eaa" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_gpu_timer_counter_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a1235e0ffc897a3cefc6695ed8352bab3" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_gpu_timer_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a0298a973fdb546f667aa3a463276bd16" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_init_device_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a0901a354dc16e2f8977cecac1c65c2ce" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_last_opened_counter_level_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1af7d86a17ba1dd0c0a8024fa4bc6faa30" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_os</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a9c09ff3bac2c1e9f959ef9f23b7a7922" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_time_since_last_open_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1afbedb524eaefc01bc0d98d3d5fc23f78" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_time_since_last_open_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a91cceab61694c8ec4acb9b44fdd5e42f" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_total_time_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a2bc64bd0ae330fd4f820e9b69354085b" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_total_time_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1abe805fdf811901453cd2d7c072b5c63d" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>get_use_gpu_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a03fdef61fab04efb65760ee001f17ac4" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>gpu_fence_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a06aaac72ab3e81b8cecdbcf800ece545" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>gpu_timer_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a1fe74d601118def3eee9243e122fb16c" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>gpu_timer_count_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a155289ce0ccd6db4ab3b6d229194745d" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>gpu_timer_start_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ac4cbd0bda0bb095f3eab73be6dfe5c34" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>gpu_verbose_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a4a3a0182bf4ea6bb5c0ef9eda096aba9" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>Impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a8f5ebd8061627a97e0f82731f8d1d7c0" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>init_device_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a06500210249cd5d927475b862442e264" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>is_gpu_verbose_on_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ae8ef887171129548573b33326a30b74f" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>last_opened_counter_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a3288c5116240d7e928d1c88fb114fd12" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>max_str_length_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aca6a61aa557728c137ebbac1a0b46c38" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>nb_steps_elapsed_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aac02007961cc34791512fa6456e88a09" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>now</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a698c35daf1eda59dc0d8d048f5dfbe95" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>print_global_TU</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a89ec19785e08b0ae909e645da2535e28" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>print_performance_to_csv</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a0517981bf9e1f76f350ac8a21e318787" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>print_TU_files_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ace2f5c8de814f6d2bdf82c478d82156a" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>reset_counters_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a06441dce1137b79609e709ea2414bdce" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>restart_counters_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aa222e8af0a9194f5943bd2e2174bda19" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>running_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a709bbf35281b669d974b1d9191ef4511" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>set_gpu_fence_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ac8c05effd0cf6d963da541eea842eed7" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>set_gpu_verbose_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ad09b18c1bd3dfd5e30938ca42740c2db" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>set_init_device_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a9b0e04ad30d41c118a7de4d77f3bab31" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>set_time_steps_elapsed_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a54e3753f83aba31fbb6e0e56d2e6f748" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>start_gpu_timer_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a3dc5ba899302f3dec01a2646178714f7" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>start_time_step_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ae484b59d8fe83a1e555fb25281569576" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>start_timeloop_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aaff13a68341e2bd74cee00b1aa372de3" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>std_counters_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a29cd9dd4c39be1e3fa07f596238e7078" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>stop_counters_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aeafe3fa941f8dfc9ec6829a4ee1cc836" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>stop_gpu_timer_impl</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a1d069c9ad72df658ef9efdf5b87a8b2f" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>time_loop_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ad526818e2be8cad1c98dabb16ccd1bdc" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>time_point</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a6a55359bfba2a7c86e306c59e82b7c49" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>time_skipped_ts_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1ab86c4b15935ff3ced15fdbd252675222" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>total_data_exchange_per_backup_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1aec6c3079ad52031c9d1032874141abda" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>total_nb_backup_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a5235a33eab2314302b81ae34337bce55" prot="private" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>use_gpu_</name></member>
+      <member refid="classPerf__counters_1_1Impl_1a55373a3978ae3cca1856bcf35e3f4e9d" prot="public" virt="non-virtual"><scope>Perf_counters::Impl</scope><name>~Impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

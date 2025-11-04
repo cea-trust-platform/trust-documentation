@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="structFluide__reel__base_1_1H__to__T" kind="struct" language="C++" prot="public">
+    <compoundname>Fluide_reel_base::H_to_T</compoundname>
+    <includes local="no">Fluide_reel_base.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structFluide__reel__base_1_1H__to__T_1a950c4e28297ccd3b4acee5508b613508" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fluide_reel_base::H_to_T::dX_dP_T</definition>
+        <argsstring>(const SpanD dX_dP_h, const SpanD dX_dh_P, SpanD dX_dP)</argsstring>
+        <name>dX_dP_T</name>
+        <param>
+          <type>const SpanD</type>
+          <declname>dX_dP_h</declname>
+        </param>
+        <param>
+          <type>const SpanD</type>
+          <declname>dX_dh_P</declname>
+        </param>
+        <param>
+          <type>SpanD</type>
+          <declname>dX_dP</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" line="238" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.cpp" bodystart="688" bodyend="694"/>
+      </memberdef>
+      <memberdef kind="function" id="structFluide__reel__base_1_1H__to__T_1a90a80b259d6c5116ab34c7a4aeab9477" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fluide_reel_base::H_to_T::dX_dT_P</definition>
+        <argsstring>(const SpanD dX_dP_h, const SpanD dX_dh_P, SpanD dX_dT)</argsstring>
+        <name>dX_dT_P</name>
+        <param>
+          <type>const SpanD</type>
+          <declname>dX_dP_h</declname>
+        </param>
+        <param>
+          <type>const SpanD</type>
+          <declname>dX_dh_P</declname>
+        </param>
+        <param>
+          <type>SpanD</type>
+          <declname>dX_dT</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" line="239" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.cpp" bodystart="696" bodyend="702"/>
+      </memberdef>
+      <memberdef kind="function" id="structFluide__reel__base_1_1H__to__T_1abeba5c9f7d9c66562cb9151dc64b6271" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fluide_reel_base::H_to_T::set_instance</definition>
+        <argsstring>(const Fluide_reel_base &amp;fld)</argsstring>
+        <name>set_instance</name>
+        <param>
+          <type>const <ref refid="classFluide__reel__base" kindref="compound">Fluide_reel_base</ref> &amp;</type>
+          <declname>fld</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" line="236" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" bodystart="236" bodyend="236"/>
+        <referencedby refid="classFluide__reel__base_1a4364878b4a6b4d1bab2e6668b40f901d" compoundref="Fluide__reel__base_8h" startline="55" endline="59">Fluide_reel_base::Fluide_reel_base</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="structFluide__reel__base_1_1H__to__T_1a40609d48be0d5a7979da9e49f259a489" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Fluide_reel_base::H_to_T::OBS_PTR</definition>
+        <argsstring>(Fluide_reel_base) z_fld_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classFluide__reel__base" kindref="compound">Fluide_reel_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" line="241" column="5"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" line="234" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Milieu/Fluide_reel_base.h" bodystart="235" bodyend="242"/>
+    <listofallmembers>
+      <member refid="structFluide__reel__base_1_1H__to__T_1a950c4e28297ccd3b4acee5508b613508" prot="public" virt="non-virtual"><scope>Fluide_reel_base::H_to_T</scope><name>dX_dP_T</name></member>
+      <member refid="structFluide__reel__base_1_1H__to__T_1a90a80b259d6c5116ab34c7a4aeab9477" prot="public" virt="non-virtual"><scope>Fluide_reel_base::H_to_T</scope><name>dX_dT_P</name></member>
+      <member refid="structFluide__reel__base_1_1H__to__T_1a40609d48be0d5a7979da9e49f259a489" prot="private" virt="non-virtual"><scope>Fluide_reel_base::H_to_T</scope><name>OBS_PTR</name></member>
+      <member refid="structFluide__reel__base_1_1H__to__T_1abeba5c9f7d9c66562cb9151dc64b6271" prot="public" virt="non-virtual"><scope>Fluide_reel_base::H_to_T</scope><name>set_instance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

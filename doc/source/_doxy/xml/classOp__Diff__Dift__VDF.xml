@@ -1,0 +1,696 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classOp__Diff__Dift__VDF" kind="class" language="C++" prot="public">
+    <compoundname>Op_Diff_Dift_VDF</compoundname>
+    <includes local="no">Op_Diff_Dift_VDF.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename OP_TYPE</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1aa1440f6e01ec062c65c34b16dc8d7be7" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>const double &amp;</type>
+        <definition>const double&amp; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::alpha_impl</definition>
+        <argsstring>(const int i) const</argsstring>
+        <name>alpha_impl</name>
+        <param>
+          <type>const int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="104" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="104" bodyend="110"/>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a8a5b78541c09c1a080c1499baae071b9" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_FACE||_TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_FACE || _TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_corr_impl</definition>
+        <argsstring>(const Correlation_base &amp;corr)</argsstring>
+        <name>associer_corr_impl</name>
+        <param>
+          <type>const <ref refid="classCorrelation__base" kindref="compound">Correlation_base</ref> &amp;</type>
+          <declname>corr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="66" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a19d64ba0c287957e41956c6db2c062b2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_diffusivite_impl</definition>
+        <argsstring>(const Champ_base &amp;ch_diff)</argsstring>
+        <name>associer_diffusivite_impl</name>
+        <param>
+          <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+          <declname>ch_diff</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1aee7823068b0b0b9c76e3691d6cc4dab2" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_ELEM||_TYPE_==Type_Operateur::Op_DIFT_FACE, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_ELEM || _TYPE_ == Type_Operateur::Op_DIFT_FACE, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_diffusivite_turbulente_impl</definition>
+        <argsstring>(const Champ_Fonc_base &amp;visc_ou_diff_turb)</argsstring>
+        <name>associer_diffusivite_turbulente_impl</name>
+        <param>
+          <type>const <ref refid="classChamp__Fonc__base" kindref="compound">Champ_Fonc_base</ref> &amp;</type>
+          <declname>visc_ou_diff_turb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="131" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="131" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a1ed44bdce3c20547c50958bfeee09f58" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFF_ELEM||_TYPE_==Type_Operateur::Op_DIFT_ELEM||_TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFF_ELEM || _TYPE_ == Type_Operateur::Op_DIFT_ELEM || _TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_impl</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_dis, const Domaine_Cl_dis_base &amp;domaine_cl_dis, const Champ_Inc_base &amp;ch_diffuse)</argsstring>
+        <name>associer_impl</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_dis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>domaine_cl_dis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>ch_diffuse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="36" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a0102c2135e2a383d2e5b1ad86ab55906" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFF_FACE||_TYPE_==Type_Operateur::Op_DIFT_FACE||_TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_FACE, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFF_FACE || _TYPE_ == Type_Operateur::Op_DIFT_FACE || _TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_FACE, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_impl</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_dis, const Domaine_Cl_dis_base &amp;domaine_cl_dis, const Champ_Inc_base &amp;ch_diffuse)</argsstring>
+        <name>associer_impl</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_dis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>domaine_cl_dis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__Inc__base" kindref="compound">Champ_Inc_base</ref> &amp;</type>
+          <declname>ch_diffuse</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="44" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="44" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a103af193f1a8b2f3c8dc16381f1f2245" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_ELEM, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_loipar_impl</definition>
+        <argsstring>(const Turbulence_paroi_scal_base &amp;loi_paroi)</argsstring>
+        <name>associer_loipar_impl</name>
+        <param>
+          <type>const <ref refid="classTurbulence__paroi__scal__base" kindref="compound">Turbulence_paroi_scal_base</ref> &amp;</type>
+          <declname>loi_paroi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="140" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="140" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a7bc6ed73fef1dbc18d77a5a1b4cd2763" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_pb</definition>
+        <argsstring>(const Probleme_base &amp;pb)</argsstring>
+        <name>associer_pb</name>
+        <param>
+          <type>const <ref refid="classProbleme__base" kindref="compound">Probleme_base</ref> &amp;</type>
+          <declname>pb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="58" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="58" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a725cabbd4d6c17d2b773b3da1d388477" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_ELEM, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::completer_impl</definition>
+        <argsstring>()</argsstring>
+        <name>completer_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="147" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="147" bodyend="169"/>
+        <references refid="classModele__turbulence__scal__base_1ad99ce49fed2e132aaeb88e3c37e17744" compoundref="Modele__turbulence__scal__base_8h" startline="46" endline="46">Modele_turbulence_scal_base::conductivite_turbulente</references>
+        <references refid="classModele__turbulence__scal__base_1ab27e82caebb6f452336f3c06090e0cda" compoundref="Modele__turbulence__scal__base_8h" startline="90" endline="93">Modele_turbulence_scal_base::loi_paroi</references>
+        <references refid="classModele__turbulence__scal__base_1aeed74bc6bd934997d92a7bb0f017d48f" compoundref="Modele__turbulence__scal__base_8h" startline="99" endline="102">Modele_turbulence_scal_base::loi_paroi_non_nulle</references>
+        <references refid="classTRUST__Ref__Objet__U_1a166c1431c95ceecd026171d5851e96ef" compoundref="TRUST__Ref_8h" startline="133" endline="133">TRUST_Ref_Objet_U::valeur</references>
+        <references refid="classModele__turbulence__hyd__base_1afd81bf59a2bfba3c8c448e3568b8fe35" compoundref="Modele__turbulence__hyd__base_8h" startline="46" endline="46">Modele_turbulence_hyd_base::viscosite_turbulente</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a12547f1d3183a7fed52f8cafcd6d74a5" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_FACE, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_FACE, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::completer_impl</definition>
+        <argsstring>()</argsstring>
+        <name>completer_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="172" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="172" bodyend="181"/>
+        <references refid="classTRUST__Ref__Objet__U_1a166c1431c95ceecd026171d5851e96ef" compoundref="TRUST__Ref_8h" startline="133" endline="133">TRUST_Ref_Objet_U::valeur</references>
+        <references refid="classModele__turbulence__hyd__base_1afd81bf59a2bfba3c8c448e3568b8fe35" compoundref="Modele__turbulence__hyd__base_8h" startline="46" endline="46">Modele_turbulence_hyd_base::viscosite_turbulente</references>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a41dfaa9f4d16a83fe16709d9d0cb91ca" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="classChamp__base" kindref="compound">Champ_base</ref> &amp;</type>
+        <definition>const Champ_base&amp; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::diffusivite_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>diffusivite_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="97" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="97" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a2565da1fbc6e8e300b423c0d50f9a20e" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_FACE||_TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp; &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_FACE || _TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, const DoubleTab&amp;&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::get_diffusivite_turbulente_multiphase_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>get_diffusivite_turbulente_multiphase_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="74" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="74" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1ab3fe09e80c824b9107c5717c804f1cdd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFF_FACE, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFF_FACE, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::mettre_a_jour_impl</definition>
+        <argsstring>()</argsstring>
+        <name>mettre_a_jour_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="123" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1ad41ce0713967745948886a6799de3193" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_FACE, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_FACE, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::set_nut_impl</definition>
+        <argsstring>(const DoubleTab &amp;nut)</argsstring>
+        <name>set_nut_impl</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>nut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="82" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="82" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a266ac927a2a0791a72b200eba569c925" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>Type_Operateur</type>
+            <declname>_TYPE_</declname>
+            <defname>_TYPE_</defname>
+          </param>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>std::enable_if_t&lt; _TYPE_==Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void &gt;</type>
+        <definition>std::enable_if_t&lt;_TYPE_ == Type_Operateur::Op_DIFT_MULTIPHASE_ELEM, void&gt; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::set_nut_impl</definition>
+        <argsstring>(const DoubleTab &amp;nut)</argsstring>
+        <name>set_nut_impl</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>nut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="90" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="90" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1ae381e3f296349fae44bde81fd644af0c" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>const DoubleTab&amp; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::tab_alpha_impl</definition>
+        <argsstring>() const</argsstring>
+        <name>tab_alpha_impl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="113" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="113" bodyend="118"/>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1afc826f16934962c2f25921a236e93766" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename EVAL_TYPE</type>
+          </param>
+        </templateparamlist>
+        <type>EVAL_TYPE &amp;</type>
+        <definition>EVAL_TYPE&amp; Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::associer_</definition>
+        <argsstring>(const Domaine_dis_base &amp;domaine_dis, const Domaine_Cl_dis_base &amp;domaine_cl_dis)</argsstring>
+        <name>associer_</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <declname>domaine_dis</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <declname>domaine_cl_dis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="189" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="189" bodyend="197"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1a10eba0b93139c74c93e6f6298afecb08" prot="private" static="no" const="no" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type></type>
+        <definition>Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::OWN_PTR</definition>
+        <argsstring>(Iterateur_VDF_base) &amp;iter_vdf()</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="186" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="186" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classOp__Diff__Dift__VDF_1aa01ef973e12b599a9c0d72de65ed09aa" prot="private" static="no" const="yes" explicit="no" inline="yes" refqual="lvalue" virt="non-virtual">
+        <type>const</type>
+        <definition>const Op_Diff_Dift_VDF&lt; OP_TYPE &gt;::OWN_PTR</definition>
+        <argsstring>(Iterateur_VDF_base) &amp;iter_vdf() const</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classIterateur__VDF__base" kindref="compound">Iterateur_VDF_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="185" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="185" bodyend="185"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Op_Diff_VDF_Multi_inco_Elem_Axi</label>
+        <link refid="classOp__Diff__VDF__Multi__inco__Elem__Axi"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Multi_inco_Multi_scalar_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Multi_inco_Multi_scalar_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="20">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Face &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_VDF_Multi_inco_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_VDF_Multi_inco_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>Op_Diff_VDF_Face</label>
+        <link refid="classOp__Diff__VDF__Face"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Op_Diff_VDF_Elem</label>
+        <link refid="classOp__Diff__VDF__Elem"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_Multiphase_VDF_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_Multiphase_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem_aniso &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Elem_aniso &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Op_Diff_VDF_Elem_aniso</label>
+        <link refid="classOp__Diff__VDF__Elem__aniso"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_VDF_Elem_Axi &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_VDF_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_Multiphase_VDF_Face &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_Multiphase_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Op_Diff_Dift_VDF&lt; OP_TYPE &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+      </node>
+      <node id="23">
+        <label>Op_Dift_VDF_Multi_inco_Elem</label>
+        <link refid="classOp__Dift__VDF__Multi__inco__Elem"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>Op_Dift_VDF_Elem</label>
+        <link refid="classOp__Dift__VDF__Elem"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Op_Dift_VDF_Elem_Axi</label>
+        <link refid="classOp__Dift__VDF__Elem__Axi"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Multi_inco_Elem_Axi &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Multi_inco_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Op_Dift_Multiphase_VDF_Elem</label>
+        <link refid="classOp__Dift__Multiphase__VDF__Elem"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>Op_Diff_VDF_Elem_Axi</label>
+        <link refid="classOp__Diff__VDF__Elem__Axi"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_VDF_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Op_Dift_VDF_Multi_inco_Elem_Axi</label>
+        <link refid="classOp__Dift__VDF__Multi__inco__Elem__Axi"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_VDF_Multi_inco_Elem_Axi &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_VDF_Multi_inco_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Op_Dift_Multiphase_VDF_Face</label>
+        <link refid="classOp__Dift__Multiphase__VDF__Face"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Op_Diff_VDF_Multi_inco_Multi_scalar_Elem</label>
+        <link refid="classOp__Diff__VDF__Multi__inco__Multi__scalar__Elem"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>Op_Dift_VDF_Face</label>
+        <link refid="classOp__Dift__VDF__Face"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Multi_inco_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Multi_inco_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem_Axi &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Elem_Axi &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Op_Diff_Dift_VDF&lt; Op_Dift_VDF_Face &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Dift_VDF_Face &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Op_Diff_VDF_Multi_inco_Elem</label>
+        <link refid="classOp__Diff__VDF__Multi__inco__Elem"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Op_Diff_Dift_VDF&lt; Op_Diff_VDF_Elem &gt;</label>
+        <link refid="classOp__Diff__Dift__VDF"/>
+        <childnode refid="1" relation="template-instance">
+          <edgelabel>&lt; Op_Diff_VDF_Elem &gt;</edgelabel>
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Operateurs/Op_Diff_Dift/Op_Diff_Dift_VDF.h" bodystart="31" bodyend="198"/>
+    <listofallmembers>
+      <member refid="classOp__Diff__Dift__VDF_1aa1440f6e01ec062c65c34b16dc8d7be7" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>alpha_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1afc826f16934962c2f25921a236e93766" prot="private" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a8a5b78541c09c1a080c1499baae071b9" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_corr_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a19d64ba0c287957e41956c6db2c062b2" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_diffusivite_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1aee7823068b0b0b9c76e3691d6cc4dab2" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_diffusivite_turbulente_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a1ed44bdce3c20547c50958bfeee09f58" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a0102c2135e2a383d2e5b1ad86ab55906" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a103af193f1a8b2f3c8dc16381f1f2245" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_loipar_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a7bc6ed73fef1dbc18d77a5a1b4cd2763" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>associer_pb</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a725cabbd4d6c17d2b773b3da1d388477" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>completer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a12547f1d3183a7fed52f8cafcd6d74a5" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>completer_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a41dfaa9f4d16a83fe16709d9d0cb91ca" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>diffusivite_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a2565da1fbc6e8e300b423c0d50f9a20e" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>get_diffusivite_turbulente_multiphase_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ab3fe09e80c824b9107c5717c804f1cdd" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>mettre_a_jour_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1aa01ef973e12b599a9c0d72de65ed09aa" prot="private" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a10eba0b93139c74c93e6f6298afecb08" prot="private" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>OWN_PTR</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ad41ce0713967745948886a6799de3193" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>set_nut_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1a266ac927a2a0791a72b200eba569c925" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>set_nut_impl</name></member>
+      <member refid="classOp__Diff__Dift__VDF_1ae381e3f296349fae44bde81fd644af0c" prot="protected" virt="non-virtual"><scope>Op_Diff_Dift_VDF</scope><name>tab_alpha_impl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

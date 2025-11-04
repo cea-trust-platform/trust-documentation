@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classBords__Internes__32__64" kind="class" language="C++" prot="public">
+    <compoundname>Bords_Internes_32_64</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTBord_Interne_32_64&lt; _SIZE_ &gt;</basecompoundref>
+    <includes local="no">Bords_Internes.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename _SIZE_</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classBords__Internes__32__64_1a98db584f2aae976f493c1f8e46db2e11" prot="public" static="no">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt;</type>
+        <definition>using Bords_Internes_32_64&lt; _SIZE_ &gt;::Domaine_t =  Domaine_32_64&lt;_SIZE_&gt;</definition>
+        <argsstring></argsstring>
+        <name>Domaine_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="34" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classBords__Internes__32__64_1af8d43f927b93cecfb9140e22b040b9c4" prot="public" static="no">
+        <type>_SIZE_</type>
+        <definition>using Bords_Internes_32_64&lt; _SIZE_ &gt;::int_t =  _SIZE_</definition>
+        <argsstring></argsstring>
+        <name>int_t</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="33" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classBords__Internes__32__64_1a2df9f9e5907d3eb4a886ae9fbaba63a2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Bords_Internes_32_64&lt; _SIZE_ &gt;::Declare_instanciable_32_64</definition>
+        <argsstring>(Bords_Internes_32_64)</argsstring>
+        <name>Declare_instanciable_32_64</name>
+        <param>
+          <type><ref refid="classBords__Internes__32__64" kindref="compound">Bords_Internes_32_64</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="30" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classBords__Internes__32__64_1a669b24d25ce84ed53f01cd2f4fcef4c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Bords_Internes_32_64&lt; _SIZE_ &gt;::associer_domaine</definition>
+        <argsstring>(const Domaine_t &amp;)</argsstring>
+        <name>associer_domaine</name>
+        <param>
+          <type>const <ref refid="classBords__Internes__32__64_1a98db584f2aae976f493c1f8e46db2e11" kindref="member">Domaine_t</ref> &amp;</type>
+          <defname>un_domaine</defname>
+        </param>
+        <briefdescription>
+<para>Associe un domaine a tous les objets Bord_Interne de la liste. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un_domaine) le domaine a associer aux Bord_Interne de la liste </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.cpp" bodystart="31" bodyend="34"/>
+        <referencedby refid="classInterprete__geometrique__base__32__64_1a49a786e359a62f111d06969012a905d2" compoundref="Interprete__geometrique__base_8cpp" startline="60" endline="84">Interprete_geometrique_base_32_64&lt; _SIZE_ &gt;::interpreter</referencedby>
+        <referencedby refid="classDomaine__32__64_1a96722a1630524b52ecc912eb0b39a863" compoundref="Domaine_8cpp" startline="1179" endline="1221">Domaine_32_64&lt; _SIZE_ &gt;::merge_wo_vertices_with</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__Internes__32__64_1a3702b8659c6be267560f2ca7c7c36876" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Bords_Internes_32_64&lt; _SIZE_ &gt;::nb_bords_internes</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_bords_internes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="39" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" bodystart="39" bodyend="39"/>
+        <referencedby refid="classDomaine__32__64_1a74e4ad3e00e0d76fec323e6c36406be3" compoundref="Domaine_8h" startline="232" endline="232">Domaine_32_64&lt; _SIZE_ &gt;::nb_frontieres_internes</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__Internes__32__64_1ab1216fdf1bf72ec53743b0f208cb2e7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classBords__Internes__32__64_1af8d43f927b93cecfb9140e22b040b9c4" kindref="member">int_t</ref></type>
+        <definition>Bords_Internes_32_64&lt; _SIZE_ &gt;::int_t Bords_Internes_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>nb_faces</name>
+        <briefdescription>
+<para>Renvoie le nombre total de faces contenues dans la liste des Bord_Interne, i. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>e. la somme de toutes les faces de tous les objet Bords_Interne contenu dans la liste.</para>
+<para><simplesect kind="return"><para>(int) le nombre total de faces contenues dans la liste des Bord_Interne </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="38" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.cpp" bodystart="45" bodyend="51"/>
+        <referencedby refid="classDomaine__32__64_1a041b813f2deda3b1d238a9af749c1a9f" compoundref="Domaine_8h" startline="171" endline="171">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_bords_int</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classBords__Internes__32__64_1a2e3a1b3b420347bb8deea5d4c7f33a73" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classBords__Internes__32__64_1af8d43f927b93cecfb9140e22b040b9c4" kindref="member">int_t</ref></type>
+        <definition>Bords_Internes_32_64&lt; _SIZE_ &gt;::int_t Bords_Internes_32_64&lt; _SIZE_ &gt;::nb_faces</definition>
+        <argsstring>(Type_Face type) const</argsstring>
+        <name>nb_faces</name>
+        <param>
+          <type>Type_Face</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie le nombre total de faces de type specifie contenues dans la liste des Bord_Interne. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>i.e. la somme de toutes les faces de type specifie de tous les objet Bord_Interne contenu dans la liste.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Type_Face</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type) le type des faces a compter </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) le nombre total de faces contenues dans la liste des Bord_Interne </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="40" column="9" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.cpp" bodystart="63" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Class Bords_Internes Cette classe represente une liste d&apos;objets de type Bords_Interne. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="see"><para>Bords_Interne </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Bords_Internes_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classBords__Internes__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTBord_Interne_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Bords_Internes_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classBords__Internes__32__64"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTBord_Interne_32_64&lt; _SIZE_ &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Bords_Internes.h" bodystart="28" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classBords__Internes__32__64_1a669b24d25ce84ed53f01cd2f4fcef4c5" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>associer_domaine</name></member>
+      <member refid="classBords__Internes__32__64_1a2df9f9e5907d3eb4a886ae9fbaba63a2" prot="private" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>Declare_instanciable_32_64</name></member>
+      <member refid="classBords__Internes__32__64_1a98db584f2aae976f493c1f8e46db2e11" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>Domaine_t</name></member>
+      <member refid="classBords__Internes__32__64_1af8d43f927b93cecfb9140e22b040b9c4" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>int_t</name></member>
+      <member refid="classBords__Internes__32__64_1a3702b8659c6be267560f2ca7c7c36876" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>nb_bords_internes</name></member>
+      <member refid="classBords__Internes__32__64_1ab1216fdf1bf72ec53743b0f208cb2e7d" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>nb_faces</name></member>
+      <member refid="classBords__Internes__32__64_1a2e3a1b3b420347bb8deea5d4c7f33a73" prot="public" virt="non-virtual"><scope>Bords_Internes_32_64</scope><name>nb_faces</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -3,7 +3,7 @@ var classType__info =
     [ "~Type_info", "classType__info.html#a5e41818729985641c48e21c1c7d8caf5", null ],
     [ "Type_info", "classType__info.html#a292e3a6795679e130c6a91b961fc38d1", null ],
     [ "Type_info", "classType__info.html#ab843c96b5f8fa45d3fae40e6623fe5f0", null ],
-    [ "name", "classType__info.html#ae9c20b8b797fce8ad2917db529238ddb", null ],
+    [ "name", "classType__info.html#ad36b4e1ade35174e6985dfe972800eac", null ],
     [ "can_cast", "classType__info.html#a5b186f421370c823a001d3c34d1553ab", null ],
     [ "same", "classType__info.html#a61d2b3e145ff7b57268c120b72e3c34a", null ],
     [ "same", "classType__info.html#adec60cec99e6c54f13cef418f9baf0ec", null ],

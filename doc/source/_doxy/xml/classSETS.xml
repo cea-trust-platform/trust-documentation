@@ -1,0 +1,1044 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSETS" kind="class" language="C++" prot="public">
+    <compoundname>SETS</compoundname>
+    <basecompoundref refid="classSimpler" prot="public" virt="non-virtual">Simpler</basecompoundref>
+    <derivedcompoundref refid="classICE" prot="public" virt="non-virtual">ICE</derivedcompoundref>
+    <includes local="no">SETS.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classSETS_1a9898f5bcd206278a5b7a4f587b455f4e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::iteration_</definition>
+        <argsstring></argsstring>
+        <name>iteration_</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="78" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classOp__Evanescence__Homogene__Elem__base_1a73c168ebfb22e3483f4baeb64bea9f54" compoundref="Op__Evanescence__Homogene__Elem__base_8cpp" startline="70" endline="134">Op_Evanescence_Homogene_Elem_base::ajouter_blocs</referencedby>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a2e1ea346b430d9156b84f9b60cb1ad02" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::p_degen_</definition>
+        <argsstring></argsstring>
+        <name>p_degen_</name>
+        <initializer>= -1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="79" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="79" bodyend="-1"/>
+        <referencedby refid="classOp__Evanescence__Homogene__Elem__base_1a73c168ebfb22e3483f4baeb64bea9f54" compoundref="Op__Evanescence__Homogene__Elem__base_8cpp" startline="70" endline="134">Op_Evanescence_Homogene_Elem_base::ajouter_blocs</referencedby>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+        <referencedby refid="classSETS_1a0700ecfee83528105f1d62437e07661b" compoundref="SETS_8cpp" startline="96" endline="123">lire</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a037404a748a911b2e260905354a6c7f2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::sets_</definition>
+        <argsstring></argsstring>
+        <name>sets_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="80" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="80" bodyend="-1"/>
+        <referencedby refid="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" compoundref="SETS_8cpp" startline="260" endline="334">iterer_eqn</referencedby>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+        <referencedby refid="classSETS_1a18b50ad40531ec8d3b01fdf02bec2cb4" compoundref="SETS_8cpp" startline="69" endline="72">SETS</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classSETS_1a34b65d807491cd07fa9f019e67e740d7" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &gt;</type>
+        <definition>std::map&lt;std::string, Matrice_Morse&gt; SETS::A_p_</definition>
+        <argsstring></argsstring>
+        <name>A_p_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="120" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a82a8a93c201d10e17f3274f9ac607e5b" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, double &gt;</type>
+        <definition>std::map&lt;std::string, double&gt; SETS::crit_conv_</definition>
+        <argsstring></argsstring>
+        <name>crit_conv_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="111" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="111" bodyend="-1"/>
+        <referencedby refid="classSETS_1a0700ecfee83528105f1d62437e07661b" compoundref="SETS_8cpp" startline="96" endline="123">lire</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1abc7f91897922f8e62d9b9a181ff35f51" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::first_call_</definition>
+        <argsstring></argsstring>
+        <name>first_call_</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="107" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="107" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1aa06840e45f98869e0a46f3528f4bc854" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SETS::header_written_</definition>
+        <argsstring></argsstring>
+        <name>header_written_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="126" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="126" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1abdb0b045606e8532b9b94cb91a927057" prot="protected" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; SETS::incr_var_convergence_</definition>
+        <argsstring></argsstring>
+        <name>incr_var_convergence_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="127" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1acf75db99aa6f39fb02552f774ac26d17" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::iter_max_</definition>
+        <argsstring></argsstring>
+        <name>iter_max_</name>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="106" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="106" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+        <referencedby refid="classSETS_1a0700ecfee83528105f1d62437e07661b" compoundref="SETS_8cpp" startline="96" endline="123">lire</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a416660a4c6b560c16a63ef41bc99383f" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::iter_min_</definition>
+        <argsstring></argsstring>
+        <name>iter_min_</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="106" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="106" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+        <referencedby refid="classSETS_1a0700ecfee83528105f1d62437e07661b" compoundref="SETS_8cpp" startline="96" endline="123">lire</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1ac0090750335e8aac173948b2e2d33bc1" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, <ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &gt;</type>
+        <definition>std::map&lt;std::string, Matrice_Morse&gt; SETS::mat_pred_</definition>
+        <argsstring></argsstring>
+        <name>mat_pred_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="117" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="117" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a07a7c2b5e8af27bbf20f14242710ddaa" prot="protected" static="no" mutable="no">
+        <type><ref refid="classMatrice__Bloc" kindref="compound">Matrice_Bloc</ref></type>
+        <definition>Matrice_Bloc SETS::mat_semi_impl_</definition>
+        <argsstring></argsstring>
+        <name>mat_semi_impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="115" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="115" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1ac504d8eb91416467e253c0386481e8e8" prot="protected" static="no" mutable="no">
+        <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref></type>
+        <definition>Matrice_Morse SETS::matrice_pression_</definition>
+        <argsstring></argsstring>
+        <name>matrice_pression_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="123" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1aae18f47c1eed92d623bc28ab77b3c0bd" prot="protected" static="no" mutable="no">
+        <type>std::map&lt; std::string, matrices_t &gt;</type>
+        <definition>std::map&lt;std::string, matrices_t&gt; SETS::mats_</definition>
+        <argsstring></argsstring>
+        <name>mats_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="114" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="114" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a3f47eb63c97ce42510c940ec696e1754" prot="protected" static="no" mutable="no">
+        <type><ref refid="classMD__Vector" kindref="compound">MD_Vector</ref></type>
+        <definition>MD_Vector SETS::mdv_semi_impl_</definition>
+        <argsstring></argsstring>
+        <name>mdv_semi_impl_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="116" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="116" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSETS_1a1900ad74bdf766f100626ab5be265051" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int SETS::pressure_reduction_</definition>
+        <argsstring></argsstring>
+        <name>pressure_reduction_</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="108" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="108" bodyend="-1"/>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+        <referencedby refid="classSETS_1a0700ecfee83528105f1d62437e07661b" compoundref="SETS_8cpp" startline="96" endline="123">lire</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSETS_1aaf39161346fa5892879bf6a30125bb78" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SETS::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(SETS)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classSETS" kindref="compound">SETS</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="36" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSETS_1a2ab9d499073f4790f5482f918ab366fe" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double SETS::facsec_diffusion_for_sets</definition>
+        <argsstring>() const</argsstring>
+        <name>facsec_diffusion_for_sets</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="99" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="99" bodyend="102"/>
+        <references refid="classSimpler__Base_1aa0b4c4a7d71c495faa0f91e90a678f36" compoundref="Simpler__Base_8h" startline="97">Simpler_Base::facsec_diffusion_for_sets_</references>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a8d966ab9dd0390064d1d7d3b2be32e18" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double SETS::get_default_growth_factor</definition>
+        <argsstring>() const override</argsstring>
+        <name>get_default_growth_factor</name>
+        <reimplements refid="classSolveur__Implicite__base_1aeaed22ae404bc4e27b4457220be2822f">get_default_growth_factor</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="73" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="73" bodyend="76"/>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool SETS::iterer_eqn</definition>
+        <argsstring>(Equation_base &amp;equation, const DoubleTab &amp;inconnue, DoubleTab &amp;result, double dt, int numero_iteration, int &amp;ok) override</argsstring>
+        <name>iterer_eqn</name>
+        <reimplements refid="classSimpler__Base_1af1e0d31ce4035b7357b0bece2d114ee6">iterer_eqn</reimplements>
+        <param>
+          <type><ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <declname>equation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>inconnue</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>result</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>numero_iteration</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>ok</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="260" bodyend="334"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</references>
+        <references refid="classProbleme__U_1a6b88bc3049405b56bc32ce2afb68ef0a" compoundref="Probleme__U_8h" startline="109" endline="109">Probleme_U::le_nom</references>
+        <references refid="classEquation__base_1a66cea7302e08728fb68c4d28e12f2f57" compoundref="Equation__base_8h" startline="247" endline="247">Equation_base::positive_unkown</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classSETS_1a037404a748a911b2e260905354a6c7f2" compoundref="SETS_8h" startline="80">sets_</references>
+        <references refid="classSETS_1a818444b126b2bb412971d24b5f1acf2c" compoundref="SETS_8cpp" startline="177" endline="190">unknown_positivation</references>
+        <references refid="classChamp__Inc__base_1af36cd0a3fe8ed6bc529a263261a0f5a8" compoundref="Champ__Inc__base_8h" startline="77" endline="77">Champ_Inc_base::valeurs</references>
+        <referencedby refid="classSETS_1a6392580d0676326210dc7536c278c810" compoundref="SETS_8cpp" startline="340" endline="667">iterer_NS</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a6392580d0676326210dc7536c278c810" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SETS::iterer_NS</definition>
+        <argsstring>(Equation_base &amp;, DoubleTab &amp;current, DoubleTab &amp;pression, double, Matrice_Morse &amp;, double, DoubleTrav &amp;, int nb_iter, int &amp;converge, int &amp;ok) override</argsstring>
+        <name>iterer_NS</name>
+        <reimplements refid="classSimpler__Base_1a3017a26b56425b4b9e36b666f689e8de">iterer_NS</reimplements>
+        <param>
+          <type><ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>current</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>pression</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <defname>dt</defname>
+        </param>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <defname>matrice_unused</defname>
+        </param>
+        <param>
+          <type>double</type>
+          <defname>seuil_resol</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTrav" kindref="compound">DoubleTrav</ref> &amp;</type>
+          <defname>secmem_unused</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_iter</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>converge</declname>
+        </param>
+        <param>
+          <type>int &amp;</type>
+          <declname>ok</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="340" bodyend="667"/>
+        <references refid="classMD__Vector__composite_1a60bb667b9518bfa40252acd57fc99078" compoundref="MD__Vector__composite_8cpp" startline="156" endline="227">MD_Vector_composite::add_part</references>
+        <references refid="classbprinter_1_1TablePrinter_1a271d4d46ec64e34f3b00093d0971101d" compoundref="TablePrinter_8cpp" startline="60" endline="69">bprinter::TablePrinter::AddColumn</references>
+        <references refid="classQDM__Multiphase_1a7434d149a38184ddfeb27ba9d82ddd6b" compoundref="QDM__Multiphase_8cpp" startline="137" endline="141">QDM_Multiphase::assembler_blocs_avec_inertie</references>
+        <references refid="classMD__Vector_1a063644dd8ca62e707a2d059eedeb58a7" compoundref="MD__Vector_8cpp" startline="26" endline="32">MD_Vector::copy</references>
+        <references refid="classSolveur__Masse__base_1aa689345aa009372f9f4e5c53d0bf4c84" compoundref="Solveur__Masse__base_8cpp" startline="349" endline="376">Solveur_Masse_base::corriger_solution</references>
+        <references refid="classMD__Vector__tools_1a7d0d4c52b0d571c7254f58edc212bf63" compoundref="MD__Vector__tools_8cpp" startline="140" endline="204">MD_Vector_tools::creer_tableau_distribue</references>
+        <references refid="classMatrice__Bloc_1a1db7c549cc1be958d5f00c29cd0f3a8c" compoundref="Matrice__Bloc_8cpp" startline="593" endline="599">Matrice_Bloc::dimensionner</references>
+        <references refid="classQDM__Multiphase_1a1561cd55d09c20fada811f0075a4a368" compoundref="QDM__Multiphase_8cpp" startline="131" endline="135">QDM_Multiphase::dimensionner_blocs</references>
+        <references refid="classEquation__base_1a9dd19036ab6bf1d01b103c6f609b8efe" compoundref="Equation__base_8h" startline="340" endline="344">Equation_base::domaine_Cl_dis</references>
+        <references refid="classEquation__base_1aee9aeebf76d9f659f7032cf7fb0b8a02" compoundref="Equation__base_8cpp" startline="92" endline="102">Equation_base::domaine_dis</references>
+        <references refid="classPb__Multiphase_1aaf6fb8417722b043861e3e4be9b58c48" compoundref="Pb__Multiphase_8cpp" startline="145" endline="161">Pb_Multiphase::equation</references>
+        <references refid="classSETS_1a2ab9d499073f4790f5482f918ab366fe" compoundref="SETS_8h" startline="99" endline="102">facsec_diffusion_for_sets</references>
+        <references refid="classSETS_1abc7f91897922f8e62d9b9a181ff35f51" compoundref="SETS_8h" startline="107">first_call_</references>
+        <references refid="classSimpler__Base_1a92152af59a443a8a1395a11d8efc4634" compoundref="Simpler__Base_8h" startline="85" endline="88">Simpler_Base::get_and_set_parametre_implicite</references>
+        <references refid="classMatrice__Bloc_1a76a5691fecfea8b4dd877d2c449a7f21" compoundref="Matrice__Bloc_8cpp" startline="601" endline="618">Matrice_Bloc::get_bloc</references>
+        <references refid="classSETS_1aa06840e45f98869e0a46f3528f4bc854" compoundref="SETS_8h" startline="126">header_written_</references>
+        <references refid="classNavier__Stokes__std_1a3beaade39a0ca1d2cbd00fc7a6979364" compoundref="Navier__Stokes__std_8cpp" startline="573" endline="576">Navier_Stokes_std::inconnue</references>
+        <references refid="classSETS_1acf75db99aa6f39fb02552f774ac26d17" compoundref="SETS_8h" startline="106">iter_max_</references>
+        <references refid="classSETS_1a416660a4c6b560c16a63ef41bc99383f" compoundref="SETS_8h" startline="106">iter_min_</references>
+        <references refid="classSETS_1a9898f5bcd206278a5b7a4f587b455f4e" compoundref="SETS_8h" startline="78">iteration_</references>
+        <references refid="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" compoundref="SETS_8cpp" startline="260" endline="334">iterer_eqn</references>
+        <references refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" compoundref="Objet__U_8cpp" startline="319" endline="323">Objet_U::le_nom</references>
+        <references refid="classDomaine__Cl__dis__base_1ac61cb62c82e3db6c4b4553538d7a6b61" compoundref="Domaine__Cl__dis__base_8cpp" startline="386" endline="389">Domaine_Cl_dis_base::les_conditions_limites</references>
+        <references refid="classSETS_1ac0090750335e8aac173948b2e2d33bc1" compoundref="SETS_8h" startline="117">mat_pred_</references>
+        <references refid="classSETS_1a07a7c2b5e8af27bbf20f14242710ddaa" compoundref="SETS_8h" startline="115">mat_semi_impl_</references>
+        <references refid="classSETS_1aae18f47c1eed92d623bc28ab77b3c0bd" compoundref="SETS_8h" startline="114">mats_</references>
+        <references refid="classSETS_1a3f47eb63c97ce42510c940ec696e1754" compoundref="SETS_8h" startline="116">mdv_semi_impl_</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classProbleme__base_1a8644e9f76f6dfdd087eb56938997fc57" compoundref="Probleme__base_8cpp" startline="939" endline="971">Probleme_base::mettre_a_jour</references>
+        <references refid="classNavier__Stokes__std_1a1b86014b53c283d1871d6e50a9489c7c" compoundref="Navier__Stokes__std_8cpp" startline="1234" endline="1242">Navier_Stokes_std::milieu</references>
+        <references refid="classMatrice__Bloc_1a84449e7d6832c7a5fcc77bd560911e52" compoundref="Matrice__Bloc_8cpp" startline="66" endline="75">Matrice_Bloc::nb_lignes</references>
+        <references refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" compoundref="Objet__U_8cpp" startline="146" endline="149">Objet_U::nom_du_cas</references>
+        <references refid="classPb__Multiphase_1aac3c0ff2843ff7748d199e2a5dde7f02" compoundref="Pb__Multiphase_8cpp" startline="132" endline="135">Pb_Multiphase::nombre_d_equations</references>
+        <references refid="classSETS_1a2e1ea346b430d9156b84f9b60cb1ad02" compoundref="SETS_8h" startline="79">p_degen_</references>
+        <references refid="classChamp__Inc__base_1a7f6044b5dabb38911218b0ec82b42a01" compoundref="Champ__Inc__base_8h" startline="112" endline="112">Champ_Inc_base::passe</references>
+        <references refid="classNavier__Stokes__std_1a65807747079970362427ee362e3e6a78" compoundref="Navier__Stokes__std_8h" startline="123" endline="123">Navier_Stokes_std::pression</references>
+        <references refid="classSETS_1a1900ad74bdf766f100626ab5be265051" compoundref="SETS_8h" startline="108">pressure_reduction_</references>
+        <references refid="classbprinter_1_1TablePrinter_1a4022eb59d90fec098cda994b147ce9b3" compoundref="TablePrinter_8cpp" startline="83" endline="105">bprinter::TablePrinter::PrintHeader</references>
+        <references refid="classEquation__base_1aa8151a96f63719523bf50ddd832e0f8f" compoundref="Equation__base_8cpp" startline="689" endline="692">Equation_base::probleme</references>
+        <references refid="classPb__Multiphase_1a176cd70fdb17f87f6bc1e427254ba0ff" compoundref="Pb__Multiphase_8h" startline="74" endline="74">Pb_Multiphase::resolution_en_T</references>
+        <references refid="classSolveurSys_1a62ca198f0c5dc599e53b0535761e5138" compoundref="SolveurSys_8cpp" startline="43" endline="63">SolveurSys::resoudre_systeme</references>
+        <references refid="classEquation__base_1abc11e51aa75b4c7aa55c27f71eb2f2c4" compoundref="Equation__base_8cpp" startline="807" endline="816">Equation_base::schema_temps</references>
+        <references refid="classSETS_1a037404a748a911b2e260905354a6c7f2" compoundref="SETS_8h" startline="80">sets_</references>
+        <references refid="classEquation__base_1a4b4effb48f1841ec8c743d6eb29f8a51" compoundref="Equation__base_8h" startline="362" endline="365">Equation_base::solv_masse</references>
+        <references refid="classParametre__implicite_1a7e65b5960b6f41da7e586134f3462666" compoundref="Parametre__implicite_8h" startline="35" endline="38">Parametre_implicite::solveur</references>
+        <references refid="classNavier__Stokes__std_1ae83d9f7a42531293583f32be1efd3d5f" compoundref="Navier__Stokes__std_8cpp" startline="591" endline="594">Navier_Stokes_std::solveur_pression</references>
+        <references refid="classSchema__Temps__base_1a1e573b93ad40c737ecb2da65b68f968a" compoundref="Schema__Temps__base_8h" startline="438" endline="441">Schema_Temps_base::temps_courant</references>
+        <referencedby refid="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" compoundref="SETS_8cpp" startline="260" endline="334">iterer_eqn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a0700ecfee83528105f1d62437e07661b" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; SETS::lire</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire</name>
+        <reimplements refid="classSimpler__Base_1aeb68c5d5283e35babbe4b4e31041ee8a">lire</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <defname>mot</defname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="39" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="96" bodyend="123"/>
+        <references refid="classSETS_1a82a8a93c201d10e17f3274f9ac607e5b" compoundref="SETS_8h" startline="111">crit_conv_</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classNom_1a48e315ae2bd7856306802f9de2a13e52" compoundref="Nom_8h" startline="92" endline="92">Nom::getString</references>
+        <references refid="classSETS_1acf75db99aa6f39fb02552f774ac26d17" compoundref="SETS_8h" startline="106">iter_max_</references>
+        <references refid="classSETS_1a416660a4c6b560c16a63ef41bc99383f" compoundref="SETS_8h" startline="106">iter_min_</references>
+        <references refid="classSimple_1a7a1944e0157cae3713183c238f1296c9" compoundref="Simple_8cpp" startline="55" endline="79">Simple::lire</references>
+        <references refid="classSETS_1a2e1ea346b430d9156b84f9b60cb1ad02" compoundref="SETS_8h" startline="79">p_degen_</references>
+        <references refid="classSETS_1a1900ad74bdf766f100626ab5be265051" compoundref="SETS_8h" startline="108">pressure_reduction_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1ac446f623e61febf9ef2bbc70cf1bcb35" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int SETS::nb_valeurs_temporelles_pression</definition>
+        <argsstring>() const override</argsstring>
+        <name>nb_valeurs_temporelles_pression</name>
+        <reimplements refid="classSolveur__Implicite__base_1ac1e8dc7f571564e385d267150131e2aa">nb_valeurs_temporelles_pression</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="40" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a18b50ad40531ec8d3b01fdf02bec2cb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SETS::SETS</definition>
+        <argsstring>()</argsstring>
+        <name>SETS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="38" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="69" bodyend="72"/>
+        <references refid="classSETS_1a037404a748a911b2e260905354a6c7f2" compoundref="SETS_8h" startline="80">sets_</references>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a818444b126b2bb412971d24b5f1acf2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double SETS::unknown_positivation</definition>
+        <argsstring>(const DoubleTab &amp;uk, DoubleTab &amp;incr)</argsstring>
+        <name>unknown_positivation</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>uk</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>incr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="82" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="177" bodyend="190"/>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" compoundref="Process_8cpp" startline="193" endline="193">Process::mp_max</references>
+        <referencedby refid="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" compoundref="SETS_8cpp" startline="260" endline="334">iterer_eqn</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classSETS_1a94743dbd40f90476201f78b1b06d0492" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SETS::assembler</definition>
+        <argsstring>(const std::string inco_p, const std::map&lt; std::string, Matrice_Morse &gt; &amp;A_p, const tabs_t &amp;b_p, const std::map&lt; std::string, matrices_t &gt; &amp;mats, const ptabs_t &amp;sec, Matrice_Morse &amp;matrice, DoubleTab &amp;secmem, int p_degen)</argsstring>
+        <name>assembler</name>
+        <param>
+          <type>const std::string</type>
+          <declname>inco_p</declname>
+        </param>
+        <param>
+          <type>const std::map&lt; std::string, <ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &gt; &amp;</type>
+          <declname>A_p</declname>
+        </param>
+        <param>
+          <type>const tabs_t &amp;</type>
+          <declname>b_p</declname>
+        </param>
+        <param>
+          <type>const std::map&lt; std::string, matrices_t &gt; &amp;</type>
+          <declname>mats</declname>
+        </param>
+        <param>
+          <type>const ptabs_t &amp;</type>
+          <declname>sec</declname>
+        </param>
+        <param>
+          <type><ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <declname>matrice</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>secmem</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_degen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="70" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="972" bodyend="1056"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classMatrice__Morse_1ad919fd5d81110ea86ec2098b18fdd3c3" compoundref="Matrice__Morse_8h" startline="112" endline="112">Matrice_Morse::get_coeff</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classMD__Vector__base_1a1c7449de51893b7642c5addad9cbd3a8" compoundref="MD__Vector__base_8cpp" startline="71" endline="77">MD_Vector_base::get_sequential_items_flags</references>
+        <references refid="classMatrice__Morse_1a3a016f4b3995a58b313cb47e66ebefd1" compoundref="Matrice__Morse_8h" startline="108" endline="108">Matrice_Morse::get_set_coeff</references>
+        <references refid="classMatrice__Morse_1adad29fc3bee7ca6ad5f023006aae7104" compoundref="Matrice__Morse_8h" startline="110" endline="110">Matrice_Morse::get_tab1</references>
+        <references refid="classMatrice__Morse_1ae4f04226d5af6697c0df4340a87c8ab7" compoundref="Matrice__Morse_8h" startline="111" endline="111">Matrice_Morse::get_tab2</references>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classMatrice__Morse_1ad69929b5100f2785d737dd77e2c82196" compoundref="Matrice__Morse_8h" startline="91" endline="91">Matrice_Morse::nb_colonnes</references>
+        <references refid="classMD__Vector_1a036f2429ea40bd07b331500f6ff22b8f" compoundref="MD__Vector_8h" startline="56" endline="63">MD_Vector::non_nul</references>
+        <references refid="classTRUSTVect_1a1918c7467e93eb90ae67d288b1519ae7" compoundref="TRUSTVect_8tpp" startline="61" endline="64">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size_totale</references>
+      </memberdef>
+      <memberdef kind="function" id="classSETS_1a340eb341146ca395a06258d9cd6fba3a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int SETS::eliminer</definition>
+        <argsstring>(const std::vector&lt; std::set&lt; std::pair&lt; std::string, int &gt;&gt;&gt; ordre, const std::string inco_p, const std::map&lt; std::string, matrices_t &gt; &amp;mats, const ptabs_t &amp;sec, std::map&lt; std::string, Matrice_Morse &gt; &amp;A_p, tabs_t &amp;b_p)</argsstring>
+        <name>eliminer</name>
+        <param>
+          <type>const std::vector&lt; std::set&lt; std::pair&lt; std::string, int &gt;&gt;&gt;</type>
+          <declname>ordre</declname>
+        </param>
+        <param>
+          <type>const std::string</type>
+          <declname>inco_p</declname>
+        </param>
+        <param>
+          <type>const std::map&lt; std::string, matrices_t &gt; &amp;</type>
+          <declname>mats</declname>
+        </param>
+        <param>
+          <type>const ptabs_t &amp;</type>
+          <declname>sec</declname>
+        </param>
+        <param>
+          <type>std::map&lt; std::string, <ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &gt; &amp;</type>
+          <declname>A_p</declname>
+        </param>
+        <param>
+          <type>tabs_t &amp;</type>
+          <declname>b_p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="59" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.cpp" bodystart="669" bodyend="970"/>
+        <references refid="classTRUSTArray_1a62f5eeb66939850d54464bb1e9c34d3d" compoundref="TRUSTArray_8tpp" startline="160" endline="164">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::addr</references>
+        <references refid="classMatrix__tools_1a00e41ca3d70e9d0e937c883b17ad04b3" compoundref="Matrix__tools_8cpp" startline="165" endline="178">Matrix_tools::allocate_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classMatrice__Morse_1adad29fc3bee7ca6ad5f023006aae7104" compoundref="Matrice__Morse_8h" startline="110" endline="110">Matrice_Morse::get_tab1</references>
+        <references refid="classMatrice__Morse_1ae4f04226d5af6697c0df4340a87c8ab7" compoundref="Matrice__Morse_8h" startline="111" endline="111">Matrice_Morse::get_tab2</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classConstTRUSTTab__parts_1ae10f3ef0c7e534ca9eba15590b4b7385" compoundref="TRUSTTab__parts_8h" startline="65" endline="65">ConstTRUSTTab_parts&lt; _TYPE_ &gt;::size</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classSETS" kindref="compound">SETS</ref> (semi-implicite + etapes de stabilisation, a la TRACE) </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classSETS" kindref="compound">SETS</ref> (&quot;Stability-Enhancing Two-Step&quot;)</para>
+<para>Ref : J. H. MAHAFFY, &quot;A stability-enhancing two-step method for fluid flow calculations,&quot; Journal of Computational Physics, 46, 3, 329 (1982).</para>
+<para><simplesect kind="see"><para><ref refid="classSimpler" kindref="compound">Simpler</ref> <ref refid="classPiso" kindref="compound">Piso</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Simple</label>
+        <link refid="classSimple"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Solveur_non_lineaire</label>
+        <link refid="classSolveur__non__lineaire"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Simpler</label>
+        <link refid="classSimpler"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="9">
+        <label>ICE</label>
+        <link refid="classICE"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Solveur_Implicite_base</label>
+        <link refid="classSolveur__Implicite__base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Simpler_Base</label>
+        <link refid="classSimpler__Base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SETS</label>
+        <link refid="classSETS"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="17">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Simple</label>
+        <link refid="classSimple"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>Ustar_old</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Parametre_equation_base</label>
+        <link refid="classParametre__equation__base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Solveur_non_lineaire</label>
+        <link refid="classSolveur__non__lineaire"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Matrice_Morse</label>
+        <link refid="classMatrice__Morse"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="usage">
+          <edgelabel>coeff_</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>tab1_</edgelabel>
+          <edgelabel>tab2_</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Parametre_implicite</label>
+        <link refid="classParametre__implicite"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="usage">
+          <edgelabel>equation_frequence_resolue_</edgelabel>
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>le_solveur_</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="16">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="25">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="26" relation="public-inheritance">
+        </childnode>
+        <childnode refid="22" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="2">
+        <label>Simpler</label>
+        <link refid="classSimpler"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="12">
+        <label>Parser_U</label>
+        <link refid="classParser__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>Matrice_Bloc</label>
+        <link refid="classMatrice__Bloc"/>
+        <childnode refid="24" relation="public-inheritance">
+        </childnode>
+        <childnode refid="27" relation="usage">
+          <edgelabel>offsets_</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Solveur_Implicite_base</label>
+        <link refid="classSolveur__Implicite__base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Simpler_Base</label>
+        <link refid="classSimpler__Base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>param_defaut_</edgelabel>
+        </childnode>
+      </node>
+      <node id="24">
+        <label>Matrice_Base</label>
+        <link refid="classMatrice__Base"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="25" relation="usage">
+          <edgelabel>stencil_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>SETS</label>
+        <link refid="classSETS"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>mdv_semi_impl_</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>mat_semi_impl_</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>matrice_pression_</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="27">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="18" relation="public-inheritance">
+        </childnode>
+        <childnode refid="19" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" line="34" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Multiphase/Schemas_Temps/SETS.h" bodystart="35" bodyend="128"/>
+    <listofallmembers>
+      <member refid="classSETS_1a34b65d807491cd07fa9f019e67e740d7" prot="protected" virt="non-virtual"><scope>SETS</scope><name>A_p_</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>SETS</scope><name>abort</name></member>
+      <member refid="classSimple_1a6cba6ae1e9e8f1a3c4311ae5c2624ae9" prot="protected" virt="non-virtual"><scope>SETS</scope><name>alpha_</name></member>
+      <member refid="classSETS_1a94743dbd40f90476201f78b1b06d0492" prot="public" virt="non-virtual"><scope>SETS</scope><name>assembler</name></member>
+      <member refid="classSimpler__Base_1a9551a048f427dd25e9e6e5a054b95038" prot="public" virt="non-virtual"><scope>SETS</scope><name>assembler_matrice_pression_implicite</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>SETS</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>SETS</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>SETS</scope><name>barrier</name></member>
+      <member refid="classSimple_1a0c50914e4e2dfd88cc86c23359c2e8d3" prot="protected" virt="non-virtual"><scope>SETS</scope><name>beta_</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>SETS</scope><name>bidim_axi</name></member>
+      <member refid="classSimple_1aba822b0b0b3d30c62205600a72602b37" prot="protected" virt="non-virtual"><scope>SETS</scope><name>calculer_correction_en_vitesse</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>SETS</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>SETS</scope><name>check_int_overflow</name></member>
+      <member refid="classSimpler__Base_1a096940b610b32c8adc3bfb48a3643bf1" prot="protected" virt="non-virtual"><scope>SETS</scope><name>controle_residu_</name></member>
+      <member refid="classSETS_1a82a8a93c201d10e17f3274f9ac607e5b" prot="protected" virt="non-virtual"><scope>SETS</scope><name>crit_conv_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>SETS</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classSETS_1aaf39161346fa5892879bf6a30125bb78" prot="private" virt="non-virtual"><scope>SETS</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>SETS</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>SETS</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>SETS</scope><name>duplique</name></member>
+      <member refid="classSETS_1a340eb341146ca395a06258d9cd6fba3a" prot="public" virt="non-virtual"><scope>SETS</scope><name>eliminer</name></member>
+      <member refid="classSolveur__Implicite__base_1aef3a44214171a9dd70bc8eb6c83073a8" prot="public" virt="virtual"><scope>SETS</scope><name>est_compatible_avec_th_mono</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>SETS</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>SETS</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>SETS</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>SETS</scope><name>exit</name></member>
+      <member refid="classSETS_1a2ab9d499073f4790f5482f918ab366fe" prot="public" virt="non-virtual"><scope>SETS</scope><name>facsec_diffusion_for_sets</name></member>
+      <member refid="classSimpler__Base_1aa0b4c4a7d71c495faa0f91e90a678f36" prot="protected" virt="non-virtual"><scope>SETS</scope><name>facsec_diffusion_for_sets_</name></member>
+      <member refid="classSimpler__Base_1a306aa37a51aaa20449a505348a4327a3" prot="protected" virt="non-virtual"><scope>SETS</scope><name>facteur_convg_</name></member>
+      <member refid="classSETS_1abc7f91897922f8e62d9b9a181ff35f51" prot="protected" virt="non-virtual"><scope>SETS</scope><name>first_call_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>SETS</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>SETS</scope><name>format_precision_geom</name></member>
+      <member refid="classSimpler__Base_1a92152af59a443a8a1395a11d8efc4634" prot="public" virt="non-virtual"><scope>SETS</scope><name>get_and_set_parametre_implicite</name></member>
+      <member refid="classSolveur__Implicite__base_1ac7ebaa768857566f2f1cc202fc3d6911" prot="public" virt="virtual"><scope>SETS</scope><name>get_default_facsec_max</name></member>
+      <member refid="classSETS_1a8d966ab9dd0390064d1d7d3b2be32e18" prot="public" virt="virtual"><scope>SETS</scope><name>get_default_growth_factor</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>SETS</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>SETS</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>SETS</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>SETS</scope><name>HAS_POINTER</name></member>
+      <member refid="classSETS_1aa06840e45f98869e0a46f3528f4bc854" prot="protected" virt="non-virtual"><scope>SETS</scope><name>header_written_</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>SETS</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classSETS_1abdb0b045606e8532b9b94cb91a927057" prot="protected" virt="non-virtual"><scope>SETS</scope><name>incr_var_convergence_</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>SETS</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>SETS</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>SETS</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>SETS</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>SETS</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>SETS</scope><name>is_sequential</name></member>
+      <member refid="classSimpler__Base_1a62dad1566d6c422e4046481788ab57a5" prot="protected" virt="non-virtual"><scope>SETS</scope><name>is_seuil_convg_variable</name></member>
+      <member refid="classSETS_1acf75db99aa6f39fb02552f774ac26d17" prot="protected" virt="non-virtual"><scope>SETS</scope><name>iter_max_</name></member>
+      <member refid="classSETS_1a416660a4c6b560c16a63ef41bc99383f" prot="protected" virt="non-virtual"><scope>SETS</scope><name>iter_min_</name></member>
+      <member refid="classSETS_1a9898f5bcd206278a5b7a4f587b455f4e" prot="public" virt="non-virtual"><scope>SETS</scope><name>iteration_</name></member>
+      <member refid="classSETS_1ac8f62874bd9a352e8def1cfc3d996186" prot="public" virt="virtual"><scope>SETS</scope><name>iterer_eqn</name></member>
+      <member refid="classSimple_1aa6e00a5da503178dae5311b4eb7da726" prot="public" virt="virtual"><scope>SETS</scope><name>iterer_eqs</name></member>
+      <member refid="classSETS_1a6392580d0676326210dc7536c278c810" prot="public" virt="virtual"><scope>SETS</scope><name>iterer_NS</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>SETS</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>SETS</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>SETS</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>SETS</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>SETS</scope><name>le_type</name></member>
+      <member refid="classSETS_1a0700ecfee83528105f1d62437e07661b" prot="public" virt="virtual"><scope>SETS</scope><name>lire</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>SETS</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classSimple_1ad03e2ff29bca545a54265f8016abf357" prot="public" virt="non-virtual"><scope>SETS</scope><name>list_of_eq_ptr_t</name></member>
+      <member refid="classSETS_1ac0090750335e8aac173948b2e2d33bc1" prot="protected" virt="non-virtual"><scope>SETS</scope><name>mat_pred_</name></member>
+      <member refid="classSETS_1a07a7c2b5e8af27bbf20f14242710ddaa" prot="protected" virt="non-virtual"><scope>SETS</scope><name>mat_semi_impl_</name></member>
+      <member refid="classSETS_1ac504d8eb91416467e253c0386481e8e8" prot="protected" virt="non-virtual"><scope>SETS</scope><name>matrice_pression_</name></member>
+      <member refid="classSETS_1aae18f47c1eed92d623bc28ab77b3c0bd" prot="protected" virt="non-virtual"><scope>SETS</scope><name>mats_</name></member>
+      <member refid="classSimpler__Base_1a3b0471b4a32c6338971a7f66325c8743" prot="public" virt="non-virtual"><scope>SETS</scope><name>max_iter_implicite</name></member>
+      <member refid="classSimpler__Base_1a2b81992eb67153a7317702a84c3180ae" prot="public" virt="non-virtual"><scope>SETS</scope><name>max_iter_implicite</name></member>
+      <member refid="classSimple_1a00d07d0aab8a864573fbb765e569265f" prot="public" virt="non-virtual"><scope>SETS</scope><name>mbloc</name></member>
+      <member refid="classSETS_1a3f47eb63c97ce42510c940ec696e1754" prot="protected" virt="non-virtual"><scope>SETS</scope><name>mdv_semi_impl_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>SETS</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>SETS</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>SETS</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>SETS</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>SETS</scope><name>multiple_files</name></member>
+      <member refid="classSETS_1ac446f623e61febf9ef2bbc70cf1bcb35" prot="public" virt="virtual"><scope>SETS</scope><name>nb_valeurs_temporelles_pression</name></member>
+      <member refid="classSimpler__Base_1a5133e1dfc9982b08e842d570cf69d294" prot="protected" virt="non-virtual"><scope>SETS</scope><name>no_qdm_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>SETS</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>SETS</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>SETS</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>SETS</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>SETS</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>SETS</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>SETS</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>SETS</scope><name>operator=</name></member>
+      <member refid="classSimpler__Base_1a3dce282966818385b03ffa137f618900" prot="public" virt="virtual"><scope>SETS</scope><name>OWN_PTR</name></member>
+      <member refid="classSETS_1a2e1ea346b430d9156b84f9b60cb1ad02" prot="public" virt="non-virtual"><scope>SETS</scope><name>p_degen_</name></member>
+      <member refid="classSimpler__Base_1acc5dc7129ff04167feeb348f93856f8e" prot="protected" virt="non-virtual"><scope>SETS</scope><name>param_defaut_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>SETS</scope><name>precision_geom</name></member>
+      <member refid="classSETS_1a1900ad74bdf766f100626ab5be265051" prot="protected" virt="non-virtual"><scope>SETS</scope><name>pressure_reduction_</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>SETS</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>SETS</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>SETS</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>SETS</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>SETS</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>SETS</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>SETS</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>SETS</scope><name>self_cast</name></member>
+      <member refid="classSETS_1a18b50ad40531ec8d3b01fdf02bec2cb4" prot="public" virt="non-virtual"><scope>SETS</scope><name>SETS</name></member>
+      <member refid="classSETS_1a037404a748a911b2e260905354a6c7f2" prot="public" virt="non-virtual"><scope>SETS</scope><name>sets_</name></member>
+      <member refid="classSimple_1acc8b5f8c0c2a8b0a38f5559cfa5623c7" prot="public" virt="non-virtual"><scope>SETS</scope><name>Simple</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>SETS</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>SETS</scope><name>taille_memoire</name></member>
+      <member refid="classSETS_1a818444b126b2bb412971d24b5f1acf2c" prot="public" virt="non-virtual"><scope>SETS</scope><name>unknown_positivation</name></member>
+      <member refid="classSimple_1a9368f8d3a62cea5fb850b75168c0bc76" prot="protected" virt="non-virtual"><scope>SETS</scope><name>Ustar_old</name></member>
+      <member refid="classSimple_1a26b2c949c7f539ad0bf3db35c5492df1" prot="protected" virt="non-virtual"><scope>SETS</scope><name>with_d_rho_dt_</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>SETS</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>SETS</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

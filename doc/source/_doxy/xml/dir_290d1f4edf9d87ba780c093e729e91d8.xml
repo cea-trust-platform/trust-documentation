@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_290d1f4edf9d87ba780c093e729e91d8" kind="dir">
+    <compoundname>ThermoPhysical_properties_interfaces</compoundname>
+    <innerdir refid="dir_2a41d69b6083215bc50c2e5488a5506d">CoolProp_to_TRUST</innerdir>
+    <innerdir refid="dir_1b5546eaddefcd2e04244554a2d759ab">EOS_to_TRUST</innerdir>
+    <innerfile refid="TPPI_8cpp">TPPI.cpp</innerfile>
+    <innerfile refid="TPPI_8h">TPPI.h</innerfile>
+    <innerfile refid="TPPI__tools_8h">TPPI_tools.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/ThermoPhysical_properties_interfaces/"/>
+  </compounddef>
+</doxygen>

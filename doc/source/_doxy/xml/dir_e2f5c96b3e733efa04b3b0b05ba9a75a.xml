@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_e2f5c96b3e733efa04b3b0b05ba9a75a" kind="dir">
+    <compoundname>Op_Diff_Dift</compoundname>
+    <innerfile refid="Op__Diff__DG__base_8cpp">Op_Diff_DG_base.cpp</innerfile>
+    <innerfile refid="Op__Diff__DG__base_8h">Op_Diff_DG_base.h</innerfile>
+    <innerfile refid="Op__Diff__DG__Elem_8cpp">Op_Diff_DG_Elem.cpp</innerfile>
+    <innerfile refid="Op__Diff__DG__Elem_8h">Op_Diff_DG_Elem.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/DG/Operateurs/Op_Diff_Dift/"/>
+  </compounddef>
+</doxygen>

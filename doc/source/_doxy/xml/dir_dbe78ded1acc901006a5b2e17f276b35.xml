@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_dbe78ded1acc901006a5b2e17f276b35" kind="dir">
+    <compoundname>Equations</compoundname>
+    <innerfile refid="Convection__Diffusion__Chaleur__QC_8cpp">Convection_Diffusion_Chaleur_QC.cpp</innerfile>
+    <innerfile refid="Convection__Diffusion__Chaleur__QC_8h">Convection_Diffusion_Chaleur_QC.h</innerfile>
+    <innerfile refid="Convection__Diffusion__Espece__Binaire__QC_8cpp">Convection_Diffusion_Espece_Binaire_QC.cpp</innerfile>
+    <innerfile refid="Convection__Diffusion__Espece__Binaire__QC_8h">Convection_Diffusion_Espece_Binaire_QC.h</innerfile>
+    <innerfile refid="Convection__Diffusion__Espece__Multi__QC_8cpp">Convection_Diffusion_Espece_Multi_QC.cpp</innerfile>
+    <innerfile refid="Convection__Diffusion__Espece__Multi__QC_8h">Convection_Diffusion_Espece_Multi_QC.h</innerfile>
+    <innerfile refid="Navier__Stokes__QC_8cpp">Navier_Stokes_QC.cpp</innerfile>
+    <innerfile refid="Navier__Stokes__QC_8h">Navier_Stokes_QC.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Dilatable/Quasi_Compressible/Equations/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,327 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classParallel__io__parameters" kind="class" language="C++" prot="public">
+    <compoundname>Parallel_io_parameters</compoundname>
+    <basecompoundref refid="classInterprete" prot="public" virt="non-virtual">Interprete</basecompoundref>
+    <includes local="no">Parallel_io_parameters.h</includes>
+      <sectiondef kind="protected-static-attrib">
+      <memberdef kind="variable" id="classParallel__io__parameters_1ac5b7e8b8ea53b90df7495ff2ce44e410" prot="protected" static="yes" mutable="no">
+        <type>Size_t</type>
+        <definition>Size_t Parallel_io_parameters::max_block_size_</definition>
+        <argsstring></argsstring>
+        <name>max_block_size_</name>
+        <initializer>= (Size_t) 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="37" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" bodystart="37" bodyend="-1"/>
+        <referencedby refid="classParallel__io__parameters_1ab55b44d5ec31a41145ed0051d860654c" compoundref="Parallel__io__parameters_8h" startline="27" endline="27">get_max_block_size</referencedby>
+        <referencedby refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" compoundref="Parallel__io__parameters_8cpp" startline="46" endline="87">interpreter</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classParallel__io__parameters_1ab54f8beb02eee07fb1793c774a7c1fac" prot="protected" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int Parallel_io_parameters::nb_writing_processes_</definition>
+        <argsstring></argsstring>
+        <name>nb_writing_processes_</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="42" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" bodystart="42" bodyend="-1"/>
+        <referencedby refid="classParallel__io__parameters_1a21dc2ea364ec68c88b4f228c7edf471f" compoundref="Parallel__io__parameters_8cpp" startline="89" endline="104">get_nb_writing_processes</referencedby>
+        <referencedby refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" compoundref="Parallel__io__parameters_8cpp" startline="46" endline="87">interpreter</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classParallel__io__parameters_1a284d297ab51a3e29fb224bc867f6b6b6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Parallel_io_parameters::Declare_instanciable</definition>
+        <argsstring>(Parallel_io_parameters)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classParallel__io__parameters" kindref="compound">Parallel_io_parameters</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="23" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; Parallel_io_parameters::interpreter</definition>
+        <argsstring>(Entree &amp;) override</argsstring>
+        <name>interpreter</name>
+        <reimplements refid="classInterprete_1ac46c548a31f5411d784b8044e3b87c58">interpreter</reimplements>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="26" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.cpp" bodystart="46" bodyend="87"/>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classParallel__io__parameters_1a21dc2ea364ec68c88b4f228c7edf471f" compoundref="Parallel__io__parameters_8cpp" startline="89" endline="104">get_nb_writing_processes</references>
+        <references refid="classParam_1aea52f16d3b74c59c48cb5708ff48f14a" compoundref="Param_8h" startline="68" endline="68">Param::lire_avec_accolades</references>
+        <references refid="classParallel__io__parameters_1ac5b7e8b8ea53b90df7495ff2ce44e410" compoundref="Parallel__io__parameters_8h" startline="37">max_block_size_</references>
+        <references refid="classParallel__io__parameters_1ab54f8beb02eee07fb1793c774a7c1fac" compoundref="Parallel__io__parameters_8h" startline="42">nb_writing_processes_</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classParallel__io__parameters_1a91b0280500e9e8bf0a1d5f3a554c8f7a" compoundref="Parallel__io__parameters_8cpp" startline="160" endline="209">run_bench_read</references>
+        <references refid="classParallel__io__parameters_1a2ce503a01a7731086d1dbc2a6033daa4" compoundref="Parallel__io__parameters_8cpp" startline="106" endline="137">run_bench_write</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classParallel__io__parameters_1ab55b44d5ec31a41145ed0051d860654c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Size_t</type>
+        <definition>static Size_t Parallel_io_parameters::get_max_block_size</definition>
+        <argsstring>()</argsstring>
+        <name>get_max_block_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="27" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" bodystart="27" bodyend="27"/>
+        <references refid="classParallel__io__parameters_1ac5b7e8b8ea53b90df7495ff2ce44e410" compoundref="Parallel__io__parameters_8h" startline="37">max_block_size_</references>
+        <referencedby refid="classIJK__Striped__Writer_1a3bf509faa95c3b778d6fb896d5529616" compoundref="IJK__Striped__Writer_8tpp" startline="447" endline="706">IJK_Striped_Writer::write_data_parallel2_template</referencedby>
+        <referencedby refid="classIJK__Striped__Writer_1aab381bb0fb3aeaa6b3bdfb5d749315d8" compoundref="IJK__Striped__Writer_8tpp" startline="26" endline="57">IJK_Striped_Writer::write_data_template</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classParallel__io__parameters_1a21dc2ea364ec68c88b4f228c7edf471f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Parallel_io_parameters::get_nb_writing_processes</definition>
+        <argsstring>()</argsstring>
+        <name>get_nb_writing_processes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="28" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.cpp" bodystart="89" bodyend="104"/>
+        <references refid="classParallel__io__parameters_1ab54f8beb02eee07fb1793c774a7c1fac" compoundref="Parallel__io__parameters_8h" startline="42">nb_writing_processes_</references>
+        <references refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" compoundref="Process_8cpp" startline="103" endline="107">Process::nproc</references>
+        <referencedby refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" compoundref="Parallel__io__parameters_8cpp" startline="46" endline="87">interpreter</referencedby>
+        <referencedby refid="classIJK__Striped__Writer_1a3bf509faa95c3b778d6fb896d5529616" compoundref="IJK__Striped__Writer_8tpp" startline="447" endline="706">IJK_Striped_Writer::write_data_parallel2_template</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-static-func">
+      <memberdef kind="function" id="classParallel__io__parameters_1a91b0280500e9e8bf0a1d5f3a554c8f7a" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Parallel_io_parameters::run_bench_read</definition>
+        <argsstring>(const Nom &amp;ijk_splitting)</argsstring>
+        <name>run_bench_read</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>ijk_splitting</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="31" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.cpp" bodystart="160" bodyend="209"/>
+        <references refid="classIJK__Field__template_1a9c330f12b41547930db9e6cedb736c8c" compoundref="IJK__Field__template_8tpp" startline="562" endline="572">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate</references>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <references refid="classPerf__counters_1ad8da7bbe3cc8b6bf63ce2c5a9c76323c" compoundref="Perf__counters_8cpp" startline="1790" endline="1793">Perf_counters::create_custom_counter</references>
+        <references refid="classIJK__Field__local__template_1a7557798c384c81b392b53902ecabf221" compoundref="IJK__Field__local__template_8h" startline="178" endline="178">IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::data</references>
+        <references refid="classPerf__counters_1ad528e593c4ea8c18b317fef30632b053" compoundref="Perf__counters_8cpp" startline="1805" endline="1808">Perf_counters::end_count</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a2824d1e193c056b3750a3781714c9bd4" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_I</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a15b0074a7289b4f572e2bb171a7f0bbe" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_J</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a1ca30ec67a63064fafda2bd181ad5615" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_K</references>
+        <references refid="classDomaine__IJK_1abe00a6fa8b6f15aa7345e925275d6780" compoundref="Domaine__IJK_8h" startline="247" endline="251">Domaine_IJK::get_nb_elem_tot</references>
+        <references refid="classPerf__counters_1aae1b9a5f462a7d48de0d004d96ca86d6" compoundref="Perf__counters_8cpp" startline="1850" endline="1853">Perf_counters::get_time_since_last_open</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <references refid="classInterprete__bloc_1ae0b05c3b185638c72c0521be856f1d4f" compoundref="Interprete__bloc_8cpp" startline="252" endline="269">Interprete_bloc::objet_global</references>
+        <references refid="classPerf__counters_1aac375186e7827e84e504c6555c4ba22c" compoundref="Perf__counters_8cpp" startline="1885" endline="1888">Perf_counters::set_nb_time_steps_elapsed</references>
+        <referencedby refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" compoundref="Parallel__io__parameters_8cpp" startline="46" endline="87">interpreter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classParallel__io__parameters_1a2ce503a01a7731086d1dbc2a6033daa4" prot="protected" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Parallel_io_parameters::run_bench_write</definition>
+        <argsstring>(const Nom &amp;ijk_splitting)</argsstring>
+        <name>run_bench_write</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <declname>ijk_splitting</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="32" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.cpp" bodystart="106" bodyend="137"/>
+        <references refid="classIJK__Field__template_1a9c330f12b41547930db9e6cedb736c8c" compoundref="IJK__Field__template_8tpp" startline="562" endline="572">IJK_Field_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;::allocate</references>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <references refid="classPerf__counters_1ad8da7bbe3cc8b6bf63ce2c5a9c76323c" compoundref="Perf__counters_8cpp" startline="1790" endline="1793">Perf_counters::create_custom_counter</references>
+        <references refid="classPerf__counters_1ad528e593c4ea8c18b317fef30632b053" compoundref="Perf__counters_8cpp" startline="1805" endline="1808">Perf_counters::end_count</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a2824d1e193c056b3750a3781714c9bd4" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_I</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a15b0074a7289b4f572e2bb171a7f0bbe" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_J</references>
+        <references refid="classDomaine__IJK_1af42f29bc11c3d6e985da2a908f6e8ba3a1ca30ec67a63064fafda2bd181ad5615" compoundref="Domaine__IJK_8h" startline="53">Domaine_IJK::FACES_K</references>
+        <references refid="classDomaine__IJK_1abe00a6fa8b6f15aa7345e925275d6780" compoundref="Domaine__IJK_8h" startline="247" endline="251">Domaine_IJK::get_nb_elem_tot</references>
+        <references refid="classPerf__counters_1aae1b9a5f462a7d48de0d004d96ca86d6" compoundref="Perf__counters_8cpp" startline="1850" endline="1853">Perf_counters::get_time_since_last_open</references>
+        <references refid="classInterprete__bloc_1ae0b05c3b185638c72c0521be856f1d4f" compoundref="Interprete__bloc_8cpp" startline="252" endline="269">Interprete_bloc::objet_global</references>
+        <references refid="classPerf__counters_1aac375186e7827e84e504c6555c4ba22c" compoundref="Perf__counters_8cpp" startline="1885" endline="1888">Perf_counters::set_nb_time_steps_elapsed</references>
+        <referencedby refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" compoundref="Parallel__io__parameters_8cpp" startline="46" endline="87">interpreter</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Parallel_io_parameters</label>
+        <link refid="classParallel__io__parameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Parallel_io_parameters</label>
+        <link refid="classParallel__io__parameters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" line="21" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/IJK/Framework/Parallel_io_parameters.h" bodystart="22" bodyend="43"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>bidim_axi</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>check_int_overflow</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classParallel__io__parameters_1a284d297ab51a3e29fb224bc867f6b6b6" prot="private" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Parallel_io_parameters</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>get_info</name></member>
+      <member refid="classParallel__io__parameters_1ab55b44d5ec31a41145ed0051d860654c" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>get_max_block_size</name></member>
+      <member refid="classParallel__io__parameters_1a21dc2ea364ec68c88b4f228c7edf471f" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>get_nb_writing_processes</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>interprete</name></member>
+      <member refid="classParallel__io__parameters_1a928693223b23f54503866e201f19d64c" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>interpreter</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classParallel__io__parameters_1ac5b7e8b8ea53b90df7495ff2ce44e410" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>max_block_size_</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>multiple_files</name></member>
+      <member refid="classParallel__io__parameters_1ab54f8beb02eee07fb1793c774a7c1fac" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>nb_writing_processes_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>numero</name></member>
+      <member refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>objet</name></member>
+      <member refid="classInterprete_1ae5b09c3b61cd8b789437a0822a26a573" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>objet_existant</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>readOn</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>reprendre</name></member>
+      <member refid="classParallel__io__parameters_1a91b0280500e9e8bf0a1d5f3a554c8f7a" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>run_bench_read</name></member>
+      <member refid="classParallel__io__parameters_1a2ce503a01a7731086d1dbc2a6033daa4" prot="protected" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>run_bench_write</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Parallel_io_parameters</scope><name>taille_memoire</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Parallel_io_parameters</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Parallel_io_parameters</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,522 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classFrottement__impose__base" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Frottement_impose_base</compoundname>
+    <basecompoundref refid="classNavier" prot="public" virt="non-virtual">Navier</basecompoundref>
+    <derivedcompoundref refid="classFrottement__externe__impose" prot="public" virt="non-virtual">Frottement_externe_impose</derivedcompoundref>
+    <derivedcompoundref refid="classFrottement__global__impose" prot="public" virt="non-virtual">Frottement_global_impose</derivedcompoundref>
+    <includes local="no">Frottement_impose_base.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classFrottement__impose__base_1acd78f01f36bb09cb5802bd582d88d908" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Frottement_impose_base::mon_temps</definition>
+        <argsstring></argsstring>
+        <name>mon_temps</name>
+        <initializer>= -1e10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="56" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classFrottement__impose__base_1a89a1bedb42f8d93676d9ee97621da8c6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Frottement_impose_base::Declare_base</definition>
+        <argsstring>(Frottement_impose_base)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classFrottement__impose__base" kindref="compound">Frottement_impose_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="37" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFrottement__impose__base_1a3c73180a1c75d0b2b47bff71ed6929da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::associer_domaine_cl_dis_base</definition>
+        <argsstring>(const Domaine_Cl_dis_base &amp;zcl) override</argsstring>
+        <name>associer_domaine_cl_dis_base</name>
+        <reimplements refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05">associer_domaine_cl_dis_base</reimplements>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <defname>zcl</defname>
+        </param>
+        <briefdescription>
+<para>Associe le <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> (Domaine des conditions aux limites discretisees) a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ce <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> stocke (reference) toutes les conditions aux limites relative a un Domaine geometrique.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine_Cl_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>zcl) un Domaine des conditions aux limites discretisees a laquelle l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> se rapporte </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="42" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1ae96bc3d7f82b196a916df1ac76a37b6b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::associer_fr_dis_base</definition>
+        <argsstring>(const Frontiere_dis_base &amp;fr) override</argsstring>
+        <name>associer_fr_dis_base</name>
+        <reimplements refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266">associer_fr_dis_base</reimplements>
+        <param>
+          <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+          <defname>fr</defname>
+        </param>
+        <briefdescription>
+<para>Associe la frontiere a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>L&apos;objet <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> est en fait associe au membre <ref refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" kindref="member">OWN_PTR(Champ_front_base)</ref> de l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> qui represente le champ des conditions aux limites imposees a la frontiere.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Frontiere_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fr) la frontiere sur laquelle on impose les conditions aux limites </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1ac33b816a12004430fdcec58c67c96e17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::calculer_coeffs_echange</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>calculer_coeffs_echange</name>
+        <reimplements refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1">calculer_coeffs_echange</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Calcul des coefficient d&apos;echange pour un couplage par <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ces calculs sont locaux au probleme et dependant uniquement de l&apos;inconnue. Ils doivent donc etre faits chaque fois que l&apos;inconnue est modifiee. Ils sont disponibles pour l&apos;exterieur et stockes dans les CLs. WEC : Les <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref> devraient disparaitre et cette methode avec !!!</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a64b95d6b4ffcefc14b96609aaaa534a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::changer_temps_futur</definition>
+        <argsstring>(double temps, int i) override</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplements refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4">changer_temps_futur</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="49" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a84079f430af6d44152233376b0131836" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f">completer</reimplements>
+        <briefdescription>
+<para>NE FAIT RIEN A surcharger dans les classes derivees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a1144768e6ddab25dc0c4a678693c0ad3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::fixer_nb_valeurs_temporelles</definition>
+        <argsstring>(int nb_cases) override</argsstring>
+        <name>fixer_nb_valeurs_temporelles</name>
+        <reimplements refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8">fixer_nb_valeurs_temporelles</reimplements>
+        <param>
+          <type>int</type>
+          <declname>nb_cases</declname>
+        </param>
+        <briefdescription>
+<para>Appele par <ref refid="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" kindref="member">Conds_lim::completer</ref> Appel cha_front_base::fixer_nb_valeurs_temporelles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1aa398e540d4afc55af81c613440227efc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>const Frontiere_dis_base&amp; Frottement_impose_base::frontiere_dis</definition>
+        <argsstring>() const override</argsstring>
+        <name>frontiere_dis</name>
+        <reimplements refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3">frontiere_dis</reimplements>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(version const)</para>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="48" column="35" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a5fe5fa70e740c8c65e61e96e70706ae3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>Frontiere_dis_base&amp; Frottement_impose_base::frontiere_dis</definition>
+        <argsstring>() override</argsstring>
+        <name>frontiere_dis</name>
+        <reimplements refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a">frontiere_dis</reimplements>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="47" column="29" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1af7a6bececdc66f48eabd86d51ba919e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>int Frottement_impose_base::initialiser</definition>
+        <argsstring>(double temps) override=0</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92">initialiser</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="41" column="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a205c0c6a9c2c91e462bbed81cb43ee2f" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Frottement_impose_base::liste_faces_loi_paroi</definition>
+        <argsstring>(IntTab &amp;)=0</argsstring>
+        <name>liste_faces_loi_paroi</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="39" column="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1a63accc0c88b3e9c310f3033d1d681db1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::set_temps_defaut</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplements refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3">set_temps_defaut</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="50" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classFrottement__impose__base_1aea0f59866c3b1ac5470787a4bb39e4c4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Frottement_impose_base::verifie_ch_init_nb_comp</definition>
+        <argsstring>() const override</argsstring>
+        <name>verifie_ch_init_nb_comp</name>
+        <reimplements refid="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc">verifie_ch_init_nb_comp</reimplements>
+        <briefdescription>
+<para>Appel la verification du champ lu par l intermediaire de l equation pour laquelle on considere la condition limite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>La methode est surchargee dans les cas ou l utilisateur doit specifier le champ frontiere </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="52" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classFrottement__impose__base_1a533e0d950ab651508e1ee00ebe75e8d0" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Frottement_impose_base::OBS_PTR</definition>
+        <argsstring>(Frontiere_dis_base) la_frontiere_dis</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="55" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Classe <ref refid="classFrottement__impose__base" kindref="compound">Frottement_impose_base</ref> Classe de base pour des conditions aux limites de type <ref refid="classNavier" kindref="compound">Navier</ref> (v. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>n nul, v_t par contrainte imposee) dans laquelle la contrainte imposee suit un coefficient de frottement : (force subie) = - coefficient_frottement * (vitesse tangentielle) La vitesse tangentielle peut etre soit prise directement a chaque face (classe <ref refid="classFrottement__externe__impose" kindref="compound">Frottement_externe_impose</ref>), soit etre prise en l&apos;element voisin de la face (classe <ref refid="classFrottement__global__impose" kindref="compound">Frottement_global_impose</ref>)</para>
+<para><simplesect kind="see"><para><ref refid="classNavier" kindref="compound">Navier</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Navier</label>
+        <link refid="classNavier"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Frottement_externe_impose</label>
+        <link refid="classFrottement__externe__impose"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Frottement_impose_base</label>
+        <link refid="classFrottement__impose__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Frottement_global_impose</label>
+        <link refid="classFrottement__global__impose"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Navier</label>
+        <link refid="classNavier"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Frottement_impose_base</label>
+        <link refid="classFrottement__impose__base"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" line="35" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Frottement_impose_base.h" bodystart="36" bodyend="58"/>
+    <listofallmembers>
+      <member refid="classCond__lim__base_1a87e21b172da6aa4f6563f483377fde74" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>associer_</name></member>
+      <member refid="classFrottement__impose__base_1a3c73180a1c75d0b2b47bff71ed6929da" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classFrottement__impose__base_1ae96bc3d7f82b196a916df1ac76a37b6b" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>bidim_axi</name></member>
+      <member refid="classFrottement__impose__base_1ac33b816a12004430fdcec58c67c96e17" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>change_num</name></member>
+      <member refid="classFrottement__impose__base_1a64b95d6b4ffcefc14b96609aaaa534a8" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>check_int_overflow</name></member>
+      <member refid="classNavier_1af09f10730c560d8407f3df598acca7a2" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>coefficient_frottement</name></member>
+      <member refid="classNavier_1a68a2871982c44fe4f2f212beb018ce2b" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>coefficient_frottement</name></member>
+      <member refid="classNavier_1ab04b0e2191e0eb93f81d181119b0f242" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>coefficient_frottement_grad</name></member>
+      <member refid="classNavier_1a479c949ba77d47f1f9623ecaa0268265" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>coefficient_frottement_grad</name></member>
+      <member refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>compatible_avec_discr</name></member>
+      <member refid="classNavier_1ae8911ba1d9fa05a789998b52083cc40f" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classFrottement__impose__base_1a84079f430af6d44152233376b0131836" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>completer</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classFrottement__impose__base_1a89a1bedb42f8d93676d9ee97621da8c6" prot="private" virt="non-virtual"><scope>Frottement_impose_base</scope><name>Declare_base</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>disable_TU</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Frottement_impose_base</scope><name>duplique</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>exit</name></member>
+      <member refid="classFrottement__impose__base_1a1144768e6ddab25dc0c4a678693c0ad3" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>format_precision_geom</name></member>
+      <member refid="classFrottement__impose__base_1a5fe5fa70e740c8c65e61e96e70706ae3" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>frontiere_dis</name></member>
+      <member refid="classFrottement__impose__base_1aa398e540d4afc55af81c613440227efc" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>info_obj</name></member>
+      <member refid="classFrottement__impose__base_1af7a6bececdc66f48eabd86d51ba919e2" prot="public" virt="pure-virtual"><scope>Frottement_impose_base</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classFrottement__impose__base_1a205c0c6a9c2c91e462bbed81cb43ee2f" prot="public" virt="pure-virtual"><scope>Frottement_impose_base</scope><name>liste_faces_loi_paroi</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>me</name></member>
+      <member refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>modifier_val_imp</name></member>
+      <member refid="classFrottement__impose__base_1acd78f01f36bb09cb5802bd582d88d908" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mon_temps</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>Objet_U</name></member>
+      <member refid="classFrottement__impose__base_1a533e0d950ab651508e1ee00ebe75e8d0" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>OBS_PTR</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual" ambiguityscope="Navier::"><scope>Frottement_impose_base</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>operator=</name></member>
+      <member refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>readOn</name></member>
+      <member refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>reprendre</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classFrottement__impose__base_1a63accc0c88b3e9c310f3033d1d681db1" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Frottement_impose_base</scope><name>supp_discs</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Frottement_impose_base</scope><name>taille_memoire</name></member>
+      <member refid="classFrottement__impose__base_1aea0f59866c3b1ac5470787a4bb39e4c4" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Frottement_impose_base</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Frottement_impose_base</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classListe__Champ__Generique" kind="class" language="C++" prot="public">
+    <compoundname>Liste_Champ_Generique</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">LISTOWN_PTRChamp_Generique_base</basecompoundref>
+    <includes local="no">Liste_Champ_Generique.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classListe__Champ__Generique_1aad31724c1346b5b562da6f09b05fcaa1" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Liste_Champ_Generique::Declare_instanciable</definition>
+        <argsstring>(Liste_Champ_Generique)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classListe__Champ__Generique" kindref="compound">Liste_Champ_Generique</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" line="27" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classListe__Champ__Generique_1a0dec40f9c9d30cec6c646a5ad4fbf323" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Liste_Champ_Generique::fixer_tstat_deb</definition>
+        <argsstring>(double, double)</argsstring>
+        <name>fixer_tstat_deb</name>
+        <param>
+          <type>double</type>
+        </param>
+        <param>
+          <type>double</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" bodystart="31" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classListe__Champ__Generique_1a857e835053635a321d591f6d67b140db" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Liste_Champ_Generique::reprendre</definition>
+        <argsstring>(Entree &amp;is) override</argsstring>
+        <name>reprendre</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" line="29" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.cpp" bodystart="32" bodyend="37"/>
+        <referencedby refid="classPostraitement_1a3f0f16977bca2e1dc39606c6407f7a9b" compoundref="Postraitement_8cpp" startline="969" endline="1096">Postraitement::reprendre</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classListe__Champ__Generique_1a78eefb4fa95af3bfa3912b5f2575cfd0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Liste_Champ_Generique::sauvegarder</definition>
+        <argsstring>(Sortie &amp;os) const override</argsstring>
+        <name>sauvegarder</name>
+        <param>
+          <type><ref refid="classSortie" kindref="compound">Sortie</ref> &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" line="30" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.cpp" bodystart="24" bodyend="30"/>
+        <referencedby refid="classPostraitement_1a4f5c9ab11ea2f037760d2add8b1da871" compoundref="Postraitement_8cpp" startline="916" endline="967">Postraitement::sauvegarder</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe List_Champ_Generique Represente une liste de <ref refid="classChamp__Generique__base" kindref="compound">Champ_Generique_base</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Liste_Champ_Generique</label>
+        <link refid="classListe__Champ__Generique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTRChamp_Generique_base</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Liste_Champ_Generique</label>
+        <link refid="classListe__Champ__Generique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>LISTOWN_PTRChamp_Generique_base</label>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" line="25" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Liste_Champ_Generique.h" bodystart="26" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classListe__Champ__Generique_1aad31724c1346b5b562da6f09b05fcaa1" prot="private" virt="non-virtual"><scope>Liste_Champ_Generique</scope><name>Declare_instanciable</name></member>
+      <member refid="classListe__Champ__Generique_1a0dec40f9c9d30cec6c646a5ad4fbf323" prot="public" virt="non-virtual"><scope>Liste_Champ_Generique</scope><name>fixer_tstat_deb</name></member>
+      <member refid="classListe__Champ__Generique_1a857e835053635a321d591f6d67b140db" prot="public" virt="non-virtual"><scope>Liste_Champ_Generique</scope><name>reprendre</name></member>
+      <member refid="classListe__Champ__Generique_1a78eefb4fa95af3bfa3912b5f2575cfd0" prot="public" virt="non-virtual"><scope>Liste_Champ_Generique</scope><name>sauvegarder</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

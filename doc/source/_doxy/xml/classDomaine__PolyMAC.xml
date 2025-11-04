@@ -1,0 +1,1846 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDomaine__PolyMAC" kind="class" language="C++" prot="public">
+    <compoundname>Domaine_PolyMAC</compoundname>
+    <basecompoundref refid="classDomaine__Poly__base" prot="public" virt="non-virtual">Domaine_Poly_base</basecompoundref>
+    <derivedcompoundref refid="classDomaine__PolyMAC__P0P1NC" prot="public" virt="non-virtual">Domaine_PolyMAC_P0P1NC</derivedcompoundref>
+    <includes local="no">Domaine_PolyMAC.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a099bfb9fff1a5ae577ca2a724dc4ee73" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTVect" kindref="compound">IntVect</ref></type>
+        <definition>IntVect Domaine_PolyMAC::cyclic</definition>
+        <argsstring></argsstring>
+        <name>cyclic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="46" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" prot="public" static="no" mutable="yes">
+        <type>std::map&lt; std::string, int &gt;</type>
+        <definition>std::map&lt;std::string, int&gt; Domaine_PolyMAC::is_init</definition>
+        <argsstring></argsstring>
+        <name>is_init</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="49" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" compoundref="Domaine__PolyMAC_8cpp" startline="836" endline="842">init_m1</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" compoundref="Domaine__PolyMAC_8cpp" startline="660" endline="681">init_rf</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" compoundref="Domaine__PolyMAC_8cpp" startline="637" endline="657">init_ve</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1aee14dba7da100c01af16abbf618a0269" compoundref="Domaine__PolyMAC_8cpp" startline="875" endline="887">init_virt_ef_map</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" compoundref="Domaine__PolyMAC_8cpp" startline="684" endline="705">init_we</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ad5e92c022c05c56f687a635cc6a75984" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::m1ci</definition>
+        <argsstring></argsstring>
+        <name>m1ci</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="85" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" compoundref="Domaine__PolyMAC_8cpp" startline="756" endline="778">init_m1_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a3166053e9893a881266aba562922c742" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::m1deb</definition>
+        <argsstring></argsstring>
+        <name>m1deb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="84" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" compoundref="Domaine__PolyMAC_8cpp" startline="756" endline="778">init_m1_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ada23dc9feadaddb4b0d950c19406920f" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::m1ji</definition>
+        <argsstring></argsstring>
+        <name>m1ji</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="84" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" compoundref="Domaine__PolyMAC_8cpp" startline="756" endline="778">init_m1_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a80760ba41cd5dd8f228c93867d5a363f" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::m2c</definition>
+        <argsstring></argsstring>
+        <name>m2c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="68" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ad1834011758870559f54781c598062d4" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::m2d</definition>
+        <argsstring></argsstring>
+        <name>m2d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="67" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a63379adf79d112aba1982fa64298826a" compoundref="Echange__contact__PolyMAC_8cpp" startline="139" endline="216">Echange_contact_PolyMAC::update_coeffs</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a13b6490f8c43342a4e8694a6e478d1f5" compoundref="Echange__contact__PolyMAC_8cpp" startline="218" endline="247">Echange_contact_PolyMAC::update_delta</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ac09db4f317046ba747bf9e9e396f09b1" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::m2i</definition>
+        <argsstring></argsstring>
+        <name>m2i</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="67" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a1cce0078f85dc3e816cff5ae03648079" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::m2j</definition>
+        <argsstring></argsstring>
+        <name>m2j</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="67" column="26" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1acda0729efc0a8fe67c283703f50ae655" prot="public" static="no" mutable="yes">
+        <type><ref refid="classMatrice__Morse__Sym" kindref="compound">Matrice_Morse_Sym</ref></type>
+        <definition>Matrice_Morse_Sym Domaine_PolyMAC::m2mat</definition>
+        <argsstring></argsstring>
+        <name>m2mat</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="70" column="29" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1aa6cf641f62fce39a371932276af45ac8" prot="public" static="no" mutable="yes">
+        <type><ref refid="classSolveurSys" kindref="compound">SolveurSys</ref></type>
+        <definition>SolveurSys Domaine_PolyMAC::m2solv</definition>
+        <argsstring></argsstring>
+        <name>m2solv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="71" column="22" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a08f8e39fcc9b9f275d2d97708ae1515d" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::rfci</definition>
+        <argsstring></argsstring>
+        <name>rfci</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="58" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="58" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" compoundref="Domaine__PolyMAC_8cpp" startline="660" endline="681">init_rf</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a59e8d7cb674e57638dd9f679d318d5f8" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::rfdeb</definition>
+        <argsstring></argsstring>
+        <name>rfdeb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="57" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" compoundref="Domaine__PolyMAC_8cpp" startline="660" endline="681">init_rf</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ac0fa0a270137da3d6ceecf1a1c261fb6" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::rfji</definition>
+        <argsstring></argsstring>
+        <name>rfji</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="57" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="57" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" compoundref="Domaine__PolyMAC_8cpp" startline="660" endline="681">init_rf</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1aa2e6eb5b733d7bc3e47176e5ef642374" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::veci</definition>
+        <argsstring></argsstring>
+        <name>veci</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="53" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" compoundref="Domaine__PolyMAC_8cpp" startline="637" endline="657">init_ve</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a5466be3185976e15ccde316612875a47" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::vedeb</definition>
+        <argsstring></argsstring>
+        <name>vedeb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="52" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" compoundref="Domaine__PolyMAC_8cpp" startline="637" endline="657">init_ve</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ac0a7e8b7c2779b5f16f23818f126ade3" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::veji</definition>
+        <argsstring></argsstring>
+        <name>veji</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="52" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" compoundref="Domaine__PolyMAC_8cpp" startline="637" endline="657">init_ve</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ad27151ac8eb47574724a9efc5e8830d4" prot="public" static="no" mutable="yes">
+        <type>std::map&lt; std::array&lt; int, 2 &gt;, int &gt;</type>
+        <definition>std::map&lt;std::array&lt;int, 2&gt;, int&gt; Domaine_PolyMAC::virt_ef_map</definition>
+        <argsstring></argsstring>
+        <name>virt_ef_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="89" column="20" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1aee14dba7da100c01af16abbf618a0269" compoundref="Domaine__PolyMAC_8cpp" startline="875" endline="887">init_virt_ef_map</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1aa8bce346d62cdcf83bbb8db32fcea1a3" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::w2c</definition>
+        <argsstring></argsstring>
+        <name>w2c</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="68" column="25" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classEchange__contact__PolyMAC_1a63379adf79d112aba1982fa64298826a" compoundref="Echange__contact__PolyMAC_8cpp" startline="139" endline="216">Echange_contact_PolyMAC::update_coeffs</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1aba3c30122e0dba92401ae6d00ac97f58" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::w2i</definition>
+        <argsstring></argsstring>
+        <name>w2i</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="67" column="30" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a63379adf79d112aba1982fa64298826a" compoundref="Echange__contact__PolyMAC_8cpp" startline="139" endline="216">Echange_contact_PolyMAC::update_coeffs</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a13b6490f8c43342a4e8694a6e478d1f5" compoundref="Echange__contact__PolyMAC_8cpp" startline="218" endline="247">Echange_contact_PolyMAC::update_delta</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1afcf124415bc84ff3aea0c30cdeef5d0c" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::w2j</definition>
+        <argsstring></argsstring>
+        <name>w2j</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="67" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="67" bodyend="-1"/>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a63379adf79d112aba1982fa64298826a" compoundref="Echange__contact__PolyMAC_8cpp" startline="139" endline="216">Echange_contact_PolyMAC::update_coeffs</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a13b6490f8c43342a4e8694a6e478d1f5" compoundref="Echange__contact__PolyMAC_8cpp" startline="218" endline="247">Echange_contact_PolyMAC::update_delta</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1aefbc6e18cdd242cd7af38a501b6324ba" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Domaine_PolyMAC::weci</definition>
+        <argsstring></argsstring>
+        <name>weci</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="78" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="78" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" compoundref="Domaine__PolyMAC_8cpp" startline="707" endline="725">init_we_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" compoundref="Domaine__PolyMAC_8cpp" startline="727" endline="752">init_we_3d</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1acf47e40c970ee939f257e83b7ee69cc9" prot="public" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::wedeb</definition>
+        <argsstring></argsstring>
+        <name>wedeb</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="77" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" compoundref="Domaine__PolyMAC_8cpp" startline="707" endline="725">init_we_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" compoundref="Domaine__PolyMAC_8cpp" startline="727" endline="752">init_we_3d</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1a835b00fb5a9c0c50445283960105d71f" prot="public" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::weji</definition>
+        <argsstring></argsstring>
+        <name>weji</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="77" column="24" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" compoundref="Domaine__PolyMAC_8cpp" startline="707" endline="725">init_we_2d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" compoundref="Domaine__PolyMAC_8cpp" startline="727" endline="752">init_we_3d</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classDomaine__PolyMAC_1ab26b27335376d3a8d6d29a4481289a14" prot="private" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref></type>
+        <definition>IntTab Domaine_PolyMAC::arete_faces_</definition>
+        <argsstring></argsstring>
+        <name>arete_faces_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="99" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a4ec847480e0b765811ab4547044ac16a" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Domaine_PolyMAC::Declare_instanciable</definition>
+        <argsstring>(Domaine_PolyMAC)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classDomaine__PolyMAC" kindref="compound">Domaine_PolyMAC</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="32" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a0604a55478b103c5c0266ffa4b60a490" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m2_new</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m2_new</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="96" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="478" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a8770dd9fb42b9e581fea8b51f30d2c3b" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m2_osqp</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m2_osqp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="97" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="549" bodyend="626"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDomaine__PolyMAC_1aa1136d3fc7166d6ff7a018080d3b2305" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::ajouter_stabilisation</definition>
+        <argsstring>(DoubleTab &amp;M, DoubleTab &amp;N) const</argsstring>
+        <name>ajouter_stabilisation</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="61" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="298" bodyend="349"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a7dd1672526f16e35d674fc6ca520bbf7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+        <definition>const IntTab&amp; Domaine_PolyMAC::arete_faces</definition>
+        <argsstring>() const</argsstring>
+        <name>arete_faces</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="39" column="23" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a4ccb457a89b63ef14208c93ac78aef04" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::calculer_h_carre</definition>
+        <argsstring>() override</argsstring>
+        <name>calculer_h_carre</name>
+        <reimplements refid="classDomaine__Poly__base_1ab67c452add9143dd6855e0bfe7248797">calculer_h_carre</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="71" bodyend="96"/>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__Poly__base_1a0584d1030ef4f13f7f076a65ddf98ec4" compoundref="Domaine__Poly__base_8h" startline="140">Domaine_Poly_base::h_carre</references>
+        <references refid="classDomaine__Poly__base_1a484b6381fb0a7f1e70aabafa35b2b913" compoundref="Domaine__Poly__base_8h" startline="141">Domaine_Poly_base::h_carre_</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classDomaine__32__64_1aa92c4f09480b82c75ee1a573765c33cd" compoundref="Domaine_8h" startline="477" endline="477">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_elem</references>
+        <references refid="classTRUSTVect_1ae68bc2c6cfd7016c9c209cddd41e51d4" compoundref="TRUSTVect_8tpp" startline="91" endline="96">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__Poly__base_1ab3cc39c4ad4b5538b7acc61319c37a3d" compoundref="Domaine__Poly__base_8h" startline="88" endline="88">Domaine_Poly_base::type_elem</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+        <referencedby refid="classDomaine__PolyMAC_1a28b0932dacfb7cb20a7686a5cda3766a" compoundref="Domaine__PolyMAC_8cpp" startline="64" endline="69">discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a08c6934e5308d389b0e458e188364d0d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::calculer_volumes_entrelaces</definition>
+        <argsstring>() override</argsstring>
+        <name>calculer_volumes_entrelaces</name>
+        <reimplements refid="classDomaine__Poly__base_1a15e690982c2e795d78c3752b240875cd">calculer_volumes_entrelaces</reimplements>
+        <reimplementedby refid="classDomaine__PolyMAC__P0P1NC_1a37f4eaac35ed0893ab8b7f8c7ed32ee6">calculer_volumes_entrelaces</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="98" bodyend="117"/>
+        <references refid="classDomaine__VF_1a4f14dd9f4d91750817fbfc22c09ebddd" compoundref="Domaine__VF_8cpp" startline="759" endline="762">Domaine_VF::creer_tableau_faces</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1aa5c1003d547346e9a4b56599398897fb" compoundref="Domaine__VF_8h" startline="209">Domaine_VF::face_voisins_</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a250850053bda40c883fecd5bc8cbc048" compoundref="Domaine__VF_8h" startline="205">Domaine_VF::volumes_entrelaces_</references>
+        <references refid="classDomaine__VF_1adafda86e6b7869928f9690e9ecc71dcb" compoundref="Domaine__VF_8h" startline="206">Domaine_VF::volumes_entrelaces_dir_</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a28b0932dacfb7cb20a7686a5cda3766a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::discretiser</definition>
+        <argsstring>() override</argsstring>
+        <name>discretiser</name>
+        <reimplements refid="classDomaine__Poly__base_1aa2205bf4507a01372a8394ee1a164429">discretiser</reimplements>
+        <reimplementedby refid="classDomaine__PolyMAC__P0_1a81f5297954d333134b02b31e10fb4db6">discretiser</reimplementedby>
+        <reimplementedby refid="classDomaine__PolyMAC__P0P1NC_1aa0841132e59c3553f1b2c61c30c04676">discretiser</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="64" bodyend="69"/>
+        <references refid="classDomaine__PolyMAC_1a4ccb457a89b63ef14208c93ac78aef04" compoundref="Domaine__PolyMAC_8cpp" startline="71" endline="96">calculer_h_carre</references>
+        <references refid="classDomaine__Poly__base_1aa2205bf4507a01372a8394ee1a164429" compoundref="Domaine__Poly__base_8cpp" startline="229" endline="406">Domaine_Poly_base::discretiser</references>
+        <references refid="classDomaine__Poly__base_1a3fbb109afce4180665f98f60a260026f" compoundref="Domaine__Poly__base_8cpp" startline="521" endline="571">Domaine_Poly_base::discretiser_aretes</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Domaine_PolyMAC::dot</definition>
+        <argsstring>(const double *a, const double *b, const double *ma=nullptr, const double *mb=nullptr) const</argsstring>
+        <name>dot</name>
+        <param>
+          <type>const double *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>ma</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>mb</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="43" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="43" bodyend="43"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <referencedby refid="classDomaine__PolyMAC_1a08c6934e5308d389b0e458e188364d0d" compoundref="Domaine__PolyMAC_8cpp" startline="98" endline="117">calculer_volumes_entrelaces</referencedby>
+        <referencedby refid="classDomaine__PolyMAC__P0P1NC_1a37f4eaac35ed0893ab8b7f8c7ed32ee6" compoundref="Domaine__PolyMAC__P0P1NC_8cpp" startline="65" endline="74">Domaine_PolyMAC_P0P1NC::calculer_volumes_entrelaces</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a5e9b20e01423a5234279f76963c73e67" compoundref="Domaine__PolyMAC_8cpp" startline="119" endline="212">init_equiv</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" compoundref="Domaine__PolyMAC_8cpp" startline="660" endline="681">init_rf</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" compoundref="Domaine__PolyMAC_8cpp" startline="727" endline="752">init_we_3d</referencedby>
+        <referencedby refid="classDomaine__PolyMAC__P0P1NC_1a2da1f46107e4ed7e528d82f9b55ce52e" compoundref="Domaine__PolyMAC__P0P1NC_8cpp" startline="111" endline="137">Domaine_PolyMAC_P0P1NC::M1</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1ae7cfaa93fc654d1a34e7b94858806d31" compoundref="Domaine__PolyMAC_8cpp" startline="901" endline="926">M2</referencedby>
+        <referencedby refid="classDomaine__PolyMAC__P0P1NC_1a9a82e7ad388dd84757e830be59ea8988" compoundref="Domaine__PolyMAC__P0P1NC_8cpp" startline="76" endline="100">Domaine_PolyMAC_P0P1NC::surf_elem_arete</referencedby>
+        <referencedby refid="classDomaine__PolyMAC__P0P1NC_1af3216e49d890049212960f929703d791" compoundref="Domaine__PolyMAC__P0P1NC_8cpp" startline="140" endline="165">Domaine_PolyMAC_P0P1NC::W1</referencedby>
+        <referencedby refid="classDomaine__PolyMAC_1a97ef83fc61e464cc4b6086ac73667253" compoundref="Domaine__PolyMAC_8cpp" startline="929" endline="954">W2</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a340e21257c621a24ee21b6dcc969b50e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>KOKKOS_INLINE_FUNCTION double</type>
+        <definition>KOKKOS_INLINE_FUNCTION double Domaine_PolyMAC::dot</definition>
+        <argsstring>(const int dim, const double *a, const double *b, const double *ma=nullptr, const double *mb=nullptr) const</argsstring>
+        <name>dot</name>
+        <param>
+          <type>const int</type>
+          <declname>dim</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>ma</declname>
+          <defval>nullptr</defval>
+        </param>
+        <param>
+          <type>const double *</type>
+          <declname>mb</declname>
+          <defval>nullptr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="44" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="103" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a5e9b20e01423a5234279f76963c73e67" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_equiv</definition>
+        <argsstring>() const override</argsstring>
+        <name>init_equiv</name>
+        <reimplements refid="classDomaine__Poly__base_1a7def921784ad85dd4c9b6e55bac3f18b">init_equiv</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="37" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="119" bodyend="212"/>
+        <references refid="classDomaine__VF_1a4f14dd9f4d91750817fbfc22c09ebddd" compoundref="Domaine__VF_8cpp" startline="759" endline="762">Domaine_VF::creer_tableau_faces</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__Poly__base_1afb765821d7e2db77772875bd6a2b4a50" compoundref="Domaine__Poly__base_8h" startline="146">Domaine_Poly_base::equiv_</references>
+        <references refid="classDomaine__VF_1a953d6f28077bfecc47a358675dfebfa7" compoundref="Domaine__VF_8h" startline="48" endline="48">Domaine_VF::face_normales</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" compoundref="Domaine__VF_8h" startline="411" endline="414">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <references refid="classOption__PolyMAC_1a2420f4de7fb35dc045fe83ddd89b5c10" compoundref="Option__PolyMAC_8h" startline="29">Option_PolyMAC::MAILLAGE_VDF</references>
+        <references refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" compoundref="Domaine__VF_8h" startline="466" endline="469">Domaine_VF::nb_faces_tot</references>
+        <references refid="classDomaine__VF_1aa5acf9a69d74db118172c0b9cfafe5ae" compoundref="Domaine__VF_8h" startline="606" endline="612">Domaine_VF::orientation</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m1</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="81" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="836" bodyend="842"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" compoundref="Domaine__PolyMAC_8cpp" startline="756" endline="778">init_m1_2d</references>
+        <references refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" compoundref="Domaine__PolyMAC_8cpp" startline="781" endline="834">init_m1_3d</references>
+        <references refid="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" compoundref="Domaine__PolyMAC_8cpp" startline="684" endline="705">init_we</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m1_2d</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m1_2d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="82" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="756" bodyend="778"/>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classDomaine__32__64_1a0f47377f57417c91dba5efe37791f88c" compoundref="Domaine_8h" startline="109" endline="109">Domaine_32_64&lt; _SIZE_ &gt;::coord_sommets</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" compoundref="Domaine__VF_8h" startline="216">Domaine_VF::face_sommets_</references>
+        <references refid="classDomaine__PolyMAC_1ad5e92c022c05c56f687a635cc6a75984" compoundref="Domaine__PolyMAC_8h" startline="85">m1ci</references>
+        <references refid="classDomaine__PolyMAC_1a3166053e9893a881266aba562922c742" compoundref="Domaine__PolyMAC_8h" startline="84">m1deb</references>
+        <references refid="classDomaine__PolyMAC_1ada23dc9feadaddb4b0d950c19406920f" compoundref="Domaine__PolyMAC_8h" startline="84">m1ji</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classDomaine__dis__base_1a909e4f99ce84d6363b8a240052a61897" compoundref="Domaine__dis__base_8h" startline="50" endline="50">Domaine_dis_base::nb_som_tot</references>
+        <references refid="classDomaine__32__64_1ae3b29af56d930eb26c6abb514fc33fac" compoundref="Domaine_8h" startline="120" endline="120">Domaine_32_64&lt; _SIZE_ &gt;::nb_som_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+        <referencedby refid="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" compoundref="Domaine__PolyMAC_8cpp" startline="836" endline="842">init_m1</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m1_3d</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m1_3d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="83" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="781" bodyend="834"/>
+        <references refid="classDomaine__PolyMAC_1aa1136d3fc7166d6ff7a018080d3b2305" compoundref="Domaine__PolyMAC_8cpp" startline="298" endline="349">ajouter_stabilisation</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" compoundref="Process_8cpp" startline="135" endline="138">Process::barrier</references>
+        <references refid="classDomaine__32__64_1a513f7e6058252bd4e0b1561535d87bb0" compoundref="Domaine_8cpp" startline="799" endline="803">Domaine_32_64&lt; _SIZE_ &gt;::creer_tableau_elements</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classDomaine__32__64_1ae1cff707f1e6c9d7b33369085c9facd3" compoundref="Domaine_8h" startline="151" endline="151">Domaine_32_64&lt; _SIZE_ &gt;::elem_aretes</references>
+        <references refid="classDomaine__VF_1aae35d0b3f3d64c1ab738aaad135c5e51" compoundref="Domaine__VF_8h" startline="215">Domaine_VF::elem_faces_</references>
+        <references refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" compoundref="Domaine__VF_8h" startline="216">Domaine_VF::face_sommets_</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <references refid="classDomaine__Poly__base_1a004adf9d1fbee944160d34a155f10852" compoundref="Domaine__Poly__base_8h" startline="151">Domaine_Poly_base::longueur_aretes_</references>
+        <references refid="classDomaine__PolyMAC_1ad5e92c022c05c56f687a635cc6a75984" compoundref="Domaine__PolyMAC_8h" startline="85">m1ci</references>
+        <references refid="classDomaine__PolyMAC_1a3166053e9893a881266aba562922c742" compoundref="Domaine__PolyMAC_8h" startline="84">m1deb</references>
+        <references refid="classDomaine__PolyMAC_1ada23dc9feadaddb4b0d950c19406920f" compoundref="Domaine__PolyMAC_8h" startline="84">m1ji</references>
+        <references refid="classDomaine__32__64_1a24fce87999845e549ae7fc93266dd9e6" compoundref="Domaine_8h" startline="142" endline="142">Domaine_32_64&lt; _SIZE_ &gt;::nb_aretes_tot</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__Poly__base_1a8d0c4339de69909384d379cb0fc3fa99" compoundref="Domaine__Poly__base_8h" startline="134">Domaine_Poly_base::som_arete</references>
+        <references refid="classDomaine__Poly__base_1a327517b0fb2496cb0c8eb5ad57dd058c" compoundref="Domaine__Poly__base_8h" startline="152">Domaine_Poly_base::ta_</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+        <references refid="classDomaine__PolyMAC_1aefbc6e18cdd242cd7af38a501b6324ba" compoundref="Domaine__PolyMAC_8h" startline="78">weci</references>
+        <references refid="classDomaine__PolyMAC_1acf47e40c970ee939f257e83b7ee69cc9" compoundref="Domaine__PolyMAC_8h" startline="77">wedeb</references>
+        <references refid="classDomaine__PolyMAC_1a835b00fb5a9c0c50445283960105d71f" compoundref="Domaine__PolyMAC_8h" startline="77">weji</references>
+        <references refid="classDomaine__VF_1a2bcfd0fa7d6061087f67d586073e4e1a" compoundref="Domaine__VF_8h" startline="217">Domaine_VF::xa_</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+        <referencedby refid="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" compoundref="Domaine__PolyMAC_8cpp" startline="836" endline="842">init_m1</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a3c90e2bcccbeaf62e863d0eb8a281a7d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m2</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="65" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="629" bodyend="633"/>
+        <references refid="classOption__PolyMAC_1ae2b19f0bd6908cdda3abc666629e19d4" compoundref="Option__PolyMAC_8h" startline="29">Option_PolyMAC::USE_NEW_M2</references>
+        <referencedby refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" compoundref="Domaine__PolyMAC_8cpp" startline="845" endline="873">init_m2solv</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__PolyMAC_1a63379adf79d112aba1982fa64298826a" compoundref="Echange__contact__PolyMAC_8cpp" startline="139" endline="216">Echange_contact_PolyMAC::update_coeffs</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_m2solv</definition>
+        <argsstring>() const</argsstring>
+        <name>init_m2solv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="69" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="845" bodyend="873"/>
+        <references refid="classMatrix__tools_1ad0642f96b6fda98fbf96acdd73abb4e3" compoundref="Matrix__tools_8cpp" startline="221" endline="254">Matrix_tools::allocate_symmetric_morse_matrix</references>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" compoundref="Domaine__VF_8h" startline="411" endline="414">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__PolyMAC_1a3c90e2bcccbeaf62e863d0eb8a281a7d" compoundref="Domaine__PolyMAC_8cpp" startline="629" endline="633">init_m2</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+        <references refid="classDomaine__PolyMAC_1a80760ba41cd5dd8f228c93867d5a363f" compoundref="Domaine__PolyMAC_8h" startline="68">m2c</references>
+        <references refid="classDomaine__PolyMAC_1ad1834011758870559f54781c598062d4" compoundref="Domaine__PolyMAC_8h" startline="67">m2d</references>
+        <references refid="classDomaine__PolyMAC_1ac09db4f317046ba747bf9e9e396f09b1" compoundref="Domaine__PolyMAC_8h" startline="67">m2i</references>
+        <references refid="classDomaine__PolyMAC_1a1cce0078f85dc3e816cff5ae03648079" compoundref="Domaine__PolyMAC_8h" startline="67">m2j</references>
+        <references refid="classDomaine__PolyMAC_1acda0729efc0a8fe67c283703f50ae655" compoundref="Domaine__PolyMAC_8h" startline="70">m2mat</references>
+        <references refid="classDomaine__PolyMAC_1aa6cf641f62fce39a371932276af45ac8" compoundref="Domaine__PolyMAC_8h" startline="71">m2solv</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" compoundref="Domaine__VF_8h" startline="466" endline="469">Domaine_VF::nb_faces_tot</references>
+        <references refid="classMatrice__Sym_1a532cf830aed3865010c9977b545927c0" compoundref="Matrice__Sym_8cpp" startline="25" endline="28">Matrice_Sym::set_est_definie</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_rf</definition>
+        <argsstring>() const</argsstring>
+        <name>init_rf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="56" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="660" bodyend="681"/>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classDomaine__32__64_1a0f47377f57417c91dba5efe37791f88c" compoundref="Domaine_8h" startline="109" endline="109">Domaine_32_64&lt; _SIZE_ &gt;::coord_sommets</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classDomaine__VF_1a953d6f28077bfecc47a358675dfebfa7" compoundref="Domaine__VF_8h" startline="48" endline="48">Domaine_VF::face_normales</references>
+        <references refid="classDomaine__VF_1a1b186007308d9ffdab7536ecc4b376bd" compoundref="Domaine__VF_8h" startline="567" endline="570">Domaine_VF::face_sommets</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+        <references refid="classDomaine__Poly__base_1af347bd43b4d52bf5a100b00374e6ca4b" compoundref="Domaine__Poly__base_8h" startline="82" endline="82">Domaine_Poly_base::longueur_aretes</references>
+        <references refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" compoundref="Domaine__VF_8h" startline="466" endline="469">Domaine_VF::nb_faces_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__PolyMAC_1a08f8e39fcc9b9f275d2d97708ae1515d" compoundref="Domaine__PolyMAC_8h" startline="58">rfci</references>
+        <references refid="classDomaine__PolyMAC_1a59e8d7cb674e57638dd9f679d318d5f8" compoundref="Domaine__PolyMAC_8h" startline="57">rfdeb</references>
+        <references refid="classDomaine__PolyMAC_1ac0fa0a270137da3d6ceecf1a1c261fb6" compoundref="Domaine__PolyMAC_8h" startline="57">rfji</references>
+        <references refid="classDomaine__Poly__base_1a8d0c4339de69909384d379cb0fc3fa99" compoundref="Domaine__Poly__base_8h" startline="134">Domaine_Poly_base::som_arete</references>
+        <references refid="classDomaine__Poly__base_1a327517b0fb2496cb0c8eb5ad57dd058c" compoundref="Domaine__Poly__base_8h" startline="152">Domaine_Poly_base::ta_</references>
+        <references refid="classDomaine__VF_1a2bcfd0fa7d6061087f67d586073e4e1a" compoundref="Domaine__VF_8h" startline="217">Domaine_VF::xa_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_ve</definition>
+        <argsstring>() const</argsstring>
+        <name>init_ve</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="51" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="637" bodyend="657"/>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" compoundref="Domaine__VF_8h" startline="51" endline="51">Domaine_VF::face_surfaces</references>
+        <references refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" compoundref="Domaine__VF_8h" startline="411" endline="414">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+        <references refid="classDomaine__base_1a4d471628f422b28f513b30f45998de67" compoundref="Domaine__base_8h" startline="50" endline="50">Domaine_base::le_nom</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__PolyMAC_1aa2e6eb5b733d7bc3e47176e5ef642374" compoundref="Domaine__PolyMAC_8h" startline="53">veci</references>
+        <references refid="classDomaine__PolyMAC_1a5466be3185976e15ccde316612875a47" compoundref="Domaine__PolyMAC_8h" startline="52">vedeb</references>
+        <references refid="classDomaine__PolyMAC_1ac0a7e8b7c2779b5f16f23818f126ade3" compoundref="Domaine__PolyMAC_8h" startline="52">veji</references>
+        <references refid="classDomaine__VF_1a9ff9d55a7372bb00e6d5fa13092c12e4" compoundref="Domaine__VF_8h" startline="203">Domaine_VF::volumes_</references>
+        <references refid="classDomaine__VF_1ab4fae8203b16273b19f60e853ff3c9ae" compoundref="Domaine__VF_8h" startline="96" endline="96">Domaine_VF::xp</references>
+        <references refid="classDomaine__VF_1a3a323bb0082dfac08e09fa7d98e138bd" compoundref="Domaine__VF_8h" startline="94" endline="94">Domaine_VF::xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1aee14dba7da100c01af16abbf618a0269" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_virt_ef_map</definition>
+        <argsstring>() const</argsstring>
+        <name>init_virt_ef_map</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="88" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="875" bodyend="887"/>
+        <references refid="classDomaine__32__64_1a513f7e6058252bd4e0b1561535d87bb0" compoundref="Domaine_8cpp" startline="799" endline="803">Domaine_32_64&lt; _SIZE_ &gt;::creer_tableau_elements</references>
+        <references refid="classDomaine__VF_1a4f14dd9f4d91750817fbfc22c09ebddd" compoundref="Domaine__VF_8cpp" startline="759" endline="762">Domaine_VF::creer_tableau_faces</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classTRUSTVect_1a17969227082b6532c960a56745facfd8" compoundref="TRUSTVect_8tpp" startline="282" endline="292">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::echange_espace_virtuel</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" compoundref="Domaine__dis__base_8h" startline="47" endline="47">Domaine_dis_base::nb_elem</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" compoundref="Domaine__VF_8h" startline="466" endline="469">Domaine_VF::nb_faces_tot</references>
+        <references refid="classDomaine__PolyMAC_1ad27151ac8eb47574724a9efc5e8830d4" compoundref="Domaine__PolyMAC_8h" startline="89">virt_ef_map</references>
+        <referencedby refid="classEchange__contact__PolyMAC_1aa3f7f776c8a66dab034d8abce19d7ec5" compoundref="Echange__contact__PolyMAC_8cpp" startline="54" endline="137">Echange_contact_PolyMAC::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_we</definition>
+        <argsstring>() const</argsstring>
+        <name>init_we</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="74" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="684" bodyend="705"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" compoundref="Domaine__VF_8h" startline="216">Domaine_VF::face_sommets_</references>
+        <references refid="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" compoundref="Domaine__PolyMAC_8cpp" startline="707" endline="725">init_we_2d</references>
+        <references refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" compoundref="Domaine__PolyMAC_8cpp" startline="727" endline="752">init_we_3d</references>
+        <references refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" compoundref="Domaine__PolyMAC_8h" startline="49">is_init</references>
+        <references refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" compoundref="Domaine__VF_8h" startline="466" endline="469">Domaine_VF::nb_faces_tot</references>
+        <references refid="classDomaine__dis__base_1a909e4f99ce84d6363b8a240052a61897" compoundref="Domaine__dis__base_8h" startline="50" endline="50">Domaine_dis_base::nb_som_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__Poly__base_1a8d0c4339de69909384d379cb0fc3fa99" compoundref="Domaine__Poly__base_8h" startline="134">Domaine_Poly_base::som_arete</references>
+        <referencedby refid="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" compoundref="Domaine__PolyMAC_8cpp" startline="836" endline="842">init_m1</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_we_2d</definition>
+        <argsstring>() const</argsstring>
+        <name>init_we_2d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="75" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="707" bodyend="725"/>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classDomaine__32__64_1a0f47377f57417c91dba5efe37791f88c" compoundref="Domaine_8h" startline="109" endline="109">Domaine_32_64&lt; _SIZE_ &gt;::coord_sommets</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" compoundref="Domaine__VF_8h" startline="216">Domaine_VF::face_sommets_</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+        <references refid="classDomaine__PolyMAC_1aefbc6e18cdd242cd7af38a501b6324ba" compoundref="Domaine__PolyMAC_8h" startline="78">weci</references>
+        <references refid="classDomaine__PolyMAC_1acf47e40c970ee939f257e83b7ee69cc9" compoundref="Domaine__PolyMAC_8h" startline="77">wedeb</references>
+        <references refid="classDomaine__PolyMAC_1a835b00fb5a9c0c50445283960105d71f" compoundref="Domaine__PolyMAC_8h" startline="77">weji</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+        <referencedby refid="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" compoundref="Domaine__PolyMAC_8cpp" startline="684" endline="705">init_we</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::init_we_3d</definition>
+        <argsstring>() const</argsstring>
+        <name>init_we_3d</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="76" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="727" bodyend="752"/>
+        <references refid="classTRUSTTab_1ae0e0535c0974963efe25af45497a9c0d" compoundref="TRUSTTab_8tpp" startline="213" endline="223">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::append_line</references>
+        <references refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" compoundref="Domaine__VF_8h" startline="664" endline="672">Domaine_VF::cross</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" compoundref="Domaine__VF_8h" startline="216">Domaine_VF::face_sommets_</references>
+        <references refid="classDomaine__Poly__base_1a004adf9d1fbee944160d34a155f10852" compoundref="Domaine__Poly__base_8h" startline="151">Domaine_Poly_base::longueur_aretes_</references>
+        <references refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" compoundref="Domaine__dis__base_8h" startline="48" endline="48">Domaine_dis_base::nb_elem_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__Poly__base_1a8d0c4339de69909384d379cb0fc3fa99" compoundref="Domaine__Poly__base_8h" startline="134">Domaine_Poly_base::som_arete</references>
+        <references refid="classDomaine__Poly__base_1a327517b0fb2496cb0c8eb5ad57dd058c" compoundref="Domaine__Poly__base_8h" startline="152">Domaine_Poly_base::ta_</references>
+        <references refid="classDomaine__VF_1a9ff9d55a7372bb00e6d5fa13092c12e4" compoundref="Domaine__VF_8h" startline="203">Domaine_VF::volumes_</references>
+        <references refid="classDomaine__PolyMAC_1aefbc6e18cdd242cd7af38a501b6324ba" compoundref="Domaine__PolyMAC_8h" startline="78">weci</references>
+        <references refid="classDomaine__PolyMAC_1acf47e40c970ee939f257e83b7ee69cc9" compoundref="Domaine__PolyMAC_8h" startline="77">wedeb</references>
+        <references refid="classDomaine__PolyMAC_1a835b00fb5a9c0c50445283960105d71f" compoundref="Domaine__PolyMAC_8h" startline="77">weji</references>
+        <references refid="classDomaine__VF_1a2bcfd0fa7d6061087f67d586073e4e1a" compoundref="Domaine__VF_8h" startline="217">Domaine_VF::xa_</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+        <referencedby refid="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" compoundref="Domaine__PolyMAC_8cpp" startline="684" endline="705">init_we</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1ae7cfaa93fc654d1a34e7b94858806d31" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::M2</definition>
+        <argsstring>(const DoubleTab *nu, int e, DoubleTab &amp;m2) const</argsstring>
+        <name>M2</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+          <declname>nu</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>m2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="92" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="901" bodyend="926"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1a953d6f28077bfecc47a358675dfebfa7" compoundref="Domaine__VF_8h" startline="48" endline="48">Domaine_VF::face_normales</references>
+        <references refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" compoundref="Domaine__VF_8h" startline="411" endline="414">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__Poly__base_1ad88d8267aeb1b99c5749b37b6e0ee9e6" compoundref="Domaine__Poly__base_8h" startline="197" endline="210">Domaine_Poly_base::nu_dot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+        <references refid="classDomaine__VF_1ab4fae8203b16273b19f60e853ff3c9ae" compoundref="Domaine__VF_8h" startline="96" endline="96">Domaine_VF::xp</references>
+        <references refid="classDomaine__VF_1a3a323bb0082dfac08e09fa7d98e138bd" compoundref="Domaine__VF_8h" startline="94" endline="94">Domaine_VF::xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1acd565cc8c498a8d2bf0fac62609b353d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::modifier_pour_Cl</definition>
+        <argsstring>(const Conds_lim &amp;) override</argsstring>
+        <name>modifier_pour_Cl</name>
+        <reimplements refid="classDomaine__Poly__base_1a344dc28b79207094f3d26ff5798cd591">modifier_pour_Cl</reimplements>
+        <param>
+          <type>const <ref refid="classConds__lim" kindref="compound">Conds_lim</ref> &amp;</type>
+          <defname>conds_lim</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="36" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="214" bodyend="295"/>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classPeriodique_1a58591bbd91005803c7ea2a714197282b" compoundref="Periodique_8h" startline="35" endline="35">Periodique::face_associee</references>
+        <references refid="classDomaine__VF_1abf6bc8b98f0d034b06df40c58bbe034f" compoundref="Domaine__VF_8h" startline="207">Domaine_VF::face_normales_</references>
+        <references refid="classDomaine__VF_1aa5c1003d547346e9a4b56599398897fb" compoundref="Domaine__VF_8h" startline="209">Domaine_VF::face_voisins_</references>
+        <references refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" compoundref="Cond__lim__base_8h" startline="90" endline="93">Cond_lim_base::frontiere_dis</references>
+        <references refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" compoundref="Process_8cpp" startline="410" endline="420">Process::Journal</references>
+        <references refid="classDomaine__VF_1aff30082ba77110ff97258260a1a318c6" compoundref="Domaine__VF_8cpp" startline="638" endline="690">Domaine_VF::marquer_faces_double_contrib</references>
+        <references refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" compoundref="Domaine__VF_8h" startline="456" endline="459">Domaine_VF::nb_faces</references>
+        <references refid="classFront__VF_1a48eadf1b57ddc0d16e4953d19f259a9e" compoundref="Front__VF_8h" startline="53" endline="56">Front_VF::nb_faces</references>
+        <references refid="classDomaine__32__64_1aa92c4f09480b82c75ee1a573765c33cd" compoundref="Domaine_8h" startline="477" endline="477">Domaine_32_64&lt; _SIZE_ &gt;::nb_faces_elem</references>
+        <references refid="classFront__VF_1ae8650bf8eff95a5022a1abc91a0e5592" compoundref="Front__VF_8h" startline="58" endline="61">Front_VF::nb_faces_tot</references>
+        <references refid="classFront__VF_1afb322ba7bea455f029d3dec838048c36" compoundref="Front__VF_8h" startline="68" endline="74">Front_VF::num_face</references>
+        <references refid="classFront__VF_1a930e90fb5e8e79adaad93b5c405d00d1" compoundref="Front__VF_8h" startline="63" endline="66">Front_VF::num_premiere_face</references>
+        <references refid="classDomaine__VF_1a9ff9d55a7372bb00e6d5fa13092c12e4" compoundref="Domaine__VF_8h" startline="203">Domaine_VF::volumes_</references>
+        <references refid="classDomaine__VF_1a250850053bda40c883fecd5bc8cbc048" compoundref="Domaine__VF_8h" startline="205">Domaine_VF::volumes_entrelaces_</references>
+        <references refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" compoundref="Domaine__VF_8h" startline="211">Domaine_VF::xp_</references>
+        <references refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" compoundref="Domaine__VF_8h" startline="212">Domaine_VF::xv_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a4faa07370d5999b570694d6bda80c9a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::swap</definition>
+        <argsstring>(int, int, int)</argsstring>
+        <name>swap</name>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="35" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="35" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a97ef83fc61e464cc4b6086ac73667253" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Domaine_PolyMAC::W2</definition>
+        <argsstring>(const DoubleTab *nu, int e, DoubleTab &amp;w2) const</argsstring>
+        <name>W2</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> *</type>
+          <declname>nu</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>e</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>w2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="93" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="929" bodyend="954"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" compoundref="Domaine__PolyMAC_8h" startline="43" endline="43">dot</references>
+        <references refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" compoundref="Domaine__VF_8h" startline="527" endline="530">Domaine_VF::elem_faces</references>
+        <references refid="classDomaine__VF_1a953d6f28077bfecc47a358675dfebfa7" compoundref="Domaine__VF_8h" startline="48" endline="48">Domaine_VF::face_normales</references>
+        <references refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" compoundref="Domaine__VF_8h" startline="411" endline="414">Domaine_VF::face_voisins</references>
+        <references refid="classDomaine__Poly__base_1ad88d8267aeb1b99c5749b37b6e0ee9e6" compoundref="Domaine__Poly__base_8h" startline="197" endline="210">Domaine_Poly_base::nu_dot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" compoundref="Domaine__VF_8h" startline="120" endline="120">Domaine_VF::volumes</references>
+        <references refid="classDomaine__VF_1ab4fae8203b16273b19f60e853ff3c9ae" compoundref="Domaine__VF_8h" startline="96" endline="96">Domaine_VF::xp</references>
+        <references refid="classDomaine__VF_1a3a323bb0082dfac08e09fa7d98e138bd" compoundref="Domaine__VF_8h" startline="94" endline="94">Domaine_VF::xv</references>
+      </memberdef>
+      <memberdef kind="function" id="classDomaine__PolyMAC_1a3ae3e0d7d1caa7aaf02504030f215368" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Domaine_PolyMAC::W_stabiliser</definition>
+        <argsstring>(DoubleTab &amp;W, DoubleTab &amp;R, DoubleTab &amp;N, int *ctr, double *spectre) const</argsstring>
+        <name>W_stabiliser</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>W</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>R</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>ctr</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>spectre</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="62" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.cpp" bodystart="353" bodyend="476"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" compoundref="Objet__U_8h" startline="97">Objet_U::dimension</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classMatrice33_1aca5f722ce68b9dde06a9bfa6db4f4fc5" compoundref="Linear__algebra__tools__impl_8h" startline="100" endline="145">Matrice33::inverse</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Domaine_PolyMAC</label>
+        <link refid="classDomaine__PolyMAC"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Domaine_PolyMAC_P0P1NC</label>
+        <link refid="classDomaine__PolyMAC__P0P1NC"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Domaine_VF</label>
+        <link refid="classDomaine__VF"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="9">
+        <label>Domaine_PolyMAC_P0</label>
+        <link refid="classDomaine__PolyMAC__P0"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Domaine_dis_base</label>
+        <link refid="classDomaine__dis__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Domaine_Poly_base</label>
+        <link refid="classDomaine__Poly__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="20">
+        <label>TRUST_Vector&lt; _CLASSE_ &gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Domaine_PolyMAC</label>
+        <link refid="classDomaine__PolyMAC"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>m1deb</edgelabel>
+          <edgelabel>m1ji</edgelabel>
+          <edgelabel>m2d</edgelabel>
+          <edgelabel>m2i</edgelabel>
+          <edgelabel>m2j</edgelabel>
+          <edgelabel>rfdeb</edgelabel>
+          <edgelabel>rfji</edgelabel>
+          <edgelabel>vedeb</edgelabel>
+          <edgelabel>veji</edgelabel>
+          <edgelabel>w2i</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="26" relation="usage">
+          <edgelabel>m2solv</edgelabel>
+        </childnode>
+        <childnode refid="28" relation="usage">
+          <edgelabel>m2mat</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>cyclic</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>m1ci</edgelabel>
+          <edgelabel>m2c</edgelabel>
+          <edgelabel>rfci</edgelabel>
+          <edgelabel>veci</edgelabel>
+          <edgelabel>w2c</edgelabel>
+          <edgelabel>weci</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="22">
+        <label>TRUSTVect&lt; int, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="26">
+        <label>SolveurSys</label>
+        <link refid="classSolveurSys"/>
+        <childnode refid="27" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Champs_compris_T&lt; Champ_base &gt;</label>
+        <link refid="classChamps__compris__T"/>
+        <childnode refid="18" relation="template-instance">
+          <edgelabel>&lt; Champ_base &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Domaine_VF</label>
+        <link refid="classDomaine__VF"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>inverse_volumes_</edgelabel>
+          <edgelabel>volumes_</edgelabel>
+          <edgelabel>volumes_entrelaces_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>md_vector_aretes_</edgelabel>
+          <edgelabel>md_vector_faces_</edgelabel>
+          <edgelabel>md_vector_faces_front_</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>elem_faces_</edgelabel>
+          <edgelabel>face_dual_</edgelabel>
+          <edgelabel>face_numero_bord_</edgelabel>
+          <edgelabel>face_sommets_</edgelabel>
+          <edgelabel>face_virt_pe_num_</edgelabel>
+          <edgelabel>face_voisins_</edgelabel>
+          <edgelabel>face_voisins_fictifs_</edgelabel>
+          <edgelabel>num_fac_loc_</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>rang_elem_non_std_</edgelabel>
+        </childnode>
+        <childnode refid="23" relation="usage">
+          <edgelabel>est_face_bord_</edgelabel>
+          <edgelabel>faces_doubles_</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>face_normales_</edgelabel>
+          <edgelabel>n_y_elem_</edgelabel>
+          <edgelabel>n_y_faces_</edgelabel>
+          <edgelabel>volumes_entrelaces_dir_</edgelabel>
+          <edgelabel>xa_</edgelabel>
+          <edgelabel>xp_</edgelabel>
+          <edgelabel>xv_</edgelabel>
+          <edgelabel>xv_bord_</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Champs_compris_interface</label>
+        <link refid="classChamps__compris__interface"/>
+      </node>
+      <node id="29">
+        <label>Matrice_Morse</label>
+        <link refid="classMatrice__Morse"/>
+        <childnode refid="30" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>coeff_</edgelabel>
+        </childnode>
+        <childnode refid="22" relation="usage">
+          <edgelabel>tab1_</edgelabel>
+          <edgelabel>tab2_</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="24">
+        <label>Static_Int_Lists_32_64&lt; int &gt;</label>
+        <link refid="classStatic__Int__Lists__32__64"/>
+        <childnode refid="25" relation="template-instance">
+          <edgelabel>&lt; int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="21">
+        <label>TRUSTTab&lt; int, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="22" relation="public-inheritance">
+        </childnode>
+        <childnode refid="16" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="25">
+        <label>Static_Int_Lists_32_64&lt; _SIZE_ &gt;</label>
+        <link refid="classStatic__Int__Lists__32__64"/>
+      </node>
+      <node id="7">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="19">
+        <label>TRUST_Vector&lt; OWN_PTR(Sous_domaine_dis_base)&gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="template-instance">
+          <edgelabel>&lt; OWN_PTR(Sous_domaine_dis_base)&gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="16">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="14" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>Matrice_Morse_Sym</label>
+        <link refid="classMatrice__Morse__Sym"/>
+        <childnode refid="29" relation="public-inheritance">
+        </childnode>
+        <childnode refid="31" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Domaine_dis_base</label>
+        <link refid="classDomaine__dis__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>y_elem_</edgelabel>
+          <edgelabel>y_faces_</edgelabel>
+        </childnode>
+        <childnode refid="17" relation="usage">
+          <edgelabel>champs_compris_</edgelabel>
+        </childnode>
+        <childnode refid="19" relation="usage">
+          <edgelabel>les_sous_domaines_dis</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="30">
+        <label>Matrice_Base</label>
+        <link refid="classMatrice__Base"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>stencil_</edgelabel>
+        </childnode>
+      </node>
+      <node id="31">
+        <label>Matrice_Sym</label>
+        <link refid="classMatrice__Sym"/>
+      </node>
+      <node id="18">
+        <label>Champs_compris_T&lt; FIELD_TYPE &gt;</label>
+        <link refid="classChamps__compris__T"/>
+      </node>
+      <node id="13">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>OWN_PTRSolveurSys_base</label>
+      </node>
+      <node id="23">
+        <label>TRUSTArray&lt; int, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="template-instance">
+          <edgelabel>&lt; int, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Domaine_Poly_base</label>
+        <link refid="classDomaine__Poly__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>h_carre_</edgelabel>
+          <edgelabel>longueur_aretes_</edgelabel>
+        </childnode>
+        <childnode refid="15" relation="usage">
+          <edgelabel>mdv_elems_faces</edgelabel>
+          <edgelabel>mdv_faces_aretes</edgelabel>
+        </childnode>
+        <childnode refid="21" relation="usage">
+          <edgelabel>elem_arete_d_</edgelabel>
+          <edgelabel>elem_som_d_</edgelabel>
+          <edgelabel>equiv_</edgelabel>
+        </childnode>
+        <childnode refid="24" relation="usage">
+          <edgelabel>som_elem_</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>pvol_som_</edgelabel>
+          <edgelabel>ta_</edgelabel>
+          <edgelabel>vol_elem_som_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" line="30" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/PolyMAC/Geometrie/Domaine_PolyMAC.h" bodystart="31" bodyend="100"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>abort</name></member>
+      <member refid="classDomaine__PolyMAC_1aa1136d3fc7166d6ff7a018080d3b2305" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ajouter_stabilisation</name></member>
+      <member refid="classDomaine__PolyMAC_1a7dd1672526f16e35d674fc6ca520bbf7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>arete_faces</name></member>
+      <member refid="classDomaine__PolyMAC_1ab26b27335376d3a8d6d29a4481289a14" prot="private" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>arete_faces_</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>associer_</name></member>
+      <member refid="classDomaine__dis__base_1ab2da0d1d7754a30f64eb8c7c33998536" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>associer_domaine</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>bidim_axi</name></member>
+      <member refid="classDomaine__VF_1a1a5610322e48a995ec8c4d975ffec399" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>build_map_mc_Cmesh</name></member>
+      <member refid="classDomaine__VF_1a8341a1f9f34e0ab9c6ed0dbd8b37b92a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>build_mc_dual_mesh</name></member>
+      <member refid="classDomaine__VF_1a187230d3cf8724816abf8f1c540c0262" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>build_mc_face_mesh</name></member>
+      <member refid="classDomaine__VF_1abcf6bce38d52b44ec61d77307863e611" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>calculer_face_surfaces</name></member>
+      <member refid="classDomaine__PolyMAC_1a4ccb457a89b63ef14208c93ac78aef04" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>calculer_h_carre</name></member>
+      <member refid="classDomaine__PolyMAC_1a08c6934e5308d389b0e458e188364d0d" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>calculer_volumes_entrelaces</name></member>
+      <member refid="classDomaine__VF_1acf7ee74bf97390a5ff8416290950a4cf" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>calculer_xgr</name></member>
+      <member refid="classDomaine__Poly__base_1a9fb435a9be0e8c1dcc15789f4ead2442" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>carre_pas_du_maillage</name></member>
+      <member refid="classDomaine__Poly__base_1a80ea2998c355457adb997f6d30f5c5d6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>carre_pas_maille</name></member>
+      <member refid="classDomaine__dis__base_1a22d0053380404db098d2192c8a020c83" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>champs_compris_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>check_int_overflow</name></member>
+      <member refid="classDomaine__VF_1a864fbb4516133413807910bdc113837f" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>compute_L1_norm</name></member>
+      <member refid="classDomaine__VF_1a9ca25f7f1eab26ffddcad315e0ed4e5f" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>compute_L2_norm</name></member>
+      <member refid="classDomaine__VF_1a882f33a2645e9b54b691cee35a4172b8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>construire_face_virt_pe_num</name></member>
+      <member refid="classDomaine__VF_1acb32bcfea889a56021e202b456e55925" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>construire_num_fac_loc</name></member>
+      <member refid="classDomaine__dis__base_1a8928e829fccf997600db8ae3522b61f9" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>creer_champ</name></member>
+      <member refid="classDomaine__dis__base_1a4ae2154aeffb9349d9e7fedaefca15ad" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>creer_champ</name></member>
+      <member refid="classDomaine__dis__base_1ae6d4071fca56dfcc08a7770f5ded17c5" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>creer_elements_fictifs</name></member>
+      <member refid="classDomaine__VF_1a4525fed3d9148a64a49f8dca91f5e4f3" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>creer_faces</name></member>
+      <member refid="classDomaine__VF_1a0ac3aa448566d793a2c913d83cc59849" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>creer_tableau_aretes</name></member>
+      <member refid="classDomaine__VF_1a4f14dd9f4d91750817fbfc22c09ebddd" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>creer_tableau_faces</name></member>
+      <member refid="classDomaine__VF_1a79ad19d2bdedff0ecce13de33b6b32b2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>creer_tableau_faces_bord</name></member>
+      <member refid="classDomaine__VF_1abce6ee7cce620caeab5e9cc6469f49c5" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>cross</name></member>
+      <member refid="classDomaine__PolyMAC_1a099bfb9fff1a5ae577ca2a724dc4ee73" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>cyclic</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classDomaine__PolyMAC_1a4ec847480e0b765811ab4547044ac16a" prot="private" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>Declare_instanciable</name></member>
+      <member refid="classDomaine__Poly__base_1a1032b18244aae503e21144a02cee3244" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>detecter_faces_non_planes</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>disable_TU</name></member>
+      <member refid="classDomaine__PolyMAC_1a28b0932dacfb7cb20a7686a5cda3766a" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>discretiser</name></member>
+      <member refid="classDomaine__Poly__base_1a3fbb109afce4180665f98f60a260026f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>discretiser_aretes</name></member>
+      <member refid="classDomaine__VF_1a6463701447e0dcb14570568e5ff6bc50" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>discretiser_no_face</name></member>
+      <member refid="classDomaine__dis__base_1abc8101b9eee925a0b90526bd1024c9b7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>discretiser_root</name></member>
+      <member refid="classDomaine__Poly__base_1a0031fffe15f039c3289e96687ab89c3d" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_face_elem0</name></member>
+      <member refid="classDomaine__Poly__base_1a31e78a13cb8a51578e4fd2a94d7539c8" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_face_elem0_period</name></member>
+      <member refid="classDomaine__Poly__base_1a352a6bfee2a148058036502c8c20dbeb" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_face_elem1</name></member>
+      <member refid="classDomaine__Poly__base_1a2aea010328c73ee810bc2cbda46c89d6" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_face_elem1_period</name></member>
+      <member refid="classDomaine__Poly__base_1a6e98687f7b8da10097c2521eaf6bf4ac" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_norm</name></member>
+      <member refid="classDomaine__Poly__base_1ac3f673eba4dc986906c824dd9cc5ab2d" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>dist_norm_bord</name></member>
+      <member refid="classDomaine__Poly__base_1a67d24d7823e71b1bd231d6a9decdd756" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>dist_norm_bord</name></member>
+      <member refid="classDomaine__dis__base_1a0cfd6927648e693e53f39ac5959ccd7a" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>dist_paroi_initialisee_</name></member>
+      <member refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>domaine</name></member>
+      <member refid="classDomaine__dis__base_1a50e3d1d250c9e32ca4315fcd8d1e761a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>domaine</name></member>
+      <member refid="classDomaine__PolyMAC_1a35ea111c1f80b352c518c3587cea2142" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>dot</name></member>
+      <member refid="classDomaine__PolyMAC_1a340e21257c621a24ee21b6dcc969b50e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>dot</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Domaine_PolyMAC</scope><name>duplique</name></member>
+      <member refid="classDomaine__dis__base_1ad901172f221782e8a0fad9bab22dfa4a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ecrire_noms_bords</name></member>
+      <member refid="classDomaine__Poly__base_1aee4a91f20bf91b020831f00d62b2c172" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ecrit</name></member>
+      <member refid="classDomaine__Poly__base_1aebbd1cde31b5b2707e3b2b17057dab35" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_arete_d</name></member>
+      <member refid="classDomaine__Poly__base_1ab93109bde41ad8549218a73765104520" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_arete_d_</name></member>
+      <member refid="classDomaine__VF_1aa67059b226a41e89c7de2132c53e6bda" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_faces</name></member>
+      <member refid="classDomaine__VF_1a8c017cc0e5273e28eaec57e0ab622a29" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_faces</name></member>
+      <member refid="classDomaine__VF_1a3e67d84e1c134f8bb8504e14c27a9090" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_faces</name></member>
+      <member refid="classDomaine__VF_1aae35d0b3f3d64c1ab738aaad135c5e51" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_faces_</name></member>
+      <member refid="classDomaine__Poly__base_1a73e42a840d470976fd9198fa11d5eeed" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_som_d</name></member>
+      <member refid="classDomaine__Poly__base_1ab88fc788e42af4cc44ae3f9b1debc1ed" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>elem_som_d_</name></member>
+      <member refid="classDomaine__Poly__base_1a855cda9bea04dcdc401bc6d144ea0522" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>equiv</name></member>
+      <member refid="classDomaine__Poly__base_1afb765821d7e2db77772875bd6a2b4a50" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>equiv_</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>est_egal_a</name></member>
+      <member refid="classDomaine__VF_1a0e878c5f96d4cb2050420d2b9389008d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>est_face_bord</name></member>
+      <member refid="classDomaine__VF_1a0ebe5b29e6e4a0657a806c21a127efa0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>est_face_bord</name></member>
+      <member refid="classDomaine__VF_1a8da612471685b6204c5b2e526e20bf4f" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>est_face_bord_</name></member>
+      <member refid="classDomaine__VF_1a9a09965479ee4bb8b514fa57c68258a2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>est_une_face_virt_bord</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>exit</name></member>
+      <member refid="classDomaine__VF_1a523afe6bd61d4bfe39bed1649e613ba1" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_dual_</name></member>
+      <member refid="classDomaine__VF_1a535cd746c87a73f3d3e6b3884e6567e6" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_normales</name></member>
+      <member refid="classDomaine__VF_1a953d6f28077bfecc47a358675dfebfa7" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_normales</name></member>
+      <member refid="classDomaine__VF_1ac29e2454973f9e092399f748e43de956" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_normales</name></member>
+      <member refid="classDomaine__VF_1abf6bc8b98f0d034b06df40c58bbe034f" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_normales_</name></member>
+      <member refid="classDomaine__VF_1a226192d134e1698883a9ba6815f730ed" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_numero_bord</name></member>
+      <member refid="classDomaine__VF_1a7fba9f804fae03f7741b38ca5374de79" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_numero_bord</name></member>
+      <member refid="classDomaine__VF_1a79ca8d0bda1e59d64263a1b45395636f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_numero_bord</name></member>
+      <member refid="classDomaine__VF_1a23724aeaa833c604151d521223011782" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_numero_bord_</name></member>
+      <member refid="classDomaine__VF_1a81419e40a5c0ae2bef716d8d9bb2b5f2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_sommets</name></member>
+      <member refid="classDomaine__VF_1a1b186007308d9ffdab7536ecc4b376bd" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_sommets</name></member>
+      <member refid="classDomaine__VF_1a28e0839b68a1749546366665843701ac" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_sommets</name></member>
+      <member refid="classDomaine__VF_1a57b1a2eeecd39e70b427b9476e5a515c" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_sommets_</name></member>
+      <member refid="classDomaine__VF_1aec8b0ea1d27aab4760c66d670bdcd02c" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_surfaces</name></member>
+      <member refid="classDomaine__VF_1aa4938ae2401c40350001ac95018d5289" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_surfaces</name></member>
+      <member refid="classDomaine__VF_1aaaf1ca290edfef2e8660e56dea2cdb26" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_virt_pe_num</name></member>
+      <member refid="classDomaine__VF_1a0515a0b2ef085968047cc0d9bb1db750" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_virt_pe_num_</name></member>
+      <member refid="classDomaine__VF_1ad19ad4b9679367115cbbc7036257aa51" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins</name></member>
+      <member refid="classDomaine__VF_1afd20cfa68ee7df4a932b135a9543fc9f" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins</name></member>
+      <member refid="classDomaine__VF_1a70d256d9b1a5328673e2a08ba64295a4" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins</name></member>
+      <member refid="classDomaine__VF_1aa5c1003d547346e9a4b56599398897fb" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins_</name></member>
+      <member refid="classDomaine__VF_1a78f60adc0ea0598d0121c92c966c970d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins_fictifs</name></member>
+      <member refid="classDomaine__VF_1ac4e2d35691edaba23185cfa04f568452" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins_fictifs_</name></member>
+      <member refid="classDomaine__VF_1a432738a85da122f8eff200a278746125" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>face_voisins_reel_fictif</name></member>
+      <member refid="classDomaine__VF_1a71b47dcb36ba83615791f9b3b0cdc46d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>faces_doubles</name></member>
+      <member refid="classDomaine__VF_1aef026eb1eecbb299fc413ef9273fd001" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>faces_doubles</name></member>
+      <member refid="classDomaine__VF_1af3402565c46f5eb8061a9d85a4335f35" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>faces_doubles_</name></member>
+      <member refid="classDomaine__VF_1acfab03002f8750be840b0946171c1010" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>fbord</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>format_precision_geom</name></member>
+      <member refid="classDomaine__VF_1a48e385f0c29d222ba66982e1130fc21b" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>front_VF</name></member>
+      <member refid="classDomaine__VF_1aa14a8d80710f6d7a66ef6b97f4de71cd" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>frontiere_dis</name></member>
+      <member refid="classDomaine__VF_1a7db9d08ff8154c4c8dd26b339aa1d366" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>frontiere_dis</name></member>
+      <member refid="classDomaine__dis__base_1a0e41a67e02e8b4085a39600cf5432353" prot="public" virt="non-virtual" ambiguityscope="Domaine_dis_base::"><scope>Domaine_PolyMAC</scope><name>frontiere_dis</name></member>
+      <member refid="classDomaine__dis__base_1ab4e692ea5b0ef4cab3c872db21e6a7a9" prot="public" virt="non-virtual" ambiguityscope="Domaine_dis_base::"><scope>Domaine_PolyMAC</scope><name>frontiere_dis</name></member>
+      <member refid="classDomaine__dis__base_1a9f6f1eaec0fbb3da8d3ad7ed06c2478a" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_champ</name></member>
+      <member refid="classDomaine__VF_1a6980a660f15897a9ba0b607b56e08d0e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_face_voisins_dual</name></member>
+      <member refid="classDomaine__VF_1a8d3aa2dc52ab9a503a43f783635df224" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_face_voisins_dual</name></member>
+      <member refid="classDomaine__VF_1a2e17a8659bfb919d8f27a1611b5444d3" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_ind_integ_points</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_info</name></member>
+      <member refid="classDomaine__VF_1af9acceefaf1027aadfb791cb5c446e8f" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_nb_integ_points</name></member>
+      <member refid="classDomaine__dis__base_1a4cabd9e9dd95905b5f0be31d02400fd4" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_noms_champs_postraitables</name></member>
+      <member refid="classDomaine__VF_1a86a725922dc650805246aec31bfa5b5a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_num_fac_loc</name></member>
+      <member refid="classDomaine__VF_1a77857d459f0ba4591cbf4203dfc3dbcb" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_num_fac_loc</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_object_id</name></member>
+      <member refid="classDomaine__VF_1a90e78f173b68c7b5305b6e2807cbdf06" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>get_position</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classDomaine__Poly__base_1a0584d1030ef4f13f7f076a65ddf98ec4" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>h_carre</name></member>
+      <member refid="classDomaine__Poly__base_1a484b6381fb0a7f1e70aabafa35b2b913" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>h_carre_</name></member>
+      <member refid="classDomaine__dis__base_1a225e5c6c57170bbdf666b67745fcff0a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>has_champ</name></member>
+      <member refid="classDomaine__dis__base_1aec064baedde400359cb9772ef6968cf3" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>has_champ</name></member>
+      <member refid="classChamps__compris__interface_1adecefaaf84951e3241598f168cf708a3" prot="public" virt="pure-virtual" ambiguityscope="Champs_compris_interface::"><scope>Domaine_PolyMAC</scope><name>has_champ</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classDomaine__VF_1aeb09b061bad115c4be9d4285eaa5e2d0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ind_faces_virt_bord</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>info</name></member>
+      <member refid="classDomaine__VF_1a070d4ed8e542f99cb6905a9daa00de6a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>info_elem_som</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>info_obj</name></member>
+      <member refid="classDomaine__VF_1a607c82c33bcf12872ca4f2257e45e857" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>infobord</name></member>
+      <member refid="classDomaine__VF_1a242ff915697302d8f9a3bef25021f5d9" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>init_dist_paroi_globale</name></member>
+      <member refid="classDomaine__PolyMAC_1a5e9b20e01423a5234279f76963c73e67" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>init_equiv</name></member>
+      <member refid="classDomaine__PolyMAC_1a8e12654948e723939cb6ef3d76555982" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m1</name></member>
+      <member refid="classDomaine__PolyMAC_1a8a761cddfe6456f648ad77bb9d96cf29" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m1_2d</name></member>
+      <member refid="classDomaine__PolyMAC_1a647da35410ea97914fff0e5a42464098" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m1_3d</name></member>
+      <member refid="classDomaine__PolyMAC_1a3c90e2bcccbeaf62e863d0eb8a281a7d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m2</name></member>
+      <member refid="classDomaine__PolyMAC_1a0604a55478b103c5c0266ffa4b60a490" prot="private" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m2_new</name></member>
+      <member refid="classDomaine__PolyMAC_1a8770dd9fb42b9e581fea8b51f30d2c3b" prot="private" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m2_osqp</name></member>
+      <member refid="classDomaine__PolyMAC_1aeb4ba9835c656820aae6e57fb32d2f2d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_m2solv</name></member>
+      <member refid="classDomaine__PolyMAC_1a67c7ee5c553993e320af3f744adab0b0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_rf</name></member>
+      <member refid="classDomaine__PolyMAC_1ac2998bbf9b9054ce06e77dde8e775fc5" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_ve</name></member>
+      <member refid="classDomaine__PolyMAC_1aee14dba7da100c01af16abbf618a0269" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_virt_ef_map</name></member>
+      <member refid="classDomaine__PolyMAC_1a24be84e0fe6417dbc0ba42becd7f9923" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_we</name></member>
+      <member refid="classDomaine__PolyMAC_1a6e6809008819f1ba9293fdb6ad9f38b8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_we_2d</name></member>
+      <member refid="classDomaine__PolyMAC_1a5a703c8a4810e9f431de8297543a7425" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>init_we_3d</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>interprete</name></member>
+      <member refid="classDomaine__VF_1afe96aab7481e1d9c9fc179e79c2bda8f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>inverse_volumes</name></member>
+      <member refid="classDomaine__VF_1abb7e31dbace2e63974c65ed684c459d5" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>inverse_volumes</name></member>
+      <member refid="classDomaine__VF_1a00bf0ccf6ddfa047147b8a029e490d30" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>inverse_volumes</name></member>
+      <member refid="classDomaine__VF_1a7a509b04113015b9423f8c1916611310" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>inverse_volumes_</name></member>
+      <member refid="classDomaine__PolyMAC_1ac0488ca4b9169110be2b84f589d04fbf" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>is_init</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>je_suis_maitre</name></member>
+      <member refid="classDomaine__VF_1ae598cd82e3ffe4ad64b6b0e05bda285b" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>joint</name></member>
+      <member refid="classDomaine__VF_1ac4e2ce73fad4b828805ec41cd121d9bd" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>joint</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>le_type</name></member>
+      <member refid="classDomaine__dis__base_1a5342d65c2ee50d5648b5722fd73b9033" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>les_sous_domaines_dis</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classDomaine__Poly__base_1af347bd43b4d52bf5a100b00374e6ca4b" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>longueur_aretes</name></member>
+      <member refid="classDomaine__Poly__base_1a004adf9d1fbee944160d34a155f10852" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>longueur_aretes_</name></member>
+      <member refid="classDomaine__PolyMAC_1ad5e92c022c05c56f687a635cc6a75984" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m1ci</name></member>
+      <member refid="classDomaine__PolyMAC_1a3166053e9893a881266aba562922c742" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m1deb</name></member>
+      <member refid="classDomaine__PolyMAC_1ada23dc9feadaddb4b0d950c19406920f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m1ji</name></member>
+      <member refid="classDomaine__PolyMAC_1ae7cfaa93fc654d1a34e7b94858806d31" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>M2</name></member>
+      <member refid="classDomaine__PolyMAC_1a80760ba41cd5dd8f228c93867d5a363f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2c</name></member>
+      <member refid="classDomaine__PolyMAC_1ad1834011758870559f54781c598062d4" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2d</name></member>
+      <member refid="classDomaine__PolyMAC_1ac09db4f317046ba747bf9e9e396f09b1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2i</name></member>
+      <member refid="classDomaine__PolyMAC_1a1cce0078f85dc3e816cff5ae03648079" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2j</name></member>
+      <member refid="classDomaine__PolyMAC_1acda0729efc0a8fe67c283703f50ae655" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2mat</name></member>
+      <member refid="classDomaine__PolyMAC_1aa6cf641f62fce39a371932276af45ac8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>m2solv</name></member>
+      <member refid="classDomaine__VF_1aff30082ba77110ff97258260a1a318c6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>marquer_faces_double_contrib</name></member>
+      <member refid="classDomaine__VF_1a2649e3eaf0a1c78fbd88de185d6a82d7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_aretes</name></member>
+      <member refid="classDomaine__VF_1ad7138ded2112c8e46a827357e5db256c" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_aretes_</name></member>
+      <member refid="classDomaine__VF_1abe4ebe41b8a88e487c74998e9225d712" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_faces</name></member>
+      <member refid="classDomaine__VF_1a63817ab6021a92d4fecf53a4d51cfd27" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_faces_</name></member>
+      <member refid="classDomaine__VF_1a23bf0e123b345b3b5a6a2af8273583b5" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_faces_bord</name></member>
+      <member refid="classDomaine__VF_1acd9ab70bd01083026fb5b1fbcfe65497" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>md_vector_faces_front_</name></member>
+      <member refid="classDomaine__Poly__base_1a2a2361df13dec92a2cb16de3404637f3" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mdv_elems_faces</name></member>
+      <member refid="classDomaine__Poly__base_1a02c2c2f55cbb38341b0922048bf3db99" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mdv_faces_aretes</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>me</name></member>
+      <member refid="classDomaine__dis__base_1a22964dcfd9564425243bd024ad752f19" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mesh_numbering</name></member>
+      <member refid="classDomaine__PolyMAC_1acd565cc8c498a8d2bf0fac62609b353d" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>modifier_pour_Cl</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>multiple_files</name></member>
+      <member refid="classDomaine__VF_1a8375f03837bcbe42dff0cb8c06545c6d" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>n_y_elem_</name></member>
+      <member refid="classDomaine__VF_1a86023e05a6a09452bddd645dd0d661c3" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>n_y_faces_</name></member>
+      <member refid="classDomaine__dis__base_1a49de34b29ab0d385811b3ff97d8e30d7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_elem</name></member>
+      <member refid="classDomaine__Poly__base_1ad641256a14edafca742409fe6c3a4b86" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_elem_Cl</name></member>
+      <member refid="classDomaine__Poly__base_1a8e5cefeedec606e143faf79e71b36ac4" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_elem_std</name></member>
+      <member refid="classDomaine__VF_1a55b8032e5f0f9c19a995e2b475d78f39" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_elem_std_</name></member>
+      <member refid="classDomaine__dis__base_1a33e55ca05b2a53a3a5e1f844e2551824" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_elem_tot</name></member>
+      <member refid="classDomaine__VF_1a14775734830fc461afe2d5a4c55ddf32" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces</name></member>
+      <member refid="classDomaine__VF_1addd19862526c5702d8f5453ac967f946" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_bord</name></member>
+      <member refid="classDomaine__VF_1a2ee0ee3f9180953b3ca65da8a8d4627c" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_bord_tot</name></member>
+      <member refid="classDomaine__VF_1a59da71cb176a6c93859467ebf9351c69" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_internes</name></member>
+      <member refid="classDomaine__Poly__base_1a31399b63bffc4100fbc529956357bcbe" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_joint</name></member>
+      <member refid="classDomaine__Poly__base_1a824781ea2f9b87f50c2f66fa0cf47de2" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_std</name></member>
+      <member refid="classDomaine__VF_1a66e3daed8f9cea59fcaf5dd4d862f113" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_std_</name></member>
+      <member refid="classDomaine__VF_1a419a6173248d7516a6a36ffcc2835cf0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_faces_tot</name></member>
+      <member refid="classDomaine__dis__base_1a4c457162fa796d381e2319faaede831c" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_front_Cl</name></member>
+      <member refid="classDomaine__VF_1a7026dc097baf2fc1c7cffe85fb23c26f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_frontiere_dis</name></member>
+      <member refid="classDomaine__VF_1a6a1b53b0495b0082f888b89a00261deb" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_joints</name></member>
+      <member refid="classDomaine__dis__base_1a6319e76eb43f35bced14bf0272fa8ca1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_som</name></member>
+      <member refid="classDomaine__VF_1a9f4f7a31ba91915898e23af477ccf0a0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_som_face</name></member>
+      <member refid="classDomaine__dis__base_1a909e4f99ce84d6363b8a240052a61897" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nb_som_tot</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nom_du_cas</name></member>
+      <member refid="classDomaine__dis__base_1a28fd9f3f61fcc36a90904e493885e2fb" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nombre_de_sous_domaines_dis</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>nommer</name></member>
+      <member refid="classDomaine__VF_1a97f12f2fc07c7c1415d57f409bc7f606" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>normale_paroi_elem</name></member>
+      <member refid="classDomaine__VF_1afadceac97c21f9b17cd8e9dbc9eb98e3" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>normale_paroi_faces</name></member>
+      <member refid="classDomaine__VF_1aa488d10b1371b6b0b6f42a27a6cb124b" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>normalized_boundaries_outward_vector</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nproc</name></member>
+      <member refid="classDomaine__Poly__base_1ad88d8267aeb1b99c5749b37b6e0ee9e6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>nu_dot</name></member>
+      <member refid="classDomaine__VF_1a9dd6d49cd6842cc99db1c6bb5edf8f79" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>num_fac_loc_</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>numero</name></member>
+      <member refid="classDomaine__VF_1a9173aee60bb2df98b33990af815deb72" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>numero_face_local</name></member>
+      <member refid="classDomaine__VF_1a8196504a441c709f63a7a88bc052d3c4" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>numero_sommet_local</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>Objet_U</name></member>
+      <member refid="classDomaine__dis__base_1ae27b9115d20db1c535db34aca59b81e4" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>operator=</name></member>
+      <member refid="classDomaine__VF_1aa5acf9a69d74db118172c0b9cfafe5ae" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>orientation</name></member>
+      <member refid="classDomaine__VF_1ae881ef36d94018a50fc379c7bd21c694" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>orientation</name></member>
+      <member refid="classDomaine__VF_1ac46ac453993d168647b18169b788178f" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>orientation_si_definie</name></member>
+      <member refid="classDomaine__Poly__base_1a084436b65b10cf9629616a6f6865a3be" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>oriente_normale</name></member>
+      <member refid="classDomaine__Poly__base_1a4af9584e9b15792829aa6513e01dd3e3" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>orthocentrer</name></member>
+      <member refid="classDomaine__Poly__base_1a77e51a6e4986292e8e7e1e956c410ed3" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>OWN_PTR</name></member>
+      <member refid="classDomaine__dis__base_1a39e01fbc950f4988f72045a995f74fa3" prot="protected" virt="non-virtual" ambiguityscope="Domaine_VF::"><scope>Domaine_PolyMAC</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>precision_geom</name></member>
+      <member refid="classDomaine__VF_1a03c4d9d78c967029f1222fc096a13bd7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>premiere_face_bord</name></member>
+      <member refid="classDomaine__VF_1ad11d37a7ca15cd43713bcc083f8753b7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>premiere_face_int</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>printOn</name></member>
+      <member refid="classDomaine__Poly__base_1aa80e676ce3cd882482fe2212afcb3b81" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>pvol_som</name></member>
+      <member refid="classDomaine__Poly__base_1a815a165735f36118940d56ab1e134bc9" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>pvol_som_</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ram_processeur</name></member>
+      <member refid="classDomaine__Poly__base_1ad5b1f4c660e05238a8ce2857b66848be" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rang_elem_non_std</name></member>
+      <member refid="classDomaine__Poly__base_1a6e6e6382a7205c0402f4b8ce96971044" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rang_elem_non_std</name></member>
+      <member refid="classDomaine__VF_1a0ab3d4abc4dbdf13b982ff0d6bff8b55" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rang_elem_non_std_</name></member>
+      <member refid="classDomaine__dis__base_1a5d98c5001349f9d1c1cee0867aa510c8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rang_frontiere</name></member>
+      <member refid="classDomaine__dis__base_1aa8515d18f1c3083be744ace4b2f23c52" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rang_frontiere</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>readOn</name></member>
+      <member refid="classDomaine__VF_1a75a3f54c7eec5203710d71acb084fbbe" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>remplir_face_numero_bord</name></member>
+      <member refid="classDomaine__VF_1abe8b219711e9df89e390e1ca0bc6323e" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>remplir_face_voisins_fictifs</name></member>
+      <member refid="classDomaine__VF_1a30cd28bee0d385305a6cd294efa0716c" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>renumeroter</name></member>
+      <member refid="classDomaine__Poly__base_1a17a06ff0e9d23baffe46705d89013f20" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>reordonner</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>reprendre</name></member>
+      <member refid="classDomaine__PolyMAC_1a08f8e39fcc9b9f275d2d97708ae1515d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rfci</name></member>
+      <member refid="classDomaine__PolyMAC_1a59e8d7cb674e57638dd9f679d318d5f8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rfdeb</name></member>
+      <member refid="classDomaine__PolyMAC_1ac0fa0a270137da3d6ceecf1a1c261fb6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>rfji</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>self_cast</name></member>
+      <member refid="classDomaine__Poly__base_1a8d0c4339de69909384d379cb0fc3fa99" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>som_arete</name></member>
+      <member refid="classDomaine__Poly__base_1a5056960e65e7a014a5425c2573479e3e" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>som_elem</name></member>
+      <member refid="classDomaine__Poly__base_1abd8f7eee66e83fa243a4e525ed781591" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>som_elem_</name></member>
+      <member refid="classDomaine__dis__base_1a88803c5c67acc6ed7009ec333672fa7f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>sous_domaine_dis</name></member>
+      <member refid="classDomaine__dis__base_1ae477f52f791a55ec33071d85ffc8644f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>sous_domaine_dis</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classDomaine__VF_1a92b1a70da7242b1911a34fedfe137d6b" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>surface</name></member>
+      <member refid="classDomaine__PolyMAC_1a4faa07370d5999b570694d6bda80c9a1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>swap</name></member>
+      <member refid="classDomaine__Poly__base_1aaef7cd0fd3b39c9ec282c47c38ab6115" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ta</name></member>
+      <member refid="classDomaine__Poly__base_1a327517b0fb2496cb0c8eb5ad57dd058c" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>ta_</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Domaine_PolyMAC</scope><name>taille_memoire</name></member>
+      <member refid="classDomaine__Poly__base_1ab3cc39c4ad4b5538b7acc61319c37a3d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>type_elem</name></member>
+      <member refid="classDomaine__VF_1afc4af4ad67f20e3247e03650c18126c1" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>typer_discretiser_ss_domaine</name></member>
+      <member refid="classDomaine__Poly__base_1aef3ac70a585dbe933989f59e7c72d0b5" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>typer_elem</name></member>
+      <member refid="classDomaine__PolyMAC_1aa2e6eb5b733d7bc3e47176e5ef642374" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>veci</name></member>
+      <member refid="classDomaine__VF_1a839a5daa40733a08296816ee7e838916" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>VECT</name></member>
+      <member refid="classDomaine__PolyMAC_1a5466be3185976e15ccde316612875a47" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>vedeb</name></member>
+      <member refid="classDomaine__PolyMAC_1ac0a7e8b7c2779b5f16f23818f126ade3" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>veji</name></member>
+      <member refid="classDomaine__PolyMAC_1ad27151ac8eb47574724a9efc5e8830d4" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>virt_ef_map</name></member>
+      <member refid="classDomaine__Poly__base_1a15a9d3bc4805f9ec0f0c4dac4f2082a7" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>vol_elem_som</name></member>
+      <member refid="classDomaine__Poly__base_1ad97d68e46062dfb643f559818f99d83c" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>vol_elem_som_</name></member>
+      <member refid="classDomaine__dis__base_1a3d1568c9f760e407d50f84b7ce33381d" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volume_maille</name></member>
+      <member refid="classDomaine__VF_1a72d89d7c6778a2b8a7a5199bede0297a" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes</name></member>
+      <member refid="classDomaine__VF_1a4c462fe8e1d8cc99f230501c4ffbb8f9" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes</name></member>
+      <member refid="classDomaine__VF_1a0de486498f89ba57414b6431c8aff823" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes</name></member>
+      <member refid="classDomaine__VF_1a9ff9d55a7372bb00e6d5fa13092c12e4" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_</name></member>
+      <member refid="classDomaine__VF_1ad0bf90d9beb4083aea6421ca906229f1" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces</name></member>
+      <member refid="classDomaine__VF_1abff1b4e385394f0100206b6b47794401" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces</name></member>
+      <member refid="classDomaine__VF_1afce2c3ad5d1b448b86588068efb2c7f8" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces</name></member>
+      <member refid="classDomaine__VF_1a250850053bda40c883fecd5bc8cbc048" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces_</name></member>
+      <member refid="classDomaine__Poly__base_1a1606d1f9e24df28d3c11c63bf9cd9f83" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces_dir</name></member>
+      <member refid="classDomaine__Poly__base_1a5dae015a34c22ae7d044586605595af6" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces_dir</name></member>
+      <member refid="classDomaine__VF_1adafda86e6b7869928f9690e9ecc71dcb" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>volumes_entrelaces_dir_</name></member>
+      <member refid="classDomaine__PolyMAC_1a97ef83fc61e464cc4b6086ac73667253" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>W2</name></member>
+      <member refid="classDomaine__PolyMAC_1aa8bce346d62cdcf83bbb8db32fcea1a3" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>w2c</name></member>
+      <member refid="classDomaine__PolyMAC_1aba3c30122e0dba92401ae6d00ac97f58" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>w2i</name></member>
+      <member refid="classDomaine__PolyMAC_1afcf124415bc84ff3aea0c30cdeef5d0c" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>w2j</name></member>
+      <member refid="classDomaine__PolyMAC_1a3ae3e0d7d1caa7aaf02504030f215368" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>W_stabiliser</name></member>
+      <member refid="classDomaine__PolyMAC_1aefbc6e18cdd242cd7af38a501b6324ba" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>weci</name></member>
+      <member refid="classDomaine__PolyMAC_1acf47e40c970ee939f257e83b7ee69cc9" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>wedeb</name></member>
+      <member refid="classDomaine__PolyMAC_1a835b00fb5a9c0c50445283960105d71f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>weji</name></member>
+      <member refid="classDomaine__VF_1a49282363250df66ff0a2a5d2e88e6601" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xa</name></member>
+      <member refid="classDomaine__VF_1a367dad3b4735f41ea67987a9c55cea9f" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xa</name></member>
+      <member refid="classDomaine__VF_1a7de57d2e42c905864b12e3c858483736" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xa</name></member>
+      <member refid="classDomaine__VF_1a2bcfd0fa7d6061087f67d586073e4e1a" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xa_</name></member>
+      <member refid="classDomaine__VF_1ab7331ae644b09336ef8c3e480c3078f0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xp</name></member>
+      <member refid="classDomaine__VF_1ab4fae8203b16273b19f60e853ff3c9ae" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xp</name></member>
+      <member refid="classDomaine__VF_1ab2a76709b3a5459a0ae2dc5f05719ee0" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xp</name></member>
+      <member refid="classDomaine__VF_1a1510e1cabc454c8f88adaa77b9433e8e" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xp_</name></member>
+      <member refid="classDomaine__VF_1a5b43475ca3328249d3ae62642db3feda" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xv</name></member>
+      <member refid="classDomaine__VF_1a3a323bb0082dfac08e09fa7d98e138bd" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xv</name></member>
+      <member refid="classDomaine__VF_1adf04df6c172e79420c98e926d109356b" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xv</name></member>
+      <member refid="classDomaine__VF_1a523f7a2ba633dbdd831a9795cf099743" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xv_</name></member>
+      <member refid="classDomaine__VF_1a1c6ef4838249f7ad9de0a373f62402c2" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>xv_bord</name></member>
+      <member refid="classDomaine__VF_1ab06e2c577d3aa12bd5cf2d1f0388031e" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>xv_bord_</name></member>
+      <member refid="classDomaine__dis__base_1a37255c46775b544d97ed02b331838cb3" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>y_elem</name></member>
+      <member refid="classDomaine__dis__base_1a3c095cfcbc2f0509f5e97513a1d25eb2" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>y_elem_</name></member>
+      <member refid="classDomaine__dis__base_1a66b39022fb9cdc561b80f787ab2cd88b" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>y_faces</name></member>
+      <member refid="classDomaine__dis__base_1a3e4e4967e77c56bbab582480e6c1fe46" prot="protected" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>y_faces_</name></member>
+      <member refid="classChamps__compris__interface_1a3ec35d589452da19c393aa90c8c94ba6" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>~Champs_compris_interface</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Domaine_PolyMAC</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Domaine_PolyMAC</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

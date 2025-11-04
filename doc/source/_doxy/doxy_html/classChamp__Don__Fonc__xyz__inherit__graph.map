@@ -1,23 +1,12 @@
 <map id="Champ_Don_Fonc_xyz" name="Champ_Don_Fonc_xyz">
-<area shape="rect" id="Node000001" title="class Champ_Don_Fonc_xyz Cette classe represente un champ de donnees fonction" alt="" coords="29,594,197,622"/>
-<area shape="rect" id="Node000002" href="$classTRUSTChamp__Don__generique.html" title=" " alt="" coords="5,500,221,545"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,560,116,594,110,594,110,560"/>
-<area shape="rect" id="Node000003" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="192,313,330,341"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="282,353,297,380,310,413,313,446,309,463,300,478,288,488,270,496,222,509,220,504,268,491,285,483,296,474,304,461,307,446,304,414,292,382,277,355"/>
-<area shape="rect" id="Node000010" href="$classTRUSTChamp__Don__generique.html" title=" " alt="" coords="64,390,279,435"/>
-<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="238,354,197,392,193,388,234,350"/>
-<area shape="rect" id="Node000004" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="208,236,314,264"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="264,279,264,313,258,313,258,279"/>
-<area shape="rect" id="Node000005" href="$classField__base.html" title=" " alt="" coords="155,159,244,187"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="222,198,252,234,248,238,218,201"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="163,82,236,110"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="202,125,202,159,197,159,197,125"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="164,5,235,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="202,48,202,82,197,82,197,48"/>
-<area shape="rect" id="Node000008" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="268,159,376,187"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="304,201,274,238,270,234,300,198"/>
-<area shape="rect" id="Node000009" href="$classParser__Eval.html" title="Classe Parser_Eval Cette classe a pour fonction d evaleur les valeurs prises par une fonction analyti..." alt="" coords="43,313,140,341"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="73,355,54,391,50,413,54,434,72,469,94,498,90,501,67,472,49,436,45,413,49,389,68,352"/>
-<area shape="poly" id="edge11_Node000010_Node000009" title=" " alt="" coords="117,350,153,388,149,392,113,354"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="126,447,117,460,112,480,112,500,106,500,106,479,112,458,121,444"/>
+<area shape="rect" id="node1" title="class Champ_Don_Fonc_xyz Cette classe represente un champ de donnees fonction" alt="" coords="29,580,197,607"/>
+<area shape="rect" id="node2" href="$classTRUSTChamp__Don__generique.html" title=" " alt="" coords="5,489,221,531"/>
+<area shape="rect" id="node3" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="205,309,344,336"/>
+<area shape="rect" id="node10" href="$classTRUSTChamp__Don__generique.html" title=" " alt="" coords="65,385,281,427"/>
+<area shape="rect" id="node4" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="221,233,328,260"/>
+<area shape="rect" id="node5" href="$classField__base.html" title=" " alt="" coords="137,157,228,184"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="145,81,220,108"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="147,5,219,32"/>
+<area shape="rect" id="node8" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="252,157,361,184"/>
+<area shape="rect" id="node9" href="$classParser__Eval.html" title="Classe Parser_Eval Cette classe a pour fonction d evaleur les valeurs prises par une fonction analyti..." alt="" coords="16,309,115,336"/>
 </map>

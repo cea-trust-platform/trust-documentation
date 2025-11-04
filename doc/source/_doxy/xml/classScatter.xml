@@ -1,0 +1,1083 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classScatter" kind="class" language="C++" prot="public">
+    <compoundname>Scatter</compoundname>
+    <basecompoundref refid="classInterprete" prot="public" virt="non-virtual">Interprete</basecompoundref>
+    <derivedcompoundref refid="classScatterMED" prot="public" virt="non-virtual">ScatterMED</derivedcompoundref>
+    <includes local="no">Scatter.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classScatter_1a9e2d095831e38ddd03803e36d721b43e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Scatter::Declare_instanciable</definition>
+        <argsstring>(Scatter)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classScatter" kindref="compound">Scatter</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="29" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classScatter_1ac33aacdb609dcc870faeb93500ed017f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+        <definition>Domaine &amp; Scatter::domaine</definition>
+        <argsstring>()</argsstring>
+        <name>domaine</name>
+        <briefdescription>
+<para>Renvoi le domaine associe. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="33" column="11" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="70" bodyend="73"/>
+        <referencedby refid="classScatter_1a1b2c7a40fca688aa4fdf0a2bcd911437" compoundref="Scatter_8cpp" startline="1020" endline="1056">ajouter_joints</referencedby>
+        <referencedby refid="classScatter_1a65e894d65871c07654f66115ac31477b" compoundref="Scatter_8cpp" startline="811" endline="1001">calculer_espace_distant</referencedby>
+        <referencedby refid="classScatter_1a485135240a0e385f65365f7cb6fc257f" compoundref="Scatter_8cpp" startline="1193" endline="1205">calculer_espace_distant_aretes</referencedby>
+        <referencedby refid="classScatter_1ac60c16cdba0c132b53c80288ae71f258" compoundref="Scatter_8cpp" startline="1174" endline="1188">calculer_espace_distant_faces</referencedby>
+        <referencedby refid="classScatter_1a0c740e8b05e31947a4f49d630f1302ec" compoundref="Scatter_8cpp" startline="467" endline="656">lire_domaine</referencedby>
+        <referencedby refid="classScatterMED_1a873cadc949bdebc4a37bee5c7fbd4f08" compoundref="ScatterMED_8cpp" startline="49" endline="83">ScatterMED::lire_domaine</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a44193a034786e01ad0b63f7b3a94374e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+        <definition>Entree &amp; Scatter::interpreter</definition>
+        <argsstring>(Entree &amp;) override</argsstring>
+        <name>interpreter</name>
+        <reimplements refid="classInterprete_1ac46c548a31f5411d784b8044e3b87c58">interpreter</reimplements>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <defname>is</defname>
+        </param>
+        <briefdescription>
+<para>Lit et complete un domaine parallele selon les motcles lus dans le jeu de donnees. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Format: <ref refid="classScatter" kindref="compound">Scatter</ref> [debug] file_name domain_name On lit les sommets, les elements et les sommets et faces de joint, On construit les espaces distants et virtuels en fonction de l&apos;epaisseur de joint. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="31" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="125" bodyend="260"/>
+        <references refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" compoundref="Process_8cpp" startline="135" endline="138">Process::barrier</references>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classScatter_1a234264f0b60648fc3def26f2b4ab9da5" compoundref="Scatter_8cpp" startline="2725" endline="2734">init_sequential_domain</references>
+        <references refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" compoundref="Process_8cpp" startline="114" endline="117">Process::is_sequential</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" compoundref="Interprete_8cpp" startline="43" endline="46">Interprete::objet</references>
+        <references refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" compoundref="Scatter_8cpp" startline="2740" endline="2745">uninit_sequential_domain</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a0c740e8b05e31947a4f49d630f1302ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Scatter::lire_domaine</definition>
+        <argsstring>(Nom &amp;, Noms &amp;liste_bords_periodiques)</argsstring>
+        <name>lire_domaine</name>
+        <reimplementedby refid="classScatterMED_1a873cadc949bdebc4a37bee5c7fbd4f08">lire_domaine</reimplementedby>
+        <param>
+          <type><ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <defname>nomentree</defname>
+        </param>
+        <param>
+          <type><ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>liste_bords_periodiques</declname>
+        </param>
+        <briefdescription>
+<para>Lit le domaine dans le fichier de nom &quot;nomentree&quot;, de type <ref refid="classLecFicDistribueBin" kindref="compound">LecFicDistribueBin</ref> ou <ref refid="classLecFicDistribue" kindref="compound">LecFicDistribue</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Format attendu : Domaine::ReadOn </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="32" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="467" bodyend="656"/>
+        <references refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" compoundref="Process_8cpp" startline="135" endline="138">Process::barrier</references>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <references refid="classDomaine__32__64_1a11b50ab38d1e8ad9cc45b3865f2da251" compoundref="Domaine_8cpp" startline="106" endline="138">Domaine_32_64&lt; _SIZE_ &gt;::clear</references>
+        <references refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" compoundref="Scatter_8cpp" startline="70" endline="73">domaine</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classFichierHDF_1a0ad22bc624e64d0fecd33abb64b4881a" compoundref="FichierHDF_8cpp" startline="43" endline="46">FichierHDF::is_hdf5</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classNom_1a67b66f01988827cce6bf1f108b850bda" compoundref="Nom_8cpp" startline="391" endline="472">Nom::nom_me</references>
+        <references refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" compoundref="Process_8cpp" startline="103" endline="107">Process::nproc</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classScatter_1a1b2c7a40fca688aa4fdf0a2bcd911437" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::ajouter_joints</definition>
+        <argsstring>(Domaine &amp;domaine, ArrOfInt &amp;pe_voisins)</argsstring>
+        <name>ajouter_joints</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>pe_voisins</declname>
+        </param>
+        <briefdescription>
+<para>Ajoute des joints avec tous les pe de pe_voisins. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pour que l&apos;ensemble des joints soit symetrique, on en cree aussi un joint sur le processeur destination: Si A ajoute un joint avec B, alors B ajoute un joint avec A. On trie les joints par ordre croissant du numero de PE. ATTENTION: les joints sont donc reordonnes ! On met dans pe_voisins la liste des joints effectivement crees. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="63" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1020" bodyend="1056"/>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" compoundref="Scatter_8cpp" startline="70" endline="73">domaine</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" compoundref="TRUSTArray_8tpp" startline="44" endline="54">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::resize_array</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <references refid="classScatter_1ac5dd6d7661490708649976cde509f480" compoundref="Scatter_8cpp" startline="703" endline="725">trier_les_joints</references>
+        <referencedby refid="classScatter_1a65e894d65871c07654f66115ac31477b" compoundref="Scatter_8cpp" startline="811" endline="1001">calculer_espace_distant</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a65e894d65871c07654f66115ac31477b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_espace_distant</definition>
+        <argsstring>(Domaine &amp;domaine, const int nb_items_reels, const ArrsOfInt &amp;items_to_send, const JOINT_ITEM type_item)</argsstring>
+        <name>calculer_espace_distant</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nb_items_reels</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUST__Vector" kindref="compound">ArrsOfInt</ref> &amp;</type>
+          <declname>items_to_send</declname>
+        </param>
+        <param>
+          <type>const JOINT_ITEM</type>
+          <declname>type_item</declname>
+        </param>
+        <briefdescription>
+<para>Determination des items distants en fonction d&apos;une liste d&apos;items a envoyer et de listes d&apos;items communs. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>exemple: calculer_espace_distant_sommets calculer_espace_distant_faces Pour les sommets: les &quot;items_to_send&quot; sont les sommets des elements distants, Si le processeur A veut que le processeur B connaisse le sommet i, il faut que le processeur qui possede le sommet l&apos;envoie a B. Le processeur qui &quot;possede&quot; le sommet est le plus petit parmi les PEs qui partagent ce sommet (item commun) (requis pour pouvoir faire echange_item_commun et echange_espace_virtuel en une seule passe). De plus, si plusieurs processeurs demandent a envoyer le meme sommet au meme processeur, il ne faut l&apos;inserer qu&apos;une seule fois dans l&apos;espace distant.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(joints)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les joints dans lesquels on veut calculer un espace distant </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(nb_items_reels)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>le nombre d&apos;items reels (sommets, faces, ...) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(items_to_send)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>un vecteur de &quot;nproc()&quot; tableaux, pour chaque processeur, la liste des items qu&apos;on veut lui envoyer (exemple:tous les sommets des elements distants, ou toutes les faces) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(type_item)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>les items dont on veut calculer l&apos;espace distant </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="44" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="811" bodyend="1001"/>
+        <references refid="classScatter_1a1b2c7a40fca688aa4fdf0a2bcd911437" compoundref="Scatter_8cpp" startline="1020" endline="1056">ajouter_joints</references>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classSchema__Comm_1ac574385d716aca94a48373ab71f37e4f" compoundref="Schema__Comm_8cpp" startline="167" endline="178">Schema_Comm::begin_comm</references>
+        <references refid="classScatter_1a7e999bf6e27f081c972cbab58d86c301" compoundref="Scatter_8cpp" startline="2681" endline="2715">calculer_nb_items_virtuels</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" compoundref="Scatter_8cpp" startline="70" endline="73">domaine</references>
+        <references refid="classSchema__Comm_1a516f48fb0494781b373d7b343388ed44" compoundref="Schema__Comm_8cpp" startline="387" endline="404">Schema_Comm::echange_taille_et_messages</references>
+        <references refid="classSchema__Comm_1a7dd8d56caee9c6759850bb7c38e31c8b" compoundref="Schema__Comm_8cpp" startline="440" endline="473">Schema_Comm::end_comm</references>
+        <references refid="classEntree_1abcd397cb0b99fbe7c6f01047d8cec89c" compoundref="Entree_8cpp" startline="246" endline="252">Entree::eof</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" compoundref="Process_8cpp" startline="410" endline="420">Process::Journal</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" compoundref="Process_8cpp" startline="103" endline="107">Process::nproc</references>
+        <references refid="classTRUSTArray_1ad31b52ddbe22d4c499c3400933e03561" compoundref="TRUSTArray_8tpp" startline="229" endline="233">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::ordonne_array</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <references refid="classSchema__Comm_1a85c05ef4688c20afa429264ebac8fdcf" compoundref="Schema__Comm_8cpp" startline="510" endline="522">Schema_Comm::recv_buffer</references>
+        <references refid="classJoint__Items__32__64_1a47a0ee2bd28e3b26aaf9b165c211a210" compoundref="Joint__Items_8cpp" startline="119" endline="123">Joint_Items_32_64&lt; _SIZE_ &gt;::renum_items_communs</references>
+        <references refid="classSchema__Comm_1a681259723c5c1b85f419433de7aa78d7" compoundref="Schema__Comm_8cpp" startline="490" endline="503">Schema_Comm::send_buffer</references>
+        <references refid="classJoint__Items__32__64_1a950cec450e0941e6c575c34223406b30" compoundref="Joint__Items_8cpp" startline="77" endline="81">Joint_Items_32_64&lt; _SIZE_ &gt;::set_items_distants</references>
+        <references refid="classJoint__32__64_1a78f0910ce6b68b9f1132c421f30463d2" compoundref="Joint_8cpp" startline="103" endline="122">Joint_32_64&lt; _SIZE_ &gt;::set_joint_item</references>
+        <references refid="classSchema__Comm_1ad11c9b47999c294c26ae4df8d2bbd57b" compoundref="Schema__Comm_8cpp" startline="145" endline="157">Schema_Comm::set_send_recv_pe_list</references>
+        <references refid="classTRUST__Vector_1afae0a388de57f1ab2a0d9127f7c0a5f9" compoundref="TRUST__Vector_8h" startline="174" endline="174">TRUST_Vector&lt; _CLASSE_ &gt;::size</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a485135240a0e385f65365f7cb6fc257f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_espace_distant_aretes</definition>
+        <argsstring>(Domaine &amp;domaine, const int nb_aretes_reelles, const IntTab &amp;elem_aretes)</argsstring>
+        <name>calculer_espace_distant_aretes</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nb_aretes_reelles</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>elem_aretes</declname>
+        </param>
+        <briefdescription>
+<para>Idem que <ref refid="classScatter_1a9cbfa7bf4fe3b741a56309931f4cf752" kindref="member">Scatter::calculer_espace_distant_sommets</ref> pour les aretes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="54" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1193" bodyend="1205"/>
+        <references refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" compoundref="Scatter_8cpp" startline="70" endline="73">domaine</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a589c34e38a91b69c2e4b43c77bf2bd9d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_espace_distant_elements</definition>
+        <argsstring>(Domaine &amp;dom)</argsstring>
+        <name>calculer_espace_distant_elements</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+<para>Remplissage du tableau &quot;espace_distant()&quot; des elements dans les joints. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>C&apos;est ici qu&apos;on determine les elements de joint en fonction de l&apos;epaisseur de joint. Le tableau espace_distant contient les indices locaux des elements distants (a envoyer aux processeurs voisins) Pour un joint d&apos;epaisseur 1, ce sont tous les elements voisins d&apos;un sommet de joint (sommet sur un face de joint ou sommet isole). Pour un joint d&apos;epaisseur n&gt;1, ce sont tous les elements voisins d&apos;un sommet d&apos;un element du joint d&apos;epaisseur n-1. Le voisinage s&apos;entend sur le domaine global (toutes domaines confondues) Historique: premiere version B.Mathieu le 16/01/2007. Il existe une methode qui determine les elements distants au moment du decoupage (DomaineCutter::construire_elements_distants_ssdom). La methode ci-dessous a ete validee par comparaison avec la methode du decoupeur. Les sorties ont ete verifiees pour des epaisseurs jusqu&apos;a 5 sur des maillages tetra. La difficulte de l&apos;algorithme est d&apos;obtenir les elements virtuels d&apos;epaisseur &gt; 1 qui se trouvent sur des sous-domaines qui ne sont pas en contact direct avec le sous-domaine local. Difficulte resolue par l&apos;algorithme ci-dessous. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="56" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2054" bodyend="2324"/>
+        <references refid="classJoint__32__64_1abe72b17c9de93294dc7a18bccade4f1e" compoundref="Joint_8h" startline="52" endline="52">Joint_32_64&lt; _SIZE_ &gt;::epaisseur</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classDomaine__32__64_1ae97b13c98fc789afec5b2c9594f0525a" compoundref="Domaine_8h" startline="257" endline="257">Domaine_32_64&lt; _SIZE_ &gt;::joint</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" compoundref="Process_8cpp" startline="193" endline="193">Process::mp_max</references>
+        <references refid="classDomaine__32__64_1a867846f34c5411d6ea0b4138c81325d4" compoundref="Domaine_8h" startline="255" endline="255">Domaine_32_64&lt; _SIZE_ &gt;::nb_joints</references>
+        <references refid="classDomaine__32__64_1ae7be1a7efe0526d124745c0c5238f0a2" compoundref="Domaine_8h" startline="118" endline="118">Domaine_32_64&lt; _SIZE_ &gt;::nb_som</references>
+        <references refid="classDomaine__32__64_1a321db5cc41805b9d47322b90004e7551" compoundref="Domaine_8h" startline="467" endline="467">Domaine_32_64&lt; _SIZE_ &gt;::nb_som_elem</references>
+        <references refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" compoundref="Process_8cpp" startline="103" endline="107">Process::nproc</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <referencedby refid="classScatter_1af6b88297583bd92c6ca3814bc532b8be" compoundref="Scatter_8cpp" startline="664" endline="698">construire_structures_paralleles</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1ac60c16cdba0c132b53c80288ae71f258" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_espace_distant_faces</definition>
+        <argsstring>(Domaine &amp;domaine, const int nb_faces_reelles, const IntTab &amp;elem_faces)</argsstring>
+        <name>calculer_espace_distant_faces</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>domaine</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>nb_faces_reelles</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>elem_faces</declname>
+        </param>
+        <briefdescription>
+<para>Idem que <ref refid="classScatter_1a9cbfa7bf4fe3b741a56309931f4cf752" kindref="member">Scatter::calculer_espace_distant_sommets</ref> pour les faces. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="53" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1174" bodyend="1188"/>
+        <references refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" compoundref="Scatter_8cpp" startline="70" endline="73">domaine</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a9cbfa7bf4fe3b741a56309931f4cf752" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_espace_distant_sommets</definition>
+        <argsstring>(Domaine &amp;dom, const Noms &amp;liste_bords_periodiques)</argsstring>
+        <name>calculer_espace_distant_sommets</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>liste_bords_periodiques</declname>
+          <defname>liste_bords_perio</defname>
+        </param>
+        <briefdescription>
+<para>En fonction de l&apos;espace distant des elements, calcule l&apos;espace distant des sommets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pour chaque joint, on envoie au processeur voisin l&apos;ensemble des sommets de tous les elements du joint. C&apos;est le processeur proprietaire du sommet (plus petit pe qui le possede) qui le met dans son espace distant. Attention, on cree de nouveaux joints. On remplit les tableaux dom.faces_joint(i).joint_item(JOINT_ITEM::SOMMET).items_distants(); </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="59" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1149" bodyend="1169"/>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1ae7be1a7efe0526d124745c0c5238f0a2" compoundref="Domaine_8h" startline="118" endline="118">Domaine_32_64&lt; _SIZE_ &gt;::nb_som</references>
+        <references refid="classReordonner__faces__periodiques__32__64_1a5a176f8896d233757b57ce5c9c3c4d03" compoundref="Reordonner__faces__periodiques_8cpp" startline="326" endline="416">Reordonner_faces_periodiques_32_64&lt; _SIZE_ &gt;::renum_som_perio</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a7e999bf6e27f081c972cbab58d86c301" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_nb_items_virtuels</definition>
+        <argsstring>(Joints &amp;joints, const JOINT_ITEM type_item)</argsstring>
+        <name>calculer_nb_items_virtuels</name>
+        <param>
+          <type><ref refid="classJoints__32__64" kindref="compound">Joints</ref> &amp;</type>
+          <declname>joints</declname>
+        </param>
+        <param>
+          <type>const JOINT_ITEM</type>
+          <declname>type_item</declname>
+        </param>
+        <briefdescription>
+<para>Pour un item geometrique &quot;type_item&quot;, remplit le champ nb_items_virtuels_ des joints en fonction du nombre d&apos;items distants : </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Le nombre d&apos;items virtuels sur un joint i du processeur j est le nombre d&apos;items distants du joint j sur le processeur i. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="49" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2681" bodyend="2715"/>
+        <references refid="classSchema__Comm_1ac574385d716aca94a48373ab71f37e4f" compoundref="Schema__Comm_8cpp" startline="167" endline="178">Schema_Comm::begin_comm</references>
+        <references refid="classSchema__Comm_1a516f48fb0494781b373d7b343388ed44" compoundref="Schema__Comm_8cpp" startline="387" endline="404">Schema_Comm::echange_taille_et_messages</references>
+        <references refid="classSchema__Comm_1a7dd8d56caee9c6759850bb7c38e31c8b" compoundref="Schema__Comm_8cpp" startline="440" endline="473">Schema_Comm::end_comm</references>
+        <references refid="classJoint__Items__32__64_1a88e61ae290fdc0fb002bc7343462ae0f" compoundref="Joint__Items_8cpp" startline="64" endline="68">Joint_Items_32_64&lt; _SIZE_ &gt;::items_distants</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <references refid="classSchema__Comm_1a85c05ef4688c20afa429264ebac8fdcf" compoundref="Schema__Comm_8cpp" startline="510" endline="522">Schema_Comm::recv_buffer</references>
+        <references refid="classSchema__Comm_1a681259723c5c1b85f419433de7aa78d7" compoundref="Schema__Comm_8cpp" startline="490" endline="503">Schema_Comm::send_buffer</references>
+        <references refid="classJoint__32__64_1a78f0910ce6b68b9f1132c421f30463d2" compoundref="Joint_8cpp" startline="103" endline="122">Joint_32_64&lt; _SIZE_ &gt;::set_joint_item</references>
+        <references refid="classJoint__Items__32__64_1a7f228c4e479e331196593e1e3d335b32" compoundref="Joint__Items_8cpp" startline="87" endline="91">Joint_Items_32_64&lt; _SIZE_ &gt;::set_nb_items_virtuels</references>
+        <references refid="classSchema__Comm_1ad11c9b47999c294c26ae4df8d2bbd57b" compoundref="Schema__Comm_8cpp" startline="145" endline="157">Schema_Comm::set_send_recv_pe_list</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <referencedby refid="classScatter_1a65e894d65871c07654f66115ac31477b" compoundref="Scatter_8cpp" startline="811" endline="1001">calculer_espace_distant</referencedby>
+        <referencedby refid="classScatter_1af6b88297583bd92c6ca3814bc532b8be" compoundref="Scatter_8cpp" startline="664" endline="698">construire_structures_paralleles</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a924bcc00c468bc4225187e04b7118993" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::calculer_renum_items_communs</definition>
+        <argsstring>(Joints &amp;joints, const JOINT_ITEM type_item)</argsstring>
+        <name>calculer_renum_items_communs</name>
+        <param>
+          <type><ref refid="classJoints__32__64" kindref="compound">Joints</ref> &amp;</type>
+          <declname>joints</declname>
+        </param>
+        <param>
+          <type>const JOINT_ITEM</type>
+          <declname>type_item</declname>
+        </param>
+        <briefdescription>
+<para>On suppose que chaque joint[i]. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>joint_item(type_item).items_communs() contient les indices locaux des items de joint communs dans le meme ordre sur les deux processeurs (local et voisin) On remplit renum_items_communs : colonne 0=contenu du tableau items_communs sur le PE voisin colonne 1=contenu du tableau items_communs sur le PE local </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="52" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1216" bodyend="1268"/>
+        <references refid="classSchema__Comm_1ac574385d716aca94a48373ab71f37e4f" compoundref="Schema__Comm_8cpp" startline="167" endline="178">Schema_Comm::begin_comm</references>
+        <references refid="classSchema__Comm_1a516f48fb0494781b373d7b343388ed44" compoundref="Schema__Comm_8cpp" startline="387" endline="404">Schema_Comm::echange_taille_et_messages</references>
+        <references refid="classSchema__Comm_1a7dd8d56caee9c6759850bb7c38e31c8b" compoundref="Schema__Comm_8cpp" startline="440" endline="473">Schema_Comm::end_comm</references>
+        <references refid="classJoint__Items__32__64_1a09da7672d59853791f60bf60395b5e3e" compoundref="Joint__Items_8h" startline="46" endline="46">Joint_Items_32_64&lt; _SIZE_ &gt;::items_communs</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <references refid="classSchema__Comm_1a85c05ef4688c20afa429264ebac8fdcf" compoundref="Schema__Comm_8cpp" startline="510" endline="522">Schema_Comm::recv_buffer</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classSchema__Comm_1a681259723c5c1b85f419433de7aa78d7" compoundref="Schema__Comm_8cpp" startline="490" endline="503">Schema_Comm::send_buffer</references>
+        <references refid="classJoint__32__64_1a78f0910ce6b68b9f1132c421f30463d2" compoundref="Joint_8cpp" startline="103" endline="122">Joint_32_64&lt; _SIZE_ &gt;::set_joint_item</references>
+        <references refid="classJoint__Items__32__64_1a6429cd48ecabbf6e8630067d4a66d240" compoundref="Joint__Items_8cpp" startline="109" endline="113">Joint_Items_32_64&lt; _SIZE_ &gt;::set_renum_items_communs</references>
+        <references refid="classSchema__Comm_1ad11c9b47999c294c26ae4df8d2bbd57b" compoundref="Schema__Comm_8cpp" startline="145" endline="157">Schema_Comm::set_send_recv_pe_list</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <referencedby refid="classDomaine__VF_1a7eb1e55707cae01d6d95fd2e28898de0" compoundref="Domaine__VF_8cpp" startline="252" endline="408">Domaine_VF::discretiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1aada60788a3a4fc02ad937d847ce5e4b5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::check_consistancy_remote_items</definition>
+        <argsstring>(Domaine &amp;dom, const ArrOfInt &amp;mergedDomaines)</argsstring>
+        <name>check_consistancy_remote_items</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>mergedDomaines</declname>
+        </param>
+        <briefdescription>
+<para>Merged domaines receive joints information from their neighbours to ensure that their common items (vertices) appear in the same order. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>If it&apos;s not the case, the merged domaine reorders its common items so that it matches the neighbour&apos;s order When 2 neighbouring domaines have each been merged, only the processor with the lowest rank proceeds to reordering </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="68" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="269" bodyend="386"/>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a16a9000e31ccecd2438c8f05e41cc302" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Scatter::Chercher_Correspondance</definition>
+        <argsstring>(const DoubleTab &amp;sommets1, const DoubleTab &amp;sommets2, ArrOfInt &amp;correspondance, const double epsilon)</argsstring>
+        <name>Chercher_Correspondance</name>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>sommets1</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>sommets2</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTArray" kindref="compound">ArrOfInt</ref> &amp;</type>
+          <declname>correspondance</declname>
+        </param>
+        <param>
+          <type>const double</type>
+          <declname>epsilon</declname>
+        </param>
+        <briefdescription>
+<para>Construit le tableau &quot;correspondance&quot; tel que Pour 0 &lt;= i &lt; sommets2. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>size_array(), Si sommet2(i) existe dans le tableau sommet1, alors sommets2(i, ...) == sommets1(correspondance[i], ...) Sinon correspondance[i] = -1 L&apos;egalite est verifiee a epsilon pres en absolu (soit abs(x1-x2)&lt;epsilon) L&apos;algorithme est generalement en n1*log(n1) + n2*log(n1) (recherche basee sur un quicksort). En cas d&apos;echec du tri, on utilise un algorithme en n1*n2. Les tableaux sommets1 et sommets2 doivent etre de dimension 2 Le tableau correspondance doit etre de taille sommets2.size_array(). Valeur de retour: nombre de sommets de sommets2 non trouves dans le tableau sommets1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="35" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2363" bodyend="2471"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" compoundref="Process_8cpp" startline="410" endline="420">Process::Journal</references>
+        <references refid="classTRUSTTab_1a829be3686b4cf6f076d1dc92870e18f9" compoundref="TRUSTTab_8h" startline="200" endline="200">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::nb_dim</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1af0366be1296df4b36c5f5d479f3dab13" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_correspondance_aretes_par_coordonnees</definition>
+        <argsstring>(Domaine_VF &amp;zvf)</argsstring>
+        <name>construire_correspondance_aretes_par_coordonnees</name>
+        <param>
+          <type><ref refid="classDomaine__VF" kindref="compound">Domaine_VF</ref> &amp;</type>
+          <declname>zvf</declname>
+        </param>
+        <briefdescription>
+<para>Construction des tableaux joint_item(JOINT_ITEM::ARETE). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>items_communs de tous les joints du domaine </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="37" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2670" bodyend="2673"/>
+        <references refid="classScatter_1a26e8e5fd6e178f89b4ebc4512c351fc1" compoundref="Scatter_8cpp" startline="2477" endline="2651">construire_correspondance_items_par_coordonnees</references>
+        <references refid="classDomaine__dis__base_1ad6c6511ebab85dea90d4d5320fee7ae2" compoundref="Domaine__dis__base_8h" startline="44" endline="44">Domaine_dis_base::domaine</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a26e8e5fd6e178f89b4ebc4512c351fc1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_correspondance_items_par_coordonnees</definition>
+        <argsstring>(Joints &amp;joints, const JOINT_ITEM type_item, const DoubleTab &amp;coord_items)</argsstring>
+        <name>construire_correspondance_items_par_coordonnees</name>
+        <param>
+          <type><ref refid="classJoints__32__64" kindref="compound">Joints</ref> &amp;</type>
+          <declname>joints</declname>
+        </param>
+        <param>
+          <type>const JOINT_ITEM</type>
+          <declname>type_item</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <declname>coord_items</declname>
+        </param>
+        <briefdescription>
+<para>Methode obsolete (utilisee avec l&apos;ancien decoupeur). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="38" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2477" bodyend="2651"/>
+        <referencedby refid="classScatter_1af0366be1296df4b36c5f5d479f3dab13" compoundref="Scatter_8cpp" startline="2670" endline="2673">construire_correspondance_aretes_par_coordonnees</referencedby>
+        <referencedby refid="classScatter_1acafac38fc2983e19398c403a9235bb4c" compoundref="Scatter_8cpp" startline="2659" endline="2662">construire_correspondance_sommets_par_coordonnees</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1acafac38fc2983e19398c403a9235bb4c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_correspondance_sommets_par_coordonnees</definition>
+        <argsstring>(Domaine &amp;dom)</argsstring>
+        <name>construire_correspondance_sommets_par_coordonnees</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+<para>Construction des tableaux joint_item(JOINT_ITEM::SOMMET). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>items_communs de tous les joints du domaine(0) du domaine dom </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="36" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2659" bodyend="2662"/>
+        <references refid="classScatter_1a26e8e5fd6e178f89b4ebc4512c351fc1" compoundref="Scatter_8cpp" startline="2477" endline="2651">construire_correspondance_items_par_coordonnees</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a33c68e7eff97ee92b457b50e8e3ad58d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_espace_virtuel_traduction</definition>
+        <argsstring>(const MD_Vector &amp;md_indice, const MD_Vector &amp;md_valeur, IntTab &amp;tableau, const int error_is_fatal=1)</argsstring>
+        <name>construire_espace_virtuel_traduction</name>
+        <param>
+          <type>const <ref refid="classMD__Vector" kindref="compound">MD_Vector</ref> &amp;</type>
+          <declname>md_indice</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classMD__Vector" kindref="compound">MD_Vector</ref> &amp;</type>
+          <declname>md_valeur</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <declname>tableau</declname>
+        </param>
+        <param>
+          <type>const int</type>
+          <declname>error_is_fatal</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+<para>Construit la structure items_communs + espaces virtuels d&apos;un tableau contenant des indices d&apos;items geometriques, indexe par un autre type d&apos;item geometrique. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Exemple: tableau indexe par md_indice, contenant des indices md_valeur: type_indice type_valeur exemple de tableau: element sommet domaine.les_elems() face sommet faces_sommets element face elem_faces face element faces_voisins element element ? element arete elem_aretes Nb_valeurs_max est le nombre d&apos;items reels de type &quot;type_valeur&quot;. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="60" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1618" bodyend="1662"/>
+        <references refid="classMD__Vector__tools_1a7d0d4c52b0d571c7254f58edc212bf63" compoundref="MD__Vector__tools_8cpp" startline="140" endline="204">MD_Vector_tools::creer_tableau_distribue</references>
+        <references refid="classTRUSTTab_1ab6a60d41799bf143fad6ff74c6bb7253" compoundref="TRUSTTab_8tpp" startline="160" endline="164">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension_tot</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classMD__Vector__base_1af2536595ffbfd034703cbc49e4d37b7f" compoundref="MD__Vector__base_8h" startline="40" endline="40">MD_Vector_base::get_nb_items_reels</references>
+        <references refid="classMD__Vector__base_1abb6438093dfd60b817caea07517659ef" compoundref="MD__Vector__base_8h" startline="41" endline="41">MD_Vector_base::get_nb_items_tot</references>
+        <references refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" compoundref="Process_8cpp" startline="114" endline="117">Process::is_sequential</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" compoundref="TRUSTTab_8tpp" startline="658" endline="670">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::set_md_vector</references>
+        <references refid="classMD__Vector_1a3d77c78aa347c9c1e31afe355399d817" compoundref="MD__Vector_8h" startline="68" endline="72">MD_Vector::valeur</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1aa0663543be90f421b1b034159f31a6eb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_md_vector</definition>
+        <argsstring>(const Domaine &amp;, int nb_items_reels, const JOINT_ITEM, MD_Vector &amp;)</argsstring>
+        <name>construire_md_vector</name>
+        <param>
+          <type>const <ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <defname>dom</defname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nb_items_reels</declname>
+        </param>
+        <param>
+          <type>const</type>
+          <declname>JOINT_ITEM</declname>
+          <defname>type_item</defname>
+        </param>
+        <param>
+          <type><ref refid="classMD__Vector" kindref="compound">MD_Vector</ref> &amp;</type>
+          <defname>md_vector</defname>
+        </param>
+        <briefdescription>
+<para>construction d&apos;un <ref refid="classMD__Vector__std" kindref="compound">MD_Vector_std</ref> a partir des informations de joint du domaine pour le type d&apos;item demande. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="66" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1273" bodyend="1375"/>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classMD__Vector_1a063644dd8ca62e707a2d059eedeb58a7" compoundref="MD__Vector_8cpp" startline="26" endline="32">MD_Vector::copy</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" compoundref="Process_8cpp" startline="114" endline="117">Process::is_sequential</references>
+        <references refid="classJoint__Items__32__64_1a09da7672d59853791f60bf60395b5e3e" compoundref="Joint__Items_8h" startline="46" endline="46">Joint_Items_32_64&lt; _SIZE_ &gt;::items_communs</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classJoint__Items__32__64_1a791e0233692dc6ec1effb2705c7a74e1" compoundref="Joint__Items_8cpp" startline="97" endline="101">Joint_Items_32_64&lt; _SIZE_ &gt;::nb_items_virtuels</references>
+        <references refid="classTRUSTArray_1ad1bd36a32ef2d67b0a3695b5d97ac0ab" compoundref="TRUSTArray_8tpp" startline="44" endline="54">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::resize_array</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <references refid="classArrOfBit__32__64_1a740d43c725f9336e7b48b3cef1b00b7c" compoundref="ArrOfBit_8h" startline="85" endline="94">ArrOfBit_32_64&lt; _SIZE_ &gt;::testsetbit</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1af6b88297583bd92c6ca3814bc532b8be" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::construire_structures_paralleles</definition>
+        <argsstring>(Domaine &amp;dom, const Noms &amp;liste_bords_perio)</argsstring>
+        <name>construire_structures_paralleles</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>liste_bords_perio</declname>
+          <defname>liste_bords_periodiques</defname>
+        </param>
+        <briefdescription>
+<para>Construction des structures paralleles du domaine et du domaine (determination des elements distants en fonction de l&apos;epaisseur de joint,. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>determination des sommets distants, creation des sommets et des elements virtuels) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="40" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="664" bodyend="698"/>
+        <references refid="classScatter_1a589c34e38a91b69c2e4b43c77bf2bd9d" compoundref="Scatter_8cpp" startline="2054" endline="2324">calculer_espace_distant_elements</references>
+        <references refid="classScatter_1a7e999bf6e27f081c972cbab58d86c301" compoundref="Scatter_8cpp" startline="2681" endline="2715">calculer_nb_items_virtuels</references>
+        <references refid="classScatter_1a07723d3697739057d469082a4c4a554f" compoundref="Scatter_8cpp" startline="1905" endline="2032">corriger_espace_distant_elements_perio</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" compoundref="TRUSTTab_8tpp" startline="658" endline="670">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::set_md_vector</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a07723d3697739057d469082a4c4a554f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::corriger_espace_distant_elements_perio</definition>
+        <argsstring>(Domaine &amp;dom, const Noms &amp;liste_bords_periodiques)</argsstring>
+        <name>corriger_espace_distant_elements_perio</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classNoms" kindref="compound">Noms</ref> &amp;</type>
+          <declname>liste_bords_periodiques</declname>
+        </param>
+        <briefdescription>
+<para>Les algorithmes actuels pour le periodique (assembleur P1B, OpDivElem P1B) ont besoin que pour chaque face virtuelle periodique, la face opposee soit. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>aussi virtuelle. Ceci n&apos;est pas assure a la sortie de la methode calculer_elements_distants. Cette methode ajoute aux elements distants les elements manquants pour assurer cette condition: Si un element est distant pour un PE donne est voisin d&apos;une face periodique, on ajoute a l&apos;espace distant l&apos;element adjacent a la face opposee. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="57" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1905" bodyend="2032"/>
+        <references refid="classDomaine__32__64_1abbec7bb077dea79ec316a7248308028e" compoundref="Domaine_8h" startline="190" endline="190">Domaine_32_64&lt; _SIZE_ &gt;::bord</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" compoundref="Process_8cpp" startline="85" endline="89">Process::je_suis_maitre</references>
+        <references refid="classDomaine__32__64_1ae97b13c98fc789afec5b2c9594f0525a" compoundref="Domaine_8h" startline="257" endline="257">Domaine_32_64&lt; _SIZE_ &gt;::joint</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classFrontiere__32__64_1abc6c71dfd30e5e1a58c60f7e8c64f202" compoundref="Frontiere_8cpp" startline="114" endline="117">Frontiere_32_64&lt; _SIZE_ &gt;::les_sommets_des_faces</references>
+        <references refid="classDomaine__32__64_1a92cccd83fdd182cb909d51ff9938eb1b" compoundref="Domaine_8h" startline="128" endline="128">Domaine_32_64&lt; _SIZE_ &gt;::nb_elem</references>
+        <references refid="classFrontiere__32__64_1aa7884654b521e9ff54f90af0f872550b" compoundref="Frontiere_8h" startline="59" endline="59">Frontiere_32_64&lt; _SIZE_ &gt;::nb_faces</references>
+        <references refid="classDomaine__32__64_1a867846f34c5411d6ea0b4138c81325d4" compoundref="Domaine_8h" startline="255" endline="255">Domaine_32_64&lt; _SIZE_ &gt;::nb_joints</references>
+        <references refid="classDomaine__32__64_1ae7be1a7efe0526d124745c0c5238f0a2" compoundref="Domaine_8h" startline="118" endline="118">Domaine_32_64&lt; _SIZE_ &gt;::nb_som</references>
+        <references refid="classJoint__32__64_1a78f0910ce6b68b9f1132c421f30463d2" compoundref="Joint_8cpp" startline="103" endline="122">Joint_32_64&lt; _SIZE_ &gt;::set_joint_item</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+        <referencedby refid="classScatter_1af6b88297583bd92c6ca3814bc532b8be" compoundref="Scatter_8cpp" startline="664" endline="698">construire_structures_paralleles</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a234264f0b60648fc3def26f2b4ab9da5" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _SIZE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>template void Scatter::init_sequential_domain</definition>
+        <argsstring>(Domaine_32_64&lt; _SIZE_ &gt; &amp;dom)</argsstring>
+        <name>init_sequential_domain</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt; &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+<para>Create parallel descriptors for the vertex and element arrays of the domain (necessary because <ref refid="classScatter" kindref="compound">Scatter</ref> is never invoked in sequential). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>In 64bit the corresponding number of items might be big. This is here the main justification for the need of the class <ref refid="classMD__Vector__seq" kindref="compound">MD_Vector_seq</ref> which unique useful argument is the total number of items (with type trustIdType). Alternative would have been to make all members of <ref refid="classMD__Vector__std" kindref="compound">MD_Vector_std</ref> compatible with trustIdType ... </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="72" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2725" bodyend="2734"/>
+        <references refid="classMD__Vector_1a063644dd8ca62e707a2d059eedeb58a7" compoundref="MD__Vector_8cpp" startline="26" endline="32">MD_Vector::copy</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" compoundref="TRUSTTab_8tpp" startline="658" endline="670">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::set_md_vector</references>
+        <referencedby refid="classRectify__Mesh_1a8c203962a7bfc43c8f7d0b2924f9510d" compoundref="Rectify__Mesh_8cpp" startline="89" endline="99">Rectify_Mesh::apply_2D</referencedby>
+        <referencedby refid="classRectify__Mesh_1ab020226abcc4add51b5ded14551c5b19" compoundref="Rectify__Mesh_8cpp" startline="102" endline="113">Rectify_Mesh::apply_3D</referencedby>
+        <referencedby refid="classScatter_1a44193a034786e01ad0b63f7b3a94374e" compoundref="Scatter_8cpp" startline="125" endline="260">interpreter</referencedby>
+        <referencedby refid="classCreate__domain__from__sub__domain_1a854ece2f27ee84433591b4e3172766df" compoundref="Create__domain__from__sub__domain_8cpp" startline="54" endline="192">Create_domain_from_sub_domain::interpreter_</referencedby>
+        <referencedby refid="classExtrudeBord_1a938ddff6b8500bfc2a78071aa0047858" compoundref="ExtrudeBord_8cpp" startline="41" endline="77">ExtrudeBord::interpreter_</referencedby>
+        <referencedby refid="classExtrudeParoi_1a59d2e4e690f0dc9c578fe12eea895c3c" compoundref="ExtrudeParoi_8cpp" startline="95" endline="112">ExtrudeParoi::interpreter_</referencedby>
+        <referencedby refid="classExtruder_1a088e8f5d8824951913cefa040ace095b" compoundref="Extruder_8cpp" startline="45" endline="58">Extruder::interpreter_</referencedby>
+        <referencedby refid="classExtruder__en20_1a67b1cefcd8b310e9342ce4993ef021d5" compoundref="Extruder__en20_8cpp" startline="45" endline="58">Extruder_en20::interpreter_</referencedby>
+        <referencedby refid="classExtruder__en3_1a85c3a08de7437921a4ddec6c0fa1add2" compoundref="Extruder__en3_8cpp" startline="51" endline="96">Extruder_en3::interpreter_</referencedby>
+        <referencedby refid="classMailler__32__64_1abb278f5a57fdf46000f932667970a159" compoundref="Mailler_8cpp" startline="70" endline="142">Mailler_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classPolyedriser__32__64_1ab314dce6573071c68964fee002c6cf95" compoundref="Polyedriser_8cpp" startline="247" endline="266">Polyedriser_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRaffiner__anisotrope__32__64_1a009f213f2312f4f3ff3ead08e0df3b94" compoundref="Raffiner__anisotrope_8cpp" startline="37" endline="58">Raffiner_anisotrope_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" compoundref="Remove__elem_8cpp" startline="52" endline="81">Remove_elem::interpreter_</referencedby>
+        <referencedby refid="classReorienter__tetraedres__32__64_1ab1cf3f76993200f7b28ad7032b1f3a16" compoundref="Reorienter__tetraedres_8cpp" startline="36" endline="51">Reorienter_tetraedres_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classReorienter__triangles__32__64_1afffa0223e54bc64560c7c061e8a219d6" compoundref="Reorienter__triangles_8cpp" startline="36" endline="51">Reorienter_triangles_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classTriangulation__base_1a3a1c2bec4097eff8ec82730a1817d439" compoundref="Triangulation__base_8cpp" startline="32" endline="51">Triangulation_base::interpreter_</referencedby>
+        <referencedby refid="classTroisDto2D__32__64_1a11b47eeb02e2b70c27565f575845a73a" compoundref="TroisDto2D_8cpp" startline="49" endline="104">TroisDto2D_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classVerifierCoin_1a30974e5bb0f3a074d8a0fd1b0cc532d9" compoundref="VerifierCoin_8cpp" startline="59" endline="292">VerifierCoin::interpreter_</referencedby>
+        <referencedby refid="classOrienter__Simplexes_1a47c1d04cd05f0794e97bbd19f0cfc446" compoundref="Orienter__Simplexes_8cpp" startline="254" endline="264">Orienter_Simplexes::interpreter_</referencedby>
+        <referencedby refid="classRaffiner__Simplexes__32__64_1a23f8aee5c531c981cd710f99e2db6610" compoundref="Raffiner__Simplexes_8cpp" startline="1070" endline="1082">Raffiner_Simplexes_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRemove__Invalid__Internal__Boundaries_1aed95b542105d2598595df7b340c55eab" compoundref="Remove__Invalid__Internal__Boundaries_8cpp" startline="31" endline="182">Remove_Invalid_Internal_Boundaries::interpreter_</referencedby>
+        <referencedby refid="classLireMED__32__64_1a0595c5dee8b0b56e4edf24595ccde1fd" compoundref="LireMED_8cpp" startline="889" endline="973">LireMED_32_64&lt; _SIZE_ &gt;::lire_geom</referencedby>
+        <referencedby refid="classNettoieNoeuds__32__64_1a361e496d106690905817cc1519ee4686" compoundref="NettoieNoeuds_8cpp" startline="62" endline="194">NettoieNoeuds_32_64&lt; _SIZE_ &gt;::nettoie</referencedby>
+        <referencedby refid="classDomaine__32__64_1a2dd201b4f29fb9f5376c88a30bf1428c" compoundref="Domaine_8cpp" startline="1478" endline="1651">Domaine_32_64&lt; _SIZE_ &gt;::reordering</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a0a86d55709f7e53fcf40a09de74033cf" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::reordonner_faces_de_joint</definition>
+        <argsstring>(Domaine &amp;dom)</argsstring>
+        <name>reordonner_faces_de_joint</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref> &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+<para>Reordonne les faces de joint de sorte qu&apos;elles apparaissent dans le meme ordre sur chaque couple de processeur voisin. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>En pratique, pour un couple pe1 &lt; pe2, pe1 envoie ses faces de joint a pe2 et pe2 les traduit en indices de sommets locaux. Les faces de joint du PE2 ne sont donc pas utilisees. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="62" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="1672" bodyend="1759"/>
+        <references refid="classTRUSTArray_1a3bbfcd5ab081affbdc18217c813fcba7" compoundref="TRUSTArray_8tpp" startline="217" endline="224">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::append_array</references>
+        <references refid="classSchema__Comm_1ac574385d716aca94a48373ab71f37e4f" compoundref="Schema__Comm_8cpp" startline="167" endline="178">Schema_Comm::begin_comm</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classSchema__Comm_1a516f48fb0494781b373d7b343388ed44" compoundref="Schema__Comm_8cpp" startline="387" endline="404">Schema_Comm::echange_taille_et_messages</references>
+        <references refid="classSchema__Comm_1a7dd8d56caee9c6759850bb7c38e31c8b" compoundref="Schema__Comm_8cpp" startline="440" endline="473">Schema_Comm::end_comm</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classFrontiere__32__64_1aaa9053c07ff7b75ba5c82baed8555155" compoundref="Frontiere_8h" startline="54" endline="54">Frontiere_32_64&lt; _SIZE_ &gt;::faces</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classTRUSTVect_1a96a3b255de1ffa32e594df41b0462458" compoundref="TRUSTVect_8h" startline="123" endline="123">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::get_md_vector</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classFaces__32__64_1a6b6f4efb2c85502a3cf5fa01adf97ed9" compoundref="Faces_8h" startline="74" endline="74">Faces_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" compoundref="Process_8cpp" startline="124" endline="128">Process::me</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <references refid="classSchema__Comm_1a85c05ef4688c20afa429264ebac8fdcf" compoundref="Schema__Comm_8cpp" startline="510" endline="522">Schema_Comm::recv_buffer</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classSchema__Comm_1a681259723c5c1b85f419433de7aa78d7" compoundref="Schema__Comm_8cpp" startline="490" endline="503">Schema_Comm::send_buffer</references>
+        <references refid="classSchema__Comm_1ad11c9b47999c294c26ae4df8d2bbd57b" compoundref="Schema__Comm_8cpp" startline="145" endline="157">Schema_Comm::set_send_recv_pe_list</references>
+        <references refid="classTRUSTArray_1a48b5aa02624ffdc0bad44ca38ddd1a1c" compoundref="TRUSTArray_8tpp" startline="188" endline="191">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::size_array</references>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1ac5dd6d7661490708649976cde509f480" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::trier_les_joints</definition>
+        <argsstring>(Joints &amp;joints)</argsstring>
+        <name>trier_les_joints</name>
+        <param>
+          <type><ref refid="classJoints__32__64" kindref="compound">Joints</ref> &amp;</type>
+          <declname>joints</declname>
+        </param>
+        <briefdescription>
+<para>Tri des joints dans l&apos;ordre croissant des processeurs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="65" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="703" bodyend="725"/>
+        <references refid="classTRUSTArray_1ad31b52ddbe22d4c499c3400933e03561" compoundref="TRUSTArray_8tpp" startline="229" endline="233">TRUSTArray&lt; _TYPE_, _SIZE_ &gt;::ordonne_array</references>
+        <referencedby refid="classScatter_1a1b2c7a40fca688aa4fdf0a2bcd911437" compoundref="Scatter_8cpp" startline="1020" endline="1056">ajouter_joints</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename _SIZE_</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>template void Scatter::uninit_sequential_domain</definition>
+        <argsstring>(Domaine_32_64&lt; _SIZE_ &gt; &amp;dom)</argsstring>
+        <name>uninit_sequential_domain</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine_32_64</ref>&lt; _SIZE_ &gt; &amp;</type>
+          <declname>dom</declname>
+        </param>
+        <briefdescription>
+<para>methode utilisee par les interpretes qui modifient le domaine (sequentiel), detruit les descripteurs des sommets et elements pour permettre la modification de ces tableaux. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="74" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="2740" bodyend="2745"/>
+        <references refid="classDomaine__32__64_1a8d4770d77b73b3580c52ea6271a48318" compoundref="Domaine_8h" startline="126" endline="126">Domaine_32_64&lt; _SIZE_ &gt;::les_elems</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classTRUSTTab_1a3d272aca2649619ed75298081b9e262f" compoundref="TRUSTTab_8tpp" startline="658" endline="670">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::set_md_vector</references>
+        <referencedby refid="classRectify__Mesh_1a8c203962a7bfc43c8f7d0b2924f9510d" compoundref="Rectify__Mesh_8cpp" startline="89" endline="99">Rectify_Mesh::apply_2D</referencedby>
+        <referencedby refid="classRefine__Mesh_1aec2b67e5695025548b7448c622e68d47" compoundref="Refine__Mesh_8cpp" startline="82" endline="121">Refine_Mesh::apply_2D</referencedby>
+        <referencedby refid="classRectify__Mesh_1ab020226abcc4add51b5ded14551c5b19" compoundref="Rectify__Mesh_8cpp" startline="102" endline="113">Rectify_Mesh::apply_3D</referencedby>
+        <referencedby refid="classRefine__Mesh_1a1577c6a55c20228a5a7e747d3c2ddce3" compoundref="Refine__Mesh_8cpp" startline="123" endline="162">Refine_Mesh::apply_3D</referencedby>
+        <referencedby refid="classDecouper__Bord__coincident_1abbebb701e5f63f798e0d80414b70b8f2" compoundref="Decouper__Bord__coincident_8cpp" startline="48" endline="256">Decouper_Bord_coincident::decouper_</referencedby>
+        <referencedby refid="classScatter_1a44193a034786e01ad0b63f7b3a94374e" compoundref="Scatter_8cpp" startline="125" endline="260">interpreter</referencedby>
+        <referencedby refid="classExtrudeParoi_1a59d2e4e690f0dc9c578fe12eea895c3c" compoundref="ExtrudeParoi_8cpp" startline="95" endline="112">ExtrudeParoi::interpreter_</referencedby>
+        <referencedby refid="classExtruder_1a088e8f5d8824951913cefa040ace095b" compoundref="Extruder_8cpp" startline="45" endline="58">Extruder::interpreter_</referencedby>
+        <referencedby refid="classExtruder__en20_1a67b1cefcd8b310e9342ce4993ef021d5" compoundref="Extruder__en20_8cpp" startline="45" endline="58">Extruder_en20::interpreter_</referencedby>
+        <referencedby refid="classExtruder__en3_1a85c3a08de7437921a4ddec6c0fa1add2" compoundref="Extruder__en3_8cpp" startline="51" endline="96">Extruder_en3::interpreter_</referencedby>
+        <referencedby refid="classMailler__32__64_1abb278f5a57fdf46000f932667970a159" compoundref="Mailler_8cpp" startline="70" endline="142">Mailler_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classPolyedriser__32__64_1ab314dce6573071c68964fee002c6cf95" compoundref="Polyedriser_8cpp" startline="247" endline="266">Polyedriser_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRaffiner__anisotrope__32__64_1a009f213f2312f4f3ff3ead08e0df3b94" compoundref="Raffiner__anisotrope_8cpp" startline="37" endline="58">Raffiner_anisotrope_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRemove__elem_1a7cb13421516743a6b8b08ca2e4d0de1d" compoundref="Remove__elem_8cpp" startline="52" endline="81">Remove_elem::interpreter_</referencedby>
+        <referencedby refid="classReorienter__tetraedres__32__64_1ab1cf3f76993200f7b28ad7032b1f3a16" compoundref="Reorienter__tetraedres_8cpp" startline="36" endline="51">Reorienter_tetraedres_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classReorienter__triangles__32__64_1afffa0223e54bc64560c7c061e8a219d6" compoundref="Reorienter__triangles_8cpp" startline="36" endline="51">Reorienter_triangles_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classTriangulation__base_1a3a1c2bec4097eff8ec82730a1817d439" compoundref="Triangulation__base_8cpp" startline="32" endline="51">Triangulation_base::interpreter_</referencedby>
+        <referencedby refid="classTroisDto2D__32__64_1a11b47eeb02e2b70c27565f575845a73a" compoundref="TroisDto2D_8cpp" startline="49" endline="104">TroisDto2D_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classVerifierCoin_1a30974e5bb0f3a074d8a0fd1b0cc532d9" compoundref="VerifierCoin_8cpp" startline="59" endline="292">VerifierCoin::interpreter_</referencedby>
+        <referencedby refid="classOrienter__Simplexes_1a47c1d04cd05f0794e97bbd19f0cfc446" compoundref="Orienter__Simplexes_8cpp" startline="254" endline="264">Orienter_Simplexes::interpreter_</referencedby>
+        <referencedby refid="classRaffiner__Simplexes__32__64_1a23f8aee5c531c981cd710f99e2db6610" compoundref="Raffiner__Simplexes_8cpp" startline="1070" endline="1082">Raffiner_Simplexes_32_64&lt; _SIZE_ &gt;::interpreter_</referencedby>
+        <referencedby refid="classRemove__Invalid__Internal__Boundaries_1aed95b542105d2598595df7b340c55eab" compoundref="Remove__Invalid__Internal__Boundaries_8cpp" startline="31" endline="182">Remove_Invalid_Internal_Boundaries::interpreter_</referencedby>
+        <referencedby refid="classLireMED__32__64_1a0595c5dee8b0b56e4edf24595ccde1fd" compoundref="LireMED_8cpp" startline="889" endline="973">LireMED_32_64&lt; _SIZE_ &gt;::lire_geom</referencedby>
+        <referencedby refid="classNettoieNoeuds__32__64_1a361e496d106690905817cc1519ee4686" compoundref="NettoieNoeuds_8cpp" startline="62" endline="194">NettoieNoeuds_32_64&lt; _SIZE_ &gt;::nettoie</referencedby>
+        <referencedby refid="classScatter_1a57e0ee541329893774d15b2cfde8f7ad" compoundref="Scatter_8cpp" startline="393" endline="461">read_domain_no_comm</referencedby>
+        <referencedby refid="classTransformer__32__64_1aa2af191d074dc991e5c747a51ba1bb3c" compoundref="Transformer_8cpp" startline="122" endline="158">Transformer_32_64&lt; _SIZE_ &gt;::transformation_complete</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classScatter_1a863fffd4bb408474f5206b9e1f1b8079" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Scatter::OBS_PTR</definition>
+        <argsstring>(Domaine) le_domaine</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classDomaine__32__64" kindref="compound">Domaine</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="78" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classScatter_1a57e0ee541329893774d15b2cfde8f7ad" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Scatter::read_domain_no_comm</definition>
+        <argsstring>(Entree &amp;fic)</argsstring>
+        <name>read_domain_no_comm</name>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>fic</declname>
+        </param>
+        <briefdescription>
+<para>Does the exact same thing as the readOn of the class Domaine but without collective communication. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Necessary when the processors don&apos;t have the same numbers of file to read </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="80" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.cpp" bodystart="393" bodyend="461"/>
+        <references refid="classDomaine__32__64_1ae7e23dd8abe3f4594caf2eaa55d4152c" compoundref="Domaine_8cpp" startline="857" endline="866">Domaine_32_64&lt; _SIZE_ &gt;::ajouter</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classDomaine__32__64_1a08ebf8e767e9748b930f64915dbdfd78" compoundref="Domaine_8h" startline="261" endline="261">Domaine_32_64&lt; _SIZE_ &gt;::faces_joint</references>
+        <references refid="classJoint__32__64_1a436ef076eb70d891cd549e1b0e2986e9" compoundref="Joint_8cpp" startline="128" endline="147">Joint_32_64&lt; _SIZE_ &gt;::joint_item</references>
+        <references refid="classDomaine__32__64_1a586e7cadea561e6c4b7553acf994ac6a" compoundref="Domaine_8h" startline="110" endline="110">Domaine_32_64&lt; _SIZE_ &gt;::les_sommets</references>
+        <references refid="classDomaine__32__64_1a96722a1630524b52ecc912eb0b39a863" compoundref="Domaine_8cpp" startline="1179" endline="1221">Domaine_32_64&lt; _SIZE_ &gt;::merge_wo_vertices_with</references>
+        <references refid="classDomaine__32__64_1a92cccd83fdd182cb909d51ff9938eb1b" compoundref="Domaine_8h" startline="128" endline="128">Domaine_32_64&lt; _SIZE_ &gt;::nb_elem</references>
+        <references refid="classDomaine__32__64_1a867846f34c5411d6ea0b4138c81325d4" compoundref="Domaine_8h" startline="255" endline="255">Domaine_32_64&lt; _SIZE_ &gt;::nb_joints</references>
+        <references refid="classJoint__32__64_1ae57179453e83e1f568ba24e03f2495a1" compoundref="Joint_8h" startline="51" endline="51">Joint_32_64&lt; _SIZE_ &gt;::PEvoisin</references>
+        <references refid="classDomaine__32__64_1ad486958c7d5675cb1db9541feb57dec7" compoundref="Domaine_8cpp" startline="237" endline="262">Domaine_32_64&lt; _SIZE_ &gt;::read_former_domaine</references>
+        <references refid="classDomaine__32__64_1aab4111f093fa2859d386be52909190b6" compoundref="Domaine_8cpp" startline="958" endline="970">Domaine_32_64&lt; _SIZE_ &gt;::read_vertices</references>
+        <references refid="classDomaine__32__64_1aa17789508a4f578e21a040c7777c0162" compoundref="Domaine_8cpp" startline="2298" endline="2317">Domaine_32_64&lt; _SIZE_ &gt;::renum</references>
+        <references refid="classDomaine__32__64_1ad77b78a7015b4c342745d0c817be091c" compoundref="Domaine_8cpp" startline="1661" endline="1672">Domaine_32_64&lt; _SIZE_ &gt;::renum_joint_common_items</references>
+        <references refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" compoundref="Scatter_8cpp" startline="2740" endline="2745">uninit_sequential_domain</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>ScatterMED</label>
+        <link refid="classScatterMED"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Scatter</label>
+        <link refid="classScatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Scatter</label>
+        <link refid="classScatter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Interprete</label>
+        <link refid="classInterprete"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="4">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" line="27" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Geometrie/Scatter.h" bodystart="28" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Scatter</scope><name>abort</name></member>
+      <member refid="classScatter_1a1b2c7a40fca688aa4fdf0a2bcd911437" prot="public" virt="non-virtual"><scope>Scatter</scope><name>ajouter_joints</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Scatter</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Scatter</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Scatter</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Scatter</scope><name>bidim_axi</name></member>
+      <member refid="classScatter_1a65e894d65871c07654f66115ac31477b" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_espace_distant</name></member>
+      <member refid="classScatter_1a485135240a0e385f65365f7cb6fc257f" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_espace_distant_aretes</name></member>
+      <member refid="classScatter_1a589c34e38a91b69c2e4b43c77bf2bd9d" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_espace_distant_elements</name></member>
+      <member refid="classScatter_1ac60c16cdba0c132b53c80288ae71f258" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_espace_distant_faces</name></member>
+      <member refid="classScatter_1a9cbfa7bf4fe3b741a56309931f4cf752" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_espace_distant_sommets</name></member>
+      <member refid="classScatter_1a7e999bf6e27f081c972cbab58d86c301" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_nb_items_virtuels</name></member>
+      <member refid="classScatter_1a924bcc00c468bc4225187e04b7118993" prot="public" virt="non-virtual"><scope>Scatter</scope><name>calculer_renum_items_communs</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Scatter</scope><name>change_num</name></member>
+      <member refid="classScatter_1aada60788a3a4fc02ad937d847ce5e4b5" prot="public" virt="non-virtual"><scope>Scatter</scope><name>check_consistancy_remote_items</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Scatter</scope><name>check_int_overflow</name></member>
+      <member refid="classScatter_1a16a9000e31ccecd2438c8f05e41cc302" prot="public" virt="non-virtual"><scope>Scatter</scope><name>Chercher_Correspondance</name></member>
+      <member refid="classScatter_1af0366be1296df4b36c5f5d479f3dab13" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_correspondance_aretes_par_coordonnees</name></member>
+      <member refid="classScatter_1a26e8e5fd6e178f89b4ebc4512c351fc1" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_correspondance_items_par_coordonnees</name></member>
+      <member refid="classScatter_1acafac38fc2983e19398c403a9235bb4c" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_correspondance_sommets_par_coordonnees</name></member>
+      <member refid="classScatter_1a33c68e7eff97ee92b457b50e8e3ad58d" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_espace_virtuel_traduction</name></member>
+      <member refid="classScatter_1aa0663543be90f421b1b034159f31a6eb" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_md_vector</name></member>
+      <member refid="classScatter_1af6b88297583bd92c6ca3814bc532b8be" prot="public" virt="non-virtual"><scope>Scatter</scope><name>construire_structures_paralleles</name></member>
+      <member refid="classScatter_1a07723d3697739057d469082a4c4a554f" prot="public" virt="non-virtual"><scope>Scatter</scope><name>corriger_espace_distant_elements_perio</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Scatter</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classScatter_1a9e2d095831e38ddd03803e36d721b43e" prot="private" virt="non-virtual"><scope>Scatter</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Scatter</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Scatter</scope><name>disable_TU</name></member>
+      <member refid="classScatter_1ac33aacdb609dcc870faeb93500ed017f" prot="public" virt="non-virtual"><scope>Scatter</scope><name>domaine</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Scatter</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Scatter</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Scatter</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Scatter</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Scatter</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Scatter</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Scatter</scope><name>format_precision_geom</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Scatter</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Scatter</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Scatter</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Scatter</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Scatter</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Scatter</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Scatter</scope><name>info_obj</name></member>
+      <member refid="classScatter_1a234264f0b60648fc3def26f2b4ab9da5" prot="public" virt="non-virtual"><scope>Scatter</scope><name>init_sequential_domain</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Scatter</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Scatter</scope><name>interprete</name></member>
+      <member refid="classScatter_1a44193a034786e01ad0b63f7b3a94374e" prot="public" virt="virtual"><scope>Scatter</scope><name>interpreter</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Scatter</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Scatter</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Scatter</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Scatter</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Scatter</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Scatter</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Scatter</scope><name>le_type</name></member>
+      <member refid="classScatter_1a0c740e8b05e31947a4f49d630f1302ec" prot="public" virt="virtual"><scope>Scatter</scope><name>lire_domaine</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Scatter</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Scatter</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Scatter</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Scatter</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Scatter</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Scatter</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Scatter</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Scatter</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Scatter</scope><name>numero</name></member>
+      <member refid="classInterprete_1a3ca248609f0b72eac68baca14621b4ee" prot="public" virt="non-virtual"><scope>Scatter</scope><name>objet</name></member>
+      <member refid="classInterprete_1ae5b09c3b61cd8b789437a0822a26a573" prot="public" virt="non-virtual"><scope>Scatter</scope><name>objet_existant</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Scatter</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Scatter</scope><name>Objet_U</name></member>
+      <member refid="classScatter_1a863fffd4bb408474f5206b9e1f1b8079" prot="protected" virt="non-virtual"><scope>Scatter</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Scatter</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Scatter</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Scatter</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Scatter</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Scatter</scope><name>ram_processeur</name></member>
+      <member refid="classScatter_1a57e0ee541329893774d15b2cfde8f7ad" prot="protected" virt="non-virtual"><scope>Scatter</scope><name>read_domain_no_comm</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Scatter</scope><name>readOn</name></member>
+      <member refid="classScatter_1a0a86d55709f7e53fcf40a09de74033cf" prot="public" virt="non-virtual"><scope>Scatter</scope><name>reordonner_faces_de_joint</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Scatter</scope><name>reprendre</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Scatter</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Scatter</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Scatter</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Scatter</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Scatter</scope><name>taille_memoire</name></member>
+      <member refid="classScatter_1ac5dd6d7661490708649976cde509f480" prot="public" virt="non-virtual"><scope>Scatter</scope><name>trier_les_joints</name></member>
+      <member refid="classScatter_1aec2d2e44a9cd80f85b6d1615bfdfe8b1" prot="public" virt="non-virtual"><scope>Scatter</scope><name>uninit_sequential_domain</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Scatter</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Scatter</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

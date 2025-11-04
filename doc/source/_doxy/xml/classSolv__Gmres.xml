@@ -1,0 +1,530 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSolv__Gmres" kind="class" language="C++" prot="public">
+    <compoundname>Solv_Gmres</compoundname>
+    <basecompoundref refid="classsolv__iteratif" prot="public" virt="non-virtual">solv_iteratif</basecompoundref>
+    <includes local="no">Solv_Gmres.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classSolv__Gmres_1a519c842fff83508aac53ba5d9254b044" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Solv_Gmres::controle_residu_</definition>
+        <argsstring></argsstring>
+        <name>controle_residu_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="48" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+        <referencedby refid="classSolv__Gmres_1afec9f36039cc8aaf3d850d71f8afc8bc" compoundref="Solv__Gmres_8cpp" startline="62" endline="73">set_param</referencedby>
+        <referencedby refid="classSolv__Gmres_1a33ea3691006e0e9ea8bbd4ee647c016c" compoundref="Solv__Gmres_8cpp" startline="28" endline="34">Solv_Gmres</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gmres_1a8ce3f65b858c50f0064ea8bc421d5749" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Solv_Gmres::dim_espace_Krilov_</definition>
+        <argsstring></argsstring>
+        <name>dim_espace_Krilov_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="48" column="35" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+        <referencedby refid="classSolv__Gmres_1afec9f36039cc8aaf3d850d71f8afc8bc" compoundref="Solv__Gmres_8cpp" startline="62" endline="73">set_param</referencedby>
+        <referencedby refid="classSolv__Gmres_1a33ea3691006e0e9ea8bbd4ee647c016c" compoundref="Solv__Gmres_8cpp" startline="28" endline="34">Solv_Gmres</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gmres_1abeda68a02de217ff696b91704781e0d5" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Solv_Gmres::is_local_gmres</definition>
+        <argsstring></argsstring>
+        <name>is_local_gmres</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+        <referencedby refid="classSolv__Gmres_1aaa379f892b5e5360fd7f0bf5245fc1c7" compoundref="Solv__Gmres_8cpp" startline="75" endline="94">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gmres_1a2e84b20ee812948e94ab7a9968566f7f" prot="protected" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Solv_Gmres::nb_it_max_</definition>
+        <argsstring></argsstring>
+        <name>nb_it_max_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="48" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+        <referencedby refid="classSolv__Gmres_1afec9f36039cc8aaf3d850d71f8afc8bc" compoundref="Solv__Gmres_8cpp" startline="62" endline="73">set_param</referencedby>
+        <referencedby refid="classSolv__Gmres_1a33ea3691006e0e9ea8bbd4ee647c016c" compoundref="Solv__Gmres_8cpp" startline="28" endline="34">Solv_Gmres</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gmres_1a89fb74160e06a22a69ad62a52f0063bd" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Solv_Gmres::precond_diag</definition>
+        <argsstring></argsstring>
+        <name>precond_diag</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="47" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+        <referencedby refid="classSolv__Gmres_1aaa379f892b5e5360fd7f0bf5245fc1c7" compoundref="Solv__Gmres_8cpp" startline="75" endline="94">lire_motcle_non_standard</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classSolv__Gmres_1a6db39cc32c009a61ebb692859d650c6b" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUST__Vector" kindref="compound">DoubleVects</ref></type>
+        <definition>DoubleVects Solv_Gmres::v</definition>
+        <argsstring></argsstring>
+        <name>v</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="45" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSolv__Gmres_1a7bfe5cf009a86628c648aae49aae5b76" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gmres::Declare_instanciable_sans_constructeur</definition>
+        <argsstring>(Solv_Gmres)</argsstring>
+        <name>Declare_instanciable_sans_constructeur</name>
+        <param>
+          <type><ref refid="classSolv__Gmres" kindref="compound">Solv_Gmres</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="28" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSolv__Gmres_1a10a94433b9e44da73d1c6aa137329f99" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gmres::resoudre_systeme</definition>
+        <argsstring>(const Matrice_Base &amp;, const DoubleVect &amp;, DoubleVect &amp;) override</argsstring>
+        <name>resoudre_systeme</name>
+        <reimplements refid="classSolveurSys__base_1a7c520c3aa574c8be3d3f27d4f700eac2">resoudre_systeme</reimplements>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <defname>la_matrice</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>secmem</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>solution</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.cpp" bodystart="98" bodyend="144"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classMatrice__Bloc_1a76a5691fecfea8b4dd877d2c449a7f21" compoundref="Matrice__Bloc_8cpp" startline="601" endline="618">Matrice_Bloc::get_bloc</references>
+        <references refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" compoundref="Solv__Gmres_8cpp" startline="357" endline="365">Gmres</references>
+        <references refid="classProcess_1a48ea49c199fc8961be575e571038b79a" compoundref="Process_8cpp" startline="109" endline="112">Process::is_parallel</references>
+        <references refid="classMatrice__Base_1a91c98b86a0bdce6ccc483dd453ef9ab2" compoundref="Matrice__Base_8h" startline="103" endline="108">Matrice_Base::multvect</references>
+        <references refid="classMatrice__Bloc_1a1fdaccddd2a2be35fc171e76801bebd2" compoundref="Matrice__Bloc_8cpp" startline="657" endline="660">Matrice_Bloc::nb_bloc_lignes</references>
+        <referencedby refid="classSolv__Gmres_1a7451d17c06923a002f9823de14e8f59c" compoundref="Solv__Gmres_8h" startline="34" endline="37">resoudre_systeme</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gmres_1a7451d17c06923a002f9823de14e8f59c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gmres::resoudre_systeme</definition>
+        <argsstring>(const Matrice_Base &amp;M, const DoubleVect &amp;A, DoubleVect &amp;B, int niter_max) override</argsstring>
+        <name>resoudre_systeme</name>
+        <reimplements refid="classSolveurSys__base_1a8c42bf5160d595afada02074ccc7f91e">resoudre_systeme</reimplements>
+        <param>
+          <type>const <ref refid="classMatrice__Base" kindref="compound">Matrice_Base</ref> &amp;</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>niter_max</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="34" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="34" bodyend="37"/>
+        <references refid="classSolv__Gmres_1a10a94433b9e44da73d1c6aa137329f99" compoundref="Solv__Gmres_8cpp" startline="98" endline="144">resoudre_systeme</references>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gmres_1a33ea3691006e0e9ea8bbd4ee647c016c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Solv_Gmres::Solv_Gmres</definition>
+        <argsstring>()</argsstring>
+        <name>Solv_Gmres</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="32" column="3" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.cpp" bodystart="28" bodyend="34"/>
+        <references refid="classSolv__Gmres_1a519c842fff83508aac53ba5d9254b044" compoundref="Solv__Gmres_8h" startline="48">controle_residu_</references>
+        <references refid="classSolv__Gmres_1a8ce3f65b858c50f0064ea8bc421d5749" compoundref="Solv__Gmres_8h" startline="48">dim_espace_Krilov_</references>
+        <references refid="classSolv__Gmres_1a2e84b20ee812948e94ab7a9968566f7f" compoundref="Solv__Gmres_8h" startline="48">nb_it_max_</references>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int Solv_Gmres::Gmres</definition>
+        <argsstring>(const Matrice_Morse &amp;, const DoubleVect &amp;, DoubleVect &amp;)</argsstring>
+        <name>Gmres</name>
+        <param>
+          <type>const <ref refid="classMatrice__Morse" kindref="compound">Matrice_Morse</ref> &amp;</type>
+          <defname>matrice</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>secmem</defname>
+        </param>
+        <param>
+          <type><ref refid="classTRUSTVect" kindref="compound">DoubleVect</ref> &amp;</type>
+          <defname>solution</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="43" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.cpp" bodystart="357" bodyend="365"/>
+        <references refid="classSolv__Gmres_1a519c842fff83508aac53ba5d9254b044" compoundref="Solv__Gmres_8h" startline="48">controle_residu_</references>
+        <references refid="classSolv__Gmres_1a8ce3f65b858c50f0064ea8bc421d5749" compoundref="Solv__Gmres_8h" startline="48">dim_espace_Krilov_</references>
+        <references refid="classMatrice__Morse_1a930e2f0b2896d3bc7f58ef89e60239dc" compoundref="Matrice__Morse_8cpp" startline="1089" endline="1284">Matrice_Morse::inverse</references>
+        <references refid="classSolv__Gmres_1abeda68a02de217ff696b91704781e0d5" compoundref="Solv__Gmres_8h" startline="46">is_local_gmres</references>
+        <references refid="classSolveurSys__base_1a6435c5b83312da8f782eeeab564b4061" compoundref="SolveurSys__base_8h" startline="41" endline="46">SolveurSys_base::limpr</references>
+        <references refid="classSolv__Gmres_1a2e84b20ee812948e94ab7a9968566f7f" compoundref="Solv__Gmres_8h" startline="48">nb_it_max_</references>
+        <references refid="classSolv__Gmres_1a89fb74160e06a22a69ad62a52f0063bd" compoundref="Solv__Gmres_8h" startline="47">precond_diag</references>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+        <references refid="classSolv__Gmres_1a6db39cc32c009a61ebb692859d650c6b" compoundref="Solv__Gmres_8h" startline="45">v</references>
+        <referencedby refid="classSolv__Gmres_1a10a94433b9e44da73d1c6aa137329f99" compoundref="Solv__Gmres_8cpp" startline="98" endline="144">resoudre_systeme</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gmres_1aaa379f892b5e5360fd7f0bf5245fc1c7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Solv_Gmres::lire_motcle_non_standard</definition>
+        <argsstring>(const Motcle &amp;, Entree &amp;) override</argsstring>
+        <name>lire_motcle_non_standard</name>
+        <reimplements refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889">lire_motcle_non_standard</reimplements>
+        <param>
+          <type>const <ref refid="classMotcle" kindref="compound">Motcle</ref> &amp;</type>
+          <declname>motlu</declname>
+        </param>
+        <param>
+          <type><ref refid="classEntree" kindref="compound">Entree</ref> &amp;</type>
+          <declname>is</declname>
+        </param>
+        <briefdescription>
+<para>Lecture des parametres de type non simple d&apos;un objet_U a partir d&apos;un flot d&apos;entree. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Motcle&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>motlu) le nom du terme a lire </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Entree&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is) un flot d&apos;entree </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) negative value if the keyword is not understood, otherwise positive value. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="41" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.cpp" bodystart="75" bodyend="94"/>
+        <references refid="classSolveurSys__base_1a987e97740c779c1ab4192c3c1f1bbd5d" compoundref="SolveurSys__base_8h" startline="38" endline="38">SolveurSys_base::fixer_limpr</references>
+        <references refid="classSolv__Gmres_1abeda68a02de217ff696b91704781e0d5" compoundref="Solv__Gmres_8h" startline="46">is_local_gmres</references>
+        <references refid="classSolv__Gmres_1a89fb74160e06a22a69ad62a52f0063bd" compoundref="Solv__Gmres_8h" startline="47">precond_diag</references>
+      </memberdef>
+      <memberdef kind="function" id="classSolv__Gmres_1afec9f36039cc8aaf3d850d71f8afc8bc" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Solv_Gmres::set_param</definition>
+        <argsstring>(Param &amp;param)</argsstring>
+        <name>set_param</name>
+        <param>
+          <type><ref refid="classParam" kindref="compound">Param</ref> &amp;</type>
+          <declname>param</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.cpp" bodystart="62" bodyend="73"/>
+        <references refid="classParam_1affb8a0102361201ba896bac7ca8bc21c" compoundref="Param_8cpp" startline="364" endline="369">Param::ajouter</references>
+        <references refid="classParam_1a8d8bcddfd8087e577ffbb170c68e4f88" compoundref="Param_8cpp" startline="429" endline="434">Param::ajouter_non_std</references>
+        <references refid="classSolv__Gmres_1a519c842fff83508aac53ba5d9254b044" compoundref="Solv__Gmres_8h" startline="48">controle_residu_</references>
+        <references refid="classSolv__Gmres_1a8ce3f65b858c50f0064ea8bc421d5749" compoundref="Solv__Gmres_8h" startline="48">dim_espace_Krilov_</references>
+        <references refid="classSolv__Gmres_1a2e84b20ee812948e94ab7a9968566f7f" compoundref="Solv__Gmres_8h" startline="48">nb_it_max_</references>
+        <references refid="classSolveurSys__base_1a824322fe6a2c03aa986b8152aefcf14b" compoundref="SolveurSys__base_8h" startline="77">SolveurSys_base::save_matrice_</references>
+        <references refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" compoundref="solv__iteratif_8h" startline="31">solv_iteratif::seuil_</references>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>solv_iteratif</label>
+        <link refid="classsolv__iteratif"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="1">
+        <label>Solv_Gmres</label>
+        <link refid="classSolv__Gmres"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>TRUST_Vector&lt; TRUSTVect&lt; double, int &gt; &gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="template-instance">
+          <edgelabel>&lt; TRUSTVect&lt; double, int &gt; &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TRUST_Vector&lt; _CLASSE_ &gt;</label>
+        <link refid="classTRUST__Vector"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>solv_iteratif</label>
+        <link refid="classsolv__iteratif"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="7">
+        <label>Nom</label>
+        <link refid="classNom"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>nom_</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Solv_Gmres</label>
+        <link refid="classSolv__Gmres"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>v</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>SolveurSys_base</label>
+        <link refid="classSolveurSys__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>chaine_lue_</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" line="26" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Math/SolvSys/Solv_Gmres.h" bodystart="27" bodyend="49"/>
+    <listofallmembers>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>abort</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>associer_</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>bidim_axi</name></member>
+      <member refid="classSolveurSys__base_1afe094450db2e5697da7b535437bd71b9" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>chaine_lue_</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>change_num</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>check_int_overflow</name></member>
+      <member refid="classSolv__Gmres_1a519c842fff83508aac53ba5d9254b044" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>controle_residu_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classSolv__Gmres_1a7bfe5cf009a86628c648aae49aae5b76" prot="private" virt="non-virtual"><scope>Solv_Gmres</scope><name>Declare_instanciable_sans_constructeur</name></member>
+      <member refid="classSolv__Gmres_1a8ce3f65b858c50f0064ea8bc421d5749" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>dim_espace_Krilov_</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>disable_TU</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Solv_Gmres</scope><name>duplique</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>exit</name></member>
+      <member refid="classSolveurSys__base_1a987e97740c779c1ab4192c3c1f1bbd5d" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>fixer_limpr</name></member>
+      <member refid="classSolveurSys__base_1ac7ab2597959ce63c33809112abf348c2" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>fixer_nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1af97f0f1bb14eaebf5a20ef6a741065ac" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>fixer_schema_temps_limpr</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>format_precision_geom</name></member>
+      <member refid="classSolveurSys__base_1a37ee1ac4f2a7c4438df6a806488c7c46" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>get_chaine_lue</name></member>
+      <member refid="classSolveurSys__base_1a03ce5204378b04ca33275e7b5563c83a" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>get_flag_updated_input</name></member>
+      <member refid="classSolveurSys__base_1a82adf841121371ac9aea5d965e25b9eb" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>get_flag_updated_result</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classsolv__iteratif_1a01ebbc2f7ea7ad06c1486f27aadf3f75" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>get_seuil</name></member>
+      <member refid="classSolv__Gmres_1a2a1a062af95a7bb6d4352994753ccc68" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>Gmres</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>info_obj</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>interprete</name></member>
+      <member refid="classSolv__Gmres_1abeda68a02de217ff696b91704781e0d5" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>is_local_gmres</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>le_type</name></member>
+      <member refid="classSolveurSys__base_1af4e770068f6ad5f717569ec7807e4186" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>lecture</name></member>
+      <member refid="classSolveurSys__base_1a6435c5b83312da8f782eeeab564b4061" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>limpr</name></member>
+      <member refid="classSolv__Gmres_1aaa379f892b5e5360fd7f0bf5245fc1c7" prot="protected" virt="virtual"><scope>Solv_Gmres</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>me</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>multiple_files</name></member>
+      <member refid="classSolv__Gmres_1a2e84b20ee812948e94ab7a9968566f7f" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>nb_it_max_</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>nommer</name></member>
+      <member refid="classSolveurSys__base_1a5d87061de47689a5dfc33ceb4434bfcd" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>nouvelle_matrice</name></member>
+      <member refid="classSolveurSys__base_1a6f3572b460eb22fb58bff895dae3a0f2" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>nouvelle_matrice_</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>operator=</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>precision_geom</name></member>
+      <member refid="classSolv__Gmres_1a89fb74160e06a22a69ad62a52f0063bd" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>precond_diag</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>ram_processeur</name></member>
+      <member refid="classSolveurSys__base_1a0a95f84b624d297dce073c7cf062d988" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>read_matrix</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>readOn</name></member>
+      <member refid="classSolveurSys__base_1a8737bd7292204c64e4b7bfe4c7bd88ef" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>reinit</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>reprendre</name></member>
+      <member refid="classSolv__Gmres_1a10a94433b9e44da73d1c6aa137329f99" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>resoudre_systeme</name></member>
+      <member refid="classSolv__Gmres_1a7451d17c06923a002f9823de14e8f59c" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>resoudre_systeme</name></member>
+      <member refid="classSolveurSys__base_1a9f5542de1fc8d2e98a48a6bfe7eb9353" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>return_on_error_</name></member>
+      <member refid="classSolveurSys__base_1a265d6db198203cfb2416b461a6bc640d" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>reuse_preconditioner</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>sauvegarder</name></member>
+      <member refid="classSolveurSys__base_1a824322fe6a2c03aa986b8152aefcf14b" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>save_matrice_</name></member>
+      <member refid="classSolveurSys__base_1a58dba89c332229c6fd0491b2fc56c148" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>save_matrice_secmem_conditionnel</name></member>
+      <member refid="classSolveurSys__base_1af86b588703a1fb89319cfecefb9e2441" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>save_matrix</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>self_cast</name></member>
+      <member refid="classSolveurSys__base_1a101e6ebcf447c66eb0171e35ba40fc1b" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_flag_updated_result</name></member>
+      <member refid="classSolv__Gmres_1afec9f36039cc8aaf3d850d71f8afc8bc" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_param</name></member>
+      <member refid="classSolveurSys__base_1ab5dd43c8033d107357e5c2d1aea565c9" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_read_matrix</name></member>
+      <member refid="classSolveurSys__base_1a27067468cf159dc2e08c693ac7432685" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_return_on_error</name></member>
+      <member refid="classSolveurSys__base_1a0ea6281a5c0ad2cf572d421e661d370c" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_reuse_preconditioner</name></member>
+      <member refid="classSolveurSys__base_1aaecb60c1df070675220f4f49fd170db6" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_save_matrix</name></member>
+      <member refid="classsolv__iteratif_1a8f895c998d8b0548468b12c4cd908b2d" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>set_seuil</name></member>
+      <member refid="classsolv__iteratif_1a726974e9a0579e0c242606430dc320d4" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>seuil_</name></member>
+      <member refid="classSolv__Gmres_1a33ea3691006e0e9ea8bbd4ee647c016c" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>Solv_Gmres</name></member>
+      <member refid="classsolv__iteratif_1a52a5f9a797e67b4f3e62e99f5b1b960c" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>solv_iteratif</name></member>
+      <member refid="classsolv__iteratif_1abce5fddbd5c34e601132e0f8265ddedd" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>solveur_direct</name></member>
+      <member refid="classSolveurSys__base_1a00b69ea2bd461781c8727a498a646ffe" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>SolveurSys_base</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classSolveurSys__base_1a0040749ba12cc2db61a39519fa519996" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>supporte_matrice_morse_sym</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Solv_Gmres</scope><name>taille_memoire</name></member>
+      <member refid="classSolv__Gmres_1a6db39cc32c009a61ebb692859d650c6b" prot="protected" virt="non-virtual"><scope>Solv_Gmres</scope><name>v</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Solv_Gmres</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Solv_Gmres</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

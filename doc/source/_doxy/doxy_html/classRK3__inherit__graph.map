@@ -1,14 +1,8 @@
 <map id="RK3" name="RK3">
-<area shape="rect" id="Node000001" title=": classe RK3 Cette classe represente un schema en temps de Runge Kutta d&#39;ordre 3, cas 7 de Williamson..." alt="" coords="81,423,129,451"/>
-<area shape="rect" id="Node000002" href="$classTRUSTSchema__RK.html" title=" " alt="" coords="5,329,205,374"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,389,108,423,102,423,102,389"/>
-<area shape="rect" id="Node000003" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="20,159,180,187"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,202,107,328,102,329,98,202"/>
-<area shape="rect" id="Node000006" href="$classTRUSTSchema__RK.html" title=" " alt="" coords="121,236,353,264"/>
-<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="138,192,214,233,212,238,136,197"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="63,82,136,110"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="102,125,102,159,97,159,97,125"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="64,5,135,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="102,48,102,82,97,82,97,48"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="209,275,135,331,132,326,206,271"/>
+<area shape="rect" id="node1" title=": classe RK3 Cette classe represente un schema en temps de Runge Kutta d&#39;ordre 3, cas 7 de Williamson..." alt="" coords="81,413,129,440"/>
+<area shape="rect" id="node2" href="$classTRUSTSchema__RK.html" title=" " alt="" coords="5,323,205,364"/>
+<area shape="rect" id="node3" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="19,157,181,184"/>
+<area shape="rect" id="node6" href="$classTRUSTSchema__RK.html" title=" " alt="" coords="121,233,353,260"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="63,81,137,108"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="64,5,136,32"/>
 </map>

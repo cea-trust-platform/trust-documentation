@@ -1,23 +1,13 @@
 <map id="DP_Impose_PolyMAC_Face" name="DP_Impose_PolyMAC_Face">
-<area shape="rect" id="Node000001" title="class DP_Impose_PolyMAC_Face" alt="" coords="404,308,600,336"/>
-<area shape="rect" id="Node000002" href="$classPerte__Charge__PolyMAC__Face.html" title=" " alt="" coords="309,232,519,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="443,268,488,306,485,310,439,272"/>
-<area shape="rect" id="Node000003" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="305,189,388,229,386,234,302,194"/>
-<area shape="rect" id="Node000004" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
-<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
-<area shape="rect" id="Node000008" href="$classTerme__Source__Qdm.html" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="339,157,489,184"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="416,200,416,232,411,232,411,200"/>
-<area shape="rect" id="Node000009" href="$classDP__Impose.html" title="Classe DP_Impose Cette classe derivee de Perte_Charge_Singuliere est utilisee lorsque l&#39;on veut." alt="" coords="549,232,644,260"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="569,272,520,310,517,305,566,268"/>
-<area shape="rect" id="Node000010" href="$classPerte__Charge__Singuliere.html" title="Classe Perte_Charge_Singuliere Cette classe derivee de Perte_Charge est utilisee lorsque l&#39;on veut." alt="" coords="513,157,693,184"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="603,200,600,232,595,232,598,200"/>
-<area shape="rect" id="Node000011" href="$classPerte__Charge.html" title="Classe Perte_Charge Cette classe represente un terme de perte de charge quiest introduit." alt="" coords="549,81,657,109"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="606,124,606,156,600,156,600,124"/>
+<area shape="rect" id="node1" title="class DP_Impose_PolyMAC_Face" alt="" coords="405,304,602,331"/>
+<area shape="rect" id="node2" href="$classPerte__Charge__PolyMAC__Face.html" title=" " alt="" coords="310,229,521,256"/>
+<area shape="rect" id="node3" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="211,155,315,181"/>
+<area shape="rect" id="node4" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node5" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,80,299,107"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="323,80,398,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="325,5,397,32"/>
+<area shape="rect" id="node8" href="$classTerme__Source__Qdm.html" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="340,155,491,181"/>
+<area shape="rect" id="node9" href="$classDP__Impose.html" title="Classe DP_Impose Cette classe derivee de Perte_Charge_Singuliere est utilisee lorsque l&#39;on veut." alt="" coords="552,229,647,256"/>
+<area shape="rect" id="node10" href="$classPerte__Charge__Singuliere.html" title="Classe Perte_Charge_Singuliere Cette classe derivee de Perte_Charge est utilisee lorsque l&#39;on veut." alt="" coords="515,155,697,181"/>
+<area shape="rect" id="node11" href="$classPerte__Charge.html" title="Classe Perte_Charge Cette classe represente un terme de perte de charge quiest introduit." alt="" coords="551,80,661,107"/>
 </map>

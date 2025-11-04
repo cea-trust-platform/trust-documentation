@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_f7cf049c16439f7ae3a60d7de4a4f17e" kind="dir">
+    <compoundname>Sources</compoundname>
+    <innerdir refid="dir_59bed5eccd56612eecedf2abaed5eb19">Sources_It_Eval</innerdir>
+    <innerfile refid="Source__PDF__EF_8cpp">Source_PDF_EF.cpp</innerfile>
+    <innerfile refid="Source__PDF__EF_8h">Source_PDF_EF.h</innerfile>
+    <innerfile refid="Source__Qdm__EF_8cpp">Source_Qdm_EF.cpp</innerfile>
+    <innerfile refid="Source__Qdm__EF_8h">Source_Qdm_EF.h</innerfile>
+    <innerfile refid="Source__Scalaire__EF_8cpp">Source_Scalaire_EF.cpp</innerfile>
+    <innerfile refid="Source__Scalaire__EF_8h">Source_Scalaire_EF.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/EF/Sources/"/>
+  </compounddef>
+</doxygen>

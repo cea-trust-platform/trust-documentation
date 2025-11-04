@@ -1,0 +1,856 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDirichlet__loi__paroi" kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>Dirichlet_loi_paroi</compoundname>
+    <basecompoundref refid="classDirichlet" prot="public" virt="non-virtual">Dirichlet</basecompoundref>
+    <includes local="no">Dirichlet_loi_paroi.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classDirichlet__loi__paroi_1acf86696fbd22f73065011478b488a216" prot="protected" static="no" mutable="no">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Dirichlet_loi_paroi::d_</definition>
+        <argsstring></argsstring>
+        <name>d_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="76" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="classDirichlet__loi__paroi_1abb92edc78134611a8cb9d73394a36f50" compoundref="Dirichlet__loi__paroi_8cpp" startline="53" endline="58">initialiser</referencedby>
+        <referencedby refid="classDirichlet__loi__paroi_1ac2ce90a2854582a3b8a670929f3319f3" compoundref="Dirichlet__loi__paroi_8h" startline="57" endline="57">val_imp</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classDirichlet__loi__paroi_1aa57d9974ec229dd5da42bd2f9770bf36" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Dirichlet_loi_paroi::mon_temps</definition>
+        <argsstring></argsstring>
+        <name>mon_temps</name>
+        <initializer>= -1.e8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="75" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="75" bodyend="-1"/>
+        <referencedby refid="classDirichlet__loi__paroi_1a2b43bd0b327c47b53e5fe72ef2fe05e3" compoundref="Dirichlet__loi__paroi_8cpp" startline="48" endline="51">mettre_a_jour</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1aa32792512da96ef92d50a29b5daaa4eb" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Dirichlet_loi_paroi::Declare_base</definition>
+        <argsstring>(Dirichlet_loi_paroi)</argsstring>
+        <name>Declare_base</name>
+        <param>
+          <type><ref refid="classDirichlet__loi__paroi" kindref="compound">Dirichlet_loi_paroi</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="34" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1aa40d268b48445b35835eaf69a02f0775" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::associer_correlation</definition>
+        <argsstring>(const Correlation_base &amp;corr)</argsstring>
+        <name>associer_correlation</name>
+        <param>
+          <type>const <ref refid="classCorrelation__base" kindref="compound">Correlation_base</ref> &amp;</type>
+          <declname>corr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="43" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a457792aa4e1a04a4610cf7d15e74508b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Dirichlet_loi_paroi::associer_domaine_cl_dis_base</definition>
+        <argsstring>(const Domaine_Cl_dis_base &amp;zcl) override</argsstring>
+        <name>associer_domaine_cl_dis_base</name>
+        <reimplements refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05">associer_domaine_cl_dis_base</reimplements>
+        <param>
+          <type>const <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> &amp;</type>
+          <defname>zcl</defname>
+        </param>
+        <briefdescription>
+<para>Associe le <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> (Domaine des conditions aux limites discretisees) a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ce <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> stocke (reference) toutes les conditions aux limites relative a un Domaine geometrique.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Domaine_Cl_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>zcl) un Domaine des conditions aux limites discretisees a laquelle l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> se rapporte </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1ae03a631c3410f421b011a73e439b96bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Dirichlet_loi_paroi::associer_fr_dis_base</definition>
+        <argsstring>(const Frontiere_dis_base &amp;fr) override</argsstring>
+        <name>associer_fr_dis_base</name>
+        <reimplements refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266">associer_fr_dis_base</reimplements>
+        <param>
+          <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+          <defname>fr</defname>
+        </param>
+        <briefdescription>
+<para>Associe la frontiere a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>L&apos;objet <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> est en fait associe au membre <ref refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" kindref="member">OWN_PTR(Champ_front_base)</ref> de l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> qui represente le champ des conditions aux limites imposees a la frontiere.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Frontiere_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fr) la frontiere sur laquelle on impose les conditions aux limites </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1adf1a6025df2a24933aa5daf5964158ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>virtual int Dirichlet_loi_paroi::avancer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>avancer</name>
+        <reimplements refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c">avancer</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="40" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1ac30cb57e05df145bb71ef7eb1e01935c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::calculer_coeffs_echange</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>calculer_coeffs_echange</name>
+        <reimplements refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1">calculer_coeffs_echange</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Calcul des coefficient d&apos;echange pour un couplage par <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ces calculs sont locaux au probleme et dependant uniquement de l&apos;inconnue. Ils doivent donc etre faits chaque fois que l&apos;inconnue est modifiee. Ils sont disponibles pour l&apos;exterieur et stockes dans les CLs. WEC : Les <ref refid="classChamp__front__contact__VEF" kindref="compound">Champ_front_contact_VEF</ref> devraient disparaitre et cette methode avec !!!</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="54" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1aa08016e83d1534bfc890fa73676440da" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::changer_temps_futur</definition>
+        <argsstring>(double temps, int i) override</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplements refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4">changer_temps_futur</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="52" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a4e13ed3a2f051312a7a3319f5196f343" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Dirichlet_loi_paroi::compatible_avec_eqn</definition>
+        <argsstring>(const Equation_base &amp;) const override</argsstring>
+        <name>compatible_avec_eqn</name>
+        <reimplements refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec">compatible_avec_eqn</reimplements>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="39" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.cpp" bodystart="37" bodyend="46"/>
+        <references refid="classEquation__base_1af36aa592e88858ac5fdd7f23d3f5018d" compoundref="Equation__base_8cpp" startline="1330" endline="1334">Equation_base::domaine_application</references>
+        <references refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" compoundref="Cond__lim__base_8cpp" startline="200" endline="204">Cond_lim_base::err_pas_compatible</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a2dcfa32550d67c7faeff1712f6b7baa6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f">completer</reimplements>
+        <briefdescription>
+<para>NE FAIT RIEN A surcharger dans les classes derivees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="48" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a0fe86dde82db49d23419efe948c96495" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::fixer_nb_valeurs_temporelles</definition>
+        <argsstring>(int nb_cases) override</argsstring>
+        <name>fixer_nb_valeurs_temporelles</name>
+        <reimplements refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8">fixer_nb_valeurs_temporelles</reimplements>
+        <param>
+          <type>int</type>
+          <declname>nb_cases</declname>
+        </param>
+        <briefdescription>
+<para>Appele par <ref refid="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" kindref="member">Conds_lim::completer</ref> Appel cha_front_base::fixer_nb_valeurs_temporelles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="49" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1aac14ff5446bf2eb351a8c87c49e14c52" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>virtual const Frontiere_dis_base&amp; Dirichlet_loi_paroi::frontiere_dis</definition>
+        <argsstring>() const override</argsstring>
+        <name>frontiere_dis</name>
+        <reimplements refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3">frontiere_dis</reimplements>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>(version const)</para>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="51" column="43" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1ab2840cb2f4633f89d4ed8b039f9d83e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+        <definition>virtual Frontiere_dis_base&amp; Dirichlet_loi_paroi::frontiere_dis</definition>
+        <argsstring>() override</argsstring>
+        <name>frontiere_dis</name>
+        <reimplements refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a">frontiere_dis</reimplements>
+        <briefdescription>
+<para>Renvoie la frontiere discretisee a laquelle les conditions aux limites s&apos;appliquent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>(<ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref>&amp;) la frontiere discretisee a laquelle les conditions aux limites sont associees </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="50" column="37" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1abb92edc78134611a8cb9d73394a36f50" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Dirichlet_loi_paroi::initialiser</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92">initialiser</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="37" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.cpp" bodystart="53" bodyend="58"/>
+        <references refid="classDirichlet__loi__paroi_1acf86696fbd22f73065011478b488a216" compoundref="Dirichlet__loi__paroi_8h" startline="76">d_</references>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">Cond_lim_base::domaine_Cl_dis</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1aae06dea006ee46ce8d1904cc06a52c39" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Dirichlet_loi_paroi::liste_faces_loi_paroi</definition>
+        <argsstring>(IntTab &amp;)</argsstring>
+        <name>liste_faces_loi_paroi</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">IntTab</ref> &amp;</type>
+          <defname>tab</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="38" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.cpp" bodystart="27" bodyend="35"/>
+        <references refid="classTRUSTVect_1a233c6efc2617385174d5b4b0b29f9a96" compoundref="TRUSTVect_8tpp" startline="67" endline="72">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::line_size</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a2b43bd0b327c47b53e5fe72ef2fe05e3" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Dirichlet_loi_paroi::mettre_a_jour</definition>
+        <argsstring>(double tps) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c">mettre_a_jour</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de la condition aux limites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="41" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.cpp" bodystart="48" bodyend="51"/>
+        <references refid="classDirichlet__loi__paroi_1a588f70ff7d9a655bc80d5b1a61c66640">me_calculer</references>
+        <references refid="classDirichlet__loi__paroi_1aa57d9974ec229dd5da42bd2f9770bf36" compoundref="Dirichlet__loi__paroi_8h" startline="75">mon_temps</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a5b4d547cf0b2b56dacd9165d8af6de2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::set_temps_defaut</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplements refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3">set_temps_defaut</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="53" column="16" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1ac2ce90a2854582a3b8a670929f3319f3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double Dirichlet_loi_paroi::val_imp</definition>
+        <argsstring>(int i) const override</argsstring>
+        <name>val_imp</name>
+        <reimplements refid="classDirichlet_1a17c60f9779ca455b5ab2b0e09643449c">val_imp</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur imposee sur la i-eme composante du champ a la frontiere au temps par defaut du champ_front. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) indice suivant la premiere dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(double) la valeur imposee sur la composante du champ specifiee </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>deuxieme</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dimension du champ de frontiere superieur a 1 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="57" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="57" bodyend="57"/>
+        <references refid="classDirichlet__loi__paroi_1acf86696fbd22f73065011478b488a216" compoundref="Dirichlet__loi__paroi_8h" startline="76">d_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a1eb1f01f5450f23a11a804e0d8ad3b80" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double Dirichlet_loi_paroi::val_imp</definition>
+        <argsstring>(int i, int j) const override</argsstring>
+        <name>val_imp</name>
+        <reimplements refid="classDirichlet_1a33f27781ade9d36b42996f3a07ff24ad">val_imp</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur imposee sur la (i,j)-eme composante du champ a la frontiere au temps par defaut du champ_front. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) indice suivant la premiere dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>j) indice suivant la deuxieme dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(double) la valeur imposee sur la composante du champ specifiee </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="58" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="58" bodyend="58"/>
+        <references refid="classDirichlet__loi__paroi_1acf86696fbd22f73065011478b488a216" compoundref="Dirichlet__loi__paroi_8h" startline="76">d_</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a5f835f7c7983fa2ebba58d5811ba43d3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double Dirichlet_loi_paroi::val_imp_au_temps</definition>
+        <argsstring>(double temps, int i) const override</argsstring>
+        <name>val_imp_au_temps</name>
+        <reimplements refid="classDirichlet_1a7ab85e92202b39f2f0c8e33c0b0c38ba">val_imp_au_temps</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur imposee sur la i-eme composante du champ a la frontiere au temps precise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="59" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="59" bodyend="63"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a62262f9fd00c03e2fcca335c65cc7518" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>virtual double Dirichlet_loi_paroi::val_imp_au_temps</definition>
+        <argsstring>(double temps, int i, int j) const override</argsstring>
+        <name>val_imp_au_temps</name>
+        <reimplements refid="classDirichlet_1a61d978c49f07a143580850baa70163ef">val_imp_au_temps</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur imposee sur la (i,j)-eme composante du champ a la frontiere au temps precise. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="64" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="64" bodyend="68"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a3ff38e68325bd3069d55989f18f64718" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void Dirichlet_loi_paroi::verifie_ch_init_nb_comp</definition>
+        <argsstring>() const override</argsstring>
+        <name>verifie_ch_init_nb_comp</name>
+        <reimplements refid="classDirichlet_1a8390a0916bc2156706a5a633bc21249c">verifie_ch_init_nb_comp</reimplements>
+        <briefdescription>
+<para>Appel la verification du champ lu par l intermediaire de l equation pour laquelle on considere la condition limite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>La methode est surchargee dans les cas ou l utilisateur doit specifier le champ frontiere </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="55" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a588f70ff7d9a655bc80d5b1a61c66640" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void Dirichlet_loi_paroi::me_calculer</definition>
+        <argsstring>()=0</argsstring>
+        <name>me_calculer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="71" column="16"/>
+        <referencedby refid="classDirichlet__loi__paroi_1a2b43bd0b327c47b53e5fe72ef2fe05e3" compoundref="Dirichlet__loi__paroi_8cpp" startline="48" endline="51">mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1a9177ed7f99eea5461dad17e3328bf48a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Dirichlet_loi_paroi::OBS_PTR</definition>
+        <argsstring>(Correlation_base) correlation_loi_paroi_</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classCorrelation__base" kindref="compound">Correlation_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="73" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classDirichlet__loi__paroi_1ab35706bb5ca14425b28203d26047161b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Dirichlet_loi_paroi::OBS_PTR</definition>
+        <argsstring>(Frontiere_dis_base) la_frontiere_dis</argsstring>
+        <name>OBS_PTR</name>
+        <param>
+          <type><ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="74" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Classe <ref refid="classDirichlet__loi__paroi" kindref="compound">Dirichlet_loi_paroi</ref> Classe de base pour les valeurs impose pour une condition aux limites des equations de turbulence. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Le flux impose est calcule a partir de la correlation de loi de paroi adaptative.</para>
+<para><simplesect kind="see"><para><ref refid="classNeumann" kindref="compound">Neumann</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Dirichlet_loi_paroi</label>
+        <link refid="classDirichlet__loi__paroi"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Dirichlet</label>
+        <link refid="classDirichlet"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="9">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="11" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Dirichlet_loi_paroi</label>
+        <link refid="classDirichlet__loi__paroi"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>d_</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="8">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="13">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Dirichlet</label>
+        <link refid="classDirichlet"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>tab_</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" line="32" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Dirichlet_loi_paroi.h" bodystart="33" bodyend="77"/>
+    <listofallmembers>
+      <member refid="classCond__lim__base_1a87e21b172da6aa4f6563f483377fde74" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>associer_</name></member>
+      <member refid="classDirichlet__loi__paroi_1aa40d268b48445b35835eaf69a02f0775" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>associer_correlation</name></member>
+      <member refid="classDirichlet__loi__paroi_1a457792aa4e1a04a4610cf7d15e74508b" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classDirichlet__loi__paroi_1ae03a631c3410f421b011a73e439b96bd" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classDirichlet__loi__paroi_1adf1a6025df2a24933aa5daf5964158ed" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>bidim_axi</name></member>
+      <member refid="classDirichlet__loi__paroi_1ac30cb57e05df145bb71ef7eb1e01935c" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>change_num</name></member>
+      <member refid="classDirichlet__loi__paroi_1aa08016e83d1534bfc890fa73676440da" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>check_int_overflow</name></member>
+      <member refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>compatible_avec_discr</name></member>
+      <member refid="classDirichlet__loi__paroi_1a4e13ed3a2f051312a7a3319f5196f343" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classDirichlet__loi__paroi_1a2dcfa32550d67c7faeff1712f6b7baa6" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>completer</name></member>
+      <member refid="classDirichlet__loi__paroi_1acf86696fbd22f73065011478b488a216" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>d_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classDirichlet__loi__paroi_1aa32792512da96ef92d50a29b5daaa4eb" prot="private" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>Declare_base</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>disable_TU</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Dirichlet_loi_paroi</scope><name>duplique</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>exit</name></member>
+      <member refid="classDirichlet__loi__paroi_1a0fe86dde82db49d23419efe948c96495" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>format_precision_geom</name></member>
+      <member refid="classDirichlet__loi__paroi_1ab2840cb2f4633f89d4ed8b039f9d83e9" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>frontiere_dis</name></member>
+      <member refid="classDirichlet__loi__paroi_1aac14ff5446bf2eb351a8c87c49e14c52" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>info_obj</name></member>
+      <member refid="classDirichlet__loi__paroi_1abb92edc78134611a8cb9d73394a36f50" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classDirichlet__loi__paroi_1aae06dea006ee46ce8d1904cc06a52c39" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>liste_faces_loi_paroi</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>me</name></member>
+      <member refid="classDirichlet__loi__paroi_1a588f70ff7d9a655bc80d5b1a61c66640" prot="protected" virt="pure-virtual"><scope>Dirichlet_loi_paroi</scope><name>me_calculer</name></member>
+      <member refid="classDirichlet__loi__paroi_1a2b43bd0b327c47b53e5fe72ef2fe05e3" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>modifier_val_imp</name></member>
+      <member refid="classDirichlet__loi__paroi_1aa57d9974ec229dd5da42bd2f9770bf36" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mon_temps</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>Objet_U</name></member>
+      <member refid="classDirichlet__loi__paroi_1a9177ed7f99eea5461dad17e3328bf48a" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>OBS_PTR</name></member>
+      <member refid="classDirichlet__loi__paroi_1ab35706bb5ca14425b28203d26047161b" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>OBS_PTR</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual" ambiguityscope="Dirichlet::"><scope>Dirichlet_loi_paroi</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>operator=</name></member>
+      <member refid="classCond__lim__base_1a80d923976c2b5c79a1dec5c121fe6765" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>readOn</name></member>
+      <member refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>reprendre</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classDirichlet__loi__paroi_1a5b4d547cf0b2b56dacd9165d8af6de2a" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>supp_discs</name></member>
+      <member refid="classDirichlet_1a14c839a19f592441eb10d9fe18802b39" prot="protected" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>tab_</name></member>
+      <member refid="classDirichlet_1aea3f33ec4c37302f7750afd675f5cd63" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>tab_val_imp</name></member>
+      <member refid="classDirichlet_1a09888c920f72c152d2f5c51ec7a91651" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>tab_val_imp_au_temps</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Dirichlet_loi_paroi</scope><name>taille_memoire</name></member>
+      <member refid="classDirichlet__loi__paroi_1ac2ce90a2854582a3b8a670929f3319f3" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>val_imp</name></member>
+      <member refid="classDirichlet__loi__paroi_1a1eb1f01f5450f23a11a804e0d8ad3b80" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>val_imp</name></member>
+      <member refid="classDirichlet__loi__paroi_1a5f835f7c7983fa2ebba58d5811ba43d3" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>val_imp_au_temps</name></member>
+      <member refid="classDirichlet__loi__paroi_1a62262f9fd00c03e2fcca335c65cc7518" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>val_imp_au_temps</name></member>
+      <member refid="classDirichlet__loi__paroi_1a3ff38e68325bd3069d55989f18f64718" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Dirichlet_loi_paroi</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Dirichlet_loi_paroi</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

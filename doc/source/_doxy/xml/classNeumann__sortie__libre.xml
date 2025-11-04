@@ -1,0 +1,766 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classNeumann__sortie__libre" kind="class" language="C++" prot="public">
+    <compoundname>Neumann_sortie_libre</compoundname>
+    <basecompoundref refid="classNeumann__val__ext" prot="public" virt="non-virtual">Neumann_val_ext</basecompoundref>
+    <derivedcompoundref refid="classNeumann__sortie__libre__Temp__H" prot="public" virt="non-virtual">Neumann_sortie_libre_Temp_H</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__Gradient__Pression__impose" prot="public" virt="non-virtual">Sortie_libre_Gradient_Pression_impose</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__Gradient__Pression__impose__VEF" prot="public" virt="non-virtual">Sortie_libre_Gradient_Pression_impose_VEF</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__Gradient__Pression__libre__VEF" prot="public" virt="non-virtual">Sortie_libre_Gradient_Pression_libre_VEF</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B" prot="public" virt="non-virtual">Sortie_libre_Gradient_Pression_libre_VEFPreP1B</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__Pression__imposee__Orlansky" prot="public" virt="non-virtual">Sortie_libre_Pression_imposee_Orlansky</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__pression__imposee" prot="public" virt="non-virtual">Sortie_libre_pression_imposee</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__pression__imposee__QC" prot="public" virt="non-virtual">Sortie_libre_pression_imposee_QC</derivedcompoundref>
+    <derivedcompoundref refid="classSortie__libre__pression__moyenne__imposee" prot="public" virt="non-virtual">Sortie_libre_pression_moyenne_imposee</derivedcompoundref>
+    <includes local="no">Neumann_sortie_libre.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classNeumann__sortie__libre_1a62682837fe2b84043d436daecfe0dcb5" prot="protected" static="no" mutable="yes">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref></type>
+        <definition>DoubleTab Neumann_sortie_libre::val_ext_</definition>
+        <argsstring></argsstring>
+        <name>val_ext_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="56" column="21" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" bodystart="56" bodyend="-1"/>
+        <referencedby refid="classNeumann__sortie__libre_1a197196dc863fb50c4d6ea45f01cf1e0b" compoundref="Neumann__sortie__libre_8cpp" startline="161" endline="176">val_ext</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classNeumann__sortie__libre_1af1d2cd4cba28882c1985944a0ceacee7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Neumann_sortie_libre::Declare_instanciable</definition>
+        <argsstring>(Neumann_sortie_libre)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="35" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a43dadc056380945d14f3908bf430974f" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::associer_fr_dis_base</definition>
+        <argsstring>(const Frontiere_dis_base &amp;) override</argsstring>
+        <name>associer_fr_dis_base</name>
+        <reimplements refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266">associer_fr_dis_base</reimplements>
+        <param>
+          <type>const <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> &amp;</type>
+          <defname>fr</defname>
+        </param>
+        <briefdescription>
+<para>Associe la frontiere a l&apos;objet. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>L&apos;objet <ref refid="classFrontiere__dis__base" kindref="compound">Frontiere_dis_base</ref> est en fait associe au membre <ref refid="classNeumann__sortie__libre_1ac0d2e009a56cf1fff07a904cc5e069c6" kindref="member">OWN_PTR(Champ_front_base)</ref> de l&apos;objet <ref refid="classCond__lim__base" kindref="compound">Cond_lim_base</ref> qui represente le champ des conditions aux limites imposees a la frontiere.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Frontiere_dis_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>fr) la frontiere sur laquelle on impose les conditions aux limites </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="139" bodyend="145"/>
+        <references refid="classCond__lim__base_1a64f59bb4967d6bee01b42fa006797266" compoundref="Cond__lim__base_8cpp" startline="156" endline="161">Cond_lim_base::associer_fr_dis_base</references>
+        <references refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" compoundref="Cond__lim__base_8h" startline="83">Cond_lim_base::modifier_val_imp</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a00fa270a7938be3868d3792d104c72bc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Neumann_sortie_libre::avancer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>avancer</name>
+        <reimplements refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c">avancer</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="51" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="212" bodyend="215"/>
+        <references refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c" compoundref="Cond__lim__base_8cpp" startline="63" endline="66">Cond_lim_base::avancer</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a298621296663ac5dde60159f413a0604" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::changer_temps_futur</definition>
+        <argsstring>(double temps, int i) override</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplements refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4">changer_temps_futur</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="50" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="206" bodyend="210"/>
+        <references refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4" compoundref="Cond__lim__base_8cpp" startline="55" endline="58">Cond_lim_base::changer_temps_futur</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1af9e11cba63afd7aed9b921fb64b547c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::fixer_nb_valeurs_temporelles</definition>
+        <argsstring>(int nb_cases) override</argsstring>
+        <name>fixer_nb_valeurs_temporelles</name>
+        <reimplements refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8">fixer_nb_valeurs_temporelles</reimplements>
+        <param>
+          <type>int</type>
+          <declname>nb_cases</declname>
+        </param>
+        <briefdescription>
+<para>Appele par <ref refid="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" kindref="member">Conds_lim::completer</ref> Appel cha_front_base::fixer_nb_valeurs_temporelles. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="47" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="188" bodyend="192"/>
+        <references refid="classCond__lim__base_1a4b46f992e1a71e5300dd24d3e16195e8" compoundref="Cond__lim__base_8cpp" startline="240" endline="243">Cond_lim_base::fixer_nb_valeurs_temporelles</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a3ad2edd45d283f44d4cd12a39984def4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Neumann_sortie_libre::initialiser</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92">initialiser</reimplements>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a4a113b35f0d1a105653952fc61a9546b">initialiser</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a23349943204b90ad4e5e126d9244086a">initialiser</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a92175158ee7c435fb044a920fbf8dd18">initialiser</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="43" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="132" bodyend="137"/>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">Cond_lim_base::domaine_Cl_dis</references>
+        <references refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92" compoundref="Cond__lim__base_8cpp" startline="85" endline="88">Cond_lim_base::initialiser</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a156222fbc7dbe2636a639429392de301" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::mettre_a_jour</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c">mettre_a_jour</reimplements>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEF_1a442fc12681ed48db7a41e08b8ff72b3a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B_1a38be589c066dd71ac423b64377b0c3f9">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__pression__moyenne__imposee_1a28a5f84c31192156f4fab7a67fb086f4">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose_1aab5eb64f33bc726bcaf6cbefbc636ebd">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Pression__imposee__Orlansky_1ad47468a9213c88f451bb63924be3730b">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B_1a749c27e46e3052ab29f77d3e60627591">mettre_a_jour</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de la condition aux limites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="194" bodyend="198"/>
+        <references refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c" compoundref="Cond__lim__base_8cpp" startline="94" endline="97">Cond_lim_base::mettre_a_jour</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a530d48dc97f8da8ea05218d304b0f47e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Neumann_sortie_libre::reculer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>reculer</name>
+        <reimplements refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4">reculer</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="52" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="217" bodyend="220"/>
+        <references refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4" compoundref="Cond__lim__base_8cpp" startline="71" endline="74">Cond_lim_base::reculer</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a6dfd5d0256aa515258b54671bfa06495" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::set_temps_defaut</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplements refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3">set_temps_defaut</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="49" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="200" bodyend="204"/>
+        <references refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3" compoundref="Cond__lim__base_8cpp" startline="233" endline="236">Cond_lim_base::set_temps_defaut</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a456fa70d8a720d7db983aa1a1842d9c4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>const DoubleTab &amp; Neumann_sortie_libre::tab_ext</definition>
+        <argsstring>() const override</argsstring>
+        <name>tab_ext</name>
+        <reimplements refid="classNeumann__val__ext_1a7a7c0cd0435adb57c866ba6f9ce67611">tab_ext</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="37" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="178" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a89a9b0e9545323029fe4911ab628eeda" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Neumann_sortie_libre::tab_ext</definition>
+        <argsstring>() override</argsstring>
+        <name>tab_ext</name>
+        <reimplements refid="classNeumann__val__ext_1ac4062113286628257ae113600f1f3cbb">tab_ext</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="38" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="183" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a197196dc863fb50c4d6ea45f01cf1e0b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>const DoubleTab &amp; Neumann_sortie_libre::val_ext</definition>
+        <argsstring>() const</argsstring>
+        <name>val_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="42" column="19" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="161" bodyend="176"/>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" compoundref="Cond__lim__base_8h" startline="90" endline="93">Cond_lim_base::frontiere_dis</references>
+        <references refid="classFront__VF_1ae8650bf8eff95a5022a1abc91a0e5592" compoundref="Front__VF_8h" startline="58" endline="61">Front_VF::nb_faces_tot</references>
+        <references refid="classTRUSTTab_1a9b2632fe559a20c048cbfddc5c40ed16" compoundref="TRUSTTab_8tpp" startline="454" endline="462">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::resize</references>
+        <references refid="classNeumann__sortie__libre_1a62682837fe2b84043d436daecfe0dcb5" compoundref="Neumann__sortie__libre_8h" startline="56">val_ext_</references>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a4dec1c2ef210b2fc7b28e3e41fa26b8d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Neumann_sortie_libre::val_ext</definition>
+        <argsstring>(int i) const override</argsstring>
+        <name>val_ext</name>
+        <reimplements refid="classNeumann__val__ext_1a3db19fc5aef1cee1e6977006d8d4f05e">val_ext</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur de la i-eme composante du champ impose a l&apos;exterieur de la frontiere. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) indice suivant la premiere dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(double) la valeur imposee sur la composante du champ specifiee </para>
+</simplesect>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>deuxieme</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>dimension du champ de frontiere superieur a 1 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="40" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="117" bodyend="130"/>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <referencedby refid="classOp__Conv__Amont__old__VEF__Face_1a74fb871feb28d03b9178101c94ce0d9a" compoundref="Op__Conv__Amont__old__VEF__Face_8cpp" startline="103" endline="383">Op_Conv_Amont_old_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__AmontNew__VEF__Face_1a081f1690d42c5f4f611201567b665f00" compoundref="Op__Conv__AmontNew__VEF__Face_8cpp" startline="72" endline="563">Op_Conv_AmontNew_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__Centre__EF__VEF__Face_1a9a8f8db4abd3008924d564b312a53541" compoundref="Op__Conv__Centre__EF__VEF__Face_8cpp" startline="56" endline="692">Op_Conv_Centre_EF_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__Centre__old__VEF__Face_1a0fe8da7b79696f69015b71ff24e17599" compoundref="Op__Conv__Centre__old__VEF__Face_8cpp" startline="58" endline="455">Op_Conv_Centre_old_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__DI__L2__VEF__Face_1aaf1e89c89235f637bb4ce9e20480444d" compoundref="Op__Conv__DI__L2__VEF__Face_8cpp" startline="403" endline="751">Op_Conv_DI_L2_VEF_Face::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__kschemas__centre__VEF_1adcbc0d9c2d0f657258b8b2721bb23aca" compoundref="Op__Conv__kschemas__centre__VEF_8cpp" startline="164" endline="1092">Op_Conv_kschemas_centre_VEF::ajouter</referencedby>
+        <referencedby refid="classOp__Conv__kschemas__VEF_1af96e2bfda9e99c543b658e489753bfd8" compoundref="Op__Conv__kschemas__VEF_8cpp" startline="157" endline="886">Op_Conv_kschemas_VEF::ajouter</referencedby>
+        <referencedby refid="classTerme__Boussinesq__VDF__Face_1a4c77937dad26ef8873f5d341774d2d69" compoundref="Terme__Boussinesq__VDF__Face_8cpp" startline="49" endline="203">Terme_Boussinesq_VDF_Face::ajouter_blocs</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a8d0ee5b87fc89b3700bd7bcf6ff1614d" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="332" endline="356">Eval_Amont_PolyMAC_Elem::coeffs_face_bloc_vitesse</referencedby>
+        <referencedby refid="classOp__Conv__Amont__old__VEF__Face_1a192e4c927edf2f3c0ac0d54a0404dd39" compoundref="Op__Conv__Amont__old__VEF__Face_8cpp" startline="629" endline="732">Op_Conv_Amont_old_VEF_Face::contribue_au_second_membre</referencedby>
+        <referencedby refid="classOp__Conv__VEF__Face_1a1b81f993482d2a4709e15c0029c717cf" compoundref="Op__Conv__VEF__Face_8cpp" startline="1207" endline="1345">Op_Conv_VEF_Face::contribue_au_second_membre</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a5beb5b3a276bc506736ea82c92e87fa7" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="272" endline="296">Eval_Amont_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1acf258936e00290549af7b624906f11ec" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="212" endline="233">Eval_centre_PolyMAC_Elem::flux_face</referencedby>
+        <referencedby refid="classEval__Amont__PolyMAC__Elem_1a762721ffe84e43b95d5418de8424855c" compoundref="Eval__Amont__PolyMAC__Elem_8h" startline="358" endline="379">Eval_Amont_PolyMAC_Elem::secmem_face</referencedby>
+        <referencedby refid="classEval__centre__PolyMAC__Elem_1a543534fe5d21bd8d91fba8570f21d8be" compoundref="Eval__centre__PolyMAC__Elem_8h" startline="251" endline="267">Eval_centre_PolyMAC_Elem::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a7fafdf571affe7a107b598f99ce2edd4" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Neumann_sortie_libre::val_ext</definition>
+        <argsstring>(int i, int j) const override</argsstring>
+        <name>val_ext</name>
+        <reimplements refid="classNeumann__val__ext_1a25180a8b3b5155abccf38d5ff3ec38c2">val_ext</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Renvoie la valeur de la (i,j)-eme composante du champ impose a l&apos;exterieur de la frontiere. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>i) indice suivant la premiere dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(int</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>j) indice suivant la deuxieme dimension du champ </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(double) la valeur imposee sur la composante du champ specifiee </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="41" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="153" bodyend="159"/>
+      </memberdef>
+      <memberdef kind="function" id="classNeumann__sortie__libre_1a4f497ca9a623e2e40fdc70226020a45a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Neumann_sortie_libre::verifie_ch_init_nb_comp</definition>
+        <argsstring>() const override</argsstring>
+        <name>verifie_ch_init_nb_comp</name>
+        <reimplements refid="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc">verifie_ch_init_nb_comp</reimplements>
+        <briefdescription>
+<para>Appel la verification du champ lu par l intermediaire de l equation pour laquelle on considere la condition limite. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>La methode est surchargee dans les cas ou l utilisateur doit specifier le champ frontiere </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.cpp" bodystart="93" bodyend="109"/>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">Cond_lim_base::domaine_Cl_dis</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classNavier__Stokes__std_1a65807747079970362427ee362e3e6a78" compoundref="Navier__Stokes__std_8h" startline="123" endline="123">Navier_Stokes_std::pression</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classEquation__base_1a52b47bb2cea72fde57a0e0f942c3444e" compoundref="Equation__base_8h" startline="218" endline="221">Equation_base::verifie_ch_init_nb_comp_cl</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classNeumann__sortie__libre_1ac0d2e009a56cf1fff07a904cc5e069c6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Neumann_sortie_libre::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) le_champ_ext</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="55" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> Cette classe represente une frontiere ouverte sans vitesse imposee </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Pour les equations de Navier_Stokes on impose necessairement la pression sur une telle frontiere Pour traiter l&apos;hydraulique, on derive donc de la classe <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> la classe <ref refid="classSortie__libre__pression__imposee" kindref="compound">Sortie_libre_pression_imposee</ref> Les conditions aux limites de type <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> ou des types derives se traduisent par des flux diffusifs nuls. En revanche, le traitement des flux convectifs impose de connaitre le champ convecte a l&apos;exterieur de la frontiere en cas de re-entree de fluide. C&apos;est pourquoi la classe porte un <ref refid="classNeumann__sortie__libre_1ac0d2e009a56cf1fff07a904cc5e069c6" kindref="member">OWN_PTR(Champ_front_base)</ref> (membre le_champ_ext).</para>
+<para>Dans les operateurs de calcul, les conditions aux limites de type <ref refid="classNeumann__sortie__libre" kindref="compound">Neumann_sortie_libre</ref> et des types derives seront traites de maniere identique</para>
+<para><simplesect kind="see"><para><ref refid="classNeumann" kindref="compound">Neumann</ref> <ref refid="classSortie__libre__pression__imposee" kindref="compound">Sortie_libre_pression_imposee</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Neumann_val_ext</label>
+        <link refid="classNeumann__val__ext"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Sortie_libre_Gradient_Pression_impose_VEF</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>Sortie_libre_pression_imposee</label>
+        <link refid="classSortie__libre__pression__imposee"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Sortie_libre_Gradient_Pression_libre_VEFPreP1B</label>
+        <link refid="classSortie__libre__Gradient__Pression__libre__VEFPreP1B"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Sortie_libre_Pression_imposee_Orlansky</label>
+        <link refid="classSortie__libre__Pression__imposee__Orlansky"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Neumann_sortie_libre</label>
+        <link refid="classNeumann__sortie__libre"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="8">
+        <label>Sortie_libre_Gradient_Pression_impose</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Neumann</label>
+        <link refid="classNeumann"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Sortie_libre_pression_moyenne_imposee</label>
+        <link refid="classSortie__libre__pression__moyenne__imposee"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Sortie_libre_Gradient_Pression_impose_VEFPreP1B</label>
+        <link refid="classSortie__libre__Gradient__Pression__impose__VEFPreP1B"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>Sortie_libre_pression_imposee_QC</label>
+        <link refid="classSortie__libre__pression__imposee__QC"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Sortie_libre_Gradient_Pression_libre_VEF</label>
+        <link refid="classSortie__libre__Gradient__Pression__libre__VEF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Neumann_sortie_libre_Temp_H</label>
+        <link refid="classNeumann__sortie__libre__Temp__H"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="10">
+        <label>TRUSTArray&lt; double, int &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+        <childnode refid="12" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Array_base</label>
+        <link refid="classArray__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Neumann_val_ext</label>
+        <link refid="classNeumann__val__ext"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Neumann_sortie_libre</label>
+        <link refid="classNeumann__sortie__libre"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>val_ext_</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>TRUSTTab&lt; double, int &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="15" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="9">
+        <label>TRUSTVect&lt; double, int &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="10" relation="public-inheritance">
+        </childnode>
+        <childnode refid="13" relation="template-instance">
+          <edgelabel>&lt; double, int &gt;</edgelabel>
+        </childnode>
+      </node>
+      <node id="14">
+        <label>MD_Vector</label>
+        <link refid="classMD__Vector"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="3">
+        <label>Neumann</label>
+        <link refid="classNeumann"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>flux_impose_</edgelabel>
+        </childnode>
+      </node>
+      <node id="15">
+        <label>TRUSTTab&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTTab"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>TRUSTVect&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTVect"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="usage">
+          <edgelabel>md_vector_</edgelabel>
+        </childnode>
+      </node>
+      <node id="12">
+        <label>TRUSTArray&lt; _TYPE_, _SIZE_ &gt;</label>
+        <link refid="classTRUSTArray"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" line="33" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThHyd/Incompressible/Cond_Lim/Neumann_sortie_libre.h" bodystart="34" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classCond__lim__base_1a87e21b172da6aa4f6563f483377fde74" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>associer_</name></member>
+      <member refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classNeumann__sortie__libre_1a43dadc056380945d14f3908bf430974f" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classNeumann__sortie__libre_1a00fa270a7938be3868d3792d104c72bc" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>bidim_axi</name></member>
+      <member refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>change_num</name></member>
+      <member refid="classNeumann__sortie__libre_1a298621296663ac5dde60159f413a0604" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>check_int_overflow</name></member>
+      <member refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>compatible_avec_discr</name></member>
+      <member refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>completer</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classNeumann__sortie__libre_1af1d2cd4cba28882c1985944a0ceacee7" prot="private" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>Declare_instanciable</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>disable_TU</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Neumann_sortie_libre</scope><name>duplique</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>exit</name></member>
+      <member refid="classNeumann__sortie__libre_1af9e11cba63afd7aed9b921fb64b547c7" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classNeumann_1a0b6ed33cc5c3ef854d46705c47e90c2a" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>flux_impose</name></member>
+      <member refid="classNeumann_1a4fdff5700514b6e86a4b5243980ed211" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>flux_impose</name></member>
+      <member refid="classNeumann_1a5eab7524990e49b92f36b16e10e0149b" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>flux_impose</name></member>
+      <member refid="classNeumann_1a3d5047e1eeec2f83c7ad7ebf80f2358f" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>flux_impose_</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>format_precision_geom</name></member>
+      <member refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>frontiere_dis</name></member>
+      <member refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>HAS_POINTER</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>info_obj</name></member>
+      <member refid="classNeumann__sortie__libre_1a3ad2edd45d283f44d4cd12a39984def4" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>me</name></member>
+      <member refid="classNeumann__sortie__libre_1a156222fbc7dbe2636a639429392de301" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>modifier_val_imp</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>Objet_U</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>operator=</name></member>
+      <member refid="classNeumann__sortie__libre_1ac0d2e009a56cf1fff07a904cc5e069c6" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>OWN_PTR</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>readOn</name></member>
+      <member refid="classNeumann__sortie__libre_1a530d48dc97f8da8ea05218d304b0f47e" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>reprendre</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classNeumann__sortie__libre_1a6dfd5d0256aa515258b54671bfa06495" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>supp_discs</name></member>
+      <member refid="classNeumann__sortie__libre_1a456fa70d8a720d7db983aa1a1842d9c4" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>tab_ext</name></member>
+      <member refid="classNeumann__sortie__libre_1a89a9b0e9545323029fe4911ab628eeda" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>tab_ext</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Neumann_sortie_libre</scope><name>taille_memoire</name></member>
+      <member refid="classNeumann__sortie__libre_1a4dec1c2ef210b2fc7b28e3e41fa26b8d" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>val_ext</name></member>
+      <member refid="classNeumann__sortie__libre_1a7fafdf571affe7a107b598f99ce2edd4" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>val_ext</name></member>
+      <member refid="classNeumann__sortie__libre_1a197196dc863fb50c4d6ea45f01cf1e0b" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>val_ext</name></member>
+      <member refid="classNeumann__sortie__libre_1a62682837fe2b84043d436daecfe0dcb5" prot="protected" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>val_ext_</name></member>
+      <member refid="classNeumann__sortie__libre_1a4f497ca9a623e2e40fdc70226020a45a" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Neumann_sortie_libre</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Neumann_sortie_libre</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

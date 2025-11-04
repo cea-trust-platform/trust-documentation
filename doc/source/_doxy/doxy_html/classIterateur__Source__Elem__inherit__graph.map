@@ -1,9 +1,6 @@
 <map id="Iterateur_Source_Elem&lt; _TYPE_ &gt;" name="Iterateur_Source_Elem&lt; _TYPE_ &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,174,277"/>
-<area shape="rect" id="Node000002" href="$classIterateur__Source__base.html" title=" " alt="" coords="6,157,173,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,200,92,232,87,232,87,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="53,81,126,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,124,92,156,87,156,87,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="54,5,125,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,49,92,81,87,81,87,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,175,271"/>
+<area shape="rect" id="node2" href="$classIterateur__Source__base.html" title=" " alt="" coords="7,155,173,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="53,80,127,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="54,5,126,32"/>
 </map>

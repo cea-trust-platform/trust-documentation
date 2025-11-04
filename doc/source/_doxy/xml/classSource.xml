@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classSource" kind="class" language="C++" prot="public">
+    <compoundname>Source</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">OWN_PTRSource_base</basecompoundref>
+    <includes local="no">Source.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classSource_1addde58808e54299321d9dcf4d25d2b44" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Source::Declare_instanciable</definition>
+        <argsstring>(Source)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classSource" kindref="compound">Source</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="34" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classSource_1a27938faa8952d45b4f398660cd26666c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Source::ajouter</definition>
+        <argsstring>(DoubleTab &amp;) const</argsstring>
+        <name>ajouter</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>xx</defname>
+        </param>
+        <briefdescription>
+<para>Appel a l&apos;objet sous-jacent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ajoute la contribution de la source au tableau passe en parametre.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xx) le tableau auquel on ajoute la contribution de la source </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(DoubleTab&amp;) le parametre xx modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="36" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.cpp" bodystart="73" bodyend="79"/>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+        <referencedby refid="classSource__QC__QDM__Gen_1a4f8ea1a0e1d20b7ca1fce7889583f94f" compoundref="Source__QC__QDM__Gen_8cpp" startline="47" endline="55">Source_QC_QDM_Gen::ajouter</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSource_1a57adb7f9b6bfeee020643fa09759bd39" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+        <definition>DoubleTab &amp; Source::calculer</definition>
+        <argsstring>(DoubleTab &amp;) const</argsstring>
+        <name>calculer</name>
+        <param>
+          <type><ref refid="classTRUSTTab" kindref="compound">DoubleTab</ref> &amp;</type>
+          <defname>xx</defname>
+        </param>
+        <briefdescription>
+<para>Appel a l&apos;objet sous-jacent. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Affecte le terme source au tableau passe en parametre.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(DoubleTab&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xx) le tableau dans lequel on stocke la valeur de la source </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(DoubleTab&amp;) le parametre xx modifie </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="37" column="13" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.cpp" bodystart="88" bodyend="94"/>
+        <references refid="classPerf__counters_1a8234efa62abcd428fe3df51699090290" compoundref="Perf__counters_8cpp" startline="1795" endline="1798">Perf_counters::begin_count</references>
+      </memberdef>
+      <memberdef kind="function" id="classSource_1a64787353f65177329e2118a7462fdf39" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Source::typer</definition>
+        <argsstring>(const Nom &amp;, const Equation_base &amp;)</argsstring>
+        <name>typer</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <defname>typ</defname>
+        </param>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <briefdescription>
+<para>Type la source en calculant le nom du type necessaire grace aux parametres fournis. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Nom&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>typ) le debut du type </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(Equation_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>eqn) l&apos;equation associee a la source </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.cpp" bodystart="52" bodyend="64"/>
+        <references refid="classEquation__base_1a440fc95363315082eddbef26dc76024e" compoundref="Equation__base_8cpp" startline="1035" endline="1043">Equation_base::discretisation</references>
+        <references refid="classDiscretisation__base_1a84fb688d59829681c98d3ce1250dab65" compoundref="Discretisation__base_8cpp" startline="350" endline="548">Discretisation_base::get_name_of_type_for</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <referencedby refid="classSource_1a89a68814e70580379a0e85bfa18a25f7" compoundref="Source_8cpp" startline="41" endline="44">typer_direct</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classSource_1a89a68814e70580379a0e85bfa18a25f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Source::typer_direct</definition>
+        <argsstring>(const Nom &amp;)</argsstring>
+        <name>typer_direct</name>
+        <param>
+          <type>const <ref refid="classNom" kindref="compound">Nom</ref> &amp;</type>
+          <defname>typ</defname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Nom&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>typ) le nom de type a donner a la source </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="39" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.cpp" bodystart="41" bodyend="44"/>
+        <references refid="classSource_1a64787353f65177329e2118a7462fdf39" compoundref="Source_8cpp" startline="52" endline="64">typer</references>
+        <referencedby refid="classNavier__Stokes__QC_1a2cacdb758dfd739e155f403b9c5a5de4" compoundref="Navier__Stokes__QC_8cpp" startline="48" endline="66">Navier_Stokes_QC::completer</referencedby>
+        <referencedby refid="classNavier__Stokes__WC_1a0602172077ed1c630746f6acdafcbd31" compoundref="Navier__Stokes__WC_8cpp" startline="49" endline="67">Navier_Stokes_WC::completer</referencedby>
+        <referencedby refid="classNavier__Stokes__std_1a65357511ebee87c630126781e1e43439" compoundref="Navier__Stokes__std_8cpp" startline="289" endline="338">Navier_Stokes_std::completer</referencedby>
+        <referencedby refid="classNavier__Stokes__Turbulent__QC_1ae2bdd1ac45389dd1f7c32fe45a061f8e" compoundref="Navier__Stokes__Turbulent__QC_8cpp" startline="84" endline="111">Navier_Stokes_Turbulent_QC::completer</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__QC_1ab2851ae3f85126af962a11db205ddd05" compoundref="Convection__Diffusion__Chaleur__QC_8cpp" startline="48" endline="97">Convection_Diffusion_Chaleur_QC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classConvection__Diffusion__Chaleur__WC_1ab378f830f3b363dd4af2e1706d681760" compoundref="Convection__Diffusion__Chaleur__WC_8cpp" startline="40" endline="62">Convection_Diffusion_Chaleur_WC::lire_motcle_non_standard</referencedby>
+        <referencedby refid="classSource__QC__QDM__Gen_1a47810b38b82f140a90dd5f38f48928fb" compoundref="Source__QC__QDM__Gen_8cpp" startline="39" endline="45">Source_QC_QDM_Gen::readOn_spec</referencedby>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classSource" kindref="compound">Source</ref> Classe generique de la hierarchie des sources, un objet <ref refid="classSource" kindref="compound">Source</ref> peut </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>referencer n&apos;importe quel d&apos;objet derivant de Source_base.
+La plupart des methodes appellent les methodes de l&apos;objet Probleme
+sous-jacent via la methode valeur() declaree grace a la macro
+</verbatim> <simplesect kind="see"><para><ref refid="classSource__base" kindref="compound">Source_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>OWN_PTRSource_base</label>
+      </node>
+      <node id="1">
+        <label>Source</label>
+        <link refid="classSource"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>OWN_PTRSource_base</label>
+      </node>
+      <node id="1">
+        <label>Source</label>
+        <link refid="classSource"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" line="32" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Source.h" bodystart="33" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classSource_1a27938faa8952d45b4f398660cd26666c" prot="public" virt="non-virtual"><scope>Source</scope><name>ajouter</name></member>
+      <member refid="classSource_1a57adb7f9b6bfeee020643fa09759bd39" prot="public" virt="non-virtual"><scope>Source</scope><name>calculer</name></member>
+      <member refid="classSource_1addde58808e54299321d9dcf4d25d2b44" prot="private" virt="non-virtual"><scope>Source</scope><name>Declare_instanciable</name></member>
+      <member refid="classSource_1a64787353f65177329e2118a7462fdf39" prot="public" virt="non-virtual"><scope>Source</scope><name>typer</name></member>
+      <member refid="classSource_1a89a68814e70580379a0e85bfa18a25f7" prot="public" virt="non-virtual"><scope>Source</scope><name>typer_direct</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

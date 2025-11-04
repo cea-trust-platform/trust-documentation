@@ -1,25 +1,14 @@
 <map id="Frontiere_32_64&lt; _SIZE_ &gt;" name="Frontiere_32_64&lt; _SIZE_ &gt;">
-<area shape="rect" id="Node000001" title="Classe Frontiere." alt="" coords="246,135,444,162"/>
-<area shape="rect" id="Node000004" href="$classBord__32__64.html" title="Classe Bord Cette classe represente un bord d&#39;un domaine, c&#39;est un type de frontiere." alt="" coords="492,5,663,33"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="373,122,426,82,491,42,518,31,520,36,494,47,429,86,376,126"/>
-<area shape="rect" id="Node000005" href="$classBord__Interne__32__64.html" title="Classe Bord_Interne La classe sert a representer un ensemble de faces qui sont internes." alt="" coords="502,57,653,102"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="408,127,501,99,503,104,409,132"/>
-<area shape="rect" id="Node000006" href="$classGroupe__Faces__32__64.html" title="Classe Groupe_Face La classe sert a representer une selection de faces lu dans le fichier med." alt="" coords="498,126,657,171"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="460,146,498,146,498,151,460,151"/>
-<area shape="rect" id="Node000007" href="$classJoint__32__64.html" title="La classe Joint est une Frontiere qui contient les faces et les sommets de joint avec le domaine PEvo..." alt="" coords="493,195,662,222"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="417,164,521,191,520,197,415,169"/>
-<area shape="rect" id="Node000008" href="$classRaccord__base__32__64.html" title="Classe Raccord_base Cette classe est simplement une frontiere, c&#39;est la classe de base de la." alt="" coords="499,246,656,291"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="383,168,494,231,519,243,517,248,491,236,380,173"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,135,198,162"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,146,245,146,245,151,213,151"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,135,77,162"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,146,124,146,124,151,92,151"/>
-<area shape="rect" id="Node000009" href="$classRaccord__distant__32__64.html" title="Classe Raccord_distant Cette classe represente un raccord entre 2 problemes dont un est resolu par TR..." alt="" coords="715,212,864,256"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="671,251,714,243,715,249,672,256"/>
-<area shape="rect" id="Node000011" href="$classRaccord__local__32__64.html" title="Classe Raccord_local Cette classe represente un raccord entre 2 probleme resolus par TRUST." alt="" coords="711,281,868,326"/>
-<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="672,281,710,288,710,293,671,287"/>
-<area shape="rect" id="Node000010" href="$classRaccord__distant__homogene__32__64.html" title=" " alt="" coords="916,212,1117,256"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="879,231,915,231,915,236,879,236"/>
-<area shape="rect" id="Node000012" href="$classRaccord__local__homogene__32__64.html" title="Classe Raccord_local_homogene Cette classe represente un Raccord_local ou les maillages de part et d&#39;..." alt="" coords="923,281,1110,326"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="884,300,922,300,922,306,884,306"/>
+<area shape="rect" id="node1" title="Classe Frontiere." alt="" coords="248,129,447,156"/>
+<area shape="rect" id="node4" href="$classBord__32__64.html" title="Classe Bord Cette classe represente un bord d&#39;un domaine, c&#39;est un type de frontiere." alt="" coords="495,5,665,32"/>
+<area shape="rect" id="node5" href="$classBord__Interne__32__64.html" title="Classe Bord_Interne La classe sert a representer un ensemble de faces qui sont internes." alt="" coords="505,57,655,98"/>
+<area shape="rect" id="node6" href="$classGroupe__Faces__32__64.html" title="Classe Groupe_Face La classe sert a representer une selection de faces lu dans le fichier med." alt="" coords="501,122,659,163"/>
+<area shape="rect" id="node7" href="$classJoint__32__64.html" title="La classe Joint est une Frontiere qui contient les faces et les sommets de joint avec le domaine PEvo..." alt="" coords="495,188,665,215"/>
+<area shape="rect" id="node8" href="$classRaccord__base__32__64.html" title="Classe Raccord_base Cette classe est simplement une frontiere, c&#39;est la classe de base de la." alt="" coords="501,239,659,281"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,129,200,156"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,129,77,156"/>
+<area shape="rect" id="node9" href="$classRaccord__distant__32__64.html" title="Classe Raccord_distant Cette classe represente un raccord entre 2 problemes dont un est resolu par TR..." alt="" coords="718,206,867,247"/>
+<area shape="rect" id="node11" href="$classRaccord__local__32__64.html" title="Classe Raccord_local Cette classe represente un raccord entre 2 probleme resolus par TRUST." alt="" coords="713,271,872,313"/>
+<area shape="rect" id="node10" href="$classRaccord__distant__homogene__32__64.html" title=" " alt="" coords="920,206,1123,247"/>
+<area shape="rect" id="node12" href="$classRaccord__local__homogene__32__64.html" title="Classe Raccord_local_homogene Cette classe represente un Raccord_local ou les maillages de part et d&#39;..." alt="" coords="927,271,1115,313"/>
 </map>

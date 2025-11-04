@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_b5bdd15a3acf6700d59baef1b2a4dac1" kind="dir">
+    <compoundname>MAIN</compoundname>
+    <innerfile refid="catch__and__trace_8cpp">catch_and_trace.cpp</innerfile>
+    <innerfile refid="catch__and__trace_8h">catch_and_trace.h</innerfile>
+    <innerfile refid="info__atelier_8cpp">info_atelier.cpp</innerfile>
+    <innerfile refid="info__atelier_8h">info_atelier.h</innerfile>
+    <innerfile refid="MAIN_8cpp">MAIN.cpp</innerfile>
+    <innerfile refid="MAIN_8h">MAIN.h</innerfile>
+    <innerfile refid="mon__main_8cpp">mon_main.cpp</innerfile>
+    <innerfile refid="mon__main_8h">mon_main.h</innerfile>
+    <innerfile refid="the__main_8cpp">the_main.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/MAIN/"/>
+  </compounddef>
+</doxygen>

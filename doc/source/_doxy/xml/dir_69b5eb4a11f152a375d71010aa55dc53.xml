@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_69b5eb4a11f152a375d71010aa55dc53" kind="dir">
+    <compoundname>Sources</compoundname>
+    <innerdir refid="dir_76cc780313761e78e5729bff855d649d">Canal</innerdir>
+    <innerdir refid="dir_6f9b452254213903e7878c569dad3e03">Dilatable</innerdir>
+    <innerdir refid="dir_033daa8a7773e39b9336186bb4bd0ac3">PDC</innerdir>
+    <innerdir refid="dir_7bb2baa038b9beb888bbf434332828f5">Sources_It_Eval</innerdir>
+    <innerfile refid="Force__Centrifuge__VDF__Face__Axi_8cpp">Force_Centrifuge_VDF_Face_Axi.cpp</innerfile>
+    <innerfile refid="Force__Centrifuge__VDF__Face__Axi_8h">Force_Centrifuge_VDF_Face_Axi.h</innerfile>
+    <innerfile refid="Source__Generique__VDF__Face_8cpp">Source_Generique_VDF_Face.cpp</innerfile>
+    <innerfile refid="Source__Generique__VDF__Face_8h">Source_Generique_VDF_Face.h</innerfile>
+    <innerfile refid="Source__Permeabilite__VDF_8cpp">Source_Permeabilite_VDF.cpp</innerfile>
+    <innerfile refid="Source__Permeabilite__VDF_8h">Source_Permeabilite_VDF.h</innerfile>
+    <innerfile refid="Terme__Boussinesq__VDF__Face_8cpp">Terme_Boussinesq_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Boussinesq__VDF__Face_8h">Terme_Boussinesq_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__Echange__Impose__P0__VDF_8cpp">Terme_Puissance_Thermique_Echange_Impose_P0_VDF.cpp</innerfile>
+    <innerfile refid="Terme__Puissance__Thermique__Echange__Impose__P0__VDF_8h">Terme_Puissance_Thermique_Echange_Impose_P0_VDF.h</innerfile>
+    <innerfile refid="Terme__Source__Acceleration__VDF__Face_8cpp">Terme_Source_Acceleration_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Acceleration__VDF__Face_8h">Terme_Source_Acceleration_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Coriolis__VDF__Face_8cpp">Terme_Source_Coriolis_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Coriolis__VDF__Face_8h">Terme_Source_Coriolis_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__inc__base_8cpp">Terme_Source_inc_base.cpp</innerfile>
+    <innerfile refid="Terme__Source__inc__base_8h">Terme_Source_inc_base.h</innerfile>
+    <innerfile refid="Terme__Source__inc__th_8cpp">Terme_Source_inc_th.cpp</innerfile>
+    <innerfile refid="Terme__Source__inc__th_8h">Terme_Source_inc_th.h</innerfile>
+    <innerfile refid="Terme__Source__inc__th__VDF__Face_8cpp">Terme_Source_inc_th_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__inc__th__VDF__Face_8h">Terme_Source_inc_th_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__inc__VDF__Face_8cpp">Terme_Source_inc_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__inc__VDF__Face_8h">Terme_Source_inc_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Qdm__VDF__Face_8cpp">Terme_Source_Qdm_VDF_Face.cpp</innerfile>
+    <innerfile refid="Terme__Source__Qdm__VDF__Face_8h">Terme_Source_Qdm_VDF_Face.h</innerfile>
+    <innerfile refid="Terme__Source__Solide__SWIFT__VDF_8cpp">Terme_Source_Solide_SWIFT_VDF.cpp</innerfile>
+    <innerfile refid="Terme__Source__Solide__SWIFT__VDF_8h">Terme_Source_Solide_SWIFT_VDF.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/VDF/Sources/"/>
+  </compounddef>
+</doxygen>

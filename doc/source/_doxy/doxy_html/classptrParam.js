@@ -8,7 +8,7 @@ var classptrParam =
     [ "create", "classptrParam.html#ac0beada8d838ea2086da90d377d0100d", null ],
     [ "valeur", "classptrParam.html#a03b1bd6861fd8e03ae79e13e496dbe56", null ],
     [ "valeur", "classptrParam.html#a472e4e0aa01101f44d09d30a52b71240", null ],
-    [ "operator->", "classptrParam.html#a7093b2bd9dc5606ed4b7a7eb257c6775", null ],
-    [ "operator->", "classptrParam.html#a82a6fbd09fd7714b1899c885fbfc6c76", null ],
+    [ "operator->", "classptrParam.html#a53e97236585953e6df9de53078fe0502", null ],
+    [ "operator->", "classptrParam.html#aebd3d3fcd728e4a4fa80fa3c81de39b7", null ],
     [ "param_", "classptrParam.html#aebcbf90372a4e34cf0fe1113a21f0918", null ]
 ];

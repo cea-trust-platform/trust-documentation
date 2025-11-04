@@ -1,0 +1,843 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classEchange__global__impose" kind="class" language="C++" prot="public">
+    <compoundname>Echange_global_impose</compoundname>
+    <basecompoundref refid="classEchange__impose__base" prot="public" virt="non-virtual">Echange_impose_base</basecompoundref>
+    <derivedcompoundref refid="classEchange__contact__Correlation__VDF" prot="public" virt="non-virtual">Echange_contact_Correlation_VDF</derivedcompoundref>
+    <derivedcompoundref refid="classEchange__contact__VDF" prot="public" virt="non-virtual">Echange_contact_VDF</derivedcompoundref>
+    <derivedcompoundref refid="classEchange__couplage__thermique" prot="public" virt="non-virtual">Echange_couplage_thermique</derivedcompoundref>
+    <derivedcompoundref refid="classEchange__global__impose__turbulent" prot="public" virt="non-virtual">Echange_global_impose_turbulent</derivedcompoundref>
+    <derivedcompoundref refid="classEchange__interne__global__impose" prot="public" virt="non-virtual">Echange_interne_global_impose</derivedcompoundref>
+    <derivedcompoundref refid="classPlaqThVDF" prot="public" virt="non-virtual">PlaqThVDF</derivedcompoundref>
+    <includes local="no">Echange_global_impose.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" prot="protected" static="no" mutable="no">
+        <type></type>
+        <definition>Echange_global_impose::phi_ext_</definition>
+        <argsstring></argsstring>
+        <name>phi_ext_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="69" column="12" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb" compoundref="Echange__global__impose_8cpp" startline="65" endline="73">avancer</referencedby>
+        <referencedby refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c" compoundref="Echange__global__impose_8cpp" startline="55" endline="63">changer_temps_futur</referencedby>
+        <referencedby refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" compoundref="Echange__global__impose_8cpp" startline="220" endline="235">completer</referencedby>
+        <referencedby refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" compoundref="Echange__global__impose_8cpp" startline="105" endline="119">initialiser</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">Echange_couplage_thermique::initialiser</referencedby>
+        <referencedby refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4" compoundref="Echange__global__impose_8cpp" startline="95" endline="103">mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" compoundref="Echange__global__impose_8h" startline="53" endline="53">phi_ext</referencedby>
+        <referencedby refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8" compoundref="Echange__global__impose_8cpp" startline="75" endline="83">reculer</referencedby>
+        <referencedby refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe" compoundref="Echange__global__impose_8cpp" startline="85" endline="93">set_temps_defaut</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Echange_global_impose::phi_ext_lu_</definition>
+        <argsstring></argsstring>
+        <name>phi_ext_lu_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="68" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb" compoundref="Echange__global__impose_8cpp" startline="65" endline="73">avancer</referencedby>
+        <referencedby refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c" compoundref="Echange__global__impose_8cpp" startline="55" endline="63">changer_temps_futur</referencedby>
+        <referencedby refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" compoundref="Echange__global__impose_8cpp" startline="220" endline="235">completer</referencedby>
+        <referencedby refid="classEchange__global__impose_1a4d52294b1ad42cfbe1f7cfa4e6f02d94" compoundref="Echange__global__impose_8h" startline="65" endline="65">has_phi_ext</referencedby>
+        <referencedby refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" compoundref="Echange__global__impose_8cpp" startline="105" endline="119">initialiser</referencedby>
+        <referencedby refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4" compoundref="Echange__global__impose_8cpp" startline="95" endline="103">mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8" compoundref="Echange__global__impose_8cpp" startline="75" endline="83">reculer</referencedby>
+        <referencedby refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe" compoundref="Echange__global__impose_8cpp" startline="85" endline="93">set_temps_defaut</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEchange__global__impose_1aa1518c8f6a97fdb66063cf0a5e752be0" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_global_impose::Declare_instanciable</definition>
+        <argsstring>(Echange_global_impose)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classEchange__global__impose" kindref="compound">Echange_global_impose</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="40" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_global_impose::avancer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>avancer</name>
+        <reimplements refid="classCond__lim__base_1a8988a28dc4d3c7f5abf0d8751681ca3c">avancer</reimplements>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a786aee81c664a68ad6426e689cb84363">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1a8de6be5a384288508b8794d7097f687e">avancer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1ab321646fad96d93ea195d25461782e83">avancer</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="46" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="65" bodyend="73"/>
+        <references refid="classEchange__impose__base_1a26800813205884238e3520a445a1bb39" compoundref="Echange__impose__base_8cpp" startline="232" endline="239">Echange_impose_base::avancer</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEchange__couplage__thermique_1a8de6be5a384288508b8794d7097f687e" compoundref="Echange__couplage__thermique_8cpp" startline="148" endline="158">Echange_couplage_thermique::avancer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a7e7c36a439118f4bed40d5fcacdba471" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::champ_exterieur</definition>
+        <argsstring>(int i, const Champ_front_base &amp;champ_ext) const</argsstring>
+        <name>champ_exterieur</name>
+        <reimplementedby refid="classEchange__couplage__thermique_1a576d1d5eac0ce204663e74ad4a4ac70a">champ_exterieur</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+          <declname>champ_ext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="57" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="122" bodyend="174"/>
+        <references refid="classMilieu__base_1a5f213810b7fa8ec62690f5112d7e4529" compoundref="Milieu__base_8cpp" startline="867" endline="870">Milieu_base::capacite_calorifique</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classMilieu__base_1a44e73e7944cb21fe38595b5cd0050e83" compoundref="Milieu__base_8cpp" startline="958" endline="961">Milieu_base::equation</references>
+        <references refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" compoundref="Process_8cpp" startline="285" endline="291">Process::exit</references>
+        <references refid="classMilieu__base_1ab8ce0742ed6681306999931dca88a5b9" compoundref="Milieu__base_8cpp" startline="797" endline="800">Milieu_base::masse_volumique</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classTRUSTVect_1a0a3b16fb39def99371b91ec218ef138b" compoundref="TRUSTVect_8tpp" startline="45" endline="48">TRUSTVect&lt; _TYPE_, _SIZE_ &gt;::size</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <references refid="classChamp__front__base_1a6cb5e7739d925ea33074095516bef945" compoundref="Champ__front__base_8h" startline="148" endline="151">Champ_front_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::champ_exterieur</definition>
+        <argsstring>(int i, int j, const Champ_front_base &amp;champ_ext) const</argsstring>
+        <name>champ_exterieur</name>
+        <reimplementedby refid="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e">champ_exterieur</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+          <declname>champ_ext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="56" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="176" bodyend="218"/>
+        <references refid="classMilieu__base_1a5f213810b7fa8ec62690f5112d7e4529" compoundref="Milieu__base_8cpp" startline="867" endline="870">Milieu_base::capacite_calorifique</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classMilieu__base_1a44e73e7944cb21fe38595b5cd0050e83" compoundref="Milieu__base_8cpp" startline="958" endline="961">Milieu_base::equation</references>
+        <references refid="classMilieu__base_1ab8ce0742ed6681306999931dca88a5b9" compoundref="Milieu__base_8cpp" startline="797" endline="800">Milieu_base::masse_volumique</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <references refid="classChamp__front__base_1a6cb5e7739d925ea33074095516bef945" compoundref="Champ__front__base_8h" startline="148" endline="151">Champ_front_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <referencedby refid="classEchange__global__impose_1ad082da3746deb118c96e74523e4b3192" compoundref="Echange__global__impose_8cpp" startline="237" endline="240">derivee_flux_exterieur_imposee</referencedby>
+        <referencedby refid="classEchange__global__impose_1a87477ced1a39676cf47aaf9da58a8e77" compoundref="Echange__global__impose_8cpp" startline="247" endline="250">flux_exterieur_impose</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_global_impose::changer_temps_futur</definition>
+        <argsstring>(double temps, int i) override</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplements refid="classCond__lim__base_1a0d96bc640c9615955badacba3b9cf9d4">changer_temps_futur</reimplements>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1aea2d808fe377eb3b4679013bd51a96ed">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab9f23a6307b4f34600ba043ae17f2681">changer_temps_futur</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a18dd5588b0f626fa09c36219343a9c6c">changer_temps_futur</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="45" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="55" bodyend="63"/>
+        <references refid="classEchange__impose__base_1af18898cfcee94ccf263a302c91981bb3" compoundref="Echange__impose__base_8cpp" startline="224" endline="231">Echange_impose_base::changer_temps_futur</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEchange__couplage__thermique_1ab9f23a6307b4f34600ba043ae17f2681" compoundref="Echange__couplage__thermique_8cpp" startline="136" endline="146">Echange_couplage_thermique::changer_temps_futur</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ac53c4e3184275fb2e4aa089daa472253" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_global_impose::compatible_avec_discr</definition>
+        <argsstring>(const Discretisation_base &amp;discr) const override</argsstring>
+        <name>compatible_avec_discr</name>
+        <reimplements refid="classCond__lim__base_1aafffe4c3e287b08ec0c6cacb0b7f5a50">compatible_avec_discr</reimplements>
+        <reimplementedby refid="classEchange__interne__global__parfait_1aa85c8ff47bdfadf30a4eec980dd35b68">compatible_avec_discr</reimplementedby>
+        <param>
+          <type>const <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> &amp;</type>
+          <defname>discr</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie 1 si la condition aux limites est compatible avec la discretisation passee en parametre. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Discretisation_base&amp;)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>la discretisation avec laquelle on veut verifier la compatibilite </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="42" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_global_impose::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f">completer</reimplements>
+        <reimplementedby refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908">completer</reimplementedby>
+        <reimplementedby refid="classEchange__interne__global__impose_1ac08602ea1f4e419007a80f03a52ce353">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VDF_1a814dc72824adcc34af7d09b66d174ab2">completer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a15dddbbb8258d691fc18ba2827a2e8ef">completer</reimplementedby>
+        <briefdescription>
+<para>NE FAIT RIEN A surcharger dans les classes derivees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="43" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="220" bodyend="235"/>
+        <references refid="classCond__lim__base_1ac3d1bcf8652b65f67a1c201082536c2f" compoundref="Cond__lim__base_8cpp" startline="31" endline="34">Cond_lim_base::completer</references>
+        <references refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" compoundref="Cond__lim__base_8h" startline="90" endline="93">Cond_lim_base::frontiere_dis</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908" compoundref="Echange__couplage__thermique_8cpp" startline="63" endline="111">Echange_couplage_thermique::completer</referencedby>
+        <referencedby refid="classEchange__interne__global__impose_1ac08602ea1f4e419007a80f03a52ce353" compoundref="Echange__interne__global__impose_8cpp" startline="82" endline="129">Echange_interne_global_impose::completer</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a15dddbbb8258d691fc18ba2827a2e8ef" compoundref="Echange__contact__VDF_8cpp" startline="55" endline="62">Echange_contact_VDF::completer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ad2b44bdd470ac2d8d0daaf1985e9efba" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::derivee_flux_exterieur_imposee</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>derivee_flux_exterieur_imposee</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="62" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="242" bodyend="245"/>
+        <references refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" compoundref="Echange__global__impose_8cpp" startline="176" endline="218">champ_exterieur</references>
+        <references refid="classEchange__global__impose_1af8115dea08586a9bca5e11f257e96de8" compoundref="Echange__global__impose_8h" startline="51" endline="51">derivee_phi_ext</references>
+        <referencedby refid="classOp__Diff__EF_1af7b4bf1d966f93611185d9dc8601b906" compoundref="Op__Diff__EF_8cpp" startline="656" endline="808">Op_Diff_EF::ajouter_contributions_bords</referencedby>
+        <referencedby refid="classOp__Dift__EF__Q1_1a807998184177619fd22c78c7636fb59c" compoundref="Op__Dift__EF__Q1_8cpp" startline="771" endline="923">Op_Dift_EF_Q1::ajouter_contributions_bords</referencedby>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a1fad37bef3569073c0d53f14069f7123" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="466" endline="477">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::coeffs_face</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ad082da3746deb118c96e74523e4b3192" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::derivee_flux_exterieur_imposee</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>derivee_flux_exterieur_imposee</name>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="63" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="237" bodyend="240"/>
+        <references refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" compoundref="Echange__global__impose_8cpp" startline="176" endline="218">champ_exterieur</references>
+        <references refid="classEchange__global__impose_1af8115dea08586a9bca5e11f257e96de8" compoundref="Echange__global__impose_8h" startline="51" endline="51">derivee_phi_ext</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1af8115dea08586a9bca5e11f257e96de8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_global_impose::derivee_phi_ext</definition>
+        <argsstring>()</argsstring>
+        <name>derivee_phi_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="51" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="51" bodyend="51"/>
+        <referencedby refid="classEchange__global__impose_1ad082da3746deb118c96e74523e4b3192" compoundref="Echange__global__impose_8cpp" startline="237" endline="240">derivee_flux_exterieur_imposee</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1aba35d004249516fa87453d655e431de5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_global_impose::derivee_phi_ext</definition>
+        <argsstring>() const</argsstring>
+        <name>derivee_phi_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="52" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a063453ce3375d6f03eb95a4e1884612f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::flux_exterieur_impose</definition>
+        <argsstring>(int i) const</argsstring>
+        <name>flux_exterieur_impose</name>
+        <reimplementedby refid="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6">flux_exterieur_impose</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="59" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="252" bodyend="255"/>
+        <references refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" compoundref="Echange__global__impose_8cpp" startline="176" endline="218">champ_exterieur</references>
+        <references refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" compoundref="Echange__global__impose_8h" startline="53" endline="53">phi_ext</references>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a450eb841c2cc6602daf84d26b48158d9" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="147" endline="160">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::flux_face</referencedby>
+        <referencedby refid="classT__paroi__Champ__P0__VDF_1a3109448d3de4510191a773e96948bc78" compoundref="T__paroi__Champ__P0__VDF_8cpp" startline="51" endline="196">T_paroi_Champ_P0_VDF::me_calculer</referencedby>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a501e4df9cab63d167ab8f58a47ab0090" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="599" endline="608">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a87477ced1a39676cf47aaf9da58a8e77" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_global_impose::flux_exterieur_impose</definition>
+        <argsstring>(int i, int j) const</argsstring>
+        <name>flux_exterieur_impose</name>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab0f69347c7bc7c738488ec55ef572456">flux_exterieur_impose</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="60" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="247" bodyend="250"/>
+        <references refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" compoundref="Echange__global__impose_8cpp" startline="176" endline="218">champ_exterieur</references>
+        <references refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" compoundref="Echange__global__impose_8h" startline="53" endline="53">phi_ext</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a4d52294b1ad42cfbe1f7cfa4e6f02d94" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const bool &amp;</type>
+        <definition>const bool&amp; Echange_global_impose::has_phi_ext</definition>
+        <argsstring>() const</argsstring>
+        <name>has_phi_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="65" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="65" bodyend="65"/>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a1fad37bef3569073c0d53f14069f7123" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="466" endline="477">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::coeffs_face</referencedby>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a450eb841c2cc6602daf84d26b48158d9" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="147" endline="160">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::flux_face</referencedby>
+        <referencedby refid="classT__paroi__Champ__P0__VDF_1a3109448d3de4510191a773e96948bc78" compoundref="T__paroi__Champ__P0__VDF_8cpp" startline="51" endline="196">T_paroi_Champ_P0_VDF::me_calculer</referencedby>
+        <referencedby refid="classEval__Diff__VDF__Elem__Gen_1a501e4df9cab63d167ab8f58a47ab0090" compoundref="Eval__Diff__VDF__Elem__Gen_8tpp" startline="599" endline="608">Eval_Diff_VDF_Elem_Gen&lt; DERIVED_T &gt;::secmem_face</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_global_impose::initialiser</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classCond__lim__base_1ad6c1c3c438d3a1f31593f234e1193c92">initialiser</reimplements>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a09e4ee26b3248fe5ddf9fdaca2b78572">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d">initialiser</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a14ecbb753952a7e5ef06a5856ea65ab2">initialiser</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="49" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="105" bodyend="119"/>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">Cond_lim_base::domaine_Cl_dis</references>
+        <references refid="classEchange__impose__base_1a2f431bc81bc4e12f39bdc2e0c0b75a79" compoundref="Echange__impose__base_8cpp" startline="197" endline="204">Echange_impose_base::initialiser</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">Echange_couplage_thermique::initialiser</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a14ecbb753952a7e5ef06a5856ea65ab2" compoundref="Echange__contact__VDF_8cpp" startline="274" endline="345">Echange_contact_VDF::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_global_impose::mettre_a_jour</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classCond__lim__base_1a3bf89c4b0385ced140851050ae02395c">mettre_a_jour</reimplements>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab923c04395889d622d0024b45b48d9cf">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1a9bb8f2481fb176f471e43d477970f08a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__Correlation__VDF_1a77e168961e77113e3c7002d16a6cff6c">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a8e63158db1c7c3ade6a4afc56bb6b06a">mettre_a_jour</reimplementedby>
+        <reimplementedby refid="classPlaqThVDF_1a748d4a618b49243506a118415ffb4fc4">mettre_a_jour</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de la condition aux limites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="48" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="95" bodyend="103"/>
+        <references refid="classEchange__impose__base_1ace6c3be28b71c197eda13938039e82dc" compoundref="Echange__impose__base_8cpp" startline="188" endline="195">Echange_impose_base::mettre_a_jour</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <referencedby refid="classEchange__couplage__thermique_1ab923c04395889d622d0024b45b48d9cf" compoundref="Echange__couplage__thermique_8cpp" startline="184" endline="194">Echange_couplage_thermique::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__Correlation__VDF_1a77e168961e77113e3c7002d16a6cff6c" compoundref="Echange__contact__Correlation__VDF_8cpp" startline="484" endline="660">Echange_contact_Correlation_VDF::mettre_a_jour</referencedby>
+        <referencedby refid="classEchange__contact__VDF_1a8e63158db1c7c3ade6a4afc56bb6b06a" compoundref="Echange__contact__VDF_8cpp" startline="347" endline="376">Echange_contact_VDF::mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_global_impose::phi_ext</definition>
+        <argsstring>()</argsstring>
+        <name>phi_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="53" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="53" bodyend="53"/>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <referencedby refid="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6" compoundref="Echange__couplage__thermique_8h" startline="40" endline="40">Echange_couplage_thermique::flux_exterieur_impose</referencedby>
+        <referencedby refid="classEchange__global__impose_1a87477ced1a39676cf47aaf9da58a8e77" compoundref="Echange__global__impose_8cpp" startline="247" endline="250">flux_exterieur_impose</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a3f815f32619f8374cecadce84db8524b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_global_impose::phi_ext</definition>
+        <argsstring>() const</argsstring>
+        <name>phi_ext</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="54" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="54" bodyend="54"/>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_global_impose::reculer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>reculer</name>
+        <reimplements refid="classCond__lim__base_1ab794de2df961766849500b74e4012af4">reculer</reimplements>
+        <reimplementedby refid="classEchange__couplage__thermique_1ab2b119841848fa7c9dd2ceb6c9447d99">reculer</reimplementedby>
+        <reimplementedby refid="classEchange__contact__VDF_1a092a8d56e057d3f1bb3c7fb0da583ba6">reculer</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="47" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="75" bodyend="83"/>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <references refid="classEchange__impose__base_1a947c9f066aa1ea5f6ec803dd0de50683" compoundref="Echange__impose__base_8cpp" startline="241" endline="248">Echange_impose_base::reculer</references>
+        <referencedby refid="classEchange__couplage__thermique_1ab2b119841848fa7c9dd2ceb6c9447d99" compoundref="Echange__couplage__thermique_8cpp" startline="160" endline="170">Echange_couplage_thermique::reculer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_global_impose::set_temps_defaut</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplements refid="classCond__lim__base_1af3680a8372e15de6774ffbc3eba5a1e3">set_temps_defaut</reimplements>
+        <reimplementedby refid="classEchange__global__impose__turbulent_1adf5bde6d08e8452eba112db6e37f230c">set_temps_defaut</reimplementedby>
+        <reimplementedby refid="classEchange__couplage__thermique_1a168e903df18b9b86ad0d1c1fa8591c75">set_temps_defaut</reimplementedby>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="44" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.cpp" bodystart="85" bodyend="93"/>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">phi_ext_</references>
+        <references refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" compoundref="Echange__global__impose_8h" startline="68">phi_ext_lu_</references>
+        <references refid="classEchange__impose__base_1a4b959808eae5a8b41891a3d72c812b53" compoundref="Echange__impose__base_8cpp" startline="207" endline="214">Echange_impose_base::set_temps_defaut</references>
+        <referencedby refid="classEchange__couplage__thermique_1a168e903df18b9b86ad0d1c1fa8591c75" compoundref="Echange__couplage__thermique_8cpp" startline="172" endline="182">Echange_couplage_thermique::set_temps_defaut</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classEchange__global__impose_1a0f6284e77ae2e856accce5e016757c1a" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_global_impose::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) derivee_phi_ext_</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="69" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Classe <ref refid="classEchange__global__impose" kindref="compound">Echange_global_impose</ref> Cette classe represente le cas particulier de la classe. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="classEchange__impose__base" kindref="compound">Echange_impose_base</ref> ou l&apos;echange de chaleur total est calcule grace au coefficient d&apos;echange de chaleur global fourni par l&apos;utilisateur.</para>
+<para>ATTENTION, dans le cas des discretisations ou T est localisee au centre de l&apos;element (VDF) cela correspond a la modelisation d&apos;une paroi d&apos;echange dont l&apos;epaisseur s&apos;etend jusqu&apos;a la moitie de la premiere maille.</para>
+<para>h_t : coefficient d&apos;echange total h_imp_: coefficient d&apos;echange global (donnee utilisateur) On a: h_t = h_imp Les champs h_imp et T_ext sont uniformes</para>
+<para><simplesect kind="see"><para><ref refid="classEchange__impose__base" kindref="compound">Echange_impose_base</ref> <ref refid="classEchange__externe__impose" kindref="compound">Echange_externe_impose</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>Echange_contact_Correlation_VDF</label>
+        <link refid="classEchange__contact__Correlation__VDF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Echange_global_impose</label>
+        <link refid="classEchange__global__impose"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>Echange_couplage_thermique</label>
+        <link refid="classEchange__couplage__thermique"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>PlaqThVDF</label>
+        <link refid="classPlaqThVDF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Echange_contact_Colburn_VDF</label>
+        <link refid="classEchange__contact__Colburn__VDF"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Echange_impose_base</label>
+        <link refid="classEchange__impose__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Echange_interne_global_impose</label>
+        <link refid="classEchange__interne__global__impose"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Echange_contact_VDF</label>
+        <link refid="classEchange__contact__VDF"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>Echange_interne_global_parfait</label>
+        <link refid="classEchange__interne__global__parfait"/>
+        <childnode refid="12" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Echange_contact_VDF_Plaque_Flux_Cte</label>
+        <link refid="classEchange__contact__VDF__Plaque__Flux__Cte"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Echange_global_impose_turbulent</label>
+        <link refid="classEchange__global__impose__turbulent"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Echange_global_impose</label>
+        <link refid="classEchange__global__impose"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="5">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="2">
+        <label>Echange_impose_base</label>
+        <link refid="classEchange__impose__base"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" line="38" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Cond_Lim/Echange_global_impose.h" bodystart="39" bodyend="70"/>
+    <listofallmembers>
+      <member refid="classEchange__impose__base_1a5801aadfa4eb1f45071ee565ada923fc" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>associer_</name></member>
+      <member refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classEchange__impose__base_1a573f861c2a54ce89eacbb322df8edc91" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>bidim_axi</name></member>
+      <member refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>champ_exterieur</name></member>
+      <member refid="classEchange__global__impose_1a7e7c36a439118f4bed40d5fcacdba471" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>champ_exterieur</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>change_num</name></member>
+      <member refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>check_int_overflow</name></member>
+      <member refid="classEchange__global__impose_1ac53c4e3184275fb2e4aa089daa472253" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>compatible_avec_discr</name></member>
+      <member refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>completer</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classEchange__global__impose_1aa1518c8f6a97fdb66063cf0a5e752be0" prot="private" virt="non-virtual"><scope>Echange_global_impose</scope><name>Declare_instanciable</name></member>
+      <member refid="classEchange__global__impose_1ad2b44bdd470ac2d8d0daaf1985e9efba" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>derivee_flux_exterieur_imposee</name></member>
+      <member refid="classEchange__global__impose_1ad082da3746deb118c96e74523e4b3192" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>derivee_flux_exterieur_imposee</name></member>
+      <member refid="classEchange__global__impose_1af8115dea08586a9bca5e11f257e96de8" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>derivee_phi_ext</name></member>
+      <member refid="classEchange__global__impose_1aba35d004249516fa87453d655e431de5" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>derivee_phi_ext</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>disable_TU</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Echange_global_impose</scope><name>duplique</name></member>
+      <member refid="classEchange__impose__base_1a92d90a73478b0bdb07b78d4a88db8530" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1a92abe1d36ebd113ba886b1f9d1dacd43" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1acb24273776168de3063e6c0568446bd7" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1af65c24c09a0801161af35d14e1a430fd" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1ae4bf68a4a8b09bd513913d24d0036073" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>emissivite_</name></member>
+      <member refid="classEchange__impose__base_1aa3a82262943a73a064bdf27e714b45b7" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>eps</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>exit</name></member>
+      <member refid="classEchange__impose__base_1a49abe79a1bdd12ad8b45d8c895d87b73" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classEchange__global__impose_1a063453ce3375d6f03eb95a4e1884612f" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>flux_exterieur_impose</name></member>
+      <member refid="classEchange__global__impose_1a87477ced1a39676cf47aaf9da58a8e77" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>flux_exterieur_impose</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>format_precision_geom</name></member>
+      <member refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>frontiere_dis</name></member>
+      <member refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classEchange__impose__base_1a0e39b8dbe8e215626c7ffa9f08e456df" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1a5331eee545b04f9670861ce754dd2ff8" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1aa11e3fb39f174d68113edc2dbef74d5f" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1a2caeebf849a418875bf98866eddd8ea2" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1aef8706d0a0dd423cd8ceaba3a2dfd1b0" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp_grad</name></member>
+      <member refid="classEchange__impose__base_1a5cc13bf66589f073bf428e74cf73eaec" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>h_imp_grad</name></member>
+      <member refid="classEchange__impose__base_1a4937cafdeac44fcb004fed5f507c9023" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>has_emissivite</name></member>
+      <member refid="classEchange__impose__base_1a0a64001ace7f39084d58c430b52d7190" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>has_h_imp</name></member>
+      <member refid="classEchange__impose__base_1aa198a13d416efe7307156ac948dddf72" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>has_h_imp_grad</name></member>
+      <member refid="classEchange__global__impose_1a4d52294b1ad42cfbe1f7cfa4e6f02d94" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>has_phi_ext</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>HAS_POINTER</name></member>
+      <member refid="classEchange__impose__base_1a155bbdb292e0bc458b8b5114ac6fffed" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>himp</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>info_obj</name></member>
+      <member refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>le_type</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classEchange__impose__base_1af8a32226e46f2706f58b441b8c302102" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>liste_faces_loi_paroi</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>me</name></member>
+      <member refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>modifier_val_imp</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>Objet_U</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>operator=</name></member>
+      <member refid="classEchange__global__impose_1a0f6284e77ae2e856accce5e016757c1a" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>phi_ext</name></member>
+      <member refid="classEchange__global__impose_1a3f815f32619f8374cecadce84db8524b" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>phi_ext</name></member>
+      <member refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>phi_ext_</name></member>
+      <member refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>phi_ext_lu_</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>readOn</name></member>
+      <member refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>reprendre</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>resetTime</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Echange_global_impose</scope><name>supp_discs</name></member>
+      <member refid="classEchange__impose__base_1a53eb3e4cdca93415840ad43737e7e0a1" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1aec5054aa72d13fa30fdaa232c7c40ecf" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1aa8625e9dfb37868ccd7017b586b26155" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1a7adcd97f08db0f32a51b94d4fbd9afc6" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>T_ext</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Echange_global_impose</scope><name>taille_memoire</name></member>
+      <member refid="classEchange__impose__base_1af7155f4ed887bd54d857e94a69262280" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>text</name></member>
+      <member refid="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Echange_global_impose</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Echange_global_impose</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

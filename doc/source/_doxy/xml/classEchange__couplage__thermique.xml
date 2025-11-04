@@ -1,0 +1,966 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classEchange__couplage__thermique" kind="class" language="C++" prot="public">
+    <compoundname>Echange_couplage_thermique</compoundname>
+    <basecompoundref refid="classEchange__global__impose" prot="public" virt="non-virtual">Echange_global_impose</basecompoundref>
+    <includes local="no">Echange_couplage_thermique.h</includes>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classEchange__couplage__thermique_1a38bb792fd74463d9d83da8299e72f850" prot="protected" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Echange_couplage_thermique::couplage_</definition>
+        <argsstring></argsstring>
+        <name>couplage_</name>
+        <initializer>= -1.</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="74" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="74" bodyend="-1"/>
+        <referencedby refid="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6" compoundref="Echange__couplage__thermique_8h" startline="40" endline="40">flux_exterieur_impose</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEchange__couplage__thermique_1ad3ed39635de763f1faf89233d7ddc3e1" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Echange_couplage_thermique::divise_par_rho_cp_</definition>
+        <argsstring></argsstring>
+        <name>divise_par_rho_cp_</name>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="83" column="18" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e" compoundref="Echange__couplage__thermique_8cpp" startline="113" endline="134">champ_exterieur</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908" compoundref="Echange__couplage__thermique_8cpp" startline="63" endline="111">completer</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEchange__couplage__thermique_1acd14eeb5bd7591605e4ec41f8a818da3" prot="protected" static="no" mutable="no">
+        <type><ref refid="classLecture__Champ" kindref="compound">Lecture_Champ</ref></type>
+        <definition>Lecture_Champ Echange_couplage_thermique::lec_champs</definition>
+        <argsstring></argsstring>
+        <name>lec_champs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="82" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="82" bodyend="-1"/>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classEchange__couplage__thermique_1afbe568915f1fbeb4e581f1719d20e5eb" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Echange_couplage_thermique::reprise_</definition>
+        <argsstring></argsstring>
+        <name>reprise_</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="83" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">initialiser</referencedby>
+        <referencedby refid="classEchange__couplage__thermique_1a021a575206cdd632db74c25b74b991e5" compoundref="Echange__couplage__thermique_8h" startline="46" endline="46">reprise</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ac24d7f41fafbe0b2a259d1ff3d847304" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::Declare_instanciable</definition>
+        <argsstring>(Echange_couplage_thermique)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classEchange__couplage__thermique" kindref="compound">Echange_couplage_thermique</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="27" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a0b6cd2b13190201523b3b68e6195091c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::a_p</definition>
+        <argsstring>()</argsstring>
+        <name>a_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="47" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a6f653672cdc077cba7348d1fb193bc53" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::a_p</definition>
+        <argsstring>() const</argsstring>
+        <name>a_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="48" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a8de6be5a384288508b8794d7097f687e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_couplage_thermique::avancer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>avancer</name>
+        <reimplements refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb">avancer</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="32" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="148" bodyend="158"/>
+        <references refid="classEchange__global__impose_1a95ce69efb8bead86b5d50597228649eb" compoundref="Echange__global__impose_8cpp" startline="65" endline="73">Echange_global_impose::avancer</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a576d1d5eac0ce204663e74ad4a4ac70a" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_couplage_thermique::champ_exterieur</definition>
+        <argsstring>(int i, const Champ_front_base &amp;champ_ext) const override</argsstring>
+        <name>champ_exterieur</name>
+        <reimplements refid="classEchange__global__impose_1a7e7c36a439118f4bed40d5fcacdba471">champ_exterieur</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+          <declname>champ_ext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="38" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="38" bodyend="38"/>
+        <references refid="classEchange__couplage__thermique_1a576d1d5eac0ce204663e74ad4a4ac70a" compoundref="Echange__couplage__thermique_8h" startline="38" endline="38">champ_exterieur</references>
+        <referencedby refid="classEchange__couplage__thermique_1a576d1d5eac0ce204663e74ad4a4ac70a" compoundref="Echange__couplage__thermique_8h" startline="38" endline="38">champ_exterieur</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_couplage_thermique::champ_exterieur</definition>
+        <argsstring>(int i, int j, const Champ_front_base &amp;champ_ext) const override</argsstring>
+        <name>champ_exterieur</name>
+        <reimplements refid="classEchange__global__impose_1ad7ba7d3edca8c76b6e04ab1084d47a87">champ_exterieur</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+          <declname>champ_ext</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="37" column="10" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="113" bodyend="134"/>
+        <references refid="classMilieu__base_1a5f213810b7fa8ec62690f5112d7e4529" compoundref="Milieu__base_8cpp" startline="867" endline="870">Milieu_base::capacite_calorifique</references>
+        <references refid="classTRUSTTab_1aee55d6851cd43d179ec3c46262fa0aad" compoundref="TRUSTTab_8tpp" startline="133" endline="140">TRUSTTab&lt; _TYPE_, _SIZE_ &gt;::dimension</references>
+        <references refid="classEchange__couplage__thermique_1ad3ed39635de763f1faf89233d7ddc3e1" compoundref="Echange__couplage__thermique_8h" startline="83">divise_par_rho_cp_</references>
+        <references refid="classMilieu__base_1a44e73e7944cb21fe38595b5cd0050e83" compoundref="Milieu__base_8cpp" startline="958" endline="961">Milieu_base::equation</references>
+        <references refid="classMilieu__base_1ab8ce0742ed6681306999931dca88a5b9" compoundref="Milieu__base_8cpp" startline="797" endline="800">Milieu_base::masse_volumique</references>
+        <references refid="classEquation__base_1a181e9899e2d927eb14c835d9d9334f46">Equation_base::milieu</references>
+        <references refid="classChamp__Don__base_1a4aa2e32a7db15b66f4118f279e1633db" compoundref="Champ__Don__base_8h" startline="49" endline="49">Champ_Don_base::valeurs</references>
+        <references refid="classChamp__front__base_1a6cb5e7739d925ea33074095516bef945" compoundref="Champ__front__base_8h" startline="148" endline="151">Champ_front_base::valeurs</references>
+        <references refid="classChamp__Proto_1a9d8c69f11d1b0a8e378cc6ca41793614">Champ_Proto::valeurs</references>
+        <referencedby refid="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6" compoundref="Echange__couplage__thermique_8h" startline="40" endline="40">flux_exterieur_impose</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ab9f23a6307b4f34600ba043ae17f2681" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_couplage_thermique::changer_temps_futur</definition>
+        <argsstring>(double temps, int i) override</argsstring>
+        <name>changer_temps_futur</name>
+        <reimplements refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c">changer_temps_futur</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="31" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="136" bodyend="146"/>
+        <references refid="classEchange__global__impose_1ada04b56621fa1d6d6b0ced7939bbb15c" compoundref="Echange__global__impose_8cpp" startline="55" endline="63">Echange_global_impose::changer_temps_futur</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_couplage_thermique::completer</definition>
+        <argsstring>() override</argsstring>
+        <name>completer</name>
+        <reimplements refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053">completer</reimplements>
+        <briefdescription>
+<para>NE FAIT RIEN A surcharger dans les classes derivees. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="29" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="63" bodyend="111"/>
+        <references refid="classEchange__global__impose_1a64b96e93460dbb776340910fa723c053" compoundref="Echange__global__impose_8cpp" startline="220" endline="235">Echange_global_impose::completer</references>
+        <references refid="classNom_1a7d94eff3b27fea7103475613072a4553" compoundref="Nom_8cpp" startline="323" endline="326">Nom::debute_par</references>
+        <references refid="classEchange__couplage__thermique_1ad3ed39635de763f1faf89233d7ddc3e1" compoundref="Echange__couplage__thermique_8h" startline="83">divise_par_rho_cp_</references>
+        <references refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" compoundref="Cond__lim__base_8h" startline="90" endline="93">Cond_lim_base::frontiere_dis</references>
+        <references refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" compoundref="Objet__U_8cpp" startline="104" endline="107">Objet_U::que_suis_je</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_couplage_thermique::flux_exterieur_impose</definition>
+        <argsstring>(int i) const override</argsstring>
+        <name>flux_exterieur_impose</name>
+        <reimplements refid="classEchange__global__impose_1a063453ce3375d6f03eb95a4e1884612f">flux_exterieur_impose</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="40" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="40" bodyend="40"/>
+        <references refid="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e" compoundref="Echange__couplage__thermique_8cpp" startline="113" endline="134">champ_exterieur</references>
+        <references refid="classEchange__couplage__thermique_1a38bb792fd74463d9d83da8299e72f850" compoundref="Echange__couplage__thermique_8h" startline="74">couplage_</references>
+        <references refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" compoundref="Echange__global__impose_8h" startline="53" endline="53">Echange_global_impose::phi_ext</references>
+        <referencedby refid="classOp__Diff__EF_1ac2c9513c069698a4bd6da306d8b752c3" compoundref="Op__Diff__EF_8cpp" startline="401" endline="651">Op_Diff_EF::ajouter_bords</referencedby>
+        <referencedby refid="classOp__Dift__EF__Q1_1a50f97a91e155b2e022071052fce5c518" compoundref="Op__Dift__EF__Q1_8cpp" startline="428" endline="766">Op_Dift_EF_Q1::ajouter_bords</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ab0f69347c7bc7c738488ec55ef572456" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>double</type>
+        <definition>double Echange_couplage_thermique::flux_exterieur_impose</definition>
+        <argsstring>(int i, int j) const override</argsstring>
+        <name>flux_exterieur_impose</name>
+        <reimplements refid="classEchange__global__impose_1a87477ced1a39676cf47aaf9da58a8e77">flux_exterieur_impose</reimplements>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="41" column="17" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="41" bodyend="41"/>
+        <references refid="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e" compoundref="Echange__couplage__thermique_8cpp" startline="113" endline="134">champ_exterieur</references>
+        <references refid="classEchange__couplage__thermique_1a38bb792fd74463d9d83da8299e72f850" compoundref="Echange__couplage__thermique_8h" startline="74">couplage_</references>
+        <references refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" compoundref="Echange__global__impose_8h" startline="53" endline="53">Echange_global_impose::phi_ext</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1adc96b8100fc73d5f88f1aae0f41caece" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::h_eff</definition>
+        <argsstring>()</argsstring>
+        <name>h_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="54" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="54" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a22fb7e4619d264a63b7bd605ba4e25b5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::h_eff</definition>
+        <argsstring>() const</argsstring>
+        <name>h_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="55" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="55" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_couplage_thermique::initialiser</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>initialiser</name>
+        <reimplements refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad">initialiser</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Initialisation en debut de calcul. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A appeler avant tout calculer_coeffs_echange ou mettre_a_jour Contrairementaux methodes mettre_a_jour, les methodes initialiser des CLs ne peuvent pas dependre de l&apos;exterieur (lui-meme peut ne pas etre initialise)</para>
+<para><simplesect kind="return"><para>(0 en cas d&apos;erreur, 1 sinon.) </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="35" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="197" bodyend="237"/>
+        <references refid="classChamp__base_1a336a105699c70cd8c4d9b066a39264a8" compoundref="Champ__base_8cpp" startline="388" endline="393">Champ_base::affecter</references>
+        <references refid="classLecture__Champ_1ad367798549687747e7696c0e3d9505d5" compoundref="Lecture__Champ_8h" startline="37" endline="37">Lecture_Champ::champ_lu</references>
+        <references refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" compoundref="Cond__lim__base_8h" startline="110" endline="113">Cond_lim_base::domaine_Cl_dis</references>
+        <references refid="classMorEqn_1a233c714209593acce7aec1f55640bca2" compoundref="MorEqn_8h" startline="62" endline="70">MorEqn::equation</references>
+        <references refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" compoundref="Cond__lim__base_8h" startline="90" endline="93">Cond_lim_base::frontiere_dis</references>
+        <references refid="classEquation__base_1a31f41ab8fe56e52abed6bd9fc89b9369">Equation_base::inconnue</references>
+        <references refid="classEchange__global__impose_1ac05c511d43648fa3de8895e4b0425fad" compoundref="Echange__global__impose_8cpp" startline="105" endline="119">Echange_global_impose::initialiser</references>
+        <references refid="classEchange__couplage__thermique_1acd14eeb5bd7591605e4ec41f8a818da3" compoundref="Echange__couplage__thermique_8h" startline="82">lec_champs</references>
+        <references refid="classEchange__couplage__thermique_1a5dda1e5af5f3e2e36568af4f15c8f672">OWN_PTR</references>
+        <references refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" compoundref="Echange__global__impose_8h" startline="69">Echange_global_impose::phi_ext_</references>
+        <references refid="classEchange__couplage__thermique_1afbe568915f1fbeb4e581f1719d20e5eb" compoundref="Echange__couplage__thermique_8h" startline="83">reprise_</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ab923c04395889d622d0024b45b48d9cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_couplage_thermique::mettre_a_jour</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>mettre_a_jour</name>
+        <reimplements refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4">mettre_a_jour</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Effectue une mise a jour en temps de la condition aux limites. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="34" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="184" bodyend="194"/>
+        <references refid="classEchange__global__impose_1a226ca44914dba069392cc82cc990ebc4" compoundref="Echange__global__impose_8cpp" startline="95" endline="103">Echange_global_impose::mettre_a_jour</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a7b86e7025291830a391e2f75fb9f4650" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::phic_paroi</definition>
+        <argsstring>()</argsstring>
+        <name>phic_paroi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="70" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a7e89fe9dbaca46858974e499550da646" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::phic_paroi</definition>
+        <argsstring>() const</argsstring>
+        <name>phic_paroi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="71" column="34" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="71" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a4d2a8642fa0a0342ab1bd577ef08e460" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::rec_paroi</definition>
+        <argsstring>()</argsstring>
+        <name>rec_paroi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="66" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="66" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ac5eb62d6a6f1231e7069cd105f64ca7b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::rec_paroi</definition>
+        <argsstring>() const</argsstring>
+        <name>rec_paroi</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="67" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="67" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ab2b119841848fa7c9dd2ceb6c9447d99" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int Echange_couplage_thermique::reculer</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>reculer</name>
+        <reimplements refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8">reculer</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Tourne la roue de la CL. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="33" column="7" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="160" bodyend="170"/>
+        <references refid="classEchange__global__impose_1a2e3721acc6b26c94f372c0f49ad261b8" compoundref="Echange__global__impose_8cpp" startline="75" endline="83">Echange_global_impose::reculer</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a021a575206cdd632db74c25b74b991e5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Echange_couplage_thermique::reprise</definition>
+        <argsstring>() const</argsstring>
+        <name>reprise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="46" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="46" bodyend="46"/>
+        <references refid="classEchange__couplage__thermique_1afbe568915f1fbeb4e581f1719d20e5eb" compoundref="Echange__couplage__thermique_8h" startline="83">reprise_</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a8892d2f0eb8ee5e90dcc975084211159" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::s_p</definition>
+        <argsstring>()</argsstring>
+        <name>s_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="50" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a53c1417c817eabc94db7d972e7a24f0f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::s_p</definition>
+        <argsstring>() const</argsstring>
+        <name>s_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="51" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a168e903df18b9b86ad0d1c1fa8591c75" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void Echange_couplage_thermique::set_temps_defaut</definition>
+        <argsstring>(double temps) override</argsstring>
+        <name>set_temps_defaut</name>
+        <reimplements refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe">set_temps_defaut</reimplements>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Change le i-eme temps futur de la cl. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="30" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.cpp" bodystart="172" bodyend="182"/>
+        <references refid="classEchange__global__impose_1a0cd30b4c3a166845d110f8f2bf7954fe" compoundref="Echange__global__impose_8cpp" startline="85" endline="93">Echange_global_impose::set_temps_defaut</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a7e1058c4d0c7ce18f90c31ff8bb6db8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::T_eff</definition>
+        <argsstring>()</argsstring>
+        <name>T_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="62" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="62" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1af37f60a2e0837bb9a96577755e6654be" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::T_eff</definition>
+        <argsstring>() const</argsstring>
+        <name>T_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="63" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="63" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1af867c4061f83ee4171ec898c9d22d63c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::T_p</definition>
+        <argsstring>()</argsstring>
+        <name>T_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="43" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="43" bodyend="43"/>
+        <references refid="classEchange__impose__base_1aa8625e9dfb37868ccd7017b586b26155" compoundref="Echange__impose__base_8h" startline="62" endline="62">Echange_impose_base::T_ext</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a48efcbedf2ef81bb38263499bfc83ea1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::T_p</definition>
+        <argsstring>() const</argsstring>
+        <name>T_p</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="44" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="44" bodyend="44"/>
+        <references refid="classEchange__impose__base_1aa8625e9dfb37868ccd7017b586b26155" compoundref="Echange__impose__base_8h" startline="62" endline="62">Echange_impose_base::T_ext</references>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1acbd62d5b639a066462d040968ef119bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>Champ_front_base&amp; Echange_couplage_thermique::tep_eff</definition>
+        <argsstring>()</argsstring>
+        <name>tep_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="58" column="27" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="58" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a7a483d02b1c74ef775b437247ec26dcb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const <ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref> &amp;</type>
+        <definition>const Champ_front_base&amp; Echange_couplage_thermique::tep_eff</definition>
+        <argsstring>() const</argsstring>
+        <name>tep_eff</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="59" column="33" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="59" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a5dda1e5af5f3e2e36568af4f15c8f672" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) coeff_ap</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="75" column="3"/>
+        <referencedby refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" compoundref="Echange__couplage__thermique_8cpp" startline="197" endline="237">initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ab0a62b5879f71545d8cb93e603e260a3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) coeff_heff</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="77" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ad8e65bb2ccbebde3d3363a2fc2ee40e7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) coeff_sp</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="76" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a87856ff005d852f8e40fe8d26b2198f7" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) flux_critique_paroi</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="81" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a3dfa88cef34d92b17fc1d3f86e468e87" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) rftc_paroi</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="80" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1ad501212e1710ba1bcfc3e79f3b8fb3f8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) temperature_Teff</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="79" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classEchange__couplage__thermique_1a3c799e50575d6f7a8ac999fbb349eb08" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Echange_couplage_thermique::OWN_PTR</definition>
+        <argsstring>(Champ_front_base) type_echange_eff</argsstring>
+        <name>OWN_PTR</name>
+        <param>
+          <type><ref refid="classChamp__front__base" kindref="compound">Champ_front_base</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="78" column="3"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>: class <ref refid="classEchange__couplage__thermique" kindref="compound">Echange_couplage_thermique</ref> </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>Echange_global_impose</label>
+        <link refid="classEchange__global__impose"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Echange_couplage_thermique</label>
+        <link refid="classEchange__couplage__thermique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="3">
+        <label>Echange_impose_base</label>
+        <link refid="classEchange__impose__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Echange_global_impose</label>
+        <link refid="classEchange__global__impose"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>Objet_U</label>
+        <link refid="classObjet__U"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>info_obj</edgelabel>
+        </childnode>
+      </node>
+      <node id="8">
+        <label>Lecture_Champ</label>
+        <link refid="classLecture__Champ"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Echange_couplage_thermique</label>
+        <link refid="classEchange__couplage__thermique"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>lec_champs</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Cond_lim_base</label>
+        <link refid="classCond__lim__base"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Type_info</label>
+        <link refid="classType__info"/>
+      </node>
+      <node id="6">
+        <label>Process</label>
+        <link refid="classProcess"/>
+      </node>
+      <node id="3">
+        <label>Echange_impose_base</label>
+        <link refid="classEchange__impose__base"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" line="25" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/ThSol/Echange_couplage_thermique.h" bodystart="26" bodyend="84"/>
+    <listofallmembers>
+      <member refid="classEchange__impose__base_1a5801aadfa4eb1f45071ee565ada923fc" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>a_mettre_a_jour_ss_pas_dt</name></member>
+      <member refid="classEchange__couplage__thermique_1a0b6cd2b13190201523b3b68e6195091c" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>a_p</name></member>
+      <member refid="classEchange__couplage__thermique_1a6f653672cdc077cba7348d1fb193bc53" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>a_p</name></member>
+      <member refid="classProcess_1a6a4b64571b10f150a70db229b839e881" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>abort</name></member>
+      <member refid="classCond__lim__base_1ad515d1c64270d631157a55d5c6795c37" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>app_domains</name></member>
+      <member refid="classObjet__U_1a1b935d498f25a47cb114b057ca878dd8" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>associer_</name></member>
+      <member refid="classCond__lim__base_1afbb9a340b69ad4f322c4d77bffb55d05" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>associer_domaine_cl_dis_base</name></member>
+      <member refid="classEchange__impose__base_1a573f861c2a54ce89eacbb322df8edc91" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>associer_fr_dis_base</name></member>
+      <member refid="classEchange__couplage__thermique_1a8de6be5a384288508b8794d7097f687e" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>avancer</name></member>
+      <member refid="classObjet__U_1ad9b82ace9d4c7902ec704b6a78f76991" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>axi</name></member>
+      <member refid="classProcess_1aa9e74a5c06a68ea38298a08ea401e7b1" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>barrier</name></member>
+      <member refid="classObjet__U_1a9a47c1add9760324894500792c17a178" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>bidim_axi</name></member>
+      <member refid="classCond__lim__base_1a641d7524c6653e4ac853519d4dcb3ac1" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classEchange__couplage__thermique_1a06d714ba18f381b4ab3641838091f56e" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>champ_exterieur</name></member>
+      <member refid="classEchange__couplage__thermique_1a576d1d5eac0ce204663e74ad4a4ac70a" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>champ_exterieur</name></member>
+      <member refid="classCond__lim__base_1ae6fa217ad419729d659069d8e9d33248" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a30ab057ec57d485c3647b7589273bc8d" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>champ_front</name></member>
+      <member refid="classCond__lim__base_1a2b9fc57162bc41270b83779fdff734f5" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>champ_front</name></member>
+      <member refid="classObjet__U_1a7f77123cab7150195b55f2505ab26168" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>change_num</name></member>
+      <member refid="classEchange__couplage__thermique_1ab9f23a6307b4f34600ba043ae17f2681" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>changer_temps_futur</name></member>
+      <member refid="classProcess_1a122c4f1afb9ac78c4cb2dd392b498d6f" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>check_int_overflow</name></member>
+      <member refid="classEchange__global__impose_1ac53c4e3184275fb2e4aa089daa472253" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>compatible_avec_discr</name></member>
+      <member refid="classCond__lim__base_1a39ba6b960e5544266ace288969237cec" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classEchange__couplage__thermique_1a27ed7e05dfad485c8ff27ee2d111d908" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>completer</name></member>
+      <member refid="classEchange__couplage__thermique_1a38bb792fd74463d9d83da8299e72f850" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>couplage_</name></member>
+      <member refid="classObjet__U_1aabcba4a8a0bf841e306be9a55d31ce59" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>DEACTIVATE_SIGINT_CATCH</name></member>
+      <member refid="classEchange__couplage__thermique_1ac24d7f41fafbe0b2a259d1ff3d847304" prot="private" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>Declare_instanciable</name></member>
+      <member refid="classEchange__global__impose_1ad2b44bdd470ac2d8d0daaf1985e9efba" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>derivee_flux_exterieur_imposee</name></member>
+      <member refid="classEchange__global__impose_1ad082da3746deb118c96e74523e4b3192" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>derivee_flux_exterieur_imposee</name></member>
+      <member refid="classEchange__global__impose_1af8115dea08586a9bca5e11f257e96de8" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>derivee_phi_ext</name></member>
+      <member refid="classEchange__global__impose_1aba35d004249516fa87453d655e431de5" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>derivee_phi_ext</name></member>
+      <member refid="classObjet__U_1a3e23491c01f2f39245fb6f3b6d6d9b17" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>dimension</name></member>
+      <member refid="classObjet__U_1a35bd818d76310c3a9d9594a6c6fa5905" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>disable_TU</name></member>
+      <member refid="classEchange__couplage__thermique_1ad3ed39635de763f1faf89233d7ddc3e1" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>divise_par_rho_cp_</name></member>
+      <member refid="classCond__lim__base_1a93140daa237cd8eb86ae561272af7042" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classCond__lim__base_1a6dfdc2c19d6621c72178bb4e99824f0d" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>domaine_Cl_dis</name></member>
+      <member refid="classObjet__U_1a0308f5615fd7101a52a11f6c49b5f7bd" prot="public" virt="pure-virtual"><scope>Echange_couplage_thermique</scope><name>duplique</name></member>
+      <member refid="classEchange__impose__base_1a92d90a73478b0bdb07b78d4a88db8530" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1a92abe1d36ebd113ba886b1f9d1dacd43" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1acb24273776168de3063e6c0568446bd7" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1af65c24c09a0801161af35d14e1a430fd" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>emissivite</name></member>
+      <member refid="classEchange__impose__base_1ae4bf68a4a8b09bd513913d24d0036073" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>emissivite_</name></member>
+      <member refid="classEchange__impose__base_1aa3a82262943a73a064bdf27e714b45b7" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>eps</name></member>
+      <member refid="classCond__lim__base_1a91e589bc70fa80c451b7c4d0126d1fc4" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>err_pas_compatible</name></member>
+      <member refid="classCond__lim__base_1ac47cb5a264a8dc1039317be79ed46714" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>err_pas_compatible</name></member>
+      <member refid="classObjet__U_1a8990adbad71aeaec81e74d1032625643" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>est_egal_a</name></member>
+      <member refid="classProcess_1ab0d2cbf9cdb22a0bd75a7e45026f6fc1" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>exception_sur_exit</name></member>
+      <member refid="classProcess_1acc2fbbe761e08e5870ae605c0705491c" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>exit</name></member>
+      <member refid="classProcess_1aaa53d327405713fe4c44ee70fdcd7d69" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>exit</name></member>
+      <member refid="classEchange__impose__base_1a49abe79a1bdd12ad8b45d8c895d87b73" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>fixer_nb_valeurs_temporelles</name></member>
+      <member refid="classEchange__couplage__thermique_1a85bf5cc49dea0b386fef99bdf20175f6" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>flux_exterieur_impose</name></member>
+      <member refid="classEchange__couplage__thermique_1ab0f69347c7bc7c738488ec55ef572456" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>flux_exterieur_impose</name></member>
+      <member refid="classProcess_1aaa66d21b3cc2af185606cdf4c5d2c8d8" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>force_single_file</name></member>
+      <member refid="classObjet__U_1a9b145f6e0684a53f431e675423037ada" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>format_precision_geom</name></member>
+      <member refid="classCond__lim__base_1ad88b3b516351146c85e8fce1df0f691a" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>frontiere_dis</name></member>
+      <member refid="classCond__lim__base_1a9c51fae0b1a58af47a5685bd8a443cf3" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>frontiere_dis</name></member>
+      <member refid="classObjet__U_1af07b49700ce0ff8197f29a8c6471b510" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>get_info</name></member>
+      <member refid="classObjet__U_1aea31c8387ed23f657583d8f92b346663" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>get_object_id</name></member>
+      <member refid="classObjet__U_1ac52fbf7227e3d087c7c79caae6643409" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>get_set_nom_du_cas</name></member>
+      <member refid="classEchange__couplage__thermique_1adc96b8100fc73d5f88f1aae0f41caece" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>h_eff</name></member>
+      <member refid="classEchange__couplage__thermique_1a22fb7e4619d264a63b7bd605ba4e25b5" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>h_eff</name></member>
+      <member refid="classEchange__impose__base_1a0e39b8dbe8e215626c7ffa9f08e456df" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1a5331eee545b04f9670861ce754dd2ff8" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1aa11e3fb39f174d68113edc2dbef74d5f" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1a2caeebf849a418875bf98866eddd8ea2" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp</name></member>
+      <member refid="classEchange__impose__base_1aef8706d0a0dd423cd8ceaba3a2dfd1b0" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp_grad</name></member>
+      <member refid="classEchange__impose__base_1a5cc13bf66589f073bf428e74cf73eaec" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>h_imp_grad</name></member>
+      <member refid="classEchange__impose__base_1a4937cafdeac44fcb004fed5f507c9023" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>has_emissivite</name></member>
+      <member refid="classEchange__impose__base_1a0a64001ace7f39084d58c430b52d7190" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>has_h_imp</name></member>
+      <member refid="classEchange__impose__base_1aa198a13d416efe7307156ac948dddf72" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>has_h_imp_grad</name></member>
+      <member refid="classEchange__global__impose_1a4d52294b1ad42cfbe1f7cfa4e6f02d94" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>has_phi_ext</name></member>
+      <member refid="classObjet__U_1ad97c4b4d46e0a163ad01366815ea3e7d" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>HAS_POINTER</name></member>
+      <member refid="classEchange__impose__base_1a155bbdb292e0bc458b8b5114ac6fffed" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>himp</name></member>
+      <member refid="classProcess_1aa1142e848c81a78c28a061a6f45b4042" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>imprimer_ram_totale</name></member>
+      <member refid="classObjet__U_1a2cd5f1de143963c90c6e705ed65b02a5" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>info</name></member>
+      <member refid="classObjet__U_1ac389f735fb0169a49f40006203f110c6" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>info_obj</name></member>
+      <member refid="classEchange__couplage__thermique_1ad39931141c7523eaef6c5396382c769d" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>initialiser</name></member>
+      <member refid="classCond__lim__base_1abde6a9dbb3464d596316c60642d6c323" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>injecter_dans_champ_inc</name></member>
+      <member refid="classObjet__U_1a341ec06044679eef096ca615a85151ad" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>interprete</name></member>
+      <member refid="classObjet__U_1ae520d91eb424030923795baad84b8c56" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>interprete</name></member>
+      <member refid="classProcess_1a48ea49c199fc8961be575e571038b79a" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>is_parallel</name></member>
+      <member refid="classProcess_1ae3b6cc030ab93d5ea4ba437a4a2455cc" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>is_sequential</name></member>
+      <member refid="classProcess_1acd052b99706c577f8a5b6656217cf4c2" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>je_suis_maitre</name></member>
+      <member refid="classProcess_1a57e0f54b11e6eaadbea224fa904b18dd" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>Journal</name></member>
+      <member refid="classProcess_1a1d5999d465fcca0c1dfb2bc6ac1f6677" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>Kokkos_exit</name></member>
+      <member refid="classObjet__U_1a93dacab7253df3f9df63d1aca21b1dd5" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>le_nom</name></member>
+      <member refid="classObjet__U_1a8de5c0f27a2d62296d897091bdf5ed2e" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>le_type</name></member>
+      <member refid="classEchange__couplage__thermique_1acd14eeb5bd7591605e4ec41f8a818da3" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>lec_champs</name></member>
+      <member refid="classObjet__U_1a10baff76ab2c39f82da8c7ecaf66d889" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>lire_motcle_non_standard</name></member>
+      <member refid="classEchange__impose__base_1af8a32226e46f2706f58b441b8c302102" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>liste_faces_loi_paroi</name></member>
+      <member refid="classProcess_1ab55ba07167ec807ed3a145cac0f5dca4" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>me</name></member>
+      <member refid="classEchange__couplage__thermique_1ab923c04395889d622d0024b45b48d9cf" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>mettre_a_jour</name></member>
+      <member refid="classCond__lim__base_1a5968d9bc3198716b2ea11213f1546c9d" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>modifier_val_imp</name></member>
+      <member refid="classProcess_1aeaa5f9b4e42dc41414bebc7df14e16f6" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_and</name></member>
+      <member refid="classProcess_1a1e9d9f9899b71927cfafae14c7bd048d" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_max</name></member>
+      <member refid="classProcess_1ab6a025d5001c1600f2f5ecec2b892881" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_max</name></member>
+      <member refid="classProcess_1a05de57db7288d95f9e67046af585d5ff" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a07108fc4083956693f38f7c3c49d6a06" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_min</name></member>
+      <member refid="classProcess_1a3edf8f2af6203e232bb76660630a0de9" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_or</name></member>
+      <member refid="classProcess_1a7d23bc1ef94b3f0623fbc79d034c27fd" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a1bd6c62549c06722827ff03cc4390665" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a88715611d49ceb0da6e235607c984e27" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_sum</name></member>
+      <member refid="classProcess_1a9856adce777d1011516d9d0ab077330e" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mp_sum_as_double</name></member>
+      <member refid="classProcess_1a1b4bf5eb9e582f28244860df2c314d23" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mppartial_sum</name></member>
+      <member refid="classProcess_1a463f835a6ba5234444e73d5ebffa684a" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>mpsum_multiple</name></member>
+      <member refid="classProcess_1a1d8a5252b02c0db08e1bea86c7442205" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>multiple_files</name></member>
+      <member refid="classProcess_1a46ee1e80985418a4414421ed37a87e9a" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>node_master</name></member>
+      <member refid="classObjet__U_1a7c27c4f80259eeef76ff8fe2d3bc61f7" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>nom_du_cas</name></member>
+      <member refid="classObjet__U_1a469dbcad1d4a98a67e4246dce8e264ad" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>nommer</name></member>
+      <member refid="classProcess_1a6bf692ce58d9578aa62ac3c07b8caaa1" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>nproc</name></member>
+      <member refid="classObjet__U_1a324dd7ffb0b1708404fbe3b1a1f41c2e" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>numero</name></member>
+      <member refid="classObjet__U_1a9041817b5b0efa434474f7185fc01a7f" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>Objet_U</name></member>
+      <member refid="classObjet__U_1ab5c5b3912ab7ef715573f066256e65d3" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>Objet_U</name></member>
+      <member refid="classCond__lim__base_1a07415a7199e591eab223699871d39c3d" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OBS_PTR</name></member>
+      <member refid="classObjet__U_1a0e056c7aeee257fa5cf0a6e2906d9ff1" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>operator=</name></member>
+      <member refid="classEchange__couplage__thermique_1a5dda1e5af5f3e2e36568af4f15c8f672" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1ad8e65bb2ccbebde3d3363a2fc2ee40e7" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1ab0a62b5879f71545d8cb93e603e260a3" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1a3c799e50575d6f7a8ac999fbb349eb08" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1ad501212e1710ba1bcfc3e79f3b8fb3f8" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1a3dfa88cef34d92b17fc1d3f86e468e87" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__couplage__thermique_1a87856ff005d852f8e40fe8d26b2198f7" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>OWN_PTR</name></member>
+      <member refid="classEchange__global__impose_1a1b0ea931267cff5264ab4ff7b6917f7f" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phi_ext</name></member>
+      <member refid="classEchange__global__impose_1a3f815f32619f8374cecadce84db8524b" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phi_ext</name></member>
+      <member refid="classEchange__global__impose_1af9522d4ac83ecb39071670bf6bd1b292" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phi_ext_</name></member>
+      <member refid="classEchange__global__impose_1a54dab649d14173debff312e2583b12f8" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phi_ext_lu_</name></member>
+      <member refid="classEchange__couplage__thermique_1a7b86e7025291830a391e2f75fb9f4650" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phic_paroi</name></member>
+      <member refid="classEchange__couplage__thermique_1a7e89fe9dbaca46858974e499550da646" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>phic_paroi</name></member>
+      <member refid="classObjet__U_1a7447e25c68cc8d3a1c06cf99f0565cff" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>precision_geom</name></member>
+      <member refid="classObjet__U_1af73113dc3d3e0dc9709e33ae566f5130" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>printOn</name></member>
+      <member refid="classObjet__U_1a58289bb63283588d31dc69b87b3f1d55" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>que_suis_je</name></member>
+      <member refid="classProcess_1a1828203162e59b0d29ffda4d04575098" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>ram_processeur</name></member>
+      <member refid="classObjet__U_1a6f4c7788efee2dce629ebd1628b73288" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>readOn</name></member>
+      <member refid="classEchange__couplage__thermique_1a4d2a8642fa0a0342ab1bd577ef08e460" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>rec_paroi</name></member>
+      <member refid="classEchange__couplage__thermique_1ac5eb62d6a6f1231e7069cd105f64ca7b" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>rec_paroi</name></member>
+      <member refid="classEchange__couplage__thermique_1ab2b119841848fa7c9dd2ceb6c9447d99" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>reculer</name></member>
+      <member refid="classObjet__U_1aa52bb63c6241025381b63a9fb2be7574" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>reprendre</name></member>
+      <member refid="classEchange__couplage__thermique_1a021a575206cdd632db74c25b74b991e5" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>reprise</name></member>
+      <member refid="classEchange__couplage__thermique_1afbe568915f1fbeb4e581f1719d20e5eb" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>reprise_</name></member>
+      <member refid="classCond__lim__base_1ae939e1efa9b0c5cedb7127b18511ce87" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>resetTime</name></member>
+      <member refid="classEchange__couplage__thermique_1a8892d2f0eb8ee5e90dcc975084211159" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>s_p</name></member>
+      <member refid="classEchange__couplage__thermique_1a53c1417c817eabc94db7d972e7a24f0f" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>s_p</name></member>
+      <member refid="classObjet__U_1afabaa578a6d7ca9f983ae384364a5ae8" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>sauvegarder</name></member>
+      <member refid="classObjet__U_1a7649d31257abd7201779dc8834b60114" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>self_cast</name></member>
+      <member refid="classObjet__U_1a0855255348dd588fb71f27f8bf6a127e" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>self_cast</name></member>
+      <member refid="classCond__lim__base_1adc32eaa6b7cddb790fac0a13530d9758" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>set_modifier_val_imp</name></member>
+      <member refid="classEchange__couplage__thermique_1a168e903df18b9b86ad0d1c1fa8591c75" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>set_temps_defaut</name></member>
+      <member refid="classObjet__U_1a74e84c587893e738e0aefc72633dd286" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>stat_per_proc_perf_log</name></member>
+      <member refid="classCond__lim__base_1a0a90c6e7dc408c54fbabe559bb26d5a2" prot="protected" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>supp_discs</name></member>
+      <member refid="classEchange__couplage__thermique_1a7e1058c4d0c7ce18f90c31ff8bb6db8c" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>T_eff</name></member>
+      <member refid="classEchange__couplage__thermique_1af37f60a2e0837bb9a96577755e6654be" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>T_eff</name></member>
+      <member refid="classEchange__impose__base_1a53eb3e4cdca93415840ad43737e7e0a1" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1aec5054aa72d13fa30fdaa232c7c40ecf" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1aa8625e9dfb37868ccd7017b586b26155" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>T_ext</name></member>
+      <member refid="classEchange__impose__base_1a7adcd97f08db0f32a51b94d4fbd9afc6" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>T_ext</name></member>
+      <member refid="classEchange__couplage__thermique_1af867c4061f83ee4171ec898c9d22d63c" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>T_p</name></member>
+      <member refid="classEchange__couplage__thermique_1a48efcbedf2ef81bb38263499bfc83ea1" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>T_p</name></member>
+      <member refid="classObjet__U_1a0ee0946339f09a2c73c09fcda71c3be2" prot="public" virt="pure-virtual"><scope>Echange_couplage_thermique</scope><name>taille_memoire</name></member>
+      <member refid="classEchange__couplage__thermique_1acbd62d5b639a066462d040968ef119bd" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>tep_eff</name></member>
+      <member refid="classEchange__couplage__thermique_1a7a483d02b1c74ef775b437247ec26dcb" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>tep_eff</name></member>
+      <member refid="classEchange__impose__base_1af7155f4ed887bd54d857e94a69262280" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>text</name></member>
+      <member refid="classCond__lim__base_1ab358acf9d4895858054026e20c45ecbc" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>verifie_ch_init_nb_comp</name></member>
+      <member refid="classObjet__U_1aee9c1e46b2006bdbad36cc8950332655" prot="public" virt="non-virtual"><scope>Echange_couplage_thermique</scope><name>~Objet_U</name></member>
+      <member refid="classProcess_1a7ff358c1d3b155bc09e1271266cdce7d" prot="public" virt="virtual"><scope>Echange_couplage_thermique</scope><name>~Process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

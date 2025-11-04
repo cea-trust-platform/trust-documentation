@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classConds__lim" kind="class" language="C++" prot="public">
+    <compoundname>Conds_lim</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">VECTCond_lim</basecompoundref>
+    <includes local="no">Conds_lim.h</includes>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classConds__lim_1af0c0b38d11800a9345281da1bf918b96" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Conds_lim::Declare_instanciable</definition>
+        <argsstring>(Conds_lim)</argsstring>
+        <name>Declare_instanciable</name>
+        <param>
+          <type><ref refid="classConds__lim" kindref="compound">Conds_lim</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="33" column="3"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classConds__lim_1a706cb2093c1fbe7f409ed3ce5eec4fd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Conds_lim::calculer_coeffs_echange</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>calculer_coeffs_echange</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Calcul des coefficients d&apos;echange pour toutes les conditions aux limites du vecteur. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="39" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="74" bodyend="77"/>
+        <referencedby refid="classDomaine__Cl__dis__base_1a13e0a2032f31dfc34a3f0749b64b1ab1" compoundref="Domaine__Cl__dis__base_8cpp" startline="272" endline="276">Domaine_Cl_dis_base::calculer_coeffs_echange</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1afafff933bb03d087482bb5f92ebc888f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Conds_lim::compatible_avec_discr</definition>
+        <argsstring>(const Discretisation_base &amp;) const</argsstring>
+        <name>compatible_avec_discr</name>
+        <param>
+          <type>const <ref refid="classDiscretisation__base" kindref="compound">Discretisation_base</ref> &amp;</type>
+          <defname>dis</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie si TOUTES les conditions aux limites du vecteurs sont compatibles avec la discretisation passee en parametre. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>la</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>discretisation avec laquelle on va verifier la compatibilite </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) 1 si toutes les conditions aux limites sont compatibles avec la discretisation, 0 sinon. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="42" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="96" bodyend="101"/>
+        <referencedby refid="classEquation__base_1a2fd1ca87462cdd2e3f249e8d5917beab" compoundref="Equation__base_8cpp" startline="1317" endline="1322">Equation_base::verif_Cl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1a5ae09aa0ff4d8416fd3de6d3836d25ec" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Conds_lim::compatible_avec_eqn</definition>
+        <argsstring>(const Equation_base &amp;) const</argsstring>
+        <name>compatible_avec_eqn</name>
+        <param>
+          <type>const <ref refid="classEquation__base" kindref="compound">Equation_base</ref> &amp;</type>
+          <defname>eqn</defname>
+        </param>
+        <briefdescription>
+<para>Renvoie si TOUTES les conditions aux limites du vecteurs sont compatibles avec l&apos;equation passee en parametre. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(Equation_base&amp;</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>eqn) l&apos;equation avec laquelle on va verifier la compatibilite </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(int) 1 si toutes les conditions aux limites sont compatibles avec l&apos;equation, 0 sinon. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="41" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="84" bodyend="89"/>
+        <referencedby refid="classEquation__base_1a2fd1ca87462cdd2e3f249e8d5917beab" compoundref="Equation__base_8cpp" startline="1317" endline="1322">Equation_base::verif_Cl</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Conds_lim::completer</definition>
+        <argsstring>(const Domaine_dis_base &amp;)</argsstring>
+        <name>completer</name>
+        <param>
+          <type>const <ref refid="classDomaine__dis__base" kindref="compound">Domaine_dis_base</ref> &amp;</type>
+          <defname>z</defname>
+        </param>
+        <briefdescription>
+<para>Appel Cond_lim::completer() sur chaque condition aux llimites du vecteur. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="40" column="8" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.cpp" bodystart="37" bodyend="52"/>
+        <references refid="classDomaine__32__64_1a9afc4e8b7fea3266f7d624e3e75f08c7" compoundref="Domaine_8cpp" startline="2336" endline="2340">Domaine_32_64&lt; _SIZE_ &gt;::construire_renum_som_perio</references>
+        <references refid="classFrontiere__32__64_1a5149012125e31aec17202b47a0e4b437" compoundref="Frontiere_8cpp" startline="152" endline="155">Frontiere_32_64&lt; _SIZE_ &gt;::domaine</references>
+        <references refid="classDomaine__32__64_1a706e638a800c8a7248b26c12855a371c" compoundref="Domaine_8h" startline="532" endline="552">Domaine_32_64&lt; _SIZE_ &gt;::frontiere</references>
+        <referencedby refid="classDomaine__Cl__dis__base_1a6404eb3d4c7a9b8e9340d1fbb7fa04c7" compoundref="Domaine__Cl__dis__base_8cpp" startline="281" endline="285">Domaine_Cl_dis_base::completer</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1a0430eb385285e86b4af39d891bacfdbc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Conds_lim::initialiser</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>initialiser</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="36" column="14" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="48" bodyend="54"/>
+        <referencedby refid="classDomaine__Cl__dis__base_1a2b9e483ab0ea01be205eac104217803b" compoundref="Domaine__Cl__dis__base_8cpp" startline="263" endline="266">Domaine_Cl_dis_base::initialiser</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1a89c75b76c30412a914f8dae50e27308d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Conds_lim::mettre_a_jour</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>mettre_a_jour</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+<para>Mise a jour en temps de toutes les conditions aux limites du vecteur. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="37" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="60" bodyend="63"/>
+        <referencedby refid="classDomaine__Cl__dis__base_1aa795c2647aa15f522174d4f0202d6f4b" compoundref="Domaine__Cl__dis__base_8cpp" startline="227" endline="230">Domaine_Cl_dis_base::mettre_a_jour</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1a1fb5c53d3046e7411306fa694157eaf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Conds_lim::resetTime</definition>
+        <argsstring>(double temps)</argsstring>
+        <name>resetTime</name>
+        <param>
+          <type>double</type>
+          <declname>temps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="38" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="65" bodyend="68"/>
+        <referencedby refid="classDomaine__Cl__dis__base_1a762e145cc14f5c42dd0c074690899076" compoundref="Domaine__Cl__dis__base_8cpp" startline="234" endline="237">Domaine_Cl_dis_base::resetTime</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classConds__lim_1a1288b75593bc522f12033038dd5573cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Conds_lim::set_modifier_val_imp</definition>
+        <argsstring>(int)</argsstring>
+        <name>set_modifier_val_imp</name>
+        <param>
+          <type>int</type>
+          <defname>drap</defname>
+        </param>
+        <briefdescription>
+<para>Positionnement du drapeau modifier_val_imp de toutes les conditions aux limites du vecteur. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(double</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>temps) le pas de temps de mise a jour </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="44" column="15" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="107" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>classe <ref refid="classConds__lim" kindref="compound">Conds_lim</ref> Cette classe represente un vecteur de conditions aux limites. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Un objet de ce type est porte par chaque Domaine_Cl_dis_base associee
+a une equation. Une classe representant un vecteur d&apos;objet est
+declaree grace a la macro VECT(classe_X)
+</verbatim> <simplesect kind="see"><para><ref refid="classCond__lim" kindref="compound">Cond_lim</ref> <ref refid="classDomaine__Cl__dis__base" kindref="compound">Domaine_Cl_dis_base</ref> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>VECTCond_lim</label>
+      </node>
+      <node id="1">
+        <label>Conds_lim</label>
+        <link refid="classConds__lim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>VECTCond_lim</label>
+      </node>
+      <node id="1">
+        <label>Conds_lim</label>
+        <link refid="classConds__lim"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" line="31" column="1" bodyfile="/volatile/catA/gj277443/TRUST/sync-doc/src/Kernel/Framework/Conds_lim.h" bodystart="32" bodyend="45"/>
+    <listofallmembers>
+      <member refid="classConds__lim_1a706cb2093c1fbe7f409ed3ce5eec4fd1" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>calculer_coeffs_echange</name></member>
+      <member refid="classConds__lim_1afafff933bb03d087482bb5f92ebc888f" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>compatible_avec_discr</name></member>
+      <member refid="classConds__lim_1a5ae09aa0ff4d8416fd3de6d3836d25ec" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>compatible_avec_eqn</name></member>
+      <member refid="classConds__lim_1aeb9e5fc3573c29240d88e8c1a3cb46d3" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>completer</name></member>
+      <member refid="classConds__lim_1af0c0b38d11800a9345281da1bf918b96" prot="private" virt="non-virtual"><scope>Conds_lim</scope><name>Declare_instanciable</name></member>
+      <member refid="classConds__lim_1a0430eb385285e86b4af39d891bacfdbc" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>initialiser</name></member>
+      <member refid="classConds__lim_1a89c75b76c30412a914f8dae50e27308d" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>mettre_a_jour</name></member>
+      <member refid="classConds__lim_1a1fb5c53d3046e7411306fa694157eaf5" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>resetTime</name></member>
+      <member refid="classConds__lim_1a1288b75593bc522f12033038dd5573cb" prot="public" virt="non-virtual"><scope>Conds_lim</scope><name>set_modifier_val_imp</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
