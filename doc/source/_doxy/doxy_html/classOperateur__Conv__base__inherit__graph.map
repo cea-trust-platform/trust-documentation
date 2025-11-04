@@ -1,0 +1,121 @@
+<map id="Operateur_Conv_base" name="Operateur_Conv_base">
+<area shape="rect" id="Node000001" title="classe Operateur_Conv_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="543,319,708,346"/>
+<area shape="rect" id="Node000007" href="$classOp__Conv__ALE.html" title=" " alt="" coords="823,133,934,161"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="639,304,684,237,716,201,754,172,788,157,822,149,823,154,789,162,757,176,720,205,688,240,643,307"/>
+<area shape="rect" id="Node000008" href="$classOp__Conv__EF__base.html" title="class Op_Conv_EF_base" alt="" coords="808,185,948,213"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="648,305,695,263,723,241,755,223,807,206,809,211,757,228,726,246,698,267,652,309"/>
+<area shape="rect" id="Node000012" href="$classOp__Conv__PolyMAC__base.html" title=" " alt="" coords="787,237,970,265"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="685,311,832,263,833,268,686,316"/>
+<area shape="rect" id="Node000025" href="$classOp__Conv__PolyMAC__iterateur__base.html" title=" " alt="" coords="756,319,1001,346"/>
+<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="723,330,755,330,755,335,723,335"/>
+<area shape="rect" id="Node000028" href="$classOp__Conv__VDF__base.html" title="class Op_Conv_VDF_base Classe de base des operateurs de convection VDF" alt="" coords="803,567,954,594"/>
+<area shape="poly" id="edge27_Node000001_Node000028" title=" " alt="" coords="654,355,864,564,861,568,650,359"/>
+<area shape="rect" id="Node000039" href="$classOp__Conv__VEF__base.html" title="class Op_Conv_VEF_base" alt="" coords="804,1077,953,1105"/>
+<area shape="poly" id="edge38_Node000001_Node000039" title=" " alt="" coords="639,360,875,1076,870,1078,634,362"/>
+<area shape="rect" id="Node000060" href="$classOp__Conv__negligeable.html" title="Classe Op_Conv_negligeable Cette classe represente un opperateur de convection negligeable." alt="" coords="797,1129,960,1157"/>
+<area shape="poly" id="edge59_Node000001_Node000060" title=" " alt="" coords="630,362,637,519,656,746,672,862,694,969,722,1056,739,1090,758,1115,776,1128,798,1137,796,1142,773,1133,754,1118,735,1092,717,1058,689,970,667,863,650,746,631,519,625,362"/>
+<area shape="rect" id="Node000002" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="371,319,495,346"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="511,330,543,330,543,335,511,335"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,267,260,294"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,291,375,315,374,321,275,296"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,267,77,294"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,278,187,278,187,283,92,283"/>
+<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,319,259,346"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="274,330,370,330,370,335,274,335"/>
+<area shape="rect" id="Node000006" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,371,323,398"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="297,364,374,344,375,350,298,369"/>
+<area shape="rect" id="Node000009" href="$classOp__Conv__EF.html" title="class Op_Conv_EF Cette classe represente l&#39;operateur de convection associe a une equation de" alt="" coords="1118,31,1220,58"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="963,186,1000,170,1015,158,1024,144,1033,129,1047,113,1093,81,1136,56,1139,61,1096,85,1051,117,1037,132,1028,147,1019,161,1002,175,965,191"/>
+<area shape="rect" id="Node000010" href="$classOp__Conv__BTD__EF.html" title=" " alt="" coords="1385,5,1521,33"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1236,36,1384,23,1385,28,1236,41"/>
+<area shape="rect" id="Node000011" href="$classOp__Conv__SUPG__EF.html" title=": class Op_Conv_SUPG_EF" alt="" coords="1646,5,1791,33"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1537,16,1645,16,1645,22,1537,22"/>
+<area shape="rect" id="Node000013" href="$classOp__Conv__EF__Stab__PolyMAC__Face.html" title=" " alt="" coords="1049,127,1289,154"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="973,230,1000,222,1138,153,1140,157,1002,227,974,236"/>
+<area shape="rect" id="Node000022" href="$classOp__Conv__EF__Stab__PolyMAC__P0P1NC__Elem.html" title=": class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem" alt="" coords="1068,213,1271,258"/>
+<area shape="poly" id="edge21_Node000012_Node000022" title=" " alt="" coords="985,243,1067,238,1067,243,985,248"/>
+<area shape="rect" id="Node000014" href="$classOp__Conv__Amont__PolyMAC__Face.html" title=" " alt="" coords="1337,57,1569,85"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1240,120,1337,95,1388,83,1389,88,1338,100,1241,125"/>
+<area shape="rect" id="Node000015" href="$classOp__Conv__Centre__PolyMAC__Face.html" title=" " alt="" coords="1337,109,1569,137"/>
+<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="1305,130,1337,128,1337,133,1305,135"/>
+<area shape="rect" id="Node000016" href="$classOp__Conv__EF__Stab__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="1351,161,1555,206"/>
+<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="1281,155,1351,165,1350,170,1280,160"/>
+<area shape="rect" id="Node000017" href="$classOp__Conv__Amont__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="1621,92,1816,136"/>
+<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="1555,154,1629,134,1631,139,1557,159"/>
+<area shape="rect" id="Node000018" href="$classOp__Conv__Centre__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="1621,161,1816,206"/>
+<area shape="poly" id="edge17_Node000016_Node000018" title=" " alt="" coords="1570,180,1621,180,1621,186,1570,186"/>
+<area shape="rect" id="Node000019" href="$classOp__Conv__EF__Stab__PolyMAC__P0__Face.html" title=" " alt="" coords="1617,230,1820,275"/>
+<area shape="poly" id="edge18_Node000016_Node000019" title=" " alt="" coords="1557,207,1631,227,1629,232,1555,213"/>
+<area shape="rect" id="Node000020" href="$classOp__Conv__Amont__PolyMAC__P0__Face.html" title=" " alt="" coords="1868,196,2062,240"/>
+<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1835,233,1867,229,1868,234,1836,239"/>
+<area shape="rect" id="Node000021" href="$classOp__Conv__Centre__PolyMAC__P0__Face.html" title=" " alt="" coords="1868,265,2062,310"/>
+<area shape="poly" id="edge20_Node000019_Node000021" title=" " alt="" coords="1836,266,1868,271,1867,276,1835,272"/>
+<area shape="rect" id="Node000023" href="$classOp__Conv__Amont__PolyMAC__P0P1NC__Elem.html" title=" " alt="" coords="1356,230,1550,275"/>
+<area shape="poly" id="edge22_Node000022_Node000023" title=" " alt="" coords="1286,240,1356,244,1355,249,1286,245"/>
+<area shape="rect" id="Node000024" href="$classOp__Conv__Centre__PolyMAC__P0P1NC__Elem.html" title=" " alt="" coords="1356,300,1550,344"/>
+<area shape="poly" id="edge23_Node000022_Node000024" title=" " alt="" coords="1266,260,1290,267,1338,285,1375,296,1373,301,1336,290,1288,272,1265,265"/>
+<area shape="rect" id="Node000026" href="$classOp__Conv__Amont__PolyMAC__Elem.html" title="class Op_Conv_Amont_PolyMAC_Elem" alt="" coords="1052,281,1286,309"/>
+<area shape="poly" id="edge25_Node000025_Node000026" title=" " alt="" coords="1006,313,1056,307,1056,312,1007,319"/>
+<area shape="rect" id="Node000027" href="$classOp__Conv__Centre__PolyMAC__Elem.html" title="class Op_Conv_Centre_PolyMAC_Elem" alt="" coords="1052,333,1286,361"/>
+<area shape="poly" id="edge26_Node000025_Node000027" title=" " alt="" coords="1017,337,1052,339,1051,344,1017,342"/>
+<area shape="rect" id="Node000029" href="$classOp__Conv__Amont__VDF__Elem.html" title="class Op_Conv_Amont_VDF_Elem Cette classe represente l&#39;operateur de convection associe a une equation..." alt="" coords="1068,385,1271,413"/>
+<area shape="poly" id="edge28_Node000028_Node000029" title=" " alt="" coords="898,553,960,488,1002,453,1048,423,1079,411,1081,416,1050,428,1005,457,964,491,902,557"/>
+<area shape="rect" id="Node000030" href="$classOp__Conv__Amont__VDF__Face.html" title="class Op_Conv_Amont_VDF_Face Cette classe represente l&#39;operateur de convection associe a une equation..." alt="" coords="1069,437,1269,465"/>
+<area shape="poly" id="edge29_Node000028_Node000030" title=" " alt="" coords="909,555,971,514,1048,475,1086,463,1088,468,1050,480,974,519,912,560"/>
+<area shape="rect" id="Node000032" href="$classOp__Conv__Centre4__VDF__Elem.html" title="class Op_Conv_Centre4_VDF_Elem Cette classe represente l&#39;operateur de convection associe a une equati..." alt="" coords="1064,489,1275,517"/>
+<area shape="poly" id="edge31_Node000028_Node000032" title=" " alt="" coords="938,559,1048,527,1099,515,1100,520,1050,532,940,564"/>
+<area shape="rect" id="Node000033" href="$classOp__Conv__Centre4__VDF__Face.html" title="class Op_Conv_Centre4_VDF_Face Cette classe represente l&#39;operateur de convection associe a une equati..." alt="" coords="1065,541,1273,569"/>
+<area shape="poly" id="edge32_Node000028_Node000033" title=" " alt="" coords="969,570,1064,562,1065,567,970,575"/>
+<area shape="rect" id="Node000034" href="$classOp__Conv__Centre__VDF__Elem.html" title="class Op_Conv_Centre_VDF_Elem Cette classe represente l&#39;operateur de convection associe a une equatio..." alt="" coords="1068,593,1271,621"/>
+<area shape="poly" id="edge33_Node000028_Node000034" title=" " alt="" coords="970,586,1067,595,1067,601,969,591"/>
+<area shape="rect" id="Node000035" href="$classOp__Conv__Centre__VDF__Face.html" title="class Op_Conv_Centre_VDF_Face Cette classe represente l&#39;operateur de convection associe a une equatio..." alt="" coords="1069,645,1269,673"/>
+<area shape="poly" id="edge34_Node000028_Node000035" title=" " alt="" coords="938,597,1050,630,1100,642,1098,647,1048,635,937,602"/>
+<area shape="rect" id="Node000036" href="$classOp__Conv__Quick__VDF__Elem.html" title="class Op_Conv_Quick_VDF_Elem Cette classe represente l&#39;operateur de convection associe a une equation..." alt="" coords="1070,697,1268,725"/>
+<area shape="poly" id="edge35_Node000028_Node000036" title=" " alt="" coords="912,602,974,643,1050,682,1088,694,1086,699,1048,687,971,647,909,606"/>
+<area shape="rect" id="Node000037" href="$classOp__Conv__Quick__VDF__Face.html" title="class Op_Conv_Quick_VDF_Face Cette classe represente l&#39;operateur de convection associe a une equation..." alt="" coords="1072,749,1266,777"/>
+<area shape="poly" id="edge36_Node000028_Node000037" title=" " alt="" coords="902,605,964,670,1005,705,1050,734,1080,746,1078,751,1048,739,1002,709,960,674,898,608"/>
+<area shape="rect" id="Node000038" href="$classOp__Conv__Quick__VDF__Face__Axi.html" title="class Op_Conv_Quick_VDF_Face Cette classe represente l&#39;operateur de convection associe a une equation..." alt="" coords="1058,801,1280,829"/>
+<area shape="poly" id="edge37_Node000028_Node000038" title=" " alt="" coords="896,606,920,647,955,696,999,745,1050,786,1076,798,1074,803,1048,791,995,749,951,700,916,650,892,609"/>
+<area shape="rect" id="Node000031" href="$classOp__Conv__Amont__VPoly__VDF__Face.html" title=" " alt="" coords="1366,429,1540,474"/>
+<area shape="poly" id="edge30_Node000030_Node000031" title=" " alt="" coords="1285,448,1366,448,1366,454,1285,454"/>
+<area shape="rect" id="Node000040" href="$classOp__Conv__AmontNew__VEF__Face.html" title="class Op_Conv_AmontNew_VEF_Face" alt="" coords="1056,853,1283,881"/>
+<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="893,1063,918,1024,953,977,997,931,1048,892,1074,879,1076,884,1050,896,1000,934,957,981,922,1027,897,1065"/>
+<area shape="rect" id="Node000041" href="$classOp__Conv__Amont__old__VEF__Face.html" title="class Op_Conv_Amont_old_VEF_Face" alt="" coords="1056,905,1282,933"/>
+<area shape="poly" id="edge40_Node000039_Node000041" title=" " alt="" coords="900,1064,962,1003,1003,971,1048,943,1079,931,1081,936,1050,948,1006,975,966,1007,904,1068"/>
+<area shape="rect" id="Node000042" href="$classOp__Conv__Centre__EF__VEF__Face.html" title="class Op_Conv_Centre_EF_VEF_Face" alt="" coords="1058,957,1280,985"/>
+<area shape="poly" id="edge41_Node000039_Node000042" title=" " alt="" coords="912,1066,974,1029,1048,994,1084,983,1085,988,1050,999,976,1034,914,1071"/>
+<area shape="rect" id="Node000043" href="$classOp__Conv__Centre__old__VEF__Face.html" title="class Op_Conv_Centre_old_VEF_Face" alt="" coords="1091,1009,1247,1054"/>
+<area shape="poly" id="edge42_Node000039_Node000043" title=" " alt="" coords="963,1071,1090,1045,1091,1050,965,1076"/>
+<area shape="rect" id="Node000044" href="$classOp__Conv__DI__L2__VEF__Face.html" title="class Op_Conv_DI_L2_VEF_Face" alt="" coords="1074,1077,1265,1105"/>
+<area shape="poly" id="edge43_Node000039_Node000044" title=" " alt="" coords="969,1088,1073,1088,1073,1094,969,1094"/>
+<area shape="rect" id="Node000045" href="$classOp__Conv__EF__VEF__P1NC.html" title="class Op_Conv_EF_VEF_P1NC" alt="" coords="1081,1129,1257,1157"/>
+<area shape="poly" id="edge44_Node000039_Node000045" title=" " alt="" coords="969,1105,1088,1126,1087,1131,968,1110"/>
+<area shape="rect" id="Node000046" href="$classOp__Conv__Muscl__old__VEF__Face.html" title="class Op_Conv_Muscl_old_VEF_Face" alt="" coords="1059,1181,1279,1209"/>
+<area shape="poly" id="edge45_Node000039_Node000046" title=" " alt="" coords="969,1102,1002,1116,1018,1128,1027,1142,1036,1154,1050,1166,1078,1178,1076,1183,1048,1171,1032,1158,1023,1145,1014,1132,1000,1120,967,1107"/>
+<area shape="rect" id="Node000047" href="$classOp__Conv__VEF__Face.html" title="class Op_Conv_VEF_Face" alt="" coords="1095,1233,1243,1261"/>
+<area shape="poly" id="edge46_Node000039_Node000047" title=" " alt="" coords="969,1098,1003,1116,1015,1128,1022,1142,1028,1169,1033,1195,1039,1207,1051,1218,1072,1231,1095,1239,1094,1244,1069,1236,1047,1223,1035,1210,1028,1196,1022,1170,1017,1144,1011,1132,999,1120,967,1103"/>
+<area shape="rect" id="Node000054" href="$classOp__Conv__Vort__VEF__Face.html" title="class Op_Conv_Vort_VEF_Face" alt="" coords="1078,1285,1260,1313"/>
+<area shape="poly" id="edge53_Node000039_Node000054" title=" " alt="" coords="969,1097,987,1104,1003,1116,1018,1135,1026,1155,1028,1195,1029,1234,1036,1253,1051,1270,1079,1288,1076,1292,1047,1275,1032,1255,1024,1235,1022,1195,1021,1156,1014,1138,999,1120,984,1109,967,1101"/>
+<area shape="rect" id="Node000055" href="$classOp__Conv__kschemas__VEF.html" title="class Op_Conv_kschemas_VEF" alt="" coords="1077,1363,1261,1390"/>
+<area shape="poly" id="edge54_Node000039_Node000055" title=" " alt="" coords="969,1096,987,1104,1003,1116,1022,1142,1031,1167,1032,1193,1030,1219,1028,1245,1028,1271,1035,1296,1051,1323,1077,1345,1108,1360,1106,1365,1074,1349,1047,1326,1030,1299,1023,1271,1022,1245,1025,1219,1027,1193,1026,1168,1017,1144,999,1120,984,1109,967,1101"/>
+<area shape="rect" id="Node000058" href="$classOp__Conv__kschemas__centre__VEF.html" title="class Op_Conv_kschemas_centre_VEF" alt="" coords="1053,1440,1285,1468"/>
+<area shape="poly" id="edge57_Node000039_Node000058" title=" " alt="" coords="969,1095,987,1104,1003,1116,1028,1151,1037,1187,1037,1222,1031,1257,1025,1292,1023,1328,1030,1364,1051,1400,1076,1422,1106,1437,1104,1442,1073,1427,1047,1404,1025,1365,1018,1328,1020,1292,1026,1256,1032,1222,1032,1187,1023,1154,999,1120,984,1108,967,1100"/>
+<area shape="rect" id="Node000048" href="$classOp__Conv__Amont__VEF__Face.html" title="class Op_Conv_Amont_VEF_Face" alt="" coords="1354,1051,1552,1078"/>
+<area shape="poly" id="edge47_Node000047_Node000048" title=" " alt="" coords="1257,1236,1288,1218,1301,1204,1307,1188,1311,1156,1314,1122,1322,1105,1336,1089,1354,1077,1357,1081,1339,1093,1326,1108,1319,1123,1316,1156,1312,1190,1305,1206,1291,1223,1260,1240"/>
+<area shape="rect" id="Node000049" href="$classOp__Conv__Centre__VEF__Face.html" title="class Op_Conv_Centre_VEF_Face" alt="" coords="1354,1103,1552,1130"/>
+<area shape="poly" id="edge48_Node000047_Node000049" title=" " alt="" coords="1257,1234,1288,1218,1304,1200,1311,1181,1318,1161,1336,1141,1359,1128,1361,1133,1339,1145,1323,1163,1316,1183,1308,1203,1291,1223,1259,1238"/>
+<area shape="rect" id="Node000050" href="$classOp__Conv__EF__VEF__P1NC__Stab.html" title="class Op_Conv_EF_VEF_P1NC_Stab" alt="" coords="1347,1155,1559,1182"/>
+<area shape="poly" id="edge49_Node000047_Node000050" title=" " alt="" coords="1258,1228,1288,1218,1312,1206,1336,1193,1376,1180,1378,1186,1338,1198,1315,1210,1290,1223,1259,1233"/>
+<area shape="rect" id="Node000051" href="$classOp__Conv__Muscl3__VEF__Face.html" title="class Op_Conv_Muscl3_VEF_Face" alt="" coords="1352,1207,1554,1234"/>
+<area shape="poly" id="edge50_Node000047_Node000051" title=" " alt="" coords="1258,1236,1352,1227,1352,1233,1259,1241"/>
+<area shape="rect" id="Node000052" href="$classOp__Conv__Muscl__New__VEF__Face.html" title="class Op_Conv_Muscl_New_VEF_Face" alt="" coords="1338,1259,1568,1286"/>
+<area shape="poly" id="edge51_Node000047_Node000052" title=" " alt="" coords="1259,1252,1338,1260,1338,1265,1259,1258"/>
+<area shape="rect" id="Node000053" href="$classOp__Conv__Muscl__VEF__Face.html" title="class Op_Conv_Muscl_VEF_Face" alt="" coords="1356,1311,1550,1338"/>
+<area shape="poly" id="edge52_Node000047_Node000053" title=" " alt="" coords="1259,1262,1290,1271,1315,1283,1338,1295,1379,1308,1378,1313,1336,1300,1312,1288,1288,1276,1258,1267"/>
+<area shape="rect" id="Node000056" href="$classOpVEF__Centre.html" title="class OpVEF_Centre" alt="" coords="1396,1363,1510,1390"/>
+<area shape="poly" id="edge55_Node000055_Node000056" title=" " alt="" coords="1277,1374,1395,1374,1395,1379,1277,1379"/>
+<area shape="rect" id="Node000057" href="$classOpVEF__Quick.html" title="class OpVEF_Quick" alt="" coords="1399,1415,1507,1442"/>
+<area shape="poly" id="edge56_Node000055_Node000057" title=" " alt="" coords="1264,1391,1399,1416,1398,1421,1263,1396"/>
+<area shape="rect" id="Node000059" href="$classOpVEF__Centre4.html" title="class OpVEF_Centre4" alt="" coords="1392,1467,1514,1494"/>
+<area shape="poly" id="edge58_Node000058_Node000059" title=" " alt="" coords="1301,1464,1392,1472,1391,1477,1300,1469"/>
+</map>

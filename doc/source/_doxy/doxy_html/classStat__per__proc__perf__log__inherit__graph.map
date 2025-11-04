@@ -1,0 +1,9 @@
+<map id="Stat_per_proc_perf_log" name="Stat_per_proc_perf_log">
+<area shape="rect" id="Node000001" title="class Stat_per_proc_per_log This class is an interprete used to set the Stat_per_proc_perf_log" alt="" coords="5,232,176,260"/>
+<area shape="rect" id="Node000002" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="48,157,133,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,200,93,232,88,232,88,200"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="54,81,127,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,124,93,156,88,156,88,124"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="55,5,126,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,49,93,81,88,81,88,49"/>
+</map>

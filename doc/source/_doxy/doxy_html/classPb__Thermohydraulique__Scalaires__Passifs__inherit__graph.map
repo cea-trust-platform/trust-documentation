@@ -1,0 +1,27 @@
+<map id="Pb_Thermohydraulique_Scalaires_Passifs" name="Pb_Thermohydraulique_Scalaires_Passifs">
+<area shape="rect" id="Node000001" title=" " alt="" coords="292,688,464,733"/>
+<area shape="rect" id="Node000002" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="277,594,478,639"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="380,654,380,688,375,688,375,654"/>
+<area shape="rect" id="Node000003" href="$classPb__Thermohydraulique.html" title="classe Pb_Thermohydraulique Cette classe represente un probleme de thermohydraulique standard:" alt="" coords="192,493,364,520"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="302,530,360,592,356,595,298,534"/>
+<area shape="rect" id="Node000004" href="$classPb__Hydraulique.html" title="classe Pb_Hydraulique Cette classe represente un probleme hydraulique standard dans lequel" alt="" coords="216,407,340,435"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="280,450,280,492,275,492,275,450"/>
+<area shape="rect" id="Node000005" href="$classPb__Fluide__base.html" title="classe Pb_Fluide_base Cette classe a pour but de disposer d une classe amont pour" alt="" coords="217,330,339,358"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="280,373,280,407,275,407,275,373"/>
+<area shape="rect" id="Node000006" href="$classProbleme__base.html" title="classe Probleme_base C&#39;est un Probleme_U qui n&#39;est pas un couplage." alt="" coords="217,253,338,281"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="280,296,280,330,275,330,275,296"/>
+<area shape="rect" id="Node000007" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,168,204,196"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="147,200,252,250,249,255,144,205"/>
+<area shape="rect" id="Node000008" href="$classProbleme__U.html" title="classe Probleme_U" alt="" coords="228,168,328,196"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="280,211,280,253,275,253,275,211"/>
+<area shape="rect" id="Node000009" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="241,82,314,110"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="280,125,280,167,275,167,275,125"/>
+<area shape="rect" id="Node000010" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="242,5,314,33"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="280,48,280,82,275,82,275,48"/>
+<area shape="rect" id="Node000011" href="$classProbleme__base__interface__proto.html" title=" " alt="" coords="353,159,539,204"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="390,214,306,255,303,250,387,209"/>
+<area shape="rect" id="Node000012" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="387,484,574,529"/>
+<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="451,542,401,595,397,592,448,538"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="414,407,547,435"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="483,450,483,484,478,484,478,450"/>
+</map>

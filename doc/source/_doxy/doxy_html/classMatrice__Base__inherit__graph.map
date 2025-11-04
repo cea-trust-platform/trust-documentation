@@ -1,0 +1,25 @@
+<map id="Matrice_Base" name="Matrice_Base">
+<area shape="rect" id="Node000001" title="Classe Matrice_Base Classe de base de la hierarchie des matrices." alt="" coords="246,136,355,164"/>
+<area shape="rect" id="Node000004" href="$classMatrice__Bloc.html" title=" " alt="" coords="422,5,528,33"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="320,122,356,82,402,44,426,31,428,36,405,48,359,86,324,126"/>
+<area shape="rect" id="Node000006" href="$classMatrice__Dense.html" title=" " alt="" coords="416,57,534,85"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="340,126,402,95,432,83,434,88,404,100,342,131"/>
+<area shape="rect" id="Node000007" href="$classMatrice__Diagonale.html" title="Classe Matrice_Diagonale Represente une matrice diagonale." alt="" coords="403,109,547,137"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="371,136,403,132,403,137,371,142"/>
+<area shape="rect" id="Node000008" href="$classMatrice__Morse.html" title="Classe Matrice_Morse Represente une matrice M (creuse), non necessairement carree." alt="" coords="416,161,534,189"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="371,157,416,164,415,169,371,163"/>
+<area shape="rect" id="Node000011" href="$classMatrice__Nulle.html" title=" " alt="" coords="419,213,531,241"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="343,169,404,198,435,210,433,215,402,203,341,173"/>
+<area shape="rect" id="Node000012" href="$classMatrice__Petsc.html" title=" " alt="" coords="419,265,531,293"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="324,174,359,213,405,250,428,262,426,267,402,255,356,217,320,177"/>
+<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,136,198,164"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,147,246,147,246,152,214,152"/>
+<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,136,77,164"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,147,124,147,124,152,92,152"/>
+<area shape="rect" id="Node000005" href="$classMatrice__Bloc__Sym.html" title=" " alt="" coords="601,5,742,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="543,16,600,16,600,22,543,22"/>
+<area shape="rect" id="Node000009" href="$classMatrice__Morse__Sym.html" title="Classe Matrice_Morse_Sym Represente une matrice M (creuse) symetrique stockee au format Morse." alt="" coords="595,161,748,189"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="549,172,594,172,594,178,549,178"/>
+<area shape="rect" id="Node000010" href="$classMatrice__Morse__Diag.html" title="Classe Matrice_Morse_Diag Represente une matrice M (creuse) symetrique stockee au format Morse." alt="" coords="796,161,950,189"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="764,172,796,172,796,178,764,178"/>
+</map>

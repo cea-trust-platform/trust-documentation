@@ -1,0 +1,9 @@
+<map id="MD_Vector_composite" name="MD_Vector_composite">
+<area shape="rect" id="Node000001" title="Metadata for a distributed composite vector." alt="" coords="5,232,173,260"/>
+<area shape="rect" id="Node000002" href="$classMD__Vector__base.html" title="Base class for distributed vectors parallel descriptors." alt="" coords="24,157,154,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,200,92,232,86,232,86,200"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="52,81,126,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,124,92,156,86,156,86,124"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="53,5,125,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,49,92,81,86,81,86,49"/>
+</map>

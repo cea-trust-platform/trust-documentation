@@ -1,0 +1,23 @@
+<map id="Navier_Stokes_std" name="Navier_Stokes_std">
+<area shape="rect" id="Node000001" title="classe Navier_Stokes_std Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="368,232,509,260"/>
+<area shape="rect" id="Node000006" href="$classNavier__Stokes__Fluide__Dilatable__base.html" title="classe Navier_Stokes_Fluide_Dilatable_base Cette classe basse porte les termes de l&#39;equation de la dy..." alt="" coords="160,308,322,353"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="393,269,294,310,292,305,391,264"/>
+<area shape="rect" id="Node000009" href="$classNavier__Stokes__Turbulent.html" title="classe Navier_Stokes_Turbulent Cette classe represente l&#39;equation de la dynamique pour un fluide" alt="" coords="348,316,529,344"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="441,276,441,316,436,316,436,276"/>
+<area shape="rect" id="Node000011" href="$classQDM__Multiphase.html" title="classe QDM_Multiphase Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="553,316,686,344"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="482,264,592,314,589,318,480,269"/>
+<area shape="rect" id="Node000002" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="380,157,496,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="441,200,441,232,436,232,436,200"/>
+<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="259,81,457,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,118,426,154,422,158,382,122"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="482,81,555,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="494,122,454,158,451,154,491,118"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="482,5,554,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="521,49,521,81,516,81,516,49"/>
+<area shape="rect" id="Node000007" href="$classNavier__Stokes__QC.html" title="classe Navier_Stokes_QC Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="5,401,146,428"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="185,362,103,403,101,398,182,358"/>
+<area shape="rect" id="Node000008" href="$classNavier__Stokes__WC.html" title="classe Navier_Stokes_WC Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="169,401,312,428"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="244,368,244,400,238,400,238,368"/>
+<area shape="rect" id="Node000010" href="$classNavier__Stokes__Turbulent__QC.html" title="classe Navier_Stokes_Turbulent Cette classe represente l&#39;equation de la dynamique pour un fluide" alt="" coords="337,401,544,428"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="442,360,443,400,438,400,436,360"/>
+</map>

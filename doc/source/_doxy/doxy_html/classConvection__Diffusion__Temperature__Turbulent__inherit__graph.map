@@ -1,0 +1,9 @@
+<map id="Convection_Diffusion_Temperature_Turbulent" name="Convection_Diffusion_Temperature_Turbulent">
+<area shape="rect" id="Node000001" title="classe Convection_Diffusion_Temperature_Turbulent Cette classe represente le cas particulier de" alt="" coords="89,191,266,235"/>
+<area shape="rect" id="Node000002" href="$classConvection__Diffusion__Turbulent.html" title="classe Convection_Diffusion_Turbulent Cette classe represente la convection&#45;diffusion d&#39;une ou plusie..." alt="" coords="5,98,166,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,152,158,189,154,192,116,156"/>
+<area shape="rect" id="Node000003" href="$classConvection__Diffusion__Temperature.html" title="classe Convection_Diffusion_Temperature Cas particulier de Convection_Diffusion_std" alt="" coords="189,98,350,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="239,156,201,192,197,189,235,152"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="189,5,350,50"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="272,66,272,98,267,98,267,66"/>
+</map>

@@ -1,0 +1,25 @@
+var classComm__Group__Noparallel =
+[
+    [ "Comm_Group_Noparallel", "classComm__Group__Noparallel.html#ab77a90ea2f850ffaab3d9a46cdab7291", null ],
+    [ "~Comm_Group_Noparallel", "classComm__Group__Noparallel.html#ae034c6fae482e5ef8c0dc89f9e14f79b", null ],
+    [ "Comm_Group_Noparallel", "classComm__Group__Noparallel.html#a0e336653a1196ebf8fde280d5b219ea0", null ],
+    [ "abort", "classComm__Group__Noparallel.html#a5deefee017a8b5546cdc162fad8ce2ff", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#a21100a2e7e9a3678cdc88e134374b471", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#ada545acf5e3e7401e07a5ab7d01ef8ed", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#aa581a35211b7593e09f0e89e1b769db2", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#a7e2cf341c2361c2869c74cdd81e2483c", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#a0630a39f57bdc0453439647778350d83", null ],
+    [ "mp_collective_op", "classComm__Group__Noparallel.html#a7002879128daed1c92baeb14bffb5ec5", null ],
+    [ "barrier", "classComm__Group__Noparallel.html#a3d3c2da5fd3bd7713a6c63f9695001c3", null ],
+    [ "reverse_send_recv_list", "classComm__Group__Noparallel.html#ab2d1a3f76b97dfdc0f782b54fdb4f41c", null ],
+    [ "send_recv_start", "classComm__Group__Noparallel.html#abf4cc0e96540d6deea5dce2203cca69d", null ],
+    [ "send_recv_finish", "classComm__Group__Noparallel.html#a46603fdae971fa378ba6de728b076801", null ],
+    [ "send", "classComm__Group__Noparallel.html#ae130babe9d76c91272d67e702e6b366c", null ],
+    [ "recv", "classComm__Group__Noparallel.html#a3728f3acef31abac2b961a447bbb6529", null ],
+    [ "broadcast", "classComm__Group__Noparallel.html#acd6a30961d46bea4a343034793303dd3", null ],
+    [ "all_to_all", "classComm__Group__Noparallel.html#a7aa671d9929c2f9c4e016082d9955128", null ],
+    [ "all_gather", "classComm__Group__Noparallel.html#a51af1d29ea991771e3841632fb669b75", null ],
+    [ "gather", "classComm__Group__Noparallel.html#ace9a991c51c8b95181f727ea7f18ec78", null ],
+    [ "all_gatherv", "classComm__Group__Noparallel.html#a562774b1b63135983856d4d537e4c2c7", null ],
+    [ "init_group", "classComm__Group__Noparallel.html#aae9edf246d5f5d0d70c98a7d7928c6bf", null ]
+];

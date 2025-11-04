@@ -1,0 +1,5 @@
+<map id="TClearable" name="TClearable">
+<area shape="rect" id="Node000001" title="A small class representing any object with a &quot;clear()&quot; method." alt="" coords="35,5,127,33"/>
+<area shape="rect" id="Node000002" href="$classDomaine__dis__cache.html" title="Cache of discretized domains. Avoid repeating the discretize operation when not necessary." alt="" coords="5,81,157,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="84,49,84,81,78,81,78,49"/>
+</map>

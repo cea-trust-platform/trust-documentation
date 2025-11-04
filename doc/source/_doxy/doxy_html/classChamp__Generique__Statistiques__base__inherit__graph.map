@@ -1,0 +1,17 @@
+<map id="Champ_Generique_Statistiques_base" name="Champ_Generique_Statistiques_base">
+<area shape="rect" id="Node000001" title="Classe Champ_Generique_Statistiques_base Classe de base des classes de champs generiques dedies aux s..." alt="" coords="228,308,491,336"/>
+<area shape="rect" id="Node000006" href="$classChamp__Generique__Correlation.html" title="class Champ_Generique_Correlation" alt="" coords="5,384,226,411"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="302,343,160,386,158,381,301,338"/>
+<area shape="rect" id="Node000007" href="$classChamp__Generique__Ecart__Type.html" title="class Champ_Generique_Ecart_Type OWN_PTR(Champ_base) destine a post&#45;traiter un Ecart_Type d un champ ..." alt="" coords="250,384,469,411"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="362,351,362,383,357,383,357,351"/>
+<area shape="rect" id="Node000008" href="$classChamp__Generique__Moyenne.html" title="class Champ_Generique_Moyenne OWN_PTR(Champ_base) destine a post&#45;traiter une moyenne d un champ gener..." alt="" coords="493,384,701,411"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="417,338,555,381,554,386,415,343"/>
+<area shape="rect" id="Node000002" href="$classChamp__Gen__de__Champs__Gen.html" title="Classe de base des champs generiques ayant comme source d&#39;autres champs generiques L&#39;utilisation des ..." alt="" coords="251,232,468,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="362,276,362,308,357,308,357,276"/>
+<area shape="rect" id="Node000003" href="$classChamp__Generique__base.html" title="class Champ_Generique_base" alt="" coords="270,157,449,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="362,200,362,232,357,232,357,200"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="323,81,396,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="362,124,362,156,357,156,357,124"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="362,49,362,81,357,81,357,49"/>
+</map>

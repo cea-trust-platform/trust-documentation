@@ -1,0 +1,17 @@
+<map id="Op_Conv_negligeable" name="Op_Conv_negligeable">
+<area shape="rect" id="Node000001" title="Classe Op_Conv_negligeable Cette classe represente un opperateur de convection negligeable." alt="" coords="104,308,266,336"/>
+<area shape="rect" id="Node000002" href="$classOperateur__negligeable.html" title="Classe Opnegligeable Cette classe definit l&#39;interface d&#39;un operateur negligeable." alt="" coords="5,232,175,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,268,170,305,166,310,117,272"/>
+<area shape="rect" id="Node000003" href="$classOperateur__Conv__base.html" title="classe Operateur_Conv_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="198,232,363,260"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,272,203,310,200,305,250,268"/>
+<area shape="rect" id="Node000004" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="218,157,343,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,200,283,232,278,232,278,200"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="148,81,221,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="216,116,265,154,262,158,212,121"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="149,5,220,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="187,49,187,81,182,81,182,49"/>
+<area shape="rect" id="Node000007" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="246,81,316,109"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="283,124,283,156,278,156,278,124"/>
+<area shape="rect" id="Node000008" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="340,81,538,109"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="398,118,310,159,308,154,396,113"/>
+</map>

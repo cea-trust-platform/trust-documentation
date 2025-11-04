@@ -1,0 +1,19 @@
+<map id="Multiplicateur_diphasique_base" name="Multiplicateur_diphasique_base">
+<area shape="rect" id="Node000001" title="classe Multiplicateur_diphasique_base correlations de multiplicateurs diphasiques de la forme" alt="" coords="550,118,778,146"/>
+<area shape="rect" id="Node000006" href="$classMultiplicateur__diphasique__Friedel.html" title="classe Multiplicateur_diphasique_Friedel multiplicateur diphasique par la correlation de Friedel :" alt="" coords="826,5,1015,50"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="710,109,825,60,855,48,857,53,827,65,712,114"/>
+<area shape="rect" id="Node000007" href="$classMultiplicateur__diphasique__Lottes__Flinn.html" title="classe Multiplicateur_diphasique_Lottes_Flinn correlation de multiplicateur diphasique de Lottes&#45;Flin..." alt="" coords="826,75,1015,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="786,113,825,107,826,112,786,118"/>
+<area shape="rect" id="Node000008" href="$classMultiplicateur__diphasique__Muhler__Steinhagen.html" title="classe Multiplicateur_diphasique_Muhler_Steinhagen multiplicateur diphasique par la correlation de Mu..." alt="" coords="826,144,1015,189"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="786,146,826,151,825,156,786,151"/>
+<area shape="rect" id="Node000009" href="$classMultiplicateur__diphasique__homogene.html" title="classe Multiplicateur_diphasique_homogene multiplicateur diphasique homogene : Phi^2 = 1 + x (rho_l /..." alt="" coords="826,213,1015,258"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="712,150,827,199,857,210,855,215,825,203,710,155"/>
+<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="371,118,502,146"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,129,550,129,550,134,518,134"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,91,260,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,109,371,121,370,126,275,114"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,91,77,119"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,102,187,102,187,108,92,108"/>
+<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,143,323,171"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="338,141,370,137,371,142,339,146"/>
+</map>

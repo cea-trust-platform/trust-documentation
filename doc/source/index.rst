@@ -13,14 +13,14 @@ Although the software was primarily designed for solving incompressible single-p
 
 When speaking of the **TRUST** code, we use the world platform as it serves as a base for other research and industrial CEA codes, called BALTIKS. `TrioCFD <https://triocfd-documentation.readthedocs.io/en/latest/>`_ is one of those BALTIKS.
 
-If you want to use **TRUST** for a specific application, you can create your own BALTIK by following this tutorial: :doc:`_srcs_processed/dev_corner/dev_tutorials/build_your_baltik`. We do not recommend newcomers to start with this, make sure first to check-out the :doc:`_srcs_processed/quick_start` which will help you set up **TRUST** and run a first test case.
+If you want to use **TRUST** for a specific application, you can create your own BALTIK by following this tutorial: :doc:`dev_corner/dev_tutorials/build_your_baltik`. We do not recommend newcomers to start with this, make sure first to check-out the :doc:`quick_start` which will help you set up **TRUST** and run a first test case.
 
-If you need help to navigate between the different options for creating, running and, post-processing a test case, make sure to check out the :doc:`_srcs_processed/user_guide/index`.
+If you need help to navigate between the different options for creating, running and, post-processing a test case, make sure to check out the :doc:`user_guide/index`.
 This guide lists the available options in **TRUST** and gives you some advice depending on your applications, but also helps you better understand what is under each keyword you will need to use.
 
-If you want a more active introduction to **TRUST**, feel free to try the different :doc:`_srcs_processed/user_tutorials/index`.
+If you want a more active introduction to **TRUST**, feel free to try the different :doc:`user_tutorials/index`.
 
-Eventually, if you want to join the adventure and develop in **TRUST**, check out the :doc:`_srcs_processed/dev_corner/index`.
+Eventually, if you want to join the adventure and develop in **TRUST**, check out the :doc:`dev_corner/index`.
 
 Here are some useful links that you can visit too:
 
@@ -36,8 +36,8 @@ Do not forget to `cite <https://cea-trust-platform.github.io/cite_us/>`_ TRUST.
    :hidden:
    :maxdepth: 2
 
-   _srcs_processed/quick_start.md
-   _srcs_processed/user_guide/index
-   _srcs_processed/user_tutorials/index
-   _srcs_processed/dev_corner/index
+   quick_start.md
+   user_guide/index
+   user_tutorials/index
+   dev_corner/index
    references

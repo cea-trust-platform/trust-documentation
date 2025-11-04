@@ -1,0 +1,17 @@
+<map id="LecFicDistribueBin" name="LecFicDistribueBin">
+<area shape="rect" id="Node000001" title="Lecture dans un fichier au format binaire." alt="" coords="30,384,171,411"/>
+<area shape="rect" id="Node000002" href="$classLecFicDistribue.html" title="Cette classe implemente les operateurs et les methodes virtuelles de la classe EFichier de la facon s..." alt="" coords="41,308,160,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,351,103,383,98,383,98,351"/>
+<area shape="rect" id="Node000003" href="$classEFichier.html" title="Fichier en lecture Cette classe est a la classe C++ ifstream ce que la classe Entree est a la." alt="" coords="65,232,136,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="103,276,103,308,98,308,98,276"/>
+<area shape="rect" id="Node000004" href="$classEntree__Fichier__base.html" title="Fichier en lecture Cette classe est a la classe C++ ifstream ce que la classe Entree est a la." alt="" coords="26,157,176,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="103,200,103,232,98,232,98,200"/>
+<area shape="rect" id="Node000005" href="$classEntree.html" title="Class defining operators and methods for all reading operation in an input flow (file,..." alt="" coords="21,81,84,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="72,120,94,155,90,158,67,123"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,5,95,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="54,49,55,80,50,81,48,49"/>
+<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="113,81,187,109"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="135,123,112,158,107,155,130,120"/>
+<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="118,5,190,33"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="155,49,153,81,148,80,150,49"/>
+</map>

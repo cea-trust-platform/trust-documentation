@@ -1,0 +1,7 @@
+<map id="EChaine" name="EChaine">
+<area shape="rect" id="Node000001" title="Une entree dont la source est une chaine de caracteres." alt="" coords="13,157,87,184"/>
+<area shape="rect" id="Node000002" href="$classEntree.html" title="Class defining operators and methods for all reading operation in an input flow (file,..." alt="" coords="18,81,82,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,124,53,156,47,156,47,124"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,5,95,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="53,49,53,81,47,81,47,49"/>
+</map>

@@ -1,0 +1,27 @@
+<map id="Op_Conv_Centre4_VDF_Elem" name="Op_Conv_Centre4_VDF_Elem">
+<area shape="rect" id="Node000001" title="class Op_Conv_Centre4_VDF_Elem Cette classe represente l&#39;operateur de convection associe a une equati..." alt="" coords="135,440,346,468"/>
+<area shape="rect" id="Node000002" href="$classOp__Conv__VDF__base.html" title="class Op_Conv_VDF_base Classe de base des operateurs de convection VDF" alt="" coords="69,354,220,382"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,390,227,437,224,441,169,394"/>
+<area shape="rect" id="Node000003" href="$classOperateur__Conv__base.html" title="classe Operateur_Conv_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="56,236,220,264"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,279,147,354,141,354,137,280"/>
+<area shape="rect" id="Node000004" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="76,159,200,187"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="141,202,141,236,135,236,135,202"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="5,82,79,110"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="72,117,123,157,120,161,69,122"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="6,5,78,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="45,48,45,82,39,82,39,48"/>
+<area shape="rect" id="Node000007" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="103,82,173,110"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="141,125,141,159,135,159,135,125"/>
+<area shape="rect" id="Node000008" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="198,82,396,110"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="256,120,167,161,165,156,254,115"/>
+<area shape="rect" id="Node000009" href="$classOp__Conv__VDF.html" title=" " alt="" coords="246,346,432,391"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="304,403,258,442,254,437,300,399"/>
+<area shape="rect" id="Node000010" href="$classOp__VDF__Elem.html" title=" " alt="" coords="281,159,395,187"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="312,200,297,217,286,237,283,250,286,263,304,307,326,344,321,347,299,310,281,265,278,250,281,235,293,214,308,196"/>
+<area shape="rect" id="Node000012" href="$classOp__Conv__VDF.html" title=" " alt="" coords="295,236,496,264"/>
+<area shape="poly" id="edge12_Node000012_Node000010" title=" " alt="" coords="359,198,388,234,383,238,355,201"/>
+<area shape="rect" id="Node000011" href="$classOp__VDF__Face.html" title=" " alt="" coords="448,159,558,187"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="518,201,526,228,532,261,530,294,516,324,503,334,484,343,433,356,432,351,482,338,500,329,512,320,525,292,526,261,521,230,513,202"/>
+<area shape="poly" id="edge13_Node000012_Node000011" title=" " alt="" coords="474,198,416,238,413,234,471,194"/>
+<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="359,275,347,289,339,317,339,346,334,345,334,317,343,287,355,272"/>
+</map>

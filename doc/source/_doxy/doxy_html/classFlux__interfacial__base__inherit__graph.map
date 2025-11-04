@@ -1,0 +1,25 @@
+<map id="Flux_interfacial_base" name="Flux_interfacial_base">
+<area shape="rect" id="Node000001" title="classe Flux_interfacial_base correlations de flux de chaleur interfacial de la forme" alt="" coords="550,203,711,231"/>
+<area shape="rect" id="Node000006" href="$classFlux__interfacial__Chen__Mayinger.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="773,5,936,50"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="645,188,691,125,722,90,757,60,778,48,780,53,760,65,725,94,695,128,650,191"/>
+<area shape="rect" id="Node000007" href="$classFlux__interfacial__Coef__Constant.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="775,75,934,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="661,191,705,160,757,129,784,117,786,122,760,134,708,165,664,196"/>
+<area shape="rect" id="Node000008" href="$classFlux__interfacial__Kim__Park.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="759,143,950,171"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="698,196,758,180,798,169,800,174,759,185,699,201"/>
+<area shape="rect" id="Node000009" href="$classFlux__interfacial__Ranz__Marshall.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="774,195,935,239"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="726,214,773,214,773,220,726,220"/>
+<area shape="rect" id="Node000010" href="$classFlux__interfacial__Wolfert.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="766,263,943,291"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="699,233,759,249,800,260,798,265,758,254,698,238"/>
+<area shape="rect" id="Node000011" href="$classFlux__interfacial__Wolfert__composant.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="766,315,943,359"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="664,238,708,269,760,300,786,312,784,317,757,305,705,274,661,243"/>
+<area shape="rect" id="Node000012" href="$classFlux__interfacial__Zeitoun.html" title="Flux interfacial a coefficient constant par phase." alt="" coords="765,383,944,411"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="649,243,694,307,725,341,760,369,782,380,779,385,757,374,721,345,689,310,645,246"/>
+<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="371,203,502,231"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,214,550,214,550,220,518,220"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,176,260,204"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,194,371,206,370,211,275,199"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,176,77,204"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,188,187,188,187,193,92,193"/>
+<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,228,323,256"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="338,226,370,222,371,227,339,231"/>
+</map>

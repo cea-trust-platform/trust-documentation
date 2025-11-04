@@ -1,0 +1,11 @@
+<map id="Navier_Stokes_Fluide_Dilatable_Proto" name="Navier_Stokes_Fluide_Dilatable_Proto">
+<area shape="rect" id="Node000001" title="classe Navier_Stokes_Fluide_Dilatable_Proto" alt="" coords="182,5,343,50"/>
+<area shape="rect" id="Node000002" href="$classNavier__Stokes__Fluide__Dilatable__base.html" title="classe Navier_Stokes_Fluide_Dilatable_base Cette classe basse porte les termes de l&#39;equation de la dy..." alt="" coords="78,98,239,143"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,62,185,100,181,95,224,58"/>
+<area shape="rect" id="Node000005" href="$classNavier__Stokes__Turbulent__QC.html" title="classe Navier_Stokes_Turbulent Cette classe represente l&#39;equation de la dynamique pour un fluide" alt="" coords="262,106,470,134"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="300,58,353,104,349,108,296,62"/>
+<area shape="rect" id="Node000003" href="$classNavier__Stokes__QC.html" title="classe Navier_Stokes_QC Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="5,191,146,218"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,156,91,192,87,188,124,152"/>
+<area shape="rect" id="Node000004" href="$classNavier__Stokes__WC.html" title="classe Navier_Stokes_WC Cette classe porte les termes de l&#39;equation de la dynamique" alt="" coords="169,191,312,218"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="193,152,229,188,226,192,189,156"/>
+</map>

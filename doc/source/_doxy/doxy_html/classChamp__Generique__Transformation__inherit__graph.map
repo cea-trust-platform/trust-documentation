@@ -1,0 +1,11 @@
+<map id="Champ_Generique_Transformation" name="Champ_Generique_Transformation">
+<area shape="rect" id="Node000001" title="class Champ_Generique_Transformation" alt="" coords="5,308,253,336"/>
+<area shape="rect" id="Node000002" href="$classChamp__Gen__de__Champs__Gen.html" title="Classe de base des champs generiques ayant comme source d&#39;autres champs generiques L&#39;utilisation des ..." alt="" coords="21,232,237,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,276,132,308,126,308,126,276"/>
+<area shape="rect" id="Node000003" href="$classChamp__Generique__base.html" title="class Champ_Generique_base" alt="" coords="39,157,219,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,200,132,232,126,232,126,200"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="92,81,166,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="132,124,132,156,126,156,126,124"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="93,5,165,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="132,49,132,81,126,81,126,49"/>
+</map>

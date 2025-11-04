@@ -1,0 +1,27 @@
+var classOp__Dift__Multiphase__proto =
+[
+    [ "associer_proto", "classOp__Dift__Multiphase__proto.html#a0426dd4305ff8ff6a0ca1c1a614a4208", null ],
+    [ "correlation", "classOp__Dift__Multiphase__proto.html#aeb6bbbf432a6e802ff0bd41a19ac1b0a", null ],
+    [ "ajout_champs_proto_face", "classOp__Dift__Multiphase__proto.html#ad7d8236650a4e741ff81e624841efb64", null ],
+    [ "ajout_champs_proto_elem", "classOp__Dift__Multiphase__proto.html#a1597b8a36cd11630d7bf2012320430c1", null ],
+    [ "get_noms_champs_postraitables_proto", "classOp__Dift__Multiphase__proto.html#aa019f7dd1121e34d156fb84503f63704", null ],
+    [ "creer_champ_proto_face", "classOp__Dift__Multiphase__proto.html#ad89ed2e00562c301cd2fe3c6dd1712e2", null ],
+    [ "creer_champ_proto_elem", "classOp__Dift__Multiphase__proto.html#a52a6bd64f6e76099c819e98c313ea0d3", null ],
+    [ "completer_proto_face", "classOp__Dift__Multiphase__proto.html#a930735ee532cb1228f13743bb6065656", null ],
+    [ "completer_proto_elem", "classOp__Dift__Multiphase__proto.html#a67d3c03301fd199709279b2ca1126301", null ],
+    [ "mettre_a_jour_proto_face", "classOp__Dift__Multiphase__proto.html#a84512dc7689fb91771b6e522fe4793d6", null ],
+    [ "mettre_a_jour_proto_elem", "classOp__Dift__Multiphase__proto.html#a1796dc05823038bf95d6f4b7eae29637", null ],
+    [ "viscosite_turbulente", "classOp__Dift__Multiphase__proto.html#a75679b379a1cd3c2ae2b576eeff8291f", null ],
+    [ "diffusivite_turbulente", "classOp__Dift__Multiphase__proto.html#ab85537cc2866ce2a7dbb775a3a4594dc", null ],
+    [ "call_compute_nu_turb", "classOp__Dift__Multiphase__proto.html#a0bfd0e53337c019812195142abd33b01", null ],
+    [ "call_compute_diff_turb", "classOp__Dift__Multiphase__proto.html#aad382f70286adee9871fb2fc5c288e1d", null ],
+    [ "OWN_PTR", "classOp__Dift__Multiphase__proto.html#a3f30b61f09dea2067bd725fad32ac070", null ],
+    [ "OBS_PTR", "classOp__Dift__Multiphase__proto.html#ab1059a13d4cadf24b7d28d40fc371a13", null ],
+    [ "OBS_PTR", "classOp__Dift__Multiphase__proto.html#ae7b78e3740703a91a2e0d03e247684f7", null ],
+    [ "is_pbm_", "classOp__Dift__Multiphase__proto.html#aed79d53e8174e4b4b594ced1ea17b887", null ],
+    [ "nu_ou_lambda_turb_", "classOp__Dift__Multiphase__proto.html#a77f45294adf5d40ca5ff8b9155228b7e", null ],
+    [ "nu_ou_lambda_turb_post_", "classOp__Dift__Multiphase__proto.html#aaeb1c75b5995917d790fab2d40aa9e27", null ],
+    [ "mu_ou_alpha_turb_post_", "classOp__Dift__Multiphase__proto.html#acbfb0a0f8fe0f2302c067cf1324f1d59", null ],
+    [ "noms_nu_ou_lambda_turb_post_", "classOp__Dift__Multiphase__proto.html#a21595a272faff652f278f224124ac884", null ],
+    [ "noms_mu_ou_alpha_turb_post_", "classOp__Dift__Multiphase__proto.html#a7dff1f0b877b04f01104f1ebf91fd193", null ]
+];

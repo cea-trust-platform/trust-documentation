@@ -1,0 +1,17 @@
+<map id="Echange_contact_Correlation_VDF" name="Echange_contact_Correlation_VDF">
+<area shape="rect" id="Node000001" title=" " alt="" coords="102,384,347,411"/>
+<area shape="rect" id="Node000007" href="$classEchange__contact__Colburn__VDF.html" title="classe : Echange_contact_VDF_Colburn" alt="" coords="5,468,228,496"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="197,423,135,469,132,465,194,419"/>
+<area shape="rect" id="Node000008" href="$classEchange__contact__VDF__Plaque__Flux__Cte.html" title="classe : Echange_contact_VDF_Plaque_Flux_Cte Calcule le coefficient d&#39;echange via la correlation de S..." alt="" coords="251,459,416,504"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="256,419,306,457,303,461,253,423"/>
+<area shape="rect" id="Node000002" href="$classEchange__global__impose.html" title="Classe Echange_global_impose Cette classe represente le cas particulier de la classe." alt="" coords="135,308,314,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,351,227,383,222,383,222,351"/>
+<area shape="rect" id="Node000003" href="$classEchange__impose__base.html" title="classe Echange_impose_base: Cette condition limite sert uniquement pour l&#39;equation d&#39;energie." alt="" coords="140,232,309,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,276,227,308,222,308,222,276"/>
+<area shape="rect" id="Node000004" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="164,157,285,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="227,200,227,232,222,232,222,200"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="188,81,261,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="227,124,227,156,222,156,222,124"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="189,5,260,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="227,49,227,81,222,81,222,49"/>
+</map>

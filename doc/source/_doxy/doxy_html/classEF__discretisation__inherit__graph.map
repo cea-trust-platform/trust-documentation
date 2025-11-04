@@ -1,0 +1,15 @@
+<map id="EF_discretisation" name="EF_discretisation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="19,384,151,411"/>
+<area shape="rect" id="Node000007" href="$classEF__axi__discretisation.html" title=" " alt="" coords="5,459,165,487"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="88,427,88,459,82,459,82,427"/>
+<area shape="rect" id="Node000002" href="$classDiscret__Thyd.html" title="classe Discret_Thyd Cette classe est la classe de base representant une discretisation" alt="" coords="32,308,138,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="88,351,88,383,82,383,82,351"/>
+<area shape="rect" id="Node000003" href="$classDiscret__Thermique.html" title="Class Discret_Thermique Cette classe est la classe de base representant une discretisation." alt="" coords="13,232,157,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="88,276,88,308,82,308,82,276"/>
+<area shape="rect" id="Node000004" href="$classDiscretisation__base.html" title="classe Discretisation_base Cette classe represente un schema de discretisation en espace,..." alt="" coords="10,157,160,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="88,200,88,232,82,232,82,200"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="48,81,122,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="88,124,88,156,82,156,82,124"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="49,5,121,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="88,49,88,81,82,81,82,49"/>
+</map>

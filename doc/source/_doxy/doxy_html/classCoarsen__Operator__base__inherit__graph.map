@@ -1,0 +1,11 @@
+<map id="Coarsen_Operator_base" name="Coarsen_Operator_base">
+<area shape="rect" id="Node000001" title=" " alt="" coords="94,157,271,184"/>
+<area shape="rect" id="Node000004" href="$classCoarsen__Operator__K.html" title=" " alt="" coords="5,232,160,260"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="154,196,102,234,99,230,151,192"/>
+<area shape="rect" id="Node000005" href="$classCoarsen__Operator__Uniform.html" title=" " alt="" coords="183,232,382,260"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="214,192,266,230,263,234,211,196"/>
+<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="146,81,219,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,124,185,156,180,156,180,124"/>
+<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="147,5,218,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="185,49,185,81,180,81,180,49"/>
+</map>

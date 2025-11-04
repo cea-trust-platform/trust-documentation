@@ -1,0 +1,23 @@
+<map id="Echange_externe_impose" name="Echange_externe_impose">
+<area shape="rect" id="Node000001" title="Classe Echange_externe_impose: Cette classe represente le cas particulier de la classe." alt="" coords="632,96,820,124"/>
+<area shape="rect" id="Node000006" href="$classEchange__contact__PolyMAC.html" title=" " alt="" coords="872,5,1069,33"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="766,86,814,64,867,42,903,31,905,36,869,47,816,68,769,91"/>
+<area shape="rect" id="Node000007" href="$classEchange__contact__PolyMAC__P0P1NC.html" title="classe : Echange_contact_PolyMAC_P0P1NC Outre le champ_front representant la temperature de paroi," alt="" coords="872,57,1069,102"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="835,93,872,89,872,94,836,99"/>
+<area shape="rect" id="Node000009" href="$classEchange__externe__impose__H.html" title="Classe Echange_externe_impose_H: Cette classe represente le cas particulier de la classe Echange_exte..." alt="" coords="868,125,1073,153"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="836,120,868,124,867,129,835,126"/>
+<area shape="rect" id="Node000010" href="$classEchange__interne__impose.html" title="Classe Echange_interne_impose: Cette classe represente le cas particulier de la classe." alt="" coords="878,177,1063,205"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="776,127,869,162,911,174,909,179,867,167,774,132"/>
+<area shape="rect" id="Node000002" href="$classEchange__impose__base.html" title="classe Echange_impose_base: Cette condition limite sert uniquement pour l&#39;equation d&#39;energie." alt="" coords="414,96,584,124"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="599,107,631,107,631,112,599,112"/>
+<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="246,96,366,124"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="382,107,414,107,414,112,382,112"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,96,198,124"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="214,107,246,107,246,112,214,112"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,96,77,124"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="92,107,124,107,124,112,92,112"/>
+<area shape="rect" id="Node000008" href="$classEchange__contact__PolyMAC__P0.html" title="classe : Echange_contact_PolyMAC_P0 Outre le champ_front representant la temperature de paroi," alt="" coords="1121,65,1341,93"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1085,76,1121,76,1121,82,1085,82"/>
+<area shape="rect" id="Node000011" href="$classEchange__interne__parfait.html" title="Classe Echange_interne_parfait: Cette classe represente le cas particulier de la classe." alt="" coords="1141,177,1321,205"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1078,188,1141,188,1141,194,1078,194"/>
+</map>

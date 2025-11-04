@@ -1,0 +1,31 @@
+<map id="Terme_Source_VDF_base" name="Terme_Source_VDF_base">
+<area shape="rect" id="Node000001" title=" " alt="" coords="522,148,707,176"/>
+<area shape="rect" id="Node000007" href="$classSource__Darcy__VDF__Face.html" title="class Source_Darcy_VDF_Face Cette classe represente le terme de Darcy pour les ecoulement en milieux ..." alt="" coords="769,5,950,33"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="637,135,688,88,719,64,753,43,784,31,786,36,756,48,722,68,691,92,641,139"/>
+<area shape="rect" id="Node000008" href="$classSource__Echange__Th__VDF.html" title="class Source_Echange_Th_VDF Source volumique d&#39;echange thermique avec un autre probleme de meme domai..." alt="" coords="768,57,952,85"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="654,138,701,115,754,94,790,83,792,88,756,99,704,120,657,143"/>
+<area shape="rect" id="Node000009" href="$classSource__Forchheimer__VDF__Face.html" title="class Source_Forchheimer_VDF_Face Cette classe represente le terme de Forchheimer pour les ecoulement..." alt="" coords="783,109,936,154"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="722,146,782,138,783,143,722,151"/>
+<area shape="rect" id="Node000010" href="$classTerme__Gravite__VDF__Face.html" title="class Terme_Gravite_VDF_Face Cette classe represente le terme de gravite qui figure dans l&#39;equation" alt="" coords="766,177,954,205"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="722,172,766,177,765,183,722,177"/>
+<area shape="rect" id="Node000011" href="$classTerme__Puissance__Thermique__VDF__base.html" title=" " alt="" coords="755,229,965,274"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="666,179,756,214,789,226,787,231,754,219,664,184"/>
+<area shape="rect" id="Node000015" href="$classTerme__Source__Constituant__VDF__Elem.html" title="class Terme_Source_Constituant_VDF_Elem Cette classe represente un terme source de l&#39;equation de la t..." alt="" coords="763,298,957,343"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="640,185,691,235,722,261,756,284,780,295,778,300,753,288,719,265,687,239,636,189"/>
+<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="371,148,474,176"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="490,159,522,159,522,164,490,164"/>
+<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,96,323,124"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="295,126,371,146,370,151,294,131"/>
+<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,148,259,176"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="274,159,371,159,371,164,274,164"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,200,260,228"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="275,198,370,173,371,178,276,203"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,200,77,228"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="92,211,187,211,187,216,92,216"/>
+<area shape="rect" id="Node000012" href="$classSource__Dirac__VDF__Elem.html" title="class Source_Dirac_VDF_Elem Cette classe represente un terme source de Dirac." alt="" coords="1028,177,1208,205"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="973,222,1055,203,1056,208,974,227"/>
+<area shape="rect" id="Node000013" href="$classTerme__Puissance__Thermique__QC__VDF__Elem.html" title="class Terme_Puissance_Thermique_QC_VDF_Elem Cette classe represente un terme source de l&#39;equation de ..." alt="" coords="1013,229,1223,274"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="981,248,1012,248,1012,254,981,254"/>
+<area shape="rect" id="Node000014" href="$classTerme__Puissance__Thermique__VDF__Elem.html" title="class Terme_Puissance_Thermique_VDF_Elem Cette classe represente un terme source de l&#39;equation de la ..." alt="" coords="1013,298,1223,343"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="961,276,1033,295,1032,300,960,281"/>
+</map>

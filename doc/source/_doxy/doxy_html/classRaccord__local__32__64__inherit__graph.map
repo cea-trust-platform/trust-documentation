@@ -1,0 +1,13 @@
+<map id="Raccord_local_32_64&lt; _SIZE_ &gt;" name="Raccord_local_32_64&lt; _SIZE_ &gt;">
+<area shape="rect" id="Node000001" title="Classe Raccord_local Cette classe represente un raccord entre 2 probleme resolus par TRUST." alt="" coords="26,325,183,370"/>
+<area shape="rect" id="Node000006" href="$classRaccord__local__homogene__32__64.html" title="Classe Raccord_local_homogene Cette classe represente un Raccord_local ou les maillages de part et d&#39;..." alt="" coords="11,418,198,462"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="107,385,107,417,102,417,102,385"/>
+<area shape="rect" id="Node000002" href="$classRaccord__base__32__64.html" title="Classe Raccord_base Cette classe est simplement une frontiere, c&#39;est la classe de base de la." alt="" coords="26,232,183,277"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,293,107,325,102,325,102,293"/>
+<area shape="rect" id="Node000003" href="$classFrontiere__32__64.html" title="Classe Frontiere." alt="" coords="5,157,204,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,200,107,232,102,232,102,200"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="68,81,141,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,124,107,156,102,156,102,124"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="69,5,140,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="107,49,107,81,102,81,102,49"/>
+</map>

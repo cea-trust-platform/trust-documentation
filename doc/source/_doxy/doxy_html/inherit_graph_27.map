@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classEval__PolyMAC__Elem.html" title=" " alt="" coords="210,5,364,33"/>
+<area shape="rect" id="Node000001" href="$classEval__Amont__PolyMAC__Elem.html" title="class Eval_Amont_PolyMAC_Elem" alt="" coords="412,5,616,33"/>
+<area shape="poly" id="edge1546_Node000000_Node000001" title=" " alt="" coords="379,16,411,16,411,22,379,22"/>
+<area shape="rect" id="Node000003" href="$classEval__centre__PolyMAC__Elem.html" title="class Eval_centre_PolyMAC_Elem" alt="" coords="413,57,615,85"/>
+<area shape="poly" id="edge1547_Node000000_Node000003" title=" " alt="" coords="366,34,451,54,450,59,365,40"/>
+<area shape="rect" id="Node000004" href="$classEvaluateur__PolyMAC.html" title="class Evaluateur_PolyMAC" alt="" coords="5,57,162,85"/>
+<area shape="rect" id="Node000002" href="$classEval__Conv__PolyMAC.html" title=" " alt="" coords="210,57,364,85"/>
+<area shape="poly" id="edge1548_Node000004_Node000002" title=" " alt="" coords="177,68,209,68,209,74,177,74"/>
+<area shape="poly" id="edge1549_Node000002_Node000001" title=" " alt="" coords="365,51,450,31,451,36,366,56"/>
+<area shape="poly" id="edge1550_Node000002_Node000003" title=" " alt="" coords="379,68,413,68,413,74,379,74"/>
+</map>

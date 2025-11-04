@@ -1,0 +1,15 @@
+<map id="Modele_Permeabilite_base" name="Modele_Permeabilite_base">
+<area shape="rect" id="Node000001" title="classe Modele_Permeabilite_base Cette classe de base represente un modele de permeabilite" alt="" coords="200,157,397,184"/>
+<area shape="rect" id="Node000004" href="$classModPerm__Carman__Kozeny.html" title="Cette classe represente la correlation de Carman Kozeny pour la permeabilite d&#39;un lit de particule de..." alt="" coords="113,232,308,260"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="273,197,228,234,224,230,269,192"/>
+<area shape="rect" id="Node000007" href="$classModPerm__Cte.html" title="class ModPerm_Cte Cette classe represente une permeabilite cte." alt="" coords="332,232,444,260"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="328,192,374,230,370,234,325,197"/>
+<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="262,81,335,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="301,124,301,156,296,156,296,124"/>
+<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="263,5,334,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="301,49,301,81,296,81,296,49"/>
+<area shape="rect" id="Node000005" href="$classModPerm__ErgunPourDarcy.html" title="Cette classe represente la correlation de Ergun pour la permeabilite d&#39;un lit de particule de diametr..." alt="" coords="5,308,200,336"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="180,271,123,310,120,305,177,267"/>
+<area shape="rect" id="Node000006" href="$classModPerm__ErgunPourForch.html" title="Cette classe represente la correlation de Ergun associe au terme de Forchheimer, pour la permeabilite..." alt="" coords="224,308,416,336"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="244,267,302,305,299,310,241,271"/>
+</map>

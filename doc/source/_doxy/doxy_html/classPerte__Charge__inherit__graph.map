@@ -1,0 +1,21 @@
+<map id="Perte_Charge" name="Perte_Charge">
+<area shape="rect" id="Node000001" title="Classe Perte_Charge Cette classe represente un terme de perte de charge quiest introduit." alt="" coords="5,79,114,107"/>
+<area shape="rect" id="Node000002" href="$classPerte__Charge__Reguliere.html" title="Classe Perte_Charge_Reguliere Cette classe derivee de Perte_Charge est utiliseelorsque l&#39;on veut." alt="" coords="163,34,340,62"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,74,189,60,191,65,130,79"/>
+<area shape="rect" id="Node000004" href="$classPerte__Charge__Singuliere.html" title="Classe Perte_Charge_Singuliere Cette classe derivee de Perte_Charge est utilisee lorsque l&#39;on veut." alt="" coords="162,104,342,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="129,99,162,104,161,109,129,105"/>
+<area shape="rect" id="Node000003" href="$classPerte__Charge__Reguliere__VEF__P1NC.html" title="class Perte_Charge_Reguliere_VEF_P1NC" alt="" coords="392,5,569,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="356,36,391,33,391,38,357,41"/>
+<area shape="rect" id="Node000005" href="$classDP__Impose.html" title="Classe DP_Impose Cette classe derivee de Perte_Charge_Singuliere est utilisee lorsque l&#39;on veut." alt="" coords="433,74,527,102"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="357,102,432,91,433,97,358,107"/>
+<area shape="rect" id="Node000008" href="$classPerte__Charge__Singuliere__PolyMAC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_Face" alt="" coords="390,125,570,170"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="358,129,390,133,389,139,357,135"/>
+<area shape="rect" id="Node000010" href="$classPerte__Charge__Singuliere__VEF__Face.html" title="class Perte_Charge_Singuliere_VEF_Face" alt="" coords="390,195,570,239"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="297,137,391,180,419,192,417,196,389,185,295,142"/>
+<area shape="rect" id="Node000006" href="$classDP__Impose__PolyMAC__Face.html" title="class DP_Impose_PolyMAC_Face" alt="" coords="618,22,815,50"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="542,72,650,48,651,53,543,77"/>
+<area shape="rect" id="Node000007" href="$classDP__Impose__VEF__Face.html" title="class DP_Impose_VEF_Face" alt="" coords="635,74,798,102"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="543,85,635,85,635,90,543,90"/>
+<area shape="rect" id="Node000009" href="$classPerte__Charge__Singuliere__PolyMAC__P0P1NC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_P0P1NC_Face" alt="" coords="626,125,807,170"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="586,145,625,145,625,150,586,150"/>
+</map>

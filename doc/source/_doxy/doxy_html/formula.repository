@@ -1,0 +1,33 @@
+\_form#0=108x14:\[
+   \phi = h_{imp} (T_b - T_{ext})
+   \]
+\_form#1=100x28:\[
+   \phi = \frac{\lambda}{e} (T_{elem} - T_b)
+   \]
+\_form#2=176x28:\[
+   h_{imp} (T_b - T_{ext}) = \frac{\lambda}{e} (T_{elem} - T_b)
+   \]
+\_form#3=103x30:\[
+   T_b - T_{ext} = \frac{1}{h_{imp}} \phi
+   \]
+\_form#4=91x24:\[
+   T_{elem} - T_b = \frac{e}{\lambda} \phi
+   \]
+\_form#5=163x30:\[
+   (T_{elem} - T_{ext}) = \frac{1}{h_{imp}} \phi + \frac{e}{\lambda} \phi
+   \]
+\_form#6=164x31:\[
+   \phi \left( \frac{1}{h_{imp}} + \frac{e}{\lambda} \right) = T_{elem} - T_{ext}
+   \]
+\_form#7=93x34:\[
+   \phi = \frac{T_{elem} - T_{ext}}{\frac{1}{h_{imp}} + \frac{e}{\lambda}}
+   \]
+\_form#8=85x34:\[
+   h_{eq} = \frac{1}{\frac{1}{h_{imp}} + \frac{e}{\lambda}}
+   \]
+\_form#9=118x14:\[
+   \phi = h_{eq} (T_{elem} - T_{ext})
+   \]
+\_form#10=199x16:\[
+   \phi = h_{imp} (T_b - T_{ext}) + \sigma \varepsilon (T_b^4 - T_{ext}^4)
+   \]

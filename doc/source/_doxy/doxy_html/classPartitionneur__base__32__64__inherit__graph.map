@@ -1,0 +1,27 @@
+<map id="Partitionneur_base_32_64&lt; _SIZE_ &gt;" name="Partitionneur_base_32_64&lt; _SIZE_ &gt;">
+<area shape="rect" id="Node000001" title="Classe de base des partitionneurs de domaine (pour decouper un maillage avant un calcul parallele)." alt="" coords="246,317,389,362"/>
+<area shape="rect" id="Node000004" href="$classPartitionneur__Fichier__Decoupage.html" title="Partition d&#39;un domaine a partir d&#39;un fichier disque contenant, pour chaque element,..." alt="" coords="445,5,600,50"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="323,301,336,249,358,185,390,119,411,88,436,60,451,48,454,53,439,64,416,91,395,121,363,187,341,250,328,303"/>
+<area shape="rect" id="Node000005" href="$classPartitionneur__Fichier__MED.html" title="Partition d&#39;un domaine a partir d&#39;un fichier MED contenant un champ donnant, pour chaque element,..." alt="" coords="445,75,600,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="329,301,345,262,368,216,398,170,436,130,453,118,456,122,439,134,403,173,373,219,350,264,334,304"/>
+<area shape="rect" id="Node000006" href="$classPartitionneur__Metis__32__64.html" title="Partition d&#39;un domaine en nb_parties parties equilibrees en utilisant la librairie METIS." alt="" coords="448,144,597,189"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="340,303,381,250,407,223,436,199,455,187,458,192,439,203,411,227,385,254,344,306"/>
+<area shape="rect" id="Node000007" href="$classPartitionneur__Parmetis.html" title="Partition d&#39;un domaine en nb_parties parties equilibrees en utilisant la librairie PARMETIS." alt="" coords="437,213,608,258"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="366,307,436,268,462,256,464,261,439,273,369,311"/>
+<area shape="rect" id="Node000008" href="$classPartitionneur__Partition.html" title="Partitionneur de domaine en fonction du partitionnement d&#39;un autre domaine." alt="" coords="439,283,606,327"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="404,322,438,317,439,322,405,328"/>
+<area shape="rect" id="Node000009" href="$classPartitionneur__Ptscotch.html" title="Partition d&#39;un domaine en nb_parties parties equilibrees en utilisant la librairie Ptscotch." alt="" coords="439,352,606,397"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="405,352,439,358,438,363,404,357"/>
+<area shape="rect" id="Node000010" href="$classPartitionneur__Sous__Domaine.html" title="Decoupeur permettant de decouper des sous&#45;domaines (se recouvrant potentiellement) crees par Create_d..." alt="" coords="451,421,594,466"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="369,368,439,407,464,418,462,423,436,411,366,373"/>
+<area shape="rect" id="Node000011" href="$classPartitionneur__Sous__Domaines.html" title="Partitionneur de domaine a partir de sous&#45;domaines du domaine Voir construire_partition()" alt="" coords="451,491,594,535"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="344,373,385,425,411,452,439,476,458,488,455,492,436,481,407,456,381,429,340,376"/>
+<area shape="rect" id="Node000012" href="$classPartitionneur__Tranche__32__64.html" title="Partitionneur de domaine en tranches paralleles aux directions de l&#39;espace." alt="" coords="441,560,604,605"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="334,376,350,415,373,460,403,506,439,546,456,557,453,562,436,550,398,509,368,463,345,417,329,378"/>
+<area shape="rect" id="Node000013" href="$classPartitionneur__Union.html" title="Decoupeur permettant de decouper un domaine global de maniere conforme avec un ensemble de sous&#45;domai..." alt="" coords="447,629,598,674"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="328,377,341,429,363,493,395,558,416,588,439,615,454,627,451,631,436,619,411,591,390,561,358,495,336,431,323,378"/>
+<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,326,198,354"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,337,246,337,246,342,213,342"/>
+<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,326,77,354"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,337,124,337,124,342,92,342"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="Terme_Source_Acceleration" name="Terme_Source_Acceleration">
+<area shape="rect" id="Node000001" title=" " alt="" coords="163,232,363,260"/>
+<area shape="rect" id="Node000007" href="$classTerme__Source__Acceleration__VDF__Face.html" title="Terme source d&#39;acceleration specialise pour la discretisation VDF." alt="" coords="51,308,251,353"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="235,272,182,310,179,305,232,267"/>
+<area shape="rect" id="Node000008" href="$classTerme__Source__Acceleration__VEF__Face.html" title="Terme source d&#39;acceleration specialise pour la discretisation VDF." alt="" coords="275,308,475,353"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="295,267,347,305,344,310,292,272"/>
+<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,200,266,232,260,232,260,200"/>
+<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
+<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
+</map>

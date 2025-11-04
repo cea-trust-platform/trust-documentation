@@ -1,0 +1,7 @@
+<map id="DomaineCutter_32_64&lt; _SIZE_ &gt;" name="DomaineCutter_32_64&lt; _SIZE_ &gt;">
+<area shape="rect" id="Node000001" title="Classe outil permettant de generer des sous&#45;domaines pour un calcul parallele a partir d&#39;un domaine d..." alt="" coords="5,157,172,201"/>
+<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="52,81,125,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,125,91,156,86,156,86,125"/>
+<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="53,5,124,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,49,91,81,86,81,86,49"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Solveur_Masse_Face_proto" name="Solveur_Masse_Face_proto">
+<area shape="rect" id="Node000001" title=" " alt="" coords="140,5,296,50"/>
+<area shape="rect" id="Node000002" href="$classMasse__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="5,98,229,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,62,135,99,132,95,178,58"/>
+<area shape="rect" id="Node000004" href="$classMasse__VDF__Face.html" title=" " alt="" coords="252,98,387,126"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="258,58,305,95,302,99,255,62"/>
+<area shape="rect" id="Node000003" href="$classMasse__PolyMAC__P0__Face.html" title=" " alt="" coords="23,174,211,201"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,141,120,173,114,173,114,141"/>
+</map>

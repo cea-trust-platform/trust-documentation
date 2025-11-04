@@ -1,0 +1,7 @@
+<map id="Op_PolyMAC_Elem" name="Op_PolyMAC_Elem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="180,5,324,33"/>
+<area shape="rect" id="Node000002" href="$classOp__Conv__Amont__PolyMAC__Elem.html" title="class Op_Conv_Amont_PolyMAC_Elem" alt="" coords="5,81,240,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,43,147,83,144,78,214,39"/>
+<area shape="rect" id="Node000003" href="$classOp__Conv__Centre__PolyMAC__Elem.html" title="class Op_Conv_Centre_PolyMAC_Elem" alt="" coords="264,81,498,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="289,39,360,78,357,83,287,43"/>
+</map>

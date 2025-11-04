@@ -1,0 +1,15 @@
+<map id="Source_Generique_VEF" name="Source_Generique_VEF">
+<area shape="rect" id="Node000001" title="class Source_Generique_VEF" alt="" coords="178,308,349,336"/>
+<area shape="rect" id="Node000002" href="$classSource__Generique__base.html" title="classe Source_Generique_base Cette classe est la base de la hierarchie des sources portant" alt="" coords="174,232,352,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,276,266,308,260,308,260,276"/>
+<area shape="rect" id="Node000003" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,200,266,232,260,232,260,200"/>
+<area shape="rect" id="Node000004" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
+<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
+<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
+<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
+</map>

@@ -1,0 +1,33 @@
+<map id="Entree" name="Entree">
+<area shape="rect" id="Node000001" title="Class defining operators and methods for all reading operation in an input flow (file,..." alt="" coords="323,81,386,109"/>
+<area shape="rect" id="Node000003" href="$classEChaine.html" title="Une entree dont la source est une chaine de caracteres." alt="" coords="5,157,80,184"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="308,109,92,159,81,162,80,157,91,154,307,104"/>
+<area shape="rect" id="Node000004" href="$classEChaineJDD.html" title="Same as EChaine except here the input string comes from a datafile. Keeps a track of the lines that h..." alt="" coords="104,157,202,184"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="309,115,190,159,188,154,308,110"/>
+<area shape="rect" id="Node000005" href="$classEntree__Brute.html" title="An Entree whose main source of data is an arbitrary binary buffer set using the set_data() method." alt="" coords="226,157,331,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="332,121,294,158,290,154,328,118"/>
+<area shape="rect" id="Node000006" href="$classEntree__Fichier__base.html" title="Fichier en lecture Cette classe est a la classe C++ ifstream ce que la classe Entree est a la." alt="" coords="355,157,506,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="381,118,419,154,415,158,377,121"/>
+<area shape="rect" id="Node000015" href="$classEntree__complete.html" title="Cette classe se comporte comme EChaine tant que l&#39;on n&#39;est pas a la fin de la chaine." alt="" coords="530,157,662,184"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="402,108,553,154,552,159,400,113"/>
+<area shape="rect" id="Node000016" href="$classInputCommBuffer.html" title=": Classe outil utilisee exclusivement par Schema_Comm." alt="" coords="686,157,823,184"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="402,102,686,154,685,159,401,107"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="310,5,399,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="357,49,357,81,352,81,352,49"/>
+<area shape="rect" id="Node000007" href="$classEFichier.html" title="Fichier en lecture Cette classe est a la classe C++ ifstream ce que la classe Entree est a la." alt="" coords="395,232,466,260"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="433,200,433,232,428,232,428,200"/>
+<area shape="rect" id="Node000008" href="$classEFichierBin.html" title="Lecture dans un fichier d&#39;objets ecrits au format binaire." alt="" coords="255,308,347,336"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="396,270,325,310,323,305,393,266"/>
+<area shape="rect" id="Node000009" href="$classLecFicDistribue.html" title="Cette classe implemente les operateurs et les methodes virtuelles de la classe EFichier de la facon s..." alt="" coords="371,308,490,336"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="433,276,433,308,428,308,428,276"/>
+<area shape="rect" id="Node000011" href="$classLec__Diffuse__base.html" title="Classe de base des entrees diffusees: le processeur maitre lit les donnees dans la classe get_entree_..." alt="" coords="515,308,650,336"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="472,265,557,305,554,310,470,269"/>
+<area shape="rect" id="Node000010" href="$classLecFicDistribueBin.html" title="Lecture dans un fichier au format binaire." alt="" coords="360,384,501,411"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="433,351,433,383,428,383,428,351"/>
+<area shape="rect" id="Node000012" href="$classLecFicDiffuse.html" title="Cette classe implemente les operateurs et les methodes virtuelles de la classe EFichier de la facon s..." alt="" coords="526,384,634,411"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="584,352,583,383,578,383,579,351"/>
+<area shape="rect" id="Node000014" href="$classLecFicDiffuse__JDD.html" title="Cette classe implemente les operateurs et les methodes virtuelles de la classe EFichier de la facon s..." alt="" coords="657,384,796,411"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="623,341,702,381,700,386,621,345"/>
+<area shape="rect" id="Node000013" href="$classLecFicDiffuseBin.html" title="Read a file in binary format." alt="" coords="516,459,644,487"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="582,427,582,459,577,459,577,427"/>
+</map>

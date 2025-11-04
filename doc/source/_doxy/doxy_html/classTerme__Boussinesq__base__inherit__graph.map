@@ -1,0 +1,21 @@
+<map id="Terme_Boussinesq_base" name="Terme_Boussinesq_base">
+<area shape="rect" id="Node000001" title="Classe Terme_Boussinesq_base Cette classe represente le terme de gravite qui figure dans l&#39;equation." alt="" coords="291,232,471,260"/>
+<area shape="rect" id="Node000007" href="$classTerme__Boussinesq__PolyMAC__Face.html" title="class Terme_Boussinesq_scalaire_PolyMAC_P0P1NC_Face" alt="" coords="5,308,250,336"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="322,267,174,310,172,305,320,262"/>
+<area shape="rect" id="Node000008" href="$classTerme__Boussinesq__VDF__Face.html" title="class Terme_Boussinesq_scalaire_VDF_Face" alt="" coords="274,308,488,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="384,276,384,308,378,308,378,276"/>
+<area shape="rect" id="Node000009" href="$classTerme__Boussinesq__VEF__Face.html" title="Terme Source de Boussinesq pour une dicretisation VEF." alt="" coords="511,308,722,336"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="438,262,575,305,574,310,437,268"/>
+<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="329,157,432,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="384,200,384,232,378,232,378,200"/>
+<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="123,81,321,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="265,113,354,154,352,159,263,118"/>
+<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="346,81,416,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="384,124,384,156,378,156,378,124"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="440,81,514,109"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="449,121,399,158,396,154,446,116"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="441,5,512,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="480,49,480,81,474,81,474,49"/>
+<area shape="rect" id="Node000010" href="$classTerme__Boussinesq__VEFPreP1B__Face.html" title="class Terme_Boussinesq_scalaire_VEFPreP1B_Face Terme Source de Boussinesq pour une dicretisation VEFP..." alt="" coords="511,384,722,428"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="620,352,620,383,614,383,614,352"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="Op_Dift_negligeable" name="Op_Dift_negligeable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="107,401,260,428"/>
+<area shape="rect" id="Node000002" href="$classOp__Diff__negligeable.html" title="Classe Op_Diff_negligeable Cette classe represente un operateur de diffusion negligeable." alt="" coords="107,325,260,353"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,368,186,400,181,400,181,368"/>
+<area shape="rect" id="Node000003" href="$classOperateur__negligeable.html" title="Classe Opnegligeable Cette classe definit l&#39;interface d&#39;un operateur negligeable." alt="" coords="5,249,175,277"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,285,168,322,165,327,117,289"/>
+<area shape="rect" id="Node000004" href="$classOperateur__Diff__base.html" title="classe Operateur_Diff_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="199,249,354,277"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="250,289,202,327,198,322,247,285"/>
+<area shape="rect" id="Node000005" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="128,165,252,193"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="217,202,265,247,261,251,213,206"/>
+<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="57,81,131,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="122,117,177,163,173,167,119,121"/>
+<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="58,5,130,33"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="97,49,97,81,91,81,91,49"/>
+<area shape="rect" id="Node000008" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="155,81,225,109"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="193,125,193,165,187,165,187,125"/>
+<area shape="rect" id="Node000009" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="250,81,448,109"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="311,119,217,167,214,162,308,114"/>
+<area shape="rect" id="Node000010" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="277,157,450,201"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="331,214,292,251,289,247,328,210"/>
+</map>

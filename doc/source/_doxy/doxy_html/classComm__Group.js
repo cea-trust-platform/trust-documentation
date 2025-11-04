@@ -1,0 +1,43 @@
+var classComm__Group =
+[
+    [ "Collective_Op", "classComm__Group.html#a16a3e8b4b57b4ac0ee1d237b4a7e302c", [
+      [ "COLL_SUM", "classComm__Group.html#a16a3e8b4b57b4ac0ee1d237b4a7e302ca55879cc8c9d3898570abc1279177d330", null ],
+      [ "COLL_MIN", "classComm__Group.html#a16a3e8b4b57b4ac0ee1d237b4a7e302cac56938ec8d65390f71357f084c9be49f", null ],
+      [ "COLL_MAX", "classComm__Group.html#a16a3e8b4b57b4ac0ee1d237b4a7e302ca97e266ea06542559109eef5e5d642b86", null ],
+      [ "COLL_PARTIAL_SUM", "classComm__Group.html#a16a3e8b4b57b4ac0ee1d237b4a7e302ca31173cff9138da25f8a6f87612e14edb", null ]
+    ] ],
+    [ "TypeHint", "classComm__Group.html#a93c4c5b0887e1fc63a123d11e7da0118", [
+      [ "CHAR", "classComm__Group.html#a93c4c5b0887e1fc63a123d11e7da0118a32d85484e767b15e135274275b2194ed", null ],
+      [ "INT", "classComm__Group.html#a93c4c5b0887e1fc63a123d11e7da0118ace1f14aca3731a4ba1a90890825dc33e", null ],
+      [ "DOUBLE", "classComm__Group.html#a93c4c5b0887e1fc63a123d11e7da0118a3ecf92403be29069ab3826b1a3a6b1e4", null ],
+      [ "FLOAT", "classComm__Group.html#a93c4c5b0887e1fc63a123d11e7da0118a70c286b9a927bc7f8c2a3115ebc3326f", null ]
+    ] ],
+    [ "Comm_Group", "classComm__Group.html#ac5149506484d9bb10c553a548092204d", null ],
+    [ "~Comm_Group", "classComm__Group.html#af9700490bb769fa0abb61f7aa98edb53", null ],
+    [ "Comm_Group", "classComm__Group.html#a2a7592ad5865ce58077ef6c1e3faaec7", null ],
+    [ "abort", "classComm__Group.html#a9eaa1dfaa2f51ddd7d72da0e7bc4f3d2", null ],
+    [ "mp_collective_op", "classComm__Group.html#abe4ac5fc38da03874333ddf9f4af5fa7", null ],
+    [ "mp_collective_op", "classComm__Group.html#a24110f9bcab6d5493deef067687a4178", null ],
+    [ "mp_collective_op", "classComm__Group.html#aa388026db6eaaffe062906ff28697f8e", null ],
+    [ "mp_collective_op", "classComm__Group.html#a9ec2968c07e4db43469be122355a42c8", null ],
+    [ "mp_collective_op", "classComm__Group.html#ae1c73e9733f5afd620e097f53151608b", null ],
+    [ "mp_collective_op", "classComm__Group.html#a7c316d7ac5c9672e67a1c98696f0cd67", null ],
+    [ "barrier", "classComm__Group.html#ac20236e71fc50066d225761ba1349c69", null ],
+    [ "get_new_tag", "classComm__Group.html#afc0064494cd1d3091df02ee5b9294f8a", null ],
+    [ "rank", "classComm__Group.html#a7fde70af91b6d994aacd10bb4e74aeb8", null ],
+    [ "nproc", "classComm__Group.html#a77f7c2af23e60af705eeaeac448dce5d", null ],
+    [ "send_recv_start", "classComm__Group.html#a7fb0eaad288afd68e88514f0ab9ee42d", null ],
+    [ "send_recv_finish", "classComm__Group.html#a68bdde2db96498a1024cd1db4d371bcd", null ],
+    [ "send", "classComm__Group.html#a5489eba2c9ba6099899f96e2621131f6", null ],
+    [ "recv", "classComm__Group.html#ae3622cd7a58e3dfeba7bf9496c298d0f", null ],
+    [ "broadcast", "classComm__Group.html#a9e33e15e2e719843a0c42afc348f7a10", null ],
+    [ "all_to_all", "classComm__Group.html#abf4e41f7151bf25ea7a2591e31907cff", null ],
+    [ "all_gather", "classComm__Group.html#a3545b811fa3903bb895a5363d36dfaff", null ],
+    [ "gather", "classComm__Group.html#af66f5948dfe5c2299581688d0c514c2e", null ],
+    [ "all_gatherv", "classComm__Group.html#ae5f2a337e326bba1bad3967e97ba9d33", null ],
+    [ "operator=", "classComm__Group.html#a982687e21560748e4ef9107cce4ddda7", null ],
+    [ "init_group", "classComm__Group.html#ad3853172658b85b4737846cc8ac72507", null ],
+    [ "init_group_node", "classComm__Group.html#ac4b757e484868da8d218fc630feabe3c", null ],
+    [ "init_group_trio", "classComm__Group.html#afa4f509e9e0103ab6969bc8553065d91", null ],
+    [ "PE_Groups", "classComm__Group.html#a885c20c70797a6e4d34ecdd9948396f1", null ]
+];

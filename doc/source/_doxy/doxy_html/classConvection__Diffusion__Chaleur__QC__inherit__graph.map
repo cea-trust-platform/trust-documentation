@@ -1,0 +1,21 @@
+<map id="Convection_Diffusion_Chaleur_QC" name="Convection_Diffusion_Chaleur_QC">
+<area shape="rect" id="Node000001" title="classe Convection_Diffusion_Chaleur_QC Cas particulier de Convection_Diffusion_Chaleur_Fluide_Dilatab..." alt="" coords="207,510,367,555"/>
+<area shape="rect" id="Node000010" href="$classConvection__Diffusion__Chaleur__Turbulent__QC.html" title="classe Convection_Diffusion_Chaleur_Turbulent_QC Cette classe represente le cas particulier de" alt="" coords="202,603,373,648"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="290,571,290,603,284,603,284,571"/>
+<area shape="rect" id="Node000002" href="$classConvection__Diffusion__Chaleur__Fluide__Dilatable__base.html" title="classe Convection_Diffusion_Chaleur_Fluide_Dilatable_base Cas particulier de Convection_Diffusion_std..." alt="" coords="172,418,402,462"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="290,478,290,510,284,510,284,478"/>
+<area shape="rect" id="Node000003" href="$classConvection__Diffusion__Fluide__Dilatable__base.html" title="classe Convection_Diffusion_Fluide_Dilatable_base pour un fluide dilatable" alt="" coords="201,325,373,370"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="290,385,290,417,284,417,284,385"/>
+<area shape="rect" id="Node000004" href="$classConvection__Diffusion__std.html" title="classe Convection_Diffusion_std Cette classe est la base des equations modelisant le transport" alt="" coords="91,241,278,268"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="212,277,264,322,261,326,209,281"/>
+<area shape="rect" id="Node000005" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="126,157,243,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="187,200,187,241,182,241,182,200"/>
+<area shape="rect" id="Node000006" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="132,118,172,154,169,158,128,122"/>
+<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="228,81,301,109"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="241,122,200,158,197,154,237,118"/>
+<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,300,33"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="267,49,267,81,262,81,262,49"/>
+<area shape="rect" id="Node000009" href="$classConvection__Diffusion__Fluide__Dilatable__Proto.html" title=" " alt="" coords="302,232,478,277"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="356,289,313,327,310,323,352,285"/>
+</map>

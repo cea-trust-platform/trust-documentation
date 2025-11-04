@@ -1,0 +1,13 @@
+<map id="Dirichlet_paroi_defilante" name="Dirichlet_paroi_defilante">
+<area shape="rect" id="Node000001" title="classe Dirichlet_paroi_defilante Impose la vitesse de paroi dnas une equation de type Navier_Stokes." alt="" coords="30,308,212,336"/>
+<area shape="rect" id="Node000006" href="$classParoi__Knudsen__non__negligeable.html" title="classe Paroi_Knudsen_non_negligeable Impose un saut de vitesse de paroi dans une equation de type Nav..." alt="" coords="5,384,237,411"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="124,351,124,383,118,383,118,351"/>
+<area shape="rect" id="Node000002" href="$classDirichlet.html" title="classe Dirichlet Cette classe est la classe de base de la hierarchie des conditions aux limites de ty..." alt="" coords="83,232,159,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,276,124,308,118,308,118,276"/>
+<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="61,157,181,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,200,124,232,118,232,118,200"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="84,81,158,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,124,124,156,118,156,118,124"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="85,5,157,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="124,49,124,81,118,81,118,49"/>
+</map>

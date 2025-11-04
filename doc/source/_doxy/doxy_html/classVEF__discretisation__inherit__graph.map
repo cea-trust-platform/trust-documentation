@@ -1,0 +1,13 @@
+<map id="VEF_discretisation" name="VEF_discretisation">
+<area shape="rect" id="Node000001" title=" " alt="" coords="9,384,151,411"/>
+<area shape="rect" id="Node000002" href="$classDiscret__Thyd.html" title="classe Discret_Thyd Cette classe est la classe de base representant une discretisation" alt="" coords="27,308,133,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,351,83,383,77,383,77,351"/>
+<area shape="rect" id="Node000003" href="$classDiscret__Thermique.html" title="Class Discret_Thermique Cette classe est la classe de base representant une discretisation." alt="" coords="8,232,152,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,276,83,308,77,308,77,276"/>
+<area shape="rect" id="Node000004" href="$classDiscretisation__base.html" title="classe Discretisation_base Cette classe represente un schema de discretisation en espace,..." alt="" coords="5,157,155,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,200,83,232,77,232,77,200"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="43,81,117,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="83,124,83,156,77,156,77,124"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="44,5,116,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="83,49,83,81,77,81,77,49"/>
+</map>

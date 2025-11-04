@@ -1,0 +1,29 @@
+<map id="Champ_front_normal" name="Champ_front_normal">
+<area shape="rect" id="Node000001" title="class Champ_front_normal" alt="" coords="120,535,278,563"/>
+<area shape="rect" id="Node000010" href="$classBoundary__field__inward.html" title="class Boundary_field_inward" alt="" coords="15,611,186,638"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="171,574,120,612,116,608,168,570"/>
+<area shape="rect" id="Node000012" href="$classChamp__front__xyz__debit.html" title="class Champ_front_xyz_debit" alt="" coords="210,611,386,638"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="230,570,282,608,279,612,227,574"/>
+<area shape="rect" id="Node000002" href="$classCh__front__var__instationnaire__dep.html" title="classe Ch_front_var_instationnaire_dep Cette classe abstraite represente un champ sur une frontiere," alt="" coords="83,459,315,487"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,503,202,535,196,535,196,503"/>
+<area shape="rect" id="Node000003" href="$classChamp__front__var__instationnaire.html" title="classe Champ_front_var_instationnaire Classe derivee de Champ_front_var qui represente les champs aux" alt="" coords="84,384,314,411"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="202,427,202,459,196,459,196,427"/>
+<area shape="rect" id="Node000004" href="$classChamp__front__var.html" title="classe Champ_front_var Classe derivee de Champ_front_base qui represente un champ sur" alt="" coords="132,308,266,336"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="202,351,202,383,196,383,196,351"/>
+<area shape="rect" id="Node000005" href="$classChamp__front__base.html" title="classe Champ_front_base Classe de base pour la hierarchie des champs aux frontieres." alt="" coords="128,232,271,260"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="202,276,202,308,196,308,196,276"/>
+<area shape="rect" id="Node000006" href="$classField__base.html" title=" " alt="" coords="93,157,182,184"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="160,195,190,230,186,234,156,198"/>
+<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="101,81,174,109"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="140,124,140,156,135,156,135,124"/>
+<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="102,5,174,33"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="140,49,140,81,135,81,135,49"/>
+<area shape="rect" id="Node000009" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="206,157,315,184"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="242,198,212,234,208,230,238,195"/>
+<area shape="rect" id="Node000011" href="$classChamp__front__normal__VEF.html" title=" " alt="" coords="5,686,196,714"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="103,654,103,686,98,686,98,654"/>
+<area shape="rect" id="Node000013" href="$classChamp__front__debit.html" title="class Champ_front_debit" alt="" coords="225,686,370,714"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="300,654,300,686,295,686,295,654"/>
+<area shape="rect" id="Node000014" href="$classChamp__front__debit__massique.html" title="class Champ_front_debit_massique" alt="" coords="190,762,406,790"/>
+<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="300,730,300,762,295,762,295,730"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="Source_Generique_base" name="Source_Generique_base">
+<area shape="rect" id="Node000001" title="classe Source_Generique_base Cette classe est la base de la hierarchie des sources portant" alt="" coords="522,100,700,128"/>
+<area shape="rect" id="Node000007" href="$classSource__Generique__Face__PolyMAC.html" title=" " alt="" coords="765,5,941,50"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="662,92,747,60,781,48,782,53,749,65,663,97"/>
+<area shape="rect" id="Node000009" href="$classSource__Generique__P0__Elem.html" title="class Source_Generique_VDF_Elem" alt="" coords="752,74,954,102"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="715,100,751,96,752,101,715,106"/>
+<area shape="rect" id="Node000010" href="$classSource__Generique__VDF__Face.html" title="class Source_Generique_VDF_Face" alt="" coords="748,126,958,154"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="715,123,747,126,747,131,715,128"/>
+<area shape="rect" id="Node000011" href="$classSource__Generique__VEF.html" title="class Source_Generique_VEF" alt="" coords="767,178,938,206"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="663,132,748,162,792,175,790,180,747,168,661,137"/>
+<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="371,100,474,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="490,112,522,112,522,117,490,117"/>
+<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,48,323,76"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="295,78,371,98,370,103,294,83"/>
+<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,100,259,128"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="274,112,371,112,371,117,274,117"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,152,260,180"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="275,150,370,125,371,130,276,156"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,152,77,180"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="92,164,187,164,187,169,92,169"/>
+<area shape="rect" id="Node000008" href="$classSource__Generique__Face__PolyMAC__P0P1NC.html" title=" " alt="" coords="1006,5,1182,50"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="956,25,1005,25,1005,30,956,30"/>
+</map>

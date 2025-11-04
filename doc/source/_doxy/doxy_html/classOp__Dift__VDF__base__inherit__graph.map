@@ -1,0 +1,43 @@
+<map id="Op_Dift_VDF_base" name="Op_Dift_VDF_base">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1019,272,1161,300"/>
+<area shape="rect" id="Node000011" href="$classOp__Dift__VDF__Elem__base.html" title=" " alt="" coords="1209,152,1392,180"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="1128,262,1273,178,1276,183,1131,267"/>
+<area shape="rect" id="Node000017" href="$classOp__Dift__VDF__Face__base.html" title=" " alt="" coords="1211,336,1390,364"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1153,303,1253,333,1252,338,1152,308"/>
+<area shape="rect" id="Node000002" href="$classOp__Diff__VDF__base.html" title="class Op_Diff_VDF_base Classe de base des operateurs de diffusion VDF" alt="" coords="812,246,954,274"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="970,268,1019,274,1018,280,970,273"/>
+<area shape="rect" id="Node000003" href="$classOperateur__Diff__base.html" title="classe Operateur_Diff_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="592,246,748,274"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="763,257,812,257,812,262,763,262"/>
+<area shape="rect" id="Node000004" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="396,215,520,243"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="536,238,592,246,591,251,535,243"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,163,260,191"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="276,186,396,213,394,218,275,191"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,163,77,191"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="92,174,187,174,187,180,92,180"/>
+<area shape="rect" id="Node000007" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,215,259,243"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="275,226,395,226,395,232,275,232"/>
+<area shape="rect" id="Node000008" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,267,323,295"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="304,261,394,240,396,245,305,266"/>
+<area shape="rect" id="Node000009" href="$classSupport__Champ__Masse__Volumique.html" title=" " alt="" coords="371,267,544,311"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="560,272,592,268,592,273,560,278"/>
+<area shape="rect" id="Node000010" href="$classOp__Diff__Turbulent__base.html" title=": classe Op_Diff_Turbulent_base Classe de base pour les operateurs de diffusion pour un ecoulement tu..." alt="" coords="796,298,971,326"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="986,296,1018,292,1019,298,987,302"/>
+<area shape="rect" id="Node000012" href="$classOp__Dift__Multiphase__VDF__Elem.html" title=" " alt="" coords="1474,5,1624,50"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1327,140,1377,99,1438,60,1473,45,1475,50,1441,65,1380,104,1330,144"/>
+<area shape="rect" id="Node000013" href="$classOp__Dift__VDF__Elem.html" title=" " alt="" coords="1477,74,1621,102"/>
+<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="1350,144,1439,112,1483,100,1485,105,1440,117,1352,149"/>
+<area shape="rect" id="Node000014" href="$classOp__Dift__VDF__Elem__Axi.html" title=" " alt="" coords="1463,126,1635,154"/>
+<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="1407,152,1462,146,1462,152,1408,158"/>
+<area shape="rect" id="Node000015" href="$classOp__Dift__VDF__Multi__inco__Elem.html" title=" " alt="" coords="1440,178,1658,206"/>
+<area shape="poly" id="edge14_Node000011_Node000015" title=" " alt="" coords="1407,175,1440,178,1439,183,1407,180"/>
+<area shape="rect" id="Node000016" href="$classOp__Dift__VDF__Multi__inco__Elem__Axi.html" title=" " alt="" coords="1460,229,1638,274"/>
+<area shape="poly" id="edge15_Node000011_Node000016" title=" " alt="" coords="1355,183,1441,214,1476,226,1474,231,1439,220,1353,188"/>
+<area shape="rect" id="Node000018" href="$classOp__Dift__Multiphase__VDF__Face.html" title=" " alt="" coords="1474,299,1624,343"/>
+<area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="1405,335,1473,327,1474,332,1406,341"/>
+<area shape="rect" id="Node000019" href="$classOp__Dift__VDF__Face.html" title=" " alt="" coords="1478,367,1620,395"/>
+<area shape="poly" id="edge18_Node000017_Node000019" title=" " alt="" coords="1406,361,1478,370,1477,375,1405,366"/>
+<area shape="rect" id="Node000020" href="$classOp__Dift__VDF__Face__Axi__base.html" title=" " alt="" coords="1445,419,1652,447"/>
+<area shape="poly" id="edge19_Node000017_Node000020" title=" " alt="" coords="1348,368,1441,404,1483,416,1482,421,1439,409,1347,373"/>
+<area shape="rect" id="Node000021" href="$classOp__Dift__VDF__Face__Axi.html" title=" " alt="" coords="1706,419,1875,447"/>
+<area shape="poly" id="edge20_Node000020_Node000021" title=" " alt="" coords="1668,430,1706,430,1706,436,1668,436"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="Champ_Face_base" name="Champ_Face_base">
+<area shape="rect" id="Node000001" title=" " alt="" coords="118,384,261,411"/>
+<area shape="rect" id="Node000009" href="$classChamp__Face__PolyMAC.html" title=" " alt="" coords="17,459,186,487"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="164,424,119,461,115,457,160,419"/>
+<area shape="rect" id="Node000012" href="$classChamp__Face__VDF.html" title="class Champ_Face_VDF Cette classe sert a representer un champ vectoriel dont on ne calcule" alt="" coords="210,459,348,487"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="219,419,265,457,261,461,216,424"/>
+<area shape="rect" id="Node000002" href="$classChamp__Inc__base.html" title="Classe Champ_Inc_base." alt="" coords="124,308,255,336"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,351,192,383,187,383,187,351"/>
+<area shape="rect" id="Node000003" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="81,232,186,260"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="155,271,182,306,177,309,150,274"/>
+<area shape="rect" id="Node000004" href="$classField__base.html" title=" " alt="" coords="28,157,117,184"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,195,125,230,121,234,91,198"/>
+<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="36,81,109,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="75,124,75,156,70,156,70,124"/>
+<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="36,5,108,33"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="75,49,75,81,70,81,70,49"/>
+<area shape="rect" id="Node000007" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="141,157,249,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="176,198,146,234,142,230,172,195"/>
+<area shape="rect" id="Node000008" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="210,232,281,260"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="229,274,202,309,197,306,224,271"/>
+<area shape="rect" id="Node000010" href="$classChamp__Face__PolyMAC__P0P1NC.html" title=": class Champ_Face_PolyMAC_P0P1NC" alt="" coords="17,535,186,580"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="104,503,104,534,99,534,99,503"/>
+<area shape="rect" id="Node000011" href="$classChamp__Face__PolyMAC__P0.html" title=": class Champ_Face_PolyMAC_P0" alt="" coords="5,628,198,655"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="104,595,104,627,99,627,99,595"/>
+</map>

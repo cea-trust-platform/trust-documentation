@@ -1,0 +1,17 @@
+<map id="Solv_Externe" name="Solv_Externe">
+<area shape="rect" id="Node000001" title=" " alt="" coords="136,232,243,260"/>
+<area shape="rect" id="Node000005" href="$classSolv__Petsc.html" title=" " alt="" coords="76,308,167,336"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="169,273,136,309,132,306,165,270"/>
+<area shape="rect" id="Node000008" href="$classSolv__rocALUTION.html" title=" " alt="" coords="191,308,324,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="214,270,247,306,243,309,210,273"/>
+<area shape="rect" id="Node000002" href="$classSolveurSys__base.html" title=" " alt="" coords="124,157,255,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,200,192,232,187,232,187,200"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="153,81,226,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="192,124,192,156,187,156,187,124"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="154,5,225,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="192,49,192,81,187,81,187,49"/>
+<area shape="rect" id="Node000006" href="$classSolv__AMGX.html" title=" " alt="" coords="5,384,102,411"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="101,349,68,385,64,381,97,345"/>
+<area shape="rect" id="Node000007" href="$classSolv__Petsc__GPU.html" title=" " alt="" coords="126,384,253,411"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="146,345,179,381,175,385,142,349"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="Champ_Face_PolyMAC_P0P1NC" name="Champ_Face_PolyMAC_P0P1NC">
+<area shape="rect" id="Node000001" title=": class Champ_Face_PolyMAC_P0P1NC" alt="" coords="83,535,252,580"/>
+<area shape="rect" id="Node000011" href="$classChamp__Face__PolyMAC__P0.html" title=": class Champ_Face_PolyMAC_P0" alt="" coords="71,628,264,655"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="170,595,170,627,165,627,165,595"/>
+<area shape="rect" id="Node000002" href="$classChamp__Face__PolyMAC.html" title=" " alt="" coords="83,459,252,487"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,503,170,534,165,534,165,503"/>
+<area shape="rect" id="Node000003" href="$classChamp__Face__base.html" title=" " alt="" coords="96,384,238,411"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="170,427,170,459,165,459,165,427"/>
+<area shape="rect" id="Node000004" href="$classChamp__Inc__base.html" title="Classe Champ_Inc_base." alt="" coords="102,308,233,336"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="170,351,170,383,165,383,165,351"/>
+<area shape="rect" id="Node000005" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="59,232,164,260"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="133,271,160,306,155,309,128,274"/>
+<area shape="rect" id="Node000006" href="$classField__base.html" title=" " alt="" coords="5,157,95,184"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="73,195,103,230,98,234,69,198"/>
+<area shape="rect" id="Node000007" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="13,81,87,109"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="53,124,53,156,47,156,47,124"/>
+<area shape="rect" id="Node000008" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="14,5,86,33"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="53,49,53,81,47,81,47,49"/>
+<area shape="rect" id="Node000009" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="118,157,227,184"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="154,198,124,234,120,230,150,195"/>
+<area shape="rect" id="Node000010" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="188,232,258,260"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="206,274,179,309,175,306,202,271"/>
+</map>

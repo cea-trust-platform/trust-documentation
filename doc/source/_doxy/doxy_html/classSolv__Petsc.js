@@ -1,0 +1,26 @@
+var classSolv__Petsc =
+[
+    [ "Solv_Petsc", "classSolv__Petsc.html#a4e84a4f162efc695050b42614f156f18", null ],
+    [ "~Solv_Petsc", "classSolv__Petsc.html#a1eb40803f0ecca95f78642d04f25442d", null ],
+    [ "solveur_direct", "classSolv__Petsc.html#a481f3c404780440eaa22fdefef4aecbe", null ],
+    [ "resoudre_systeme", "classSolv__Petsc.html#ad03765ac5cfa376cc07d872e44c8bc71", null ],
+    [ "resoudre_systeme", "classSolv__Petsc.html#a4a56ff0c43aee8adfb40a7229b7fafe0", null ],
+    [ "create_solver", "classSolv__Petsc.html#a35a8ad922fb450f5b693f9ce1e31875c", null ],
+    [ "reset", "classSolv__Petsc.html#a34cc0b975e06dc6df27f2cc6d89da2dd", null ],
+    [ "read_matrix", "classSolv__Petsc.html#a82157eea6e4a861588f486f61a4ec442", null ],
+    [ "config", "classSolv__Petsc.html#af626ce7ac5babfaf8333057766ac15cf", null ],
+    [ "solveur_direct_", "classSolv__Petsc.html#aa05df5e1a45d2e1edff22af140336a05", null ],
+    [ "read_matrix_", "classSolv__Petsc.html#a9c92c7b3025ccb3f301489141a442211", null ],
+    [ "gpu_", "classSolv__Petsc.html#a5f603c229087d42c8bb2fee48290526f", null ],
+    [ "amgx_", "classSolv__Petsc.html#a4a4d7d01f00900e4c2ad771be5e6725b", null ],
+    [ "amgx_initialized_", "classSolv__Petsc.html#a7244784294055ac6cd06c16d5d7264e7", null ],
+    [ "ignore_new_nonzero_", "classSolv__Petsc.html#a1d87d8f7f3be6d318bc343e11059cde2", null ],
+    [ "rebuild_matrix_", "classSolv__Petsc.html#a895816a337ad6bc6fcdfb82037e6a837", null ],
+    [ "allow_realloc_", "classSolv__Petsc.html#a45df7a11f976ea94cbb622ae8fcbd181", null ],
+    [ "clean_matrix_", "classSolv__Petsc.html#af13cee34da6194e79945d3a950ee2ed0", null ],
+    [ "reduce_ram_", "classSolv__Petsc.html#a7406167837df3705635a2c270e738630", null ],
+    [ "verbose", "classSolv__Petsc.html#a74dac05c9ed8acbc0642cfee0d750f4e", null ],
+    [ "reorder_matrix_", "classSolv__Petsc.html#add7d1d8a5e08095450d5e7493c480429", null ],
+    [ "nb_it_previous_", "classSolv__Petsc.html#af959f8858cd1e7ef1ff735bce243c6af", null ],
+    [ "reuse_preconditioner_nb_it_max_", "classSolv__Petsc.html#a7bd3abda8df421803f779b1b5862e8ad", null ]
+];

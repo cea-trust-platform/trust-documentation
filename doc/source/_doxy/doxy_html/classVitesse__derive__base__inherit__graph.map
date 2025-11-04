@@ -1,0 +1,19 @@
+<map id="Vitesse_derive_base" name="Vitesse_derive_base">
+<area shape="rect" id="Node000001" title="classe Vitesse_derive_base" alt="" coords="194,308,349,336"/>
+<area shape="rect" id="Node000007" href="$classVitesse__derive__Forces.html" title="classe Vitesse_derive_Forces" alt="" coords="5,384,172,411"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="225,344,122,386,120,381,223,339"/>
+<area shape="rect" id="Node000008" href="$classVitesse__derive__Ishii.html" title="classe Vitesse_derive_Ishii" alt="" coords="196,384,347,411"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="274,351,274,383,268,383,268,351"/>
+<area shape="rect" id="Node000009" href="$classVitesse__derive__constante.html" title="classe Vitesse_derive_constante" alt="" coords="370,384,559,411"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="321,339,431,381,429,386,319,344"/>
+<area shape="rect" id="Node000002" href="$classVitesse__relative__base.html" title="classe Vitesse_relative_base" alt="" coords="189,232,353,260"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="274,276,274,308,268,308,268,276"/>
+<area shape="rect" id="Node000003" href="$classCorrelation__base.html" title=" " alt="" coords="206,157,337,184"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="274,200,274,232,268,232,268,200"/>
+<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="154,81,228,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="219,118,259,154,255,158,215,122"/>
+<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="156,5,227,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="194,49,194,81,188,81,188,49"/>
+<area shape="rect" id="Node000006" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="252,81,450,109"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="327,122,287,158,284,154,324,118"/>
+</map>

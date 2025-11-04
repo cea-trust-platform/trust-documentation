@@ -1,0 +1,9 @@
+<map id="Joint_32_64&lt; _SIZE_ &gt;" name="Joint_32_64&lt; _SIZE_ &gt;">
+<area shape="rect" id="Node000001" title="La classe Joint est une Frontiere qui contient les faces et les sommets de joint avec le domaine PEvo..." alt="" coords="20,232,189,260"/>
+<area shape="rect" id="Node000002" href="$classFrontiere__32__64.html" title="Classe Frontiere." alt="" coords="5,157,204,184"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,200,107,232,102,232,102,200"/>
+<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="68,81,141,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="107,124,107,156,102,156,102,124"/>
+<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="69,5,140,33"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,49,107,81,102,81,102,49"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="Echange_interne_global_parfait" name="Echange_interne_global_parfait">
+<area shape="rect" id="Node000001" title="Classe Echange_interne_global_parfait Cette classe represente le cas particulier d&#39;un echange interne..." alt="" coords="6,476,183,521"/>
+<area shape="rect" id="Node000002" href="$classEchange__interne__global__impose.html" title="Classe Echange_interne_global_impose: Cette classe represente le cas particulier de la classe." alt="" coords="6,384,183,428"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,444,97,476,92,476,92,444"/>
+<area shape="rect" id="Node000003" href="$classEchange__global__impose.html" title="Classe Echange_global_impose Cette classe represente le cas particulier de la classe." alt="" coords="5,308,184,336"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,352,97,383,92,383,92,352"/>
+<area shape="rect" id="Node000004" href="$classEchange__impose__base.html" title="classe Echange_impose_base: Cette condition limite sert uniquement pour l&#39;equation d&#39;energie." alt="" coords="10,232,179,260"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="97,276,97,308,92,308,92,276"/>
+<area shape="rect" id="Node000005" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="34,157,155,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="97,200,97,232,92,232,92,200"/>
+<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="58,81,131,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="97,124,97,156,92,156,92,124"/>
+<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="59,5,130,33"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="97,49,97,81,92,81,92,49"/>
+</map>
