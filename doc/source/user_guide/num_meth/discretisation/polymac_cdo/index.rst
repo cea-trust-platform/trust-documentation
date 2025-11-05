@@ -354,10 +354,9 @@ We use here two discrete Hodge operators:
 
 .. math:: H_{\rho^{-1}}^{F\widetilde{\Sigma}} : F \rightarrow \widetilde{\Sigma} \hspace{0.5cm} \text{and} \hspace{0.5cm} H_{\mu^{-1}}^{\Sigma\widetilde{F}} : \Sigma \rightarrow \widetilde{F}
 
-Then we have the discrete velocity located at dual edges and the
-discrete vorticity at dual faces.
+Then we have the discrete velocity located at dual edges and the discrete vorticity at dual faces.
 
-.. math:: \mathbf{u} = H_{\rho^{-1}}^{F\widetilde{\Sigma}(\phi) \hspace{0.5cm} \text{and} \hspace{0.5cm} \mathbf{\omega} :=  H_{\mu^{-1}}^{\Sigma\widetilde{F}} (\mathbf{\omega}^*)
+.. math:: \mathbf{u} = H_{\rho^{-1}}^{F\widetilde{\Sigma}}(\phi) \hspace{0.5cm} \text{and} \hspace{0.5cm} \mathbf{\omega} :=  H_{\mu^{-1}}^{\Sigma\widetilde{F}} (\mathbf{\omega}^*)
 
 we also have the following relation
 

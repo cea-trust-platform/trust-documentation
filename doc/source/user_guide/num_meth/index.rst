@@ -11,8 +11,8 @@ that have driven the implementation, as well as the main places in the code wher
 
     discretisation/discret
     proj/index
+    bc/index
 ..    time_schemes/index
-..    bc/index
 ..    solvers/index
 ..    post/index
 
