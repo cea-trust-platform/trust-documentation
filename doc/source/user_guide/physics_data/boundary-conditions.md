@@ -89,3 +89,4 @@ The platform **TRUST** implements a huge number of boundary conditions (BC). Her
 | Echange_contact_Correlation | Class to define a thermohydraulic 1D model which will apply to a boundary of 2D or 3D domain. |
 | Echange_interne_global_impose | Internal heat exchange boundary condition with global exchange coefficient. |
 | Echange_interne_global_parfait | Internal heat exchange boundary condition with perfect (infinite) exchange coefficient. |
+| Robin_VEF | VEF Pnc-P0 only. Robin flux term for Navier-Stokes equations. Uses Robin coefficients `alpha` (normal) and `beta` (tangential), and a field `flux_normal_et_tangentiel` (concatenation of normal and tangential flux components). |
