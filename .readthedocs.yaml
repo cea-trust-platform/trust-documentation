@@ -2,25 +2,19 @@
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-# Required
 version: 2
 
-# Set the OS, Python version and other tools you might need
 build:
   os: ubuntu-22.04
   tools:
-    python: "mambaforge-22.9"
+    python: "3.10"
   apt_packages:
     - doxygen
     - graphviz
-  jobs:
-    pre_build: 
-      - echo "Pre-build- Installing system dependencies"
-    post_install:
-      - echo "Post-install- Environment ready"
 
-conda:
-  environment: doc/environment.yml
+python:
+  install:
+    - requirements: doc/requirements.txt
 
 sphinx:
   configuration: doc/source/conf.py
