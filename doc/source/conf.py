@@ -174,6 +174,9 @@ breathe_projects = {
 }
 breathe_default_project = "TRUST"
 
+breathe_default_members = ('members', 'undoc-members')
+breathe_show_include = True
+
 extlinks = {
     'github': ('https://github.com/cea-trust-platform/trust-code/%s', 'GitHub: %s'),
     'trust': ('https://trust-platform.org/%s', 'TRUST: %s'),
