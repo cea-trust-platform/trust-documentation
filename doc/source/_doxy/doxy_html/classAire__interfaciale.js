@@ -2,8 +2,8 @@ var classAire__interfaciale =
 [
     [ "Aire_interfaciale", "classAire__interfaciale.html#a57f1cfa7181703ed45597447364b38f7", null ],
     [ "associer_fluide", "classAire__interfaciale.html#a4feb0f13b76251a27bb90669b0afc5cc", null ],
-    [ "inconnue", "classAire__interfaciale.html#a9a43e314faddd2014d6f2a6b17e0367b", null ],
-    [ "inconnue", "classAire__interfaciale.html#ac04e4da97c02aaa5e715984bc6bc30a6", null ],
+    [ "inconnue", "classAire__interfaciale.html#aba65cc1e220afffc0b7fbd63b9a24987", null ],
+    [ "inconnue", "classAire__interfaciale.html#ae2a671c64906bc194bffaa31ad833450", null ],
     [ "discretiser", "classAire__interfaciale.html#a67861d04b968371c0bb903da3a7b240a", null ],
     [ "milieu", "classAire__interfaciale.html#a1e47e53be8cd5d17f2f6219f44f1065e", null ],
     [ "milieu", "classAire__interfaciale.html#a8f26be54583ef82dfb6e6a28c93d3b52", null ],

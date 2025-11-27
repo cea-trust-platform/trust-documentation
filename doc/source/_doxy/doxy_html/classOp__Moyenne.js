@@ -1,13 +1,13 @@
 var classOp__Moyenne =
 [
     [ "lire_ch_moyenne", "classOp__Moyenne.html#a587d010736fc148abfd7c066fb623fe5", null ],
-    [ "le_nom", "classOp__Moyenne.html#a0ac8ab184a3abfa14f9a02f83dae2a6b", null ],
+    [ "le_nom", "classOp__Moyenne.html#a66b8bde911a6deb0a0609694b4113694", null ],
     [ "set_pdi_name", "classOp__Moyenne.html#addd5d040b0a313c2e8519f05ee78283d", null ],
     [ "temps", "classOp__Moyenne.html#a2b336d738ab49a9abafd49e054caa2b4", null ],
-    [ "moyenne_convergee", "classOp__Moyenne.html#ae711d185e2baef8450fbfbe2e1c166a2", null ],
-    [ "integrale", "classOp__Moyenne.html#a391c41b005a20dcd44b64156afac2442", null ],
-    [ "valeurs", "classOp__Moyenne.html#a351f84b2bee21e57d0e5c377e481a8e1", null ],
-    [ "valeurs", "classOp__Moyenne.html#ac490f0664841e1fc76602af3f68fbb20", null ],
+    [ "moyenne_convergee", "classOp__Moyenne.html#ac0081284e2afe50212210f2f245d8228", null ],
+    [ "integrale", "classOp__Moyenne.html#ad9a022d123ff2ed38e605c3a3de8a3b9", null ],
+    [ "valeurs", "classOp__Moyenne.html#add7120000b28e95579e69ee6a40522d5", null ],
+    [ "valeurs", "classOp__Moyenne.html#abea2e6a0c8518e44fe29e1319d128ee5", null ],
     [ "dt_integration", "classOp__Moyenne.html#a0f5694bd3f7b80b17e100ffe01c2d166", null ],
     [ "mettre_a_jour", "classOp__Moyenne.html#acc2948554b6d51517559e439e7681286", null ],
     [ "initialiser", "classOp__Moyenne.html#a7d0bd908a756b4b6e85728fd24cebb81", null ],

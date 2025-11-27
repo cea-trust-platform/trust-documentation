@@ -10,12 +10,12 @@ var classOp__Dift__Multiphase__VDF__Elem =
     [ "is_turb", "classOp__Dift__Multiphase__VDF__Elem.html#a3b67eb5c8d873c8a5fd5c8a1410fbbbd", null ],
     [ "calculer_dt_stab", "classOp__Dift__Multiphase__VDF__Elem.html#a6c96205e6b0dbdb55009a52fd7bd8f89", null ],
     [ "alpha_", "classOp__Dift__Multiphase__VDF__Elem.html#a68586881da5e7bdfb1bf15bfa783273e", null ],
-    [ "correlation_viscosite_turbulente", "classOp__Dift__Multiphase__VDF__Elem.html#a5fe0ceef05d16144f283cb99db250a8c", null ],
-    [ "correlation", "classOp__Dift__Multiphase__VDF__Elem.html#a5e4b0fcb69e8adf77a20d159c5c6834c", null ],
-    [ "alpha_", "classOp__Dift__Multiphase__VDF__Elem.html#a21ce37ecfb32280fa2688471826fb28d", null ],
+    [ "correlation_viscosite_turbulente", "classOp__Dift__Multiphase__VDF__Elem.html#a7836a39e0b84f7a61c410bb782099fb0", null ],
+    [ "correlation", "classOp__Dift__Multiphase__VDF__Elem.html#a8ee9fedb1bc5d53096a52be48a7b2c56", null ],
+    [ "alpha_", "classOp__Dift__Multiphase__VDF__Elem.html#a77bd924540f3203a245544cf77ac5df9", null ],
     [ "associer", "classOp__Dift__Multiphase__VDF__Elem.html#af6034d7b46475dae63cf3379eea7bb30", null ],
     [ "associer_diffusivite", "classOp__Dift__Multiphase__VDF__Elem.html#a4ba41b0bb16e7e6c7599cd20fc71adb6", null ],
-    [ "diffusivite", "classOp__Dift__Multiphase__VDF__Elem.html#a9b516da75132920dcbc834868a026017", null ],
+    [ "diffusivite", "classOp__Dift__Multiphase__VDF__Elem.html#a9bd98094468185f42c08681007037a2e", null ],
     [ "dimension_min_nu", "classOp__Dift__Multiphase__VDF__Elem.html#a686a2a2918e0e8abe9cc6df523e4aa89", null ],
-    [ "get_diffusivite_turbulente", "classOp__Dift__Multiphase__VDF__Elem.html#a0f08d5b727dc9c6b225775d4c260a01e", null ]
+    [ "get_diffusivite_turbulente", "classOp__Dift__Multiphase__VDF__Elem.html#a4d443f3e4940b653a115ce1b8aff8492", null ]
 ];

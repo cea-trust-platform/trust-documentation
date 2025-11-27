@@ -3,7 +3,7 @@ var classObjet__U__ptr =
     [ "Objet_U_ptr", "classObjet__U__ptr.html#aa441193d9d20cb436b14a032a7c2e85e", null ],
     [ "~Objet_U_ptr", "classObjet__U__ptr.html#ab62bd66f21cafe82b9e41682c0bf4583", null ],
     [ "Objet_U_ptr", "classObjet__U__ptr.html#ad7df2bb9f1088f5cdd0ab0369e0b956b", null ],
-    [ "operator=", "classObjet__U__ptr.html#aed8df67040f97414db92809ddebc29c9", null ],
+    [ "operator=", "classObjet__U__ptr.html#a61d27b45403c8591a89a071e2cc48c3b", null ],
     [ "non_nul", "classObjet__U__ptr.html#a2ae7b8a19db61f14ed61250b931228ae", null ],
     [ "est_nul", "classObjet__U__ptr.html#a925076caa4d769fc4615d95c57ef711c", null ],
     [ "le_nom", "classObjet__U__ptr.html#a9a5254ed0900de717b295a2a49c08d53", null ],
@@ -16,5 +16,5 @@ var classObjet__U__ptr =
     [ "change_num", "classObjet__U__ptr.html#a6949654ed38a1ad5dba47f5877281d77", null ],
     [ "get_Objet_U_ptr_check", "classObjet__U__ptr.html#a7b6074bedd4d72cdcda63b4372ea0cc1", null ],
     [ "check_Objet_U_ptr_type", "classObjet__U__ptr.html#a88d2be054a86ae34480fa06739b09d22", null ],
-    [ "get_info_ptr", "classObjet__U__ptr.html#af799849ba0e61292453f7b99250f175b", null ]
+    [ "get_info_ptr", "classObjet__U__ptr.html#a175adffdd5739a8a1470b353c88ee398", null ]
 ];

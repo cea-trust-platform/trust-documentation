@@ -1,17 +1,10 @@
 <map id="PolyMAC_P0P1NC_discretisation" name="PolyMAC_P0P1NC_discretisation">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,459,238,487"/>
-<area shape="rect" id="Node000008" href="$classPolyMAC__P0__discretisation.html" title=" " alt="" coords="23,535,220,563"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="124,503,124,535,119,535,119,503"/>
-<area shape="rect" id="Node000002" href="$classPolyMAC__discretisation.html" title=" " alt="" coords="34,384,209,411"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,427,124,459,119,459,119,427"/>
-<area shape="rect" id="Node000003" href="$classDiscret__Thyd.html" title="classe Discret_Thyd Cette classe est la classe de base representant une discretisation" alt="" coords="68,308,175,336"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,351,124,383,119,383,119,351"/>
-<area shape="rect" id="Node000004" href="$classDiscret__Thermique.html" title="Class Discret_Thermique Cette classe est la classe de base representant une discretisation." alt="" coords="49,232,194,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="124,276,124,308,119,308,119,276"/>
-<area shape="rect" id="Node000005" href="$classDiscretisation__base.html" title="classe Discretisation_base Cette classe represente un schema de discretisation en espace,..." alt="" coords="47,157,196,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="124,200,124,232,119,232,119,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="85,81,158,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="124,124,124,156,119,156,119,124"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="86,5,157,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="124,49,124,81,119,81,119,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,453,239,480"/>
+<area shape="rect" id="node8" href="$classPolyMAC__P0__discretisation.html" title=" " alt="" coords="23,528,221,555"/>
+<area shape="rect" id="node2" href="$classPolyMAC__discretisation.html" title=" " alt="" coords="35,379,209,405"/>
+<area shape="rect" id="node3" href="$classDiscret__Thyd.html" title="classe Discret_Thyd Cette classe est la classe de base representant une discretisation" alt="" coords="69,304,175,331"/>
+<area shape="rect" id="node4" href="$classDiscret__Thermique.html" title="Class Discret_Thermique Cette classe est la classe de base representant une discretisation." alt="" coords="49,229,195,256"/>
+<area shape="rect" id="node5" href="$classDiscretisation__base.html" title="classe Discretisation_base Cette classe represente un schema de discretisation en espace,..." alt="" coords="47,155,197,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="85,80,159,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="86,5,158,32"/>
 </map>

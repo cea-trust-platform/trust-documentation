@@ -1,17 +1,10 @@
 <map id="Entree_fluide_vitesse_imposee_libre" name="Entree_fluide_vitesse_imposee_libre">
-<area shape="rect" id="Node000001" title="classe Entree_fluide_vitesse_imposee_libre Cas particulier de la classe Entree_fluide_vitesse_imposee..." alt="" coords="9,476,171,521"/>
-<area shape="rect" id="Node000008" href="$classFrontiere__ouverte__rho__u__impose.html" title="Frontiere ouverte sur laquelle on impose le flux massique rho." alt="" coords="8,569,172,614"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="93,537,93,569,87,569,87,537"/>
-<area shape="rect" id="Node000002" href="$classEntree__fluide__vitesse__imposee.html" title="classe Entree_fluide_vitesse_imposee Cas particulier de la classe Dirichlet_entree_fluide" alt="" coords="9,384,171,428"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,444,93,476,87,476,87,444"/>
-<area shape="rect" id="Node000003" href="$classDirichlet__entree__fluide.html" title="classe Dirichlet_entree_fluide Cette classe represente une condition aux limite imposant une grandeur" alt="" coords="5,308,175,336"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="93,352,93,383,87,383,87,352"/>
-<area shape="rect" id="Node000004" href="$classDirichlet.html" title="classe Dirichlet Cette classe est la classe de base de la hierarchie des conditions aux limites de ty..." alt="" coords="52,232,128,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="93,276,93,308,87,308,87,276"/>
-<area shape="rect" id="Node000005" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="30,157,150,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="93,200,93,232,87,232,87,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="53,81,127,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="93,124,93,156,87,156,87,124"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="54,5,126,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="93,49,93,81,87,81,87,49"/>
+<area shape="rect" id="node1" title="classe Entree_fluide_vitesse_imposee_libre Cas particulier de la classe Entree_fluide_vitesse_imposee..." alt="" coords="9,468,172,509"/>
+<area shape="rect" id="node8" href="$classFrontiere__ouverte__rho__u__impose.html" title="Frontiere ouverte sur laquelle on impose le flux massique rho." alt="" coords="8,557,173,599"/>
+<area shape="rect" id="node2" href="$classEntree__fluide__vitesse__imposee.html" title="classe Entree_fluide_vitesse_imposee Cas particulier de la classe Dirichlet_entree_fluide" alt="" coords="9,379,172,420"/>
+<area shape="rect" id="node3" href="$classDirichlet__entree__fluide.html" title="classe Dirichlet_entree_fluide Cette classe represente une condition aux limite imposant une grandeur" alt="" coords="5,304,176,331"/>
+<area shape="rect" id="node4" href="$classDirichlet.html" title="classe Dirichlet Cette classe est la classe de base de la hierarchie des conditions aux limites de ty..." alt="" coords="52,229,129,256"/>
+<area shape="rect" id="node5" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="30,155,151,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="53,80,128,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="55,5,127,32"/>
 </map>

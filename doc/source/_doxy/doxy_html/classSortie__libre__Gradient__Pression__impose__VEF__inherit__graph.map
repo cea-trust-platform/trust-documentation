@@ -1,17 +1,10 @@
 <map id="Sortie_libre_Gradient_Pression_impose_VEF" name="Sortie_libre_Gradient_Pression_impose_VEF">
-<area shape="rect" id="Node000001" title="Sortie_libre_Gradient_Pression_impose_VEF." alt="" coords="28,459,199,504"/>
-<area shape="rect" id="Node000008" href="$classSortie__libre__Gradient__Pression__impose__VEFPreP1B.html" title="Sortie_libre_Gradient_Pression_impose_VEFPreP1B." alt="" coords="5,552,222,597"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="116,520,116,552,111,552,111,520"/>
-<area shape="rect" id="Node000002" href="$classNeumann__sortie__libre.html" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="31,384,196,411"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,427,116,459,111,459,111,427"/>
-<area shape="rect" id="Node000003" href="$classNeumann__val__ext.html" title="Classe Neumann_val_ext Cette classe est la classe de base de la hierarchie des conditions." alt="" coords="44,308,183,336"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,351,116,383,111,383,111,351"/>
-<area shape="rect" id="Node000004" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="71,232,156,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="116,276,116,308,111,308,111,276"/>
-<area shape="rect" id="Node000005" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="53,157,174,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="116,200,116,232,111,232,111,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="77,81,150,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="116,124,116,156,111,156,111,124"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="78,5,149,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="116,49,116,81,111,81,111,49"/>
+<area shape="rect" id="node1" title="Sortie_libre_Gradient_Pression_impose_VEF." alt="" coords="29,453,199,495"/>
+<area shape="rect" id="node8" href="$classSortie__libre__Gradient__Pression__impose__VEFPreP1B.html" title="Sortie_libre_Gradient_Pression_impose_VEFPreP1B." alt="" coords="5,543,223,584"/>
+<area shape="rect" id="node2" href="$classNeumann__sortie__libre.html" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="31,379,197,405"/>
+<area shape="rect" id="node3" href="$classNeumann__val__ext.html" title="Classe Neumann_val_ext Cette classe est la classe de base de la hierarchie des conditions." alt="" coords="44,304,184,331"/>
+<area shape="rect" id="node4" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="71,229,157,256"/>
+<area shape="rect" id="node5" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="53,155,175,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="77,80,151,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="78,5,150,32"/>
 </map>

@@ -1,13 +1,12 @@
 <map id="Source_Gravite_Fluide_Dilatable_base" name="Source_Gravite_Fluide_Dilatable_base">
-<area shape="rect" id="Node000001" title="class Source_Gravite_Fluide_Dilatable_base" alt="" coords="180,232,347,277"/>
-<area shape="rect" id="Node000002" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="212,157,315,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="266,200,266,232,260,232,260,200"/>
-<area shape="rect" id="Node000003" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="148,113,236,154,234,159,146,118"/>
-<area shape="rect" id="Node000004" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="228,81,298,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="266,124,266,156,260,156,260,124"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="322,81,396,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="331,121,282,158,279,154,328,116"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="324,5,395,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="362,49,362,81,356,81,356,49"/>
+<area shape="rect" id="node1" title="class Source_Gravite_Fluide_Dilatable_base" alt="" coords="524,74,692,115"/>
+<area shape="rect" id="node7" href="$classSource__QC__Gravite__VDF.html" title="class Source_QC_Gravite_VDF" alt="" coords="741,5,923,32"/>
+<area shape="rect" id="node8" href="$classSource__QC__Gravite__VEF.html" title="class Source_QC_Gravite_VEF" alt="" coords="743,56,921,83"/>
+<area shape="rect" id="node9" href="$classSource__WC__Gravite__VDF.html" title="class Source_WC_Gravite_VDF" alt="" coords="740,107,924,133"/>
+<area shape="rect" id="node10" href="$classSource__WC__Gravite__VEF.html" title="class Source_WC_Gravite_VEF" alt="" coords="741,157,923,184"/>
+<area shape="rect" id="node2" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="372,81,476,108"/>
+<area shape="rect" id="node3" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,31,324,57"/>
+<area shape="rect" id="node4" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="189,81,260,108"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,132,262,159"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,132,77,159"/>
 </map>

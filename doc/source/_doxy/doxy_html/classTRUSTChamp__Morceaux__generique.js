@@ -22,6 +22,6 @@ var classTRUSTChamp__Morceaux__generique =
     [ "creer_tabs", "classTRUSTChamp__Morceaux__generique.html#a1f3b26fa8d6d670c3165536cea0f156a", null ],
     [ "complete_readOn", "classTRUSTChamp__Morceaux__generique.html#a106e79434a8c52908fc8501878d6d441", null ],
     [ "nom_champ_parametre_", "classTRUSTChamp__Morceaux__generique.html#adece1c20778c50804e8f7e0657ad7621", null ],
-    [ "parser_idx", "classTRUSTChamp__Morceaux__generique.html#ac073dac2aea2cd804fe5da23b1129475", null ],
+    [ "parser_idx_", "classTRUSTChamp__Morceaux__generique.html#a175fd0fb6f031b67510a4f06367d3abb", null ],
     [ "read_pb_instead_of_domain", "classTRUSTChamp__Morceaux__generique.html#a664e7d4e44f6a478716433acc4487042", null ]
 ];

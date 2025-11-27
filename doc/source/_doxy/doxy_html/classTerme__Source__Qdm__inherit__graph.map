@@ -1,43 +1,46 @@
 <map id="Terme_Source_Qdm" name="Terme_Source_Qdm">
-<area shape="rect" id="Node000001" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="5,544,156,572"/>
-<area shape="rect" id="Node000002" href="$classPerte__Charge__PolyMAC__Face.html" title=" " alt="" coords="210,65,420,93"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,529,135,410,201,261,256,163,302,92,306,95,261,166,206,263,139,412,94,531"/>
-<area shape="rect" id="Node000006" href="$classPerte__Charge__VEF.html" title="Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces." alt="" coords="245,273,385,301"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="102,531,299,299,304,303,106,534"/>
-<area shape="rect" id="Node000011" href="$classPerte__Charge__VEF__Face.html" title="class Perte_Charge_VEF_Face" alt="" coords="226,432,404,460"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="108,532,151,500,203,470,237,458,239,463,205,475,153,504,111,536"/>
-<area shape="rect" id="Node000015" href="$classSource__Qdm__EF.html" title="class Source_Qdm_EF" alt="" coords="252,484,378,512"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="144,537,203,521,251,509,252,514,204,526,146,542"/>
-<area shape="rect" id="Node000016" href="$classTerme__Source__Qdm__Face__PolyMAC.html" title=" " alt="" coords="221,536,408,580"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="171,555,221,555,221,560,171,560"/>
-<area shape="rect" id="Node000018" href="$classTerme__Source__Qdm__VDF__Face.html" title="class Terme_Source_Qdm_VDF_Face" alt="" coords="204,604,426,632"/>
-<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="146,574,204,590,249,601,248,606,203,595,144,579"/>
-<area shape="rect" id="Node000019" href="$classTerme__Source__Qdm__VEF__Face.html" title="class Terme_Source_Qdm_VEF_Face" alt="" coords="205,656,424,684"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="111,579,153,611,205,641,239,653,237,658,203,646,151,616,108,584"/>
-<area shape="rect" id="Node000020" href="$classTerme__Source__Qdm__lambdaup__VEF__Face.html" title="class Terme_Source_Qdm_lambdaup_VEF_Face" alt="" coords="204,708,426,752"/>
-<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="101,583,144,639,173,668,205,693,227,705,225,709,202,697,170,672,140,642,97,587"/>
-<area shape="rect" id="Node000021" href="$classTerme__Source__Th__TdivU__VEF__Face.html" title="class Terme_Source_Th_TdivU_VEF_Face" alt="" coords="225,777,405,822"/>
-<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="94,586,110,626,133,673,165,721,205,762,226,775,223,780,202,767,161,725,129,676,105,628,89,588"/>
-<area shape="rect" id="Node000003" href="$classDP__Impose__PolyMAC__Face.html" title="class DP_Impose_PolyMAC_Face" alt="" coords="479,5,675,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="393,59,513,31,514,36,394,64"/>
-<area shape="rect" id="Node000004" href="$classPerte__Charge__Singuliere__PolyMAC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_Face" alt="" coords="487,57,667,102"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="436,76,487,76,487,82,436,82"/>
-<area shape="rect" id="Node000005" href="$classPerte__Charge__Singuliere__PolyMAC__P0P1NC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_P0P1NC_Face" alt="" coords="728,57,910,102"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="683,76,728,76,728,82,683,82"/>
-<area shape="rect" id="Node000007" href="$classPerte__Charge__Anisotrope__VEF__P1NC.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="484,126,670,171"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="345,261,403,221,473,181,500,169,503,174,475,186,406,226,348,266"/>
-<area shape="rect" id="Node000008" href="$classPerte__Charge__Circulaire__VEF__P1NC.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="488,196,666,240"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="384,266,489,238,491,243,385,271"/>
-<area shape="rect" id="Node000009" href="$classPerte__Charge__Directionnelle__VEF__P1NC.html" title="Perte de charge directionnelle (selon un vecteur unitaire v)" alt="" coords="474,265,680,310"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="400,284,474,284,474,290,400,290"/>
-<area shape="rect" id="Node000010" href="$classPerte__Charge__Isotrope__VEF__P1NC.html" title="Perte de charge isotrope (proportionnelle a &#45;u )" alt="" coords="493,334,661,379"/>
-<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="385,303,493,332,492,337,384,308"/>
-<area shape="rect" id="Node000012" href="$classDP__Impose__VEF__Face.html" title="class DP_Impose_VEF_Face" alt="" coords="496,403,659,430"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="419,432,495,423,495,428,419,437"/>
-<area shape="rect" id="Node000013" href="$classPerte__Charge__Reguliere__VEF__P1NC.html" title="class Perte_Charge_Reguliere_VEF_P1NC" alt="" coords="488,454,666,499"/>
-<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="419,455,488,463,488,469,419,461"/>
-<area shape="rect" id="Node000014" href="$classPerte__Charge__Singuliere__VEF__Face.html" title="class Perte_Charge_Singuliere_VEF_Face" alt="" coords="487,524,667,568"/>
-<area shape="poly" id="edge13_Node000011_Node000014" title=" " alt="" coords="410,463,427,470,442,480,452,489,475,509,500,521,498,525,473,513,448,493,439,484,425,475,408,468"/>
-<area shape="rect" id="Node000017" href="$classTerme__Source__Qdm__Face__PolyMAC__P0P1NC.html" title=" " alt="" coords="484,593,671,638"/>
-<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="424,579,484,592,483,597,423,584"/>
+<area shape="rect" id="node1" title="Classe Terme_Source_Qdm Cette classe represente un terme source qui figure dans l&#39;equation." alt="" coords="5,994,156,1021"/>
+<area shape="rect" id="node2" href="$classPerte__Charge__Gen.html" title=" " alt="" coords="244,373,387,399"/>
+<area shape="rect" id="node17" href="$classPerte__Charge__PolyMAC__Face.html" title=" " alt="" coords="210,535,421,562"/>
+<area shape="rect" id="node21" href="$classPerte__Charge__VEF.html" title="Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces." alt="" coords="245,731,386,758"/>
+<area shape="rect" id="node30" href="$classPerte__Charge__VEF__Face.html" title="class Perte_Charge_VEF_Face" alt="" coords="226,914,405,941"/>
+<area shape="rect" id="node36" href="$classSource__Qdm__EF.html" title="class Source_Qdm_EF" alt="" coords="252,965,379,991"/>
+<area shape="rect" id="node37" href="$classTerme__Source__Qdm__Face__PolyMAC.html" title=" " alt="" coords="221,1016,409,1057"/>
+<area shape="rect" id="node39" href="$classTerme__Source__Qdm__VDF__Face.html" title="class Terme_Source_Qdm_VDF_Face" alt="" coords="204,1082,427,1109"/>
+<area shape="rect" id="node41" href="$classTerme__Source__Qdm__VEF__Face.html" title="class Terme_Source_Qdm_VEF_Face" alt="" coords="205,1133,425,1159"/>
+<area shape="rect" id="node43" href="$classTerme__Source__Qdm__lambdaup__VEF__Face.html" title="class Terme_Source_Qdm_lambdaup_VEF_Face" alt="" coords="204,1184,427,1225"/>
+<area shape="rect" id="node44" href="$classTerme__Source__Th__TdivU__VEF__Face.html" title="class Terme_Source_Th_TdivU_VEF_Face" alt="" coords="225,1249,406,1291"/>
+<area shape="rect" id="node3" href="$classPerte__Charge__PolyMAC.html" title="Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces." alt="" coords="491,143,665,170"/>
+<area shape="rect" id="node12" href="$classPerte__Charge__VDF__base.html" title="Factorise les fonctionnalites de plusieurs pertes de charge en VEF, vitesse aux faces." alt="" coords="487,373,669,399"/>
+<area shape="rect" id="node4" href="$classPerte__Charge__Anisotrope__PolyMAC__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="739,5,926,47"/>
+<area shape="rect" id="node6" href="$classPerte__Charge__Circulaire__PolyMAC__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="743,71,922,112"/>
+<area shape="rect" id="node8" href="$classPerte__Charge__Directionnelle__PolyMAC__Face.html" title="Perte de charge directionnelle (selon un vecteur unitaire v)" alt="" coords="729,136,936,177"/>
+<area shape="rect" id="node10" href="$classPerte__Charge__Isotrope__PolyMAC__Face.html" title="Perte de charge isotrope (proportionnelle a &#45;u )" alt="" coords="748,201,917,243"/>
+<area shape="rect" id="node5" href="$classPerte__Charge__Anisotrope__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="994,5,1181,47"/>
+<area shape="rect" id="node7" href="$classPerte__Charge__Circulaire__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="996,71,1179,112"/>
+<area shape="rect" id="node9" href="$classPerte__Charge__Directionnelle__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="984,136,1191,177"/>
+<area shape="rect" id="node11" href="$classPerte__Charge__Isotrope__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="996,201,1179,243"/>
+<area shape="rect" id="node13" href="$classPerte__Charge__Anisotrope__VDF__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="739,267,926,308"/>
+<area shape="rect" id="node14" href="$classPerte__Charge__Circulaire__VDF__Face.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="743,332,922,373"/>
+<area shape="rect" id="node15" href="$classPerte__Charge__Directionnelle__VDF__Face.html" title="Perte de charge directionnelle (selon un vecteur unitaire v)" alt="" coords="729,397,936,439"/>
+<area shape="rect" id="node16" href="$classPerte__Charge__Isotrope__VDF__Face.html" title="Perte de charge isotrope (proportionnelle a &#45;u )" alt="" coords="748,463,917,504"/>
+<area shape="rect" id="node18" href="$classDP__Impose__PolyMAC__Face.html" title="class DP_Impose_PolyMAC_Face" alt="" coords="479,477,677,503"/>
+<area shape="rect" id="node19" href="$classPerte__Charge__Singuliere__PolyMAC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_Face" alt="" coords="487,528,669,569"/>
+<area shape="rect" id="node20" href="$classPerte__Charge__Singuliere__PolyMAC__P0P1NC__Face.html" title="class Perte_Charge_Singuliere_PolyMAC_P0P1NC_Face" alt="" coords="741,528,924,569"/>
+<area shape="rect" id="node22" href="$classPerte__Charge__Anisotrope__VEF__P1NC.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="485,593,671,635"/>
+<area shape="rect" id="node24" href="$classPerte__Charge__Circulaire__VEF__P1NC.html" title="Perte de charge anisotrope (selon un vecteur unitaire v et dans le plan orthogonal a ce vecteur)" alt="" coords="489,659,667,700"/>
+<area shape="rect" id="node26" href="$classPerte__Charge__Directionnelle__VEF__P1NC.html" title="Perte de charge directionnelle (selon un vecteur unitaire v)" alt="" coords="475,724,681,765"/>
+<area shape="rect" id="node28" href="$classPerte__Charge__Isotrope__VEF__P1NC.html" title="Perte de charge isotrope (proportionnelle a &#45;u )" alt="" coords="493,789,663,831"/>
+<area shape="rect" id="node23" href="$classPerte__Charge__Anisotrope__QC__VEF__P1NC.html" title=" " alt="" coords="739,593,926,635"/>
+<area shape="rect" id="node25" href="$classPerte__Charge__Circulaire__QC__VEF__P1NC.html" title=" " alt="" coords="743,659,922,700"/>
+<area shape="rect" id="node27" href="$classPerte__Charge__Directionnelle__QC__VEF__P1NC.html" title=" " alt="" coords="729,724,936,765"/>
+<area shape="rect" id="node29" href="$classPerte__Charge__Isotrope__QC__VEF__P1NC.html" title=" " alt="" coords="748,789,917,831"/>
+<area shape="rect" id="node31" href="$classDP__Impose__VEF__Face.html" title="class DP_Impose_VEF_Face" alt="" coords="496,855,660,882"/>
+<area shape="rect" id="node32" href="$classPerte__Charge__Reguliere__VEF__P1NC.html" title="class Perte_Charge_Reguliere_VEF_P1NC" alt="" coords="489,907,667,948"/>
+<area shape="rect" id="node34" href="$classPerte__Charge__Singuliere__VEF__Face.html" title="class Perte_Charge_Singuliere_VEF_Face" alt="" coords="487,972,669,1013"/>
+<area shape="rect" id="node33" href="$classPerte__Charge__Reguliere__QC__VEF__P1NC.html" title=" " alt="" coords="743,907,922,948"/>
+<area shape="rect" id="node35" href="$classPerte__Charge__Singuliere__QC__VEF__P1NC.html" title=" " alt="" coords="742,972,923,1013"/>
+<area shape="rect" id="node38" href="$classTerme__Source__Qdm__Face__PolyMAC__P0P1NC.html" title=" " alt="" coords="484,1037,672,1079"/>
+<area shape="rect" id="node40" href="$classSource__qdm__QC__VDF__Face.html" title=" " alt="" coords="479,1103,677,1130"/>
+<area shape="rect" id="node42" href="$classSource__qdm__QC__VEF__P1NC.html" title=" " alt="" coords="477,1154,679,1181"/>
 </map>

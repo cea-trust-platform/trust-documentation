@@ -1,7 +1,12 @@
 <map id="Convection_Diffusion_Temperature" name="Convection_Diffusion_Temperature">
-<area shape="rect" id="Node000001" title="classe Convection_Diffusion_Temperature Cas particulier de Convection_Diffusion_std" alt="" coords="14,98,174,143"/>
-<area shape="rect" id="Node000003" href="$classConvection__Diffusion__Temperature__Turbulent.html" title="classe Convection_Diffusion_Temperature_Turbulent Cette classe represente le cas particulier de" alt="" coords="5,191,183,235"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="97,158,97,190,91,190,91,158"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="14,5,174,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="97,66,97,98,91,98,91,66"/>
+<area shape="rect" id="node1" title="classe Convection_Diffusion_Temperature Cas particulier de Convection_Diffusion_std" alt="" coords="127,393,289,435"/>
+<area shape="rect" id="node8" href="$classConvection__Diffusion__Temperature__IBM.html" title=" " alt="" coords="30,483,191,524"/>
+<area shape="rect" id="node10" href="$classConvection__Diffusion__Temperature__Turbulent.html" title="classe Convection_Diffusion_Temperature_Turbulent Cette classe represente le cas particulier de" alt="" coords="216,483,395,524"/>
+<area shape="rect" id="node2" href="$classConvection__Diffusion__Temperature__base.html" title=" " alt="" coords="127,304,289,345"/>
+<area shape="rect" id="node3" href="$classConvection__Diffusion__std.html" title="classe Convection_Diffusion_std Cette classe est la base des equations modelisant le transport" alt="" coords="114,229,302,256"/>
+<area shape="rect" id="node4" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="149,155,267,181"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="29,80,227,107"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="251,80,325,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="252,5,324,32"/>
+<area shape="rect" id="node9" href="$classConvection__Diffusion__Temperature__IBM__Turbulent.html" title="classe Convection_Diffusion_Temperature_IBM_Turbulent Cette classe represente le cas particulier de" alt="" coords="5,572,216,613"/>
 </map>

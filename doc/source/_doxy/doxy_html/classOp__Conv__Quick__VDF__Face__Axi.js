@@ -4,6 +4,6 @@ var classOp__Conv__Quick__VDF__Face__Axi =
     [ "preparer_calcul", "classOp__Conv__Quick__VDF__Face__Axi.html#a3220763c6d3cbe02a39675b72d99a948", null ],
     [ "associer", "classOp__Conv__Quick__VDF__Face__Axi.html#aa3668970e191f96891e768fdbaf0bbd1", null ],
     [ "associer_vitesse", "classOp__Conv__Quick__VDF__Face__Axi.html#a465de73a529460ad55cf5154aa27dc30", null ],
-    [ "vitesse", "classOp__Conv__Quick__VDF__Face__Axi.html#aedc53aa86de03dcf853c0acd5def8370", null ],
-    [ "vitesse", "classOp__Conv__Quick__VDF__Face__Axi.html#aa9bb8e9d8158e1f0fe1d06c472f1e93f", null ]
+    [ "vitesse", "classOp__Conv__Quick__VDF__Face__Axi.html#ac0c62a8a3649fb3b21c89d8a01c57312", null ],
+    [ "vitesse", "classOp__Conv__Quick__VDF__Face__Axi.html#ae2444049f93f3ed36daab130ce7e04ec", null ]
 ];

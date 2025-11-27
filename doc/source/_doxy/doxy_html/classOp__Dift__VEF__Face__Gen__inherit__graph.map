@@ -1,11 +1,7 @@
 <map id="Op_Dift_VEF_Face_Gen&lt; DERIVED_T &gt;" name="Op_Dift_VEF_Face_Gen&lt; DERIVED_T &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,40,178,85"/>
-<area shape="rect" id="Node000002" href="$classOp__Dift__VEF__Face__Gen.html" title=" " alt="" coords="378,5,583,50"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,51,377,34,377,39,193,56"/>
-<area shape="rect" id="Node000004" href="$classOp__Dift__VEF__Face__Gen.html" title=" " alt="" coords="394,75,566,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,70,202,71,394,88,394,93,201,77,193,76"/>
-<area shape="rect" id="Node000003" href="$classOp__Dift__Stab__VEF__Face.html" title=" " alt="" coords="632,14,808,42"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="599,25,632,25,632,30,599,30"/>
-<area shape="rect" id="Node000005" href="$classOp__Dift__VEF__Face.html" title=" " alt="" coords="650,83,790,111"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="582,94,650,94,650,100,582,100"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,179,80"/>
+<area shape="rect" id="node2" href="$classOp__Dift__VEF__Face__Gen.html" title=" " alt="" coords="380,5,587,47"/>
+<area shape="rect" id="node4" href="$classOp__Dift__VEF__Face__Gen.html" title=" " alt="" coords="397,71,570,112"/>
+<area shape="rect" id="node3" href="$classOp__Dift__Stab__VEF__Face.html" title=" " alt="" coords="636,13,812,39"/>
+<area shape="rect" id="node5" href="$classOp__Dift__VEF__Face.html" title=" " alt="" coords="654,78,794,105"/>
 </map>

@@ -6,7 +6,7 @@ var classMatrice__Sym =
     [ "set_est_definie", "classMatrice__Sym.html#a532cf830aed3865010c9977b545927c0", null ],
     [ "unsymmetrize_stencil", "classMatrice__Sym.html#a46e33e45695fb32963d591d8bf9b01b2", null ],
     [ "unsymmetrize_stencil_and_coefficients", "classMatrice__Sym.html#a0e30c76c1500e5ead66665f69f30bb6c", null ],
-    [ "ajouter_multTab_", "classMatrice__Sym.html#a3a9195d821eaf6192fdb439aed0fefd1", null ],
-    [ "ajouter_multvect_", "classMatrice__Sym.html#a455ea25eaa5c564359dc23a71cefcbf0", null ],
-    [ "ajouter_multvectT_", "classMatrice__Sym.html#a033ac9b089be114bb4815001fa5e1ade", null ]
+    [ "ajouter_multTab_", "classMatrice__Sym.html#ad7259e3a4da5630317930e01dc3c1cef", null ],
+    [ "ajouter_multvect_", "classMatrice__Sym.html#ad26f5b41da608249c9a059bc8080804c", null ],
+    [ "ajouter_multvectT_", "classMatrice__Sym.html#a4667728d4ba734cce78aaca7884f7d15", null ]
 ];

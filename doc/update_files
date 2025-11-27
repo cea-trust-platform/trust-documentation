@@ -1,5 +1,4 @@
 #!/bin/bash
 
-( cd source/_validation_form_guide)
-( cd source/_doxy/doxy_html)
+echo "Done"
 

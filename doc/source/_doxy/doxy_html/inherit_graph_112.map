@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classSynonyme__info.html" title="modelise une information de synonyme pour les Objet_U" alt="" coords="5,5,128,33"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,175,32"/>
+<area shape="rect" id="node2" href="$classSource.html" title="classe Source Classe generique de la hierarchie des sources, un objet Source peut" alt="" coords="223,5,289,32"/>
 </map>

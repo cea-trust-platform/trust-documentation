@@ -6,7 +6,7 @@ var classJoint__Items__32__64 =
     [ "Joint_Items_32_64", "classJoint__Items__32__64.html#a533d04d562d26499233065ec0618fc68", null ],
     [ "reset", "classJoint__Items__32__64.html#aa2cba7a5a37d5bfd15140a67bbc54d52", null ],
     [ "nb_items_reels", "classJoint__Items__32__64.html#af0d68cde7351adf1fb22e6ec4ca0d0e3", null ],
-    [ "items_communs", "classJoint__Items__32__64.html#a19bfc1b3a545ae38271aa545741b22d2", null ],
+    [ "items_communs", "classJoint__Items__32__64.html#a09da7672d59853791f60bf60395b5e3e", null ],
     [ "items_distants", "classJoint__Items__32__64.html#a88e61ae290fdc0fb002bc7343462ae0f", null ],
     [ "nb_items_virtuels", "classJoint__Items__32__64.html#a791e0233692dc6ec1effb2705c7a74e1", null ],
     [ "renum_items_communs", "classJoint__Items__32__64.html#a47a0ee2bd28e3b26aaf9b165c211a210", null ],

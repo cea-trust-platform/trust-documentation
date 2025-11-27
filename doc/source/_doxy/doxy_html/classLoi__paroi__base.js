@@ -5,7 +5,7 @@ var classLoi__paroi__base =
     [ "calc_y_plus", "classLoi__paroi__base.html#af471e23c4e146c3585d6f89966e4c762", null ],
     [ "get_y_plus", "classLoi__paroi__base.html#aaac9a7a05f92cfb739503c8b5b396452", null ],
     [ "get_utau", "classLoi__paroi__base.html#adf5af41c24f9096f193d7dbc9faaa67d", null ],
-    [ "get_tab", "classLoi__paroi__base.html#a93d46078fe5b21c13b57f0587fcd5970", null ],
+    [ "get_tab", "classLoi__paroi__base.html#ae907df64add8f6e6b79f5600e273d3c8", null ],
     [ "eps_y_p_", "classLoi__paroi__base.html#ad9ca9f4effd96138d1e003c66a4e514a", null ],
     [ "y_p_min_", "classLoi__paroi__base.html#a6d92add321ba71fe2acb6cbc18a217b3", null ],
     [ "Faces_a_calculer_", "classLoi__paroi__base.html#a2d766d0b6138dbf11a377a56adc9cded", null ],

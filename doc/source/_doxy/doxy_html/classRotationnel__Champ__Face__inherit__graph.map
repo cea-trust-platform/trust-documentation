@@ -1,27 +1,15 @@
 <map id="Rotationnel_Champ_Face" name="Rotationnel_Champ_Face">
-<area shape="rect" id="Node000001" title="classe Rotationnel_Champ_Face" alt="" coords="76,611,262,638"/>
-<area shape="rect" id="Node000002" href="$classChamp__Rotationnel.html" title="classe Champ_Rotationnel" alt="" coords="5,535,155,563"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,571,155,608,152,612,106,575"/>
-<area shape="rect" id="Node000003" href="$classChamp__Fonc__P0__VDF.html" title="classe Champ_Fonc_P0_VDF" alt="" coords="179,535,341,563"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,575,187,612,184,608,230,571"/>
-<area shape="rect" id="Node000004" href="$classChamp__Fonc__P0__base.html" title=" " alt="" coords="177,459,343,487"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="263,503,263,535,257,535,257,503"/>
-<area shape="rect" id="Node000005" href="$classChamp__Fonc__base.html" title="classe Champ_Fonc_base Classe de base des champs qui sont fonction d&#39;une grandeur calculee" alt="" coords="92,384,234,411"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="193,419,244,457,241,461,190,423"/>
-<area shape="rect" id="Node000006" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="94,308,232,336"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="165,351,165,383,160,383,160,351"/>
-<area shape="rect" id="Node000007" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="110,232,215,260"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="165,276,165,308,160,308,160,276"/>
-<area shape="rect" id="Node000008" href="$classField__base.html" title=" " alt="" coords="57,157,146,184"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="124,195,154,230,150,234,120,198"/>
-<area shape="rect" id="Node000009" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="65,81,138,109"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="104,124,104,156,99,156,99,124"/>
-<area shape="rect" id="Node000010" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="66,5,137,33"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="104,49,104,81,99,81,99,49"/>
-<area shape="rect" id="Node000011" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="170,157,278,184"/>
-<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="205,198,176,234,171,230,201,195"/>
-<area shape="rect" id="Node000012" href="$classChamp__implementation__P0.html" title=" " alt="" coords="258,384,459,411"/>
-<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="331,423,279,461,276,457,327,419"/>
-<area shape="rect" id="Node000013" href="$classChamp__implementation.html" title=" " alt="" coords="270,308,448,336"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="361,351,361,383,356,383,356,351"/>
+<area shape="rect" id="node1" title="classe Rotationnel_Champ_Face" alt="" coords="78,603,265,629"/>
+<area shape="rect" id="node2" href="$classChamp__Rotationnel.html" title="classe Champ_Rotationnel" alt="" coords="5,528,156,555"/>
+<area shape="rect" id="node3" href="$classChamp__Fonc__P0__VDF.html" title="classe Champ_Fonc_P0_VDF" alt="" coords="181,528,343,555"/>
+<area shape="rect" id="node4" href="$classChamp__Fonc__P0__base.html" title=" " alt="" coords="179,453,345,480"/>
+<area shape="rect" id="node5" href="$classChamp__Fonc__base.html" title="classe Champ_Fonc_base Classe de base des champs qui sont fonction d&#39;une grandeur calculee" alt="" coords="92,379,235,405"/>
+<area shape="rect" id="node6" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="94,304,233,331"/>
+<area shape="rect" id="node7" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="110,229,217,256"/>
+<area shape="rect" id="node8" href="$classField__base.html" title=" " alt="" coords="57,155,147,181"/>
+<area shape="rect" id="node9" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="65,80,139,107"/>
+<area shape="rect" id="node10" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="66,5,138,32"/>
+<area shape="rect" id="node11" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="171,155,281,181"/>
+<area shape="rect" id="node12" href="$classChamp__implementation__P0.html" title=" " alt="" coords="259,379,462,405"/>
+<area shape="rect" id="node13" href="$classChamp__implementation.html" title=" " alt="" coords="271,304,450,331"/>
 </map>

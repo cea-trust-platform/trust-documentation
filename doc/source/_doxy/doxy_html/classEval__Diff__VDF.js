@@ -1,9 +1,9 @@
 var classEval__Diff__VDF =
 [
     [ "~Eval_Diff_VDF", "classEval__Diff__VDF.html#a858ed4d34be8aac7183e0d4775b9dfff", null ],
-    [ "is_var", "classEval__Diff__VDF.html#a740be8ea51f395692d0062cfbd40e96b", null ],
-    [ "diffusivite", "classEval__Diff__VDF.html#ae7edf4bc7349f84a704cd39475f5555c", null ],
-    [ "get_diffusivite", "classEval__Diff__VDF.html#a01546d04546be80160c3d18fd3a88ba7", null ],
+    [ "is_var", "classEval__Diff__VDF.html#a70e51a52f36e3f1e17a6304dad1ba185", null ],
+    [ "diffusivite", "classEval__Diff__VDF.html#a0907ec34589faf40cf847a25fb97029b", null ],
+    [ "get_diffusivite", "classEval__Diff__VDF.html#a99bc502fe3fa8c133a0bb681eaa9fbe3", null ],
     [ "associer_pb", "classEval__Diff__VDF.html#a5d62b53fd6ad0e774b4243bc9ba86790", null ],
     [ "update_diffusivite", "classEval__Diff__VDF.html#a9291aaf8a7f6e46757f4819e33bbfdd7", null ],
     [ "associer", "classEval__Diff__VDF.html#ac0a5f67efcfb4f66edaa11529b84cffa", null ],
@@ -22,7 +22,7 @@ var classEval__Diff__VDF =
     [ "tau_tan_impl", "classEval__Diff__VDF.html#ae968730d8ad7a7dba107a982875dd9d3", null ],
     [ "uses_wall", "classEval__Diff__VDF.html#a459494cf71a55c0ef46adfbecdca78e6", null ],
     [ "uses_mod", "classEval__Diff__VDF.html#aedfb584ae7a15431efd4604a1a832c45", null ],
-    [ "get_k_elem", "classEval__Diff__VDF.html#a6b92b097e8b70aba56eeccefc395c056", null ],
+    [ "get_k_elem", "classEval__Diff__VDF.html#a327edf646d0e2e59cc858775b0933b18", null ],
     [ "OBS_PTR", "classEval__Diff__VDF.html#a69ab13dcbff54ee6834c9dc465da6793", null ],
     [ "OBS_PTR", "classEval__Diff__VDF.html#a72d347cf9fc1a6622089407ac7dd2907", null ],
     [ "is_var_", "classEval__Diff__VDF.html#aebf56a1eab38b92247cf956c7b9fd379", null ],

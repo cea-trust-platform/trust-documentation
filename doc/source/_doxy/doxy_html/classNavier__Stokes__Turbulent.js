@@ -2,8 +2,8 @@ var classNavier__Stokes__Turbulent =
 [
     [ "set_param", "classNavier__Stokes__Turbulent.html#a3fcec66b15d16821b90b28691cbecf45", null ],
     [ "lire_motcle_non_standard", "classNavier__Stokes__Turbulent.html#ac132532a70784c07a87b500da8e0f132", null ],
-    [ "viscosite_turbulente", "classNavier__Stokes__Turbulent.html#acf2551c3eba332735ca89ab0a897aa2c", null ],
-    [ "modele_turbulence", "classNavier__Stokes__Turbulent.html#a8a1b8c86a14a052647b904706b9d205f", null ],
+    [ "viscosite_turbulente", "classNavier__Stokes__Turbulent.html#acf875f39365a6f0a7310f2cbe406b3f7", null ],
+    [ "modele_turbulence", "classNavier__Stokes__Turbulent.html#a52b0b83a0f1c4cb0076e7ac9f917217b", null ],
     [ "data_a_sauvegarder", "classNavier__Stokes__Turbulent.html#a0d906a5c8c030dc1387aa3ff9545b2d7", null ],
     [ "sauvegarder", "classNavier__Stokes__Turbulent.html#a75885a38766c63287eb80bad5447366b", null ],
     [ "reprendre", "classNavier__Stokes__Turbulent.html#aa977fe3bdec5d98293cf7d8440068ea4", null ],

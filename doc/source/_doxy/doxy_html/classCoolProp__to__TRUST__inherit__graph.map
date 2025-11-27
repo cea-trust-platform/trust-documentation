@@ -1,9 +1,6 @@
 <map id="CoolProp_to_TRUST" name="CoolProp_to_TRUST">
-<area shape="rect" id="Node000001" title="classe CoolProp_to_TRUST" alt="" coords="131,81,281,109"/>
-<area shape="rect" id="Node000003" href="$classCoolProp__to__TRUST__Sat__generique.html" title="classe CoolProp_to_TRUST_Sat_generique" alt="" coords="5,157,183,201"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,120,125,158,122,154,174,116"/>
-<area shape="rect" id="Node000004" href="$classCoolProp__to__TRUST__generique.html" title="classe CoolProp_to_TRUST_generique" alt="" coords="207,165,429,193"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="238,116,302,162,298,167,235,120"/>
-<area shape="rect" id="Node000002" href="$classTPPI.html" title="classe EOS_to_TRUST" alt="" coords="181,5,231,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,49,209,81,203,81,203,49"/>
+<area shape="rect" id="node1" title="classe CoolProp_to_TRUST" alt="" coords="131,80,282,107"/>
+<area shape="rect" id="node3" href="$classCoolProp__to__TRUST__Sat__generique.html" title="classe CoolProp_to_TRUST_Sat_generique" alt="" coords="5,155,184,196"/>
+<area shape="rect" id="node4" href="$classCoolProp__to__TRUST__generique.html" title="classe CoolProp_to_TRUST_generique" alt="" coords="209,162,431,189"/>
+<area shape="rect" id="node2" href="$classTPPI.html" title="classe EOS_to_TRUST" alt="" coords="181,5,232,32"/>
 </map>

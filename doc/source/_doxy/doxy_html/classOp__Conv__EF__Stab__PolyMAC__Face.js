@@ -1,6 +1,7 @@
 var classOp__Conv__EF__Stab__PolyMAC__Face =
 [
     [ "completer", "classOp__Conv__EF__Stab__PolyMAC__Face.html#a930220e2090c2cb06465f0c7c00494e6", null ],
+    [ "calculer_dt_stab", "classOp__Conv__EF__Stab__PolyMAC__Face.html#a0b009d70efdd8577a745fcf0d6c22029", null ],
     [ "ajouter", "classOp__Conv__EF__Stab__PolyMAC__Face.html#ab4c4a0aeab5e0eac92d64613147bd736", null ],
     [ "contribuer_a_avec", "classOp__Conv__EF__Stab__PolyMAC__Face.html#acdf6048fe055d374b840c608b14ddc85", null ],
     [ "modifier_pour_Cl", "classOp__Conv__EF__Stab__PolyMAC__Face.html#a567c2f894dde06dc9629f4cbb2c13091", null ],

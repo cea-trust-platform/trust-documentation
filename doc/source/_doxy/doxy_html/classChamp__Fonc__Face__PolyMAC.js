@@ -13,6 +13,6 @@ var classChamp__Fonc__Face__PolyMAC =
     [ "remplir_coord_noeuds_et_polys", "classChamp__Fonc__Face__PolyMAC.html#a42c68946d42ab978b8f689063c9e90a2", null ],
     [ "affecter_", "classChamp__Fonc__Face__PolyMAC.html#ad9b026b01df5e08731ae0ab39e9e71e8", null ],
     [ "fixer_nb_valeurs_nodales", "classChamp__Fonc__Face__PolyMAC.html#a8f99c1d4eecd7448d5c300c01564538e", null ],
-    [ "le_champ", "classChamp__Fonc__Face__PolyMAC.html#aee5726aceb02225f634bdcb95eca7dad", null ],
-    [ "le_champ", "classChamp__Fonc__Face__PolyMAC.html#a84b3e1464047e5c6939144addbea9ea4", null ]
+    [ "le_champ", "classChamp__Fonc__Face__PolyMAC.html#ad58f2eefa8204a1271e8b266c73c60f0", null ],
+    [ "le_champ", "classChamp__Fonc__Face__PolyMAC.html#a147af5165e531e58fdfce790006d1274", null ]
 ];

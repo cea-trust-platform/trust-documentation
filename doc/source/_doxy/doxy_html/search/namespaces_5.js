@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['typearetebordvdf_0',['TypeAreteBordVDF',['../namespaceTypeAreteBordVDF.html',1,'']]],
-  ['typearetecoinvdf_1',['TypeAreteCoinVDF',['../namespaceTypeAreteCoinVDF.html',1,'']]]
+  ['typearetebordvdf_10153',['TypeAreteBordVDF',['../namespaceTypeAreteBordVDF.html',1,'']]],
+  ['typearetecoinvdf_10154',['TypeAreteCoinVDF',['../namespaceTypeAreteCoinVDF.html',1,'']]]
 ];

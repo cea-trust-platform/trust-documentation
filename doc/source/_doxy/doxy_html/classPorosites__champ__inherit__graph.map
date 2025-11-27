@@ -1,9 +1,6 @@
 <map id="Porosites_champ" name="Porosites_champ">
-<area shape="rect" id="Node000001" title="Porosites_champ nom_pb champ affecte le champ champ a la porosite volumique du domaine du probleme de..." alt="" coords="5,232,138,260"/>
-<area shape="rect" id="Node000002" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="29,157,114,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,200,74,232,69,232,69,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="35,81,108,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="74,124,74,156,69,156,69,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="36,5,107,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="74,49,74,81,69,81,69,49"/>
+<area shape="rect" id="node1" title="Porosites_champ nom_pb champ affecte le champ champ a la porosite volumique du domaine du probleme de..." alt="" coords="5,229,139,256"/>
+<area shape="rect" id="node2" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="29,155,115,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="35,80,109,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="36,5,108,32"/>
 </map>

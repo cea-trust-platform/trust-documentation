@@ -16,8 +16,8 @@ cp $install_dir/all.rst doc/source/user_guide/reference
 cp $orig_dir/doc/extra_rst/parser.rst doc/source/user_guide/reference
 cp $orig_dir/doc/images/* doc/source/user_guide/reference/images
 
-echo "Updating C++ and Python sources ..."
-(cd doc && ./update_files)
+echo "Update doxygen"
+cd ./doc/source/_doxy && doxygen Doxyfile
 
 echo "All done! Do not forget to 'git add/rm' any new/deleted file ..."
 

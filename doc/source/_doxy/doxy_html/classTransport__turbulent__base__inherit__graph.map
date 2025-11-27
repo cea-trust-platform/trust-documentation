@@ -1,17 +1,11 @@
 <map id="Transport_turbulent_base" name="Transport_turbulent_base">
-<area shape="rect" id="Node000001" title="classe Transport_turbulent_base correlations decrivant l&#39;effet de la turbulence dans une autre equati..." alt="" coords="206,232,392,260"/>
-<area shape="rect" id="Node000006" href="$classTransport__turbulent__GGDH.html" title="classe Transport_turbulent_GGDH Transport turbulent de type GGDH:" alt="" coords="5,316,201,344"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="255,269,135,318,133,313,253,264"/>
-<area shape="rect" id="Node000007" href="$classTransport__turbulent__Prandtl.html" title=" " alt="" coords="225,308,373,353"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="302,276,302,307,296,307,296,276"/>
-<area shape="rect" id="Node000008" href="$classTransport__turbulent__SGDH.html" title="classe Transport_turbulent_SGDH Transport turbulent de type SGDH:" alt="" coords="397,316,590,344"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="345,264,463,313,461,318,343,269"/>
-<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="233,157,365,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="302,200,302,232,296,232,296,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="182,81,256,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,118,287,154,283,158,243,122"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="183,5,255,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="222,49,222,81,216,81,216,49"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="280,81,478,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="355,122,315,158,311,154,352,118"/>
+<area shape="rect" id="node1" title="classe Transport_turbulent_base correlations decrivant l&#39;effet de la turbulence dans une autre equati..." alt="" coords="552,93,739,120"/>
+<area shape="rect" id="node6" href="$classTransport__turbulent__GGDH.html" title="classe Transport_turbulent_GGDH Transport turbulent de type GGDH:" alt="" coords="787,5,983,32"/>
+<area shape="rect" id="node7" href="$classTransport__turbulent__Prandtl.html" title=" " alt="" coords="810,57,959,98"/>
+<area shape="rect" id="node8" href="$classTransport__turbulent__SGDH.html" title="classe Transport_turbulent_SGDH Transport turbulent de type SGDH:" alt="" coords="787,123,982,149"/>
+<area shape="rect" id="node9" href="$classTransport__turbulent__aire__interfaciale.html" title="classe Transport_turbulent_aire_interfaciale Transport turbulent de type aire_interfaciale:" alt="" coords="810,174,959,215"/>
+<area shape="rect" id="node2" href="$classCorrelation__base.html" title=" " alt="" coords="372,93,504,120"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,68,262,95"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,68,77,95"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,119,324,145"/>
 </map>

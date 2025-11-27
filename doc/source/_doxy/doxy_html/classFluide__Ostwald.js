@@ -1,10 +1,10 @@
 var classFluide__Ostwald =
 [
     [ "Fluide_Ostwald", "classFluide__Ostwald.html#a187a9c8af95ec0b7bf8b7dc83125df58", null ],
-    [ "consistance", "classFluide__Ostwald.html#a6e7bc311b787843233e4190d986ee013", null ],
-    [ "consistance", "classFluide__Ostwald.html#a8a3e194f2cfe53ab073b35f5d64d6125", null ],
-    [ "indice_struct", "classFluide__Ostwald.html#a39d979cfb3910b090d6b3815c82d9919", null ],
-    [ "indice_struct", "classFluide__Ostwald.html#a7d9fe40b23329f83b008897a457b2a2f", null ],
+    [ "consistance", "classFluide__Ostwald.html#a1c775626355f6072a554c3030e6a4993", null ],
+    [ "consistance", "classFluide__Ostwald.html#a8aa1e08619f707125c2c9144eaeb10c7", null ],
+    [ "indice_struct", "classFluide__Ostwald.html#aa08467990556e97c0161c445b263641b", null ],
+    [ "indice_struct", "classFluide__Ostwald.html#adfd5aa8bac6a62a7d75b931c7b38f29e", null ],
     [ "set_param", "classFluide__Ostwald.html#a98c8a984d2735a9a663f2d5cc3c4600d", null ],
     [ "creer_champs_non_lus", "classFluide__Ostwald.html#a1b0e8e676a25693104c853b1154cb7d6", null ],
     [ "mettre_a_jour", "classFluide__Ostwald.html#a68c9f150d5b7d6a2236572847a97fa75", null ],

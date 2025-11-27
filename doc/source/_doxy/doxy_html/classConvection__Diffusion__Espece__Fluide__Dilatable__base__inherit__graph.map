@@ -1,33 +1,18 @@
 <map id="Convection_Diffusion_Espece_Fluide_Dilatable_base" name="Convection_Diffusion_Espece_Fluide_Dilatable_base">
-<area shape="rect" id="Node000001" title="classe Convection_Diffusion_Espece_Fluide_Dilatable_base Cas particulier de Convection_Diffusion_std ..." alt="" coords="991,109,1216,154"/>
-<area shape="rect" id="Node000009" href="$classConvection__Diffusion__Espece__Binaire__base.html" title="classe Convection_Diffusion_Espece_Binaire_base Cas particulier de Convection_Diffusion_Espece_Fluide..." alt="" coords="1264,75,1430,119"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="1231,111,1263,106,1264,111,1232,116"/>
-<area shape="rect" id="Node000013" href="$classConvection__Diffusion__Espece__Multi__base.html" title="classe Convection_Diffusion_Espece_Multi_base Cas particulier de Convection_Diffusion_Espece_Fluide_D..." alt="" coords="1267,144,1427,189"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1232,147,1267,152,1266,158,1231,153"/>
-<area shape="rect" id="Node000002" href="$classConvection__Diffusion__Fluide__Dilatable__base.html" title="classe Convection_Diffusion_Fluide_Dilatable_base pour un fluide dilatable" alt="" coords="771,109,943,154"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="959,129,990,129,990,134,959,134"/>
-<area shape="rect" id="Node000003" href="$classConvection__Diffusion__std.html" title="classe Convection_Diffusion_std Cette classe est la base des equations modelisant le transport" alt="" coords="535,87,723,115"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="739,113,770,117,770,123,738,118"/>
-<area shape="rect" id="Node000004" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="371,87,487,115"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="503,98,535,98,535,104,503,104"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,60,323,88"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="339,87,371,91,370,96,338,92"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,112,260,140"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="276,117,370,106,371,111,276,123"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,112,77,140"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="92,124,187,124,187,129,92,129"/>
-<area shape="rect" id="Node000008" href="$classConvection__Diffusion__Fluide__Dilatable__Proto.html" title=" " alt="" coords="541,139,717,183"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="731,145,770,140,770,145,732,150"/>
-<area shape="rect" id="Node000010" href="$classConvection__Diffusion__Espece__Binaire__QC.html" title="classe Convection_Diffusion_Espece_Binaire_QC Cas particulier de Convection_Diffusion_Espece_Binaire_..." alt="" coords="1478,5,1638,50"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="1430,67,1487,48,1488,53,1432,72"/>
-<area shape="rect" id="Node000012" href="$classConvection__Diffusion__Espece__Binaire__WC.html" title="classe Convection_Diffusion_Espece_Binaire_WC Cas particulier de Convection_Diffusion_Espece_Binaire_..." alt="" coords="1478,75,1638,119"/>
-<area shape="poly" id="edge11_Node000009_Node000012" title=" " alt="" coords="1445,94,1477,94,1477,100,1445,100"/>
-<area shape="rect" id="Node000011" href="$classConvection__Diffusion__Espece__Binaire__Turbulent__QC.html" title="classe Convection_Diffusion_Espece_Binaire_Turbulent_QC Cette classe represente le cas particulier de" alt="" coords="1686,5,1906,50"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="1653,25,1685,25,1685,30,1653,30"/>
-<area shape="rect" id="Node000014" href="$classConvection__Diffusion__Espece__Multi__QC.html" title="classe Convection_Diffusion_Espece_Multi_QC Cas particulier de Convection_Diffusion_Espece_Multi_base" alt="" coords="1478,144,1638,189"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="1443,164,1477,164,1477,169,1443,169"/>
-<area shape="rect" id="Node000016" href="$classConvection__Diffusion__Espece__Multi__WC.html" title="classe Convection_Diffusion_Espece_Multi_WC Cas particulier de Convection_Diffusion_Espece_Multi_base" alt="" coords="1478,213,1638,258"/>
-<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="1432,191,1488,210,1487,215,1430,196"/>
-<area shape="rect" id="Node000015" href="$classConvection__Diffusion__Espece__Multi__Turbulent__QC.html" title="classe Convection_Diffusion_Espece_Multi_Turbulent_QC" alt="" coords="1692,144,1900,189"/>
-<area shape="poly" id="edge14_Node000014_Node000015" title=" " alt="" coords="1654,164,1692,164,1692,169,1654,169"/>
+<area shape="rect" id="node1" title="classe Convection_Diffusion_Espece_Fluide_Dilatable_base Cas particulier de Convection_Diffusion_std ..." alt="" coords="995,104,1221,145"/>
+<area shape="rect" id="node9" href="$classConvection__Diffusion__Espece__Binaire__base.html" title="classe Convection_Diffusion_Espece_Binaire_base Cas particulier de Convection_Diffusion_Espece_Fluide..." alt="" coords="1269,71,1436,112"/>
+<area shape="rect" id="node13" href="$classConvection__Diffusion__Espece__Multi__base.html" title="classe Convection_Diffusion_Espece_Multi_base Cas particulier de Convection_Diffusion_Espece_Fluide_D..." alt="" coords="1272,136,1433,177"/>
+<area shape="rect" id="node2" href="$classConvection__Diffusion__Fluide__Dilatable__base.html" title="classe Convection_Diffusion_Fluide_Dilatable_base pour un fluide dilatable" alt="" coords="773,104,947,145"/>
+<area shape="rect" id="node3" href="$classConvection__Diffusion__std.html" title="classe Convection_Diffusion_std Cette classe est la base des equations modelisant le transport" alt="" coords="537,82,725,109"/>
+<area shape="rect" id="node4" href="$classEquation__base.html" title="classe Equation_base Le role d&#39;une equation est le calcul d&#39;un ou plusieurs champs...." alt="" coords="372,82,489,109"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,57,324,83"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,107,262,134"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,107,77,134"/>
+<area shape="rect" id="node8" href="$classConvection__Diffusion__Fluide__Dilatable__Proto.html" title=" " alt="" coords="543,133,719,175"/>
+<area shape="rect" id="node10" href="$classConvection__Diffusion__Espece__Binaire__QC.html" title="classe Convection_Diffusion_Espece_Binaire_QC Cas particulier de Convection_Diffusion_Espece_Binaire_..." alt="" coords="1484,5,1645,47"/>
+<area shape="rect" id="node12" href="$classConvection__Diffusion__Espece__Binaire__WC.html" title="classe Convection_Diffusion_Espece_Binaire_WC Cas particulier de Convection_Diffusion_Espece_Binaire_..." alt="" coords="1484,71,1645,112"/>
+<area shape="rect" id="node11" href="$classConvection__Diffusion__Espece__Binaire__Turbulent__QC.html" title="classe Convection_Diffusion_Espece_Binaire_Turbulent_QC Cette classe represente le cas particulier de" alt="" coords="1693,5,1915,47"/>
+<area shape="rect" id="node14" href="$classConvection__Diffusion__Espece__Multi__QC.html" title="classe Convection_Diffusion_Espece_Multi_QC Cas particulier de Convection_Diffusion_Espece_Multi_base" alt="" coords="1484,136,1645,177"/>
+<area shape="rect" id="node16" href="$classConvection__Diffusion__Espece__Multi__WC.html" title="classe Convection_Diffusion_Espece_Multi_WC Cas particulier de Convection_Diffusion_Espece_Multi_base" alt="" coords="1484,201,1645,243"/>
+<area shape="rect" id="node15" href="$classConvection__Diffusion__Espece__Multi__Turbulent__QC.html" title="classe Convection_Diffusion_Espece_Multi_Turbulent_QC" alt="" coords="1700,136,1908,177"/>
 </map>

@@ -2,9 +2,9 @@ var classPeriodique =
 [
     [ "mettre_a_jour", "classPeriodique.html#a7882493a544bd92faadb113f2b74876b", null ],
     [ "face_associee", "classPeriodique.html#a58591bbd91005803c7ea2a714197282b", null ],
-    [ "face_associee", "classPeriodique.html#a3c10c722ae6730c351eb3ddc594c90d2", null ],
+    [ "face_associee", "classPeriodique.html#af240b5fc64540490f6cfb6fee9fb0223", null ],
     [ "distance", "classPeriodique.html#a4edab902fb128854e1e69a5ef0f0000c", null ],
-    [ "direction_perio", "classPeriodique.html#a9dee69f88de8537b254c9290175b43a9", null ],
+    [ "direction_perio", "classPeriodique.html#a35da6864b69926b77613fa1405df8b36", null ],
     [ "direction_periodicite", "classPeriodique.html#a9b57979f47bb8b527d08c0f25559a47d", null ],
     [ "est_periodique_selon_un_axe", "classPeriodique.html#a7cba8aa0c3b587fe11d8fb94b6f9a0d9", null ],
     [ "compatible_avec_eqn", "classPeriodique.html#a6c81ad60dc4c590751cb7cf2f6a13823", null ],

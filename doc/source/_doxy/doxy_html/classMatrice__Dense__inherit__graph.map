@@ -1,9 +1,6 @@
 <map id="Matrice_Dense" name="Matrice_Dense">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,124,260"/>
-<area shape="rect" id="Node000002" href="$classMatrice__Base.html" title="Classe Matrice_Base Classe de base de la hierarchie des matrices." alt="" coords="10,157,119,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,200,67,232,62,232,62,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="28,81,101,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="67,124,67,156,62,156,62,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="29,5,100,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="67,49,67,81,62,81,62,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,124,256"/>
+<area shape="rect" id="node2" href="$classMatrice__Base.html" title="Classe Matrice_Base Classe de base de la hierarchie des matrices." alt="" coords="9,155,120,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="27,80,102,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="29,5,101,32"/>
 </map>

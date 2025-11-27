@@ -1,5 +1,4 @@
 <map id="ICoCo::ProblemTrio" name="ICoCo::ProblemTrio">
-<area shape="rect" id="Node000001" title="class ProblemTrio" alt="" coords="5,81,151,109"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="40,5,116,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="81,49,81,81,75,81,75,49"/>
+<area shape="rect" id="node1" title="class ProblemTrio" alt="" coords="5,80,152,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="41,5,117,32"/>
 </map>

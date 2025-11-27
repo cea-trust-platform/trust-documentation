@@ -1,13 +1,10 @@
 <map id="Domaine_32_64&lt; _SIZE_ &gt;" name="Domaine_32_64&lt; _SIZE_ &gt;">
-<area shape="rect" id="Node000001" title="classe Domaine_32_64 un Domaine est un maillage compose d&#39;un ensemble d&#39;elements geometriques de meme..." alt="" coords="173,114,372,142"/>
-<area shape="rect" id="Node000003" href="$classDomaineAxi1d__32__64.html" title=": class DomaineAxi1d" alt="" coords="476,5,640,50"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="328,106,491,48,493,53,330,111"/>
-<area shape="rect" id="Node000004" href="$classDomaine__bord__32__64.html" title="Cette classe est un domaine dont les sommets et les elements sont extraits d&#39;un bord d&#39;un domaine sou..." alt="" coords="477,75,639,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="387,113,476,103,477,108,388,118"/>
-<area shape="rect" id="Node000005" href="$classPave__32__64.html" title="Classe Pave Un domaine particulierement facile a mailler!" alt="" coords="472,143,644,171"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="388,137,472,146,471,151,387,142"/>
-<area shape="rect" id="Node000006" href="$classDomaine__32__64.html" title=" " alt="" coords="471,195,645,223"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="331,144,397,165,498,192,497,197,396,170,330,149"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,114,124,142"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,125,172,125,172,130,139,130"/>
+<area shape="rect" id="node1" title="classe Domaine_32_64 un Domaine est un maillage compose d&#39;un ensemble d&#39;elements geometriques de meme..." alt="" coords="419,107,619,134"/>
+<area shape="rect" id="node5" href="$classDomaineAxi1d__32__64.html" title=": class DomaineAxi1d" alt="" coords="724,5,888,47"/>
+<area shape="rect" id="node6" href="$classDomaine__bord__32__64.html" title="Cette classe est un domaine dont les sommets et les elements sont extraits d&#39;un bord d&#39;un domaine sou..." alt="" coords="725,71,887,112"/>
+<area shape="rect" id="node7" href="$classPave__32__64.html" title="Classe Pave Un domaine particulierement facile a mailler!" alt="" coords="719,137,893,163"/>
+<area shape="rect" id="node8" href="$classDomaine__32__64.html" title=" " alt="" coords="719,187,893,214"/>
+<area shape="rect" id="node2" href="$classDomaine__base.html" title="Base class for domains description. This class holds all the data shared by all domains and not sensi..." alt="" coords="251,107,369,134"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="127,107,201,134"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,107,77,134"/>
 </map>

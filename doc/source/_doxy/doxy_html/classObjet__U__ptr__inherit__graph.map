@@ -1,14 +1,8 @@
 <map id="Objet_U_ptr" name="Objet_U_ptr">
-<area shape="rect" id="Node000001" title="Pointeur sur un Objet_U." alt="" coords="178,159,276,187"/>
-<area shape="rect" id="Node000004" href="$classTRUST__Deriv.html" title=" " alt="" coords="5,329,217,374"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="169,196,140,213,117,238,108,260,105,284,109,328,103,329,100,284,103,258,113,235,137,209,166,191"/>
-<area shape="rect" id="Node000005" href="$classTRUST__Deriv.html" title=" " alt="" coords="127,236,327,264"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="230,202,230,236,224,236,224,202"/>
-<area shape="rect" id="Node000006" href="$classTRUST__Deriv__Objet__U.html" title="classe TRUST_Deriv_Objet_U est quasiment identique a TRUST_Deriv&lt;Objet_U&gt; sauf qu&#39;elle ne contient pa..." alt="" coords="351,236,516,264"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="278,190,398,233,396,238,277,195"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="190,82,264,110"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,125,230,159,224,159,224,125"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="191,5,263,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="230,48,230,82,224,82,224,48"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="202,276,138,330,135,326,199,272"/>
+<area shape="rect" id="node1" title="Pointeur sur un Objet_U." alt="" coords="179,157,278,184"/>
+<area shape="rect" id="node4" href="$classTRUST__Deriv.html" title=" " alt="" coords="5,323,217,364"/>
+<area shape="rect" id="node5" href="$classTRUST__Deriv.html" title=" " alt="" coords="128,233,329,260"/>
+<area shape="rect" id="node6" href="$classTRUST__Deriv__Objet__U.html" title="classe TRUST_Deriv_Objet_U est quasiment identique a TRUST_Deriv&lt;Objet_U&gt; sauf qu&#39;elle ne contient pa..." alt="" coords="353,233,520,260"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="191,81,266,108"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="193,5,265,32"/>
 </map>

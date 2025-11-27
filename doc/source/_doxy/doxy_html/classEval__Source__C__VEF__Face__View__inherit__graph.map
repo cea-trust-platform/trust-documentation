@@ -1,11 +1,7 @@
 <map id="Eval_Source_C_VEF_Face_View" name="Eval_Source_C_VEF_Face_View">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,308,230,336"/>
-<area shape="rect" id="Node000002" href="$classEval__Source__C__VEF__Face.html" title=" " alt="" coords="25,232,210,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="120,276,120,308,115,308,115,276"/>
-<area shape="rect" id="Node000003" href="$classEvaluateur__Source__VEF__Face.html" title=" " alt="" coords="12,157,223,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="120,200,120,232,115,232,115,200"/>
-<area shape="rect" id="Node000004" href="$classEvaluateur__Source__Face.html" title=" " alt="" coords="28,81,207,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="120,124,120,156,115,156,115,124"/>
-<area shape="rect" id="Node000005" href="$classEvaluateur__Source.html" title=" " alt="" coords="46,5,189,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="120,49,120,81,115,81,115,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,304,231,331"/>
+<area shape="rect" id="node2" href="$classEval__Source__C__VEF__Face.html" title=" " alt="" coords="25,229,211,256"/>
+<area shape="rect" id="node3" href="$classEvaluateur__Source__VEF__Face.html" title=" " alt="" coords="12,155,224,181"/>
+<area shape="rect" id="node4" href="$classEvaluateur__Source__Face.html" title=" " alt="" coords="28,80,208,107"/>
+<area shape="rect" id="node5" href="$classEvaluateur__Source.html" title=" " alt="" coords="47,5,189,32"/>
 </map>

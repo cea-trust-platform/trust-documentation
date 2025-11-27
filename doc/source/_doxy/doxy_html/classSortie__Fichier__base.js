@@ -11,6 +11,6 @@ var classSortie__Fichier__base =
     [ "is_open", "classSortie__Fichier__base.html#acc0244cc2feedba886b643e9b3c295db", null ],
     [ "ouvrir", "classSortie__Fichier__base.html#a62e30d92695a25269f12d16948e02af3", null ],
     [ "flush", "classSortie__Fichier__base.html#a65a87f3c5bf3820d3c3a7a922c4d19f2", null ],
-    [ "operator=", "classSortie__Fichier__base.html#aa2ad6eee0ca2766704db820f71b4fde1", null ],
+    [ "operator=", "classSortie__Fichier__base.html#aee4d38355133d085907036fa2fac783e", null ],
     [ "ofstream_", "classSortie__Fichier__base.html#a4f469e23f4c5f538edd6a06a24b88d06", null ]
 ];

@@ -1,27 +1,15 @@
 <map id="Critere_Q_Champ_P1NC" name="Critere_Q_Champ_P1NC">
-<area shape="rect" id="Node000001" title="classe Critere_Q_Champ_P1NC" alt="" coords="70,611,247,638"/>
-<area shape="rect" id="Node000002" href="$classChamp__Critere__Q.html" title="classe Champ_Critere_Q Permet de visualiser les tourbillons sans etre polluer par les gradients" alt="" coords="5,535,141,563"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="102,571,145,608,141,612,98,575"/>
-<area shape="rect" id="Node000003" href="$classChamp__Fonc__P0__VEF.html" title="classe Champ_Fonc_P0_VEF" alt="" coords="165,535,325,563"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="220,575,175,612,172,608,216,571"/>
-<area shape="rect" id="Node000004" href="$classChamp__Fonc__P0__base.html" title=" " alt="" coords="162,459,328,487"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="248,503,248,535,242,535,242,503"/>
-<area shape="rect" id="Node000005" href="$classChamp__Fonc__base.html" title="classe Champ_Fonc_base Classe de base des champs qui sont fonction d&#39;une grandeur calculee" alt="" coords="76,384,219,411"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="178,419,229,457,226,461,175,423"/>
-<area shape="rect" id="Node000006" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="78,308,217,336"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="150,351,150,383,145,383,145,351"/>
-<area shape="rect" id="Node000007" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="95,232,200,260"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="150,276,150,308,145,308,145,276"/>
-<area shape="rect" id="Node000008" href="$classField__base.html" title=" " alt="" coords="42,157,131,184"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="109,195,139,230,135,234,105,198"/>
-<area shape="rect" id="Node000009" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="50,81,123,109"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="89,124,89,156,84,156,84,124"/>
-<area shape="rect" id="Node000010" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="51,5,122,33"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="89,49,89,81,84,81,84,49"/>
-<area shape="rect" id="Node000011" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="155,157,263,184"/>
-<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="190,198,161,234,156,230,186,195"/>
-<area shape="rect" id="Node000012" href="$classChamp__implementation__P0.html" title=" " alt="" coords="243,384,444,411"/>
-<area shape="poly" id="edge11_Node000004_Node000012" title=" " alt="" coords="316,423,264,461,261,457,312,419"/>
-<area shape="rect" id="Node000013" href="$classChamp__implementation.html" title=" " alt="" coords="254,308,433,336"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="346,351,346,383,341,383,341,351"/>
+<area shape="rect" id="node1" title="classe Critere_Q_Champ_P1NC" alt="" coords="69,603,248,629"/>
+<area shape="rect" id="node2" href="$classChamp__Critere__Q.html" title="classe Champ_Critere_Q Permet de visualiser les tourbillons sans etre polluer par les gradients" alt="" coords="5,528,141,555"/>
+<area shape="rect" id="node3" href="$classChamp__Fonc__P0__VEF.html" title="classe Champ_Fonc_P0_VEF" alt="" coords="165,528,325,555"/>
+<area shape="rect" id="node4" href="$classChamp__Fonc__P0__base.html" title=" " alt="" coords="162,453,329,480"/>
+<area shape="rect" id="node5" href="$classChamp__Fonc__base.html" title="classe Champ_Fonc_base Classe de base des champs qui sont fonction d&#39;une grandeur calculee" alt="" coords="75,379,218,405"/>
+<area shape="rect" id="node6" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="77,304,216,331"/>
+<area shape="rect" id="node7" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="93,229,200,256"/>
+<area shape="rect" id="node8" href="$classField__base.html" title=" " alt="" coords="40,155,131,181"/>
+<area shape="rect" id="node9" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="48,80,123,107"/>
+<area shape="rect" id="node10" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="49,5,121,32"/>
+<area shape="rect" id="node11" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="155,155,264,181"/>
+<area shape="rect" id="node12" href="$classChamp__implementation__P0.html" title=" " alt="" coords="243,379,445,405"/>
+<area shape="rect" id="node13" href="$classChamp__implementation.html" title=" " alt="" coords="255,304,433,331"/>
 </map>

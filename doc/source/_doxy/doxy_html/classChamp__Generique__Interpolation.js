@@ -21,8 +21,8 @@ var classChamp__Generique__Interpolation =
     [ "get_ref_domaine_dis_base", "classChamp__Generique__Interpolation.html#a78654780699309224ea094d387ed561d", null ],
     [ "get_directive_pour_discr", "classChamp__Generique__Interpolation.html#a1253f54bf1ded456938f21f156b8ebd7", null ],
     [ "discretiser_domaine", "classChamp__Generique__Interpolation.html#a4438ec969ce20fd18529c2bdfa35ef95", null ],
-    [ "fixer_noms_compo", "classChamp__Generique__Interpolation.html#ad04d2f19bfb6631a9c5771cf602be805", null ],
-    [ "fixer_noms_synonyms", "classChamp__Generique__Interpolation.html#a0c398d6cca76d9af3e55492b1b6c279b", null ],
+    [ "fixer_noms_compo", "classChamp__Generique__Interpolation.html#a0711f44fcd19dd413056be435d8a9f55", null ],
+    [ "fixer_noms_synonyms", "classChamp__Generique__Interpolation.html#aecd87ad2145074e7a8bfd5a6019e9c59", null ],
     [ "compo_", "classChamp__Generique__Interpolation.html#ae83136db08c7912feff9ace99d8854b9", null ],
     [ "syno_", "classChamp__Generique__Interpolation.html#a66d8e9daa633bb1481a9b9b14cdee711", null ]
 ];

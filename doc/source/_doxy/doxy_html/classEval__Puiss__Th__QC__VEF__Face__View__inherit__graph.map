@@ -1,11 +1,7 @@
 <map id="Eval_Puiss_Th_QC_VEF_Face_View" name="Eval_Puiss_Th_QC_VEF_Face_View">
-<area shape="rect" id="Node000001" title=" " alt="" coords="25,308,197,353"/>
-<area shape="rect" id="Node000002" href="$classEval__Puiss__Th__QC__VEF__Face.html" title=" " alt="" coords="7,232,215,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,276,114,307,108,307,108,276"/>
-<area shape="rect" id="Node000003" href="$classEvaluateur__Source__VEF__Face.html" title=" " alt="" coords="5,157,217,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,200,114,232,108,232,108,200"/>
-<area shape="rect" id="Node000004" href="$classEvaluateur__Source__Face.html" title=" " alt="" coords="21,81,201,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="114,124,114,156,108,156,108,124"/>
-<area shape="rect" id="Node000005" href="$classEvaluateur__Source.html" title=" " alt="" coords="40,5,182,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="114,49,114,81,108,81,108,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="25,304,197,345"/>
+<area shape="rect" id="node2" href="$classEval__Puiss__Th__QC__VEF__Face.html" title=" " alt="" coords="7,229,216,256"/>
+<area shape="rect" id="node3" href="$classEvaluateur__Source__VEF__Face.html" title=" " alt="" coords="5,155,217,181"/>
+<area shape="rect" id="node4" href="$classEvaluateur__Source__Face.html" title=" " alt="" coords="21,80,201,107"/>
+<area shape="rect" id="node5" href="$classEvaluateur__Source.html" title=" " alt="" coords="40,5,183,32"/>
 </map>

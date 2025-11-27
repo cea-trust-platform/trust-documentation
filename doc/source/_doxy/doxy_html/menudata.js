@@ -126,6 +126,7 @@ var menudata={children:[
 {text:"Typedefs",url:"functions_type.html",children:[
 {text:"a",url:"functions_type.html#index_a"},
 {text:"b",url:"functions_type_b.html#index_b"},
+{text:"c",url:"functions_type_c.html#index_c"},
 {text:"d",url:"functions_type_d.html#index_d"},
 {text:"e",url:"functions_type_e.html#index_e"},
 {text:"f",url:"functions_type_f.html#index_f"},
@@ -137,12 +138,15 @@ var menudata={children:[
 {text:"p",url:"functions_type_p.html#index_p"},
 {text:"r",url:"functions_type_r.html#index_r"},
 {text:"s",url:"functions_type_s.html#index_s"},
+{text:"t",url:"functions_type_t.html#index_t"},
 {text:"v",url:"functions_type_v.html#index_v"}]},
 {text:"Enumerations",url:"functions_enum.html",children:[
 {text:"b",url:"functions_enum.html#index_b"},
 {text:"c",url:"functions_enum.html#index_c"},
+{text:"d",url:"functions_enum.html#index_d"},
 {text:"e",url:"functions_enum.html#index_e"},
 {text:"f",url:"functions_enum.html#index_f"},
+{text:"g",url:"functions_enum.html#index_g"},
 {text:"i",url:"functions_enum.html#index_i"},
 {text:"l",url:"functions_enum.html#index_l"},
 {text:"m",url:"functions_enum.html#index_m"},
@@ -170,11 +174,12 @@ var menudata={children:[
 {text:"u",url:"functions_eval.html#index_u"},
 {text:"v",url:"functions_eval.html#index_v"},
 {text:"w",url:"functions_eval.html#index_w"}]},
-{text:"Related Symbols",url:"functions_rela.html",children:[
+{text:"Related Functions",url:"functions_rela.html",children:[
 {text:"c",url:"functions_rela.html#index_c"},
 {text:"d",url:"functions_rela.html#index_d"},
 {text:"e",url:"functions_rela.html#index_e"},
 {text:"f",url:"functions_rela.html#index_f"},
+{text:"i",url:"functions_rela.html#index_i"},
 {text:"m",url:"functions_rela.html#index_m"},
 {text:"o",url:"functions_rela.html#index_o"},
 {text:"p",url:"functions_rela.html#index_p"},

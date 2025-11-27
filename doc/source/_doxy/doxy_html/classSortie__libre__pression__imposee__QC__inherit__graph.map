@@ -1,15 +1,9 @@
 <map id="Sortie_libre_pression_imposee_QC" name="Sortie_libre_pression_imposee_QC">
-<area shape="rect" id="Node000001" title="classe Sortie_libre_pression_imposee Cette classe derive de Neumann_sortie_libre" alt="" coords="9,459,166,504"/>
-<area shape="rect" id="Node000002" href="$classNeumann__sortie__libre.html" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="5,384,170,411"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,427,90,459,85,459,85,427"/>
-<area shape="rect" id="Node000003" href="$classNeumann__val__ext.html" title="Classe Neumann_val_ext Cette classe est la classe de base de la hierarchie des conditions." alt="" coords="18,308,157,336"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,351,90,383,85,383,85,351"/>
-<area shape="rect" id="Node000004" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="45,232,130,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="90,276,90,308,85,308,85,276"/>
-<area shape="rect" id="Node000005" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="27,157,148,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="90,200,90,232,85,232,85,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="51,81,124,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="90,124,90,156,85,156,85,124"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="52,5,123,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="90,49,90,81,85,81,85,49"/>
+<area shape="rect" id="node1" title="classe Sortie_libre_pression_imposee Cette classe derive de Neumann_sortie_libre" alt="" coords="9,453,167,495"/>
+<area shape="rect" id="node2" href="$classNeumann__sortie__libre.html" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="5,379,171,405"/>
+<area shape="rect" id="node3" href="$classNeumann__val__ext.html" title="Classe Neumann_val_ext Cette classe est la classe de base de la hierarchie des conditions." alt="" coords="18,304,158,331"/>
+<area shape="rect" id="node4" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="45,229,131,256"/>
+<area shape="rect" id="node5" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="27,155,149,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="51,80,125,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="52,5,124,32"/>
 </map>

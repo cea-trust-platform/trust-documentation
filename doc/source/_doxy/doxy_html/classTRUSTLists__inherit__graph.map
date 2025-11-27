@@ -1,7 +1,5 @@
 <map id="TRUSTLists&lt; _TYPE_ &gt;" name="TRUSTLists&lt; _TYPE_ &gt;">
-<area shape="rect" id="Node000001" title=": Un tableau de listes de type IntList" alt="" coords="80,5,250,33"/>
-<area shape="rect" id="Node000002" href="$classTRUSTLists.html" title=" " alt="" coords="5,98,147,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,46,91,100,87,96,140,42"/>
-<area shape="rect" id="Node000003" href="$classTRUSTLists.html" title=" " alt="" coords="170,98,339,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,42,244,96,240,100,187,46"/>
+<area shape="rect" id="node1" title=": Un tableau de listes de type IntList" alt="" coords="94,5,265,32"/>
+<area shape="rect" id="node2" href="$classTRUSTLists.html" title=" " alt="" coords="5,95,175,121"/>
+<area shape="rect" id="node3" href="$classTRUSTLists.html" title=" " alt="" coords="199,95,341,121"/>
 </map>
