@@ -7,27 +7,27 @@
 **First method, with git:**
 
 ```bash
-git clone https://github.com/cea-trust-platform/trust-code.git TRUST-1.9.6
+git clone https://github.com/cea-trust-platform/trust-code.git TRUST-1.9.7
 # Move to the cloned TRUST folder
-cd TRUST-1.9.6
+cd TRUST-1.9.7
 # Download the required external packages
-wget ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.6.tar
+wget ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.7.tar
 # or:
-# curl ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.6.tar > externalpackages-1.9.6.tar
+# curl ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.7.tar > externalpackages-1.9.7.tar
 # or:
-# wget "https://drive.usercontent.google.com/download?id=1LAbrUO0at7eN_nwg28F92SF4SS_Qw4K5&export=download&authuser=4&confirm=t" -O externalpackages-1.9.6.tar
+# wget "https://drive.usercontent.google.com/download?id=1LAbrUO0at7eN_nwg28F92SF4SS_Qw4K5&export=download&authuser=4&confirm=t" -O externalpackages-1.9.7.tar
 # Unzip the downloaded external packages folder
 ```
 
 **Second method, from an archive:**
 ```bash
-wget ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.6/TRUST-1.9.6.tar.gz
+wget ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.7/TRUST-1.9.7.tar.gz
 # or:
-# curl ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.6/TRUST-1.9.6.tar.gz > TRUST-1.9.6.tar.gz
+# curl ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.7/TRUST-1.9.7.tar.gz > TRUST-1.9.7.tar.gz
 # Unzip the downloaded folder
-tar xzf TRUST-1.9.6.tar.gz
+tar xzf TRUST-1.9.7.tar.gz
 # Move to the unziped TRUST folder
-cd TRUST-1.9.6
+cd TRUST-1.9.7
 ```
 
 Then, you will need to configure **TRUST** with the good options. To have the option's list, run:
