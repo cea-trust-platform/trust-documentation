@@ -35,6 +35,8 @@ var classICoCo_1_1ProblemTrio =
     [ "getOutputIntValue", "classICoCo_1_1ProblemTrio.html#ae5499f8bdafd9a2dde1cf33f965e462a", null ],
     [ "getOutputDoubleValue", "classICoCo_1_1ProblemTrio.html#a3566ce1248fd760a3c62571220690d9b", null ],
     [ "setInputDoubleValue", "classICoCo_1_1ProblemTrio.html#a7e5774eba9a74d164f229d1b1a6f002e", null ],
+    [ "getOutputPointValues", "classICoCo_1_1ProblemTrio.html#a18b5b766f209cbbc488ccc4f819de661", null ],
+    [ "getOutputPointValues", "classICoCo_1_1ProblemTrio.html#a77c2dd2ede82bea928151655b9f4d6b9", null ],
     [ "setInputStringValue", "classICoCo_1_1ProblemTrio.html#ad4ab5ac61de7388e6fb1da235d97fb19", null ],
     [ "getOutputStringValue", "classICoCo_1_1ProblemTrio.html#a84f561cb2866a85ec8e8adc98bb6e897", null ],
     [ "getDirectAccessToUnknown", "classICoCo_1_1ProblemTrio.html#ade9ebf279e2dfd69c6bb356c7c997912", null ],

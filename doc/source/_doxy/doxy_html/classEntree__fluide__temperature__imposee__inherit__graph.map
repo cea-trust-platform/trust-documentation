@@ -1,15 +1,9 @@
 <map id="Entree_fluide_temperature_imposee" name="Entree_fluide_temperature_imposee">
-<area shape="rect" id="Node000001" title="classe Entree_fluide_temperature_imposee Cas particulier de la classe Dirichlet_entree_fluide pour la..." alt="" coords="5,384,201,428"/>
-<area shape="rect" id="Node000007" href="$classEntree__fluide__temperature__imposee__H.html" title="classe Entree_fluide_temperature_imposee_H Cas particulier de la classe Dirichlet_entree_fluide pour ..." alt="" coords="5,476,201,521"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="106,444,106,476,100,476,100,444"/>
-<area shape="rect" id="Node000002" href="$classDirichlet__entree__fluide.html" title="classe Dirichlet_entree_fluide Cette classe represente une condition aux limite imposant une grandeur" alt="" coords="18,308,188,336"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,352,106,383,100,383,100,352"/>
-<area shape="rect" id="Node000003" href="$classDirichlet.html" title="classe Dirichlet Cette classe est la classe de base de la hierarchie des conditions aux limites de ty..." alt="" coords="65,232,141,260"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,276,106,308,100,308,100,276"/>
-<area shape="rect" id="Node000004" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="43,157,163,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="106,200,106,232,100,232,100,200"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="66,81,140,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="106,124,106,156,100,156,100,124"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="67,5,139,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="106,49,106,81,100,81,100,49"/>
+<area shape="rect" id="node1" title="classe Entree_fluide_temperature_imposee Cas particulier de la classe Dirichlet_entree_fluide pour la..." alt="" coords="5,379,201,420"/>
+<area shape="rect" id="node7" href="$classEntree__fluide__temperature__imposee__H.html" title="classe Entree_fluide_temperature_imposee_H Cas particulier de la classe Dirichlet_entree_fluide pour ..." alt="" coords="5,468,201,509"/>
+<area shape="rect" id="node2" href="$classDirichlet__entree__fluide.html" title="classe Dirichlet_entree_fluide Cette classe represente une condition aux limite imposant une grandeur" alt="" coords="18,304,189,331"/>
+<area shape="rect" id="node3" href="$classDirichlet.html" title="classe Dirichlet Cette classe est la classe de base de la hierarchie des conditions aux limites de ty..." alt="" coords="65,229,142,256"/>
+<area shape="rect" id="node4" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="43,155,164,181"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="66,80,141,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="67,5,139,32"/>
 </map>

@@ -1,7 +1,7 @@
 var classSous__domaine__VF =
 [
-    [ "les_faces", "classSous__domaine__VF.html#a27d2612dba355f882ca9241cb4039cdc", null ],
-    [ "les_faces", "classSous__domaine__VF.html#a8101998bc8d8d8cf08df6e504bba6bf4", null ],
+    [ "les_faces", "classSous__domaine__VF.html#a40bf897545b6102806347691c8895071", null ],
+    [ "les_faces", "classSous__domaine__VF.html#a7c53f068adbc0fb86c4f4c8c7ffdd5d6", null ],
     [ "premiere_face_bord_0", "classSous__domaine__VF.html#ac61311ed00d1f388fca064a20fd7f1ea", null ],
     [ "premiere_face_bord_1", "classSous__domaine__VF.html#a6ea23ba732058be13be82f5e99156a6d", null ],
     [ "premiere_face_bord", "classSous__domaine__VF.html#acac285f460ec8495de8136fd92bb54cc", null ],

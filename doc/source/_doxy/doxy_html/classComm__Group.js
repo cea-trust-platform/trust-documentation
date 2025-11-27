@@ -26,6 +26,8 @@ var classComm__Group =
     [ "get_new_tag", "classComm__Group.html#afc0064494cd1d3091df02ee5b9294f8a", null ],
     [ "rank", "classComm__Group.html#a7fde70af91b6d994aacd10bb4e74aeb8", null ],
     [ "nproc", "classComm__Group.html#a77f7c2af23e60af705eeaeac448dce5d", null ],
+    [ "get_node_id", "classComm__Group.html#a5e12c1cdd87d9c9e0601deec43a86934", null ],
+    [ "get_number_of_nodes", "classComm__Group.html#ae4d0c1ce0177f0046677ed4dc7e01c31", null ],
     [ "send_recv_start", "classComm__Group.html#a7fb0eaad288afd68e88514f0ab9ee42d", null ],
     [ "send_recv_finish", "classComm__Group.html#a68bdde2db96498a1024cd1db4d371bcd", null ],
     [ "send", "classComm__Group.html#a5489eba2c9ba6099899f96e2621131f6", null ],
@@ -39,5 +41,7 @@ var classComm__Group =
     [ "init_group", "classComm__Group.html#ad3853172658b85b4737846cc8ac72507", null ],
     [ "init_group_node", "classComm__Group.html#ac4b757e484868da8d218fc630feabe3c", null ],
     [ "init_group_trio", "classComm__Group.html#afa4f509e9e0103ab6969bc8553065d91", null ],
-    [ "PE_Groups", "classComm__Group.html#a885c20c70797a6e4d34ecdd9948396f1", null ]
+    [ "PE_Groups", "classComm__Group.html#a885c20c70797a6e4d34ecdd9948396f1", null ],
+    [ "node_id_", "classComm__Group.html#a54a7e6159d3f37317642804b39bf08cf", null ],
+    [ "nb_nodes_", "classComm__Group.html#aa6dc1f69bf8e3be0c72883271c912146", null ]
 ];

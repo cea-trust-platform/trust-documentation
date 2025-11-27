@@ -1,17 +1,10 @@
 <map id="Portance_interfaciale_base" name="Portance_interfaciale_base">
-<area shape="rect" id="Node000001" title="classe Portance_interfaciale_base utilitaire pour les operateurs de frottement interfacial prenant la..." alt="" coords="550,83,748,111"/>
-<area shape="rect" id="Node000006" href="$classPortance__interfaciale__Constante.html" title="classe Portance_interfaciale_Constante coefficients de portance interfaciale d&#39;un ecoulement a bulles..." alt="" coords="796,5,955,50"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="711,76,799,48,801,53,712,81"/>
-<area shape="rect" id="Node000007" href="$classPortance__interfaciale__Sugrue.html" title="classe Portance_interfaciale_Tomiyama coefficients de portance interfaciale d&#39;un ecoulement a bulles ..." alt="" coords="796,75,955,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="763,94,795,94,795,100,763,100"/>
-<area shape="rect" id="Node000008" href="$classPortance__interfaciale__Tomiyama.html" title="classe Portance_interfaciale_Tomiyama coefficients de portance interfaciale d&#39;un ecoulement a bulles ..." alt="" coords="796,144,955,189"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="712,113,801,141,799,146,711,118"/>
-<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="371,83,502,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,94,550,94,550,100,518,100"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,56,260,84"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,74,371,86,370,91,275,79"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,56,77,84"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,68,187,68,187,73,92,73"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,108,323,136"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="338,106,370,102,371,107,339,111"/>
+<area shape="rect" id="node1" title="classe Portance_interfaciale_base utilitaire pour les operateurs de frottement interfacial prenant la..." alt="" coords="552,78,751,105"/>
+<area shape="rect" id="node6" href="$classPortance__interfaciale__Constante.html" title="classe Portance_interfaciale_Constante coefficients de portance interfaciale d&#39;un ecoulement a bulles..." alt="" coords="799,5,959,47"/>
+<area shape="rect" id="node7" href="$classPortance__interfaciale__Sugrue.html" title="classe Portance_interfaciale_Tomiyama coefficients de portance interfaciale d&#39;un ecoulement a bulles ..." alt="" coords="799,71,959,112"/>
+<area shape="rect" id="node8" href="$classPortance__interfaciale__Tomiyama.html" title="classe Portance_interfaciale_Tomiyama coefficients de portance interfaciale d&#39;un ecoulement a bulles ..." alt="" coords="799,136,959,177"/>
+<area shape="rect" id="node2" href="$classCorrelation__base.html" title=" " alt="" coords="372,78,504,105"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,53,262,79"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,53,77,79"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,103,324,130"/>
 </map>

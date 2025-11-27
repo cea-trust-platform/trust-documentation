@@ -1,11 +1,7 @@
 <map id="Matrice_Bloc" name="Matrice_Bloc">
-<area shape="rect" id="Node000001" title=" " alt="" coords="23,232,129,260"/>
-<area shape="rect" id="Node000005" href="$classMatrice__Bloc__Sym.html" title=" " alt="" coords="5,308,147,336"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="79,276,79,308,73,308,73,276"/>
-<area shape="rect" id="Node000002" href="$classMatrice__Base.html" title="Classe Matrice_Base Classe de base de la hierarchie des matrices." alt="" coords="21,157,131,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,200,79,232,73,232,73,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="39,81,113,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="79,124,79,156,73,156,73,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="40,5,112,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="79,49,79,81,73,81,73,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="23,229,130,256"/>
+<area shape="rect" id="node5" href="$classMatrice__Bloc__Sym.html" title=" " alt="" coords="5,304,148,331"/>
+<area shape="rect" id="node2" href="$classMatrice__Base.html" title="Classe Matrice_Base Classe de base de la hierarchie des matrices." alt="" coords="21,155,132,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="39,80,114,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="41,5,113,32"/>
 </map>

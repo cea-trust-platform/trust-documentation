@@ -1,21 +1,12 @@
 <map id="Elem_EF_base" name="Elem_EF_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="254,157,369,184"/>
-<area shape="rect" id="Node000004" href="$classHexa__EF.html" title=" " alt="" coords="5,232,84,260"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="250,191,85,237,83,231,248,186"/>
-<area shape="rect" id="Node000005" href="$classPoint__EF.html" title=" " alt="" coords="107,232,184,260"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="269,193,176,234,174,229,267,189"/>
-<area shape="rect" id="Node000006" href="$classQuadri__EF.html" title=" " alt="" coords="209,232,296,260"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="293,198,265,234,261,230,289,195"/>
-<area shape="rect" id="Node000007" href="$classSegment__EF.html" title=" " alt="" coords="320,232,422,260"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="334,195,363,230,358,234,330,198"/>
-<area shape="rect" id="Node000009" href="$classTetra__EF.html" title=" " alt="" coords="446,232,523,260"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="357,188,455,229,453,234,355,193"/>
-<area shape="rect" id="Node000010" href="$classTri__EF.html" title=" " alt="" coords="546,232,607,260"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="377,186,536,230,547,233,545,238,534,235,375,191"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="274,81,348,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="314,124,314,156,308,156,308,124"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="276,5,347,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="314,49,314,81,308,81,308,49"/>
-<area shape="rect" id="Node000008" href="$classSegment__EF__axi.html" title=": class Segment_EF_axi" alt="" coords="306,308,436,336"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="374,276,374,308,368,308,368,276"/>
+<area shape="rect" id="node1" title=" " alt="" coords="257,155,373,181"/>
+<area shape="rect" id="node4" href="$classHexa__EF.html" title=" " alt="" coords="5,229,84,256"/>
+<area shape="rect" id="node5" href="$classPoint__EF.html" title=" " alt="" coords="108,229,187,256"/>
+<area shape="rect" id="node6" href="$classQuadri__EF.html" title=" " alt="" coords="211,229,299,256"/>
+<area shape="rect" id="node7" href="$classSegment__EF.html" title=" " alt="" coords="324,229,427,256"/>
+<area shape="rect" id="node9" href="$classTetra__EF.html" title=" " alt="" coords="451,229,529,256"/>
+<area shape="rect" id="node10" href="$classTri__EF.html" title=" " alt="" coords="553,229,614,256"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="278,80,353,107"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="279,5,351,32"/>
+<area shape="rect" id="node8" href="$classSegment__EF__axi.html" title=": class Segment_EF_axi" alt="" coords="310,304,441,331"/>
 </map>

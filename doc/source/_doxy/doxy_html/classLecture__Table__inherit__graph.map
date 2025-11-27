@@ -1,7 +1,5 @@
 <map id="Lecture_Table" name="Lecture_Table">
-<area shape="rect" id="Node000001" title=": class Lecture_Table" alt="" coords="5,157,116,184"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="24,81,97,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,124,63,156,58,156,58,124"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="25,5,96,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="63,49,63,81,58,81,58,49"/>
+<area shape="rect" id="node1" title=": class Lecture_Table" alt="" coords="5,155,116,181"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="23,80,98,107"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="25,5,97,32"/>
 </map>

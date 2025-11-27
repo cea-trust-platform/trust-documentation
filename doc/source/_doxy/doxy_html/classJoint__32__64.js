@@ -11,10 +11,10 @@ var classJoint__32__64 =
     [ "epaisseur", "classJoint__32__64.html#abe72b17c9de93294dc7a18bccade4f1e", null ],
     [ "dimensionner", "classJoint__32__64.html#a682e335888382681cccc561b19457e12", null ],
     [ "ajouter_faces", "classJoint__32__64.html#ad359b4b2bca18821499775f406a25d0d", null ],
-    [ "renum_virt_loc", "classJoint__32__64.html#a97d570ca487bb06f9f8671bb93eed5dc", null ],
-    [ "esp_dist_elems", "classJoint__32__64.html#ac89347394936f6f558939cd79707c71e", null ],
-    [ "esp_dist_sommets", "classJoint__32__64.html#a728ce1d0f9a0d05234370107c1a5c1fb", null ],
-    [ "esp_dist_faces", "classJoint__32__64.html#a28390a721671df4134749550b41c164d", null ],
+    [ "renum_virt_loc", "classJoint__32__64.html#a62b27f7c3c8f896a13df61d1c0818aa5", null ],
+    [ "esp_dist_elems", "classJoint__32__64.html#af87e787bd881d9a49ee976c77133d259", null ],
+    [ "esp_dist_sommets", "classJoint__32__64.html#a90cb5bae910408ebc27feb4cdd78f2af", null ],
+    [ "esp_dist_faces", "classJoint__32__64.html#af7dda2daedf57bec7d464d53dd516a79", null ],
     [ "set_joint_item", "classJoint__32__64.html#a78f0910ce6b68b9f1132c421f30463d2", null ],
     [ "joint_item", "classJoint__32__64.html#a436ef076eb70d891cd549e1b0e2986e9", null ]
 ];

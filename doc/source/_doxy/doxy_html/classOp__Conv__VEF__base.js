@@ -1,8 +1,8 @@
 var classOp__Conv__VEF__base =
 [
     [ "associer_vitesse", "classOp__Conv__VEF__base.html#a789fdecb0536d198acea7cdd643528bc", null ],
-    [ "vitesse", "classOp__Conv__VEF__base.html#a592018ca84305a142ab1d3f5c6fd60c7", null ],
-    [ "vitesse", "classOp__Conv__VEF__base.html#aca92c260c75039ecdfb01aa95b237575", null ],
+    [ "vitesse", "classOp__Conv__VEF__base.html#a788492fc2aca98971471717c6d0d0d28", null ],
+    [ "vitesse", "classOp__Conv__VEF__base.html#a1bc50476ba83fe89b9cf187c3b66abfe", null ],
     [ "associer", "classOp__Conv__VEF__base.html#a18512e4c5049dff6aa3db1d65ba7361c", null ],
     [ "calculer", "classOp__Conv__VEF__base.html#a2268eb7089622d2d62cf7656a7a5287f", null ],
     [ "abortTimeStep", "classOp__Conv__VEF__base.html#a663f0d1aef935785460683cd6e43b200", null ],

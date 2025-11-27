@@ -1,13 +1,8 @@
 <map id="Echange_couplage_thermique" name="Echange_couplage_thermique">
-<area shape="rect" id="Node000001" title=": class Echange_couplage_thermique" alt="" coords="5,384,222,411"/>
-<area shape="rect" id="Node000002" href="$classEchange__global__impose.html" title="Classe Echange_global_impose Cette classe represente le cas particulier de la classe." alt="" coords="24,308,203,336"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,351,116,383,111,383,111,351"/>
-<area shape="rect" id="Node000003" href="$classEchange__impose__base.html" title="classe Echange_impose_base: Cette condition limite sert uniquement pour l&#39;equation d&#39;energie." alt="" coords="29,232,198,260"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="116,276,116,308,111,308,111,276"/>
-<area shape="rect" id="Node000004" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="53,157,174,184"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="116,200,116,232,111,232,111,200"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="77,81,150,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="116,124,116,156,111,156,111,124"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="78,5,149,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="116,49,116,81,111,81,111,49"/>
+<area shape="rect" id="node1" title=": class Echange_couplage_thermique" alt="" coords="5,379,223,405"/>
+<area shape="rect" id="node2" href="$classEchange__global__impose.html" title="Classe Echange_global_impose Cette classe represente le cas particulier de la classe." alt="" coords="25,304,203,331"/>
+<area shape="rect" id="node3" href="$classEchange__impose__base.html" title="classe Echange_impose_base: Cette condition limite sert uniquement pour l&#39;equation d&#39;energie." alt="" coords="29,229,199,256"/>
+<area shape="rect" id="node4" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="53,155,175,181"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="77,80,151,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="78,5,150,32"/>
 </map>

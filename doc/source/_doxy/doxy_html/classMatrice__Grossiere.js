@@ -1,12 +1,12 @@
 var classMatrice__Grossiere =
 [
     [ "build_matrix", "classMatrice__Grossiere.html#a393b0a0f0c4fcdc63f04076d7fa27221", null ],
-    [ "renum", "classMatrice__Grossiere.html#a5de4c462d4b9df8222e0fb99249a1235", null ],
-    [ "matrice", "classMatrice__Grossiere.html#a01e5f7e448eabb25d8ee520b882327cb", null ],
-    [ "md_vector", "classMatrice__Grossiere.html#a179de6671cd3303a943cc416028f7882", null ],
+    [ "renum", "classMatrice__Grossiere.html#a53b04ae29577f214e4b56e678e27eaec", null ],
+    [ "matrice", "classMatrice__Grossiere.html#a298e33d2ec9e39fc0643427734451ea1", null ],
+    [ "md_vector", "classMatrice__Grossiere.html#a24ce0dbc952d200b9e9b2c9fa4f4e39d", null ],
     [ "ajoute_coeff", "classMatrice__Grossiere.html#a7206ba8408a887325bdb8c66c07e7ed8", null ],
     [ "ajoute_coeff", "classMatrice__Grossiere.html#aaea6625d59c0f3aa2c2d1950e7479b9e", null ],
-    [ "renum", "classMatrice__Grossiere.html#aa6b0bdd599988d73a7fcdda48ce1bc5e", null ],
+    [ "renum", "classMatrice__Grossiere.html#a2ddb92a28cc9823e455472e4f996d990", null ],
     [ "add_virt_bloc", "classMatrice__Grossiere.html#af5e96d01f22f35209d76046b8549153e", null ],
     [ "add_dist_bloc", "classMatrice__Grossiere.html#ad5b5827e252cf7c8fffac94ecaeb0d4d", null ],
     [ "interpolation_for_shear_periodicity", "classMatrice__Grossiere.html#a6fc7c190561cfef6bd68fea832db4b84", null ],

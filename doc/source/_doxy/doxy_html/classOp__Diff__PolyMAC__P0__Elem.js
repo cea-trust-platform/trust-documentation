@@ -10,6 +10,6 @@ var classOp__Diff__PolyMAC__P0__Elem =
     [ "modifier_pour_Cl", "classOp__Diff__PolyMAC__P0__Elem.html#a06060ff0eb3be69e7db934f7f83d3767", null ],
     [ "mettre_a_jour", "classOp__Diff__PolyMAC__P0__Elem.html#a3305a18f05aa583f295aea55f9b78762", null ],
     [ "d_nucleation", "classOp__Diff__PolyMAC__P0__Elem.html#a2ddc5194d7240bbbcde4dc766fc7cf83", null ],
-    [ "has_echange_contact", "classOp__Diff__PolyMAC__P0__Elem.html#a4f7b36299541040863afbc2d8db3fb78", null ],
-    [ "couplage_parietal_helper", "classOp__Diff__PolyMAC__P0__Elem.html#aaa10ab15227e4be2e6a0477ba2483be5", null ]
+    [ "has_echange_contact", "classOp__Diff__PolyMAC__P0__Elem.html#a09036383948702b1b7e7d5afe7fa9234", null ],
+    [ "couplage_parietal_helper", "classOp__Diff__PolyMAC__P0__Elem.html#a281e97b0c75448a9367138a4ddef9dd8", null ]
 ];

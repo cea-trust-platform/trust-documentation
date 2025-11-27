@@ -12,7 +12,7 @@ var classOctree__Double__32__64 =
     [ "search_elements_box", "classOctree__Double__32__64.html#ae760e41427045909f1da5868ef8f7bcf", null ],
     [ "search_elements_box", "classOctree__Double__32__64.html#a57ed882e546438892e401c92c7177292", null ],
     [ "dimension", "classOctree__Double__32__64.html#a415fb4ad291912d17ed205191393f184", null ],
-    [ "floor_elements", "classOctree__Double__32__64.html#a0052eda6cc94280c31a9e85a99944ad8", null ],
+    [ "floor_elements", "classOctree__Double__32__64.html#a647af6e36954ae8c408ad0d5476c7474", null ],
     [ "integer_position", "classOctree__Double__32__64.html#a0ee22f1c94c2b4edf32eaec2ae4e2e97", null ],
     [ "integer_position_clip", "classOctree__Double__32__64.html#a4a08915dfab2615012993e9bf38d2d9c", null ],
     [ "compute_origin_factors", "classOctree__Double__32__64.html#a22e79cd117b35d4fa5a2bd827fafa4c6", null ],

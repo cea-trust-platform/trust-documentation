@@ -29,6 +29,9 @@ Do not forget to `cite <https://cea-trust-platform.github.io/cite_us/>`_ TRUST.
 .. toctree::
    :hidden:
    :maxdepth: 2
-
+   
+   quick_start.md
    user_guide/index
+   user_tutorials/index
+   dev_corner/index
    references

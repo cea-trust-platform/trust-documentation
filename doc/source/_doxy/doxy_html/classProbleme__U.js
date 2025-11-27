@@ -20,6 +20,9 @@ var classProbleme__U =
     [ "getOutputField", "classProbleme__U.html#ad8fb0e43ad197bfbd0ff6e0040c02b91", null ],
     [ "setInputIntValue", "classProbleme__U.html#acf85a450d9ac770ff21635230e24f5ea", null ],
     [ "getOutputIntValue", "classProbleme__U.html#ad7a672390d732d2ada08313e76a2e027", null ],
+    [ "checkOutputIntEntry", "classProbleme__U.html#a8fbd874dd70a5bbd8aca287b76e9563f", null ],
+    [ "getOutputPointValues", "classProbleme__U.html#a6512c91ec0669037a737d4ef4328cf0d", null ],
+    [ "getOutputPointValues", "classProbleme__U.html#ad68a03cfb8ba0112fdf82366eb7d4ffa", null ],
     [ "setInputDoubleValue", "classProbleme__U.html#a4ccebdfe290d1f96a60b6ab21c19cf6e", null ],
     [ "setInputStringValue", "classProbleme__U.html#a6d0c97b512ae3c3eab16b86d716e948c", null ],
     [ "getOutputStringValue", "classProbleme__U.html#aad6cd09cace03bc4a90e4d57ca5bbfd1", null ],
@@ -35,7 +38,7 @@ var classProbleme__U =
     [ "OBS_PTR", "classProbleme__U.html#a3001e02c2baa00a8f7466e12826e6d2f", null ],
     [ "OBS_PTR", "classProbleme__U.html#a0d552ff669e09d75d08d419ddee2d9b1", null ],
     [ "nommer", "classProbleme__U.html#aad054e69390203c126eba40169acd72f", null ],
-    [ "le_nom", "classProbleme__U.html#a43ca6fdaa9fd199851c93f689d957af7", null ],
+    [ "le_nom", "classProbleme__U.html#a6b88bc3049405b56bc32ce2afb68ef0a", null ],
     [ "nom_", "classProbleme__U.html#ac9de472b1af4ead3c0dac6534ce48ea4", null ],
     [ "reg_", "classProbleme__U.html#aae326c7be007f58eb335a33eed5a8a03", null ],
     [ "str_params_", "classProbleme__U.html#acb356ad90f62ce464daa2d893db97c03", null ]

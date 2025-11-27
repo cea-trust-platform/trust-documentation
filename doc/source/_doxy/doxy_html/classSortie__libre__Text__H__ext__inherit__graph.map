@@ -1,11 +1,7 @@
 <map id="Sortie_libre_Text_H_ext" name="Sortie_libre_Text_H_ext">
-<area shape="rect" id="Node000001" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="5,308,180,336"/>
-<area shape="rect" id="Node000002" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="50,232,135,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,276,95,308,90,308,90,276"/>
-<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="32,157,153,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="95,200,95,232,90,232,90,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="56,81,129,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="95,124,95,156,90,156,90,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="57,5,128,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="95,49,95,81,90,81,90,49"/>
+<area shape="rect" id="node1" title="classe Neumann_sortie_libre Cette classe represente une frontiere ouverte sans vitesse imposee" alt="" coords="5,304,180,331"/>
+<area shape="rect" id="node2" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="50,229,135,256"/>
+<area shape="rect" id="node3" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="32,155,153,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="55,80,130,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="57,5,129,32"/>
 </map>

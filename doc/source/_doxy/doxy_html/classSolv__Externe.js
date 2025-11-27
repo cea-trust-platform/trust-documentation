@@ -8,6 +8,7 @@ var classSolv__Externe =
     [ "Create_lhs_rhs_onDevice", "classSolv__Externe.html#a8c5427ebe82ad701d71ed55cde06fe3f", null ],
     [ "Update_lhs_rhs", "classSolv__Externe.html#a9844e90fad30d31204e26b0830f76a06", null ],
     [ "Update_solution", "classSolv__Externe.html#ae477e8000cb545a13e1736c673d74af9", null ],
+    [ "indice_coeff_to_keep", "classSolv__Externe.html#ab91fe3e90904407ed310ed39095a820e", null ],
     [ "renum_", "classSolv__Externe.html#a76ebb364a0ae0d2fd9892d2a95ce4568", null ],
     [ "index_", "classSolv__Externe.html#a9f96142e70f188b744cdf18d58f7c97c", null ],
     [ "items_to_keep_", "classSolv__Externe.html#a51202795422f5866ef465c93e38dae7d", null ],

@@ -10,7 +10,7 @@ var classSondes =
     [ "OBS_PTR", "classSondes.html#a139279599fdfad67874daa9999e77b16", null ],
     [ "clear_cache", "classSondes.html#a57d491de752b137cbc6c74b5da379fbc", null ],
     [ "set_noms_champs_postraitables", "classSondes.html#a5b2e087685e120480adfb13ac7b5ac32", null ],
-    [ "get_noms_champs_postraitables", "classSondes.html#a3dfd06f94365692f28ebc9da7f01095a", null ],
+    [ "get_noms_champs_postraitables", "classSondes.html#a6197c8cef17708b3af2ce2ec4359628e", null ],
     [ "set_update_positions", "classSondes.html#a1572ae7c89e419d226d10aa33a38d67d", null ],
     [ "get_update_positions", "classSondes.html#ad5761efaec4b567e45ac1f4ca701f06b", null ],
     [ "resetTime", "classSondes.html#a9b08b087f4810415c036ec46ee91f8e3", null ],

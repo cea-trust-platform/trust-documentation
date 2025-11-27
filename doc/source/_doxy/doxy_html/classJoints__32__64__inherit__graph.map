@@ -1,7 +1,4 @@
 <map id="Joints_32_64&lt; _SIZE_ &gt;" name="Joints_32_64&lt; _SIZE_ &gt;">
-<area shape="rect" id="Node000001" title="Classe Joints Cette classe represente une liste d&#39;objet de type Joint." alt="" coords="15,82,192,110"/>
-<area shape="rect" id="Node000003" href="$classJoints__32__64.html" title=" " alt="" coords="28,175,179,203"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="106,125,106,175,101,175,101,125"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,202,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,48,106,82,101,82,101,48"/>
+<area shape="rect" id="node1" title="Classe Joints Cette classe represente une liste d&#39;objet de type Joint." alt="" coords="15,80,193,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,203,32"/>
 </map>

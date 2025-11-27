@@ -28,7 +28,7 @@ var classMultigrille__Adrien =
     [ "coarsen", "classMultigrille__Adrien.html#a95dbe66ceaae180c61740bb14f84c2a6", null ],
     [ "interpolate_sub_shiftk", "classMultigrille__Adrien.html#aebcfacffeada5d5b3fffc6462ee409c1", null ],
     [ "interpolate_sub_shiftk", "classMultigrille__Adrien.html#ac76729c4774f1c12137473a487c574d1", null ],
-    [ "get_storage_float", "classMultigrille__Adrien.html#ac7aa2ad5491a56ed8165363554f69ee3", null ],
-    [ "get_storage_double", "classMultigrille__Adrien.html#a6e5ff596a88d9f14d9249d173bf54b8e", null ],
+    [ "get_storage_float", "classMultigrille__Adrien.html#a2103b2fc6493a12a78f92f6ccfc294b5", null ],
+    [ "get_storage_double", "classMultigrille__Adrien.html#a412344bf9f4aea0b2897871f8b036a26", null ],
     [ "multigrille_failure", "classMultigrille__Adrien.html#ac73fa3808968358f583766ead079d56f", null ]
 ];

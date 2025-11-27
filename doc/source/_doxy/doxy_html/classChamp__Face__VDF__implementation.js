@@ -10,7 +10,8 @@ var classChamp__Face__VDF__implementation =
     [ "remplir_coord_noeuds", "classChamp__Face__VDF__implementation.html#a744a7a10fcc01ffb4a20c6a5b01f314e", null ],
     [ "remplir_coord_noeuds_et_polys", "classChamp__Face__VDF__implementation.html#aa9b2c4ce8ecf50d5678902e5d341b471", null ],
     [ "imprime_Face", "classChamp__Face__VDF__implementation.html#a1f43181423958ef8364cbed4d6a28453", null ],
-    [ "domaine_vdf", "classChamp__Face__VDF__implementation.html#a399c2d3b416793bb7b6d0528583496c4", null ],
+    [ "valeur_aux_faces_post_impl", "classChamp__Face__VDF__implementation.html#a392f9734e44e97825b8a464dd284f55c", null ],
+    [ "domaine_vdf", "classChamp__Face__VDF__implementation.html#a2a651155a76f464087cab987be6712d0", null ],
     [ "interpolation", "classChamp__Face__VDF__implementation.html#a3a5d5e1d454541be8d7e7f1b724c7cdb", null ],
     [ "trace", "classChamp__Face__VDF__implementation.html#aa5044ae16956492642b398e7bdd1b0ab", null ]
 ];

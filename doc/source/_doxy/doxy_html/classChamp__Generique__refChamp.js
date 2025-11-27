@@ -28,8 +28,12 @@ var classChamp__Generique__refChamp =
     [ "set_nom_champ", "classChamp__Generique__refChamp.html#aee7b8b9dcbab2895a2f2b32b49125424", null ],
     [ "nommer_source", "classChamp__Generique__refChamp.html#a1fe5ce3ab4f5d61a353501d54d6c03f5", null ],
     [ "get_info_type_post", "classChamp__Generique__refChamp.html#a5ff0b1305bb1e124ce0ae7c73dbe7c98", null ],
+    [ "fixer_noms_compo", "classChamp__Generique__refChamp.html#ad76a5c5c0d6c2cf6de291829ed307eb2", null ],
+    [ "fixer_noms_synonyms", "classChamp__Generique__refChamp.html#ab9adbce7412a2e209a07505e6969b0ff", null ],
     [ "OBS_PTR", "classChamp__Generique__refChamp.html#a9ccca2f27f29f41f1ed71beda231a4c5", null ],
     [ "OWN_PTR", "classChamp__Generique__refChamp.html#a66cf470b2da869f919378ce8962b84c3", null ],
+    [ "compo_", "classChamp__Generique__refChamp.html#ae3bbf8029e91228518ec8591eddc3883", null ],
+    [ "syno_", "classChamp__Generique__refChamp.html#adfbce8460d0fb5e062a9dbbf378d6bb9", null ],
     [ "localisation_", "classChamp__Generique__refChamp.html#aa0c083eef497eb2efca4c49a2199cca2", null ],
     [ "nom_champ_", "classChamp__Generique__refChamp.html#a3971ebf189bd502299e40c1daa888a99", null ]
 ];

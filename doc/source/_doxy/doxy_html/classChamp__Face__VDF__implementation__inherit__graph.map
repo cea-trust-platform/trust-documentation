@@ -1,17 +1,10 @@
 <map id="Champ_Face_VDF_implementation" name="Champ_Face_VDF_implementation">
-<area shape="rect" id="Node000001" title=" " alt="" coords="76,174,326,201"/>
-<area shape="rect" id="Node000004" href="$classChamp__Face__VDF.html" title="class Champ_Face_VDF Cette classe sert a representer un champ vectoriel dont on ne calcule" alt="" coords="41,249,179,277"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,214,128,251,125,247,171,209"/>
-<area shape="rect" id="Node000005" href="$classChamp__Fonc__Face__VDF.html" title="classe Champ_Fonc_Face_VDF" alt="" coords="204,249,379,277"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="231,209,277,247,274,251,227,214"/>
-<area shape="rect" id="Node000002" href="$classChamp__implementation__divers.html" title=" " alt="" coords="112,81,290,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,141,204,173,198,173,198,141"/>
-<area shape="rect" id="Node000003" href="$classChamp__implementation.html" title=" " alt="" coords="112,5,290,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="204,49,204,80,198,80,198,49"/>
-<area shape="rect" id="Node000006" href="$classChamp__Don__Face__lu.html" title="class Champ_Don_Face_lu Cette classe represente un champ de donnees que l&#39;on lit" alt="" coords="5,325,162,353"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="241,285,122,327,120,322,239,280"/>
-<area shape="rect" id="Node000007" href="$classCourant__maille__Champ__Face.html" title=" " alt="" coords="186,325,397,353"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="294,293,294,325,289,325,289,293"/>
-<area shape="rect" id="Node000008" href="$classReynolds__maille__Champ__Face.html" title=" " alt="" coords="420,325,640,353"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="349,279,488,322,487,327,348,285"/>
+<area shape="rect" id="node1" title=" " alt="" coords="76,169,327,196"/>
+<area shape="rect" id="node4" href="$classChamp__Face__VDF.html" title="class Champ_Face_VDF Cette classe sert a representer un champ vectoriel dont on ne calcule" alt="" coords="41,244,180,271"/>
+<area shape="rect" id="node5" href="$classChamp__Fonc__Face__VDF.html" title="classe Champ_Fonc_Face_VDF" alt="" coords="204,244,380,271"/>
+<area shape="rect" id="node2" href="$classChamp__implementation__divers.html" title=" " alt="" coords="112,80,291,121"/>
+<area shape="rect" id="node3" href="$classChamp__implementation.html" title=" " alt="" coords="112,5,291,32"/>
+<area shape="rect" id="node6" href="$classChamp__Don__Face__lu.html" title="class Champ_Don_Face_lu Cette classe represente un champ de donnees que l&#39;on lit" alt="" coords="5,319,163,345"/>
+<area shape="rect" id="node7" href="$classCourant__maille__Champ__Face.html" title=" " alt="" coords="187,319,397,345"/>
+<area shape="rect" id="node8" href="$classReynolds__maille__Champ__Face.html" title=" " alt="" coords="422,319,642,345"/>
 </map>

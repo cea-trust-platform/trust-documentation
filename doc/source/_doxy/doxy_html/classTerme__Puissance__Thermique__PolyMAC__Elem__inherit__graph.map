@@ -1,19 +1,11 @@
 <map id="Terme_Puissance_Thermique_PolyMAC_Elem" name="Terme_Puissance_Thermique_PolyMAC_Elem">
-<area shape="rect" id="Node000001" title="class Terme_Puissance_Thermique_PolyMAC_Elem" alt="" coords="124,401,334,445"/>
-<area shape="rect" id="Node000002" href="$classTerme__Puissance__Thermique__PolyMAC__base.html" title=" " alt="" coords="124,308,334,353"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,368,232,400,226,400,226,368"/>
-<area shape="rect" id="Node000003" href="$classTerme__Puissance__Thermique.html" title="Classe Terme_Puissance_Thermique Cette classe represente un terme source de l&#39;equation de la thermiqu..." alt="" coords="5,232,216,260"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="143,267,199,305,196,310,140,271"/>
-<area shape="rect" id="Node000004" href="$classTerme__Source__PolyMAC__base.html" title=" " alt="" coords="240,232,456,260"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="318,271,262,310,259,305,315,267"/>
-<area shape="rect" id="Node000005" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="296,157,400,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="350,200,350,232,345,232,345,200"/>
-<area shape="rect" id="Node000006" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="90,81,288,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="232,113,321,154,319,159,230,118"/>
-<area shape="rect" id="Node000007" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="313,81,383,109"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="350,124,350,156,345,156,345,124"/>
-<area shape="rect" id="Node000008" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="407,81,480,109"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="416,121,366,158,363,154,413,116"/>
-<area shape="rect" id="Node000009" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="408,5,480,33"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="446,49,446,81,441,81,441,49"/>
+<area shape="rect" id="node1" title="class Terme_Puissance_Thermique_PolyMAC_Elem" alt="" coords="124,393,335,435"/>
+<area shape="rect" id="node2" href="$classTerme__Puissance__Thermique__PolyMAC__base.html" title=" " alt="" coords="124,304,335,345"/>
+<area shape="rect" id="node3" href="$classTerme__Puissance__Thermique.html" title="Classe Terme_Puissance_Thermique Cette classe represente un terme source de l&#39;equation de la thermiqu..." alt="" coords="5,229,216,256"/>
+<area shape="rect" id="node4" href="$classTerme__Source__PolyMAC__base.html" title=" " alt="" coords="240,229,456,256"/>
+<area shape="rect" id="node5" href="$classSource__base.html" title="classe Source_base Un objet Source_base est un terme apparaissant au second membre d&#39;une" alt="" coords="296,155,400,181"/>
+<area shape="rect" id="node6" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="90,80,289,107"/>
+<area shape="rect" id="node7" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="313,80,383,107"/>
+<area shape="rect" id="node8" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="408,80,483,107"/>
+<area shape="rect" id="node9" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="409,5,481,32"/>
 </map>

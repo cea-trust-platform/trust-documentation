@@ -1,9 +1,6 @@
 <map id="Evaluateur_PolyMAC" name="Evaluateur_PolyMAC">
-<area shape="rect" id="Node000001" title="class Evaluateur_PolyMAC" alt="" coords="143,5,299,33"/>
-<area shape="rect" id="Node000002" href="$classEval__Conv__PolyMAC.html" title=" " alt="" coords="144,81,298,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="224,49,224,81,218,81,218,49"/>
-<area shape="rect" id="Node000003" href="$classEval__Amont__PolyMAC__Elem.html" title="class Eval_Amont_PolyMAC_Elem" alt="" coords="5,157,210,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="189,120,129,158,126,154,186,115"/>
-<area shape="rect" id="Node000004" href="$classEval__centre__PolyMAC__Elem.html" title="class Eval_centre_PolyMAC_Elem" alt="" coords="234,157,437,184"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="256,115,317,154,314,158,253,120"/>
+<area shape="rect" id="node1" title="class Evaluateur_PolyMAC" alt="" coords="143,5,300,32"/>
+<area shape="rect" id="node2" href="$classEval__Conv__PolyMAC.html" title=" " alt="" coords="144,80,299,107"/>
+<area shape="rect" id="node3" href="$classEval__Amont__PolyMAC__Elem.html" title="class Eval_Amont_PolyMAC_Elem" alt="" coords="5,155,211,181"/>
+<area shape="rect" id="node4" href="$classEval__centre__PolyMAC__Elem.html" title="class Eval_centre_PolyMAC_Elem" alt="" coords="235,155,437,181"/>
 </map>

@@ -1,15 +1,9 @@
 <map id="Schema_Adams_Bashforth_base" name="Schema_Adams_Bashforth_base">
-<area shape="rect" id="Node000001" title="classe Schema_Adams_Bashforth_base" alt="" coords="96,325,329,353"/>
-<area shape="rect" id="Node000006" href="$classSchema__Adams__Bashforth__order__2.html" title="classe Schema_Adams_Bashforth_order_2 Cette classe represente un schema en temps d&#39;Adams&#45;Bashforth d&#39;..." alt="" coords="5,401,201,445"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="184,365,134,402,130,398,181,360"/>
-<area shape="rect" id="Node000007" href="$classSchema__Adams__Bashforth__order__3.html" title="classe Schema_Adams_Bashforth_order_3 Cette classe represente un schema en temps d&#39;Adams&#45;Bashforth d&#39;..." alt="" coords="225,401,421,445"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="244,360,295,398,292,402,240,364"/>
-<area shape="rect" id="Node000002" href="$classSchema__Explicite__Multi__TimeStep__base.html" title="classe Schema_Explicite_Multi_TimeStep_base" alt="" coords="124,232,300,277"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,293,215,324,210,324,210,293"/>
-<area shape="rect" id="Node000003" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="132,157,292,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="215,200,215,232,210,232,210,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="176,81,249,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="215,124,215,156,210,156,210,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="177,5,248,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="215,49,215,81,210,81,210,49"/>
+<area shape="rect" id="node1" title="classe Schema_Adams_Bashforth_base" alt="" coords="95,319,330,345"/>
+<area shape="rect" id="node6" href="$classSchema__Adams__Bashforth__order__2.html" title="classe Schema_Adams_Bashforth_order_2 Cette classe represente un schema en temps d&#39;Adams&#45;Bashforth d&#39;..." alt="" coords="5,393,201,435"/>
+<area shape="rect" id="node7" href="$classSchema__Adams__Bashforth__order__3.html" title="classe Schema_Adams_Bashforth_order_3 Cette classe represente un schema en temps d&#39;Adams&#45;Bashforth d&#39;..." alt="" coords="225,393,421,435"/>
+<area shape="rect" id="node2" href="$classSchema__Explicite__Multi__TimeStep__base.html" title="classe Schema_Explicite_Multi_TimeStep_base" alt="" coords="124,229,301,271"/>
+<area shape="rect" id="node3" href="$classSchema__Temps__base.html" title="class Schema_Temps_base" alt="" coords="132,155,293,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="175,80,250,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="177,5,249,32"/>
 </map>

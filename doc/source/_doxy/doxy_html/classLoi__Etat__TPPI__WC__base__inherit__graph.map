@@ -1,21 +1,12 @@
 <map id="Loi_Etat_TPPI_WC_base" name="Loi_Etat_TPPI_WC_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="89,459,265,487"/>
-<area shape="rect" id="Node000009" href="$classLoi__Etat__CoolProp__WC.html" title=" " alt="" coords="5,535,173,563"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="151,499,106,537,103,533,148,495"/>
-<area shape="rect" id="Node000010" href="$classLoi__Etat__EOS__WC.html" title=" " alt="" coords="197,535,333,563"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="206,495,251,533,248,537,203,499"/>
-<area shape="rect" id="Node000002" href="$classLoi__Etat__TPPI__base.html" title=" " alt="" coords="104,384,250,411"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="180,427,180,459,174,459,174,427"/>
-<area shape="rect" id="Node000003" href="$classLoi__Etat__Mono__GP__base.html" title="classe Loi_Etat_Mono_GP_base Cette classe represente la loi d&#39;etat base pour les gaz parfaits." alt="" coords="87,308,267,336"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="180,351,180,383,174,383,174,351"/>
-<area shape="rect" id="Node000004" href="$classLoi__Etat__GP__base.html" title="classe Loi_Etat_GP_base Cette classe represente la loi d&#39;etat base pour les gaz parfaits." alt="" coords="109,232,245,260"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="180,276,180,308,174,308,174,276"/>
-<area shape="rect" id="Node000005" href="$classLoi__Etat__base.html" title="classe Loi_Etat_base Cette classe est la base de la hierarchie des lois d&#39;etat." alt="" coords="121,157,233,184"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="180,200,180,232,174,232,174,200"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="60,81,134,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="124,118,165,154,161,158,121,122"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="61,5,133,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="100,49,100,81,94,81,94,49"/>
-<area shape="rect" id="Node000008" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="158,81,356,109"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="233,122,193,158,189,154,230,118"/>
+<area shape="rect" id="node1" title=" " alt="" coords="89,453,265,480"/>
+<area shape="rect" id="node9" href="$classLoi__Etat__CoolProp__WC.html" title=" " alt="" coords="5,528,173,555"/>
+<area shape="rect" id="node10" href="$classLoi__Etat__EOS__WC.html" title=" " alt="" coords="197,528,333,555"/>
+<area shape="rect" id="node2" href="$classLoi__Etat__TPPI__base.html" title=" " alt="" coords="104,379,251,405"/>
+<area shape="rect" id="node3" href="$classLoi__Etat__Mono__GP__base.html" title="classe Loi_Etat_Mono_GP_base Cette classe represente la loi d&#39;etat base pour les gaz parfaits." alt="" coords="87,304,267,331"/>
+<area shape="rect" id="node4" href="$classLoi__Etat__GP__base.html" title="classe Loi_Etat_GP_base Cette classe represente la loi d&#39;etat base pour les gaz parfaits." alt="" coords="109,229,246,256"/>
+<area shape="rect" id="node5" href="$classLoi__Etat__base.html" title="classe Loi_Etat_base Cette classe est la base de la hierarchie des lois d&#39;etat." alt="" coords="121,155,233,181"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="60,80,135,107"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="61,5,133,32"/>
+<area shape="rect" id="node8" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="158,80,357,107"/>
 </map>

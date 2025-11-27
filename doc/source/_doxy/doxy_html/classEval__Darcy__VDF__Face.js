@@ -2,7 +2,7 @@ var classEval__Darcy__VDF__Face =
 [
     [ "Eval_Darcy_VDF_Face", "classEval__Darcy__VDF__Face.html#ac94e1519b1e0bf20fb003ff8583c31a9", null ],
     [ "Eval_Darcy_VDF_Face", "classEval__Darcy__VDF__Face.html#a75b32d1bf72f2eb919e41354ddb05ce6", null ],
-    [ "getPorosite", "classEval__Darcy__VDF__Face.html#af615959e3e7a3abc228e461644b26373", null ],
+    [ "getPorosite", "classEval__Darcy__VDF__Face.html#a00bf8ce59b7a49315b50d2b31792d76f", null ],
     [ "calculer_terme_source", "classEval__Darcy__VDF__Face.html#ae041d491cb758f351404035f2824b5ef", null ],
     [ "calculer_terme_source_bord", "classEval__Darcy__VDF__Face.html#a33d4b9133cd22bf1edbcf52bb4e30ab8", null ],
     [ "mettre_a_jour", "classEval__Darcy__VDF__Face.html#a30efda144556b493657614673ebefdca", null ],

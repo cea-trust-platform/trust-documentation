@@ -7,6 +7,6 @@ var classOp__Dift__VDF__Multi__inco__Elem =
     [ "associer", "classOp__Dift__VDF__Multi__inco__Elem.html#a7c11090983ca2584a489190deecb9af6", null ],
     [ "associer_diffusivite_turbulente", "classOp__Dift__VDF__Multi__inco__Elem.html#a6eab84a49838ba69c13a3ead6e2935b3", null ],
     [ "associer_diffusivite", "classOp__Dift__VDF__Multi__inco__Elem.html#a0fffbb58255ec90157b08a3ea09046ef", null ],
-    [ "diffusivite", "classOp__Dift__VDF__Multi__inco__Elem.html#a84a5a86d663424d57f8aefc93b795d0b", null ],
+    [ "diffusivite", "classOp__Dift__VDF__Multi__inco__Elem.html#a2eb6da10128dc05fe335d59c1349ccc6", null ],
     [ "completer", "classOp__Dift__VDF__Multi__inco__Elem.html#ac16e670c72deff5aabd90a8de25d5a8d", null ]
 ];

@@ -7,8 +7,8 @@ var classMD__Vector =
     [ "detach", "classMD__Vector.html#aa8b6d80c076feecf7373552d58489e22", null ],
     [ "non_nul", "classMD__Vector.html#a036f2429ea40bd07b331500f6ff22b8f", null ],
     [ "copy", "classMD__Vector.html#a063644dd8ca62e707a2d059eedeb58a7", null ],
-    [ "valeur", "classMD__Vector.html#a88b5a2d398314812f32a1dbc433cfe99", null ],
-    [ "operator->", "classMD__Vector.html#a1d7c3ccf86e1e4700421338fe00fe550", null ],
+    [ "valeur", "classMD__Vector.html#a3d77c78aa347c9c1e31afe355399d817", null ],
+    [ "operator->", "classMD__Vector.html#a3474d07e9e1c66ca30c3e48a3763e8c6", null ],
     [ "operator==", "classMD__Vector.html#acdbe4df71f3ca57a322cd6f3432d87d6", null ],
     [ "operator!=", "classMD__Vector.html#ab5c5057935b0f028c781b4ccb9f6cc74", null ]
 ];

@@ -11,7 +11,7 @@ var classDomaine__Cl__EF =
     [ "domaine_EF", "classDomaine__Cl__EF.html#a256eb1fb9e654bf2826ba4ddcb1163dc", null ],
     [ "domaine_EF", "classDomaine__Cl__EF.html#ad87911f3f9e30c8bc770c085f8556b89", null ],
     [ "nb_bord_periodicite", "classDomaine__Cl__EF.html#a66653a679f3be3d5d499a3a2ea401cc1", null ],
-    [ "get_type_sommet", "classDomaine__Cl__EF.html#a3edbe63395cd4b8af5ea54c7f080a852", null ],
+    [ "get_type_sommet", "classDomaine__Cl__EF.html#a17b2aabc65044052fab76629f1aaf541", null ],
     [ "remplir_type_elem_Cl", "classDomaine__Cl__EF.html#a17adc985db520db15a0927edaaab5e67", null ],
     [ "OWN_PTR", "classDomaine__Cl__EF.html#ac8b6252d7f95fc78d0d297143726a153", null ],
     [ "modif_perio_fait_", "classDomaine__Cl__EF.html#aad49f4765ddbac1675cf8bc2a289b2ce", null ],

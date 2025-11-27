@@ -1,0 +1,10 @@
+<map id="IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;" name="IJK_Field_local_template&lt; _TYPE_, _TYPE_ARRAY_ &gt;">
+<area shape="rect" id="node1" title=": This class describes a scalar field in an ijk box without any parallel information." alt="" coords="391,93,593,135"/>
+<area shape="rect" id="node5" href="$classIJK__Field__template.html" title=" " alt="" coords="1224,5,1408,47"/>
+<area shape="rect" id="node6" href="$classIJK__Field__template.html" title=" " alt="" coords="1231,86,1401,142"/>
+<area shape="rect" id="node7" href="$classIJK__Field__template.html" title=": This class is an IJK_Field_local with parallel informations." alt="" coords="807,64,1009,105"/>
+<area shape="rect" id="node8" href="$classIJK__Field__local__template.html" title=" " alt="" coords="817,181,999,223"/>
+<area shape="rect" id="node2" href="$classField__base.html" title=" " alt="" coords="251,101,341,127"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="127,101,201,127"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,101,77,127"/>
+</map>

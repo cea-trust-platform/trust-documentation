@@ -1,9 +1,6 @@
 <map id="Option_CGNS" name="Option_CGNS">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,232,114,260"/>
-<area shape="rect" id="Node000002" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="17,157,102,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="62,200,62,232,57,232,57,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="23,81,96,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,124,62,156,57,156,57,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="24,5,95,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="62,49,62,81,57,81,57,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,229,115,256"/>
+<area shape="rect" id="node2" href="$classInterprete.html" title="Classe de base des objets &quot;interprete&quot;." alt="" coords="17,155,103,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="23,80,97,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="24,5,96,32"/>
 </map>

@@ -1,28 +1,16 @@
 <map id="Champ_Uniforme" name="Champ_Uniforme">
-<area shape="rect" id="Node000001" title="classe Champ_Uniforme Represente un champ constant dans l&#39;espace et dans le temps." alt="" coords="69,611,204,639"/>
-<area shape="rect" id="Node000010" href="$classCh__input__uniforme.html" title="class Ch_input_uniforme" alt="" coords="48,688,193,716"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="133,655,126,688,121,687,128,654"/>
-<area shape="rect" id="Node000011" href="$classChamp__Uniforme__inst.html" title="classe Champ_Uniforme_inst Un champ constant dans l&#39;espace mais dependant du temps." alt="" coords="217,688,384,716"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="180,643,273,685,271,690,178,648"/>
-<area shape="rect" id="Node000002" href="$classTRUSTChamp__Divers__generique.html" title=" " alt="" coords="5,517,268,562"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,577,139,611,134,611,134,577"/>
-<area shape="rect" id="Node000003" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="62,313,200,341"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,357,139,516,133,517,129,357"/>
-<area shape="rect" id="Node000009" href="$classTRUSTChamp__Divers__generique.html" title=" " alt="" coords="153,390,384,435"/>
-<area shape="poly" id="edge9_Node000009_Node000003" title=" " alt="" coords="167,347,234,388,231,392,164,351"/>
-<area shape="rect" id="Node000004" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="78,236,184,264"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="134,279,134,313,128,313,128,279"/>
-<area shape="rect" id="Node000005" href="$classField__base.html" title=" " alt="" coords="25,159,114,187"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="92,198,123,234,119,238,88,201"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="33,82,106,110"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="72,125,72,159,67,159,67,125"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="34,5,106,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="72,48,72,82,67,82,67,48"/>
-<area shape="rect" id="Node000008" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="138,159,247,187"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="174,201,144,238,140,234,170,198"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="236,448,161,519,157,515,233,444"/>
-<area shape="rect" id="Node000012" href="$classChamp__Fonc__t.html" title="Classe Champ_Fonc_t Cette classe derivee de Champ_Uniforme_inst qui represente." alt="" coords="160,765,276,793"/>
-<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="277,728,234,767,230,763,273,724"/>
-<area shape="rect" id="Node000013" href="$classChamp__Tabule__Temps.html" title="Classe Champ_Tabule_Temps Cette classe derivee de Champ_Uniforme_inst qui represente." alt="" coords="300,765,466,793"/>
-<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="328,724,371,763,367,767,324,728"/>
+<area shape="rect" id="node1" title="classe Champ_Uniforme Represente un champ constant dans l&#39;espace et dans le temps." alt="" coords="80,595,216,621"/>
+<area shape="rect" id="node10" href="$classCh__input__uniforme.html" title="class Ch_input_uniforme" alt="" coords="59,671,205,697"/>
+<area shape="rect" id="node11" href="$classChamp__Uniforme__inst.html" title="classe Champ_Uniforme_inst Un champ constant dans l&#39;espace mais dependant du temps." alt="" coords="229,671,395,697"/>
+<area shape="rect" id="node2" href="$classTRUSTChamp__Divers__generique.html" title=" " alt="" coords="17,504,279,545"/>
+<area shape="rect" id="node3" href="$classChamp__Don__base.html" title="classe Champ_Don_base classe de base des Champs donnes (non calcules)" alt="" coords="73,309,212,336"/>
+<area shape="rect" id="node9" href="$classTRUSTChamp__Divers__generique.html" title=" " alt="" coords="164,385,396,427"/>
+<area shape="rect" id="node4" href="$classChamp__base.html" title="classe Champ_base Cette classe est la base de la hierarchie des champs." alt="" coords="89,233,196,260"/>
+<area shape="rect" id="node5" href="$classField__base.html" title=" " alt="" coords="5,157,96,184"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="13,81,88,108"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="15,5,87,32"/>
+<area shape="rect" id="node8" href="$classChamp__Proto.html" title="classe Champ_Proto Classe representant un prototype de Champ." alt="" coords="120,157,229,184"/>
+<area shape="rect" id="node12" href="$classChamp__Fonc__t.html" title="Classe Champ_Fonc_t Cette classe derivee de Champ_Uniforme_inst qui represente." alt="" coords="204,747,321,773"/>
+<area shape="rect" id="node13" href="$classChamp__Tabule__Temps.html" title="Classe Champ_Tabule_Temps Cette classe derivee de Champ_Uniforme_inst qui represente." alt="" coords="345,747,511,773"/>
+<area shape="rect" id="node14" href="$classChamp__Tabule__lu.html" title=": classe Champ_Tabule_lu Classe derivee de Champ_Tabule_Temps construit un Champ_Tabule_Temps a parti..." alt="" coords="360,823,496,849"/>
 </map>

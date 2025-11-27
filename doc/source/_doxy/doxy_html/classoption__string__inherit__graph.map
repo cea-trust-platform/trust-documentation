@@ -1,5 +1,4 @@
 <map id="option_string" name="option_string">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,81,112,109"/>
-<area shape="rect" id="Node000002" href="$classoption.html" title=" " alt="" coords="27,5,90,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="61,49,61,81,56,81,56,49"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,80,112,107"/>
+<area shape="rect" id="node2" href="$classoption.html" title=" " alt="" coords="27,5,90,32"/>
 </map>

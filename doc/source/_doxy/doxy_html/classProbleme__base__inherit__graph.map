@@ -1,105 +1,56 @@
 <map id="Probleme_base" name="Probleme_base">
-<area shape="rect" id="Node000001" title="classe Probleme_base C&#39;est un Probleme_U qui n&#39;est pas un couplage." alt="" coords="492,632,614,660"/>
-<area shape="rect" id="Node000007" href="$classPb__Conduction.html" title="Classe Pb_Conduction Cette classe represente un probleme de conduction avec rho et Cp non uniformes :" alt="" coords="664,396,782,424"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="571,618,709,423,714,426,575,622"/>
-<area shape="rect" id="Node000010" href="$classPb__Fluide__base.html" title="classe Pb_Fluide_base Cette classe a pour but de disposer d une classe amont pour" alt="" coords="662,632,784,660"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="629,644,661,644,661,649,629,649"/>
-<area shape="rect" id="Node000052" href="$classPb__MED.html" title="Classe Pb_MED Classe pour postraiter relire des fichiers med et les postraiter." alt="" coords="686,684,760,712"/>
-<area shape="poly" id="edge51_Node000001_Node000052" title=" " alt="" coords="616,663,686,685,684,690,614,668"/>
-<area shape="rect" id="Node000002" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="246,580,444,608"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="419,610,495,629,494,634,418,615"/>
-<area shape="rect" id="Node000003" href="$classProbleme__U.html" title="classe Probleme_U" alt="" coords="295,632,395,660"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="411,644,492,644,492,649,411,649"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,632,198,660"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="213,644,294,644,294,649,213,649"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,632,77,660"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="92,644,124,644,124,649,92,649"/>
-<area shape="rect" id="Node000006" href="$classProbleme__base__interface__proto.html" title=" " alt="" coords="252,684,438,729"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="438,677,501,658,503,663,440,682"/>
-<area shape="rect" id="Node000008" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="850,169,1036,214"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="744,382,830,288,913,212,916,216,834,292,748,386"/>
-<area shape="rect" id="Node000009" href="$classPb__Conduction__Scalaires__Passifs.html" title=" " alt="" coords="1152,104,1335,149"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1051,166,1151,144,1152,149,1052,171"/>
-<area shape="rect" id="Node000011" href="$classPb__Dilatable__base.html" title="classe Pb_Dilatable_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="872,302,1013,330"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="740,618,930,328,934,331,744,621"/>
-<area shape="rect" id="Node000026" href="$classPb__Hydraulique.html" title="classe Pb_Hydraulique Cette classe represente un probleme hydraulique standard dans lequel" alt="" coords="881,495,1004,523"/>
-<area shape="poly" id="edge25_Node000010_Node000026" title=" " alt="" coords="746,620,784,584,831,549,893,521,895,526,833,554,787,588,749,623"/>
-<area shape="rect" id="Node000035" href="$classPb__Hydraulique__Concentration.html" title="Classe Pb_Hydraulique_Concentration Cette classe represente un probleme d&#39;hydraulique avec transport." alt="" coords="832,563,1053,591"/>
-<area shape="poly" id="edge34_Node000010_Node000035" title=" " alt="" coords="782,625,831,609,895,589,896,594,833,614,784,630"/>
-<area shape="rect" id="Node000038" href="$classPb__Hydraulique__Concentration__Turbulent.html" title="classe Pb_Hydraulique_Concentration_Turbulent Cette classe represente un probleme d&#39;hydraulique avec ..." alt="" coords="832,624,1053,669"/>
-<area shape="poly" id="edge37_Node000010_Node000038" title=" " alt="" coords="800,644,832,644,832,649,800,649"/>
-<area shape="rect" id="Node000041" href="$classPb__Hydraulique__Turbulent.html" title="classe Pb_Hydraulique_Turbulent Cette classe represente un probleme d&#39;hydraulique turbulent dans" alt="" coords="848,700,1038,728"/>
-<area shape="poly" id="edge40_Node000010_Node000041" title=" " alt="" coords="784,663,833,678,894,697,893,702,831,684,782,668"/>
-<area shape="rect" id="Node000043" href="$classPb__Multiphase.html" title="classe Pb_Multiphase Cette classe represente un probleme de thermohydraulique multiphase de type &quot;3*N..." alt="" coords="884,770,1001,798"/>
-<area shape="poly" id="edge42_Node000010_Node000043" title=" " alt="" coords="779,666,786,671,802,688,810,705,819,721,834,738,861,754,890,767,888,772,858,759,830,742,814,725,805,708,797,691,782,675,776,670"/>
-<area shape="rect" id="Node000045" href="$classPb__Thermohydraulique__Concentration__Turbulent.html" title="Classe Pb_Thermohydraulique_Concentration_Turbulent Cette classe represente un probleme de thermohydr..." alt="" coords="850,856,1036,901"/>
-<area shape="poly" id="edge44_Node000010_Node000045" title=" " alt="" coords="782,668,786,671,799,689,807,706,812,739,816,773,823,790,834,807,861,833,892,853,889,858,858,837,830,811,818,792,811,774,807,740,802,708,795,692,782,675,779,671"/>
-<area shape="rect" id="Node000048" href="$classPb__Thermohydraulique__Turbulent.html" title="classe Pb_Thermohydraulique_Turbulent Cette classe represente un probleme de thermohydraulique" alt="" coords="857,960,1028,1005"/>
-<area shape="poly" id="edge47_Node000010_Node000048" title=" " alt="" coords="783,668,786,671,805,703,814,733,815,763,813,791,810,820,811,849,818,880,834,911,859,937,889,957,886,962,855,941,830,915,813,881,805,850,805,820,808,791,810,763,809,734,801,705,782,675,779,672"/>
-<area shape="rect" id="Node000012" href="$classPb__QC__base.html" title="classe Pb_QC_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="1193,172,1294,200"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="990,293,1208,198,1210,203,992,298"/>
-<area shape="rect" id="Node000021" href="$classPb__WC__base.html" title="classe Pb_WC_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="1191,302,1296,330"/>
-<area shape="poly" id="edge20_Node000011_Node000021" title=" " alt="" coords="1029,313,1191,313,1191,318,1029,318"/>
-<area shape="rect" id="Node000013" href="$classPb__Hydraulique__Melange__Binaire__QC.html" title="classe Pb_Hydraulique_Melange_Binaire_QC Cette classe represente un probleme de hydraulique binaire e..." alt="" coords="1474,5,1660,50"/>
-<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1309,184,1348,177,1384,159,1395,148,1402,137,1408,112,1413,86,1420,73,1432,60,1451,48,1472,38,1474,43,1454,52,1435,64,1425,76,1418,88,1413,113,1407,138,1399,151,1387,163,1350,182,1310,190"/>
-<area shape="rect" id="Node000014" href="$classPb__Hydraulique__Melange__Binaire__Turbulent__QC.html" title="classe Pb_Hydraulique_Melange_Binaire_Turbulent_QC Cette classe represente un probleme de hydraulique..." alt="" coords="1474,75,1660,119"/>
-<area shape="poly" id="edge13_Node000012_Node000014" title=" " alt="" coords="1309,177,1347,170,1385,159,1408,144,1433,129,1472,115,1474,120,1435,134,1411,149,1387,163,1348,175,1310,182"/>
-<area shape="rect" id="Node000015" href="$classPb__Thermohydraulique__QC.html" title="classe Pb_Thermohydraulique_QC Cette classe represente un probleme de thermohydraulique en fluide qua..." alt="" coords="1468,143,1666,171"/>
-<area shape="poly" id="edge14_Node000012_Node000015" title=" " alt="" coords="1309,178,1468,163,1468,169,1310,183"/>
-<area shape="rect" id="Node000018" href="$classPb__Thermohydraulique__Turbulent__QC.html" title="classe Pb_Thermohydraulique_Turbulent Cette classe represente un probleme de thermohydraulique en flu..." alt="" coords="1481,195,1652,239"/>
-<area shape="poly" id="edge17_Node000012_Node000018" title=" " alt="" coords="1310,190,1481,206,1480,212,1310,195"/>
-<area shape="rect" id="Node000016" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1750,127,1977,171"/>
-<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="1681,151,1749,149,1749,155,1681,157"/>
-<area shape="rect" id="Node000017" href="$classPb__Thermohydraulique__Especes__QC.html" title=" " alt="" coords="2033,127,2205,171"/>
-<area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="1993,146,2033,146,2033,152,1993,152"/>
-<area shape="rect" id="Node000019" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1770,196,1956,257"/>
-<area shape="poly" id="edge18_Node000018_Node000019" title=" " alt="" coords="1668,218,1769,221,1769,226,1668,223"/>
-<area shape="rect" id="Node000020" href="$classPb__Thermohydraulique__Especes__Turbulent__QC.html" title=" " alt="" coords="2032,204,2206,249"/>
-<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="1972,224,2031,224,2031,229,1972,229"/>
-<area shape="rect" id="Node000022" href="$classPb__Hydraulique__Melange__Binaire__WC.html" title="classe Pb_Hydraulique_Melange_Binaire_WC Cette classe represente un probleme de hydraulique binaire e..." alt="" coords="1474,264,1660,309"/>
-<area shape="poly" id="edge21_Node000021_Node000022" title=" " alt="" coords="1311,307,1473,292,1473,297,1311,312"/>
-<area shape="rect" id="Node000023" href="$classPb__Thermohydraulique__WC.html" title="classe Pb_Thermohydraulique_WC Cette classe represente un probleme de thermohydraulique en fluide wea..." alt="" coords="1467,332,1667,360"/>
-<area shape="poly" id="edge22_Node000021_Node000023" title=" " alt="" coords="1311,319,1466,334,1466,339,1311,325"/>
-<area shape="rect" id="Node000024" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1748,324,1978,369"/>
-<area shape="poly" id="edge23_Node000023_Node000024" title=" " alt="" coords="1683,344,1748,344,1748,349,1683,349"/>
-<area shape="rect" id="Node000025" href="$classPb__Thermohydraulique__Especes__WC.html" title=" " alt="" coords="2033,324,2205,369"/>
-<area shape="poly" id="edge24_Node000024_Node000025" title=" " alt="" coords="1994,344,2033,344,2033,349,1994,349"/>
-<area shape="rect" id="Node000027" href="$classTRUSTProblem__Concentration__Gen.html" title=" " alt="" coords="1102,409,1385,470"/>
-<area shape="poly" id="edge26_Node000026_Node000027" title=" " alt="" coords="1019,489,1106,468,1108,474,1020,494"/>
-<area shape="rect" id="Node000028" href="$classPb__Thermohydraulique.html" title="classe Pb_Thermohydraulique Cette classe represente un probleme de thermohydraulique standard:" alt="" coords="1158,495,1329,523"/>
-<area shape="poly" id="edge27_Node000026_Node000028" title=" " alt="" coords="1020,506,1157,506,1157,512,1020,512"/>
-<area shape="rect" id="Node000029" href="$classTRUSTProblem__Concentration__Gen.html" title=" " alt="" coords="1434,384,1700,463"/>
-<area shape="poly" id="edge28_Node000028_Node000029" title=" " alt="" coords="1344,489,1385,480,1450,461,1451,466,1386,485,1345,494"/>
-<area shape="rect" id="Node000030" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1466,487,1668,531"/>
-<area shape="poly" id="edge29_Node000028_Node000030" title=" " alt="" coords="1345,506,1466,506,1466,512,1345,512"/>
-<area shape="rect" id="Node000032" href="$classPb__Thermohydraulique__Concentration.html" title="classe Pb_Thermohydraulique_Concentration Cette classe represente un probleme de thermohydraulique av..." alt="" coords="1481,556,1652,601"/>
-<area shape="poly" id="edge31_Node000028_Node000032" title=" " alt="" coords="1345,524,1386,532,1481,554,1480,559,1385,537,1344,529"/>
-<area shape="rect" id="Node000031" href="$classPb__Thermohydraulique__Scalaires__Passifs.html" title=" " alt="" coords="1778,483,1949,527"/>
-<area shape="poly" id="edge30_Node000030_Node000031" title=" " alt="" coords="1683,505,1777,503,1777,509,1683,510"/>
-<area shape="rect" id="Node000033" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1770,552,1956,613"/>
-<area shape="poly" id="edge32_Node000032_Node000033" title=" " alt="" coords="1668,577,1769,578,1769,584,1668,582"/>
-<area shape="rect" id="Node000034" href="$classPb__Thermohydraulique__Concentration__Scalaires__Passifs.html" title=" " alt="" coords="2026,552,2212,613"/>
-<area shape="poly" id="edge33_Node000033_Node000034" title=" " alt="" coords="1972,580,2026,580,2026,585,1972,585"/>
-<area shape="rect" id="Node000036" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1118,547,1369,591"/>
-<area shape="poly" id="edge35_Node000035_Node000036" title=" " alt="" coords="1069,571,1117,570,1118,575,1069,576"/>
-<area shape="rect" id="Node000037" href="$classPb__Hydraulique__Concentration__Scalaires__Passifs.html" title=" " alt="" coords="1456,625,1678,670"/>
-<area shape="poly" id="edge36_Node000036_Node000037" title=" " alt="" coords="1354,593,1472,622,1471,627,1352,598"/>
-<area shape="rect" id="Node000039" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1125,616,1362,677"/>
-<area shape="poly" id="edge38_Node000038_Node000039" title=" " alt="" coords="1069,644,1125,644,1125,649,1069,649"/>
-<area shape="rect" id="Node000040" href="$classPb__Hydraulique__Concentration__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1456,695,1678,739"/>
-<area shape="poly" id="edge39_Node000039_Node000040" title=" " alt="" coords="1377,673,1462,691,1461,697,1376,678"/>
-<area shape="rect" id="Node000042" href="$classTRUSTProblem__Concentration__Gen.html" title=" " alt="" coords="1112,702,1375,780"/>
-<area shape="poly" id="edge41_Node000041_Node000042" title=" " alt="" coords="1054,721,1112,727,1112,732,1053,727"/>
-<area shape="rect" id="Node000044" href="$classPb__Multiphase__HEM.html" title=" " alt="" coords="1167,804,1320,832"/>
-<area shape="poly" id="edge43_Node000043_Node000044" title=" " alt="" coords="1017,789,1167,807,1166,812,1016,795"/>
-<area shape="rect" id="Node000046" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1143,857,1344,918"/>
-<area shape="poly" id="edge45_Node000045_Node000046" title=" " alt="" coords="1052,879,1143,882,1142,887,1051,884"/>
-<area shape="rect" id="Node000047" href="$classPb__Thermohydraulique__Concentration__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1474,857,1660,918"/>
-<area shape="poly" id="edge46_Node000046_Node000047" title=" " alt="" coords="1360,885,1474,885,1474,890,1360,890"/>
-<area shape="rect" id="Node000049" href="$classTRUSTProblem__Concentration__Gen.html" title=" " alt="" coords="1101,943,1386,1022"/>
-<area shape="poly" id="edge48_Node000048_Node000049" title=" " alt="" coords="1044,980,1101,980,1101,985,1044,985"/>
-<area shape="rect" id="Node000050" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1150,1046,1337,1108"/>
-<area shape="poly" id="edge49_Node000048_Node000050" title=" " alt="" coords="1027,1007,1102,1032,1151,1047,1149,1052,1101,1037,1025,1013"/>
-<area shape="rect" id="Node000051" href="$classPb__Thermohydraulique__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1481,1046,1652,1108"/>
-<area shape="poly" id="edge50_Node000050_Node000051" title=" " alt="" coords="1352,1074,1481,1074,1481,1080,1352,1080"/>
+<area shape="rect" id="node1" title="classe Probleme_base C&#39;est un Probleme_U qui n&#39;est pas un couplage." alt="" coords="495,613,617,639"/>
+<area shape="rect" id="node7" href="$classPb__Conduction.html" title="Classe Pb_Conduction Cette classe represente un probleme de conduction avec rho et Cp non uniformes :" alt="" coords="667,217,786,243"/>
+<area shape="rect" id="node11" href="$classPb__Fluide__base.html" title="classe Pb_Fluide_base Cette classe a pour but de disposer d une classe amont pour" alt="" coords="665,613,788,639"/>
+<area shape="rect" id="node54" href="$classPb__MED.html" title="Classe Pb_MED Classe pour postraiter relire des fichiers med et les postraiter." alt="" coords="689,663,764,690"/>
+<area shape="rect" id="node2" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="248,562,447,589"/>
+<area shape="rect" id="node3" href="$classProbleme__U.html" title="classe Probleme_U" alt="" coords="297,613,398,639"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,613,200,639"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,613,77,639"/>
+<area shape="rect" id="node6" href="$classProbleme__base__interface__proto.html" title=" " alt="" coords="254,664,441,705"/>
+<area shape="rect" id="node8" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="854,133,1041,175"/>
+<area shape="rect" id="node10" href="$classPb__Conduction__IBM.html" title=" " alt="" coords="872,217,1023,243"/>
+<area shape="rect" id="node9" href="$classPb__Conduction__Scalaires__Passifs.html" title=" " alt="" coords="1141,100,1325,141"/>
+<area shape="rect" id="node12" href="$classPb__Dilatable__base.html" title="classe Pb_Dilatable_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="876,303,1019,330"/>
+<area shape="rect" id="node27" href="$classPb__Hydraulique.html" title="classe Pb_Hydraulique Cette classe represente un probleme hydraulique standard dans lequel" alt="" coords="885,411,1009,438"/>
+<area shape="rect" id="node34" href="$classPb__Hydraulique__Concentration.html" title="Classe Pb_Hydraulique_Concentration Cette classe represente un probleme d&#39;hydraulique avec transport." alt="" coords="836,466,1059,493"/>
+<area shape="rect" id="node37" href="$classPb__Hydraulique__Concentration__Turbulent.html" title="classe Pb_Hydraulique_Concentration_Turbulent Cette classe represente un probleme d&#39;hydraulique avec ..." alt="" coords="836,517,1059,559"/>
+<area shape="rect" id="node40" href="$classPb__Hydraulique__IBM.html" title=" " alt="" coords="869,583,1025,610"/>
+<area shape="rect" id="node42" href="$classPb__Hydraulique__IBM__Turbulent.html" title="classe Pb_Hydraulique_IBM_Turbulent Cette classe represente un probleme d&#39;hydraulique turbulent dans" alt="" coords="869,635,1025,676"/>
+<area shape="rect" id="node43" href="$classPb__Hydraulique__Turbulent.html" title="classe Pb_Hydraulique_Turbulent Cette classe represente un probleme d&#39;hydraulique turbulent dans" alt="" coords="852,701,1043,727"/>
+<area shape="rect" id="node44" href="$classPb__Multiphase.html" title="classe Pb_Multiphase Cette classe represente un probleme de thermohydraulique multiphase de type &quot;3*N..." alt="" coords="889,751,1006,778"/>
+<area shape="rect" id="node47" href="$classPb__Thermohydraulique__Concentration__Turbulent.html" title="Classe Pb_Thermohydraulique_Concentration_Turbulent Cette classe represente un probleme de thermohydr..." alt="" coords="854,803,1041,844"/>
+<area shape="rect" id="node50" href="$classPb__Thermohydraulique__IBM__Turbulent.html" title="classe Pb_Thermohydraulique_IBM_Turbulent Cette classe represente un probleme de thermohydraulique" alt="" coords="861,868,1033,909"/>
+<area shape="rect" id="node51" href="$classPb__Thermohydraulique__Turbulent.html" title="classe Pb_Thermohydraulique_Turbulent Cette classe represente un probleme de thermohydraulique" alt="" coords="861,933,1033,975"/>
+<area shape="rect" id="node13" href="$classPb__QC__base.html" title="classe Pb_QC_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="1181,166,1284,193"/>
+<area shape="rect" id="node22" href="$classPb__WC__base.html" title="classe Pb_WC_base Cette classe est censee factoriser ce qui est commun a l&#39;ensemble" alt="" coords="1180,303,1285,330"/>
+<area shape="rect" id="node14" href="$classPb__Hydraulique__Melange__Binaire__QC.html" title="classe Pb_Hydraulique_Melange_Binaire_QC Cette classe represente un probleme de hydraulique binaire e..." alt="" coords="1425,5,1611,47"/>
+<area shape="rect" id="node15" href="$classPb__Hydraulique__Melange__Binaire__Turbulent__QC.html" title="classe Pb_Hydraulique_Melange_Binaire_Turbulent_QC Cette classe represente un probleme de hydraulique..." alt="" coords="1425,71,1611,112"/>
+<area shape="rect" id="node16" href="$classPb__Thermohydraulique__QC.html" title="classe Pb_Thermohydraulique_QC Cette classe represente un probleme de thermohydraulique en fluide qua..." alt="" coords="1419,137,1617,163"/>
+<area shape="rect" id="node19" href="$classPb__Thermohydraulique__Turbulent__QC.html" title="classe Pb_Thermohydraulique_Turbulent Cette classe represente un probleme de thermohydraulique en flu..." alt="" coords="1432,188,1604,229"/>
+<area shape="rect" id="node17" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1679,123,1907,164"/>
+<area shape="rect" id="node18" href="$classPb__Thermohydraulique__Especes__QC.html" title=" " alt="" coords="1963,123,2135,164"/>
+<area shape="rect" id="node20" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1699,189,1886,245"/>
+<area shape="rect" id="node21" href="$classPb__Thermohydraulique__Especes__Turbulent__QC.html" title=" " alt="" coords="1962,196,2137,237"/>
+<area shape="rect" id="node23" href="$classPb__Hydraulique__Melange__Binaire__WC.html" title="classe Pb_Hydraulique_Melange_Binaire_WC Cette classe represente un probleme de hydraulique binaire e..." alt="" coords="1425,253,1611,295"/>
+<area shape="rect" id="node24" href="$classPb__Thermohydraulique__WC.html" title="classe Pb_Thermohydraulique_WC Cette classe represente un probleme de thermohydraulique en fluide wea..." alt="" coords="1417,319,1619,346"/>
+<area shape="rect" id="node25" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1677,305,1908,347"/>
+<area shape="rect" id="node26" href="$classPb__Thermohydraulique__Especes__WC.html" title=" " alt="" coords="1963,305,2135,347"/>
+<area shape="rect" id="node28" href="$classPb__Thermohydraulique.html" title="classe Pb_Thermohydraulique Cette classe represente un probleme de thermohydraulique standard:" alt="" coords="1147,410,1319,437"/>
+<area shape="rect" id="node29" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1417,371,1619,412"/>
+<area shape="rect" id="node31" href="$classPb__Thermohydraulique__Concentration.html" title="classe Pb_Thermohydraulique_Concentration Cette classe represente un probleme de thermohydraulique av..." alt="" coords="1432,436,1604,477"/>
+<area shape="rect" id="node30" href="$classPb__Thermohydraulique__Scalaires__Passifs.html" title=" " alt="" coords="1707,371,1879,412"/>
+<area shape="rect" id="node32" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1699,437,1886,493"/>
+<area shape="rect" id="node33" href="$classPb__Thermohydraulique__Concentration__Scalaires__Passifs.html" title=" " alt="" coords="1956,437,2143,493"/>
+<area shape="rect" id="node35" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1107,461,1359,503"/>
+<area shape="rect" id="node36" href="$classPb__Hydraulique__Concentration__Scalaires__Passifs.html" title=" " alt="" coords="1407,501,1629,543"/>
+<area shape="rect" id="node38" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1114,527,1351,583"/>
+<area shape="rect" id="node39" href="$classPb__Hydraulique__Concentration__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1407,567,1629,608"/>
+<area shape="rect" id="node41" href="$classPb__Thermohydraulique__IBM.html" title=" " alt="" coords="1131,607,1335,634"/>
+<area shape="rect" id="node45" href="$classPb__Multiphase__Enthalpie.html" title=" " alt="" coords="1140,701,1325,727"/>
+<area shape="rect" id="node46" href="$classPb__Multiphase__HEM.html" title=" " alt="" coords="1155,751,1310,778"/>
+<area shape="rect" id="node48" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1131,802,1334,858"/>
+<area shape="rect" id="node49" href="$classPb__Thermohydraulique__Concentration__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1425,802,1611,858"/>
+<area shape="rect" id="node52" href="$classTRUSTProblem__sup__eqns.html" title=" " alt="" coords="1139,926,1326,982"/>
+<area shape="rect" id="node53" href="$classPb__Thermohydraulique__Turbulent__Scalaires__Passifs.html" title=" " alt="" coords="1432,926,1604,982"/>
 </map>

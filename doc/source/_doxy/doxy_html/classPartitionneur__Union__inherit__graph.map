@@ -1,9 +1,6 @@
 <map id="Partitionneur_Union" name="Partitionneur_Union">
-<area shape="rect" id="Node000001" title="Decoupeur permettant de decouper un domaine global de maniere conforme avec un ensemble de sous&#45;domai..." alt="" coords="5,232,156,260"/>
-<area shape="rect" id="Node000002" href="$classPartitionneur__base__32__64.html" title="Classe de base des partitionneurs de domaine (pour decouper un maillage avant un calcul parallele)." alt="" coords="9,157,152,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,200,83,232,78,232,78,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="44,81,117,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,124,83,156,78,156,78,124"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="45,5,116,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="83,49,83,81,78,81,78,49"/>
+<area shape="rect" id="node1" title="Decoupeur permettant de decouper un domaine global de maniere conforme avec un ensemble de sous&#45;domai..." alt="" coords="5,229,156,256"/>
+<area shape="rect" id="node2" href="$classPartitionneur__base__32__64.html" title="Classe de base des partitionneurs de domaine (pour decouper un maillage avant un calcul parallele)." alt="" coords="9,155,153,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="43,80,118,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="45,5,117,32"/>
 </map>

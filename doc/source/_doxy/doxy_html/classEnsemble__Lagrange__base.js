@@ -2,7 +2,7 @@ var classEnsemble__Lagrange__base =
 [
     [ "Ensemble_Lagrange_base", "classEnsemble__Lagrange__base.html#a954a6bc19d625395540782e28c610e56", null ],
     [ "associer_equation_transport", "classEnsemble__Lagrange__base.html#a14f9aa8b4acd62dc72acea70ba444676", null ],
-    [ "equation_associee", "classEnsemble__Lagrange__base.html#ab0aca4ad1eef66b68e10c0a79d0ae974", null ],
+    [ "equation_associee", "classEnsemble__Lagrange__base.html#a5b21f2b9936337e7d53c2d6891c64e3b", null ],
     [ "associer_domaine", "classEnsemble__Lagrange__base.html#a0389e0227ba1cbef6f9bdb298acefe1c", null ],
     [ "domaine", "classEnsemble__Lagrange__base.html#ac30bca925b34e5332ae98d54bbd889e4", null ],
     [ "remplir_sommets_tmp", "classEnsemble__Lagrange__base.html#a518e20b8c71f1aeff5c860a4b301544b", null ],

@@ -1,19 +1,11 @@
 <map id="Op_Conv_PolyMAC_iterateur_base" name="Op_Conv_PolyMAC_iterateur_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="129,308,374,336"/>
-<area shape="rect" id="Node000008" href="$classOp__Conv__Amont__PolyMAC__Elem.html" title="class Op_Conv_Amont_PolyMAC_Elem" alt="" coords="5,384,240,411"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="217,346,147,386,144,381,214,341"/>
-<area shape="rect" id="Node000009" href="$classOp__Conv__Centre__PolyMAC__Elem.html" title="class Op_Conv_Centre_PolyMAC_Elem" alt="" coords="264,384,498,411"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="289,341,360,381,357,386,287,346"/>
-<area shape="rect" id="Node000002" href="$classOperateur__Conv__base.html" title="classe Operateur_Conv_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="170,232,334,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,276,254,308,249,308,249,276"/>
-<area shape="rect" id="Node000003" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="190,157,314,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="254,200,254,232,249,232,249,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="119,81,192,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="187,116,236,154,233,158,184,121"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="120,5,192,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="158,49,158,81,153,81,153,49"/>
-<area shape="rect" id="Node000006" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="217,81,287,109"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="254,124,254,156,249,156,249,124"/>
-<area shape="rect" id="Node000007" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="311,81,510,109"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="369,118,281,159,279,154,367,113"/>
+<area shape="rect" id="node1" title=" " alt="" coords="129,304,375,331"/>
+<area shape="rect" id="node8" href="$classOp__Conv__Amont__PolyMAC__Elem.html" title="class Op_Conv_Amont_PolyMAC_Elem" alt="" coords="5,379,240,405"/>
+<area shape="rect" id="node9" href="$classOp__Conv__Centre__PolyMAC__Elem.html" title="class Op_Conv_Centre_PolyMAC_Elem" alt="" coords="264,379,499,405"/>
+<area shape="rect" id="node2" href="$classOperateur__Conv__base.html" title="classe Operateur_Conv_base Cette classe est la base de la hierarchie des operateurs representant" alt="" coords="169,229,335,256"/>
+<area shape="rect" id="node3" href="$classOperateur__base.html" title="classe Operateur_base Classe est la base de la hierarchie des objets representant un" alt="" coords="189,155,315,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="117,80,192,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="119,5,191,32"/>
+<area shape="rect" id="node6" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="217,80,287,107"/>
+<area shape="rect" id="node7" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="311,80,510,107"/>
 </map>

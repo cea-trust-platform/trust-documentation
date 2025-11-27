@@ -5,6 +5,6 @@ var classTRUST__Error =
     [ "TRUST_Error", "classTRUST__Error.html#a9152208d379629b52ed1c93427618031", null ],
     [ "TRUST_Error", "classTRUST__Error.html#a90ff25e55ea3cdbe1e369e4faa3fa72c", null ],
     [ "operator=", "classTRUST__Error.html#a1afc78eb2da1b525da2bb58c998a6f78", null ],
-    [ "get_msg", "classTRUST__Error.html#a9bdf6b4e75623df727306aa1eb62b51a", null ],
-    [ "get_pe", "classTRUST__Error.html#a6f7f8810870ddec5f7b29f3b56926813", null ]
+    [ "get_msg", "classTRUST__Error.html#af478f5140611dc9abfb5096f744590ac", null ],
+    [ "get_pe", "classTRUST__Error.html#a60fb078fa9bc13b1f14807b8ff33c6a2", null ]
 ];

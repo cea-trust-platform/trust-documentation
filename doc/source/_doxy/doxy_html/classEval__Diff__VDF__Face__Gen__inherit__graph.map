@@ -1,19 +1,11 @@
 <map id="Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;" name="Eval_Diff_VDF_Face_Gen&lt; DERIVED_T &gt;">
-<area shape="rect" id="Node000001" title="class Eval_Diff_VDF_Face_Gen Evaluateur VDF pour la diffusion" alt="" coords="180,99,337,144"/>
-<area shape="rect" id="Node000004" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="572,5,734,67"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="325,91,361,79,470,56,571,41,572,47,471,61,362,84,326,96"/>
-<area shape="rect" id="Node000006" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="549,91,757,152"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="353,119,549,119,549,124,353,124"/>
-<area shape="rect" id="Node000008" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="572,176,734,238"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="353,139,362,141,572,187,571,192,361,146,352,144"/>
-<area shape="rect" id="Node000002" href="$classEval__VDF__Face.html" title="class Eval_VDF_Face Cette classe represente le prototype fonctionnel des evaluateurs" alt="" coords="8,81,128,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,103,180,108,179,113,144,108"/>
-<area shape="rect" id="Node000003" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="5,133,131,161"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="145,134,179,129,180,135,146,139"/>
-<area shape="rect" id="Node000005" href="$classEval__Diff__VDF__Face.html" title="class Eval_Diff_VDF_Face Evaluateur VDF pour la diffusion" alt="" coords="810,22,961,50"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="750,34,809,34,809,39,750,39"/>
-<area shape="rect" id="Node000007" href="$classEval__Dift__Multiphase__VDF__Face.html" title=" " alt="" coords="806,99,965,144"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="772,119,805,119,805,124,772,124"/>
-<area shape="rect" id="Node000009" href="$classEval__Dift__VDF__Face.html" title="class Eval_Dift_VDF_Face Evaluateur VDF pour la diffusion totale (laminaire et turbulente)" alt="" coords="810,193,961,221"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="750,204,809,204,809,210,750,210"/>
+<area shape="rect" id="node1" title="class Eval_Diff_VDF_Face_Gen Evaluateur VDF pour la diffusion" alt="" coords="181,93,340,134"/>
+<area shape="rect" id="node4" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="576,5,739,61"/>
+<area shape="rect" id="node6" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="576,85,739,141"/>
+<area shape="rect" id="node8" href="$classEval__Diff__VDF__Face__Gen.html" title=" " alt="" coords="553,165,761,221"/>
+<area shape="rect" id="node2" href="$classEval__VDF__Face.html" title="class Eval_VDF_Face Cette classe represente le prototype fonctionnel des evaluateurs" alt="" coords="8,75,129,101"/>
+<area shape="rect" id="node3" href="$classEvaluateur__VDF.html" title="class Evaluateur_VDF Classe de base des evaluateurs VDF." alt="" coords="5,125,132,152"/>
+<area shape="rect" id="node5" href="$classEval__Diff__VDF__Face.html" title="class Eval_Diff_VDF_Face Evaluateur VDF pour la diffusion" alt="" coords="815,20,967,47"/>
+<area shape="rect" id="node7" href="$classEval__Dift__VDF__Face.html" title="class Eval_Dift_VDF_Face Evaluateur VDF pour la diffusion totale (laminaire et turbulente)" alt="" coords="815,100,967,127"/>
+<area shape="rect" id="node9" href="$classEval__Dift__Multiphase__VDF__Face.html" title=" " alt="" coords="811,173,971,214"/>
 </map>

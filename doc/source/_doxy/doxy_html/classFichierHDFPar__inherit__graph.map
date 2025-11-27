@@ -1,5 +1,4 @@
 <map id="FichierHDFPar" name="FichierHDFPar">
-<area shape="rect" id="Node000001" title="Parallel collective version of FichierHDF, to be used for all concurrent reading/writing on HDF files..." alt="" coords="5,81,118,109"/>
-<area shape="rect" id="Node000002" href="$classFichierHDF.html" title="This abstract class provides all the functionalities to open and manipulate HDF files and related con..." alt="" coords="16,5,107,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="64,49,64,81,59,81,59,49"/>
+<area shape="rect" id="node1" title="Parallel collective version of FichierHDF, to be used for all concurrent reading/writing on HDF files..." alt="" coords="5,80,119,107"/>
+<area shape="rect" id="node2" href="$classFichierHDF.html" title="This abstract class provides all the functionalities to open and manipulate HDF files and related con..." alt="" coords="16,5,108,32"/>
 </map>

@@ -58,7 +58,7 @@ var classDomaine__VDF =
     [ "dist_norm_bord", "classDomaine__VDF.html#aa2748322933d0b337c3a544c7184711d", null ],
     [ "init_virt_e_map", "classDomaine__VDF.html#ac43ed7f52754160cb318754eb71484bf", null ],
     [ "face_normales", "classDomaine__VDF.html#a535cd746c87a73f3d3e6b3884e6567e6", null ],
-    [ "face_normales", "classDomaine__VDF.html#af7568b4f7fe27b70f911aec36cd4cd01", null ],
-    [ "face_normales", "classDomaine__VDF.html#ad59a48a6b80bdb9b9497299e093899f2", null ],
+    [ "face_normales", "classDomaine__VDF.html#a953d6f28077bfecc47a358675dfebfa7", null ],
+    [ "face_normales", "classDomaine__VDF.html#ac29e2454973f9e092399f748e43de956", null ],
     [ "virt_e_map", "classDomaine__VDF.html#a4fd8b4608470db9b254db40b79570359", null ]
 ];

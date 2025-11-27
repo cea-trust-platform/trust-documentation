@@ -1,15 +1,6 @@
 <map id="TRUSTListElem&lt; _TYPE_ &gt;" name="TRUSTListElem&lt; _TYPE_ &gt;">
-<area shape="rect" id="Node000001" title=": Classe qui sert a representer une liste de reels int/double precision." alt="" coords="5,109,202,137"/>
-<area shape="rect" id="Node000002" href="$classTRUSTList.html" title=" " alt="" coords="648,5,809,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,101,225,77,334,42,421,22,510,13,624,13,648,13,648,18,624,18,510,18,422,27,335,47,227,82,158,106"/>
-<area shape="rect" id="Node000003" href="$classTRUSTList.html" title=" " alt="" coords="662,77,796,105"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="217,115,661,92,661,97,217,120"/>
-<area shape="rect" id="Node000004" href="$classTRUSTList.html" title=": Classe qui sert a representer une liste de reels int/double precision." alt="" coords="343,59,506,86"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,104,342,83,343,88,211,109"/>
-<area shape="rect" id="Node000005" href="$classTRUSTListElem.html" title=" " alt="" coords="328,160,522,188"/>
-<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="161,140,226,156,328,168,327,173,225,161,159,145"/>
-<area shape="rect" id="Node000006" href="$classTRUSTListElem.html" title=" " alt="" coords="341,212,508,240"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="139,143,180,167,227,188,284,204,341,215,340,220,283,210,225,193,178,172,137,148"/>
-<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="521,53,647,31,648,36,522,58"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="522,76,661,84,661,90,522,81"/>
+<area shape="rect" id="node1" title=": Classe qui sert a representer une liste de reels int/double precision." alt="" coords="79,5,276,32"/>
+<area shape="rect" id="node2" href="$classTRUSTList.html" title=" " alt="" coords="5,171,168,197"/>
+<area shape="rect" id="node3" href="$classTRUSTList.html" title=" " alt="" coords="211,171,346,197"/>
+<area shape="rect" id="node4" href="$classTRUSTList.html" title=": Classe qui sert a representer une liste de reels int/double precision." alt="" coords="95,81,259,108"/>
 </map>

@@ -2,8 +2,8 @@ var classIterateur__VDF__Face =
 [
     [ "Iterateur_VDF_Face", "classIterateur__VDF__Face.html#a329f4a4c3112b8e756e754894e878513", null ],
     [ "Iterateur_VDF_Face", "classIterateur__VDF__Face.html#a872af7df3f69fa204e618f77c2775de2", null ],
-    [ "evaluateur", "classIterateur__VDF__Face.html#a602bdab6fd82d3360f658e8a276cadc9", null ],
-    [ "evaluateur", "classIterateur__VDF__Face.html#a843e8b73ca4b8a684d6b0d3d4a75f2bf", null ],
+    [ "evaluateur", "classIterateur__VDF__Face.html#ac654b27364f36876ef9b05c851f7bd4c", null ],
+    [ "evaluateur", "classIterateur__VDF__Face.html#adb9478a8cd36617347102f2f6c8cd711", null ],
     [ "impr", "classIterateur__VDF__Face.html#a1d57788150e6eaed8685668b34a25622", null ],
     [ "completer_", "classIterateur__VDF__Face.html#a6b435470dcb1959a72136a1f99c0128b", null ],
     [ "ajouter_blocs", "classIterateur__VDF__Face.html#a098b5096b18a0b532a2940761371cd30", null ],

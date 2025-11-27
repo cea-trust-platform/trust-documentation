@@ -25,7 +25,7 @@ var classMatrice__Dense =
     [ "inverse", "classMatrice__Dense.html#aaa4b4b53d851421cec0fc54d5c036c61", null ],
     [ "solve", "classMatrice__Dense.html#a68b5135e5f054dc9a1f5d47ebb2930cc", null ],
     [ "multiplyToRight", "classMatrice__Dense.html#ace4855ee37403607559b94725897fd49", null ],
-    [ "coeffs", "classMatrice__Dense.html#a98c68d7b50e3602744059ec6bb9c6950", null ],
+    [ "coeffs", "classMatrice__Dense.html#a40c9a6fd9aa76d595d6f3089d049d22e", null ],
     [ "operator+", "classMatrice__Dense.html#a890e0f1e1b3a4a98cb4c82c9bf780ca5", null ],
     [ "operator*", "classMatrice__Dense.html#a9c2d2c7a51042749c2d3f16d02447be0", null ]
 ];

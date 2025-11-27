@@ -23,6 +23,6 @@ var classTroisDto2D__32__64 =
     [ "getKx", "classTroisDto2D__32__64.html#a9a205da70facdac1e091d7f941c0e4f8", null ],
     [ "getKy", "classTroisDto2D__32__64.html#a1101de0fc77fadec9c7defa947b0784c", null ],
     [ "getKz", "classTroisDto2D__32__64.html#ad2aeae0996784322fca3ccfc49de2eac", null ],
-    [ "coupe", "classTroisDto2D__32__64.html#ab8c96d1fa6dcfe47290c760d9843c36f", null ],
+    [ "coupe", "classTroisDto2D__32__64.html#af910b5058f4658d86adbf7983286aa61", null ],
     [ "coupe_", "classTroisDto2D__32__64.html#a1595ec91aabcc21ec129680137a25534", null ]
 ];

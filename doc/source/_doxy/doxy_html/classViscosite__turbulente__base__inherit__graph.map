@@ -1,21 +1,12 @@
 <map id="Viscosite_turbulente_base" name="Viscosite_turbulente_base">
-<area shape="rect" id="Node000001" title="classe Viscosite_turbulente_base correlations de viscosite turbulente decrivant le tenseur de Reynold..." alt="" coords="550,112,743,140"/>
-<area shape="rect" id="Node000006" href="$classViscosite__turbulente__LES__base.html" title=" " alt="" coords="791,35,945,79"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="707,105,793,77,795,82,708,110"/>
-<area shape="rect" id="Node000009" href="$classViscosite__turbulente__l__melange.html" title="Diffusivite turbulente a longueur de melange et vitesse de melange identique pour les deux phases." alt="" coords="791,104,945,149"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="758,124,791,124,791,129,758,129"/>
-<area shape="rect" id="Node000010" href="$classViscosite__turbulente__multiple.html" title="classe Viscosite_turbulente_multiple Classe qui peut contenir plusieurs viscosites turbulentes pour f..." alt="" coords="791,173,945,218"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="708,143,795,170,793,175,707,148"/>
-<area shape="rect" id="Node000002" href="$classCorrelation__base.html" title=" " alt="" coords="371,112,502,140"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="518,124,550,124,550,129,518,129"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,86,260,114"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="276,103,371,115,370,121,275,109"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,86,77,114"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="92,97,187,97,187,102,92,102"/>
-<area shape="rect" id="Node000005" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,138,323,166"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="338,135,370,131,371,137,339,141"/>
-<area shape="rect" id="Node000007" href="$classViscosite__turbulente__Smagorinsky.html" title="classe Viscosite_turbulente_Smagorinsky" alt="" coords="1015,5,1169,50"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="960,42,1014,35,1015,40,961,48"/>
-<area shape="rect" id="Node000008" href="$classViscosite__turbulente__WALE.html" title="classe Viscosite_turbulente_WALE" alt="" coords="993,74,1191,102"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="961,67,993,71,992,77,960,72"/>
+<area shape="rect" id="node1" title="classe Viscosite_turbulente_base correlations de viscosite turbulente decrivant le tenseur de Reynold..." alt="" coords="552,107,745,134"/>
+<area shape="rect" id="node6" href="$classViscosite__turbulente__LES__base.html" title=" " alt="" coords="793,35,948,76"/>
+<area shape="rect" id="node9" href="$classViscosite__turbulente__l__melange.html" title="Diffusivite turbulente a longueur de melange et vitesse de melange identique pour les deux phases." alt="" coords="793,100,948,141"/>
+<area shape="rect" id="node10" href="$classViscosite__turbulente__multiple.html" title="classe Viscosite_turbulente_multiple Classe qui peut contenir plusieurs viscosites turbulentes pour f..." alt="" coords="793,165,948,207"/>
+<area shape="rect" id="node2" href="$classCorrelation__base.html" title=" " alt="" coords="372,107,504,134"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="187,82,262,109"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,82,77,109"/>
+<area shape="rect" id="node5" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="125,133,324,159"/>
+<area shape="rect" id="node7" href="$classViscosite__turbulente__Smagorinsky.html" title="classe Viscosite_turbulente_Smagorinsky" alt="" coords="1018,5,1173,47"/>
+<area shape="rect" id="node8" href="$classViscosite__turbulente__WALE.html" title="classe Viscosite_turbulente_WALE" alt="" coords="996,71,1195,98"/>
 </map>

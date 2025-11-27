@@ -1,7 +1,7 @@
 var classOp__Dift__EF__Q1 =
 [
     [ "associer_diffusivite", "classOp__Dift__EF__Q1.html#a8616da02707981e3c12d1d031223b419", null ],
-    [ "diffusivite", "classOp__Dift__EF__Q1.html#a06b6e612c74b153d525b2a446ab070ca", null ],
+    [ "diffusivite", "classOp__Dift__EF__Q1.html#a9521a5553bb5447761063b9c2254ed45", null ],
     [ "diffusivite", "classOp__Dift__EF__Q1.html#a97f63303f7eddf183cca3ca62e53b77d", null ],
     [ "ajouter", "classOp__Dift__EF__Q1.html#a1611b09c4609a33b286372c88af8388c", null ],
     [ "ajouter_new", "classOp__Dift__EF__Q1.html#ab0019836a18d9fef2d782c9eed556694", null ],

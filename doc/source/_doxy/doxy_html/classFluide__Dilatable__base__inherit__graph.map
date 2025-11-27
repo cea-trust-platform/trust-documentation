@@ -1,19 +1,11 @@
 <map id="Fluide_Dilatable_base" name="Fluide_Dilatable_base">
-<area shape="rect" id="Node000001" title="classe Fluide_Dilatable_base Cette classe represente un d&#39;un fluide dilatable," alt="" coords="139,308,305,336"/>
-<area shape="rect" id="Node000007" href="$classFluide__Quasi__Compressible.html" title="classe Fluide_Quasi_Compressible Cette classe represente un d&#39;un fluide quasi compressible" alt="" coords="5,384,207,411"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="190,347,128,385,125,381,187,342"/>
-<area shape="rect" id="Node000009" href="$classFluide__Weakly__Compressible.html" title="classe Fluide_Weakly_Compressible Cette classe represente un d&#39;un fluide faiblement compressible" alt="" coords="231,384,445,411"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="257,342,319,381,316,385,254,347"/>
-<area shape="rect" id="Node000002" href="$classFluide__base.html" title="classe Fluide_base Cette classe represente un d&#39;un fluide incompressible ainsi que" alt="" coords="172,232,272,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,276,225,308,219,308,219,276"/>
-<area shape="rect" id="Node000003" href="$classMilieu__base.html" title="classe Milieu_base Cette classe est la base de la hierarchie des milieux (physiques)" alt="" coords="172,157,272,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,200,225,232,219,232,219,200"/>
-<area shape="rect" id="Node000004" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="43,81,241,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="169,118,210,154,206,158,166,122"/>
-<area shape="rect" id="Node000005" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="265,81,339,109"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="278,122,238,158,234,154,275,118"/>
-<area shape="rect" id="Node000006" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="266,5,338,33"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="305,49,305,81,299,81,299,49"/>
-<area shape="rect" id="Node000008" href="$classEspece.html" title="classe Espece" alt="" coords="72,459,140,487"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="109,427,109,459,103,459,103,427"/>
+<area shape="rect" id="node1" title="classe Fluide_Dilatable_base Cette classe represente un d&#39;un fluide dilatable," alt="" coords="139,304,306,331"/>
+<area shape="rect" id="node7" href="$classFluide__Quasi__Compressible.html" title="classe Fluide_Quasi_Compressible Cette classe represente un d&#39;un fluide quasi compressible" alt="" coords="5,379,208,405"/>
+<area shape="rect" id="node9" href="$classFluide__Weakly__Compressible.html" title="classe Fluide_Weakly_Compressible Cette classe represente un d&#39;un fluide faiblement compressible" alt="" coords="233,379,447,405"/>
+<area shape="rect" id="node2" href="$classFluide__base.html" title="classe Fluide_base Cette classe represente un d&#39;un fluide incompressible ainsi que" alt="" coords="173,229,273,256"/>
+<area shape="rect" id="node3" href="$classMilieu__base.html" title="classe Milieu_base Cette classe est la base de la hierarchie des milieux (physiques)" alt="" coords="173,155,273,181"/>
+<area shape="rect" id="node4" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="43,80,242,107"/>
+<area shape="rect" id="node5" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="265,80,340,107"/>
+<area shape="rect" id="node6" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="267,5,339,32"/>
+<area shape="rect" id="node8" href="$classEspece.html" title="classe Espece" alt="" coords="73,453,141,480"/>
 </map>

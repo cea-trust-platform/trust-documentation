@@ -1,9 +1,6 @@
 <map id="Marqueur_Lagrange_base" name="Marqueur_Lagrange_base">
-<area shape="rect" id="Node000001" title="classe Marqueur_Lagrange_base La classe Marqueur_Lagange_base est la classe de base des classes de ma..." alt="" coords="90,157,279,184"/>
-<area shape="rect" id="Node000002" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,81,204,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="132,118,172,154,169,158,128,122"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="228,81,301,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,122,200,158,197,154,237,118"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,300,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="267,49,267,81,262,81,262,49"/>
+<area shape="rect" id="node1" title="classe Marqueur_Lagrange_base La classe Marqueur_Lagange_base est la classe de base des classes de ma..." alt="" coords="90,155,279,181"/>
+<area shape="rect" id="node2" href="$classChamps__compris__interface.html" title="classe Champs_compris_interface Cette classe contient une interface de methodes destinees a gerer" alt="" coords="5,80,204,107"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="227,80,302,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="229,5,301,32"/>
 </map>

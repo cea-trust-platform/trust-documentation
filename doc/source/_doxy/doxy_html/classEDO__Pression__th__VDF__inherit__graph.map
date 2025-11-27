@@ -1,9 +1,8 @@
 <map id="EDO_Pression_th_VDF" name="EDO_Pression_th_VDF">
-<area shape="rect" id="Node000001" title="classe EDO_Pression_th_VDF Cette classe represente l&#39;EDO sur la pression associee au schema de" alt="" coords="100,81,265,109"/>
-<area shape="rect" id="Node000003" href="$classEDO__Pression__th__VDF__Gaz__Parfait.html" title="classe EDO_Pression_th_VDF_Gaz_Parfait Cette classe represente l&#39;EDO sur la pression associee au sche..." alt="" coords="5,157,171,201"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="158,121,115,158,111,154,154,117"/>
-<area shape="rect" id="Node000004" href="$classEDO__Pression__th__VDF__Gaz__Reel.html" title="classe EDO_Pression_th_VDF_Gaz_Reel Cette classe represente l&#39;EDO sur la pression associee au schema ..." alt="" coords="195,157,360,201"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,117,254,154,250,158,208,121"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="98,5,267,33"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="185,49,185,81,180,81,180,49"/>
+<area shape="rect" id="node1" title="classe EDO_Pression_th_VDF Cette classe represente l&#39;EDO sur la pression associee au schema de" alt="" coords="100,229,267,256"/>
+<area shape="rect" id="node5" href="$classEDO__Pression__th__VDF__Gaz__Parfait.html" title="classe EDO_Pression_th_VDF_Gaz_Parfait Cette classe represente l&#39;EDO sur la pression associee au sche..." alt="" coords="5,304,172,345"/>
+<area shape="rect" id="node6" href="$classEDO__Pression__th__VDF__Gaz__Reel.html" title="classe EDO_Pression_th_VDF_Gaz_Reel Cette classe represente l&#39;EDO sur la pression associee au schema ..." alt="" coords="196,304,363,345"/>
+<area shape="rect" id="node2" href="$classEDO__Pression__th__base.html" title="classe EDO_Pression_th_base Cette classe est la base de la hierarchie des EDO sur la pression" alt="" coords="98,155,269,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="146,80,221,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="147,5,219,32"/>
 </map>

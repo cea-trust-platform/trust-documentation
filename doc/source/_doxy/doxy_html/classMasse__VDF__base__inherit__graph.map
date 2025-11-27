@@ -1,15 +1,9 @@
 <map id="Masse_VDF_base" name="Masse_VDF_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="86,232,222,260"/>
-<area shape="rect" id="Node000006" href="$classMasse__VDF__Elem.html" title=" " alt="" coords="5,308,143,336"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="130,273,90,310,86,306,127,269"/>
-<area shape="rect" id="Node000007" href="$classMasse__VDF__Face.html" title=" " alt="" coords="167,308,301,336"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="181,269,222,306,218,310,178,273"/>
-<area shape="rect" id="Node000002" href="$classSolveur__Masse__base.html" title="classe Solveur_Masse_base Represente la matrice de masse d&#39;une equation." alt="" coords="75,157,233,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,200,157,232,151,232,151,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="69,81,143,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="125,120,148,155,143,158,121,123"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="70,5,142,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="109,49,109,81,103,81,103,49"/>
-<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="167,81,237,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="187,123,165,158,160,155,183,120"/>
+<area shape="rect" id="node1" title=" " alt="" coords="87,229,223,256"/>
+<area shape="rect" id="node6" href="$classMasse__VDF__Elem.html" title=" " alt="" coords="5,304,144,331"/>
+<area shape="rect" id="node7" href="$classMasse__VDF__Face.html" title=" " alt="" coords="169,304,303,331"/>
+<area shape="rect" id="node2" href="$classSolveur__Masse__base.html" title="classe Solveur_Masse_base Represente la matrice de masse d&#39;une equation." alt="" coords="75,155,234,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="69,80,144,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="71,5,143,32"/>
+<area shape="rect" id="node5" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="169,80,239,107"/>
 </map>

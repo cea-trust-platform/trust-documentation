@@ -1,37 +1,21 @@
 <map id="SolveurSys_base" name="SolveurSys_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="246,109,377,137"/>
-<area shape="rect" id="Node000004" href="$classMultigrille__base.html" title=" " alt="" coords="425,5,551,33"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="342,98,424,44,449,31,452,36,427,48,345,102"/>
-<area shape="rect" id="Node000006" href="$classSolv__Cholesky.html" title=" " alt="" coords="430,57,546,85"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="375,102,438,83,439,88,377,107"/>
-<area shape="rect" id="Node000007" href="$classSolv__Externe.html" title=" " alt="" coords="435,109,541,137"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="393,120,434,120,434,126,393,126"/>
-<area shape="rect" id="Node000012" href="$classSolveurPP1B.html" title=" " alt="" coords="436,161,540,189"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="377,139,439,158,438,163,375,145"/>
-<area shape="rect" id="Node000013" href="$classsolv__iteratif.html" title=" " alt="" coords="438,239,538,266"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="346,144,469,236,466,240,343,149"/>
-<area shape="rect" id="Node000002" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,109,198,137"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,120,245,120,245,126,213,126"/>
-<area shape="rect" id="Node000003" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,109,77,137"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,120,124,120,124,126,92,126"/>
-<area shape="rect" id="Node000005" href="$classMultigrille__Adrien.html" title=" " alt="" coords="599,5,735,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="566,16,598,16,598,22,566,22"/>
-<area shape="rect" id="Node000008" href="$classSolv__Petsc.html" title=" " alt="" coords="621,57,712,85"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="552,102,620,82,622,87,554,107"/>
-<area shape="rect" id="Node000011" href="$classSolv__rocALUTION.html" title=" " alt="" coords="600,109,734,137"/>
-<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="557,120,600,120,600,126,557,126"/>
-<area shape="rect" id="Node000009" href="$classSolv__AMGX.html" title=" " alt="" coords="798,32,894,60"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="727,60,797,50,798,55,728,65"/>
-<area shape="rect" id="Node000010" href="$classSolv__Petsc__GPU.html" title=" " alt="" coords="783,84,909,112"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="728,78,783,86,782,91,727,83"/>
-<area shape="rect" id="Node000014" href="$classSolv__GCP.html" title=" " alt="" coords="625,161,708,189"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="532,229,598,199,627,187,629,192,600,204,534,234"/>
-<area shape="rect" id="Node000015" href="$classSolv__GCP__NS.html" title=" " alt="" coords="613,213,721,241"/>
-<area shape="poly" id="edge14_Node000013_Node000015" title=" " alt="" coords="553,241,612,232,612,237,553,246"/>
-<area shape="rect" id="Node000016" href="$classSolv__Gen.html" title=" " alt="" coords="626,265,708,293"/>
-<area shape="poly" id="edge15_Node000013_Node000016" title=" " alt="" coords="553,259,626,270,625,276,553,265"/>
-<area shape="rect" id="Node000017" href="$classSolv__Gmres.html" title=" " alt="" coords="617,317,716,345"/>
-<area shape="poly" id="edge16_Node000013_Node000017" title=" " alt="" coords="533,271,600,302,629,314,627,319,598,307,531,276"/>
-<area shape="rect" id="Node000018" href="$classSolv__Optimal.html" title=" " alt="" coords="613,369,721,397"/>
-<area shape="poly" id="edge17_Node000013_Node000018" title=" " alt="" coords="513,276,551,315,600,354,623,366,621,371,597,359,548,319,509,280"/>
+<area shape="rect" id="node1" title=" " alt="" coords="248,132,380,159"/>
+<area shape="rect" id="node4" href="$classMultigrille__base.html" title=" " alt="" coords="428,5,555,32"/>
+<area shape="rect" id="node6" href="$classSolv__AMG.html" title="AMD solver wrapper to switch to the more robust/performant AMG preconditioner on CPU/GPU Nvidia/GPU A..." alt="" coords="447,56,535,83"/>
+<area shape="rect" id="node7" href="$classSolv__Cholesky.html" title=" " alt="" coords="433,107,549,133"/>
+<area shape="rect" id="node8" href="$classSolv__Externe.html" title=" " alt="" coords="438,157,545,184"/>
+<area shape="rect" id="node13" href="$classSolveurPP1B.html" title=" " alt="" coords="439,208,543,235"/>
+<area shape="rect" id="node14" href="$classsolv__iteratif.html" title=" " alt="" coords="441,284,541,311"/>
+<area shape="rect" id="node2" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="125,132,200,159"/>
+<area shape="rect" id="node3" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="5,132,77,159"/>
+<area shape="rect" id="node5" href="$classMultigrille__Adrien.html" title=" " alt="" coords="603,5,740,32"/>
+<area shape="rect" id="node9" href="$classSolv__Petsc.html" title=" " alt="" coords="625,107,717,133"/>
+<area shape="rect" id="node12" href="$classSolv__cuDSS.html" title=" " alt="" coords="622,157,721,184"/>
+<area shape="rect" id="node10" href="$classSolv__AMGX.html" title=" " alt="" coords="803,81,900,108"/>
+<area shape="rect" id="node11" href="$classSolv__Petsc__GPU.html" title=" " alt="" coords="788,132,915,159"/>
+<area shape="rect" id="node15" href="$classSolv__GCP.html" title=" " alt="" coords="629,208,713,235"/>
+<area shape="rect" id="node16" href="$classSolv__GCP__NS.html" title=" " alt="" coords="617,259,726,285"/>
+<area shape="rect" id="node17" href="$classSolv__Gen.html" title=" " alt="" coords="630,309,713,336"/>
+<area shape="rect" id="node18" href="$classSolv__Gmres.html" title=" " alt="" coords="621,360,721,387"/>
+<area shape="rect" id="node19" href="$classSolv__Optimal.html" title=" " alt="" coords="617,411,726,437"/>
 </map>

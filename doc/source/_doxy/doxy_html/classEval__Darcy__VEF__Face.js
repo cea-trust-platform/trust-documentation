@@ -7,6 +7,6 @@ var classEval__Darcy__VEF__Face =
     [ "calculer_terme_source_non_standard", "classEval__Darcy__VEF__Face.html#a312b6091fddce83e948471391efe1e90", null ],
     [ "associer", "classEval__Darcy__VEF__Face.html#a269b82939e92b4d2b974e00b12e0326a", null ],
     [ "associer", "classEval__Darcy__VEF__Face.html#aaf0dd86f4c1e621b80c05fbfee95f451", null ],
-    [ "getPorosite", "classEval__Darcy__VEF__Face.html#aa9e8da478aaf485a68513148175a5dfe", null ],
+    [ "getPorosite", "classEval__Darcy__VEF__Face.html#a36bb4aca38d13fd569d9be29f7a7d241", null ],
     [ "OWN_PTR", "classEval__Darcy__VEF__Face.html#a6b17e3bff45eefff6272dedd3cd306df", null ]
 ];

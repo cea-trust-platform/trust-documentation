@@ -1,20 +1,10 @@
 <map id="TRUSTTrav&lt; _TYPE_ &gt;" name="TRUSTTrav&lt; _TYPE_ &gt;">
-<area shape="rect" id="Node000001" title="Temporary multidimensional array (&#39;tableau de travail&#39;)" alt="" coords="22,654,190,682"/>
-<area shape="rect" id="Node000002" href="$classTRUSTTab.html" title=" " alt="" coords="12,577,200,605"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,620,108,654,103,654,103,620"/>
-<area shape="rect" id="Node000003" href="$classTRUSTVect.html" title=" " alt="" coords="5,399,164,444"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,459,107,577,102,577,87,460"/>
-<area shape="rect" id="Node000004" href="$classTRUSTArray.html" title="Represents a an array of int/int64/double/... values." alt="" coords="18,236,183,281"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="99,297,89,399,84,398,94,296"/>
-<area shape="rect" id="Node000009" href="$classTRUSTVect.html" title=" " alt="" coords="121,330,280,375"/>
-<area shape="poly" id="edge9_Node000009_Node000004" title=" " alt="" coords="137,290,179,328,175,332,133,294"/>
-<area shape="rect" id="Node000005" href="$classArray__base.html" title="Empty class used as a base for all the arrays." alt="" coords="53,159,148,187"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="103,202,103,236,98,236,98,202"/>
-<area shape="rect" id="Node000006" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="64,82,137,110"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="103,125,103,159,98,159,98,125"/>
-<area shape="rect" id="Node000007" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="65,5,136,33"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="103,48,103,82,98,82,98,48"/>
-<area shape="rect" id="Node000008" href="$classTRUSTTab.html" title=": Tableau a n entrees pour n&lt;= 4." alt="" coords="122,468,277,512"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="171,525,120,579,116,575,167,522"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="203,391,202,467,197,467,197,391"/>
+<area shape="rect" id="node1" title="Temporary multidimensional array (&#39;tableau de travail&#39;)" alt="" coords="15,595,184,621"/>
+<area shape="rect" id="node2" href="$classTRUSTTab.html" title=" " alt="" coords="5,519,193,545"/>
+<area shape="rect" id="node3" href="$classTRUSTVect.html" title=" " alt="" coords="15,324,173,365"/>
+<area shape="rect" id="node8" href="$classTRUSTTab.html" title=": Tableau a n entrees pour n&lt;= 4." alt="" coords="116,415,272,456"/>
+<area shape="rect" id="node4" href="$classTRUSTArray.html" title="Represents a an array of int/int64/double/... values." alt="" coords="11,233,177,275"/>
+<area shape="rect" id="node5" href="$classArray__base.html" title="Empty class used as a base for all the arrays." alt="" coords="47,157,141,184"/>
+<area shape="rect" id="node6" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="57,81,131,108"/>
+<area shape="rect" id="node7" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="58,5,130,32"/>
 </map>

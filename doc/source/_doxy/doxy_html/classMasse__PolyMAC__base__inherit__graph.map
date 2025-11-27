@@ -1,23 +1,13 @@
 <map id="Masse_PolyMAC_base" name="Masse_PolyMAC_base">
-<area shape="rect" id="Node000001" title=" " alt="" coords="197,232,363,260"/>
-<area shape="rect" id="Node000006" href="$classMasse__PolyMAC__Elem.html" title=" " alt="" coords="5,308,174,336"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="233,269,124,310,122,305,231,264"/>
-<area shape="rect" id="Node000007" href="$classMasse__PolyMAC__Face.html" title=" " alt="" coords="198,308,363,336"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="283,276,283,308,278,308,278,276"/>
-<area shape="rect" id="Node000008" href="$classMasse__PolyMAC__P0P1NC__base.html" title=" " alt="" coords="387,308,611,336"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="334,263,461,305,459,310,333,268"/>
-<area shape="rect" id="Node000002" href="$classSolveur__Masse__base.html" title="classe Solveur_Masse_base Represente la matrice de masse d&#39;une equation." alt="" coords="202,157,359,184"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="283,200,283,232,278,232,278,200"/>
-<area shape="rect" id="Node000003" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="196,81,269,109"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="251,120,274,155,269,158,247,123"/>
-<area shape="rect" id="Node000004" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="196,5,268,33"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="235,49,235,81,230,81,230,49"/>
-<area shape="rect" id="Node000005" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="293,81,363,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="314,123,291,158,286,155,309,120"/>
-<area shape="rect" id="Node000009" href="$classMasse__PolyMAC__P0P1NC__Elem.html" title=" " alt="" coords="260,384,487,411"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="465,346,397,386,394,381,462,341"/>
-<area shape="rect" id="Node000010" href="$classMasse__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="511,384,734,411"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="536,342,602,381,600,386,533,346"/>
-<area shape="rect" id="Node000011" href="$classMasse__PolyMAC__P0__Face.html" title=" " alt="" coords="529,459,717,487"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="626,427,626,459,620,459,620,427"/>
+<area shape="rect" id="node1" title=" " alt="" coords="199,229,365,256"/>
+<area shape="rect" id="node6" href="$classMasse__PolyMAC__Elem.html" title=" " alt="" coords="5,304,175,331"/>
+<area shape="rect" id="node7" href="$classMasse__PolyMAC__Face.html" title=" " alt="" coords="199,304,365,331"/>
+<area shape="rect" id="node8" href="$classMasse__PolyMAC__P0P1NC__base.html" title=" " alt="" coords="389,304,615,331"/>
+<area shape="rect" id="node2" href="$classSolveur__Masse__base.html" title="classe Solveur_Masse_base Represente la matrice de masse d&#39;une equation." alt="" coords="203,155,361,181"/>
+<area shape="rect" id="node3" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="197,80,271,107"/>
+<area shape="rect" id="node4" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="198,5,270,32"/>
+<area shape="rect" id="node5" href="$classMorEqn.html" title="classe MorEqn Classe qui regroupe les fonctionnalites de liaison avec une" alt="" coords="296,80,367,107"/>
+<area shape="rect" id="node9" href="$classMasse__PolyMAC__P0P1NC__Elem.html" title=" " alt="" coords="263,379,490,405"/>
+<area shape="rect" id="node10" href="$classMasse__PolyMAC__P0P1NC__Face.html" title=" " alt="" coords="514,379,738,405"/>
+<area shape="rect" id="node11" href="$classMasse__PolyMAC__P0__Face.html" title=" " alt="" coords="531,453,721,480"/>
 </map>

@@ -1,11 +1,7 @@
 <map id="Neumann_paroi" name="Neumann_paroi">
-<area shape="rect" id="Node000001" title="Classe Neumann_paroi Cette condition limite correspond a un flux impose pour l&#39;equation de." alt="" coords="5,308,130,336"/>
-<area shape="rect" id="Node000002" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="25,232,110,260"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,276,70,308,65,308,65,276"/>
-<area shape="rect" id="Node000003" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="7,157,128,184"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="70,200,70,232,65,232,65,200"/>
-<area shape="rect" id="Node000004" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="31,81,104,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="70,124,70,156,65,156,65,124"/>
-<area shape="rect" id="Node000005" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="32,5,103,33"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="70,49,70,81,65,81,65,49"/>
+<area shape="rect" id="node1" title="Classe Neumann_paroi Cette condition limite correspond a un flux impose pour l&#39;equation de." alt="" coords="5,304,131,331"/>
+<area shape="rect" id="node2" href="$classNeumann.html" title="Classe Neumann Cette classe est la classe de base de la hierarchie des conditions aux limites de type..." alt="" coords="25,229,111,256"/>
+<area shape="rect" id="node3" href="$classCond__lim__base.html" title="classe Cond_lim_base Classe de base pour la hierarchie des classes qui representent les differentes c..." alt="" coords="7,155,129,181"/>
+<area shape="rect" id="node4" href="$classObjet__U.html" title="classe Objet_U Cette classe est la classe de base des Objets de TRUST" alt="" coords="31,80,105,107"/>
+<area shape="rect" id="node5" href="$classProcess.html" title="Classe de base de TRUST (notamment Objet_U)." alt="" coords="32,5,104,32"/>
 </map>
