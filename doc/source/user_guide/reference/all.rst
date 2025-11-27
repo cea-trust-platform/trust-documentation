@@ -607,6 +607,24 @@ not_set
 
 ----
 
+.. _cudss:
+
+**cudss**
+---------
+
+
+Solver via cuDSS API
+
+Parameters are:
+
+- **solveur**  (*type:* string) not_set
+
+- **option_solveur**  (*type:* :ref:`bloc_lecture`) not_set
+
+
+
+----
+
 .. _dt_calc_dt_calc:
 
 **dt_calc_dt_calc**
@@ -685,7 +703,7 @@ Parameters are:
 
 - **[quiet]**  (*type:* flag) To not displaying any outputs of the solver.
 
-- **[save_matrice | save_matrix]**  (*type:* flag) to save the matrix in a file.
+- **[save_matrice | save_matrix]**  (*type:* int) to save the matrix in a file.
 
 - **[precond]**  (*type:* :ref:`precond_base`) Keyword to define system preconditioning in order to accelerate resolution by the conjugated gradient. Many parallel preconditioning methods are not equivalent to their sequential counterpart, and you should therefore expect differences, especially when you select a high value of the final residue (seuil). The result depends on the number of processors and on the mesh splitting. It is sometimes useful to run the solver with no preconditioning at all. In particular:  - when the solver does not converge during initial projection,  - when comparing sequential and parallel computations.  With no preconditioning, except in some particular cases (no open boundary), the sequential and the parallel computations should provide exactly the same results within fpu accuracy. If not, there might be a coding error or the system of equations is singular.
 
@@ -826,24 +844,6 @@ Parameters are:
 
 ----
 
-.. _rocalution:
-
-**rocalution**
---------------
-
-
-Solver via rocALUTION API
-
-Parameters are:
-
-- **solveur**  (*type:* string) not_set
-
-- **option_solveur**  (*type:* :ref:`bloc_lecture`) not_set
-
-
-
-----
-
 .. _solv_gcp:
 
 **solv_gcp**
@@ -864,7 +864,7 @@ Parameters are:
 
 - **[quiet]**  (*type:* flag) To not displaying any outputs of the solver.
 
-- **[save_matrice | save_matrix]**  (*type:* flag) to save the matrix in a file.
+- **[save_matrice | save_matrix]**  (*type:* int) to save the matrix in a file.
 
 - **[precond]**  (*type:* :ref:`precond_base`) Keyword to define system preconditioning in order to accelerate resolution by the conjugated gradient. Many parallel preconditioning methods are not equivalent to their sequential counterpart, and you should therefore expect differences, especially when you select a high value of the final residue (seuil). The result depends on the number of processors and on the mesh splitting. It is sometimes useful to run the solver with no preconditioning at all. In particular:  - when the solver does not converge during initial projection,  - when comparing sequential and parallel computations.  With no preconditioning, except in some particular cases (no open boundary), the sequential and the parallel computations should provide exactly the same results within fpu accuracy. If not, there might be a coding error or the system of equations is singular.
 
@@ -1082,7 +1082,7 @@ condition must be associated with a boundary outlet hydraulic condition.
 
 Parameters are:
 
-- **var_name**  (*type:* string into ['t_ext', 'c_ext', 'y_ext', 'k_eps_ext', 'k_omega_ext', 'fluctu_temperature_ext', 'flux_chaleur_turb_ext', 'v2_ext', 'a_ext', 'tau_ext', 'k_ext', 'omega_ext', 'h_ext']) Field name.
+- **var_name**  (*type:* string into ['t_ext', 'c_ext', 'y_ext', 'k_eps_ext', 'k_omega_ext', 'fluctu_temperature_ext', 'flux_chaleur_turb_ext', 'v2_ext', 'a_ext', 'tau_ext', 'k_ext', 'omega_ext', 'h_ext', 'a_i_ext']) Field name.
 
 - **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
 
@@ -1811,6 +1811,26 @@ dealing with this periodic condition bear the same name.
 
 ----
 
+.. _robin_vef:
+
+**robin_vef**
+-------------
+
+
+Robin condition at the boundary (edge)
+
+Parameters are:
+
+- **alpha**  (*type:* float) Robin coefficient for the normal field
+
+- **beta**  (*type:* float) Robin coefficient for the tangent field
+
+- **champ_front_normal_et_tangentiel_robin**  (*type:* :ref:`front_field_base`) The boundary field
+
+
+
+----
+
 .. _scalaire_impose_paroi:
 
 **scalaire_impose_paroi**
@@ -2109,6 +2129,12 @@ Parameters are:
 - **perio**  (*type:* list of int) Is the direction periodic ? (0 or 1, 2 or 3 values depending on dimension)
 
 - **nproc**  (*type:* list of int) Number of procs in each direction (integers, 2 or 3 values depending on dimension)
+
+- **[origin]**  (*type:* list of float) Domain origin in each direction (floats, 2 or 3 values depending on dimension)
+
+- **[ijk_splitting_ft_extension]**  (*type:* int) not_set
+
+- **[file_coords]**  (*type:* :ref:`troismots`) not_set
 
 
 
@@ -3635,7 +3661,7 @@ Parameters are:
 **interpolation_ibm_elem_fluid**
 --------------------------------
 
-**Synonyms:** interpolation_ibm_element_fluide, ibm_element_fluide
+**Synonyms:** ibm_element_fluide, interpolation_ibm_element_fluide
 
 
 Immersed Boundary Method (IBM): fluid element interpolation.
@@ -3695,7 +3721,7 @@ Parameters are:
 **interpolation_ibm_mean_gradient**
 -----------------------------------
 
-**Synonyms:** ibm_gradient_moyen, interpolation_ibm_gradient_moyen
+**Synonyms:** interpolation_ibm_gradient_moyen, ibm_gradient_moyen
 
 
 Immersed Boundary Method (IBM): mean gradient interpolation.
@@ -3903,7 +3929,7 @@ Parameters are:
 **create_domain_from_sub_domain**
 ---------------------------------
 
-**Synonyms:** create_domain_from_sub_domains, create_domain_from_sous_zone
+**Synonyms:** create_domain_from_sous_zone, create_domain_from_sub_domains
 
 
 This keyword fills the domain domaine_final with the subdomaine par_sous_zone from the
@@ -4253,7 +4279,7 @@ Parameters are:
 **ecrire_med_32_64**
 --------------------
 
-**Synonyms:** write_med, ecrire_med
+**Synonyms:** ecrire_med, write_med
 
 
 Write a domain to MED format into a file.
@@ -5147,6 +5173,23 @@ Parameters are:
 
 ----
 
+.. _my_comm_group:
+
+**my_comm_group**
+-----------------
+
+
+This keyword allows to create a user MPI Comm Group of size N using the processors
+allocated to TRUST. The set of processors is split in N subsets.
+
+Parameters are:
+
+- **group_nb**  (*type:* int) Number of groups to define in your Comm Group.
+
+
+
+----
+
 .. _nettoiepasnoeuds:
 
 **nettoiepasnoeuds**
@@ -5232,11 +5275,17 @@ Parameters are:
 
 - **[single_precision]**  (*type:* flag) If used, data will be written with a single_precision format inside the CGNS file (it concerns both mesh coordinates and field values).
 
-- **[multiple_files]**  (*type:* flag) If used, data will be written in separate files (ie: one file per processor).
-
 - **[parallel_over_zone]**  (*type:* flag) If used, data will be written in separate zones (ie: one zone per processor). This is not so performant but easier to read later ...
 
 - **[use_links]**  (*type:* flag) If used, data will be written in separate files; one file for mesh, and then one file for solution time. Links will be used.
+
+- **[file_per_comm_group]**  (*type:* flag) If used, data will be written (at each comm group) in separate files; one file for mesh, and then one file for solution time. Links will be used.
+
+- **[single_safe_file]**  (*type:* flag) If used, data will be written in a single file that will be opened and closed at each dt post so that file can be visualized in live. Safer if simulation stops, the file can be used.
+
+- **[close_every_n]**  (*type:* int) Used to fix the opening/closing frequency when the SINGLE_SAFE_FILE option is used.
+
+- **[flush_every_n]**  (*type:* int) Used to fix the flush-to-disc frequency when the SINGLE_SAFE_FILE option is used.
 
 
 
@@ -5340,6 +5389,8 @@ Parameters are:
 
 - **[p_imposee_aux_faces]**  (*type:* string into ['oui', 'non']) Pressure imposed at the faces (yes or no).
 
+- **[deactivate_arete_mixte]**  (*type:* flag) Deactivate the arete_mixte contribution in the conv op of the momentum equation.
+
 - **[all_options | toutes_les_options]**  (*type:* flag) Activates all Option_VDF options. If used, must be used alone without specifying the other options, nor combinations.
 
 
@@ -5392,7 +5443,7 @@ Parameters are:
 **partition**
 -------------
 
-**Synonyms:** decouper, partition_64
+**Synonyms:** partition_64, decouper
 
 
 Class for parallel calculation to cut a domain for each processor. By default, this
@@ -5703,7 +5754,7 @@ Parameters are:
 **read_med**
 ------------
 
-**Synonyms:** lire_med, read_med_64
+**Synonyms:** read_med_64, lire_med
 
 
 Keyword to read MED mesh files where 'domain' corresponds to the domain name, 'file'
@@ -6522,9 +6573,6 @@ The Read_file option can be used only if the file.decoupage_som was previously c
 TRUST. This option, only in 2D, reverses the common face at two cells (at least one is
 inconsistent), through the nodes opposed. In 3D, the option has no effect.
 
-The expert_only option deactivates, into the VEFPreP1B divergence operator, the test of
-inconsistent cells.
-
 Parameters are:
 
 - **domain_name | dom**  (*type:* string) Name of the domaine
@@ -6558,7 +6606,7 @@ Parameters are:
 **write_file**
 --------------
 
-**Synonyms:** ecrire_fichier_bin, ecrire_fichier
+**Synonyms:** ecrire_fichier, ecrire_fichier_bin
 
 
 Keyword to write the object of name name_obj to a file filename. Since the v1.6.3, the
@@ -7564,7 +7612,7 @@ Heat equation.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7600,7 +7648,7 @@ Parameters are:
 
 - **[correction_variable_initiale]**  (*type:* int) Modify initial variable
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7636,7 +7684,7 @@ Parameters are:
 
 - **[mode_calcul_convection]**  (*type:* string into ['ancien', 'divut_moins_tdivu', 'divrhout_moins_tdivrhou']) Option to set the form of the convective operator divrhouT_moins_Tdivrhou (the default since 1.6.8): rho.u.gradT = div(rho.u.T )- Tdiv(rho.u.1) ancien: u.gradT = div(u.T) - T.div(u)  divuT_moins_Tdivu : u.gradT = div(u.T) - Tdiv(u.1)
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7675,7 +7723,7 @@ Parameters are:
 
 - **[mode_calcul_convection]**  (*type:* string into ['ancien', 'divut_moins_tdivu', 'divrhout_moins_tdivrhou']) Option to set the form of the convective operator divrhouT_moins_Tdivrhou (the default since 1.6.8): rho.u.gradT = div(rho.u.T )- Tdiv(rho.u.1) ancien: u.gradT = div(u.T) - T.div(u)  divuT_moins_Tdivu : u.gradT = div(u.T) - Tdiv(u.1)
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7709,7 +7757,7 @@ Temperature equation for a weakly-compressible fluid.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7751,7 +7799,7 @@ Parameters are:
 
 - **[is_multi_scalar | is_multi_scalar_diffusion]**  (*type:* flag) Flag to activate the multi_scalar diffusion operator
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7796,7 +7844,7 @@ Parameters are:
 
 - **[is_multi_scalar | is_multi_scalar_diffusion]**  (*type:* flag) Flag to activate the multi_scalar diffusion operator
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7830,7 +7878,7 @@ Species conservation equation for a binary quasi-compressible fluid.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7867,7 +7915,7 @@ Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the species conservation equation.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7901,7 +7949,7 @@ Species conservation equation for a binary weakly-compressible fluid.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7937,7 +7985,7 @@ Parameters are:
 
 - **[espece]**  (*type:* :ref:`espece`) Assosciate a species (with its properties) to the equation
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -7975,7 +8023,7 @@ Parameters are:
 
 - **espece**  (*type:* :ref:`espece`) not_set
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8009,7 +8057,7 @@ Species conservation equation for a multi-species weakly-compressible fluid.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8043,9 +8091,9 @@ Energy equation (temperature diffusion convection).
 
 Parameters are:
 
-- **[penalisation_l2_ftd]**  (*type:* list of Penalisation_l2_ftd_lec) not_set
+- **[penalisation_l2_ftd]**  (*type:* :ref:`bloc_lecture`) to activate or not (the default is Direct Forcing method) the Penalized Direct Forcing method to impose the specified temperature on the solid-fluid interface.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8081,9 +8129,9 @@ Parameters are:
 
 - **[correction_variable_initiale]**  (*type:* int) Modify initial variable
 
-- **[penalisation_l2_ftd]**  (*type:* list of Penalisation_l2_ftd_lec) not_set
+- **[penalisation_l2_ftd]**  (*type:* :ref:`bloc_lecture`) to activate or not (the default is Direct Forcing method) the Penalized Direct Forcing method to impose the specified temperature on the solid-fluid interface.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8120,7 +8168,7 @@ Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the energy equation.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8157,7 +8205,7 @@ Parameters are:
 
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the energy equation.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8192,7 +8240,7 @@ Turbulent Dissipation time scale equation for a turbulent mono/multi-phase probl
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8227,7 +8275,7 @@ Turbulent kinetic Energy conservation equation for a turbulent mono/multi-phase 
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8262,7 +8310,7 @@ Bubble Induced Turbulent kinetic Energy equation for a turbulent multi-phase pro
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8297,7 +8345,7 @@ temperature
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8334,7 +8382,7 @@ enthalpy
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8368,7 +8416,7 @@ Basic class for equations.
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8403,7 +8451,7 @@ fraction)
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8482,7 +8530,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8534,7 +8582,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8584,7 +8632,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8634,7 +8682,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8686,7 +8734,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8739,7 +8787,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8791,7 +8839,7 @@ Parameters are:
 
 - **[methode_calcul_pression_initiale]**  (*type:* string into ['avec_les_cl', 'avec_sources', 'avec_sources_et_operateurs', 'sans_rien']) Keyword to select an option for the pressure calculation before the fist time step. Options are : avec_les_cl (default option lapP=0 is solved with Neuman boundary conditions on pressure if any), avec_sources (lapP=f is solved with Neuman boundaries conditions and f integrating the source terms of the Navier-Stokes equations) and avec_sources_et_operateurs (lapP=f is solved as with the previous option avec_sources but f integrating also some operators of the Navier-Stokes equations). The two last options are useful and sometime necessary when source terms are implicited when using an implicit time scheme to solve the Navier-Stokes equations.
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8829,7 +8877,7 @@ Parameters are:
 
 - **[evanescence]**  (*type:* :ref:`bloc_lecture`) Management of the vanishing phase (when alpha tends to 0 or 1)
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8864,7 +8912,7 @@ Turbulent Dissipation frequency equation for a turbulent mono/multi-phase proble
 
 Parameters are:
 
-- **[disable_equation_residual]**  (*type:* string) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
 
@@ -8951,7 +8999,7 @@ not_set
 **moyenne_imposee_interpolation**
 ---------------------------------
 
-**Synonyms:** interpolation, champ_post_interpolation
+**Synonyms:** champ_post_interpolation, interpolation
 
 
 To create an imposed field built by interpolation of values read from a file. The imposed
@@ -10193,9 +10241,25 @@ not_set
 
 Parameters are:
 
+- **[t_debut_statistiques]**  (*type:* float) not_set (for IJK)
+
+- **[nb_pas_dt_post_stats_plans]**  (*type:* float) not_set (for IJK)
+
+- **[nb_pas_dt_post_stats_bulles]**  (*type:* float) not_set (for IJK)
+
+- **[expression_vx_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_vy_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_vz_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_p_ana]**  (*type:* string) not_set (for IJK)
+
+- **[interfaces]**  (*type:* :ref:`interface_posts`) Keyword to read all the caracteristics of the interfaces. Different kind of interfaces exist as well as different interface intitialisations.
+
 - **[fichier]**  (*type:* string) Name of file.
 
-- **[format]**  (*type:* string into ['lml', 'lata', 'single_lata', 'lata_v2', 'med', 'med_major', 'cgns']) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
+- **[format]**  (*type:* string into ['lml', 'lata', 'single_lata', 'lata_v2', 'med', 'cgns']) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
 
 - **[dt_post]**  (*type:* string) Field\'s write frequency (as a time period) - can also be specified after the 'field' keyword.
 
@@ -10791,6 +10855,24 @@ Parameters are:
 
 ----
 
+.. _interface_posts:
+
+**interface_posts**
+-------------------
+
+
+not set
+
+Parameters are:
+
+- **[nom_interf]**  (*type:* string) name of the interface to post process
+
+- **blocs**  (*type:* list of Champ_a_post) Fields to be post-processed.
+
+
+
+----
+
 .. _internes:
 
 **internes**
@@ -10877,8 +10959,6 @@ Parameters are:
 
 - **[tuyauz]**  (*type:* float) [diameter] : pipe according to Oz direction (for the moment, formulation in the code relies on fixed diameter : D=2).
 
-- **[verif_dparoi]**  (*type:* string) not_set
-
 - **[dmax]**  (*type:* float) Maximum distance.
 
 - **[fichier]**  (*type:* string) not_set
@@ -10912,36 +10992,6 @@ Parameters are:
 
 
 Basic class to mesh.
-
-
-----
-
-.. _mod_turb_hyd_rans:
-
-**mod_turb_hyd_rans**
----------------------
-
-
-Class for RANS turbulence model for Navier-Stokes equations.
-
-Parameters are:
-
-- **[k_min]**  (*type:* float) Lower limitation of k (default value 1.e-10).
-
-- **[quiet]**  (*type:* flag) To disable printing of information about K and Epsilon/Omega.
-
-- **[turbulence_paroi]**  (*type:* :ref:`turbulence_paroi_base`) Keyword to set the wall law.
-
-- **[dt_impr_ustar]**  (*type:* float) This keyword is used to print the values (U +, d+, u$\star$) obtained with the wall laws into a file named datafile_ProblemName_Ustar.face and periode refers to the printing period, this value is expressed in seconds.
-
-- **[dt_impr_ustar_mean_only]**  (*type:* :ref:`dt_impr_ustar_mean_only`) This keyword is used to print the mean values of u* ( obtained with the wall laws) on each boundary, into a file named datafile_ProblemName_Ustar_mean_only.out. periode refers to the printing period, this value is expressed in seconds. If you don\'t use the optional keyword boundaries, all the boundaries will be considered. If you use it, you must specify nb_boundaries which is the number of boundaries on which you want to calculate the mean values of u*, then you have to specify their names.
-
-- **[nut_max]**  (*type:* float) Upper limitation of turbulent viscosity (default value 1.e8).
-
-- **[correction_visco_turb_pour_controle_pas_de_temps]**  (*type:* flag) Keyword to set a limitation to low time steps due to high values of turbulent viscosity. The limit for turbulent viscosity is calculated so that diffusive time-step is equal or higher than convective time-step. For a stationary flow, the correction for turbulent viscosity should apply only during the first time steps and not when permanent state is reached. To check that, we could post process the corr_visco_turb field which is the correction of turbulent viscosity: it should be 1. on the whole domain.
-
-- **[correction_visco_turb_pour_controle_pas_de_temps_parametre]**  (*type:* float) Keyword to set a limitation to low time steps due to high values of turbulent viscosity. The limit for turbulent viscosity is the ratio between diffusive time-step and convective time-step is higher or equal to the given value [0-1]
-
 
 
 ----
@@ -11212,17 +11262,6 @@ Parameters are:
 
 ----
 
-.. _penalisation_l2_ftd_lec:
-
-**penalisation_l2_ftd_lec**
----------------------------
-
-
-not_set
-
-
-----
-
 .. _plan:
 
 **plan**
@@ -11307,9 +11346,25 @@ An object of post-processing (without name).
 
 Parameters are:
 
+- **[t_debut_statistiques]**  (*type:* float) not_set (for IJK)
+
+- **[nb_pas_dt_post_stats_plans]**  (*type:* float) not_set (for IJK)
+
+- **[nb_pas_dt_post_stats_bulles]**  (*type:* float) not_set (for IJK)
+
+- **[expression_vx_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_vy_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_vz_ana]**  (*type:* string) not_set (for IJK)
+
+- **[expression_p_ana]**  (*type:* string) not_set (for IJK)
+
+- **[interfaces]**  (*type:* :ref:`interface_posts`) Keyword to read all the caracteristics of the interfaces. Different kind of interfaces exist as well as different interface intitialisations.
+
 - **[fichier]**  (*type:* string) Name of file.
 
-- **[format]**  (*type:* string into ['lml', 'lata', 'single_lata', 'lata_v2', 'med', 'med_major', 'cgns']) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
+- **[format]**  (*type:* string into ['lml', 'lata', 'single_lata', 'lata_v2', 'med', 'cgns']) This optional parameter specifies the format of the output file. The basename used for the output file is the basename of the data file. For the fmt parameter, choices are lml or lata. A short description of each format can be found below. The default value is lml.
 
 - **[dt_post]**  (*type:* string) Field\'s write frequency (as a time period) - can also be specified after the 'field' keyword.
 
@@ -11805,7 +11860,7 @@ Re-B.
 **stat_post_correlation**
 -------------------------
 
-**Synonyms:** champ_post_statistiques_correlation, correlation
+**Synonyms:** correlation, champ_post_statistiques_correlation
 
 
 correlation between the two fields
@@ -11838,7 +11893,7 @@ not_set
 **stat_post_ecart_type**
 ------------------------
 
-**Synonyms:** champ_post_statistiques_ecart_type, ecart_type
+**Synonyms:** ecart_type, champ_post_statistiques_ecart_type
 
 
 to calculate the standard deviation (statistic rms) of the field
@@ -12237,7 +12292,7 @@ Parameters are:
 **type_diffusion_turbulente_multiphase_aire_interfaciale**
 ----------------------------------------------------------
 
-**Synonyms:** aire_interfaciale, interfacial_area
+**Synonyms:** interfacial_area, aire_interfaciale
 
 
 not_set
@@ -12246,7 +12301,7 @@ Parameters are:
 
 - **[cstdiff]**  (*type:* float) Kataoka diffusion model constant. By default it is se to 0.236.
 
-- **[ng2]**  (*type:* flag) not_set
+- **[ng2]**  (*type:* float) not_set
 
 
 
@@ -12421,11 +12476,11 @@ not_set
 
 Parameters are:
 
-- **type**  (*type:* string into ['postraitement_ft_lata', 'postraitement_lata']) not_set
+- **type**  (*type:* string into ['postraitement_ft_lata']) not_set
 
 - **nom**  (*type:* string) Name of the post-processing.
 
-- **bloc**  (*type:* string) not_set
+- **bloc**  (*type:* :ref:`bloc_lecture`) not_set
 
 
 
@@ -12528,8 +12583,6 @@ not_set
 Parameters are:
 
 - **[read_file | filename | lire_fichier]**  (*type:* string) name of the *.decoupage_som file
-
-- **[expert_only]**  (*type:* flag) to not check the mesh
 
 
 
@@ -12687,7 +12740,7 @@ Parameters are:
 **partitionneur_partition**
 ---------------------------
 
-**Synonyms:** decouper, partition_64, partition
+**Synonyms:** partition_64, decouper, partition
 
 
 This algorithm re-use the partition of the domain named DOMAINE_NAME. It is useful to
@@ -12736,7 +12789,7 @@ Parameters are:
 **partitionneur_sous_domaines**
 -------------------------------
 
-**Synonyms:** sous_zones, partitionneur_sous_zones
+**Synonyms:** partitionneur_sous_zones, sous_zones
 
 
 This algorithm will create one part for each specified subdomaine/domain. All elements

@@ -12,9 +12,9 @@ if ! [ -d  $doc_dir ]; then
 fi
 
 echo "Copying files ..."
-cp $install_dir/all.rst doc/source/srcs/reference
-cp $orig_dir/doc/extra_rst/parser.rst doc/source/srcs/reference
-cp $orig_dir/doc/images/* doc/source/srcs/reference/images
+cp $install_dir/all.rst doc/source/user_guide/reference
+cp $orig_dir/doc/extra_rst/parser.rst doc/source/user_guide/reference
+cp $orig_dir/doc/images/* doc/source/user_guide/reference/images
 
 echo "Updating C++ and Python sources ..."
 (cd doc && ./update_files)
