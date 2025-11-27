@@ -1,5 +1,5 @@
 #!/bin/bash
 
-( cd source/srcs/trustutils && ./update_files )
-( cd source/srcs/doxy && ./update_files )
+( cd source/_validation_form_guide)
+( cd source/_doxy/doxy_html)
 
