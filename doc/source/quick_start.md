@@ -4,69 +4,9 @@
 
 ## How to install TRUST
 
-**First method, with git:**
+See the instructions [here](https://github.com/cea-trust-platform/trust-code/blob/master/README.md).
 
-```bash
-git clone https://github.com/cea-trust-platform/trust-code.git TRUST-1.9.7
-# Move to the cloned TRUST folder
-cd TRUST-1.9.7
-# Download the required external packages
-wget ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.7.tar
-# or:
-# curl ftp://ftp.cea.fr/pub/TRUST/externalpackages/externalpackages-1.9.7.tar > externalpackages-1.9.7.tar
-# or:
-# wget "https://drive.usercontent.google.com/download?id=1LAbrUO0at7eN_nwg28F92SF4SS_Qw4K5&export=download&authuser=4&confirm=t" -O externalpackages-1.9.7.tar
-# Unzip the downloaded external packages folder
-```
-
-**Second method, from an archive:**
-```bash
-wget ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.7/TRUST-1.9.7.tar.gz
-# or:
-# curl ftp://ftp.cea.fr/pub/TRUST/TRUST/Version1.9.7/TRUST-1.9.7.tar.gz > TRUST-1.9.7.tar.gz
-# Unzip the downloaded folder
-tar xzf TRUST-1.9.7.tar.gz
-# Move to the unziped TRUST folder
-cd TRUST-1.9.7
-```
-
-Then, you will need to configure **TRUST** with the good options. To have the option's list, run:
-```bash
-./configure -help
-```
-
-As you can see, if you want to run GPU simulations and you have a Nvidia GPU, you need to use the option `-cuda`.
-
-**After choosing the options you need, run:**
-
-```bash
-./configure $MY_OPTIONS
-```
-
-**Remark:** without any option, the `./configure` will create the basic build that embarks MPI. It should be working on each and every Linux based computer.
-
-Then, source the **TRUST** environnement:
-
-```bash
-source env_TRUST.sh
-```
-
-To check if it worked, try:
-
-```bash
-echo $TRUST_ROOT
-```
-
-You should see your TRUST install directory.
-
-Eventually, you can compile:
-```bash
-make
-```
-
-This will take some times but afterwards you should have an up-and-running TRUST. You can use other make options, see `make help`.
-
-As you will see in the following, **TRUST** use `.data` files. In order too have a more readable `.data`, we recommand the user to run:
+As you will see in the following, **TRUST** uses `.data` files. In order to have keywords highlighted in the `.data`, we recommand the user to run:
 
 ```bash
 trust -config gedit|vim|emacs
@@ -75,63 +15,74 @@ trust -config gedit|vim|emacs
 
 Now you can use **TRUST**:
 ```bash
-trust [option] datafile [nb_cpus] [1>file.out] [2>file.err]
+trust [option] datafile [nb_cpus] [1>datafile.out] [2>datafile.err]
 ```
 
-You can have the list of its options with:
+You can have the list of **trust** command options with:
 
 ```bash
 trust -help
 ```
 
-Here is a panel of available options:
+Here is a panel of some available options:
 
-- help|-h                      : List options.
-- baltik [baltik_name]         : Instanciate an empty Baltik project.
-- index                        : Access to the TRUST ressource index.
-- doc                          : Access to the TRUST manual (Generic Guide).
-- html                         : Access to the doxygen documentation.
-- config nedit|vim|emacs|gedit : Configure nedit or vim or emacs or gedit with TRUST keywords.
-- edit                         : Edit datafile.
-- trustify                     : Check the datafile's keywords with trustify.
-- xcheck                       : Check the datafile's keywords with xdata.
-- xdata                        : Check and run the datafile's keywords with xdata.
-- partition                    : Partition the mesh to prepare a parallel calculation (Creation of the .Zones files).
-- mesh                         : Visualize the mesh(es) contained in the data file.
-- eclipse-trust                : Generate Eclipse configuration files to import TRUST sources.
-- eclipse-baltik               : Generate Eclipse configuration files to import BALTIK sources (TRUST project should have been configured under Eclipse).
-- probes                       : Monitor the TRUST calculation only.
-- evol                         : Monitor the TRUST calculation (GUI).
-- jupyter                      : Create basic jupyter notebook file.
-- clean                        : Clean the current directory from all the generated files by TRUST.
-- search keywords              : Know the list of test cases from the data bases which contain keywords.
-- copy                         : Copy the test case datafile from the TRUST database under the present directory.
-- check all|testcase|list      : Check the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
-- check function|class|class::method : Check the non regression of a list of tests cases covering a function, a class or a class method.
-- ctest all|testcase|list      : ctest the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
-- ctest function|class|class::method : ctest the non regression of a list of tests cases covering a function, a class or a class method.
-- gdb                          : Run under gdb debugger.
-- valgrind                     : Run under valgrind.
-- valgrind_strict              : Run under valgrind with no suppressions.
-- callgrind                    : Run callgrind tool (profiling) from valgrind.
-- massif                       : Run massif tool (heap profile) from valgrind.
-- heaptrack                    : Run heaptrack (heap profile). Better than massif.
-- advisor                      : Run advisor tool (vectorization).
-- vtune                        : Run vtune tool (profiling). Best profiler tool.
-- perf                         : Run perf tool (profiling).
-- trace                        : Run traceanalyzer tool (MPI profiling).
-- create_sub_file              : Create a submission file only.
-- prod                         : Create a submission file and submit the job on the main production class with exclusive resource.
-- bigmem                       : Create a submission file and submit the job on the big memory production class.
-- queue queue                  : Create a submission file with the specified queue and submit the job.
-- c ncpus                      : Use ncpus CPUs allocated per task for a parallel calculation.
-- convert_data datafile        : Convert a data file to the new 1.9.1 syntax (milieu, interfaces, read_med and champ_fonc_med).
-- quiet                        : Runs the TRUST case without producing any output on the terminal (stdout and stderr are redirected to /dev/null).
+   -help|-h                      : List options.
 
-After your datafile naame, you can also add:
-- help_trust          : Print options of TRUST_EXECUTABLE [CASE[.data]] [options].
+   -baltik [baltik_name]         : Instanciate an empty Baltik project.
 
-**Remark:** if you don't specify anything, the code will run a sequential calculation without any options.
+   -index                        : Access to the TRUST ressource index.
+
+   -config vim|emacs|gedit       : Configure vim, emacs or gedit to recognize TRUST keywords.
+
+   -trustify                     : Check the datafile's keywords with trustify.
+
+   -partition                    : Partition the mesh to prepare a parallel calculation (Creation of the .Zones files).
+
+   -eclipse-trust                : Generate Eclipse configuration files to import TRUST sources.
+
+   -eclipse-baltik               : Generate Eclipse configuration files to import BALTIK sources (TRUST project should have been configured under Eclipse).
+
+   -evol                         : Monitor the TRUST calculation (GUI).
+
+   -jupyter                      : Create basic jupyter notebook.
+
+   -clean                        : Clean the current directory from all the generated files by TRUST.
+
+   -search keywords              : Know the list of test cases in the data bases which contain keywords.
+
+   -copy                         : Copy the test case datafile from the TRUST database under the present directory.
+
+   -check all|testcase|list      : Check the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+
+   -check function|class|class::method : Check the non regression of a list of tests cases covering a function, a class or a class method.
+
+   -ctest all|testcase|list      : ctest the non regression of all the test cases or a single test case or a list of tests cases specified in a file.
+
+   -ctest function|class|class::method : ctest the non regression of a list of tests cases covering a function, a class or a class method.
+
+   -gdb                          : Run under gdb debugger.
+
+   -valgrind                     : Run under valgrind.
+
+   -heaptrack                    : Run heaptrack (heap profile). Better than massif.
+
+   -advisor                      : Run advisor tool (vectorization).
+
+   -vtune                        : Run vtune tool (profiling). Best profiler tool.
+
+   -perf                         : Run perf tool (profiling).
+
+   -trace                        : Run traceanalyzer tool (MPI profiling).
+
+   -create_sub_file              : Create a submission file only.
+
+   -quiet                        : Runs the TRUST case without producing any output on the terminal (stdout and stderr are redirected to /dev/null).
+
+After the name of your datafile to run, you can also add:
+
+   -help_trust          : Print options of TRUST_EXECUTABLE [CASE[.data]] [options].
+
+**Remark:** if you don't specify anything, the code will run a sequential calculation.
 
 ## Flow around an obstacle
 
@@ -141,7 +92,7 @@ This first case aims at giving you the basis for launching numerical simulation 
 
 ### Geometry and simulation parameters
 
-You can see in Figure {numref}`fig:obstacle` the geometry of the test case.
+You can see in {numref}`fig:obstacle` the geometry of the test case.
 
 ```{figure} ./user_tutorials/FIGURES/Obstacle.png
 :class: custom-image-class
@@ -175,7 +126,7 @@ cd $MY_TRUST_REPO
 source env_TRUST.sh
 ```
 
-If you use **TRUST** regularly, we recommend you to create a command that load your **TRUST** environment.
+If you use **TRUST** regularly, we recommend you to create an allias for loading your **TRUST** environment.
 
 Inside your **TRUST** repository, you can find several, already existing, test cases. You can copy those test cases by using:
 ```
@@ -253,7 +204,7 @@ Now we can vsualize the pressure field (Plots area: `Add` $\rightarrow$ `Pseudoc
 You can suppress or hide the mesh (Select Mesh then click on Delete or Hide/Show).
 
 Then, visualize the velocity field:
- `Add` $\rightarrow$ `Vector` $\rightarrow$ `VITESSE_SOM_dom + Draw`. 
+ `Add` $\rightarrow$ `Vector` $\rightarrow$ `VITESSE_SOM_dom` + Draw. 
  
 You can change each plot attributes: 
 - First, click once onto the small arrow $\blacktriangleright$ then on
@@ -295,11 +246,9 @@ During a 3D visualization, you may want to see a slice of your numerical simulat
 
 For more information on **VisIt**, you can refer to:
 
- - the **VisIt** website and [its manuals](https://wci.llnl.gov/simulation/computer-codes/visit/manuals)
+ - the **VisIt** website and [its manuals](https://visit-sphinx-github-user-manual.readthedocs.io/en/develop/tutorials/index.html)
 
- - the **VisIt** user community [web site](http://visitusers.org)
-
- - or send an email to the **VisIt** software users community at: visit-users@elist.ornl.gov
+ - How to contact **VisIt** support [web site](https://visit-sphinx-github-user-manual.readthedocs.io/en/develop/getting_help/contact.html)
 
 #### Outputs and resuming calculation
 
@@ -314,6 +263,7 @@ Find the last backup time of the previous calculation in the .err file, or in th
 Edit your data file with `Edit data`, then modify **tinit**, **tmax** values in the object `mon_schema`.
 
 Then, add in the problem description block just before the last `}`:
+
 **reprise binaire Obstacle\_pb.sauv**
 
 (The file `Obstacle_pb.sauv` must have been created during the first run.)
