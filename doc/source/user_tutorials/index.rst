@@ -16,4 +16,3 @@ In this section, you can find tutorials for **TRUST** users. Start by creating a
    periodic_channel.md
    tank_filling.md
    triocfd.md
-   coolprop.md
