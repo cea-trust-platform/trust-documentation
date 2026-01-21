@@ -194,7 +194,7 @@ Try to read carefuly the syntax/comments and insert the bloc in Obstacle.data.
 	    }
 	}
 	
-## Step 8 : Solve the problem !
+## Step 8 : Solve the problem 
 
 Now, end your data file by inserting this bloc. This will tell TRUST to run and solve the problem.
 
@@ -205,7 +205,7 @@ Save your Obstacle.data file and run the simulation by doing:
 
 	trust Obstacle.data
 
-## Results ! Its cool 🍻🤗🍻
+## Results 
 
 Now, you can visualize your results! You should see an animation similar to the one shown below! It is the well known Von Karman vortex street!
 
