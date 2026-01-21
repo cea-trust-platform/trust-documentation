@@ -11,10 +11,11 @@ In this section, you can find tutorials for **TRUST** users. Start by creating a
 .. toctree::
    :maxdepth: 1
    
-   datafile_from_scratch.md
    heat_transfer.md
    dilatable_flow.md
    periodic_channel.md
    tank_filling.md
+   datafile_from_scratch.md
+   validation_form.md
    triocfd.md
-   coolprop.md
+   salome.md

@@ -8,4 +8,3 @@ In this section, you can find tutorials for TRUST developpers:
 
    link_eclipse
    build_your_baltik
-   validation_form.md
