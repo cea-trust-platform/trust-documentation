@@ -9,3 +9,4 @@ scipy
 pandas
 ipywidgets
 breathe
+exhale>=0.3.6

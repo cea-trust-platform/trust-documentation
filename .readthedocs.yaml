@@ -1,28 +1,33 @@
 # .readthedocs.yaml
-# Read the Docs configuration file
+# Read the Docs configuration file for serving pre-built HTML
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
 version: 2
 
+# Build configuration
 build:
   os: ubuntu-22.04
   tools:
     python: "3.10"
-  apt_packages:
-    - doxygen
-    - graphviz
+  
+  # Override default build commands to simply copy pre-built HTML
+  # This is the key: we don't build anything, just copy what's already there
+  commands:
+    # Create the output directory that ReadTheDocs expects
+    - mkdir -p $READTHEDOCS_OUTPUT/html
+    # Copy our pre-built HTML from RtD_build/html to ReadTheDocs output
+    - cp -r RtD_build/html/* $READTHEDOCS_OUTPUT/html/
 
-python:
-  install:
-    - requirements: doc/requirements.txt
+# We don't need Python dependencies since we're not building
+# We don't need Sphinx configuration since HTML is pre-built
+# We don't need Doxygen since XML→HTML conversion already happened
 
-sphinx:
-  configuration: doc/source/conf.py
-  fail_on_warning: false
+# Optional: Disable PDF/ePub generation since we have pre-built HTML
+formats: []
 
-formats:
-  - pdf
-
+# Optional: Configure search (ReadTheDocs will still index your HTML)
 search:
+  ranking:
+    'api/*': -1  # Lower ranking for API pages
   ignore:
-    - doxy/*
+    - 404.html

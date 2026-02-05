@@ -1,6 +1,6 @@
-build/
+doc/build/
+doc/doxygen
 __pycache__
-html/
 .cproject
 .idea/
 .project
@@ -9,5 +9,4 @@ CMakeLists.txt
 instancie_src_*
 make.include
 instancie_appel*
-.srcs_processed/
-doc/source/_srcs_processed/
+doc/source/dev_corner/cpp_api/

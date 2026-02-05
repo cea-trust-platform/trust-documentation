@@ -50,6 +50,10 @@ extensions = [
     'myst_parser',                 # Support for Markdown (MyST) syntax
     # Bibliography and citations
     'sphinxcontrib.bibtex',        # Handle bibliographic references and citations
+    # Breathe: enable to cite C++ code 
+    'breathe',
+    # TEST  
+    #'exhale',
 ]
 
 numfig = True
@@ -132,11 +136,52 @@ html_theme_options = {
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 html_css_files = ['custom.css']
-html_extra_path = ['_doxy', '_validation_form_guide'] 
+html_extra_path = ['_validation_form_guide'] 
 
 # Nice little icon in tab header
 html_favicon = 'favicon.ico'
 
+# Breathe config
+
+breathe_projects = {
+    "TRUST": "../doxygen/xml"  
+}
+breathe_default_project = "TRUST"
+
+breathe_default_members = ('members', 'undoc-members')
+breathe_show_include = True
+breathe_domain_by_extension = {
+    "h": "cpp",
+    "hpp": "cpp",
+    "cpp": "cpp",
+}
+# Exhale config
+
+RUN_EXHALE = os.environ.get("SPHINX_RUN_EXHALE", "1") == "1"
+
+if RUN_EXHALE:
+    extensions.append('exhale')
+    import exhale
+    exhale_args = {
+        "containmentFolder": "./dev_corner/cpp_api",
+        "rootFileName": "index.rst",
+        "rootFileTitle": "C++ API Reference",
+        "doxygenStripFromPath": "..",
+        "createTreeView": True,
+        "contentsDirectives": True,
+        "listingExclude": [r'.*mainpage.*', r'.*file_.*'],
+        "kindsWithContentsDirectives": ["class", "struct", "enum", "function", "typedef", "namespace"],
+        "fullToctreeMaxDepth": 5,
+        "afterTitleDescription": """
+        You can build locally the full C++ API. To do so, first source your TRUST environnement, then run:
+           ```doxygen $TRUST_ROOT/bin/KSH/Doxyfile```
+        """,
+    }
+else:
+    print(" *************************************************************************** ")
+    print(" /!\  Skipping C++ API documentation (set SPHINX_RUN_EXHALE=1 to enable) /!\ ")
+    print(" *************************************************************************** ")
+    exhale_args = {}
 
 # Bibliography
 bibtex_bibfiles = [os.path.join(os.path.dirname(__file__), 'biblio.bib')]
