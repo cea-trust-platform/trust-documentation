@@ -10,7 +10,7 @@ This is the developper corner. If you want to join the team of amazing TRUST dev
     dev_guidelines/index
     dev_guide/debug
     dev_guide/stats_profilers
-    cpp_api
+    cpp_api/index
     validation_form
 
 

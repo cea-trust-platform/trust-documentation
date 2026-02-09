@@ -179,7 +179,7 @@ if RUN_EXHALE:
     }
 else:
     print(" *************************************************************************** ")
-    print(" /!\  Skipping C++ API documentation (set SPHINX_RUN_EXHALE=1 to enable) /!\ ")
+    print("      Skipping C++ API documentation (set SPHINX_RUN_EXHALE=1 to enable)     ")
     print(" *************************************************************************** ")
     exhale_args = {}
 
