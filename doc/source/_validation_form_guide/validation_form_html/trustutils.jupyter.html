@@ -80,6 +80,28 @@ This work is based on the files package (a TRUST package that reads the son file
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="trustutils.jupyter.plot.Graph.addErrorBar">
+<span class="sig-name descname"><span class="pre">addErrorBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yerr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xerr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'-'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xIndice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yIndice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.plot.Graph.addErrorBar" title="Link to this definition">¶</a></dt>
+<dd><p>Method to add a curve to the plot from a point probe.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>float array</em>) – x coordinates.</p></li>
+<li><p><strong>y</strong> (<em>float array</em>) – data to plot.</p></li>
+<li><p><strong>xerr</strong> (<em>float</em><em> or </em><em>array-like</em><em>, </em><em>shape</em><em>(</em><em>N</em><em>,</em><em>) or </em><em>shape</em><em>(</em><em>2</em><em>, </em><em>N</em><em>)</em><em>, </em><em>optional</em>)</p></li>
+<li><p><strong>yerr</strong> (<em>float</em><em> or </em><em>array-like</em><em>, </em><em>shape</em><em>(</em><em>N</em><em>,</em><em>) or </em><em>shape</em><em>(</em><em>2</em><em>, </em><em>N</em><em>)</em><em>, </em><em>optional</em>)</p></li>
+<li><p><strong>marker</strong> (<em>str</em>) – symbol of the ploted line (default=”-“)</p></li>
+<li><p><strong>label</strong> (<em>str</em>) – label of the curve.</p></li>
+<li><p><strong>title</strong> (<em>str</em>) – title of the curve.</p></li>
+<li><p><strong>xIndice</strong> (<em>int</em>) – first coordinates of the subplot list</p></li>
+<li><p><strong>yIndice</strong> (<em>int</em>) – second coordinates of the subplot list</p></li>
+<li><p><strong>kwargs</strong> (<em>dictionary</em>) – additional properties available in matplotlib.pyplot.plot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="trustutils.jupyter.plot.Graph.addPlot">
 <span class="sig-name descname"><span class="pre">addPlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordonee</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.plot.Graph.addPlot" title="Link to this definition">¶</a></dt>
 <dd><p>Method to add a plot/subplot.</p>
@@ -347,14 +369,16 @@ CEA Saclay - DM2S/STMF/LGLS
 validation form (i.e. a directory containing at least a ‘src’ subdirectory).</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTCase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">TRUSTCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase" title="Link to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">TRUSTCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class which allows the user to load and execute a validation case</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTCase.copy">
-<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targetName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetDirectory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase.copy" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targetName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetDirectory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase.copy" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
-<div><p>Copy a TRUST Case</p>
+<div><p>Copy a TRUST Case.
+Only copies the datafile and not other optionnal atributes, such as excluNR, nbProcs, pre and post_run…
+These must be given again to the copy method</p>
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -416,12 +440,27 @@ Warning: this will not crash if there is no commented partition block in the dat
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTCase.runCase">
-<span class="sig-name descname"><span class="pre">runCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase.runCase" title="Link to this definition">¶</a></dt>
-<dd><p>Move to the case directory and execute the current test case:
-- calls pre_run if any
-- run the case
-- calls post_run if any</p>
+<dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTCase.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTCase.run" title="Link to this definition">¶</a></dt>
+<dd><p>Execute the current test case.</p>
+<dl class="simple">
+<dt>In parallel mode (default):</dt><dd><ul class="simple">
+<li><p>runs the pre_run, which may also run some TRUSTCases.</p></li>
+<li><p>if that happens, add the case to a waiting list. It will be started by TRUSTSuite.runCases() when pre_run is finished.</p></li>
+<li><p>otherwise, directly submit the job via subprocess.Popen(…) and store it in _RUNNING_CASES.</p></li>
+<li><p>post_run is called when the case is finished by TRUSTSuite.runCases()</p></li>
+</ul>
+</dd>
+<dt>In sequential mode (when preventConcurrent=True is passed to TRUSTSuite.runCases()):</dt><dd><ul class="simple">
+<li><p>runs the pre_run</p></li>
+<li><p>wait for potential cases started by pre_run to finish</p></li>
+<li><p>run the case and wait for it to finish</p></li>
+<li><p>run the post_run and wait for potential cases started by post_run to finish</p></li>
+</ul>
+</dd>
+</dl>
+<p>Sserver usage is independent of parallel/sequential mode.
+Jobs are submitted to SSserver if it is detected, so that preventConcurrent does not overloads cpus during complete validation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -477,15 +516,20 @@ WARNING: this is where we expect to be at the root of the validation form.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTSuite.detectSserver">
-<span class="sig-name descname"><span class="pre">detectSserver</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTSuite.detectSserver" title="Link to this definition">¶</a></dt>
-<dd><p>Detect whether the Sserver is running on the machine</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.TRUSTSuite.extractNRCases">
-<span class="sig-name descname"><span class="pre">extractNRCases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTSuite.extractNRCases" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">extractNRCases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.TRUSTSuite.extractNRCases" title="Link to this definition">¶</a></dt>
 <dd><p>Prints out the list of cases in a suitable format for processing by validation and lance_test tools.</p>
+<p>verbose does nothing, just in case we forgot to remove it when actually extracting the cases
+(we do a complicated sed on the notebook at this step)</p>
+<p>Teo Boutin: IMO, this shouldn’t exist.
+concatenating the python parts of the report, doing various replacements and executing that is just a bad idea.
+test case extraction/lauch should be controlled by options given ro Run_fiche
+passed through the env var JUPYTER_RUN_OPTIONS which is parser in this file (should use argparse btw)</p>
+<p>with args such as
+-get_list_cas_nr
+-get_nb_cas_nr
+-run_single_nr_case &lt;test_name.data&gt;</p>
+<p>for now I will change this method to take care of executing all pre_runs of registered tests</p>
 <p>WARNING:
 do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr in Validation/Outils/Genere_Courbe/scripts</p>
 </dd></dl>
@@ -539,7 +583,7 @@ do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.addCase">
-<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">addCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directoryOrTRUSTCase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.addCase" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">addCase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directoryOrTRUSTCase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">datasetName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.addCase" title="Link to this definition">¶</a></dt>
 <dd><p>Add a case to run to the list of globally recorded cases.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -559,7 +603,7 @@ do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.addCaseFromTemplate">
-<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">addCaseFromTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">templateData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetDirectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.addCaseFromTemplate" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">addCaseFromTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">templateData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetDirectory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dic</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nbProcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">targetData</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">execOptions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluNR</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.addCaseFromTemplate" title="Link to this definition">¶</a></dt>
 <dd><p>Add a case to run to the list of globally recorded cases.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -649,10 +693,28 @@ do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr 
 
 <dl class="py function">
 <dt class="sig sig-object py" id="trustutils.jupyter.run.extractNRCases">
-<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">extractNRCases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.extractNRCases" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">extractNRCases</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.extractNRCases" title="Link to this definition">¶</a></dt>
 <dd><p>Prints out the list of cases in a suitable format for processing by validation and lance_test tools.</p>
+<p>verbose does nothing, just in case we forgot to remove it when actually extracting the cases
+(we do a complicated sed on the notebook at this step)</p>
 <p>WARNING:
 do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr in Validation/Outils/Genere_Courbe/scripts</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="trustutils.jupyter.run.extraitCoupe">
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">extraitCoupe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">probe_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.extraitCoupe" title="Link to this definition">¶</a></dt>
+<dd><p>execute script extrait_coupe of $TRUST_ROOT/bin
+:param directory:
+:type directory: str
+:param data_file:
+:type data_file: str
+:param probe_name:
+:type probe_name: str
+:param verbose:
+:type verbose: bool
+:param time:
+:type time: value or ‘all’ or nothing</p>
 </dd></dl>
 
 <dl class="py function">
@@ -696,6 +758,22 @@ do not modify this without looking at scripts get_list_cas_nr and get_nb_cas_nr 
 <dt class="sig sig-object py" id="trustutils.jupyter.run.isExtractingNR">
 <span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">isExtractingNR</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.isExtractingNR" title="Link to this definition">¶</a></dt>
 <dd><p>Check environnement variable IS_EXTRACTING_NR to know if extracting_nr is active</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="trustutils.jupyter.run.isExtractingNR_ListOnly">
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">isExtractingNR_ListOnly</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.isExtractingNR_ListOnly" title="Link to this definition">¶</a></dt>
+<dd><p>Check global variable IS_EXTRACTING_NR_LIST_ONLY to know if we want only the list of nr cases
+Should only be used internally.
+This global variable is read from os.environ at the begining (import) of this module</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="trustutils.jupyter.run.needPrepareForNRCaseList">
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">needPrepareForNRCaseList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.needPrepareForNRCaseList" title="Link to this definition">¶</a></dt>
+<dd><p>Sets IS_EXTRACTING_NR_LIST_ONLY to False.</p>
+<p>To use when the trust runs launched manually before run.runCases are necessary in order
+to generate the list of non regression test cases.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -762,6 +840,21 @@ By default, outputs of the validation forms are not saved.</p>
 <dd><p>Load MEDCoupling environment in the PYTHONPATH so that ‘import medcoupling’ can work.</p>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="trustutils.jupyter.run.wait_run">
+<span class="sig-prename descclassname"><span class="pre">trustutils.jupyter.run.</span></span><span class="sig-name descname"><span class="pre">wait_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#trustutils.jupyter.run.wait_run" title="Link to this definition">¶</a></dt>
+<dd><p>Wait until all TRUST Cases have run, including cases launched from their post_run functions.
+This is called in TRUSTSuite methods runCases and extractNRCases.</p>
+<p>This function waits till all cases in the global list _RUNNING_CASES are completed.
+post_run of such cases may append to the list, thus the need for this function.</p>
+<p>In case of failure of a single case, it should correctly abort all others cases and display a clear error message.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>verbose</strong> (<em>bool</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -779,6 +872,7 @@ By default, outputs of the validation forms are not saved.</p>
 <li><a class="reference internal" href="#module-trustutils.jupyter.plot">trustutils.jupyter.plot</a><ul>
 <li><a class="reference internal" href="#trustutils.jupyter.plot.Graph"><code class="docutils literal notranslate"><span class="pre">Graph</span></code></a><ul>
 <li><a class="reference internal" href="#trustutils.jupyter.plot.Graph.add"><code class="docutils literal notranslate"><span class="pre">Graph.add()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.plot.Graph.addErrorBar"><code class="docutils literal notranslate"><span class="pre">Graph.addErrorBar()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.plot.Graph.addPlot"><code class="docutils literal notranslate"><span class="pre">Graph.addPlot()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.plot.Graph.addPoint"><code class="docutils literal notranslate"><span class="pre">Graph.addPoint()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.plot.Graph.addResidu"><code class="docutils literal notranslate"><span class="pre">Graph.addResidu()</span></code></a></li>
@@ -808,7 +902,7 @@ By default, outputs of the validation forms are not saved.</p>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.dumpDataset"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.dumpDataset()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.dumpDatasetMD"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.dumpDatasetMD()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.partition"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.partition()</span></code></a></li>
-<li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.runCase"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.runCase()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.run"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.run()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.substitute"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.substitute()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTCase.substitute_template"><code class="docutils literal notranslate"><span class="pre">TRUSTCase.substitute_template()</span></code></a></li>
 </ul>
@@ -816,7 +910,6 @@ By default, outputs of the validation forms are not saved.</p>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite</span></code></a><ul>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.addCase"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.addCase()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.copySrc"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.copySrc()</span></code></a></li>
-<li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.detectSserver"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.detectSserver()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.extractNRCases"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.extractNRCases()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.getCases"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.getCases()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.TRUSTSuite.printCases"><code class="docutils literal notranslate"><span class="pre">TRUSTSuite.printCases()</span></code></a></li>
@@ -834,12 +927,15 @@ By default, outputs of the validation forms are not saved.</p>
 <li><a class="reference internal" href="#trustutils.jupyter.run.executeCommand"><code class="docutils literal notranslate"><span class="pre">executeCommand()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.executeScript"><code class="docutils literal notranslate"><span class="pre">executeScript()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.extractNRCases"><code class="docutils literal notranslate"><span class="pre">extractNRCases()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.run.extraitCoupe"><code class="docutils literal notranslate"><span class="pre">extraitCoupe()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.getCases"><code class="docutils literal notranslate"><span class="pre">getCases()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.getLastLines_"><code class="docutils literal notranslate"><span class="pre">getLastLines_()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.initBuildDirectory"><code class="docutils literal notranslate"><span class="pre">initBuildDirectory()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.initCaseSuite"><code class="docutils literal notranslate"><span class="pre">initCaseSuite()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.introduction"><code class="docutils literal notranslate"><span class="pre">introduction()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.isExtractingNR"><code class="docutils literal notranslate"><span class="pre">isExtractingNR()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.run.isExtractingNR_ListOnly"><code class="docutils literal notranslate"><span class="pre">isExtractingNR_ListOnly()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.run.needPrepareForNRCaseList"><code class="docutils literal notranslate"><span class="pre">needPrepareForNRCaseList()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.printCases"><code class="docutils literal notranslate"><span class="pre">printCases()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.reset"><code class="docutils literal notranslate"><span class="pre">reset()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.runCases"><code class="docutils literal notranslate"><span class="pre">runCases()</span></code></a></li>
@@ -848,6 +944,7 @@ By default, outputs of the validation forms are not saved.</p>
 <li><a class="reference internal" href="#trustutils.jupyter.run.tablePerf"><code class="docutils literal notranslate"><span class="pre">tablePerf()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.useLataTools"><code class="docutils literal notranslate"><span class="pre">useLataTools()</span></code></a></li>
 <li><a class="reference internal" href="#trustutils.jupyter.run.useMEDCoupling"><code class="docutils literal notranslate"><span class="pre">useMEDCoupling()</span></code></a></li>
+<li><a class="reference internal" href="#trustutils.jupyter.run.wait_run"><code class="docutils literal notranslate"><span class="pre">wait_run()</span></code></a></li>
 </ul>
 </li>
 </ul>
