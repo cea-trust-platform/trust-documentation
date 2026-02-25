@@ -21,10 +21,8 @@ Data files uses `blocks`. They may be defined using the braces:
 **Objects** are created in the data set as follows:
 
 ```bash
-[ export ] Type identificateur
+Type identificateur
 ```
-
--  **export**: if this keyword is included, *identificateur* (identifier) will have a global range, if not, its range will be applied to the block only (the associated object will be destroyed on exiting the block).
 
 -  **Type**: must be a type of object recognised by **TRUST**, which correspond to the C++ classes. The list of recognised types is given in the file `hierarchie.dump`.
 

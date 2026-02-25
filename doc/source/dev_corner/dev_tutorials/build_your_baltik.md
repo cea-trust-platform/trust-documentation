@@ -1,27 +1,29 @@
 # Create a Baltik project
 
-When using TRUST code, you can create a module named Baltik for your own applications that will be based on TRUST. That is what we will do here.
+When using TRUST code, you can create a module named Baltik for your own application that will be based on TRUST. That is what we will do here.
 
-First create a directory for your project:
-    `cd MY_FIRST_BALTIK`
-
-Then create your project from a basic project template using TRUST
-    commands:
-    `trust -baltik my_project`
-    `cd my_project`
-    `ls -l`
+First, load TRUST environment and create your first project from a basic project template using TRUST command:
+```bash
+trust -baltik my_project
+cd my_project
+ls -l
+```
 
 You can see that you have now:
 
-- three directories: share, src and tests, and
+- three directories: share, src and tests
 
-- one `project.cfg` file.
+- a `project.cfg` file.
 
-- one `README.BALTIK` file.
+- a `README.BALTIK` file.
 
-- one `configure` script.
+- a `configure` script.
 
-You have now to add source to your Baltik. To do so, copy the following TRUST .cpp file into your baltik project:
+You have now to add source files to your Baltik. These source files may be either patches (some TRUST source files that you will edit or in which you'll fix some bugs), or specific to your
+developments (i.e. new classes/....).
+
+Here, we will just copy a source file from TRUST (in this tutorial we will add some prints to this file).
+To do so, copy the following TRUST .cpp file into your baltik project:
 ```
 mkdir -p src/Trust_fixes
 cp $TRUST_ROOT/src/MAIN/mon_main.cpp src/Trust_fixes/
@@ -53,7 +55,7 @@ git commit -m "Initial commit"
     
 Remark: If you are not able to commit files, you should first configure your username and email in git with :
 ```
-git config - -global user.name `Your Name`\
+git config - -global user.name 'Your Name'
 git config - -global user.email you@example.com
 ```
 

@@ -2,9 +2,9 @@
 
 To get started with Eclipse IDE for TRUST development, you'll need to download and install the appropriate version:
 
-- Visit the Eclipse Foundation website: http://www.eclipse.org/downloads/eclipse-packages/
-- Select **Eclipse IDE for C/C++ Developers** → **Linux 64-bits**
-- Download the **Linux x86_64** package in the repositery of your choice: `$MY_ECLIPSE_PATH`
+- Visit the [Eclipse Foundation website](https://www.eclipse.org/downloads/packages/).
+- Select **Eclipse IDE for C/C++ Developers** → **Linux: x86_64**
+- Download the **Linux x86_64** package.
 
 Once downloaded, extract the archive and navigate to the Eclipse directory and launch it:
 
