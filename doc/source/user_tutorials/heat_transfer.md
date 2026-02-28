@@ -9,11 +9,12 @@ This tutorial will help you play with an Heat transfer between liquid and solid 
 Geometry of the heat transfer case
 ```
 
-As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
-
-The case we will play with in this tutorial is called `docond` in the **TRUST** repository. Start by copying it in your folder:
+The case we will play with in this tutorial is called `docond` in the **TRUST** non-regression database. Start by copying it into your folder:
 
 ```
+source $my_path_to_TRUST_installation/env_TRUST.sh
+mkdir TRUST_tutorials
+cd TRUST_tutorials
 trust -copy docond
 mv docond Coupling_VDF
 cd Coupling_VDF

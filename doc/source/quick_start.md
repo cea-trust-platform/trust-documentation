@@ -13,6 +13,7 @@ If you need help when installing TRUST, contact TRUST support team.
 As you will see in the following, **TRUST** uses `.data` files. In order to have keywords highlighted in the `.data`, we recommand the user to run:
 
 ```bash
+source $my_path_to_TRUST_installation/env_TRUST.sh
 trust -config gedit|vim|emacs
 ```
 
@@ -63,8 +64,11 @@ This first case aims at giving you the basis for launching numerical simulation 
 
 ### Problem description
 
-This first tutorial simulates the flow around a square cylinder in 2 dimensions as shown in {numref}`fig:obstacle`.
+This first tutorial simulates the flow around a square cylinder in 2 dimensions as shown below.
 
+<img src="https://github.com/cea-trust-platform/cea-trust-platform.github.io/blob/master/images/simulation/Obstacle.gif?raw=true" alt="Obstacle" width="800"/>
+
+The geometry we use is shown in {numref}`fig:obstacle`
 ```{figure} ./user_tutorials/FIGURES/Obstacle.png
 :class: custom-image-class
 :name: fig:obstacle
@@ -95,11 +99,10 @@ This leads to a Reynolds number for this simulation: $Re = \frac{U_0 H_{inlet} \
 When you want to use TRUST, the first thing to do is to load its environment:
 
 ```
-cd $MY_TRUST_REPO
-source env_TRUST.sh
+source $my_path_to_TRUST_installation/env_TRUST.sh
 ```
 
-Inside your **TRUST** repository, you can find several already existing test cases. You can copy a single test case by specifying its name:
+In **TRUST**, we have several already existing non-regression test cases. You can copy a single test case by specifying its name:
 ```
 trust -copy case_name
 ```
@@ -107,6 +110,7 @@ trust -copy case_name
 For this tutorial, we will play with the Obstacle test case. 
 Therefore, copy the test case from the database of test cases using:
 ```
+source $my_path_to_TRUST_installation/env_TRUST.sh
 mkdir TRUST_tutorials
 cd TRUST_tutorials
 trust -copy Obstacle
@@ -261,9 +265,8 @@ The, we want to modify the data file in order to resume the calculation from whe
 
 - open it using the `evol` tool:
 
-```
-      trust -evol Obstacle &
-```
+       trust -evol Obstacle &
+
 
 - Find the last backup time of the previous calculation in the .err file, or in the bottom right file in the `evol` tool.
 
@@ -292,77 +295,19 @@ gedit Obstacle.data &
 
 Then add to the post-processing block of Obstacle.data the following elements:
 
-- A pressure probes segment (22 probes between points (0.01, 0.12) and (0.91, 0.12)).
+- A pressure probes segment (22 probes between points (0.01, 0.12) and (0.91, 0.12)). the syntaxe can be similar to the next line where the probe named sonde\_pression\_segment
+captures pressure field (pression) each 0.005 physical seconds, and contains 22 probes (points) between (0.01, 0.12) and (0.91, 0.12) 
+
+      sonde_pression_segment pression periode 0.005 segment 22 0.01 0.12 0.91 0.12
 
 - A velocity probes segment (22 probes between points (0.92, 0.00) and (0.92, 0.22)) to plot the velocity profile behind the square cylinder.
 
-- Change fields post-processing period from 1s to 0.5s.
+- Change fields post-processing period from 1s to 0.5s (keyword **dt_post**).
 
-- Add the vorticity to the fields to the list of post-processed fields. To find the appropriate keyword, have a look to the [](user_guide/reference/index.rst):
+- Add the vorticity to the fields to the list of post-processed fields. To find the appropriate keyword, have a look to the [](user_guide/reference/index.rst)
         
 - You can also access locally to useful resources in the **TRUST** index. Take few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
 ```
 trust -index &
-```
-
-### Parallel calculation
-
-The goal of this exercise is to introduce parallelism in the data file of the previous exercise.
-
-In your Obstacle repository, delete the **reprise** keyword and set **tinit** to 0 again in the `Obstacle.data` file.
-
-Then create a new repository, called `PARA1`, open it and copy the necessary files:
-```
-mkdir PARA1
-cd PARA1
-cp ../Obstacle.data DEC_Obstacle.data
-cp ../Obstacle.data PAR_Obstacle.data
-cp ../Obstacle.geo .
-```
-The file (`DEC_Obstacle.data`) will be used for partioniing the mesh. To do so, uncomment the block around the **Partition** keyword.
-
-In this case, the partitioning tool **Metis** is used. We cut in **nb\_parts = 2** blocks.
-
-In the general case, the overlapping width **Larg\_joint** between two parts of the partition have to be defined accordingly with the numerical scheme. For exemple, if you use a VEF discretisation (see [](user_guide/num_meth/discretisation/vef/index.rst) for more details regarding this discretisation), you should use **2** for **Larg\_joint** except when partitioning a domain where only the conduction equation will be solved.
-
-The keyword **zones\_name** is useful to define the name of the files containing the partitioned mesh and to write these files.
-
-**Remark**: notice the presence of the keyword **End** in the `Partition` block: the code will stop reading the data file at this line!
-
-Now, run this edited data file: 
-```
-trust DEC_Obstacle
-```
-
-Check that the partitioned mesh files `DOM_0000.Zones` and `DOM_0001.Zones` were generated inside your working directory: 
-```
-ls *.Zones
-```
-
-Now that you have finished your partition, edit the file `PAR_Obstacle.data` and comment the mesh reading part of you `.data` file, using \# tags of the 'BEGIN/END MESH' comments. Note that you need your \# character to be encircled to other by blank spaces, otherwise your `.data` file will not be functional.
-
-Then, uncomment the **Scatter** keyword which will read the partitioned mesh and run a parallel calculation with TRUST:
-
-```
-trust PAR_Obstacle 2
-```
-
-The post-processing step is identical in sequential or parallel modes. Probes are written into .son files and fields into .lata files. Check by yourself using **Visit**:
-
-```
-**VisIt** -o PAR_Obstacle.lata &
-```
-
-Select the last time step and visualize the blocks with:
-
-`Plots` $\rightarrow$ `Add` $\rightarrow$ `Subset` $\rightarrow$ `blocks`.
-
- Those blocks represent the partition of the domain. Fields are defined by block.
-
-You can visualize a field only on a selected (block) with the menu `Control` $\rightarrow$ `Subset`.
-
-Eventually, visualize probes at the end of the calculation using:
-```
-trust -evol PAR_Obstacle &
 ```
 

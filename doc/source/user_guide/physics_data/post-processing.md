@@ -13,35 +13,35 @@ Even if you don't post-process anything, you will have output files which are li
 
 | File | Contents |
 |---|---|
-| *my_data_file***.dt_ev** | Time steps, facsec, equation residuals |
-| *my_data_file***.stop** | Stop file ('0', '1' or 'Finished correctly') |
-| *my_data_file***.log** | Journal logging |
-| *my_data_file***.TU** | CPU/GPU performances |
-| *my_data_file***_csv.TU** | CPU/GPU performance formatted as a CSV file |
-| *my_data_file_problem_name***.sauv** or **.xyz** | Saving 2D/3D results for resume |
-| or *specified_name***.sauv** or **.xyz** | (binary files) |
+| [*my_data_file*]**.dt_ev** | Time steps, facsec, equation residuals |
+| [*my_data_file*]**.stop** | Stop file ('0', '1' or 'Finished correctly') |
+| [*my_data_file*]**.log** | Journal logging |
+| [*my_data_file*]**.TU** | CPU/GPU performances |
+| [*my_data_file*]**_csv.TU** | CPU/GPU performance formatted as a CSV file |
+| [*my_data_file_problem_name*]**.sauv** or **.xyz** | Saving 2D/3D results for resume |
+| or [*specified_name*]**.sauv** or **.xyz** | (binary files) |
 
 and the listing of boundary fluxes where:
 
-- *my_data_file***_Contrainte_visqueuse.out** correspond to the friction drag exerted by the fluid.
+- [*my_data_file*]**_Contrainte_visqueuse.out** correspond to the friction drag exerted by the fluid.
 
-- *my_data_file***_Convection_qdm.out** contains the momentum flow rate.
+- [*my_data_file*]**_Convection_qdm.out** contains the momentum flow rate.
 
-- *my_data_file***_Debit.out** is the volumetric flow rate.
+- [*my_data_file*]**_Debit.out** is the volumetric flow rate.
 
-- *my_data_file***_Force_pression.out** correspond to the pressure drag exerted by the fluid.
+- [*my_data_file*]**_Force_pression.out** correspond to the pressure drag exerted by the fluid.
 
 If you add post-processings in your data files, you will find:
 
 | File | Contents |
 |---|---|
-| *my_data_file***.sons** | 1D probes list |
-| *my_data_file_probe_name***.son** | 1D results with probes |
-| *my_data_file_probe_name***.plan** | 3D results with probes |
-| *my_data_file***.lml** *(default format)* | |
-| *my_data_file***.lata** *(with all \*.lata.\* files)* | |
-| *my_data_file***.med** | 2D/3D results |
-| or *specified_name***.lml** or **.lata** or **.med** | |
+| [*my_data_file*]**.sons** | 1D probes list |
+| [*my_data_file_probe_name*]**.son** | 1D results with probes |
+| [*my_data_file_probe_name*]**.plan** | 3D results with probes |
+| [*my_data_file*]**.lml** *(default format)* | |
+| [*my_data_file*]**.lata** *(with all \*.lata.\* files)* | |
+| [*my_data_file*]**.med** | 2D/3D results |
+| or [*specified_name*]**.lml** or **.lata** or **.med** | |
 
 The sceen outputs are automatically redirected in *my_data_file***.out** and *my_data_file***.err** files if you run a parallel calculation or if you use the "**-evol**" option of the "trust" script.
 
@@ -111,7 +111,7 @@ Probes
 
 where the use of *loc* option allow to specify the wanted location of the probes. The available values are **grav** for gravity center of the element, **nodes** for faces and **som** for vertices. There is not default location. If the point does not coincide with a calculation node, the value is extrapolated linearly according to neighbouring node values.
 
-For complete syntax, see the [Keyword Reference Manual](../reference/index.rst).
+For complete syntax, see the {ref}`sonde_base`.
 
 ### Fields
 
@@ -140,7 +140,7 @@ To visualize your post-processed fields, you can use open source softwares like:
 
 [VisIt](https://wci.llnl.gov/simulation/computer-codes/visit) (included in **TRUST** package) or [SALOME](http://www.salome-platform.org).
 
-For complete syntax, see the [Keyword Reference Manual](../reference/index.rst).
+For complete syntax, see the {ref}`champs_posts`.
 
 ### Statistics
 
@@ -184,7 +184,7 @@ $$\left\langle P(t).V(t)\right\rangle=\left\{ \begin{array}{ll}
 
 **Remark:** Statistical fields can be plotted with probes with the keyword "operator_field_name" like for example: Moyenne_Vitesse or Ecart_Type_Pression or Correlation_Vitesse_Vitesse. For that, it is mandatory to have the statistical calculation of this fields defined with the keyword **Statistiques**.
 
-For complete syntax, see the [Keyword Reference Manual](../reference/index.rst).
+For complete syntax, see the {ref}`stats_posts`.
 
 ### Field names
 

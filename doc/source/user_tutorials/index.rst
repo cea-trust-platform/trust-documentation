@@ -1,17 +1,13 @@
 User tutorials
 ==============
 
-In this section, you can find tutorials for **TRUST** users. Start by creating a repository that will store each and every tutorials:
-
-.. code-block:: bash
-
-   mkdir TRUST_TUTORIALS
-
+In this section, you can find tutorials to learn how to use **TRUST** for different kind of simulations. If it is your first use of TRUST, we recommend you to start from Quick start section.
 
 .. toctree::
    :maxdepth: 1
    
    heat_transfer.md
+   parallel.md
    dilatable_flow.md
    periodic_channel.md
    tank_filling.md

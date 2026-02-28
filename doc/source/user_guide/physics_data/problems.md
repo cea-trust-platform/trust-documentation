@@ -344,7 +344,7 @@ Afterwards, the reading of the equations starts. In `Pb_Multiphase`, the equatio
 
 The coupling between all equations is done in a strong way: a single matrix for all equations is used to solve the problem. Available discretisations for this type of problem are **VDF**, **PolyMAC** and **PolyMAC\_P0**. 
 
-You can also call the **EOS** (private CEA/EDF project) and the **[CoolProp](http://www.coolprop.org/)** library to compute the Thermo-Physical Properties via the `TPPI` interface. Check this [tutorial](../../user_tutorials/coolprop.md) for a guide to link CoolProp with **TRUST**.
+You can also call the **EOS** (private CEA/EDF project) and the **[CoolProp](http://www.coolprop.org/)** library to compute the Thermo-Physical Properties via the `TPPI` interface.
 
 ### Example of a Pb\_Multiphase block
 
