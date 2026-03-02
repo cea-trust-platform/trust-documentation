@@ -76,14 +76,14 @@ Start by inserting this in Obstacle.data
 
 ## Step 4 : Define the discretization and the problem
 
-The mesh used here allows us to use the VDF discretization. So use the class `VDF` to create an instance with the variable `my_discretisation`.
+The mesh used here allows us to use the VDF discretization. So use the class `VDF` to create an instance with the variable `my_discretization`.
 
 We will solve just the Navier-Stokes (NS) equations, so its a hydraulic problem. Create an instance of `Pb_hydraulique` and name it `pb`.
 
 Insert this in Obstacle.data 
 
 	# Discretization on rectangles (hexa), so use VDF #
-	VDF my_discretisation
+	VDF my_discretization
 	
 	# Problem definition #
 	Pb_hydraulique pb
@@ -127,7 +127,7 @@ Insert this in Obstacle.data
 	# Association between the different objects #
 	Associate pb dom /* Assosciate domaine */
 	Associate pb my_scheme /* Assosciate time scheme */
-	Discretize pb my_discretisation /* Discretize the domain */
+	Discretize pb my_discretization /* Discretize the domain */
 	
 ## Step 7 : Read the problem (medium, equation, BC's, post-processings)
 
@@ -245,7 +245,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	END SCATTER #
 	
 	# Discretization on hexa or tetra mesh #
-	VDF my_discretisation
+	VDF my_discretization
 	
 	# Problem definition #
 	Pb_hydraulique pb
@@ -291,7 +291,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	# Association between the different objects #
 	Associate pb dom
 	Associate pb my_scheme
-	Discretize pb my_discretisation
+	Discretize pb my_discretization
 	
 	# Problem description #
 	Read pb

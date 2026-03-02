@@ -121,7 +121,7 @@ For this tutorial, we will play with the Obstacle test case.
 Therefore, copy the test case from the database of test cases using:
 ```
 source $my_path_to_TRUST_installation/env_TRUST.sh
-mkdir TRUST_tutorials
+mkdir -p TRUST_tutorials
 cd TRUST_tutorials
 trust -copy Obstacle
 cd Obstacle

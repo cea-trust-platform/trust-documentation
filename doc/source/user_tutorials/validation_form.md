@@ -10,11 +10,11 @@ Run_fiche -doc
 
 This turorial will help you get started with the validation form so that you'll be able to create detailed ones for your own developpements.
 
-First copy the validation form named Source_canal_perio:
+First, copy the validation form named Source\_canal\_perio:
 
 ```bash
-mkdir -p $MY_TRUST_TUTORIAL_REPO/validation
-cd $MY_TRUST_TUTORIAL_REPO/validation
+mkdir -p TRUST_tutorials/validation
+cd TRUST_tutorials/validation
 cp -r $TRUST_ROOT/Validation/Rapports_automatiques/Verification/Verification_codage/Source_canal_perio .
 cd Source_canal_perio
 ```
@@ -28,14 +28,14 @@ One usefull option is:
 ```bash
 Run_fiche -export_pdf
 ```
-which will create a PDF in the local repository that replicates the results of your validation form.
+which will create a PDF in the build directory that replicates the results of your validation form.
 
-Now, we are going to change the validation form. Launch it by doing: 
+Now, we are going to change the validation form. Launch it using:
 ```
 Run_fiche &
 ```
 
-First, let's add the mesh plot in the report. To do so, at end of the notebook, add a new Markdown block:
+First, let's add the mesh plot in the report. To do so, add a new Markdown cell at end of the notebook:
 ```markdown
 ## Additional information
 ### Mesh visualization
@@ -70,13 +70,14 @@ The extraction script, called `extraction.sh`, is already available in the src d
 
 To use it from your validation form, you'll need `executeScript` from run module of trustutils (see SampleFormJupyter for help).
 
-To a table to display the results of `.dat` files, complete the chapter `Additional information` by introducing new cells.
+Add a table to display the results of `.dat` files, complete the chapter `Additional information` by creating new cells.
 
-Tip: look at {numref}`fig:jupyter` for an example of a table plot.
-
-```{figure} ../../user_tutorials/FIGURES/jupyter_table.png
+```{tip}
+Look at {numref}`fig:jupyter_table` for an example of a table plot.
+```
+```{figure} FIGURES/jupyter_table.png
 :class: custom-image-class
-:name: fig:jupyter
+:name: fig:jupyter_table
 :alt: jupyter
 
 Example of a Jupyter Notebook block
@@ -86,7 +87,7 @@ Now, we are going to add a fourth test case: `debit4` which corresponds to `std`
 
 Add the test case using `substitute` and `addCase`
 
-Then, re-run the form from the start. by clicking on the icone corresponding to the r̈estart of the Jupyter kernel and run of the whole notebook.
+Then, re-run the form from the beginning, by clicking on the icone corresponding to the r̈estart of the Jupyter kernel and run of the whole notebook.
 
 Eventually, build the pdf report with:
 ```bash

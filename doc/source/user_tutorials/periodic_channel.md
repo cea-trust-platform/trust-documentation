@@ -1,6 +1,6 @@
 # Periodic channel flow 
 
-This tutorial aims at computing numerical solution of a 3D incompressible laminar flow with periodic boundary conditions in the Z direction. The geometry is presented in {numref}`fig:periodicchannel`.
+This tutorial aims at computing numerical solution of a 3D incompressible laminar flow with periodic boundary conditions in the Z direction. The geometry is presented in {numref}`fig:periodicchannel` below.
 
 ```{figure} FIGURES/periodic3D.png
 :class: custom-image-class
@@ -21,6 +21,9 @@ As always when you use TRUST, start by loading your **TRUST** environment, [see]
 
 The case we will play with in this tutorial is called `P1toP1Bulle` in the **TRUST** repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
+source $my_path_to_TRUST_installation/env_TRUST.sh
+mkdir -p TRUST_tutorials
+cd TRUST_tutorials
 trust -copy P1toP1Bulle
 ```
 
@@ -36,7 +39,7 @@ Change your **nb\_pas\_dt\_max** to 30, close your `.data` file and run the calc
 
 Edit the `P1toP1Bulle_pb_Debit.out` file and check the flow rate on the periox boundary.
 
-Open the `.data` file and add the **Canal\_perio** source term in the Navier-Stokes equations.
+Open the `.data` file and add the **{ref}`canal_perio`** source term in the Navier-Stokes equations.
 
 Run again the calculation to check the flow rate evolution on 30 time steps. Look also at pressure and viscous forces applied on the cylinder inside the `.out` files.
 
@@ -48,12 +51,14 @@ If you wish to practice, add velocity or statistic calculation to the post-proce
 
 Run the calculation.
 
-Afterwards, create a uniformly refined mesh using, for instance, the keyword **Raffiner\_Anisotrope**.
+Afterwards, create a uniformly refined mesh using, for instance, the keyword **{ref}`raffiner_anisotrope`**.
 
 Then, in order to improve the calculation speed on this mesh, use a coarse discretization **P1** (**Read dis { P1 }**) which embarks less pressure unknowns. 
 The calculation, should be around three times faster than with the **P1Bulle** discretization but it is less accurate: 8452 unknowns compared to 49221 unknowns.
 
-Try another discretisation: **VEFPreP1B** and re-run the computation by reading the velocity field with **Champ\_fonc\_reprise** keyword in the initial conditions for the velocity:
-    **vitesse champ\_fonc\_reprise P1toP1Bulle\_pb.xyz pb vitesse last\_time**
+Try another discretization: **VEFPreP1B** and re-run the computation by reading the velocity field with **{ref}`champ_fonc_reprise`** keyword in the initial conditions for the velocity:
 
-You can also use an implicit scheme to fasten the computation: change the scheme to **Scheme\_Euler\_implicit** scheme and use an **Implicite** solver. This only works if you are looking for the stationary state.
+**vitesse champ_fonc_reprise P1toP1Bulle_pb.xyz pb vitesse last_time**
+
+You can also use an implicit scheme to make calculation running faster: change the scheme to **{ref}`schema_euler_implicite`** scheme and use an **{ref}`implicite`** solver. This only works if you are looking for the stationary state.
+

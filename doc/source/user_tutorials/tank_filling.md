@@ -1,6 +1,6 @@
 # Tank filling 
 
-This tutorials aims at running a simulation of the tank filling test case, see {numref}`fig:tankfilling`.
+This tutorial aims at running a simulation of the tank filling test case, see {numref}`fig:tankfilling`.
 The test case deals with a 2D flow with Navier-Stokes and the equation for one constituent.
 
 ```{figure} FIGURES/tank2D.png
@@ -34,6 +34,9 @@ The following table summerise the parameters of the simulation:
 
 You can copy the study named `diagonale`:
 ```bash
+source $my_path_to_TRUST_installation/env_TRUST.sh
+mkdir -p TRUST_tutorials
+cd TRUST_tutorials
 trust -copy diagonale
 ```
 
@@ -51,7 +54,7 @@ You need than to modify the geometry parameters, so your geometry resembles {num
 Mesh blocks og the 2D tank filling case
 ```
 
-To do so, you have to create three blocks, starting with $dx=dy=0.2cm$ which gives a total nodes number $Nx=51$ and $Ny=121$, see {numref}`fig:periodicchannel_block`.
+To do so, you have to create three blocks, starting with $dx=dy=0.2cm$ which gives a total nodes number $Nx=51$ and $Ny=121$, see {numref}`fig:tankblock`.
 
 - The first block ,`Block1`, whose origin is (0, 0.03), $Nx=51$, $Ny=106$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.21 m$. Name the wall boundaries Left1, Outlet(=Top1) and Right1. (Don't forget the comma between blocks definitions.)
 
@@ -105,7 +108,7 @@ Then, add a velocity segment probe (with 5 points between (0,0.021) and (0,0.029
 
 Now, you are ready to run the study and follow the time evolution with the probes:
 ```bash
-trust -evol diagonale &**
+trust -evol diagonale
 ```
 
 Press `Start computation!` button and `Plot` or `Plot on same` for probes.
@@ -123,7 +126,7 @@ You will now create a variant of you test case.
 
 First, copy `diagonale.data` to `diagonale_VEF.data`.
 
-In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretisation only works on simplex, you need to triangulate your mesh by adding the **trianguler** keyword in your `diagonale_VEF.data`.
+In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretization only works on simplex, you need to triangulate your mesh by adding the **trianguler** keyword in your `diagonale_VEF.data`.
 
 Change the keyword **quick** to **muscl** in order to use a **MUSCL** scheme.
 

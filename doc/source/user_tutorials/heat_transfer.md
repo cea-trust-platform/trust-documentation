@@ -13,7 +13,7 @@ The case we will play with in this tutorial is called `docond` in the **TRUST** 
 
 ```
 source $my_path_to_TRUST_installation/env_TRUST.sh
-mkdir TRUST_tutorials
+mkdir -p TRUST_tutorials
 cd TRUST_tutorials
 trust -copy docond
 mv docond Coupling_VDF
@@ -52,7 +52,7 @@ Then post-process the temperature field with **VisIt** tool: `Visualization` but
 
 Change the color tables for the temperature to have the same one on the 2 domains. Close **VisIt**.
 
-We are going to change the discretization of the test case from VDF to VEF. However, the VEF discretisation only works on tetrahedron, you therfore need first to triangulate the domains with the keyword **Trianguler\_H** in your `.data` file (see {ref}`trianguler_h`).
+We are going to change the discretization of the test case from VDF to VEF. However, the VEF discretization only works on tetrahedron, you therfore need first to triangulate the domains with the keyword **Trianguler\_H** in your `.data` file (see {ref}`trianguler_h`).
 
 Then, give an unstructured aspect to the 2 meshes using the following syntax in you `.data` file:
 ```
