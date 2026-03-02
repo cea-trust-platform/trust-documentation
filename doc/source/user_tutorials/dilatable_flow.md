@@ -1,6 +1,6 @@
 # Quasi Compressible flow 
 
-As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../quick_start.md).
 
 The case we will play with in this tutorial is called `TP_Temp_QC_VEF` in the **TRUST** repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```
@@ -42,7 +42,7 @@ You can now run the numerical simulation with the **TRUST** command:
 ```
 trust -evol TP_Temp_QC_VEF &
 ```
-and pressing on `Start computation!`.
+and then press the `Start computation!` button.
 
 Check the mass flow rate (absolute and relative values) in the `TP_Temp_QC_VEF.out` file, or look at the upper small window on the right of the `evol` tool.
 
@@ -62,9 +62,9 @@ Afterwards, select the Zoom mode with the right button of the mouse:
 `Mode` $\rightarrow$ `Zoom` and then zoom by selecting an area on the plot. To un-zoom push `Ctrl` button and select an area with the left button. Or with the right button select
 `View` $\rightarrow$ `Reset view`.
 
-Now, print your visualization: `File` $\rightarrow$ `Set Save options` $\rightarrow$ `File type` $\rightarrow$ `Select a type` $\rightarrow$ `Save`.
+Now, save a screenshot of your visualization: `File` $\rightarrow$ `Set Save options` $\rightarrow$ `File type` $\rightarrow$ `Select a type` $\rightarrow$ `Save`.
 
-A file named visit\*\*\* is created into your working directory.
+An image file named visit\*\*\* is created into your working directory.
 
 Then, add a second screen with `Window` $\rightarrow$ `Layout` $\rightarrow$ `1x2` and plot a horizontal profile of temperature. To do so, select the temperature field and thanks to the right button, select `Mode` $\rightarrow$ `Lineout`, and define your profile with left button. The new profile should appear on the second window.
 

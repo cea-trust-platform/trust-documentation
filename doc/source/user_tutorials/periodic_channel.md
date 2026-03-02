@@ -17,7 +17,7 @@ Geometry of the 3D periodic case
 | $\mu$ | $0.01 kg \cdot m^{-1} \cdot s^{-1}$|
 | Initial velocity $V0$| $1m/s$|
 
-As always when you use TRUST, start by loading your **TRUST** environment, [see](../index.rst).
+As always when you use TRUST, start by loading your **TRUST** environment, [see](../quick_start.md).
 
 The case we will play with in this tutorial is called `P1toP1Bulle` in the **TRUST** repository. It is a 2D simulation of helium gas flow from left to right between two heated walls. Start by copying it in your folder:
 ```

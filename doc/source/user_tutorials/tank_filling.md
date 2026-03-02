@@ -1,11 +1,11 @@
 # Tank filling 
 
-This tutorials aims at running a simulation of the tank filling test case, see {numref}`fig:periodicchannel`.
+This tutorials aims at running a simulation of the tank filling test case, see {numref}`fig:tankfilling`.
 The test case deals with a 2D flow with Navier-Stokes and the equation for one constituent.
 
 ```{figure} FIGURES/tank2D.png
 :class: custom-image-class
-:name: fig:periodicchannel
+:name: fig:tankfilling
 :alt: tank2D
 
 Geometry of the 2D tank case
@@ -32,13 +32,7 @@ The following table summerise the parameters of the simulation:
 | Concentration ($C(x,y,t=0)$) | 0 |
 
 
-As always, start by loading your **TRUST** environment:
-
-```bash
-source $MY_TRUST_PATH/env_TRUST.sh
-```
-
-Then you can copy the study named `diagonale`:
+You can copy the study named `diagonale`:
 ```bash
 trust -copy diagonale
 ```
@@ -47,11 +41,11 @@ Now, edit the `diagonale.data` file.
 
 Then, modify the fluid characteristics to the one given in the above table ($\mu, \rho, D$).
 
-You need than to modify the geometry parameters, so your geometry resembles {numref}`fig:periodicchannel`.
+You need than to modify the geometry parameters, so your geometry resembles {numref}`fig:tankblock`.
 
 ```{figure} FIGURES/tank2D_2.png
 :width: 40%
-:name: fig:periodicchannel_block
+:name: fig:tankblock
 :alt: tank2D_mesh
 
 Mesh blocks og the 2D tank filling case
@@ -120,16 +114,16 @@ You can now check the flow rate in inlet boundary in the diagonale\_pb\_Debit.ou
 
 Use VisIt to post-process the results at $t=0.2s$, $t=0.4s$ and $t=0.7s$. VisIt has some interesting feature for this study. It can, for example, give concentration histogram to check the numerical diffusion in the concentration equation. 
 
-To do so, add $\rightarrow$ Histogram $\rightarrow$ CONCENTRATION\_ELEM\_dom.
+To do so, click on `Add` $\rightarrow$ `Histogram` $\rightarrow$ `CONCENTRATION\_ELEM\_dom`.
 
 The volume of colored water (in $m^3$) is given by $Vol(t)= 6.66.10^{-3} t$ before $t=0.5s$ and $Vol(t)=3.33.10^{-3}$ after.
 
 ## VEF calculation
 You will now create a variant of you test case. 
 
-First, copy `diagonale.data` to `diagonale\_VEF.data`.
+First, copy `diagonale.data` to `diagonale_VEF.data`.
 
-In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretisation only works on simplex, you need to triangulate your mesh by adding the **trianguler** keyword in your `diagonale\_VEF.data`.
+In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretisation only works on simplex, you need to triangulate your mesh by adding the **trianguler** keyword in your `diagonale_VEF.data`.
 
 Change the keyword **quick** to **muscl** in order to use a **MUSCL** scheme.
 
@@ -138,7 +132,7 @@ The Cholesky method is a direct method that works well on relatively small cases
 
 Run the calculation. 
 
-You should have have an error, and **TRUST** stop the calculation. You will find a `diagonale\_VEF.decoupage\_som` file in your working directory.
+You should have have an error, and **TRUST** stop the calculation. You will find a `diagonale_VEF.decoupage_som` file in your working directory.
 
 As **TRUST** indicates, to avoid this problem, you can:
 
@@ -148,6 +142,6 @@ As **TRUST** indicates, to avoid this problem, you can:
 
 The first method is quite easy and works because of the geometry of your domain. 
 
-To use the second one, you will need the `diagonale\_VEF.decoupage\_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivides the inconsistent 2D/3D cells (cf [](../user_guide/reference/index.rst)).
+To use the second one, you will need the `diagonale_VEF.decoupage_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivides the inconsistent 2D/3D cells (cf [](../user_guide/reference/index.rst)).
 
 Eventually, run both of your `.data` files and compare the results between **VDF/quick** and **VEFPreP1B/muscl**.

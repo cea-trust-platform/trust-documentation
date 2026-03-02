@@ -8,6 +8,16 @@ See the instructions [here](https://github.com/cea-trust-platform/trust-code/blo
 
 If you need help when installing TRUST, contact TRUST support team.
 
+## Sourcing the TRUST environment
+
+Whenever you want to use TRUST or one of its derived commands, the first thing to do is to load its environment:
+
+```
+source $my_path_to_TRUST_installation/env_TRUST.sh
+```
+
+This needs to be done in every new terminal where you want to use the TRUST binary or utilities.
+
 ## How to configure TRUST
 
 As you will see in the following, **TRUST** uses `.data` files. In order to have keywords highlighted in the `.data`, we recommand the user to run:
@@ -96,7 +106,7 @@ This leads to a Reynolds number for this simulation: $Re = \frac{U_0 H_{inlet} \
 
 ### Get your test case
 
-When you want to use TRUST, the first thing to do is to load its environment:
+As mentionned previously, the first thing to do is to load its environment:
 
 ```
 source $my_path_to_TRUST_installation/env_TRUST.sh
@@ -198,7 +208,7 @@ You can change each plot attributes:
 
 - Change the number of vectors being plotted (by default 400, set it to 40000) then click on the button `Make default`
 
-- Save definitively this modification with the menu Options $\rightarrow$ Save Settings.
+- Save definitively this modification with the menu `Options` $\rightarrow$ `Save Settings`.
 
 - Click on `Apply` to update, then on `Dismiss` to close the window.
 
@@ -234,7 +244,7 @@ Visit enable you to animate your visualization and/or create a movie: `File` $\r
 
 Another usefull tool in **VisIt** are queries that enable you to do operations on your variables: `Controls` $\rightarrow$ `Query`
 
-Eventually, save your work with: File $\rightarrow$ Save session
+Eventually, save your work with: `File` $\rightarrow$ `Save session`
 
 To reopen it during a next analyze with VisIt, use: `File` $\rightarrow$ `Restore session`.
 

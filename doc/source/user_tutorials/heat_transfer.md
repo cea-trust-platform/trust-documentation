@@ -1,6 +1,6 @@
 # Heat transfer
 
-This tutorial will help you play with an Heat transfer between liquid and solid case.
+This tutorial will help you play with a heat transfer between a liquid and solid medium.
 
 ```{figure} FIGURES/heat_exchange.png
 :class: custom-image-class

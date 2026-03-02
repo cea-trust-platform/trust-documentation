@@ -26,11 +26,11 @@ The file `DEC_Obstacle.data` will be used for partioniing the mesh. To do so, un
 
 Here, the partitioning tool **Metis** will be used. We cut the domain into **nb\_parts = 2** parts.
 
-In the general case, the overlapping width **Larg\_joint** between two parts of the partition have to be defined accordingly with the numerical scheme. For exemple, if you use a VEF discretisation (see [](user_guide/num_meth/discretisation/vef/index.rst) for more details regarding this discretisation), you should use **2** for **Larg\_joint** except when partitioning a domain where only the upwind (first-order) discretization scheme will be solved.
+In the general case, the overlapping width **Larg\_joint** between two parts of the partition have to be defined accordingly with the numerical scheme. For exemple, if you use a VEF discretisation (see [](../user_guide/num_meth/discretisation/vef/index.rst) for more details regarding this discretisation), you should use **2** for **Larg\_joint** except when partitioning a domain where only the upwind (first-order) discretization scheme will be solved.
 
 The keyword **zones\_name** is useful to define the name of the files containing the partitioned mesh that will be written.
 
-**Remark**: notice the presence of the keyword **End** in the `Partition` block: the code will stop reading the data file at this line! This means also that all what come after this line can be deleted since it is not interpreted by the code.
+**Remark**: notice the presence of the keyword **End** in the `Partition` block: the code will stop reading the data file at this line! This also means that everything coming after this line can be deleted since it is not interpreted by the code.
 
 Now, run this edited data file: 
 ```
@@ -69,7 +69,7 @@ Those blocks represent the partition of the domain. Fields are defined by block.
 
 You can visualize a field only on a selected (block) with the menu `Control` $\rightarrow$ `Subset`.
 
-Eventually, visualize probes at the end of the calculation using:
+Finally, visualize probes at the end of the calculation using:
 ```
 trust -evol PAR_Obstacle &
 ```
