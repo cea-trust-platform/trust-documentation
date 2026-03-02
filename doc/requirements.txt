@@ -8,4 +8,4 @@ matplotlib
 scipy
 pandas
 ipywidgets
-breathe
+sphinx-copybutton

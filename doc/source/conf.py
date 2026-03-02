@@ -50,6 +50,7 @@ extensions = [
     'myst_parser',                 # Support for Markdown (MyST) syntax
     # Bibliography and citations
     'sphinxcontrib.bibtex',        # Handle bibliographic references and citations
+    'sphinx_copybutton',           # Add a copy past button on code blocks    
 ]
 
 numfig = True
