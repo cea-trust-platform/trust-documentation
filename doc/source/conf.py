@@ -127,7 +127,6 @@ html_theme_options = {
     # Search and content options
     "use_sidenotes": True,          # Pour de meilleures annotations
     "show_toc_level": 2,           # Profondeur d'affichage dans la TOC
-    "primary_color": "#3498db",
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

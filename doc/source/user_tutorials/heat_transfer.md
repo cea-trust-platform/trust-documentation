@@ -2,7 +2,7 @@
 
 This tutorial will help you explore heat transfer between a liquid and a solid medium.
 
-```{figure} FIGURES/heat_exchange.png
+```{figure} /_static/FIGURES/heat_exchange.png
 :class: custom-image-class
 :alt: heat_transfer
 

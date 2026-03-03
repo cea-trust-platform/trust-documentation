@@ -14,4 +14,4 @@ In this section, you can find tutorials to learn how to use **TRUST** for differ
    datafile_from_scratch.md
    validation_form.md
    triocfd.md
-   salome.md
+   salome/salome.rst
