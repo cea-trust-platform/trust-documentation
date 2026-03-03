@@ -88,7 +88,7 @@ This first tutorial simulates the flow around a square cylinder in 2 dimensions 
 <img src="https://github.com/cea-trust-platform/cea-trust-platform.github.io/blob/master/images/simulation/Obstacle.gif?raw=true" alt="Obstacle" width="800"/>
 
 The geometry we use is shown in {numref}`fig:obstacle`
-```{figure} ./user_tutorials/FIGURES/Obstacle.png
+```{figure} ./_static/FIGURES/Obstacle.png
 :class: custom-image-class
 :name: fig:obstacle
 :alt: obstacle
@@ -248,7 +248,7 @@ You can change each plot's attributes:
 
 - Click on `Apply` to update, then on `Dismiss` to close the window.
 
-```{figure} ./user_tutorials/FIGURES/visit3.jpg
+```{figure} /_static/FIGURES/visit3.jpg
 :class: custom-image-class
 :name: fig:visit
 :alt: visit

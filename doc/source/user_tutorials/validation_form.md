@@ -75,7 +75,7 @@ Add a table to display the results of `.dat` files, complete the chapter `Additi
 ```{tip}
 See {numref}`fig:jupyter_table` for an example of a table plot.
 ```
-```{figure} FIGURES/jupyter_table.png
+```{figure} /_static/FIGURES/jupyter_table.png
 :class: custom-image-class
 :name: fig:jupyter_table
 :alt: jupyter

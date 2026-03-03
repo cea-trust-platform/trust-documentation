@@ -3,7 +3,7 @@
 This tutorial aims at running a simulation of the tank filling test case, see {numref}`fig:tankfilling`.
 The test case deals with a 2D flow with Navier-Stokes and the equation for one constituent.
 
-```{figure} FIGURES/tank2D.png
+```{figure} /_static/FIGURES/tank2D.png
 :class: custom-image-class
 :name: fig:tankfilling
 :alt: tank2D
@@ -46,7 +46,7 @@ Then, modify the fluid characteristics to the one given in the above table ($\mu
 
 You then need to modify the geometry parameters, so that your geometry resembles {numref}`fig:tankblock`.
 
-```{figure} FIGURES/tank2D_2.png
+```{figure} /_static/FIGURES/tank2D_2.png
 :width: 40%
 :name: fig:tankblock
 :alt: tank2D_mesh

@@ -2,7 +2,7 @@
 
 This tutorial aims at computing the numerical solution of a 3D incompressible laminar flow with periodic boundary conditions in the Z direction. The geometry is shown in {numref}`fig:periodicchannel` below.
 
-```{figure} FIGURES/periodic3D.png
+```{figure} /_static/FIGURES/periodic3D.png
 :class: custom-image-class
 :name: fig:periodicchannel
 :alt: periodic3D

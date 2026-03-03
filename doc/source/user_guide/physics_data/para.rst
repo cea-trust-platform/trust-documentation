@@ -56,8 +56,6 @@ Different blocks appear in the data file.
          [Trianguler_h my_domain ]
          # END MESH #
 
-      You can refer to section :ref:`Mesh` to have more information.
-
 -  **Adding a partitioning block**
 
       You may now add the partitioning block which contains the cutting instruction, after your mesh block:
@@ -107,7 +105,7 @@ To automatically perform the partitioning step and obtain the parallel data file
 
 ::
 
-   > trust -partition my_data_file [parts_number]
+    trust -partition my_data_file [parts_number]
 
 .. note::
 
@@ -133,7 +131,7 @@ To see your sub-domains, you can run:
 
 ::
 
-   > trust -mesh PAR_my_data_file
+    trust -mesh PAR_my_data_file
 
 For more information, you can do the exercise of the `TRUST Tutorial <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_tutorial.pdf>`__.
 
@@ -233,7 +231,7 @@ To launch the calculation, you have to run the calculation by the usual command 
 
 ::
 
-   > trust my_parallel_data_file procs_number
+    trust my_parallel_data_file procs_number
 
 and *procs_number* is the number of processors used. In fact it is the same as the number of sub-domains.
 
@@ -248,7 +246,7 @@ To create this file, run:
 
 ::
 
-   > trust -create_sub_file my_parallel_data_file
+    trust -create_sub_file my_parallel_data_file
 
 You obtain a file named **sub_file**, you can open it and verify/change values(for example the name of the job, the name of the exe, ...).
 
@@ -256,13 +254,13 @@ Then you must submit you calculation with:
 
 ::
 
-   > sbatch sub_file
+    sbatch sub_file
 
 or
 
 ::
 
-   > ccc_msub sub_file
+    ccc_msub sub_file
 
 following the queue system of the cluster.
 
@@ -277,7 +275,7 @@ To visualize your probes, you can use the CurvePlot tool, with the command line:
 
 ::
 
-   > trust -evol my_parallel_data_file
+    trust -evol my_parallel_data_file
 
 or use Gnuplot or any software which reads values in columns in a file.
 
@@ -289,7 +287,7 @@ There are three ways to visualize your parallel results with VisIt:
 
    ::
 
-      > visit -np 4 &
+       visit -np 4 &
 
 You can have a look at the **TRUST**\ & **TrioCFD** user slides in the "Parallel calculation description" section.
 
@@ -305,7 +303,7 @@ If you want to modify your mesh, you have two possibilities:
 
    ::
 
-      > trust -partition my_data_file [parts_number]
+       trust -partition my_data_file [parts_number]
 
    Be carefull it will erase the *SEQ_my_data_file.data*, *DEC_my_data_file.data* and *PAR_my_data_file.data* files and creates new ones.
    
@@ -315,13 +313,13 @@ If you want to modify your mesh, you have two possibilities:
 
    ::
 
-      > trust DEC_my_data_file
+       trust DEC_my_data_file
 
 Then run the parallel calculation normally, on the new *DOM_000n*\ **.Zones** files.
 
 ::
 
-   > trust PAR_my_data_file procs_number
+    trust PAR_my_data_file procs_number
 
 Modify calculation parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -332,7 +330,7 @@ If you want to modify the calculation parameters, you can modify:
 
    ::
 
-      > trust -partition data_file_name [parts_number]
+       trust -partition data_file_name [parts_number]
 
    But it will erase the *SEQ_my_data_file.data*, *DEC_my_data_file.data* and *PAR_my_data_file.data* files and create new ones.
    
@@ -348,7 +346,7 @@ Then run the *PAR_my_data_file.data* file with:
 
 ::
 
-   > trust PAR_my_data_file procs_number
+    trust PAR_my_data_file procs_number
 
 .. note::
 
@@ -362,5 +360,5 @@ You will run it like:
 
 ::
 
-   > trust BuildMeshes
-   > trust calculation processors_number
+    trust BuildMeshes
+    trust calculation processors_number

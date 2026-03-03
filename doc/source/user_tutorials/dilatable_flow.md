@@ -23,7 +23,7 @@ You will make several changes to the `.data` file:
 
 - First, modify the geometry and the mesh as shown in {numref}`fig:lowmach`.
 
-```{figure} FIGURES/low_mach.png
+```{figure} /_static/FIGURES/low_mach.png
 :class: custom-image-class
 :name: fig:lowmach
 :alt: low_mach
