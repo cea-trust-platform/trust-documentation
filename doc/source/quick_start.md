@@ -43,6 +43,8 @@ trust -help
 
 To run a TRUST simulation, all you have to do is write a correctly formatted data file. This is one of the advantages offered by the platform, allowing the user to change, modify, and test calculations without needing to write C++ code or recompile/link with the TRUST library. However, there is a specific syntax that must be respected to ensure that the TRUST interpreter can read the data file correctly and perform the necessary calculations.
 
+We recommend users to use the SI units for all quantities (velocity, viscosity, etc...)
+
 ```{warning}
 TRUST is sensitive to empty spaces. To avoid issues, use an empty space before and after each keyword. For example, **Read_MED{domain dom file Mesh.med}** wont work ! You should write **Read_MED { domain dom file Mesh.med }** (note the spaces before and after the  braces { ... }.
 ```

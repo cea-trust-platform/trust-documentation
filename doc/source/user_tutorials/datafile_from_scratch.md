@@ -1,6 +1,6 @@
 # Build your data file from scratch
 
-In this section, we will recreate step by step the data file you have used in the [](../quick_start.md). We recomment to use the SI units for all quantities (velocity, viscosity, etc...)
+In this section, we will recreate step by step the data file you have used in the [](../quick_start.md).
 
 ## Step 1 : Create an empty data file
 
@@ -23,6 +23,11 @@ It is important to note the names of all the boundaries because they will need t
 <img src="https://github.com/cea-trust-platform/cea-trust-platform.github.io/blob/master/images/simulation/mesh.png?raw=true" alt="Mesh" width="700"/>
 
 Now, you can start constructing your data file.
+
+You can download the mesh in med format using:
+```bash
+wget https://github.com/cea-trust-platform/trust-documentation/blob/TRUST_197/doc/source/user_tutorials/simulations/Mesh.med
+```
 
 ## Step 3 : Define the domain and read the mesh
 
@@ -109,7 +114,7 @@ Start by defining the incompressible medium `Fluide_incompressible`.
 
 Once done, read the Navier-Stokes equation `Navier_Stokes_standard`. Provide the pressure solver `Solveur_pression` and the spatial scheme to be used for the convection operator (here we use the third order `Quick` scheme). 
 
-Precise the initial and boundary conditions. This is done by the `Initial_conditions` and `Boundary_conditions` keywords. Here, we consider that the fluid is at rest at the initial state; so the velocity field is nul. At the boundaries, we consider a no-slip BC at the obstacle borders and symmetry at the top/bottom walls. At the inlet, we fix the horizontal velocity to 1 m/s, while the pressure is fixed at the outlet (open boundary).
+Specify the initial and boundary conditions. This is done by the `Initial_conditions` and `Boundary_conditions` keywords. Here, we consider that the fluid is at rest at the initial state; so the velocity field is nul. At the boundaries, we consider a no-slip BC at the obstacle borders and symmetry at the top/bottom walls. At the inlet, we fix the horizontal velocity to 1 m/s, while the pressure is fixed at the outlet (open boundary).
 
 Finaly, ask TRUST to write you the velocity and vorticity fields to visualize ! Thus, create and read a `Post_processing` object.
 
