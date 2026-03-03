@@ -1,10 +1,10 @@
 # Build your data file from scratch
 
-In this section, we will recreate step by step the data file you have used in the [](../quick_start.md).
+In this section, we will recreate step by step the data file used in [](../quick_start.md).
 
 ## Step 1 : Create an empty data file
 
-Create an empty data file named Obstacle.data in an empty Obstacle repository.
+Create an empty data file named Obstacle.data in an empty `Obstacle` directory.
 
 ## Step 2 : Create your mesh
 
@@ -41,9 +41,9 @@ You should start by defining the dimension of the domain. In this case it is 2D.
 
 You should create an instance of the `Domaine` class, named dom as that you used in the MED file.
 
-Read the MED file and the mesh using the class `Read_MED`. Since the generated was a bit coarse, TRUST allows you to reffine the mesh if you like to. This can be done via the class `Raffiner_isotrope ` applied to your domain `dom`.
+Read the MED file and the mesh using the class `Read_MED`. Since the generated mesh may be somewhat coarse, TRUST allows you to refine it if desired. This can be done via the `Raffiner_isotrope` class applied to your domain `dom`.
 
-Start by inserting this in Obstacle.data
+Insert the following into `Obstacle.data`:
 
 	# Dimension can be 2D or 3D #
 	dimension 2
@@ -61,9 +61,9 @@ Start by inserting this in Obstacle.data
 
 The mesh used here allows us to use the VDF discretization. So use the class `VDF` to create an instance with the variable `my_discretization`.
 
-We will solve just the Navier-Stokes (NS) equations, so its a hydraulic problem. Create an instance of `Pb_hydraulique` and name it `pb`.
+We will solve just the Navier-Stokes (NS) equations, making this a hydraulic problem. Create an instance of `Pb_hydraulique` and name it `pb`.
 
-Insert this in Obstacle.data 
+Insert the following into `Obstacle.data`: 
 
 	# Discretization on rectangles (hexa), so use VDF #
 	VDF my_discretization
@@ -73,9 +73,9 @@ Insert this in Obstacle.data
 
 ## Step 5 : Define the time integration scheme
 
-Its for you to define what time scheme to use. Here, we will use the Euler explicit scheme. For that, we create an instance of `Scheme_euler_explicit`, I called it `my_scheme`, and we read its parameters. 
+You need to define which time scheme to use. Here, we will use the Euler explicit scheme. For that, we create an instance of `Scheme_euler_explicit`, named `my_scheme`, and we read its parameters. 
 
-This bloc contains a lot of parameters, try to read the comments and insert the bloc in Obstacle.data.
+This block contains many parameters; read the comments carefully and insert the block into `Obstacle.data`.
 
 	# Define your time scheme; here use explicit #
 	Scheme_euler_explicit my_scheme
@@ -101,35 +101,35 @@ This bloc contains a lot of parameters, try to read the comments and insert the 
 	    tmax 10.0
 	}
 
-## Step 6 : Assosciate the instantiated objects
+## Step 6: Associate the instantiated objects
 
-Now, you need to link the domaine, the discretization and the time scheme to the problem. This is done by the C++ class `Associate` and `Discretize`.
+Now, you need to link the domain, the discretization and the time scheme to the problem. This is done by the C++ class `Associate` and `Discretize`.
 
-Insert this in Obstacle.data
+Insert the following into `Obstacle.data`:
 
 	# Association between the different objects #
-	Associate pb dom /* Assosciate domaine */
-	Associate pb my_scheme /* Assosciate time scheme */
+	Associate pb dom /* Associate domain */
+	Associate pb my_scheme /* Associate time scheme */
 	Discretize pb my_discretization /* Discretize the domain */
 	
-## Step 7 : Read the problem (medium, equation, BC's, post-processings)
+## Step 7: Read the problem (medium, equation, BCs, post-processing)
 
-Thats the main point now: define the problem !
+This is the core step: defining the problem.
 
 Start by defining the incompressible medium `Fluide_incompressible`.
 
-Once done, read the Navier-Stokes equation `Navier_Stokes_standard`. Provide the pressure solver `Solveur_pression` and the spatial scheme to be used for the convection operator (here we use the third order `Quick` scheme). 
+Then, read the Navier-Stokes equation `Navier_Stokes_standard`. Provide the pressure solver `Solveur_pression` and the spatial scheme to be used for the convection operator (here we use the third-order `Quick` scheme). 
 
-Specify the initial and boundary conditions. This is done by the `Initial_conditions` and `Boundary_conditions` keywords. Here, we consider that the fluid is at rest at the initial state; so the velocity field is nul. At the boundaries, we consider a no-slip BC at the obstacle borders and symmetry at the top/bottom walls. At the inlet, we fix the horizontal velocity to 1 m/s, while the pressure is fixed at the outlet (open boundary).
+Specify the initial and boundary conditions. This is done by the `Initial_conditions` and `Boundary_conditions` keywords. Here, we consider that the fluid is at rest at the initial state; so the velocity field is zero. At the boundaries, we consider a no-slip BC at the obstacle borders and symmetry at the top/bottom walls. At the inlet, we fix the horizontal velocity to 1 m/s, while the pressure is fixed at the outlet (open boundary).
 
-Finaly, ask TRUST to write you the velocity and vorticity fields to visualize ! Thus, create and read a `Post_processing` object.
+Finally, instruct TRUST to write the velocity and vorticity fields for visualization by creating and reading a `Post_processing` object.
 
-Try to read carefuly the syntax/comments and insert the bloc in Obstacle.data.
+Read the syntax and comments carefully, then insert the block into `Obstacle.data`.
 
 	# Problem description #
 	Read pb
 	{
-	    # Physical characteristcs of medium #
+	    # Physical characteristics of medium #
 	    Fluide_incompressible 
 	    {
 	        # Dynamic viscosity [kg/m/s] #
@@ -147,7 +147,7 @@ Try to read carefuly the syntax/comments and insert the bloc in Obstacle.data.
 	        # Solve the convection operator with a 3rd order QUICK scheme #
 	        Convection { quick }
 
-	        # Solve the diffusion too; remember diffusion always 2nd order centered #
+	        # Solve the diffusion too; remember diffusion is always 2nd order centered #
 	        Diffusion { }
 	
 	        # Uniform initial condition for velocity #
@@ -179,18 +179,18 @@ Try to read carefuly the syntax/comments and insert the bloc in Obstacle.data.
 	
 ## Step 8 : Solve the problem 
 
-Now, end your data file by inserting this bloc. This will tell TRUST to run and solve the problem.
+End your data file by inserting this block. This will tell TRUST to run and solve the problem.
 
 	# The problem is solved with #
 	Solve pb
 
-Save your Obstacle.data file and run the simulation by doing:
+Save your `Obstacle.data` file and run the simulation with:
 
 	trust Obstacle.data
 
 ## Results 
 
-Now, you can visualize your results! You should see an animation similar to the one shown below! It is the well known Von Karman vortex street!
+Now, you can visualize your results! You should see an animation similar to the one shown below! the well-known Von Kármán vortex street!
 
 <img src="https://github.com/cea-trust-platform/cea-trust-platform.github.io/blob/master/images/simulation/Obstacle.gif?raw=true" alt="Obstacle" width="800"/>
 
@@ -260,7 +260,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	    dt_sauv 100
 	    periode_sauvegarde_securite_en_heures 23
 	
-	    # Stop if one of the following criteria is checked: #
+	    # Stop if one of the following criteria is met: #
 	    # End time [s] #
 	    tmax 10.0
 	
@@ -280,7 +280,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	Read pb
 	{
 	
-	    # Physical characteristcs of medium #
+	    # Physical characteristics of medium #
 	    fluide_incompressible 
 	    {
 	        # Dynamic viscosity [kg/m/s] #
@@ -325,7 +325,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	        # Probes #
 	        Probes
 	        {
-	            # Note: periode with small value to print at each time step (necessary for spectral analysis) #
+	            # Note: period with small value to print at each time step (necessary for spectral analysis) #
 	            sonde_pression pression periode 0.005 points 2 0.13 0.105 0.13 0.115
 	            sonde_vitesse vitesse periode 0.005 points 2 0.14 0.105	0.14 0.115
 	            sonde_vit vitesse periode 0.005 segment 22 0.14 0.0 0.14 0.22
@@ -336,7 +336,7 @@ Also, check out our **[YouTube](https://www.youtube.com/@ceatrustplatform8802)**
 	
 	        # Fields #
 	        format lata
-	        fields dt_post 1.e-2  # Note: Warning to memory space if dt_post too small #
+	        fields dt_post 1.e-2  # Note: be mindful of memory usage if dt_post is too small #
 	        {
 	            /* pression elem
 	            pression som
