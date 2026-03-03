@@ -24,9 +24,15 @@ It is important to note the names of all the boundaries because they will need t
 
 Now, you can start constructing your data file.
 
-You can download the mesh in med format using:
-```bash
-wget https://github.com/cea-trust-platform/trust-documentation/blob/TRUST_197/doc/source/user_tutorials/simulations/Mesh.med
+You can download the mesh in med format:
+
+```{button-link} ../_static/Mesh.med
+:download:
+:color: primary
+:shadow:
+:expand:
+
+📥 Download mesh
 ```
 
 ## Step 3 : Define the domain and read the mesh

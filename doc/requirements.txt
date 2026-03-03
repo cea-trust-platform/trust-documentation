@@ -1,4 +1,4 @@
-sphinx>=7.0,<8.0
+sphinx>=7.0
 sphinx-book-theme>=1.1.2
 sphinx-material
 myst-parser
@@ -9,3 +9,4 @@ scipy
 pandas
 ipywidgets
 sphinx-copybutton
+sphinx-design>=0.5.0
