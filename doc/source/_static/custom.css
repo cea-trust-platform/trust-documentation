@@ -16,6 +16,11 @@
     margin-right: auto;
 }
 
+.spaced-image {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
 /* Blue text styling for special content */
 .blue-text {
     color: #003366; 

@@ -1,11 +1,18 @@
 # Linking with TrioCFD
 
-<a href="https://triocfd-documentation.readthedocs.io/en/latest/" style="float: right; margin-top: -60px; margin-left: 20px;">
-  <img src="https://raw.githubusercontent.com/cea-trust-platform/.github/refs/heads/main/profile/tcfd.png" alt="TrioCFD_logo" width="200"/>
-</a>
 
-<div style="clear: both; padding-top: 20px;"></div>
-
-One of the BALTIKs (applications build on **TRUST**) is called TrioCFD. It specializes in turbulence and multiphase flow modeling at the CFD scale. Click on its logo in order to check out its own documentation.
+One of the BALTIKs (applications build on **TRUST**) is called TrioCFD. It specializes in turbulence and multiphase flow modeling at the CFD scale.   
+  
+```{image} /_static/FIGURES/Logo_TrioCFD.png
+:width: 300px
+:align: center
+:target: https://triocfd-documentation.readthedocs.io/en/latest/
+:class: spaced-image
+```
 
 If you want to link it to your **TRUST** code, check out their [Quick Start](https://triocfd-documentation.readthedocs.io/en/latest/users/quickstart.html) and start experimenting with it through [tutorials](https://triocfd-documentation.readthedocs.io/en/latest/tutorials/index.html).
+
+    
+    
+
+
