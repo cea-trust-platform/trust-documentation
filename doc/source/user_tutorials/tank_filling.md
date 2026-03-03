@@ -11,7 +11,7 @@ The test case deals with a 2D flow with Navier-Stokes and the equation for one c
 Geometry of the 2D tank case
 ```
 
-The following table summerise the parameters of the simulation:
+The following table summarizes the parameters of the simulation:
 
 | **Fluid Properties** | **Value** |
 |:---------------:|:---------------:|
@@ -44,19 +44,19 @@ Now, edit the `diagonale.data` file.
 
 Then, modify the fluid characteristics to the one given in the above table ($\mu, \rho, D$).
 
-You need than to modify the geometry parameters, so your geometry resembles {numref}`fig:tankblock`.
+You then need to modify the geometry parameters, so that your geometry resembles {numref}`fig:tankblock`.
 
 ```{figure} FIGURES/tank2D_2.png
 :width: 40%
 :name: fig:tankblock
 :alt: tank2D_mesh
 
-Mesh blocks og the 2D tank filling case
+Mesh blocks of the 2D tank filling case
 ```
 
 To do so, you have to create three blocks, starting with $dx=dy=0.2cm$ which gives a total nodes number $Nx=51$ and $Ny=121$, see {numref}`fig:tankblock`.
 
-- The first block ,`Block1`, whose origin is (0, 0.03), $Nx=51$, $Ny=106$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.21 m$. Name the wall boundaries Left1, Outlet(=Top1) and Right1. (Don't forget the comma between blocks definitions.)
+- The first block,`Block1`, whose origin is (0, 0.03), $Nx=51$, $Ny=106$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.21 m$. Name the wall boundaries Left1, Outlet(=Top1) and Right1. (Don't forget the comma between block definitions.)
 
 - The second block, `Block2`, whose origin is (0, 0.02), $Nx=51$, $Ny=6$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.01 m$. Name the wall boundaries Inlet(=Left2) and Right2.
 
@@ -66,9 +66,9 @@ Then, define the boundary wall, using the keyword **{ref}`regroupebord`**.
 
 You could also use **facteurs**, **symx** and **symy** keywords to define a refined mesh near the walls.
 
-After your done with the geometry, change the values in the time scheme to stop the calculation at 1 second, and modify **dt\_min** and **dt\_max** values to let **TRUST** compute at least one time step.
+Once you are done with the geometry, change the values in the time scheme to stop the calculation at 1 second, and modify **dt\_min** and **dt\_max** values to let **TRUST** compute at least one time step.
 
-Now, change values for the gravity to $-9.81 m.s^{-2}$ following y-axis. 
+Now, set the gravity value to $-9.81 m.s^{-2}$ along the y-axis. 
 
 Note that the **beta\_co** keyword may be useful in order to have a Boussinesq coupling between momentum and concentration equations ($\beta C_0 g(C-C_0$) source term added to the Navier-Stokes equations).
 
@@ -76,11 +76,11 @@ Note that the **beta\_co** keyword may be useful in order to have a Boussinesq c
 
 You need to change the initial and boundary conditions for Navier-Stokes equations:
 
-- for the Outlet boundary, you have to impose $P=0$,
+- for the Outlet boundary, impose $P=0$,
 
-- for the Wall boundary, you have to impose $V_x=V_y=0$ with **{ref}`paroi_fixe`** keyword.,
+- for the Wall boundary, impose $V_x=V_y=0$ with **{ref}`paroi_fixe`** keyword,
 
-- for the Inlet boundary, you have to impose $(V_{x},V_{y})=(V(t),0)$ with:
+- for the Inlet boundary, impose $(V_{x},V_{y})=(V(t),0)$ with:
 
    $V(t)= \begin{cases}
             1-(y-0.025/0.005)^{2} & ,\; t\leq0.5s\\
@@ -94,7 +94,7 @@ You need to change the initial and boundary conditions for Navier-Stokes equatio
 
 For **Convection\_diffusion\_Concentration**, you need to use:
 
-- For the Outlet, use the following keywords to insure the external concentration is 0 :
+- For the Outlet, use the following keywords to ensure the external concentration is 0 :
 
    **Frontiere\_ouverte C\_ext Champ\_front\_uniforme 1 0.**
 
@@ -112,7 +112,7 @@ You can also neglect the diffusion term in concentration equation rather than us
 
 To see the time evolution of velocity and concentration:
 
-- Add a concentration probe near the inlet (e.g.: at (0,0.025)) (period 0.01s).
+- Add a concentration probe near the inlet (e.g. at (0,0.025)) (period 0.01s).
 
 - Add a velocity segment of probes (with 5 points between (0,0.021) and (0,0.029)) at the inlet boundary (period 0.01s).
 
@@ -121,22 +121,22 @@ Now, you are ready to run the study and follow the time evolution with the probe
 trust -evol diagonale
 ```
 
-Press `Start computation!` button and `Plot` or `Plot on same` for probes.
+Press the `Start computation!` button and `Plot` or `Plot on same` for probes.
 
-You can now check the flow rate in inlet boundary in the diagonale\_pb\_Debit.out file (plotted on the right of the `evol` window). You should find a value near $6.8 \; 10^{-3} m^2.s^{-1}$.
+You can now check the flow rate at the inlet boundary in the `diagonale\_pb\_Debit.out file (plotted on the right of the `evol` window). You should find a value close to $6.8 \; 10^{-3} m^2.s^{-1}$.
 
-Use VisIt to post-process the results at $t=0.2s$, $t=0.4s$ and $t=0.7s$. VisIt has some interesting feature for this study. It can, for example, give concentration histogram to check the numerical diffusion in the concentration equation. 
+Use VisIt to post-process the results at $t=0.2s$, $t=0.4s$ and $t=0.7s$. VisIt has some useful features for this study. It can, for example, display a concentration histogram to assess the numerical diffusion in the concentration equation. 
 
 To do so, click on `Add` $\rightarrow$ `Histogram` $\rightarrow$ `CONCENTRATION\_ELEM\_dom`.
 
 The volume of colored water (in $m^3$) is given by $Vol(t)= 6.66.10^{-3} t$ before $t=0.5s$ and $Vol(t)=3.33.10^{-3}$ after.
 
 ## VEF calculation
-You will now create a variant of you test case. 
+You will now create a variant of your test case. 
 
 First, copy `diagonale.data` to `diagonale_VEF.data`.
 
-In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretization only works on simplex, you need to triangulate your mesh by adding the **trianguler ({ref}`triangulate`)** keyword in your `diagonale_VEF.data`.
+In this new file, change the discretization from **VDF** to **VEFPreP1B**. Since the **VEF** discretization only works on simplices, you need to triangulate your mesh by adding the **trianguler ({ref}`triangulate`)** keyword in your `diagonale_VEF.data`.
 
 Change the keyword **quick** (which is only available in VDF) to **muscl** in order to use a **MUSCL** scheme.
 
@@ -145,7 +145,7 @@ The Cholesky method is a direct method that works well on relatively small cases
 
 Run the calculation. 
 
-You should have have an error, and **TRUST** stop the calculation. You will find a `diagonale_VEF.decoupage_som` file in your working directory.
+You should encounter an error, and **TRUST** will stop the calculation. You will find a `diagonale_VEF.decoupage_som` file in your working directory.
 
 As **TRUST** indicates, to avoid this problem, you can:
 
@@ -153,8 +153,8 @@ As **TRUST** indicates, to avoid this problem, you can:
 
 - or use the **{ref}`verifiercoin`** keyword. 
 
-The first method is quite easy and works because of the geometry of your domain. 
+The first method is straightforward and works here due to the geometry of your domain. 
 
-To use the second one, you will need the `diagonale_VEF.decoupage_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivides the inconsistent 2D/3D cells.
+To use the second one, you will need the `diagonale_VEF.decoupage_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivide any inconsistent 2D/3D cells.
 
-Eventually, run both of your `.data` files and compare the results between **VDF/quick** and **VEFPreP1B/muscl**.
+Finally, run both of your `.data` files and compare the results between **VDF/quick** and **VEFPreP1B/muscl**.
