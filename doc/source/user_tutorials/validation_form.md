@@ -1,14 +1,14 @@
 # Validation form
 
-As detailed in the [Workflow guidlines](../dev_corner/dev_guidelines/workflow_guidlines/index.rst), if you want your new and amazing developpements in TRUST to be integrated, you have to create an associated validation form. The prefered route to build a validation form in TRUST and its baltiks is to build a Jupyter notebook.
+As detailed in the [Workflow guidelines](../dev_corner/dev_guidelines/workflow_guidlines/index.rst), if you want your new and amazing developments in TRUST to be integrated, you need to create an associated validation form. The preferred way to build a validation form in TRUST and its BALTIKs is to write a Jupyter notebook.
 
-You can see an example of notebook in: `$TRUST_ROOT/Validation/Rapports_automatiques/Verification/SampleFormJupyter` or run on terminal:
+You can find an example notebook at: `$TRUST_ROOT/Validation/Rapports_automatiques/Verification/SampleFormJupyter` or run on terminal:
 
 ```bash
 Run_fiche -doc
 ```
 
-This turorial will help you get started with the validation form so that you'll be able to create detailed ones for your own developpements.
+This tutorial will help you get started with the validation form so that you can create detailed ones for your own developments.
 
 First, copy the validation form named Source\_canal\_perio:
 
@@ -24,18 +24,18 @@ The command to launch your validation form is `Run_fiche`, you can see the comma
 ```bash
 Run_fiche -help
 ```
-One usefull option is:
+One useful option is:
 ```bash
 Run_fiche -export_pdf
 ```
-which will create a PDF in the build directory that replicates the results of your validation form.
+which creates a PDF in the build directory that replicates the results of your validation form.
 
-Now, we are going to change the validation form. Launch it using:
+Now, we are going to modify the validation form. Launch it using:
 ```
 Run_fiche &
 ```
 
-First, let's add the mesh plot in the report. To do so, add a new Markdown cell at end of the notebook:
+First, let's add the mesh plot to the report. To do so, add a new Markdown cell at the end of the notebook:
 ```markdown
 ## Additional information
 ### Mesh visualization
@@ -46,11 +46,11 @@ fig=visit.Show(`./std.lata`, `Mesh`, `dom`, plotmesh=True, title=`Mesh`)
 fig.plot()
 ```
 
-You can also add the evolution of residuals in the report in log scale. You'll have to create a new Jupyter text cell and write:
+You can also add the evolution of residuals to the report in log scale. Create a new Jupyter text cell and write:
 ```markdown
 ## Residual plot
 ```
-Then, on another cell plot residual using:
+Then, in another cell, plot the residuals using:
 ```markdown
 Graph = plot.Graph(`Residual plot`)
 Graph.addResidu(`std.dt_ev`,label=`Residu`)
@@ -62,18 +62,18 @@ In order to visualize the pressure field of the last time step, complete the sec
 ```markdown
 ## Visualizing fields
 ```
-Then try to find how to display that field on **SampleFormJupyter** available with **Run\_fiche -doc**
+Then try to find how to display that field by referring to the **SampleFormJupyter** available with **Run\_fiche -doc**
 
-Now, you are going to extract the number of cells and the simulation final time from the three `.err` files and write it in `.dat` files. 
+Now, you will extract the number of cells and the simulation final time from the three `.err` files and write it in `.dat` files. 
 
-The extraction script, called `extraction.sh`, is already available in the src directory of this validation form, you can have a look at it.
+The extraction script, called `extraction.sh`, is already available in the src directory of this validation form, you can examine it there.
 
-To use it from your validation form, you'll need `executeScript` from run module of trustutils (see SampleFormJupyter for help).
+To use it from your validation form, use `executeScript` from run module of trustutils (see SampleFormJupyter for help).
 
 Add a table to display the results of `.dat` files, complete the chapter `Additional information` by creating new cells.
 
 ```{tip}
-Look at {numref}`fig:jupyter_table` for an example of a table plot.
+See {numref}`fig:jupyter_table` for an example of a table plot.
 ```
 ```{figure} FIGURES/jupyter_table.png
 :class: custom-image-class

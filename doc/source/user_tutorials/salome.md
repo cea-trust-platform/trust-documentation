@@ -2,11 +2,11 @@
 
 ## Introduction to SALOME
 
-The [SALOME](https://www.salome-platform.org/) platform provides engineers/researchers/practitioners with a solution that allows them to benefit from high-level modules targeting: CAD, meshing, coupling of phenomena, visualisation, calculation supervision, uncertainties, etc, thereby aiding the overall pipeline of a numerical simulation. These modules can be directly used by easy-to-use GUI of SALOME or via Python scripts. If desired, users can build domain-specific applications/softwares by assembling these modules to the needs of the numerical simulation.
+The [SALOME](https://www.salome-platform.org/) platform provides engineers, researchers, and practitioners with a solution that integrates high-level modules covering: CAD, meshing, coupling of phenomena, visualization, calculation supervision, uncertainty quantification, and more, supporting the full pipeline of a numerical simulation. These modules can be used directly through SALOME's intuitive GUI or via Python scripts. If desired, users can build domain-specific applications by assembling these modules to suit the needs of their numerical simulation.
 
-Developed collaboratively, SALOME is available under the GNU Lesser General Public License (LGPL). The dynamic evolution of SALOME ensures optimal use of computer resources: cluster, HPC, graphics. SALOME is extensively used by EDF, France and CEA, France, to carry out studies necessary for the proper functioning of their facilities and for research work in their field in an efficient manner. 
+Developed collaboratively, SALOME is available under the GNU Lesser General Public License (LGPL). Its continuous evolution ensures optimal use of computing resources: clusters, HPC, and graphics hardware. SALOME is widely used by EDF and CEA, both in France, to carry out studies required for the proper functioning of their facilities and to support research in their respective fields.
 
-This tutorial demonstrates how to use SALOME to create 3D meshes adapted for the VEF discretization available in the TRUST code. It will cover several practical examples, from simple geometries to complex coupled problems.
+This tutorial demonstrates how to use SALOME to create 3D meshes suitable for the VEF discretization available in the TRUST code. It covers several practical examples, from simple geometries to complex coupled problems.
 
 ---
 
@@ -15,7 +15,7 @@ This tutorial demonstrates how to use SALOME to create 3D meshes adapted for the
 ### Setting Up the Environment
 
 
-First, make sure the SALOME platform is installed and retrieve its path. We'll call this path ```$PathToSALOME```. If you don't have SALOME installed, you can download it [here](https://www.salome-platform.org/?page_id=2430). 
+First, make sure the SALOME platform is installed and note its path, referred to here as ```$PathToSALOME```. If you don't have SALOME installed, you can download it [here](https://www.salome-platform.org/?page_id=2430). 
 
 Then, create a working directory and launch SALOME:
 
@@ -29,7 +29,7 @@ $ $PathToSALOME/salome &
 
 - **Create a new study:** File → New
 
-- **Select the Geometry module** from the SALOME drop-down menu (contains all modules)
+- **Select the Geometry module** from the SALOME drop-down menu (which lists all available modules)
 
 - **Save your study frequently** in HDF format (SALOME's native format)
 
@@ -41,7 +41,7 @@ $ $PathToSALOME/salome &
 ![Cylinder creation dialog](FIGURES/salome2.jpg)
 
 - **Navigate the view:**
-  - Use the "Interaction style switch" (Mouse icon) to rotate, zoom, and move the geometry
+  - Use the "Interaction style switch" (Mouse icon) to rotate, zoom, and pan the geometry
 
 ### Defining Boundary Groups
 
@@ -54,7 +54,7 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
 - **Create the "Inlet" group (top):**
   - Group Name: `Inlet`
   - Click the arrow button in the Main Shape field
-  - Select "Cylinder_1" from the Object Browser or visualization window
+  - Select "Cylinder_1" from the Object Browser or the visualization window
   - Click on the top surface of the cylinder
   - Click "Add" → "Apply"
 
@@ -69,7 +69,7 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
   - Rotate the cylinder to access the bottom surface
   - Select and add it
 
-- **Verify:** Check that all three groups appear in the Object Browser (click the "▷" in front of "Cylinder_1")
+- **Verify:** Check that all three groups appear in the Object Browser (click the "▷" next to "Cylinder_1")
 
 ### Creating the Mesh
 
@@ -82,13 +82,13 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
 - **Create the mesh:**
   - Go to: Mesh → Create Mesh
   - Select "Cylinder_1" as the geometry (if not already selected)
-  - Choose "Netgen 1D-2D-3D" algorithm
+  - Choose the "Netgen 1D-2D-3D" algorithm
   - Click "Apply and Close"
 
 - **Compute the mesh:**
   - Select "Mesh_1" in the Object Browser
   - Right Click → Compute (or Mesh → Compute)
-  - A table showing the number of triangles, quadrangles, etc., will appear
+  - A table showing the number of triangles, quadrangles, etc. will appear
   - Click "Close"
 
 - **Hide the geometry:**
@@ -99,7 +99,7 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
 
 ### Exporting the Mesh
 
-- **Verify boundary groups:** Check that the three boundaries have automatically been added to the "Group of Faces" of the **Mesh_1** object in the Object Browser
+- **Verify boundary groups:** Check that the three boundaries have been automatically added to the "Group of Faces" of the **Mesh_1** object in the Object Browser
 
 - **Export to MED format:**
   - Select "Mesh_1"
@@ -124,27 +124,27 @@ $ trust dom
 $ visit -o mesh.lata
 ```
 
-**Warning:** A common error is forgetting to define boundary groups for the geometry. TRUST will detect this during discretization when building all mesh faces, including boundary faces.
+**Warning:** A common mistake is forgetting to define boundary groups for the geometry. TRUST will detect this during discretization when building all mesh faces, including boundary faces.
 
 ### Refining the Mesh with Viscous Layers
 
-To improve mesh quality near walls, we can use viscous layers:
+To improve mesh quality near walls, viscous layers can be used:
 
 - **Create a new mesh:** Mesh → Create Mesh
   - Name: `Refined_mesh`
   - Select "Cylinder_1" geometry
 
-- **Select 3D algorithm:** "Netgen 3D" or "MG-Tetra"
+- **Select a 3D algorithm:** "Netgen 3D" or "MG-Tetra"
 
 - **Add viscous layers:**
   - Click the wheel icon next to "Add. Hypothesis" → "Viscous Layers"
   - Total thickness: `30`
   - Number of layers: `3`
   - Stretch factor: `1.1`
-  - Add "Inlet" and "Outlet" groups to "Faces without layers"
+  - Add the "Inlet" and "Outlet" groups to "Faces without layers"
   - Click "OK"
 
-- **Add 2D algorithm:** "Netgen 1D-2D" or "MG-CADSurf"
+- **Add a 2D algorithm:** "Netgen 1D-2D" or "MG-CADSurf"
 
 - **Configure 2D parameters:**
   - Click the wheel icon next to "Hypothesis"
@@ -157,7 +157,7 @@ To improve mesh quality near walls, we can use viscous layers:
 
 - **Apply and compute:**
   - Click "Apply and Close"
-  - Select "Refined_Mesh" in Object Browser
+  - Select "Refined_Mesh" in the Object Browser
   - Right Click → Compute
 
 ![Refined mesh comparison](FIGURES/salome6a.jpg)
@@ -171,12 +171,12 @@ Since TRUST only accepts tetrahedral elements:
 - Select "Refined_Mesh" in the Object Browser
 - Go to: Modification → Split Volumes
 - Select "Tetrahedron"
-- Keep default parameters
+- Keep the default parameters
 - Click "Apply and Close"
 
 ### Final Steps
 
-- **Verify boundaries:** Check that the three boundaries are in the "Group of Faces" of **Refined_Mesh**
+- **Verify boundaries:** Check that the three boundaries are listed under "Group of Faces" of **Refined_Mesh**
 
 - **Export the mesh:**
   - Select "Refined_mesh"
@@ -193,7 +193,7 @@ Since TRUST only accepts tetrahedral elements:
 
 ## Creating a Revolution Geometry
 
-This example demonstrates creating a more complex axisymmetric geometry using revolution.
+This example demonstrates creating a more complex axisymmetric geometry using a revolution operation.
 
 ![Revolution geometry example](FIGURES/salome9.jpg)
 
@@ -249,7 +249,7 @@ Click "Apply and Close"
 ### Creating the Revolution Solid
 
 - **Create a wire:** New Entity → Build → Wire
-  - Wire_1: Select all lines (Line_1 through Line_7) and Arc_1 (use "Ctrl" to multi-select)
+  - Wire_1: Select all lines (Line_1 through Line_7) and Arc_1 (use "Ctrl" for multi-selection)
   - Click "Apply and Close"
 
 - **Create a face:** New Entity → Build → Face
@@ -259,7 +259,7 @@ Click "Apply and Close"
 - **Create the revolution:** New Entity → Generation → Revolution
   - Name: `Cylinder_1`
   - Objects: Face_1
-  - Axis: Click the arrow button and select "OZ" from Object Browser
+  - Axis: Click the arrow button and select "OZ" from the Object Browser
   - Angle: `360°`
   - Click "Apply and Close"
 
@@ -274,7 +274,7 @@ Click "Apply and Close"
   - HDF format: File → Save/Save As...
   - Python format: File → Dump Study...
 
-- **Create the mesh** following the same procedure as described in the cylinder section
+- **Create the mesh** following the same procedure described in the cylinder section
 
 **Note:** The solution file (`revolution.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
 
@@ -327,7 +327,7 @@ $ $PathToSALOME/salome &
 
 **Combine the cylinders:** Operations → Boolean → Fuse
 - Name: `Fuse_1`
-- Selected Objects: 2_Objects (use "Ctrl" to select both Cylinder_1 and Translation_1)
+- Selected Objects: 2 objects (use "Ctrl" to select both Cylinder_1 and Translation_1)
 - Click "Apply and Close"
 
 ![Fuse result](FIGURES/salome13.jpg)
@@ -381,16 +381,16 @@ This point will be used for local mesh refinement:
 
 ### Creating the Mesh
 
-- **Switch to Mesh module** from the drop-down menu
+- **Switch to the Mesh module** from the drop-down menu
 
-- **Display geometry:**
-  - Select "Fuse_1" in Object Browser
+- **Display the geometry:**
+  - Select "Fuse_1" in the Object Browser
   - Right Click → 'Show' (or click the eye icon)
 
-- **Create mesh:** Mesh → Create Mesh
-  - Select "Fuse_1" as geometry
+- **Create the mesh:** Mesh → Create Mesh
+  - Select "Fuse_1" as the geometry
 
-- **Configure 3D algorithm:** Choose "Netgen 3D"
+- **Configure the 3D algorithm:** Choose "Netgen 3D"
 
 - **Add viscous layers:**
   - Click the wheel icon next to "Add. Hypothesis" → "Viscous Layers"
@@ -398,10 +398,10 @@ This point will be used for local mesh refinement:
   - Number of layers: `3`
   - Stretch factor: `1.1`
   - Extrusion method: Node Offset
-  - Add "Wall" group to "Faces with layers (Wall)"
+  - Add the "Wall" group to "Faces with layers (Wall)"
   - Click "OK"
 
-- **Configure 2D algorithm:** Choose "Netgen 1D-2D"
+- **Configure the 2D algorithm:** Choose "Netgen 1D-2D"
 
 - **Set 2D parameters:**
   - Click the wheel icon next to "Hypothesis" → "Netgen 2D parameters"
@@ -419,7 +419,7 @@ This point will be used for local mesh refinement:
   - ☐ Second Order
 
   **Local Size menu:**
-  - Select "Corner" object in Object Browser
+  - Select the "Corner" object in the Object Browser
   - Click "On Vertex"
   - Set value to `0.01`
   
@@ -433,28 +433,28 @@ This point will be used for local mesh refinement:
   - Select "Mesh_1"
   - Right Click → Compute
 
-### Converting to Tetrahedral Mesh
+### Converting to a Tetrahedral Mesh
 
-- Select "Mesh_1" in Object Browser
+- Select "Mesh_1" in the Object Browser
 - Go to: Modification → Split Volumes
 - Select "Tetrahedron"
-- Keep default parameters
+- Keep the default parameters
 - Click "Apply and Close"
 
 ### Exporting and Saving
 
-- **Verify boundaries:** Check that all four boundaries appear in "Group of Faces" of **Mesh_1**
+- **Verify boundaries:** Check that all four boundaries appear under "Group of Faces" of **Mesh_1**
 
-- **Export mesh:**
+- **Export the mesh:**
   - Select "Mesh_1"
   - Right Click → Export → MED file
   - Save as `Mesh_1.med`
 
-- **Save study:**
+- **Save the study:**
   - HDF format: File → Save/Save As...
   - Python format: File → Dump Study...
 
-**Note:** Solution file (`T_shape.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+**Note:** The solution file (`T_shape.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
 
 ### Running with TRUST
 
@@ -472,7 +472,7 @@ $ trust -partition T_shape
 $ trust PAR_T_shape 4
 ```
 
-Visualize results with VisIt or SALOME by opening:
+Visualize the results with VisIt or SALOME by opening:
 - Sequential: `T_shape_0000.med`
 - Parallel: `PAR_T_shape_0000.med`
 
@@ -486,11 +486,11 @@ This exercise demonstrates creating meshes for coupled multi-domain problems whe
 
 ### Problem Description
 
-Consider the cooling of a solid block by fluid flowing through circular cross-section channels. The channel is centered in a square cross-section block. The outer boundaries of the solid are adiabatic.
+Consider the cooling of a solid block by a fluid flowing through circular cross-section channels. The channel is centered within a square cross-section block. The outer boundaries of the solid are adiabatic.
 
 ![Coupled problem schematic](FIGURES/Pb_couple.pdf)
 
-We need to create two domains:
+Two domains need to be created:
 - **Domain 1:** Solid block
 - **Domain 2:** Fluid channel
 
@@ -561,19 +561,19 @@ Create surface groups for all boundaries:
   - Shape Type: Surface
   - Name: `Fluid_inlet`
   - Main Shape: Partition_1
-  - Select bottom of cylinder → "Add" → "Apply"
+  - Select the bottom of the cylinder → "Add" → "Apply"
 
 - **Fluid outlet:**
   - Name: `Fluid_outlet`
-  - Select top circular boundary → "Add" → "Apply"
+  - Select the top circular boundary → "Add" → "Apply"
 
 - **Solid top:**
   - Name: `Solid_top`
-  - Select top of box → "Add" → "Apply"
+  - Select the top of the box → "Add" → "Apply"
 
 - **Solid bottom:**
   - Name: `Solid_bottom`
-  - Select bottom of box → "Add" → "Apply"
+  - Select the bottom of the box → "Add" → "Apply"
 
 - **Solid lateral walls:**
   - Name: `Solid_lateral_walls`
@@ -581,16 +581,16 @@ Create surface groups for all boundaries:
 
 - **Solid-Fluid interface:**
   - Name: `Solid_Fluid_Interface`
-  - Select top of box → "Hide selected"
+  - Select the top of the box → "Hide selected"
   - Select a lateral boundary → "Hide selected"
   - The lateral surface of the cylinder should now be visible
   - Select it → "Add" → "Apply and Close"
 
 ### Creating the Mesh
 
-- **Switch to Mesh module**
+- **Switch to the Mesh module**
 
-- **Create mesh:** Mesh → Create Mesh
+- **Create the mesh:** Mesh → Create Mesh
   - Name: `Mesh_1`
   - Geometry: Partition_1
   - 3D algorithm: NETGEN 1D-2D-3D
@@ -600,12 +600,12 @@ Create surface groups for all boundaries:
   - In "Arguments": Change fineness from "Moderate" to "Fine"
   - Click "OK" → "Apply and Close"
 
-- **Compute mesh:**
-  - Right click on "Mesh_1" → Compute
+- **Compute the mesh:**
+  - Right-click on "Mesh_1" → Compute
 
 - **Verify groups:**
-  - Check that six boundaries appear in "Group of Faces" of **Mesh_1**
-  - Check that two volume groups appear in "Group of Volumes" of **Mesh_1**
+  - Check that six boundaries appear under "Group of Faces" of **Mesh_1**
+  - Check that two volume groups appear under "Group of Volumes" of **Mesh_1**
 
 ### Exporting the Mesh
 
@@ -616,7 +616,7 @@ Create surface groups for all boundaries:
   - Save as `Mesh_1.med`
 
 - **Dump the study:** File → Dump Study
-  - Save as Python script (needed for the next exercise)
+  - Save as a Python script (needed for the next exercise)
 
 ### Running the Coupled Problem
 
@@ -627,13 +627,13 @@ $ cp $TRUST_ROOT/doc/TRUST/exercices/salome/Coupled_pb.data .
 $ trust Coupled_pb.data
 ```
 
-Visualize results with VisIt:
+Visualize the results with VisIt:
 
 ```bash
 $ visit -o Coupled_pb.lata
 ```
 
-Draw the temperature profile on both domains and set the color bar min/max to 300 and 400 respectively. You'll observe the solid cooling over time. With increased simulation time, the solid temperature will eventually equal the fluid temperature at steady state.
+Plot the temperature field on both domains and set the color bar min/max to 300 and 400 respectively. You will observe the solid cooling over time. Given sufficient simulation time, the solid temperature will eventually match the fluid temperature at steady state.
 
 ---
 
@@ -641,10 +641,10 @@ Draw the temperature profile on both domains and set the color bar min/max to 30
 
 ### Overview
 
-SALOME can save all GUI commands as a Python script. This allows you to:
+SALOME can save all GUI operations as a Python script. This allows you to:
 - Modify geometry and mesh parameters without rebuilding from scratch
 - Automate mesh generation
-- Version control your meshing workflow
+- Version-control your meshing workflow
 
 ### Setup
 
@@ -662,7 +662,7 @@ $ cp ../exo4/Mesh_1.py .
 $ cp $TRUST_ROOT/doc/TRUST/exercices/salome/Coupled_pb.data .
 ```
 
-**Note:** If you haven't completed the previous exercise:
+**Note:** If you have not completed the previous exercise:
 
 ```bash
 $ path=$TRUST_ROOT/doc/TRUST/exercices/salome
@@ -673,16 +673,16 @@ $ cp $path/Coupled_pb.py Mesh_1.py
 
 Open `Mesh_1.py` in a text editor and make the following changes:
 
-- **Add mesh export command** at the end of the script:
+- **Add a mesh export command** at the end of the script:
    ```python
    Mesh_1.ExportMED("Mesh_1.med", 0)
    ```
 
-- **Modify geometry parameters:**
+- **Modify the geometry parameters:**
   - Change box and cylinder height: `400` → `300`
   - Change cylinder radius: `40` → `70`
 
-- **Modify mesh parameters in `NETGEN_3D_Parameters_1`:**
+- **Modify the mesh parameters in `NETGEN_3D_Parameters_1`:**
   - MaxSize: `48.9898` → `9.`
   - MinSize: `6.97246` → `2.`
 
@@ -696,7 +696,7 @@ Run the Python script in SALOME's terminal mode:
 $ $PathToSALOME/salome -t Mesh_1.py
 ```
 
-The file `Mesh_1.med` will be generated in your folder. You'll notice:
+The file `Mesh_1.med` will be generated in your folder. You will notice:
 - The box is smaller in the z-direction
 - The cylinder is thicker
 - The mesh is finer
@@ -712,7 +712,7 @@ $ trust Coupled_pb
 ### Advantages of the Python Workflow
 
 - **Reproducibility:** Scripts document your exact meshing process
-- **Parametric studies:** Easy to modify parameters for sensitivity analysis
+- **Parametric studies:** Parameters can be easily modified for sensitivity analyses
 - **Automation:** Can be integrated into larger workflows
-- **Version control:** Scripts can be tracked with Git or other VCS
-- **Batch processing:** Generate multiple meshes with different parameters
+- **Version control:** Scripts can be tracked with Git or other VCS tools
+- **Batch processing:** Multiple meshes with different parameters can be generated automatically
