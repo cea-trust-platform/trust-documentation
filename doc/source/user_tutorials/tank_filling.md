@@ -62,7 +62,7 @@ To do so, you have to create three blocks, starting with $dx=dy=0.2cm$ which giv
 
 - The third block, `Block3`, whose origin is (0, 0), $Nx=51$, $Ny=11$ (for $dx=dy=0.2cm$), $L=0.1 m$, $H=0.02 m$. Name the wall boundaries Left3, Bottom3 and Right3.
 
-Then, define the boundary wall, using the keyword **"RegroupeBord`**. If you need help, go check the [](../user_guide/reference/index.rst).
+Then, define the boundary wall, using the keyword **{ref}`regroupebord`**.
 
 You could also use **facteurs**, **symx** and **symy** keywords to define a refined mesh near the walls.
 
@@ -78,33 +78,43 @@ You need to change the initial and boundary conditions for Navier-Stokes equatio
 
 - for the Outlet boundary, you have to impose $P=0$,
 
-- for the Wall boundary, you have to impose $V_x=V_y=0$ with **"paroi\_fixe`** keyword.,
+- for the Wall boundary, you have to impose $V_x=V_y=0$ with **{ref}`paroi_fixe`** keyword.,
 
 - for the Inlet boundary, you have to impose $(V_{x},V_{y})=(V(t),0)$ with:
 
-$V(t)= \begin{cases}
+   $V(t)= \begin{cases}
             1-(y-0.025/0.005)^{2} & ,\; t\leq0.5s\\
             0 & ,\; t>0.5s
             \end{cases}$.
 
-You will use the **Champ\_Front\_Fonc\_txyz** keyword for the velocity, to write something like: **Champ\_Front\_Fonc\_txyz $2$ $(1-((y-0.025)/0.005)^2)*(t<0.5)$ $0.$**
-Note: Use ($t[0.5)$ syntax if you prefer ($t<=0.5$)
+   You will use the **{ref}`champ_front_fonc_txyz`** keyword for the velocity, to write something like: **Champ\_Front\_Fonc\_txyz $2$ $(1-((y-0.025)/0.005)^2)*(t<0.5)$ $0.$**
+   ```{note}
+   Use ($t[0.5)$ syntax if you prefer ($t<=0.5$)
+   ```
 
-You need to use **Champ\_Front\_Fonc\_txyz** field for the Inlet boundary condition for concentration.
+For **Convection\_diffusion\_Concentration**, you need to use:
 
-For the Outlet, use the following keywords to insure the external concentration is 0 :**Frontiere\_ouverte C\_ext Champ\_front\_uniforme 1 0.**
+- For the Outlet, use the following keywords to insure the external concentration is 0 :
 
-For the Wall, the keyword for impermeable boundary condition for concentration is **paroi**.
+   **Frontiere\_ouverte C\_ext Champ\_front\_uniforme 1 0.**
 
-Then make sure to check that you have high-order schemes (i.e. **"Quick`** scheme) used in both equations to reduce numerical diffusion.
+- For the Wall, the keyword for impermeable boundary condition for concentration is **{ref}`paroi`**.
 
-You could also have suppressed the diffusion term in concentration equation rather than using a small diffusion coefficient with: **Diffusion { negligeable }**
+- for the Inlet boundary condition of concentration, **{ref}`champ_front_fonc_txyz`** field
+
+Then make sure to check that you have high-order schemes (i.e. **Quick** scheme) used in both equations to reduce numerical diffusion.
+
+You can also neglect the diffusion term in concentration equation rather than using a small diffusion coefficient with:
+
+   **Diffusion { negligeable }**
 
 ## Post-processing tools
 
-Start by adding a concentration probe near the inlet (e.g.: at (0,0.025)).
+To see the time evolution of velocity and concentration:
 
-Then, add a velocity segment probe (with 5 points between (0,0.021) and (0,0.029)) at the inlet boundary to see the time evolution of these two quantities (period 0.01s).
+- Add a concentration probe near the inlet (e.g.: at (0,0.025)) (period 0.01s).
+
+- Add a velocity segment of probes (with 5 points between (0,0.021) and (0,0.029)) at the inlet boundary (period 0.01s).
 
 Now, you are ready to run the study and follow the time evolution with the probes:
 ```bash
@@ -126,9 +136,9 @@ You will now create a variant of you test case.
 
 First, copy `diagonale.data` to `diagonale_VEF.data`.
 
-In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretization only works on simplex, you need to triangulate your mesh by adding the **trianguler** keyword in your `diagonale_VEF.data`.
+In this new file, change the discretization from **VDF** to **VEFPreP1B**. As **VEF** discretization only works on simplex, you need to triangulate your mesh by adding the **trianguler ({ref}`triangulate`)** keyword in your `diagonale_VEF.data`.
 
-Change the keyword **quick** to **muscl** in order to use a **MUSCL** scheme.
+Change the keyword **quick** (which is only available in VDF) to **muscl** in order to use a **MUSCL** scheme.
 
 You can also switch **GCP** solver to **Cholesky** solver of the Petsc library: **GCP { precond ssor { omega 1.5 } seuil 1.e-6 } $\rightarrow$ Petsc Cholesky { }**. 
 The Cholesky method is a direct method that works well on relatively small cases but that may need a large amount of RAM memory for larger problems.
@@ -139,12 +149,12 @@ You should have have an error, and **TRUST** stop the calculation. You will find
 
 As **TRUST** indicates, to avoid this problem, you can:
 
-- change the **trianguler** keyword to **trianguler\_h**,
+- change the **trianguler** keyword to **{ref}`trianguler_h`**,
 
-- or use the **VerifierCoin** keyword. 
+- or use the **{ref}`verifiercoin`** keyword. 
 
 The first method is quite easy and works because of the geometry of your domain. 
 
-To use the second one, you will need the `diagonale_VEF.decoupage_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivides the inconsistent 2D/3D cells (cf [](../user_guide/reference/index.rst)).
+To use the second one, you will need the `diagonale_VEF.decoupage_som` file. Add the following: **VerifierCoin dom { read\_file diagonale\_VEF.decoupage\_som }** in your `diagonale\_VEF.data`, just after `trianguler dom`. This will subdivides the inconsistent 2D/3D cells.
 
 Eventually, run both of your `.data` files and compare the results between **VDF/quick** and **VEFPreP1B/muscl**.
