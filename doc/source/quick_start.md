@@ -39,32 +39,39 @@ You can have the list of **trust** command options with:
 trust -help
 ```
 
-Here is a panel of some available options:
-|  Option                    | details                                                                                                           |
-|----------------------------|-------------------------------------------------------------------------------------------------------------------|
-| -help|-h                   | Dispalys available options.                                                                                       |
-| -baltik [baltik_name]      | Instanciate an empty Baltik project.                                                                              |
-| -index                     | Access to the TRUST ressource index.                                                                              |
-| -config vim\|emacs\|gedit  | Configure vim, emacs or gedit to recognize TRUST keywords syntax.                                                 |
-| -trustify                  | Check the datafile's keywords with trustify.                                                                      |
-| -eclipse-trust             | Generate Eclipse configuration files to import TRUST sources.                                                     |
-| -eclipse-baltik            | Generate Eclipse configuration files to import BALTIK sources.                                                    |
-| -evol                      | Monitor the TRUST calculation (GUI).                                                                              |
-| -jupyter                   | Create basic jupyter notebook.                                                                                    |
-| -clean                     | Clean the current directory from all the generated files by TRUST.                                                |
-| -search keywords           | Know the list of test cases in the data bases which contain keywords.                                             |
-| -copy                      | Copy the test case datafile from the TRUST database under the present directory.                                  |
-| -check all\|testcase\|list | Check the non regression of all test cases or a single test case or a list of tests cases specified in a file.    |
-| -ctest all                 | Similar to -check but using ctest.                                                                                |
-| -gdb                       | Run under gdb debugger.                                                                                           |
-| -valgrind                  | Run under valgrind.                                                                                               |
-| -heaptrack                 | Run heaptrack (heap profile).                                                                                     |
-| -advisor                   | Run advisor tool (vectorization).                                                                                 |
-| -vtune                     | Run vtune tool (profiling).                                                                                       |
-| -perf                      | Run perf tool (profiling).                                                                                        |
-| -trace                     | Run traceanalyzer tool (MPI profiling).                                                                           |
-| -create_sub\_file          | Create a submission file only.                                                                                    |
-| datafile -help\_trust      | Print options of TRUST_EXECUTABLE [CASE[.data]] [options].                                                        |
+## What is a datafile
+
+To run a TRUST simulation, all you have to do is write a correctly formatted data file. This is one of the advantages offered by the platform, allowing the user to change, modify, and test calculations without needing to write C++ code or recompile/link with the TRUST library. However, there is a specific syntax that must be respected to ensure that the TRUST interpreter can read the data file correctly and perform the necessary calculations.
+
+```{warning}
+TRUST is sensitive to empty spaces. To avoid issues, use an empty space before and after each keyword. For example, **Read_MED{domain dom file Mesh.med}** wont work ! You should write **Read_MED { domain dom file Mesh.med }** (note the spaces before and after the  braces { ... }.
+```
+
+```{note}
+It is possible to write comments in you data file. This can be done by the **#** character; **#** at the begining and at the end of the commented line/paragraph. It is also possible to put your comments between **/*** and ***/**, as the bloc comments in C++. Again, attention to the empty spaces. See these examples
+
+	# THIS IS A COMMENT #
+	/* THIS ALSO */
+	
+	/* THESE
+		ARE
+		ALSO
+		COMMENTS */
+		
+	# THESE
+		TOO
+		...
+		YES ! #
+		
+	#THIS IS NOT GOOD! NEED SPACES#
+	/*THIS IS BAD TOO*/
+	
+	// THIS IS NOT POSSIBLE NOOO
+	
+	# THIS IS NOT POSSIBLE BECAUSE IT IS NOT CLOSED
+	
+	/* NEITHER IS THIS
+```
 
 ## Flow around an obstacle
 
@@ -131,6 +138,33 @@ To get the full help of `trust` command, run:
 ```
 trust -help
 ```
+
+Here is a panel of some available options:
+|  Option                    | details                                                                                                           |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------|
+| -help|-h                   | Dispalys available options.                                                                                       |
+| -baltik [baltik_name]      | Instanciate an empty Baltik project.                                                                              |
+| -index                     | Access to the TRUST ressource index.                                                                              |
+| -config vim\|emacs\|gedit  | Configure vim, emacs or gedit to recognize TRUST keywords syntax.                                                 |
+| -trustify                  | Check the datafile's keywords with trustify.                                                                      |
+| -eclipse-trust             | Generate Eclipse configuration files to import TRUST sources.                                                     |
+| -eclipse-baltik            | Generate Eclipse configuration files to import BALTIK sources.                                                    |
+| -evol                      | Monitor the TRUST calculation (GUI).                                                                              |
+| -jupyter                   | Create basic jupyter notebook.                                                                                    |
+| -clean                     | Clean the current directory from all the generated files by TRUST.                                                |
+| -search keywords           | Know the list of test cases in the data bases which contain keywords.                                             |
+| -copy                      | Copy the test case datafile from the TRUST database under the present directory.                                  |
+| -check all\|testcase\|list | Check the non regression of all test cases or a single test case or a list of tests cases specified in a file.    |
+| -ctest all                 | Similar to -check but using ctest.                                                                                |
+| -gdb                       | Run under gdb debugger.                                                                                           |
+| -valgrind                  | Run under valgrind.                                                                                               |
+| -heaptrack                 | Run heaptrack (heap profile).                                                                                     |
+| -advisor                   | Run advisor tool (vectorization).                                                                                 |
+| -vtune                     | Run vtune tool (profiling).                                                                                       |
+| -perf                      | Run perf tool (profiling).                                                                                        |
+| -trace                     | Run traceanalyzer tool (MPI profiling).                                                                           |
+| -create_sub\_file          | Create a submission file only.                                                                                    |
+| datafile -help\_trust      | Print options of TRUST_EXECUTABLE [CASE[.data]] [options].                                                        |
 
 To display the options of TRUST's executable, run:
 ```
