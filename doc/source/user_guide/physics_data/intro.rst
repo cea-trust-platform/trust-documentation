@@ -27,18 +27,7 @@ A bit of history: the Modular Software Named Trio_U
    :figclass: small-caption
 
    Figure 1: Trio_U brick software
-
-.. raw:: html
-
-   <style>
-   .small-caption {
-     display: table;
-     caption-side: bottom;
-     font-size: smaller;
-     margin-top: 5px;
-     text-align: center; /* Add this line */
-   }
-   </style>
+   
 
 In 2015, **Trio_U** was divided in two parts: **TRUST** and **TrioCFD**.
 

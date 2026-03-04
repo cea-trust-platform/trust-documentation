@@ -184,17 +184,6 @@ square divided in Figure 4 into three slices following the x direction with **Tr
 
    Figure 4: TRANCH partition.
 
-.. raw:: html
-
-   <style>
-   .small-caption {
-     display: table;
-     caption-side: bottom;
-     font-size: smaller;
-     margin-top: 5px;
-     text-align: center; /* Add this line */
-   }
-   </style>
 
 For more information, see the `TRUST Reference Manual <https://github.com/cea-trust-platform/trust-code/blob/master/doc/TRUST/TRUST_Reference_Manual.pdf>`__.
 
