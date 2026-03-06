@@ -8,8 +8,8 @@ First, make sure the SALOME platform is installed and note its path, referred to
 Then, create a working directory and launch SALOME:
 
 ```bash
-mkdir -p TRUST_TUTORIALS/salome/exo1
-cd TRUST_TUTORIALS/salome/exo1
+mkdir -p TRUST_tutorials/salome/exo1
+cd TRUST_tutorials/salome/exo1
 $PathToSALOME/salome &
 ```
 
@@ -26,7 +26,7 @@ $PathToSALOME/salome &
   - Set Radius `R = 100` and Height `H = 300` (default values)
   - Click "Apply and Close"
 
-![Cylinder creation dialog](/_static/FIGURES/salome2.jpg)
+  ![Cylinder creation dialog](/_static/FIGURES/salome2.jpg)
 
 - **Navigate the view:**
   - Use the "Interaction style switch" (Mouse icon) to rotate, zoom, and pan the geometry
@@ -46,7 +46,7 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
   - Click on the top surface of the cylinder
   - Click "Add" → "Apply"
 
-![Creating boundary groups](/_static/FIGURES/salome3.jpg)
+  ![Creating boundary groups](/_static/FIGURES/salome3.jpg)
 
 - **Create the "Wall" group (lateral surface):**
   - Repeat the process with Group Name: `Wall`
@@ -83,7 +83,7 @@ To define boundaries for TRUST, we need to create groups for the top, bottom, an
   - Select "Cylinder_1" in the Object Browser
   - Right Click → Hide (or click the eye icon)
 
-![Computed mesh](/_static/FIGURES/salome4.jpg)
+  ![Computed mesh](/_static/FIGURES/salome4.jpg)
 
 ## Exporting the Mesh
 
@@ -148,7 +148,7 @@ To improve mesh quality near walls, viscous layers can be used:
   - Select "Refined_Mesh" in the Object Browser
   - Right Click → Compute
 
-![Refined mesh comparison](/_static/FIGURES/salome6a.jpg)
+  ![Refined mesh comparison](/_static/FIGURES/salome6a.jpg)
 
 The resulting mesh will contain a mix of tetrahedral, hexahedral, pyramid, and prism elements (for Netgen) or tetrahedral and prism elements (for MG algorithms).
 
@@ -175,4 +175,6 @@ Since TRUST only accepts tetrahedral elements:
   - HDF format: File → Save/Save As...
   - Python format: File → Dump Study...
 
-**Note:** Solution files (`mesh.py` for the first mesh and `prism.py` for the refined mesh) are available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```{note}
+Solution files (`mesh.py` for the first mesh and `prism.py` for the refined mesh) are available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```

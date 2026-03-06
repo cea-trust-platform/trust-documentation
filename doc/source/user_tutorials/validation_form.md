@@ -42,7 +42,7 @@ First, let's add the mesh plot to the report. To do so, add a new Markdown cell 
 ```
 and the following:
 ```markdown
-fig=visit.Show(`./std.lata`, `Mesh`, `dom`, plotmesh=True, title=`Mesh`)
+fig=visit.Show("./std.lata", "Mesh", "dom", plotmesh=True, title="Mesh")
 fig.plot()
 ```
 
@@ -52,8 +52,8 @@ You can also add the evolution of residuals to the report in log scale. Create a
 ```
 Then, in another cell, plot the residuals using:
 ```markdown
-Graph = plot.Graph(`Residual plot`)
-Graph.addResidu(`std.dt_ev`,label=`Residu`)
+Graph = plot.Graph("Residual plot")
+Graph.addResidu("std.dt_ev",label="Residu")
 Graph.scale(yscale='log')
 ```
 

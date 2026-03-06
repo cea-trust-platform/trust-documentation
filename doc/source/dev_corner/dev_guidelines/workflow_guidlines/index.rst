@@ -31,6 +31,7 @@ Check that your developments do not break anything that already exists by runnin
 	make ctest_optim && make ctest_debug
 
 Each new development must come with a validation form or a test case before requesting a pull request
-You can also use unit tests for testing parts of your code, see ``$TRUST_ROOT/tests/UnitTests`` for examples
+You can also use unit tests for testing parts of your code, see `TRUST UnitTests`_ for already existing unit tests.
 
- 
+
+.. _TRUST UnitTests: https://github.com/cea-trust-platform/trust-code/tree/master/tests/UnitTests

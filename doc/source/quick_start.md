@@ -1,3 +1,4 @@
+(quickstart-target)=
 # Quick start
 
 **The following tutorials require a Linux-based computer.**
@@ -75,6 +76,7 @@ It is possible to write comments in your data file. This can be done using the *
 	/* NEITHER IS THIS
 ```
 
+(seq-obstacle-target)=
 ## Flow around an obstacle
 
 
@@ -349,7 +351,7 @@ Then add the following elements to the post-processing block of `Obstacle.data`:
 
 - Change the field post-processing period from 1s to 0.5s (keyword **dt_post**).
 
-- Add vorticity to the list of post-processed fields. To find the appropriate keyword, refer to [](user_guide/reference/index.rst).
+- Add vorticity to the list of post-processed fields. To find the appropriate keyword, refer to {ref}`existing-and-predefined-fields-target`.
         
 - You can also access useful resources locally in the **TRUST** index. Take a few minutes to find test cases containing a particular keyword using the [Keywords]{.underline} link in:
 ```

@@ -1,6 +1,6 @@
 # Parallel calculation
 
-The goal of this exercise is to introduce parallelism into the `Obstacle.data` file from [](../quick_start.md).
+The goal of this exercise is to introduce parallelism into the `Obstacle.data` file from {ref}`seq-obstacle-target`.
 
 First, load the TRUST environment and copy the Obstacle test case.
 

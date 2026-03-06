@@ -1,6 +1,6 @@
 # Using ECLIPSE IDE editor with TRUST
 
-To get started with Eclipse IDE for TRUST development, you'll need to download and install the appropriate version:
+To get started with Eclipse IDE for TRUST development, you will need to download and install the appropriate version:
 
 - Visit the [Eclipse Foundation website](https://www.eclipse.org/downloads/packages/).
 - Select **Eclipse IDE for C/C++ Developers** → **Linux: x86_64**
@@ -20,10 +20,10 @@ When Eclipse starts:
 - **Workspace**: Browse and select the directory `$MY_ECLIPSE_PATH/workspace`
 - **Welcome screen**: Close it using the x button
 
-Go to the root of your trust repository and do:
+Load TRUST environment and then generate a configuration for TRUST under eclipse:
 
 ```bash
-$ source env_TRUST.sh
+$ source $my_path_to_TRUST_installation/env_TRUST.sh
 $ trust -eclipse-trust
 ```
 

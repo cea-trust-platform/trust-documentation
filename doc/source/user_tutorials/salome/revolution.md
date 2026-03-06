@@ -7,8 +7,8 @@ This example demonstrates creating a more complex axisymmetric geometry using a 
 ## Setup
 
 ```bash
-mkdir -p TRUST_TUTORIALS/salome/exo2
-cd TRUST_TUTORIALS/salome/exo2
+mkdir -p TRUST_tutorials/salome/exo2
+cd TRUST_tutorials/salome/exo2
 $PathToSALOME/salome &
 ```
 
@@ -35,7 +35,7 @@ Create the following vertices:
 
 Click "Apply and Close"
 
-![Points created](/_static/FIGURES/salome7.jpg)
+  ![Points created](/_static/FIGURES/salome7.jpg)
 
 ## Creating Edges
 
@@ -70,7 +70,7 @@ Click "Apply and Close"
   - Angle: `360°`
   - Click "Apply and Close"
 
-![Revolution result](/_static/FIGURES/salome8.jpg)
+  ![Revolution result](/_static/FIGURES/salome8.jpg)
 
 ## Creating Boundary Groups and Mesh
 
@@ -83,4 +83,6 @@ Click "Apply and Close"
 
 - **Create the mesh** following the same procedure described in the cylinder section
 
-**Note:** The solution file (`revolution.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```{note}
+The solution file (`revolution.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```

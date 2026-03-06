@@ -259,7 +259,7 @@ Red terms are convective terms and blue terms are diffusive terms.
 | Pb\_Thermohydraulique\_Especes\_QC | Fluide\_Quasi\_Compressible | Navier\_Stokes\_QC + Convection\_Diffusion\_Chaleur\_QC + N additional Convection\_Diffusion\_Espece\_Multi\_QC|
 | Pb\_Thermohydraulique\_Especes\_WC | Fluide\_Quasi\_Compressible | Navier\_Stokes\_WC + Convection\_Diffusion\_Chaleur\_WC + N additional Convection\_Diffusion\_Espece\_Multi\_WC |
 
-### Example of a Pb\_Thermohydraulique block
+### Example of a Pb\_Thermohydraulique\_QC block
 
 Here is an example of **Pb\_thermohydraulique_qc**, taken from the `DarcyFlow_QC_VDF` test case:
 

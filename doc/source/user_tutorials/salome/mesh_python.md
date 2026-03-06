@@ -10,8 +10,8 @@ SALOME can save all GUI operations as a Python script. This allows you to:
 ## Setup
 
 ```bash
-mkdir -p TRUST_TUTORIALS/salome/exo5
-cd TRUST_TUTORIALS/salome/exo5
+mkdir -p TRUST_tutorials/salome/exo5
+cd TRUST_tutorials/salome/exo5
 ```
 
 ## Copying the Python Script
@@ -75,5 +75,5 @@ trust Coupled_pb
 - **Reproducibility:** Scripts document your exact meshing process
 - **Parametric studies:** Parameters can be easily modified for sensitivity analyses
 - **Automation:** Can be integrated into larger workflows
-- **Version control:** Scripts can be tracked with Git or other VCS tools
+- **Version control:** Scripts can be tracked with Git
 - **Batch processing:** Multiple meshes with different parameters can be generated automatically

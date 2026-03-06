@@ -6,7 +6,7 @@ This exercise demonstrates creating meshes for coupled multi-domain problems whe
 
 Consider the cooling of a solid block by a fluid flowing through circular cross-section channels. The channel is centered within a square cross-section block. The outer boundaries of the solid are adiabatic.
 
-![Coupled problem schematic](/_static/FIGURES/Pb_couple.pdf)
+![Coupled problem schematic](/_static/FIGURES/Coupled_problem.png)
 
 Two domains need to be created:
 - **Domain 1:** Solid block
@@ -17,8 +17,8 @@ Two domains need to be created:
 ## Setup
 
 ```bash
-mkdir -p TRUST_TUTORIALS/salome/exo4
-cd TRUST_TUTORIALS/salome/exo4
+mkdir -p TRUST_tutorials/salome/exo4
+cd TRUST_tutorials/salome/exo4
 $PathToSALOME/salome &
 ```
 

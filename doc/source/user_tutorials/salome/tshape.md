@@ -7,8 +7,8 @@ This example demonstrates creating a T-shaped geometry using boolean operations.
 ## Setup
 
 ```bash
-mkdir -p TRUST_TUTORIALS/salome/exo3
-cd TRUST_TUTORIALS/salome/exo3
+mkdir -p TRUST_tutorials/salome/exo3
+cd TRUST_tutorials/salome/exo3
 $PathToSALOME/salome &
 ```
 
@@ -31,7 +31,7 @@ $PathToSALOME/salome &
   - Angle: `90°`
   - Click "Apply and Close"
 
-![Rotation step](/_static/FIGURES/salome11.jpg)
+  ![Rotation step](/_static/FIGURES/salome11.jpg)
 
 - **Translate the rotated cylinder:** Operations → Transformation → Translation
   - Name: `Translation_1`
@@ -39,7 +39,7 @@ $PathToSALOME/salome &
   - Dx = 0, Dy = 0, Dz = 1.5
   - Click "Apply and Close"
 
-![Translation step](/_static/FIGURES/salome12.jpg)
+  ![Translation step](/_static/FIGURES/salome12.jpg)
 
 ## Fusing the Cylinders
 
@@ -48,13 +48,13 @@ $PathToSALOME/salome &
 - Selected Objects: 2 objects (use "Ctrl" to select both Cylinder_1 and Translation_1)
 - Click "Apply and Close"
 
-![Fuse result](/_static/FIGURES/salome13.jpg)
+  ![Fuse result](/_static/FIGURES/salome13.jpg)
 
-![Fuse dialog](/_static/FIGURES/salome14.jpg)
+  ![Fuse dialog](/_static/FIGURES/salome14.jpg)
 
 ## Creating Boundaries
 
-## Extracting Individual Faces
+### Extracting Individual Faces
 
 For each outlet/inlet face:
 
@@ -70,9 +70,9 @@ For each outlet/inlet face:
   - Right-click and select "Rename"
   - Rename to: `Outlet`, `Inlet_x`, or `Inlet_z`
 
-![Face extraction](/_static/FIGURES/salome15.jpg)
+  ![Face extraction](/_static/FIGURES/salome15.jpg)
 
-## Creating the Wall Group
+### Creating the Wall Group
 
 - **Create a surface group:** New Entity → Group → Create Group
   - Shape Type: Surface
@@ -82,9 +82,9 @@ For each outlet/inlet face:
   - Click on the lateral surface of Translation_1 → "Add"
   - Click "Apply and Close"
 
-![Wall group](/_static/FIGURES/salome16.jpg)
+  ![Wall group](/_static/FIGURES/salome16.jpg)
 
-## Creating a Corner Point
+### Creating a Corner Point
 
 This point will be used for local mesh refinement:
 
@@ -151,7 +151,7 @@ This point will be used for local mesh refinement:
   - Select "Mesh_1"
   - Right Click → Compute
 
-## Converting to a Tetrahedral Mesh
+### Converting to a Tetrahedral Mesh
 
 - Select "Mesh_1" in the Object Browser
 - Go to: Modification → Split Volumes
@@ -159,7 +159,7 @@ This point will be used for local mesh refinement:
 - Keep the default parameters
 - Click "Apply and Close"
 
-## Exporting and Saving
+### Exporting and Saving
 
 - **Verify boundaries:** Check that all four boundaries appear under "Group of Faces" of **Mesh_1**
 
@@ -172,7 +172,9 @@ This point will be used for local mesh refinement:
   - HDF format: File → Save/Save As...
   - Python format: File → Dump Study...
 
-**Note:** The solution file (`T_shape.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```{note}
+The solution file (`T_shape.py`) is available at: `$TRUST_ROOT/doc/TRUST/exercices/salome`
+```
 
 ## Running with TRUST
 
@@ -194,4 +196,4 @@ Visualize the results with VisIt or SALOME by opening:
 - Sequential: `T_shape_0000.med`
 - Parallel: `PAR_T_shape_0000.med`
 
-![Visualization with VisIt](/_static/FIGURES/salome18.jpg)
+  ![Visualization with VisIt](/_static/FIGURES/salome18.jpg)

@@ -6,6 +6,9 @@ These modules can be used directly through SALOME's intuitive GUI or via Python 
 Developed collaboratively, SALOME is available under the GNU Lesser General Public License (LGPL). Its continuous evolution ensures optimal use of computing resources: clusters, HPC, and graphics hardware. SALOME is widely used by EDF and CEA, both in France, to carry out studies required for the proper functioning of their facilities and to support research in their respective fields.
 This set of tutorials demonstrates how to use SALOME to create 3D meshes suitable for the VEF discretization available in the TRUST code. It covers several practical examples, from simple geometries to complex coupled problems.
 
+In addition to these tutorials, you can visit the SALOME `User's Documentation <https://docs.salome-platform.org/latest/main/gui.html>`_
+
+
 .. toctree::
    :maxdepth: 1
    

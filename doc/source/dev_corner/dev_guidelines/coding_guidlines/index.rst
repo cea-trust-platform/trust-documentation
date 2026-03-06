@@ -38,11 +38,11 @@ Comments
  	* @param cls           Domain boundary conditions
  	* @param fcl           Boundary condition data
  	*                      fcl(f, 0/1/2): (BC type, BC index, index within BC)
- 	*                      See Champ_{P0,Face}_PolyMAC_P0 for format
+ 	*                      See Champ_{P0,Face}_PolyMAC_MPFA for format
  	* @param nu            Element diffusivity (optional, can be nullptr)
  	*                      Array nu(e, n, ..) for element e and component n
  	* @param som_ext       List of vertices to exclude from processing (optional)
- 	*                      Example: direct treatment of Echange_Contact in Op_Diff_PolyMAC_P0_Elem
+ 	*                      Example: direct treatment of Echange_Contact in Op_Diff_PolyMAC_MPFA_Elem
  	* @param virt          Virtual faces indicator (1 to include, 0 otherwise)
  	* @param full_stencil  Complete stencil indicator (1 for full dimensioning)
  	*
@@ -66,7 +66,7 @@ Comments
  	*       - Imposed global/external exchange
  	*
  	*/
-	void Domaine_PolyMAC_P0::fgrad(int N, int is_p, const Conds_lim& cls, const IntTab& fcl, const DoubleTab *nu, const IntTab *som_ext, int virt, int full_stencil, IntTab& phif_d, IntTab& phif_e, DoubleTab& phif_c) const
+	void Domaine_PolyMAC_MPFA::fgrad(int N, int is_p, const Conds_lim& cls, const IntTab& fcl, const DoubleTab *nu, const IntTab *som_ext, int virt, int full_stencil, IntTab& phif_d, IntTab& phif_e, DoubleTab& phif_c) const
 	
 
 
