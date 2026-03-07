@@ -1,4 +1,4 @@
-# Parallel calculation
+# Parallel calculation (Flow around an obstacle)
 
 The goal of this exercise is to introduce parallelism into the `Obstacle.data` file from {ref}`seq-obstacle-target`.
 

@@ -1,4 +1,4 @@
-# Creating a Revolution Geometry
+# Revolution
 
 This example demonstrates creating a more complex axisymmetric geometry using a revolution operation.
 

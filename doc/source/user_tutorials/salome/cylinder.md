@@ -1,4 +1,4 @@
-# Creating a Cylinder
+# Cylinder
 
 ## Setting Up the Environment
 

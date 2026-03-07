@@ -1,4 +1,4 @@
-# Creating a Mesh for Coupled Problems
+# Mesh for coupled problems
 
 This exercise demonstrates creating meshes for coupled multi-domain problems where interface connectivity is critical.
 

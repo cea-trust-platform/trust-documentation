@@ -1,4 +1,4 @@
-# Editing and Building Meshes with Python Scripts
+# Edit & build meshes with Python script
 
 ## Overview
 

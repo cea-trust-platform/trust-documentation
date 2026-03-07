@@ -1,4 +1,4 @@
-# Quasi-Compressible flow 
+# Quasi Compressible flows
 
 As always when using TRUST, start by loading your **TRUST** environment, [see](../quick_start.md).
 
@@ -92,11 +92,3 @@ trust -evol TP_Temp_QC_VEF.data &
 ```
 The `evol` option automatically creates the `TP_Temp_QC_VEF.out` and `TP_Temp_QC_VEF.err` files.
 
-
-# Weakly Compressible flows
-
-If you are interested in comparing Quasi-Compressible and Weakly Compressible simulations, see the validation form:
-```
-cd $TRUST_ROOT/Validation/Rapports_automatiques/Verification/Verification_codage/QC_vs_WC
-Run_fiche
-```

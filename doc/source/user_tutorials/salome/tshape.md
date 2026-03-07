@@ -1,4 +1,4 @@
-# Creating a T-Shape Geometry
+# T-Shape
 
 This example demonstrates creating a T-shaped geometry using boolean operations.
 

@@ -8,7 +8,8 @@ In this section, you can find tutorials to learn how to use **TRUST** for differ
    
    heat_transfer.md
    parallel.md
-   dilatable_flow.md
+   quasi_compressible.md
+   weakly_compressible.md
    periodic_channel.md
    tank_filling.md
    datafile_from_scratch.md
