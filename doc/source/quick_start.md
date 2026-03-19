@@ -326,7 +326,7 @@ Then, we want to modify the data file in order to resume the calculation from wh
 
 - Save and close the window.
 
-- Resume the calculation again with the `Start calculation!` button. You can see that values are appended to the probes from the previous calculation.
+- Resume the calculation again with the `Start computation!` button. You can see that values are appended to the probes from the previous calculation.
 
 **Remark:** to resume your calculation, you can also use the keyword **resume\_last\_time** instead of **reprise** and only change the **tmax** value (cf {ref}`euler_scheme`).
 
