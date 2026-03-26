@@ -783,7 +783,7 @@ Parameters are:
 
 - **solv_elem**  (*type:* string) To specify a solver among gmres or bicgstab.
 
-- **precond**  (*type:* :ref:`precond_base`) The only preconditionner that we can specify is ilu.
+- **[precond]**  (*type:* :ref:`precond_base`) The only preconditionner that we can specify is ilu.
 
 - **[seuil]**  (*type:* float) Value of the final residue. The solver ceases iterations when the Euclidean residue standard ||Ax-B|| is less than this value. default value 1e-12.
 
@@ -1644,6 +1644,24 @@ Parameters are:
 
 ----
 
+.. _paroi_deplacement_impose:
+
+**paroi_deplacement_impose**
+----------------------------
+
+**Inherits from:** :ref:`dirichlet` 
+
+
+CL_Deplacement_Impose/paroi_deplacement_impose
+
+Parameters are:
+
+- **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
+
+
+
+----
+
 .. _paroi_echange_contact_correlation_vdf:
 
 **paroi_echange_contact_correlation_vdf**
@@ -1930,6 +1948,24 @@ Parameters are:
 
 ----
 
+.. _paroi_pression_imposee:
+
+**paroi_pression_imposee**
+--------------------------
+
+**Inherits from:** :ref:`condlim_base` 
+
+
+CL_Contrainte_Imposee/paroi_pression_imposee
+
+Parameters are:
+
+- **ch**  (*type:* :ref:`front_field_base`) Boundary field type.
+
+
+
+----
+
 .. _paroi_temperature_imposee:
 
 **paroi_temperature_imposee**
@@ -2062,6 +2098,53 @@ Parameters are:
 
 ----
 
+**Keywords derived from correlation_base**
+==========================================
+
+.. _correlation_base:
+
+**correlation_base**
+--------------------
+
+
+not_set
+
+
+----
+
+.. _flux_parietal_base:
+
+**flux_parietal_base**
+----------------------
+
+**Inherits from:** :ref:`correlation_base` 
+
+
+not_set
+
+
+----
+
+.. _flux_parietal_nusselt:
+
+**flux_parietal_nusselt**
+-------------------------
+
+**Synonyms:** nusselt
+
+**Inherits from:** :ref:`flux_parietal_base` 
+
+
+not_set
+
+Parameters are:
+
+- **formula**  (*type:* string) Nusselt formula as a function of Re and Pr
+
+
+
+----
+
 **Keywords derived from discretisation_base**
 =============================================
 
@@ -2128,42 +2211,49 @@ IJK discretization.
 
 ----
 
-.. _polymac:
+.. _polymac_cdo:
 
-**polymac**
------------
+**polymac_cdo**
+---------------
 
-**Inherits from:** :ref:`discretisation_base` 
-
-
-polymac discretization (polymac discretization that is not compatible with pb_multi).
-
-
-----
-
-.. _polymac_p0:
-
-**polymac_p0**
---------------
+**Synonyms:** polymac
 
 **Inherits from:** :ref:`discretisation_base` 
 
 
-polymac_p0 discretization (previously covimac discretization compatible with pb_multi).
-
-
-----
-
-.. _polymac_p0p1nc:
-
-**polymac_p0p1nc**
-------------------
-
-**Inherits from:** :ref:`discretisation_base` 
-
-
-polymac_P0P1NC discretization (previously polymac discretization compatible with
+PolyMAC_CDO discretization (PolyMAC_CDO discretization that is not compatible with
 pb_multi).
+
+
+----
+
+.. _polymac_hfv:
+
+**polymac_hfv**
+---------------
+
+**Synonyms:** polymac_p0p1nc
+
+**Inherits from:** :ref:`discretisation_base` 
+
+
+PolyMAC_HFV discretization (previously PolyMAC_CDO discretization compatible with
+pb_multi).
+
+
+----
+
+.. _polymac_mpfa:
+
+**polymac_mpfa**
+----------------
+
+**Synonyms:** polymac_p0
+
+**Inherits from:** :ref:`discretisation_base` 
+
+
+PolyMAC_MPFA discretization (previously covimac discretization compatible with pb_multi).
 
 
 ----
@@ -2218,13 +2308,15 @@ Parameters are:
 
 ----
 
-**Keywords derived from domaine**
-=================================
+**Keywords derived from domaine_base**
+======================================
 
 .. _domaine:
 
 **domaine**
 -----------
+
+**Inherits from:** :ref:`domaine_base` 
 
 
 Keyword to create a domain.
@@ -2232,62 +2324,18 @@ Keyword to create a domain.
 
 ----
 
-.. _domaineaxi1d:
+.. _domaine_64:
 
-**domaineaxi1d**
-----------------
+**domaine_64**
+--------------
 
-**Inherits from:** :ref:`domaine` 
-
-
-1D domain
+**Inherits from:** :ref:`domaine_base` 
 
 
-----
-
-.. _ijk_grid_geometry:
-
-**ijk_grid_geometry**
----------------------
-
-**Inherits from:** :ref:`domaine` 
-
-
-Object to define the grid that will represent the domain of the simulation in IJK
-discretization
-
-Parameters are:
-
-- **[perio_i]**  (*type:* flag) flag to specify the border along the I direction is periodic
-
-- **[perio_j]**  (*type:* flag) flag to specify the border along the J direction is periodic
-
-- **[perio_k]**  (*type:* flag) flag to specify the border along the K direction is periodic
-
-- **[nbelem_i]**  (*type:* int) the number of elements of the grid in the I direction
-
-- **[nbelem_j]**  (*type:* int) the number of elements of the grid in the J direction
-
-- **[nbelem_k]**  (*type:* int) the number of elements of the grid in the K direction
-
-- **[uniform_domain_size_i]**  (*type:* float) the size of the elements along the I direction
-
-- **[uniform_domain_size_j]**  (*type:* float) the size of the elements along the J direction
-
-- **[uniform_domain_size_k]**  (*type:* float) the size of the elements along the K direction
-
-- **[origin_i]**  (*type:* float) I-coordinate of the origin of the grid
-
-- **[origin_j]**  (*type:* float) J-coordinate of the origin of the grid
-
-- **[origin_k]**  (*type:* float) K-coordinate of the origin of the grid
-
+Keyword to create a big (64b) domain.
 
 
 ----
-
-**Keywords derived from domaine_base**
-======================================
 
 .. _domaine_base:
 
@@ -2326,6 +2374,19 @@ Parameters are:
 
 - **[file_coords]**  (*type:* :ref:`troismots`) not_set
 
+
+
+----
+
+.. _domaineaxi1d:
+
+**domaineaxi1d**
+----------------
+
+**Inherits from:** :ref:`domaine` 
+
+
+1D domain
 
 
 ----
@@ -2823,6 +2884,27 @@ Parameters are:
 
 ----
 
+.. _champ_morceaux:
+
+**champ_morceaux**
+------------------
+
+**Inherits from:** :ref:`champ_don_base` 
+
+
+Field defined by subfields on a list of subdomains. Each field must be defined on the
+whole domain.
+
+Parameters are:
+
+- **problem_name**  (*type:* string) Name of the problem.
+
+- **data**  (*type:* :ref:`bloc_lecture`) { Defaut field_def sous_domaine_1 field_1 ... sous_domaine_i field_i } By default, the field field_def is assigned to the field. It takes the sous_domaine_i identifier Sous_Domaine (sub_area) type object field, field_i. Sous_Domaine (sub_area) type objects must have been previously defined if the operator wishes to use a champ_morceaux type object.
+
+
+
+----
+
 .. _champ_musig:
 
 **champ_musig**
@@ -3290,32 +3372,6 @@ Parameters are:
 - **dim**  (*type:* int) Number of field components.
 
 - **bloc**  (*type:* :ref:`bloc_lecture`) Values Various pieces of the field, defined per phase. Part 1 goes to phase 1, etc...
-
-
-
-----
-
-.. _champ_front_contact_vef:
-
-**champ_front_contact_vef**
----------------------------
-
-**Inherits from:** :ref:`front_field_base` 
-
-
-This field is used on a boundary between a solid and fluid domain to exchange a calculated
-temperature at the contact face of the two domains according to the flux of the two
-problems.
-
-Parameters are:
-
-- **local_pb**  (*type:* string) Name of the problem.
-
-- **local_boundary**  (*type:* string) Name of the boundary.
-
-- **remote_pb**  (*type:* string) Name of the second problem.
-
-- **remote_boundary**  (*type:* string) Name of the boundary in the second problem.
 
 
 
@@ -3989,7 +4045,7 @@ Parameters are:
 **interpolation_ibm_elem_fluid**
 --------------------------------
 
-**Synonyms:** ibm_element_fluide, interpolation_ibm_element_fluide
+**Synonyms:** interpolation_ibm_element_fluide, ibm_element_fluide
 
 **Inherits from:** :ref:`interpolation_ibm_base` 
 
@@ -4166,6 +4222,26 @@ Parameters are:
 
 ----
 
+.. _analyse_angle_64:
+
+**analyse_angle_64**
+--------------------
+
+**Inherits from:** :ref:`analyse_angle` 
+
+
+Analyse_angle for big (64b) domain.
+
+Parameters are:
+
+- **domain_name**  (*type:* string) Name of domain to resequence.
+
+- **nb_histo**  (*type:* int) not_set
+
+
+
+----
+
 .. _associate:
 
 **associate**
@@ -4181,10 +4257,9 @@ objects in this instruction is not important. The object objet_2 is associated t
 if this makes sense; if not either objet_1 is associated to objet_2 or the program exits
 with error because it cannot execute the Associate (Associer) instruction. For example, to
 calculate water flow in a pipe, a Pb_Hydraulique type object needs to be defined. But also
-a Domaine type object to represent the pipe, a Scheme_euler_explicit type object for time
-discretization, a discretization type object (VDF or VEF) and a Fluide_Incompressible type
-object which will contain the water properties. These objects must then all be associated
-with the problem.
+a Domaine type object to represent the pipe, a time discretization object
+(Scheme_euler_explicit for ex.). These two objects must then be associated with the
+problem.
 
 Parameters are:
 
@@ -4259,6 +4334,31 @@ The Corriger_frontiere_periodique keyword is mandatory to first define the perio
 boundaries, to reorder the faces and eventually fix unaligned nodes of these boundaries.
 Faces on one side of the periodic domain are put first, then the faces on the opposite
 side, in the same order. It must be run in sequential before mesh splitting.
+
+Parameters are:
+
+- **domaine**  (*type:* string) Name of domain.
+
+- **bord**  (*type:* string) the name of the boundary (which must contain two opposite sides of the domain)
+
+- **[direction]**  (*type:* list of float) defines the periodicity direction vector (a vector that points from one node on one side to the opposite node on the other side). This vector must be given if the automatic algorithm fails, that is: - when the node coordinates are not perfectly periodic  - when the periodic direction is not aligned with the normal vector of the boundary faces
+
+- **[fichier_post]**  (*type:* string) .
+
+
+
+----
+
+.. _corriger_frontiere_periodique_64:
+
+**corriger_frontiere_periodique_64**
+------------------------------------
+
+**Inherits from:** :ref:`corriger_frontiere_periodique` 
+
+
+The Corriger_frontiere_periodique_64 did the same thing as Corriger_frontiere_periodique
+for big (64b) domain.
 
 Parameters are:
 
@@ -4366,27 +4466,12 @@ Parameters are:
 
 ----
 
-.. _debut_bloc:
+.. _decoupebord:
 
-**debut_bloc**
---------------
+**decoupebord**
+---------------
 
-**Synonyms:** {
-
-**Inherits from:** :ref:`interprete` 
-
-
-Block\'s beginning.
-
-
-----
-
-.. _decoupebord_pour_rayonnement:
-
-**decoupebord_pour_rayonnement**
---------------------------------
-
-**Synonyms:** decoupebord
+**Synonyms:** decoupebord_pour_rayonnement
 
 **Inherits from:** :ref:`interprete` 
 
@@ -4428,6 +4513,26 @@ Parameters are:
 - **[nom_fichier_sortie]**  (*type:* string) not_set
 
 - **[binaire]**  (*type:* int) not_set
+
+
+
+----
+
+.. _decouper_64:
+
+**decouper_64**
+---------------
+
+**Inherits from:** :ref:`partition` 
+
+
+Same as partition for big (64b) domain.
+
+Parameters are:
+
+- **domaine**  (*type:* string) Name of the domain to be cut.
+
+- **bloc_decouper**  (*type:* :ref:`bloc_decouper`) Description how to cut a domain.
 
 
 
@@ -4654,12 +4759,12 @@ Parameters are:
 
 ----
 
-.. _ecrire_med_32_64:
+.. _ecrire_med:
 
-**ecrire_med_32_64**
---------------------
+**ecrire_med**
+--------------
 
-**Synonyms:** ecrire_med, write_med
+**Synonyms:** write_med
 
 **Inherits from:** :ref:`interprete` 
 
@@ -4688,29 +4793,7 @@ Class to write or not to write a .xyz file on the disk at the end of the calcula
 
 Parameters are:
 
-- **type**  (*type:* string) If set to 0, no xyz file is created. If set to 1 (the default) the .xyz file is written at the end of the computation.
-
-
-
-----
-
-.. _espece:
-
-**espece**
-----------
-
-**Inherits from:** :ref:`interprete` 
-
-
-not_set
-
-Parameters are:
-
-- **mu**  (*type:* :ref:`field_base`) Species dynamic viscosity value (kg.m-1.s-1).
-
-- **cp**  (*type:* :ref:`field_base`) Species specific heat value (J.kg-1.K-1).
-
-- **masse_molaire**  (*type:* float) Species molar mass.
+- **type**  (*type:* string) If set to 0 (the default), no xyz file is created. If set to 1, the .xyz file is written at the end of the computation.
 
 
 
@@ -4735,20 +4818,6 @@ Parameters are:
 
 - **[nb_procs]**  (*type:* list of int) nb_procs is the number of processors needed to run each data file. If not given, TRUST assumes that computations are sequential.
 
-
-
-----
-
-.. _export:
-
-**export**
-----------
-
-**Inherits from:** :ref:`interprete` 
-
-
-Class to make the object have a global range, if not its range will apply to the block
-only (the associated object will be destroyed on exiting the block).
 
 
 ----
@@ -5102,21 +5171,6 @@ reaching this keyword.
 
 ----
 
-.. _fin_bloc:
-
-**fin_bloc**
-------------
-
-**Synonyms:** }
-
-**Inherits from:** :ref:`interprete` 
-
-
-Block\'s end.
-
-
-----
-
 .. _imprimer_flux:
 
 **imprimer_flux**
@@ -5237,8 +5291,6 @@ faces are not supported yet.
 
 Parameters are:
 
-- **[format]**  (*type:* :ref:`format_lata_to_cgns`) generated file post_CGNS.data use format (CGNS or LATA or LML keyword).
-
 - **file**  (*type:* string) LATA file to convert to the new format.
 
 - **file_cgns**  (*type:* string) Name of the CGNS file.
@@ -5338,6 +5390,36 @@ Parameters are:
 
 ----
 
+.. _lire_med_64:
+
+**lire_med_64**
+---------------
+
+**Inherits from:** :ref:`read_med` 
+
+
+Did the same thing as Read_MED for big (64b) domain
+
+Parameters are:
+
+- **[convertalltopoly]**  (*type:* flag) Option to convert mesh with mixed cells into polyhedral/polygonal cells
+
+- **domain | domaine**  (*type:* string) Corresponds to the domain name.
+
+- **file | fichier**  (*type:* string) File (written in the MED format, with extension '.med') containing the mesh
+
+- **[mesh | maillage]**  (*type:* string) Name of the mesh in med file. If not specified, the first mesh will be read.
+
+- **[exclude_groups | exclure_groupes]**  (*type:* list of str) List of face groups to skip in the MED file.
+
+- **[sub_zones | sous_zones]**  (*type:* list of str) List of subzones to keep in the MED file and write directly in the .geo
+
+- **[include_additional_face_groups | inclure_groupes_faces_additionnels]**  (*type:* list of str) List of face groups to read and register in the MED file.
+
+
+
+----
+
 .. _lml_to_lata:
 
 **lml_to_lata**
@@ -5370,6 +5452,27 @@ Parameters are:
 
 The Mailler (Mesh) interpretor allows a Domain type object domaine to be meshed with
 objects objet_1, objet_2, etc...
+
+Parameters are:
+
+- **domaine**  (*type:* string) Name of domain.
+
+- **bloc**  (*type:* list of Mailler_base) List of block mesh.
+
+
+
+----
+
+.. _mailler_64:
+
+**mailler_64**
+--------------
+
+**Inherits from:** :ref:`mailler` 
+
+
+The Mailler (Mesh) interpretor allows a big (64b) domain type object domaine to be meshed
+with objects objet_1, objet_2, etc...
 
 Parameters are:
 
@@ -5667,15 +5770,15 @@ Parameters are:
 
 ----
 
-.. _op_conv_ef_stab_polymac_face:
+.. _op_conv_ef_stab_polymac_cdo_face:
 
-**op_conv_ef_stab_polymac_face**
---------------------------------
+**op_conv_ef_stab_polymac_cdo_face**
+------------------------------------
 
 **Inherits from:** :ref:`interprete` 
 
 
-Class Op_Conv_EF_Stab_PolyMAC_Face_PolyMAC
+Class Op_Conv_EF_Stab_PolyMAC_CDO_Face_PolyMAC_CDO
 
 Parameters are:
 
@@ -5685,30 +5788,17 @@ Parameters are:
 
 ----
 
-.. _op_conv_ef_stab_polymac_p0_face:
+.. _op_conv_ef_stab_polymac_hfv_elem:
 
-**op_conv_ef_stab_polymac_p0_face**
------------------------------------
+**op_conv_ef_stab_polymac_hfv_elem**
+------------------------------------
 
-**Inherits from:** :ref:`interprete` 
-
-
-Class Op_Conv_EF_Stab_PolyMAC_P0_Face
-
-
-----
-
-.. _op_conv_ef_stab_polymac_p0p1nc_elem:
-
-**op_conv_ef_stab_polymac_p0p1nc_elem**
----------------------------------------
-
-**Synonyms:** op_conv_ef_stab_polymac_p0_elem
+**Synonyms:** op_conv_ef_stab_polymac_mpfa_elem
 
 **Inherits from:** :ref:`interprete` 
 
 
-Class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Elem
+Class Op_Conv_EF_Stab_PolyMAC_HFV_Elem
 
 Parameters are:
 
@@ -5718,15 +5808,28 @@ Parameters are:
 
 ----
 
-.. _op_conv_ef_stab_polymac_p0p1nc_face:
+.. _op_conv_ef_stab_polymac_hfv_face:
 
-**op_conv_ef_stab_polymac_p0p1nc_face**
----------------------------------------
+**op_conv_ef_stab_polymac_hfv_face**
+------------------------------------
 
 **Inherits from:** :ref:`interprete` 
 
 
-Class Op_Conv_EF_Stab_PolyMAC_P0P1NC_Face
+Class Op_Conv_EF_Stab_PolyMAC_HFV_Face
+
+
+----
+
+.. _op_conv_ef_stab_polymac_mpfa_face:
+
+**op_conv_ef_stab_polymac_mpfa_face**
+-------------------------------------
+
+**Inherits from:** :ref:`interprete` 
+
+
+Class Op_Conv_EF_Stab_PolyMAC_MPFA_Face
 
 
 ----
@@ -5827,10 +5930,12 @@ Parameters are:
 
 ----
 
-.. _option_polymac:
+.. _option_polymac_family:
 
-**option_polymac**
-------------------
+**option_polymac_family**
+-------------------------
+
+**Synonyms:** option_polymac
 
 **Inherits from:** :ref:`interprete` 
 
@@ -5839,13 +5944,13 @@ Class of PolyMAC options.
 
 Parameters are:
 
-- **[use_osqp]**  (*type:* flag) Flag to use the old formulation of the M2 matrix provided by the OSQP library. Only useful for PolyMAC version.
+- **[use_osqp]**  (*type:* flag) Flag to use the old formulation of the M2 matrix provided by the OSQP library. Only useful for PolyMAC_CDO version.
 
 - **[maillage_vdf | vdf_mesh]**  (*type:* flag) Flag used to force the calculation of the equiv tab.
 
-- **[interp_ve1]**  (*type:* flag) Flag to enable a first-order face-to-element velocity interpolation. By default, it is not activated which means a second order interpolation. Only useful for PolyMAC_P0 version.
+- **[interp_ve1]**  (*type:* flag) Flag to enable a first-order face-to-element velocity interpolation. By default, it is not activated which means a second order interpolation. Only useful for PolyMAC_MPFA version.
 
-- **[traitement_axi]**  (*type:* flag) Flag used to relax the time-step stability criterion in case of a thin slice geometry while modelling an axi-symetrical case. Only useful for PolyMAC_P0 version.
+- **[traitement_axi]**  (*type:* flag) Flag used to relax the time-step stability criterion in case of a thin slice geometry while modelling an axi-symetrical case. Only useful for PolyMAC_MPFA version.
 
 
 
@@ -5957,7 +6062,7 @@ Parameters are:
 
 allows to partition multiple domains in contact with each other in parallel: necessary for
 resolution monolithique in implicit schemes and for all coupled problems using
-PolyMAC_P0P1NC. By default, this keyword is commented in the reference test cases.
+PolyMAC_HFV. By default, this keyword is commented in the reference test cases.
 
 Parameters are:
 
@@ -6010,8 +6115,8 @@ Parameters are:
 
 
 cast hexahedra into polyhedra so that the indexing of the mesh vertices is compatible with
-PolyMAC_P0P1NC discretization. Must be used in PolyMAC_P0P1NC discretization if a
-hexahedral mesh has been produced with TRUST's internal mesh generator.
+PolyMAC_HFV discretization. Must be used in PolyMAC_HFV discretization if a hexahedral
+mesh has been produced with TRUST's internal mesh generator.
 
 Parameters are:
 
@@ -6184,6 +6289,24 @@ Parameters are:
 
 ----
 
+.. _raffiner_simplexes_64:
+
+**raffiner_simplexes_64**
+-------------------------
+
+**Inherits from:** :ref:`raffiner_isotrope` 
+
+
+Same as Raffiner_isotrope and Raffiner_simplexes for big (64b) domain
+
+Parameters are:
+
+- **domain_name**  (*type:* string) Name of domain.
+
+
+
+----
+
 .. _read:
 
 **read**
@@ -6240,7 +6363,7 @@ Parameters are:
 **read_file_bin**
 -----------------
 
-**Synonyms:** lire_fichier_bin, read_file_binary
+**Synonyms:** read_file_binary, lire_fichier_bin
 
 **Inherits from:** :ref:`read_file` 
 
@@ -6262,7 +6385,7 @@ Parameters are:
 **read_med**
 ------------
 
-**Synonyms:** lire_med, read_med_64
+**Synonyms:** read_med_64, lire_med
 
 **Inherits from:** :ref:`interprete` 
 
@@ -6305,6 +6428,8 @@ Parameters are:
 - **[mesh | maillage]**  (*type:* string) Name of the mesh in med file. If not specified, the first mesh will be read.
 
 - **[exclude_groups | exclure_groupes]**  (*type:* list of str) List of face groups to skip in the MED file.
+
+- **[sub_zones | sous_zones]**  (*type:* list of str) List of subzones to keep in the MED file and write directly in the .geo
 
 - **[include_additional_face_groups | inclure_groupes_faces_additionnels]**  (*type:* list of str) List of face groups to read and register in the MED file.
 
@@ -6435,6 +6560,29 @@ Parameters are:
 
 ----
 
+.. _regroupebord_64:
+
+**regroupebord_64**
+-------------------
+
+**Inherits from:** :ref:`regroupebord` 
+
+
+Keyword to build one boundary new_bord with several boundaries of the big (64b) domain
+named domaine.
+
+Parameters are:
+
+- **domaine | domain**  (*type:* string) Name of domain
+
+- **new_bord**  (*type:* string) Name of the new boundary
+
+- **bords**  (*type:* :ref:`bloc_lecture`) { Bound1 Bound2 }
+
+
+
+----
+
 .. _remove_elem:
 
 **remove_elem**
@@ -6447,8 +6595,7 @@ Keyword to remove element from a VDF mesh (named domaine_name), either from an e
 list of elements or from a geometric condition defined by a condition f(x,y)>0 in 2D and
 f(x,y,z)>0 in 3D. All the new borders generated are gathered in one boundary called :
 newBord (to rename it, use RegroupeBord keyword. To split it to different boundaries, use
-DecoupeBord_Pour_Rayonnement keyword). Example of a removed zone of radius 0.2 centered at
-(x,y)=(0.5,0.5):
+decoupebord keyword). Example of a removed zone of radius 0.2 centered at (x,y)=(0.5,0.5):
 
 Remove_elem dom { fonction $0.2*0.2-(x-0.5)^2-(y-0.5)^2>0$ }
 
@@ -7538,7 +7685,7 @@ Parameters are:
 
 - **[rho_t]**  (*type:* string) Expression of T used to calculate rho. This can lead to a variable rho, both in space and in time.
 
-- **[t_min]**  (*type:* float) Temperature may, in some cases, locally and temporarily be very small (and negative) even though computation converges. T_min keyword allows to set a lower limit of temperature (in Kelvin, -1000 by default). WARNING: DO NOT USE THIS KEYWORD WITHOUT CHECKING CAREFULY YOUR RESULTS!
+- **[tmin_for_exit]**  (*type:* float) If temperature goes below Tmin_for_exit (default value -1000), computation will stop.
 
 
 
@@ -7638,23 +7785,47 @@ Constituent.
 
 Parameters are:
 
-- **[coefficient_diffusion]**  (*type:* :ref:`field_base`) Constituent diffusion coefficient value (m2.s-1). If a multi-constituent problem is being processed, the diffusivite will be a vectorial and each components will be the diffusion of the constituent.
+- **coefficient_diffusion**  (*type:* :ref:`field_base`) Constituent diffusion coefficient value (m2.s-1). If a multi-constituent problem is being processed, the diffusivite will be a vectorial and each components will be the diffusion of the constituent.
 
 - **[is_multi_scalar | is_multi_scalar_diffusion]**  (*type:* flag) Flag to activate the multi_scalar diffusion operator
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+
+----
+
+.. _espece:
+
+**espece**
+----------
+
+**Inherits from:** :ref:`milieu_base` 
+
+
+not_set
+
+Parameters are:
+
+- **mu**  (*type:* :ref:`field_base`) Species dynamic viscosity value (kg.m-1.s-1).
+
+- **cp**  (*type:* :ref:`field_base`) Species specific heat value (J.kg-1.K-1).
+
+- **masse_molaire**  (*type:* float) Species molar mass.
+
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 
 
@@ -7676,19 +7847,19 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7710,19 +7881,19 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7750,7 +7921,7 @@ Parameters are:
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[porosites]**  (*type:* :ref:`bloc_lecture`) Porosity (optional)
 
@@ -7758,11 +7929,11 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
 - **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
 
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7803,7 +7974,7 @@ Parameters are:
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[porosites]**  (*type:* :ref:`bloc_lecture`) Porosity (optional)
 
@@ -7811,11 +7982,11 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
 - **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
 
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7848,7 +8019,7 @@ Parameters are:
 
 - **[omega_relaxation_drho_dt]**  (*type:* float) Optional option to have a relaxed algorithm to solve the mass equation. value is used (1 per default) to specify omega.
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[mu]**  (*type:* :ref:`field_base`) Dynamic viscosity (kg.m-1.s-1).
 
@@ -7856,17 +8027,17 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
-
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
-
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
-
-- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
-
 - **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
+- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7888,19 +8059,19 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7926,19 +8097,19 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -7964,19 +8135,19 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
 
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -8000,7 +8171,7 @@ Parameters are:
 
 - **[mu]**  (*type:* float) Dynamic viscosity
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* float) Thermal conductivity
+- **[lambda_ | lambda]**  (*type:* float) Thermal conductivity
 
 - **[cv]**  (*type:* float) Thermal capacity at constant volume
 
@@ -8012,17 +8183,17 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
-
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
-
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
-
-- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
-
 - **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
+- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -8047,7 +8218,7 @@ Parameters are:
 
 - **[traitement_pth]**  (*type:* string into ['constant']) Particular treatment for the thermodynamic pressure Pth ; there is currently one possibility:  1) the keyword \'constant\' makes it possible to have a constant Pth but not uniform in space ; it\'s the good choice when the flow is open (e.g. with pressure boundary conditions).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[mu]**  (*type:* :ref:`field_base`) Dynamic viscosity (kg.m-1.s-1).
 
@@ -8067,17 +8238,17 @@ Parameters are:
 
 - **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
-
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
-
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
-
-- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
-
 - **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
+- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -8093,19 +8264,55 @@ Basic class for medium (physics properties of medium).
 
 Parameters are:
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+
+- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
 - **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+
+
+
+----
+
+.. _milieu_elasticite:
+
+**milieu_elasticite**
+---------------------
+
+**Inherits from:** :ref:`milieu_base` 
+
+
+Milieu_Elasticite.
+
+Parameters are:
 
 - **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[e]**  (*type:* :ref:`field_base`) Field E
+
+- **[nu]**  (*type:* :ref:`field_base`) Field nu.
+
+- **[alpha]**  (*type:* :ref:`field_base`) Coeff dilatation.
+
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
+
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
+
+- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
+
+- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -8127,17 +8334,17 @@ Parameters are:
 
 - **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
 
-- **[lambda_ | lambda_u | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
+- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
 
 - **[user_field]**  (*type:* :ref:`field_base`) user defined field.
 
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
+- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
 
 - **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
 
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
-
 - **[porosites]**  (*type:* :ref:`porosites`) Porosities.
+
+- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
 
 
 
@@ -8336,6 +8543,10 @@ Parameters are:
 
 - **[mode_calcul_convection]**  (*type:* string into ['ancien', 'divut_moins_tdivu', 'divrhout_moins_tdivrhou']) Option to set the form of the convective operator divrhouT_moins_Tdivrhou (the default since 1.6.8): rho.u.gradT = div(rho.u.T )- Tdiv(rho.u.1) ancien: u.gradT = div(u.T) - T.div(u)  divuT_moins_Tdivu : u.gradT = div(u.T) - Tdiv(u.1)
 
+- **[t_min]**  (*type:* float) Specifies T_min (and T_max) to keep temperature within [T_min, T_max] and avoid excessive excursions beyond physical limits in QC simulations. Use with caution.
+
+- **[t_max]**  (*type:* float) Should be set when T_min set in the datafile.
+
 - **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
 - **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
@@ -8376,6 +8587,10 @@ Parameters are:
 - **[modele_turbulence]**  (*type:* :ref:`modele_turbulence_scal_base`) Turbulence model for the temperature (energy) conservation equation.
 
 - **[mode_calcul_convection]**  (*type:* string into ['ancien', 'divut_moins_tdivu', 'divrhout_moins_tdivrhou']) Option to set the form of the convective operator divrhouT_moins_Tdivrhou (the default since 1.6.8): rho.u.gradT = div(rho.u.T )- Tdiv(rho.u.1) ancien: u.gradT = div(u.T) - T.div(u)  divuT_moins_Tdivu : u.gradT = div(u.T) - Tdiv(u.1)
+
+- **[t_min]**  (*type:* float) Specifies T_min (and T_max) to keep temperature within [T_min, T_max] and avoid excessive excursions beyond physical limits in QC simulations. Use with caution.
+
+- **[t_max]**  (*type:* float) Should be set when T_min set in the datafile.
 
 - **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
 
@@ -9132,6 +9347,42 @@ Parameters are:
 
 ----
 
+.. _equation_navier_cauchy:
+
+**equation_navier_cauchy**
+--------------------------
+
+**Inherits from:** :ref:`eqn_base` 
+
+
+Equation_Navier_Cauchy equation
+
+Parameters are:
+
+- **[disable_equation_residual]**  (*type:* int) The equation residual will not be used for the problem residual used when checking time convergence or computing dynamic time-step
+
+- **[convection]**  (*type:* :ref:`bloc_convection`) Keyword to alter the convection scheme.
+
+- **[diffusion]**  (*type:* :ref:`bloc_diffusion`) Keyword to specify the diffusion operator.
+
+- **[conditions_limites | boundary_conditions]**  (*type:* list of Condlimlu) Boundary conditions.
+
+- **[conditions_initiales | initial_conditions]**  (*type:* list of Condinit) Initial conditions.
+
+- **[sources]**  (*type:* list of Source_base) The sources.
+
+- **[ecrire_fichier_xyz_valeur]**  (*type:* :ref:`ecrire_fichier_xyz_valeur`) This keyword is used to write the values of a field only for some boundaries in a text file
+
+- **[parametre_equation]**  (*type:* :ref:`parametre_equation_base`) Keyword used to specify additional parameters for the equation
+
+- **[equation_non_resolue]**  (*type:* string) The equation will not be solved while condition(t) is verified if equation_non_resolue keyword is used. Exemple: The Navier-Stokes equations are not solved between time t0 and t1.  Navier_Sokes_Standard  { equation_non_resolue (t>t0)*(t<t1) }
+
+- **[renommer_equation | rename_equation]**  (*type:* string) Rename the equation with a specific name.
+
+
+
+----
+
 .. _masse_multiphase:
 
 **masse_multiphase**
@@ -9715,7 +9966,7 @@ not_set
 **moyenne_imposee_interpolation**
 ---------------------------------
 
-**Synonyms:** interpolation, champ_post_interpolation
+**Synonyms:** champ_post_interpolation, interpolation
 
 **Inherits from:** :ref:`moyenne_imposee_deriv` 
 
@@ -11589,24 +11840,6 @@ Parameters are:
 
 ----
 
-.. _format_lata_to_cgns:
-
-**format_lata_to_cgns**
------------------------
-
-
-not_set
-
-Parameters are:
-
-- **mot**  (*type:* string into ['format_post_sup']) not_set
-
-- **[format]**  (*type:* string into ['lml', 'lata', 'lata_v2', 'med', 'cgns']) generated file post_CGNS.data use format (CGNS or LATA or LML keyword).
-
-
-
-----
-
 .. _format_lata_to_med:
 
 **format_lata_to_med**
@@ -12041,6 +12274,28 @@ Parameters are:
 
 
 Class to create a pave (block) with boundaries.
+
+Parameters are:
+
+- **name**  (*type:* string) Name of the pave (block).
+
+- **bloc**  (*type:* :ref:`bloc_pave`) Definition of the pave (block).
+
+- **list_bord**  (*type:* list of Bord_base) The block sides.
+
+
+
+----
+
+.. _pave_64:
+
+**pave_64**
+-----------
+
+**Inherits from:** :ref:`pave` 
+
+
+Same as Pave for big (64b) domain
 
 Parameters are:
 
@@ -12759,7 +13014,7 @@ not_set
 **stat_post_ecart_type**
 ------------------------
 
-**Synonyms:** champ_post_statistiques_ecart_type, ecart_type
+**Synonyms:** ecart_type, champ_post_statistiques_ecart_type
 
 **Inherits from:** :ref:`stat_post_deriv` 
 
@@ -12928,9 +13183,9 @@ if :math:`t>t\_deb` and :math:`t<t\_fin`
 
 Parameters are:
 
-- **mot**  (*type:* string into ['dt_post', 'nb_pas_dt_post']) Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
+- **[mot]**  (*type:* string into ['dt_post', 'nb_pas_dt_post']) Keyword to set the kind of the field\'s write frequency. Either a time period or a time step period.
 
-- **period**  (*type:* string) Value of the period which can be like (2.*t).
+- **[period]**  (*type:* string) Value of the period which can be like (2.*t).
 
 - **fichier | file**  (*type:* :ref:`bloc_fichier`) name of file
 
@@ -13172,7 +13427,7 @@ Parameters are:
 **type_diffusion_turbulente_multiphase_aire_interfaciale**
 ----------------------------------------------------------
 
-**Synonyms:** interfacial_area, aire_interfaciale
+**Synonyms:** aire_interfaciale, interfacial_area
 
 **Inherits from:** :ref:`type_diffusion_turbulente_multiphase_deriv` 
 
@@ -13352,11 +13607,11 @@ dp_regul { DP0 d deb d eps e }
 
 Parameters are:
 
-- **dp0**  (*type:* float) initial value of DP
+- **dp0**  (*type:* string) Reference pressure drop value (possibly time‑dependent)
 
 - **deb**  (*type:* string) target flow rate in kg/s
 
-- **eps**  (*type:* string) strength of the regulation (low values might be slow to find the target flow rate, high values might oscillate around the target value)
+- **alpha**  (*type:* string) alpha string
 
 
 
@@ -13641,12 +13896,33 @@ Parameters are:
 
 ----
 
+.. _partitionneur_metis_64:
+
+**partitionneur_metis_64**
+--------------------------
+
+**Synonyms:** metis_64
+
+**Inherits from:** :ref:`partitionneur_deriv` 
+
+
+Metis is an external partitionning library. It is a general algorithm that will generate a
+partition of big (64b) domain.
+
+Parameters are:
+
+- **[nb_parts]**  (*type:* int) The number of non empty parts that must be generated (generally equal to the number of processors in the parallel run).
+
+
+
+----
+
 .. _partitionneur_partition:
 
 **partitionneur_partition**
 ---------------------------
 
-**Synonyms:** partition_64, decouper, partition
+**Synonyms:** partition_64, partition, decouper
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -13684,9 +13960,9 @@ Parameters are:
 
 - **fichier**  (*type:* string) fichier
 
-- **[fichier_ssz]**  (*type:* string) fichier sous zonne
+- **[fichier_ssz]**  (*type:* string) fichier sous zone
 
-- **[name_ssz]**  (*type:* string) nom sous zonne
+- **[name_ssz]**  (*type:* string) nom sous zone (nom d'un objet Sous_Domaine declare dans le jdd)
 
 - **[nb_parts]**  (*type:* int) The number of non empty parts that must be generated (generally equal to the number of processors in the parallel run).
 
@@ -13699,7 +13975,7 @@ Parameters are:
 **partitionneur_sous_domaines**
 -------------------------------
 
-**Synonyms:** partitionneur_sous_zones, sous_zones
+**Synonyms:** sous_zones, partitionneur_sous_zones
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -13775,7 +14051,9 @@ partition the global domain in a conform fashion with the smaller domains.
 
 Parameters are:
 
-- **liste**  (*type:* :ref:`bloc_lecture`) List of the partition files with the following syntaxe: {sous_domaine1 decoupage1 ... sous_domaineim decoupageim } where sous_domaine1 ... sous_zomeim are small domains names and decoupage1 ... decoupageim are partition files.
+- **sous_domaines**  (*type:* list of str) list of sous_domaines names. They must be valid Sous_Domaine that have been declared earlier in the dataset
+
+- **fichiers_decoupage**  (*type:* list of str) list of files which contain the partittion for the corresponding subdomain
 
 - **[nb_parts]**  (*type:* int) The number of non empty parts that must be generated (generally equal to the number of processors in the parallel run).
 
@@ -13846,84 +14124,6 @@ paroi_contact for correcting procedure).
 Parameters are:
 
 - **[groupes]**  (*type:* list of List_un_pb) pour les groupes
-
-
-
-----
-
-.. _pb_avec_liste_conc:
-
-**pb_avec_liste_conc**
-----------------------
-
-**Inherits from:** :ref:`pb_base` 
-
-
-Class to create a classical problem with a list of scalar concentration equations.
-
-Parameters are:
-
-- **list_equations**  (*type:* list of Eqn_base) List of equations.
-
-- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
-
-- **[constituant]**  (*type:* :ref:`constituant`) Constituent.
-
-- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
-
-- **[postraitements | post_processings]**  (*type:* list of Un_postraitement) Keyword to use several results files. List of objects of post-processing (with name).
-
-- **[liste_de_postraitements]**  (*type:* list of Nom_postraitement) Keyword to use several results files. List of objects of post-processing (with name)
-
-- **[liste_postraitements]**  (*type:* list of Un_postraitement_spec) Keyword to use several results files. List of objects of post-processing (with name)
-
-- **[sauvegarde]**  (*type:* :ref:`format_file_base`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified for each problem. In this case, you must save to different files and correctly specify these files when resuming the calculation.
-
-- **[sauvegarde_simple]**  (*type:* :ref:`format_file_base`) The same keyword than Sauvegarde except, the last time step only is saved.
-
-- **[reprise]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file (see the class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the previous calculation. With this file, it is possible to resume a parallel calculation on P processors, whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in error.
-
-- **[resume_last_time]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file, resume the calculation at the last time found in the file (tinit is set to last time of saved files).
-
-
-
-----
-
-.. _pb_avec_passif:
-
-**pb_avec_passif**
-------------------
-
-**Inherits from:** :ref:`pb_base` 
-
-
-Class to create a classical problem with a scalar transport equation (e.g: temperature or
-concentration) and an additional set of passive scalars (e.g: temperature or
-concentration) equations.
-
-Parameters are:
-
-- **equations_scalaires_passifs**  (*type:* list of Eqn_base) List of equations.
-
-- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
-
-- **[constituant]**  (*type:* :ref:`constituant`) Constituent.
-
-- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
-
-- **[postraitements | post_processings]**  (*type:* list of Un_postraitement) Keyword to use several results files. List of objects of post-processing (with name).
-
-- **[liste_de_postraitements]**  (*type:* list of Nom_postraitement) Keyword to use several results files. List of objects of post-processing (with name)
-
-- **[liste_postraitements]**  (*type:* list of Un_postraitement_spec) Keyword to use several results files. List of objects of post-processing (with name)
-
-- **[sauvegarde]**  (*type:* :ref:`format_file_base`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified for each problem. In this case, you must save to different files and correctly specify these files when resuming the calculation.
-
-- **[sauvegarde_simple]**  (*type:* :ref:`format_file_base`) The same keyword than Sauvegarde except, the last time step only is saved.
-
-- **[reprise]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file (see the class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the previous calculation. With this file, it is possible to resume a parallel calculation on P processors, whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in error.
-
-- **[resume_last_time]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file, resume the calculation at the last time found in the file (tinit is set to last time of saved files).
 
 
 
@@ -14230,7 +14430,7 @@ Parameters are:
 **pb_hydraulique_concentration_scalaires_passifs**
 --------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/multiple constituent transport equations with the additional
@@ -14318,7 +14518,7 @@ Parameters are:
 **pb_hydraulique_concentration_turbulent_scalaires_passifs**
 ------------------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence
@@ -14443,7 +14643,7 @@ Parameters are:
 **pb_hydraulique_list_concentration**
 -------------------------------------
 
-**Inherits from:** :ref:`pb_avec_liste_conc` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/multiple constituent transport equations.
@@ -14485,7 +14685,7 @@ Parameters are:
 **pb_hydraulique_list_concentration_turbulent**
 -----------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_liste_conc` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/multiple constituent transport equations, with turbulence
@@ -15115,7 +15315,7 @@ Parameters are:
 **pb_thermohydraulique_concentration_scalaires_passifs**
 --------------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with the
@@ -15207,7 +15407,7 @@ Parameters are:
 **pb_thermohydraulique_concentration_turbulent_scalaires_passifs**
 ------------------------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with
@@ -15254,7 +15454,7 @@ Parameters are:
 **pb_thermohydraulique_especes_qc**
 -----------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of thermo-hydraulic problem for a multi-species quasi-compressible fluid.
@@ -15298,7 +15498,7 @@ Parameters are:
 **pb_thermohydraulique_especes_turbulent_qc**
 ---------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of turbulent thermohydraulic problem under low Mach number with passive scalar
@@ -15343,7 +15543,7 @@ Parameters are:
 **pb_thermohydraulique_especes_wc**
 -----------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of thermo-hydraulic problem for a multi-species weakly-compressible fluid.
@@ -15473,7 +15673,7 @@ Parameters are:
 **pb_thermohydraulique_list_concentration**
 -------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_liste_conc` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations.
@@ -15517,7 +15717,7 @@ Parameters are:
 **pb_thermohydraulique_list_concentration_turbulent**
 -----------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_liste_conc` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of Navier-Stokes/energy/multiple constituent transport equations, with
@@ -15614,7 +15814,7 @@ Parameters are:
 **pb_thermohydraulique_scalaires_passifs**
 ------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of thermohydraulic problem, with the additional passive scalar equations.
@@ -15744,7 +15944,7 @@ Parameters are:
 **pb_thermohydraulique_turbulent_scalaires_passifs**
 ----------------------------------------------------
 
-**Inherits from:** :ref:`pb_avec_passif` 
+**Inherits from:** :ref:`pb_base` 
 
 
 Resolution of thermohydraulic problem, with turbulence modelling and with the additional
@@ -15893,6 +16093,46 @@ Parameters are:
 - **[resume_last_time]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file, resume the calculation at the last time found in the file (tinit is set to last time of saved files).
 
 - **liste_equations**  (*type:* list of Eqn_base) None
+
+
+
+----
+
+.. _probleme_elasticite_lineaire:
+
+**probleme_elasticite_lineaire**
+--------------------------------
+
+**Inherits from:** :ref:`pb_base` 
+
+
+Resolution of Probleme_Elasticite_Lineaire
+
+Parameters are:
+
+- **[milieu_elasticite]**  (*type:* :ref:`milieu_elasticite`) Milieu_Elasticite
+
+- **[equation_navier_cauchy]**  (*type:* :ref:`equation_navier_cauchy`) Equation_Navier_Cauchy
+
+- **[milieu]**  (*type:* :ref:`milieu_base`) The medium associated with the problem.
+
+- **[constituant]**  (*type:* :ref:`constituant`) Constituent.
+
+- **[postraitement | post_processing]**  (*type:* :ref:`corps_postraitement`) One post-processing (without name).
+
+- **[postraitements | post_processings]**  (*type:* list of Un_postraitement) Keyword to use several results files. List of objects of post-processing (with name).
+
+- **[liste_de_postraitements]**  (*type:* list of Nom_postraitement) Keyword to use several results files. List of objects of post-processing (with name)
+
+- **[liste_postraitements]**  (*type:* list of Un_postraitement_spec) Keyword to use several results files. List of objects of post-processing (with name)
+
+- **[sauvegarde]**  (*type:* :ref:`format_file_base`) Keyword used when calculation results are to be backed up. When a coupling is performed, the backup-recovery file name must be well specified for each problem. In this case, you must save to different files and correctly specify these files when resuming the calculation.
+
+- **[sauvegarde_simple]**  (*type:* :ref:`format_file_base`) The same keyword than Sauvegarde except, the last time step only is saved.
+
+- **[reprise]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file (see the class format_file). If format_reprise is xyz, the name_file file should be the .xyz file created by the previous calculation. With this file, it is possible to resume a parallel calculation on P processors, whereas the previous calculation has been run on N (N<>P) processors. Should the calculation be resumed, values for the tinit (see schema_temps_base) time fields are taken from the name_file file. If there is no backup corresponding to this time in the name_file, TRUST exits in error.
+
+- **[resume_last_time]**  (*type:* :ref:`format_file_base`) Keyword to resume a calculation based on the name_file file, resume the calculation at the last time found in the file (tinit is set to last time of saved files).
 
 
 
@@ -16351,6 +16591,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -16418,6 +16660,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -16489,6 +16733,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -16556,6 +16802,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -16627,6 +16875,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -16694,6 +16944,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -16767,6 +17019,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -16834,6 +17088,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -16903,6 +17159,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -16977,6 +17235,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17064,6 +17324,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17154,6 +17416,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17222,6 +17486,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17289,6 +17555,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17364,6 +17632,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17437,6 +17707,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17512,6 +17784,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17586,6 +17860,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17605,6 +17881,8 @@ Parameters are:
 This is the Euler implicit scheme.
 
 Parameters are:
+
+- **[facsec_cfl]**  (*type:* flag) Flag to compute time step based on CFL: dt=min(facsec,facsec_max)*dt(convection)X/
 
 - **[facsec_max]**  (*type:* float) For old syntax, see the complete parameters of facsec for details
 
@@ -17667,6 +17945,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17740,6 +18020,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17810,6 +18092,8 @@ Parameters are:
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
 
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
+
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
 
@@ -17876,6 +18160,8 @@ Parameters are:
 - **[disable_progress]**  (*type:* flag) To disable the writing of the .progress file.
 
 - **[disable_dt_ev]**  (*type:* flag) To disable the writing of the .dt_ev file.
+
+- **[adapt_dt_tmax]**  (*type:* flag) Use to adapt final dt when approaching tmax.
 
 - **[gnuplot_header]**  (*type:* int) Optional keyword to modify the header of the .out files. Allows to use the column title instead of columns number.
 
@@ -17968,6 +18254,44 @@ Parameters are:
 - **[nb_it_max]**  (*type:* int) Keyword to set the maximum iterations number for the Gmres.
 
 - **[controle_residu]**  (*type:* flag) Keyword of Boolean type (by default 0). If set to 1, the convergence occurs if the residu suddenly increases.
+
+
+
+----
+
+.. _newmark:
+
+**newmark**
+-----------
+
+**Inherits from:** :ref:`solveur_implicite_base` 
+
+
+Newmark implicit solver for the resolution of the linear elastodynamic equation.
+
+Parameters are:
+
+- **seuil_convergence_implicite**  (*type:* float) Keyword to set the value of the convergence criteria for the resolution of the implicit system build to solve either the Navier_Stokes equation (only for Simple and Simpler algorithms) or a scalar equation. It is adviced to use the default value (1e6) to solve the implicit system only once by time step. This value must be decreased when a coupling between problems is considered.
+
+- **[seuil_convergence_solveur]**  (*type:* float) value of the convergence criteria for the resolution of the implicit system build by solving several times per time step the Navier_Stokes equation and the scalar equations if any. This value MUST be used when a coupling between problems is considered (should be set to a value typically of 0.1 or 0.01).
+
+- **[seuil_generation_solveur]**  (*type:* float) Option to create a GMRES solver and use vrel as the convergence threshold (implicit linear system Ax=B will be solved if residual error ||Ax-B|| is lesser than vrel).
+
+- **[seuil_verification_solveur]**  (*type:* float) Option to check if residual error ||Ax-B|| is lesser than vrel after the implicit linear system Ax=B has been solved.
+
+- **[seuil_test_preliminaire_solveur]**  (*type:* float) Option to decide if the implicit linear system Ax=B should be solved by checking if the residual error ||Ax-B|| is bigger than vrel.
+
+- **[solveur]**  (*type:* :ref:`solveur_sys_base`) Method (different from the default one, Gmres with diagonal preconditioning) to solve the linear system.
+
+- **[nb_it_max]**  (*type:* int) Keyword to set the maximum iterations number for the Gmres.
+
+- **[controle_residu]**  (*type:* flag) Keyword of Boolean type (by default 0). If set to 1, the convergence occurs if the residu suddenly increases.
+
+- **[alpha]**  (*type:* float) Damping coefficient for Rayleigh damping: C = alpha * M
+
+- **[beta]**  (*type:* float) Newmark parameter beta (default value 0.25 for average acceleration method).
+
+- **[gamma]**  (*type:* float) Newmark parameter gamma (default value 0.5 for average acceleration method).
 
 
 
@@ -18133,8 +18457,7 @@ Parameters are:
 --------------------------
 
 
-Class for solver in the situation where the time scheme is the implicit scheme. Solver
-allows equation diffusion and convection operators to be set as implicit terms.
+not_set
 
 
 ----
@@ -19041,9 +19364,36 @@ Parameters are:
 
 - **surface**  (*type:* string into ['surface']) not_set
 
-- **bloc_surface**  (*type:* :ref:`bloc_lecture`) Three syntaxes are possible for the surface definition block:  For VDF and VEF: { X|Y|Z = location subzone_name }  Only for VEF: { Surface surface_name }.  For polymac { Surface surface_name Orientation champ_uniforme }.
+- **bloc_surface**  (*type:* :ref:`bloc_lecture`) Three syntaxes are possible for the surface definition block:  For VDF and VEF: { X|Y|Z = location subzone_name }  Only for VEF: { Surface surface_name }.  For PolyMAC_CDO { Surface surface_name Orientation champ_uniforme }.
 
 - **acof**  (*type:* string into ['}']) Closing curly bracket.
+
+
+
+----
+
+.. _echange_thermique_volumique:
+
+**echange_thermique_volumique**
+-------------------------------
+
+**Inherits from:** :ref:`source_base` 
+
+
+Source term that exchanges heat volumetrically between two overlapping domains using
+interfacial area and thermal resistances.
+
+Parameters are:
+
+- **nom | name**  (*type:* string) Tag used to match the source terms on both sides of the coupling.
+
+- **aire_interfaciale | interfacial_area**  (*type:* :ref:`field_base`) Interfacial area per cell used to compute the exchange.
+
+- **[conduction_length | epaisseur_conduction]**  (*type:* :ref:`field_base`) Conduction length (if conduction is modeled).
+
+- **[conductivity | conductivite]**  (*type:* :ref:`field_base`) Thermal conductivity used with the conduction length (optional).
+
+- **[flux_parietal | heat_flux]**  (*type:* :ref:`flux_parietal_base`) Correlation used to compute the wall heat flux on each side of the interface.
 
 
 
@@ -19168,7 +19518,7 @@ Parameters are:
 **Inherits from:** :ref:`source_base` 
 
 
-Directional pressure loss (available in VEF and PolyMAC).
+Directional pressure loss (available in VEF and PolyMAC_CDO).
 
 Parameters are:
 
@@ -19192,7 +19542,7 @@ Parameters are:
 **Inherits from:** :ref:`source_base` 
 
 
-Isotropic pressure loss (available in VEF and PolyMAC).
+Isotropic pressure loss (available in VEF and PolyMAC_CDO).
 
 Parameters are:
 
@@ -19201,6 +19551,10 @@ Parameters are:
 - **diam_hydr**  (*type:* :ref:`champ_don_base`) Hydraulic diameter value.
 
 - **[sous_zone]**  (*type:* string) Optional sub-area where pressure loss applies.
+
+- **[regul]**  (*type:* :ref:`bloc_lecture`) Optional parameter for pressure drop coefficient regulation on target flow rate.
+
+- **[surface]**  (*type:* :ref:`bloc_lecture`) Optional parameter for surface used to impose the pressure drop.
 
 
 
@@ -19246,7 +19600,7 @@ Parameters are:
 
 - **[regul]**  (*type:* :ref:`bloc_lecture`) option to have adjustable K with flowrate target  { K0 valeur_initiale_de_k deb debit_cible eps intervalle_variation_mutiplicatif}.
 
-- **surface**  (*type:* :ref:`bloc_lecture`) Three syntaxes are possible for the surface definition block:  For VDF and VEF: { X|Y|Z = location subzone_name }  Only for VEF: { Surface surface_name }.  For polymac { Surface surface_name Orientation champ_uniforme }
+- **surface**  (*type:* :ref:`bloc_lecture`) Three syntaxes are possible for the surface definition block:  For VDF and VEF: { X|Y|Z = location subzone_name }  Only for VEF: { Surface surface_name }.  For PolyMAC_CDO { Surface surface_name Orientation champ_uniforme }
 
 
 
@@ -19339,21 +19693,6 @@ Parameters are:
 
 ----
 
-.. _source_dep_inco_base:
-
-**source_dep_inco_base**
-------------------------
-
-**Synonyms:** source_dep_inco_bases
-
-**Inherits from:** :ref:`source_base` 
-
-
-Basic class of source terms depending of inknown.
-
-
-----
-
 .. _source_generique:
 
 **source_generique**
@@ -19374,41 +19713,36 @@ Parameters are:
 
 ----
 
-.. _source_pdf:
+.. _source_meca_grad_pression_thermique:
 
-**source_pdf**
---------------
+**source_meca_grad_pression_thermique**
+---------------------------------------
 
-**Inherits from:** :ref:`source_pdf_base` 
+**Inherits from:** :ref:`source_base` 
 
 
-Source term for Penalised Direct Forcing (PDF) method.
+Source term that applies the gradient of thermal pressure as an equivalent body force in
+the linear elasticity momentum equation.
 
 Parameters are:
 
-- **aire**  (*type:* :ref:`field_base`) volumic field: a boolean for the cell (0 or 1) indicating if the obstacle is in the cell
+- **reference_temperature_field**  (*type:* :ref:`field_base`) Reference temperature field used to compute the thermal pressure gradient.
 
-- **rotation**  (*type:* :ref:`field_base`) volumic field with 9 components representing the change of basis on cells (local to global). Used for rotating cases for example.
-
-- **[transpose_rotation]**  (*type:* flag) whether to transpose the basis change matrix.
-
-- **modele**  (*type:* :ref:`bloc_pdf_model`) model used for the Penalized Direct Forcing
-
-- **[interpolation]**  (*type:* :ref:`interpolation_ibm_base`) interpolation method
+- **temperature_field**  (*type:* :ref:`field_base`) Temperature field used to compute the thermal pressure gradient.
 
 
 
 ----
 
-.. _source_pdf_base:
+.. _source_pdf:
 
-**source_pdf_base**
--------------------
+**source_pdf**
+--------------
 
-**Inherits from:** :ref:`source_dep_inco_base` 
+**Inherits from:** :ref:`source_base` 
 
 
-Basic class of source_PDF terms introduced in the equation.
+Source term for Penalised Direct Forcing (PDF) method.
 
 Parameters are:
 
@@ -19526,32 +19860,6 @@ Parameters are:
 
 Source term which corresponds to the additional pressure work term that appears when
 dealing with compressible multiphase fluids
-
-
-----
-
-.. _vitesse_derive_base:
-
-**vitesse_derive_base**
------------------------
-
-**Inherits from:** :ref:`vitesse_relative_base` 
-
-
-Source term which corresponds to the drift-velocity between a liquid and a gas phase
-
-
-----
-
-.. _vitesse_relative_base:
-
-**vitesse_relative_base**
--------------------------
-
-**Inherits from:** :ref:`source_base` 
-
-
-Basic class for drift-velocity source term between a liquid and a gas phase
 
 
 ----
