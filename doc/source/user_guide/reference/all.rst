@@ -4109,7 +4109,7 @@ Parameters are:
 **interpolation_ibm_mean_gradient**
 -----------------------------------
 
-**Synonyms:** ibm_gradient_moyen, interpolation_ibm_gradient_moyen
+**Synonyms:** interpolation_ibm_gradient_moyen, ibm_gradient_moyen
 
 **Inherits from:** :ref:`interpolation_ibm_base` 
 
@@ -6385,7 +6385,7 @@ Parameters are:
 **read_med**
 ------------
 
-**Synonyms:** read_med_64, lire_med
+**Synonyms:** lire_med, read_med_64
 
 **Inherits from:** :ref:`interprete` 
 
@@ -7997,7 +7997,7 @@ Parameters are:
 **fluide_quasi_compressible**
 -----------------------------
 
-**Inherits from:** :ref:`fluide_dilatable_base` 
+**Inherits from:** :ref:`fluide_base` 
 
 
 Quasi-compressible flow with a low mach number assumption; this means that the thermo-
@@ -8043,49 +8043,15 @@ Parameters are:
 
 ----
 
-.. _fluide_reel_base:
-
-**fluide_reel_base**
---------------------
-
-**Inherits from:** :ref:`fluide_base` 
-
-
-Class for real fluids.
-
-Parameters are:
-
-- **[indice]**  (*type:* :ref:`field_base`) Refractivity of fluid.
-
-- **[kappa]**  (*type:* :ref:`field_base`) Absorptivity of fluid (m-1).
-
-- **[rho]**  (*type:* :ref:`field_base`) Density (kg.m-3).
-
-- **[lambda_ | lambda]**  (*type:* :ref:`field_base`) Conductivity (W.m-1.K-1).
-
-- **[cp]**  (*type:* :ref:`field_base`) Specific heat (J.kg-1.K-1).
-
-- **[diametre_hyd_champ]**  (*type:* :ref:`field_base`) Hydraulic diameter field (optional).
-
-- **[porosites_champ]**  (*type:* :ref:`field_base`) The porosity is given at each element and the porosity at each face, Psi(face), is calculated by the average of the porosities of the two neighbour elements Psi(elem1), Psi(elem2) : Psi(face)=2/(1/Psi(elem1)+1/Psi(elem2)). This keyword is optional.
-
-- **[porosites]**  (*type:* :ref:`porosites`) Porosities.
-
-- **[gravite]**  (*type:* :ref:`field_base`) Gravity field (optional).
-
-
-
-----
-
 .. _fluide_sodium_gaz:
 
 **fluide_sodium_gaz**
 ---------------------
 
-**Inherits from:** :ref:`fluide_reel_base` 
+**Inherits from:** :ref:`fluide_base` 
 
 
-Class for Fluide_sodium_liquide
+Class for Fluide_sodium_gaz (real fluid)
 
 Parameters are:
 
@@ -8120,10 +8086,10 @@ Parameters are:
 **fluide_sodium_liquide**
 -------------------------
 
-**Inherits from:** :ref:`fluide_reel_base` 
+**Inherits from:** :ref:`fluide_base` 
 
 
-Class for Fluide_sodium_liquide
+Class for Fluide_sodium_liquide (real fluid)
 
 Parameters are:
 
@@ -8158,7 +8124,7 @@ Parameters are:
 **fluide_stiffened_gas**
 ------------------------
 
-**Inherits from:** :ref:`fluide_reel_base` 
+**Inherits from:** :ref:`fluide_base` 
 
 
 Class for Stiffened Gas
@@ -8204,7 +8170,7 @@ Parameters are:
 **fluide_weakly_compressible**
 ------------------------------
 
-**Inherits from:** :ref:`fluide_dilatable_base` 
+**Inherits from:** :ref:`fluide_base` 
 
 
 Weakly-compressible flow with a low mach number assumption; this means that the thermo-
@@ -13036,7 +13002,7 @@ Parameters are:
 **stat_post_moyenne**
 ---------------------
 
-**Synonyms:** moyenne, champ_post_statistiques_moyenne
+**Synonyms:** champ_post_statistiques_moyenne, moyenne
 
 **Inherits from:** :ref:`stat_post_deriv` 
 
@@ -13922,7 +13888,7 @@ Parameters are:
 **partitionneur_partition**
 ---------------------------
 
-**Synonyms:** partition_64, partition, decouper
+**Synonyms:** partition, partition_64, decouper
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -13975,7 +13941,7 @@ Parameters are:
 **partitionneur_sous_domaines**
 -------------------------------
 
-**Synonyms:** sous_zones, partitionneur_sous_zones
+**Synonyms:** partitionneur_sous_zones, sous_zones
 
 **Inherits from:** :ref:`partitionneur_deriv` 
 
@@ -16532,7 +16498,7 @@ Parameters are:
 **euler_scheme**
 ----------------
 
-**Synonyms:** scheme_euler_explicit, schema_euler_explicite
+**Synonyms:** schema_euler_explicite, scheme_euler_explicit
 
 **Inherits from:** :ref:`schema_temps_base` 
 
