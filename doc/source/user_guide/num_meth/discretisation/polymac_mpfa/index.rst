@@ -1,7 +1,7 @@
 PolyMAC_MPFA
 ============
 
-Unlike PolyMAC, PolyMAC_MPFA (previously named PolyMAC_P0) does not introduce the vorticity. Moreover, no
+Unlike PolyMAC, PolyMAC_MPFA (previously named PolyMAC_MPFA) does not introduce the vorticity. Moreover, no
 complex dual mesh is explicitly needed. The location of the unknowns is
 described in :numref:`fig:location_unknowns_p0`.
 
@@ -9,16 +9,16 @@ described in :numref:`fig:location_unknowns_p0`.
         :name: fig:location_unknowns_p0
 	:width: 300
 	:align: center
-	:alt: Unknowns location in PolyMAC_P0
+	:alt: Unknowns location in PolyMAC_MPFA
 	
-	Location of the unknowns when using PolyMAC_P0
+	Location of the unknowns when using PolyMAC_MPFA
 
-PolyMAC_P0 is based on Multi Point Flux Approximation (MPFA) method.
+PolyMAC_MPFA is based on Multi Point Flux Approximation (MPFA) method.
 
 MPFA methods
 ------------
 
-Three MPFA methods are used in practice in PolyMAC_P0 for computing gradient:
+Three MPFA methods are used in practice in PolyMAC_MPFA for computing gradient:
 
 -  The MPFA-O method presented in :cite:p:`A02`, :cite:p:`AM08`, :cite:p:`D14`
 
@@ -53,7 +53,7 @@ where :math:`\vec{n_1}` and :math:`\vec{n_2}` are the outward unit normal vector
 
 A core assumption of the MPFA method is to suppose that :math:`G^{\text{MPFA}}([p]_e)` is constant on each :math:`S_{e,i}`. When enforcing the continuity across the sub-faces that are linked by a vertex of the primal mesh, auxiliary variables can be substitute by cells unknowns.
 
-The MPFA methods are impemented in Domaine_PolyMAC_P0::fgrad.
+The MPFA methods are impemented in Domaine_PolyMAC_MPFA::fgrad.
 
 Incompressible Navier Stokes
 ----------------------------
@@ -138,7 +138,7 @@ The momentum equation is discretised at the face:
 
 Some details regarding the discretisation of a two-phase flow model of the Ishii familly :cite:p:`I75` are given in :cite:p:`GG22`.
 
-PolyMAC_P0_P1_NC
+PolyMAC_HFV
 ================
 
-PolyMACP0P1NC is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_P0_P1_NC is mathematically close to the first PolyMAC, as HFV and CDO method are equivalent, see :cite:p:`DEGH10`.
+PolyMAC_HFV is based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`EGH10`. PolyMAC_MPFA_HFV is mathematically close to the first PolyMAC_CDO, as HFV and CDO method are equivalent, see :cite:p:`DEGH10`.

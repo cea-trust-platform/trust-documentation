@@ -11,11 +11,11 @@ The PolyMAC discretisation family has been developped since 2018. Three PolyMAC 
 
 -  PolyMAC : based on a Compact Discrete Operator (CDO) approach, such as the one presented in :cite:p:`Bonelle2014` and :cite:p:`Milani2020`. 
 
--  PolyMACP0 : based on MPFA approach, such as the one presented in :cite:p:`AM08`, :cite:p:`D14` and :cite:p:`LePotier2017`.
+-  PolyMAC_MPFA : based on Multi Point Flux Approximation (MPFA) approach, such as the one presented in :cite:p:`AM08`, :cite:p:`D14` and :cite:p:`LePotier2017`.
 
--  PolyMACP0P1NC : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`DEGH10`.
+-  PolyMAC_HFV : based on a Hybrid Finite Volmue (HFV) approach, such as the one presented in :cite:p:`EGH07` and :cite:p:`DEGH10`.
 
-Thereafter, for each method the core ideas and the main steps for the discretisation of the incompressible Navier-Stokes equation are presented. For now, the PolyMAC and PolyMAC_P0 parts are completed, the others are a work in progress.
+Thereafter, for each method the core ideas and the main steps for the discretisation of the incompressible Navier-Stokes equation are presented. For now, the PolyMAC and PolyMAC_MPFA parts are completed, the others are a work in progress.
 
 Notations
 =========
