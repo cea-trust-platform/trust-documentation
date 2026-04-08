@@ -31,7 +31,7 @@ The file `DEC_Obstacle.data` will be used for partitioning the mesh. To do so, u
 
 Here, the partitioning tool **Metis** will be used to cut the domain into **nb\_parts = 2** parts.
 
-In general, the overlapping width **Larg\_joint** between two parts of the partition must be defined according to the numerical scheme. For example, if you use a VEF discretization (see [](../user_guide/num_meth/discretisation/vef/index.rst) for more details), you should use **2** for **Larg\_joint**, except when partitioning a domain where only the upwind (first-order) discretization scheme will be used.
+In general, the overlapping width **Larg\_joint** between two parts of the partition must be defined according to the numerical scheme. For example, if you use a VEF discretization (see [](../user_guide/num_meth/discretisation/vef/vef.md) for more details), you should use **2** for **Larg\_joint**, except when partitioning a domain where only the upwind (first-order) discretization scheme will be used.
 
 The keyword **zones\_name** defines the name of the files that will contain the partitioned mesh.
 

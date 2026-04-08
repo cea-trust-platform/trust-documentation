@@ -156,15 +156,20 @@ source_suffix = {
 
 # Myst configuration
 myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
     "colon_fence",
-    "deflist", 
+    "deflist",
     "dollarmath",
+    "fieldlist",
     "html_admonition",
     "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
     "substitution",
     "tasklist",
-    "attrs_inline",
-    "attrs_block"
 ]
 myst_heading_anchors = 1
 

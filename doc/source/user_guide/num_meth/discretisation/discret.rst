@@ -8,10 +8,10 @@ Spatial discretisations
 
     intro_disc
     vdf/index
-    vef/index
-    polymac_cdo/index
-    polymac_mpfa/index
-    dg/index
+    vef/vef
+    polymac_cdo/index_CDO
+    polymac_mpfa/index_mpfa
+    dg/index_DG
 ..    ijk/index
 
     

@@ -5,6 +5,7 @@ myst-parser
 sphinxcontrib-bibtex
 numpy
 matplotlib
+linkify-it-py
 scipy
 pandas
 ipywidgets
