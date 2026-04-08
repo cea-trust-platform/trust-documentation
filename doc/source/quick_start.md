@@ -6,7 +6,7 @@
 
 See the instructions [here](https://github.com/cea-trust-platform/trust-code/blob/master/README.md).
 
-If you need help installing TRUST, contact the TRUST support team.
+If you need help installing TRUST, contact the TRUST support team. 
 
 ## Sourcing the TRUST environment
 
@@ -17,6 +17,32 @@ source $my_path_to_TRUST_installation/env_TRUST.sh
 ```
 
 This needs to be done in every new terminal where you want to use the TRUST binary or utilities.
+
+If you work on a CEA machine or a French national cluster, an install is probably available:
+
+##### for CEA Saclay (PC Titania file system or orcus cluster):
+`source /home/trust_trio-public/env_TRUST-1.9.7.sh`
+
+##### for TOPAZE and IRENE (Skylake & AMD Rome) supercomputers:
+`source /ccc/cont002/home/den/triou/env_TRUST-1.9.7.sh`
+
+##### for TOPAZE and IRENE (AMD Rome) supercomputers (GPU version):
+`source /ccc/cont002/home/den/triou/env_TRUST-1.9.7-gpu.sh`
+
+##### for Adastra (CINES) supercomputer:
+`source /opt/software/USERS_SOFTWARES/TRIOU/env_TRUST-1.9.7.sh`
+
+##### for Adastra (CINES) supercomputer (GPU version):
+`source /opt/software/USERS_SOFTWARES/TRIOU/env_TRUST-1.9.7-gpu.sh`
+
+##### for IDRIS (jean-zay) supercomputer:
+`source /gpfswork/rech/aih/ume72pt/env_TRUST-1.9.7.sh`
+
+##### for IDRIS (jean-zay) supercomputer (GPU version):
+`source /gpfswork/rech/aih/ume72pt/env_TRUST-1.9.7-gpu.sh`
+
+##### for mezel supercomputer (and Ubuntu 22 computers):
+`source /soft/commun/CODES/TRUST/env_TRUST-1.9.7.sh`
 
 ## How to configure TRUST
 
