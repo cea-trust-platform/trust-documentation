@@ -1,21 +1,23 @@
 # Create a Baltik project
 
-When using TRUST code, you can create a module named Baltik for your own application that will be based on TRUST. That is what we will do here.
+When using TRUST code, you can create a module named Baltik for your own application that will be based on TRUST. 
 
-First, load TRUST environment and create your first project from a basic project template using TRUST command:
+In a Baltik project, you can modify the behviour of TRUST for a specific usage, or fix bugs if any, or develop new models.
+
+First, load TRUST environment and create your first project from a basic project template using `trust` command:
 ```bash
 trust -baltik my_project
 cd my_project
 ls -l
 ```
 
-You can see that you have now:
+The created project contains:
 
 - three directories: share, src and tests
 
 - a `project.cfg` file.
 
-- a `README.BALTIK` file.
+- a `README.BALTIK` file
 
 - a `configure` script.
 
