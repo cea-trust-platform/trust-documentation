@@ -8,23 +8,22 @@ First, load TRUST environment and create your first project from a basic project
 ```bash
 trust -baltik my_project
 cd my_project
-ls -l
 ```
 
-The created project contains:
+The created project contains (run `ls -l` command):
 
-- three directories: share, src and tests
+- 3 directories: share, src and tests
 
-- a `project.cfg` file.
+- A `project.cfg` file.
 
-- a `README.BALTIK` file
+- A `README.BALTIK` file.
 
-- a `configure` script.
+- A `configure` script.
 
-You have now to add source files to your Baltik. These source files may be either patches (some TRUST source files that you will edit or in which you'll fix some bugs), or specific to your
+You have now to add source files to your Baltik. These source files may be either patches (some TRUST source files that you will edit or in which you will fix some bugs), or specific to your
 developments (i.e. new classes/....).
 
-Here, we will just copy a source file from TRUST (in this tutorial we will add some prints to this file).
+Here, we will just copy a source file from TRUST (During these tutorials, we will add some prints into the TRUST modified sources).
 To do so, copy the following TRUST .cpp file into your baltik project:
 ```
 mkdir -p src/Trust_fixes
@@ -33,7 +32,7 @@ cp $TRUST_ROOT/src/MAIN/mon_main.cpp src/Trust_fixes/
 
 For versionning purpose, you will have to create a git repository:
 
--   Initialize an empty git repository:
+- Initialize an empty git repository:
 ```
 git init
 ```
@@ -55,10 +54,12 @@ git add src project.cfg
 git commit -m "Initial commit"
 ```
     
-Remark: If you are not able to commit files, you should first configure your username and email in git with :
-```
-git config - -global user.name 'Your Name'
-git config - -global user.email you@example.com
+```{tip}
+If you are not able to commit files, you should first configure your username and email in git with:
+
+   git config - -global user.name 'Your Name'
+
+   git config - -global user.email you@example.com
 ```
 
 -   Display your working tree status:
@@ -69,22 +70,23 @@ Only README.BALTIK and configure script (automatically generated) are not added 
 -   Display the list of commits:
     `git log`
 
-Edit your project file `project.cfg` to specify name, author and executable.
-
-Then configure your project: `baltik_build_configure -execute` this command launches both scripts: the `./baltik_build_configure` and `./configure`.
+Edit your project file `project.cfg` to specify project name, author and executable name, then configure your project with:
+```
+baltik_build_configure -execute
+```
+which launches both scripts: the `./baltik_build_configure` and `./configure`.
 
 Check the status of your git repository with the `- -ignored` option to see the status of all files:
 ```
 git status
 ```
-You can see that :
+You can see that:
 
-- `project.cfg` has been modified.
+- `project.cfg` has been modified (your modifications)
 
-- there are new untracked files: these files are not on the git
-        repository
+- there are new untracked files: these files are not on the git repository
 
-- To see only the changes on the git repository files:
+To see only the changes on the git repository:
 ```
 git status -uno
 ```
@@ -93,15 +95,15 @@ git status -uno
 gitk &
 ```
 
-You can see information about your first commit and actual untracked changes.
+You can see information about your first commit and actual untracked changes in `gitk`.
 
-## Builds your Baltik
+## Build your BALTIK
 
 You will now to make a basic build of your Baltik:
 
 - To make a basic build, first go to your associated repository:
 ```
-cd MY_FIRST_BALTIK/my_project
+cd my_project
 ```
 
 - Then configure your project:
@@ -111,7 +113,7 @@ cd MY_FIRST_BALTIK/my_project
 
 - Afterwards, build your project in different modes:
 
-   - Build an optimized (-03 option) version:
+   - Build an optimized (-O3 option) version:
       ```
       make optim
       ```
@@ -130,11 +132,10 @@ cd MY_FIRST_BALTIK/my_project
     ls $exec_opt
     ls $exec_debug
     ```
-Other possible builds, use 
+Other possible builds are available when running
 ```
 make help
 ```
-to see the other options.
 
 Try to build build the following versions:
 
@@ -156,25 +157,45 @@ make gcov
 ls $exec_gcov
 ```
 
-Notice that TRUST optimized binary for profiling or a TRUST optimized binary for test coverage must exist in order to be able to compile your baltik's profiling or test coverage executable.\
+```{note}
+Notice that TRUST optimized binary for profiling or a TRUST optimized binary for test coverage must exist in order to be able to compile your baltik's profiling or test coverage executable.
+```
+
+### Configure your BALTIK project under Eclipse IDE
 
 Now you have to initialize your baltik environnement:
 ```
 source env_my_project.sh 
 ```
+and configure an project Eclipse IDE with your baltik and link it with your TRUST project.
+```
+trust -eclipse-baltik
+```
+You should follow instructions printed on your terminal.
 
-For the sequel, we recommand you the Eclipse IDE editor linked to your TRUST repository, {see}`lin_eclipse.md`.
+Now, launch a first computation:
 
-You can now launch a first computation:
+- From the `Project Explorer` tab, right click MY_BALTIK $\rightarrow$ `Debug As` $\rightarrow$ `Debug Configurations\...` 
 
-- From the `Project Explorer` tab, right click MY_BALTIK $\rightarrow$ `Debug As` $\rightarrow$ `Debug Configurations\...` $\Rightarrow$ C/C++ Application $\rightarrow$ Select the configuration containing your baltik's name
+   $\Rightarrow$ C/C++ Application $\rightarrow$ Select the configuration containing your baltik's name
 
-- In the `Main` tab: $\Rightarrow$ Project: MY_BALTIK\ $\Rightarrow$ C/C++ Application: contains path to `$exec_debug` $\Rightarrow$ `Apply`
+- In the `Main` tab: 
+
+   $\Rightarrow$ Project: MY_BALTIK
+   
+   $\Rightarrow$ C/C++ Application: contains path to `$exec_debug` 
+   
+   $\Rightarrow$ `Apply`
 
 - In the `Arguments` tab: 
-$\Rightarrow$ Program arguments: contains datafile's name (upwind) 
-$\Rightarrow$ Working directory: path to datafile's directory
-$\Rightarrow$ `Apply` $\Rightarrow$ Debug
+
+   $\Rightarrow$ Program arguments: contains datafile's name (upwind) 
+   
+   $\Rightarrow$ Working directory: path to datafile's directory
+   
+   $\Rightarrow$ `Apply`
+   
+   $\Rightarrow$ Debug
 
 
 ## Create a new cpp class
@@ -187,12 +208,12 @@ mkdir -p $project_directory/src/my_module
 cd $project_directory/src/my_module
 ```
 
-- Then, import the template `my_first_class`:
+- Then, create `my_first_class` from a template:
 ```
 baltik_gen_class my_first_class
 ```
 
-- Make sure your changes have been accounted for:
+- Check the status of your repository:
 ```
 git status 
 ```
@@ -200,104 +221,117 @@ git status
 - Add your new class to your git repository to follow your modifications:
 ```
 git add my_first_class.*
-git commit -m "Add my_first_class src"
+git commit -m "[my_first_class] Adding initial source files"
 ```
 
 - Have a look at the two files `my_first_class.h` and `my_first_class.cpp`
 
-**Important remark:** each time a source file is added to the project, you need to reconfigure your project to take new files into account when building the exectuable:
+**Important remark:** Each time a source file is added into the baltik project, you need to reconfigure it to take new files into account when building the exectuable:
 ```
 cd $project_directory
 ./configure
 ```
 
-You can now build your project with Eclipse or in the terminal. Edit the two files with your favorite editor.
+You can now build your project with Eclipse or in the terminal.
 
-**Note:** If you are using Eclispe, you have to refresh your project to see your new files.
+```{note}
+If you are using Eclispe, you have to refresh your project to see your new files.
+```
 
-Now, we want to change the inheritance of the class in order that it inherits from the `Interprete` class instead of `Objet_U`.
+Now, change the inheritance of the class in order that it inherits from the `Interprete` class instead of `Objet_U`.
+
+```{note}
 `Interprete` class is the base class of all the keywords doing tasks when read from the datafile, example (read, associate, solve, \...).
-You 'll have to:
+```
+
+You will have to:
 
 - add an `#include <Interprete.h>` in my_first_class.h,
 
-- replace `Objet_U` to `Interprete` in the .h and .cpp files,
+- replace `Objet_U` by `Interprete` in the .h and .cpp files,
 
-- Interprete class is an abstact class, it contains a pure virtual
-        method which should be implemented!
+- Interprete class is an abstact class, it contains a pure virtual method which should be implemented!
 
 - rebuild your application and an error will occur!
 
 - Look at the `Interprete` class.
 
-In Eclipse: highlight the string `Interprete` and push the F3 button of your keyboard to open the declaration file of this class.
+   ```{note}
+   highlight the string `Interprete` and push the F3 button of your keyboard to open the declaration file of this class.
+   ```
 
 - Look at `interpreter()` method. This method is called each time a keyword is read from the datafile (eg: `Read_file dom dom.geom`, `Solve pb`, ...).
 
-- Define the public method `interpreter(Entree&)` in the include file and implement it (just print a message with `Cerr` like `- My first keyword!`) into the cpp file. `Entree` is a TRUST class to read an input stream (from a file for example):
-Entree& interpreter(Entree&) override;
+- Define the public method `interpreter(Entree&)` in the include file and implement it (just print a message with `Cerr` like `- My first keyword!`) into the cpp file. 
+
+   ```{note}
+   `Entree` is a TRUST class to read an input stream (from a file for example):
+
+   Entree& interpreter(Entree&) override;
+   ```
 
 - Rebuild your project and fix errors until the debug binary of your project is generated
 
 You can now test you new class:
 
 - Copy a test case to the build folder of your Baltik project:
-```
-cd $project_directory/build/
-trust -copy Cx
-```
+   ```
+   cd $project_directory/build/
+   trust -copy Cx
+   ```
 
-You will have the following message:
-```
-ERROR
-```
+   You will have the following message:
+   ```
+   ERROR...
+   ```
 
-The error occurs because this test case is not in your baltik but in TRUST project. To be able to copy it, you have to load the full environment (TRUST+your baltik).
-```
-source ../full_env_my_project.sh
-trust -copy Cx
-cd Cx
-```
+   The error occurs because this test case is not in your baltik but in TRUST project. To be able to copy it, you have to load the full environment (TRUST+your baltik).
+   ```
+   source ../full_env_my_project.sh
+   trust -copy Cx
+   cd Cx
+   ```
 
-You can now edit the data file:
-```
-gedit Cx.data &
-```
+- Edit the data file:
+   ```
+   gedit Cx.data &
+   ```
 
-Add the keywords `my_first_class` and `End` after the line where the problem is discretized.
+- Add the keywords `my_first_class` and `End` after the line where the problem is discretized.
 
-You can eventually run this datafile with your baltik binary and check that this new keyword is recognized:
+   You can eventually run this datafile with your baltik binary and check that this new keyword is recognized:
 
 - With Eclipse: 
 
-$\rightarrow$ In the project explorer, right click on `my_project` and select `Debug As/Debug configurations\...` 
+   $\rightarrow$ In the project explorer, right click on `my_project` and select `Debug As/Debug configurations\...` 
 
-$\rightarrow$ In `Main` tab, check `Disable auto build` then click on `Apply`
+   $\rightarrow$ In `Main` tab, check `Disable auto build` then click on `Apply`
 
-$\rightarrow$ In `Arguments` tab, fill `Program arguments:" with `Cx` 
+   $\rightarrow$ In `Arguments` tab, fill `Program arguments:" with `Cx` 
 
-$\rightarrow$ `Working directory:" Copy the path to datafile matching \$project_directory/build/Cx\ $\rightarrow$ `Apply` and `Debug` $\rightarrow$ Click on `Yes` to switch to the debug view $\rightarrow$ Click on `Resume` button (or F8) to run the calculation until the end.
+   $\rightarrow$ `Working directory:" Copy the path to datafile matching \$project_directory/build/Cx\ 
+   
+   $\rightarrow$ `Apply` and `Debug` 
+   
+   $\rightarrow$ Click on `Yes` to switch to the debug view 
+   
+   $\rightarrow$ Click on `Resume` button (or F8) to run the calculation until the end.
 
-- On a terminal, you can only run: 
-```
-cd $project_directory/build/Cx/
-exec=$exec_debug trust Cx
-```
+   ```{note}
+   On a terminal, you can only run:
+   
+      cd \$project\_directory/build/Cx/
+      
+      exec=\$exec\_debug trust Cx
+   ```
 
-### Modify your cpp class
+## Modify your cpp class
 
-Now, we want you to read this syntax from the datafile:
-```
-my_new_keyword { domain dom_name option 0 }
-```
-
-The recommended way is to use **Param** objects.
-
-As an example, this is how it is done for 
+Here is an example to read from a datafile this block:
 ```
 my_new_keyword { problem pb_name option 1 }
 ```
-
+In the cpp file, this is coded using **Param** objects as follows:
 ```cpp
 #include <Param.h>
 Entree& Class::interpreter(Entree& is)
@@ -317,7 +351,15 @@ return is;
 }
 
 ```
-- Fix your implementation of `interpreter()` method (add missing includes).
+
+
+In this tutorial, you should read this syntax from the datafile:
+```
+my_new_keyword { domain dom_name option 0 }
+```
+
+
+- Implement the reading of the domain and option in your `interpreter()` method (add missing includes).
 
 - Add a print at the end of the method `interpreter(Entree&)` and find how to print the domain name:
 
@@ -325,68 +367,67 @@ return is;
 Cerr << "Option number " << option_number << " has been read on the domain named " << ??? << finl;
 ```
 
-Then build et run your case in debug:
-
-**With Eclipse:**
-
-   - Build/fix/re-build your project:  $\rightarrow$ `Project` and `Build project`\
-
-   - Run the test case: $\rightarrow$ `Run` and `Debug`\
-
-**Or in a terminal:**
+  Then build et run your case in debug using Eclipse:
 
    - Build/fix/re-build your project:
+   
+      $\rightarrow$ `Project` and `Build project`
+
+   - Run the test case: 
+   
+      $\rightarrow$ `Run` and `Debug`
+
+   ```{tip}
+    If you want to build in a terminal:
+
+       cd $project_directory
+      
+       make debug
+       
+       cd $project_directory/build/Cx/
+       
+       export exec=$exec_debug
+       
+       trust Cx
    ```
-   cd $project_directory
-   make debug
+
+- Now, you will have then to display information about domain boundaries. First, edit the `my_first_class.cpp` file and add into the `interpreter()` method a loop on the boundaries.
+
+   Look for help inside the `Domaine`, `Bord`, `Frontiere` classes in Eclipse to access to the:
+
+   - Number of boundaries (**nb_bords()** method)
+
+   - Boundaries (**bord(int)** method)
+
+   - Name of the boundaries (**le_nom()** method)
+
+   - Number of faces of each boundary (**nb_faces()** method)
+
+   Print these information in the terminal using something like:
+   ```cpp
+   Cerr << "The boundary named " << ??? << " has " << ??? << "faces." << finl;
    ```
 
-   - Run the test case:
+- Afterwards, compute the sum of the control volumes of a domain discretized in VEF. Information about control volumes is in the `Domaine_VF` class (discretized domain) which can't be accessed from the domain, but only from the problem. So, you need to read another parameter from your datafile:
    ```
-   cd $project_directory/build/Cx/
-   export exec=$exec_debug
-   trust Cx
+   my_first_class { domain dom option 0 problem pb }
    ```
-You will have then to display information about domain boundaries. First, edit the `my_first_class.cpp` file and add into the `interpreter()` method a loop on the boundaries.
 
-Look for help inside the `Domaine`, `Bord`, `Frontiere` classes in Eclipse or in the HTML documentation to access to the:
+   - Add the read of a new parameter problem into `my_first_class.cpp` file (see the example at the beggining of this part).
 
-- Number of boundaries (**nb_bords()** method)
+   - Remember the `equation` or `problem` UML diagram of the presentation's slides.
 
-- Boundaries (**bord(int)** method)
+   - Look for help inside the `Domaine_VF`, `Probleme_base` and `Domaine_dis_base` in Eclipse or the HTML documentation to access to the discretized domain (`domaine_dis()` method) and the control volumes (`volumes_entrelaces()` method)
 
-- Name of the boundaries (**le_nom()** method)
+   - You will need to cast the discretized domain returned by the `domaine_dis()` method into a `Domaine_VF` object.
 
-- Number of faces of each boundary (**nb_faces()** method)
+   - Print the size of the control volumes array with something like:
+     ```cpp
+     Cerr << control_volumes.size() << finl;
+     ```
+     where `control_volumes` is a **DoubleVect** returned by the `Domaine_VF::volumes_entrelaces()` method.
 
-Print these information in the terminal:
-```cpp
-Cerr << "The boundary named " << ??? << " has " << ??? << "faces." << finl;
-```
-
-Afterwards, compute the sum of the control volumes of a domain discretized in VEF. Information about control volumes is in the `Domaine_VF` class (discretized domain) which can't be accessed from the domain, but only from the problem.
-So, you need to read another parameter from your datafile:
-```
-my_first_class { domain dom option 0 problem pb }
-```
-
-- Add the read of a new parameter problem into `my_first_class.cpp` file (see the example at the beggining of this part).
-
-- Remember the `equation` or `problem` UML diagram of the presentation's slides.
-
-- Look for help inside the `Domaine_VF`, `Probleme_base` and `Domaine_dis_base` in Eclipse or the HTML documentation to access to the discretized domain (`domaine_dis()` method) and the control volumes (`volumes_entrelaces()` method)
-
-- You will need to cast the discretized domain returned by the `domaine_dis()` method into a `Domaine_VF` object.
-
-- Print the size of the control volumes array with something like:
-
-```cpp
-Cerr << control_volumes.size() << finl;
-```
-
-Where `control_volumes` is a **DoubleVect** returned by the `Domaine_VF::volumes_entrelaces()` method.
-
-**Now, compute and print the sum of the control volumes with a `for` loop.**
+   - **Now**, compute and print the sum of the control volumes with a `for` loop.
 
 
 ## Add XD tags (keyword documentation)
@@ -473,86 +514,84 @@ You can also add some more printings, and here is how:
 - Edit the `\$project_directory/src/Trust_fixes/mon_main.cpp` file of your baltik project using text editor or Eclipse.
 
 - Add these lines after `Process::imprimer_ram_totale(1);` :
-```cpp
-std::cout << "Hello World to cout." << std::endl;
-std::cerr << "Hello World to cerr." << std::endl;
-Cout << "Hello World to Cout." << finl;
-Cerr << "Hello World to Cerr." << finl;
-Process::Journal() << "Hello World to Journal." << finl;
-```
+   ```cpp
+   std::cout << "Hello World to cout." << std::endl;
+   std::cerr << "Hello World to cerr." << std::endl;
+   Cout << "Hello World to Cout." << finl;
+   Cerr << "Hello World to Cerr." << finl;
+   Process::Journal() << "Hello World to Journal." << finl;
+   ```
 
-Then, in a terminal, rebuild the code:
-```
-cd $project_directory
-make debug optim
-```
-To test your last developpements:
+   Then, in a terminal, rebuild the code:
+   ```
+   cd $project_directory
+   make debug optim
+   ```
+   To test your last developpements:
 
-- Create an empty data file:
-```
-mkdir -p $project_directory/build/hello
-cd $project_directory/build/hello
-touch hello.data
-```
+      - Create an empty data file:
 
-- And run the code:
+         mkdir -p $project_directory/build/hello
+         cd $project_directory/build/hello
+         touch hello.data
 
-First sequentially:
-```
-trust hello
-```
+      - And run the code sequentially:
+         ```
+         trust hello
+         ```
+        Then in parallel:
+         ```
+         trust hello 4
+         ```
+        and see the differences.
 
-Then in parallel:
-```
-trust hello 4
-```
+   Here are the explanations:
 
-and see the differences.
+   - `Cout` is equivalent to `std::cout` on the master process only. Use this output for infos about the physics (convergence,fluxes,...).
 
-Here are the explanations:
+   - `Cerr` is equivalent to `std::cerr` on the master process only. Use this output for warning/errors only.
 
-- `Cout` is equivalent to `std::cout` on the master process only. Use this output for infos about the physics (convergence,fluxes,...).
+   - `finl` is equivalent to `std::endl` + `flush()` on the master process.
 
-- `Cerr` is equivalent to `std::cerr` on the master process only. Use this output for warning/errors only.
+   - `Journal()` prints to `datafile_000n.log` files. Use this output during parallel development to print plumbing infos which would be hidden during production runs.
 
-- `finl` is equivalent to `std::endl` + `flush()` on the master process.
+   ```{remark}
+   During a parallel run, the `Journal()` output can be disabled. 
+   ```
+   To try it, first clean your folder:
+   ```
+   ls *.log
+   trust -clean
+   ```
+   and run computation with `-journal=0 option`:
+   ```
+   trust hello 4 -journal=0
+   ls *.log
+   ```
 
-- `Journal()` prints to `datafile_000n.log` files. Use this output during parallel development to print plumbing infos which would be hidden during production runs.
+   In practice, other options are available. To get the list, run:
+   ```
+   trust hello.data -help_trust
+   ```
 
-**Remark:** during a parallel run, the `Journal()` output can be disabled. To try it, first clean your folder:
-```
-ls *.log
-trust -clean
-```
-and run computation with `-journal=0 option`:
-```
-trust hello 4 -journal=0
-ls *.log
-```
-
-In practice, other options are available. To get the list, run:
-```
-trust hello.data -help_trust
-```
-
-Let's suppose that you now want to print something inside a file, let's say the volume of the sum of every control volumes.
+- Now, let's suppose that you now want to print something inside a file, let's say the volume of the sum of every control volumes.
 You would want to write a file with a name close to `DataFileName_result.txt` where `DataFileName` is the name of the data file.
 
-To do so, you have to:
+   To do so, you have to:
 
-- create an object of the class **Nom** and fill it by collecting the datafile's name using **Objet_U::nom_du_cas()** method.
+   - create an object of the class **Nom** and fill it by collecting the datafile's name using **Objet_U::nom_du_cas()** method.
 
-- complete the datafile's name with the string `_result.txt` thanks to the `operator` += method of the class **Nom**.
+   - complete the datafile's name with the string `_result.txt` thanks to the `operator` += method of the class **Nom**.
 
-- create the output file with the **SFichier** class and print the sum into it.
+   - create the output file with the **SFichier** class and print the sum into it.
 
-When this is done, compile your project and run the Cx datafile:
-```
-cd $project_directory/build/Cx/
-exec=$exec_debug trust Cx
-```
+   When this is done, compile your project and run the Cx datafile:
+   ```
+   cd $project_directory/build/Cx/
+   exec=$exec_debug trust Cx
+   ```
 
-You should find in `$project_directory/build/Cx/` your new file with the wanted information in it.
+   You should find in `$project_directory/build/Cx/` your new file with the wanted information in it.
 
 
 ## Parallel exercise
@@ -564,7 +603,7 @@ trust -partition Cx 2
 trust PAR_Cx 2 
 ```
 
-and ompare the files: Cx_result.txt, PAR_Cx_result.txt.
+and compare the files: `Cx_result.txt`and `PAR_Cx_result.txt`.
 Differences come from the fact that the 2 processors write into the file one after the other one. So the final content will be the value calculated on the last processor which will acces to the file.
 
 You can try to launch one more time the calculation, the result may even differ.
@@ -591,7 +630,7 @@ meld Cx_csv.TU PAR_Cx_csv.TU &
 
 ### Debog test cases
 
-In TRUST, there are also deog test cases, such as `Debog_VEF`. Copy this test case to see what it does:
+In TRUST, there are also debog test cases, such as `Debog_VEF`. Copy this test case to see what it does:
 ```
 cd $project_directory/build 
 trust -copy Debog_VEF 
@@ -610,44 +649,47 @@ Then let's try a parallel run to see the differences:
 trust -partition Debog_VEF 2 
 trust PAR_Debog_VEF 2
 ```
-Verifyr the data file, you should have now:
+Verify the data file, you should have now:
 ```
-Debog pb seq faces 1.e-6 **1**
+Debog pb seq faces 1.e-6 1
 ```
 
 Moreover, you should also get a debog\*.log and other DEBOG files netx to your data file.
 
 Inside the log file, you will have the message `ERROR`  if the difference of an array value between you sequential and parallel run is greater than 1.e-6. Otherwise, you will have read `OK`.
 
-You can add a debog instruction in your file mon_main.cpp located in `\$project_directory/Trust_fixes`. After the `Hello world` prints put:
+You can add a debog instruction in your file mon_main.cpp located in `$project_directory/Trust_fixes`. After the `Hello world` prints put:
 ```cpp
 double var = 2.5;
 Debog::verifier("- Debog test message",var);
 ```
-**Do not forget to add the `#include \<Debog.h\>`!**
+
+```{tip}
+Do not forget to add the `#include <Debog.h>`
+```
 
 Then re-compile and do run sequential calculation and a parallel calculation and check thedebog.log file. Becarefull the debog instruction in the data file must be between the `Discretize` and `Read pb` lines.
 
-For more information, go check the {TRUST Reference Manual}`../../reference/index.rst` and search for the Debog Keyword.
+For more information, go check the `TRUST Keyword Reference Manual` and search for the Debog Keyword.
 
 
 ## Validation form and test cases
 
-For each of your new deceloppement in TRUST, if you want them to be integrated, tt is mandatory to create a validation form. They are based on Jupyter Notebooks. Let's try to create one.
+If you want that your developments being integrated into TRUST or baltiks, you should add a validation form. Validation forms are based on Jupyter Notebooks. Let's try to create one.
 
-First, go the the directory where to notekook are stored:
+First, go the the directory where the notekook should be stored:
 ```
 cd $project_directory
 cd share/Validation/Rapports_automatiques
 ```
-Now, create a new directory for your new validation form:
+Create a new directory for your new validation form:
 ```
 mkdir -p upwind/src
 ```
 Then, add the following files:
 ```
-cp MY_FIRST_BALTIK/upwind/upwind.data upwind/src
-cp MY_FIRST_BALTIK/upwind/upwind.geo upwind/src
+cp $my_project/upwind/upwind.data upwind/src
+cp $my_project/upwind/upwind.geo upwind/src
 ```
 To create the Jupyter Notebook, run the following:
 ```
@@ -655,7 +697,7 @@ cd upwind
 trust -jupyter
 ```
 
-Now you should have a upwind.ipynb file, i.e. a new Jupyter notebook. Do not forget to add it to your git repository.
+Now you should have a `upwind.ipynb` file, i.e. a new Jupyter notebook. Do not forget to add it into your git repository.
 
 You can now run the validation for by doing:
 ```
@@ -673,7 +715,7 @@ cd $project_directory
 make check_optim
 ```
 
-Howevern you can see error occuring in  PAR_upwind_jdd1. Let us fix that error.
+Howevern you can see error occuring in  `PAR_upwind_jdd1`. Let us fix that error.
 
 First, copy the test case:
 ```
@@ -681,7 +723,7 @@ cd $project_directory/build
 trust -copy upwind_jdd1
 ```
 
-An error should occur. It is because it has not been taken into account in the `./configure`, so you need to do it again and do again the previous step.
+An error should occur because it has not been taken into account in the `./configure`, so you need to run it.
 
 Now, you have to re-run the configure script to take into account the newtest case:
 ```
@@ -690,7 +732,7 @@ cd $project_directory
 cd build
 trust -copy upwind_jdd1
 ```
-And analyse the error:
+And analyze the error:
 ```
 cd upwind_jdd1
 trust -partition upwind_jdd1
@@ -703,17 +745,13 @@ If it works, update the data file in `\$project_directory/share/Validation/Rappo
 Then, relaunch the last test cases which did not run:
 ```
 cd $project_directory
-make check_last_pb_optim
+make ctest_optim
 ```
 Do not forget to add it to you git project.
 
-Eventually, run all the non regression tests with a optimized binary:
-```
-make check_all_optim
-```
 You can also do it in debug:
 ```
-make check_all_debug
+make ctest_debug
 ```
 
 ## Tools
@@ -723,24 +761,24 @@ make check_all_debug
 GDB is a vital tool for each and every TRUST developper. It will help you a lot for debugging. You can use it from Eclipse or with th terminal:
 
 - Run a test case with GDB using Eclipse IDE:
-$\rightarrow$ `Debug As` and `Debug configurations\...` from `my_project`
 
-$\rightarrow$ in `Arguments`, `Program arguments:" upwind
+   $\rightarrow$ `Debug As` and `Debug configurations\...` from `my_project`
 
-$\rightarrow$ `Working directory:" MY_FIRST_BALTIK/upwind/
+   $\rightarrow$ in `Arguments`, `Program arguments:" upwind
 
-$\rightarrow$ `Apply` and `Debug`
+   $\rightarrow$ `Working directory:" MY_FIRST_BALTIK/upwind/
 
-For more information about GDB commands, refer to the help menu.
+   $\rightarrow$ `Apply` and `Debug`
 
-- GDB with a terminal:
+   For more information about GDB commands, refer to the help menu.
 
-Run a test case with GDB:
+```{note} 
+to run GDB with a terminal:
+
+   cd my_project/upwind/
+   
+   exec=$exec_debug trust -gdb upwind
 ```
-cd MY_FIRST_BALTIK/upwind/
-exec=$exec_debug trust -gdb upwind
-```
-You are now in GDB.
 
 
 ### Find memory bugs with valgrind
