@@ -1,4 +1,4 @@
-# Tutorial: Building a BALTIK Application Based on the **TRUST** Software
+# Building another BALTIK 
 
 ## Abstract
 
@@ -31,7 +31,7 @@ with periodic boundary conditions, where:
 - $D(\overrightarrow{X},t)$: diffusion coefficient of $c$ (user input),
 - $a$, $b$, $c$ and $d$: bounds of the two-dimensional computational domain.
 
-The spatial and temporal discretisation of equation {eq}`eq_con_diff` will be performed using the numerical schemes available in the **TRUST** software {cite}`BIB_03`.
+The spatial and temporal discretisation of equation {eq}`eq_con_diff` will be performed using the numerical schemes available in the **TRUST** software.
 
 In the **Specification** section, we describe the development specifications and give some recommendations for solving equation {eq}`eq_con_diff`.
 
@@ -129,7 +129,7 @@ We carry out this identification exercise below with respect to our requirements
 
   By examining the doxygen graph of the `Probleme_base` class (cf. {numref}`fig_pb_base`), no existing problem appears close enough to our needs.
 
-  ```{figure} classProbleme__base.png
+  ```{figure} ../../_static/FIGURES/classProbleme_base.png
   :name: fig_pb_base
   :width: 100%
 
@@ -139,42 +139,42 @@ We carry out this identification exercise below with respect to our requirements
 - **convection-diffusion equation**
 
   By examining the doxygen graph of the `Equation_base` class (cf. {numref}`fig_eq_base`), we find that a convection-diffusion equation named `Convection_Diffusion_std` exists (cf. {numref}`fig_conv_diff_std`).
-  It is a base class for the transport equation of a scalar in laminar flow and holds a reference to the convecting velocity field {cite}`BIB_01`.
+  It is a base class for the transport equation of a scalar in laminar flow and holds a reference to the convecting velocity field.
   This equation class is pure abstract and therefore cannot be instantiated. Its implementation is incomplete and serves as a base for other derived classes.
 
-  ```{figure} classEquation__base.png
+  ```{figure} ../../_static/FIGURES/classEquation_base.png
   :name: fig_eq_base
   :width: 100%
 
   `Equation_base` class
   ```
 
-  ```{figure} convection_diffusion_std.png
+  ```{figure} ../../_static/FIGURES/convection_diffusion_std.png
   :name: fig_conv_diff_std
   :width: 100%
 
   `Convection_Diffusion_std` class
   ```
 
-  Based on the doxygen graph of the `Convection_Diffusion_Concentration` class (cf. {numref}`fig_eq_cd_std_conc`), the child class `Convection_Diffusion_Concentration`, derived from `Convection_Diffusion_std`, appears very close to equation {eq}`eq_con_diff`. This class is a specific case of `Convection_Diffusion_std` for the transport of one or more constituents {cite}`BIB_01`.
+  Based on the doxygen graph of the `Convection_Diffusion_Concentration` class (cf. {numref}`fig_eq_cd_std_conc`), the child class `Convection_Diffusion_Concentration`, derived from `Convection_Diffusion_std`, appears very close to equation {eq}`eq_con_diff`. This class is a specific case of `Convection_Diffusion_std` for the transport of one or more constituents.
 
-  ```{figure} classConvection__Diffusion__Concentration.png
+  ```{figure} ../../_static/FIGURES/classConvection_Diffusion_Concentration.png
   :name: fig_eq_cd_std_conc
   :width: 40%
 
   `Convection_Diffusion_Concentration` class
   ```
 
-  The specificities of the `Convection_Diffusion_Concentration` equation are {cite}`BIB_01`:
+  The specificities of the `Convection_Diffusion_Concentration` equation are:
 
-  - diffusion coefficient {cite}`BIB_02`: this coefficient is a property of a constituent associated with the equation. It is provided by the user in the data file as follows:
+  - diffusion coefficient: this coefficient is a property of a constituent associated with the equation. It is provided by the user in the data file as follows:
 
     ```{literalinclude} jdd_constituant_std.data
     :language: c++
     :caption: standard **TRUST** constituent declaration
     ```
 
-  - convection velocity {cite}`BIB_01`: this velocity is obtained via the `vitesse_pour_transport` method, which retrieves it from the equation of the problem that owns it. In standard **TRUST** usage, this convection velocity comes from the Navier-Stokes hydraulics equation.
+  - convection velocity: this velocity is obtained via the `vitesse_pour_transport` method, which retrieves it from the equation of the problem that owns it. In standard **TRUST** usage, this convection velocity comes from the Navier-Stokes hydraulics equation.
 
 ### Application-Specific Features
 
@@ -411,7 +411,7 @@ To use the previously set up tests as non-regression tests, it suffices to:
 
 - run the tests and check for non-regression by executing the command `make check_optim` from the `convection_diffusion` directory. The result of this command is shown in figure {numref}`fig_tnr`. This figure shows that the sequential and parallel results exhibit no regression.
 
-  ```{figure} tnr.png
+  ```{figure} ../../_static/FIGURES/tnr.png
   :name: fig_tnr
   :width: 80%
 
@@ -438,10 +438,3 @@ In this tutorial, we have described, through the resolution of a convection-diff
 
 - the setup of non-regression tests and the automatic generation of a development verification report using tools provided by the **TRUST** software.
 
----
-
-## Bibliography
-
-```{bibliography}
-:style: plain
-```
